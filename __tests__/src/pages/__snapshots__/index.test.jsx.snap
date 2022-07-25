@@ -1,0 +1,36 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home renders homepage unchanged 1`] = `
+<div>
+  <div
+    class="authLayout"
+  >
+    <div
+      class="authContainer"
+    >
+      <section
+        class="authComponentContainer"
+      >
+        <button
+          class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root custom-button custom-button--large  css-13vkird-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Logout
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </section>
+      <section
+        class="authImageContainer"
+      >
+        <img
+          class="imageBanner"
+          src="https://c4.wallpaperflare.com/wallpaper/930/115/679/panda-4k-high-quality-hd-wallpaper-preview.jpg"
+        />
+      </section>
+    </div>
+  </div>
+</div>
+`;
