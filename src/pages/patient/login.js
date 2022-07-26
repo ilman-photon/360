@@ -1,13 +1,23 @@
 import AuthLayout from "../../components/templates/authLayout";
 import Login from "../../components/organisms/Login/login";
-import { Api } from "../api/api";
 import Cookies from "universal-cookie";
+import { Api } from "../api/api";
+
+export async function getServerSideProps({ req, res }) {
+  res.setHeader(
+    "set-cookie",
+    `authorized=false; path=/; samesite=lax; httponly;`
+  );
+  return {
+    props: {},
+  };
+}
 
 const loginProps = {
   OnLoginClicked: function (postbody, router) {
     const api = new Api();
     api.client
-      .post("https://patientlogin.mocklab.io/user/login", postbody)
+      .post("https://patientlogin.mocklab.io/ecp/patient/login", postbody)
       .then(function (response) {
         console.log(response);
         if (response && response.status === 200) {
@@ -23,16 +33,17 @@ const loginProps = {
   },
   OnGuestClicked: function () {},
   OnCreateAccountClicked: function (router) {
-    router.push("/auth/create-account");
+    router.push("/patient/create-account");
   },
   OnForgotPasswordClicked: function (router) {
-    router.push("/forgot-password");
+    router.push("/patient/forgot-password");
   },
 };
-export default function LoginPage() {
+
+export default function AuthPage() {
   return <Login {...loginProps} />;
 }
 
-LoginPage.getLayout = function getLayout(page) {
+AuthPage.getLayout = function getLayout(page) {
   return <AuthLayout showMobileImage={true}>{page}</AuthLayout>;
 };

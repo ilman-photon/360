@@ -1,6 +1,5 @@
 import Head from "next/head";
 import styles from "./authLayout.module.scss";
-import { colors } from "../../styles/theme";
 import BaseHeader from "../organisms/BaseHeader/baseHeader";
 import Container from "@mui/material/Container";
 import { patientTypography, providerTypography } from "../../styles/theme";
@@ -29,7 +28,7 @@ export default function Layout({
               sx={{
                 paddingTop: {
                   xs: showMobileImage ? "35px!important" : "75px!important",
-                  md: "100px!important",
+                  md: "146px!important",
                 },
                 padding: 0,
               }}
@@ -44,7 +43,7 @@ export default function Layout({
               padding: 0,
             }}
           >
-            <Image
+            <img
               src="https://c4.wallpaperflare.com/wallpaper/930/115/679/panda-4k-high-quality-hd-wallpaper-preview.jpg"
               className={styles.imageBanner}
               alt="auth-image"
