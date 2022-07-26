@@ -25,16 +25,17 @@ const loginProps = {
           cookies.set("authorized", "true", { path: "/" });
           router.push("/");
           console.log("success");
-          callback({status: "success"})
+          callback({ status: "success" });
         }
       })
       .catch(function (err) {
         callback({
-          status: "failed", 
+          status: "failed",
           message: {
             title: "",
-            description: "Invalid Username or Password"
-          }})
+            description: "Invalid Username or Password",
+          },
+        });
       });
   },
   OnGuestClicked: function () {},

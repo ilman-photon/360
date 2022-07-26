@@ -10,7 +10,7 @@ import globalStyles from "../../../styles/Global.module.scss";
 import { useRouter } from "next/router";
 import { StyledButton } from "../../atoms/Button/button";
 import { useForm, Controller } from "react-hook-form";
-import FormMessage from "../../molecules/FormMessage/formMessage"
+import FormMessage from "../../molecules/FormMessage/formMessage";
 
 const constants = require("../../../utils/constants");
 
@@ -20,32 +20,41 @@ export default function Login({
   OnCreateAccountClicked,
   OnForgotPasswordClicked,
 }) {
-  const [postMessage, setPostMessage] = React.useState("")
+  const [postMessage, setPostMessage] = React.useState("");
   const router = useRouter();
 
   const { handleSubmit, setError, control } = useForm();
 
   const onSubmit = ({ username, password }) => {
-    OnLoginClicked({ username, password }, router, checkMessage)
+    OnLoginClicked({ username, password }, router, checkMessage);
     console.log({ username, password });
   };
 
   const checkMessage = (message) => {
-    const messageStatus = postMessage.status === "failed"
+    const messageStatus = message.status === "failed";
+    console.log(`messageStatus ${messageStatus}`);
     if (messageStatus) {
-      setError("username", { type: 'custom', message: "Enter a valid Email or Phone Number" })
-      setError("password", { type: 'custom', message: "This field is required" })
+      setError("username", {
+        type: "custom",
+        message: "Enter a valid Email or Phone Number",
+      });
+      setError("password", {
+        type: "custom",
+        message: "This field is required",
+      });
     }
-    setPostMessage(message)
-    console.log("this", postMessage, message)
-  }
+    setPostMessage(message);
+    console.log("this", postMessage, message);
+  };
 
   const renderFromMessage = () => {
-    console.log("sas", postMessage)
+    console.log("sas", postMessage);
     return (
-      postMessage.status === "failed" && <FormMessage error>{postMessage.message.description}</FormMessage>
-    )
-  }
+      postMessage.status === "failed" && (
+        <FormMessage error>{postMessage.message.description}</FormMessage>
+      )
+    );
+  };
 
   return (
     <Box className={globalStyles.container}>
@@ -60,7 +69,10 @@ export default function Login({
               name="username"
               control={control}
               defaultValue=""
-              render={({ field: { onChange, value }, fieldState: { error } }) => {
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => {
                 return (
                   <StyledInput
                     id="username"
@@ -73,15 +85,20 @@ export default function Login({
                     error={!!error}
                     helperText={error ? error.message : null}
                   />
-                )
+                );
               }}
-              rules={{ required: "Enter a valid Email or Phone Number" }}
+              rules={{
+                required: "Enter a valid Email or Phone Number",
+              }}
             />
             <Controller
               name="password"
               control={control}
               defaultValue=""
-              render={({ field: { onChange, value }, fieldState: { error } }) => {
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => {
                 return (
                   <StyledInput
                     id="password"
@@ -94,7 +111,7 @@ export default function Login({
                     error={!!error}
                     helperText={error ? error.message : null}
                   />
-                )
+                );
               }}
               rules={{ required: "This field is required" }}
             />
@@ -114,9 +131,9 @@ export default function Login({
               type="submit"
               size={constants.LARGE}
               gradient={false}
-            // onClick={function () {
-            //   OnLoginClicked({ username, password }, router);
-            // }}
+              // onClick={function () {
+              //   OnLoginClicked({ username, password }, router);
+              // }}
             >
               Login
             </StyledButton>
