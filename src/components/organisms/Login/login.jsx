@@ -50,9 +50,8 @@ export default function Login({
   return (
     <Box className={globalStyles.container}>
       <Typography variant={constants.H1} className={styles.title}>
-        {`Patient Login ${postMessage.status}`}
+        Patient Login
       </Typography>
-      {/* {postMessage.status === "failed" && <FormMessage error>{postMessage.message.description}</FormMessage>} */}
       {renderFromMessage()}
       <Stack spacing={2}>
         <form onSubmit={handleSubmit(onSubmit)}>
