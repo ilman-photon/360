@@ -14,7 +14,7 @@ export async function getServerSideProps({ req, res }) {
 }
 
 const loginProps = {
-  OnLoginClicked: function (postbody, router) {
+  OnLoginClicked: function (postbody, router, callback) {
     const api = new Api();
     api.client
       .post("https://patientlogin.mocklab.io/ecp/patient/login", postbody)
@@ -25,10 +25,16 @@ const loginProps = {
           cookies.set("authorized", "true", { path: "/" });
           router.push("/");
           console.log("success");
+          callback({status: "success"})
         }
       })
-      .catch(function () {
-        console.log("failed");
+      .catch(function (err) {
+        callback({
+          status: "failed", 
+          message: {
+            title: "",
+            description: "Invalid Username or Password"
+          }})
       });
   },
   OnGuestClicked: function () {},
