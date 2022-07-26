@@ -10,43 +10,45 @@ import { StyledButton } from "../../atoms/Button/button";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import { styles } from "./style"
 
-const ForgotPasswordComponent = ({
+const PasswordSecurityQuestionComponent = ({
   OnBackToLoginClicked,
-  OnContinueButtonClicked
+  OnContinueButtonClicked,
+  securityQuestionData = []
 }) => {
   const router = useRouter();
-  const { t } = useTranslation('translation', { keyPrefix: 'ForgotPassword' });
-  const [username, setUsername] = useState("");
+  const { t } = useTranslation('translation', { keyPrefix: 'PasswordSecurityQuestion' });
   const [showPostMessage, setShowPostMessage] = useState(false);
- 
+
   return (
     <Card className={globalStyles.container} sx={{ minWidth: 275, padding: "16px" }}>
       <CardContent style={styles.cardContentStyle}>
         <Typography variant="h2">
           {t("title")}
         </Typography>
-        {showPostMessage ? <FormMessage success={false} sx={styles.postMessage}>{t("errorUsernameNotFound")}</FormMessage> :<></>}
-        <StyledInput
-          label={t("usernamePlaceHolder")}
-          id="username"
-          variant="filled"
-          style={styles.margin}
-          onChange={(event) => setUsername(event.target.value)}
-        />
+        <Typography variant="bodyRegular" style={styles.subTitleMargin}>
+          {t("subtitle")}
+        </Typography>
+        {showPostMessage ? <FormMessage success={false} sx={styles.postMessage}>{t("errorAccountLock")}</FormMessage> :<></>}
+        {securityQuestionData.map(function(question, i){
+            return <StyledInput
+            label={question[`SecurityQuestion-${(i+1)}`]}
+            id={`securityQuestion-${i}`}
+            variant="filled"
+            style={styles.margin}
+          />;
+        })}
         <StyledButton
           theme="patient"
           type="primary"
           size="large"
           gradient={false}
-          onClick={()=>{
-            OnContinueButtonClicked("setOption")
-          }}
+          onClick={()=>{}}
           style={styles.margin}
         >
-          {t("resetPasswordText")}
+          {t("continueButton")}
         </StyledButton>
         <Link
-            style={styles.margin}
+            style={{...styles.margin, ...styles.backToLoginMargin}}
             color={"#2095a9"}
             onClick={function () {
               OnBackToLoginClicked(router);
@@ -58,4 +60,4 @@ const ForgotPasswordComponent = ({
   );
 };
 
-export default ForgotPasswordComponent;
+export default PasswordSecurityQuestionComponent;
