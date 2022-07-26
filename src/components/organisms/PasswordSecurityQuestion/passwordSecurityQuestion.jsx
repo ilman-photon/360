@@ -35,6 +35,7 @@ const PasswordSecurityQuestionComponent = ({
             id={`securityQuestion-${i}`}
             variant="filled"
             style={styles.margin}
+            key={`securityQuestion-${i}`}
           />;
         })}
         <StyledButton

@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import styles from "../../styles/Login.module.css";
-import AuthLayout from "../components/templates/authLayout";
-import ForgotPasswordComponent from "../components/organisms/ForgotPassword/forgotPassword";
-import SetOptionComponent from "../components/organisms/SelectOption/selectOption";
-import PasswordSecurityQuestionComponent from "../components/organisms/PasswordSecurityQuestion/PasswordSecurityQuestion";
-import ConfirmFormComponent from "../components/organisms/ConfirmationForm/confirmationForm";
-import { useTranslation } from "react-i18next";
+import styles from "../../../styles/Login.module.css";
+import AuthLayout from "../../components/templates/authLayout";
+import ForgotPasswordComponent from "../../components/organisms/ForgotPassword/forgotPassword";
+import SetOptionComponent from "../../components/organisms/SelectOption/selectOption";
+import PasswordSecurityQuestionComponent from "../../components/organisms/PasswordSecurityQuestion/PasswordSecurityQuestion";
+import ConfirmFormComponent from "../../components/organisms/ConfirmationForm/confirmationForm";
 
 const MOCKED_SECURITY_QUESTION = [ 
   {"SecurityQuestion-1": "DetailQuestion1", "SecurityAnswer-1": "DetailAnswer1"}, 
