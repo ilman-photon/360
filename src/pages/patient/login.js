@@ -16,19 +16,16 @@ export async function getServerSideProps({ req, res }) {
 const loginProps = {
   OnLoginClicked: function (postbody, router, callback) {
     const api = new Api();
-    api.client
-      .post("https://patientlogin.mocklab.io/ecp/patient/login", postbody)
+    api
+      .login(postbody)
       .then(function (response) {
         console.log(response);
-        if (response && response.status === 200) {
-          const cookies = new Cookies();
-          cookies.set("authorized", "true", { path: "/" });
-          router.push("/");
-          console.log("success");
-          callback({ status: "success" });
-        }
+        router.push("/");
+        console.log("success");
+        callback({ status: "success" });
       })
       .catch(function (err) {
+        console.log(err);
         callback({
           status: "failed",
           message: {
