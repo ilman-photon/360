@@ -1,0 +1,4 @@
+[submodule "__tests__/features"]
+	path = __tests__/features
+	url = https://gitlab.com/eyecare-partners/e360plusportal/e360-bdd-feature-file-patient-and-provider-portal.git
+	branch = main
