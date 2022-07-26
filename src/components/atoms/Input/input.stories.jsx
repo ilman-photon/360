@@ -3,7 +3,7 @@ import React from "react";
 import { StyledInput } from "./input";
 
 // More on default export: https://storybook.js.org/docs/react/writing-stories/introduction#default-export
-export default {
+const inputComponents = {
   title: "Atoms/Input",
   component: StyledInput,
   // More on argTypes: https://storybook.js.org/docs/react/api/argtypes
@@ -19,6 +19,9 @@ export default {
     },
   },
 };
+
+// 👇️ use default export
+export default inputComponents;
 
 // More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
 const Template = (args) => <StyledInput {...args} />;

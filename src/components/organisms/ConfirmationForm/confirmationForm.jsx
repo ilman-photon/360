@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import {Box, Divider, Link, Typography } from "@mui/material";
+import { Box, Divider, Link, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { useTranslation } from "react-i18next";
 import globalStyles from "../../../styles/Global.module.scss";
 import { useRouter } from "next/router";
 import { StyledButton } from "../../atoms/Button/button";
-import { styles } from "./style"
+import { styles } from "./style";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 
 const ConfirmFormComponent = ({
@@ -18,45 +18,60 @@ const ConfirmFormComponent = ({
   additional,
   postMessage,
   isSuccessPostMessage = true,
-  buttonLabel
+  buttonLabel,
 }) => {
   const router = useRouter();
-  const { t } = useTranslation('translation', { keyPrefix: 'SetOption' });
+  const { t } = useTranslation("translation", { keyPrefix: "SetOption" });
   const [showPostMessage, setShowPostMessage] = useState(true);
 
   return (
-    <Card className={globalStyles.container} sx={{ minWidth: 275, padding: "16px" }}>
+    <Card
+      className={globalStyles.container}
+      sx={{ minWidth: 275, padding: "16px" }}
+    >
       <CardContent style={styles.cardContentStyle}>
         <Typography variant="h2" style={styles.margin}>
           {title}
         </Typography>
-        {showPostMessage ? <FormMessage success={isSuccessPostMessage} sx={styles.postMessage}>{postMessage}</FormMessage> :<></>}
+        {showPostMessage ? (
+          <FormMessage success={isSuccessPostMessage} sx={styles.postMessage}>
+            {postMessage}
+          </FormMessage>
+        ) : (
+          <></>
+        )}
         <Typography variant="bodyMedium" style={styles.margin}>
           {subtitle}
         </Typography>
-        {
-          additional ? {additional} :  
+        {additional ? (
+          { additional }
+        ) : (
           <Typography variant="bodyRegular" style={styles.marginDescription}>
             {description}
           </Typography>
-        }
+        )}
         <StyledButton
           theme="patient"
-          type="primary"
+          mode="primary"
           size="large"
           gradient={false}
-          onClick={()=>{}}
+          onClick={() => {}}
           style={styles.margin}
         >
           {buttonLabel}
         </StyledButton>
         <Link
-            style={{...styles.margin, ...styles.textAlign, ...styles.backToLoginMargin}}
-            color={"#2095a9"}
-            onClick={function () {
-              OnBackToLoginClicked(router);
-            }}>
-            {t("backButtonLink")}
+          style={{
+            ...styles.margin,
+            ...styles.textAlign,
+            ...styles.backToLoginMargin,
+          }}
+          color={"#2095a9"}
+          onClick={function () {
+            OnBackToLoginClicked(router);
+          }}
+        >
+          {t("backButtonLink")}
         </Link>
       </CardContent>
     </Card>

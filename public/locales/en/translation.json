@@ -1,5 +1,50 @@
 {
   "Home": {
     "hello": "Welcome to Next.js!"
+  },
+  "ForgotPassword":{
+    "title": "Forgot Password",
+    "description": "Enter your email address or phone number bellow and we'll send you an-email to reset it.",
+    "errorUsernameNotFound": "Patient with the given Username not found. Please make sure that you entered it correctly and try again",
+    "errorInValidUserameOrPhone": "Enter a valid Email or Phone Number",
+    "errorEmptyField": "This field is required",
+    "resetPasswordText": "Continue",
+    "usernamePlaceHolder": "Email or Phone Number",
+    "backButtonLink": "Back to Log in"
+  },
+  "SetOption":{
+    "title": "Select an option",
+    "securityButtonText": "Answer security questions",
+    "noSecurityButtonText": "Receive link to reset password",
+    "oneTimeLoginButtonText": "Login with one-time link",
+    "backButtonLink": "Back to Log in"
+  },
+  "PasswordSecurityQuestion":{
+    "title": "Password Recovery Security Questions",
+    "subtitle": "Answer the following questions to reset your password.",
+    "errorIncorrectAnswer": "Incorrect answer(s)",
+    "errorAccountLockTitle": "Account Locked",
+    "errorAccountLock": "Your account is locked. Please contact customer support to unlock your account",
+    "errorEmptyField": "This field is required",
+    "continueButton": "Continue",
+    "backButtonLink": "Back to Log in"
+  },
+  "OneTimeLink":{
+    "title": "One-time link",
+    "successSentLikTitle": "One-time link sent",
+    "subtitle": "Choose a mode of communication where we should send you the magic link.",
+    "additionalText":"Mode of Communication",
+    "description":"Click on the one-time link sent to your email or phone number to access your account",
+    "primaryButton":"Send one-time link"
+  },
+  "PasswordReset":{
+    "title": "Password Reset",
+    "subtitle":"Choose a mode of communication where we should send you the link to reset your password.",
+    "additionalText":"Mode of Communication",
+    "linkSentToMail":"Link sent to your email",
+    "linkSentToPhone":"Link sent to your phone number",
+    "description":"If you did not receive the link, try to answer security questions.",
+    "primaryButtonText":"Answer security questions",
+    "backButtonLink": "Back to Log in"
   }
 }
