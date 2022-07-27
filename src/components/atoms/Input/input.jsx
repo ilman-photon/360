@@ -116,13 +116,18 @@ export const RedditTextField = styled((props) => (
     "&:hover": {
       backgroundColor: "transparent",
     },
+    "&:before": {
+      borderColor: "transparent !important"
+    },
+    "&:after": {
+      borderColor: "transparent !important"
+    },
     "&.Mui-error": {
       borderColor: "#FF0000",
       backgroundColor: "#FF000010",
     },
     "&.Mui-focused": {
       backgroundColor: "transparent",
-      boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 2px`,
       borderColor: theme.palette.primary.main,
     },
   },
