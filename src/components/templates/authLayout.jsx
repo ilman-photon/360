@@ -1,15 +1,17 @@
 import Head from "next/head";
 import styles from "./authLayout.module.scss";
-import BaseHeader from "../organisms/BaseHeader/baseHeader";
 import Container from "@mui/material/Container";
 import { patientTypography, providerTypography } from "../../styles/theme";
 import { ThemeProvider } from "@mui/material/styles";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+import BaseHeader from "../organisms/BaseHeader/baseHeader";
 
 export default function Layout({
   children,
   showMobileImage = false,
   theme = "patient",
+  imageSrc,
 }) {
   const isPatient = theme === "patient";
   return (
@@ -43,11 +45,6 @@ export default function Layout({
               padding: 0,
             }}
           >
-            {/* <img
-              src="https://c4.wallpaperflare.com/wallpaper/930/115/679/panda-4k-high-quality-hd-wallpaper-preview.jpg"
-              className={styles.imageBanner}
-              alt="auth-image"
-            /> */}
             <div className={styles.imageBannerContainer}>
               <h3>Hello</h3>
                 <Image
