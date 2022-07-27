@@ -3,29 +3,22 @@ import Login from "../../components/organisms/Login/login";
 import Cookies from "universal-cookie";
 import { Api } from "../api/api";
 
-export async function getServerSideProps({ req, res }) {
-  res.setHeader(
-    "set-cookie",
-    `authorized=false; path=/; samesite=lax; httponly;`
-  );
-  return {
-    props: {},
-  };
-}
-
 const loginProps = {
   OnLoginClicked: function (postbody, router, callback) {
     const api = new Api();
+    const cookies = new Cookies();
     api
       .login(postbody)
       .then(function (response) {
         console.log(response);
-        router.push("/");
+        router.push("/patient/");
         console.log("success");
+        cookies.set("authorized", true, { path: "/patient" });
         callback({ status: "success" });
       })
       .catch(function (err) {
         console.log(err);
+        cookies.set("authorized", false, { path: "/patient" });
         callback({
           status: "failed",
           message: {
@@ -49,5 +42,14 @@ export default function AuthPage() {
 }
 
 AuthPage.getLayout = function getLayout(page) {
-  return <AuthLayout showMobileImage={true}>{page}</AuthLayout>;
+  return (
+    <AuthLayout
+      showMobileImage={true}
+      imageSrc={
+        "https://c4.wallpaperflare.com/wallpaper/930/115/679/panda-4k-high-quality-hd-wallpaper-preview.jpg"
+      }
+    >
+      {page}
+    </AuthLayout>
+  );
 };

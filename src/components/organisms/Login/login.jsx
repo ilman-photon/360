@@ -51,7 +51,9 @@ export default function Login({
     console.log("sas", postMessage);
     return (
       postMessage.status === "failed" && (
-        <FormMessage error title={postMessage.message.title}>{postMessage.message.description}</FormMessage>
+        <FormMessage error title={postMessage.message.title}>
+          {postMessage.message.description}
+        </FormMessage>
       )
     );
   };
