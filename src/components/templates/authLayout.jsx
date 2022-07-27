@@ -43,11 +43,21 @@ export default function Layout({
               padding: 0,
             }}
           >
-            <img
+            {/* <img
               src="https://c4.wallpaperflare.com/wallpaper/930/115/679/panda-4k-high-quality-hd-wallpaper-preview.jpg"
               className={styles.imageBanner}
               alt="auth-image"
-            />
+            /> */}
+            <div className={styles.imageBannerContainer}>
+              <h3>Hello</h3>
+                <Image
+                    alt="auth-image"
+                    src="/desktop_3x.png"
+                    layout='fill'
+                />
+            </div>
+                        
+
           </Container>
         </div>
       </div>
