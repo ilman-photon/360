@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Divider, Link, Typography } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { useTranslation } from "react-i18next";
@@ -8,10 +8,12 @@ import { useRouter } from "next/router";
 import { StyledButton } from "../../atoms/Button/button";
 import { styles } from "./style";
 import FormMessage from "../../molecules/FormMessage/formMessage";
+import { useForm, Controller } from "react-hook-form";
+import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
+import constants from "../../../utils/constants";
 
 const ConfirmFormComponent = ({
-  OnBackToLoginClicked,
-  OnContinueButtonClicked,
+  onBackToLoginClicked,
   title,
   subtitle,
   description,
@@ -19,10 +21,24 @@ const ConfirmFormComponent = ({
   postMessage,
   isSuccessPostMessage = true,
   buttonLabel,
+  buttonIcon,
+  showPostMessage = false,
+  onCTAButtonClicked,
+  postMessageTitle
 }) => {
   const router = useRouter();
-  const { t } = useTranslation("translation", { keyPrefix: "SetOption" });
-  const [showPostMessage, setShowPostMessage] = useState(true);
+  const { t } = useTranslation("translation", { keyPrefix: "OneTimeLink" });
+
+  const { handleSubmit, control } = useForm();
+
+  const onSubmit = (data) => {
+    onCTAButtonClicked(additional ? data : constants.EMPTY_STRING)
+  };
+
+  const options = [
+    { label: "Email", value: "email" },
+    { label: "Phone", value: "phone" }
+  ];
 
   return (
     <Card
@@ -34,7 +50,7 @@ const ConfirmFormComponent = ({
           {title}
         </Typography>
         {showPostMessage ? (
-          <FormMessage success={isSuccessPostMessage} sx={styles.postMessage}>
+          <FormMessage success={isSuccessPostMessage} sx={styles.postMessage} title={postMessageTitle}>
             {postMessage}
           </FormMessage>
         ) : (
@@ -43,23 +59,28 @@ const ConfirmFormComponent = ({
         <Typography variant="bodyMedium" style={styles.margin}>
           {subtitle}
         </Typography>
-        {additional ? (
-          { additional }
-        ) : (
-          <Typography variant="bodyRegular" style={styles.marginDescription}>
-            {description}
-          </Typography>
-        )}
-        <StyledButton
-          theme="patient"
-          mode="primary"
-          size="large"
-          gradient={false}
-          onClick={() => {}}
-          style={styles.margin}
-        >
-          {buttonLabel}
-        </StyledButton>
+        <form onSubmit={handleSubmit(onSubmit)} style={additional ? styles.margin : styles.marginDescription}>
+          {additional ? (
+            <Box>
+              {additional(control)}
+            </Box>
+          ) : (
+            <Typography variant="bodyRegular">
+              {description}
+            </Typography>
+          )}
+          <StyledButton
+            type="submit"
+            theme="patient"
+            mode="primary"
+            size="large"
+            gradient={false}
+            style={styles.margin}
+          >
+            {buttonIcon}
+            {buttonLabel}
+          </StyledButton>
+        </form>
         <Link
           style={{
             ...styles.margin,
@@ -68,7 +89,7 @@ const ConfirmFormComponent = ({
           }}
           color={"#2095a9"}
           onClick={function () {
-            OnBackToLoginClicked(router);
+            onBackToLoginClicked(router);
           }}
         >
           {t("backButtonLink")}

@@ -9,7 +9,7 @@ export default function RowRadioButtonsGroup({ ...props }) {
   const options = props.options || [];
 
   return (
-    <FormControl>
+    <FormControl {...props}>
       <FormLabel id="row-radio-buttons-group-label">{props.label}</FormLabel>
       <RadioGroup
         row

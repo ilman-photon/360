@@ -1,4 +1,8 @@
 export const styles = {
+  cardStyle:{ 
+    minWidth: 275,
+     padding: "16px" 
+  },
   cardContentStyle: {
     display: "flex",
     flexDirection: "column",

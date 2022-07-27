@@ -7,6 +7,7 @@ import globalStyles from "../../../styles/Global.module.scss";
 import { useRouter } from "next/router";
 import { StyledButton } from "../../atoms/Button/button";
 import { styles } from "./style";
+import constants from "../../../utils/constants";
 
 const SetOptionComponent = ({
   onBackToLoginClicked,
@@ -19,17 +20,17 @@ const SetOptionComponent = ({
   return (
     <Card
       className={globalStyles.container}
-      sx={{ minWidth: 275, padding: "16px" }}
+      style={styles.cardStyle}
     >
       <CardContent style={styles.cardContentStyle}>
         <Typography variant="h2">{t("title")}</Typography>
         <StyledButton
-          theme="patient"
-          mode="primary"
-          size="large"
+          theme={constants.PATIENT}
+          mode={constants.PRIMARY}
+          size={constants.LARGE}
           gradient={false}
           onClick={() => {
-            onContinueButtonClicked("securityQuestion");
+            onContinueButtonClicked(hasSecurityQuestion ? "securityQuestion" : "resetPassword");
           }}
           style={{ ...styles.margin, ...styles.primaryButtoMargin }}
         >
@@ -43,9 +44,9 @@ const SetOptionComponent = ({
           </Divider>
         </Box>
         <StyledButton
-          theme="patient"
-          mode="secondary"
-          size="large"
+          theme={constants.PATIENT}
+          mode={constants.SECONDARY}
+          size={constants.LARGE}
           gradient={false}
           onClick={() => {
             onContinueButtonClicked("oneTimeLink");

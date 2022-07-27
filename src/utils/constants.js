@@ -1,4 +1,5 @@
 module.exports = {
+    EMPTY_STRING:"",
     H1:"h1",
     H2:"h2",
     SMALL:"small",
@@ -17,5 +18,10 @@ module.exports = {
     SUBMIT:"submit",
     SET_OPTION:"setOption",
     SECURITY_QUESTION:"securityQuestion",
-    ONE_TIME_LIK:"oneTimeLink"
+    ONE_TIME_LINK:"oneTimeLink",
+    PASSWORD_RESET: "passwordReset",
+    BOTH:"both",
+    MODE_COMMUNICATION_KEY:"modeComunication",
+    EMAIL:"email",
+    PHONE:"phone",
 }

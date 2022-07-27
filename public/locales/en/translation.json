@@ -31,11 +31,14 @@
   },
   "OneTimeLink":{
     "title": "One-time link",
-    "successSentLikTitle": "One-time link sent",
+    "successSentLinkTitle": "One-time link sent",
     "subtitle": "Choose a mode of communication where we should send you the magic link.",
     "additionalText":"Mode of Communication",
     "description":"Click on the one-time link sent to your email or phone number to access your account",
-    "primaryButton":"Send one-time link"
+    "primaryButton":"Send one-time link",
+    "backButtonLink": "Back to Log in",
+    "securityButtonText": "Answer security questions",
+    "noSecurityButtonText": "Receive link to reset password"
   },
   "PasswordReset":{
     "title": "Password Reset",

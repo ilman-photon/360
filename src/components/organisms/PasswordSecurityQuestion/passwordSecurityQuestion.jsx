@@ -29,6 +29,12 @@ const PasswordSecurityQuestionComponent = ({
   const [ postMessage, setPostMessage ] = useState({title:"",message:""})
 
   const onSubmit = (data) => {
+    if(countLock >= constants.ACCOUNT_LOCK_COUNT){
+      setPostMessage({title:t("errorAccountLockTitle"),message:t("errorAccountLock")})
+      setShowPostMessage(true)
+      return
+    }
+    
     let isValid = true
     for(const i = 0; i < securityQuestionData.length; i++){
       if(securityQuestionData[i]["Answer"] && (securityQuestionData[i]["Answer"].toLowerCase() !== data[`securityQuestion${i}`].toLowerCase())){
@@ -39,12 +45,7 @@ const PasswordSecurityQuestionComponent = ({
     }
 
     if(!isValid){
-      if(countLock >= constants.ACCOUNT_LOCK_COUNT){
-        //TO DO: show account lock error
-        setPostMessage({title:t("errorAccountLockTitle"),message:t("errorAccountLock")})
-      }else{
-        setPostMessage({title:"",message:t("errorIncorrectAnswer")})
-      }
+      setPostMessage({title:"",message:t("errorIncorrectAnswer")})
       setShowPostMessage(true)
     }else{
       //TO DO: Navigate to update password
