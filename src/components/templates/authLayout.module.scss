@@ -39,7 +39,15 @@
 
   height: 100vh;
   overflow-y: auto;
-  padding-top: 100px;
+  padding-top: 146px;
+
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 
   @media (max-width: 768px) {
     grid-column: span 2 / span 2;
