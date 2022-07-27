@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from "react";
 import { LabelWithIcon } from "../../atoms/LabelWithIcon/labelWithIcon";
 import { useForm } from "react-hook-form";
+import { Collapse } from "@mui/material";
 
 export const PasswordValidator = ({ ...props }) => {
     const validator = props.validator || []
@@ -14,13 +15,14 @@ export const PasswordValidator = ({ ...props }) => {
     }
 
     return (
-        <div style={{ display: "block" }} >
-            {props.isShowValidation ?
-                <>
-                    {validator.map((err,i) => {
+        <div style={{ display: "block", margin: 8, paddingBottom: 16 }} >
+            <Collapse in={props.isShowValidation}>
+                {
+                    validator.map((err,i) => {
                         return <LabelWithIcon key={i} error={err.validate} label={err.label} />
-                    })}
-                </> : null}
+                    })
+                }
+            </Collapse>
         </div >
     );
 }

@@ -2,39 +2,43 @@ import React from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
+import { Divider, Typography } from "@mui/material";
+import { useForm, Controller } from "react-hook-form";
 import RowRadioButtonsGroup from '../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup';
 import { StyledInput } from '../../atoms/Input/input'
-import { Divider, Typography } from "@mui/material";
-import Link from 'next/link'
-import { styles } from "./style"
 import globalStyles from "../../../styles/Global.module.scss";
-import { useForm, Controller } from "react-hook-form";
 import { PasswordValidator } from "../../molecules/PasswordValidator/passwordValidator";
 import { useTranslation } from "react-i18next";
 import FormMessage from "../../molecules/FormMessage/formMessage";
+import { styles } from "./style"
+import Link from "next/link";
 
-export default function Register() {
+export default function Register({
+  OnRegisterClicked,
+  formError = null
+}) {
     const { t } = useTranslation('translation', { keyPrefix: 'Register' });
-    const [isShowValidation, setShowValidation] = React.useState(false)
-    const { handleSubmit, setError, control, watch, formState: { errors } } = useForm(
+    const { handleSubmit, setError, clearErrors, control, watch, formState: { errors } } = useForm(
         {
             defaultValues: {
                 firstName: '',
                 lastName: '',
                 email: '',
                 mobile: '',
-                password: ''
+                password: '',
+                preferredCommunication: ''
             }
         }
     );
 
     const onSubmit = data => {
-        setShowValidation(true);
         // dummy error validation
-        setError("firstName", { type: 'custom', message: 'An error occured' })
-        setError("lastName", { type: 'custom', message: 'An error occured' })
-        setError("mobile", { type: 'custom', message: 'An error occured' })
-        setError("password", { type: 'custom', message: 'An error occured' })
+        // setError("firstName", { type: 'custom', message: 'An error occured' })
+        // setError("lastName", { type: 'custom', message: 'An error occured' })
+        // setError("mobile", { type: 'custom', message: 'An error occured' })
+        // setError("password", { type: 'custom', message: 'An error occured' })
+
+        OnRegisterClicked(data)
     };
 
     const options = [
@@ -62,6 +66,7 @@ export default function Register() {
         { label: 'Password should not contain your username', validate: watchedPassword.indexOf(watchedEmail || watchedMobile) > -1 },
         { label: 'Password should not contain 3 or more identical characters consecutively', validate: hasTripleRegex.test(watchedPassword) },
     ]
+    const isPasswordError = watchedPassword.length > 0 // && passwordValidator.filter(v => v.validate).length > 0
 
     return (
         <Box className={globalStyles.container}>
@@ -69,7 +74,10 @@ export default function Register() {
                 <Typography variant="h1" sx={styles.titleStyles}>
                     User Registration
                 </Typography>
-                {/* <FormMessage success="true" title="Title">Please Create a PasswordPlease Create a PasswordPlease Create a PasswordPlease Create a PasswordPlease Create a Password</FormMessage> */}
+                { formError.content
+                  ? <FormMessage success={false} title={formError.title}>{formError.content}</FormMessage>
+                  : ''
+                }
                 {/* <Error content={"Invalid use name or password"}/> */}
                 <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
                     <Controller
@@ -178,11 +186,20 @@ export default function Register() {
                                     helperText={error ? error.message : null} />
                             )
                         }}
-                        rules={{ required: 'Password required' }}
+                        rules={{ required: 'Password required',
+                          validate: {
+                            isLength: v => lengthRegex.test(v),
+                            isAtLeastOneNumber: v => numberRegex.test(v),
+                            isAtLeastOneAlphabet: v => alphabethRegex.test(v),
+                            isAtLeastOneSpecial: v => specialRegex.test(v),
+                            isNoContainsUsername: v => v.indexOf(watchedEmail || watchedMobile)  -1,
+                            isNoTriple: v => !hasTripleRegex.test(v)
+                          }
+                        }}
                     />
                     <PasswordValidator
                         validator={passwordValidator}
-                        isShowValidation={isShowValidation}
+                        isShowValidation={isPasswordError}
                         password={watchedPassword}
                         username={getRegisteredUsername()}
                         isRegistration={true} />
@@ -192,7 +209,22 @@ export default function Register() {
                     </div>
                     
                     <div style={styles.divMargin}>
-                        <RowRadioButtonsGroup label="Preferred mode of Communication" options={options} />
+                      <Controller
+                        name="preferredCommunication"
+                        control={control}
+                        render={({ field: { onChange, value }, fieldState: { error } }) => {
+                          return (
+                          <RowRadioButtonsGroup
+                            error={!!error} 
+                            value={value}
+                            onChange={onChange}
+                            label="Preferred mode of Communication" options={options}
+                            helperText={error ? error.message : null} />
+                          )
+                        }}
+                        rules={{ required: 'Preferred Communication required' }}
+                      />
+                      
                     </div>
 
                     <Button
