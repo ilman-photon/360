@@ -51,7 +51,7 @@ export default function Login({
     console.log("sas", postMessage);
     return (
       postMessage.status === "failed" && (
-        <FormMessage error>{postMessage.message.description}</FormMessage>
+        <FormMessage error title={postMessage.message.title}>{postMessage.message.description}</FormMessage>
       )
     );
   };
@@ -131,9 +131,6 @@ export default function Login({
               type="submit"
               size={constants.LARGE}
               gradient={false}
-              // onClick={function () {
-              //   OnLoginClicked({ username, password }, router);
-              // }}
             >
               Login
             </StyledButton>
