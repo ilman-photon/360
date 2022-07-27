@@ -11,6 +11,7 @@ import RowRadioButtonsGroup from "../../components/atoms/RowRadioButtonsGroup/ro
 import InsertLinkIcon from '@mui/icons-material/InsertLink';
 import { Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import { Link, Typography } from "@mui/material";
 
 const MOCKED_SECURITY_QUESTION = [
   {
@@ -71,7 +72,7 @@ export default function ForgotPasswordPage() {
     email: constants.EMPTY_STRING,
     phoneNumber: constants.EMPTY_STRING,
     securityQuestions: [],//MOCKED_SECURITY_QUESTION,
-    preferredComunication: "Email"
+    preferredComunication: "Both"
   });
   const [showPostMessage, setShowPostMessage] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(true);
@@ -156,7 +157,7 @@ export default function ForgotPasswordPage() {
         confirmationFormProps.additional = modeOfCommuication
         confirmationFormProps.buttonLabel = t("primaryButtonOneTime")
         confirmationFormProps.buttonIcon = <InsertLinkIcon />
-        confirmationFormProps.onCTAButtonClicked = function(data){
+        confirmationFormProps.onCTAButtonClicked = function({data}){
           const modeComunication = data[constants.MODE_COMMUNICATION_KEY] === constants.EMAIL ?
             "Email" : "Phone number"
           onCalledPasswordResetAPI({}, modeComunication)
@@ -174,7 +175,7 @@ export default function ForgotPasswordPage() {
         confirmationFormProps.additional = modeOfCommuication
         confirmationFormProps.buttonLabel = t("primaryButtonOneTime")
         confirmationFormProps.buttonIcon = <InsertLinkIcon />
-        confirmationFormProps.onCTAButtonClicked = function(data){onCalledOneTimeLinkAPI()}
+        confirmationFormProps.onCTAButtonClicked = function({data}){onCalledOneTimeLinkAPI()}
       } else {
         //Call service for one time link
         onCalledOneTimeLinkAPI({})

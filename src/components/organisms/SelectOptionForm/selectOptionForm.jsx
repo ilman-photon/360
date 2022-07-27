@@ -69,4 +69,4 @@ const SelectOptionForm = ({
   );
 };
 
-export default SetOptionComponent;
+export default SelectOptionForm;

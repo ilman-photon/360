@@ -93,4 +93,4 @@ const ForgotPassword = ({
   );
 };
 
-export default ForgotPasswordComponent;
+export default ForgotPassword;

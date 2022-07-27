@@ -21,6 +21,7 @@ const ConfirmationForm = ({
   isSuccessPostMessage = true,
   buttonLabel,
   buttonIcon,
+  butttonMode = constants.PRIMARY,
   showPostMessage = false,
   onCTAButtonClicked,
   postMessageTitle
@@ -31,7 +32,7 @@ const ConfirmationForm = ({
   const { handleSubmit, control } = useForm();
 
   const onSubmit = (data) => {
-    onCTAButtonClicked(additional ? data : constants.EMPTY_STRING)
+    onCTAButtonClicked(additional ? {data, router} : constants.EMPTY_STRING)
   };
 
   return (
@@ -50,9 +51,9 @@ const ConfirmationForm = ({
         ) : (
           <></>
         )}
-        <Typography variant="bodyMedium" style={styles.margin}>
+        {subtitle ? <Typography variant="bodyMedium" style={styles.margin}>
           {subtitle}
-        </Typography>
+        </Typography> :<></>}
         <form onSubmit={handleSubmit(onSubmit)} style={additional ? styles.margin : styles.marginDescription}>
           {additional ? (
             <Box>
@@ -66,7 +67,7 @@ const ConfirmationForm = ({
           <StyledButton
             type={constants.SUBMIT}
             theme={constants.PATIENT}
-            mode={constants.PRIMARY}
+            mode={butttonMode}
             size={constants.LARGE}
             gradient={false}
             style={styles.margin}
@@ -75,22 +76,25 @@ const ConfirmationForm = ({
             {buttonLabel}
           </StyledButton>
         </form>
-        <Link
-          style={{
-            ...styles.margin,
-            ...styles.textAlign,
-            ...styles.backToLoginMargin,
-          }}
-          color={"#2095a9"}
-          onClick={function () {
-            onBackToLoginClicked(router);
-          }}
-        >
-          {t("backButtonLink")}
-        </Link>
+        {butttonMode !== constants.SECONDARY ?
+          <Link
+            style={{
+              ...styles.margin,
+              ...styles.textAlign,
+              ...styles.backToLoginMargin,
+            }}
+            color={"#2095a9"}
+            onClick={function () {
+              onBackToLoginClicked(router);
+            }}
+          >
+            {t("backButtonLink")}
+          </Link> : <></>
+        }
+        
       </CardContent>
     </Card>
   );
 };
 
-export default ConfirmFormComponent;
+export default ConfirmationForm;

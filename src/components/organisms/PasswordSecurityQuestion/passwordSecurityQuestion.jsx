@@ -127,4 +127,4 @@ const PasswordSecurityQuestion = ({
   );
 };
 
-export default PasswordSecurityQuestionComponent;
+export default PasswordSecurityQuestion;

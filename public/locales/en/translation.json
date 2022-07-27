@@ -47,6 +47,8 @@
     "descriptionPasswordResetSuccess":"If you did not receive the link, try to login with one-time link",
     "titleOneTime": "One-time link",
     "successSentLinkTitleOneTime": "One-time link sent",
+    "expiredTitleOneTime": "One-time link expired",
+    "expiredPostmessageOneTime": "One-time link has been expired",
     "subtitleOneTime": "Choose a mode of communication where we should send you the magic link.",
     "subtitleOneTimeSuccess":"Click on the one-time link sent to your email or phone number to access your account.",
     "additionalTextOneTime":"Mode of Communication",
@@ -57,6 +59,7 @@
     "answerSecurityQuestionsLabel": "Answer security questions",
     "receiveLinkToResetPasswordLabel": "Receive link to reset password",
     "postMessageOneTime":"One-time link is sent",
-    "successLabel": "Success"
+    "successLabel": "Success",
+    "backButtonLink": "Back to Log in"
   }
 }
