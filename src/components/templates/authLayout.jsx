@@ -44,10 +44,11 @@ export default function Layout({
               padding: 0,
             }}
           >
-            <Image
+            <img
               src="https://c4.wallpaperflare.com/wallpaper/930/115/679/panda-4k-high-quality-hd-wallpaper-preview.jpg"
               className={styles.imageBanner}
               alt="auth-image"
+              layout="fill"
             />
           </Container>
         </div>
