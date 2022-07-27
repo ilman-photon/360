@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -11,7 +11,7 @@ import FormMessage from "../../molecules/FormMessage/formMessage";
 import { styles } from "./style";
 import { useForm, Controller } from "react-hook-form";
 
-const ForgotPasswordComponent = ({
+const ForgotPassword = ({
   onBackToLoginClicked,
   showPostMessage,
   setShowPostMessage,
@@ -23,7 +23,9 @@ const ForgotPasswordComponent = ({
 
   const onSubmit = (data) => {
     //TO DO: Will called request for validate username
-    onCalledValidateUsernameAPI({}, router, "setOption")
+    onCalledValidateUsernameAPI({
+      username: data.userame
+    }, router, "setOption")
   };
 
   return (

@@ -30,24 +30,33 @@
     "backButtonLink": "Back to Log in"
   },
   "OneTimeLink":{
-    "title": "One-time link",
-    "successSentLinkTitle": "One-time link sent",
-    "subtitle": "Choose a mode of communication where we should send you the magic link.",
-    "additionalText":"Mode of Communication",
-    "description":"Click on the one-time link sent to your email or phone number to access your account",
-    "primaryButton":"Send one-time link",
-    "backButtonLink": "Back to Log in",
-    "securityButtonText": "Answer security questions",
-    "noSecurityButtonText": "Receive link to reset password"
+    "backButtonLink": "Back to Log in"
   },
   "PasswordReset":{
-    "title": "Password Reset",
-    "subtitle":"Choose a mode of communication where we should send you the link to reset your password.",
-    "additionalText":"Mode of Communication",
-    "linkSentToMail":"Link sent to your email",
-    "linkSentToPhone":"Link sent to your phone number",
-    "description":"If you did not receive the link, try to answer security questions.",
-    "primaryButtonText":"Answer security questions",
     "backButtonLink": "Back to Log in"
+  },
+  "ForgotPasswordPage":{
+    "titlePasswordReset": "Password Reset",
+    "subtitlePasswordReset":"Choose a mode of communication where we should send you the link to reset your password.",
+    "additionalTextPasswordReset":"Mode of Communication",
+    "linkSentToMailPasswordReset":"Link sent to your email",
+    "linkSentToPhonePasswordReset":"Link sent to your phone number",
+    "descriptionPasswordReset":"If you did not receive the link, try to answer security questions.",
+    "primaryButtonTextPasswordReset":"Answer security questions",
+    "primaryButtonTextPasswordResetSuccess": "Login with one-time link",
+    "descriptionPasswordResetSuccess":"If you did not receive the link, try to login with one-time link",
+    "titleOneTime": "One-time link",
+    "successSentLinkTitleOneTime": "One-time link sent",
+    "subtitleOneTime": "Choose a mode of communication where we should send you the magic link.",
+    "subtitleOneTimeSuccess":"Click on the one-time link sent to your email or phone number to access your account.",
+    "additionalTextOneTime":"Mode of Communication",
+    "descriptionOneTime":"Click on the one-time link sent to your email or phone number to access your account",
+    "primaryButtonOneTime":"Send one-time link",
+    "securityButtonTextOneTime": "Answer security questions",
+    "noSecurityButtonTextOneTime": "Receive link to reset password",
+    "answerSecurityQuestionsLabel": "Answer security questions",
+    "receiveLinkToResetPasswordLabel": "Receive link to reset password",
+    "postMessageOneTime":"One-time link is sent",
+    "successLabel": "Success"
   }
 }

@@ -4,6 +4,10 @@ export const styles = {
     flexDirection: "column",
     padding: 0,
   },
+  cardStyle:{ 
+    minWidth: 275, 
+    padding: "16px" 
+  },
   margin: {
     marginTop: "16px",
   },

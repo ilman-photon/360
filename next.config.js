@@ -55,17 +55,7 @@ const nextConfig = {
         ],
         source: "/patient/update-password",
         destination: "/patient/set-password",
-      },
-      {
-        has: [
-          {
-            type: "host",
-            value: "(?<host>.*)",
-          },
-        ],
-        source: "/:host/:path*",
-        destination: "/:path*",
-      },
+      }
     ];
   },
   env: {

@@ -13,7 +13,7 @@ import { useForm, Controller } from "react-hook-form";
 
 const constants = require("../../../utils/constants");
 
-const PasswordSecurityQuestionComponent = ({
+const PasswordSecurityQuestion = ({
   onBackToLoginClicked,
   showPostMessage = false,
   setShowPostMessage,
@@ -36,7 +36,7 @@ const PasswordSecurityQuestionComponent = ({
     }
     
     let isValid = true
-    for(const i = 0; i < securityQuestionData.length; i++){
+    for(let i = 0; i < securityQuestionData.length; i++){
       if(securityQuestionData[i]["Answer"] && (securityQuestionData[i]["Answer"].toLowerCase() !== data[`securityQuestion${i}`].toLowerCase())){
         isValid = false
         setCountLock(countLock + 1)

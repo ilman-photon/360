@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Link, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -8,11 +8,10 @@ import { useRouter } from "next/router";
 import { StyledButton } from "../../atoms/Button/button";
 import { styles } from "./style";
 import FormMessage from "../../molecules/FormMessage/formMessage";
-import { useForm, Controller } from "react-hook-form";
-import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
+import { useForm } from "react-hook-form";
 import constants from "../../../utils/constants";
 
-const ConfirmFormComponent = ({
+const ConfirmationForm = ({
   onBackToLoginClicked,
   title,
   subtitle,
@@ -35,18 +34,13 @@ const ConfirmFormComponent = ({
     onCTAButtonClicked(additional ? data : constants.EMPTY_STRING)
   };
 
-  const options = [
-    { label: "Email", value: "email" },
-    { label: "Phone", value: "phone" }
-  ];
-
   return (
     <Card
       className={globalStyles.container}
-      sx={{ minWidth: 275, padding: "16px" }}
+      style={styles.cardStyle}
     >
       <CardContent style={styles.cardContentStyle}>
-        <Typography variant="h2" style={styles.margin}>
+        <Typography variant={constants.H2} style={styles.margin}>
           {title}
         </Typography>
         {showPostMessage ? (
@@ -70,10 +64,10 @@ const ConfirmFormComponent = ({
             </Typography>
           )}
           <StyledButton
-            type="submit"
-            theme="patient"
-            mode="primary"
-            size="large"
+            type={constants.SUBMIT}
+            theme={constants.PATIENT}
+            mode={constants.PRIMARY}
+            size={constants.LARGE}
             gradient={false}
             style={styles.margin}
           >

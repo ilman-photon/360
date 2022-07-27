@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Box, Divider, Link, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -9,7 +9,7 @@ import { StyledButton } from "../../atoms/Button/button";
 import { styles } from "./style";
 import constants from "../../../utils/constants";
 
-const SetOptionComponent = ({
+const SelectOptionForm = ({
   onBackToLoginClicked,
   onContinueButtonClicked,
   hasSecurityQuestion = false,
@@ -30,7 +30,7 @@ const SetOptionComponent = ({
           size={constants.LARGE}
           gradient={false}
           onClick={() => {
-            onContinueButtonClicked(hasSecurityQuestion ? "securityQuestion" : "resetPassword");
+            onContinueButtonClicked(hasSecurityQuestion ? constants.SECURITY_QUESTION : constants.PASSWORD_RESET);
           }}
           style={{ ...styles.margin, ...styles.primaryButtoMargin }}
         >
@@ -49,7 +49,7 @@ const SetOptionComponent = ({
           size={constants.LARGE}
           gradient={false}
           onClick={() => {
-            onContinueButtonClicked("oneTimeLink");
+            onContinueButtonClicked(constants.ONE_TIME_LINK);
           }}
           style={{ ...styles.margin, ...styles.secondaryButtoMargin }}
         >

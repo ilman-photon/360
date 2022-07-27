@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import styles from "../../../styles/Login.module.css";
 import AuthLayout from "../../components/templates/authLayout";
-import ForgotPasswordComponent from "../../components/organisms/ForgotPassword/forgotPassword";
-import SetOptionComponent from "../../components/organisms/SelectOption/selectOption";
-import PasswordSecurityQuestionComponent from "../../components/organisms/PasswordSecurityQuestion/PasswordSecurityQuestion";
-import ConfirmFormComponent from "../../components/organisms/ConfirmationForm/confirmationForm";
+import ForgotPassword from "../../components/organisms/ForgotPassword/forgotPassword";
+import SelectOptionForm from "../../components/organisms/SelectOptionForm/selectOptionForm";
+import PasswordSecurityQuestion from "../../components/organisms/PasswordSecurityQuestion/PasswordSecurityQuestion";
+import ConfirmationForm from "../../components/organisms/ConfirmationForm/confirmationForm";
 import { Api } from "../api/api";
 import constants from "../../utils/constants";
 import RowRadioButtonsGroup from "../../components/atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import InsertLinkIcon from '@mui/icons-material/InsertLink';
 import { Controller } from "react-hook-form";
+import { useTranslation } from "react-i18next";
 
 const MOCKED_SECURITY_QUESTION = [
   {
@@ -64,11 +65,13 @@ const backToLoginProps = {
   },
 };
 export default function ForgotPasswordPage() {
+  const { t } = useTranslation("translation", { keyPrefix: "ForgotPasswordPage" });
+
   const [patientData, setPatientData] = useState({
     email: constants.EMPTY_STRING,
     phoneNumber: constants.EMPTY_STRING,
-    securityQuestions: MOCKED_SECURITY_QUESTION,
-    preferredComunication: "Both"
+    securityQuestions: [],//MOCKED_SECURITY_QUESTION,
+    preferredComunication: "Email"
   });
   const [showPostMessage, setShowPostMessage] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(true);
@@ -91,15 +94,14 @@ export default function ForgotPasswordPage() {
     // Handle success to call API 
     const hasSecurityQuestion = patientData.securityQuestions.length > 0
     confirmationFormProps = {
-      title: "One-time link sent",
-      subtitle:
-        "Click on the one-time link sent to your email or phone number to access your account.",
+      title: t("successSentLinkTitleOneTime"),
+      subtitle: t("subtitleOneTimeSuccess"),
       description:
-        `If you did not receive the link, try to ${patientData.securityQuestions.length > 0 ? "answer security questions": "receive link to reset password"}`,
-      postMessage: "One-time link is sent",
-      postMessageTitle: "Success",
+        `If you did not receive the link, try to ${(patientData.securityQuestions.length > 0 ? t('answerSecurityQuestionsLabel') : t('receiveLinkToResetPasswordLabel')).toLocaleLowerCase()}`,
+      postMessage: t("postMessageOneTime"),
+      postMessageTitle: t("successLabel"),
       successPostMessage: true,
-      buttonLabel: hasSecurityQuestion ? "Answer security questions" : "Receive link to reset password",
+      buttonLabel: hasSecurityQuestion ? t('answerSecurityQuestionsLabel') : t('receiveLinkToResetPasswordLabel'),
       additional: null,
       onCTAButtonClicked: function(){ onContinueButtonClicked(hasSecurityQuestion ? constants.SECURITY_QUESTION : constants.PASSWORD_RESET) }
     };
@@ -116,16 +118,16 @@ export default function ForgotPasswordPage() {
       "ResponseType":"success",
       "email": "donj@yahoo.com"
     }
+    const userCommunicationCode = modeComunication.toLowerCase() === "email" ? response.email : response.phoneNumber
     // Handle success to call API 
     confirmationFormProps = {
-      title: "Password Reset",
+      title: t("titlePasswordReset"),
       subtitle:
-        `Check ${response.email} for an email to reset your password.`,
-      description:
-        "If you did not receive the link, try to login with one-time link",
+        `Check ${userCommunicationCode} for an email to reset your password.`,
+      description: t("descriptionPasswordResetSuccess"),
       postMessage: `Link sent to your ${modeComunication.toLowerCase()}`,
       successPostMessage: true,
-      buttonLabel: "Login with one-time link",
+      buttonLabel: t('primaryButtonTextPasswordResetSuccess'),
       additional: null,
       onCTAButtonClicked: function(){ onContinueButtonClicked(constants.ONE_TIME_LINK) }
     };
@@ -149,10 +151,10 @@ export default function ForgotPasswordPage() {
       //TO DO: handle showing the reset password form
       if(patientData.preferredComunication.toLocaleLowerCase() === constants.BOTH){
         //TO DO: Set props for one time link
-        confirmationFormProps.title = "Password Reset"
-        confirmationFormProps.subtitle = "Choose a mode of communication where we should send you the link to reset your password.",
+        confirmationFormProps.title = t("titlePasswordReset")
+        confirmationFormProps.subtitle = t("subtitlePasswordReset")
         confirmationFormProps.additional = modeOfCommuication
-        confirmationFormProps.buttonLabel = ` Send link`
+        confirmationFormProps.buttonLabel = t("primaryButtonOneTime")
         confirmationFormProps.buttonIcon = <InsertLinkIcon />
         confirmationFormProps.onCTAButtonClicked = function(data){
           const modeComunication = data[constants.MODE_COMMUNICATION_KEY] === constants.EMAIL ?
@@ -161,16 +163,16 @@ export default function ForgotPasswordPage() {
         }
       } else {
         //Call service for password reset
-        onCalledPasswordResetAPI({})
+        onCalledPasswordResetAPI({}, patientData.preferredComunication)
       }
       setShowPasswordReset(true);
     } else if (form === constants.ONE_TIME_LINK) {
       if(patientData.preferredComunication.toLocaleLowerCase() === constants.BOTH){
         //TO DO: Set props for one time link
-        confirmationFormProps.title = "One-time link"
-        confirmationFormProps.subtitle = "Choose a mode of communication where we should send you the magic link",
+        confirmationFormProps.title = t("titleOneTime")
+        confirmationFormProps.subtitle = t("subtitleOneTime"),
         confirmationFormProps.additional = modeOfCommuication
-        confirmationFormProps.buttonLabel = ` Send one-time link`
+        confirmationFormProps.buttonLabel = t("primaryButtonOneTime")
         confirmationFormProps.buttonIcon = <InsertLinkIcon />
         confirmationFormProps.onCTAButtonClicked = function(data){onCalledOneTimeLinkAPI()}
       } else {
@@ -187,7 +189,7 @@ export default function ForgotPasswordPage() {
     <div className={[styles.forgotPasswordPage, "hide-scrollbar"].join(" ")}>
       <section className={styles.forgotPasswordComponentContainer}>
         {showForgotPassword ? (
-          <ForgotPasswordComponent
+          <ForgotPassword
             {...backToLoginProps}
             onContinueButtonClicked={onContinueButtonClicked}
             showPostMessage={showPostMessage}
@@ -198,7 +200,7 @@ export default function ForgotPasswordPage() {
           <></>
         )}
         {showSetOption ? (
-          <SetOptionComponent
+          <SelectOptionForm
             {...backToLoginProps}
             onContinueButtonClicked={onContinueButtonClicked}
             hasSecurityQuestion={patientData && patientData.securityQuestions.length}
@@ -207,7 +209,7 @@ export default function ForgotPasswordPage() {
           <></>
         )}
         {showPasswordSecurityQuestion ? (
-          <PasswordSecurityQuestionComponent
+          <PasswordSecurityQuestion
             {...backToLoginProps}
             showPostMessage={showPostMessage}
             setShowPostMessage={setShowPostMessage}
@@ -218,7 +220,7 @@ export default function ForgotPasswordPage() {
           <></>
         )}
         {showOneTimeLink ? (
-          <ConfirmFormComponent 
+          <ConfirmationForm 
             {...confirmationFormProps} 
             {...backToLoginProps}
             showPostMessage={showPostMessage}
@@ -227,7 +229,7 @@ export default function ForgotPasswordPage() {
           <></>
         )}
         {showPasswordReset ? (
-          <ConfirmFormComponent 
+          <ConfirmationForm 
             {...confirmationFormProps} 
             {...backToLoginProps}
             showPostMessage={showPostMessage}
