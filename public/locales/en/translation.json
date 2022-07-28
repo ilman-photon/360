@@ -1,5 +1,8 @@
 {
   "Home": {
     "hello": "Welcome to Next.js!"
+  },
+  "Login": {
+    "formTitle": "Patient Login"
   }
 }

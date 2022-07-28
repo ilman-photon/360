@@ -11,6 +11,7 @@ import { useRouter } from "next/router";
 import { StyledButton } from "../../atoms/Button/button";
 import { useForm, Controller } from "react-hook-form";
 import FormMessage from "../../molecules/FormMessage/formMessage";
+import { useTranslation } from "react-i18next";
 
 const constants = require("../../../utils/constants");
 
@@ -22,6 +23,7 @@ export default function Login({
 }) {
   const [postMessage, setPostMessage] = React.useState("");
   const router = useRouter();
+  const { t } = useTranslation("translation", { keyPrefix: "Login" });
 
   const { handleSubmit, setError, control } = useForm();
 
@@ -61,7 +63,7 @@ export default function Login({
   return (
     <Box className={globalStyles.container}>
       <Typography variant={constants.H1} className={styles.title}>
-        Patient Login
+        {t("formTitle")}
       </Typography>
       {renderFromMessage()}
       <Stack spacing={2}>
