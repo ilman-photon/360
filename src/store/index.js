@@ -1,11 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const DEFAULT_FORM_MESSAGE = { title: null, content: null}
+const DEFAULT_FORM_MESSAGE = { title: null, content: null };
 
 const INITIAL_STATE = {
   loading: true,
   counter: 0,
-  formMessage: DEFAULT_FORM_MESSAGE
+  formMessage: DEFAULT_FORM_MESSAGE,
 };
 
 export const indexStore = createSlice({
@@ -19,15 +19,16 @@ export const indexStore = createSlice({
       state.counter++;
     },
     setFormMessage: (state, action) => {
-      state.formMessage = action.payload
+      state.formMessage = action.payload;
     },
     resetFormMessage: (state, action) => {
-      state.formMessage = DEFAULT_FORM_MESSAGE
-    }
+      state.formMessage = DEFAULT_FORM_MESSAGE;
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { setLoading, increment, setFormMessage, resetFormMessage } = indexStore.actions;
+export const { setLoading, increment, setFormMessage, resetFormMessage } =
+  indexStore.actions;
 
 export default indexStore.reducer;
