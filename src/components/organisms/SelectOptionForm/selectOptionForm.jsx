@@ -18,10 +18,7 @@ const SelectOptionForm = ({
   const { t } = useTranslation("translation", { keyPrefix: "SetOption" });
 
   return (
-    <Card
-      className={globalStyles.container}
-      style={styles.cardStyle}
-    >
+    <Card className={globalStyles.container} style={styles.cardStyle}>
       <CardContent style={styles.cardContentStyle}>
         <Typography variant="h2">{t("title")}</Typography>
         <StyledButton
@@ -30,7 +27,11 @@ const SelectOptionForm = ({
           size={constants.LARGE}
           gradient={false}
           onClick={() => {
-            onContinueButtonClicked(hasSecurityQuestion ? constants.SECURITY_QUESTION : constants.PASSWORD_RESET);
+            onContinueButtonClicked(
+              hasSecurityQuestion
+                ? constants.SECURITY_QUESTION
+                : constants.PASSWORD_RESET
+            );
           }}
           style={{ ...styles.margin, ...styles.primaryButtoMargin }}
         >

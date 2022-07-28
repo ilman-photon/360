@@ -16,7 +16,7 @@ const ForgotPassword = ({
   onBackToLoginClicked,
   showPostMessage,
   setShowPostMessage,
-  onCalledValidateUsernameAPI
+  onCalledValidateUsernameAPI,
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "ForgotPassword" });
@@ -24,9 +24,12 @@ const ForgotPassword = ({
 
   const onSubmit = (data) => {
     //TO DO: Will called request for validate username
-    onCalledValidateUsernameAPI({
-      username: data.userame
-    }, constants.SELECT_OPTION)
+    onCalledValidateUsernameAPI(
+      {
+        username: data.userame,
+      },
+      constants.SELECT_OPTION
+    );
   };
 
   return (
@@ -55,10 +58,10 @@ const ForgotPassword = ({
                   id="username"
                   variant="filled"
                   value={value}
-                  onChange={(event)=>{
-                    onChange(event)
-                    if(showPostMessage){
-                      setShowPostMessage(false)
+                  onChange={(event) => {
+                    onChange(event);
+                    if (showPostMessage) {
+                      setShowPostMessage(false);
                     }
                   }}
                   error={!!error}

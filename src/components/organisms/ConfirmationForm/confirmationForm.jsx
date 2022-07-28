@@ -24,7 +24,7 @@ const ConfirmationForm = ({
   butttonMode = constants.PRIMARY,
   showPostMessage = false,
   onCTAButtonClicked,
-  postMessageTitle
+  postMessageTitle,
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "OneTimeLink" });
@@ -32,37 +32,41 @@ const ConfirmationForm = ({
   const { handleSubmit, control } = useForm();
 
   const onSubmit = (data) => {
-    onCTAButtonClicked(additional ? {data, router} : constants.EMPTY_STRING)
+    onCTAButtonClicked(additional ? { data, router } : constants.EMPTY_STRING);
   };
 
   return (
-    <Card
-      className={globalStyles.container}
-      style={styles.cardStyle}
-    >
+    <Card className={globalStyles.container} style={styles.cardStyle}>
       <CardContent style={styles.cardContentStyle}>
         <Typography variant={constants.H2} style={styles.margin}>
           {title}
         </Typography>
         {showPostMessage ? (
-          <FormMessage success={isSuccessPostMessage} sx={styles.postMessage} title={postMessageTitle}>
+          <FormMessage
+            success={isSuccessPostMessage}
+            sx={styles.postMessage}
+            title={postMessageTitle}
+          >
             {postMessage}
           </FormMessage>
         ) : (
           <></>
         )}
-        {subtitle ? <Typography variant="bodyMedium" style={styles.margin}>
-          {subtitle}
-        </Typography> :<></>}
-        <form onSubmit={handleSubmit(onSubmit)} style={additional ? styles.margin : styles.marginDescription}>
+        {subtitle ? (
+          <Typography variant="bodyMedium" style={styles.margin}>
+            {subtitle}
+          </Typography>
+        ) : (
+          <></>
+        )}
+        <form
+          onSubmit={handleSubmit(onSubmit)}
+          style={additional ? styles.margin : styles.marginDescription}
+        >
           {additional ? (
-            <Box>
-              {additional(control)}
-            </Box>
+            <Box>{additional(control)}</Box>
           ) : (
-            <Typography variant="bodyRegular">
-              {description}
-            </Typography>
+            <Typography variant="bodyRegular">{description}</Typography>
           )}
           <StyledButton
             type={constants.SUBMIT}
@@ -76,7 +80,7 @@ const ConfirmationForm = ({
             {buttonLabel}
           </StyledButton>
         </form>
-        {butttonMode !== constants.SECONDARY ?
+        {butttonMode !== constants.SECONDARY ? (
           <Link
             style={{
               ...styles.margin,
@@ -89,9 +93,10 @@ const ConfirmationForm = ({
             }}
           >
             {t("backButtonLink")}
-          </Link> : <></>
-        }
-        
+          </Link>
+        ) : (
+          <></>
+        )}
       </CardContent>
     </Card>
   );

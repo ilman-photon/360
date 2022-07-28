@@ -8,7 +8,7 @@ import ConfirmationForm from "../../components/organisms/ConfirmationForm/confir
 import { Api } from "../api/api";
 import constants from "../../utils/constants";
 import RowRadioButtonsGroup from "../../components/atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
-import InsertLinkIcon from '@mui/icons-material/InsertLink';
+import InsertLinkIcon from "@mui/icons-material/InsertLink";
 import { Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Link, Typography } from "@mui/material";
@@ -21,45 +21,50 @@ let confirmationFormProps = {
   successPostMessage: true,
   buttonLabel: constants.EMPTY_STRING,
   buttonIcon: null,
-  additional: null
+  additional: null,
 };
 
-const modeOfCommuication = function (control){
+const modeOfCommuication = function (control) {
   const options = [
     { label: "Email", value: constants.EMAIL },
-    { label: "Phone", value: constants.PHONE }
+    { label: "Phone", value: constants.PHONE },
   ];
-  return <Controller
-    name={constants.MODE_COMMUNICATION_KEY}
-    control={control}
-    render={({ field: { onChange, value }}) => {
-      return(
-        <RowRadioButtonsGroup
+  return (
+    <Controller
+      name={constants.MODE_COMMUNICATION_KEY}
+      control={control}
+      render={({ field: { onChange, value } }) => {
+        return (
+          <RowRadioButtonsGroup
             label="Mode of Communication"
             options={options}
             value={value}
             onChange={onChange}
-        />
-      )
-    }}
-  />
-}
+          />
+        );
+      }}
+    />
+  );
+};
 
-const mappingSecurityData = function(securityQuestionsData){
-  const securityQuestionList = []
-  for (const questions of securityQuestionsData){
-    const securityQuestion = { "Question": constants.EMPTY_STRING, "Answer": constants.EMPTY_STRING }
+const mappingSecurityData = function (securityQuestionsData) {
+  const securityQuestionList = [];
+  for (const questions of securityQuestionsData) {
+    const securityQuestion = {
+      Question: constants.EMPTY_STRING,
+      Answer: constants.EMPTY_STRING,
+    };
     for (const key in questions) {
-      if(key.includes("Question")){
-        securityQuestion["Question"] = questions[key]
+      if (key.includes("Question")) {
+        securityQuestion["Question"] = questions[key];
       } else {
-        securityQuestion["Answer"] = questions[key]
+        securityQuestion["Answer"] = questions[key];
       }
     }
-    securityQuestionList.push(securityQuestion)
+    securityQuestionList.push(securityQuestion);
   }
-  return securityQuestionList
-}
+  return securityQuestionList;
+};
 
 const backToLoginProps = {
   onBackToLoginClicked: function (router) {
@@ -67,7 +72,9 @@ const backToLoginProps = {
   },
 };
 export default function ForgotPasswordPage() {
-  const { t } = useTranslation("translation", { keyPrefix: "ForgotPasswordPage" });
+  const { t } = useTranslation("translation", {
+    keyPrefix: "ForgotPasswordPage",
+  });
 
   const [patientData, setPatientData] = useState({
     username: constants.EMPTY_STRING,
@@ -75,7 +82,7 @@ export default function ForgotPasswordPage() {
     phoneNumber: constants.EMPTY_STRING,
     securityQuestionsSet: false,
     securityQuestions: [],
-    preferredComunication: "Both"
+    preferredComunication: "Both",
   });
   const [showPostMessage, setShowPostMessage] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(true);
@@ -88,90 +95,108 @@ export default function ForgotPasswordPage() {
   //Call API for userame validation
   const onCalledValidateUsernameAPI = function ({ username }, showForm) {
     const postbody = {
-      patient: [{"Email/Phone Number": username}]
-    }
+      patient: [{ "Email/Phone Number": username }],
+    };
     const api = new Api();
     api.client
       .post("https://patientforgotpassword.mocklab.io/CTA/Continue", postbody)
       .then(function (response) {
         if (response && response.status === 200) {
-          if(response.data && response.data.patient && response.data.patient[0]){
-            const responsePatientData = response.data.patient[0]
-            setPatientData({...patientData, 
+          if (
+            response.data &&
+            response.data.patient &&
+            response.data.patient[0]
+          ) {
+            const responsePatientData = response.data.patient[0];
+            setPatientData({
+              ...patientData,
               username: username,
-              securityQuestionsSet: responsePatientData.securityQuestionsSet.toLocaleLowerCase() === constants.YES, 
-              preferredComunication: responsePatientData.modeOfCommunication
-            })
+              securityQuestionsSet:
+                responsePatientData.securityQuestionsSet.toLocaleLowerCase() ===
+                constants.YES,
+              preferredComunication: responsePatientData.modeOfCommunication,
+            });
           }
-          onContinueButtonClicked(showForm)
+          onContinueButtonClicked(showForm);
         }
       })
       .catch(function () {
-        setShowPostMessage(true)
+        setShowPostMessage(true);
       });
-  }
+  };
 
   //Call API for security question & password reset
   const onCalledSecurityQuestionAPI = function (modeOfCommuication) {
-    const patient = {"Email/Phone Number": patientData.username}
-    if(patientData.securityQuestionsSet){
-      patient["answerSecurityQuestions"] = "Yes"
+    const patient = { "Email/Phone Number": patientData.username };
+    if (patientData.securityQuestionsSet) {
+      patient["answerSecurityQuestions"] = "Yes";
     }
 
     const postbody = {
-      patient: [patient]
-    }
+      patient: [patient],
+    };
 
     const api = new Api();
     api.client
-      .post("https://patientforgotpasswordasqs.mocklab.io/answersecurityquestions", postbody)
+      .post(
+        "https://patientforgotpasswordasqs.mocklab.io/answersecurityquestions",
+        postbody
+      )
       .then(function (response) {
         if (response && response.status === 200) {
-          if(patientData.securityQuestionsSet){
+          if (patientData.securityQuestionsSet) {
             //Handle response call for patient that have security question
-            if(response.data && response.data.securityQuestions){
-              const securityQuestionList = mappingSecurityData(response.data.securityQuestions)
-              setPatientData({...patientData, 
-                securityQuestions: securityQuestionList
-              })
+            if (response.data && response.data.securityQuestions) {
+              const securityQuestionList = mappingSecurityData(
+                response.data.securityQuestions
+              );
+              setPatientData({
+                ...patientData,
+                securityQuestions: securityQuestionList,
+              });
             }
             setShowPasswordSecurityQuestion(true);
           } else {
             //Handle response call for patient that not have security question
             const response = {
-              "ResponseCode": 1000, 
-              "ResponseType":"success",
-              "email": "donj@yahoo.com"
-            }
+              ResponseCode: 1000,
+              ResponseType: "success",
+              email: "donj@yahoo.com",
+            };
 
-            const userCommunicationCode = modeComunication.toLowerCase() === "email" ? response.email : response.phoneNumber
-            // Handle success to call API 
+            const userCommunicationCode =
+              modeComunication.toLowerCase() === "email"
+                ? response.email
+                : response.phoneNumber;
+            // Handle success to call API
             confirmationFormProps = {
               title: t("titlePasswordReset"),
-              subtitle:
-                `Check ${userCommunicationCode} for an email to reset your password.`,
+              subtitle: `Check ${userCommunicationCode} for an email to reset your password.`,
               description: t("descriptionPasswordResetSuccess"),
               postMessage: `Link sent to your ${modeComunication.toLowerCase()}`,
               successPostMessage: true,
-              buttonLabel: t('primaryButtonTextPasswordResetSuccess'),
+              buttonLabel: t("primaryButtonTextPasswordResetSuccess"),
               additional: null,
-              onCTAButtonClicked: function(){ onContinueButtonClicked(constants.ONE_TIME_LINK) }
+              onCTAButtonClicked: function () {
+                onContinueButtonClicked(constants.ONE_TIME_LINK);
+              },
             };
-            setShowPostMessage(true)
+            setShowPostMessage(true);
           }
-          
         }
       })
       .catch(function () {
         //Handle error secenario
       });
-  }
+  };
 
   //Call API for one time link
   const onCalledOneTimeLinkAPI = function () {
     const postbody = {
-      patient: [{"Email/Phone Number": patientData.username, oneTimeLink: "Yes"}]
-    }
+      patient: [
+        { "Email/Phone Number": patientData.username, oneTimeLink: "Yes" },
+      ],
+    };
 
     const api = new Api();
     api.client
@@ -181,70 +206,88 @@ export default function ForgotPasswordPage() {
           confirmationFormProps = {
             title: t("successSentLinkTitleOneTime"),
             subtitle: t("subtitleOneTimeSuccess"),
-            description:
-              `If you did not receive the link, try to ${(patientData.securityQuestionsSet ? t('answerSecurityQuestionsLabel') : t('receiveLinkToResetPasswordLabel')).toLocaleLowerCase()}`,
+            description: `If you did not receive the link, try to ${(patientData.securityQuestionsSet
+              ? t("answerSecurityQuestionsLabel")
+              : t("receiveLinkToResetPasswordLabel")
+            ).toLocaleLowerCase()}`,
             postMessage: t("postMessageOneTime"),
             postMessageTitle: t("successLabel"),
             successPostMessage: true,
-            buttonLabel: patientData.securityQuestionsSet ? t('answerSecurityQuestionsLabel') : t('receiveLinkToResetPasswordLabel'),
+            buttonLabel: patientData.securityQuestionsSet
+              ? t("answerSecurityQuestionsLabel")
+              : t("receiveLinkToResetPasswordLabel"),
             additional: null,
-            onCTAButtonClicked: function(){ onContinueButtonClicked(patientData.securityQuestionsSet ? constants.SECURITY_QUESTION : constants.PASSWORD_RESET) }
+            onCTAButtonClicked: function () {
+              onContinueButtonClicked(
+                patientData.securityQuestionsSet
+                  ? constants.SECURITY_QUESTION
+                  : constants.PASSWORD_RESET
+              );
+            },
           };
-          setShowPostMessage(true)
+          setShowPostMessage(true);
         }
       })
       .catch(function () {
         //Handle error secenario
       });
-  }
+  };
 
   //Handle show/hide form in forgot password
   const onContinueButtonClicked = function (form, router) {
-    setShowPostMessage(false)
-    setShowForgotPassword(false)
-    setShowSelectOption(false)
-    setShowPasswordSecurityQuestion(false)
-    setShowOneTimeLink(false)
-    setShowPasswordReset(false)
+    setShowPostMessage(false);
+    setShowForgotPassword(false);
+    setShowSelectOption(false);
+    setShowPasswordSecurityQuestion(false);
+    setShowOneTimeLink(false);
+    setShowPasswordReset(false);
 
     if (form === constants.SELECT_OPTION) {
       setShowSelectOption(true);
-    } else if (form === constants.SECURITY_QUESTION ) {
-      onCalledSecurityQuestionAPI(constants.EMPTY_STRING)
-    }else if (form === constants.PASSWORD_RESET) {
+    } else if (form === constants.SECURITY_QUESTION) {
+      onCalledSecurityQuestionAPI(constants.EMPTY_STRING);
+    } else if (form === constants.PASSWORD_RESET) {
       //TO DO: handle showing the reset password form
-      if(patientData.preferredComunication.toLocaleLowerCase() === constants.BOTH){
+      if (
+        patientData.preferredComunication.toLocaleLowerCase() === constants.BOTH
+      ) {
         //TO DO: Set props for one time link
-        confirmationFormProps.title = t("titlePasswordReset")
-        confirmationFormProps.subtitle = t("subtitlePasswordReset")
-        confirmationFormProps.additional = modeOfCommuication
-        confirmationFormProps.buttonLabel = t("primaryButtonOneTime")
-        confirmationFormProps.buttonIcon = <InsertLinkIcon />
-        confirmationFormProps.onCTAButtonClicked = function({data}){
-          const modeComunication = data[constants.MODE_COMMUNICATION_KEY] === constants.EMAIL ?
-            "Email" : "Phone number"
-            onCalledSecurityQuestionAPI(modeComunication)
-        }
+        confirmationFormProps.title = t("titlePasswordReset");
+        confirmationFormProps.subtitle = t("subtitlePasswordReset");
+        confirmationFormProps.additional = modeOfCommuication;
+        confirmationFormProps.buttonLabel = t("primaryButtonOneTime");
+        confirmationFormProps.buttonIcon = <InsertLinkIcon />;
+        confirmationFormProps.onCTAButtonClicked = function ({ data }) {
+          const modeComunication =
+            data[constants.MODE_COMMUNICATION_KEY] === constants.EMAIL
+              ? "Email"
+              : "Phone number";
+          onCalledSecurityQuestionAPI(modeComunication);
+        };
       } else {
         //Call service for password reset
-        onCalledSecurityQuestionAPI(patientData.preferredComunication)
+        onCalledSecurityQuestionAPI(patientData.preferredComunication);
       }
       setShowPasswordReset(true);
     } else if (form === constants.ONE_TIME_LINK) {
-      if(patientData.preferredComunication.toLocaleLowerCase() === constants.BOTH){
+      if (
+        patientData.preferredComunication.toLocaleLowerCase() === constants.BOTH
+      ) {
         //TO DO: Set props for one time link
-        confirmationFormProps.title = t("titleOneTime")
-        confirmationFormProps.subtitle = t("subtitleOneTime")
-        confirmationFormProps.additional = modeOfCommuication
-        confirmationFormProps.buttonLabel = t("primaryButtonOneTime")
-        confirmationFormProps.buttonIcon = <InsertLinkIcon />
-        confirmationFormProps.onCTAButtonClicked = function(){onCalledOneTimeLinkAPI()}
+        confirmationFormProps.title = t("titleOneTime");
+        confirmationFormProps.subtitle = t("subtitleOneTime");
+        confirmationFormProps.additional = modeOfCommuication;
+        confirmationFormProps.buttonLabel = t("primaryButtonOneTime");
+        confirmationFormProps.buttonIcon = <InsertLinkIcon />;
+        confirmationFormProps.onCTAButtonClicked = function () {
+          onCalledOneTimeLinkAPI();
+        };
       } else {
         //Call service for one time link
-        onCalledOneTimeLinkAPI()
+        onCalledOneTimeLinkAPI();
       }
       setShowOneTimeLink(true);
-    } else if (form === "updatePassword"){
+    } else if (form === "updatePassword") {
       router.push("/patient/update-password");
     }
   };
@@ -267,7 +310,9 @@ export default function ForgotPasswordPage() {
           <SelectOptionForm
             {...backToLoginProps}
             onContinueButtonClicked={onContinueButtonClicked}
-            hasSecurityQuestion={patientData && patientData.securityQuestionsSet}
+            hasSecurityQuestion={
+              patientData && patientData.securityQuestionsSet
+            }
           />
         ) : (
           <></>
@@ -284,20 +329,22 @@ export default function ForgotPasswordPage() {
           <></>
         )}
         {showOneTimeLink ? (
-          <ConfirmationForm 
-            {...confirmationFormProps} 
+          <ConfirmationForm
+            {...confirmationFormProps}
             {...backToLoginProps}
             showPostMessage={showPostMessage}
-            setShowPostMessage={setShowPostMessage}/>
+            setShowPostMessage={setShowPostMessage}
+          />
         ) : (
           <></>
         )}
         {showPasswordReset ? (
-          <ConfirmationForm 
-            {...confirmationFormProps} 
+          <ConfirmationForm
+            {...confirmationFormProps}
             {...backToLoginProps}
             showPostMessage={showPostMessage}
-            setShowPostMessage={setShowPostMessage}/>
+            setShowPostMessage={setShowPostMessage}
+          />
         ) : (
           <></>
         )}

@@ -1,7 +1,7 @@
 export const styles = {
-  cardStyle:{ 
+  cardStyle: {
     minWidth: 275,
-     padding: "16px" 
+    padding: "16px",
   },
   cardContentStyle: {
     display: "flex",

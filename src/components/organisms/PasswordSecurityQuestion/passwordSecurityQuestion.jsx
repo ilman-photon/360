@@ -18,38 +18,45 @@ const PasswordSecurityQuestion = ({
   showPostMessage = false,
   setShowPostMessage,
   securityQuestionData = [],
-  onContinueButtonClicked
+  onContinueButtonClicked,
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", {
     keyPrefix: "PasswordSecurityQuestion",
   });
   const { handleSubmit, control } = useForm();
-  const [ countLock, setCountLock ] = useState(0)
-  const [ postMessage, setPostMessage ] = useState({title:"",message:""})
+  const [countLock, setCountLock] = useState(0);
+  const [postMessage, setPostMessage] = useState({ title: "", message: "" });
 
   const onSubmit = (data) => {
-    if(countLock >= constants.ACCOUNT_LOCK_COUNT){
-      setPostMessage({title:t("errorAccountLockTitle"),message:t("errorAccountLock")})
-      setShowPostMessage(true)
-      return
+    if (countLock >= constants.ACCOUNT_LOCK_COUNT) {
+      setPostMessage({
+        title: t("errorAccountLockTitle"),
+        message: t("errorAccountLock"),
+      });
+      setShowPostMessage(true);
+      return;
     }
-    
-    let isValid = true
-    for(let i = 0; i < securityQuestionData.length; i++){
-      if(securityQuestionData[i]["Answer"] && (securityQuestionData[i]["Answer"].toLowerCase() !== data[`securityQuestion${i}`].toLowerCase())){
-        isValid = false
-        setCountLock(countLock + 1)
-        break
+
+    let isValid = true;
+    for (let i = 0; i < securityQuestionData.length; i++) {
+      if (
+        securityQuestionData[i]["Answer"] &&
+        securityQuestionData[i]["Answer"].toLowerCase() !==
+          data[`securityQuestion${i}`].toLowerCase()
+      ) {
+        isValid = false;
+        setCountLock(countLock + 1);
+        break;
       }
     }
 
-    if(!isValid){
-      setPostMessage({title:"",message:t("errorIncorrectAnswer")})
-      setShowPostMessage(true)
-    }else{
+    if (!isValid) {
+      setPostMessage({ title: "", message: t("errorIncorrectAnswer") });
+      setShowPostMessage(true);
+    } else {
       //TO DO: Navigate to update password
-      onContinueButtonClicked("updatePassword", router)
+      onContinueButtonClicked("updatePassword", router);
     }
   };
 
@@ -60,11 +67,18 @@ const PasswordSecurityQuestion = ({
     >
       <CardContent style={styles.cardContentStyle}>
         <Typography variant={constants.H2}>{t("title")}</Typography>
-        <Typography variant={constants.BODY_REGULAR} style={styles.subTitleMargin}>
+        <Typography
+          variant={constants.BODY_REGULAR}
+          style={styles.subTitleMargin}
+        >
           {t("subtitle")}
         </Typography>
         {showPostMessage ? (
-          <FormMessage success={false} sx={styles.postMessage} title={postMessage["title"]}>
+          <FormMessage
+            success={false}
+            sx={styles.postMessage}
+            title={postMessage["title"]}
+          >
             {postMessage["message"]}
           </FormMessage>
         ) : (
@@ -74,32 +88,35 @@ const PasswordSecurityQuestion = ({
           {securityQuestionData.map(function (question, i) {
             return (
               <Controller
-              key={`controllerQuestion${i}`}
-              name={`securityQuestion${i}`}
-              control={control}
-              defaultValue=""
-              render={({ field: { onChange, value }, fieldState: { error } }) => {
-                return (
-                  <StyledInput
-                    label={question[`Question`]}
-                    id={`securityQuestion${i}`}
-                    variant="filled"
-                    style={styles.margin}
-                    key={`securityQuestion${i}`}
-                    value={value}
-                    onChange={(event)=>{
-                      onChange(event)
-                      if(showPostMessage){
-                        setShowPostMessage(false)
-                      }
-                    }}
-                    error={!!error}
-                    helperText={error ? error.message : null}
-                />
-                );
-              }}
-              rules={{ required: t("errorEmptyField") }}
-            />
+                key={`controllerQuestion${i}`}
+                name={`securityQuestion${i}`}
+                control={control}
+                defaultValue=""
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => {
+                  return (
+                    <StyledInput
+                      label={question[`Question`]}
+                      id={`securityQuestion${i}`}
+                      variant="filled"
+                      style={styles.margin}
+                      key={`securityQuestion${i}`}
+                      value={value}
+                      onChange={(event) => {
+                        onChange(event);
+                        if (showPostMessage) {
+                          setShowPostMessage(false);
+                        }
+                      }}
+                      error={!!error}
+                      helperText={error ? error.message : null}
+                    />
+                  );
+                }}
+                rules={{ required: t("errorEmptyField") }}
+              />
             );
           })}
           <StyledButton
