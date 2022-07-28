@@ -11,18 +11,22 @@ const loginProps = {
       .login(postbody)
       .then(function (response) {
         console.log(response);
-        router.push("/patient/");
+        console.log(router)
+        //router.push("/patient");
+        const hostname = window.location.origin;
+        window.location.href = `${hostname}/patient`;
         console.log("success");
         cookies.set("authorized", true, { path: "/patient" });
         callback({ status: "success" });
       })
       .catch(function (err) {
         console.log(err);
+        const isLockedAccount = err.ResponseCode === 2004
         callback({
           status: "failed",
           message: {
-            title: "",
-            description: "Invalid Username or Password",
+            title: isLockedAccount ? "Account Locked" : "",
+            description: err.message,
           },
         });
       });

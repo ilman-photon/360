@@ -19,7 +19,7 @@ export class Api {
         .post(url, postbody)
         .then(function (response) {
           if (response && response.status === 200) {
-            resolve(response.message);
+            resolve(response.response);
           } else {
             reject(response);
           }
@@ -34,18 +34,41 @@ export class Api {
     const api = new Api();
     const url = "https://patientlogin.mocklab.io/ecp/patient/login";
     return new Promise((resolve, reject) => {
-      api.client
-        .post(url, postbody)
-        .then(function (response) {
-          if (response && response.status === 200) {
-            resolve(response.response);
-          } else {
-            reject(response.response);
-          }
+      //start mock
+      const username = postbody.username
+      if (username === "qq") {
+        resolve({
+          "ResponseCode": 2000,
+          "ResponseType": "success",
+          "userType": "patient"
         })
-        .catch(function (err) {
-          reject(err.response);
-        });
+      } else if (username === "accountFailed@mail.com") {
+        reject({
+          "ResponseCode": 2001,
+          "ResponseType": "failure",
+          "message": "Invalid Username or Password"
+        })
+      } else if (username === "accountLocked@mail.com") {
+        reject({
+          "ResponseCode": 2004, 
+          "ResponseType": "failure",
+          "message": "Too many login attempts. Your account is locked. Please contact customer support to unlock your account"
+        })
+      } else {
+        //end mock
+        api.client
+          .post(url, postbody)
+          .then(function (response) {
+            if (response && response.status === 200) {
+              resolve(response.response);
+            } else {
+              reject(response.response);
+            }
+          })
+          .catch(function (err) {
+            reject(err.response);
+          });
+      }//end mock
     });
   }
 }
