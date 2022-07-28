@@ -39,7 +39,7 @@ install:
 build:
    stage: build
    script:
-      - CI=false npm run build
+      - yarn build
    artifacts:
       paths:
          - build
