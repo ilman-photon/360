@@ -10,6 +10,7 @@ export class Api {
       timeout: 10000,
     });
   }
+
   logout(postbody) {
     const api = new Api();
     const url = "https://patientlogout.mocklab.io/ecp/patient/logout";
@@ -18,8 +19,6 @@ export class Api {
         .post(url, postbody)
         .then(function (response) {
           if (response && response.status === 200) {
-            const cookies = new Cookies();
-            cookies.remove("authorized", "true", { path: "/" });
             resolve(response.message);
           } else {
             reject(response);
@@ -30,6 +29,7 @@ export class Api {
         });
     });
   }
+
   login(postbody) {
     const api = new Api();
     const url = "https://patientlogin.mocklab.io/ecp/patient/login";
@@ -38,8 +38,6 @@ export class Api {
         .post(url, postbody)
         .then(function (response) {
           if (response && response.status === 200) {
-            const cookies = new Cookies();
-            cookies.set("authorized", "true", { path: "/" });
             resolve(response.response);
           } else {
             reject(response.response);
