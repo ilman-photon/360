@@ -13,21 +13,6 @@ import { Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
 import { Link, Typography } from "@mui/material";
 
-const MOCKED_SECURITY_QUESTION = [
-  {
-    "Question": "DetailQuestion1",
-    "Answer": "one",
-  },
-  {
-    "Question": "DetailQuestion2",
-    "Answer": "two",
-  },
-  {
-    "Question": "DetailQuestion3",
-    "Answer": "three",
-  },
-];
-
 let confirmationFormProps = {
   title: constants.EMPTY_STRING,
   subtitle: constants.EMPTY_STRING,
@@ -60,6 +45,22 @@ const modeOfCommuication = function (control){
   />
 }
 
+const mappingSecurityData = function(securityQuestionsData){
+  const securityQuestionList = []
+  for (const questions of securityQuestionsData){
+    const securityQuestion = { "Question": constants.EMPTY_STRING, "Answer": constants.EMPTY_STRING }
+    for (const key in questions) {
+      if(key.includes("Question")){
+        securityQuestion["Question"] = questions[key]
+      } else {
+        securityQuestion["Answer"] = questions[key]
+      }
+    }
+    securityQuestionList.push(securityQuestion)
+  }
+  return securityQuestionList
+}
+
 const backToLoginProps = {
   onBackToLoginClicked: function (router) {
     router.push("/patient/login");
@@ -69,85 +70,147 @@ export default function ForgotPasswordPage() {
   const { t } = useTranslation("translation", { keyPrefix: "ForgotPasswordPage" });
 
   const [patientData, setPatientData] = useState({
+    username: constants.EMPTY_STRING,
     email: constants.EMPTY_STRING,
     phoneNumber: constants.EMPTY_STRING,
-    securityQuestions: [],//MOCKED_SECURITY_QUESTION,
+    securityQuestionsSet: false,
+    securityQuestions: [],
     preferredComunication: "Both"
   });
   const [showPostMessage, setShowPostMessage] = useState(false);
   const [showForgotPassword, setShowForgotPassword] = useState(true);
-  const [showSetOption, setShowSetOption] = useState(false);
+  const [showSelectOption, setShowSelectOption] = useState(false);
   const [showPasswordSecurityQuestion, setShowPasswordSecurityQuestion] =
     useState(false);
   const [showOneTimeLink, setShowOneTimeLink] = useState(false);
   const [showPasswordReset, setShowPasswordReset] = useState(false);
 
   //Call API for userame validation
-  const onCalledValidateUsernameAPI = function (postbody, router, showForm) {
-    // setShowPostMessage(true)
-    onContinueButtonClicked(showForm)
+  const onCalledValidateUsernameAPI = function ({ username }, showForm) {
+    const postbody = {
+      patient: [{"Email/Phone Number": username}]
+    }
+    const api = new Api();
+    api.client
+      .post("https://patientforgotpassword.mocklab.io/CTA/Continue", postbody)
+      .then(function (response) {
+        if (response && response.status === 200) {
+          if(response.data && response.data.patient && response.data.patient[0]){
+            const responsePatientData = response.data.patient[0]
+            setPatientData({...patientData, 
+              username: username,
+              securityQuestionsSet: responsePatientData.securityQuestionsSet.toLocaleLowerCase() === constants.YES, 
+              preferredComunication: responsePatientData.modeOfCommunication
+            })
+          }
+          onContinueButtonClicked(showForm)
+        }
+      })
+      .catch(function () {
+        setShowPostMessage(true)
+      });
+  }
+
+  //Call API for security question & password reset
+  const onCalledSecurityQuestionAPI = function (modeOfCommuication) {
+    const patient = {"Email/Phone Number": patientData.username}
+    if(patientData.securityQuestionsSet){
+      patient["answerSecurityQuestions"] = "Yes"
+    }
+
+    const postbody = {
+      patient: [patient]
+    }
+
+    const api = new Api();
+    api.client
+      .post("https://patientforgotpasswordasqs.mocklab.io/answersecurityquestions", postbody)
+      .then(function (response) {
+        if (response && response.status === 200) {
+          if(patientData.securityQuestionsSet){
+            //Handle response call for patient that have security question
+            if(response.data && response.data.securityQuestions){
+              const securityQuestionList = mappingSecurityData(response.data.securityQuestions)
+              setPatientData({...patientData, 
+                securityQuestions: securityQuestionList
+              })
+            }
+            setShowPasswordSecurityQuestion(true);
+          } else {
+            //Handle response call for patient that not have security question
+            const response = {
+              "ResponseCode": 1000, 
+              "ResponseType":"success",
+              "email": "donj@yahoo.com"
+            }
+
+            const userCommunicationCode = modeComunication.toLowerCase() === "email" ? response.email : response.phoneNumber
+            // Handle success to call API 
+            confirmationFormProps = {
+              title: t("titlePasswordReset"),
+              subtitle:
+                `Check ${userCommunicationCode} for an email to reset your password.`,
+              description: t("descriptionPasswordResetSuccess"),
+              postMessage: `Link sent to your ${modeComunication.toLowerCase()}`,
+              successPostMessage: true,
+              buttonLabel: t('primaryButtonTextPasswordResetSuccess'),
+              additional: null,
+              onCTAButtonClicked: function(){ onContinueButtonClicked(constants.ONE_TIME_LINK) }
+            };
+            setShowPostMessage(true)
+          }
+          
+        }
+      })
+      .catch(function () {
+        //Handle error secenario
+      });
   }
 
   //Call API for one time link
-  const onCalledOneTimeLinkAPI = function (postbody) {
-    //TO DO: call API for one time link
-
-    // Handle success to call API 
-    const hasSecurityQuestion = patientData.securityQuestions.length > 0
-    confirmationFormProps = {
-      title: t("successSentLinkTitleOneTime"),
-      subtitle: t("subtitleOneTimeSuccess"),
-      description:
-        `If you did not receive the link, try to ${(patientData.securityQuestions.length > 0 ? t('answerSecurityQuestionsLabel') : t('receiveLinkToResetPasswordLabel')).toLocaleLowerCase()}`,
-      postMessage: t("postMessageOneTime"),
-      postMessageTitle: t("successLabel"),
-      successPostMessage: true,
-      buttonLabel: hasSecurityQuestion ? t('answerSecurityQuestionsLabel') : t('receiveLinkToResetPasswordLabel'),
-      additional: null,
-      onCTAButtonClicked: function(){ onContinueButtonClicked(hasSecurityQuestion ? constants.SECURITY_QUESTION : constants.PASSWORD_RESET) }
-    };
-    setShowPostMessage(true)
-  }
-
-  //Call API for password reset
-  const onCalledPasswordResetAPI = function (postbody, modeComunication) {
-    //TO DO: call API for one time link
-
-    //TO DO: Remove this when integrate with services
-    const response = {
-      "ResponseCode": 1000, 
-      "ResponseType":"success",
-      "email": "donj@yahoo.com"
+  const onCalledOneTimeLinkAPI = function () {
+    const postbody = {
+      patient: [{"Email/Phone Number": patientData.username, oneTimeLink: "Yes"}]
     }
-    const userCommunicationCode = modeComunication.toLowerCase() === "email" ? response.email : response.phoneNumber
-    // Handle success to call API 
-    confirmationFormProps = {
-      title: t("titlePasswordReset"),
-      subtitle:
-        `Check ${userCommunicationCode} for an email to reset your password.`,
-      description: t("descriptionPasswordResetSuccess"),
-      postMessage: `Link sent to your ${modeComunication.toLowerCase()}`,
-      successPostMessage: true,
-      buttonLabel: t('primaryButtonTextPasswordResetSuccess'),
-      additional: null,
-      onCTAButtonClicked: function(){ onContinueButtonClicked(constants.ONE_TIME_LINK) }
-    };
-    setShowPostMessage(true)
+
+    const api = new Api();
+    api.client
+      .post("https://patientforgotpasswordotl.mocklab.io/onetimelink", postbody)
+      .then(function (response) {
+        if (response && response.status === 200) {
+          confirmationFormProps = {
+            title: t("successSentLinkTitleOneTime"),
+            subtitle: t("subtitleOneTimeSuccess"),
+            description:
+              `If you did not receive the link, try to ${(patientData.securityQuestionsSet ? t('answerSecurityQuestionsLabel') : t('receiveLinkToResetPasswordLabel')).toLocaleLowerCase()}`,
+            postMessage: t("postMessageOneTime"),
+            postMessageTitle: t("successLabel"),
+            successPostMessage: true,
+            buttonLabel: patientData.securityQuestionsSet ? t('answerSecurityQuestionsLabel') : t('receiveLinkToResetPasswordLabel'),
+            additional: null,
+            onCTAButtonClicked: function(){ onContinueButtonClicked(patientData.securityQuestionsSet ? constants.SECURITY_QUESTION : constants.PASSWORD_RESET) }
+          };
+          setShowPostMessage(true)
+        }
+      })
+      .catch(function () {
+        //Handle error secenario
+      });
   }
 
   //Handle show/hide form in forgot password
   const onContinueButtonClicked = function (form, router) {
     setShowPostMessage(false)
     setShowForgotPassword(false)
-    setShowSetOption(false)
+    setShowSelectOption(false)
     setShowPasswordSecurityQuestion(false)
     setShowOneTimeLink(false)
     setShowPasswordReset(false)
 
-    if (form === "setOption") {
-      setShowSetOption(true);
+    if (form === constants.SELECT_OPTION) {
+      setShowSelectOption(true);
     } else if (form === constants.SECURITY_QUESTION ) {
-      setShowPasswordSecurityQuestion(true);
+      onCalledSecurityQuestionAPI(constants.EMPTY_STRING)
     }else if (form === constants.PASSWORD_RESET) {
       //TO DO: handle showing the reset password form
       if(patientData.preferredComunication.toLocaleLowerCase() === constants.BOTH){
@@ -160,25 +223,25 @@ export default function ForgotPasswordPage() {
         confirmationFormProps.onCTAButtonClicked = function({data}){
           const modeComunication = data[constants.MODE_COMMUNICATION_KEY] === constants.EMAIL ?
             "Email" : "Phone number"
-          onCalledPasswordResetAPI({}, modeComunication)
+            onCalledSecurityQuestionAPI(modeComunication)
         }
       } else {
         //Call service for password reset
-        onCalledPasswordResetAPI({}, patientData.preferredComunication)
+        onCalledSecurityQuestionAPI(patientData.preferredComunication)
       }
       setShowPasswordReset(true);
     } else if (form === constants.ONE_TIME_LINK) {
       if(patientData.preferredComunication.toLocaleLowerCase() === constants.BOTH){
         //TO DO: Set props for one time link
         confirmationFormProps.title = t("titleOneTime")
-        confirmationFormProps.subtitle = t("subtitleOneTime"),
+        confirmationFormProps.subtitle = t("subtitleOneTime")
         confirmationFormProps.additional = modeOfCommuication
         confirmationFormProps.buttonLabel = t("primaryButtonOneTime")
         confirmationFormProps.buttonIcon = <InsertLinkIcon />
-        confirmationFormProps.onCTAButtonClicked = function({data}){onCalledOneTimeLinkAPI()}
+        confirmationFormProps.onCTAButtonClicked = function(){onCalledOneTimeLinkAPI()}
       } else {
         //Call service for one time link
-        onCalledOneTimeLinkAPI({})
+        onCalledOneTimeLinkAPI()
       }
       setShowOneTimeLink(true);
     } else if (form === "updatePassword"){
@@ -200,11 +263,11 @@ export default function ForgotPasswordPage() {
         ) : (
           <></>
         )}
-        {showSetOption ? (
+        {showSelectOption ? (
           <SelectOptionForm
             {...backToLoginProps}
             onContinueButtonClicked={onContinueButtonClicked}
-            hasSecurityQuestion={patientData && patientData.securityQuestions.length}
+            hasSecurityQuestion={patientData && patientData.securityQuestionsSet}
           />
         ) : (
           <></>
@@ -214,7 +277,7 @@ export default function ForgotPasswordPage() {
             {...backToLoginProps}
             showPostMessage={showPostMessage}
             setShowPostMessage={setShowPostMessage}
-            securityQuestionData={MOCKED_SECURITY_QUESTION}
+            securityQuestionData={patientData.securityQuestions}
             onContinueButtonClicked={onContinueButtonClicked}
           />
         ) : (

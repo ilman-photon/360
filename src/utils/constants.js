@@ -16,7 +16,7 @@ module.exports = {
     INPUT_PASSWORD:"password",
     ACCOUNT_LOCK_COUNT: 3,
     SUBMIT:"submit",
-    SET_OPTION:"setOption",
+    SELECT_OPTION:"selectOption",
     SECURITY_QUESTION:"securityQuestion",
     ONE_TIME_LINK:"oneTimeLink",
     PASSWORD_RESET: "passwordReset",
@@ -24,4 +24,5 @@ module.exports = {
     MODE_COMMUNICATION_KEY:"modeComunication",
     EMAIL:"email",
     PHONE:"phone",
+    YES:'yes'
 }

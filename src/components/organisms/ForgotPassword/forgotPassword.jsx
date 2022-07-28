@@ -10,6 +10,7 @@ import { StyledButton } from "../../atoms/Button/button";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import { styles } from "./style";
 import { useForm, Controller } from "react-hook-form";
+import constants from "../../../utils/constants";
 
 const ForgotPassword = ({
   onBackToLoginClicked,
@@ -25,7 +26,7 @@ const ForgotPassword = ({
     //TO DO: Will called request for validate username
     onCalledValidateUsernameAPI({
       username: data.userame
-    }, router, "setOption")
+    }, constants.SELECT_OPTION)
   };
 
   return (
