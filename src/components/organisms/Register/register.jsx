@@ -3,24 +3,18 @@ import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
 import { Divider, Typography } from "@mui/material";
+import Link from "next/link";
 import { useForm, Controller } from "react-hook-form";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import { StyledInput } from "../../atoms/Input/input";
 import globalStyles from "../../../styles/Global.module.scss";
 import { PasswordValidator } from "../../molecules/PasswordValidator/passwordValidator";
-import { useTranslation } from "react-i18next";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import { styles } from "./style";
-import Link from "next/link";
 
 export default function Register({ OnRegisterClicked, formError = null }) {
-  const { t } = useTranslation("translation", { keyPrefix: "Register" });
-  const [isShowValidation, setShowValidation] = React.useState(true);
-  // const { handleSubmit, setError, control, watch, formState: { errors } } = useForm(
   const {
     handleSubmit,
-    setError,
-    clearErrors,
     control,
     watch,
     formState: { errors },
@@ -43,9 +37,8 @@ export default function Register({ OnRegisterClicked, formError = null }) {
     let passes = 0;
     if(alphabethRegex.test(pass)){ ++passes }
     if(specialRegex.test(pass)){ ++passes }
-    if(pass.indexOf(watchedEmail || watchedMobile) - 1){ ++passes }
+    if(pass.indexOf(watchedEmail || watchedMobile) > -1){ ++passes }
     if(!hasTripleRegex.test(pass)){ ++passes }
-    console.log(passes, 'passes')
     return passes >= 3 ? true : false;
   };
 
@@ -175,8 +168,6 @@ export default function Register({ OnRegisterClicked, formError = null }) {
               },
             }}
           />
-          {/* <StyledInput type="text" id="lastName" label="Last Name" adorment="true" /> */}
-          {/* <StyledInput type="text" id="email" label="Email" variant="filled" /> */}
           <Controller
             name="email"
             control={control}
@@ -270,7 +261,7 @@ export default function Register({ OnRegisterClicked, formError = null }) {
           />
           <PasswordValidator
             validator={passwordValidator}
-            isShowValidation={isShowValidation}
+            isShowValidation={isPasswordError}
             password={watchedPassword}
             validatePassword={validatePassword}
           />
