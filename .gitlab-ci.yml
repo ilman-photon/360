@@ -27,6 +27,7 @@ install:
       paths:
         - .npm/
         - node_modules/
+        - .next/
 
 # test:
 #   stage: test
@@ -40,10 +41,6 @@ build:
    stage: build
    script:
       - yarn build
-   artifacts:
-      paths:
-         - build
-      expire_in: 30 mins
    dependencies:
       - install
 
