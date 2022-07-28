@@ -6,6 +6,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import BaseHeader from "../organisms/BaseHeader/baseHeader";
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 export default function Layout({
   children,
@@ -14,10 +15,13 @@ export default function Layout({
   imageSrc,
 }) {
   const isPatient = theme === "patient";
+  const pathImageWebsite = '/desktop_3x.png';
+  const pathImageMobile = '/MicrosoftTeams-image (2).png';
+  const matches = useMediaQuery('(min-width:600px)');
   return (
     <>
       <Head>
-        <title>Layouts Example</title>
+        <title>Layouts Example {matches} </title>
       </Head>
       <div className={styles.authLayout}>
         <BaseHeader></BaseHeader>
@@ -46,10 +50,9 @@ export default function Layout({
             }}
           >
             <div className={styles.imageBannerContainer}>
-              <h3>Hello</h3>
                 <Image
                     alt="auth-image"
-                    src="/desktop_3x.png"
+                    src={matches ? pathImageWebsite : pathImageMobile}
                     layout='fill'
                 />
             </div>
