@@ -117,10 +117,10 @@ export const RedditTextField = styled((props) => (
       backgroundColor: "transparent",
     },
     "&:before": {
-      borderColor: "transparent !important"
+      borderColor: "transparent !important",
     },
     "&:after": {
-      borderColor: "transparent !important"
+      borderColor: "transparent !important",
     },
     "&.Mui-error": {
       borderColor: "#FF0000",

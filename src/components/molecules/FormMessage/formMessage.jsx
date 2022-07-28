@@ -49,7 +49,7 @@ export const FormMessage = ({ ...props }) => {
             fontSize: "16px",
             lineHeight: "24px",
             letterSpacing: "0.0016em",
-            margin: "auto 0"
+            margin: "auto 0",
           }}
         >
           <div style={{ fontWeight: "bold" }}>{props.title}</div>

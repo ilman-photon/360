@@ -15,15 +15,15 @@ export class Api {
     const url = "https://patientlogout.mocklab.io/ecp/patient/logout";
     return new Promise((resolve, reject) => {
       api.client
-        .post(url,postbody)
+        .post(url, postbody)
         .then(function (response) {
-            if (response && response.status === 200) {
-              const cookies = new Cookies();
-              cookies.remove("authorized", "true", { path: "/" });
-              resolve(response.message);
-            }else{
-              reject(response);
-            }
+          if (response && response.status === 200) {
+            const cookies = new Cookies();
+            cookies.remove("authorized", "true", { path: "/" });
+            resolve(response.message);
+          } else {
+            reject(response);
+          }
         })
         .catch(function (err) {
           reject(err.response);
