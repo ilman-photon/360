@@ -11,7 +11,6 @@ import RowRadioButtonsGroup from "../../components/atoms/RowRadioButtonsGroup/ro
 import InsertLinkIcon from "@mui/icons-material/InsertLink";
 import { Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { Link, Typography } from "@mui/material";
 
 let confirmationFormProps = {
   title: constants.EMPTY_STRING,
@@ -126,14 +125,14 @@ export default function ForgotPasswordPage() {
   };
 
   //Call API for security question & password reset
-  const onCalledSecurityQuestionAPI = function (modeOfCommuication) {
-    const patient = { "Email/Phone Number": patientData.username };
-    if (patientData.securityQuestionsSet) {
-      patient["answerSecurityQuestions"] = "Yes";
-    }
-
+  const onCalledSecurityQuestionAPI = function () {
     const postbody = {
-      patient: [patient],
+      patient: [
+        {
+          "Email/Phone Number": patientData.username,
+          answerSecurityQuestions: "Yes",
+        },
+      ],
     };
 
     const api = new Api();
@@ -144,45 +143,52 @@ export default function ForgotPasswordPage() {
       )
       .then(function (response) {
         if (response && response.status === 200) {
-          if (patientData.securityQuestionsSet) {
-            //Handle response call for patient that have security question
-            if (response.data && response.data.securityQuestions) {
-              const securityQuestionList = mappingSecurityData(
-                response.data.securityQuestions
-              );
-              setPatientData({
-                ...patientData,
-                securityQuestions: securityQuestionList,
-              });
-            }
-            setShowPasswordSecurityQuestion(true);
-          } else {
-            //Handle response call for patient that not have security question
-            const response = {
-              ResponseCode: 1000,
-              ResponseType: "success",
-              email: "donj@yahoo.com",
-            };
-
-            const userCommunicationCode =
-              modeComunication.toLowerCase() === "email"
-                ? response.email
-                : response.phoneNumber;
-            // Handle success to call API
-            confirmationFormProps = {
-              title: t("titlePasswordReset"),
-              subtitle: `Check ${userCommunicationCode} for an email to reset your password.`,
-              description: t("descriptionPasswordResetSuccess"),
-              postMessage: `Link sent to your ${modeComunication.toLowerCase()}`,
-              successPostMessage: true,
-              buttonLabel: t("primaryButtonTextPasswordResetSuccess"),
-              additional: null,
-              onCTAButtonClicked: function () {
-                onContinueButtonClicked(constants.ONE_TIME_LINK);
-              },
-            };
-            setShowPostMessage(true);
+          //Handle response call for patient that have security question
+          if (response.data && response.data.securityQuestions) {
+            const securityQuestionList = mappingSecurityData(
+              response.data.securityQuestions
+            );
+            setPatientData({
+              ...patientData,
+              securityQuestions: securityQuestionList,
+            });
           }
+          setShowPasswordSecurityQuestion(true);
+        }
+      })
+      .catch(function () {
+        //Handle error secenario
+      });
+  };
+
+  //Call API for reset password
+  const onCalledResetPasswordAPI = function (modeOfCommuication) {
+    const postbody = {
+      patient: [{ "Email/Phone Number": patientData.username }],
+    };
+    const api = new Api();
+    api.client
+      .post("https://patientpasswordresetlink.mocklab.io/resetlink", postbody)
+      .then(function (response) {
+        if (response && response.status === 200) {
+          const userCommunicationCode =
+            modeOfCommuication.toLowerCase() === "email"
+              ? response.email
+              : response.phoneNumber;
+          // Handle success to call API
+          confirmationFormProps = {
+            title: t("titlePasswordReset"),
+            subtitle: `Check ${userCommunicationCode} for an email to reset your password.`,
+            description: t("descriptionPasswordResetSuccess"),
+            postMessage: `Link sent to your ${modeComunication.toLowerCase()}`,
+            successPostMessage: true,
+            buttonLabel: t("primaryButtonTextPasswordResetSuccess"),
+            additional: null,
+            onCTAButtonClicked: function () {
+              onContinueButtonClicked(constants.ONE_TIME_LINK);
+            },
+          };
+          setShowPostMessage(true);
         }
       })
       .catch(function () {
@@ -245,7 +251,7 @@ export default function ForgotPasswordPage() {
     if (form === constants.SELECT_OPTION) {
       setShowSelectOption(true);
     } else if (form === constants.SECURITY_QUESTION) {
-      onCalledSecurityQuestionAPI(constants.EMPTY_STRING);
+      onCalledSecurityQuestionAPI();
     } else if (form === constants.PASSWORD_RESET) {
       //TO DO: handle showing the reset password form
       if (
@@ -262,11 +268,11 @@ export default function ForgotPasswordPage() {
             data[constants.MODE_COMMUNICATION_KEY] === constants.EMAIL
               ? "Email"
               : "Phone number";
-          onCalledSecurityQuestionAPI(modeComunication);
+          onCalledResetPasswordAPI(modeComunication);
         };
       } else {
         //Call service for password reset
-        onCalledSecurityQuestionAPI(patientData.preferredComunication);
+        onCalledResetPasswordAPI(patientData.preferredComunication);
       }
       setShowPasswordReset(true);
     } else if (form === constants.ONE_TIME_LINK) {
