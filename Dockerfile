@@ -1,12 +1,7 @@
-FROM node:15.9.0 as dependencies
-WORKDIR /app
-COPY package.json ./
-RUN npm install
-
 FROM node:15.9.0 as builder
 WORKDIR /app
 COPY . .
-COPY --from=dependencies /app/node_modules ./node_modules
+RUN npm install
 RUN yarn build
 
 FROM node:15.9.0 as runner
