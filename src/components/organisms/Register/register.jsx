@@ -15,7 +15,7 @@ import FormMessage from "../../molecules/FormMessage/formMessage";
 
 export default function Register() {
     const { t } = useTranslation('translation', { keyPrefix: 'Register' });
-    const [isShowValidation, setShowValidation] = React.useState(false)
+    const [isShowValidation, setShowValidation] = React.useState(true)
     const { handleSubmit, setError, control, watch, formState: { errors } } = useForm(
         {
             defaultValues: {
@@ -57,6 +57,7 @@ export default function Register() {
     const passwordValidator = [
         { label: 'Password length should range from 8 to 20 characters', validate: !lengthRegex.test(watchedPassword) },
         { label: 'Password should contain at least one numerical character (0-9)', validate: !numberRegex.test(watchedPassword) },
+        { label: 'Contain at least 3 our of 4 types', text: true },
         { label: 'Password should contain at least one alphabet (a-z)', validate: !alphabethRegex.test(watchedPassword) },
         { label: 'Password should contain at least one special character', validate: !specialRegex.test(watchedPassword) },
         { label: 'Password should not contain your username', validate: watchedPassword.indexOf(watchedEmail || watchedMobile) > -1 },
@@ -183,9 +184,7 @@ export default function Register() {
                     <PasswordValidator
                         validator={passwordValidator}
                         isShowValidation={isShowValidation}
-                        password={watchedPassword}
-                        username={getRegisteredUsername()}
-                        isRegistration={true} />
+                        password={watchedPassword} />
                     
                     <div style={styles.registeredUsernameWrapper}>
                         <div>Your username will be {getRegisteredUsername()}</div>

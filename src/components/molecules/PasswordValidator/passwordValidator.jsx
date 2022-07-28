@@ -2,6 +2,8 @@
 import React, { useEffect, useRef } from "react";
 import { LabelWithIcon } from "../../atoms/LabelWithIcon/labelWithIcon";
 import { useForm } from "react-hook-form";
+import { Divider, Typography } from "@mui/material";
+import { styles } from "./style"
 
 export const PasswordValidator = ({ ...props }) => {
     const validator = props.validator || []
@@ -17,8 +19,9 @@ export const PasswordValidator = ({ ...props }) => {
         <div style={{ display: "block" }} >
             {props.isShowValidation ?
                 <>
-                    {validator.map((err,i) => {
-                        return <LabelWithIcon key={i} error={err.validate} label={err.label} />
+                    {validator.map((err,i) => { 
+                        // return {err.text ? <Typography variant="h3"> {err.text}  </Typography>:
+                         return err.text ? <Typography variant="h3" sx={styles.textStyles}>{err.label}</Typography> : <LabelWithIcon key={i} error={err.validate} label={err.label} />
                     })}
                 </> : null}
         </div >

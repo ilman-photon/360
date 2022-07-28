@@ -23,7 +23,7 @@ const loginProps = {
   },
   OnGuestClicked: function () {},
   OnCreateAccountClicked: function (router) {
-    router.push("/auth/create-account");
+    router.push("/patient/auth/create-account");
   },
   OnForgotPasswordClicked: function (router) {
     router.push("/forgot-password");
