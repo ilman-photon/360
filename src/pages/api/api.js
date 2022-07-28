@@ -36,7 +36,7 @@ export class Api {
     return new Promise((resolve, reject) => {
       //start mock
       const username = postbody.username
-      if (username === "qq") {
+      if (username === "accountSuccess@mail.com") {
         resolve({
           "ResponseCode": 2000,
           "ResponseType": "success",
