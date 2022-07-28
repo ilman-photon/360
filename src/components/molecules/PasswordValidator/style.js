@@ -1,10 +1,10 @@
 export const styles = {
-textStyles: {
+  textStyles: {
     fontWeight: "400",
     fontSize: "1rem",
     lineHeight: "18px",
     color: "#191919",
     margin: "0",
-    marginTop: "15px"
+    marginTop: "15px",
   },
-}
+};
