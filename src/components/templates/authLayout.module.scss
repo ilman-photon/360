@@ -58,6 +58,7 @@
   width: 100%;
   overflow: hidden;
   grid-column: span 1 / span 1;
+  padding: 0px;
 }
 .imageBannerContainer {
   width: 100%;
@@ -70,6 +71,25 @@
     border-top-left-radius: unset;
     border-bottom-left-radius: 100% 80%;
     border-bottom-right-radius: 100% 80%;
+  }
+}
+
+.imageBannerContainer > span > img {
+  position: fixed !important;
+  width: auto !important;
+  height: 100vh !important;
+  right: 0 !important;
+  object-fit: contain;
+  min-width: unset !important;
+  max-width: unset !important;
+  left: unset !important;
+  min-height: unset !important;
+    max-height: unset !important;
+  @media (max-width: 768px) {
+    width: 100vw !important;
+    height: auto !important;
+    bottom: unset !important;
+    position: absolute !important;
   }
 }
 

@@ -17,7 +17,7 @@ export default function Layout({
   const isPatient = theme === "patient";
   const pathImageWebsite = '/desktop_3x.png';
   const pathImageMobile = '/MicrosoftTeams-image (2).png';
-  const matches = useMediaQuery('(min-width:600px)');
+  const matches = useMediaQuery('(max-width: 768px)');
   return (
     <>
       <Head>
@@ -52,7 +52,7 @@ export default function Layout({
             <div className={styles.imageBannerContainer}>
                 <Image
                     alt="auth-image"
-                    src={matches ? pathImageWebsite : pathImageMobile}
+                    src={!matches ? pathImageWebsite : pathImageMobile}
                     layout='fill'
                 />
             </div>
