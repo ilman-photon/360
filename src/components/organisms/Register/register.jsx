@@ -151,7 +151,7 @@ export default function Register({
                         defaultValue=""
                         render={({ field: { onChange, value }, fieldState: { error } }) => {
                             return (
-                                <StyledInput type="text" id="mobile" label="Mobile Number"
+                                <StyledInput type="phone" id="mobile" label="Mobile Number"
                                     value={value}
                                     onChange={onChange}
                                     error={!!error}
@@ -163,7 +163,7 @@ export default function Register({
                         rules={{
                             required: 'Mobile Number required',
                             pattern: {
-                                value: /[0-9]{9,12}/i,
+                                value: /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/i,
                                 message: "Mobile Number is invalid"
                             }
                         }}
