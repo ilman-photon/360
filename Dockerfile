@@ -1,7 +1,7 @@
 FROM node:15.9.0 as dependencies
 WORKDIR /app
-COPY package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
+COPY package.json ./
+RUN npm install
 
 FROM node:15.9.0 as builder
 WORKDIR /app
