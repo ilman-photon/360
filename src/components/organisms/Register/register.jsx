@@ -53,7 +53,7 @@ export default function Register({
         return watchedEmail || watchedMobile || '(auto-populated email id/phone number)'
     }
     
-    let lengthRegex = new RegExp(/^[^-\s]{8,20}$/);
+    let lengthRegex = new RegExp(/^[^\s]{8,20}$/);
     let numberRegex = new RegExp('[0-9]');
     let alphabethRegex = new RegExp('[A-Za-z]');
     let specialRegex = new RegExp('[@#$%^&-+=()]');
