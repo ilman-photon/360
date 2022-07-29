@@ -138,7 +138,7 @@ const SetPasswordComponent = ({
       <CardContent style={cardContentStyle}>
         <Typography variant="h2">{title}</Typography>
         {subtitle ? <Typography variant="h4" sx={styles.titleStyles2}>
-          Enter a password to setup your account.
+          {subtitle}
         </Typography> :<></>}
 
         <div style={{ margin: 8 }}>
