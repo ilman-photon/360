@@ -35,6 +35,11 @@
   "PasswordReset":{
     "backButtonLink": "Back to Log in"
   },
+  "SetPassword":{
+    "errorEmptyField": "This field is required",
+    "backButtonLink": "Back to Log in",
+    "passwordNotMatch":"Passwords do not match"
+  },
   "ForgotPasswordPage":{
     "titlePasswordReset": "Password Reset",
     "subtitlePasswordReset":"Choose a mode of communication where we should send you the link to reset your password.",
@@ -61,5 +66,8 @@
     "postMessageOneTime":"One-time link is sent",
     "successLabel": "Success",
     "backButtonLink": "Back to Log in"
+  },
+  "UpdatePasswordPage":{
+    "title": "Update Password"
   }
 }

@@ -29,17 +29,17 @@ const SetPasswordComponent = ({
   setShowPostMessage,
   onBackToLoginClicked,
   onCTAButtonClicked,
-  postMessage
+  postMessage,
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "SetPassword" });
   const { handleSubmit, control, setError } = useForm();
 
-  const onSubmit = ({password, confirmPassword}) => {
-    if(password.toLowerCase() === confirmPassword.toLowerCase()){
-      onCTAButtonClicked({password, confirmPassword})
+  const onSubmit = ({ password, confirmPassword }) => {
+    if (password.toLowerCase() === confirmPassword.toLowerCase()) {
+      onCTAButtonClicked({ password, confirmPassword }, router);
     } else {
-      validatePassword(password, confirmPassword)
+      validatePassword(password, confirmPassword);
     }
   };
 
@@ -47,7 +47,7 @@ const SetPasswordComponent = ({
     if (password.toLowerCase() !== confirmPassword.toLowerCase()) {
       setError("confirmPassword", {
         type: "custom",
-        message: "Passwords do not match",
+        message: t("passwordNotMatch"),
       });
     }
   };
@@ -87,7 +87,7 @@ const SetPasswordComponent = ({
                 />
               );
             }}
-            rules={{ required: "This field is required"}}
+            rules={{ required: t("errorEmptyField") }}
           />
 
           <Controller
@@ -113,7 +113,7 @@ const SetPasswordComponent = ({
                 />
               );
             }}
-            rules={{ required: "This field is required" }}
+            rules={{ required: t("errorEmptyField") }}
           />
           <StyledButton
             type="submit"
@@ -133,7 +133,7 @@ const SetPasswordComponent = ({
             onBackToLoginClicked(router);
           }}
         >
-          {"Back to Log in"}
+          {t("backButtonLink")}
         </Link>
       </CardContent>
     </Card>
