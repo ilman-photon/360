@@ -135,16 +135,14 @@ export const CustomInput = styled(({ ...props }) => {
     showPassword: false,
   });
 
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
-
   const handleClickShowPassword = () => {
     setValues({
       ...values,
       showPassword: !values.showPassword,
     });
   };
+
+  const showPassword = values.showPassword ? "text" : "password"
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -159,7 +157,7 @@ export const CustomInput = styled(({ ...props }) => {
               error={!Boolean(values.value) && props.error}
               variant="filled"
               id={props.id}
-              type={values.showPassword ? "text" : "password"}
+              type={showPassword}
               clickIcon={handleClickShowPassword}
               mouseDown={handleMouseDownPassword}
               onChange={props.onChange}

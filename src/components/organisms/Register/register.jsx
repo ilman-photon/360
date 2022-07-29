@@ -17,7 +17,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
     handleSubmit,
     control,
     watch,
-    formState: { errors },
   } = useForm({
     defaultValues: {
       firstName: "",
@@ -64,11 +63,11 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
     );
   };
 
-  let lengthRegex = new RegExp(/^[^\s]{8,20}$/);
-  let numberRegex = new RegExp("[0-9]");
-  let alphabethRegex = new RegExp("[A-Za-z]");
-  let specialRegex = new RegExp("[@#$%^&-+=()]");
-  let hasTripleRegex = new RegExp("([a-z\\d])\\1\\1");
+  let lengthRegex = /^[^\s]{8,20}$/;
+  let numberRegex = /[0-9]/;
+  let alphabethRegex = /[A-Za-z]/;
+  let specialRegex = /[@#$%^&-+=()]/;
+  let hasTripleRegex = /([a-z\\d])\\1\\1/;
   const passwordValidator = [
     {
       label: "Password length should range from 8 to 20 characters",
