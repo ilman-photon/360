@@ -34,13 +34,13 @@ export const CustomButton = styled(Button)(
 
 export const StyledButton = ({
   theme = "patient" || "provider",
-  type = "primary" || "secondary",
+  mode = "primary" || "secondary",
   size = "large",
   gradient,
   ...props
 }) => {
   const isPatient = theme === "patient";
-  const isPrimary = type === "primary";
+  const isPrimary = mode === "primary";
   const isLarge = size === "large";
   let themeSelector = isPatient
     ? isPrimary
@@ -55,7 +55,7 @@ export const StyledButton = ({
   return (
     <ThemeProvider theme={themeSelector}>
       <CustomButton
-        variant={type === isPrimary ? "contained" : "outlined"}
+        variant={isPrimary ? "contained" : "outlined"}
         className={[
           `${styles.customButton}`,
           `${sizeSelector}`,
