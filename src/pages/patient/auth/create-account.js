@@ -78,7 +78,7 @@ export default function CreateAccountPage() {
             <>
               You are already a registered user. Please login to the application
               using your username and password.{" "}
-              <Link href="/login">
+              <Link href="/patient/login">
                 <a style={{ textDecoration: "underline" }}>Login</a>
               </Link>
             </>

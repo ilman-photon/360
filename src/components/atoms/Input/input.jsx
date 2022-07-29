@@ -45,7 +45,7 @@ export const CustomPasswordInput = styled((props) => (
         <InputAdornment position="end">
           <IconButton
             aria-label="toggle password visibility"
-            onClick={props.clickIcon ? props.clickIcon : null}
+            onClick={props.clickIcon}
             onMouseDown={props.mouseDown}
             edge="end"
           >
@@ -61,6 +61,7 @@ export const CustomPasswordInput = styled((props) => (
     border: "1px solid #e2e2e1",
     overflow: "hidden",
     borderRadius: 4,
+    height: 52,
     backgroundColor: theme.palette.mode === "light" ? "#fcfcfb" : "#2b2b2b",
     transition: theme.transitions.create([
       "border-color",
@@ -85,6 +86,7 @@ export const CustomPasswordInput = styled((props) => (
 export const RedditTextField = styled((props) => (
   <TextField
     InputProps={{
+      disableUnderline: true,
       endAdornment: props.adorment ? (
         <InputAdornment position="end">
           <IconButton aria-label="toggle password visibility" edge="end">
@@ -100,6 +102,7 @@ export const RedditTextField = styled((props) => (
     border: "1px solid #e2e2e1",
     overflow: "hidden",
     borderRadius: 4,
+    height: 52,
     backgroundColor: theme.palette.mode === "light" ? "#fcfcfb" : "#2b2b2b",
     transition: theme.transitions.create([
       "border-color",
@@ -159,6 +162,7 @@ export const CustomInput = styled(({ ...props }) => {
               label={props.label}
               adorment={props.adorment}
               helperText={props.helperText}
+              style={props.style}
             />
           </CustomFormControl>
         </>
@@ -173,10 +177,10 @@ export const CustomInput = styled(({ ...props }) => {
                   variant="filled"
                   style={{ marginTop: 11 }}
                   sx={{
-                    m: 1,
                     backgroundColor: "white",
                     borderRadius: "4px",
                     borderColor: "#B5B5B5",
+                    margin: "8px",
                   }}
                   {...params}
                 />
@@ -198,10 +202,10 @@ export const CustomInput = styled(({ ...props }) => {
             variant="filled"
             style={{ marginTop: 11 }}
             sx={{
-              m: 1,
               backgroundColor: "white",
               borderRadius: "4px",
               borderColor: "#B5B5B5",
+              margin: "8px",
             }}
             {...props}
           />

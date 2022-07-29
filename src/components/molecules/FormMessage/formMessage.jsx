@@ -2,7 +2,7 @@ import BlockIcon from "@mui/icons-material/Block";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { Box } from "@mui/material";
 
-// import './formMessage.css'
+// import "./formMessage.css";
 
 export const FormMessage = ({ ...props }) => {
   const handleClick = (e) => {
@@ -51,7 +51,11 @@ export const FormMessage = ({ ...props }) => {
             letterSpacing: "0.0016em",
           }}
         >
-          <div style={{ fontWeight: "bold" }}>{props.title}</div>
+          {props.title ? (
+            <div style={{ fontWeight: "bold" }}>{props.title}</div>
+          ) : (
+            <></>
+          )}
           <div>{props.children}</div>
         </div>
       </Box>
