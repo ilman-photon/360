@@ -11,7 +11,7 @@ const loginProps = {
       .login(postbody)
       .then(function (response) {
         console.log(response);
-        console.log(router)
+        console.log(router);
         //router.push("/patient");
         const hostname = window.location.origin;
         window.location.href = `${hostname}/patient`;
@@ -21,7 +21,7 @@ const loginProps = {
       })
       .catch(function (err) {
         console.log(err);
-        const isLockedAccount = err.ResponseCode === 2004
+        const isLockedAccount = err.ResponseCode === 2004;
         callback({
           status: "failed",
           message: {
@@ -33,7 +33,7 @@ const loginProps = {
   },
   OnGuestClicked: function () {},
   OnCreateAccountClicked: function (router) {
-    router.push("/patient/create-account");
+    router.push("/patient/auth/create-account");
   },
   OnForgotPasswordClicked: function (router) {
     router.push("/patient/forgot-password");

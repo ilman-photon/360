@@ -18,7 +18,7 @@ export const FormMessage = ({ ...props }) => {
         sx={{
           backgroundColor: props.success ? "success.main" : "error.main",
           width: "auto",
-          p: "12px 16px",
+          p: 2,
           borderRadius: "4px",
           display: "flex",
           ...props.sx,
@@ -29,8 +29,8 @@ export const FormMessage = ({ ...props }) => {
             sx={{
               color: "#fff",
               marginRight: "12.92px",
-              width: "22px",
-              height: "22px",
+              width: "1.3750em",
+              height: "1.3750em",
             }}
           />
         ) : (
@@ -38,8 +38,8 @@ export const FormMessage = ({ ...props }) => {
             sx={{
               color: "#fff",
               marginRight: "12.92px",
-              width: "22px",
-              height: "22px",
+              width: "1.3750em",
+              height: "1.3750em",
             }}
           />
         )}
@@ -49,7 +49,6 @@ export const FormMessage = ({ ...props }) => {
             fontSize: "16px",
             lineHeight: "24px",
             letterSpacing: "0.0016em",
-            margin: "auto 0",
           }}
         >
           <div style={{ fontWeight: "bold" }}>{props.title}</div>

@@ -71,6 +71,10 @@ const nextConfig = {
     // Will be available on both server and client
     staticFolder: "/static",
   },
+  // temporary fixing for next/image
+  images: {
+    domains: ['c4.wallpaperflare.com']
+  }
 };
 
 module.exports = nextConfig;
