@@ -12,7 +12,7 @@ import { PasswordValidator } from "../../molecules/PasswordValidator/passwordVal
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import { styles } from "./style";
 
-export default function Register({ OnRegisterClicked, formError = null }) {
+export default function Register({ OnRegisterClicked, formMessage = null }) {
   const {
     handleSubmit,
     control,
@@ -30,7 +30,7 @@ export default function Register({ OnRegisterClicked, formError = null }) {
   });
 
   const validatePassword = (errors1 = [], errors2 = []) => {
-    return errors1.length === 0 && errors2.length <= 1 ? true : false;
+    return errors1.length === 0 && errors2.length <= 1;
   };
 
   const is3of4 = (pass) => {
@@ -48,18 +48,6 @@ export default function Register({ OnRegisterClicked, formError = null }) {
       ++passes;
     }
     return passes >= 3 ? true : false;
-  };
-
-  const onSubmit = (data) => {
-    // dummy error validation
-    // setError("firstName", { type: 'custom', message: 'An error occured' })
-    // setError("lastName", { type: 'custom', message: 'An error occured' })
-    // setError("mobile", { type: 'custom', message: 'An error occured' })
-    // setError("password", { type: 'custom', message: 'An error occured' })
-
-    if (validatePassword()) {
-      OnRegisterClicked(data);
-    }
   };
 
   const options = [
@@ -113,20 +101,41 @@ export default function Register({ OnRegisterClicked, formError = null }) {
   ];
   const isPasswordError = watchedPassword.length > 0; // && passwordValidator.filter(v => v.validate).length > 0
 
+  const onSubmit = (data) => {
+    // dummy error validation
+    // setError("firstName", { type: 'custom', message: 'An error occured' })
+    // setError("lastName", { type: 'custom', message: 'An error occured' })
+    // setError("mobile", { type: 'custom', message: 'An error occured' })
+    // setError("password", { type: 'custom', message: 'An error occured' })
+
+    const errors1 = []
+    const errors2 = []
+    passwordValidator.forEach((err) => {
+        if (err.mandatory) {
+          if (err.validate) errors1.push(err.validate)
+        } else {
+          if (err.validate) errors2.push(err.validate)
+        }
+    })
+
+    if (validatePassword(errors1, errors2)) {
+      OnRegisterClicked(data);
+    }
+  };
+
   return (
     <Box className={globalStyles.container}>
       <Stack spacing={3}>
         <Typography variant="h1" sx={styles.titleStyles}>
           User Registration
         </Typography>
-        {formError.content ? (
-          <FormMessage success={false} title={formError.title}>
-            {formError.content}
+        {formMessage.content ? (
+          <FormMessage success={formMessage.success} title={formMessage.title}>
+            {formMessage.content}
           </FormMessage>
         ) : (
           ""
         )}
-        {/* <Error content={"Invalid use name or password"}/> */}
         <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
           <Controller
             name="firstName"

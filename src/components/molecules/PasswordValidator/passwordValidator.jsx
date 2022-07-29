@@ -17,17 +17,19 @@ export const PasswordValidator = ({ ...props }) => {
   let errors2 = [];
 
   return (
-    <div style={{ display: "block", margin: 8, paddingBottom: 16 }}>
+    <div
+      style={
+        props.isShowValidation
+          ? { display: "block", margin: 8, paddingBottom: 8 }
+          : {}
+      }
+    >
       <Collapse in={props.isShowValidation}>
         {validator.map((err, i) => {
           if (err.mandatory) {
-            err.validate
-              ? props.validatePassword(errors1.push(err.validate))
-              : null;
+            if (err.validate) props.validatePassword(errors1.push(err.validate))
           } else {
-            err.validate
-              ? props.validatePassword(errors2.push(err.validate))
-              : null;
+            if (err.validate) props.validatePassword(errors2.push(err.validate))
           }
           return err.text ? (
             <Typography variant="h3" sx={styles.textStyles}>
