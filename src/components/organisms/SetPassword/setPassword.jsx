@@ -31,6 +31,8 @@ const SetPasswordComponent = ({
   formMessage,
   OnSetPasswordClicked,
   username,
+  title, 
+  subtitle
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "SetPassword" });
@@ -134,13 +136,10 @@ const SetPasswordComponent = ({
   return (
     <Card className={globalStyles.container} sx={{ minWidth: 275, margin: 10 }}>
       <CardContent style={cardContentStyle}>
-        {/* <Typography variant="h2">{title}</Typography> */}
-        <Typography variant="h2" sx={styles.titleStyles1}>
-          Set Password
-        </Typography>
-        <Typography variant="h4" sx={styles.titleStyles2}>
+        <Typography variant="h2">{title}</Typography>
+        {subtitle ? <Typography variant="h4" sx={styles.titleStyles2}>
           Enter a password to setup your account.
-        </Typography>
+        </Typography> :<></>}
 
         <div style={{ margin: 8 }}>
           {showPostMessage ? (
@@ -164,7 +163,7 @@ const SetPasswordComponent = ({
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
-          <Controller
+          {username ? <Controller
             name="username"
             control={control}
             defaultValue=""
@@ -195,7 +194,7 @@ const SetPasswordComponent = ({
               //   message: "Username is invalid",
               // },
             }}
-          />
+          /> : <></>}
           <Controller
             name="password"
             control={control}
