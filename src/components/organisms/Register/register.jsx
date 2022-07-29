@@ -35,10 +35,19 @@ export default function Register({ OnRegisterClicked, formError = null }) {
 
   const is3of4 = (pass) => {
     let passes = 0;
-    if(alphabethRegex.test(pass)){ ++passes }
-    if(specialRegex.test(pass)){ ++passes }
-    if(pass.indexOf(watchedEmail || watchedMobile) > -1){ ++passes }
-    if(!hasTripleRegex.test(pass)){ ++passes }
+    if (alphabethRegex.test(pass)) {
+      ++passes;
+    }
+    if (specialRegex.test(pass)) {
+      ++passes;
+    }
+    if (!pass.indexOf(watchedEmail || watchedMobile) > -1) {
+      ++passes;
+    }
+    if (!hasTripleRegex.test(pass)) {
+      ++passes;
+    }
+    console.log(passes, 'passes')
     return passes >= 3 ? true : false;
   };
 
@@ -118,7 +127,6 @@ export default function Register({ OnRegisterClicked, formError = null }) {
         ) : (
           ""
         )}
-        {/* <Error content={"Invalid use name or password"}/> */}
         <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
           <Controller
             name="firstName"

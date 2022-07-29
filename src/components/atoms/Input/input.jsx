@@ -86,6 +86,7 @@ export const CustomPasswordInput = styled((props) => (
 export const RedditTextField = styled((props) => (
   <TextField
     InputProps={{
+      disableUnderline: true,
       endAdornment: props.adorment ? (
         <InputAdornment position="end">
           <IconButton aria-label="toggle password visibility" edge="end">
@@ -148,14 +149,7 @@ export const CustomInput = styled(({ ...props }) => {
     <>
       {props.type === "password" ? (
         <>
-<<<<<<< HEAD
           <CustomFormControl sx={{ m: 1 }} variant="filled">
-=======
-          <CustomFormControl variant="filled">
-            {/* <InputLabel htmlFor="filled-adornment-password" style={props.adorment ? { top: -16 } : null} error={props.error}>
-              {props.label}
-            </InputLabel> */}
->>>>>>> feature-s2/EPP-7
             <CustomPasswordInput
               error={!Boolean(values.value) && props.error}
               variant="filled"
@@ -186,6 +180,7 @@ export const CustomInput = styled(({ ...props }) => {
                     backgroundColor: "white",
                     borderRadius: "4px",
                     borderColor: "#B5B5B5",
+                    margin: "8px",
                   }}
                   {...params}
                 />
@@ -210,6 +205,7 @@ export const CustomInput = styled(({ ...props }) => {
               backgroundColor: "white",
               borderRadius: "4px",
               borderColor: "#B5B5B5",
+              margin: "8px",
             }}
             {...props}
           />

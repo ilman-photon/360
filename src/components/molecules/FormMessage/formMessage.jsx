@@ -43,11 +43,21 @@ export const FormMessage = ({ ...props }) => {
             }}
           />
         )}
-        <div style={{color:"#fff", fontSize: "16px",lineHeight: "24px",letterSpacing: "0.0016em"}}>
-          {props.title ? <div style={{fontWeight: 'bold'}}>{props.title}</div> : <></>}
+        <div
+          style={{
+            color: "#fff",
+            fontSize: "16px",
+            lineHeight: "24px",
+            letterSpacing: "0.0016em",
+          }}
+        >
+          {props.title ? (
+            <div style={{ fontWeight: "bold" }}>{props.title}</div>
+          ) : (
+            <></>
+          )}
           <div>{props.children}</div>
         </div>
-
       </Box>
     </>
   );
