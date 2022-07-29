@@ -35,10 +35,18 @@ export default function Register({ OnRegisterClicked, formError = null }) {
 
   const is3of4 = (pass) => {
     let passes = 0;
-    if(alphabethRegex.test(pass)){ ++passes }
-    if(specialRegex.test(pass)){ ++passes }
-    if(pass.indexOf(watchedEmail || watchedMobile) > -1){ ++passes }
-    if(!hasTripleRegex.test(pass)){ ++passes }
+    if (alphabethRegex.test(pass)) {
+      ++passes;
+    }
+    if (specialRegex.test(pass)) {
+      ++passes;
+    }
+    if (pass.indexOf(watchedEmail || watchedMobile) > -1) {
+      ++passes;
+    }
+    if (!hasTripleRegex.test(pass)) {
+      ++passes;
+    }
     return passes >= 3 ? true : false;
   };
 

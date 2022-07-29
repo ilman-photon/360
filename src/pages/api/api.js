@@ -35,25 +35,26 @@ export class Api {
     const url = "https://patientlogin.mocklab.io/ecp/patient/login";
     return new Promise((resolve, reject) => {
       //start mock
-      const username = postbody.username
+      const username = postbody.username;
       if (username === "accountSuccess@mail.com") {
         resolve({
-          "ResponseCode": 2000,
-          "ResponseType": "success",
-          "userType": "patient"
-        })
+          ResponseCode: 2000,
+          ResponseType: "success",
+          userType: "patient",
+        });
       } else if (username === "accountFailed@mail.com") {
         reject({
-          "ResponseCode": 2001,
-          "ResponseType": "failure",
-          "message": "Invalid Username or Password"
-        })
+          ResponseCode: 2001,
+          ResponseType: "failure",
+          message: "Invalid Username or Password",
+        });
       } else if (username === "accountLocked@mail.com") {
         reject({
-          "ResponseCode": 2004, 
-          "ResponseType": "failure",
-          "message": "Too many login attempts. Your account is locked. Please contact customer support to unlock your account"
-        })
+          ResponseCode: 2004,
+          ResponseType: "failure",
+          message:
+            "Too many login attempts. Your account is locked. Please contact customer support to unlock your account",
+        });
       } else {
         //end mock
         api.client
@@ -68,7 +69,7 @@ export class Api {
           .catch(function (err) {
             reject(err.response);
           });
-      }//end mock
+      } //end mock
     });
   }
 }
