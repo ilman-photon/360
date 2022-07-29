@@ -151,7 +151,7 @@ const SetPasswordComponent = ({
             <></>
           )}
 
-          {formMessage.content ? (
+          {formMessage && formMessage.content ? (
             <FormMessage
               success={formMessage.success}
               title={formMessage.title}
