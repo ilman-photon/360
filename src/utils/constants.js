@@ -1,5 +1,7 @@
 module.exports = {
+  EMPTY_STRING: "",
   H1: "h1",
+  H2: "h2",
   SMALL: "small",
   LARGE: "large",
   PATIENT: "patient",
@@ -12,4 +14,15 @@ module.exports = {
   FILLED: "filled",
   INPUT_TEXT: "text",
   INPUT_PASSWORD: "password",
+  ACCOUNT_LOCK_COUNT: 3,
+  SUBMIT: "submit",
+  SELECT_OPTION: "selectOption",
+  SECURITY_QUESTION: "securityQuestion",
+  ONE_TIME_LINK: "oneTimeLink",
+  PASSWORD_RESET: "passwordReset",
+  BOTH: "both",
+  MODE_COMMUNICATION_KEY: "modeComunication",
+  EMAIL: "email",
+  PHONE: "phone",
+  YES: "yes",
 };
