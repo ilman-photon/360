@@ -166,6 +166,7 @@ export const CustomInput = styled(({ ...props }) => {
               label={props.label}
               adorment={props.adorment}
               helperText={props.helperText}
+              style={props.style}
             />
           </CustomFormControl>
         </>
