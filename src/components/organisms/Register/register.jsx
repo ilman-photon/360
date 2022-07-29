@@ -12,7 +12,7 @@ import { PasswordValidator } from "../../molecules/PasswordValidator/passwordVal
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import { styles } from "./style";
 
-export default function Register({ OnRegisterClicked, formError = null }) {
+export default function Register({ OnRegisterClicked, formMessage = null }) {
   const {
     handleSubmit,
     control,
@@ -130,9 +130,9 @@ export default function Register({ OnRegisterClicked, formError = null }) {
         <Typography variant="h1" sx={styles.titleStyles}>
           User Registration
         </Typography>
-        {formError.content ? (
-          <FormMessage success={false} title={formError.title}>
-            {formError.content}
+        {formMessage.content ? (
+          <FormMessage success={formMessage.success} title={formMessage.title}>
+            {formMessage.content}
           </FormMessage>
         ) : (
           ""

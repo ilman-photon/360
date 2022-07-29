@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const DEFAULT_FORM_MESSAGE = { title: null, content: null };
+const DEFAULT_FORM_MESSAGE = { success: null, title: null, content: null };
 
 const INITIAL_STATE = {
   loading: true,
