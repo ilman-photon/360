@@ -13,11 +13,7 @@ import FormMessage from "../../molecules/FormMessage/formMessage";
 import { styles } from "./style";
 
 export default function Register({ OnRegisterClicked, formMessage = null }) {
-  const {
-    handleSubmit,
-    control,
-    watch,
-  } = useForm({
+  const { handleSubmit, control, watch } = useForm({
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -107,15 +103,15 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
     // setError("mobile", { type: 'custom', message: 'An error occured' })
     // setError("password", { type: 'custom', message: 'An error occured' })
 
-    const errors1 = []
-    const errors2 = []
+    const errors1 = [];
+    const errors2 = [];
     passwordValidator.forEach((err) => {
-        if (err.mandatory) {
-          if (err.validate) errors1.push(err.validate)
-        } else {
-          if (err.validate) errors2.push(err.validate)
-        }
-    })
+      if (err.mandatory) {
+        if (err.validate) errors1.push(err.validate);
+      } else {
+        if (err.validate) errors2.push(err.validate);
+      }
+    });
 
     if (validatePassword(errors1, errors2)) {
       OnRegisterClicked(data);

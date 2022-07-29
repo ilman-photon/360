@@ -37,8 +37,8 @@ const SetPasswordComponent = ({
   const { handleSubmit, control, watch, setError, setValue } = useForm();
 
   useEffect(() => {
-    setValue('username', username);
-  }, [])
+    setValue("username", username);
+  }, []);
 
   const validateErrorPassword = (errors1 = [], errors2 = []) => {
     return errors1.length === 0 && errors2.length <= 1 ? true : false;
@@ -111,17 +111,17 @@ const SetPasswordComponent = ({
   };
 
   const onSubmit = (data) => {
-    console.log({data})
+    console.log({ data });
     if (data.password.toLowerCase() === data.confirmPassword.toLowerCase()) {
-      const errors1 = []
-      const errors2 = []
+      const errors1 = [];
+      const errors2 = [];
       passwordValidator.forEach((err) => {
-          if (err.mandatory) {
-            if (err.validate) errors1.push(err.validate)
-          } else {
-            if (err.validate) errors2.push(err.validate)
-          }
-      })
+        if (err.mandatory) {
+          if (err.validate) errors1.push(err.validate);
+        } else {
+          if (err.validate) errors2.push(err.validate);
+        }
+      });
 
       if (validateErrorPassword(errors1, errors2)) {
         OnSetPasswordClicked(data);
@@ -142,7 +142,7 @@ const SetPasswordComponent = ({
           Enter a password to setup your account.
         </Typography>
 
-        <div style={{margin: 8}}>
+        <div style={{ margin: 8 }}>
           {showPostMessage ? (
             <FormMessage success={false} sx={styles.postMessage}>
               {postMessage}
@@ -152,7 +152,10 @@ const SetPasswordComponent = ({
           )}
 
           {formMessage.content ? (
-            <FormMessage success={formMessage.success} title={formMessage.title}>
+            <FormMessage
+              success={formMessage.success}
+              title={formMessage.title}
+            >
               {formMessage.content}
             </FormMessage>
           ) : (
@@ -179,6 +182,9 @@ const SetPasswordComponent = ({
                   size="small"
                   variant="filled"
                   helperText={error ? error.message : null}
+                  sx={{
+                    margin: "8px",
+                  }}
                 />
               );
             }}

@@ -16,30 +16,26 @@ const SetPasswordComponent = dynamic(
 export default function SetPasswordPage() {
   const dispatch = useDispatch();
   const router = useRouter();
-  const username = router.query.username || '';
+  const username = router.query.username || "";
 
   const formMessage = useSelector((state) => state.index.formMessage);
 
   const OnSetPasswordClicked = async function (postbody, router) {
-    console.log({postbody})
+    console.log({ postbody });
     try {
       dispatch(resetFormMessage());
 
-      let response = {}
+      let response = {};
       // dummy
       if (postbody.password === "exp1redP@ss") {
         dispatch(
           setFormMessage({
             success: false,
             title: "Expired",
-            content: (
-              <>
-                Your link is expired.
-              </>
-            ),
+            content: <>Your link is expired.</>,
           })
         );
-        
+
         response = {
           ResponseCode: 3003,
           ResponseType: "failed",
@@ -50,11 +46,7 @@ export default function SetPasswordPage() {
           setFormMessage({
             success: true,
             title: "Success",
-            content: (
-              <>
-                You have successfully set your password
-              </>
-            ),
+            content: <>You have successfully set your password</>,
           })
         );
 
@@ -68,7 +60,7 @@ export default function SetPasswordPage() {
       if (response && response.status === 200) {
         console.log({ response });
       } else {
-        console.log({ error: response })
+        console.log({ error: response });
       }
     } catch (err) {
       console.log({ err });

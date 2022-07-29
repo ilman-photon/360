@@ -14,7 +14,7 @@ export default function CreateAccountPage() {
     try {
       dispatch(resetFormMessage());
 
-      let response = {}
+      let response = {};
       // dummy
       if (postbody.email === "exist@email.com") {
         dispatch(
@@ -23,8 +23,8 @@ export default function CreateAccountPage() {
             title: "Existing User",
             content: (
               <>
-                You are already a registered user. Please login to the application
-                using your username and password.
+                You are already a registered user. Please login to the
+                application using your username and password.
                 <Link href="/patient/login">
                   <a style={{ textDecoration: "underline" }}>Login</a>
                 </Link>
@@ -32,7 +32,7 @@ export default function CreateAccountPage() {
             ),
           })
         );
-        
+
         response = {
           ResponseCode: 3001,
           ResponseType: "failed",
@@ -43,11 +43,7 @@ export default function CreateAccountPage() {
           setFormMessage({
             success: true,
             title: "Success",
-            content: (
-              <>
-                Thank you for your registration.
-              </>
-            ),
+            content: <>Thank you for your registration.</>,
           })
         );
 
@@ -61,7 +57,7 @@ export default function CreateAccountPage() {
       if (response && response.status === 200) {
         console.log({ response });
       } else {
-        console.log({ error: response })
+        console.log({ error: response });
       }
     } catch (err) {
       console.log({ err });
@@ -70,7 +66,10 @@ export default function CreateAccountPage() {
 
   return (
     <section>
-      <Register formMessage={formMessage} OnRegisterClicked={OnRegisterClicked} />
+      <Register
+        formMessage={formMessage}
+        OnRegisterClicked={OnRegisterClicked}
+      />
     </section>
   );
 }

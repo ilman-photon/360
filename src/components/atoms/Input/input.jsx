@@ -142,7 +142,7 @@ export const CustomInput = styled(({ ...props }) => {
     });
   };
 
-  const showPassword = values.showPassword ? "text" : "password"
+  const showPassword = values.showPassword ? "text" : "password";
 
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
@@ -208,7 +208,7 @@ export const CustomInput = styled(({ ...props }) => {
               backgroundColor: "white",
               borderRadius: "4px",
               borderColor: "#B5B5B5",
-              margin: "8px",
+              ...props.sx,
             }}
             {...props}
           />

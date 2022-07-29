@@ -145,17 +145,6 @@ export default function Login({
           mode={constants.SECONDARY}
           size={constants.LARGE}
           gradient={false}
-          onClick={function () {
-            OnLoginClicked({ username, password }, router);
-          }}
-        >
-          Login
-        </StyledButton>
-        <StyledButton
-          theme="patient"
-          mode="secondary"
-          size="large"
-          gradient={false}
           onClick={OnGuestClicked}
         >
           Continue as a guest
