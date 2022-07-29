@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { LabelWithIcon } from "../../atoms/LabelWithIcon/labelWithIcon";
@@ -30,30 +30,23 @@ const SetPasswordComponent = ({
   onBackToLoginClicked,
   onCTAButtonClicked,
   postMessage,
-  formError,
+  formMessage,
   OnSetPasswordClicked,
+  username,
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "SetPassword" });
-  const { handleSubmit, control, watch, setError } = useForm();
+  const { handleSubmit, control, watch, setError, setValue } = useForm();
 
-  const onSubmit = (data) => {
-    console.log(data, password, confirmPassword, 'vdfdf')
-    if (data.password.toLowerCase() === data.confirmPassword.toLowerCase()) {
-      // onCTAButtonClicked({ password, confirmPassword });
-      if (validatorPassword()) {
-        OnSetPasswordClicked(data);
-      }
-    } else {
-      validatePassword(data.password, data.confirmPassword);
-    }
-  };
+  useEffect(() => {
+    setValue('username', username);
+  }, [])
 
-  const validatorPassword = (errors1 = [], errors2 = []) => {
+  const validateErrorPassword = (errors1 = [], errors2 = []) => {
     return errors1.length === 0 && errors2.length <= 1 ? true : false;
   };
 
-  const validatePassword = (password, confirmPassword) => {
+  const validateConfirmPassword = (password, confirmPassword) => {
     if (password.toLowerCase() !== confirmPassword.toLowerCase()) {
       setError("confirmPassword", {
         type: "custom",
@@ -119,6 +112,27 @@ const SetPasswordComponent = ({
     return passes >= 3 ? true : false;
   };
 
+  const onSubmit = (data) => {
+    console.log({data})
+    if (data.password.toLowerCase() === data.confirmPassword.toLowerCase()) {
+      const errors1 = []
+      const errors2 = []
+      passwordValidator.forEach((err) => {
+          if (err.mandatory) {
+            if (err.validate) errors1.push(err.validate)
+          } else {
+            if (err.validate) errors2.push(err.validate)
+          }
+      })
+
+      if (validateErrorPassword(errors1, errors2)) {
+        OnSetPasswordClicked(data);
+      }
+    } else {
+      validateConfirmPassword(data.password, data.confirmPassword);
+    }
+  };
+
   return (
     <Card className={globalStyles.container} sx={{ minWidth: 275, margin: 10 }}>
       <CardContent style={cardContentStyle}>
@@ -129,34 +143,39 @@ const SetPasswordComponent = ({
         <Typography variant="h4" sx={styles.titleStyles2}>
           Enter a password to setup your account.
         </Typography>
-        {showPostMessage ? (
-          <FormMessage success={false} sx={styles.postMessage}>
-            {postMessage}
-          </FormMessage>
-        ) : (
-          <></>
-        )}
 
-        {formError.content ? (
-          <FormMessage success={false} title={formError.title}>
-            {formError.content}
-          </FormMessage>
-        ) : (
-          ""
-        )}
+        <div style={{margin: 8}}>
+          {showPostMessage ? (
+            <FormMessage success={false} sx={styles.postMessage}>
+              {postMessage}
+            </FormMessage>
+          ) : (
+            <></>
+          )}
+
+          {formMessage.content ? (
+            <FormMessage success={formMessage.success} title={formMessage.title}>
+              {formMessage.content}
+            </FormMessage>
+          ) : (
+            ""
+          )}
+        </div>
+
         <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
           <Controller
-            name="email"
+            name="username"
             control={control}
             defaultValue=""
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <StyledInput
                   type="text"
-                  id="email"
-                  label="Email"
+                  id="username"
+                  label="Username"
                   value={value}
                   // style={styles.margin}
+                  disabled
                   onChange={onChange}
                   error={!!error}
                   size="small"
@@ -166,11 +185,11 @@ const SetPasswordComponent = ({
               );
             }}
             rules={{
-              required: "Email required",
-              pattern: {
-                value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i,
-                message: "Email is invalid",
-              },
+              required: "Username required",
+              // pattern: {
+              //   value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i,
+              //   message: "Username is invalid",
+              // },
             }}
           />
           <Controller
@@ -208,7 +227,7 @@ const SetPasswordComponent = ({
             validator={passwordValidator}
             isShowValidation={isPasswordError}
             password={watchedPassword}
-            validatePassword={validatorPassword}
+            validatePassword={validateErrorPassword}
           />
           <Controller
             name="confirmPassword"
