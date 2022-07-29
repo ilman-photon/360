@@ -1,3 +1,5 @@
+import { colors } from "../../../styles/theme";
+
 export const styles = {
   container: {
     width: 350,
@@ -29,6 +31,7 @@ export const styles = {
     marginLeft: "8px",
     marginRight: "8px",
     paddingBottom: "6px",
+    marginBottom: "16px",
   },
   bottomParagraph: {
     color: "#366A70",
@@ -46,5 +49,12 @@ export const styles = {
     "&:hover": {
       backgroundColor: "#1c8696",
     },
+  },
+  registeredUsernameWrapper: {
+    padding: 16,
+    borderRadius: 4,
+    color: "#366A70",
+    backgroundColor: `${colors.teal}0d`,
+    margin: 8,
   },
 };

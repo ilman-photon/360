@@ -78,6 +78,12 @@ export const patientTypography = createTheme({
       fontSize: 18,
       lineHeight: "26px",
     },
+    bodyMedium: {
+      fontFamily: "Libre Franklin",
+      fontWeight: 400,
+      fontSize: 16,
+      lineHeight: "24px",
+    },
     bodyRegular: {
       fontFamily: "Libre Franklin",
       fontWeight: "bold",

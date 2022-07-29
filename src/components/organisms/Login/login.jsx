@@ -1,17 +1,19 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
-import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import { StyledInput } from "../../atoms/Input/input";
 import { Divider, Typography } from "@mui/material";
 import styles from "./Style.module.scss";
 import globalStyles from "../../../styles/Global.module.scss";
-import { Api } from "../../../pages/api/api";
 import { useRouter } from "next/router";
-
 import { StyledButton } from "../../atoms/Button/button";
+import { useForm, Controller } from "react-hook-form";
+import FormMessage from "../../molecules/FormMessage/formMessage";
+import { useTranslation } from "react-i18next";
+
+const constants = require("../../../utils/constants");
 
 export default function Login({
   OnLoginClicked,
@@ -19,80 +21,146 @@ export default function Login({
   OnCreateAccountClicked,
   OnForgotPasswordClicked,
 }) {
-  const [username, setUsername] = React.useState("");
-  const [password, setPassword] = React.useState("");
+  const [postMessage, setPostMessage] = React.useState("");
   const router = useRouter();
+  const { t } = useTranslation("translation", { keyPrefix: "Login" });
+
+  const { handleSubmit, setError, control } = useForm();
+
+  const onSubmit = ({ username, password }) => {
+    OnLoginClicked({ username, password }, router, checkMessage);
+    console.log({ username, password });
+  };
+
+  const checkMessage = (message) => {
+    const messageStatus = message.status === "failed";
+    console.log(`messageStatus ${messageStatus}`);
+    if (messageStatus) {
+      setError("username", {
+        type: "custom",
+        message: "Enter a valid Email or Phone Number",
+      });
+      setError("password", {
+        type: "custom",
+        message: "This field is required",
+      });
+    }
+    setPostMessage(message);
+    console.log("this", postMessage, message);
+  };
+
+  const renderFromMessage = () => {
+    console.log("sas", postMessage);
+    return (
+      postMessage.status === "failed" && (
+        <FormMessage error title={postMessage.message.title}>
+          {postMessage.message.description}
+        </FormMessage>
+      )
+    );
+  };
+
   return (
     <Box className={globalStyles.container}>
-      <Stack spacing={3}>
-        <Typography variant="h1" className={styles.title}>
-          Patient Login
-        </Typography>
-        <StyledInput
-          id="username"
-          label="Username"
-          size="small"
-          style={{ backgroundColor: "white" }}
-          variant="filled"
-          type={"text"}
-          error={false}
-          helperText={"Enter your registered email or phone number"}
-          onChange={(event) => setUsername(event.target.value)}
-          //  helperText={userpassword === " " ?  'Enter Your Registered email or phone number' : 'This field required (Enter email or phone number)' }
-          //  error={userpassword === "" ? true  : false}
-        />
-        <StyledInput
-          id="password"
-          label="Password"
-          type="password"
-          size="small"
-          style={{ backgroundColor: "white" }}
-          //  variant="filled"
-          onChange={(event) => setPassword(event.target.value)}
-          //  helperText={username === "" ?  'Enter Your Registered email or phone number' : 'This field required (Enter email or phone number)' }
-          //  error={username === "" ? true  : false}
-        />
-        <Grid container justifyContent={"flex-end"}>
-          <Link
-            color={"#2095a9"}
-            onClick={function () {
-              OnForgotPasswordClicked(router);
-            }}
-          >
-            Forgot Password
-          </Link>
-        </Grid>
+      <Typography variant={constants.H1} className={styles.title}>
+        {t("formTitle")}
+      </Typography>
+      {renderFromMessage()}
+      <Stack spacing={2}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Stack spacing={2}>
+            <Controller
+              name="username"
+              control={control}
+              defaultValue=""
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => {
+                return (
+                  <StyledInput
+                    id="username"
+                    label="Email or Phone Number"
+                    size={constants.SMALL}
+                    variant={constants.FILLED}
+                    type={constants.INPUT_TEXT}
+                    value={value}
+                    onChange={onChange}
+                    error={!!error}
+                    helperText={error ? error.message : null}
+                  />
+                );
+              }}
+              rules={{
+                required: "Enter a valid Email or Phone Number",
+              }}
+            />
+            <Controller
+              name="password"
+              control={control}
+              defaultValue=""
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => {
+                return (
+                  <StyledInput
+                    id="password"
+                    label="Password"
+                    type={constants.INPUT_PASSWORD}
+                    size={constants.SMALL}
+                    variant={constants.FILLED}
+                    value={value}
+                    onChange={onChange}
+                    error={!!error}
+                    helperText={error ? error.message : null}
+                  />
+                );
+              }}
+              rules={{ required: "This field is required" }}
+            />
+            <Grid container justifyContent={constants.FLEX_END}>
+              <Link
+                className={styles.link}
+                onClick={function () {
+                  OnForgotPasswordClicked(router);
+                }}
+              >
+                Forgot Password
+              </Link>
+            </Grid>
+            <StyledButton
+              theme={constants.PATIENT}
+              mode={constants.PRIMARY}
+              type="submit"
+              size={constants.LARGE}
+              gradient={false}
+            >
+              Login
+            </StyledButton>
+          </Stack>
+        </form>
         <StyledButton
-          theme="patient"
-          type="primary"
-          size="large"
-          gradient={false}
-          onClick={function () {
-            OnLoginClicked({ username, password }, router);
-          }}
-        >
-          Login
-        </StyledButton>
-        <StyledButton
-          theme="patient"
-          type="secondary"
-          size="large"
+          theme={constants.PATIENT}
+          mode={constants.SECONDARY}
+          size={constants.LARGE}
           gradient={false}
           onClick={OnGuestClicked}
         >
           Continue as a guest
         </StyledButton>
-        <Divider variant="middle" />
-        <Grid container justifyContent={"center"}>
+        <Divider variant={constants.MIDDLE} className={styles.divider} />
+
+        <Grid container justifyContent={constants.CENTER}>
           <Typography variant="bodyRegular">
             Don&apos;t have an account?
           </Typography>
         </Grid>
 
         <StyledButton
-          theme="patient"
-          type="secondary"
-          size="large"
+          theme={constants.PATIENT}
+          mode={constants.SECONDARY}
+          size={constants.LARGE}
           gradient={false}
           onClick={function () {
             OnCreateAccountClicked(router);

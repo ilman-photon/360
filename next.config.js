@@ -45,17 +45,7 @@ const nextConfig = {
         ],
         source: "/:host/create-account",
         destination: "/auth/create-account",
-      },
-      {
-        has: [
-          {
-            type: "host",
-            value: "(?<host>.*)",
-          },
-        ],
-        source: "/:host/:path*",
-        destination: "/:path*",
-      },
+      }
     ];
   },
   env: {
@@ -71,6 +61,10 @@ const nextConfig = {
     // Will be available on both server and client
     staticFolder: "/static",
   },
+  // temporary fixing for next/image
+  images: {
+    domains: ['c4.wallpaperflare.com']
+  }
 };
 
 module.exports = nextConfig;

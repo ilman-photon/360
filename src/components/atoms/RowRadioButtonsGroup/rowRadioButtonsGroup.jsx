@@ -4,12 +4,13 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
+import { FormHelperText } from "@mui/material";
 
-export default function RowRadioButtonsGroup({ ...props }) {
+export default function RowRadioButtonsGroup({ helperText = null, ...props }) {
   const options = props.options || [];
 
   return (
-    <FormControl>
+    <FormControl {...props}>
       <FormLabel id="row-radio-buttons-group-label">{props.label}</FormLabel>
       <RadioGroup
         row
@@ -27,6 +28,7 @@ export default function RowRadioButtonsGroup({ ...props }) {
           );
         })}
       </RadioGroup>
+      <FormHelperText>{helperText}</FormHelperText>
     </FormControl>
   );
 }
