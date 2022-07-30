@@ -23,9 +23,8 @@ export const styles = {
   passwordLabel: {
     marginLeft: "8px",
     marginRight: "8px",
-    paddingTop: "6px",
-    paddingBottom: "6px",
     fontSize: "1rem",
+    color: "#191919"
   },
   divMargin: {
     marginLeft: "8px",

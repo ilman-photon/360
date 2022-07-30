@@ -148,6 +148,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   size="small"
                   variant="filled"
                   helperText={error ? error.message : null}
+                  sx={{ margin:'8px' }}
                 />
               );
             }}
@@ -169,6 +170,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   size="small"
                   variant="filled"
                   helperText={error ? error.message : null}
+                  sx={{ margin:'8px' }}
                 />
               );
             }}
@@ -196,6 +198,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   size="small"
                   variant="filled"
                   helperText={error ? error.message : null}
+                  sx={{ margin:'8px' }}
                 />
               );
             }}
