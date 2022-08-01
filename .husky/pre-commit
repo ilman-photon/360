@@ -25,7 +25,6 @@ npm run check-lint ||
 # )
 
 # If everything passes... Now we can commit
-echo '🤔🤔🤔🤔... Alright... Code looks good to me... Trying to build now. 🤔🤔🤔🤔'
 
 npm run build ||
 (
@@ -35,4 +34,4 @@ npm run build ||
 )
 
 # If everything passes... Now we can commit
-echo '✅✅✅✅ You win this time... I am committing this now. ✅✅✅✅'
+echo '✅ Prettier Check, ESLint Check and Next build. Committing this now. ✅'
