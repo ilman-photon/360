@@ -33,7 +33,7 @@ export const styles = {
     marginRight: "0px",
     textAlign: "center",
   },
-  link:{
-    cursor: "pointer"
-  }
+  link: {
+    cursor: "pointer",
+  },
 };

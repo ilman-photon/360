@@ -86,7 +86,7 @@ const ConfirmationForm = ({
               ...styles.margin,
               ...styles.textAlign,
               ...styles.backToLoginMargin,
-              ...styles.link
+              ...styles.link,
             }}
             color={"#2095a9"}
             onClick={function () {

@@ -58,7 +58,7 @@ export default function Home() {
           <div style={{ display: "flex" }}>
             <button onClick={handleAction}>Increase counter</button>
             <div>
-              {!!indexStatus === "loading" ? (
+              {indexStatus === "loading" ? (
                 <>
                   <Skeleton variant="rectangular" width={"50%"} height={118} />
                 </>
@@ -79,7 +79,7 @@ export default function Home() {
             </button>
           </div>
           <div>
-            {!!userStatus === "loading" ? (
+            {userStatus === "loading" ? (
               <>
                 <Skeleton variant="rectangular" width={"50%"} height={118} />
                 <Skeleton variant="rectangular" width={210} height={118} />

@@ -93,7 +93,7 @@ const ForgotPassword = ({
           </StyledButton>
         </form>
         <Link
-          style={{...styles.margin, ...styles.link}}
+          style={{ ...styles.margin, ...styles.link }}
           color={"#2095a9"}
           onClick={function () {
             onBackToLoginClicked(router);

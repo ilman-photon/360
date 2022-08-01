@@ -31,19 +31,15 @@ const SetPasswordComponent = ({
   formMessage,
   OnSetPasswordClicked,
   username,
-  title, 
+  title,
   subtitle,
   passwordPlaceHolder = t("passwordPlaceHolder"),
   confirmPasswordPlaceHolder = t("confirmPasswordPlaceHolder"),
-  ctaButtonLabel = t("ctaButtonLabel")
+  ctaButtonLabel = t("ctaButtonLabel"),
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "SetPassword" });
   const { handleSubmit, control, watch, setError, setValue } = useForm();
-
-  useEffect(() => {
-    setValue("username", username);
-  }, []);
 
   const validateErrorPassword = (errors1 = [], errors2 = []) => {
     return errors1.length === 0 && errors2.length <= 1 ? true : false;
@@ -184,7 +180,7 @@ const SetPasswordComponent = ({
                     type="text"
                     id="username"
                     label="Username"
-                    value={value}
+                    value={username}
                     // style={styles.margin}
                     disabled
                     onChange={onChange}
@@ -283,7 +279,7 @@ const SetPasswordComponent = ({
           </StyledButton>
         </form>
         <Link
-          style={{...styles.margin, ...styles.link}}
+          style={{ ...styles.margin, ...styles.link }}
           color={"#2095a9"}
           onClick={function () {
             onBackToLoginClicked(router);

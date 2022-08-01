@@ -174,7 +174,9 @@ export const CustomInput = styled(({ ...props }) => {
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
               label={props.label}
-              onChange={() => {}}
+              onChange={() => {
+                // This is intentional
+              }}
               renderInput={(params) => (
                 <RedditTextField
                   variant="filled"

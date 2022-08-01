@@ -26,7 +26,7 @@ export const styles = {
   backToLoginMargin: {
     marginBottom: "8px",
   },
-  link:{
-    cursor: "pointer"
-  }
+  link: {
+    cursor: "pointer",
+  },
 };
