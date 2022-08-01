@@ -23,6 +23,22 @@ const cardContentStyle = {
   padding: 0,
 };
 
+const getPasswordValidator = function ({
+  passwordValidator,
+  showValidator,
+  watchedPassword,
+  validateErrorPassword,
+}) {
+  return (
+    <PasswordValidator
+      validator={passwordValidator}
+      isShowValidation={showValidator}
+      password={watchedPassword}
+      validatePassword={validateErrorPassword}
+    />
+  );
+};
+
 const SetPasswordComponent = ({
   showPostMessage,
   setShowPostMessage,
@@ -31,11 +47,12 @@ const SetPasswordComponent = ({
   formMessage,
   OnSetPasswordClicked,
   username,
-  title, 
+  title,
   subtitle,
-  passwordPlaceHolder = t("passwordPlaceHolder"),
-  confirmPasswordPlaceHolder = t("confirmPasswordPlaceHolder"),
-  ctaButtonLabel = t("ctaButtonLabel")
+  passwordPlaceHolder = "Password",
+  confirmPasswordPlaceHolder =  "Confirm Password",
+  ctaButtonLabel = "Create Account",
+  showPasswordValidator = false,
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "SetPassword" });
@@ -240,12 +257,12 @@ const SetPasswordComponent = ({
               },
             }}
           />
-          <PasswordValidator
-            validator={passwordValidator}
-            isShowValidation={isPasswordError}
-            password={watchedPassword}
-            validatePassword={validateErrorPassword}
-          />
+          {!showPasswordValidator ? getPasswordValidator({
+            passwordValidator,
+            showValidator: showPasswordValidator || isPasswordError,
+            watchedPassword,
+            validateErrorPassword,
+          }):<></>}
           <Controller
             name="confirmPassword"
             control={control}
@@ -271,6 +288,12 @@ const SetPasswordComponent = ({
             }}
             rules={{ required: t("errorEmptyField") }}
           />
+          {showPasswordValidator ? getPasswordValidator({
+            passwordValidator,
+            showValidator: showPasswordValidator || isPasswordError,
+            watchedPassword,
+            validateErrorPassword,
+          }):<></>}
           <StyledButton
             type="submit"
             theme="patient"
@@ -283,7 +306,7 @@ const SetPasswordComponent = ({
           </StyledButton>
         </form>
         <Link
-          style={{...styles.margin, ...styles.link}}
+          style={{ ...styles.margin, ...styles.link }}
           color={"#2095a9"}
           onClick={function () {
             onBackToLoginClicked(router);

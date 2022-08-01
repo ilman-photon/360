@@ -79,6 +79,9 @@
     "title": "Update Password",
     "passwordPlaceHolder":"New password",
     "confirmPasswordPlaceHolder": "Confirm Password",
-    "ctaButtonLabel": "Update"
+    "ctaButtonLabel": "Update",
+    "successUpdatePassword": "Password Updated",
+    "postMessage": "Password has been updated",
+    "backButtonLink": "Back to Log in"
   }
 }

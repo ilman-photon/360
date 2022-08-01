@@ -34,9 +34,7 @@ export const PasswordValidator = ({ ...props }) => {
               props.validatePassword(errors2.push(err.validate));
           }
           return err.text ? (
-            <Typography variant="h3" sx={styles.textStyles}>
-              {err.label}
-            </Typography>
+            <Typography sx={styles.textStyles}>{err.label}</Typography>
           ) : (
             <LabelWithIcon key={i} error={err.validate} label={err.label} />
           );

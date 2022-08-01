@@ -7,6 +7,7 @@ export const colors = {
   darkGreen75: "#205A63",
   darkGreen50: "#366A70",
   darkGreen25: "#507A7D",
+  green: "#168845",
   teal: "#0095A9", //'#E5EDF8',
   teal75: "#3EAFBD",
   teal50: "#7FCAD3",
@@ -15,6 +16,8 @@ export const colors = {
   peach75: "#F2EAE6",
   peach50: "#F9F5F3",
   peach25: "#FDFAF9",
+  grey: "#191919",
+  grey75: "#080707",
 };
 
 // declare module '@mui/material/styles' {

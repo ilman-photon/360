@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
 import constants from "../../utils/constants";
 import { Api } from "../api/api";
+import ConfirmationForm from "../../components/organisms/ConfirmationForm/confirmationForm";
 
 const setUsernameFromQuery = function (route) {
   return route && route.query && route.query.username
@@ -18,14 +19,25 @@ export default function UpdatePasswordPage() {
     keyPrefix: "UpdatePasswordPage",
   });
   const [showPostMessage, setShowPostMessage] = useState(false);
+  const [showUpdatePassword, setShowUpdatePassword] = useState(true);
   const route = useRouter();
   const username = setUsernameFromQuery(route);
 
+  const confirmationFormProps = {
+    title: t("successUpdatePassword"),
+    postMessage: t("postMessage"),
+    showPostMessage: true,
+    isSuccessPostMessage: true,
+    buttonLabel: t("backButtonLink"),
+    butttonMode: constants.SECONDARY,
+    onCTAButtonClicked: function ({ router }) {
+      router.push(`/patient/login`);
+    },
+    formStyle: { marginTop: "0px" },
+  };
+
   //Call API for userame validation
-  const onCallConfirmPasswordAPI = function (
-    { password, confirmPassword },
-    router
-  ) {
+  const onCallConfirmPasswordAPI = function ({ password, confirmPassword }) {
     const postbody = {
       patient: { email: username },
       confirmPassword: [
@@ -40,7 +52,8 @@ export default function UpdatePasswordPage() {
       )
       .then(function (response) {
         if (response && response.status === 200) {
-          router.push(`/patient/login`);
+          setShowPostMessage(true);
+          setShowUpdatePassword(false);
         }
       })
       .catch(function () {
@@ -51,18 +64,28 @@ export default function UpdatePasswordPage() {
   return (
     <div className={styles.forgotPasswordPage}>
       <section className={styles.forgotPasswordComponentContainer}>
-        <SetPasswordComponent
-          title={t("title")}
-          showPostMessage={showPostMessage}
-          setShowPostMessage={setShowPostMessage}
-          onBackToLoginClicked={function (router) {
-            router.push("/patient/login");
-          }}
-          onCTAButtonClicked={onCallConfirmPasswordAPI}
-          passwordPlaceHolder={t("passwordPlaceHolder")}
-          confirmPasswordPlaceHolder={t("confirmPasswordPlaceHolder")}
-          ctaButtonLabel={t("ctaButtonLabel")}
-        />
+        {showUpdatePassword ? (
+          <SetPasswordComponent
+            title={t("title")}
+            showPostMessage={showPostMessage}
+            setShowPostMessage={setShowPostMessage}
+            onBackToLoginClicked={function (router) {
+              router.push("/patient/login");
+            }}
+            onCTAButtonClicked={onCallConfirmPasswordAPI}
+            passwordPlaceHolder={t("passwordPlaceHolder")}
+            confirmPasswordPlaceHolder={t("confirmPasswordPlaceHolder")}
+            ctaButtonLabel={t("ctaButtonLabel")}
+            showPasswordValidator={true}
+          />
+        ) : (
+          <></>
+        )}
+        {showPostMessage ? (
+          <ConfirmationForm {...confirmationFormProps} />
+        ) : (
+          <></>
+        )}
       </section>
     </div>
   );
