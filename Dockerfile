@@ -1,10 +1,10 @@
-FROM node:15.9.0 as builder
+FROM node:16.10.0 as builder
 WORKDIR /app
 COPY . .
 RUN npm install
 RUN yarn build
 
-FROM node:15.9.0 as runner
+FROM node:16.10.0 as runner
 WORKDIR /app
 ENV NODE_ENV production
 # If you are using a custom next.config.js file, uncomment this line.
