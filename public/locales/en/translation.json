@@ -7,6 +7,7 @@
     "emailUserLabael" : "Email or Phone Number",
     "passwordLabel": "Password",
     "userLabel" : "Email Required",
+    "forgotPassowrd" : "Forgot Password",
     "emailRequiredLabel" : "Enter a valid Email or Phone Number",
     "thisFieldRequired" : "This field is required",
     "passwordRequiredLabel" : "Enter a valid Password",
