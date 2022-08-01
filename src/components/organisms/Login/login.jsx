@@ -50,7 +50,6 @@ export default function Login({
   };
 
   const renderFromMessage = () => {
-    console.log("sas", postMessage);
     return (
       postMessage.status === "failed" && (
         <FormMessage error title={postMessage.message.title}>
@@ -106,7 +105,7 @@ export default function Login({
                 return (
                   <StyledInput
                     id="password"
-                    label={ t("passwordLabel")}
+                    label={t("passwordLabel")}
                     type={constants.INPUT_PASSWORD}
                     size={constants.SMALL}
                     variant={constants.FILLED}
@@ -126,7 +125,7 @@ export default function Login({
                   OnForgotPasswordClicked(router);
                 }}
               >
-                 {t("forgotPassowrd")}
+                {t("forgotPassowrd")}
               </Link>
             </Grid>
             <StyledButton
@@ -136,7 +135,7 @@ export default function Login({
               size={constants.LARGE}
               gradient={false}
             >
-                 {t("loginButtonLabel")}
+              {t("loginButtonLabel")}
             </StyledButton>
           </Stack>
         </form>
@@ -153,7 +152,7 @@ export default function Login({
 
         <Grid container justifyContent={constants.CENTER}>
           <Typography variant="bodyRegular">
-          {t("dontHaveAccountLabel")}
+            {t("dontHaveAccountLabel")}
           </Typography>
         </Grid>
 

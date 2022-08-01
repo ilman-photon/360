@@ -10,23 +10,24 @@ const loginProps = {
     api
       .login(postbody)
       .then(function (response) {
-        console.log(response);
-        console.log(router)
         //router.push("/patient");
         const hostname = window.location.origin;
         window.location.href = `${hostname}/patient`;
-        console.log("success");
         cookies.set("authorized", true, { path: "/patient" });
         callback({ status: "success" });
       })
       .catch(function (err) {
-        console.log(err);
-        const isLockedAccount = err.ResponseCode === 2004
+        const isLockedAccount = err.ResponseCode === 2004;
+        const isInvalidCredentials = err.ResponseCode === 2001;
+        const title = isLockedAccount ? "Account Locked" : "";
+        const description = isInvalidCredentials
+          ? "Too many login attempts. Your account is locked. Please contact customer support to unlock your account"
+          : "Invalid Username or Password";
         callback({
           status: "failed",
           message: {
-            title: isLockedAccount ? "Account Locked" : "",
-            description: err.message,
+            title,
+            description,
           },
         });
       });
