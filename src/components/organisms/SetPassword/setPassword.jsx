@@ -41,6 +41,10 @@ const SetPasswordComponent = ({
   const { t } = useTranslation("translation", { keyPrefix: "SetPassword" });
   const { handleSubmit, control, watch, setError, setValue } = useForm();
 
+  useEffect(()=> {
+    setValue("username", username)
+  }, [])
+
   const validateErrorPassword = (errors1 = [], errors2 = []) => {
     return errors1.length === 0 && errors2.length <= 1 ? true : false;
   };
@@ -166,7 +170,7 @@ const SetPasswordComponent = ({
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
-          {username ? (
+          {/* {username ? ( */}
             <Controller
               name="username"
               control={control}
@@ -180,7 +184,7 @@ const SetPasswordComponent = ({
                     type="text"
                     id="username"
                     label="Username"
-                    value={username}
+                    value={value}
                     // style={styles.margin}
                     disabled
                     onChange={onChange}
@@ -202,9 +206,9 @@ const SetPasswordComponent = ({
                 // },
               }}
             />
-          ) : (
+          {/* ) : (
             <></>
-          )}
+          )} */}
           <Controller
             name="password"
             control={control}
