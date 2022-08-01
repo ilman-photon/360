@@ -243,7 +243,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               },
             }}
           />
-          <Typography variant="h1" sx={styles.passwordLabel}>
+          <Typography sx={styles.passwordLabel}>
             Please Create a Password
           </Typography>
           <Controller
