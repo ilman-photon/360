@@ -79,7 +79,7 @@ export default function Login({
                 return (
                   <StyledInput
                     id="username"
-                    label={t("emailUserLabael")}
+                    label={t("emailUserLabel")}
                     size={constants.SMALL}
                     variant={constants.FILLED}
                     type={constants.INPUT_TEXT}
@@ -125,7 +125,7 @@ export default function Login({
                   OnForgotPasswordClicked(router);
                 }}
               >
-                {t("forgotPassowrd")}
+                {t("forgotPassword")}
               </Link>
             </Grid>
             <StyledButton

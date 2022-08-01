@@ -1,15 +1,9 @@
 import { ThemeProvider, styled, alpha } from "@mui/material/styles";
 import React, { useEffect } from "react";
-// import "./input.css";
+import styles from "./input.module.scss";
 
-import Box from "@mui/material/Box";
 import IconButton from "@mui/material/IconButton";
-import Input from "@mui/material/Input";
-import FilledInput from "@mui/material/FilledInput";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
 import InputAdornment from "@mui/material/InputAdornment";
-import FormHelperText from "@mui/material/FormHelperText";
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import Visibility from "@mui/icons-material/Visibility";
@@ -18,6 +12,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
+import InputMask from "react-input-mask";
 
 import { colors, primaryTheme, secondaryTheme } from "../../../styles/theme";
 
@@ -50,7 +45,7 @@ export const CustomPasswordInput = styled((props) => (
         <InputAdornment position="end">
           <IconButton
             aria-label="toggle password visibility"
-            onClick={props.clickIcon ? props.clickIcon : null}
+            onClick={props.clickIcon}
             onMouseDown={props.mouseDown}
             edge="end"
           >
@@ -91,6 +86,7 @@ export const CustomPasswordInput = styled((props) => (
 export const RedditTextField = styled((props) => (
   <TextField
     InputProps={{
+      disableUnderline: true,
       endAdornment: props.adorment ? (
         <InputAdornment position="end">
           <IconButton aria-label="toggle password visibility" edge="end">
@@ -139,10 +135,6 @@ export const CustomInput = styled(({ ...props }) => {
     showPassword: false,
   });
 
-  const handleChange = (prop) => (event) => {
-    setValues({ ...values, [prop]: event.target.value });
-  };
-
   const handleClickShowPassword = () => {
     setValues({
       ...values,
@@ -150,27 +142,22 @@ export const CustomInput = styled(({ ...props }) => {
     });
   };
 
+  const showPassword = values.showPassword ? "text" : "password";
+
   const handleMouseDownPassword = (event) => {
     event.preventDefault();
   };
-
-  useEffect(() => {
-    // should send to parent page.
-  }, [values.value]);
 
   return (
     <>
       {props.type === "password" ? (
         <>
-          <CustomFormControl variant="filled">
-            {/* <InputLabel htmlFor="filled-adornment-password" style={props.adorment ? { top: -16 } : null} error={props.error}>
-              {props.label}
-            </InputLabel> */}
+          <CustomFormControl sx={{ m: 1 }} variant="filled">
             <CustomPasswordInput
               error={!Boolean(values.value) && props.error}
               variant="filled"
               id={props.id}
-              type={values.showPassword ? "text" : "password"}
+              type={showPassword}
               clickIcon={handleClickShowPassword}
               mouseDown={handleMouseDownPassword}
               onChange={props.onChange}
@@ -178,6 +165,7 @@ export const CustomInput = styled(({ ...props }) => {
               label={props.label}
               adorment={props.adorment}
               helperText={props.helperText}
+              style={props.style}
             />
           </CustomFormControl>
         </>
@@ -186,7 +174,9 @@ export const CustomInput = styled(({ ...props }) => {
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
               label={props.label}
-              onChange={() => {}}
+              onChange={() => {
+                // This is intentional
+              }}
               renderInput={(params) => (
                 <RedditTextField
                   variant="filled"
@@ -195,12 +185,21 @@ export const CustomInput = styled(({ ...props }) => {
                     backgroundColor: "white",
                     borderRadius: "4px",
                     borderColor: "#B5B5B5",
+                    margin: "8px",
                   }}
                   {...params}
                 />
               )}
             />
           </LocalizationProvider>
+        </>
+      ) : props.type === "phone" ? (
+        <>
+          <CustomFormControl sx={{ m: 1 }} variant="filled">
+            <InputMask mask="(999) 999-9999" maskChar=" " {...props}>
+              <RedditTextField name="phone" type="text" />
+            </InputMask>
+          </CustomFormControl>
         </>
       ) : (
         <>
@@ -211,6 +210,7 @@ export const CustomInput = styled(({ ...props }) => {
               backgroundColor: "white",
               borderRadius: "4px",
               borderColor: "#B5B5B5",
+              ...props.sx,
             }}
             {...props}
           />

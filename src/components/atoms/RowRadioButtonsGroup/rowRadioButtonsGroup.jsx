@@ -4,13 +4,21 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
+import { FormHelperText } from "@mui/material";
 
-export default function RowRadioButtonsGroup({ ...props }) {
+export default function RowRadioButtonsGroup({ helperText = null, ...props }) {
   const options = props.options || [];
 
   return (
-    <FormControl>
-      <FormLabel id="row-radio-buttons-group-label">{props.label}</FormLabel>
+    <FormControl {...props}>
+      <FormLabel
+        id="row-radio-buttons-group-label"
+        sx={{
+          fontSize: 16,
+        }}
+      >
+        {props.label}
+      </FormLabel>
       <RadioGroup
         row
         aria-labelledby="row-radio-buttons-group-label"
@@ -21,12 +29,26 @@ export default function RowRadioButtonsGroup({ ...props }) {
             <FormControlLabel
               key={idx}
               value={option.value}
-              control={<Radio />}
+              control={
+                <Radio
+                  sx={{
+                    ".MuiSvgIcon-root": {
+                      width: "0.75em",
+                    },
+                  }}
+                />
+              }
               label={option.label}
+              sx={{
+                ".MuiTypography-root": {
+                  fontSize: 14,
+                },
+              }}
             />
           );
         })}
       </RadioGroup>
+      <FormHelperText>{helperText}</FormHelperText>
     </FormControl>
   );
 }
