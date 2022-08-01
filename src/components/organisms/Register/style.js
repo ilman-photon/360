@@ -24,7 +24,7 @@ export const styles = {
     marginLeft: "8px",
     marginRight: "8px",
     fontSize: "1rem",
-    color: "#191919"
+    color: "#191919",
   },
   divMargin: {
     marginLeft: "8px",

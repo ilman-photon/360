@@ -22,9 +22,11 @@ const ForgotPassword = ({
   const { t } = useTranslation("translation", { keyPrefix: "ForgotPassword" });
   const { handleSubmit, control, setError } = useForm();
 
-  const onSubmit = ({username}) => {
-
-    if (constants.REGEX_PHONE_NUMBER.test(username) || constants.REGEX_EMAIL.test(username)) {
+  const onSubmit = ({ username }) => {
+    if (
+      constants.REGEX_PHONE_NUMBER.test(username) ||
+      constants.REGEX_EMAIL.test(username)
+    ) {
       onCalledValidateUsernameAPI(
         {
           username: username,
@@ -34,7 +36,7 @@ const ForgotPassword = ({
     } else {
       setError("username", {
         type: "custom",
-        message: t("errorInvalidEmailPhone")
+        message: t("errorInvalidEmailPhone"),
       });
     }
   };
@@ -76,7 +78,7 @@ const ForgotPassword = ({
                 />
               );
             }}
-            rules={{required: t("errorEmptyField")}}
+            rules={{ required: t("errorEmptyField") }}
           />
 
           <StyledButton

@@ -31,8 +31,8 @@ const SetPasswordComponent = ({
   formMessage,
   OnSetPasswordClicked,
   username,
-  title, 
-  subtitle
+  title,
+  subtitle,
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "SetPassword" });
@@ -137,9 +137,13 @@ const SetPasswordComponent = ({
     <Card className={globalStyles.container} sx={{ minWidth: 275, margin: 10 }}>
       <CardContent style={cardContentStyle}>
         <Typography variant="h2">{title}</Typography>
-        {subtitle ? <Typography variant="h4" sx={styles.titleStyles2}>
-          {subtitle}
-        </Typography> :<></>}
+        {subtitle ? (
+          <Typography variant="h4" sx={styles.titleStyles2}>
+            {subtitle}
+          </Typography>
+        ) : (
+          <></>
+        )}
 
         <div style={{ margin: 8 }}>
           {showPostMessage ? (
@@ -163,38 +167,45 @@ const SetPasswordComponent = ({
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
-          {username ? <Controller
-            name="username"
-            control={control}
-            defaultValue=""
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
-              return (
-                <StyledInput
-                  type="text"
-                  id="username"
-                  label="Username"
-                  value={value}
-                  // style={styles.margin}
-                  disabled
-                  onChange={onChange}
-                  error={!!error}
-                  size="small"
-                  variant="filled"
-                  helperText={error ? error.message : null}
-                  sx={{
-                    margin: "8px",
-                  }}
-                />
-              );
-            }}
-            rules={{
-              required: "Username required",
-              // pattern: {
-              //   value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i,
-              //   message: "Username is invalid",
-              // },
-            }}
-          /> : <></>}
+          {username ? (
+            <Controller
+              name="username"
+              control={control}
+              defaultValue=""
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => {
+                return (
+                  <StyledInput
+                    type="text"
+                    id="username"
+                    label="Username"
+                    value={value}
+                    // style={styles.margin}
+                    disabled
+                    onChange={onChange}
+                    error={!!error}
+                    size="small"
+                    variant="filled"
+                    helperText={error ? error.message : null}
+                    sx={{
+                      margin: "8px",
+                    }}
+                  />
+                );
+              }}
+              rules={{
+                required: "Username required",
+                // pattern: {
+                //   value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i,
+                //   message: "Username is invalid",
+                // },
+              }}
+            />
+          ) : (
+            <></>
+          )}
           <Controller
             name="password"
             control={control}
