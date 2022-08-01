@@ -10,6 +10,7 @@ export const styles = {
   },
   margin: {
     marginTop: "16px",
+    width: "100%",
   },
   marginDescription: {
     marginTop: "28px",
@@ -24,5 +25,8 @@ export const styles = {
   },
   backToLoginMargin: {
     marginBottom: "8px",
+  },
+  link: {
+    cursor: "pointer",
   },
 };

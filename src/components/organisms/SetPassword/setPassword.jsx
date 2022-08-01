@@ -31,14 +31,15 @@ const SetPasswordComponent = ({
   formMessage,
   OnSetPasswordClicked,
   username,
+  title,
+  subtitle,
+  passwordPlaceHolder = t("passwordPlaceHolder"),
+  confirmPasswordPlaceHolder = t("confirmPasswordPlaceHolder"),
+  ctaButtonLabel = t("ctaButtonLabel"),
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "SetPassword" });
   const { handleSubmit, control, watch, setError, setValue } = useForm();
-
-  useEffect(() => {
-    setValue("username", username);
-  }, []);
 
   const validateErrorPassword = (errors1 = [], errors2 = []) => {
     return errors1.length === 0 && errors2.length <= 1 ? true : false;
@@ -134,13 +135,14 @@ const SetPasswordComponent = ({
   return (
     <Card className={globalStyles.container} sx={{ minWidth: 275, margin: 10 }}>
       <CardContent style={cardContentStyle}>
-        {/* <Typography variant="h2">{title}</Typography> */}
-        <Typography variant="h2" sx={styles.titleStyles1}>
-          Set Password
-        </Typography>
-        <Typography variant="h4" sx={styles.titleStyles2}>
-          Enter a password to setup your account.
-        </Typography>
+        <Typography variant="h2">{title}</Typography>
+        {subtitle ? (
+          <Typography variant="h4" sx={styles.titleStyles2}>
+            {subtitle}
+          </Typography>
+        ) : (
+          <></>
+        )}
 
         <div style={{ margin: 8 }}>
           {showPostMessage ? (
@@ -164,38 +166,45 @@ const SetPasswordComponent = ({
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
-          <Controller
-            name="username"
-            control={control}
-            defaultValue=""
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
-              return (
-                <StyledInput
-                  type="text"
-                  id="username"
-                  label="Username"
-                  value={value}
-                  // style={styles.margin}
-                  disabled
-                  onChange={onChange}
-                  error={!!error}
-                  size="small"
-                  variant="filled"
-                  helperText={error ? error.message : null}
-                  sx={{
-                    margin: "8px",
-                  }}
-                />
-              );
-            }}
-            rules={{
-              required: "Username required",
-              // pattern: {
-              //   value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i,
-              //   message: "Username is invalid",
-              // },
-            }}
-          />
+          {username ? (
+            <Controller
+              name="username"
+              control={control}
+              defaultValue=""
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => {
+                return (
+                  <StyledInput
+                    type="text"
+                    id="username"
+                    label="Username"
+                    value={username}
+                    // style={styles.margin}
+                    disabled
+                    onChange={onChange}
+                    error={!!error}
+                    size="small"
+                    variant="filled"
+                    helperText={error ? error.message : null}
+                    sx={{
+                      margin: "8px",
+                    }}
+                  />
+                );
+              }}
+              rules={{
+                required: "Username required",
+                // pattern: {
+                //   value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i,
+                //   message: "Username is invalid",
+                // },
+              }}
+            />
+          ) : (
+            <></>
+          )}
           <Controller
             name="password"
             control={control}
@@ -204,7 +213,7 @@ const SetPasswordComponent = ({
               return (
                 <StyledInput
                   id="password"
-                  label="Password"
+                  label={passwordPlaceHolder}
                   type="password"
                   value={value}
                   onChange={(event) => {
@@ -241,7 +250,7 @@ const SetPasswordComponent = ({
               return (
                 <StyledInput
                   id="confirmPassword"
-                  label="Confirm Password"
+                  label={confirmPasswordPlaceHolder}
                   type="password"
                   value={value}
                   // style={styles.margin}
@@ -266,11 +275,11 @@ const SetPasswordComponent = ({
             gradient={false}
             style={styles.margin}
           >
-            Reset Password
+            {ctaButtonLabel}
           </StyledButton>
         </form>
         <Link
-          style={styles.margin}
+          style={{ ...styles.margin, ...styles.link }}
           color={"#2095a9"}
           onClick={function () {
             onBackToLoginClicked(router);

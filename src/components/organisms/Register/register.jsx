@@ -148,6 +148,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   size="small"
                   variant="filled"
                   helperText={error ? error.message : null}
+                  sx={{ margin: "8px" }}
                 />
               );
             }}
@@ -169,6 +170,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   size="small"
                   variant="filled"
                   helperText={error ? error.message : null}
+                  sx={{ margin: "8px" }}
                 />
               );
             }}
@@ -196,6 +198,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   size="small"
                   variant="filled"
                   helperText={error ? error.message : null}
+                  sx={{ margin: "8px" }}
                 />
               );
             }}
@@ -240,7 +243,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               },
             }}
           />
-          <Typography variant="h1" sx={styles.passwordLabel}>
+          <Typography sx={styles.passwordLabel}>
             Please Create a Password
           </Typography>
           <Controller
@@ -317,7 +320,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
         <Divider margin={3} />
         <Typography variant="caption" style={styles.bottomParagraph}>
           Already have an account?{" "}
-          <Link href="/login">
+          <Link href="/patient/login">
             <a style={styles.loginLink}>Login</a>
           </Link>
         </Typography>

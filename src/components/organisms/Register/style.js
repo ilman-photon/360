@@ -21,13 +21,12 @@ export const styles = {
     fontSize: "1.25rem",
   },
   passwordLabel: {
-    marginLeft: "8px",
-    marginRight: "8px",
-    paddingTop: "6px",
-    paddingBottom: "6px",
+    margin: "8px",
     fontSize: "1rem",
+    color: "#191919",
   },
   divMargin: {
+    marginTop: "8px",
     marginLeft: "8px",
     marginRight: "8px",
     paddingBottom: "6px",

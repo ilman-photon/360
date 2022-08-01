@@ -59,6 +59,9 @@ export default function UpdatePasswordPage() {
             router.push("/patient/login");
           }}
           onCTAButtonClicked={onCallConfirmPasswordAPI}
+          passwordPlaceHolder={t("passwordPlaceHolder")}
+          confirmPasswordPlaceHolder={t("confirmPasswordPlaceHolder")}
+          ctaButtonLabel={t("ctaButtonLabel")}
         />
       </section>
     </div>

@@ -7,10 +7,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "fix:prettier": "prettier --write \"src/**/*.[jt]s?(x)\" \"src/**/*.css\" \"src/**/*.scss\" \"src/**/*.css\"",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook",
-    "test": "jest --coverage"
+    "test": "jest --verbose --coverage --passWithNoTests --forceExit",
+    "check-format": "prettier --check \"src/**/*.[jt]s?(x)\" \"./styles\" \"src/**/*.css\" \"src/**/*.scss\" \"src/**/*.css\"",
+    "check-lint": "eslint src --ext .js,.jsx",
+    "format": "prettier --write \"src/**/*.[jt]s?(x)\" \"./styles\" \"src/**/*.css\" \"src/**/*.scss\" \"src/**/*.css\"",
+    "test-all": "npm run check-format && npm run check-lint",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@emotion/react": "^11.9.3",
@@ -61,8 +65,10 @@
     "eslint-config-next": "12.2.2",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-storybook": "^0.6.1",
-    "jest": "^28.1.3",
-    "jest-environment-jsdom": "^28.1.3",
+    "husky": "^8.0.0",
+    "jest": "^27.0.0",
+    "jest-cucumber": "^3.0.1",
+    "jest-environment-jsdom": "^27.1.3",
     "sass": "^1.53.0",
     "webpack": "^4.46.0"
   }

@@ -70,7 +70,9 @@ export default function SetPasswordPage() {
     <div className={styles.forgotPasswordPage}>
       <section className={styles.forgotPasswordComponentContainer}>
         <SetPasswordComponent
-          username={username}
+          title={"Set Password"}
+          subtitle={"Enter a password to setup your account."}
+          username={"Smith1@photon.com"}
           formMessage={formMessage}
           OnSetPasswordClicked={OnSetPasswordClicked}
         />

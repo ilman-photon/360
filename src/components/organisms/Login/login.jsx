@@ -126,7 +126,7 @@ export default function Login({
                   OnForgotPasswordClicked(router);
                 }}
               >
-                Forgot Password
+                {t("forgotPasswordText")}
               </Link>
             </Grid>
             <StyledButton
