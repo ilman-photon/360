@@ -31,8 +31,11 @@ const SetPasswordComponent = ({
   formMessage,
   OnSetPasswordClicked,
   username,
-  title,
+  title, 
   subtitle,
+  passwordPlaceHolder = t("passwordPlaceHolder"),
+  confirmPasswordPlaceHolder = t("confirmPasswordPlaceHolder"),
+  ctaButtonLabel = t("ctaButtonLabel")
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "SetPassword" });
@@ -214,7 +217,7 @@ const SetPasswordComponent = ({
               return (
                 <StyledInput
                   id="password"
-                  label="Password"
+                  label={passwordPlaceHolder}
                   type="password"
                   value={value}
                   onChange={(event) => {
@@ -251,7 +254,7 @@ const SetPasswordComponent = ({
               return (
                 <StyledInput
                   id="confirmPassword"
-                  label="Confirm Password"
+                  label={confirmPasswordPlaceHolder}
                   type="password"
                   value={value}
                   // style={styles.margin}
@@ -276,11 +279,11 @@ const SetPasswordComponent = ({
             gradient={false}
             style={styles.margin}
           >
-            Reset Password
+            {ctaButtonLabel}
           </StyledButton>
         </form>
         <Link
-          style={styles.margin}
+          style={{...styles.margin, ...styles.link}}
           color={"#2095a9"}
           onClick={function () {
             onBackToLoginClicked(router);

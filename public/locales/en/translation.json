@@ -43,7 +43,10 @@
   "SetPassword":{
     "errorEmptyField": "This field is required",
     "backButtonLink": "Back to Log in",
-    "passwordNotMatch":"Passwords do not match"
+    "passwordNotMatch":"Passwords do not match",
+    "passwordPlaceHolder": "Password",
+    "confirmPasswordPlaceHolder": "Confirm Password",
+    "ctaButtonLabel": "Create Account"
   },
   "ForgotPasswordPage":{
     "titlePasswordReset": "Password Reset",
@@ -73,6 +76,9 @@
     "backButtonLink": "Back to Log in"
   },
   "UpdatePasswordPage":{
-    "title": "Update Password"
+    "title": "Update Password",
+    "passwordPlaceHolder":"New password",
+    "confirmPasswordPlaceHolder": "Confirm Password",
+    "ctaButtonLabel": "Update"
   }
 }

@@ -19,4 +19,7 @@ export const styles = {
     display: "grid",
     marginTop: "8px",
   },
+  link:{
+    cursor: "pointer"
+  }
 };
