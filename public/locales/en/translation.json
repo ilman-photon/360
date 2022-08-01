@@ -3,6 +3,20 @@
     "hello": "Welcome to Next.js!"
   },
   "Login": {
-    "formTitle": "Patient Login"
+    "formTitle": "Patient Login",
+    "emailUserLabael" : "Email or Phone Number",
+    "passwordLabel": "Password",
+    "userLabel" : "Email Required",
+    "emailRequiredLabel" : "Enter a valid Email or Phone Number",
+    "thisFieldRequired" : "This field is required",
+    "passwordRequiredLabel" : "Enter a valid Password",
+    "forgotPasswordButtonLabel" : "Forgot Password ",
+    "continueAsPasswordButtonLabel" : "Continue as a guest",
+    "loginButtonLabel" : "Login",
+    "createAccountButtonLabel" : "Create Account",
+    "dontHaveAccountLabel" : "Dont have an account?"
+  },
+  "Input": {
+    "usernameLable": "Patient Login"
   }
 }

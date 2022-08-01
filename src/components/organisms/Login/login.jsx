@@ -80,7 +80,7 @@ export default function Login({
                 return (
                   <StyledInput
                     id="username"
-                    label="Email or Phone Number"
+                    label={t("emailUserLabael")}
                     size={constants.SMALL}
                     variant={constants.FILLED}
                     type={constants.INPUT_TEXT}
@@ -92,7 +92,7 @@ export default function Login({
                 );
               }}
               rules={{
-                required: "Enter a valid Email or Phone Number",
+                required: t("emailRequiredLabel"),
               }}
             />
             <Controller
@@ -106,7 +106,7 @@ export default function Login({
                 return (
                   <StyledInput
                     id="password"
-                    label="Password"
+                    label={ t("passwordLabel")}
                     type={constants.INPUT_PASSWORD}
                     size={constants.SMALL}
                     variant={constants.FILLED}
@@ -117,7 +117,7 @@ export default function Login({
                   />
                 );
               }}
-              rules={{ required: "This field is required" }}
+              rules={{ required: t("thisFieldRequired") }}
             />
             <Grid container justifyContent={constants.FLEX_END}>
               <Link
@@ -136,7 +136,7 @@ export default function Login({
               size={constants.LARGE}
               gradient={false}
             >
-              Login
+                 {t("loginButtonLabel")}
             </StyledButton>
           </Stack>
         </form>
@@ -147,13 +147,13 @@ export default function Login({
           gradient={false}
           onClick={OnGuestClicked}
         >
-          Continue as a guest
+          {t("continueAsPasswordButtonLabel")}
         </StyledButton>
         <Divider variant={constants.MIDDLE} className={styles.divider} />
 
         <Grid container justifyContent={constants.CENTER}>
           <Typography variant="bodyRegular">
-            Don&apos;t have an account?
+          {t("dontHaveAccountLabel")}
           </Typography>
         </Grid>
 
@@ -166,7 +166,7 @@ export default function Login({
             OnCreateAccountClicked(router);
           }}
         >
-          Create Account
+          {t("createAccountButtonLabel")}
         </StyledButton>
       </Stack>
     </Box>
