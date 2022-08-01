@@ -8,4 +8,7 @@ export const styles = {
     marginTop: "15px",
     letterSpacing: "0.0016em",
   },
+  childrenStyles: {
+    marginTop: "5px",
+  },
 };

@@ -1,8 +1,8 @@
 import React from "react";
 import { LabelWithIcon } from "../../atoms/LabelWithIcon/labelWithIcon";
-import { Typography } from "@mui/material";
+import { Box, Typography, Collapse } from "@mui/material";
 import { styles } from "./style";
-import { Collapse } from "@mui/material";
+import { colors } from "../../../styles/theme";
 
 export const PasswordValidator = ({ ...props }) => {
   const validator = props.validator || [];
@@ -15,6 +15,46 @@ export const PasswordValidator = ({ ...props }) => {
   }
   let errors1 = [];
   let errors2 = [];
+
+  const getParentView = (err) => {
+    let passes = 0;
+    err.children.map((value) => {
+      if (value.validate) {
+        ++passes;
+      }
+    });
+    return (
+      <Box>
+        <LabelWithIcon error={passes < 3} label={err.label} />
+        {getChildrenView(err.children)}
+      </Box>
+    );
+  };
+
+  const getChildrenView = (children) => {
+    return (
+      <ul>
+        {children.map((value, i) => {
+          return (
+            <li
+              key={i}
+              style={{ color: value.validate ? colors.green : colors.grey75 }}
+            >
+              <Typography
+                sx={{
+                  ...styles.textStyles,
+                  ...styles.childrenStyles,
+                  color: value.validate ? colors.green : colors.grey75,
+                }}
+              >
+                {value.label}
+              </Typography>
+            </li>
+          );
+        })}
+      </ul>
+    );
+  };
 
   return (
     <div
@@ -33,8 +73,8 @@ export const PasswordValidator = ({ ...props }) => {
             if (err.validate)
               props.validatePassword(errors2.push(err.validate));
           }
-          return err.text ? (
-            <Typography sx={styles.textStyles}>{err.label}</Typography>
+          return err.children ? (
+            getParentView(err)
           ) : (
             <LabelWithIcon key={i} error={err.validate} label={err.label} />
           );

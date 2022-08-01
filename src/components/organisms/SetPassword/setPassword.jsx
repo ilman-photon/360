@@ -50,7 +50,7 @@ const SetPasswordComponent = ({
   title,
   subtitle,
   passwordPlaceHolder = "Password",
-  confirmPasswordPlaceHolder =  "Confirm Password",
+  confirmPasswordPlaceHolder = "Confirm Password",
   ctaButtonLabel = "Create Account",
   showPasswordValidator = false,
 }) => {
@@ -76,57 +76,70 @@ const SetPasswordComponent = ({
   };
 
   const watchedPassword = watch("password", "");
-  const [watchedEmail] = watch(["email"]); // you can also target specific fields by their names
+  const [watchedEmail] = watch(["username"]); // you can also target specific fields by their names
 
   let lengthRegex = /^[^\s]{8,20}$/;
   let numberRegex = /[0-9]/;
   let alphabethRegex = /[A-Za-z]/;
+  let upperCaseRegex = /[A-Z]/;
+  let lowerCaseRegex = /[a-z]/;
   let specialRegex = /[@#$%^&-+=()]/;
   let hasTripleRegex = /([a-z\\d])\\1\\1/;
+
   const passwordValidator = [
     {
-      label: "Password length should range from 8 to 20 characters",
+      label: "Length: 8-20 characters",
       validate: !lengthRegex.test(watchedPassword),
       mandatory: true,
     },
     {
-      label: "Password should contain at least one numerical character (0-9)",
-      validate: !numberRegex.test(watchedPassword),
-      mandatory: true,
-    },
-    { label: "Contain at least 3 our of 4 types", text: true },
-    {
-      label: "Password should contain at least one alphabet (a-z)",
-      validate: !alphabethRegex.test(watchedPassword),
-    },
-    {
-      label: "Password should contain at least one special character",
-      validate: !specialRegex.test(watchedPassword),
+      label: "Contain at least 3 out of 4 types of characters below:",
+      passValidation: 3,
+      text: true,
+      children: [
+        {
+          label: "At least One Numeric",
+          validate: numberRegex.test(watchedPassword),
+        },
+        {
+          label: "At least One Upper case Alpha",
+          validate: upperCaseRegex.test(watchedPassword),
+        },
+        {
+          label: "At least One Lower case Alpha",
+          validate: lowerCaseRegex.test(watchedPassword),
+        },
+        {
+          label: "At least One Special character (no spaces)",
+          validate: specialRegex.test(watchedPassword),
+        },
+      ],
     },
     {
       label: "Password should not contain your username",
       validate: watchedPassword.indexOf(watchedEmail) > -1,
+      mandatory: true,
     },
     {
-      label:
-        "Password should not contain 3 or more identical characters consecutively",
+      label: "New password must not match current password",
       validate: hasTripleRegex.test(watchedPassword),
+      mandatory: true,
     },
   ];
   const isPasswordError = watchedPassword.length > 0;
 
   const is3of4 = (pass) => {
     let passes = 0;
-    if (alphabethRegex.test(pass)) {
+    if (numberRegex.test(pass)) {
       ++passes;
     }
     if (specialRegex.test(pass)) {
       ++passes;
     }
-    if (!pass.indexOf(watchedEmail) > -1) {
+    if (upperCaseRegex.test(pass) > -1) {
       ++passes;
     }
-    if (!hasTripleRegex.test(pass)) {
+    if (lowerCaseRegex.test(pass)) {
       ++passes;
     }
     return passes >= 3 ? true : false;
@@ -254,15 +267,25 @@ const SetPasswordComponent = ({
                 isLength: (v) => lengthRegex.test(v),
                 isAtLeastOneNumber: (v) => numberRegex.test(v),
                 is3of4: (v) => is3of4(v),
+                isContainUserName: () => {
+                  return !pass.indexOf(watchedEmail) > -1;
+                },
+                isNotPreviousPassword: (v) => {
+                  return hasTripleRegex.test(v);
+                },
               },
             }}
           />
-          {!showPasswordValidator ? getPasswordValidator({
-            passwordValidator,
-            showValidator: showPasswordValidator || isPasswordError,
-            watchedPassword,
-            validateErrorPassword,
-          }):<></>}
+          {!showPasswordValidator ? (
+            getPasswordValidator({
+              passwordValidator,
+              showValidator: showPasswordValidator || isPasswordError,
+              watchedPassword,
+              validateErrorPassword,
+            })
+          ) : (
+            <></>
+          )}
           <Controller
             name="confirmPassword"
             control={control}
@@ -288,12 +311,16 @@ const SetPasswordComponent = ({
             }}
             rules={{ required: t("errorEmptyField") }}
           />
-          {showPasswordValidator ? getPasswordValidator({
-            passwordValidator,
-            showValidator: showPasswordValidator || isPasswordError,
-            watchedPassword,
-            validateErrorPassword,
-          }):<></>}
+          {showPasswordValidator ? (
+            getPasswordValidator({
+              passwordValidator,
+              showValidator: showPasswordValidator || isPasswordError,
+              watchedPassword,
+              validateErrorPassword,
+            })
+          ) : (
+            <></>
+          )}
           <StyledButton
             type="submit"
             theme="patient"
