@@ -182,6 +182,12 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               },
             }}
           />
+          <StyledInput
+            type="dob"
+            id="dob"
+            label="Date of Birth"
+            variant="filled"
+          />
           <Controller
             name="email"
             control={control}
@@ -209,12 +215,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                 message: "Email is invalid",
               },
             }}
-          />
-          <StyledInput
-            type="dob"
-            id="dob"
-            label="Date of Birth"
-            variant="filled"
           />
           <Controller
             name="mobile"
