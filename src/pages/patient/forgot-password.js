@@ -23,7 +23,7 @@ let confirmationFormProps = {
   additional: null,
 };
 
-const modeOfCommuication = function (control) {
+const modeOfCommuicationUI = function (control) {
   const options = [
     { label: "Email", value: constants.EMAIL },
     { label: "Phone", value: constants.PHONE },
@@ -260,7 +260,7 @@ export default function ForgotPasswordPage() {
         //TO DO: Set props for one time link
         confirmationFormProps.title = t("titlePasswordReset");
         confirmationFormProps.subtitle = t("subtitlePasswordReset");
-        confirmationFormProps.additional = modeOfCommuication;
+        confirmationFormProps.additional = modeOfCommuicationUI;
         confirmationFormProps.buttonLabel = t("primaryButtonOneTime");
         confirmationFormProps.buttonIcon = <InsertLinkIcon />;
         confirmationFormProps.onCTAButtonClicked = function ({ data }) {
@@ -282,7 +282,7 @@ export default function ForgotPasswordPage() {
         //TO DO: Set props for one time link
         confirmationFormProps.title = t("titleOneTime");
         confirmationFormProps.subtitle = t("subtitleOneTime");
-        confirmationFormProps.additional = modeOfCommuication;
+        confirmationFormProps.additional = modeOfCommuicationUI;
         confirmationFormProps.buttonLabel = t("primaryButtonOneTime");
         confirmationFormProps.buttonIcon = <InsertLinkIcon />;
         confirmationFormProps.onCTAButtonClicked = function () {

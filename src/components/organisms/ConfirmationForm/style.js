@@ -10,6 +10,7 @@ export const styles = {
   },
   margin: {
     marginTop: "16px",
+    width:"100%"
   },
   marginDescription: {
     marginTop: "28px",

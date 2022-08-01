@@ -3,7 +3,8 @@
     "hello": "Welcome to Next.js!"
   },
   "Login": {
-    "formTitle": "Patient Login"
+    "formTitle": "Patient Login",
+    "forgotPasswordText": "Forgot Password?"
   },
   "ForgotPassword": {
     "title": "Forgot Password",
@@ -11,6 +12,7 @@
     "errorUsernameNotFound": "Patient with the given Username not found. Please make sure that you entered it correctly and try again",
     "errorInValidUserameOrPhone": "Enter a valid Email or Phone Number",
     "errorEmptyField": "This field is required",
+    "errorInvalidEmailPhone": "Enter a valid Email or Phone Number",
     "resetPasswordText": "Continue",
     "usernamePlaceHolder": "Email or Phone Number",
     "backButtonLink": "Back to Log in"
