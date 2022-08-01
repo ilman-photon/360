@@ -33,9 +33,9 @@ const SetPasswordComponent = ({
   username,
   title,
   subtitle,
-  passwordPlaceHolder = t("passwordPlaceHolder"),
-  confirmPasswordPlaceHolder = t("confirmPasswordPlaceHolder"),
-  ctaButtonLabel = t("ctaButtonLabel"),
+  passwordPlaceHolder = "Password", // t("passwordPlaceHolder"),
+  confirmPasswordPlaceHolder = "Confirm Password", // t("confirmPasswordPlaceHolder"),
+  ctaButtonLabel = "Create Account", // t("ctaButtonLabel"),
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "SetPassword" });
