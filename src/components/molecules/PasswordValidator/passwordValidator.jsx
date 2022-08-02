@@ -16,7 +16,7 @@ export const PasswordValidator = ({ ...props }) => {
   let errors1 = [];
   let errors2 = [];
 
-  const getParentView = (err) => {
+  const getParentView = (err, key) => {
     let passes = 0;
     err.children.map((value) => {
       if (value.validate) {
@@ -25,8 +25,12 @@ export const PasswordValidator = ({ ...props }) => {
     });
     const passesValidation = err.passesValidation || 3;
     return (
-      <Box>
-        <LabelWithIcon error={passes < passesValidation} label={err.label} />
+      <Box key={key}>
+        <LabelWithIcon
+          key={key}
+          error={passes < passesValidation}
+          label={err.label}
+        />
         {getChildrenView(err.children)}
       </Box>
     );
@@ -42,6 +46,7 @@ export const PasswordValidator = ({ ...props }) => {
               style={{ color: value.validate ? colors.green : colors.grey75 }}
             >
               <Typography
+                key={i}
                 sx={{
                   ...styles.textStyles,
                   ...styles.childrenStyles,
@@ -75,7 +80,7 @@ export const PasswordValidator = ({ ...props }) => {
               props.validatePassword(errors2.push(err.validate));
           }
           return err.children ? (
-            getParentView(err)
+            getParentView(err, i)
           ) : (
             <LabelWithIcon key={i} error={err.validate} label={err.label} />
           );

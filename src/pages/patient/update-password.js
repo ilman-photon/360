@@ -1,12 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "../../../styles/Login.module.css";
 import AuthLayout from "../../components/templates/authLayout";
-import SetPasswordComponent from "../../components/organisms/SetPassword/setPassword";
 import { useTranslation } from "react-i18next";
 import { useRouter } from "next/router";
 import constants from "../../utils/constants";
 import { Api } from "../api/api";
 import ConfirmationForm from "../../components/organisms/ConfirmationForm/confirmationForm";
+import dynamic from "next/dynamic";
+
+//Prevent html being match between server and client
+const SetPasswordComponent = dynamic(
+  () => import("../../components/organisms/SetPassword/setPassword"),
+  {
+    ssr: false,
+  }
+);
 
 const setUsernameFromQuery = function (route) {
   return route && route.query && route.query.username
