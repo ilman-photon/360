@@ -1,8 +1,12 @@
 import AuthLayout from "../../components/templates/authLayout";
-import Login from "../../components/organisms/Login/login";
 import Cookies from "universal-cookie";
 import { Api } from "../api/api";
+import dynamic from "next/dynamic";
 
+//Prevent html being match between server and client
+const Login = dynamic(() => import("../../components/organisms/Login/login"), {
+  ssr: false,
+});
 const loginProps = {
   OnLoginClicked: function (postbody, router, callback) {
     const api = new Api();
