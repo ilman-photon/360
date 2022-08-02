@@ -66,17 +66,19 @@ export default function UpdatePasswordPage() {
       <section className={styles.forgotPasswordComponentContainer}>
         {showUpdatePassword ? (
           <SetPasswordComponent
+            username={username}
             title={t("title")}
             showPostMessage={showPostMessage}
             setShowPostMessage={setShowPostMessage}
             onBackToLoginClicked={function (router) {
               router.push("/patient/login");
             }}
-            onCTAButtonClicked={onCallConfirmPasswordAPI}
+            onSetPasswordClicked={onCallConfirmPasswordAPI}
             passwordPlaceHolder={t("passwordPlaceHolder")}
             confirmPasswordPlaceHolder={t("confirmPasswordPlaceHolder")}
             ctaButtonLabel={t("ctaButtonLabel")}
             showPasswordValidator={true}
+            isUpdatePassword={true}
           />
         ) : (
           <></>

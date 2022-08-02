@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { LabelWithIcon } from "../../atoms/LabelWithIcon/labelWithIcon";
 import { useRouter } from "next/router";
 import { StyledInput } from "../../atoms/Input/input";
 import { StyledButton } from "../../atoms/Button/button";
@@ -10,7 +9,7 @@ import { useForm, Controller } from "react-hook-form";
 import { styles } from "./style";
 import { useTranslation } from "react-i18next";
 import FormMessage from "../../molecules/FormMessage/formMessage";
-import { Button, Link, Typography } from "@mui/material";
+import { Link, Typography } from "@mui/material";
 import { PasswordValidator } from "../../molecules/PasswordValidator/passwordValidator";
 
 const headingStyles = {
@@ -45,14 +44,14 @@ const SetPasswordComponent = ({
   onBackToLoginClicked,
   postMessage,
   formMessage,
-  OnSetPasswordClicked,
+  onSetPasswordClicked,
   username,
   title,
   subtitle,
+  isUpdatePassword = false,
   passwordPlaceHolder = "Password",
   confirmPasswordPlaceHolder = "Confirm Password",
-  ctaButtonLabel = "Create Account",
-  showPasswordValidator = false,
+  ctaButtonLabel = "Create Account"
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "SetPassword" });
@@ -62,8 +61,8 @@ const SetPasswordComponent = ({
     setValue("username", username);
   }, []);
 
-  const validateErrorPassword = (errors1 = [], errors2 = []) => {
-    return errors1.length === 0 && errors2.length <= 1 ? true : false;
+  const validateErrorPassword = (errors1 = [], errors2 = [], errorForkedValidation = []) => {
+    return errors1.length === 0 && errors2.length <= 1 && errorForkedValidation.length === 0
   };
 
   const validateConfirmPassword = (password, confirmPassword) => {
@@ -80,7 +79,6 @@ const SetPasswordComponent = ({
 
   let lengthRegex = /^[^\s]{8,20}$/;
   let numberRegex = /[0-9]/;
-  let alphabethRegex = /[A-Za-z]/;
   let upperCaseRegex = /[A-Z]/;
   let lowerCaseRegex = /[a-z]/;
   let specialRegex = /[@#$%^&-+=()]/;
@@ -94,7 +92,7 @@ const SetPasswordComponent = ({
     },
     {
       label: "Contain at least 3 out of 4 types of characters below:",
-      passValidation: 3,
+      passesValidation: 3,
       text: true,
       children: [
         {
@@ -117,7 +115,7 @@ const SetPasswordComponent = ({
     },
     {
       label: "Password should not contain your username",
-      validate: watchedPassword.indexOf(watchedEmail) > -1,
+      validate: watchedPassword.indexOf(!isUpdatePassword ? watchedEmail : username) > -1,
       mandatory: true,
     },
     {
@@ -146,25 +144,58 @@ const SetPasswordComponent = ({
   };
 
   const onSubmit = (data) => {
-    console.log({ data });
     if (data.password.toLowerCase() === data.confirmPassword.toLowerCase()) {
       const errors1 = [];
       const errors2 = [];
+      const errorForkedValidation = [];
       passwordValidator.forEach((err) => {
         if (err.mandatory) {
           if (err.validate) errors1.push(err.validate);
         } else {
           if (err.validate) errors2.push(err.validate);
         }
+
+        //Validation children validatior
+        if(err.children && err.children.length > 0){
+          let childrenValidation = 0
+          err.children.forEach((child) => {
+            if(child.validate){
+              ++childrenValidation
+            }
+          })
+
+          if(childrenValidation < (err.passesValidation || 3)){
+            errorForkedValidation.push(true)
+          }
+        }
       });
 
-      if (validateErrorPassword(errors1, errors2)) {
-        OnSetPasswordClicked(data);
+      if (validateErrorPassword(errors1, errors2, errorForkedValidation)) {
+        onSetPasswordClicked(data);
+      }else{
+        setError("confirmPassword", {
+          type: "custom",
+          message: t("passwordNotMeetRequirements"),
+        });
       }
     } else {
       validateConfirmPassword(data.password, data.confirmPassword);
     }
   };
+
+  const passwordRules = () =>{
+    return {
+      isLength: (v) => lengthRegex.test(v),
+      isAtLeastOneNumber: (v) => numberRegex.test(v),
+      is3of4: (v) => is3of4(v),
+      isContainUserName: () => {
+        return !pass.indexOf(watchedEmail) > -1;
+      },
+      isNotPreviousPassword: (v) => {
+        return hasTripleRegex.test(v);
+      },
+    }
+  }
 
   return (
     <Card className={globalStyles.container} sx={{ minWidth: 275, margin: 10 }}>
@@ -200,7 +231,7 @@ const SetPasswordComponent = ({
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
-          {username ? (
+          {!isUpdatePassword ? (
             <Controller
               name="username"
               control={control}
@@ -263,23 +294,13 @@ const SetPasswordComponent = ({
             }}
             rules={{
               required: "This field is required",
-              validate: {
-                isLength: (v) => lengthRegex.test(v),
-                isAtLeastOneNumber: (v) => numberRegex.test(v),
-                is3of4: (v) => is3of4(v),
-                isContainUserName: () => {
-                  return !pass.indexOf(watchedEmail) > -1;
-                },
-                isNotPreviousPassword: (v) => {
-                  return hasTripleRegex.test(v);
-                },
-              },
+              validate: !isUpdatePassword ? passwordRules : {},
             }}
           />
-          {!showPasswordValidator ? (
+          {!isUpdatePassword ? (
             getPasswordValidator({
               passwordValidator,
-              showValidator: showPasswordValidator || isPasswordError,
+              showValidator: isUpdatePassword || isPasswordError,
               watchedPassword,
               validateErrorPassword,
             })
@@ -309,12 +330,15 @@ const SetPasswordComponent = ({
                 />
               );
             }}
-            rules={{ required: t("errorEmptyField") }}
+            rules={{ 
+              required: t("errorEmptyField"),
+              validate: isUpdatePassword ? passwordRules : {}
+            }}
           />
-          {showPasswordValidator ? (
+          {isUpdatePassword ? (
             getPasswordValidator({
               passwordValidator,
-              showValidator: showPasswordValidator || isPasswordError,
+              showValidator: isUpdatePassword || isPasswordError,
               watchedPassword,
               validateErrorPassword,
             })

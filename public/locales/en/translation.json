@@ -44,6 +44,7 @@
     "errorEmptyField": "This field is required",
     "backButtonLink": "Back to Log in",
     "passwordNotMatch":"Passwords do not match",
+    "passwordNotMeetRequirements" :"Password does not meet requirements",
     "passwordPlaceHolder": "Password",
     "confirmPasswordPlaceHolder": "Confirm Password",
     "ctaButtonLabel": "Create Account"
