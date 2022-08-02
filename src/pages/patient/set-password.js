@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { useDispatch, useSelector } from "react-redux";
 import { resetFormMessage, setFormMessage } from "../../store";
 import Link from "next/link";
+import { Api } from "../api/api";
 import { useRouter } from "next/router";
 
 //Prevent html being match between server and client
@@ -20,50 +21,42 @@ export default function SetPasswordPage() {
 
   const formMessage = useSelector((state) => state.index.formMessage);
 
-  const OnSetPasswordClicked = async function (postbody, router) {
-    console.log({ postbody });
+  const OnSetPasswordClicked = async function (postbody, _router) {
+    console.log("set-password", { postbody });
     try {
       dispatch(resetFormMessage());
+      const api = new Api();
 
-      let response = {};
-      // dummy
-      if (postbody.password === "exp1redP@ss") {
-        dispatch(
-          setFormMessage({
-            success: false,
-            title: "Expired",
-            content: <>Your link is expired.</>,
-          })
-        );
+      const response = await api.client.post(
+        "/registrationsetpassword",
+        postbody
+      );
+      console.log({ response });
 
-        response = {
-          ResponseCode: 3003,
-          ResponseType: "failed",
-          status: 400,
-        };
-      } else {
-        dispatch(
-          setFormMessage({
-            success: true,
-            title: "Success",
-            content: <>You have successfully set your password</>,
-          })
-        );
-
-        response = {
-          ResponseCode: 3002,
-          ResponseType: "success",
-          status: 200,
-        };
-      }
-
-      if (response && response.status === 200) {
-        console.log({ response });
-      } else {
-        console.log({ error: response });
-      }
+      dispatch(
+        setFormMessage({
+          success: true,
+          title: "Success",
+          content: <>You have successfully set your password</>,
+        })
+      );
     } catch (err) {
       console.log({ err });
+
+      dispatch(
+        setFormMessage({
+          success: false,
+          title: "Error",
+          content: (
+            <>
+              {err.message}
+              <Link href="/patient/login">
+                <a style={{ textDecoration: "underline" }}>Login</a>
+              </Link>
+            </>
+          ),
+        })
+      );
     }
   };
   return (
@@ -72,7 +65,7 @@ export default function SetPasswordPage() {
         <SetPasswordComponent
           title={"Set Password"}
           subtitle={"Enter a password to setup your account."}
-          username={"Smith1@photon.com"}
+          username={username}
           formMessage={formMessage}
           OnSetPasswordClicked={OnSetPasswordClicked}
         />

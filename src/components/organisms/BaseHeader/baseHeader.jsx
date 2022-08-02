@@ -1,8 +1,7 @@
 import * as React from "react";
 import EyeCareLogo from "../../../assets/icons/eyeCareLogo.svg";
-import Link from "next/link";
 import { styles } from "./style";
-import { Button, ButtonGroup } from "@mui/material";
+import { Button } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Container from "@mui/material/Container";
 import Toolbar from "@mui/material/Toolbar";

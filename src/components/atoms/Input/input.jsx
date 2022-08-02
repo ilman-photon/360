@@ -1,7 +1,5 @@
 import { ThemeProvider, styled, alpha } from "@mui/material/styles";
-import React, { useEffect } from "react";
-import styles from "./input.module.scss";
-
+import React from "react";
 import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
@@ -14,7 +12,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import InputMask from "react-input-mask";
 
-import { colors, primaryTheme, secondaryTheme } from "../../../styles/theme";
+import { primaryTheme } from "../../../styles/theme";
 
 export const CustomFormControl = styled((props) => <FormControl {...props} />)(
   ({ theme }) => ({
@@ -45,8 +43,7 @@ export const CustomPasswordInput = styled((props) => (
         <InputAdornment position="end">
           <IconButton
             aria-label="toggle password visibility"
-            onClick={props.clickIcon}
-            onMouseDown={props.mouseDown}
+            {...props.customevent}
             edge="end"
           >
             {props.showPassword ? <VisibilityOff /> : <Visibility />}
@@ -148,9 +145,9 @@ export const CustomInput = styled(({ ...props }) => {
     event.preventDefault();
   };
 
-  return (
-    <>
-      {props.type === "password" ? (
+  switch (props.type) {
+    case "password":
+      return (
         <>
           <CustomFormControl sx={{ m: 1 }} variant="filled">
             <CustomPasswordInput
@@ -158,8 +155,10 @@ export const CustomInput = styled(({ ...props }) => {
               variant="filled"
               id={props.id}
               type={showPassword}
-              clickIcon={handleClickShowPassword}
-              mouseDown={handleMouseDownPassword}
+              customevent={{
+                onClick: handleClickShowPassword,
+                onMouseDown: handleMouseDownPassword,
+              }}
               onChange={props.onChange}
               placeholder={props.placeholder}
               label={props.label}
@@ -169,10 +168,13 @@ export const CustomInput = styled(({ ...props }) => {
             />
           </CustomFormControl>
         </>
-      ) : props.type === "dob" ? (
+      );
+    case "dob":
+      return (
         <>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
+              disableFuture={props.disableFuture}
               label={props.label}
               onChange={() => {
                 // This is intentional
@@ -193,7 +195,9 @@ export const CustomInput = styled(({ ...props }) => {
             />
           </LocalizationProvider>
         </>
-      ) : props.type === "phone" ? (
+      );
+    case "phone":
+      return (
         <>
           <CustomFormControl sx={{ m: 1 }} variant="filled">
             <InputMask mask="(999) 999-9999" maskChar=" " {...props}>
@@ -201,7 +205,10 @@ export const CustomInput = styled(({ ...props }) => {
             </InputMask>
           </CustomFormControl>
         </>
-      ) : (
+      );
+
+    default:
+      return (
         <>
           <RedditTextField
             variant="filled"
@@ -215,11 +222,10 @@ export const CustomInput = styled(({ ...props }) => {
             {...props}
           />
         </>
-      )}
-    </>
-  );
+      );
+  }
 })(
-  ({ theme }) => `
+  () => `
   color: white;
   `
 );
