@@ -23,7 +23,7 @@ export const PasswordValidator = ({ ...props }) => {
         ++passes;
       }
     });
-    const passesValidation = err.passesValidation || 3
+    const passesValidation = err.passesValidation || 3;
     return (
       <Box>
         <LabelWithIcon error={passes < passesValidation} label={err.label} />

@@ -51,14 +51,22 @@ const SetPasswordComponent = ({
   isUpdatePassword = false,
   passwordPlaceHolder = "Password",
   confirmPasswordPlaceHolder = "Confirm Password",
-  ctaButtonLabel = "Create Account"
+  ctaButtonLabel = "Create Account",
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "SetPassword" });
   const { handleSubmit, control, watch, setError, setValue } = useForm();
 
-  const validateErrorPassword = (errors1 = [], errors2 = [], errorForkedValidation = []) => {
-    return errors1.length === 0 && errors2.length <= 1 && errorForkedValidation.length === 0
+  const validateErrorPassword = (
+    errors1 = [],
+    errors2 = [],
+    errorForkedValidation = []
+  ) => {
+    return (
+      errors1.length === 0 &&
+      errors2.length <= 1 &&
+      errorForkedValidation.length === 0
+    );
   };
 
   const validateConfirmPassword = (password, confirmPassword) => {
@@ -111,7 +119,9 @@ const SetPasswordComponent = ({
     },
     {
       label: "Password should not contain your username",
-      validate: watchedPassword.indexOf(!isUpdatePassword ? watchedEmail : username) > -1,
+      validate:
+        watchedPassword.indexOf(!isUpdatePassword ? watchedEmail : username) >
+        -1,
       mandatory: true,
     },
     {
@@ -152,23 +162,23 @@ const SetPasswordComponent = ({
         }
 
         //Validation children validatior
-        if(err.children && err.children.length > 0){
-          let childrenValidation = 0
+        if (err.children && err.children.length > 0) {
+          let childrenValidation = 0;
           err.children.forEach((child) => {
-            if(child.validate){
-              ++childrenValidation
+            if (child.validate) {
+              ++childrenValidation;
             }
-          })
+          });
 
-          if(childrenValidation < (err.passesValidation || 3)){
-            errorForkedValidation.push(true)
+          if (childrenValidation < (err.passesValidation || 3)) {
+            errorForkedValidation.push(true);
           }
         }
       });
 
       if (validateErrorPassword(errors1, errors2, errorForkedValidation)) {
         onSetPasswordClicked(data);
-      }else{
+      } else {
         setError("confirmPassword", {
           type: "custom",
           message: t("passwordNotMeetRequirements"),
@@ -179,7 +189,7 @@ const SetPasswordComponent = ({
     }
   };
 
-  const passwordRules = () =>{
+  const passwordRules = () => {
     return {
       isLength: (v) => lengthRegex.test(v),
       isAtLeastOneNumber: (v) => numberRegex.test(v),
@@ -190,8 +200,8 @@ const SetPasswordComponent = ({
       isNotPreviousPassword: (v) => {
         return hasTripleRegex.test(v);
       },
-    }
-  }
+    };
+  };
 
   return (
     <Card className={globalStyles.container} sx={{ minWidth: 275, margin: 10 }}>
@@ -326,9 +336,9 @@ const SetPasswordComponent = ({
                 />
               );
             }}
-            rules={{ 
+            rules={{
               required: t("errorEmptyField"),
-              validate: isUpdatePassword ? passwordRules : {}
+              validate: isUpdatePassword ? passwordRules : {},
             }}
           />
           {isUpdatePassword ? (
