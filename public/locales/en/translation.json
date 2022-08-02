@@ -59,6 +59,7 @@
     "errorEmptyField": "This field is required",
     "backButtonLink": "Back to Log in",
     "passwordNotMatch":"Passwords do not match",
+    "passwordNotMeetRequirements" :"Password does not meet requirements",
     "passwordPlaceHolder": "Password",
     "confirmPasswordPlaceHolder": "Confirm Password",
     "ctaButtonLabel": "Create Account"
@@ -94,6 +95,9 @@
     "title": "Update Password",
     "passwordPlaceHolder":"New password",
     "confirmPasswordPlaceHolder": "Confirm Password",
-    "ctaButtonLabel": "Update"
+    "ctaButtonLabel": "Update",
+    "successUpdatePassword": "Password Updated",
+    "postMessage": "Password has been updated",
+    "backButtonLink": "Back to Log in"
   }
 }
