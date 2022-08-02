@@ -11,6 +11,7 @@ import globalStyles from "../../../styles/Global.module.scss";
 import { PasswordValidator } from "../../molecules/PasswordValidator/passwordValidator";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import { styles } from "./style";
+import { Regex } from "../../../utils/regex";
 
 export default function Register({ OnRegisterClicked, formMessage = null }) {
   const { handleSubmit, control, watch } = useForm({
@@ -59,30 +60,25 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
     );
   };
 
-  let lengthRegex = /^[^\s]{8,20}$/;
-  let numberRegex = /[0-9]/;
-  let alphabethRegex = /[A-Za-z]/;
-  let specialRegex = /[@#$%^&-+=()]/;
-  let hasTripleRegex = /([a-z\\d])\\1\\1/;
   const passwordValidator = [
     {
       label: "Password length should range from 8 to 20 characters",
-      validate: !lengthRegex.test(watchedPassword),
+      validate: !Regex.lengthRegex.test(watchedPassword),
       mandatory: true,
     },
     {
       label: "Password should contain at least one numerical character (0-9)",
-      validate: !numberRegex.test(watchedPassword),
+      validate: !Regex.numberRegex.test(watchedPassword),
       mandatory: true,
     },
     { label: "Contain at least 3 our of 4 types", text: true },
     {
       label: "Password should contain at least one alphabet (a-z)",
-      validate: !alphabethRegex.test(watchedPassword),
+      validate: !Regex.alphabethRegex.test(watchedPassword),
     },
     {
       label: "Password should contain at least one special character",
-      validate: !specialRegex.test(watchedPassword),
+      validate: !Regex.specialRegex.test(watchedPassword),
     },
     {
       label: "Password should not contain your username",
@@ -91,7 +87,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
     {
       label:
         "Password should not contain 3 or more identical characters consecutively",
-      validate: hasTripleRegex.test(watchedPassword),
+      validate: Regex.hasTripleRegex.test(watchedPassword),
     },
   ];
   const isPasswordError = watchedPassword.length > 0; // && passwordValidator.filter(v => v.validate).length > 0
@@ -177,7 +173,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             rules={{
               required: "Last name required",
               pattern: {
-                value: /^([A-Za-z ])+$/i,
+                value: Regex.hasAlpahabet,
                 message: "Last name is invalid",
               },
             }}
@@ -239,7 +235,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             rules={{
               required: "Mobile Number required",
               pattern: {
-                value: /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/i,
+                value: Regex.isValidPhoneFormat,
                 message: "Mobile Number is invalid",
               },
             }}
