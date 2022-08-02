@@ -4,6 +4,21 @@
   },
   "Login": {
     "formTitle": "Patient Login",
+    "emailUserLabel" : "Email or Phone Number",
+    "passwordLabel": "Password",
+    "userLabel" : "Email Required",
+    "forgotPassword" : "Forgot Password?",
+    "emailRequiredLabel" : "Enter a valid Email or Phone Number",
+    "thisFieldRequired" : "This field is required",
+    "passwordRequiredLabel" : "Enter a valid Password",
+    "forgotPasswordButtonLabel" : "Forgot Password ",
+    "continueAsPasswordButtonLabel" : "Continue as a guest",
+    "loginButtonLabel" : "Login",
+    "createAccountButtonLabel" : "Create Account",
+    "dontHaveAccountLabel" : "Dont have an account?"
+  },
+  "Input": {
+    "usernameLable": "Patient Login",
     "forgotPasswordText": "Forgot Password?"
   },
   "ForgotPassword": {
