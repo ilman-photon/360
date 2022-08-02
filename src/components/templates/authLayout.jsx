@@ -18,6 +18,7 @@ export default function Layout({
   const isPatient = theme === "patient";
   const pathImageWebsite = "/desktop_3x.png";
   const pathImageMobile = "/MicrosoftTeams-image (2).png";
+  const backgroundImage = "/bg.png";
   const matches = useMediaQuery("(max-width: 768px)");
   if (!title) {
     title = `EPP Portal`;
@@ -56,7 +57,8 @@ export default function Layout({
             <div className={styles.imageBannerContainer}>
               <Image
                 alt="auth-image"
-                src={!matches ? pathImageWebsite : pathImageMobile}
+                //src={!matches ? pathImageWebsite : pathImageMobile}
+                src={backgroundImage}
                 layout="fill"
               />
             </div>

@@ -82,37 +82,49 @@
   }
 }
 
-.imageBannerContainer > span > img {
-  position: fixed !important;
-  width: auto !important;
-  height: 100vh !important;
-  right: 0 !important;
-  object-fit: contain;
-  min-width: unset !important;
-  max-width: unset !important;
-  left: unset !important;
-  min-height: unset !important;
-  max-height: unset !important;
-  @media (max-width: 768px) {
-    width: 100vw !important;
-    height: auto !important;
-    bottom: unset !important;
-    position: absolute !important;
-  }
-}
-
-// .imageBanner {
-//   height: 100vh;
+//styling for image without rounded
+// .imageBannerContainer > span > img {
+//   position: fixed !important;
+//   width: auto !important;
+//   height: 100vh !important;
+//   right: 0 !important;
 //   object-fit: contain;
-//   border-bottom-left-radius: 25% 100%;
-//   border-top-left-radius: 25% 100%;
-
+//   min-width: unset !important;
+//   max-width: unset !important;
+//   left: unset !important;
+//   min-height: unset !important;
+//   max-height: unset !important;
 //   @media (max-width: 768px) {
-//     height: 35vh;
-//     width: 100vw;
-//     object-fit: cover;
-//     border-top-left-radius: unset;
-//     border-bottom-left-radius: 100% 80%;
-//     border-bottom-right-radius: 100% 80%;
+//     width: 100vw !important;
+//     height: auto !important;
+//     bottom: unset !important;
+//     position: absolute !important;
 //   }
 // }
+
+.imageBannerContainer > span > img {
+  position: fixed !important;
+  width: 125vh !important;
+  height: 125vh !important;
+  left: 50vw !important;
+  top: 64px !important;
+  -o-object-fit: contain;
+  object-fit: cover;
+  min-width: unset !important;
+  max-width: unset !important;
+  min-height: unset !important;
+  max-height: unset !important;
+  border-radius: 100% 100%;
+  @media (max-width: 768px) {
+    width: 124vw !important;
+    height: 35vh !important;
+    right: -11.5vw !important;
+    bottom: unset !important;
+    position: absolute !important;
+    top: 0px !important;
+    left: unset !important;
+    border-radius: 0;
+    border-bottom-left-radius: 100% 80%;
+    border-bottom-right-radius: 100% 80%;
+  }
+}
