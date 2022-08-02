@@ -74,7 +74,7 @@ const ConfirmationForm = ({
             mode={butttonMode}
             size={constants.LARGE}
             gradient={false}
-            style={styles.margin}
+            style={{...styles.margin, marginTop: additional ? "0px": "16px"}}
           >
             {buttonIcon}
             {buttonLabel}

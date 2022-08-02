@@ -11,7 +11,14 @@ export default function RowRadioButtonsGroup({ helperText = null, ...props }) {
 
   return (
     <FormControl {...props}>
-      <FormLabel id="row-radio-buttons-group-label">{props.label}</FormLabel>
+      <FormLabel
+        id="row-radio-buttons-group-label"
+        sx={{
+          fontSize: 16,
+        }}
+      >
+        {props.label}
+      </FormLabel>
       <RadioGroup
         row
         aria-labelledby="row-radio-buttons-group-label"
@@ -22,8 +29,21 @@ export default function RowRadioButtonsGroup({ helperText = null, ...props }) {
             <FormControlLabel
               key={idx}
               value={option.value}
-              control={<Radio />}
+              control={
+                <Radio
+                  sx={{
+                    ".MuiSvgIcon-root": {
+                      width: "0.75em",
+                    },
+                  }}
+                />
+              }
               label={option.label}
+              sx={{
+                ".MuiTypography-root": {
+                  fontSize: 14,
+                },
+              }}
             />
           );
         })}
