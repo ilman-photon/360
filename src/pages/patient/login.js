@@ -51,14 +51,5 @@ export default function AuthPage() {
 }
 
 AuthPage.getLayout = function getLayout(page) {
-  return (
-    <AuthLayout
-      showMobileImage={true}
-      imageSrc={
-        "https://c4.wallpaperflare.com/wallpaper/930/115/679/panda-4k-high-quality-hd-wallpaper-preview.jpg"
-      }
-    >
-      {page}
-    </AuthLayout>
-  );
+  return <AuthLayout showMobileImage={true}>{page}</AuthLayout>;
 };

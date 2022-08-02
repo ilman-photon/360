@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import styles from "../../../styles/Login.module.css";
 import AuthLayout from "../../components/templates/authLayout";
-import ForgotPassword from "../../components/organisms/ForgotPassword/forgotPassword";
 import SelectOptionForm from "../../components/organisms/SelectOptionForm/selectOptionForm";
 import PasswordSecurityQuestion from "../../components/organisms/PasswordSecurityQuestion/passwordSecurityQuestion";
 import ConfirmationForm from "../../components/organisms/ConfirmationForm/confirmationForm";
@@ -11,6 +10,15 @@ import RowRadioButtonsGroup from "../../components/atoms/RowRadioButtonsGroup/ro
 import InsertLinkIcon from "@mui/icons-material/InsertLink";
 import { Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import dynamic from "next/dynamic";
+
+//Prevent html being match between server and client
+const ForgotPassword = dynamic(
+  () => import("../../components/organisms/ForgotPassword/forgotPassword"),
+  {
+    ssr: false,
+  }
+);
 
 let confirmationFormProps = {
   title: constants.EMPTY_STRING,

@@ -1,3 +1,5 @@
+import { colors } from "../../../styles/theme";
+
 export const styles = {
   cardContentStyle: {
     display: "flex",
@@ -28,5 +30,8 @@ export const styles = {
   },
   link: {
     cursor: "pointer",
+  },
+  descriptionStyle: {
+    color: colors.darkGreen,
   },
 };
