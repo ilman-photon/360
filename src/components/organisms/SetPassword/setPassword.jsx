@@ -57,10 +57,6 @@ const SetPasswordComponent = ({
   const { t } = useTranslation("translation", { keyPrefix: "SetPassword" });
   const { handleSubmit, control, watch, setError, setValue } = useForm();
 
-  useEffect(() => {
-    setValue("username", username);
-  }, []);
-
   const validateErrorPassword = (errors1 = [], errors2 = [], errorForkedValidation = []) => {
     return errors1.length === 0 && errors2.length <= 1 && errorForkedValidation.length === 0
   };
@@ -245,7 +241,7 @@ const SetPasswordComponent = ({
                     type="text"
                     id="username"
                     label="Username"
-                    value={value}
+                    value={username}
                     // style={styles.margin}
                     disabled
                     onChange={onChange}

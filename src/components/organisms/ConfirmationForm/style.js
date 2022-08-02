@@ -33,5 +33,5 @@ export const styles = {
   },
   descriptionStyle: {
     color: colors.darkGreen,
-  },
+  }
 };
