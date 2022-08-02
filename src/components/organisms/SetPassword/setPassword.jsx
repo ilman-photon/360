@@ -11,6 +11,7 @@ import { useTranslation } from "react-i18next";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import { Link, Typography } from "@mui/material";
 import { PasswordValidator } from "../../molecules/PasswordValidator/passwordValidator";
+import { Regex } from "../../../utils/regex";
 
 const headingStyles = {
   marginBottom: 30,
@@ -55,7 +56,7 @@ const SetPasswordComponent = ({
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "SetPassword" });
-  const { handleSubmit, control, watch, setError, setValue } = useForm();
+  const { handleSubmit, control, watch, setError } = useForm();
 
   const validateErrorPassword = (
     errors1 = [],
@@ -81,17 +82,10 @@ const SetPasswordComponent = ({
   const watchedPassword = watch("password", "");
   const [watchedEmail] = watch(["username"]); // you can also target specific fields by their names
 
-  let lengthRegex = /^[^\s]{8,20}$/;
-  let numberRegex = /[0-9]/;
-  let upperCaseRegex = /[A-Z]/;
-  let lowerCaseRegex = /[a-z]/;
-  let specialRegex = /[@#$%^&-+=()]/;
-  let hasTripleRegex = /([a-z\\d])\\1\\1/;
-
   const passwordValidator = [
     {
       label: "Length: 8-20 characters",
-      validate: !lengthRegex.test(watchedPassword),
+      validate: !Regex.lengthRegex.test(watchedPassword),
       mandatory: true,
     },
     {
@@ -101,19 +95,19 @@ const SetPasswordComponent = ({
       children: [
         {
           label: "At least One Numeric",
-          validate: numberRegex.test(watchedPassword),
+          validate: Regex.numberRegex.test(watchedPassword),
         },
         {
           label: "At least One Upper case Alpha",
-          validate: upperCaseRegex.test(watchedPassword),
+          validate: Regex.upperCaseRegex.test(watchedPassword),
         },
         {
           label: "At least One Lower case Alpha",
-          validate: lowerCaseRegex.test(watchedPassword),
+          validate: Regex.lowerCaseRegex.test(watchedPassword),
         },
         {
           label: "At least One Special character (no spaces)",
-          validate: specialRegex.test(watchedPassword),
+          validate: Regex.specialRegex.test(watchedPassword),
         },
       ],
     },
@@ -126,7 +120,7 @@ const SetPasswordComponent = ({
     },
     {
       label: "New password must not match current password",
-      validate: hasTripleRegex.test(watchedPassword),
+      validate: Regex.hasTripleRegex.test(watchedPassword),
       mandatory: true,
     },
   ];
@@ -134,16 +128,16 @@ const SetPasswordComponent = ({
 
   const is3of4 = (pass) => {
     let passes = 0;
-    if (numberRegex.test(pass)) {
+    if (Regex.numberRegex.test(pass)) {
       ++passes;
     }
-    if (specialRegex.test(pass)) {
+    if (Regex.specialRegex.test(pass)) {
       ++passes;
     }
-    if (upperCaseRegex.test(pass) > -1) {
+    if (Regex.upperCaseRegex.test(pass) > -1) {
       ++passes;
     }
-    if (lowerCaseRegex.test(pass)) {
+    if (Regex.lowerCaseRegex.test(pass)) {
       ++passes;
     }
     return passes >= 3 ? true : false;

@@ -21,7 +21,7 @@ export default function SetPasswordPage() {
 
   const formMessage = useSelector((state) => state.index.formMessage);
 
-  const OnSetPasswordClicked = async function (postbody, router) {
+  const OnSetPasswordClicked = async function (postbody, _router) {
     console.log("set-password", { postbody });
     try {
       dispatch(resetFormMessage());
@@ -40,44 +40,6 @@ export default function SetPasswordPage() {
           content: <>You have successfully set your password</>,
         })
       );
-
-      // dummy
-      // let response = {};
-      // if (postbody.password === "exp1redP@ss") {
-      //   dispatch(
-      //     setFormMessage({
-      //       success: false,
-      //       title: "Expired",
-      //       content: <>Your link is expired.</>,
-      //     })
-      //   );
-
-      //   response = {
-      //     ResponseCode: 3003,
-      //     ResponseType: "failed",
-      //     status: 400,
-      //   };
-      // } else {
-      //   dispatch(
-      //     setFormMessage({
-      //       success: true,
-      //       title: "Success",
-      //       content: <>You have successfully set your password</>,
-      //     })
-      //   );
-
-      //   response = {
-      //     ResponseCode: 3002,
-      //     ResponseType: "success",
-      //     status: 200,
-      //   };
-      // }
-
-      // if (response && response.status === 200) {
-      //   console.log({ response });
-      // } else {
-      //   console.log({ error: response });
-      // }
     } catch (err) {
       console.log({ err });
 

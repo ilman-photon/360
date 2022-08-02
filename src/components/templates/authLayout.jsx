@@ -4,7 +4,6 @@ import Container from "@mui/material/Container";
 import { patientTypography, providerTypography } from "../../styles/theme";
 import { ThemeProvider } from "@mui/material/styles";
 import Image from "next/image";
-import dynamic from "next/dynamic";
 import BaseHeader from "../organisms/BaseHeader/baseHeader";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
@@ -21,6 +20,9 @@ export default function Layout({
   const matches = useMediaQuery("(max-width: 768px)");
   if (!title) {
     title = `EPP Portal`;
+  }
+  if (!imageSrc) {
+    imageSrc = !matches ? pathImageWebsite : pathImageMobile;
   }
   return (
     <>
@@ -54,11 +56,7 @@ export default function Layout({
             }}
           >
             <div className={styles.imageBannerContainer}>
-              <Image
-                alt="auth-image"
-                src={!matches ? pathImageWebsite : pathImageMobile}
-                layout="fill"
-              />
+              <Image alt="auth-image" src={imageSrc} layout="fill" />
             </div>
           </Container>
         </div>
