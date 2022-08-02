@@ -3,7 +3,7 @@ import styles from "../../../styles/Login.module.css";
 import AuthLayout from "../../components/templates/authLayout";
 import ForgotPassword from "../../components/organisms/ForgotPassword/forgotPassword";
 import SelectOptionForm from "../../components/organisms/SelectOptionForm/selectOptionForm";
-import PasswordSecurityQuestion from "../../components/organisms/PasswordSecurityQuestion/PasswordSecurityQuestion";
+import PasswordSecurityQuestion from "../../components/organisms/PasswordSecurityQuestion/passwordSecurityQuestion";
 import ConfirmationForm from "../../components/organisms/ConfirmationForm/confirmationForm";
 import { Api } from "../api/api";
 import constants from "../../utils/constants";
