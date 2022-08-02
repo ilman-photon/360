@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
-import { LabelWithIcon } from "../../atoms/LabelWithIcon/labelWithIcon";
 import { useRouter } from "next/router";
 import { StyledInput } from "../../atoms/Input/input";
 import { StyledButton } from "../../atoms/Button/button";
@@ -10,7 +9,7 @@ import { useForm, Controller } from "react-hook-form";
 import { styles } from "./style";
 import { useTranslation } from "react-i18next";
 import FormMessage from "../../molecules/FormMessage/formMessage";
-import { Button, Link, Typography } from "@mui/material";
+import { Link, Typography } from "@mui/material";
 import { PasswordValidator } from "../../molecules/PasswordValidator/passwordValidator";
 
 const headingStyles = {
@@ -23,30 +22,47 @@ const cardContentStyle = {
   padding: 0,
 };
 
+const getPasswordValidator = function ({
+  passwordValidator,
+  showValidator,
+  watchedPassword,
+  validateErrorPassword,
+}) {
+  return (
+    <PasswordValidator
+      validator={passwordValidator}
+      isShowValidation={showValidator}
+      password={watchedPassword}
+      validatePassword={validateErrorPassword}
+    />
+  );
+};
+
 const SetPasswordComponent = ({
   showPostMessage,
   setShowPostMessage,
   onBackToLoginClicked,
   postMessage,
   formMessage,
-  OnSetPasswordClicked,
+  onSetPasswordClicked,
   username,
   title,
   subtitle,
-  passwordPlaceHolder = "Password", // t("passwordPlaceHolder"),
-  confirmPasswordPlaceHolder = "Confirm Password", // t("confirmPasswordPlaceHolder"),
-  ctaButtonLabel = "Create Account", // t("ctaButtonLabel"),
+  isUpdatePassword = false,
+  passwordPlaceHolder = "Password",
+  confirmPasswordPlaceHolder = "Confirm Password",
+  ctaButtonLabel = "Create Account"
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "SetPassword" });
   const { handleSubmit, control, watch, setError, setValue } = useForm();
 
-  useEffect(()=> {
-    setValue("username", username)
-  }, [])
+  useEffect(() => {
+    setValue("username", username);
+  }, []);
 
-  const validateErrorPassword = (errors1 = [], errors2 = []) => {
-    return errors1.length === 0 && errors2.length <= 1 ? true : false;
+  const validateErrorPassword = (errors1 = [], errors2 = [], errorForkedValidation = []) => {
+    return errors1.length === 0 && errors2.length <= 1 && errorForkedValidation.length === 0
   };
 
   const validateConfirmPassword = (password, confirmPassword) => {
@@ -59,82 +75,127 @@ const SetPasswordComponent = ({
   };
 
   const watchedPassword = watch("password", "");
-  const [watchedEmail] = watch(["email"]); // you can also target specific fields by their names
+  const [watchedEmail] = watch(["username"]); // you can also target specific fields by their names
 
   let lengthRegex = /^[^\s]{8,20}$/;
   let numberRegex = /[0-9]/;
-  let alphabethRegex = /[A-Za-z]/;
+  let upperCaseRegex = /[A-Z]/;
+  let lowerCaseRegex = /[a-z]/;
   let specialRegex = /[@#$%^&-+=()]/;
   let hasTripleRegex = /([a-z\\d])\\1\\1/;
+
   const passwordValidator = [
     {
-      label: "Password length should range from 8 to 20 characters",
+      label: "Length: 8-20 characters",
       validate: !lengthRegex.test(watchedPassword),
       mandatory: true,
     },
     {
-      label: "Password should contain at least one numerical character (0-9)",
-      validate: !numberRegex.test(watchedPassword),
-      mandatory: true,
-    },
-    { label: "Contain at least 3 our of 4 types", text: true },
-    {
-      label: "Password should contain at least one alphabet (a-z)",
-      validate: !alphabethRegex.test(watchedPassword),
-    },
-    {
-      label: "Password should contain at least one special character",
-      validate: !specialRegex.test(watchedPassword),
+      label: "Contain at least 3 out of 4 types of characters below:",
+      passesValidation: 3,
+      text: true,
+      children: [
+        {
+          label: "At least One Numeric",
+          validate: numberRegex.test(watchedPassword),
+        },
+        {
+          label: "At least One Upper case Alpha",
+          validate: upperCaseRegex.test(watchedPassword),
+        },
+        {
+          label: "At least One Lower case Alpha",
+          validate: lowerCaseRegex.test(watchedPassword),
+        },
+        {
+          label: "At least One Special character (no spaces)",
+          validate: specialRegex.test(watchedPassword),
+        },
+      ],
     },
     {
       label: "Password should not contain your username",
-      validate: watchedPassword.indexOf(watchedEmail) > -1,
+      validate: watchedPassword.indexOf(!isUpdatePassword ? watchedEmail : username) > -1,
+      mandatory: true,
     },
     {
-      label:
-        "Password should not contain 3 or more identical characters consecutively",
+      label: "New password must not match current password",
       validate: hasTripleRegex.test(watchedPassword),
+      mandatory: true,
     },
   ];
   const isPasswordError = watchedPassword.length > 0;
 
   const is3of4 = (pass) => {
     let passes = 0;
-    if (alphabethRegex.test(pass)) {
+    if (numberRegex.test(pass)) {
       ++passes;
     }
     if (specialRegex.test(pass)) {
       ++passes;
     }
-    if (!pass.indexOf(watchedEmail) > -1) {
+    if (upperCaseRegex.test(pass) > -1) {
       ++passes;
     }
-    if (!hasTripleRegex.test(pass)) {
+    if (lowerCaseRegex.test(pass)) {
       ++passes;
     }
     return passes >= 3 ? true : false;
   };
 
   const onSubmit = (data) => {
-    console.log({ data });
     if (data.password.toLowerCase() === data.confirmPassword.toLowerCase()) {
       const errors1 = [];
       const errors2 = [];
+      const errorForkedValidation = [];
       passwordValidator.forEach((err) => {
         if (err.mandatory) {
           if (err.validate) errors1.push(err.validate);
         } else {
           if (err.validate) errors2.push(err.validate);
         }
+
+        //Validation children validatior
+        if(err.children && err.children.length > 0){
+          let childrenValidation = 0
+          err.children.forEach((child) => {
+            if(child.validate){
+              ++childrenValidation
+            }
+          })
+
+          if(childrenValidation < (err.passesValidation || 3)){
+            errorForkedValidation.push(true)
+          }
+        }
       });
 
-      if (validateErrorPassword(errors1, errors2)) {
-        OnSetPasswordClicked(data);
+      if (validateErrorPassword(errors1, errors2, errorForkedValidation)) {
+        onSetPasswordClicked(data);
+      }else{
+        setError("confirmPassword", {
+          type: "custom",
+          message: t("passwordNotMeetRequirements"),
+        });
       }
     } else {
       validateConfirmPassword(data.password, data.confirmPassword);
     }
   };
+
+  const passwordRules = () =>{
+    return {
+      isLength: (v) => lengthRegex.test(v),
+      isAtLeastOneNumber: (v) => numberRegex.test(v),
+      is3of4: (v) => is3of4(v),
+      isContainUserName: () => {
+        return !pass.indexOf(watchedEmail) > -1;
+      },
+      isNotPreviousPassword: (v) => {
+        return hasTripleRegex.test(v);
+      },
+    }
+  }
 
   return (
     <Card className={globalStyles.container} sx={{ minWidth: 275, margin: 10 }}>
@@ -170,7 +231,7 @@ const SetPasswordComponent = ({
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
-          {/* {username ? ( */}
+          {!isUpdatePassword ? (
             <Controller
               name="username"
               control={control}
@@ -206,9 +267,9 @@ const SetPasswordComponent = ({
                 // },
               }}
             />
-          {/* ) : (
+          ) : (
             <></>
-          )} */}
+          )}
           <Controller
             name="password"
             control={control}
@@ -233,19 +294,19 @@ const SetPasswordComponent = ({
             }}
             rules={{
               required: "This field is required",
-              validate: {
-                isLength: (v) => lengthRegex.test(v),
-                isAtLeastOneNumber: (v) => numberRegex.test(v),
-                is3of4: (v) => is3of4(v),
-              },
+              validate: !isUpdatePassword ? passwordRules : {},
             }}
           />
-          <PasswordValidator
-            validator={passwordValidator}
-            isShowValidation={isPasswordError}
-            password={watchedPassword}
-            validatePassword={validateErrorPassword}
-          />
+          {!isUpdatePassword ? (
+            getPasswordValidator({
+              passwordValidator,
+              showValidator: isUpdatePassword || isPasswordError,
+              watchedPassword,
+              validateErrorPassword,
+            })
+          ) : (
+            <></>
+          )}
           <Controller
             name="confirmPassword"
             control={control}
@@ -269,8 +330,21 @@ const SetPasswordComponent = ({
                 />
               );
             }}
-            rules={{ required: t("errorEmptyField") }}
+            rules={{ 
+              required: t("errorEmptyField"),
+              validate: isUpdatePassword ? passwordRules : {}
+            }}
           />
+          {isUpdatePassword ? (
+            getPasswordValidator({
+              passwordValidator,
+              showValidator: isUpdatePassword || isPasswordError,
+              watchedPassword,
+              validateErrorPassword,
+            })
+          ) : (
+            <></>
+          )}
           <StyledButton
             type="submit"
             theme="patient"
