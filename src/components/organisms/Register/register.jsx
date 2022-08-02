@@ -31,16 +31,16 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
 
   const is3of4 = (pass) => {
     let passes = 0;
-    if (alphabethRegex.test(pass)) {
+    if (Regex.alphabethRegex.test(pass)) {
       ++passes;
     }
-    if (specialRegex.test(pass)) {
+    if (Regex.specialRegex.test(pass)) {
       ++passes;
     }
     if (pass.indexOf(watchedEmail || watchedMobile) > -1) {
       ++passes;
     }
-    if (!hasTripleRegex.test(pass)) {
+    if (!Regex.hasTripleRegex.test(pass)) {
       ++passes;
     }
     return passes >= 3 ? true : false;
@@ -265,8 +265,8 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             rules={{
               required: "Password required",
               validate: {
-                isLength: (v) => lengthRegex.test(v),
-                isAtLeastOneNumber: (v) => numberRegex.test(v),
+                isLength: (v) => Regex.lengthRegex.test(v),
+                isAtLeastOneNumber: (v) => Regex.numberRegex.test(v),
                 is3of4: (v) => is3of4(v),
               },
             }}
