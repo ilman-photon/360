@@ -185,14 +185,14 @@ const SetPasswordComponent = ({
 
   const passwordRules = () => {
     return {
-      isLength: (v) => lengthRegex.test(v),
-      isAtLeastOneNumber: (v) => numberRegex.test(v),
+      isLength: (v) => Regex.lengthRegex.test(v),
+      isAtLeastOneNumber: (v) => Regex.numberRegex.test(v),
       is3of4: (v) => is3of4(v),
       isContainUserName: () => {
         return !pass.indexOf(watchedEmail) > -1;
       },
       isNotPreviousPassword: (v) => {
-        return hasTripleRegex.test(v);
+        return Regex.hasTripleRegex.test(v);
       },
     };
   };
