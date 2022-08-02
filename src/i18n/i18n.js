@@ -25,7 +25,7 @@ i18n
     defaultNS: "translation",
     backend: {
       // for all available options read the backend's repository readme file
-      loadPath: `${process.env.NEXT_PUBLIC_HOST}/locales/{{lng}}/{{ns}}.json`,
+      loadPath: `/locales/{{lng}}/{{ns}}.json`,
     },
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default

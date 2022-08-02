@@ -17,6 +17,7 @@ import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Cookies from "universal-cookie";
+import { useRouter } from "next/router";
 
 const pages = [
   "Appointments",
@@ -26,9 +27,16 @@ const pages = [
   "Billing",
 ];
 
-export default function BaseHeader() {
-  const cookies = new Cookies();
-  const isLogin = cookies.get("authorized") === "true";
+export default function BaseHeader({ OnLogoutClicked }) {
+  const [isUserLoged, setUserLoged] = React.useState(false);
+  const router = useRouter();
+
+  React.useEffect(() => {
+    const cookies = new Cookies();
+    const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
+    setUserLoged(isLogin);
+  }, []);
+
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
@@ -50,22 +58,16 @@ export default function BaseHeader() {
   return (
     <AppBar position="fixed" sx={{ backgroundColor: "white" }}>
       <Container maxWidth="xl">
-        {isLogin ? (
+        {isUserLoged ? (
           <Toolbar disableGutters>
-            <EyeCareLogo sx={{ mr: 1 }} />
+            <EyeCareLogo sx={styles.logoStyled} />
             {/* Menu Desktop*/}
-            <Box
-              sx={{
-                flexGrow: 1,
-                display: { xs: "none", md: "flex" },
-                justifyContent: "end",
-              }}
-            >
+            <Box sx={styles.boxStyled}>
               {pages.map((page) => (
                 <Button
                   key={page}
                   onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: "black", display: "block" }}
+                  sx={styles.bottonStyledDesktop}
                 >
                   {page}
                 </Button>
@@ -73,13 +75,7 @@ export default function BaseHeader() {
             </Box>
 
             {/* Menu Mobile*/}
-            <Box
-              sx={{
-                flexGrow: 1,
-                display: { xs: "flex", md: "none" },
-                justifyContent: "end",
-              }}
-            >
+            <Box sx={styles.boxStyledMobile}>
               <IconButton
                 size="large"
                 aria-label="account of current user"
@@ -103,9 +99,7 @@ export default function BaseHeader() {
                 }}
                 open={Boolean(anchorElNav)}
                 onClose={handleCloseNavMenu}
-                sx={{
-                  display: { xs: "block", md: "none" },
-                }}
+                sx={styles.menuMobile}
               >
                 {pages.map((page) => (
                   <MenuItem key={page} onClick={handleCloseNavMenu}>
@@ -115,7 +109,7 @@ export default function BaseHeader() {
                 <MenuItem onClick={handleCloseNavMenu}>
                   <Button
                     variant="text"
-                    sx={{ color: "black" }}
+                    sx={styles.menuItemMobile}
                     startIcon={<LogoutIcon />}
                   >
                     Logout
@@ -125,11 +119,11 @@ export default function BaseHeader() {
             </Box>
 
             {/* profile menu */}
-            <Box sx={{ flexGrow: 0, display: { xs: "none", md: "flex" } }}>
+            <Box sx={styles.boxProfileMenuStyles}>
               <Tooltip title="Open settings">
                 <Button
                   variant="text"
-                  sx={{ color: "black" }}
+                  sx={styles.boxButtonStyles}
                   startIcon={<Avatar />}
                   endIcon={<ExpandMoreIcon />}
                   onClick={handleOpenUserMenu}
@@ -138,7 +132,7 @@ export default function BaseHeader() {
                 </Button>
               </Tooltip>
               <Menu
-                sx={{ mt: "45px" }}
+                sx={styles.menuProfileMenu}
                 id="menu-appbar"
                 anchorEl={anchorElUser}
                 anchorOrigin={{
@@ -154,11 +148,14 @@ export default function BaseHeader() {
                 onClose={handleCloseUserMenu}
               >
                 {
-                  <MenuItem onClick={handleCloseUserMenu}>
+                  <MenuItem onClick={handleCloseNavMenu}>
                     <Button
                       variant="text"
-                      sx={{ color: "black" }}
+                      sx={styles.buttonProfileMenu}
                       startIcon={<LogoutIcon />}
+                      onClick={() => {
+                        OnLogoutClicked(router);
+                      }}
                     >
                       Logout
                     </Button>
@@ -169,7 +166,7 @@ export default function BaseHeader() {
           </Toolbar>
         ) : (
           <Toolbar disableGutters>
-            <EyeCareLogo sx={{ mr: 1 }} />
+            <EyeCareLogo sx={styles.eyecareLogoToolbarStyled} />
           </Toolbar>
         )}
       </Container>

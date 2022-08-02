@@ -1,5 +1,84 @@
 {
   "Home": {
     "hello": "Welcome to Next.js!"
+  },
+  "Login": {
+    "formTitle": "Patient Login",
+    "forgotPasswordText": "Forgot Password?"
+  },
+  "ForgotPassword": {
+    "title": "Forgot Password",
+    "description": "Enter your email address or phone number bellow and we'll send you an-email to reset it.",
+    "errorUsernameNotFound": "Patient with the given Username not found. Please make sure that you entered it correctly and try again",
+    "errorInValidUserameOrPhone": "Enter a valid Email or Phone Number",
+    "errorEmptyField": "This field is required",
+    "errorInvalidEmailPhone": "Enter a valid Email or Phone Number",
+    "resetPasswordText": "Continue",
+    "usernamePlaceHolder": "Email or Phone Number",
+    "backButtonLink": "Back to Log in"
+  },
+  "SetOption": {
+    "title": "Select an option",
+    "securityButtonText": "Answer security questions",
+    "noSecurityButtonText": "Receive link to reset password",
+    "oneTimeLoginButtonText": "Login with one-time link",
+    "backButtonLink": "Back to Log in"
+  },
+  "PasswordSecurityQuestion": {
+    "title": "Password Recovery Security Questions",
+    "subtitle": "Answer the following questions to reset your password.",
+    "errorIncorrectAnswer": "Incorrect answer(s)",
+    "errorAccountLockTitle": "Account Locked",
+    "errorAccountLock": "Your account is locked. Please contact customer support to unlock your account",
+    "errorEmptyField": "This field is required",
+    "continueButton": "Continue",
+    "backButtonLink": "Back to Log in"
+  },
+  "OneTimeLink": {
+    "backButtonLink": "Back to Log in"
+  },
+  "PasswordReset": {
+    "backButtonLink": "Back to Log in"
+  },
+  "SetPassword":{
+    "errorEmptyField": "This field is required",
+    "backButtonLink": "Back to Log in",
+    "passwordNotMatch":"Passwords do not match",
+    "passwordPlaceHolder": "Password",
+    "confirmPasswordPlaceHolder": "Confirm Password",
+    "ctaButtonLabel": "Create Account"
+  },
+  "ForgotPasswordPage":{
+    "titlePasswordReset": "Password Reset",
+    "subtitlePasswordReset": "Choose a mode of communication where we should send you the link to reset your password.",
+    "additionalTextPasswordReset": "Mode of Communication",
+    "linkSentToMailPasswordReset": "Link sent to your email",
+    "linkSentToPhonePasswordReset": "Link sent to your phone number",
+    "descriptionPasswordReset": "If you did not receive the link, try to answer security questions.",
+    "primaryButtonTextPasswordReset": "Answer security questions",
+    "primaryButtonTextPasswordResetSuccess": "Login with one-time link",
+    "descriptionPasswordResetSuccess": "If you did not receive the link, try to login with one-time link",
+    "titleOneTime": "One-time link",
+    "successSentLinkTitleOneTime": "One-time link sent",
+    "expiredTitleOneTime": "One-time link expired",
+    "expiredPostmessageOneTime": "One-time link has been expired",
+    "subtitleOneTime": "Choose a mode of communication where we should send you the magic link.",
+    "subtitleOneTimeSuccess": "Click on the one-time link sent to your email or phone number to access your account.",
+    "additionalTextOneTime": "Mode of Communication",
+    "descriptionOneTime": "Click on the one-time link sent to your email or phone number to access your account",
+    "primaryButtonOneTime": "Send one-time link",
+    "securityButtonTextOneTime": "Answer security questions",
+    "noSecurityButtonTextOneTime": "Receive link to reset password",
+    "answerSecurityQuestionsLabel": "Answer security questions",
+    "receiveLinkToResetPasswordLabel": "Receive link to reset password",
+    "postMessageOneTime": "One-time link is sent",
+    "successLabel": "Success",
+    "backButtonLink": "Back to Log in"
+  },
+  "UpdatePasswordPage":{
+    "title": "Update Password",
+    "passwordPlaceHolder":"New password",
+    "confirmPasswordPlaceHolder": "Confirm Password",
+    "ctaButtonLabel": "Update"
   }
 }

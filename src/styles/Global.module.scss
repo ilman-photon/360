@@ -2,7 +2,7 @@
 
 .container {
   width: 400px !important;
-  padding: 1rem 1rem;
+  padding: 16px;
   background-color: white;
   align-self: center;
   border-radius: 5px;
@@ -10,8 +10,8 @@
   @media (max-width: 768px) {
     max-width: 358px !important;
     width: 90vw !important;
-    margin-bottom: 32px !important;
     margin: auto;
+    margin-bottom: 32px !important;
   }
-  font-family: "Libre Franklin";
+  font-family: "Libre Franklin", sans-serif;
 }
