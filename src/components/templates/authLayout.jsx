@@ -13,15 +13,19 @@ export default function Layout({
   showMobileImage = false,
   theme = "patient",
   imageSrc,
+  title,
 }) {
   const isPatient = theme === "patient";
   const pathImageWebsite = "/desktop_3x.png";
   const pathImageMobile = "/MicrosoftTeams-image (2).png";
   const matches = useMediaQuery("(max-width: 768px)");
+  if (!title) {
+    title = `EPP Portal`;
+  }
   return (
     <>
       <Head>
-        <title>Layouts Example {matches} </title>
+        <title>{title}</title>
       </Head>
       <div className={styles.authLayout}>
         <BaseHeader></BaseHeader>

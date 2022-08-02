@@ -16,9 +16,8 @@ export default function CreateAccountPage() {
       dispatch(resetFormMessage());
       const api = new Api();
 
-      const response = await api.client
-      .post("/userregistration", postbody)
-      console.log({response})
+      const response = await api.client.post("/userregistration", postbody);
+      console.log({ response });
 
       dispatch(
         setFormMessage({

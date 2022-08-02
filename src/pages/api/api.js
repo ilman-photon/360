@@ -12,65 +12,69 @@ export class Api {
     });
   }
 
-  logout(postbody) {
+  getResponse(url, postbody) {
     const api = new Api();
-    const url = "https://patientlogout.mocklab.io/ecp/patient/logout";
     return new Promise((resolve, reject) => {
       api.client
         .post(url, postbody)
         .then(function (response) {
-          if (response && response.status === 200) {
-            resolve(response.response);
+          if (response && response.data) {
+            resolve(response.data);
           } else {
             reject(response);
           }
         })
         .catch(function (err) {
-          reject(err.response);
+          if (err && err.response && err.response.data) {
+            reject(err.response.data);
+          } else {
+            reject(err);
+          }
+        });
+    });
+  }
+
+  logout(postbody) {
+    const api = new Api();
+    const url =
+      "http://a82a5fdbdd77040d6b7a58563b3620f8-1670930037.us-east-1.elb.amazonaws.com/ecp/patient/logout";
+    return new Promise((resolve, reject) => {
+      api
+        .getResponse(url, postbody)
+        .then(function (data) {
+          const responseCode = data.ResponseCode;
+          const responseType = data.ResponseType;
+          if (responseCode === 2005 && responseType === "success") {
+            resolve(data);
+          } else {
+            reject(data);
+          }
+        })
+        .catch(function (err) {
+          reject(err);
         });
     });
   }
 
   login(postbody) {
     const api = new Api();
-    const url = "https://patientlogin.mocklab.io/ecp/patient/login";
+    const url =
+      "http://a82a5fdbdd77040d6b7a58563b3620f8-1670930037.us-east-1.elb.amazonaws.com/ecp/patient/login";
     return new Promise((resolve, reject) => {
-      //start mock
-      const username = postbody.username;
-      if (username === "accountSuccess@mail.com") {
-        resolve({
-          ResponseCode: 2000,
-          ResponseType: "success",
-          userType: "patient",
+      api
+        .getResponse(url, postbody)
+        .then(function (data) {
+          const responseCode = data.ResponseCode;
+          const responseType = data.ResponseType;
+          if (responseCode === 2000 && responseType === "success") {
+            resolve(data);
+          } else {
+            reject(data);
+          }
+        })
+        .catch(function (err) {
+          reject(err);
         });
-      } else if (username === "accountFailed@mail.com") {
-        reject({
-          ResponseCode: 2001,
-          ResponseType: "failure",
-          message: "Invalid Username or Password",
-        });
-      } else if (username === "accountLocked@mail.com") {
-        reject({
-          ResponseCode: 2004,
-          ResponseType: "failure",
-          message:
-            "Too many login attempts. Your account is locked. Please contact customer support to unlock your account",
-        });
-      } else {
-        //end mock
-        api.client
-          .post(url, postbody)
-          .then(function (response) {
-            if (response && response.status === 200) {
-              resolve(response.response);
-            } else {
-              reject(response.response);
-            }
-          })
-          .catch(function (err) {
-            reject(err.response);
-          });
-      } //end mock
     });
   }
 }

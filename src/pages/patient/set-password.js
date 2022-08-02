@@ -27,9 +27,11 @@ export default function SetPasswordPage() {
       dispatch(resetFormMessage());
       const api = new Api();
 
-      const response = await api.client
-      .post("/registrationsetpassword", postbody)
-      console.log({response})
+      const response = await api.client.post(
+        "/registrationsetpassword",
+        postbody
+      );
+      console.log({ response });
 
       dispatch(
         setFormMessage({
