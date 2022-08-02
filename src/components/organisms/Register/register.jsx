@@ -183,6 +183,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             }}
           />
           <StyledInput
+            disableFuture
             type="dob"
             id="dob"
             label="Date of Birth"

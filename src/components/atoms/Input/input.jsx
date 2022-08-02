@@ -173,6 +173,7 @@ export const CustomInput = styled(({ ...props }) => {
         <>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
+              disableFuture={props.disableFuture}
               label={props.label}
               onChange={() => {
                 // This is intentional
