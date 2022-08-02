@@ -17,10 +17,11 @@ const loginProps = {
         callback({ status: "success" });
       })
       .catch(function (err) {
+        console.log(err);
         const isLockedAccount = err.ResponseCode === 2004;
         const isInvalidCredentials = err.ResponseCode === 2001;
         const title = isLockedAccount ? "Account Locked" : "";
-        const description = isInvalidCredentials
+        const description = isLockedAccount
           ? "Too many login attempts. Your account is locked. Please contact customer support to unlock your account"
           : "Invalid Username or Password";
         callback({

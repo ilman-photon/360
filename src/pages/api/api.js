@@ -24,8 +24,8 @@ export class Api {
           }
         })
         .catch(function (err) {
-          if (err && err.data) {
-            reject(err.data);
+          if (err && err.response && err.response.data) {
+            reject(err.response.data);
           } else {
             reject(err);
           }
