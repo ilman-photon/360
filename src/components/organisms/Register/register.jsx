@@ -94,11 +94,11 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
       validate: watchedPassword.indexOf(watchedEmail || watchedMobile) > -1,
       mandatory: true,
     },
-    {
-      label: "New password must not match current password",
-      validate: Regex.hasTripleRegex.test(watchedPassword),
-      mandatory: true,
-    },
+    // {
+    //   label: "New password must not match current password",
+    //   validate: Regex.hasTripleRegex.test(watchedPassword),
+    //   mandatory: true,
+    // },
   ];
   const isPasswordError = watchedPassword.length > 0; // && passwordValidator.filter(v => v.validate).length > 0
 
