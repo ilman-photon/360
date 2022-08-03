@@ -99,5 +99,12 @@
     "successUpdatePassword": "Password Updated",
     "postMessage": "Password has been updated",
     "backButtonLink": "Back to Log in"
+  },
+  "ValidatePage":{
+    "expiredTitleOneTime": "One-time link expired",
+    "expiredPostmessageOneTime": "One-time link has been expired",
+    "expiredTitleResetPassword": "Reset Password link expired",
+    "expiredPostmessageResetPassword": "Reset Password link has been expired",
+    "backButtonLink": "Back to Log in"
   }
 }

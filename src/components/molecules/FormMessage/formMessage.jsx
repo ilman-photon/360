@@ -22,8 +22,8 @@ export const FormMessage = ({ ...props }, ref) => {
             sx={{
               color: "#fff",
               marginRight: "12.92px",
-              width: "1.3750em",
-              height: "1.3750em",
+              width: "22.15px",
+              height: "22.15px",
             }}
           />
         ) : (
@@ -31,8 +31,8 @@ export const FormMessage = ({ ...props }, ref) => {
             sx={{
               color: "#fff",
               marginRight: "12.92px",
-              width: "1.3750em",
-              height: "1.3750em",
+              width: "22.15px",
+              height: "22.15px",
             }}
           />
         )}

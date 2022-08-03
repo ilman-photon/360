@@ -56,18 +56,11 @@ const modeOfCommuicationUI = function (control) {
 
 const mappingSecurityData = function (securityQuestionsData) {
   const securityQuestionList = [];
-  for (const questions of securityQuestionsData) {
+  for (const question in securityQuestionsData) {
     const securityQuestion = {
-      Question: constants.EMPTY_STRING,
-      Answer: constants.EMPTY_STRING,
+      Question: question,
+      Answer: securityQuestionsData[question],
     };
-    for (const key in questions) {
-      if (key.includes("Question")) {
-        securityQuestion["Question"] = questions[key];
-      } else {
-        securityQuestion["Answer"] = questions[key];
-      }
-    }
     securityQuestionList.push(securityQuestion);
   }
   return securityQuestionList;
@@ -102,148 +95,99 @@ export default function ForgotPasswordPage() {
   //Call API for userame validation
   const onCalledValidateUsernameAPI = function ({ username }, showForm) {
     const postbody = {
-      patient: [{ "Email/Phone Number": username }],
+      patient: { userName: username },
     };
     const api = new Api();
-    api.client
-      .post("https://patientforgotpassword.mocklab.io/CTA/Continue", postbody)
+    api
+      .validateUserName(postbody)
       .then(function (response) {
-        if (response && response.status === 200) {
-          if (
-            response.data &&
-            response.data.patient &&
-            response.data.patient[0]
-          ) {
-            const responsePatientData = response.data.patient[0];
-            setPatientData({
-              ...patientData,
-              username: username,
-              securityQuestionsSet:
-                responsePatientData.securityQuestionsSet.toLocaleLowerCase() ===
-                constants.YES,
-              preferredComunication: responsePatientData.modeOfCommunication,
-            });
-          }
-          onContinueButtonClicked(showForm);
-        }
+        setPatientData({
+          ...patientData,
+          username: username,
+          securityQuestionsSet:
+            response.SecurityQuestions && response.SecurityQuestions.length > 0,
+          securityQuestions: mappingSecurityData(response.SecurityQuestions[0]),
+          preferredComunication: response.PreferredComunication,
+        });
+        onContinueButtonClicked(showForm);
       })
       .catch(function () {
         setShowPostMessage(true);
       });
   };
 
-  //Call API for security question & password reset
-  const onCalledSecurityQuestionAPI = function () {
-    const postbody = {
-      patient: [
-        {
-          "Email/Phone Number": patientData.username,
-          answerSecurityQuestions: "Yes",
-        },
-      ],
-    };
-
-    const api = new Api();
-    api.client
-      .post(
-        "https://patientforgotpasswordasqs.mocklab.io/answersecurityquestions",
-        postbody
-      )
-      .then(function (response) {
-        if (response && response.status === 200) {
-          //Handle response call for patient that have security question
-          if (response.data && response.data.securityQuestions) {
-            const securityQuestionList = mappingSecurityData(
-              response.data.securityQuestions
-            );
-            setPatientData({
-              ...patientData,
-              securityQuestions: securityQuestionList,
-            });
-          }
-          setShowPasswordSecurityQuestion(true);
-        }
-      })
-      .catch(function () {
-        //Handle error secenario
-      });
-  };
-
   //Call API for reset password
   const onCalledResetPasswordAPI = function (modeOfCommuication) {
     const postbody = {
-      patient: [{ "Email/Phone Number": patientData.username }],
+      patient: { userName: patientData.username },
+      preferredComunication: modeOfCommuication.toLowerCase(),
+      resetPassword: true,
     };
     const api = new Api();
-    api.client
-      .post("https://patientpasswordresetlink.mocklab.io/resetlink", postbody)
+    api
+      .resetPassword(postbody)
       .then(function (response) {
-        if (response && response.status === 200) {
-          const userCommunicationCode =
-            modeOfCommuication.toLowerCase() === "email"
-              ? response.email
-              : response.phoneNumber;
-          // Handle success to call API
-          confirmationFormProps = {
-            title: t("titlePasswordReset"),
-            subtitle: `Check ${userCommunicationCode} for an email to reset your password.`,
-            description: t("descriptionPasswordResetSuccess"),
-            postMessage: `Link sent to your ${modeOfCommuication.toLowerCase()}`,
-            successPostMessage: true,
-            buttonLabel: t("primaryButtonTextPasswordResetSuccess"),
-            additional: null,
-            onCTAButtonClicked: function () {
-              onContinueButtonClicked(constants.ONE_TIME_LINK);
-            },
-          };
-          setShowPostMessage(true);
-        }
+        const userCommunicationCode =
+          modeOfCommuication.toLowerCase() === "email"
+            ? response.email
+            : response.phoneNumber;
+        // Handle success to call API
+        confirmationFormProps = {
+          title: t("titlePasswordReset"),
+          subtitle: `Check ${userCommunicationCode} for an email to reset your password.`,
+          description: t("descriptionPasswordResetSuccess"),
+          postMessage: `Link sent to your ${modeOfCommuication.toLowerCase()}`,
+          successPostMessage: true,
+          buttonLabel: t("primaryButtonTextPasswordResetSuccess"),
+          additional: null,
+          onCTAButtonClicked: function () {
+            onContinueButtonClicked(constants.ONE_TIME_LINK);
+          },
+        };
+        setShowPostMessage(true);
       })
       .catch(function () {
-        //Handle error secenario
+        alert("Somthing went wrong");
       });
   };
 
   //Call API for one time link
   const onCalledOneTimeLinkAPI = function () {
     const postbody = {
-      patient: [
-        { "Email/Phone Number": patientData.username, oneTimeLink: "Yes" },
-      ],
+      patient: { userName: patientData.username },
+      oneTimeLinkEnable: true,
     };
 
     const api = new Api();
-    api.client
-      .post("https://patientforgotpasswordotl.mocklab.io/onetimelink", postbody)
-      .then(function (response) {
-        if (response && response.status === 200) {
-          confirmationFormProps = {
-            title: t("successSentLinkTitleOneTime"),
-            subtitle: t("subtitleOneTimeSuccess"),
-            description: `If you did not receive the link, try to ${(patientData.securityQuestionsSet
-              ? t("answerSecurityQuestionsLabel")
-              : t("receiveLinkToResetPasswordLabel")
-            ).toLocaleLowerCase()}`,
-            postMessage: t("postMessageOneTime"),
-            postMessageTitle: t("successLabel"),
-            successPostMessage: true,
-            buttonLabel: patientData.securityQuestionsSet
-              ? t("answerSecurityQuestionsLabel")
-              : t("receiveLinkToResetPasswordLabel"),
-            additional: null,
-            onCTAButtonClicked: function () {
-              onContinueButtonClicked(
-                patientData.securityQuestionsSet
-                  ? constants.SECURITY_QUESTION
-                  : constants.PASSWORD_RESET
-              );
-            },
-          };
-          setShowPostMessage(true);
-        }
+    api
+      .oneTimeLink(postbody)
+      .then(function () {
+        confirmationFormProps = {
+          title: t("successSentLinkTitleOneTime"),
+          subtitle: t("subtitleOneTimeSuccess"),
+          description: `If you did not receive the link, try to ${(patientData.securityQuestionsSet
+            ? t("answerSecurityQuestionsLabel")
+            : t("receiveLinkToResetPasswordLabel")
+          ).toLocaleLowerCase()}`,
+          postMessage: t("postMessageOneTime"),
+          postMessageTitle: t("successLabel"),
+          successPostMessage: true,
+          buttonLabel: patientData.securityQuestionsSet
+            ? t("answerSecurityQuestionsLabel")
+            : t("receiveLinkToResetPasswordLabel"),
+          additional: null,
+          onCTAButtonClicked: function () {
+            onContinueButtonClicked(
+              patientData.securityQuestionsSet
+                ? constants.SECURITY_QUESTION
+                : constants.PASSWORD_RESET
+            );
+          },
+        };
+        setShowPostMessage(true);
       })
       .catch(function () {
-        //Handle error secenario
+        alert("Somthing went wrong");
       });
   };
 
@@ -259,7 +203,7 @@ export default function ForgotPasswordPage() {
     if (form === constants.SELECT_OPTION) {
       setShowSelectOption(true);
     } else if (form === constants.SECURITY_QUESTION) {
-      onCalledSecurityQuestionAPI();
+      setShowPasswordSecurityQuestion(true);
     } else if (form === constants.PASSWORD_RESET) {
       //TO DO: handle showing the reset password form
       if (
