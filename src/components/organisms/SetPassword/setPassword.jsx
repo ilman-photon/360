@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { useRouter } from "next/router";
@@ -21,6 +21,7 @@ const cardContentStyle = {
   display: "flex",
   flexDirection: "column",
   padding: 0,
+  marginTop: 0,
 };
 
 const getPasswordValidator = function ({
@@ -45,7 +46,7 @@ const SetPasswordComponent = ({
   onBackToLoginClicked,
   postMessage,
   formMessage,
-  onSetPasswordClicked,
+  OnSetPasswordClicked = () => {},
   username,
   title,
   subtitle,
@@ -56,7 +57,7 @@ const SetPasswordComponent = ({
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "SetPassword" });
-  const { handleSubmit, control, watch, setError } = useForm();
+  const { handleSubmit, control, watch, setError, setValue } = useForm();
 
   const validateErrorPassword = (
     errors1 = [],
@@ -149,10 +150,10 @@ const SetPasswordComponent = ({
       const errors2 = [];
       const errorForkedValidation = [];
       passwordValidator.forEach((err) => {
-        if (err.mandatory) {
-          if (err.validate) errors1.push(err.validate);
-        } else {
-          if (err.validate) errors2.push(err.validate);
+        if (err.mandatory && err.validate) {
+          errors1.push(err.validate);
+        } else if (err.validate) {
+          errors2.push(err.validate);
         }
 
         //Validation children validatior
@@ -171,7 +172,7 @@ const SetPasswordComponent = ({
       });
 
       if (validateErrorPassword(errors1, errors2, errorForkedValidation)) {
-        onSetPasswordClicked(data);
+        OnSetPasswordClicked(data);
       } else {
         setError("confirmPassword", {
           type: "custom",
@@ -185,20 +186,38 @@ const SetPasswordComponent = ({
 
   const passwordRules = () => {
     return {
-      isLength: (v) => lengthRegex.test(v),
-      isAtLeastOneNumber: (v) => numberRegex.test(v),
+      isLength: (v) => Regex.lengthRegex.test(v),
+      isAtLeastOneNumber: (v) => Regex.numberRegex.test(v),
       is3of4: (v) => is3of4(v),
       isContainUserName: () => {
         return !pass.indexOf(watchedEmail) > -1;
       },
       isNotPreviousPassword: (v) => {
-        return hasTripleRegex.test(v);
+        return Regex.hasTripleRegex.test(v);
       },
     };
   };
 
+  useEffect(() => {
+    setValue("username", username);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const formMessageComp = useRef(null);
+  useEffect(() => {
+    if (formMessageComp.current)
+      formMessageComp.current.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+        inline: "nearest",
+      });
+  }, [formMessage]);
+
   return (
-    <Card className={globalStyles.container} sx={{ minWidth: 275, margin: 10 }}>
+    <Card
+      className={globalStyles.container}
+      sx={{ minWidth: 275, margin: 10, marginTop: 0 }}
+    >
       <CardContent style={cardContentStyle}>
         <Typography variant="h2">{title}</Typography>
         {subtitle ? (
@@ -220,6 +239,7 @@ const SetPasswordComponent = ({
 
           {formMessage && formMessage.content ? (
             <FormMessage
+              ref={formMessageComp}
               success={formMessage.success}
               title={formMessage.title}
             >
@@ -261,10 +281,6 @@ const SetPasswordComponent = ({
               }}
               rules={{
                 required: "Username required",
-                // pattern: {
-                //   value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i,
-                //   message: "Username is invalid",
-                // },
               }}
             />
           ) : (

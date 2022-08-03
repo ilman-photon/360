@@ -71,21 +71,21 @@ export const PasswordValidator = ({ ...props }) => {
       }
     >
       <Collapse in={props.isShowValidation}>
-        {validator.map((err, i) => {
-          if (err.mandatory) {
-            if (err.validate)
-              props.validatePassword(errors1.push(err.validate));
-          } else {
-            if (err.validate)
-              props.validatePassword(errors2.push(err.validate));
-          }
-          return err.children ? (
-            getParentView(err, i)
-          ) : (
-            <LabelWithIcon key={i} error={err.validate} label={err.label} />
-          );
-        })}
-        {props.validatePassword(errors1, errors2)}
+        <>
+          {validator.map((err, i) => {
+            if (err.mandatory) {
+              if (err.validate) errors1.push(err.validate);
+            } else {
+              if (err.validate) errors2.push(err.validate);
+            }
+            return err.children ? (
+              getParentView(err, i)
+            ) : (
+              <LabelWithIcon key={i} error={err.validate} label={err.label} />
+            );
+          })}
+          {props.validatePassword(errors1, errors2)}
+        </>
       </Collapse>
     </div>
   );

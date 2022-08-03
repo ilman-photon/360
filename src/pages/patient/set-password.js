@@ -6,6 +6,7 @@ import { resetFormMessage, setFormMessage } from "../../store";
 import Link from "next/link";
 import { Api } from "../api/api";
 import { useRouter } from "next/router";
+import RESPONSE_MESSAGES from "../../utils/responseCodes";
 
 //Prevent html being match between server and client
 const SetPasswordComponent = dynamic(
@@ -33,11 +34,13 @@ export default function SetPasswordPage() {
       );
       console.log({ response });
 
+      const successMessage = RESPONSE_MESSAGES[response.data.ResponseCode];
+
       dispatch(
         setFormMessage({
           success: true,
-          title: "Success",
-          content: <>You have successfully set your password</>,
+          title: successMessage.title,
+          content: successMessage.content,
         })
       );
     } catch (err) {
@@ -49,9 +52,9 @@ export default function SetPasswordPage() {
           title: "Error",
           content: (
             <>
-              {err.message}
-              <Link href="/patient/login">
-                <a style={{ textDecoration: "underline" }}>Login</a>
+              <span>{err.message} </span>
+              <Link href="/patient/">
+                <a style={{ textDecoration: "underline" }}>Back to home</a>
               </Link>
             </>
           ),
