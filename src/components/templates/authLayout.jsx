@@ -28,6 +28,10 @@ export default function Layout({
     <>
       <Head>
         <title>{title}</title>
+        <link
+          href="http://fonts.cdnfonts.com/css/bw-nista-geometric-demo"
+          rel="stylesheet"
+        />
       </Head>
       <div className={styles.authLayout}>
         <BaseHeader></BaseHeader>
