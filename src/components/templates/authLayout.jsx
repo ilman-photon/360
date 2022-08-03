@@ -41,7 +41,8 @@ export default function Layout({
               sx={{
                 paddingTop: {
                   xs: showMobileImage ? "35px!important" : "75px!important",
-                  md: "146px!important",
+                  md: "100px!important",
+                  lg: "146px!important",
                 },
                 padding: 0,
               }}
