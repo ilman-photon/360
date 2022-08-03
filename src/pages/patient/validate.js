@@ -7,6 +7,7 @@ import { useTranslation } from "react-i18next";
 import { Link, Typography } from "@mui/material";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
+import { Api } from "../api/api";
 
 //Prevent html being match between server and client
 const ConfirmationForm = dynamic(
@@ -58,7 +59,7 @@ export default function ValidatePage({ query }) {
 
   const onShowErrorPostMessage = (postbody) => {
     let confirmationFormProps = {};
-    if (postbody && postbody.oneTimeLinkToken) {
+    if (postbody && postbody.oneTimeToken) {
       confirmationFormProps = {
         ...confirmationFormData,
         title: t("expiredTitleOneTime"),
@@ -80,30 +81,47 @@ export default function ValidatePage({ query }) {
     setShowExpiredForm(true);
   };
 
-  //Call API for security question & password reset
-  const onCalledSecurityQuestionAPI = function () {
-    const postbody = queryParam;
-    const cookies = new Cookies();
-
-    //TODO: Add call request to check the expired link
-
-    //Positive scenario
-    if (postbody && postbody.oneTimeLinkToken) {
-      //TODO: Navigate to Home
-      cookies.set("authorized", true, { path: "/patient" });
-      router.push(`/patient`);
-    } else if (postbody && postbody.resetPasswordToken) {
-      //TODO: Navigate to Update
-      const name = "Smith1@photon.com";
-      router.push(`update-password?username=${name}`);
+  const onValidateQuesryParam = function () {
+    if (queryParam && queryParam.oneTimeToken) {
+      onCalledOneTimeLinkValidationAPI();
+    } else if (queryParam && queryParam.resetPasswordToken) {
+      onCalledResetPasswordValidationAPI();
     }
+  };
 
-    //Negative scenario
-    onShowErrorPostMessage(postbody);
+  const onCalledOneTimeLinkValidationAPI = function () {
+    const cookies = new Cookies();
+    const postbody = queryParam;
+    const api = new Api();
+    api
+      .oneTimeLinkValidation(postbody)
+      .then(function () {
+        cookies.set("authorized", true, { path: "/patient" });
+        const hostname = window.location.origin;
+        window.location.href = `${hostname}/patient`;
+      })
+      .catch(function () {
+        onShowErrorPostMessage(postbody);
+      });
+  };
+
+  const onCalledResetPasswordValidationAPI = function () {
+    const postbody = queryParam;
+    const api = new Api();
+    api
+      .resetPasswordValidation(postbody)
+      .then(function () {
+        //Navigate to Update
+        const name = "Smith1@photon.com";
+        router.push(`update-password?username=${name}`);
+      })
+      .catch(function () {
+        onShowErrorPostMessage(postbody);
+      });
   };
 
   useEffect(() => {
-    onCalledSecurityQuestionAPI();
+    onValidateQuesryParam();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

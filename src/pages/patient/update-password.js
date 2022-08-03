@@ -38,8 +38,8 @@ export default function UpdatePasswordPage() {
     isSuccessPostMessage: true,
     buttonLabel: t("backButtonLink"),
     butttonMode: constants.SECONDARY,
-    onCTAButtonClicked: function ({ router }) {
-      router.push(`/patient/login`);
+    onCTAButtonClicked: function () {
+      route.push(`/patient/login`);
     },
     formStyle: { marginTop: "0px" },
   };
@@ -47,25 +47,18 @@ export default function UpdatePasswordPage() {
   //Call API for userame validation
   const onCallConfirmPasswordAPI = function ({ password, confirmPassword }) {
     const postbody = {
-      patient: { email: username },
-      confirmPassword: [
-        { Password: password, ConfirmPassword: confirmPassword },
-      ],
+      patient: { userName: username },
+      confirmPassword: { Password: password, ConfirmPassword: confirmPassword },
     };
     const api = new Api();
-    api.client
-      .post(
-        "https://patientpassword.mocklab.io/reset/confirmpassword ",
-        postbody
-      )
-      .then(function (response) {
-        if (response && response.status === 200) {
-          setShowPostMessage(true);
-          setShowUpdatePassword(false);
-        }
+    api
+      .updatePassword(postbody)
+      .then(function () {
+        setShowPostMessage(true);
+        setShowUpdatePassword(false);
       })
       .catch(function () {
-        //Handle error secenario
+        alert("Somthing went wrong");
       });
   };
 

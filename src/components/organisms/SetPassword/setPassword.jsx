@@ -21,6 +21,7 @@ const cardContentStyle = {
   display: "flex",
   flexDirection: "column",
   padding: 0,
+  marginTop: 0,
 };
 
 const getPasswordValidator = function ({
@@ -198,7 +199,10 @@ const SetPasswordComponent = ({
   };
 
   return (
-    <Card className={globalStyles.container} sx={{ minWidth: 275, margin: 10 }}>
+    <Card
+      className={globalStyles.container}
+      sx={{ minWidth: 275, margin: 10, marginTop: 0 }}
+    >
       <CardContent style={cardContentStyle}>
         <Typography variant="h2">{title}</Typography>
         {subtitle ? (
