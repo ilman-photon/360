@@ -149,10 +149,10 @@ const SetPasswordComponent = ({
       const errors2 = [];
       const errorForkedValidation = [];
       passwordValidator.forEach((err) => {
-        if (err.mandatory) {
-          if (err.validate) errors1.push(err.validate);
-        } else {
-          if (err.validate) errors2.push(err.validate);
+        if (err.mandatory && err.validate) {
+          errors1.push(err.validate);
+        } else if (err.validate) {
+          errors2.push(err.validate);
         }
 
         //Validation children validatior
@@ -199,6 +199,7 @@ const SetPasswordComponent = ({
 
   useEffect(() => {
     setValue("username", username);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const formMessageComp = useRef(null);
@@ -276,10 +277,6 @@ const SetPasswordComponent = ({
               }}
               rules={{
                 required: "Username required",
-                // pattern: {
-                //   value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i,
-                //   message: "Username is invalid",
-                // },
               }}
             />
           ) : (
