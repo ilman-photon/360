@@ -16,7 +16,7 @@ export default function Layout({
 }) {
   const isPatient = theme === "patient";
   const pathImageWebsite = "/desktop_3x.png";
-  const pathImageMobile = "/MicrosoftTeams-image (2).png";
+  const pathImageMobile = "/MicrosoftTeams-image_2x.png";
   const matches = useMediaQuery("(max-width: 768px)");
   if (!title) {
     title = `EPP Portal`;
