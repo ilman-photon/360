@@ -132,7 +132,7 @@ export default function Login({
               theme={constants.PATIENT}
               mode={constants.PRIMARY}
               type="submit"
-              size={constants.LARGE}
+              size={constants.SMALL}
               gradient={false}
             >
               {t("loginButtonLabel")}
@@ -142,7 +142,7 @@ export default function Login({
         <StyledButton
           theme={constants.PATIENT}
           mode={constants.SECONDARY}
-          size={constants.LARGE}
+          size={constants.SMALL}
           gradient={false}
           onClick={OnGuestClicked}
         >
@@ -151,7 +151,7 @@ export default function Login({
         <Divider variant={constants.MIDDLE} className={styles.divider} />
 
         <Grid container justifyContent={constants.CENTER}>
-          <Typography variant="bodyRegular">
+          <Typography variant="bodyMedium">
             {t("dontHaveAccountLabel")}
           </Typography>
         </Grid>
@@ -159,7 +159,7 @@ export default function Login({
         <StyledButton
           theme={constants.PATIENT}
           mode={constants.SECONDARY}
-          size={constants.LARGE}
+          size={constants.SMALL}
           gradient={false}
           onClick={function () {
             OnCreateAccountClicked(router);
