@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: frontend
+  name: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: frontend
+    spec:
+      containers:
+      - image: 056640875000.dkr.ecr.us-east-1.amazonaws.com/photon-ecp-ppp-dev:ecp-frontend-TAG
+        name: frontend
+        imagePullPolicy: Always
+        resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: frontend
+  name: frontend
+spec:
+  ports:
+  - name: 80-3000
+    port: 80
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: frontend
+  type: LoadBalancer
+status:
+  loadBalancer: {}

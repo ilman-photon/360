@@ -30,4 +30,7 @@ export const styles = {
   informativeText: {
     textAlign: "center",
   },
+  link: {
+    cursor: "pointer",
+  },
 };

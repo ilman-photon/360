@@ -20,16 +20,25 @@ const ForgotPassword = ({
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "ForgotPassword" });
-  const { handleSubmit, control } = useForm();
+  const { handleSubmit, control, setError } = useForm();
 
-  const onSubmit = (data) => {
-    //TO DO: Will called request for validate username
-    onCalledValidateUsernameAPI(
-      {
-        username: data.userame,
-      },
-      constants.SELECT_OPTION
-    );
+  const onSubmit = ({ username }) => {
+    if (
+      constants.REGEX_PHONE_NUMBER.test(username) ||
+      constants.REGEX_EMAIL.test(username)
+    ) {
+      onCalledValidateUsernameAPI(
+        {
+          username: username,
+        },
+        constants.SELECT_OPTION
+      );
+    } else {
+      setError("username", {
+        type: "custom",
+        message: t("errorInvalidEmailPhone"),
+      });
+    }
   };
 
   return (
@@ -48,7 +57,7 @@ const ForgotPassword = ({
         )}
         <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
           <Controller
-            name="userame"
+            name="username"
             control={control}
             defaultValue=""
             render={({ field: { onChange, value }, fieldState: { error } }) => {
@@ -84,7 +93,7 @@ const ForgotPassword = ({
           </StyledButton>
         </form>
         <Link
-          style={styles.margin}
+          style={{ ...styles.margin, ...styles.link }}
           color={"#2095a9"}
           onClick={function () {
             onBackToLoginClicked(router);

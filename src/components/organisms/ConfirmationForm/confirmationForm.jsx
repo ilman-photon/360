@@ -25,6 +25,7 @@ const ConfirmationForm = ({
   showPostMessage = false,
   onCTAButtonClicked,
   postMessageTitle,
+  formStyle = additional ? styles.margin : styles.marginDescription,
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "OneTimeLink" });
@@ -59,14 +60,13 @@ const ConfirmationForm = ({
         ) : (
           <></>
         )}
-        <form
-          onSubmit={handleSubmit(onSubmit)}
-          style={additional ? styles.margin : styles.marginDescription}
-        >
+        <form onSubmit={handleSubmit(onSubmit)} style={formStyle}>
           {additional ? (
             <Box>{additional(control)}</Box>
           ) : (
-            <Typography variant="bodyRegular">{description}</Typography>
+            <Typography variant="bodyRegular" style={styles.descriptionStyle}>
+              {description}
+            </Typography>
           )}
           <StyledButton
             type={constants.SUBMIT}
@@ -74,7 +74,7 @@ const ConfirmationForm = ({
             mode={butttonMode}
             size={constants.LARGE}
             gradient={false}
-            style={styles.margin}
+            style={{ ...styles.margin, marginTop: additional ? "0px" : "16px" }}
           >
             {buttonIcon}
             {buttonLabel}
@@ -86,6 +86,7 @@ const ConfirmationForm = ({
               ...styles.margin,
               ...styles.textAlign,
               ...styles.backToLoginMargin,
+              ...styles.link,
             }}
             color={"#2095a9"}
             onClick={function () {

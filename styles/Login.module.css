@@ -1,34 +1,38 @@
 .loginPage {
-    display: flex;
-    flex: 1;
-    height: 100vh;
+  display: flex;
+  flex: 1;
+  height: 100vh;
 }
 
 .loginComponentContainer {
-    width: 50vw;
-    display: flex;
+  width: 50vw;
+  display: flex;
 }
 
 .loginContainer {
-    width: 100vw;
-    -webkit-mask-image: radial-gradient(50% 75% at right, transparent 100%, #fff 51%);
-    mask-image: radial-gradient(50% 75% at right, transparent 100%, #fff 51%);
-    background: linear-gradient(140deg,#103139,#003b4a);
-    position: absolute;
-    left: 0;
-    height: 100vh;
-    display: flex;
+  width: 100vw;
+  -webkit-mask-image: radial-gradient(
+    50% 75% at right,
+    transparent 100%,
+    #fff 51%
+  );
+  mask-image: radial-gradient(50% 75% at right, transparent 100%, #fff 51%);
+  background: linear-gradient(140deg, #103139, #003b4a);
+  position: absolute;
+  left: 0;
+  height: 100vh;
+  display: flex;
 }
 
 .loginImageContainer {
-    width: 50vw;
-    height: 100vh;
-    position: absolute;
-    right: 0;
-    z-index: -1;
+  width: 50vw;
+  height: 100vh;
+  position: absolute;
+  right: 0;
+  z-index: -1;
 }
 
 .imageBanner {
-    height: 100vh;
-    object-fit: contain;
+  height: 100vh;
+  object-fit: contain;
 }

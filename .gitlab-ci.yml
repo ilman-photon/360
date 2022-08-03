@@ -1,0 +1,88 @@
+variables:
+  DOCKER_REGISTRY: "056640875000.dkr.ecr.us-east-1.amazonaws.com"
+  AWS_DEFAULT_REGION: us-east-1
+  APP_NAME: "photon-ecp-ppp-dev"
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: ""
+
+image:  node:16.10.0
+
+stages:
+  # - install
+  # - test
+  # - build
+  - imagebuild
+  - deploy
+
+
+# install:
+#    stage: install
+#    script:
+#       - npm install
+#    artifacts:
+#       name: "artifacts"
+#       untracked: true
+#       expire_in: 30 mins
+#       paths:
+#         - .npm/
+#         - node_modules/
+#         - .next/
+
+# test:
+#   stage: test
+#   script:
+#     - npm run test
+#   dependencies:
+#       - install
+#   coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+
+# build:
+#    stage: build
+#    script:
+#       - yarn build
+#    dependencies:
+#       - install
+#    artifacts:
+#       paths:
+#          - build
+#       expire_in: 30 mins
+
+imagebuild:
+  stage: imagebuild
+  image: 
+    name: docker:latest
+  services:
+    - docker:19-dind
+  before_script:
+    - apk add --no-cache curl jq python3 py3-pip
+    - pip install awscli
+    - aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY
+    - aws --version
+    - docker info
+    - docker --version
+  script:
+    - docker build -t $DOCKER_REGISTRY/$APP_NAME:ecp-frontend-$CI_PIPELINE_IID .
+    - docker push $DOCKER_REGISTRY/$APP_NAME:ecp-frontend-$CI_PIPELINE_IID
+
+
+deploy_to:
+  stage: deploy
+  image: alpine:latest
+  when: manual
+  before_script:
+    - apk add --no-cache curl jq python3 py3-pip
+    - pip install awscli
+    - apk update  && apk add --no-cache curl
+    - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+    - chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
+    - aws eks update-kubeconfig --name $APP_NAME
+    # - mkdir -p $HOME/.kube
+    # - echo -n $KUBE_CONFIG | base64 -d > $HOME/.kube/config
+  script:
+    - sed -i 's/TAG/'"$CI_PIPELINE_IID"'/g' ./deployment/deploy.yaml
+    # - kubectl config view
+    - kubectl apply -f `pwd`/deployment/deploy.yaml
+
+after_script:
+  - echo "End CI"

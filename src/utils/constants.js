@@ -25,4 +25,6 @@ module.exports = {
   EMAIL: "email",
   PHONE: "phone",
   YES: "yes",
+  REGEX_PHONE_NUMBER: /^\d{10,}$/,
+  REGEX_EMAIL: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i,
 };

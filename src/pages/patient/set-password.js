@@ -4,6 +4,8 @@ import dynamic from "next/dynamic";
 import { useDispatch, useSelector } from "react-redux";
 import { resetFormMessage, setFormMessage } from "../../store";
 import Link from "next/link";
+import { Api } from "../api/api";
+import { useRouter } from "next/router";
 
 //Prevent html being match between server and client
 const SetPasswordComponent = dynamic(
@@ -14,34 +16,40 @@ const SetPasswordComponent = dynamic(
 );
 export default function SetPasswordPage() {
   const dispatch = useDispatch();
+  const router = useRouter();
+  const username = router.query.username || "";
 
-  const formError = useSelector((state) => state.index.formMessage);
+  const formMessage = useSelector((state) => state.index.formMessage);
 
-  const OnSetPasswordClicked = async function (postbody, router) {
-    console.log("test");
+  const OnSetPasswordClicked = async function (postbody, _router) {
+    console.log("set-password", { postbody });
     try {
-      const response = {
-        ResponseCode: 3000,
-        ResponseType: "success",
-        status: 200,
-      };
-      if (response && response.status === 200) {
-        console.log({ response });
-      }
-    } catch (err) {
-      console.log({ err });
-    }
+      dispatch(resetFormMessage());
+      const api = new Api();
 
-    console.log({ em: postbody.email });
+      const response = await api.client.post(
+        "/registrationsetpassword",
+        postbody
+      );
+      console.log({ response });
 
-    if (postbody.email === "exist@email.com") {
       dispatch(
         setFormMessage({
-          title: "Existing User",
+          success: true,
+          title: "Success",
+          content: <>You have successfully set your password</>,
+        })
+      );
+    } catch (err) {
+      console.log({ err });
+
+      dispatch(
+        setFormMessage({
+          success: false,
+          title: "Error",
           content: (
             <>
-              You are already a registered user. Please login to the application
-              using your username and password.{" "}
+              {err.message}
               <Link href="/patient/login">
                 <a style={{ textDecoration: "underline" }}>Login</a>
               </Link>
@@ -49,15 +57,16 @@ export default function SetPasswordPage() {
           ),
         })
       );
-    } else {
-      dispatch(resetFormMessage());
     }
   };
   return (
     <div className={styles.forgotPasswordPage}>
       <section className={styles.forgotPasswordComponentContainer}>
         <SetPasswordComponent
-          formError={formError}
+          title={"Set Password"}
+          subtitle={"Enter a password to setup your account."}
+          username={username}
+          formMessage={formMessage}
           OnSetPasswordClicked={OnSetPasswordClicked}
         />
       </section>

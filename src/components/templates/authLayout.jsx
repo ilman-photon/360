@@ -1,22 +1,33 @@
 import Head from "next/head";
 import styles from "./authLayout.module.scss";
-import { colors } from "../../styles/theme";
-import BaseHeader from "../organisms/BaseHeader/baseHeader";
 import Container from "@mui/material/Container";
 import { patientTypography, providerTypography } from "../../styles/theme";
 import { ThemeProvider } from "@mui/material/styles";
 import Image from "next/image";
+import BaseHeader from "../organisms/BaseHeader/baseHeader";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 export default function Layout({
   children,
   showMobileImage = false,
   theme = "patient",
+  imageSrc,
+  title,
 }) {
   const isPatient = theme === "patient";
+  const pathImageWebsite = "/desktop_3x.png";
+  const pathImageMobile = "/MicrosoftTeams-image (2).png";
+  const matches = useMediaQuery("(max-width: 768px)");
+  if (!title) {
+    title = `EPP Portal`;
+  }
+  if (!imageSrc) {
+    imageSrc = !matches ? pathImageWebsite : pathImageMobile;
+  }
   return (
     <>
       <Head>
-        <title>Layouts Example</title>
+        <title>{title}</title>
       </Head>
       <div className={styles.authLayout}>
         <BaseHeader></BaseHeader>
@@ -29,7 +40,7 @@ export default function Layout({
               sx={{
                 paddingTop: {
                   xs: showMobileImage ? "35px!important" : "75px!important",
-                  md: "100px!important",
+                  md: "146px!important",
                 },
                 padding: 0,
               }}
@@ -44,12 +55,9 @@ export default function Layout({
               padding: 0,
             }}
           >
-            <img
-              src="https://c4.wallpaperflare.com/wallpaper/930/115/679/panda-4k-high-quality-hd-wallpaper-preview.jpg"
-              className={styles.imageBanner}
-              alt="auth-image"
-              layout="fill"
-            />
+            <div className={styles.imageBannerContainer}>
+              <Image alt="auth-image" src={imageSrc} layout="fill" />
+            </div>
           </Container>
         </div>
       </div>

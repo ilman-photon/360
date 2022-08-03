@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import styles from "../../../styles/Login.module.css";
 import AuthLayout from "../../components/templates/authLayout";
-import ForgotPassword from "../../components/organisms/ForgotPassword/forgotPassword";
 import SelectOptionForm from "../../components/organisms/SelectOptionForm/selectOptionForm";
-import PasswordSecurityQuestion from "../../components/organisms/PasswordSecurityQuestion/PasswordSecurityQuestion";
+import PasswordSecurityQuestion from "../../components/organisms/PasswordSecurityQuestion/passwordSecurityQuestion";
 import ConfirmationForm from "../../components/organisms/ConfirmationForm/confirmationForm";
 import { Api } from "../api/api";
 import constants from "../../utils/constants";
@@ -11,6 +10,15 @@ import RowRadioButtonsGroup from "../../components/atoms/RowRadioButtonsGroup/ro
 import InsertLinkIcon from "@mui/icons-material/InsertLink";
 import { Controller } from "react-hook-form";
 import { useTranslation } from "react-i18next";
+import dynamic from "next/dynamic";
+
+//Prevent html being match between server and client
+const ForgotPassword = dynamic(
+  () => import("../../components/organisms/ForgotPassword/forgotPassword"),
+  {
+    ssr: false,
+  }
+);
 
 let confirmationFormProps = {
   title: constants.EMPTY_STRING,
@@ -23,7 +31,7 @@ let confirmationFormProps = {
   additional: null,
 };
 
-const modeOfCommuication = function (control) {
+const modeOfCommuicationUI = function (control) {
   const options = [
     { label: "Email", value: constants.EMAIL },
     { label: "Phone", value: constants.PHONE },
@@ -180,7 +188,7 @@ export default function ForgotPasswordPage() {
             title: t("titlePasswordReset"),
             subtitle: `Check ${userCommunicationCode} for an email to reset your password.`,
             description: t("descriptionPasswordResetSuccess"),
-            postMessage: `Link sent to your ${modeComunication.toLowerCase()}`,
+            postMessage: `Link sent to your ${modeOfCommuication.toLowerCase()}`,
             successPostMessage: true,
             buttonLabel: t("primaryButtonTextPasswordResetSuccess"),
             additional: null,
@@ -260,7 +268,7 @@ export default function ForgotPasswordPage() {
         //TO DO: Set props for one time link
         confirmationFormProps.title = t("titlePasswordReset");
         confirmationFormProps.subtitle = t("subtitlePasswordReset");
-        confirmationFormProps.additional = modeOfCommuication;
+        confirmationFormProps.additional = modeOfCommuicationUI;
         confirmationFormProps.buttonLabel = t("primaryButtonOneTime");
         confirmationFormProps.buttonIcon = <InsertLinkIcon />;
         confirmationFormProps.onCTAButtonClicked = function ({ data }) {
@@ -282,7 +290,7 @@ export default function ForgotPasswordPage() {
         //TO DO: Set props for one time link
         confirmationFormProps.title = t("titleOneTime");
         confirmationFormProps.subtitle = t("subtitleOneTime");
-        confirmationFormProps.additional = modeOfCommuication;
+        confirmationFormProps.additional = modeOfCommuicationUI;
         confirmationFormProps.buttonLabel = t("primaryButtonOneTime");
         confirmationFormProps.buttonIcon = <InsertLinkIcon />;
         confirmationFormProps.onCTAButtonClicked = function () {
@@ -294,7 +302,7 @@ export default function ForgotPasswordPage() {
       }
       setShowOneTimeLink(true);
     } else if (form === "updatePassword") {
-      router.push("/patient/update-password");
+      router.push(`/patient/update-password?username=${patientData.username}`);
     }
   };
 

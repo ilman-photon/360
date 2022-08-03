@@ -1,3 +1,5 @@
+import { colors } from "../../../styles/theme";
+
 export const styles = {
   cardContentStyle: {
     display: "flex",
@@ -10,6 +12,7 @@ export const styles = {
   },
   margin: {
     marginTop: "16px",
+    width: "100%",
   },
   marginDescription: {
     marginTop: "28px",
@@ -24,5 +27,11 @@ export const styles = {
   },
   backToLoginMargin: {
     marginBottom: "8px",
+  },
+  link: {
+    cursor: "pointer",
+  },
+  descriptionStyle: {
+    color: colors.darkGreen,
   },
 };
