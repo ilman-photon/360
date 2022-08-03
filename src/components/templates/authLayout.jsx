@@ -35,7 +35,7 @@ export default function Layout({
           <ThemeProvider
             theme={isPatient ? patientTypography : providerTypography}
           >
-            <Container
+            <div
               className={styles.authComponentContainer}
               sx={{
                 paddingTop: {
@@ -46,7 +46,7 @@ export default function Layout({
               }}
             >
               {children}
-            </Container>
+            </div>
           </ThemeProvider>
           <Container
             className={styles.authImageContainer}

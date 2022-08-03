@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
@@ -124,6 +124,16 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
     }
   };
 
+  const formMessageComp = useRef(null);
+  useEffect(() => {
+    if (formMessageComp.current)
+      formMessageComp.current.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+        inline: "nearest",
+      });
+  }, [formMessage]);
+
   return (
     <Box className={globalStyles.container}>
       <Stack spacing={3}>
@@ -131,7 +141,11 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           User Registration
         </Typography>
         {formMessage.content ? (
-          <FormMessage success={formMessage.success} title={formMessage.title}>
+          <FormMessage
+            ref={formMessageComp}
+            success={formMessage.success}
+            title={formMessage.title}
+          >
             {formMessage.content}
           </FormMessage>
         ) : (
