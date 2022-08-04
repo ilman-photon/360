@@ -261,7 +261,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                 <StyledInput
                   type="phone"
                   id="mobile"
-                  label="Mobile Number"
+                  label="Mobile number"
                   value={value}
                   onChange={onChange}
                   error={!!error}
