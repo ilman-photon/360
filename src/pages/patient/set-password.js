@@ -7,12 +7,13 @@ import Link from "next/link";
 import { Api } from "../api/api";
 import { useRouter } from "next/router";
 import RESPONSE_MESSAGES from "../../utils/responseCodes";
+import { Suspense } from "react";
 
 //Prevent html being match between server and client
 const SetPasswordComponent = dynamic(
   () => import("../../components/organisms/SetPassword/setPassword"),
   {
-    ssr: false,
+    suspense: true,
   }
 );
 export default function SetPasswordPage() {
@@ -63,13 +64,15 @@ export default function SetPasswordPage() {
   return (
     <div className={styles.forgotPasswordPage}>
       <section className={styles.forgotPasswordComponentContainer}>
-        <SetPasswordComponent
-          title={"Set Password"}
-          subtitle={"Enter a password to setup your account."}
-          username={username}
-          formMessage={formMessage}
-          OnSetPasswordClicked={OnSetPasswordClicked}
-        />
+        <Suspense fallback={`Loading...`}>
+          <SetPasswordComponent
+            title={"Set Password"}
+            subtitle={"Enter a password to setup your account."}
+            username={username}
+            formMessage={formMessage}
+            OnSetPasswordClicked={OnSetPasswordClicked}
+          />
+        </Suspense>
       </section>
     </div>
   );
