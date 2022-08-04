@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../../../styles/Login.module.css";
 import AuthLayout from "../../components/templates/authLayout";
 import Cookies from "universal-cookie";
@@ -129,12 +129,7 @@ export default function ValidatePage({ query }) {
     <div className={[styles.forgotPasswordPage, "hide-scrollbar"].join(" ")}>
       <section className={styles.forgotPasswordComponentContainer}>
         {showExpiredForm ? (
-          <Suspense fallback={`Loading...`}>
-            <ConfirmationForm
-              {...confirmationFormData}
-              showPostMessage={true}
-            />
-          </Suspense>
+          <ConfirmationForm {...confirmationFormData} showPostMessage={true} />
         ) : (
           <></>
         )}
