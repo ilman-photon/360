@@ -16,7 +16,7 @@ export default function Layout({
 }) {
   const isPatient = theme === "patient";
   const pathImageWebsite = "/desktop_3x.png";
-  const pathImageMobile = "/MicrosoftTeams-image (2).png";
+  const pathImageMobile = "/MicrosoftTeams-image_2x.png";
   const matches = useMediaQuery("(max-width: 768px)");
   if (!title) {
     title = `EPP Portal`;
@@ -35,7 +35,7 @@ export default function Layout({
           <ThemeProvider
             theme={isPatient ? patientTypography : providerTypography}
           >
-            <Container
+            <div
               className={styles.authComponentContainer}
               sx={{
                 paddingTop: {
@@ -46,7 +46,7 @@ export default function Layout({
               }}
             >
               {children}
-            </Container>
+            </div>
           </ThemeProvider>
           <Container
             className={styles.authImageContainer}

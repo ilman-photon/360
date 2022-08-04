@@ -77,4 +77,132 @@ export class Api {
         });
     });
   }
+
+  validateUserName(postbody) {
+    const api = new Api();
+    const url =
+      "http://a82a5fdbdd77040d6b7a58563b3620f8-1670930037.us-east-1.elb.amazonaws.com/ecp/patient/validate";
+    return new Promise((resolve, reject) => {
+      api
+        .getResponse(url, postbody)
+        .then(function (data) {
+          const responseCode = data.ResponseCode;
+          const responseType = data.ResponseType;
+          if (responseCode === 1000 && responseType === "success") {
+            resolve(data);
+          } else {
+            reject(data);
+          }
+        })
+        .catch(function (err) {
+          reject(err);
+        });
+    });
+  }
+
+  resetPassword(postbody) {
+    const api = new Api();
+    const url =
+      "http://a82a5fdbdd77040d6b7a58563b3620f8-1670930037.us-east-1.elb.amazonaws.com/ecp/patient/resetPassword";
+    return new Promise((resolve, reject) => {
+      api
+        .getResponse(url, postbody)
+        .then(function (data) {
+          const responseCode = data.ResponseCode;
+          const responseType = data.ResponseType;
+          if (responseCode === 1000 && responseType === "success") {
+            resolve(data);
+          } else {
+            reject(data);
+          }
+        })
+        .catch(function (err) {
+          reject(err);
+        });
+    });
+  }
+
+  oneTimeLink(postbody) {
+    const api = new Api();
+    const url =
+      "http://a82a5fdbdd77040d6b7a58563b3620f8-1670930037.us-east-1.elb.amazonaws.com/ecp/patient/onetimelink";
+    return new Promise((resolve, reject) => {
+      api
+        .getResponse(url, postbody)
+        .then(function (data) {
+          const responseCode = data.ResponseCode;
+          const responseType = data.ResponseType;
+          if (responseCode === 1000 && responseType === "success") {
+            resolve(data);
+          } else {
+            reject(data);
+          }
+        })
+        .catch(function (err) {
+          reject(err);
+        });
+    });
+  }
+
+  updatePassword(postbody) {
+    const api = new Api();
+    const url =
+      "http://a82a5fdbdd77040d6b7a58563b3620f8-1670930037.us-east-1.elb.amazonaws.com/ecp/patient/updatepassword";
+    return new Promise((resolve, reject) => {
+      api
+        .getResponse(url, postbody)
+        .then(function (data) {
+          const responseCode = data.ResponseCode;
+          const responseType = data.ResponseType;
+          if (responseCode === 1000 && responseType === "success") {
+            resolve(data);
+          } else {
+            reject(data);
+          }
+        })
+        .catch(function (err) {
+          reject(err);
+        });
+    });
+  }
+
+  oneTimeLinkValidation(postbody) {
+    const api = new Api();
+    const url =
+      "http://a82a5fdbdd77040d6b7a58563b3620f8-1670930037.us-east-1.elb.amazonaws.com/ecp/patient/oneTimeLinkToken";
+    return new Promise((resolve, reject) => {
+      api
+        .getResponse(url, postbody)
+        .then(function (data) {
+          if (data) {
+            resolve(data);
+          } else {
+            reject(data);
+          }
+        })
+        .catch(function (err) {
+          reject(err);
+        });
+    });
+  }
+
+  resetPasswordValidation(postbody) {
+    const api = new Api();
+    const url =
+      "http://a82a5fdbdd77040d6b7a58563b3620f8-1670930037.us-east-1.elb.amazonaws.com/ecp/patient/resetPasswordToken";
+    return new Promise((resolve, reject) => {
+      api
+        .getResponse(url, postbody)
+        .then(function (data) {
+          if (data) {
+            resolve(data);
+          } else {
+            reject(data);
+          }
+        })
+        .catch(function (err) {
+          reject(err);
+        });
+    });
+  }
 }

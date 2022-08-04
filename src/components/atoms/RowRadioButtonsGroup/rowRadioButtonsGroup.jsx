@@ -31,6 +31,7 @@ export default function RowRadioButtonsGroup({ helperText = null, ...props }) {
               value={option.value}
               control={
                 <Radio
+                  checked={props.value === option.value}
                   sx={{
                     ".MuiSvgIcon-root": {
                       width: "0.75em",

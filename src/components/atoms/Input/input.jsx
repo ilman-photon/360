@@ -176,9 +176,8 @@ export const CustomInput = styled(({ ...props }) => {
             <DatePicker
               disableFuture={props.disableFuture}
               label={props.label}
-              onChange={() => {
-                // This is intentional
-              }}
+              onChange={props.onChange}
+              value={props.value}
               renderInput={(params) => (
                 <RedditTextField
                   variant="filled"
