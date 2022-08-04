@@ -337,13 +337,13 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                 return (
                   <>
                     <RowRadioButtonsGroup
-                    error={!!error}
-                    value={value}
-                    onChange={onChange}
-                    label="Preferred mode of Communication"
-                    options={options}
-                    helperText={error ? error.message : null}
-                  />
+                      error={!!error}
+                      value={value}
+                      onChange={onChange}
+                      label="Preferred mode of Communication"
+                      options={options}
+                      helperText={error ? error.message : null}
+                    />
                   </>
                 );
               }}
@@ -356,12 +356,18 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           </Button>
         </form>
 
-        <Typography variant="caption" style={{fontSize: "14px", ...styles.bottomParagraph}}>
+        <Typography
+          variant="caption"
+          style={{ fontSize: "14px", ...styles.bottomParagraph }}
+        >
           By registering, you agree to our Terms &<br /> Conditions and Privacy
           Policy
         </Typography>
         <Divider margin={3} />
-        <Typography variant="caption" style={{fontSize: "12px", ...styles.bottomParagraph}}>
+        <Typography
+          variant="caption"
+          style={{ fontSize: "12px", ...styles.bottomParagraph }}
+        >
           Already have an account?{" "}
           <Link href="/patient/login">
             <a style={styles.loginLink}>Login</a>

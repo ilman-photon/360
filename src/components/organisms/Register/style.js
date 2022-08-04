@@ -47,6 +47,7 @@ export const styles = {
     "&:hover": {
       backgroundColor: "#1c8696",
     },
+    textTransform: "none",
   },
   registeredUsernameWrapper: {
     padding: 16,
