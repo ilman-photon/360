@@ -172,7 +172,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                 />
               );
             }}
-            rules={{ required: "First name required" }}
+            rules={{ required: "This field is required" }}
           />
           <Controller
             name="lastName"
@@ -195,19 +195,32 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               );
             }}
             rules={{
-              required: "Last name required",
-              pattern: {
-                value: Regex.hasAlpahabet,
-                message: "Last name is invalid",
-              },
+              required: "This field is required",
             }}
           />
-          <StyledInput
-            disableFuture
-            type="dob"
-            id="dob"
-            label="Date of Birth"
-            variant="filled"
+
+          <Controller
+            name="dob"
+            control={control}
+            defaultValue=""
+            render={({ field: { onChange, value }, fieldState: { error } }) => {
+              return (
+                <StyledInput
+                  disableFuture
+                  type="dob"
+                  id="dob"
+                  label="Date of Birth"
+                  variant="filled"
+                  value={value}
+                  onChange={onChange}
+                  error={!!error}
+                  helperText={error ? error.message : null}
+                />
+              );
+            }}
+            rules={{
+              required: "This field is required",
+            }}
           />
           <Controller
             name="email"
@@ -230,10 +243,10 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               );
             }}
             rules={{
-              required: "Email required",
+              required: "This field is required",
               pattern: {
                 value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i,
-                message: "Email is invalid",
+                message: "Incorrect email format",
               },
             }}
           />
@@ -260,12 +273,12 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               required: "Mobile Number required",
               pattern: {
                 value: Regex.isValidPhoneFormat,
-                message: "Mobile Number is invalid",
+                message: "Incorrect mobile number format",
               },
             }}
           />
           <Typography sx={styles.passwordLabel}>
-            Please Create a Password
+            Please create a Password
           </Typography>
           <Controller
             name="password"
@@ -287,7 +300,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               );
             }}
             rules={{
-              required: "Password required",
+              required: "This field is required",
               validate: {
                 isLength: (v) => Regex.lengthRegex.test(v),
                 isAtLeastOneNumber: (v) => Regex.numberRegex.test(v),
@@ -325,7 +338,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   />
                 );
               }}
-              rules={{ required: "Preferred Communication required" }}
+              rules={{ required: "This field is required" }}
             />
           </div>
 
