@@ -1,5 +1,3 @@
-import { textAlign } from "@mui/system";
-
 export const styles = {
   container: {
     width: 350,
@@ -24,7 +22,7 @@ export const styles = {
     textAlign: "center",
     marginTop: "20px",
     cursor: "pointer",
-    fontSize: "0.9rem"
+    fontSize: "0.9rem",
   },
   backToPage: {
     color: "#003b4a",
