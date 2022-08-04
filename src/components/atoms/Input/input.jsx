@@ -199,7 +199,7 @@ export const CustomInput = styled(({ ...props }) => {
       return (
         <>
           <CustomFormControl sx={{ m: 1 }} variant="filled">
-            <InputMask mask="(999) 999-9999" {...props}>
+            <InputMask mask="(999) 999-9999" maskPlaceholder="" {...props}>
               <RedditTextField name="phone" type="text" />
             </InputMask>
           </CustomFormControl>
