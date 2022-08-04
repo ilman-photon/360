@@ -24,6 +24,7 @@ export const styles = {
     textAlign: "center",
     marginTop: "20px",
     cursor: "pointer",
+    fontSize: "0.9rem"
   },
   backToPage: {
     color: "#003b4a",
@@ -86,10 +87,11 @@ export const styles = {
   },
   containedButton: {
     marginTop: "25px",
-    paddingTop: "12px",
-    paddingBottom: "12px",
+    paddingTop: "5px",
+    paddingBottom: "5px",
     backgroundColor: "#003b4a",
     borderRadius: 46,
+    fontSize: "1rem",
     color: "white",
     textTransform: "capitalize",
     "&:hover": {
