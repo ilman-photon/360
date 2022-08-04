@@ -155,7 +155,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           <Controller
             name="firstName"
             control={control}
-            defaultValue=""
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <StyledInput
@@ -177,7 +176,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           <Controller
             name="lastName"
             control={control}
-            defaultValue=""
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <StyledInput
@@ -202,7 +200,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           <Controller
             name="dob"
             control={control}
-            defaultValue=""
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <StyledInput
@@ -225,7 +222,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           <Controller
             name="email"
             control={control}
-            defaultValue=""
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <StyledInput
@@ -243,7 +239,13 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               );
             }}
             rules={{
-              required: "This field is required",
+              validate: {
+                required: (value) => {
+                  if (!value && !watchedMobile)
+                    return "Email ID or Mobile number is required";
+                  return true;
+                },
+              },
               pattern: {
                 value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i,
                 message: "Incorrect email format",
@@ -253,7 +255,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           <Controller
             name="mobile"
             control={control}
-            defaultValue=""
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <StyledInput
@@ -270,7 +271,13 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               );
             }}
             rules={{
-              required: "Mobile Number required",
+              validate: {
+                required: (value) => {
+                  if (!value && !watchedEmail)
+                    return "Email ID or Mobile number is required";
+                  return true;
+                },
+              },
               pattern: {
                 value: Regex.isValidPhoneFormat,
                 message: "Incorrect mobile number format",
@@ -283,7 +290,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           <Controller
             name="password"
             control={control}
-            defaultValue=""
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <StyledInput
