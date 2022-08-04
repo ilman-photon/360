@@ -18,6 +18,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
     defaultValues: {
       firstName: "",
       lastName: "",
+      dob: null,
       email: "",
       mobile: "",
       password: "",
