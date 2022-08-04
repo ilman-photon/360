@@ -6,6 +6,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import Image from "next/image";
 import BaseHeader from "../organisms/BaseHeader/baseHeader";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { useEffect, useState } from "react";
 
 export default function Layout({
   children,
@@ -18,16 +19,23 @@ export default function Layout({
   const pathImageWebsite = "/desktop_3x.png";
   const pathImageMobile = "/MicrosoftTeams-image_2x.png";
   const matches = useMediaQuery("(max-width: 768px)");
-  if (!title) {
-    title = `EPP Portal`;
-  }
-  if (!imageSrc) {
-    imageSrc = !matches ? pathImageWebsite : pathImageMobile;
-  }
+  const [titleState, setTitleState] = useState(`EPP Portal`);
+  const [imageSrcState, setImageSrcState] = useState(
+    !matches ? pathImageWebsite : pathImageMobile
+  );
+  useEffect(() => {
+    if (title) {
+      setTitleState(title);
+    }
+    if (imageSrc) {
+      setImageSrcState(imageSrc);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>{titleState}</title>
       </Head>
       <div className={styles.authLayout}>
         <BaseHeader></BaseHeader>
@@ -56,7 +64,7 @@ export default function Layout({
             }}
           >
             <div className={styles.imageBannerContainer}>
-              <Image alt="auth-image" src={imageSrc} layout="fill" />
+              <Image alt="auth-image" src={imageSrcState} layout="fill" />
             </div>
           </Container>
         </div>
