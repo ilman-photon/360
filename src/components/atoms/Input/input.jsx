@@ -4,8 +4,8 @@ import IconButton from "@mui/material/IconButton";
 import InputAdornment from "@mui/material/InputAdornment";
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import VisibilityOffOutlinedIcon from "@mui/icons-material/VisibilityOffOutlined";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
@@ -46,7 +46,11 @@ export const CustomPasswordInput = styled((props) => (
             {...props.customevent}
             edge="end"
           >
-            {props.showPassword ? <VisibilityOff /> : <Visibility />}
+            {props.type !== "password" ? (
+              <VisibilityOffOutlinedIcon sx={{ transform: "scaleX(-1)" }} />
+            ) : (
+              <VisibilityOutlinedIcon />
+            )}
           </IconButton>
         </InputAdornment>
       ),
