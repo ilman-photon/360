@@ -2,10 +2,11 @@
   width: 400px !important;
   padding: 16px;
   background-color: white;
-  align-self: center;
+  align-self: flex-end;
   border-radius: 5px;
   margin-bottom: 32px !important;
-  @media (max-width: 768px) {
+  margin-right: 90px;
+  @media (max-width: 992px) {
     max-width: 358px !important;
     width: 90vw !important;
     margin: auto;

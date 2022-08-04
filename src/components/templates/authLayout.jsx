@@ -6,6 +6,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import Image from "next/image";
 import BaseHeader from "../organisms/BaseHeader/baseHeader";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 
 export default function Layout({
@@ -23,6 +24,7 @@ export default function Layout({
   const [imageSrcState, setImageSrcState] = useState(
     !matches ? pathImageWebsite : pathImageMobile
   );
+  const hasImage = imageSrcState ? true : false;
   useEffect(() => {
     if (title) {
       setTitleState(title);
@@ -43,18 +45,19 @@ export default function Layout({
           <ThemeProvider
             theme={isPatient ? patientTypography : providerTypography}
           >
-            <div
+            <Box
               className={styles.authComponentContainer}
               sx={{
                 paddingTop: {
                   xs: showMobileImage ? "35px!important" : "75px!important",
-                  md: "146px!important",
+                  md: "100px!important",
+                  lg: "146px!important",
                 },
                 padding: 0,
               }}
             >
               {children}
-            </div>
+            </Box>
           </ThemeProvider>
           <Container
             className={styles.authImageContainer}
@@ -64,7 +67,9 @@ export default function Layout({
             }}
           >
             <div className={styles.imageBannerContainer}>
-              <Image alt="auth-image" src={imageSrcState} layout="fill" />
+              {hasImage && (
+                <Image alt="auth-image" src={imageSrcState} layout="fill" />
+              )}
             </div>
           </Container>
         </div>
