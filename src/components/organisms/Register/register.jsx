@@ -276,7 +276,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               validate: {
                 required: (value) => {
                   if (!value && !watchedEmail)
-                    return "Email ID or Mobile number is required";
+                    return "Email ID or Mobile Number is required";
                   return true;
                 },
               },
