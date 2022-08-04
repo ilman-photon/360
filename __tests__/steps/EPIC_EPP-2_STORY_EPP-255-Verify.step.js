@@ -1,64 +1,59 @@
 import { fireEvent, render } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
-import SetPasswordPage from "../../src/pages/patient/set-Password";
+import SetPasswordComponent from "../../src/components/organisms/SetPassword/setPassword";
+import { Provider } from "react-redux";
+import store from "../../src/store/store";
 
-// const feature = loadFeature(
-//   "./__tests__/features/Patient Portal/Sprint2/EPP-207.feature"
-// );
+const feature = loadFeature(
+  "./__tests__/features/Patient Portal/Sprint2/EPP-255.feature"
+);
 
 defineFeature(feature, (test) => {
-  test("EPIC_EPP-4_STORY_EPP-207-Verify whether the Registered Patient is able to Login with Valid Email or Phone Number and Valid Password", ({
+  test("EPIC_EPP-2_STORY_EPP-255-Patient Registration - Set Password (Patient account created by visiting ECP office)", ({
     given,
     when,
     then,
     and,
   }) => {
     let container;
-    given("user launch the '/set-password' url", () => {
-      container = render(<SetPasswordPage />);
+    given("User has visited the ECP office", () => {});
+
+    and("User has consulted the doctor", () => {});
+    and("System(E360+) has all the required details of the user to onboard him to Patient portal", () => {});
+    and("System (E360+) sends out an Invite with link (active only for 24 hrs) to the user’s preferred mode(s) of communication", () => {});
+    and("clicks on the link received", () => {});
+
+    when("User lands on “Set Password” screen", () => {
+      container = render(<Provider store={store}><SetPasswordComponent username={"UserName"} /></Provider>);
     });
 
-    and("user navigates to the Patient Portal application", () => {});
+    then("User should be able to see the verbiage “Enter a password to setup your account“", () => {});
 
-    when("user lands on “Set Password” screen", () => {
-      const title = container.getByText("Set Password");
-      expect("Set Password").toEqual(title.textContent);
-    });
-
-    and("user click 'Reset Password' button.", () => {
-      const reset = container.getByRole("button", { name: /Reset Password/i });
-      fireEvent.click(reset);
-    });
-
-    and("User Will see Error Message on Mandatory Fields.", async () => {
-      expect(await screen.findByText('This field is required')).toBeVisible()
-    });
-
-    and(
-      'user should see field"Password","Confirm Password" and user provides valid "<Email>" and valid"<password>"',
-      () => {
-        const usernameField = container.getByLabelText("Username");
-        const passwordField = container.getByLabelText("Password");
-        const confirmPasswordField = container.getByLabelText("Password");
-        fireEvent.change(usernameField, { target: { value: "username" } });
-        fireEvent.change(passwordField, { target: { value: "password" } });
-        fireEvent.change(confirmPasswordField, { target: { value: "password" } });
-        expect(usernameField.value).toEqual("username");
-        expect(passwordField.value).toEqual("password");
-        expect(confirmPasswordField.value).toEqual("password");
-      }
-    );
-
-    and("After user type on 'password' field, user will see passwordValidator Component.", async () => {
+    and("User should view and fill the following fields", () => {
+      const passwordField = container.getByLabelText("Password");
+      const confirmPasswordField = container.getByLabelText("Password");
       fireEvent.change(passwordField, { target: { value: "password" } });
-      expect(await screen.findByText('Password length should range from 8 to 20 characters')).toBeVisible()
-      expect(await screen.findByText('Password should contain at least one numerical character (0-9)')).toBeVisible()
-      expect(await screen.findByText('Contain at least 3 our of 4 types')).toBeVisible()
+      fireEvent.change(confirmPasswordField, { target: { value: "password" } });
+      expect(passwordField.value).toEqual("password");
+      expect(confirmPasswordField.value).toEqual("password");
     });
 
+    and("System should by default take the email-id of the user as Username", () => {});
 
-    then("", () => {
-      // expect(props.OnLoginClicked).toBeCalledTimes(1);
+    and("System by default should mask the entered password along with an option to unmask it", () => {
+
     });
+
+    and("User should click on ‘Create Account’ CTA", () => {
+      const login = container.getByRole("button", { name: /Create Account/i });
+      fireEvent.click(login);
+    });
+
+    and("User should be prompted with inline validation error message “This field is required” when all the required fields are not filled", () => {});
+
+    and("Upon successful password set, user should see the message - “Password has been set”", async () => {});
+
+    and("If User provided ‘both’ email and phone number as the preferred modes of communication, link should be sent to both. If link is accessed via the 2nd mode of communication, after password being set using 1st mode, a message should be displayed - “Password has been set”", () => {});
+
   });
 });
