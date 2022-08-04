@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import styles from "../../../styles/Login.module.css";
 import AuthLayout from "../../components/templates/authLayout";
 import SelectOptionForm from "../../components/organisms/SelectOptionForm/selectOptionForm";
@@ -16,7 +16,7 @@ import dynamic from "next/dynamic";
 const ForgotPassword = dynamic(
   () => import("../../components/organisms/ForgotPassword/forgotPassword"),
   {
-    ssr: false,
+    suspense: true,
   }
 );
 
@@ -254,13 +254,15 @@ export default function ForgotPasswordPage() {
     <div className={[styles.forgotPasswordPage, "hide-scrollbar"].join(" ")}>
       <section className={styles.forgotPasswordComponentContainer}>
         {showForgotPassword ? (
-          <ForgotPassword
-            {...backToLoginProps}
-            onContinueButtonClicked={onContinueButtonClicked}
-            showPostMessage={showPostMessage}
-            setShowPostMessage={setShowPostMessage}
-            onCalledValidateUsernameAPI={onCalledValidateUsernameAPI}
-          />
+          <Suspense fallback={`Loading...`}>
+            <ForgotPassword
+              {...backToLoginProps}
+              onContinueButtonClicked={onContinueButtonClicked}
+              showPostMessage={showPostMessage}
+              setShowPostMessage={setShowPostMessage}
+              onCalledValidateUsernameAPI={onCalledValidateUsernameAPI}
+            />
+          </Suspense>
         ) : (
           <></>
         )}

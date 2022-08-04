@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import styles from "../../../styles/Login.module.css";
 import AuthLayout from "../../components/templates/authLayout";
 import { useTranslation } from "react-i18next";
@@ -12,7 +12,7 @@ import dynamic from "next/dynamic";
 const SetPasswordComponent = dynamic(
   () => import("../../components/organisms/SetPassword/setPassword"),
   {
-    ssr: false,
+    suspense: true,
   }
 );
 
@@ -66,21 +66,23 @@ export default function UpdatePasswordPage() {
     <div className={styles.forgotPasswordPage}>
       <section className={styles.forgotPasswordComponentContainer}>
         {showUpdatePassword ? (
-          <SetPasswordComponent
-            username={username}
-            title={t("title")}
-            showPostMessage={showPostMessage}
-            setShowPostMessage={setShowPostMessage}
-            onBackToLoginClicked={function (router) {
-              router.push("/patient/login");
-            }}
-            onSetPasswordClicked={onCallConfirmPasswordAPI}
-            passwordPlaceHolder={t("passwordPlaceHolder")}
-            confirmPasswordPlaceHolder={t("confirmPasswordPlaceHolder")}
-            ctaButtonLabel={t("ctaButtonLabel")}
-            showPasswordValidator={true}
-            isUpdatePassword={true}
-          />
+          <Suspense fallback={`Loading...`}>
+            <SetPasswordComponent
+              username={username}
+              title={t("title")}
+              showPostMessage={showPostMessage}
+              setShowPostMessage={setShowPostMessage}
+              onBackToLoginClicked={function (router) {
+                router.push("/patient/login");
+              }}
+              onSetPasswordClicked={onCallConfirmPasswordAPI}
+              passwordPlaceHolder={t("passwordPlaceHolder")}
+              confirmPasswordPlaceHolder={t("confirmPasswordPlaceHolder")}
+              ctaButtonLabel={t("ctaButtonLabel")}
+              showPasswordValidator={true}
+              isUpdatePassword={true}
+            />
+          </Suspense>
         ) : (
           <></>
         )}
