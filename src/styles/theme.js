@@ -18,6 +18,7 @@ export const colors = {
   peach25: "#FDFAF9",
   grey: "#191919",
   grey75: "#080707",
+  black: "#242526",
 };
 
 // declare module '@mui/material/styles' {

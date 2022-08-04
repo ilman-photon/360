@@ -1,7 +1,4 @@
 
-
-
-
 Feature: As a user, I should see an error message when I have provided incorrect username during ‘forgot password’. 
 
   @BDDTEST-EPP-513
