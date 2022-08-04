@@ -22,7 +22,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
       email: "",
       mobile: "",
       password: "",
-      preferredCommunication: "",
+      preferredCommunication: "both",
     },
   });
 
@@ -335,7 +335,8 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                 fieldState: { error },
               }) => {
                 return (
-                  <RowRadioButtonsGroup
+                  <>
+                    <RowRadioButtonsGroup
                     error={!!error}
                     value={value}
                     onChange={onChange}
@@ -343,6 +344,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                     options={options}
                     helperText={error ? error.message : null}
                   />
+                  </>
                 );
               }}
               rules={{ required: "This field is required" }}
@@ -354,12 +356,12 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           </Button>
         </form>
 
-        <Typography variant="caption" style={styles.bottomParagraph}>
+        <Typography variant="caption" style={{fontSize: "14px", ...styles.bottomParagraph}}>
           By registering, you agree to our Terms &<br /> Conditions and Privacy
           Policy
         </Typography>
         <Divider margin={3} />
-        <Typography variant="caption" style={styles.bottomParagraph}>
+        <Typography variant="caption" style={{fontSize: "12px", ...styles.bottomParagraph}}>
           Already have an account?{" "}
           <Link href="/patient/login">
             <a style={styles.loginLink}>Login</a>
