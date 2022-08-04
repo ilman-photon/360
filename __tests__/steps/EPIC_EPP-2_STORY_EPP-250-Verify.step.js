@@ -29,11 +29,10 @@ defineFeature(feature, (test) => {
     });
 
     then("User should be able to view the following fields", () => {
-        
         const firstnameField = container.getByLabelText("First Name");
         const lastnameField = container.getByLabelText("Last Name");
         const emailField = container.getByRole('textbox', { name: 'Email'})
-        const mobileField = container.getByLabelText("Mobile Number");
+        const mobileField = container.getByLabelText("Mobile number");
         const passwordField = container.getByLabelText("Password");
         const communicationRadio = container.getByLabelText("Both");
         fireEvent.change(firstnameField, { target: { value: "username" } });
@@ -48,7 +47,6 @@ defineFeature(feature, (test) => {
         expect(mobileField.value).toEqual("(123) 456-7890");
         expect(passwordField.value).toEqual("password");
         expect(communicationRadio.value).toEqual("both");
-
       });
 
       and("User should have the option to select either Email or Mobile or both as their preferred method of communication to receive email/ message alerts with links to reset password, magic link as well as in situations like Password is Reset, Account is locked etc.", () => {

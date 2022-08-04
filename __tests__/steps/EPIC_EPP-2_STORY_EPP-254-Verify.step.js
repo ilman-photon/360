@@ -32,7 +32,7 @@ defineFeature(feature, (test) => {
         const firstnameField = container.getByLabelText("First Name");
         const lastnameField = container.getByLabelText("Last Name");
         const emailField = container.getByRole('textbox', { name: 'Email'})
-        const mobileField = container.getByLabelText("Mobile Number");
+        const mobileField = container.getByLabelText("Mobile number");
         const passwordField = container.getByLabelText("Password");
         const communicationRadio = container.getByLabelText("Both");
         fireEvent.change(firstnameField, { target: { value: "username" } });
