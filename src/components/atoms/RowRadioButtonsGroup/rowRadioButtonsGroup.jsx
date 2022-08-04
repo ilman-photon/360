@@ -5,6 +5,7 @@ import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import { FormHelperText } from "@mui/material";
+import { colors } from "../../../styles/theme";
 
 export default function RowRadioButtonsGroup({ helperText = null, ...props }) {
   const options = props.options || [];
@@ -15,6 +16,9 @@ export default function RowRadioButtonsGroup({ helperText = null, ...props }) {
         id="row-radio-buttons-group-label"
         sx={{
           fontSize: 16,
+          "&.Mui-focused": {
+            color: colors.black,
+          },
         }}
       >
         {props.label}
