@@ -13,7 +13,7 @@ import { Api } from "../api/api";
 const ConfirmationForm = dynamic(
   () => import("../../components/organisms/ConfirmationForm/confirmationForm"),
   {
-    suspense: true,
+    ssr: false,
   }
 );
 
