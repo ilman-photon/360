@@ -15,6 +15,9 @@ export default function RowRadioButtonsGroup({ helperText = null, ...props }) {
         id="row-radio-buttons-group-label"
         sx={{
           fontSize: 16,
+          "&.Mui-focused": {
+            color: "black",
+          },
         }}
       >
         {props.label}
