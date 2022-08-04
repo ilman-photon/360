@@ -363,7 +363,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           By registering, you agree to our Terms &<br /> Conditions and Privacy
           Policy
         </Typography>
-        <Divider margin={3} />
+        <Divider margin={3} sx={{width: '288px', alignSelf: 'center'}} />
         <Typography
           variant="caption"
           style={{ fontSize: "12px", ...styles.bottomParagraph }}
