@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
 import Button from "@mui/material/Button";
@@ -18,10 +18,11 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
     defaultValues: {
       firstName: "",
       lastName: "",
+      dob: null,
       email: "",
       mobile: "",
       password: "",
-      preferredCommunication: "",
+      preferredCommunication: "both",
     },
   });
 
@@ -31,16 +32,16 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
 
   const is3of4 = (pass) => {
     let passes = 0;
-    if (alphabethRegex.test(pass)) {
+    if (Regex.alphabethRegex.test(pass)) {
       ++passes;
     }
-    if (specialRegex.test(pass)) {
+    if (Regex.specialRegex.test(pass)) {
       ++passes;
     }
     if (pass.indexOf(watchedEmail || watchedMobile) > -1) {
       ++passes;
     }
-    if (!hasTripleRegex.test(pass)) {
+    if (!Regex.hasTripleRegex.test(pass)) {
       ++passes;
     }
     return passes >= 3 ? true : false;
@@ -62,33 +63,43 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
 
   const passwordValidator = [
     {
-      label: "Password length should range from 8 to 20 characters",
+      label: "Length: 8-20 characters",
       validate: !Regex.lengthRegex.test(watchedPassword),
       mandatory: true,
     },
     {
-      label: "Password should contain at least one numerical character (0-9)",
-      validate: !Regex.numberRegex.test(watchedPassword),
-      mandatory: true,
-    },
-    { label: "Contain at least 3 our of 4 types", text: true },
-    {
-      label: "Password should contain at least one alphabet (a-z)",
-      validate: !Regex.alphabethRegex.test(watchedPassword),
-    },
-    {
-      label: "Password should contain at least one special character",
-      validate: !Regex.specialRegex.test(watchedPassword),
+      label: "Contain at least 3 out of 4 types of characters below:",
+      passesValidation: 3,
+      text: true,
+      children: [
+        {
+          label: "At least One Numeric",
+          validate: Regex.numberRegex.test(watchedPassword),
+        },
+        {
+          label: "At least One Upper case Alpha",
+          validate: Regex.upperCaseRegex.test(watchedPassword),
+        },
+        {
+          label: "At least One Lower case Alpha",
+          validate: Regex.lowerCaseRegex.test(watchedPassword),
+        },
+        {
+          label: "At least One Special character (no spaces)",
+          validate: Regex.specialRegex.test(watchedPassword),
+        },
+      ],
     },
     {
       label: "Password should not contain your username",
       validate: watchedPassword.indexOf(watchedEmail || watchedMobile) > -1,
+      mandatory: true,
     },
-    {
-      label:
-        "Password should not contain 3 or more identical characters consecutively",
-      validate: Regex.hasTripleRegex.test(watchedPassword),
-    },
+    // {
+    //   label: "New password must not match current password",
+    //   validate: Regex.hasTripleRegex.test(watchedPassword),
+    //   mandatory: true,
+    // },
   ];
   const isPasswordError = watchedPassword.length > 0; // && passwordValidator.filter(v => v.validate).length > 0
 
@@ -114,6 +125,16 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
     }
   };
 
+  const formMessageComp = useRef(null);
+  useEffect(() => {
+    if (formMessageComp.current)
+      formMessageComp.current.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+        inline: "nearest",
+      });
+  }, [formMessage]);
+
   return (
     <Box className={globalStyles.container}>
       <Stack spacing={3}>
@@ -121,7 +142,11 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           User Registration
         </Typography>
         {formMessage.content ? (
-          <FormMessage success={formMessage.success} title={formMessage.title}>
+          <FormMessage
+            ref={formMessageComp}
+            success={formMessage.success}
+            title={formMessage.title}
+          >
             {formMessage.content}
           </FormMessage>
         ) : (
@@ -131,7 +156,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           <Controller
             name="firstName"
             control={control}
-            defaultValue=""
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <StyledInput
@@ -148,12 +172,11 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                 />
               );
             }}
-            rules={{ required: "First name required" }}
+            rules={{ required: "This field is required" }}
           />
           <Controller
             name="lastName"
             control={control}
-            defaultValue=""
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <StyledInput
@@ -171,24 +194,36 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               );
             }}
             rules={{
-              required: "Last name required",
-              pattern: {
-                value: Regex.hasAlpahabet,
-                message: "Last name is invalid",
-              },
+              required: "This field is required",
             }}
           />
-          <StyledInput
-            disableFuture
-            type="dob"
-            id="dob"
-            label="Date of Birth"
-            variant="filled"
+
+          <Controller
+            name="dob"
+            control={control}
+            render={({ field: { onChange, value }, fieldState: { error } }) => {
+              console.log({ error });
+              return (
+                <StyledInput
+                  disableFuture
+                  type="dob"
+                  id="dob"
+                  label="Date of Birth"
+                  variant="filled"
+                  value={value}
+                  onChange={onChange}
+                  error={!!error}
+                  helperText={error ? error.message : null}
+                />
+              );
+            }}
+            rules={{
+              required: "This field is required",
+            }}
           />
           <Controller
             name="email"
             control={control}
-            defaultValue=""
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <StyledInput
@@ -206,17 +241,22 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               );
             }}
             rules={{
-              required: "Email required",
+              validate: {
+                required: (value) => {
+                  if (!value && !watchedMobile)
+                    return "Email ID or Mobile Number is required";
+                  return true;
+                },
+              },
               pattern: {
                 value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i,
-                message: "Email is invalid",
+                message: "Incorrect email format",
               },
             }}
           />
           <Controller
             name="mobile"
             control={control}
-            defaultValue=""
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <StyledInput
@@ -233,20 +273,25 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               );
             }}
             rules={{
-              required: "Mobile Number required",
+              validate: {
+                required: (value) => {
+                  if (!value && !watchedEmail)
+                    return "Email ID or Mobile Number is required";
+                  return true;
+                },
+              },
               pattern: {
                 value: Regex.isValidPhoneFormat,
-                message: "Mobile Number is invalid",
+                message: "Incorrect mobile number format",
               },
             }}
           />
           <Typography sx={styles.passwordLabel}>
-            Please Create a Password
+            Please create a password
           </Typography>
           <Controller
             name="password"
             control={control}
-            defaultValue=""
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <StyledInput
@@ -263,10 +308,10 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               );
             }}
             rules={{
-              required: "Password required",
+              required: "This field is required",
               validate: {
-                isLength: (v) => lengthRegex.test(v),
-                isAtLeastOneNumber: (v) => numberRegex.test(v),
+                isLength: (v) => Regex.lengthRegex.test(v),
+                isAtLeastOneNumber: (v) => Regex.numberRegex.test(v),
                 is3of4: (v) => is3of4(v),
               },
             }}
@@ -291,17 +336,19 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                 fieldState: { error },
               }) => {
                 return (
-                  <RowRadioButtonsGroup
-                    error={!!error}
-                    value={value}
-                    onChange={onChange}
-                    label="Preferred mode of Communication"
-                    options={options}
-                    helperText={error ? error.message : null}
-                  />
+                  <>
+                    <RowRadioButtonsGroup
+                      error={!!error}
+                      value={value}
+                      onChange={onChange}
+                      label="Preferred mode of Communication"
+                      options={options}
+                      helperText={error ? error.message : null}
+                    />
+                  </>
                 );
               }}
-              rules={{ required: "Preferred Communication required" }}
+              rules={{ required: "This field is required" }}
             />
           </div>
 
@@ -310,12 +357,18 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           </Button>
         </form>
 
-        <Typography variant="caption" style={styles.bottomParagraph}>
+        <Typography
+          variant="caption"
+          style={{ fontSize: "14px", ...styles.bottomParagraph }}
+        >
           By registering, you agree to our Terms &<br /> Conditions and Privacy
           Policy
         </Typography>
-        <Divider margin={3} />
-        <Typography variant="caption" style={styles.bottomParagraph}>
+        <Divider margin={3} sx={{ width: "288px", alignSelf: "center" }} />
+        <Typography
+          variant="caption"
+          style={{ fontSize: "12px", ...styles.bottomParagraph }}
+        >
           Already have an account?{" "}
           <Link href="/patient/login">
             <a style={styles.loginLink}>Login</a>

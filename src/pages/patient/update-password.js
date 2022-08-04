@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import styles from "../../../styles/Login.module.css";
 import AuthLayout from "../../components/templates/authLayout";
 import { useTranslation } from "react-i18next";
@@ -12,7 +12,7 @@ import dynamic from "next/dynamic";
 const SetPasswordComponent = dynamic(
   () => import("../../components/organisms/SetPassword/setPassword"),
   {
-    ssr: false,
+    suspense: true,
   }
 );
 
@@ -38,8 +38,8 @@ export default function UpdatePasswordPage() {
     isSuccessPostMessage: true,
     buttonLabel: t("backButtonLink"),
     butttonMode: constants.SECONDARY,
-    onCTAButtonClicked: function ({ router }) {
-      router.push(`/patient/login`);
+    onCTAButtonClicked: function () {
+      route.push(`/patient/login`);
     },
     formStyle: { marginTop: "0px" },
   };
@@ -47,25 +47,18 @@ export default function UpdatePasswordPage() {
   //Call API for userame validation
   const onCallConfirmPasswordAPI = function ({ password, confirmPassword }) {
     const postbody = {
-      patient: { email: username },
-      confirmPassword: [
-        { Password: password, ConfirmPassword: confirmPassword },
-      ],
+      patient: { userName: username },
+      confirmPassword: { Password: password, ConfirmPassword: confirmPassword },
     };
     const api = new Api();
-    api.client
-      .post(
-        "https://patientpassword.mocklab.io/reset/confirmpassword ",
-        postbody
-      )
-      .then(function (response) {
-        if (response && response.status === 200) {
-          setShowPostMessage(true);
-          setShowUpdatePassword(false);
-        }
+    api
+      .updatePassword(postbody)
+      .then(function () {
+        setShowPostMessage(true);
+        setShowUpdatePassword(false);
       })
       .catch(function () {
-        //Handle error secenario
+        alert("Somthing went wrong");
       });
   };
 
@@ -73,21 +66,23 @@ export default function UpdatePasswordPage() {
     <div className={styles.forgotPasswordPage}>
       <section className={styles.forgotPasswordComponentContainer}>
         {showUpdatePassword ? (
-          <SetPasswordComponent
-            username={username}
-            title={t("title")}
-            showPostMessage={showPostMessage}
-            setShowPostMessage={setShowPostMessage}
-            onBackToLoginClicked={function (router) {
-              router.push("/patient/login");
-            }}
-            onSetPasswordClicked={onCallConfirmPasswordAPI}
-            passwordPlaceHolder={t("passwordPlaceHolder")}
-            confirmPasswordPlaceHolder={t("confirmPasswordPlaceHolder")}
-            ctaButtonLabel={t("ctaButtonLabel")}
-            showPasswordValidator={true}
-            isUpdatePassword={true}
-          />
+          <Suspense fallback={`Loading...`}>
+            <SetPasswordComponent
+              username={username}
+              title={t("title")}
+              showPostMessage={showPostMessage}
+              setShowPostMessage={setShowPostMessage}
+              onBackToLoginClicked={function (router) {
+                router.push("/patient/login");
+              }}
+              onSetPasswordClicked={onCallConfirmPasswordAPI}
+              passwordPlaceHolder={t("passwordPlaceHolder")}
+              confirmPasswordPlaceHolder={t("confirmPasswordPlaceHolder")}
+              ctaButtonLabel={t("ctaButtonLabel")}
+              showPasswordValidator={true}
+              isUpdatePassword={true}
+            />
+          </Suspense>
         ) : (
           <></>
         )}
@@ -102,5 +97,10 @@ export default function UpdatePasswordPage() {
 }
 
 UpdatePasswordPage.getLayout = function getLayout(page) {
-  return <AuthLayout>{page}</AuthLayout>;
+  const backgroundImage = "/login-bg.png";
+  return (
+    <AuthLayout showMobileImage={true} imageSrc={backgroundImage}>
+      {page}
+    </AuthLayout>
+  );
 };

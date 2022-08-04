@@ -2,10 +2,12 @@ import AuthLayout from "../../components/templates/authLayout";
 import Cookies from "universal-cookie";
 import { Api } from "../api/api";
 import dynamic from "next/dynamic";
+import { Suspense } from "react";
+// import Login from "../../components/organisms/Login/login";
 
 //Prevent html being match between server and client
 const Login = dynamic(() => import("../../components/organisms/Login/login"), {
-  ssr: false,
+  suspense: true,
 });
 const loginProps = {
   OnLoginClicked: function (postbody, router, callback) {
@@ -47,9 +49,18 @@ const loginProps = {
 };
 
 export default function AuthPage() {
-  return <Login {...loginProps} />;
+  return (
+    <Suspense fallback={`Loading...`}>
+      <Login {...loginProps} />
+    </Suspense>
+  );
 }
 
 AuthPage.getLayout = function getLayout(page) {
-  return <AuthLayout showMobileImage={true}>{page}</AuthLayout>;
+  const backgroundImage = "/login-bg.png";
+  return (
+    <AuthLayout showMobileImage={true} imageSrc={backgroundImage}>
+      {page}
+    </AuthLayout>
+  );
 };
