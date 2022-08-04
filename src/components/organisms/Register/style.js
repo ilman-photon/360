@@ -19,7 +19,7 @@ export const styles = {
     marginRight: "8px",
     color: "#366A70",
     // fontSize: "1.25rem",
-    fontSize: "34px"
+    fontSize: "34px",
   },
   passwordLabel: {
     margin: "8px",

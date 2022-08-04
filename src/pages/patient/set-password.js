@@ -42,7 +42,7 @@ export default function SetPasswordPage() {
         })
       );
     } catch (err) {
-      console.console.error();({ err });
+      console.error({ err });
 
       dispatch(
         setFormMessage({
