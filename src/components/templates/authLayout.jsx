@@ -6,6 +6,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import Image from "next/image";
 import BaseHeader from "../organisms/BaseHeader/baseHeader";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { Box } from "@mui/system";
 
 export default function Layout({
   children,
@@ -15,16 +16,12 @@ export default function Layout({
   title,
 }) {
   const isPatient = theme === "patient";
-  const pathImageWebsite = "/desktop_3x.png";
-  const pathImageMobile = "/MicrosoftTeams-image_2x.png";
-  const backgroundImage = "/bg.png";
-  const matches = useMediaQuery("(max-width: 768px)");
+  const hasImage = imageSrc ? true : false;
+
   if (!title) {
     title = `EPP Portal`;
   }
-  if (!imageSrc) {
-    imageSrc = !matches ? pathImageWebsite : pathImageMobile;
-  }
+
   return (
     <>
       <Head>
@@ -36,7 +33,7 @@ export default function Layout({
           <ThemeProvider
             theme={isPatient ? patientTypography : providerTypography}
           >
-            <div
+            <Box
               className={styles.authComponentContainer}
               sx={{
                 paddingTop: {
@@ -48,7 +45,7 @@ export default function Layout({
               }}
             >
               {children}
-            </div>
+            </Box>
           </ThemeProvider>
           <Container
             className={styles.authImageContainer}
@@ -58,12 +55,9 @@ export default function Layout({
             }}
           >
             <div className={styles.imageBannerContainer}>
-              <Image
-                alt="auth-image"
-                // src={imageSrc}
-                src={backgroundImage}
-                layout="fill"
-              />
+              {hasImage && (
+                <Image alt="auth-image" src={imageSrc} layout="fill" />
+              )}
             </div>
           </Container>
         </div>

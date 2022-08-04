@@ -51,5 +51,10 @@ export default function AuthPage() {
 }
 
 AuthPage.getLayout = function getLayout(page) {
-  return <AuthLayout showMobileImage={true}>{page}</AuthLayout>;
+  const backgroundImage = "/login-bg.png";
+  return (
+    <AuthLayout showMobileImage={true} imageSrc={backgroundImage}>
+      {page}
+    </AuthLayout>
+  );
 };
