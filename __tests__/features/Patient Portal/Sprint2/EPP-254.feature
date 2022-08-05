@@ -7,6 +7,7 @@ Feature: As a user, I should be able to view the "User Registration" screen and 
   Scenario: EPIC_EPP-2_STORY_EPP-255 - Verify if user able view the to set password screen
 
 Given User is already a registered user
+And User is in the “User Registration” screen
 And User fills in all the required details to register
 When User clicks on ‘Register’ CTA
 Then System should validate the provided registration details against existing users
