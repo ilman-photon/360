@@ -381,7 +381,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           variant="caption"
           style={{ fontSize: "14px", ...styles.bottomParagraph }}
         >
-          By registering, you agree to our Terms &<br /> Conditions and Privacy
+          By registering, you accept to our Terms &<br /> Conditions and Privacy
           Policy
         </Typography>
         <Divider margin={3} sx={{ width: "288px", alignSelf: "center" }} />
