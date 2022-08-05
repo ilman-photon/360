@@ -9,7 +9,7 @@ const feature = loadFeature(
 );
 
 defineFeature(feature, (test) => {
-  test("EPIC_EPP-2_STORY_EPP-254-Patient Registration - Registered/ Existing user trying to register again", ({
+  test("EPIC_EPP-2_STORY_EPP-255 - Verify if user able view the to set password screen", ({
     given,
     when,
     then,

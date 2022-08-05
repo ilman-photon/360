@@ -9,7 +9,7 @@ const feature = loadFeature(
 );
 
 defineFeature(feature, (test) => {
-  test("EPIC_EPP-2_STORY_EPP-250-Patient Registration - View", ({
+  test("EPIC_EPP-2_STORY_EPP-250 - Verify if user able to view the Registration screen", ({
     given,
     when,
     then,
@@ -38,13 +38,13 @@ defineFeature(feature, (test) => {
         fireEvent.change(firstnameField, { target: { value: "username" } });
         fireEvent.change(lastnameField, { target: { value: "username" } });
         fireEvent.change(emailField, { target: { value: "a@aa.aa" } });
-        fireEvent.change(mobileField, { target: { value: "(123) 456-7890" } });
+        fireEvent.change(mobileField, { target: { value: "(123) 456-789" } });
         fireEvent.change(passwordField, { target: { value: "password" } });
         fireEvent.click(communicationRadio);
         expect(firstnameField.value).toEqual("username");
         expect(lastnameField.value).toEqual("username");
         expect(emailField.value).toEqual("a@aa.aa");
-        expect(mobileField.value).toEqual("(123) 456-7890");
+        expect(mobileField.value).toEqual("(123) 456-789");
         expect(passwordField.value).toEqual("password");
         expect(communicationRadio.value).toEqual("both");
       });
@@ -53,8 +53,10 @@ defineFeature(feature, (test) => {
         const emailRadio = container.getByRole('radio', { name: /Email/i });
         const phoneRadio = container.getByRole('radio', { name: /Phone/i });
         const bothRadio = container.getByRole('radio', { name: /Both/i });
-        // expect(container.getByRole('radio', { name: /Email/i }).not.toBeDisabled());
-        fireEvent.click(phoneRadio);
+        expect(emailRadio).toBeTruthy()
+        expect(phoneRadio).toBeTruthy()
+        expect(bothRadio).toBeTruthy()
+        fireEvent.click(bothRadio);
       });
 
       and("User should be able to view the ‘Register’ button", () => {
@@ -75,32 +77,43 @@ defineFeature(feature, (test) => {
     and("User should be able to see the following error message if email-id provided was in incorrect format “Incorrect email format”", async () => {
           const register = container.getByRole("button", { name: /REGISTER/i });
           fireEvent.click(register);
-        //   console.log({container})
-        // TODO 
-        // const dol = container.getByText('Date of Birth')
-        // expect("Date of Birth").toEqual(dol.textContent);
-        //   const logintext = await container.getByText("Email required");
-        //   expect("Email required").toEqual(logintext.textContent);
+
     });
 
-    // TODO
     and("User should be able to see the following error message if mobile number provided was in incorrect format “Incorrect mobile number format”", async () => {
-        // expect(await container.findByText('Mobile Number required')).toBeVisible()
+      setTimeout(() => {
+        const mobileFieldError = container.getByLabelText(/Incorrect mobile number format/i)
+        expect(mobileFieldError).toBeFalsy()
+        fireEvent.change(mobileField, { target: { value: "(123) 456" } });
+        expect(mobileFieldError).toBeTruthy()
+        expect(/Incorrect mobile number format/i).toEqual(mobileFieldError.textContent);
+      }, 500);
     });
 
     // TODO
     and("User should be able to see the inline error message “Invalid date of birth” when the date of birth entered by the patient is invalid", async () => {
-        // expect(await container.findByText('Mobile Number required')).toBeVisible()
     });
 
-    // TODO
     and("User should be prompted with the inline validation error message “This field is required” when all the required fields are not filled except for Email and Mobile Number field", async () => {
-        // expect(await container.findByText('Mobile Number required')).toBeVisible()
+        setTimeout(() => {
+        const inputFieldError = container.getByLabelText(/This field is required/i)
+        expect(inputFieldError).toBeFalsy()
+        fireEvent.change(firstnameField, { target: { value: "" } });
+        fireEvent.change(lastnameField, { target: { value: "" } });
+        expect(inputFieldError).toBeTruthy()
+        expect(/This field is required/i).toEqual(inputFieldError.textContent);
+      }, 500);
     });
 
-    // TODO
     and("User should be prompted with the inline validation error message “Email ID or Mobile Number is required” when either the Email and/or Mobile number fields is not filled", async () => {
-        // expect(await container.findByText('Mobile Number required')).toBeVisible()
+        setTimeout(() => {
+        const mobileFieldError = container.getByLabelText(/Email ID or Mobile number is required/i)
+        expect(mobileFieldError).toBeFalsy()
+        fireEvent.change(emailField, { target: { value: "" } });
+        fireEvent.change(mobileField, { target: { value: "" } });
+        expect(mobileFieldError).toBeTruthy()
+        expect(/Email ID or Mobile number is required/i).toEqual(mobileFieldError.textContent);
+      }, 500);
     });
 
   });
