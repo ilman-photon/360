@@ -112,6 +112,7 @@ const PasswordSecurityQuestion = ({
                       }}
                       error={!!error}
                       helperText={error ? error.message : null}
+                      sx={{ ".MuiInputLabel-root": { fontSize: "14px" } }}
                     />
                   );
                 }}
