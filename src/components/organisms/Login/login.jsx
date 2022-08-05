@@ -151,7 +151,7 @@ export default function Login({
         <Divider variant={constants.MIDDLE} className={styles.divider} />
 
         <Grid container justifyContent={constants.CENTER}>
-          <Typography variant="bodyMedium">
+          <Typography variant="bodyMedium" sx={{ color: "#003B4A" }}>
             {t("dontHaveAccountLabel")}
           </Typography>
         </Grid>
