@@ -147,7 +147,7 @@ export default function ForgotPasswordPage() {
         setShowPostMessage(true);
       })
       .catch(function () {
-        alert("Somthing went wrong");
+        console.error("Somthing went wrong");
       });
   };
 
@@ -187,7 +187,7 @@ export default function ForgotPasswordPage() {
         setShowPostMessage(true);
       })
       .catch(function () {
-        alert("Somthing went wrong");
+        console.error("Somthing went wrong");
       });
   };
 

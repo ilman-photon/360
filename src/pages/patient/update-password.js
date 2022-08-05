@@ -58,7 +58,7 @@ export default function UpdatePasswordPage() {
         setShowUpdatePassword(false);
       })
       .catch(function () {
-        alert("Somthing went wrong");
+        console.error("Somthing went wrong");
       });
   };
 
