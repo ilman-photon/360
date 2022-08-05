@@ -58,6 +58,15 @@ export const CustomPasswordInput = styled((props) => (
     {...props}
   />
 ))(({ theme }) => ({
+  ".MuiInputLabel-root": {
+    "&.MuiInputLabel-shrink": {
+      color: "#003B4A",
+      fontWeight: 600,
+    },
+    "&.Mui-error": {
+      color: "#B00020",
+    },
+  },
   "& .MuiFilledInput-root": {
     border: "1px solid #e2e2e1",
     overflow: "hidden",
@@ -73,13 +82,13 @@ export const CustomPasswordInput = styled((props) => (
       backgroundColor: "transparent",
     },
     "&.Mui-error": {
-      borderColor: "#FF0000",
-      backgroundColor: "#FF000010",
+      borderColor: "#B00020",
+      backgroundColor: "#FBF4F4",
+      color: "#6C6C6C",
     },
     "&.Mui-focused": {
       backgroundColor: "transparent",
-      boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 2px`,
-      borderColor: theme.palette.primary.main,
+      color: "#193138",
     },
   },
 }));
@@ -99,6 +108,15 @@ export const RedditTextField = styled((props) => (
     {...props}
   />
 ))(({ theme }) => ({
+  ".MuiInputLabel-root": {
+    "&.MuiInputLabel-shrink": {
+      color: "#003B4A",
+      fontWeight: 600,
+    },
+    "&.Mui-error": {
+      color: "#B00020",
+    },
+  },
   "& .MuiFilledInput-root": {
     border: "1px solid #e2e2e1",
     overflow: "hidden",
@@ -120,12 +138,13 @@ export const RedditTextField = styled((props) => (
       borderColor: "transparent !important",
     },
     "&.Mui-error": {
-      borderColor: "#FF0000",
-      backgroundColor: "#FF000010",
+      borderColor: "#B00020",
+      backgroundColor: "#FBF4F4",
+      color: "#6C6C6C",
     },
     "&.Mui-focused": {
       backgroundColor: "transparent",
-      borderColor: theme.palette.primary.main,
+      color: "#193138",
     },
   },
 }));
