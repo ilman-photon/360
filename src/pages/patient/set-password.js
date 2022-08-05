@@ -13,7 +13,7 @@ import { Suspense } from "react";
 const SetPasswordComponent = dynamic(
   () => import("../../components/organisms/SetPassword/setPassword"),
   {
-    suspense: true,
+    ssr: false,
   }
 );
 export default function SetPasswordPage() {
