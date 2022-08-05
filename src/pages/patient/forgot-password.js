@@ -16,7 +16,7 @@ import dynamic from "next/dynamic";
 const ForgotPassword = dynamic(
   () => import("../../components/organisms/ForgotPassword/forgotPassword"),
   {
-    suspense: true,
+    ssr: false,
   }
 );
 
