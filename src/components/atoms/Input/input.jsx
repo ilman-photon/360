@@ -180,9 +180,8 @@ export const CustomInput = styled(({ ...props }) => {
             <DatePicker
               disableFuture={props.disableFuture}
               label={props.label}
-              onChange={() => {
-                // This is intentional
-              }}
+              onChange={props.onChange}
+              value={props.value}
               renderInput={(params) => (
                 <RedditTextField
                   variant="filled"
@@ -204,7 +203,7 @@ export const CustomInput = styled(({ ...props }) => {
       return (
         <>
           <CustomFormControl sx={{ m: 1 }} variant="filled">
-            <InputMask mask="(999) 999-9999" {...props}>
+            <InputMask mask="(999) 999-9999" maskPlaceholder="" {...props}>
               <RedditTextField name="phone" type="text" />
             </InputMask>
           </CustomFormControl>

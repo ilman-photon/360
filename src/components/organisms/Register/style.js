@@ -18,7 +18,8 @@ export const styles = {
     marginLeft: "8px",
     marginRight: "8px",
     color: "#366A70",
-    fontSize: "1.25rem",
+    // fontSize: "1.25rem",
+    fontSize: "34px",
   },
   passwordLabel: {
     margin: "8px",
@@ -34,7 +35,6 @@ export const styles = {
   },
   bottomParagraph: {
     color: "#366A70",
-    fontSize: "12px",
     textAlign: "center",
   },
   loginLink: {
@@ -48,6 +48,7 @@ export const styles = {
     "&:hover": {
       backgroundColor: "#1c8696",
     },
+    textTransform: "none",
   },
   registeredUsernameWrapper: {
     padding: 16,

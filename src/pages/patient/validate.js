@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "../../../styles/Login.module.css";
 import AuthLayout from "../../components/templates/authLayout";
 import Cookies from "universal-cookie";
@@ -8,12 +8,13 @@ import { Link, Typography } from "@mui/material";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { Api } from "../api/api";
+import { colors } from "../../styles/theme";
 
 //Prevent html being match between server and client
 const ConfirmationForm = dynamic(
   () => import("../../components/organisms/ConfirmationForm/confirmationForm"),
   {
-    suspense: true,
+    ssr: false,
   }
 );
 
@@ -48,10 +49,14 @@ export default function ValidatePage({ query }) {
   const expiredOneTimeLinkDescription = function () {
     return (
       <Typography style={{ marginBottom: "22px" }}>
-        Link has expired. Go to{" "}
-        <Link href="/patient/forgot-password" style={{ cursor: "pointer" }}>
-          `Forgot password’
-        </Link>{" "}
+        Link has expired. Go to{" '"}
+        <Link
+          href="/patient/forgot-password"
+          style={{ cursor: "pointer", color: colors.teal }}
+        >
+          Forgot password
+        </Link>
+        {"' "}
         and request for a new link
       </Typography>
     );
@@ -129,12 +134,7 @@ export default function ValidatePage({ query }) {
     <div className={[styles.forgotPasswordPage, "hide-scrollbar"].join(" ")}>
       <section className={styles.forgotPasswordComponentContainer}>
         {showExpiredForm ? (
-          <Suspense fallback={`Loading...`}>
-            <ConfirmationForm
-              {...confirmationFormData}
-              showPostMessage={true}
-            />
-          </Suspense>
+          <ConfirmationForm {...confirmationFormData} showPostMessage={true} />
         ) : (
           <></>
         )}

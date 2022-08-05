@@ -12,7 +12,6 @@ export default function CreateAccountPage() {
   const formMessage = useSelector((state) => state.index.formMessage);
 
   const OnRegisterClicked = async function (postbody, _router) {
-    console.log("register", postbody);
     try {
       dispatch(resetFormMessage());
       const api = new Api();

@@ -2,6 +2,7 @@ import BlockIcon from "@mui/icons-material/Block";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { Box } from "@mui/material";
 import { forwardRef } from "react";
+import { colors } from "../../../styles/theme";
 
 export const FormMessage = ({ ...props }, ref) => {
   return (
@@ -9,7 +10,9 @@ export const FormMessage = ({ ...props }, ref) => {
       <Box
         ref={ref}
         sx={{
-          backgroundColor: props.success ? "success.main" : "error.main",
+          backgroundColor: props.success
+            ? colors.foundationGreen
+            : "error.main",
           width: "auto",
           p: 2,
           borderRadius: "4px",
