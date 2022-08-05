@@ -214,7 +214,9 @@ export default function ForgotPasswordPage() {
         confirmationFormProps.subtitle = t("subtitlePasswordReset");
         confirmationFormProps.additional = modeOfCommuicationUI;
         confirmationFormProps.buttonLabel = t("primaryButtonOneTime");
-        confirmationFormProps.buttonIcon = <InsertLinkIcon />;
+        confirmationFormProps.buttonIcon = (
+          <InsertLinkIcon sx={{ marginRight: "10px" }} />
+        );
         confirmationFormProps.onCTAButtonClicked = function ({ data }) {
           const modeComunication =
             data[constants.MODE_COMMUNICATION_KEY] === constants.EMAIL
@@ -236,7 +238,9 @@ export default function ForgotPasswordPage() {
         confirmationFormProps.subtitle = t("subtitleOneTime");
         confirmationFormProps.additional = modeOfCommuicationUI;
         confirmationFormProps.buttonLabel = t("primaryButtonOneTime");
-        confirmationFormProps.buttonIcon = <InsertLinkIcon />;
+        confirmationFormProps.buttonIcon = (
+          <InsertLinkIcon sx={{ marginRight: "10px" }} />
+        );
         confirmationFormProps.onCTAButtonClicked = function () {
           onCalledOneTimeLinkAPI();
         };
@@ -314,5 +318,10 @@ export default function ForgotPasswordPage() {
 }
 
 ForgotPasswordPage.getLayout = function getLayout(page) {
-  return <AuthLayout>{page}</AuthLayout>;
+  const backgroundImage = "/login-bg.png";
+  return (
+    <AuthLayout showMobileImage={false} imageSrc={backgroundImage}>
+      {page}
+    </AuthLayout>
+  );
 };

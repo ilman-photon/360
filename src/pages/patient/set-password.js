@@ -70,7 +70,7 @@ export default function SetPasswordPage() {
             subtitle={"Enter a password to setup your account."}
             username={username}
             formMessage={formMessage}
-            OnSetPasswordClicked={OnSetPasswordClicked}
+            onSetPasswordClicked={OnSetPasswordClicked}
           />
         </Suspense>
       </section>
@@ -79,5 +79,10 @@ export default function SetPasswordPage() {
 }
 
 SetPasswordPage.getLayout = function getLayout(page) {
-  return <AuthLayout>{page}</AuthLayout>;
+  const backgroundImage = "/login-bg.png";
+  return (
+    <AuthLayout showMobileImage={true} imageSrc={backgroundImage}>
+      {page}
+    </AuthLayout>
+  );
 };

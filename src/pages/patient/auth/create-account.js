@@ -52,5 +52,10 @@ export default function CreateAccountPage() {
 }
 
 CreateAccountPage.getLayout = function getLayout(page) {
-  return <AuthLayout>{page}</AuthLayout>;
+  const backgroundImage = "/register-bg.png";
+  return (
+    <AuthLayout showMobileImage={false} imageSrc={backgroundImage}>
+      {page}
+    </AuthLayout>
+  );
 };

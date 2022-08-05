@@ -15,7 +15,7 @@
     "continueAsPasswordButtonLabel" : "Continue as a guest",
     "loginButtonLabel" : "Login",
     "createAccountButtonLabel" : "Create Account",
-    "dontHaveAccountLabel" : "Dont have an account?"
+    "dontHaveAccountLabel" : "Don't have an account?"
   },
   "Input": {
     "usernameLable": "Patient Login",

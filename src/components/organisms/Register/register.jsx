@@ -202,6 +202,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             name="dob"
             control={control}
             render={({ field: { onChange, value }, fieldState: { error } }) => {
+              console.log({ error });
               return (
                 <StyledInput
                   disableFuture
@@ -243,7 +244,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               validate: {
                 required: (value) => {
                   if (!value && !watchedMobile)
-                    return "Email ID or Mobile number is required";
+                    return "Email ID or Mobile Number is required";
                   return true;
                 },
               },
@@ -261,7 +262,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                 <StyledInput
                   type="phone"
                   id="mobile"
-                  label="Mobile number"
+                  label="Mobile Number"
                   value={value}
                   onChange={onChange}
                   error={!!error}
@@ -275,7 +276,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               validate: {
                 required: (value) => {
                   if (!value && !watchedEmail)
-                    return "Email ID or Mobile number is required";
+                    return "Email ID or Mobile Number is required";
                   return true;
                 },
               },
@@ -286,7 +287,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             }}
           />
           <Typography sx={styles.passwordLabel}>
-            Please create a Password
+            Please create a password
           </Typography>
           <Controller
             name="password"
