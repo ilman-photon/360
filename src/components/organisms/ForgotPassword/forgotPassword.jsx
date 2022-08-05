@@ -47,7 +47,7 @@ const linkStyles = {
 };
 
 const successStyle = {
-  paddingLeft: "10px"
+  paddingLeft: "10px",
 };
 
 const RedditTextField = styled((props) => (
@@ -118,24 +118,20 @@ export default function ForgotPasswordComponent({ OnSubmitClicked }) {
             padding: "10px",
             marginBottom: "10px",
             fontSize: "15px",
-            display: "flex"
+            display: "flex",
           }}
         >
-        <div>
-        <CheckCircleIcon
-            sx={{
-              backgroundColor: "#fff",
-              color: "#059142",
-              borderRadius: "50px",
-              transform: "scale(0.6)"
-            }}
-          />
-        </div>
-        <div sx={successStyle}>
-        {success}
-        </div>
-          
-          
+          <div>
+            <CheckCircleIcon
+              sx={{
+                backgroundColor: "#fff",
+                color: "#059142",
+                borderRadius: "50px",
+                transform: "scale(0.6)",
+              }}
+            />
+          </div>
+          <div sx={successStyle}>{success}</div>
         </div>
       )
     );
