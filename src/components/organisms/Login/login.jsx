@@ -91,7 +91,7 @@ export default function Login({
                 );
               }}
               rules={{
-                required: t("emailRequiredLabel"),
+                required: t("thisFieldRequired"),
               }}
             />
             <Controller
