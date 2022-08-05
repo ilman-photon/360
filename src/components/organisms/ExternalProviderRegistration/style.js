@@ -18,7 +18,7 @@ export const styles = {
     marginTop: "8px",
   },
   backToLogin: {
-    color: "#003b4a",
+    color: "#168845",
     textAlign: "center",
     marginTop: "20px",
     cursor: "pointer",
@@ -81,7 +81,10 @@ export const styles = {
   responseTitle: {
     fontSize: "1.2rem",
     padding: "15px",
-    color: "#003b4a",
+    backgroundColor: "#168845",
+    color: "#fff",
+    margin: "15px",
+    borderRadius: "5px",
   },
   containedButton: {
     marginTop: "25px",

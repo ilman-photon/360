@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Grid from "@mui/material/Grid";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -19,6 +19,7 @@ const Specialization = ({
   sendTaxonomyCodeValue,
   sendSpecialization,
   sendClassification,
+  providerUserData,
 }) => {
   const [taxonomyCode, setTaxonomyCode] = useState("");
   const [classification, setClassification] = useState("");
@@ -28,6 +29,20 @@ const Specialization = ({
   const [showText, setShowText] = useState(false);
   const [taxonomyHelperText, setTaxonomyHelperText] = useState("*Required");
   const router = useRouter();
+
+  useEffect(() => {
+    setTaxonomyCode(providerUserData.taxonomycode);
+    setClassification(providerUserData.classifications);
+    setSpecialization(providerUserData.specialization);
+    sendTaxonomyCodeValue(providerUserData.taxonomycode);
+    sendSpecialization(providerUserData.specialization);
+    sendClassification(providerUserData.classifications);
+  }, [
+    providerUserData,
+    sendTaxonomyCodeValue,
+    sendSpecialization,
+    sendClassification,
+  ]);
 
   const handleFilter = (event) => {
     const searchWord = event.target.value;
@@ -45,21 +60,16 @@ const Specialization = ({
       setShowText(false);
     }
     setTaxonomyCode(searchWord);
-    const url =
-      "https://stg.eyecare360plus.eyecare-partners.com/ecp-stg-apps/employee-management/employee-management/v1/taxonomy-type?search.query=((code=sw=as)OR(classification=sw=as))&pageSize=10&pageNo=0&";
-    const bearer_token =
-      "eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICIwSlBjVUdTTndqUE5MR0RCOENIaVF1WkRGdDN2MUpTbHpfdzV4QlRkQk80In0.eyJleHAiOjE2NTk2MjU3MTksImlhdCI6MTY1OTYyMzkxOSwianRpIjoiYjY5YmM1YjYtOGUxYy00ZjZjLTgxZDAtNDRkOWU1YmNkZmEzIiwiaXNzIjoiaHR0cHM6Ly9zdGcta2V5Y2xvYWsuZXllY2FyZTM2MHBsdXMuZXllY2FyZS1wYXJ0bmVycy5jb20vYXV0aC9yZWFsbXMvbWFzdGVyIiwiYXVkIjoibWFzdGVyLXJlYWxtIiwic3ViIjoiNDQ3NjU3M2YtNThlMS00NGExLWI3YTMtMjZiZjM2MjdjMWQ0IiwidHlwIjoiQmVhcmVyIiwiYXpwIjoibWFzdGVyLXJlYWxtIiwic2Vzc2lvbl9zdGF0ZSI6IjE2OTQ1ODJhLTZmMjktNDY4Mi1hNzRiLWY3MjQ1NjkyMGNiYiIsImFjciI6IjEiLCJhbGxvd2VkLW9yaWdpbnMiOlsiaHR0cDovL2ludGVybmFsLWE5YzBkOTkwNjRjNWE0OTRjYWMwZTZiNjk0ODU2Yzk0LTYzMDI5MDQ2OC51cy1lYXN0LTEuZWxiLmFtYXpvbmF3cy5jb20vIiwiaHR0cDovL2xvY2FsaG9zdDozMDAzIiwiaHR0cDovL2xvY2FsaG9zdDozMDAyIiwiaHR0cHM6Ly9zdGcuZXllY2FyZTM2MHBsdXMuZXllY2FyZS1wYXJ0bmVycy5jb20iLCJodHRwOi8vc3RnLmV5ZWNhcmUzNjBwbHVzLmV5ZWNhcmUtcGFydG5lcnMuY29tIiwiaHR0cHM6Ly9pbnRlcm5hbC1hOWMwZDk5MDY0YzVhNDk0Y2FjMGU2YjY5NDg1NmM5NC02MzAyOTA0NjgudXMtZWFzdC0xLmVsYi5hbWF6b25hd3MuY29tLyIsImh0dHA6Ly9sb2NhbGhvc3Q6MzAwMSIsImh0dHA6Ly9sb2NhbGhvc3Q6MzAwMCJdLCJyZWFsbV9hY2Nlc3MiOnsicm9sZXMiOlsiU3lzdGVtIEFkbWluIiwiU3VwZXIgYWRtaW4iXX0sInNjb3BlIjoicHJvZmlsZSBlbWFpbCIsInNpZCI6IjE2OTQ1ODJhLTZmMjktNDY4Mi1hNzRiLWY3MjQ1NjkyMGNiYiIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwibmFtZSI6InRlc3QucGhvdG9uIiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdC5waG90b24iLCJnaXZlbl9uYW1lIjoidGVzdC5waG90b24ifQ.BZf5LQEc6lQYk7wo_e3eoqgD8podJi1eTjVoUMcToo_OeC0XHQqLkZwwufKIfSsddkDdXcnQ2ZscppNbruLMmL4qjxD9AfRuDEbhgf65j3G3hT3K9EIsueurLJ3aztZtUfNlu_FdZBHDhr9zjis2pNmd1kY5LB03x49I_qFPbkpXnWQV98mZWOtd-A2PfegzRmtroGX_ndH_uSrnuR2q4mtA4qqwP3ap9yOipGBlNSlWV-_ezytWegOLF7GWpSM9s8KHPlSDndxQMGpWS8M7qhuDkizh3do0Q82M-x_Ns3YEAIQ7r4xgcT8ZmCncC61u1fxmiaKgVr7E-ltP75ekkw";
-    const bearer = "Bearer " + bearer_token;
     axios
-      .get(url, {
-        headers: {
-          Authorization: bearer,
-        },
-      })
+      .get(
+        "http://a82a5fdbdd77040d6b7a58563b3620f8-1670930037.us-east-1.elb.amazonaws.com/ecp/provider/registration/gettaxonomydetails/" +
+          searchWord
+      )
       .then((response) => {
-        console.log(taxonomyCode);
-        const newFilter = response.data.entities.filter((value) => {
-          return value.code.toLowerCase().includes(searchWord.toLowerCase());
+        const newFilter = response.data.filter((value) => {
+          return value.taxonomyCode
+            .toLowerCase()
+            .includes(searchWord.toLowerCase());
         });
 
         if (searchWord === "") {
@@ -77,7 +87,7 @@ const Specialization = ({
 
   const handleTaxonomyCode = (value) => {
     setShowText(false);
-    setTaxonomyCode(value.code);
+    setTaxonomyCode(value.taxonomyCode);
     let taxonomyCodeValue = value.code;
     sendTaxonomyCodeValue(taxonomyCodeValue);
     value.classification !== ""
@@ -150,10 +160,10 @@ const Specialization = ({
                       <div
                         className="dataItem"
                         style={styles.dataItem}
-                        key={value.code}
+                        key={value.taxonomyCode}
                       >
                         <p onClick={() => handleTaxonomyCode(value)}>
-                          {value.code}{" "}
+                          {value.taxonomyCode}{" "}
                         </p>
                       </div>
                     );
