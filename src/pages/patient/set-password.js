@@ -24,7 +24,6 @@ export default function SetPasswordPage() {
   const formMessage = useSelector((state) => state.index.formMessage);
 
   const OnSetPasswordClicked = async function (postbody, _router) {
-    console.log("set-password", { postbody });
     try {
       dispatch(resetFormMessage());
       const api = new Api();
@@ -33,7 +32,6 @@ export default function SetPasswordPage() {
         "/registrationsetpassword",
         postbody
       );
-      console.log({ response });
 
       const successMessage = RESPONSE_MESSAGES[response.data.ResponseCode];
 
@@ -45,7 +43,7 @@ export default function SetPasswordPage() {
         })
       );
     } catch (err) {
-      console.log({ err });
+      console.error({ err });
 
       dispatch(
         setFormMessage({
@@ -81,5 +79,10 @@ export default function SetPasswordPage() {
 }
 
 SetPasswordPage.getLayout = function getLayout(page) {
-  return <AuthLayout>{page}</AuthLayout>;
+  const backgroundImage = "/login-bg.png";
+  return (
+    <AuthLayout showMobileImage={true} imageSrc={backgroundImage}>
+      {page}
+    </AuthLayout>
+  );
 };

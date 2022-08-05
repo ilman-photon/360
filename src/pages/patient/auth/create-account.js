@@ -12,7 +12,6 @@ export default function CreateAccountPage() {
   const formMessage = useSelector((state) => state.index.formMessage);
 
   const OnRegisterClicked = async function (postbody, _router) {
-    console.log("register", postbody);
     try {
       dispatch(resetFormMessage());
       const api = new Api();
@@ -53,5 +52,10 @@ export default function CreateAccountPage() {
 }
 
 CreateAccountPage.getLayout = function getLayout(page) {
-  return <AuthLayout>{page}</AuthLayout>;
+  const backgroundImage = "/register-bg.png";
+  return (
+    <AuthLayout showMobileImage={false} imageSrc={backgroundImage}>
+      {page}
+    </AuthLayout>
+  );
 };
