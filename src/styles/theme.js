@@ -19,6 +19,8 @@ export const colors = {
   grey: "#191919",
   grey75: "#080707",
   black: "#242526",
+  foundationGreen: "#04844B",
+  foundationRed: "#C23934",
 };
 
 // declare module '@mui/material/styles' {

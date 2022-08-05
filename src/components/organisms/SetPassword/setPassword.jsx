@@ -46,7 +46,7 @@ const SetPasswordComponent = ({
   onBackToLoginClicked,
   postMessage,
   formMessage,
-  OnSetPasswordClicked = () => {},
+  onSetPasswordClicked = () => {},
   username,
   title,
   subtitle,
@@ -178,7 +178,7 @@ const SetPasswordComponent = ({
       });
 
       if (validateErrorPassword(errors1, errors2, errorForkedValidation)) {
-        OnSetPasswordClicked(data);
+        onSetPasswordClicked(data);
       } else {
         setError("confirmPassword", {
           type: "custom",

@@ -70,7 +70,7 @@ export default function SetPasswordPage() {
             subtitle={"Enter a password to setup your account."}
             username={username}
             formMessage={formMessage}
-            OnSetPasswordClicked={OnSetPasswordClicked}
+            onSetPasswordClicked={OnSetPasswordClicked}
           />
         </Suspense>
       </section>
