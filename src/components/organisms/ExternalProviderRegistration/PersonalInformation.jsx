@@ -116,6 +116,8 @@ const Information = ({
           sendGenderValue(userData.gender);
           setFirstNameHelper("");
           setLastNameHelper("");
+          setFirstNameError(false);
+          setLastNameError(false);
         } else {
           setNPIErrorHelper("NPI # is invalid");
           setNPIError(true);
@@ -141,7 +143,7 @@ const Information = ({
     sendLastNameValue(e.target.value);
     if (validator.isAlpha(e.target.value)) {
       setLastNameError(false);
-      setLastNameHelper("*Required");
+      setLastNameHelper("");
     } else {
       setLastNameError(true);
       setLastNameHelper("Invalid Format");
@@ -153,7 +155,7 @@ const Information = ({
     sendFirstNameValue(e.target.value);
     if (validator.isAlpha(e.target.value)) {
       setFirstNameError(false);
-      setFirstNameHelper("*Required");
+      setFirstNameHelper("");
     } else {
       setFirstNameError(true);
       setFirstNameHelper("Invalid Format");
@@ -371,12 +373,7 @@ const Information = ({
               </TextField>
             </Grid>
           </Grid>
-          <Button
-            type="submit"
-            variant="contained"
-            disabled={inputDisabled}
-            sx={styles.containedButton}
-          >
+          <Button type="submit" variant="contained" sx={styles.containedButton}>
             Next: Specialization
           </Button>
           <div
