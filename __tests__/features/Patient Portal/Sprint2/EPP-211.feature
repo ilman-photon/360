@@ -43,7 +43,7 @@ Examples:
   @Patient_Portal
   @Regression
   @Sprint2
-  @excluded
+    @included
   Scenario: EPIC_EPP-4_STORY_EPP-211 - Verify if patient user should not be able to login with invalid credentials when my account is locked.
 
 Scenario Outline: Verify if user not be able to login with invalid credentials when account is locked.
@@ -82,7 +82,7 @@ Examples:
   @Patient_Portal
   @Regression
   @Sprint2
-  @excluded
+    @included
   Scenario: EPIC_EPP-4_STORY_EPP-211 - "Verify if user not be able to login with Invalid Email or Phone Number & valid Password when account is locked".
 
 Scenario Outline: Verify if user should not be able to login with Invalid username & valid Password when account is locked.
@@ -119,7 +119,7 @@ Examples:
   @Patient_Portal
   @Regression
   @Sprint2
-  @excluded
+    @included
   Scenario: EPIC_EPP-4_STORY_EPP-211 - Verify if user not be able to login with valid Email or Phone Number & Invalid Password when account is locked.
 
 Scenario Outline: Verify if user should not be able to login with valid username & Invalid Password when account is locked.
