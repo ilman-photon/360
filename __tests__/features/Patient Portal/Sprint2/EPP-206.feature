@@ -1,10 +1,11 @@
 Feature: As a user/ admin user, I should be able to view the "Patient Login" Page.
 
   @BDDTEST-EPP-913
-  @@Sprint2
+  @Sprint2
   @Authentication
   @Automation
   @Patient_Portal
+  @included
   Scenario: EPIC_EPP-4_STORY_EPP-206-Verify whether the user is able to see the Patient Login page with Email or phone number & Password fields
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -15,6 +16,7 @@ Feature: As a user/ admin user, I should be able to view the "Patient Login" Pag
   @Authentication
   @Patient_Portal
   @Sprint2
+  @included
   Scenario: EPIC_EPP-4_STORY_EPP-206-Verify whether the Password is getting mask when user typing the Password.
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -29,6 +31,7 @@ Feature: As a user/ admin user, I should be able to view the "Patient Login" Pag
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-206-Verify whether the Password has the unmask option when user typing the Password.
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -47,6 +50,7 @@ Feature: As a user/ admin user, I should be able to view the "Patient Login" Pag
   @Automation
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-206-Verify whether the user is able to see the Patient Login page with Login button, Continue as  a guest button, Don’t have an account?” verbiage along with ‘Create Account button and Forgot password link
     Given user user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -85,6 +89,7 @@ Feature: As a user/ admin user, I should be able to view the "Patient Login" Pag
   @Automation
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-206-Verify whether the user is able to click the 'Create Account' link 
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -110,6 +115,7 @@ Feature: As a user/ admin user, I should be able to view the "Patient Login" Pag
   @Patient_Portal
   @Regression
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-206-Verify whether the inline error message is displayed if Email or Phone number not filled
     Given user/admin user launch the 'XXX' url	
     And user/ admin user navigates to the Patient Portal application
@@ -128,6 +134,7 @@ Feature: As a user/ admin user, I should be able to view the "Patient Login" Pag
   @Patient_Portal
   @Regression
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-206- Verify whether the inline error message is displayed if password not filled
     Given user/admin user launch the 'XXX' url	
     And user/ admin user navigates to the Patient Portal application
@@ -145,6 +152,7 @@ Feature: As a user/ admin user, I should be able to view the "Patient Login" Pag
   @Patient_Portal
   @Regression
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-206- Verify whether the admin user is not able to see the Patient Login page with Continue as a guest button, Don’t have an account?” verbiage along with ‘Create Account button and Forgot password link and see Login Button
     Given admin user launch the 'XXX' url	
     And admin user navigates to the Patient Portal application
@@ -160,6 +168,7 @@ Feature: As a user/ admin user, I should be able to view the "Patient Login" Pag
   @Patient_Portal
   @Regression
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-206- Verify whether the inline error message is displayed if Email or Phone Number and  password are not filled 
     Given user/admin user launch the 'XXX' url	
     And user/ admin user navigates to the Patient Portal application
@@ -176,6 +185,7 @@ Feature: As a user/ admin user, I should be able to view the "Patient Login" Pag
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-206-Verify whether the user/admin user is able to see the Patient Login page when Internet connection/service is unavailable
     Given user/admin user launch the 'XXX' url	
     When user/ admin user navigates to the Patient Portal application
@@ -185,6 +195,7 @@ Feature: As a user/ admin user, I should be able to view the "Patient Login" Pag
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-206-Verify whether the user is able to see the Patient Login page without Internet connection
 
 
@@ -192,6 +203,7 @@ Feature: As a user/ admin user, I should be able to view the "Patient Login" Pag
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-206-Verify whether the page is loading with in 3 seconds
 
 
@@ -199,6 +211,7 @@ Feature: As a user/ admin user, I should be able to view the "Patient Login" Pag
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-206-Verify whether any error is displaying when we press F12 after navigating to the Patient Login page.
 
 
@@ -206,6 +219,7 @@ Feature: As a user/ admin user, I should be able to view the "Patient Login" Pag
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-206-Verify whether the error message is displaying when the service is unavailable.
 
 
@@ -213,6 +227,7 @@ Feature: As a user/ admin user, I should be able to view the "Patient Login" Pag
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-206-Verify whether the Password has the unmask option when Admin typing the Password.
     Given Admin launch the 'XXX' url	
     And Admin navigates to the Patient Portal application
@@ -227,10 +242,11 @@ Feature: As a user/ admin user, I should be able to view the "Patient Login" Pag
     |xxxxxxxxxx|********|
 
   @BDDTEST-EPP-1710
-  @@Sprint2
+  @Sprint2
   @Authentication
   @Automation
   @Patient_Portal
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-206-Verify whether the Admin is able to see the Patient Login page with Email or phone number & Password fields
     Given Admin launch the 'XXX' url	
     And Admin navigates to the Patient Portal application
