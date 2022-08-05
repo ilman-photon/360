@@ -54,7 +54,11 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
   ];
 
   const watchedPassword = watch("password", "");
-  const [watchedEmail, watchedMobile] = watch(["email", "mobile"]); // you can also target specific fields by their names
+  const [watchedEmail, watchedMobile, watchedPreferredCommunication] = watch([
+    "email",
+    "mobile",
+    "preferredCommunication",
+  ]); // you can also target specific fields by their names
   const getRegisteredUsername = () => {
     return (
       watchedEmail || watchedMobile || "(auto-populated email id/phone number)"
@@ -135,6 +139,25 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
       });
   }, [formMessage]);
 
+  const isOneOfPreferredValid = (name, value) => {
+    switch (name) {
+      case "email":
+        if (watchedPreferredCommunication === "phone") return true;
+        else if (watchedPreferredCommunication === "email" && !value)
+          return false;
+        else if (watchedEmail || watchedMobile) return true;
+        break;
+      case "phone":
+        if (watchedPreferredCommunication === "email") return true;
+        else if (watchedPreferredCommunication === "phone" && !value)
+          return false;
+        else if (watchedEmail || watchedMobile) return true;
+        break;
+      default:
+        return false;
+    }
+  };
+
   return (
     <Box className={globalStyles.container}>
       <Stack spacing={3}>
@@ -202,7 +225,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             name="dob"
             control={control}
             render={({ field: { onChange, value }, fieldState: { error } }) => {
-              console.log({ error });
               return (
                 <StyledInput
                   disableFuture
@@ -243,9 +265,8 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             rules={{
               validate: {
                 required: (value) => {
-                  if (!value && !watchedMobile)
+                  if (!isOneOfPreferredValid("email", value))
                     return "Email ID or Mobile Number is required";
-                  return true;
                 },
               },
               pattern: {
@@ -275,9 +296,8 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             rules={{
               validate: {
                 required: (value) => {
-                  if (!value && !watchedEmail)
+                  if (!isOneOfPreferredValid("phone", value))
                     return "Email ID or Mobile Number is required";
-                  return true;
                 },
               },
               pattern: {
@@ -357,18 +377,12 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           </Button>
         </form>
 
-        <Typography
-          variant="caption"
-          style={{ fontSize: "14px", ...styles.bottomParagraph }}
-        >
-          By registering, you agree to our Terms &<br /> Conditions and Privacy
+        <Typography variant="caption" style={styles.bottomParagraph}>
+          By registering, you accept to our Terms &<br /> Conditions and Privacy
           Policy
         </Typography>
         <Divider margin={3} sx={{ width: "288px", alignSelf: "center" }} />
-        <Typography
-          variant="caption"
-          style={{ fontSize: "12px", ...styles.bottomParagraph }}
-        >
+        <Typography variant="caption" style={styles.bottomParagraph}>
           Already have an account?{" "}
           <Link href="/patient/login">
             <a style={styles.loginLink}>Login</a>

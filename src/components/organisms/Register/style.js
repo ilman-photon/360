@@ -36,6 +36,7 @@ export const styles = {
   bottomParagraph: {
     color: "#366A70",
     textAlign: "center",
+    fontSize: "14px",
   },
   loginLink: {
     color: "#3EAFBD",

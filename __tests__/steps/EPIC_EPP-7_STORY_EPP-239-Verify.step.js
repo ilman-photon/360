@@ -375,8 +375,6 @@ defineFeature(feature, (test) => {
           const password = container.getByLabelText("New Password");
           fireEvent.change(password, { target: { value: "user12@Qe" } });
           expect(password.value).toEqual("user12@Qe");
-
-          
         }
     );
 
