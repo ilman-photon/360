@@ -6,13 +6,11 @@ import { ThemeProvider } from "@mui/material/styles";
 import Image from "next/image";
 import BaseHeader from "../organisms/BaseHeader/baseHeader";
 import useMediaQuery from "@mui/material/useMediaQuery";
-import EyeCareLogo from "../../assets/icons/eyeCareLogo.svg";
 
 export default function Layout({
   children,
   showMobileImage = false,
   theme = "provider",
-  imageSrc,
   title,
 }) {
   const isPatient = theme === "provider";
@@ -22,16 +20,12 @@ export default function Layout({
   if (!title) {
     title = `EPP Portal`;
   }
-  if (!imageSrc) {
-    imageSrc = !matches ? pathImageWebsite : pathImageMobile;
-  }
   return (
     <>
       <Head>
         <title>{title}</title>
       </Head>
       <div className={styles.authLayout}>
-        {/* { <EyeCareLogo/> } */}
         <BaseHeader></BaseHeader>
         <div className={styles.authContainer}>
           <Container

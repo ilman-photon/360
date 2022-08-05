@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { useRouter } from "next/router";
@@ -46,7 +46,7 @@ const SetPasswordComponent = ({
   onBackToLoginClicked,
   postMessage,
   formMessage,
-  OnSetPasswordClicked = () => {},
+  onSetPasswordClicked = () => {},
   username,
   title,
   subtitle,
@@ -58,6 +58,7 @@ const SetPasswordComponent = ({
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "SetPassword" });
   const { handleSubmit, control, watch, setError, setValue } = useForm();
+  const [showValidation, setShowValidation] = useState(isUpdatePassword);
 
   const validateErrorPassword = (
     errors1 = [],
@@ -125,7 +126,9 @@ const SetPasswordComponent = ({
       mandatory: true,
     },
   ];
-  const isPasswordError = watchedPassword.length > 0;
+  const isPasswordError = isUpdatePassword
+    ? showValidation
+    : watchedPassword.length > 0;
 
   const is3of4 = (pass) => {
     let passes = 0;
@@ -145,6 +148,9 @@ const SetPasswordComponent = ({
   };
 
   const onSubmit = (data) => {
+    if (isUpdatePassword) {
+      setShowValidation(false);
+    }
     if (data.password.toLowerCase() === data.confirmPassword.toLowerCase()) {
       const errors1 = [];
       const errors2 = [];
@@ -172,7 +178,7 @@ const SetPasswordComponent = ({
       });
 
       if (validateErrorPassword(errors1, errors2, errorForkedValidation)) {
-        OnSetPasswordClicked(data);
+        onSetPasswordClicked(data);
       } else {
         setError("confirmPassword", {
           type: "custom",
@@ -212,6 +218,15 @@ const SetPasswordComponent = ({
         inline: "nearest",
       });
   }, [formMessage]);
+
+  const onChangePasswordValue = function () {
+    if (showPostMessage) {
+      setShowPostMessage(false);
+    }
+    if (!showValidation) {
+      setShowValidation(true);
+    }
+  };
 
   return (
     <Card
@@ -299,9 +314,7 @@ const SetPasswordComponent = ({
                   value={value}
                   onChange={(event) => {
                     onChange(event);
-                    if (showPostMessage) {
-                      setShowPostMessage(false);
-                    }
+                    onChangePasswordValue();
                   }}
                   error={!!error}
                   helperText={error ? error.message : null}
@@ -316,7 +329,7 @@ const SetPasswordComponent = ({
           {!isUpdatePassword ? (
             getPasswordValidator({
               passwordValidator,
-              showValidator: isUpdatePassword || isPasswordError,
+              showValidator: isPasswordError,
               watchedPassword,
               validateErrorPassword,
             })
@@ -337,9 +350,7 @@ const SetPasswordComponent = ({
                   // style={styles.margin}
                   onChange={(event) => {
                     onChange(event);
-                    if (showPostMessage) {
-                      setShowPostMessage(false);
-                    }
+                    onChangePasswordValue();
                   }}
                   error={!!error}
                   helperText={error ? error.message : null}
@@ -354,7 +365,7 @@ const SetPasswordComponent = ({
           {isUpdatePassword ? (
             getPasswordValidator({
               passwordValidator,
-              showValidator: isUpdatePassword || isPasswordError,
+              showValidator: isPasswordError,
               watchedPassword,
               validateErrorPassword,
             })

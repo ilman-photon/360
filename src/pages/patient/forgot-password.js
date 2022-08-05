@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 import styles from "../../../styles/Login.module.css";
 import AuthLayout from "../../components/templates/authLayout";
 import SelectOptionForm from "../../components/organisms/SelectOptionForm/selectOptionForm";
@@ -16,7 +16,7 @@ import dynamic from "next/dynamic";
 const ForgotPassword = dynamic(
   () => import("../../components/organisms/ForgotPassword/forgotPassword"),
   {
-    ssr: false,
+    suspense: true,
   }
 );
 
@@ -214,7 +214,9 @@ export default function ForgotPasswordPage() {
         confirmationFormProps.subtitle = t("subtitlePasswordReset");
         confirmationFormProps.additional = modeOfCommuicationUI;
         confirmationFormProps.buttonLabel = t("primaryButtonOneTime");
-        confirmationFormProps.buttonIcon = <InsertLinkIcon />;
+        confirmationFormProps.buttonIcon = (
+          <InsertLinkIcon sx={{ marginRight: "10px" }} />
+        );
         confirmationFormProps.onCTAButtonClicked = function ({ data }) {
           const modeComunication =
             data[constants.MODE_COMMUNICATION_KEY] === constants.EMAIL
@@ -236,7 +238,9 @@ export default function ForgotPasswordPage() {
         confirmationFormProps.subtitle = t("subtitleOneTime");
         confirmationFormProps.additional = modeOfCommuicationUI;
         confirmationFormProps.buttonLabel = t("primaryButtonOneTime");
-        confirmationFormProps.buttonIcon = <InsertLinkIcon />;
+        confirmationFormProps.buttonIcon = (
+          <InsertLinkIcon sx={{ marginRight: "10px" }} />
+        );
         confirmationFormProps.onCTAButtonClicked = function () {
           onCalledOneTimeLinkAPI();
         };
@@ -254,13 +258,15 @@ export default function ForgotPasswordPage() {
     <div className={[styles.forgotPasswordPage, "hide-scrollbar"].join(" ")}>
       <section className={styles.forgotPasswordComponentContainer}>
         {showForgotPassword ? (
-          <ForgotPassword
-            {...backToLoginProps}
-            onContinueButtonClicked={onContinueButtonClicked}
-            showPostMessage={showPostMessage}
-            setShowPostMessage={setShowPostMessage}
-            onCalledValidateUsernameAPI={onCalledValidateUsernameAPI}
-          />
+          <Suspense fallback={`Loading...`}>
+            <ForgotPassword
+              {...backToLoginProps}
+              onContinueButtonClicked={onContinueButtonClicked}
+              showPostMessage={showPostMessage}
+              setShowPostMessage={setShowPostMessage}
+              onCalledValidateUsernameAPI={onCalledValidateUsernameAPI}
+            />
+          </Suspense>
         ) : (
           <></>
         )}
@@ -312,5 +318,10 @@ export default function ForgotPasswordPage() {
 }
 
 ForgotPasswordPage.getLayout = function getLayout(page) {
-  return <AuthLayout>{page}</AuthLayout>;
+  const backgroundImage = "/login-bg.png";
+  return (
+    <AuthLayout showMobileImage={false} imageSrc={backgroundImage}>
+      {page}
+    </AuthLayout>
+  );
 };

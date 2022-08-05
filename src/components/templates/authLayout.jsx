@@ -6,6 +6,8 @@ import { ThemeProvider } from "@mui/material/styles";
 import Image from "next/image";
 import BaseHeader from "../organisms/BaseHeader/baseHeader";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import { Box } from "@mui/system";
+import { useEffect, useState } from "react";
 
 export default function Layout({
   children,
@@ -18,16 +20,24 @@ export default function Layout({
   const pathImageWebsite = "/desktop_3x.png";
   const pathImageMobile = "/MicrosoftTeams-image_2x.png";
   const matches = useMediaQuery("(max-width: 768px)");
-  if (!title) {
-    title = `EPP Portal`;
-  }
-  if (!imageSrc) {
-    imageSrc = !matches ? pathImageWebsite : pathImageMobile;
-  }
+  const [titleState, setTitleState] = useState(`EPP Portal`);
+  const [imageSrcState, setImageSrcState] = useState(
+    !matches ? pathImageWebsite : pathImageMobile
+  );
+  const hasImage = imageSrcState ? true : false;
+  useEffect(() => {
+    if (title) {
+      setTitleState(title);
+    }
+    if (imageSrc) {
+      setImageSrcState(imageSrc);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>{titleState}</title>
       </Head>
       <div className={styles.authLayout}>
         <BaseHeader></BaseHeader>
@@ -35,18 +45,19 @@ export default function Layout({
           <ThemeProvider
             theme={isPatient ? patientTypography : providerTypography}
           >
-            <div
+            <Box
               className={styles.authComponentContainer}
               sx={{
                 paddingTop: {
                   xs: showMobileImage ? "35px!important" : "75px!important",
-                  md: "146px!important",
+                  md: "100px!important",
+                  lg: "146px!important",
                 },
                 padding: 0,
               }}
             >
               {children}
-            </div>
+            </Box>
           </ThemeProvider>
           <Container
             className={styles.authImageContainer}
@@ -56,7 +67,9 @@ export default function Layout({
             }}
           >
             <div className={styles.imageBannerContainer}>
-              <Image alt="auth-image" src={imageSrc} layout="fill" />
+              {hasImage && (
+                <Image alt="auth-image" src={imageSrcState} layout="fill" />
+              )}
             </div>
           </Container>
         </div>
