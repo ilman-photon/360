@@ -20,7 +20,6 @@ export default function Layout({
   if (!title) {
     title = `EPP Portal`;
   }
-
   return (
     <>
       <Head>
