@@ -377,18 +377,12 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           </Button>
         </form>
 
-        <Typography
-          variant="caption"
-          style={{ fontSize: "14px", ...styles.bottomParagraph }}
-        >
+        <Typography variant="caption" style={styles.bottomParagraph}>
           By registering, you accept to our Terms &<br /> Conditions and Privacy
           Policy
         </Typography>
         <Divider margin={3} sx={{ width: "288px", alignSelf: "center" }} />
-        <Typography
-          variant="caption"
-          style={{ fontSize: "12px", ...styles.bottomParagraph }}
-        >
+        <Typography variant="caption" style={styles.bottomParagraph}>
           Already have an account?{" "}
           <Link href="/patient/login">
             <a style={styles.loginLink}>Login</a>
