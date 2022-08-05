@@ -12,20 +12,11 @@ import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { Button, TextField } from "@mui/material";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-// import { StyledButton } from "../../atoms/Button/button";
-// import {styles} from "./style";
 
 const headingStyles = {
   marginBottom: 30,
   textAlign: "left",
 };
-
-// const successStyles = {
-//   backgroundColor: green,
-//   width: 300,
-//   padding: 50,
-//   margin: 20,
-// };
 
 const labelStyle = {
   textAlign: "left",
@@ -94,9 +85,8 @@ export default function ForgotPasswordComponent({ OnSubmitClicked }) {
 
   const checkMessage = (message) => {
     const messageStatus = message.status === "failed";
-    //console.log("messageStatus", messageStatus);
+
     const userNameStatus = message.postBody;
-    //console.log("userNameStatus",userNameStatus);
 
     if (messageStatus) {
       setError("userName", {
@@ -109,14 +99,11 @@ export default function ForgotPasswordComponent({ OnSubmitClicked }) {
       );
     } else if (userNameStatus.userName == "smith1@photon.com") {
       setSuccess("Please check your email to reset your password");
-    } else {
     }
     setPostMessage(message);
-    //console.log("this", postMessage, message);
   };
 
   const renderFromMessage = () => {
-    //console.log("sas", postMessage);
     return (
       postMessage.status === "success" && (
         <div
@@ -171,21 +158,11 @@ export default function ForgotPasswordComponent({ OnSubmitClicked }) {
                   );
                 }}
               />
-              {/* <StyledButton
-            type="submit"
-            theme="patient"
-            mode="primary"
-            size="large"
-            gradient={false}
-            style={styles.margin}
-            
-          >
-            Submit
-          </StyledButton> */}
+
               <Button variant="contained" sx={buttonStyle} type="submit">
                 Submit
               </Button>
-              <Link underline="none" sx={linkStyles} href="/login">
+              <Link underline="none" sx={linkStyles} href="/provider/login">
                 Back To Login
               </Link>
             </Stack>
