@@ -3,34 +3,68 @@
 exports[`Home renders homepage unchanged 1`] = `
 <div>
   <div
-    class="authLayout"
+    class="MuiBox-root css-cxmp86"
   >
     <div
-      class="authContainer"
+      class="css-90qqe5-MuiStack-root"
     >
-      <section
-        class="authComponentContainer"
+      <div>
+        This is Homepage
+      </div>
+      <div>
+        Example normal action with redux:
+      </div>
+      <div
+        style="display: flex;"
       >
-        <button
-          class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root custom-button custom-button--large  css-13vkird-MuiButtonBase-root-MuiButton-root"
-          tabindex="0"
-          type="button"
-        >
-          Logout
-          <span
-            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-          />
+        <button>
+          Increase counter
         </button>
-      </section>
-      <section
-        class="authImageContainer"
+        <div>
+          <div
+            style="margin-left: 4px;"
+          >
+            0
+          </div>
+        </div>
+      </div>
+      <hr
+        class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+      />
+      <div
+        style="display: flex;"
       >
-        <img
-          class="imageBanner"
-          src="https://c4.wallpaperflare.com/wallpaper/930/115/679/panda-4k-high-quality-hd-wallpaper-preview.jpg"
+        <div>
+          Example fetch API call with redux:
+        </div>
+        <button
+          style="margin-left: 4px;"
+        >
+          Fetch User
+        </button>
+      </div>
+      <div>
+        <span
+          class="MuiSkeleton-root MuiSkeleton-rectangular MuiSkeleton-pulse css-58ftfq-MuiSkeleton-root"
+          style="width: 50%; height: 118px;"
         />
-      </section>
+        <span
+          class="MuiSkeleton-root MuiSkeleton-rectangular MuiSkeleton-pulse css-58ftfq-MuiSkeleton-root"
+          style="width: 210px; height: 118px;"
+        />
+      </div>
     </div>
   </div>
+  <button
+    class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonLarge  css-i2fzad-MuiButtonBase-root-MuiButton-root"
+    primary="true"
+    tabindex="0"
+    type="button"
+  >
+    Logout
+    <span
+      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+    />
+  </button>
 </div>
 `;

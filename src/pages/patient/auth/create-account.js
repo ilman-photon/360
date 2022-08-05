@@ -5,90 +5,39 @@ import { useDispatch, useSelector } from "react-redux";
 import { resetFormMessage, setFormMessage } from "../../../store";
 import Link from "next/link";
 import { Api } from "../../api/api";
+import RESPONSE_MESSAGES from "../../../utils/responseCodes";
 export default function CreateAccountPage() {
   const dispatch = useDispatch();
 
   const formMessage = useSelector((state) => state.index.formMessage);
 
-  const OnRegisterClicked = async function (postbody, router) {
-    console.log("register", postbody);
+  const OnRegisterClicked = async function (postbody, _router) {
     try {
       dispatch(resetFormMessage());
       const api = new Api();
 
       const response = await api.client.post("/userregistration", postbody);
-      console.log({ response });
+      const successMessage = RESPONSE_MESSAGES[response.data.ResponseCode];
 
       dispatch(
         setFormMessage({
           success: true,
-          title: "Success",
-          content: <>Thank you for your registration.</>,
+          title: successMessage.title,
+          content: successMessage.content,
         })
       );
-
-      // dummy
-      // let response = {};
-      // if (postbody.email === "exist@email.com") {
-      //   dispatch(
-      //     setFormMessage({
-      //       success: false,
-      //       title: "Existing User",
-      //       content: (
-      //         <>
-      //           You are already a registered user. Please login to the
-      //           application using your username and password.
-      //           <Link href="/patient/login">
-      //             <a style={{ textDecoration: "underline" }}>Login</a>
-      //           </Link>
-      //         </>
-      //       ),
-      //     })
-      //   );
-
-      //   response = {
-      //     ResponseCode: 3001,
-      //     ResponseType: "failed",
-      //     status: 400,
-      //   };
-      // } else {
-      //   dispatch(
-      //     setFormMessage({
-      //       success: true,
-      //       title: "Success",
-      //       content: <>Thank you for your registration.</>,
-      //     })
-      //   );
-
-      //   response = {
-      //     ResponseCode: 3000,
-      //     ResponseType: "success",
-      //     status: 200,
-      //   };
-      // }
-
-      // if (response && response.status === 200) {
-      //   console.log({ response });
-      // } else {
-      //   console.log({ error: response });
-      // }
     } catch (err) {
-      console.log({ err });
+      if (err.response) {
+        const errorMessage = RESPONSE_MESSAGES[err.response.data.ResponseCode];
 
-      dispatch(
-        setFormMessage({
-          success: false,
-          title: "Error",
-          content: (
-            <>
-              {err.message}
-              <Link href="/patient/login">
-                <a style={{ textDecoration: "underline" }}>Login</a>
-              </Link>
-            </>
-          ),
-        })
-      );
+        dispatch(
+          setFormMessage({
+            success: false,
+            title: errorMessage.title,
+            content: <>{errorMessage.content}</>,
+          })
+        );
+      }
     }
   };
 
@@ -103,5 +52,10 @@ export default function CreateAccountPage() {
 }
 
 CreateAccountPage.getLayout = function getLayout(page) {
-  return <AuthLayout>{page}</AuthLayout>;
+  const backgroundImage = "/register-bg.png";
+  return (
+    <AuthLayout showMobileImage={false} imageSrc={backgroundImage}>
+      {page}
+    </AuthLayout>
+  );
 };

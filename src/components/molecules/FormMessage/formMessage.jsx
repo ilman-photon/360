@@ -1,22 +1,18 @@
 import BlockIcon from "@mui/icons-material/Block";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { Box } from "@mui/material";
+import { forwardRef } from "react";
+import { colors } from "../../../styles/theme";
 
-// import "./formMessage.css";
-
-export const FormMessage = ({ ...props }) => {
-  const handleClick = (e) => {
-    if (typeof props.onClick === "function") {
-      // do something
-      props.onClick();
-    }
-  };
-
+export const FormMessage = ({ ...props }, ref) => {
   return (
     <>
       <Box
+        ref={ref}
         sx={{
-          backgroundColor: props.success ? "success.main" : "error.main",
+          backgroundColor: props.success
+            ? colors.foundationGreen
+            : "error.main",
           width: "auto",
           p: 2,
           borderRadius: "4px",
@@ -29,8 +25,8 @@ export const FormMessage = ({ ...props }) => {
             sx={{
               color: "#fff",
               marginRight: "12.92px",
-              width: "1.3750em",
-              height: "1.3750em",
+              width: "22.15px",
+              height: "22.15px",
             }}
           />
         ) : (
@@ -38,8 +34,8 @@ export const FormMessage = ({ ...props }) => {
             sx={{
               color: "#fff",
               marginRight: "12.92px",
-              width: "1.3750em",
-              height: "1.3750em",
+              width: "22.15px",
+              height: "22.15px",
             }}
           />
         )}
@@ -56,11 +52,11 @@ export const FormMessage = ({ ...props }) => {
           ) : (
             <></>
           )}
-          <div>{props.children}</div>
+          <div style={{ fontSize: 14 }}>{props.children}</div>
         </div>
       </Box>
     </>
   );
 };
 
-export default FormMessage;
+export default forwardRef(FormMessage);
