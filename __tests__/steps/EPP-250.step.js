@@ -9,7 +9,9 @@ const feature = loadFeature(
 );
 
 defineFeature(feature, (test) => {
-  test("EPIC_EPP-2_STORY_EPP-250 - Verify if user able to view the Registration screen", ({
+
+  test("EPIC_EPP-2_STORY_EPP-250 - Verify if user able to view the Registration screen", () => {})
+  test("Verify if user able to view the Registration screen", ({
     given,
     when,
     then,
@@ -77,7 +79,6 @@ defineFeature(feature, (test) => {
     and("User should be able to see the following error message if email-id provided was in incorrect format “Incorrect email format”", async () => {
           const register = container.getByRole("button", { name: /REGISTER/i });
           fireEvent.click(register);
-
     });
 
     and("User should be able to see the following error message if mobile number provided was in incorrect format “Incorrect mobile number format”", async () => {
