@@ -6,14 +6,14 @@ Feature:  As a user, I should not be able to login when my account is locked.
   @Patient_Portal
   @Regression
   @Sprint2
-  
+  @included
   Scenario: EPIC_EPP-4_STORY_EPP-211 - Verify if user is not able to login with valid credentials when account is locked.
 
 Scenario Outline: Verify if user not able to login with valid credentials when account is locked.
 Given user/admin user launch the 'XXX' url	
 And user/ admin user navigates to the Patient Portal application
 When user/ admin user lands onto “Patient Login” screen
-And user provides "<username>" and Invalid "<Password> for 1st time
+And user provides "<username>" and Invalid "<Password>" for 1st time
 And user clicks on "Login" button
 Then user should see the message "Invalid username or Password, Please try again"
 When user provides "<username>" and Invalid "<Password> for 2nd time
@@ -43,7 +43,7 @@ Examples:
   @Patient_Portal
   @Regression
   @Sprint2
-  
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-211 - Verify if patient user should not be able to login with invalid credentials when my account is locked.
 
 Scenario Outline: Verify if user not be able to login with invalid credentials when account is locked.
@@ -82,7 +82,7 @@ Examples:
   @Patient_Portal
   @Regression
   @Sprint2
-  
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-211 - "Verify if user not be able to login with Invalid Email or Phone Number & valid Password when account is locked".
 
 Scenario Outline: Verify if user should not be able to login with Invalid username & valid Password when account is locked.
@@ -119,7 +119,7 @@ Examples:
   @Patient_Portal
   @Regression
   @Sprint2
-  
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-211 - Verify if user not be able to login with valid Email or Phone Number & Invalid Password when account is locked.
 
 Scenario Outline: Verify if user should not be able to login with valid username & Invalid Password when account is locked.

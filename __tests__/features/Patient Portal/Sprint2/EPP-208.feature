@@ -7,6 +7,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Patient_Portal
   @Regression
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the "Invalid Username or Password" error message is displaying when user provides Invalid Email or Phone Number and Valid Password
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -24,6 +25,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Patient_Portal
   @Regression
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the "Invalid Username or Password" error message is displaying when user  provides Valid Email or Phone Number and Invalid Password
     Given user  launch the 'XXX' url	
     And user  navigates to the Patient Portal application
@@ -41,6 +43,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Patient_Portal
   @Regression
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the  the "Invalid Username or Password" error message is displaying when user  provides Invalid Email or Phone Number and Invalid Password
     Given user/admin user launch the 'XXX' url	
     And user/ admin user navigates to the Patient Portal application
@@ -58,6 +61,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Patient_Portal
   @Regression
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the "Invalid Username or Password" error message is displaying when Admin user provides Valid Email or Phone Number and Invalid Password
     Given admin user launch the 'XXX' url	
     And admin user navigates to the Patient Portal application
@@ -75,6 +79,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Patient_Portal
   @Regression
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the "Invalid Username or Password" error message is displaying when Admin provides Valid User name and Invalid Password
     Given admin user launch the 'XXX' url	
     And admin user navigates to the Patient Portal application
@@ -92,6 +97,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Patient_Portal
   @Regression
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the "Invalid Username or Password" error message is displaying when Admin user  provides Invalid Email or Phone Number and Invalid Password
 
     Given admin user launch the 'XXX' url	
@@ -108,6 +114,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the  the "Invalid Username or Password" error message is displaying when user  provides Invalid Phone number and valid Password
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -123,6 +130,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the "Invalid Username or Password" error message is displaying when User provides valid Phone number and Invalid Password
     Given user  launch the 'XXX' url	
     And user  navigates to the Patient Portal application
@@ -139,6 +147,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Patient_Portal
   @Regression
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the "Invalid Username or Password" error message is displaying when User provides Invalid Phone number and Invalid Password
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -154,6 +163,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the "Invalid Username or Password" error message is displaying when Admin provides Invalid Phone number  and valid Password
     Given admin user launch the 'XXX' url	
     And admin user navigates to the Patient Portal application
@@ -169,6 +179,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the "Invalid Username or Password" error message is displaying when Admin  provides Valid Phone number and Invalid Password
     Given admin user launch the 'XXX' url	
     And admin user navigates to the Patient Portal application
@@ -185,6 +196,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Patient_Portal
   @Regression
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the "Invalid Username or Password" error message is displaying when Admin  provides Invalid Phone number and Invalid Password
     Given admin user launch the 'XXX' url	
     And admin user navigates to the Patient Portal application
@@ -200,6 +212,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the "Email or Phone number" field is not allowing Email with Space.
     Given  user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -216,6 +229,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the "Email or Phone number" field is not allowing Email without @ symbol.
     Given  user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -232,6 +246,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the "Email or Phone number" field is not allowing Email with two @ symbol.
     Given  user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -248,6 +263,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the "Email or Phone number" field is not allowing Email without text before @ symbol
     Given  user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -263,6 +279,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the "Email or Phone number" field is not allowing Email without Domain name
     Given  user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -279,6 +296,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the "Email or Phone number" field is not allowing Email without .com
     Given  user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -295,6 +313,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the "Email or Phone number" field is not allowing Email without dot.
     Given  user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -311,6 +330,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the "Email or Phone number" field is not allowing Email with consecutive dots at Email starting.
     Given  user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -327,6 +347,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the "Email or Phone number" field is not allowing Email with consecutive dots at middle for the Email ID.
     Given  user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -358,7 +379,8 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @BDDTEST-EPP-1675
   @Authentication
   @Patient_Portal
-  @Sprint2
+  @Sprint2 
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the "Email or Phone number" field is not allowing Email with consecutive dots in domain portion
     Given  user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -375,6 +397,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the "Email or Phone number" field is not allowing Email with Special Characters
     Given  user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -391,6 +414,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the "Email or Phone number" field is not allowing Email starts with dot
     Given  user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -407,6 +431,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the "Email or Phone number" field is not allowing Email ends with dot
     Given  user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -423,6 +448,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the "Email or Phone number" field is not allowing Email with garbage values
     Given  user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -439,6 +465,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the Password field is not accepting 7 characters
     Given  user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -455,6 +482,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the Password field is not accepting 21 characters
     Given  user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -471,6 +499,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the Password field is accepting 8 characters
     Given  user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -487,6 +516,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the Password field is accepting 20 characters
     Given  user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -503,6 +533,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the Password field is accepting 9 characters
     Given  user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -519,6 +550,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the Password field is accepting 19 characters
     Given  user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -535,6 +567,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the Password is not accepting without 1 Upper case letter
     Given  user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -551,6 +584,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the Password is not accepting without 1 Lower case letter
     Given  user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -567,6 +601,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the Password is not accepting without 1 Number
     Given  user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -583,6 +618,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the Password is not accepting without 1 Special character
     Given  user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -600,6 +636,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Patient_Portal
   @Regression
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the Password is accepting with Upper case, Lower case, Number and Special character.
     Given  user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -616,6 +653,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the user is able to see the Patient Login page without Internet connection
     Given user launch the 'XXX' url	
     When user navigates to the Patient Portal application
@@ -626,6 +664,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the page is loading with in 3 seconds
     Given user user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -636,6 +675,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @excluded
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether any error is displaying when we press F12 after navigating to the Patient Login page.
     Given user user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -660,6 +700,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Patient_Portal
   @Regression
   @Sprint2
+  @excluded
   Scenario Outline: EPIC_EPP-121_STORY_EPP-222- Verify the response when Referring Provider  provides invalid inputs in different combination on Username field and valid password present on login page
     Given Referring Provider launch the 'XXX' url	
     And Referring Provider navigates to the Provider Portal application
@@ -683,6 +724,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Patient_Portal
   @Regression
   @Sprint2
+  @excluded
   Scenario Outline: EPIC_EPP-121_STORY_EPP-222- Verify the response when Referring Provider provides invalid inputs in different combination Phone Number on Username field and valid password present on login page
     Given Referring Provider launch the 'XXX' url	
     And Referring Provider navigates to the Provider Portal application
@@ -706,6 +748,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Patient_Portal
   @Regression
   @Sprint2
+  @excluded
   Scenario Outline: EPIC_EPP-121_STORY_EPP-222- Verify the response when Admin  provides invalid inputs in different combination on Username field and valid password present on login page
     Given Admin launch the 'XXX' url	
     And Admin navigates to the Provider Portal application
@@ -729,6 +772,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Patient_Portal
   @Regression
   @Sprint2
+  @excluded
   Scenario Outline: EPIC_EPP-121_STORY_EPP-222- Verify the response when ECP Provider  provides invalid inputs in different combination on Username field and valid password present on login page
     Given ECP Provider launch the 'XXX' url	
     And ECP Provider navigates to the Provider Portal application
@@ -752,6 +796,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Patient_Portal
   @Regression
   @Sprint2
+  @excluded
   Scenario Outline: EPIC_EPP-121_STORY_EPP-222- Verify the response when Admin provides invalid inputs in different combination Phone Number on Username field and valid password present on login page
     Given Admin launch the 'XXX' url	
     And Admin navigates to the Provider Portal application
@@ -775,6 +820,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Patient_Portal
   @Regression
   @Sprint2
+  @excluded
   Scenario Outline: EPIC_EPP-121_STORY_EPP-222- Verify the response when ECP Provider provides invalid inputs in different combination Phone Number on Username field and valid password present on login page
     Given ECP Provider launch the 'XXX' url	
     And ECP Provider navigates to the Provider Portal application

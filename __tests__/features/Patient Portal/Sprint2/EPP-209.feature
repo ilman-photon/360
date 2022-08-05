@@ -7,11 +7,12 @@ Feature: Patient Portal : Admin logs in to Patient Portal using E360+ SSO
   @Patient_Portal
   @Regression
   @Sprint2
+  @included 
   Scenario: EPIC_EPP-4_STORY_EPP-209 - Verify whether the Admin is able to Login  with Valid Email and Valid Password using E360+ SSO
     Given Admin launch the 'XXX' url	
     And Admin navigates to the Patient Portal application
     When Admin lands onto E360+ “Patient Login” screen
-    And Admin provides valid "<Email>" and valid"<password>"
+    And Admin provides valid "<Email>" and valid "<password>"
     And Admin click 'Login' button.
     Then Admin should view Home/Dashboard page
     
@@ -25,11 +26,12 @@ Feature: Patient Portal : Admin logs in to Patient Portal using E360+ SSO
   @Patient_Portal
   @Regression
   @Sprint2
+    @included
   Scenario: EPIC_EPP-4_STORY_EPP-209 - Verify whether the Admin is able to Login  with Valid Phone Number and Valid Password using E360+ SSO
     Given Admin launch the 'XXX' url	
     And Admin navigates to the Patient Portal application
     When Admin lands onto E360+ “Patient Login” screen
-    And Admin provides valid "<Phone number>" and valid"<password>"
+    And Admin provides valid "<Phone number>" and valid "<password>"
     And Admin click 'Login' button.
     Then Admin should view Home/Dashboard page
     
@@ -41,6 +43,7 @@ Feature: Patient Portal : Admin logs in to Patient Portal using E360+ SSO
   @Authentication
   @Patient_Portal
   @Sprint2
+    @included
   Scenario: EPIC_EPP-4_STORY_EPP-209-Verify whether the user is able to see the Patient Login page without Internet connection
     Given user launch the 'XXX' url	
     When user navigates to the Patient Portal application
@@ -51,6 +54,7 @@ Feature: Patient Portal : Admin logs in to Patient Portal using E360+ SSO
   @Authentication
   @Patient_Portal
   @Sprint2
+    @included
   Scenario: EPIC_EPP-4_STORY_EPP-209-Verify whether the page is loading with in 3 seconds
     Given user user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -61,6 +65,7 @@ Feature: Patient Portal : Admin logs in to Patient Portal using E360+ SSO
   @Authentication
   @Patient_Portal
   @Sprint2
+    @included
   Scenario: EPIC_EPP-4_STORY_EPP-209-Verify whether any error is displaying when we press F12 after navigating to the Patient Login page.
     Given user user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -72,6 +77,7 @@ Feature: Patient Portal : Admin logs in to Patient Portal using E360+ SSO
   @Authentication
   @Patient_Portal
   @Sprint2
+    @included
   Scenario: EPIC_EPP-4_STORY_EPP-209-Verify whether the error message is displaying when the service is unavailable.
     Given user user launch the 'XXX' url
     When the service is unavailable	
