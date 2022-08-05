@@ -39,6 +39,9 @@ export default function RowRadioButtonsGroup({ helperText = null, ...props }) {
                     ".MuiSvgIcon-root": {
                       width: "0.75em",
                     },
+                    "&.Mui-checked": {
+                      color: colors.teal,
+                    },
                   }}
                 />
               }
