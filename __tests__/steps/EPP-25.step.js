@@ -15,7 +15,7 @@ defineFeature(feature, (test) => {
   }) => {
     let container;
     given("user launch the 'XXX' url", () => {
-      container = render(<ForgotPassword onBackToLoginClicked={()=>{}}/>);
+      container = render(<ForgotPassword onBackToLoginClicked={()=>{}} onCalledValidateUsernameAPI={()=>{}} showPostMessage={true} setShowPostMessage={()=>{}}/>);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -44,8 +44,8 @@ defineFeature(feature, (test) => {
 
     and("user should see 'Email or Phone Number' field", () => {
         const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
-        fireEvent.change(usernameField, { target: { value: "username@4A" } });
-        expect(usernameField.value).toEqual("username@4A");
+        fireEvent.change(usernameField, { target: { value: "user1@gmail.com" } });
+        expect(usernameField.value).toEqual("user1@gmail.com");
     });
 
     and("user should see 'Continue' button", () => {
