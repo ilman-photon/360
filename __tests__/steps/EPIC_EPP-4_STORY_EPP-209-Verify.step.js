@@ -3,7 +3,7 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 import LoginPage from "../../src/pages/patient/login";
 
 const feature = loadFeature(
-  "./__tests__/features/Patient Portal/Sprint2/EPP-209.feature"
+  "./__tests__/feature/Patient Portal/Sprint2/EPP-209.feature"
 );
 
 defineFeature(feature, (test) => {
@@ -39,8 +39,6 @@ defineFeature(feature, (test) => {
       // expect(props.OnLoginClicked).toBeCalledTimes(1);
     });
 
-    and("user should see the Home/Dashboard page", () => {
-
-    })
+    and("user should see the Home/Dashboard page", () => {});
   });
 });
