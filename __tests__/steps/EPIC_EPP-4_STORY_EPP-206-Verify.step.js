@@ -4,7 +4,7 @@ import Login from "../../src/components/organisms/Login/login";
 import { fireEvent, render } from "@testing-library/react";
 
 const feature = loadFeature(
-  "./__tests__/features/Patient Portal/Sprint2/EPP-206.feature", {
+  "./__tests__/feature/Patient Portal/Sprint2/EPP-206.feature", {
     tagFilter: '@included and not @excluded'
   }
 );

@@ -2,7 +2,7 @@ import { fireEvent, render } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 
 const feature = loadFeature(
-  "./__tests__/features/Patient Portal/Sprint2/EPP-209.feature", {
+  "./__tests__/feature/Patient Portal/Sprint2/EPP-209.feature", {
     tagFilter: '@included and not @excluded'
   }
 );

@@ -212,6 +212,8 @@ export const CustomInput = styled(({ ...props }) => {
                     margin: "8px",
                   }}
                   {...params}
+                  error={props.error}
+                  helperText={props.helperText}
                 />
               )}
             />

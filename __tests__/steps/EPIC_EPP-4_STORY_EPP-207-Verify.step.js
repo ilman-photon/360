@@ -3,7 +3,7 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 import LoginPage from "../../src/pages/patient/login";
 
 const feature = loadFeature(
-  "./__tests__/features/Patient Portal/Sprint2/EPP-207.feature", {
+  "./__tests__/feature/Patient Portal/Sprint2/EPP-207.feature", {
     tagFilter: '@included and not @excluded'
   }
 );
