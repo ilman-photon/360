@@ -15,55 +15,55 @@ defineFeature(feature, (test) => {
     and,
   }) => {
     given('user launch the \'XXX\' url', () => {
-
+      expect(true).toBeTruthy()
     });
 
     and('user navigates to the Patient Portal application', () => {
-
+      expect(true).toBeTruthy()
     });
 
     when('lands onto “Patient Login” screen', () => {
-
+      expect(true).toBeTruthy()
     });
 
     then(/^user should see (.*) field$/, (arg0) => {
-
+      expect(true).toBeTruthy()
     });
 
     and(/^user should see (.*) field$/, (arg0) => {
-
+      expect(true).toBeTruthy()
     });
 
     when(/^user enter Email or Phone Number in (.*) field$/, (arg0) => {
-
+      expect(true).toBeTruthy()
     });
 
     and(/^user enter password in (.*) field$/, (arg0) => {
-
+      expect(true).toBeTruthy()
     });
 
     and('user should see \'Login\' button', () => {
-
+      expect(true).toBeTruthy()
     });
 
     when(/^user click on "(.*)" button$/, (arg0) => {
-
+      expect(true).toBeTruthy()
     });
 
     then('user should see Home/Dashboard Page', () => {
-
+      expect(true).toBeTruthy()
     });
 
     and('user should see \'Logout\' option under Profile name', () => {
-
+      expect(true).toBeTruthy()
     });
 
     when('user click on \'Logout\' button', () => {
-
+      expect(true).toBeTruthy()
     });
 
     then('user should see Login screen', () => {
-
+      expect(true).toBeTruthy()
     });
     });
 });
