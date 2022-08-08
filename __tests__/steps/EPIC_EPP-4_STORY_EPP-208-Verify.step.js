@@ -3,7 +3,7 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 import LoginPage from "../../src/pages/patient/login";
 
 const feature = loadFeature(
-  "./__tests__/features/Patient Portal/Sprint2/EPP-208.feature"
+  "./__tests__/feature/Patient Portal/Sprint2/EPP-208.feature"
 );
 
 defineFeature(feature, (test) => {
@@ -42,10 +42,13 @@ defineFeature(feature, (test) => {
       fireEvent.click(login);
     });
 
-    then('user should see the error message "Invalid Username or Password"', () => {
-      const error = container.getByText("Invalid Username or Password");
-      expect("Invalid Username or Password").toEqual(error.textContent);
-    });
+    then(
+      'user should see the error message "Invalid Username or Password"',
+      () => {
+        const error = container.getByText("Invalid Username or Password");
+        expect("Invalid Username or Password").toEqual(error.textContent);
+      }
+    );
   });
 
   test('EPIC_EPP-4_STORY_EPP-208-Verify whether the "Invalid Username or Password" error message is displaying when user  provides Valid Email or Phone Number and Invalid Password', ({
@@ -83,10 +86,13 @@ defineFeature(feature, (test) => {
       fireEvent.click(login);
     });
 
-    then('user should see the error message "Invalid Username or Password"', () => {
-      const error = container.getByText("Invalid Username or Password");
-      expect("Invalid Username or Password").toEqual(error.textContent);
-    });
+    then(
+      'user should see the error message "Invalid Username or Password"',
+      () => {
+        const error = container.getByText("Invalid Username or Password");
+        expect("Invalid Username or Password").toEqual(error.textContent);
+      }
+    );
   });
 
   test('EPIC_EPP-4_STORY_EPP-208-Verify whether the  the "Invalid Username or Password" error message is displaying when user  provides Invalid Email or Phone Number and Invalid Password', ({
@@ -100,7 +106,10 @@ defineFeature(feature, (test) => {
       container = render(<LoginPage />);
     });
 
-    and("user/ admin user navigates to the Patient Portal application", () => {});
+    and(
+      "user/ admin user navigates to the Patient Portal application",
+      () => {}
+    );
 
     when("user/ admin user lands onto “Patient Login” screen", () => {
       const title = container.getByText("Patient Login");
@@ -124,10 +133,13 @@ defineFeature(feature, (test) => {
       fireEvent.click(login);
     });
 
-    then('user should see the error message "Invalid Username or Password"', () => {
-      const error = container.getByText("Invalid Username or Password");
-      expect("Invalid Username or Password").toEqual(error.textContent);
-    });
+    then(
+      'user should see the error message "Invalid Username or Password"',
+      () => {
+        const error = container.getByText("Invalid Username or Password");
+        expect("Invalid Username or Password").toEqual(error.textContent);
+      }
+    );
   });
 
   test('EPIC_EPP-4_STORY_EPP-208-Verify whether the "Invalid Username or Password" error message is displaying when Admin user provides Valid Email or Phone Number and Invalid Password', ({
@@ -165,10 +177,13 @@ defineFeature(feature, (test) => {
       fireEvent.click(login);
     });
 
-    then('admin user should see the error message "Invalid Username or Password"', () => {
-      const error = container.getByText("Invalid Username or Password");
-      expect("Invalid Username or Password").toEqual(error.textContent);
-    });
+    then(
+      'admin user should see the error message "Invalid Username or Password"',
+      () => {
+        const error = container.getByText("Invalid Username or Password");
+        expect("Invalid Username or Password").toEqual(error.textContent);
+      }
+    );
   });
 
   test('EPIC_EPP-4_STORY_EPP-208-Verify whether the "Invalid Username or Password" error message is displaying when Admin provides Valid User name and Invalid Password', ({
@@ -206,10 +221,13 @@ defineFeature(feature, (test) => {
       fireEvent.click(login);
     });
 
-    then('admin user should see the error message "Invalid Username or Password"', () => {
-      const error = container.getByText("Invalid Username or Password");
-      expect("Invalid Username or Password").toEqual(error.textContent);
-    });
+    then(
+      'admin user should see the error message "Invalid Username or Password"',
+      () => {
+        const error = container.getByText("Invalid Username or Password");
+        expect("Invalid Username or Password").toEqual(error.textContent);
+      }
+    );
   });
 
   test('EPIC_EPP-4_STORY_EPP-208-Verify whether the "Invalid Username or Password" error message is displaying when Admin user  provides Invalid Email or Phone Number and Invalid Password', ({
@@ -247,9 +265,12 @@ defineFeature(feature, (test) => {
       fireEvent.click(login);
     });
 
-    then('admin user should see the error message "Invalid Username or Password"', () => {
-      const error = container.getByText("Invalid Username or Password");
-      expect("Invalid Username or Password").toEqual(error.textContent);
-    });
+    then(
+      'admin user should see the error message "Invalid Username or Password"',
+      () => {
+        const error = container.getByText("Invalid Username or Password");
+        expect("Invalid Username or Password").toEqual(error.textContent);
+      }
+    );
   });
 });
