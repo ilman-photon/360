@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 
-import PasswordValidator from "../../../../src/components/molecules/passwordValidator/passwordValidator";
+import PasswordValidator from "../../../../src/components/molecules/PasswordValidator/passwordValidator";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
 
