@@ -2,6 +2,7 @@ import AuthLayout from "../../components/templates/providerAuthLayout";
 import Cookies from "universal-cookie";
 import { Api } from "../api/api";
 import dynamic from "next/dynamic";
+import ProviderForgotPasswordComponent from "../../components/organisms/ForgotPassword/providerForgotPassword";
 
 //Prevent html being match between server and client
 const ForgotPasswordComponent = dynamic(
@@ -16,7 +17,7 @@ const forgotPasswordProps = {
     const api = new Api();
     const cookies = new Cookies();
     api
-      .forgotpassword({ provider: { ...postbody } })
+      .providerForgotPassword({ provider: { ...postbody } })
       .then(function (response) {
         console.log("postbody:", postbody);
         //console.log(router)
@@ -36,7 +37,7 @@ export default function ForgotPasswordPage() {
   return (
     <div>
       <section>
-        <ForgotPasswordComponent {...forgotPasswordProps} />
+        <ProviderForgotPasswordComponent {...forgotPasswordProps} />
       </section>
     </div>
   );
