@@ -119,7 +119,7 @@ export default function BaseHeader({ OnLogoutClicked }) {
 
             {/* profile menu */}
             <Box sx={styles.boxProfileMenuStyles}>
-              <Tooltip title="Open settings">
+              {/* <Tooltip title="Open settings">
                 <Button
                   variant="text"
                   sx={styles.boxButtonStyles}
@@ -129,7 +129,7 @@ export default function BaseHeader({ OnLogoutClicked }) {
                 >
                   User Name
                 </Button>
-              </Tooltip>
+              </Tooltip> */}
               <Menu
                 sx={styles.menuProfileMenu}
                 id="menu-appbar"
