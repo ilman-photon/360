@@ -10,9 +10,7 @@ export const FormMessage = ({ ...props }, ref) => {
       <Box
         ref={ref}
         sx={{
-          backgroundColor: props.success
-            ? colors.foundationGreen
-            : "error.main",
+          backgroundColor: props.success ? colors.foundationGreen : "#C23934",
           width: "auto",
           p: 2,
           borderRadius: "4px",
