@@ -12,6 +12,7 @@ stages:
   # - install
   # - test
   # - build
+  - sonar
   - imagebuild
   - deploy
 
@@ -50,6 +51,8 @@ stages:
 
 imagebuild:
   stage: imagebuild
+  tags:
+    - Frontend-runner
   image: 
     name: docker:latest
   services:
@@ -68,6 +71,8 @@ imagebuild:
 
 deploy_to:
   stage: deploy
+  tags:
+    - Frontend-runner
   image: alpine:latest
   when: manual
   before_script:
