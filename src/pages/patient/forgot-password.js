@@ -130,7 +130,7 @@ export default function ForgotPasswordPage() {
         const userCommunicationCode =
           modeOfCommuication.toLowerCase() === "email"
             ? response.email
-            : response.phoneNumber;
+            : response.phone;
         // Handle success to call API
         confirmationFormProps = {
           title: t("titlePasswordReset"),
@@ -220,8 +220,8 @@ export default function ForgotPasswordPage() {
         confirmationFormProps.onCTAButtonClicked = function ({ data }) {
           const modeComunication =
             data[constants.MODE_COMMUNICATION_KEY] === constants.EMAIL
-              ? "Email"
-              : "Phone number";
+              ? "email"
+              : "phone";
           onCalledResetPasswordAPI(modeComunication);
         };
       } else {
