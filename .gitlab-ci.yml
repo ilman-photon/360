@@ -19,6 +19,8 @@ stages:
 
 install:
     stage: install
+    tags:
+    - Frontend-runner
     script:
      - npm install
     artifacts:
@@ -32,6 +34,8 @@ install:
 
 test:
    stage: test
+   tags:
+    - Frontend-runner
    script:
      - npm run test
    dependencies:
