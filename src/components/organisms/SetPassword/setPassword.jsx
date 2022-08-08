@@ -46,7 +46,9 @@ const SetPasswordComponent = ({
   onBackToLoginClicked,
   postMessage,
   formMessage,
-  onSetPasswordClicked = () => {},
+  onSetPasswordClicked = () => {
+    // This is intentional
+  },
   username,
   title,
   subtitle,
