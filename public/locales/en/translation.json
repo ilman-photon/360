@@ -24,7 +24,7 @@
   "ForgotPassword": {
     "title": "Forgot Password",
     "description": "Enter your email address or phone number bellow and we'll send you an-email to reset it.",
-    "errorUsernameNotFound": "Patient with the given Username not found. Please make sure that you entered it correctly and try again",
+    "errorUsernameNotFound": "Patient with the given Email or Phone number not found. Please make sure that you entered it correctly and try again",
     "errorInValidUserameOrPhone": "Enter a valid Email or Phone Number",
     "errorEmptyField": "This field is required",
     "errorInvalidEmailPhone": "Enter a valid Email or Phone Number",

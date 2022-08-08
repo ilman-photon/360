@@ -30,7 +30,6 @@ const logoutProps = {
     api
       .logout(postbody)
       .then(function (response) {
-        console.log(response);
         const cookies = new Cookies();
         cookies.remove("authorized", { path: "/patient" });
         router.push("patient/login");
