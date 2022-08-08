@@ -372,4 +372,88 @@ defineFeature(feature, (test) => {
       }
     );
   });
+
+
+  test("EPIC_EPP-2_STORY_EPP-250 - Verify if user able to see error message when incorrect format enter in \"Email\" field", () => {})
+  test("Verify if user able to see error message when incorrect format enter in \"Email\" field", ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    let container;
+    given("user launch the 'XXX' url", () => {
+      expect(true).toBeTruthy()
+    });
+    
+    and("user navigates to the Patient Portal application", () => {
+      container = render(
+        <Provider store={store}>
+          <LoginPage />
+        </Provider>);
+    });
+
+    when("userr lands onto “Patient Login” screen", () => {
+      expect(true).toBeTruthy()
+    });
+
+    and("user should able to view the  Don’t have an account?” verbiage along with 'Create Account' button", () => {
+      setTimeout(() => {
+        const accountitle = container.getByLabelText(/Don't have an account?/i)
+        expect(/Don't have an account?/i).toEqual(accountitle.textContent);
+      }, 500);
+    });
+
+    when("user clicks on the ‘Create an Account’ button", () => {
+      setTimeout(() => {
+        const toRegister = container.getByRole("button", { name: /Create Account/i });
+        expect(toRegister).toBeTruthy()
+        fireEvent.click(toRegister)
+      }, 500);
+    });
+
+    then("user lands onto “User Registration” screen", () => {
+      container = render(
+        <Provider store={store}>
+          <RegisterPage />
+        </Provider>);
+    });
+
+    then("user should see the following fields First Name, Last Name, Date Of Birth, Email, Mobile number, User Name, Password, Preferred mode(s) of communication", () => {
+      expect(true).toBeTruthy()
+    });
+
+    and("user should see ‘Register’ button", () => {
+      const register = container.getByRole("button", { name: /REGISTER/i });
+      expect(register).toBeTruthy()
+    });
+
+    and("User should view the verbiage “By registering, you accept to our Terms & Conditions and Privacy Policy” below the ‘Register’ button", () => {
+      setTimeout(() => {
+        const title = container.getByText("By registering, you agree to our Terms & Conditions and Privacy Policy");
+        expect("By registering, you agree to our Terms & Conditions and Privacy Policy").toEqual(title.textContent);
+      }, 500);
+    });
+
+
+
+
+    when("user enter invalid format in Email field", () => {
+      const emailField = container.getByRole('textbox', { name: 'Email'})
+      fireEvent.change(emailField, { target: { value: "invalid@email" } });
+      expect(emailField.value).toEqual("invalid@email");
+
+      const register = container.getByRole("button", { name: /REGISTER/i });
+      fireEvent.click(register);
+    });
+
+    then("user should see the error message “Incorrect email format” under \"Email\" field", () => {
+      setTimeout(() => {
+        const emailFieldError = container.getByLabelText(/Incorrect email format/i)
+        expect(emailFieldError).toBeTruthy()
+        expect(/Incorrect email format/i).toEqual(emailFieldError.textContent);
+      }, 500);
+    });
+
+  });
 });
