@@ -79,3 +79,27 @@ Then user should see error message “This field is required” under "Last Name
 Examples:
 |First Name|Last Name|Date of Birth|Email|Mobile number|Password|
 |YYYY|abc@gmail.com|DDMMYYYY|abc@gmail.com|12345|********|
+
+  
+    @BDDTEST-EPP-636
+  @Authentication
+  @Patient_Portal
+  @Sprint2
+  
+  Scenario: EPIC_EPP-2_STORY_EPP-250 - Verify if user able to see error message when incorrect format enter in "Email" field
+
+Scenario Outline: Verify if user able to see error message when incorrect format enter in "Email" field
+Given user launch the 'XXX' url	
+And user navigates to the Patient Portal application
+When userr lands onto “Patient Login” screen
+And user should able to view the  Don’t have an account?” verbiage along with 'Create Account' button
+When user clicks on the ‘Create an Account’ button
+Then user lands onto “User Registration” screen 	
+Then user should see the following fields First Name, Last Name, Date Of Birth, Email, Mobile number, User Name, Password, Preferred mode(s) of communication 
+And user should see ‘Register’ button
+And User should view the verbiage “By registering, you accept to our Terms & Conditions and Privacy Policy” below the ‘Register’ button
+When user enter invalid format in Email field
+Then user should see the error message “Incorrect email format” under "Email" field
+Examples:
+|Email|
+|abcgmailcom|
