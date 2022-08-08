@@ -1,0 +1,20 @@
+.sidebarWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 16px;
+  border-radius: 4px;
+
+  height: calc(100vh - 64px - 80px);
+  overflow: auto;
+}
+
+.sidebarLink {
+  font-family: "Libre Franklin";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: 0.0016em;
+  color: #292929;
+}

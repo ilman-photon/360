@@ -1,0 +1,23 @@
+.accountLayout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  padding-top: calc(64px);
+
+  .container {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    padding-top: calc(80px);
+
+    .sidebarContainer {
+      grid-column: span 2 / span 2;
+    }
+
+    .pageContainer {
+      grid-column: span 5 / span 5;
+      padding: 40px 24px;
+    }
+  }
+}

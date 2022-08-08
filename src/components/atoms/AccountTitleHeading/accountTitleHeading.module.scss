@@ -1,0 +1,27 @@
+.titleHeadingWrapper {
+  position: fixed;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 24px 10px 24px 240px;
+  gap: 10px;
+  background: linear-gradient(96.59deg, #003b4a 10.15%, #0389ab 140.82%);
+
+  // margin-top: 64px;
+
+  .title {
+    /* ECP/Desktop/Headline/H3 */
+
+    font-family: "Bw Nista Geometric DEMO";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 32px;
+    /* identical to box height, or 123% */
+
+    /* ECP/Peach-25- */
+
+    color: #fdfaf9;
+  }
+}
