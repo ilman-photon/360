@@ -29,12 +29,10 @@ export default function Login({
 
   const onSubmit = ({ username, password }) => {
     OnLoginClicked({ username, password }, router, checkMessage);
-    console.log({ username, password });
   };
 
   const checkMessage = (message) => {
     const messageStatus = message.status === "failed";
-    console.log(`messageStatus ${messageStatus}`);
     if (messageStatus) {
       setError("username", {
         type: "custom",
@@ -46,7 +44,6 @@ export default function Login({
       });
     }
     setPostMessage(message);
-    console.log("this", postMessage, message);
   };
 
   const renderFromMessage = () => {
