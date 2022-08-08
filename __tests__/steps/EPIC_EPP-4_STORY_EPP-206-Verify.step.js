@@ -1,5 +1,7 @@
 
 import { defineFeature, loadFeature } from "jest-cucumber";
+import Login from "../../src/components/organisms/Login/login";
+import { fireEvent, render } from "@testing-library/react";
 
 const feature = loadFeature(
   "./__tests__/features/Patient Portal/Sprint2/EPP-206.feature", {
@@ -14,8 +16,14 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
+    let container;
     given("user launch the \'XXX\' url", () => {
-      expect(true).toBeTruthy()
+      const mockOnLoginClicked = jest.fn((data, route, callback) => {
+        callback(({
+          status: "success",
+        }))
+      })
+      container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -29,7 +37,10 @@ defineFeature(feature, (test) => {
     then(
       'user should be able to view \"Email or phone number\" & \"Password fields"',
       () => {
-        expect(true).toBeTruthy()
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        expect(usernameField.id).toEqual('username')
+        expect(passwordField.id).toEqual('password')
       }
     );
   });
@@ -39,8 +50,14 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
+    let container;
     given("user launch the \'XXX\' url", () => {
-      expect(true).toBeTruthy()
+      const mockOnLoginClicked = jest.fn((data, route, callback) => {
+        callback(({
+          status: "success",
+        }))
+      })
+      container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -51,12 +68,16 @@ defineFeature(feature, (test) => {
         expect(true).toBeTruthy()
     });
     and("user provides \"<Email or Phone Number>\" and \"<password>\"", () => {
-      expect(true).toBeTruthy()
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        expect(usernameField.id).toEqual('username')
+        expect(passwordField.id).toEqual('password')
     });
     then(
       'entered password should be masked.',
       () => {
-        expect(true).toBeTruthy()
+        const passwordField = container.getByLabelText("passwordLabel");
+        expect(passwordField.type).toEqual('password')
       }
     );
   });
@@ -66,8 +87,14 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
+    let container;
     given("user launch the \'XXX\' url", () => {
-      expect(true).toBeTruthy()
+      const mockOnLoginClicked = jest.fn((data, route, callback) => {
+        callback(({
+          status: "success",
+        }))
+      })
+      container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -78,7 +105,10 @@ defineFeature(feature, (test) => {
         expect(true).toBeTruthy()
     });
       and("user provides \"<username>\" and \"<password>\"", () => {
-        expect(true).toBeTruthy()
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        expect(usernameField.id).toEqual('username')
+        expect(passwordField.id).toEqual('password')
     });
     then(
       'entered password should be masked.',
@@ -90,15 +120,17 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy()
       });
       when(`user click the Unmask icon`, () => {
-        expect(true).toBeTruthy()
+          const button = container.getByLabelText("toggle password visibility");
+          fireEvent.click(button);
         });
 
-        then(
-          'entered password should get visible to the user',
-          () => {
-            expect(true).toBeTruthy()
-          }
-        );
+      then(
+        'entered password should get visible to the user',
+        () => {
+          const passwordField = container.getByLabelText("passwordLabel");
+          expect(passwordField.type).toEqual('text')
+        }
+      );
   });
   test("EPIC_EPP-4_STORY_EPP-206-Verify whether the user is able to see the Patient Login page with Login button, Continue as  a guest button, Don’t have an account?” verbiage along with ‘Create Account button and Forgot password link", ({
     given,

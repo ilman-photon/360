@@ -5,8 +5,8 @@ import Login from "../../src/components/organisms/Login/login"
 
 const feature = loadFeature(
   "./__tests__/features/Patient Portal/Sprint2/EPP-208.feature", {
-    tagFilter: '@included and not @excluded'
-  }
+  tagFilter: '@included and not @excluded'
+}
 );
 
 defineFeature(feature, (test) => {
@@ -18,10 +18,21 @@ defineFeature(feature, (test) => {
   }) => {
     let container;
     given("user launch the 'XXX' url", () => {
-      container = render(<Login OnLoginClicked={jest.fn()}/>);
+      const mockOnLoginClicked = jest.fn((data, route, callback) => {
+        callback(({
+          status: "failed",
+          message: {
+            title: "",
+            description: "Invalid Username or Password"
+          }
+        }))
+      })
+      container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
     });
 
-    and("user navigates to the Patient Portal application", () => {});
+    and("user navigates to the Patient Portal application", () => { 
+      expect(true).toBeTruthy()
+    });
 
     when("user lands onto “Patient Login” screen", () => {
       const title = container.getByText("formTitle");
@@ -46,8 +57,8 @@ defineFeature(feature, (test) => {
     });
 
     then('user should see the error message "Invalid Username or Password"', () => {
-      //const error = container.getByText("Invalid Username or Password");
-      //expect("Invalid Username or Password").toEqual(error.textContent);
+      // const error = container.getByText("Invalid Username or Password");
+      // expect("Invalid Username or Password").toEqual(error.textContent);
     });
   });
 });
