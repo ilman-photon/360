@@ -53,20 +53,12 @@ imagebuild:
   stage: imagebuild
   tags:
     - Frontend-runner
-  image: 
-    name: docker:latest
-  services:
-    - docker:19-dind
-  before_script:
-    - apk add --no-cache curl jq python3 py3-pip
-    - pip install awscli
-    - aws ecr get-login-password | docker login --username AWS --password-stdin $DOCKER_REGISTRY
-    - aws --version
-    - docker info
-    - docker --version
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
   script:
-    - docker build -t $DOCKER_REGISTRY/$APP_NAME:ecp-frontend-$CI_PIPELINE_IID .
-    - docker push $DOCKER_REGISTRY/$APP_NAME:ecp-frontend-$CI_PIPELINE_IID
+    - echo "{\"credsStore\":\"ecr-login\",\"credHelpers\":{\"$AWS_ACCOUNT_ID.dkr.ecr.region.amazonaws.com\":\"ecr-login\"}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $AWS_REPOSITORY:ecp-frontend-$CI_PIPELINE_IID
 
 
 deploy_to:
