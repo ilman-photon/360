@@ -48,6 +48,13 @@ stages:
 #       paths:
 #          - build
 #       expire_in: 30 mins
+sonar:
+  stage: sonar
+  tags:
+    - backend-runner
+  image: sonarsource/sonar-scanner-cli
+  script:
+    - /usr/bin/entrypoint.sh sonar-scanner -Dsonar.host.url=https://dev.eyecare360plus.eyecare-partners.com/pipeline/sonarqube -Dsonar.projectKey=E360-Frontend-Patient-and-Provider-Portal -Dsonar.login=$SONAR_TOKEN_PHOTON
 
 imagebuild:
   stage: imagebuild
