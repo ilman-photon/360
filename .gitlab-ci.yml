@@ -9,8 +9,8 @@ variables:
 image:  node:16.10.0
 
 stages:
-  # - install
-  # - test
+   - install
+   - test
   # - build
   - sonar
   - imagebuild
