@@ -205,4 +205,24 @@ export class Api {
         });
     });
   }
+
+  providerForgotPassword(postbody) {
+    const api = new Api();
+    const url =
+      "http://a82a5fdbdd77040d6b7a58563b3620f8-1670930037.us-east-1.elb.amazonaws.com/ecp/provider/forgot-password";
+    return new Promise((resolve, reject) => {
+      api.client
+        .post(url, postbody)
+        .then(function (response) {
+          if (response && response.status === 200) {
+            resolve(response.response);
+          } else {
+            reject(response.response);
+          }
+        })
+        .catch(function (err) {
+          reject(err.response);
+        });
+    });
+  }
 }

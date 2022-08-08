@@ -11,6 +11,8 @@ function ProviderRegistration() {
   const [step, setstep] = useState(1);
   const [responseMessage, setResponseMessage] = useState("");
   const router = useRouter();
+  const [providerData, setProviderData] = useState("");
+
   //state for form data
   const [formData, setFormData] = useState({
     npi: "",
@@ -81,11 +83,8 @@ function ProviderRegistration() {
   };
 
   const providerUserData = (value) => {
-    console.log(value);
     console.log(setFormData);
-    formData.taxonomyCode = value.taxonomycode;
-    formData.specialization = value.specialization;
-    formData.classification = value.classification;
+    setProviderData(value);
   };
 
   const handleRegistration = () => {
@@ -138,10 +137,10 @@ function ProviderRegistration() {
         <Specialization
           nextStep={nextStep}
           prevStep={prevStep}
+          providerUserData={providerData}
           sendTaxonomyCodeValue={taxonomyCodeValue}
           sendSpecialization={specializationValue}
           sendClassification={classificationValue}
-          values={formData}
         />
       );
     // Only formData is passed as prop to show the final value at form submit
@@ -152,7 +151,6 @@ function ProviderRegistration() {
           prevStep={prevStep}
           sendOfficeDetails={officeDetailsData}
           registrationSubmit={handleRegistration}
-          values={formData}
         />
       );
 
