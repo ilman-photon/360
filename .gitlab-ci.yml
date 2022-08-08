@@ -9,15 +9,15 @@ variables:
 image:  node:16.10.0
 
 stages:
-   - install
-   - test
+  - install
+  - test
   # - build
   - sonar
   - imagebuild
   - deploy
 
 
-  install:
+install:
     stage: install
     script:
      - npm install
@@ -30,7 +30,7 @@ stages:
          - node_modules/
          - .next/
 
- test:
+test:
    stage: test
    script:
      - npm run test
