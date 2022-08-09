@@ -9,7 +9,7 @@ import constants from "../../utils/constants";
 import RowRadioButtonsGroup from "../../components/atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import InsertLinkIcon from "@mui/icons-material/InsertLink";
 import { Controller } from "react-hook-form";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import dynamic from "next/dynamic";
 
 //Prevent html being match between server and client

@@ -1,8 +1,11 @@
 import Cookies from "universal-cookie";
 import { Provider } from "react-redux";
 import store from "../store/store";
-import i18n from "../i18n/i18n";
+//import i18n from "../i18n/i18n";
 import "../../styles/globals.scss";
+
+import { appWithTranslation } from "next-i18next";
+import nextI18nConfig from "../../next-i18next.config";
 
 function App({ Component, pageProps }) {
   // Use the layout defined at the page level, if available
@@ -14,4 +17,4 @@ function App({ Component, pageProps }) {
     </Provider>
   );
 }
-export default App;
+export default appWithTranslation(App, nextI18nConfig);

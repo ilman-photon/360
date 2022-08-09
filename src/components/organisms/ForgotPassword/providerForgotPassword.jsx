@@ -7,7 +7,7 @@ import { alpha, styled } from "@mui/material/styles";
 import globalStyles from "../../../styles/Global.module.scss";
 import { useRouter } from "next/router";
 import { useForm, Controller } from "react-hook-form";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { Button, TextField } from "@mui/material";

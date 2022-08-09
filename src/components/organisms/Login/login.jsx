@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import { StyledButton } from "../../atoms/Button/button";
 import { useForm, Controller } from "react-hook-form";
 import FormMessage from "../../molecules/FormMessage/formMessage";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 const constants = require("../../../utils/constants");
 
