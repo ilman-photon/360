@@ -11,14 +11,7 @@ import InsertLinkIcon from "@mui/icons-material/InsertLink";
 import { Controller } from "react-hook-form";
 import { useTranslation } from "next-i18next";
 import dynamic from "next/dynamic";
-
-//Prevent html being match between server and client
-const ForgotPassword = dynamic(
-  () => import("../../components/organisms/ForgotPassword/forgotPassword"),
-  {
-    ssr: false,
-  }
-);
+import ForgotPassword from "../../components/organisms/ForgotPassword/forgotPassword"
 
 let confirmationFormProps = {
   title: constants.EMPTY_STRING,
