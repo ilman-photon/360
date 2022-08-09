@@ -1,0 +1,12 @@
+.issuedCardContainer {
+  border: 1px dashed #6c6c6c;
+  max-height: 183px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    margin: 4px;
+  }
+}

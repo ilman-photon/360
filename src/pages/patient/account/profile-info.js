@@ -1,10 +1,18 @@
 import AccountLayout from "../../../components/templates/accountLayout";
-import ProfileInformation from "../../../components/organisms/ProfileInformation/profileInformation";
+import PersonalInformation from "../../../components/organisms/PersonalInformation/personalInformation";
+import { Grid } from "@mui/material";
 
 export default function CreateAccountPage() {
   return (
     <section>
-      <ProfileInformation />
+      <Grid container spacing={2}>
+        <Grid item xs={6}>
+          <PersonalInformation />
+        </Grid>
+        <Grid item xs={6}>
+          <PersonalInformation />
+        </Grid>
+      </Grid>
     </section>
   );
 }
