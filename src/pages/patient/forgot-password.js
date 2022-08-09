@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { useState } from "react";
 import styles from "../../../styles/Login.module.css";
 import AuthLayout from "../../components/templates/authLayout";
 import SelectOptionForm from "../../components/organisms/SelectOptionForm/selectOptionForm";
@@ -10,15 +10,9 @@ import RowRadioButtonsGroup from "../../components/atoms/RowRadioButtonsGroup/ro
 import InsertLinkIcon from "@mui/icons-material/InsertLink";
 import { Controller } from "react-hook-form";
 import { useTranslation } from "next-i18next";
-import dynamic from "next/dynamic";
-
-//Prevent html being match between server and client
-const ForgotPassword = dynamic(
-  () => import("../../components/organisms/ForgotPassword/forgotPassword"),
-  {
-    ssr: false,
-  }
-);
+import ForgotPassword from "../../components/organisms/ForgotPassword/forgotPassword";
+import { Box } from "@mui/material";
+import globalStyles from "../../styles/Global.module.scss";
 
 let confirmationFormProps = {
   title: constants.EMPTY_STRING,
@@ -255,65 +249,59 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <div className={[styles.forgotPasswordPage, "hide-scrollbar"].join(" ")}>
-      <section className={styles.forgotPasswordComponentContainer}>
-        {showForgotPassword ? (
-          <Suspense fallback={`Loading...`}>
-            <ForgotPassword
-              {...backToLoginProps}
-              onContinueButtonClicked={onContinueButtonClicked}
-              showPostMessage={showPostMessage}
-              setShowPostMessage={setShowPostMessage}
-              onCalledValidateUsernameAPI={onCalledValidateUsernameAPI}
-            />
-          </Suspense>
-        ) : (
-          <></>
-        )}
-        {showSelectOption ? (
-          <SelectOptionForm
-            {...backToLoginProps}
-            onContinueButtonClicked={onContinueButtonClicked}
-            hasSecurityQuestion={
-              patientData && patientData.securityQuestionsSet
-            }
-          />
-        ) : (
-          <></>
-        )}
-        {showPasswordSecurityQuestion ? (
-          <PasswordSecurityQuestion
-            {...backToLoginProps}
-            showPostMessage={showPostMessage}
-            setShowPostMessage={setShowPostMessage}
-            securityQuestionData={patientData.securityQuestions}
-            onContinueButtonClicked={onContinueButtonClicked}
-          />
-        ) : (
-          <></>
-        )}
-        {showOneTimeLink ? (
-          <ConfirmationForm
-            {...confirmationFormProps}
-            {...backToLoginProps}
-            showPostMessage={showPostMessage}
-            setShowPostMessage={setShowPostMessage}
-          />
-        ) : (
-          <></>
-        )}
-        {showPasswordReset ? (
-          <ConfirmationForm
-            {...confirmationFormProps}
-            {...backToLoginProps}
-            showPostMessage={showPostMessage}
-            setShowPostMessage={setShowPostMessage}
-          />
-        ) : (
-          <></>
-        )}
-      </section>
-    </div>
+    <Box className={globalStyles.contanierPage}>
+      {showForgotPassword ? (
+        <ForgotPassword
+          {...backToLoginProps}
+          onContinueButtonClicked={onContinueButtonClicked}
+          showPostMessage={showPostMessage}
+          setShowPostMessage={setShowPostMessage}
+          onCalledValidateUsernameAPI={onCalledValidateUsernameAPI}
+        />
+      ) : (
+        <></>
+      )}
+      {showSelectOption ? (
+        <SelectOptionForm
+          {...backToLoginProps}
+          onContinueButtonClicked={onContinueButtonClicked}
+          hasSecurityQuestion={patientData && patientData.securityQuestionsSet}
+        />
+      ) : (
+        <></>
+      )}
+      {showPasswordSecurityQuestion ? (
+        <PasswordSecurityQuestion
+          {...backToLoginProps}
+          showPostMessage={showPostMessage}
+          setShowPostMessage={setShowPostMessage}
+          securityQuestionData={patientData.securityQuestions}
+          onContinueButtonClicked={onContinueButtonClicked}
+        />
+      ) : (
+        <></>
+      )}
+      {showOneTimeLink ? (
+        <ConfirmationForm
+          {...confirmationFormProps}
+          {...backToLoginProps}
+          showPostMessage={showPostMessage}
+          setShowPostMessage={setShowPostMessage}
+        />
+      ) : (
+        <></>
+      )}
+      {showPasswordReset ? (
+        <ConfirmationForm
+          {...confirmationFormProps}
+          {...backToLoginProps}
+          showPostMessage={showPostMessage}
+          setShowPostMessage={setShowPostMessage}
+        />
+      ) : (
+        <></>
+      )}
+    </Box>
   );
 }
 
