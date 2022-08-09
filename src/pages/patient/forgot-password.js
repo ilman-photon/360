@@ -12,6 +12,7 @@ import { Controller } from "react-hook-form";
 import { useTranslation } from "next-i18next";
 import ForgotPassword from "../../components/organisms/ForgotPassword/forgotPassword";
 import { Box } from "@mui/material";
+import globalStyles from "../../styles/Global.module.scss";
 
 let confirmationFormProps = {
   title: constants.EMPTY_STRING,
@@ -248,7 +249,7 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <Box sx={{ alignSelf: "flex-end" }}>
+    <Box className={globalStyles.contanierPage}>
       {showForgotPassword ? (
         <ForgotPassword
           {...backToLoginProps}

@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import RESPONSE_MESSAGES from "../../utils/responseCodes";
 import { Box } from "@mui/material";
 import SetPasswordComponent from "../../components/organisms/SetPassword/setPassword";
+import globalStyles from "../../styles/Global.module.scss";
 
 export default function SetPasswordPage() {
   const dispatch = useDispatch();
@@ -55,7 +56,7 @@ export default function SetPasswordPage() {
     }
   };
   return (
-    <Box sx={{ alignSelf: "flex-end" }}>
+    <Box className={globalStyles.contanierPage}>
       <SetPasswordComponent
         title={"Set Password"}
         subtitle={"Enter a password to setup your account."}
