@@ -2,8 +2,10 @@ import AccountLayout from "../../../components/templates/accountLayout";
 import PersonalInformation from "../../../components/organisms/PersonalInformation/personalInformation";
 import ContactInformation from "../../../components/organisms/ContactInformation/contactInformation";
 import { Grid } from "@mui/material";
+import { useState } from "react";
 
 export default function CreateAccountPage() {
+  const [contactEditing, setContactEditing] = useState(false);
   return (
     <section>
       <Grid container spacing={2}>
@@ -11,7 +13,12 @@ export default function CreateAccountPage() {
           <PersonalInformation />
         </Grid>
         <Grid item xs={6}>
-          <ContactInformation />
+          <ContactInformation
+            isEditing={contactEditing}
+            OnEditClicked={(_) => setContactEditing(true)}
+            OnCancelEditClicked={(_) => setContactEditing(false)}
+            OnSaveClicked={(_) => setContactEditing(false)}
+          />
         </Grid>
       </Grid>
     </section>
