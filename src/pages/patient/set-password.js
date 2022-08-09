@@ -1,4 +1,3 @@
-import styles from "../../../styles/Login.module.css";
 import AuthLayout from "../../components/templates/authLayout";
 import dynamic from "next/dynamic";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,16 +6,9 @@ import Link from "next/link";
 import { Api } from "../api/api";
 import { useRouter } from "next/router";
 import RESPONSE_MESSAGES from "../../utils/responseCodes";
-import { Suspense } from "react";
 import { Box } from "@mui/material";
+import SetPasswordComponent from "../../components/organisms/SetPassword/setPassword";
 
-//Prevent html being match between server and client
-const SetPasswordComponent = dynamic(
-  () => import("../../components/organisms/SetPassword/setPassword"),
-  {
-    ssr: false,
-  }
-);
 export default function SetPasswordPage() {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -64,15 +56,13 @@ export default function SetPasswordPage() {
   };
   return (
     <Box sx={{ alignSelf: "flex-end" }}>
-      <Suspense fallback={`Loading...`}>
-        <SetPasswordComponent
-          title={"Set Password"}
-          subtitle={"Enter a password to setup your account."}
-          username={username}
-          formMessage={formMessage}
-          onSetPasswordClicked={OnSetPasswordClicked}
-        />
-      </Suspense>
+      <SetPasswordComponent
+        title={"Set Password"}
+        subtitle={"Enter a password to setup your account."}
+        username={username}
+        formMessage={formMessage}
+        onSetPasswordClicked={OnSetPasswordClicked}
+      />
     </Box>
   );
 }
