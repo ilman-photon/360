@@ -8,6 +8,7 @@ import { Api } from "../api/api";
 import { useRouter } from "next/router";
 import RESPONSE_MESSAGES from "../../utils/responseCodes";
 import { Suspense } from "react";
+import { Box } from "@mui/material";
 
 //Prevent html being match between server and client
 const SetPasswordComponent = dynamic(
@@ -62,19 +63,17 @@ export default function SetPasswordPage() {
     }
   };
   return (
-    <div className={styles.forgotPasswordPage}>
-      <section className={styles.forgotPasswordComponentContainer}>
-        <Suspense fallback={`Loading...`}>
-          <SetPasswordComponent
-            title={"Set Password"}
-            subtitle={"Enter a password to setup your account."}
-            username={username}
-            formMessage={formMessage}
-            onSetPasswordClicked={OnSetPasswordClicked}
-          />
-        </Suspense>
-      </section>
-    </div>
+    <Box sx={{ alignSelf: "flex-end" }}>
+      <Suspense fallback={`Loading...`}>
+        <SetPasswordComponent
+          title={"Set Password"}
+          subtitle={"Enter a password to setup your account."}
+          username={username}
+          formMessage={formMessage}
+          onSetPasswordClicked={OnSetPasswordClicked}
+        />
+      </Suspense>
+    </Box>
   );
 }
 

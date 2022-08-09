@@ -7,6 +7,7 @@ import constants from "../../utils/constants";
 import { Api } from "../api/api";
 import ConfirmationForm from "../../components/organisms/ConfirmationForm/confirmationForm";
 import dynamic from "next/dynamic";
+import { Box } from "@mui/material";
 
 //Prevent html being match between server and client
 const SetPasswordComponent = dynamic(
@@ -63,36 +64,34 @@ export default function UpdatePasswordPage() {
   };
 
   return (
-    <div className={styles.forgotPasswordPage}>
-      <section className={styles.forgotPasswordComponentContainer}>
-        {showUpdatePassword ? (
-          <Suspense fallback={`Loading...`}>
-            <SetPasswordComponent
-              username={username}
-              title={t("title")}
-              showPostMessage={showPostMessage}
-              setShowPostMessage={setShowPostMessage}
-              onBackToLoginClicked={function (router) {
-                router.push("/patient/login");
-              }}
-              onSetPasswordClicked={onCallConfirmPasswordAPI}
-              passwordPlaceHolder={t("passwordPlaceHolder")}
-              confirmPasswordPlaceHolder={t("confirmPasswordPlaceHolder")}
-              ctaButtonLabel={t("ctaButtonLabel")}
-              showPasswordValidator={true}
-              isUpdatePassword={true}
-            />
-          </Suspense>
-        ) : (
-          <></>
-        )}
-        {showPostMessage ? (
-          <ConfirmationForm {...confirmationFormProps} />
-        ) : (
-          <></>
-        )}
-      </section>
-    </div>
+    <Box sx={{ alignSelf: "flex-end" }}>
+      {showUpdatePassword ? (
+        <Suspense fallback={`Loading...`}>
+          <SetPasswordComponent
+            username={username}
+            title={t("title")}
+            showPostMessage={showPostMessage}
+            setShowPostMessage={setShowPostMessage}
+            onBackToLoginClicked={function (router) {
+              router.push("/patient/login");
+            }}
+            onSetPasswordClicked={onCallConfirmPasswordAPI}
+            passwordPlaceHolder={t("passwordPlaceHolder")}
+            confirmPasswordPlaceHolder={t("confirmPasswordPlaceHolder")}
+            ctaButtonLabel={t("ctaButtonLabel")}
+            showPasswordValidator={true}
+            isUpdatePassword={true}
+          />
+        </Suspense>
+      ) : (
+        <></>
+      )}
+      {showPostMessage ? (
+        <ConfirmationForm {...confirmationFormProps} />
+      ) : (
+        <></>
+      )}
+    </Box>
   );
 }
 

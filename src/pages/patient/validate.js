@@ -4,7 +4,7 @@ import AuthLayout from "../../components/templates/authLayout";
 import Cookies from "universal-cookie";
 import constants from "../../utils/constants";
 import { useTranslation } from "next-i18next";
-import { Link, Typography } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import { Api } from "../api/api";
@@ -131,15 +131,13 @@ export default function ValidatePage({ query }) {
   }, []);
 
   return (
-    <div className={[styles.forgotPasswordPage, "hide-scrollbar"].join(" ")}>
-      <section className={styles.forgotPasswordComponentContainer}>
-        {showExpiredForm ? (
-          <ConfirmationForm {...confirmationFormData} showPostMessage={true} />
-        ) : (
-          <></>
-        )}
-      </section>
-    </div>
+    <Box sx={{ alignSelf: "flex-end" }}>
+      {showExpiredForm ? (
+        <ConfirmationForm {...confirmationFormData} showPostMessage={true} />
+      ) : (
+        <></>
+      )}
+    </Box>
   );
 }
 
