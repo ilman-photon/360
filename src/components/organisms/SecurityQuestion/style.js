@@ -20,9 +20,15 @@ export const styles = {
   buttonStyle: {
     minWidth: "40px !important",
     marginRight: "10px",
+    fontSize: "14px",
+    boxShadow: "none",
+    transform: "none",
   },
   answerInputStyle: {
     marginTop: 8,
     width: "100%",
+  },
+  postMessage: {
+    marginBottom: "16px",
   },
 };
