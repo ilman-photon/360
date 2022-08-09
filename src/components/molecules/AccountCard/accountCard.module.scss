@@ -2,11 +2,12 @@
 
 .card {
   .cardHeader {
+    flex: 1;
     display: flex;
-    justify-content: space-between;
+    // justify-content: space-between;
     background: #fafafa;
-    align-items: center;
-    padding: 16px;
+    // align-items: center;
+    // padding: 16px;
     color: $darkGreen;
 
     div {
@@ -26,6 +27,7 @@
       text-decoration: underline;
       cursor: pointer;
       font-size: 18px;
+      text-transform: none;
     }
   }
 }

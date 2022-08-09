@@ -22,14 +22,16 @@ export const LabelWithInfo = ({
         ""
       )}
     </div>
-    <div style={{ marginTop: 10 }}>{children}</div>
-    {helperText ? (
-      <Typography variant="bodySmallRegular">
-        JPG or PNG file formats only. (File size limit is 4 MB)
-      </Typography>
-    ) : (
-      ""
-    )}
+    <Stack spacing={1}>
+      <div style={{ marginTop: 10 }}>{children}</div>
+      {helperText ? (
+        <Typography variant="bodySmallRegular" sx={{ mt: 1 }}>
+          {helperText}
+        </Typography>
+      ) : (
+        ""
+      )}
+    </Stack>
   </Stack>
 );
 

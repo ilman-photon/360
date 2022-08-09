@@ -9,6 +9,11 @@ export const AccountCard = ({ title, titleIcon, children, ...props }) => {
     <Card variant="outlined" className={styles.card}>
       <CardHeader
         className={styles.cardHeader}
+        sx={{
+          ".MuiCardHeader-action": {
+            margin: 0,
+          },
+        }}
         title={
           <div>
             <span
@@ -20,12 +25,12 @@ export const AccountCard = ({ title, titleIcon, children, ...props }) => {
           </div>
         }
         action={
-          <div className={styles.editButton}>
-            <EditOutlinedIcon />
+          <Button variant="text" className={styles.editButton}>
+            <EditOutlinedIcon sx={{ width: 20, height: 20 }} />
             <div type="link" style={{ marginLeft: 4 }}>
               Edit
             </div>
-          </div>
+          </Button>
         }
       />
       <CardContent sx={{ p: 4 }}>{children}</CardContent>

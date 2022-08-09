@@ -1,5 +1,6 @@
 import AccountLayout from "../../../components/templates/accountLayout";
 import PersonalInformation from "../../../components/organisms/PersonalInformation/personalInformation";
+import ContactInformation from "../../../components/organisms/ContactInformation/contactInformation";
 import { Grid } from "@mui/material";
 
 export default function CreateAccountPage() {
@@ -10,7 +11,7 @@ export default function CreateAccountPage() {
           <PersonalInformation />
         </Grid>
         <Grid item xs={6}>
-          <PersonalInformation />
+          <ContactInformation />
         </Grid>
       </Grid>
     </section>
