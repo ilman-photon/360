@@ -18,11 +18,11 @@ npm run check-lint ||
 )
 
 # Check tsconfig standards
-# npm run check-types ||
-# (
-#     echo 'Are you seriously trying to write that? Make the changes required above.'
-#     false;
-# )
+npm run test ||
+(
+    echo 'Please fix the failed unit test'
+    false;
+)
 
 # If everything passes... Now we can commit
 
