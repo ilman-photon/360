@@ -5,6 +5,7 @@ import { resetFormMessage, setFormMessage } from "../../../store";
 import { Api } from "../../api/api";
 import RESPONSE_MESSAGES from "../../../utils/responseCodes";
 import { Box } from "@mui/material";
+import globalStyles from "../../../styles/Global.module.scss";
 export default function CreateAccountPage() {
   const dispatch = useDispatch();
 
@@ -41,7 +42,7 @@ export default function CreateAccountPage() {
   };
 
   return (
-    <Box sx={{ alignSelf: "flex-end" }}>
+    <Box className={globalStyles.contanierPage}>
       <Register
         formMessage={formMessage}
         OnRegisterClicked={OnRegisterClicked}

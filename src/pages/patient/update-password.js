@@ -7,6 +7,7 @@ import { Api } from "../api/api";
 import ConfirmationForm from "../../components/organisms/ConfirmationForm/confirmationForm";
 import { Box } from "@mui/material";
 import SetPasswordComponent from "../../components/organisms/SetPassword/setPassword";
+import globalStyles from "../../styles/Global.module.scss";
 
 const setUsernameFromQuery = function (route) {
   return route && route.query && route.query.username
@@ -55,7 +56,7 @@ export default function UpdatePasswordPage() {
   };
 
   return (
-    <Box sx={{ alignSelf: "flex-end" }}>
+    <Box className={globalStyles.contanierPage}>
       {showUpdatePassword ? (
         <SetPasswordComponent
           username={username}
