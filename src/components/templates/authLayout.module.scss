@@ -105,9 +105,9 @@
 
 .imageBannerContainer > span > img {
   position: fixed !important;
-  width: 125vh !important;
-  height: 125vh !important;
-  left: 50vw !important;
+  width: 70vw !important;
+  height: auto !important;
+  right: -70vw !important;
   top: 64px !important;
   -o-object-fit: contain;
   object-fit: cover;

@@ -1,14 +1,8 @@
 import AuthLayout from "../../components/templates/authLayout";
 import Cookies from "universal-cookie";
 import { Api } from "../api/api";
-import dynamic from "next/dynamic";
-import { Suspense } from "react";
-// import Login from "../../components/organisms/Login/login";
+import Login from "../../components/organisms/Login/login";
 
-//Prevent html being match between server and client
-const Login = dynamic(() => import("../../components/organisms/Login/login"), {
-  suspense: true,
-});
 const loginProps = {
   OnLoginClicked: function (postbody, router, callback) {
     const api = new Api();
@@ -23,7 +17,6 @@ const loginProps = {
         callback({ status: "success" });
       })
       .catch(function (err) {
-        console.log(err);
         const isLockedAccount = err.ResponseCode === 2004;
         const isInvalidCredentials = err.ResponseCode === 2001;
         const title = isLockedAccount ? "Account Locked" : "";
@@ -49,11 +42,7 @@ const loginProps = {
 };
 
 export default function AuthPage() {
-  return (
-    <Suspense fallback={`Loading...`}>
-      <Login {...loginProps} />
-    </Suspense>
-  );
+  return <Login {...loginProps} />;
 }
 
 AuthPage.getLayout = function getLayout(page) {

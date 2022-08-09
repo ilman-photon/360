@@ -1,7 +1,7 @@
 import React, { Suspense, useState } from "react";
 import styles from "../../../styles/Login.module.css";
 import AuthLayout from "../../components/templates/authLayout";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import constants from "../../utils/constants";
 import { Api } from "../api/api";

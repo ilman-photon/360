@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import { StyledButton } from "../../atoms/Button/button";
 import { useForm, Controller } from "react-hook-form";
 import FormMessage from "../../molecules/FormMessage/formMessage";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 
 const constants = require("../../../utils/constants");
 
@@ -29,12 +29,10 @@ export default function Login({
 
   const onSubmit = ({ username, password }) => {
     OnLoginClicked({ username, password }, router, checkMessage);
-    console.log({ username, password });
   };
 
   const checkMessage = (message) => {
     const messageStatus = message.status === "failed";
-    console.log(`messageStatus ${messageStatus}`);
     if (messageStatus) {
       setError("username", {
         type: "custom",
@@ -46,7 +44,6 @@ export default function Login({
       });
     }
     setPostMessage(message);
-    console.log("this", postMessage, message);
   };
 
   const renderFromMessage = () => {
@@ -91,7 +88,7 @@ export default function Login({
                 );
               }}
               rules={{
-                required: t("emailRequiredLabel"),
+                required: t("thisFieldRequired"),
               }}
             />
             <Controller
@@ -151,7 +148,7 @@ export default function Login({
         <Divider variant={constants.MIDDLE} className={styles.divider} />
 
         <Grid container justifyContent={constants.CENTER}>
-          <Typography variant="bodyMedium">
+          <Typography variant="bodyMedium" sx={{ color: "#003B4A" }}>
             {t("dontHaveAccountLabel")}
           </Typography>
         </Grid>

@@ -6,7 +6,7 @@ Feature: As a user, my account should get locked after 5 consecutive invalid pa
   @Patient_Portal
   @Regression
   @Sprint2
-  
+  @included
   
   Scenario: EPIC_EPP-4_STORY_EPP-210 - Verify if user account get locked after 5 consecutive invalid password attempts
 
@@ -46,7 +46,7 @@ Examples:
   @Patient_Portal
   @Regression
   @Sprint2
-  
+  @included
   Scenario: EPIC_EPP-4_STORY_EPP-210 - Verify if user able to login when enter invalid password for 4 times & valid password attempt for 5th time
 
 Scenario Outline: Verify if user able to login when enter invalid password for 4 times & valid password attempt for 5th time
@@ -76,7 +76,7 @@ Examples:
   @Authentication
   @Patient_Portal
   @Sprint2
-  
+  @included
   Scenario: EPIC_EPP-4_STORY_EPP-210 - Verify if user able to login when enter invalid password for 1st time & 2nd time, valid password attempt for 3rd time
 
   Scenario Outline: Verify if user able to login when enter invalid password for 1st time & 2nd time, valid password attempt for 3rd time
@@ -102,7 +102,7 @@ Examples:
   @Patient_Portal
   @Regression
   @Sprint2
-  
+  @included
   Scenario: EPIC_EPP-4_STORY_EPP-210 - Verify if user able to login when enter invalid password for 1st time & valid password attempt for 2nd time
 
 Scenario Outline: Verify if user able to login when enter invalid password for 1st time &  valid password attempt for 2nd time
@@ -124,7 +124,7 @@ Examples:
   @Patient_Portal
   @Regression
   @Sprint2
-  
+  @included
   Scenario: EPIC_EPP-4_STORY_EPP-210 - Verify if user able to login when enter invalid password for 1st time,2nd time, 3rd time & valid password attempt for 4th time
 
 Scenario Outline: Verify if user able to login when enter invalid password for 1st time,2nd time, 3rd time & valid password attempt for 4th time 
@@ -144,7 +144,7 @@ When user provides Invalid "<Email or Phone Number>" and "<Password> for 3rd tim
   @Patient_Portal
   @Regression
   @Sprint2
-  
+  @included
   Scenario: EPIC_EPP-4_STORY_EPP-210 - Verify if user able to login when enter invalid email and invalid password for 1st time,2nd time, 3rd time & valid phone number and password attempt for 4th time
 
 Scenario Outline: Verify if user able to login when enter invalid email and invalid  password for 1st time,2nd time, 3rd time & valid phone number and password  attempt for 4th time 
@@ -171,7 +171,7 @@ Examples:
   @Patient_Portal
   @Regression
   @Sprint2
-  
+  @included
   Scenario: EPIC_EPP-4_STORY_EPP-210 - Verify if user able to login when enter invalid phone number and invalid password for 1st time,2nd time, 3rd time & valid Email id and password attempt for 4th time
 
 Scenario Outline: Verify if user able to login when enter invalid phone number and invalid  password for 1st time,2nd time, 3rd time & valid Email id and password  attempt for 4th time 
@@ -199,7 +199,7 @@ Examples:
   @Patient_Portal
   @Regression
   @Sprint2
-  
+  @included
   Scenario: EPIC_EPP-4_STORY_EPP-210 - Verify if user able to login when enter invalid phone number and invalid password for 1st time,2nd time, & 3 time valid Email id and password
 
 Scenario Outline: Verify if user able to login when enter invalid phone number and invalid  password for 1st time,2nd time,  & 3 time valid Email id and password  
@@ -224,7 +224,7 @@ Examples:
   @Patient_Portal
   @Regression
   @Sprint2
-  
+  @included
   Scenario: EPIC_EPP-4_STORY_EPP-210 - Verify if user account get locked after 5 consecutive invalid username attempts
 
 Scenario Outline: Verify if user account get locked after 5 consecutive invalid username attempts
@@ -262,7 +262,7 @@ Examples:
   @Patient_Portal
   @Regression
   @Sprint2
-  
+  @included
   Scenario: EPIC_EPP-4_STORY_EPP-210 - Verify if user account get locked after 2 times invalid username & 3 times invalid password attempts
 
 Scenario Outline: Verify if user account get locked after 2 times invalid username & 3 times invalid password attempts
@@ -300,7 +300,7 @@ Examples:
   @Patient_Portal
   @Regression
   @Sprint2
-  
+  @included
   Scenario: EPIC_EPP-4_STORY_EPP-210 - Verify if user account get locked after 3 times invalid username & 2 times invalid password attempts
 
 Scenario Outline: Verify if user account get locked after 3 times invalid username & 2 times invalid password attempts
@@ -338,7 +338,7 @@ Examples:
   @Patient_Portal
   @Regression
   @Sprint2
-  
+  @included
   Scenario: EPIC_EPP-4_STORY_EPP-210 - Verify the error message when internet and service are unavailable
 
 Scenario Outline: Verify the error message when internet and service are unavailable  
