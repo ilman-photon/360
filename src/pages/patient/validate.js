@@ -91,7 +91,7 @@ export default function ValidatePage({ query }) {
     const postbody = queryParam;
     const api = new Api();
     api
-      .oneTimeLinkValidation(postbody)
+      .tokenValidation(postbody)
       .then(function () {
         cookies.set("authorized", true, { path: "/patient" });
         const hostname = window.location.origin;
@@ -106,7 +106,7 @@ export default function ValidatePage({ query }) {
     const postbody = queryParam;
     const api = new Api();
     api
-      .resetPasswordValidation(postbody)
+      .tokenValidation(postbody, true)
       .then(function () {
         //Navigate to Update
         const name = "Smith1@photon.com";
