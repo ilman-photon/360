@@ -9,7 +9,7 @@ import constants from "../../utils/constants";
 import RowRadioButtonsGroup from "../../components/atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import InsertLinkIcon from "@mui/icons-material/InsertLink";
 import { Controller } from "react-hook-form";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import dynamic from "next/dynamic";
 
 //Prevent html being match between server and client
@@ -130,7 +130,7 @@ export default function ForgotPasswordPage() {
         const userCommunicationCode =
           modeOfCommuication.toLowerCase() === "email"
             ? response.email
-            : response.phoneNumber;
+            : response.phone;
         // Handle success to call API
         confirmationFormProps = {
           title: t("titlePasswordReset"),
@@ -220,8 +220,8 @@ export default function ForgotPasswordPage() {
         confirmationFormProps.onCTAButtonClicked = function ({ data }) {
           const modeComunication =
             data[constants.MODE_COMMUNICATION_KEY] === constants.EMAIL
-              ? "Email"
-              : "Phone number";
+              ? "email"
+              : "phone";
           onCalledResetPasswordAPI(modeComunication);
         };
       } else {

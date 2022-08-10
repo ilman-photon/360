@@ -6,13 +6,12 @@ Feature: Patient Portal : Patient login using valid credentials
   @Patient_Portal
   @Regression
   @Sprint2
+  @included
   Scenario: EPIC_EPP-4_STORY_EPP-207-Verify whether the Registered Patient is able to Login with Valid Email or Phone Number and Valid Password
-
-
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
     When user lands onto “Patient Login” screen
-    And user provides valid "<Email or Phone Number>" and valid"<password>"
+    And user provides valid "<Email or Phone Number>" and valid "<password>"
     And user click 'Login' button.
     Then user should view Home/Dashboard page
 
@@ -22,6 +21,7 @@ Feature: Patient Portal : Patient login using valid credentials
   @Patient_Portal
   @Regression
   @Sprint2
+  @included
   Scenario: EPIC_EPP-4_STORY_EPP-207-Verify whether the Patient is able to login with Email and valid Password.
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -40,6 +40,7 @@ Feature: Patient Portal : Patient login using valid credentials
   @Patient_Portal
   @Regression
   @Sprint2
+  @included
   Scenario: EPIC_EPP-4_STORY_EPP-207-Verify whether the Patient is able to login with Phone number with valid Password.
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -56,6 +57,7 @@ Feature: Patient Portal : Patient login using valid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @included
   Scenario: EPIC_EPP-4_STORY_EPP-207-Verify whether the user is able to see the Patient Login page without Internet connection
     Given user launch the 'XXX' url	
     When user navigates to the Patient Portal application
@@ -66,6 +68,7 @@ Feature: Patient Portal : Patient login using valid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @included
   Scenario: EPIC_EPP-4_STORY_EPP-207-Verify whether the page is loading with in 3 seconds
     Given user user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -76,6 +79,7 @@ Feature: Patient Portal : Patient login using valid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @included
   Scenario: EPIC_EPP-4_STORY_EPP-207-Verify whether any error is displaying when we press F12 after navigating to the Patient Login page.
     Given user user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -87,8 +91,9 @@ Feature: Patient Portal : Patient login using valid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @included
   Scenario: EPIC_EPP-4_STORY_EPP-207-Verify whether the error message is displaying when the service is unavailable.
-    Given user user launch the 'XXX' url
+    Given user launch the 'XXX' url
     When the service is unavailable	
     And user navigates to the Patient Portal application
     And user lands on “Patient Login” screen

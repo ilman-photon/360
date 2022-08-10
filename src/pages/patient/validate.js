@@ -3,7 +3,7 @@ import styles from "../../../styles/Login.module.css";
 import AuthLayout from "../../components/templates/authLayout";
 import Cookies from "universal-cookie";
 import constants from "../../utils/constants";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import { Link, Typography } from "@mui/material";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";

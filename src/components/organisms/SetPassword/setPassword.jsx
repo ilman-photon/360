@@ -7,7 +7,7 @@ import { StyledButton } from "../../atoms/Button/button";
 import globalStyles from "../../../styles/Global.module.scss";
 import { useForm, Controller } from "react-hook-form";
 import { styles } from "./style";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import { Link, Typography } from "@mui/material";
 import { PasswordValidator } from "../../molecules/PasswordValidator/passwordValidator";
