@@ -236,7 +236,9 @@ const SetPasswordComponent = ({
       sx={{ minWidth: 275, margin: 10, marginTop: 0 }}
     >
       <CardContent style={cardContentStyle}>
-        <Typography variant="h2">{title}</Typography>
+        <Typography variant="h2" sx={{ marginLeft: "8px" }}>
+          {title}
+        </Typography>
         {subtitle ? (
           <Typography variant="h4" sx={styles.titleStyles2}>
             {subtitle}
@@ -245,7 +247,7 @@ const SetPasswordComponent = ({
           <></>
         )}
 
-        <div style={{ margin: 8 }}>
+        <div>
           {showPostMessage ? (
             <FormMessage success={false} sx={styles.postMessage}>
               {postMessage}
@@ -259,6 +261,7 @@ const SetPasswordComponent = ({
               ref={formMessageComp}
               success={formMessage.success}
               title={formMessage.title}
+              style={{ margin: 8 }}
             >
               {formMessage.content}
             </FormMessage>

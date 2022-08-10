@@ -88,7 +88,7 @@ export default function UpdatePasswordPage() {
 UpdatePasswordPage.getLayout = function getLayout(page) {
   const backgroundImage = "/login-bg.png";
   return (
-    <AuthLayout showMobileImage={true} imageSrc={backgroundImage}>
+    <AuthLayout showMobileImage={false} imageSrc={backgroundImage}>
       {page}
     </AuthLayout>
   );
