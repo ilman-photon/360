@@ -118,13 +118,19 @@ const SetPasswordComponent = ({
     {
       label: "Password should not contain your username",
       validate:
-        watchedPassword.indexOf(!isUpdatePassword ? watchedEmail : username) >
-        -1,
+        watchedPassword.length < 1
+          ? true
+          : watchedPassword.indexOf(
+              !isUpdatePassword ? watchedEmail : username
+            ) > -1,
       mandatory: true,
     },
     {
       label: "New password must not match current password",
-      validate: Regex.hasTripleRegex.test(watchedPassword),
+      validate:
+        watchedPassword.length < 1
+          ? true
+          : Regex.hasTripleRegex.test(watchedPassword),
       mandatory: true,
     },
   ];
