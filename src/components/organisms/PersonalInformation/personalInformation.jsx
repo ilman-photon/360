@@ -1,7 +1,6 @@
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 import {
   Avatar,
-  Box,
   Button,
   Divider,
   Fade,
@@ -13,15 +12,18 @@ import AccountCard from "../../molecules/AccountCard/accountCard";
 import styles from "./personalInformation.module.scss";
 import { colors } from "../../../styles/theme";
 
-import * as React from "react";
 import Image from "next/image";
 import { Controller, useForm } from "react-hook-form";
 import { ProfilePhotoUploader } from "../../molecules/ProfilePhotoUploader/profilePhotoUploader";
 import { stringAvatar } from "../../../utils/avatar";
 import StyledInput from "../../atoms/Input/input";
 import { ImageUploader } from "../../molecules/ImageUploader/imageUploader";
+import { connect } from "react-redux";
+import { useEffect } from "react";
+import { StyledSelect } from "../../atoms/Select/select";
 
 export default function PersonalInformation({
+  userData = {},
   isEditing = true,
   OnSaveClicked = () => {
     // This is intended
@@ -33,31 +35,28 @@ export default function PersonalInformation({
     // This is intended
   },
 }) {
-  const DEFAULT_PERSONAL_INFO = {
-    photo: "",
-    name: "John Doe",
-    preferredName: "John",
-    title: "Mr",
-    dob: new Date(),
-    age: 49,
-    gender: "Male",
-    ssn: "***-***-1823",
-    card: {
-      front: "/login-bg.png",
-      back: "/login-bg.png",
-    },
-  };
-
   const { handleSubmit, control, watch, reset } = useForm({
-    defaultValues: DEFAULT_PERSONAL_INFO,
+    defaultValues: userData, // Object.assign({}, userData),
   });
 
+  console.log({ userData });
+
+  const genderOptions = [
+    { label: "Male", value: "Male" },
+    { label: "Female", value: "Female" },
+  ];
+
+  useEffect(() => {
+    if (userData) reset(userData);
+  }, [userData]);
+
   const handleCancel = () => {
-    reset(DEFAULT_PERSONAL_INFO);
+    reset(userData);
     OnCancelEditClicked();
   };
 
   const onSubmit = (data) => {
+    console.log({ data });
     OnSaveClicked(data);
   };
   return (
@@ -71,16 +70,18 @@ export default function PersonalInformation({
         <Stack spacing={3} divider={<Divider />}>
           <LabelWithInfo label="Photo">
             <Avatar
-              {...stringAvatar("Remy Sharp")}
+              {...stringAvatar(userData.name)}
               sx={{ width: 122, height: 122, border: "solid 1px black" }}
             ></Avatar>
           </LabelWithInfo>
 
           <LabelWithInfo label="Name" tooltipContent="Test">
-            John Doe
+            {userData.name}
           </LabelWithInfo>
 
-          <LabelWithInfo label="Preferred Name">---</LabelWithInfo>
+          <LabelWithInfo label="Preferred Name">
+            {userData.preferredName || "---"}
+          </LabelWithInfo>
 
           <LabelWithInfo label="Title">Mr</LabelWithInfo>
 
@@ -161,18 +162,20 @@ export default function PersonalInformation({
                 fieldState: { error },
               }) => {
                 return (
-                  <StyledInput
-                    disabled
-                    type="text"
-                    id="name"
-                    label="Name"
-                    value={value}
-                    onChange={onChange}
-                    error={!!error}
-                    size="small"
-                    variant="filled"
-                    helperText={error ? error.message : null}
-                  />
+                  <>
+                    <StyledInput
+                      disabled
+                      type="text"
+                      id="name"
+                      label="Name"
+                      value={value}
+                      onChange={onChange}
+                      error={!!error}
+                      size="small"
+                      variant="filled"
+                      helperText={error ? error.message : null}
+                    />
+                  </>
                 );
               }}
             />
@@ -282,15 +285,24 @@ export default function PersonalInformation({
                 fieldState: { error },
               }) => {
                 return (
-                  <StyledInput
-                    type="text"
+                  // <StyledInput
+                  //   type="text"
+                  //   id="gender"
+                  //   label="Gender"
+                  //   value={value}
+                  //   onChange={onChange}
+                  //   error={!!error}
+                  //   size="small"
+                  //   variant="filled"
+                  //   helperText={error ? error.message : null}
+                  // />
+                  <StyledSelect
                     id="gender"
                     label="Gender"
+                    options={genderOptions}
                     value={value}
                     onChange={onChange}
                     error={!!error}
-                    size="small"
-                    variant="filled"
                     helperText={error ? error.message : null}
                   />
                 );

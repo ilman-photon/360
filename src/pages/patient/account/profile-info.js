@@ -2,16 +2,27 @@ import AccountLayout from "../../../components/templates/accountLayout";
 import PersonalInformation from "../../../components/organisms/PersonalInformation/personalInformation";
 import ContactInformation from "../../../components/organisms/ContactInformation/contactInformation";
 import { Grid } from "@mui/material";
-import { useState } from "react";
-
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchUser } from "../../../store/user";
 export default function CreateAccountPage() {
   const [contactEditing, setContactEditing] = useState(false);
   const [personalEditing, setPersonalEditing] = useState(false);
+
+  const userData = useSelector((state) => state.user.userData);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUser());
+  }, [dispatch]);
+
   return (
     <section>
       <Grid container spacing={2}>
         <Grid item xs={6}>
           <PersonalInformation
+            userData={userData}
             isEditing={personalEditing}
             OnEditClicked={(_) => setPersonalEditing(true)}
             OnCancelEditClicked={(_) => setPersonalEditing(false)}
