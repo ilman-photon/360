@@ -25,3 +25,10 @@
     padding-right: 16px;
   }
 }
+
+.contanierPage {
+  align-self: flex-end;
+  @media (max-width: 992px) {
+    align-self: center;
+  }
+}

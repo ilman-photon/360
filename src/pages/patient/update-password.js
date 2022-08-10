@@ -1,20 +1,13 @@
-import React, { Suspense, useState } from "react";
-import styles from "../../../styles/Login.module.css";
+import React, { useState } from "react";
 import AuthLayout from "../../components/templates/authLayout";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import constants from "../../utils/constants";
 import { Api } from "../api/api";
 import ConfirmationForm from "../../components/organisms/ConfirmationForm/confirmationForm";
-import dynamic from "next/dynamic";
-
-//Prevent html being match between server and client
-const SetPasswordComponent = dynamic(
-  () => import("../../components/organisms/SetPassword/setPassword"),
-  {
-    suspense: true,
-  }
-);
+import { Box } from "@mui/material";
+import SetPasswordComponent from "../../components/organisms/SetPassword/setPassword";
+import globalStyles from "../../styles/Global.module.scss";
 
 const setUsernameFromQuery = function (route) {
   return route && route.query && route.query.username
@@ -63,36 +56,32 @@ export default function UpdatePasswordPage() {
   };
 
   return (
-    <div className={styles.forgotPasswordPage}>
-      <section className={styles.forgotPasswordComponentContainer}>
-        {showUpdatePassword ? (
-          <Suspense fallback={`Loading...`}>
-            <SetPasswordComponent
-              username={username}
-              title={t("title")}
-              showPostMessage={showPostMessage}
-              setShowPostMessage={setShowPostMessage}
-              onBackToLoginClicked={function (router) {
-                router.push("/patient/login");
-              }}
-              onSetPasswordClicked={onCallConfirmPasswordAPI}
-              passwordPlaceHolder={t("passwordPlaceHolder")}
-              confirmPasswordPlaceHolder={t("confirmPasswordPlaceHolder")}
-              ctaButtonLabel={t("ctaButtonLabel")}
-              showPasswordValidator={true}
-              isUpdatePassword={true}
-            />
-          </Suspense>
-        ) : (
-          <></>
-        )}
-        {showPostMessage ? (
-          <ConfirmationForm {...confirmationFormProps} />
-        ) : (
-          <></>
-        )}
-      </section>
-    </div>
+    <Box className={globalStyles.contanierPage}>
+      {showUpdatePassword ? (
+        <SetPasswordComponent
+          username={username}
+          title={t("title")}
+          showPostMessage={showPostMessage}
+          setShowPostMessage={setShowPostMessage}
+          onBackToLoginClicked={function (router) {
+            router.push("/patient/login");
+          }}
+          onSetPasswordClicked={onCallConfirmPasswordAPI}
+          passwordPlaceHolder={t("passwordPlaceHolder")}
+          confirmPasswordPlaceHolder={t("confirmPasswordPlaceHolder")}
+          ctaButtonLabel={t("ctaButtonLabel")}
+          showPasswordValidator={true}
+          isUpdatePassword={true}
+        />
+      ) : (
+        <></>
+      )}
+      {showPostMessage ? (
+        <ConfirmationForm {...confirmationFormProps} />
+      ) : (
+        <></>
+      )}
+    </Box>
   );
 }
 

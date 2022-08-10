@@ -4,19 +4,12 @@ import AuthLayout from "../../components/templates/authLayout";
 import Cookies from "universal-cookie";
 import constants from "../../utils/constants";
 import { useTranslation } from "next-i18next";
-import { Link, Typography } from "@mui/material";
-import dynamic from "next/dynamic";
+import { Box, Link, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { Api } from "../api/api";
 import { colors } from "../../styles/theme";
-
-//Prevent html being match between server and client
-const ConfirmationForm = dynamic(
-  () => import("../../components/organisms/ConfirmationForm/confirmationForm"),
-  {
-    ssr: false,
-  }
-);
+import ConfirmationForm from "../../components/organisms/ConfirmationForm/confirmationForm";
+import globalStyles from "../../styles/Global.module.scss";
 
 export async function getServerSideProps({ query }) {
   return {
@@ -131,15 +124,13 @@ export default function ValidatePage({ query }) {
   }, []);
 
   return (
-    <div className={[styles.forgotPasswordPage, "hide-scrollbar"].join(" ")}>
-      <section className={styles.forgotPasswordComponentContainer}>
-        {showExpiredForm ? (
-          <ConfirmationForm {...confirmationFormData} showPostMessage={true} />
-        ) : (
-          <></>
-        )}
-      </section>
-    </div>
+    <Box className={globalStyles.contanierPage}>
+      {showExpiredForm ? (
+        <ConfirmationForm {...confirmationFormData} showPostMessage={true} />
+      ) : (
+        <></>
+      )}
+    </Box>
   );
 }
 
