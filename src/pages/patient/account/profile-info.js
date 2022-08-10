@@ -6,11 +6,17 @@ import { useState } from "react";
 
 export default function CreateAccountPage() {
   const [contactEditing, setContactEditing] = useState(false);
+  const [personalEditing, setPersonalEditing] = useState(false);
   return (
     <section>
       <Grid container spacing={2}>
         <Grid item xs={6}>
-          <PersonalInformation />
+          <PersonalInformation
+            isEditing={personalEditing}
+            OnEditClicked={(_) => setPersonalEditing(true)}
+            OnCancelEditClicked={(_) => setPersonalEditing(false)}
+            OnSaveClicked={(_) => setPersonalEditing(false)}
+          />
         </Grid>
         <Grid item xs={6}>
           <ContactInformation

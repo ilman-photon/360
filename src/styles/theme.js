@@ -21,6 +21,8 @@ export const colors = {
   black: "#242526",
   foundationGreen: "#04844B",
   foundationRed: "#C23934",
+  foundationBlue: "#0E1941",
+  foundationGrey: "#6B7789",
 };
 
 // declare module '@mui/material/styles' {

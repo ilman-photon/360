@@ -8,6 +8,7 @@ export const AccountCard = ({
   title,
   titleIcon,
   children,
+  isEditing,
   OnEditClicked,
   ...props
 }) => {
@@ -31,16 +32,20 @@ export const AccountCard = ({
           </div>
         }
         action={
-          <Button
-            onClick={OnEditClicked}
-            variant="text"
-            className={styles.editButton}
-          >
-            <EditOutlinedIcon sx={{ width: 20, height: 20 }} />
-            <div type="link" style={{ marginLeft: 4 }}>
-              Edit
-            </div>
-          </Button>
+          !isEditing ? (
+            <Button
+              onClick={OnEditClicked}
+              variant="text"
+              className={styles.editButton}
+            >
+              <EditOutlinedIcon sx={{ width: 20, height: 20 }} />
+              <div type="link" style={{ marginLeft: 4 }}>
+                Edit
+              </div>
+            </Button>
+          ) : (
+            ""
+          )
         }
       />
       <CardContent sx={{ p: 4 }}>{children}</CardContent>
