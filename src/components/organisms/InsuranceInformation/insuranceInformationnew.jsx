@@ -94,7 +94,6 @@ export default function InsuranceFormNew({
     >
       <Fade in={!isEditing} unmountOnExit>
         <Stack spacing={3} divider={<Divider />}>
-
           <Grid container>
             <Grid item xs={4} p={0}>
               <LabelWithInfo label="Insurance Provider">Aetna</LabelWithInfo>
@@ -105,86 +104,88 @@ export default function InsuranceFormNew({
             </Grid>
 
             <Grid item xs={4} p={0}>
-                <LabelWithInfo label="Subscriber ID/Member ID">Southern</LabelWithInfo>
+              <LabelWithInfo label="Subscriber ID/Member ID">
+                Southern
+              </LabelWithInfo>
             </Grid>
           </Grid>
 
-            <LabelWithInfo label="Group #">12321</LabelWithInfo>
+          <LabelWithInfo label="Group #">12321</LabelWithInfo>
 
-        <div>
-          <Typography variant="h3" sx={{ pb: 2, color: colors.black }}>
-            Policy Holder
-          </Typography>
+          <div>
+            <Typography variant="h3" sx={{ pb: 2, color: colors.black }}>
+              Policy Holder
+            </Typography>
 
             <LabelWithInfo label="Are you the  Subscriber?">No</LabelWithInfo>
           </div>
 
+          <Grid container>
+            <Grid item xs={4} p={0}>
+              <LabelWithInfo label="First Name">Aetna</LabelWithInfo>
+            </Grid>
+
+            <Grid item xs={4} p={0}>
+              <LabelWithInfo label="Last Name">Southern</LabelWithInfo>
+            </Grid>
+
+            <Grid item xs={4} p={0}>
+              <LabelWithInfo label="Date of Birth">01/01/1980</LabelWithInfo>
+            </Grid>
+          </Grid>
+
+          <LabelWithInfo label="Relationship">---</LabelWithInfo>
+
+          <div>
+            <Typography variant="bodyRegular" sx={{ pb: 3 }} component="div">
+              Upload images of your insurance.
+            </Typography>
+
             <Grid container>
-            <Grid item xs={4} p={0}>
-                <LabelWithInfo label="First Name">Aetna</LabelWithInfo>
-            </Grid>
-
-            <Grid item xs={4} p={0}>
-                <LabelWithInfo label="Last Name">Southern</LabelWithInfo>
-            </Grid>
-
-            <Grid item xs={4} p={0}>
-                <LabelWithInfo label="Date of Birth">01/01/1980</LabelWithInfo>
-            </Grid>
-            </Grid>
-
-            <LabelWithInfo label="Relationship">---</LabelWithInfo>
-
-            <div>
-          <Typography variant="bodyRegular" sx={{ pb: 3 }} component="div">
-          Upload images of your insurance.
-          </Typography>
-
-            <Grid container>
-            <Grid item xs={4} p={0}>
+              <Grid item xs={4} p={0}>
                 <Image width="100%" height={183} src="/login-bg.png" alt="" />
-            </Grid>
+              </Grid>
 
-            <Grid item xs={4} p={0}>
+              <Grid item xs={4} p={0}>
                 <Image width="100%" height={183} src="/login-bg.png" alt="" />
+              </Grid>
             </Grid>
-            </Grid></div>
+          </div>
 
-<LabelWithInfo label="Insurance Priority">Primary</LabelWithInfo>
+          <LabelWithInfo label="Insurance Priority">Primary</LabelWithInfo>
 
-
-
-<Stack direction="row" justifyContent="flex-end" spacing={2}>
-              <Button
-                onClick={handleCancel}
-                variant="contained"
-                className={[styles.formButton, styles.outlined].join(" ")}
-              >
-                Remove Insurance
-              </Button>
-              <Button
-                type="submit"
-                variant="contained"
-                className={[styles.formButton, styles.primary].join(" ")}
-                onClick={OnEditClicked}
-              >
-                Edit
-              </Button>
-            </Stack>
-
-
+          <Stack direction="row" justifyContent="flex-end" spacing={2}>
+            <Button
+              onClick={handleCancel}
+              variant="contained"
+              className={[styles.formButton, styles.outlined].join(" ")}
+            >
+              Remove Insurance
+            </Button>
+            <Button
+              type="submit"
+              variant="contained"
+              className={[styles.formButton, styles.primary].join(" ")}
+              onClick={OnEditClicked}
+            >
+              Edit
+            </Button>
+          </Stack>
         </Stack>
       </Fade>
 
       <Fade in={isEditing} unmountOnExit>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Stack spacing={3}>
+            <hr />
 
-              <hr />
-
-            <Typography variant="h3" sx={{ pb: 2, color: colors.black }} tooltipContent="Test">
-            Policy Holder
-          </Typography>
+            <Typography
+              variant="h3"
+              sx={{ pb: 2, color: colors.black }}
+              tooltipContent="Test"
+            >
+              Policy Holder
+            </Typography>
 
             <Controller
               name="isSubscriber"
@@ -212,10 +213,10 @@ export default function InsuranceFormNew({
             />
 
             <Typography variant="bodyRegular" sx={{ pb: 3 }} component="div">
-                Enter the subscriber’s details
+              Enter the subscriber’s details
             </Typography>
 
-          <Grid container columnSpacing={2} style={{ width: "fit-content" }}>
+            <Grid container columnSpacing={2} style={{ width: "fit-content" }}>
               <Grid item xs={6} style={{ paddingLeft: 0 }}>
                 <Controller
                   name="firstName"
@@ -319,11 +320,11 @@ export default function InsuranceFormNew({
               }}
             />
 
-        <hr />
-          <Typography variant="bodyRegular" sx={{ pb: 3 }} component="div">
-          Upload images of your insurance.
-          </Typography>
-        <hr />
+            <hr />
+            <Typography variant="bodyRegular" sx={{ pb: 3 }} component="div">
+              Upload images of your insurance.
+            </Typography>
+            <hr />
 
             <Controller
               name="insurancePriority"

@@ -3,7 +3,7 @@ import Link from "next/link";
 import { colors } from "../../../styles/theme";
 import styles from "./accountCard.module.scss";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import AddIcon from '@mui/icons-material/Add';
+import AddIcon from "@mui/icons-material/Add";
 
 export const AccountCard = ({
   title,
@@ -33,24 +33,27 @@ export const AccountCard = ({
           </div>
         }
         action={
-          OnEditClicked ?
-          <Button
-            onClick={OnEditClicked}
-            variant="text"
-            className={styles.editButton}
-          >
-            <EditOutlinedIcon sx={{ width: 20, height: 20 }} />
-            <div type="link" style={{ marginLeft: 4 }}>
-              Edit
-            </div>
-          </Button> : OnAddInsurance ? <Button
-            // onClick={OnEditClicked}
-            variant="text"
-            className={styles.addInsuranceButton}
-          >
-            <AddIcon sx={{ width: 20, height: 20 }} />
-            Add Insurance
-          </Button> : null
+          OnEditClicked ? (
+            <Button
+              onClick={OnEditClicked}
+              variant="text"
+              className={styles.editButton}
+            >
+              <EditOutlinedIcon sx={{ width: 20, height: 20 }} />
+              <div type="link" style={{ marginLeft: 4 }}>
+                Edit
+              </div>
+            </Button>
+          ) : OnAddInsurance ? (
+            <Button
+              // onClick={OnEditClicked}
+              variant="text"
+              className={styles.addInsuranceButton}
+            >
+              <AddIcon sx={{ width: 20, height: 20 }} />
+              Add Insurance
+            </Button>
+          ) : null
         }
       />
       <CardContent sx={{ p: 4 }}>{children}</CardContent>

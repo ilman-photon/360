@@ -9,7 +9,11 @@ import { colors } from "../../../styles/theme";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
 import { Stack, Tooltip, Typography } from "@mui/material";
 
-export default function RowRadioButtonsGroup({ helperText = null,  tooltipContent, ...props }) {
+export default function RowRadioButtonsGroup({
+  helperText = null,
+  tooltipContent,
+  ...props
+}) {
   const options = props.options || [];
 
   return (
@@ -26,15 +30,22 @@ export default function RowRadioButtonsGroup({ helperText = null,  tooltipConten
         }}
       >
         {props.label}
-      {tooltipContent ? (
-        <>
-          <Tooltip title={tooltipContent}>
-            <ErrorOutlineOutlinedIcon sx={{ width: 16, height: 16, marginLeft: "4px", color: "#DADADA" }} />
-          </Tooltip>
-        </>
-      ) : (
-        ""
-      )}
+        {tooltipContent ? (
+          <>
+            <Tooltip title={tooltipContent}>
+              <ErrorOutlineOutlinedIcon
+                sx={{
+                  width: 16,
+                  height: 16,
+                  marginLeft: "4px",
+                  color: "#DADADA",
+                }}
+              />
+            </Tooltip>
+          </>
+        ) : (
+          ""
+        )}
       </FormLabel>
       <RadioGroup
         row
