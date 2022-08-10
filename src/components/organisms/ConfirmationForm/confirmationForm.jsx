@@ -39,9 +39,7 @@ const ConfirmationForm = ({
   return (
     <Card className={globalStyles.container} style={styles.cardStyle}>
       <CardContent style={styles.cardContentStyle}>
-        <Typography variant={constants.H2} style={styles.margin}>
-          {title}
-        </Typography>
+        <Typography variant={constants.H2}>{title}</Typography>
         {showPostMessage ? (
           <FormMessage
             success={isSuccessPostMessage}
