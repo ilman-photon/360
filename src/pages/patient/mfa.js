@@ -4,16 +4,14 @@ import MfaLayout from "../../components/templates/mfaLayout";
 import SetMultiFactorAuthentication from "../../components/organisms/MultiFactorAuthentication/setMultiFactorAuthentication";
 import MultiFactorAuthentication from "../../components/organisms/MultiFactorAuthentication/multiFactorAuthentication";
 import constants from "../../utils/constants";
-import { Security } from "@mui/icons-material";
 import SecurityQuestion from "../../components/organisms/SecurityQuestion/securityQuestion";
 import { Box } from "@mui/material";
+import Cookies from "universal-cookie";
 
 export default function MfaPage() {
   const router = useRouter();
   // const [confirm, setConfirm] = React.useState(false);
-  const [componentName, setComponentName] = React.useState(
-    constants.SQ_COMPONENT_NAME
-  );
+  const [componentName, setComponentName] = React.useState("");
   const [rememberMe, setRememberMe] = React.useState(false);
 
   function onConfirmClicked() {
@@ -24,20 +22,27 @@ export default function MfaPage() {
     router.push("/patient/login");
   }
 
+  function redirectToDashboard() {
+    const cookies = new Cookies();
+    const hostname = window.location.origin;
+    window.location.href = `${hostname}/patient`;
+    cookies.set("authorized", true, { path: "/patient" });
+  }
+
   function onSubmitClicked(callback) {
     //TODO: Call service
 
     //sucess submit MFA, show security question
     setComponentName(constants.SQ_COMPONENT_NAME);
 
-    //failed to sumbit MFA
-    // callback({
-    //   status: "failed",
-    //   message: {
-    //     title: "Incorrect Code.",
-    //     description: "Please try again.",
-    //   },
-    // });
+    //redirectToDashboard()
+    callback({
+      status: "failed",
+      message: {
+        title: "Incorrect Code.",
+        description: "Please try again.",
+      },
+    });
   }
 
   function onResendCodeClicked(callback) {

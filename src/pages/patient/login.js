@@ -10,9 +10,10 @@ const loginProps = {
     api
       .login(postbody)
       .then(function (response) {
-        const hostname = window.location.origin;
-        window.location.href = `${hostname}/patient`;
-        cookies.set("authorized", true, { path: "/patient" });
+        // const hostname = window.location.origin;
+        // window.location.href = `${hostname}/patient`;
+        router.push("/patient/mfa");
+        //cookies.set("authorized", true, { path: "/patient" });
         callback({ status: "success" });
       })
       .catch(function (err) {
