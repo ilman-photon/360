@@ -248,7 +248,7 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <Box className={globalStyles.contanierPage}>
+    <Box className={globalStyles.containerPage}>
       {showForgotPassword ? (
         <ForgotPassword
           {...backToLoginProps}

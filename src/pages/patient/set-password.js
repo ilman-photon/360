@@ -55,7 +55,7 @@ export default function SetPasswordPage() {
     }
   };
   return (
-    <Box className={globalStyles.contanierPage}>
+    <Box className={globalStyles.containerPage}>
       <SetPasswordComponent
         title={"Set Password"}
         subtitle={"Enter a password to setup your account."}
