@@ -30,4 +30,7 @@ jest.mock('next/router', () => ({
       prefetch: jest.fn(() => null)
     });
   },
+  withRouter(){
+    return jest.fn()
+  }
 }));

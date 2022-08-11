@@ -10,22 +10,12 @@ import FormMessage from "../../molecules/FormMessage/formMessage";
 import globalStyles from "../../../styles/Global.module.scss";
 
 const SecurityQuestion = ({
-  securityQuestionList = [
-    "What was the first concert you attended?",
-    "In what city or town did your parents meet?",
-    "What was the make and model of your first car?",
-    "Who is your all-time favorite movie character?",
-    "What was your favorite cartoon character during your childhood?",
-    "What was the first book you read?",
-    "What was the first thing you learned to cook?",
-    "What was the first film you saw in a theater?",
-    "Where did you go the first time you flew on a plane?",
-    "What is your favorite cold-weather activity?",
-  ],
+  securityQuestionList = [],
   propsShowPostMessage = false,
   postMessage = "You must answer all security questions",
   securityQuestionCount = 5,
   onClickedSubmitButton = () => {},
+  onClickedSkipButton = () => {},
 }) => {
   const [showPostMessage, setShowPostMessage] = useState(propsShowPostMessage);
   const { handleSubmit, control } = useForm();
@@ -39,12 +29,16 @@ const SecurityQuestion = ({
       }
     }
     if (validate) {
-      onClickedSubmitButton();
+      onClickedSubmitButton(checkSubmitMessage);
     } else {
       setShowPostMessage(true);
       //Scroll to top
       window.scrollTo(0, 0);
     }
+  };
+
+  const checkSubmitMessage = (message) => {
+    setPostMessage(message);
   };
 
   const securityQuestionUI = function () {
@@ -135,7 +129,7 @@ const SecurityQuestion = ({
             type="submit"
             theme="patient"
             mode="primary"
-            size="large"
+            size="small"
             gradient={false}
             style={styles.buttonStyle}
           >
@@ -144,9 +138,10 @@ const SecurityQuestion = ({
           <StyledButton
             theme="patient"
             mode="secondary"
-            size="large"
+            size="small"
             gradient={false}
             style={styles.buttonStyle}
+            onClick={onClickedSkipButton}
           >
             Skip
           </StyledButton>

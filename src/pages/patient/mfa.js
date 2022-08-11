@@ -7,12 +7,16 @@ import constants from "../../utils/constants";
 import SecurityQuestion from "../../components/organisms/SecurityQuestion/securityQuestion";
 import { Box } from "@mui/material";
 import Cookies from "universal-cookie";
+import AccountTitleHeading from "../../components/atoms/AccountTitleHeading/accountTitleHeading";
+import FormMessage from "../../components/molecules/FormMessage/formMessage";
+import { Api } from "../api/api";
 
 export default function MfaPage() {
   const router = useRouter();
-  // const [confirm, setConfirm] = React.useState(false);
   const [componentName, setComponentName] = React.useState("");
   const [rememberMe, setRememberMe] = React.useState(false);
+  const [successSubmit, setSuccessSubmit] = React.useState(false);
+  const [securityQuestionList, setSecurityQuestionList] = React.useState([]);
 
   function onConfirmClicked() {
     setComponentName(constants.MFA_COMPONENT_NAME);
@@ -33,16 +37,16 @@ export default function MfaPage() {
     //TODO: Call service
 
     //sucess submit MFA, show security question
-    setComponentName(constants.SQ_COMPONENT_NAME);
+    onShowSecurityQuestionForm();
 
     //redirectToDashboard()
-    callback({
-      status: "failed",
-      message: {
-        title: "Incorrect Code.",
-        description: "Please try again.",
-      },
-    });
+    // callback({
+    //   status: "failed",
+    //   message: {
+    //     title: "Incorrect Code.",
+    //     description: "Please try again.",
+    //   },
+    // });
   }
 
   function onResendCodeClicked(callback) {
@@ -59,6 +63,40 @@ export default function MfaPage() {
     setRememberMe(value);
   }
 
+  function onShowSecurityQuestionForm() {
+    const api = new Api();
+    api
+      .getSecurityQuestion()
+      .then(function (response) {
+        setSecurityQuestionList(response.securityQuestionList);
+        setComponentName(constants.SQ_COMPONENT_NAME);
+      })
+      .catch(function () {
+        console.error("Something went wrong");
+      });
+  }
+
+  function onSubmitSecurityQuestionClicked(callback) {
+    const api = new Api();
+    api
+      .submitSecurityQuestion()
+      .then(function (response) {
+        setSuccessSubmit(true);
+        setTimeout(() => {
+          redirectToDashboard();
+        }, 3000);
+      })
+      .catch(function () {
+        callback({
+          status: "failed",
+          message: {
+            title: "Code sent multiple times.",
+            description: "Please try again after 30 minutes.",
+          },
+        });
+      });
+  }
+
   if (componentName === constants.MFA_COMPONENT_NAME) {
     return (
       <MultiFactorAuthentication
@@ -71,17 +109,42 @@ export default function MfaPage() {
     );
   } else if (componentName === constants.SQ_COMPONENT_NAME) {
     return (
-      <Box>
-        <Box
-          sx={{
-            maxWidth: 1400,
-            minWidth: 686,
-            margin: "auto",
-            background: "#fff",
-          }}
-        >
-          <SecurityQuestion></SecurityQuestion>
-        </Box>
+      <Box
+        sx={{
+          marginTop: "-10px",
+        }}
+      >
+        {!successSubmit ? (
+          <Box>
+            <AccountTitleHeading title={"Set-up Security Questions"} />:
+            <Box
+              sx={{
+                paddingTop: "80px",
+                maxWidth: 1400,
+                minWidth: 686,
+                margin: "auto",
+                background: "#fff",
+              }}
+            >
+              <SecurityQuestion
+                onClickedSubmitButton={onSubmitSecurityQuestionClicked}
+                onClickedSkipButton={redirectToDashboard}
+                securityQuestionList={securityQuestionList}
+              />
+            </Box>
+          </Box>
+        ) : (
+          <FormMessage
+            success={true}
+            sx={{
+              borderRadius: "0px",
+              justifyContent: "center",
+              backgroundColor: "#04844B",
+            }}
+          >
+            Security questions set up successfully
+          </FormMessage>
+        )}
       </Box>
     );
   } else {

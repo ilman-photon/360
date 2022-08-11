@@ -102,4 +102,38 @@ export class Api {
         });
     });
   }
+
+  getSecurityQuestion() {
+    const url = "/ecp/patient/getsecurityquestion";
+    // Remove the hardcoded if the services is done
+    // return this.forgotFeatureValidation(url, postbody, "post");
+    return new Promise((resolve, reject) => {
+      resolve({
+        responseCode: 1000,
+        securityQuestionList: [
+          "What was the first concert you attended?",
+          "In what city or town did your parents meet?",
+          "What was the make and model of your first car?",
+          "Who is your all-time favorite movie character?",
+          "What was your favorite cartoon character during your childhood?",
+          "What was the first book you read?",
+          "What was the first thing you learned to cook?",
+          "What was the first film you saw in a theater?",
+          "Where did you go the first time you flew on a plane?",
+          "What is your favorite cold-weather activity?",
+        ],
+      });
+    });
+  }
+
+  submitSecurityQuestion() {
+    const url = "/ecp/patient/submitsecurityquestion";
+    // Remove the hardcoded if the services is done
+    // return this.forgotFeatureValidation(url, postbody, "post");
+    return new Promise((resolve, reject) => {
+      resolve({
+        responseCode: 1000,
+      });
+    });
+  }
 }
