@@ -36,6 +36,7 @@ export default function CreateAccountPage() {
         </Grid>
         <Grid item xs={6}>
           <ContactInformation
+            userData={userData}
             isEditing={contactEditing}
             OnEditClicked={(_) => setContactEditing(true)}
             OnCancelEditClicked={(_) => setContactEditing(false)}

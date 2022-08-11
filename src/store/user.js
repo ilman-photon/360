@@ -31,7 +31,7 @@ const DEFAULT_USER_DATA = {
   zip: "",
   age: "49",
   gender: "Male",
-  preferredCommunication: "Both",
+  preferredCommunication: "both",
 };
 
 const userSlice = createSlice({

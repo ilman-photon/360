@@ -15,12 +15,13 @@ import { useForm, Controller } from "react-hook-form";
 import { StyledInput } from "../../atoms/Input/input";
 import { colors } from "../../../styles/theme";
 
-import * as React from "react";
+import { useEffect } from "react";
 import Image from "next/image";
 import { Regex } from "../../../utils/regex";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 
 export default function ContactInformation({
+  userData = {},
   isEditing = true,
   OnSaveClicked = () => {
     // This is intended
@@ -34,7 +35,7 @@ export default function ContactInformation({
 }) {
   const DEFAULT_CONTACT_INFO = {
     email: "",
-    mobile: "",
+    mobileNumber: "",
     address: "",
     city: "",
     state: "",
@@ -43,7 +44,8 @@ export default function ContactInformation({
   };
 
   const { handleSubmit, control, watch, reset } = useForm({
-    defaultValues: DEFAULT_CONTACT_INFO,
+    // defaultValues: DEFAULT_CONTACT_INFO,
+    defaultValues: userData, // Object.assign({}, userData),
   });
 
   const communicationOptions = [
@@ -77,12 +79,17 @@ export default function ContactInformation({
     }
   };
 
+  useEffect(() => {
+    if (userData) reset(userData);
+  }, [userData]);
+
   const handleCancel = () => {
-    reset(DEFAULT_CONTACT_INFO);
+    reset(userData);
     OnCancelEditClicked();
   };
 
   const onSubmit = (data) => {
+    console.log({ data });
     OnSaveClicked(data);
   };
 
