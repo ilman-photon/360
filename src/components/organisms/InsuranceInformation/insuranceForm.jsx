@@ -20,6 +20,7 @@ import Image from "next/image";
 import { Regex } from "../../../utils/regex";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import SelectOptionButton from "../../atoms/SelectOptionButton/selectOptionButton";
+import { ImageUploader } from "../../molecules/ImageUploader/imageUploader";
 
 export default function InsuranceForm({
   isEditing = true,
@@ -187,31 +188,32 @@ export default function InsuranceForm({
             </Grid>
           </Grid>
 
-          <Grid></Grid>
-          <Grid item xs={4}>
-            <Controller
-              name="group"
-              control={control}
-              render={({
-                field: { onChange, value },
-                fieldState: { error },
-              }) => {
-                return (
-                  <StyledInput
-                    type="text"
-                    id="group"
-                    label="Group #"
-                    value={value}
-                    onChange={onChange}
-                    error={!!error}
-                    size="small"
-                    variant="filled"
-                    helperText={error ? error.message : null}
-                    sx={{ width: "358px" }}
-                  />
-                );
-              }}
-            />
+          <Grid container>
+            <Grid item xs={4}>
+              <Controller
+                name="group"
+                control={control}
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => {
+                  return (
+                    <StyledInput
+                      type="text"
+                      id="group"
+                      label="Group #"
+                      value={value}
+                      onChange={onChange}
+                      error={!!error}
+                      size="small"
+                      variant="filled"
+                      helperText={error ? error.message : null}
+                      sx={{ width: "358px" }}
+                    />
+                  );
+                }}
+              />
+            </Grid>
             <Grid item xs={4} pr={2}></Grid>
             <Grid item xs={4} pr={2}></Grid>
           </Grid>
@@ -359,6 +361,27 @@ export default function InsuranceForm({
           <Typography variant="bodyRegular" sx={{ pb: 3 }} component="div">
             Upload images of your insurance.
           </Typography>
+
+          <Grid container>
+            <Grid item xs={4} pr={2}>
+              <ImageUploader
+                OnUpload={() => {}}
+                label="Upload Front"
+                width="100%"
+                src="/login-bg.png"
+                alt=""
+              />
+            </Grid>
+            <Grid item xs={4}>
+              <ImageUploader
+                OnUpload={() => {}}
+                label="Upload Back"
+                width="100%"
+                src="/login-bg.png"
+                alt=""
+              />
+            </Grid>
+          </Grid>
           <hr />
 
           <Controller

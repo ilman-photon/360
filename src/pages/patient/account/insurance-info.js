@@ -8,11 +8,11 @@ export default function CreateAccountPage() {
   return (
     <section>
       {/* <InsuranceInformation /> */}
-      <InsuranceInformationNew 
-      isEditing={contactEditing}
-      OnEditClicked={(_) => setContactEditing(true)}
-      OnCancelEditClicked={(_) => setContactEditing(false)}
-      OnSaveClicked={(_) => setContactEditing(false)}
+      <InsuranceInformationNew
+        isEditing={contactEditing}
+        OnEditClicked={(_) => setContactEditing(true)}
+        OnCancelEditClicked={(_) => setContactEditing(false)}
+        OnSaveClicked={(_) => setContactEditing(false)}
       />
     </section>
   );
