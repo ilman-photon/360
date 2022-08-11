@@ -14,6 +14,7 @@ import styles from "./insuranceInformationNew.module.scss";
 import { useForm, Controller } from "react-hook-form";
 import { StyledInput } from "../../atoms/Input/input";
 import { colors } from "../../../styles/theme";
+import FormLabel from "@mui/material/FormLabel";
 
 import * as React from "react";
 import Image from "next/image";
@@ -59,25 +60,6 @@ export default function InsuranceForm({
 
   const relationshipList = ["Single", "Double"];
 
-  const isOneOfPreferredValid = (name, value) => {
-    switch (name) {
-      case "email":
-        if (watchedPreferredCommunication === "phone") return true;
-        else if (watchedPreferredCommunication === "email" && !value)
-          return false;
-        else if (watchedEmail || watchedMobile) return true;
-        break;
-      case "phone":
-        if (watchedPreferredCommunication === "email") return true;
-        else if (watchedPreferredCommunication === "phone" && !value)
-          return false;
-        else if (watchedEmail || watchedMobile) return true;
-        break;
-      default:
-        return false;
-    }
-  };
-
   const handleCancel = () => {
     reset(DEFAULT_CONTACT_INFO);
     OnCancelEditClicked();
@@ -86,6 +68,24 @@ export default function InsuranceForm({
   const onSubmit = (data) => {
     OnSaveClicked(data);
   };
+
+  const DisclaimerText = (data) => {
+   return ( <FormLabel
+    id="row-input-disclaimer"
+    sx={{
+      fontSize: 12,
+      "&.Mui-focused": {
+        color: "black",
+      },
+      paddingLeft: 2,
+      display: "inline-flex",
+      alignItems: "center",
+      color: "#424747",
+    }}
+  >
+    {data.label}
+  </FormLabel>)
+  }
 
   return (
     <Fade in={isEditing} unmountOnExit>
@@ -106,7 +106,7 @@ export default function InsuranceForm({
                         "& .MuiFilledInput-root": {
                           border: "1px solid #bbb",
                           backgroundColor: "#fff",
-                          fontSize: "16px",
+                          fontSize: "16px"
                         },
                       }}
                       label="Insurance Provider"
@@ -153,6 +153,7 @@ export default function InsuranceForm({
                   );
                 }}
               />
+              <DisclaimerText label="optional" />
             </Grid>
 
             <Grid item xs={4} pr={2}>
@@ -213,6 +214,7 @@ export default function InsuranceForm({
                   );
                 }}
               />
+              <DisclaimerText label="optional" />
             </Grid>
             <Grid item xs={4} pr={2}></Grid>
             <Grid item xs={4} pr={2}></Grid>
@@ -312,8 +314,11 @@ export default function InsuranceForm({
           <Controller
             name="dob"
             control={control}
+            style={{ width: "358px" }}
+            sx={{ width: "358px" }}
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
+                <>
                 <StyledInput
                   type="dob"
                   id="dob"
@@ -324,8 +329,9 @@ export default function InsuranceForm({
                   size="small"
                   variant="filled"
                   helperText={error ? error.message : null}
-                  sx={{ width: "358px" }}
                 />
+                <DisclaimerText label="MM/DD/YYYY" />
+                </>
               );
             }}
             rules={{ required: "This field is required" }}
@@ -356,6 +362,7 @@ export default function InsuranceForm({
               );
             }}
           />
+          <DisclaimerText label="optional" />
 
           <hr />
           <Typography variant="bodyRegular" component="div">
@@ -404,6 +411,7 @@ export default function InsuranceForm({
             }}
             rules={{ required: "This field is required" }}
           />
+          <hr />
 
           <Stack
             direction="row"

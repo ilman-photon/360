@@ -12,7 +12,10 @@ import Image from "next/image";
 export default function InsuranceForm({
   isEditing = true,
   OnEditClicked = () => {
-    // This is intended
+    // This is intentional
+  },
+  OnCancelEditClicked = () => {
+    // This is intentional
   },
 }) {
   const DEFAULT_CONTACT_INFO = {

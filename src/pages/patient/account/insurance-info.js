@@ -4,15 +4,15 @@ import InsuranceInformationNew from "../../../components/organisms/InsuranceInfo
 import { useState } from "react";
 
 export default function CreateAccountPage() {
-  const [contactEditing, setContactEditing] = useState(true);
+  const [insuranceEditing, setInsuranceEditing] = useState(true);
   return (
     <section>
       {/* <InsuranceInformation /> */}
       <InsuranceInformationNew
-        isEditing={contactEditing}
-        OnEditClicked={(_) => setContactEditing(true)}
-        OnCancelEditClicked={(_) => setContactEditing(false)}
-        OnSaveClicked={(_) => setContactEditing(false)}
+        isEditing={insuranceEditing}
+        OnEditClicked={(_) => setInsuranceEditing(true)}
+        OnCancelEditClicked={(_) => setInsuranceEditing(false)}
+        OnSaveClicked={(_) => setInsuranceEditing(false)}
       />
     </section>
   );
