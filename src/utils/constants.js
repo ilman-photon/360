@@ -27,4 +27,6 @@ module.exports = {
   YES: "yes",
   REGEX_PHONE_NUMBER: /^\d{10,}$/,
   REGEX_EMAIL: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i,
+  MFA_COMPONENT_NAME: "MultiFactorAuthentication",
+  SQ_COMPONENT_NAME: "SecurityQuestion",
 };

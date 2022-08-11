@@ -56,10 +56,12 @@ export default function SelectOptionButton({
       <InputLabel
         id="demo-simple-select-label"
         sx={{
+          fontSize: "16px",
           "&.MuiInputLabel-shrink": {
             color: colors.darkGreen,
             fontWeight: 600,
             fontFamily: "Libre Franklin",
+            fontSize: "1rem",
           },
         }}
       >
@@ -72,6 +74,7 @@ export default function SelectOptionButton({
         label={label}
         onChange={onChange}
         sx={{
+          fontSize: "16px",
           "& .MuiInputBase-input:focus": {
             backgroundColor: "#fff",
           },
@@ -79,7 +82,7 @@ export default function SelectOptionButton({
       >
         {options.map((option, idx) => {
           return (
-            <MenuItem key={idx} value={option}>
+            <MenuItem key={idx} value={option} sx={{ fontSize: "16px" }}>
               {option}
             </MenuItem>
           );

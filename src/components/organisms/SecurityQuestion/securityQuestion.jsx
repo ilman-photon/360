@@ -61,6 +61,7 @@ const SecurityQuestion = ({
               return (
                 <SelectOptionButton
                   sx={{
+                    fontSize: "16px",
                     "& .MuiFilledInput-root": {
                       border: "1px solid #bbb",
                       backgroundColor: "#fff",

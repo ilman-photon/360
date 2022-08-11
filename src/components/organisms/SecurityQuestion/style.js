@@ -12,7 +12,6 @@ export const styles = {
   buttonContainer: {
     display: "flex",
     flexDirection: "row",
-    marginBottom: 30,
   },
   questionContainer: {
     marginBottom: "24px",

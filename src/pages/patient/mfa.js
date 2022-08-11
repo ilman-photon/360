@@ -3,14 +3,21 @@ import { useRouter } from "next/router";
 import MfaLayout from "../../components/templates/mfaLayout";
 import SetMultiFactorAuthentication from "../../components/organisms/MultiFactorAuthentication/setMultiFactorAuthentication";
 import MultiFactorAuthentication from "../../components/organisms/MultiFactorAuthentication/multiFactorAuthentication";
+import constants from "../../utils/constants";
+import { Security } from "@mui/icons-material";
+import SecurityQuestion from "../../components/organisms/SecurityQuestion/securityQuestion";
+import { Box } from "@mui/material";
 
 export default function MfaPage() {
   const router = useRouter();
-  const [confirm, setConfirm] = React.useState(false);
+  // const [confirm, setConfirm] = React.useState(false);
+  const [componentName, setComponentName] = React.useState(
+    constants.SQ_COMPONENT_NAME
+  );
   const [rememberMe, setRememberMe] = React.useState(false);
 
   function onConfirmClicked() {
-    setConfirm(true);
+    setComponentName(constants.MFA_COMPONENT_NAME);
   }
 
   function onBackToLoginClicked() {
@@ -18,13 +25,19 @@ export default function MfaPage() {
   }
 
   function onSubmitClicked(callback) {
-    callback({
-      status: "failed",
-      message: {
-        title: "Incorrect Code.",
-        description: "Please try again.",
-      },
-    });
+    //TODO: Call service
+
+    //sucess submit MFA, show security question
+    setComponentName(constants.SQ_COMPONENT_NAME);
+
+    //failed to sumbit MFA
+    // callback({
+    //   status: "failed",
+    //   message: {
+    //     title: "Incorrect Code.",
+    //     description: "Please try again.",
+    //   },
+    // });
   }
 
   function onResendCodeClicked(callback) {
@@ -41,9 +54,7 @@ export default function MfaPage() {
     setRememberMe(value);
   }
 
-  console.log(rememberMe);
-
-  if (confirm) {
+  if (componentName === constants.MFA_COMPONENT_NAME) {
     return (
       <MultiFactorAuthentication
         onSubmitClicked={onSubmitClicked}
@@ -52,6 +63,21 @@ export default function MfaPage() {
         rememberMe={rememberMe}
         setRememberMe={onSetRememberMe}
       />
+    );
+  } else if (componentName === constants.SQ_COMPONENT_NAME) {
+    return (
+      <Box>
+        <Box
+          sx={{
+            maxWidth: 1400,
+            minWidth: 686,
+            margin: "auto",
+            background: "#fff",
+          }}
+        >
+          <SecurityQuestion></SecurityQuestion>
+        </Box>
+      </Box>
     );
   } else {
     return (
