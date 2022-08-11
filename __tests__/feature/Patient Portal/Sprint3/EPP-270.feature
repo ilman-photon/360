@@ -6,6 +6,7 @@ Feature: Patient Portal : Security Questions - Security questions set up - View
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-270 - Verify if New user able to navigate to “Set up Security questions” screen after MFA setup through EMAIL
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -32,6 +33,7 @@ Feature: Patient Portal : Security Questions - Security questions set up - View
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-270 - Verify if New user able to navigate to “Set up Security questions” screen after MFA setup through phone
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -58,6 +60,7 @@ Feature: Patient Portal : Security Questions - Security questions set up - View
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-270 - Verify if New user able to navigate to “Set up Security questions” screen after MFA setup through both Email,Phone number
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -84,6 +87,7 @@ Feature: Patient Portal : Security Questions - Security questions set up - View
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-270 - Verify if  Existing user able to navigate to “Set up Security questions” screen after MFA setup through EMAIL
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -109,6 +113,7 @@ Feature: Patient Portal : Security Questions - Security questions set up - View
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-270 - Verify if user able to view list of preset security Questions
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -134,6 +139,7 @@ Feature: Patient Portal : Security Questions - Security questions set up - View
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-270 - Verify if user able to view list of preset security Questions 1 and Answer1 field
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -160,6 +166,7 @@ Feature: Patient Portal : Security Questions - Security questions set up - View
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-270 - Verify if user able to view list of preset security Question2 and Answer2 field
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -186,6 +193,7 @@ Feature: Patient Portal : Security Questions - Security questions set up - View
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-270 - Verify if user able to view list of preset security questions 3and answer3field
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -212,6 +220,7 @@ Feature: Patient Portal : Security Questions - Security questions set up - View
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-270 - Verify if user able to view list of preset security Question4 and Answer4 field
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -238,6 +247,7 @@ Feature: Patient Portal : Security Questions - Security questions set up - View
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-270 - Verify if user able to view list of preset security Question5 and Answer5 field
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -264,6 +274,7 @@ Feature: Patient Portal : Security Questions - Security questions set up - View
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-3_STORY_EPP-270 - Verify if user able to view ‘Submit’ button
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -284,6 +295,7 @@ Feature: Patient Portal : Security Questions - Security questions set up - View
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-270 - Verify if user able to ‘Skip’ security question by clicking  skip button
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -306,6 +318,7 @@ Feature: Patient Portal : Security Questions - Security questions set up - View
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-3_STORY_EPP-270 - Verify the error msg  when internet connection unavailable
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -320,6 +333,7 @@ Feature: Patient Portal : Security Questions - Security questions set up - View
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-3_STORY_EPP-270 - Verify if user given Empty Text Box once the Page is refreshed
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -334,6 +348,7 @@ Feature: Patient Portal : Security Questions - Security questions set up - View
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-3_STORY_EPP-270 - Verify the error msg  when server down
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -348,6 +363,7 @@ Feature: Patient Portal : Security Questions - Security questions set up - View
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-3_STORY_EPP-270 - Verify if user able to view Dev Tools When F12 is clicked
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -362,6 +378,7 @@ Feature: Patient Portal : Security Questions - Security questions set up - View
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-3_STORY_EPP-270 - Verify if user able to view security question screen loaded within 3 seconds
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -377,6 +394,7 @@ Feature: Patient Portal : Security Questions - Security questions set up - View
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-270 - Verify if Existing user able to navigate to “Set up Security questions” screen after MFA setup through Phone
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -403,6 +421,7 @@ Feature: Patient Portal : Security Questions - Security questions set up - View
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-270 - Verify if Existing user able to navigate to “Set up Security questions” screen after MFA setup through both Email,Phone number
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -429,6 +448,7 @@ Feature: Patient Portal : Security Questions - Security questions set up - View
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline:  EPIC_EPP-3_STORY_EPP-270 - Verify if user able to view ‘Skip’ button 
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application

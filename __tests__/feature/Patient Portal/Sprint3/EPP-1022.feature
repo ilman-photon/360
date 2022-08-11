@@ -8,6 +8,7 @@ Feature: Patient Portal : MFA - 'Remember Me' validity has expired
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-1022-Existing-Verify user should be able to login from device that was set up with "Remember me" option selected, without being asked for MFA using registered mail-id
     Scenario: "EPIC_EPP-3_STORY_EPP-1022-Existing-Verify user should be able to login from device that was set up with "Remember me" option selected, without being asked for MFA using registered mail-id"
 
@@ -40,6 +41,7 @@ Feature: Patient Portal : MFA - 'Remember Me' validity has expired
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-1022-Existing-Verify user should be able to login from device without being asked for MFA using registered mail-id within 3 seconds
     Scenario: "EPIC_EPP-3_STORY_EPP-1022-Existing-Verify user should be able to login from device without being asked for MFA using registered mail-id within 3 seconds"
 
@@ -73,6 +75,7 @@ Feature: Patient Portal : MFA - 'Remember Me' validity has expired
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-1022-Existing-Verify user should be able to login from device without being asked for MFA using registered mail-id without any errors script when user clicks F12 on the console
     Scenario: "EPIC_EPP-3_STORY_EPP-1022-Existing-Verify user should be able to login from device without being asked for MFA using registered mail-id without any errors script when user clicks F12 on the console"
 
@@ -108,6 +111,7 @@ Feature: Patient Portal : MFA - 'Remember Me' validity has expired
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-1022-Negative-Existing-Verify user should user should see the error message when the internet service is unavailable when user logs in from device using registered mail-id
     Scenario: "EPIC_EPP-3_STORY_EPP-1022-Negative-Existing-Verify user should user should see the error message when the internet service is unavailable when user logs in from device using registered mail-id"
 
@@ -140,6 +144,7 @@ Feature: Patient Portal : MFA - 'Remember Me' validity has expired
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-1022-Negative-Existing-Verify user should user should see the error message when the service is unavailable when user logs in from device without being asked for MFA using registered registered mail-id
     Scenario: "EPIC_EPP-3_STORY_EPP-1022-Negative-Existing-Verify user should user should see the error message when the service is unavailable when user logs in from device without being asked for MFA using registered registered mail-id"
 
@@ -172,6 +177,7 @@ Feature: Patient Portal : MFA - 'Remember Me' validity has expired
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-1022-Existing-Verify user should be able to login from device that was set up with "Remember me" option selected, without being asked for MFA using phone number
     Scenario: "EPIC_EPP-3_STORY_EPP-1022-Existing-Verify user should be able to login from device that was set up with "Remember me" option selected, without being asked for MFA using phone number"
 
@@ -203,6 +209,7 @@ Feature: Patient Portal : MFA - 'Remember Me' validity has expired
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-1022-Existing-Verify user should be able to login from device without being asked for MFA using registered phone number within 3 seconds
     Scenario: "EPIC_EPP-3_STORY_EPP-1022-Existing-Verify user should be able to login from device that was set up with "Remember me" option selected, without being asked for MFA using phone number"
 
@@ -235,6 +242,7 @@ Feature: Patient Portal : MFA - 'Remember Me' validity has expired
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-3_STORY_EPP-1022-Negative-Existing-Verify user should user should see the error message when the service is unavailable when user logs in from device without being asked for MFA using registered registered phone number
 
 
@@ -242,6 +250,7 @@ Feature: Patient Portal : MFA - 'Remember Me' validity has expired
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-1022-Negative -Existing-Verify user should user should see the error message when the internet service is unavailable when user logs in from device without being asked for MFA using registered phone number
     Scenario: "EPIC_EPP-3_STORY_EPP-1022-Negative -Existing-Verify user should user should see the error message when the internet service is unavailable when user logs in from device without being asked for MFA using registered phone number"
 
@@ -274,6 +283,7 @@ Feature: Patient Portal : MFA - 'Remember Me' validity has expired
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-1022-Existing-Verify user should be able to login from device without being asked for MFA using registered mail-id without any errors script when user clicks F12 on the console
     Scenario: "EPIC_EPP-3_STORY_EPP-1022-Existing-Verify user should be able to login from device that was set up with "Remember me" option selected, without being asked for MFA using phone number"
 

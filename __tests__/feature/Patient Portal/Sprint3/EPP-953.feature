@@ -9,6 +9,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-10_STORY_EPP-953 - Verify if the all attributes present in "Insurance documents" page
     And user lands on the “Patient Login” screen
     When user login with valid "<username>" and "<password>"
@@ -26,6 +27,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Scenario Outline: Verify if the Insurance Provider"<Type-ahead search dropdown >" is enabled for the user and the user can able to enter the inputs in the Insurance Provider"<Type-ahead search dropdown >"
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -53,6 +55,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-10_STORY_EPP-953 -  Scenario Outline: Verify if when the user starts to type in Insurance Provider in "<Type-ahead search dropdown >" dropdown should display the Insurance Provider options, which can choose from the list.
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -77,6 +80,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-10_STORY_EPP-953 -  Verify if the User should also be able to add Provider on his own, if it does not exist in the dropdown
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -99,6 +103,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -    Verify if the  proper error message is displayed when the user is  kept blank in  "Insurance Provider <Type-ahead search dropdown >"
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -121,6 +126,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Verify if the Plan name"<Type-ahead search dropdown >" is enabled for the user and the user can able to enter the inputs in the Plan name field.
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -148,6 +154,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-10_STORY_EPP-953 -  Verify if when the user starts to type in Plan name in "<Type-ahead search dropdown >" dropdown should display the Plan name options, which can choose from the list.
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -172,6 +179,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-10_STORY_EPP-953 -   Verify if the User should also be able to add the Plan name on his own, if it does not exist in the dropdown
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -194,6 +202,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Verify if the Subscriber ID/ Member ID"<Numeric/text field >" is enabled for the user and the user can able to enter the inputs in the Subscriber ID/ Member ID  field.
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -216,6 +225,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Verify if the proper error message is displayed when the user enters alphabets, special characters, and combinations of alphabets, special characters, and numbers in  Subscriber ID/ Member ID"<Numeric/text field >"
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -238,6 +248,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -   Verify if the Group #"<Numeric/text field >" is enabled for the user and the user can able to enter the inputs in the Group #  field.
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -260,6 +271,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -   Verify if the proper error message is displayed when the user enters alphabets, special characters, and combinations of alphabets, special characters, and numbers in Group #"<Numeric/text field >"
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -282,6 +294,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Verify if the user can add an Insurance card - Front image in to the insurance documents page..
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -306,6 +319,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -   Verify if the user can add an Insurance card - Front image in JPG and PNG formate
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -334,6 +348,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Verify if the user can upload the Insurance card - Front image size 1kb to 4Mb
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -368,6 +383,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Verify if the proper error message is displayed when the user can try to upload the txt, doc, excel, pdf etc Insurance card - Front image format.
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -391,6 +407,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Verify if the proper error message is displayed when the user can try to upload the multiple images in to the Insurance card - Front
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -414,6 +431,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Verify if the proper error message is displayed when the user can try to upload the locked images in to the Insurance card - Front
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -437,6 +455,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Verify if the  quality of the image should not be changed after uploading the image to the Insurance card - Front
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -461,6 +480,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Verify if the "Cancel Button" functionality is working in between while uploading the image to the Insurance card - Front
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -486,6 +506,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Verify if the proper error message is displayed when the user uploads only the Insurance card -Front image
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -510,6 +531,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -   Verify if the user can change the uploaded "Insurance card - Front image"
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -536,6 +558,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Verify if the user can add an Insurance card - Back image to the insurance documents page.
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -560,6 +583,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Verify if the user can upload the Insurance card - Back image size 1kb to 4Mb
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -593,6 +617,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Verify if the proper error message is displayed when the user can try to upload the Insurance card - Back image size of more than 4Mb
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -617,6 +642,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Verify if the proper error message is displayed when the user can try to upload the txt, doc, excel, pdf etc Insurance card - Back image format.
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -640,6 +666,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Verify if the proper error message is displayed when the user can try to upload the multiple images in  the Insurance card - Back
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -663,6 +690,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Verify if the proper error message is displayed when the user can try to upload the locked images to the Insurance card - Back
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -687,6 +715,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Verify if the "Cancel Button" functionality is working in between while uploading the image to the Insurance card - Back.
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -712,6 +741,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Verify if the proper error message is displayed when the user uploads only the Insurance card - Back image
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -737,6 +767,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Verify if the user can change the uploaded "Insurance card - Back image"
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -764,6 +795,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Verify if the "Insurance Priority " consisting of Primary, Secondary, and Tertiary radio buttons and check radio buttons are enabled for the user.
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -792,6 +824,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Verify if the "'i' information icon " is present on the left side of the "Insurance Priority "  and check  when the user mouse over to the "i information icon " it shows the information what ‘Priority’ means
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -816,6 +849,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -   Verify if the no insurance exist means  "Insurance Priority "  default take Primary
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -839,6 +873,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -   Verify if when the user adds new insurance, the "Insurance Priority "  default takes Secondary if Primary priority insurance already exists.
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -863,6 +898,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Verify if the user can reprioritize the  "Insurance Priority "
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -891,6 +927,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -   Verify if the  proper error message is display when user give same "Insurance Priority " to diffrient Insurance.
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -917,6 +954,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  "Are you the subscriber?" consisting Yes and No radio buttons and check radio buttons are enabled for the user
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -943,6 +981,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Verify if the user can add an Insurance card - JPG and PNG Back image to the insurance documents page.
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -970,6 +1009,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 - Verify if the proper error message is displayed when a user didn't select the "Insurance Priority "radio button.  
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -995,6 +1035,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-10_STORY_EPP-953 -  "Verify if the proper error message displayed when the user didn't select any one-off "Are you the subscriber?" Yes and No radio buttons
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -1016,6 +1057,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -Verify if the  proper error message is displayed when the user is  kept blank in  Subscriber ID or Member ID"Numeric or text field "
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -1039,6 +1081,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Verify if the  user select  " No" in "Are you the subscriber?"  then see the following fields
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -1064,6 +1107,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -   Verify if First Name "<Text field> "is enabled and check user can able to enter the inputs in the First name text field.
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -1097,6 +1141,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -Verify if a Proper error message is displayed when the user Enter Special characters, Numbers, and combinations of special characters and numbers in the "first name text field".
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -1125,6 +1170,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -Verify if Last Name <Free Text field> is enabled and check user can able to enter the inputs in the Last name text field.
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -1155,6 +1201,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -Verify if a Proper error message is displayed when the external provider Enter Special characters, Numbers, and combinations of special characters and numbers in the Last name text field.
     special characters and numbers in the Last name text field.
     Given Launch  the Browser Enter 'XXX' URL
@@ -1184,6 +1231,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -Verify if the Birthday field is  it is as per MM/DD/YYYY format.
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -1211,6 +1259,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 - Verify if the "Invalid format" error message is displayed when the user enters dd/mm/yy format.
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -1237,6 +1286,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 - Verify if the first name text field accepts 2 to 50 alphabet
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -1268,6 +1318,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-10_STORY_EPP-953 -  Verify if the first name text field should not accept less than 2 and more than 51 alphabets.
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -1293,6 +1344,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  Verify if the last name text field accepts 2 to 50 alphabet
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -1325,6 +1377,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-10_STORY_EPP-953 - Verify if the last name text field should not accept less than 1 and more than 51 alphabets
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -1378,6 +1431,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  "Are you the subscriber?" consisting Yes and No radio buttons and check radio buttons are enabled for the user
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -1403,6 +1457,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-953 -  "Are you the subscriber?" consisting Yes and No radio buttons and check radio buttons are enabled for the user
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen

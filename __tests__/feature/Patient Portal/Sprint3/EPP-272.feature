@@ -8,6 +8,7 @@ Feature: Patient Portal : Security Questions - Submit security questions
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-272 - Verify if user able to answer  security "Question1"
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -36,6 +37,7 @@ Feature: Patient Portal : Security Questions - Submit security questions
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-272 - Verify if user able to answer  security "Question2"
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -62,6 +64,7 @@ Feature: Patient Portal : Security Questions - Submit security questions
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-272 - Verify if user able to answer  security "Question3"
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -89,6 +92,7 @@ Feature: Patient Portal : Security Questions - Submit security questions
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-272 - Verify if user able to answer  security "Question4"
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -116,6 +120,7 @@ Feature: Patient Portal : Security Questions - Submit security questions
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-272 - Verify if user able to answer  security "Question5"
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -143,6 +148,7 @@ Feature: Patient Portal : Security Questions - Submit security questions
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-272 - Verify if user  click submit button after answering all the security question
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -170,6 +176,7 @@ Feature: Patient Portal : Security Questions - Submit security questions
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-272 - Verify if user able to answer  security Question with Number and special character
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -195,6 +202,7 @@ Feature: Patient Portal : Security Questions - Submit security questions
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-272 - Verify if user able to answer  security Question with Maximum length of 20 characters
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -220,6 +228,7 @@ Feature: Patient Portal : Security Questions - Submit security questions
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-272 - Verify the error message if user answer  security Question with more than 20 characters
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application

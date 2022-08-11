@@ -7,6 +7,7 @@ Feature: Patient Portal : Insurance Information - View/Delete filled insurance i
   @Manage_account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-10_STORY_EPP-950 - Verify if the user can view their primary insurance details in the patient portal
     Given user launch the 'XXX' URL
     When user provides "<email/phone number>" and "<password>"
@@ -28,6 +29,7 @@ Feature: Patient Portal : Insurance Information - View/Delete filled insurance i
   @Manage_account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-10_STORY_EPP-950 - Verify if the user can view their secondary insurance details in the patient portal
     Given user launch the 'XXX' URL
     When user provides "<email/phone number>" and "<password>"
@@ -49,6 +51,7 @@ Feature: Patient Portal : Insurance Information - View/Delete filled insurance i
   @Manage_account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-10_STORY_EPP-950 - Verify if the user can view their tertiary insurance details in the patient portal
     Given user launch the 'XXX' URL
     When user provides "<email/phone number>" and "<password>"
@@ -71,6 +74,7 @@ Feature: Patient Portal : Insurance Information - View/Delete filled insurance i
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-10_STORY_EPP-950 - Verify if the user can delete their primary insurance details in the patient portal
     Given user launch the 'XXX' URL
     When user provides "<email/phone number>" and "<password>"
@@ -97,6 +101,7 @@ Feature: Patient Portal : Insurance Information - View/Delete filled insurance i
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-10_STORY_EPP-950 - Verify if the user can delete their secondary insurance details in the patient portal
     Given user launch the 'XXX' URL
     When user provides "<email/phone number>" and "<password>"
@@ -124,6 +129,7 @@ Feature: Patient Portal : Insurance Information - View/Delete filled insurance i
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-10_STORY_EPP-950 - Verify if the user can delete their tertiary insurance details in the patient portal
     Given user launch the 'XXX' URL
     When user provides "<email/phone number>" and "<password>"
@@ -150,6 +156,7 @@ Feature: Patient Portal : Insurance Information - View/Delete filled insurance i
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-10_STORY_EPP-950 - Verify if the user going to delete their primary insurance details in the patient portal but selects "No, keep insurance" option
     Given user launch the 'XXX' URL
     When user provides "<email/phone number>" and "<password>"
@@ -176,6 +183,7 @@ Feature: Patient Portal : Insurance Information - View/Delete filled insurance i
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-10_STORY_EPP-950 - Verify if the user going to delete their secondary insurance details in the patient portal but selects "No, keep insurance" option.
     Given user launch the 'XXX' URL
     When user provides "<email/phone number>" and "<password>"
@@ -201,6 +209,7 @@ Feature: Patient Portal : Insurance Information - View/Delete filled insurance i
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-10_STORY_EPP-950 - Verify if the user going to delete their tertiary insurance details in the patient portal but selects "No, keep insurance" option.
     Given user launch the 'XXX' URL
     When user provides "<email/phone number>" and "<password>"

@@ -6,6 +6,7 @@ Feature: Patient Portal : Concurrent Sessions - Login/access Patient Portal via 
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-3_STORY_EPP-277 - Verify that  User should be prompted regarding session time out in multiple devices
     Given user launch the "XXX" url in Device A
     When user provides  "<username or phone number>" and "<password>" in Device A
@@ -24,6 +25,7 @@ Feature: Patient Portal : Concurrent Sessions - Login/access Patient Portal via 
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-3_STORY_EPP-277 - Verify that  User does any action Device A whether it affects Device B
     Given user launch the "XXX" url in Device A
     When user provides  "<username or phone number>" and "<password>" in Device A
@@ -43,6 +45,7 @@ Feature: Patient Portal : Concurrent Sessions - Login/access Patient Portal via 
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-3_STORY_EPP-277 - Verify multiple devices has Unique Session ID
     Given user launch the "XXX" url in Device A
     When user provides  "<username or phone number>" and "<password>" in Device A
@@ -59,6 +62,7 @@ Feature: Patient Portal : Concurrent Sessions - Login/access Patient Portal via 
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-3_STORY_EPP-277 - Verify if any one of the device got switched off whether it logs out or wait for the session time out
     Given user launch the "XXX" url in Device A
     When user provides  "<username or phone number>" and "<password>" in Device A
@@ -76,6 +80,7 @@ Feature: Patient Portal : Concurrent Sessions - Login/access Patient Portal via 
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-3_STORY_EPP-277 - Verify that When user makes any changes in Device A it must reflect in Device B
     Given user launch the "XXX" url in Device A
     When user provides  "<username or phone number>" and "<password>" in Device A

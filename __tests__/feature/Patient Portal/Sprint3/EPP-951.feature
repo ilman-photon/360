@@ -9,6 +9,7 @@ Feature: Patient Portal : lnsurance Information - Edit existing insurance inform
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-951 -    Verify if the user can edit the existing insurance documents
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -33,6 +34,7 @@ Feature: Patient Portal : lnsurance Information - Edit existing insurance inform
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-951-    Verify if the user can cancel edited the existing insurance documents
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -57,6 +59,7 @@ Feature: Patient Portal : lnsurance Information - Edit existing insurance inform
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-951 -    verify if the user can see the error message “This field is required” for those mandatory fields data is deleted while editing.
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -84,6 +87,7 @@ Feature: Patient Portal : lnsurance Information - Edit existing insurance inform
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-951 -    Verify if the user can see the error message “Incorrect format” for those fields which are in incorrect format
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -109,6 +113,7 @@ Feature: Patient Portal : lnsurance Information - Edit existing insurance inform
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-951 -    Verify if all edited fields are erased when the user refreshes the browser
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -134,6 +139,7 @@ Feature: Patient Portal : lnsurance Information - Edit existing insurance inform
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-951 -    Verify if a 503 Service unavailable message  displays when the user tries edit  "insurance details" when the server is on maintenance
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -161,6 +167,7 @@ Feature: Patient Portal : lnsurance Information - Edit existing insurance inform
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-951 -    Verify if the user can edit Insurance details by "mobile browser
     Given Launch  the mobile Browser Enter the' XXX' URL
     And user lands on the “Patient Login” screen

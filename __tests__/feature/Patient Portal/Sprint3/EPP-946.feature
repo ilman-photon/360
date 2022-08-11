@@ -6,6 +6,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946 - Verify that  As a user, I should be able to edit Photo field regarding my profile information/ demographics.
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -38,6 +39,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946 - Verify that  As a user, whether able to upload Photo field when selecting a file other than "JPG" and "PNG" format regarding my profile information/ demographics.
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -65,6 +67,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946 - Verify that  As a user, whether able to upload Photo field when selecting a file above "4 MB"regarding my profile information/ demographics.
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -93,6 +96,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946 - Verify that  As a user, I should be able to edit Title field regarding my profile information/ demographics.
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -116,6 +120,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946 - Verify that  As a user, I should not be able to edit Name field regarding my profile information/ demographics.
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -138,6 +143,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946 - Verify that  As a user, I should  not be able to edit Date of Birth field regarding my profile information/ demographics.
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -161,6 +167,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946 - Verify that  As a user, I should not be able to edit Age field regarding my profile information/ demographics.
     Given user launch the "XXX" url
     When user provides  "<Email or Phone Number>" and "<password>"
@@ -183,6 +190,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946 - Verify that  As a user, I should be able to edit Gender field regarding my profile information/ demographics.
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -208,6 +216,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946 - Verify that  As a user, I should be able to edit Preferred name field regarding my profile information/ demographics.
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -233,6 +242,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946 - Verify that  As a user, I should not be able to edit SSN field regarding my profile information/ demographics.
     Given user launch the "XXX" url
     When user provides  "<Email or Phone Number>" and "<password>"
@@ -256,6 +266,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946 - Verify that  As a user, I should be able to edit State Issue ID field regarding my profile information/ demographics.
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -292,6 +303,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946 - Verify that  As a user, whether able to upload State Issue ID field when selecting a file other than "JPG" and "PNG" format regarding my profile information/ demographics.
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -320,6 +332,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946 - Verify that  As a user, whether able to upload State Issue ID field when selecting a file above "4 MB" regarding my profile information/ demographics.
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -349,6 +362,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946-Verify whether the user is able to save the Personal information without Internet connection
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -373,6 +387,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946-Verify whether the page is loading with in 3 seconds after click on save button in Personal information section
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -395,6 +410,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946-Verify whether any error is displaying when we press F12 after click on Save button in Personal information page.
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -419,6 +435,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946-Verify whether the error message is displaying after click on save button in Personal information section when the service is unavailable.
     Given user user launch the "XXX" url
     When the service is unavailable	
@@ -443,6 +460,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946 - Verify that  As a user, I should be able to edit Phone number field regarding my profile information/ demographics.
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -467,6 +485,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946 - Verify that  As a user, whether able to edit Phone number field if provide wrong inputs regarding my profile information/ demographics.
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -495,6 +514,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946 - Verify that  As a user, I should be able to edit Email id field regarding my profile information/ demographics.
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -519,6 +539,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946 - Verify that  As a user, whether able to edit Email id field if provide wrong inputs regarding my profile information/ demographics.
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -550,6 +571,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946 - Verify that  As a user, I should be able to edit Address field regarding my profile information/ demographics.
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -576,6 +598,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946 - Verify that  As a user, whether able to edit Address field if provide wrong inputs regarding my profile information/ demographics.
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -601,6 +624,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946 - Verify that  As a user, I should be able to edit  City field regarding my profile information/ demographics.
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -626,6 +650,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946 - Verify that  As a user, whether able to edit City field if provide wrong inputs regarding my profile information/ demographics.
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -651,6 +676,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946 - Verify that  As a user, I should be able to edit State field regarding my profile information/ demographics.
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -676,6 +702,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946 - Verify that  As a user, I should be able to edit Zip field regarding my profile information/ demographics.
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -700,6 +727,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946 - Verify that  As a user, whether able to edit Zip field if provide wrong inputs regarding my profile information/ demographics.
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -731,6 +759,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946 - Verify that  As a user, I should be able to edit Preferred mode(s) of communication field regarding my profile information/ demographics.
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -756,6 +785,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946-Verify whether the user is able to save the Contact information without Internet connection
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -779,6 +809,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946-Verify whether the page is loading with in 3 seconds after click on save button in Contact information section
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -801,6 +832,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946-Verify whether any error is displaying when we press F12 after click on Save button in Contact information page.
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 
@@ -825,6 +857,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946-Verify whether the error message is displaying after click on save button in Contact information section when the service is unavailable.
     Given user user launch the "XXX" url
     When the service is unavailable	
@@ -849,6 +882,7 @@ Feature: Patient Portal : Profile Information/ Demographics - Edit certain field
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-946-Verify whether  the page is loading properly or not when refresh the page
     Given user user launch the "XXX" url
     When the service is unavailable	

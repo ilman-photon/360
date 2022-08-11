@@ -8,6 +8,7 @@ Feature: Patient Portal : Session Security Capability - Session time out prompt
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-3_STORY_EPP-274 - Verify that  User should be prompted regarding session time out.
     Given user launch the "XXX" url	
     When user provides  "<username or phone number>" and "<password>" 
@@ -23,6 +24,7 @@ Feature: Patient Portal : Session Security Capability - Session time out prompt
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-3_STORY_EPP-274 - Verify that User should be prompted regarding session time out with an option to ‘Stay logged in’ and ‘Log off’
     Given user launch the "XXX" url	
     When user provides  "<username or phone number>" and "<password>" 
@@ -39,6 +41,7 @@ Feature: Patient Portal : Session Security Capability - Session time out prompt
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-3_STORY_EPP-274 - Verify that User should be prompted Session Expired message after the given time
     Given user launch the "XXX" url	
     When user provides  "<username or phone number>" and "<password>" 
@@ -57,6 +60,7 @@ Feature: Patient Portal : Session Security Capability - Session time out prompt
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-3_STORY_EPP-274 - Verify that when user clicks "OK" button, system should logout the user
     Given user launch the "XXX" url	
     When user provides  "<username or phone number>" and "<password>" 
@@ -76,6 +80,7 @@ Feature: Patient Portal : Session Security Capability - Session time out prompt
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-3_STORY_EPP-274 - Verify that when user clicks "OK" button, system should logout the user and lands on the Patient Portal login page
     Given user launch the "XXX" url	
     When user provides  "<username or phone number>" and "<password>" 
@@ -95,6 +100,7 @@ Feature: Patient Portal : Session Security Capability - Session time out prompt
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-3_STORY_EPP-274 - Verify that when user clicks "OK" button, system should logout within 3 seconds
     Given user launch the "XXX" url	
     When user provides  "<username or phone number>" and "<password>" 
@@ -115,6 +121,7 @@ Feature: Patient Portal : Session Security Capability - Session time out prompt
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-3_STORY_EPP-274 - Verify that when user should validate the 60 seconds
     Given user launch the "XXX" url	
     When user provides  "<username or phone number>" and "<password>" 
@@ -130,6 +137,7 @@ Feature: Patient Portal : Session Security Capability - Session time out prompt
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-3_STORY_EPP-274 - Verify when the server is down during 60 seconds timer, the user must be shown therror message as well as the timer will be running in background
     Given user launch the "XXX" url
     When user provides  "<username or phone number>" and "<password>" 
@@ -143,6 +151,7 @@ Feature: Patient Portal : Session Security Capability - Session time out prompt
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-3_STORY_EPP-274 -Verify whether user can see the error message when the internet service is unavailable as well as the timer will be running in background
     Given user launch the "XXX" url
     When user provides  "<username or phone number>" and "<password>" 
@@ -156,6 +165,7 @@ Feature: Patient Portal : Session Security Capability - Session time out prompt
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-3_STORY_EPP-274 - Verify that when user logs off and logs in back within 15 mins the user must be logged in
     Given user launch the "XXX" url	
     When user provides  "<username or phone number>" and "<password>" 

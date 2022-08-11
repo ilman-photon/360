@@ -6,6 +6,7 @@ Feature: Patient Portal : Session Security Capability - Extend the session
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-3_STORY_EPP-275 - Verify that  User should be prompted regarding session time out.
     Given user launch the "XXX" url	
     When user provides  "<username or phone number>" and "<password>" 
@@ -20,6 +21,7 @@ Feature: Patient Portal : Session Security Capability - Extend the session
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-3_STORY_EPP-275 - Verify that User should be prompted regarding session time out with an option to ‘Stay logged in’ and ‘Log off’
     Given user launch the "XXX" url	
     When user provides  "<username or phone number>" and "<password>" 
@@ -36,6 +38,7 @@ Feature: Patient Portal : Session Security Capability - Extend the session
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-3_STORY_EPP-275 - Verify that User should be able to extend the session.
     Given user launch the "XXX" url	
     When user provides  "<username or phone number>" and "<password>" 

@@ -6,6 +6,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-6_STORY_EPP-278-Verify that the log is capturing whether the Patient is able to login with Email and valid Password.
 
     Given user launch the "XXX" url
@@ -26,6 +27,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-6_STORY_EPP-278-Verify that the log is capturing whether the Patient is able to login with phone number and valid Password.
 
     Given user launch the "XXX" url
@@ -45,6 +47,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-6_STORY_EPP-278 - Verify the log to capturing whether the 'Login using Magic link' option is displaying along with the error message "Your password has expired. Please reset your password."
     Given user launch the "XXX" url
     When user see the Login screen
@@ -62,6 +65,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-6_STORY_EPP-278 - Verify the log to capturing data's, when user edit the Personal information in the profile information.
 
     Given user launch the "XXX" url
@@ -92,6 +96,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-6_STORY_EPP-278 - Verify that the log should capturing data's, when user edit the Contact information in the profile information.
 
     Given user launch the "XXX" url
@@ -126,6 +131,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-6_STORY_EPP-278 -  Verify that the log should capturing data's, when user add the new insurance details
 
     Given user launch the "XXX" url
@@ -165,6 +171,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-6_STORY_EPP-278 -  Verify that the log should capture data's when the user edits the existing insurance details
 
     Given user launch the "XXX" url
@@ -204,6 +211,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-6_STORY_EPP-278 -  Verify that the log should capturing data's, when user delete the insurance details
 
     Given user launch the "XXX" url
@@ -225,6 +233,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-6_STORY_EPP-278 -  Verify that the log should capturing data's, when user answer the security "Questions"
     Given user launch the "XXX"url
     And user navigates to the Patient Portal application
@@ -259,6 +268,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-6_STORY_EPP-278 - Verify the log to capturing when the user logout form patient portal
 
     Given user launch the "XXX" url	
@@ -284,6 +294,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-6_STORY_EPP-278 - Verify the log should not  capture when user provides Invalid Email and Valid Password
 
     Given user launch the "XXX" url	
@@ -303,6 +314,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-6_STORY_EPP-278 - Verify the log to capture the error screen when the user refreshes the page
 
     Given user launch the "XXX" url
@@ -325,6 +337,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-6_STORY_EPP-278 - Verify the log to capturing the error screen when service is unavailable
 
     Given user launch the "XXX" url
@@ -346,6 +359,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-6_STORY_EPP-278 - Verify the log to capture the error screen when the user's internet is unavailable
 
     Given user launch the "XXX" url 
@@ -378,6 +392,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-6_STORY_EPP-278 - Verify the log to capturing data's, when admin edit the Personal information in the profile information.
 
     Given admin launch the "XXX" url
@@ -408,6 +423,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-6_STORY_EPP-278 - Verify that the log should capturing data's, when admin edit the Contact information in the profile information.
 
     Given admin launch the "XXX" url
@@ -442,6 +458,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-6_STORY_EPP-278 -  Verify that the log should capturing data's, when admin add the new insurance details
 
     Given admin launch the "XXX" url
@@ -481,6 +498,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-6_STORY_EPP-278 -  Verify that the log should capture data's, when the admin edits the existing insurance details
 
     Given admin launch the "XXX" url
@@ -520,6 +538,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-6_STORY_EPP-278 -  Verify that the log should capturing data's, when admin delete the insurance details
 
     Given admin launch the "XXX" url
@@ -541,6 +560,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-6_STORY_EPP-278 -  Verify that the log should capturing data's, when the admin answers the security "Questions" 
 
     Given admin launch the "XXX"url
@@ -576,6 +596,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-6_STORY_EPP-278 - Verify the log to capturing when the admin logout form patient portal
 
     Given admin launch the "XXX" url	
@@ -601,6 +622,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-6_STORY_EPP-278 - Verify the log should not  capture when admin provides Invalid Email and Valid Password
 
     Given admin launch the "XXX" url	
@@ -621,6 +643,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-6_STORY_EPP-278-Verify that the log is capturing whether the admin is able to login with Email and valid Password.
 
     Given admin launch the "XXX" url
@@ -641,6 +664,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-6_STORY_EPP-278-Verify that the log is capturing whether the admin is able to login with phone number and valid Password.
 
     Given admin launch the "XXX" url
@@ -660,6 +684,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-6_STORY_EPP-278 - Verify the log to capturing when admin 'Login using Magic link' option is displaying along with the error message "Your password has expired. Please reset your password."
 
     Given admin launch the "XXX" url		
@@ -678,6 +703,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-6_STORY_EPP-278 -  Verify that the log should capturing data's, when admin creates the security "Questions"
 
     Given admin launch the "XXX"url
@@ -710,6 +736,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-6_STORY_EPP-278 - Verify the log to capturing the error screen when admin refresh the page
 
     Given admin launch the "XXX" url
@@ -731,6 +758,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-6_STORY_EPP-278 - Verify the log to capturing the error screen when  the admin update and before saving the service is unavailable
 
     Given admin launch the "XXX" url
@@ -752,6 +780,7 @@ Feature: Patient Portal : Changes to records - Logs changes made to authenticati
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-6_STORY_EPP-278 - Verify the log to capturing  the error screen when the admin update and before saving the internet is unavailable
 
     Given admin launch the "XXX" url 

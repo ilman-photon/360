@@ -8,6 +8,7 @@ Feature: Patient Portal : MFA - Resend code during multi factor authentication
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-280 - Register User - Verify User should receive an email/text message with the code to the email and mobile number when user clicks "Resend Code" button (Preferred Mode of Communication both)
     Scenario: "EPIC_EPP-3_STORY_EPP-280 - Register User - Verify User should receive an email/txt message with the code to the email and mobile number when user clicks "Resend Code" button (Preferred Mode of Communication both)"
 
@@ -54,6 +55,7 @@ Feature: Patient Portal : MFA - Resend code during multi factor authentication
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-280 - Register User - Verify User should receive an email with the code to the email when user clicks "Resend Code" button (Preferred Mode of Communication Email)
     Scenario: "EPIC_EPP-3_STORY_EPP-280 - Register User - Verify User should receive an email with the code to the email when user clicks "Resend Code" button (Preferred Mode of Communication Email)"
 
@@ -101,6 +103,7 @@ Feature: Patient Portal : MFA - Resend code during multi factor authentication
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-280 - Register User - Verify User should receive a text message with the code to the mobile number when user clicks "Resend Code" button (Prefered Mode of Communication Phone)
     Scenario: "EPIC_EPP-3_STORY_EPP-280 - Register User - Verify User should receive a text message with the code to the mobile number when user clicks "Resend Code" button (Preferred Mode of Communication Phone)"
 
@@ -147,6 +150,7 @@ Feature: Patient Portal : MFA - Resend code during multi factor authentication
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-280 - Negative Test Cases - Register User - Verify User should see the following error message "Code sent multiple times. Please try again after 30 minutes." (Preferred Mode of Communication both)
     Scenario: "EPIC_EPP-3_STORY_EPP-280 - Negative Test Cases - Register User - Verify User should see the following error message "Code sent multiple times. Please try again after 30 minutes." (Preferred Mode of Communication both)"
 
@@ -190,6 +194,7 @@ Feature: Patient Portal : MFA - Resend code during multi factor authentication
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-280 - Negative Test Cases - Register User - Verify User should see the following error message "Code sent multiple times. Please try again after 30 minutes." (Prefered Mode of Communication Phone)
     Scenario: "EPIC_EPP-3_STORY_EPP-280 - Negative Test Cases - Register User - Verify User should see the following error message "Code sent multiple times. Please try again after 30 minutes." (Preferred Mode of Communication Phone)"
 
@@ -231,6 +236,7 @@ Feature: Patient Portal : MFA - Resend code during multi factor authentication
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-280 - Register User - Verify User should to request for the code after 30 mins when user clicks on "Resend Code" button for 3 times (Preferred Mode of Communication both)
     Scenario: "EPIC_EPP-3_STORY_EPP-280 - Register User - Verify User should to request for the code after 30 mins when user clicks on "Resend Code" button for 3 times (Preferred Mode of Communication both)"
 
@@ -252,6 +258,7 @@ Feature: Patient Portal : MFA - Resend code during multi factor authentication
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-280 - Register User - Verify User should to request for the code after 30 mins when user clicks on "Resend Code" button for 3 times (Prefered Mode of Communication email)
     Scenario: "EPIC_EPP-3_STORY_EPP-280 - Register User - Verify User should to request for the code after 30 mins when user clicks on "Resend Code" button for 3 times (Preferred Mode of Communication email)"
 
@@ -272,6 +279,7 @@ Feature: Patient Portal : MFA - Resend code during multi factor authentication
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-280 - Register User - Verify User should to request for the code after 30 mins when user clicks on "Resend Code" button for 3 times (Preferred Mode of Communication mobile number)
     Scenario: "EPIC_EPP-3_STORY_EPP-280 - Register User - Verify User should to request for the code after 30 mins when user clicks on "Resend Code" button for 3 times (Preferred Mode of Communication mobile number)"
 
@@ -292,6 +300,7 @@ Feature: Patient Portal : MFA - Resend code during multi factor authentication
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-280 - Negative Test Case - Register User - Verify user should see the error message when the internet service is unavailable (Preferred Mode of Communication Email)
     Scenario: "EPIC_EPP-3_STORY_EPP-280 - Negative Test Case - Register User - Verify user should see the error message when the internet service is unavailable (Preferred Mode of Communication Email)"
 
@@ -340,6 +349,7 @@ Feature: Patient Portal : MFA - Resend code during multi factor authentication
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-280 - Negative Test Case - Register User - Verify user should see the error message when the service is unavailable (Prefered Mode of Communication Email)
     Scenario: "EPIC_EPP-3_STORY_EPP-280 - Negative Test Case - Register User - Verify user should see the error message when the service is unavailable (Preferred Mode of Communication Email)"
 
@@ -388,6 +398,7 @@ Feature: Patient Portal : MFA - Resend code during multi factor authentication
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-280 - Register User - Verify User should see the following message "Multi factor Authentication has been set successfully" within 3 seconds during resend code request (Prefered Mode of Communication Email)
     Scenario: "EPIC_EPP-3_STORY_EPP-280 - Register User - Verify User should see the following message "Multi factor Authentication has been set successfully" within 3 seconds during resend code request (Preferred Mode of Communication Email)"
 
@@ -436,6 +447,7 @@ Feature: Patient Portal : MFA - Resend code during multi factor authentication
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-280 - Register User - Verify User should not see the any errors script when user clicks F12 on the console (Prefered Mode of Communication Email)
     Scenario: "EPIC_EPP-3_STORY_EPP-280 - Register User - Verify User should not see the any errors script when user clicks F12 on the console (Preferred Mode of Communication Email)"
 
@@ -485,6 +497,7 @@ Feature: Patient Portal : MFA - Resend code during multi factor authentication
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-280 - Existing User - Verify User should receive an email/text message with the code to the email and mobile number when user clicks "Resend Code" button (Preferred Mode of Communication both)
     Scenario: "EPIC_EPP-3_STORY_EPP-280 - Existing User - Verify User should receive an email/text message with the code to the email and mobile number when user clicks "Resend Code" button (Preferred Mode of Communication both)"
 
@@ -519,6 +532,7 @@ Feature: Patient Portal : MFA - Resend code during multi factor authentication
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-280 - Existing User - Verify User should receive an email with the code to the email when user clicks "Resend Code" button (Prefered Mode of Communication Email)
     Scenario: "EPIC_EPP-3_STORY_EPP-280 - Existing User - Verify User should receive an email with the code to the email when user clicks "Resend Code" button (Preferred Mode of Communication Email)"
 
@@ -553,6 +567,7 @@ Feature: Patient Portal : MFA - Resend code during multi factor authentication
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-280 - Existing User - Verify User should receive a text message with the code to the mobile number when user clicks "Resend Code" button (Prefered Mode of Communication Phone)
     Scenario: "EPIC_EPP-3_STORY_EPP-280 - Existing User - Verify User should receive a text message with the code to the mobile number when user clicks "Resend Code" button (Preferred Mode of Communication Phone)"
 
@@ -587,6 +602,7 @@ Feature: Patient Portal : MFA - Resend code during multi factor authentication
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-280 - Negative Test Case - Existing User - Verify User should see the following error message "Code sent multiple times. Please try again after 30 minutes." (Preferred Mode of Communication both)
     Scenario: "EPIC_EPP-3_STORY_EPP-280 - Negative Test Case - Existing User - Verify User should see the following error message "Code sent multiple times. Please try again after 30 minutes." (Preferred Mode of Communication both)"
 
@@ -616,6 +632,7 @@ Feature: Patient Portal : MFA - Resend code during multi factor authentication
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-280 - Negative Test Case - Existing User - Verify User should see the following error message "Code sent multiple times. Please try again after 30 minutes." (Preferred Mode of Communication email)
     Scenario: "EPIC_EPP-3_STORY_EPP-280 - Negative Test Case - Existing User - Verify User should see the following error message "Code sent multiple times. Please try again after 30 minutes." (Preferred Mode of Communication email)"
 
@@ -645,6 +662,7 @@ Feature: Patient Portal : MFA - Resend code during multi factor authentication
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-280 - Negative Test Case - Existing User - Verify User should see the following error message "Code sent multiple times. Please try again after 30 minutes." (Preferred Mode of Communication Phone)
     Scenario: "EPIC_EPP-3_STORY_EPP-280 - Negative Test Case - Existing User - Verify User should see the following error message "Code sent multiple times. Please try again after 30 minutes." (Preferred Mode of Communication Phone)"
 
@@ -674,6 +692,7 @@ Feature: Patient Portal : MFA - Resend code during multi factor authentication
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-280 - Existing User - Verify User should to request for the code after 30 mins when user clicks on "Resend Code" button for 3 times (Prefered Mode of Communication both)
     Scenario: "EPIC_EPP-3_STORY_EPP-280 - Existing User - Verify User should to request for the code after 30 mins when user clicks on "Resend Code" button for 3 times (Preferred Mode of Communication both)"
 
@@ -703,6 +722,7 @@ Feature: Patient Portal : MFA - Resend code during multi factor authentication
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-280 - Existing User - Verify User should to request for the code after 30 mins when user clicks on "Resend Code" button for 3 times (Preferred Mode of Communication email)
     Scenario: "EPIC_EPP-3_STORY_EPP-280 - Existing User - Verify User should to request for the code after 30 mins when user clicks on "Resend Code" button for 3 times (Preferred Mode of Communication email)"
 
@@ -732,6 +752,7 @@ Feature: Patient Portal : MFA - Resend code during multi factor authentication
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-280 - Existing User - Verify User should to request for the code after 30 mins when user clicks on "Resend Code" button for 3 times (Preferred Mode of Communication mobile number)
     Scenario: "EPIC_EPP-3_STORY_EPP-280 - Existing User - Verify User should to request for the code after 30 mins when user clicks on "Resend Code" button for 3 times (Preferred Mode of Communication mobile number)"
 
@@ -761,6 +782,7 @@ Feature: Patient Portal : MFA - Resend code during multi factor authentication
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-280 - Negative Test Case - Existing User - Verify user should see the error message when the internet service is unavailable
     Scenario: "EPIC_EPP-3_STORY_EPP-280 - Verify user should see the error message when the internet service is unavailable"
 
@@ -798,6 +820,7 @@ Feature: Patient Portal : MFA - Resend code during multi factor authentication
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-280 - Negative Test Case - Existing User - Verify user should see the error message when the service is unavailable
     Scenario: "EPIC_EPP-3_STORY_EPP-280 - Verify user should see the error message when the service is unavailable"
 
@@ -835,6 +858,7 @@ Feature: Patient Portal : MFA - Resend code during multi factor authentication
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-280 - Existing User - Verify User should see the following message "Multi factor Authentication has been set successfully" within 3 seconds during resend code request
     Scenario: "EPIC_EPP-3_STORY_EPP-280 - Verify User should see the following message "Multi factor Authentication has been set successfully" within 3 seconds during resend code request"
 
@@ -877,6 +901,7 @@ Feature: Patient Portal : MFA - Resend code during multi factor authentication
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-280 - Existing User - Verify User should not see the any errors script when user clicks F12 on the console
     Scenario: "EPIC_EPP-3_STORY_EPP-280 -  Verify user should not see the any errors script when user clicks F12 on the console"
 
@@ -920,6 +945,7 @@ Feature: Patient Portal : MFA - Resend code during multi factor authentication
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-280 - Negative Test Cases - Register User - Verify User should see the following error message "Code sent multiple times. Please try again after 30 minutes." (Preferred Mode of Communication both)
     Scenario: "EPIC_EPP-3_STORY_EPP-280 - Negative Test Cases - Register User - Verify User should see the following error message "Code sent multiple times. Please try again after 30 minutes." (Preferred Mode of Communication both)"
 

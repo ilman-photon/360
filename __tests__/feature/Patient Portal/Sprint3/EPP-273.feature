@@ -6,6 +6,7 @@ Feature: Patient Portal : Security Questions - Security questions to be set up
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-273 - Verify the error message when user leave all the Answer field blank
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -33,6 +34,7 @@ Feature: Patient Portal : Security Questions - Security questions to be set up
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-273 - Verify the error message when user leave the Answer fields blank for Question 1
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -61,6 +63,7 @@ Feature: Patient Portal : Security Questions - Security questions to be set up
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-273 - Verify the error message when user leave the Answer fields blank for Question 2
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -88,6 +91,7 @@ Feature: Patient Portal : Security Questions - Security questions to be set up
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-273 - Verify the error message when user leave the Answer fields blank for Question 3
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -116,6 +120,7 @@ Feature: Patient Portal : Security Questions - Security questions to be set up
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-273 - Verify the error message when user leave the Answer fields blank for Question 4
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -144,6 +149,7 @@ Feature: Patient Portal : Security Questions - Security questions to be set up
   @Authentication
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-273 - Verify the error message when user leave the Answer fields blank for Question5
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -173,6 +179,7 @@ Feature: Patient Portal : Security Questions - Security questions to be set up
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-273 - Verify the error message when user leave the Answer fields blank for Question 1 and Question 2 and Answer for Question 3, Question4, Question5
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -202,6 +209,7 @@ Feature: Patient Portal : Security Questions - Security questions to be set up
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-273 - Verify the error message when user leave the Answer fields blank for Question 1 and Question 3 and Answer for Question 2, Question4, Question5
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -230,6 +238,7 @@ Feature: Patient Portal : Security Questions - Security questions to be set up
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-3_STORY_EPP-273 - Verify the error message when user leave the Answer fields blank for Question 3 and Question 4 and Answer for Question 1, Question 2, Question 5
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application

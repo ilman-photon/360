@@ -9,6 +9,7 @@ Feature: Patient Portal : Insurance  Information - Fill new insurance details - 
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-949 - Verify if "+New insurance button" is enabled for user
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -30,6 +31,7 @@ Feature: Patient Portal : Insurance  Information - Fill new insurance details - 
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-949 -  Verify if the user can see the existing insurance
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -49,6 +51,7 @@ Feature: Patient Portal : Insurance  Information - Fill new insurance details - 
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-949 -    Verify if the user can add new insurance details by clicking the "+ New Insurance  button"
     And user lands on the “Patient Login” screen
     When user login with valid "<username>" and "<password>"
@@ -70,6 +73,7 @@ Feature: Patient Portal : Insurance  Information - Fill new insurance details - 
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-949 -    verify if the user can see the error message “This field is required” for those mandatory fields which are not filled
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -94,6 +98,7 @@ Feature: Patient Portal : Insurance  Information - Fill new insurance details - 
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-949 -    Verify if the user can see the error message “Incorrect format” for those fields which are in incorrect format
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -117,6 +122,7 @@ Feature: Patient Portal : Insurance  Information - Fill new insurance details - 
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-949 -    Verify if the "Cancel " "button" is enabled for the user
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -141,6 +147,7 @@ Feature: Patient Portal : Insurance  Information - Fill new insurance details - 
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-949 -    Verify if the user can add maximum "5"new insurance details by clicking the "+ New Insurance  button"
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -169,6 +176,7 @@ Feature: Patient Portal : Insurance  Information - Fill new insurance details - 
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-949 -    Verify if the proper error message is displayed when the user tries to add more than 5 insurance.
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -192,6 +200,7 @@ Feature: Patient Portal : Insurance  Information - Fill new insurance details - 
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-949 -    Verify if the proper error message is displayed when the user tries to add insurance documents without an internet connection
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -216,6 +225,7 @@ Feature: Patient Portal : Insurance  Information - Fill new insurance details - 
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-949 -    Verify if all fields are erased when the user refreshes the browser
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -239,6 +249,7 @@ Feature: Patient Portal : Insurance  Information - Fill new insurance details - 
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-949 -    Verify if a 503 Service unavailable message  displays when the user tries to fill "insurance details" when the server is on maintenance
     Given Launch  the Browser Enter 'XXX' URL
     And user lands on the “Patient Login” screen
@@ -263,6 +274,7 @@ Feature: Patient Portal : Insurance  Information - Fill new insurance details - 
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario Outline: EPIC_EPP-10_STORY_EPP-949 -    Verify if the user can add new Insurance details by "mobile browser"
     Given Launch  the mobile Browser Enter the' XXX' URL
     And user lands on the “Patient Login” screen
@@ -286,6 +298,7 @@ Feature: Patient Portal : Insurance  Information - Fill new insurance details - 
   @Patient_Portal
   @Regression
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-10_STORY_EPP-949 -    Verify if the insurance details page is opened within 3 seconds when the user clicks on the "+ New insurance button"
     Given Launch  the mobile Browser Enter the' XXX' URL
     And user lands on the “Patient Login” screen
@@ -301,6 +314,7 @@ Feature: Patient Portal : Insurance  Information - Fill new insurance details - 
   @Manage_Account
   @Patient_Portal
   @Sprint3
+  @excluded
   Scenario: EPIC_EPP-10_STORY_EPP-949 -    Verify if the user is able to view Dev Tools When F12 is clicked
     Given Launch  the Browser Enter the' XXX' URL
     And user lands on the “Patient Login” screen
