@@ -38,6 +38,7 @@ test:
     - Frontend-runner
    script:
      - npm run test
+     - ls
    dependencies:
        - install
    coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
