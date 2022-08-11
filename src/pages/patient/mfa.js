@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import MfaLayout from "../../components/templates/mfaLayout";
 import SetMultiFactorAuthentication from "../../components/organisms/MultiFactorAuthentication/setMultiFactorAuthentication";
 import MultiFactorAuthentication from "../../components/organisms/MultiFactorAuthentication/multiFactorAuthentication";
+import Cookies from "universal-cookie";
 
 export default function MfaPage() {
   const router = useRouter();
@@ -17,7 +18,15 @@ export default function MfaPage() {
     router.push("/patient/login");
   }
 
+  function redirectToDashboard() {
+    const cookies = new Cookies();
+    const hostname = window.location.origin;
+    window.location.href = `${hostname}/patient`;
+    cookies.set("authorized", true, { path: "/patient" });
+  }
+
   function onSubmitClicked(callback) {
+    //redirectToDashboard()
     callback({
       status: "failed",
       message: {
@@ -40,8 +49,6 @@ export default function MfaPage() {
   function onSetRememberMe(value) {
     setRememberMe(value);
   }
-
-  console.log(rememberMe);
 
   if (confirm) {
     return (
