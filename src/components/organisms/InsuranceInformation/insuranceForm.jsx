@@ -405,7 +405,12 @@ export default function InsuranceForm({
             rules={{ required: "This field is required" }}
           />
 
-          <Stack direction="row" justifyContent="flex-end" spacing={2} sx={{ width: "fit-content", alignSelf: "flex-end", p: 2, mt: 2 }}>
+          <Stack
+            direction="row"
+            justifyContent="flex-end"
+            spacing={2}
+            sx={{ width: "fit-content", alignSelf: "flex-end", p: 2, mt: 2 }}
+          >
             <Button
               onClick={handleCancel}
               variant="contained"
