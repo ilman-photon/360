@@ -63,6 +63,10 @@ export const patientTypography = createTheme({
       fontWeight: 500,
       fontSize: 34,
       lineHeight: "44px",
+      ["@media (max-width: 992px)"]: {
+        fontSize: 26,
+        lineHeight: "36px",
+      },
     },
     h3: {
       fontFamily: "Bw Nista Geometric DEMO",
@@ -95,6 +99,11 @@ export const patientTypography = createTheme({
       fontWeight: "bold",
       fontSize: 16,
       lineHeight: "24px",
+      ["@media (max-width: 992px)"]: {
+        fontSize: 16,
+        lineHeight: "24px",
+        fontWeight: 400,
+      },
     },
     bodySmallRegular: {
       fontFamily: "Libre Franklin",

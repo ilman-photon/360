@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import styles from "../../../styles/Login.module.css";
 import AuthLayout from "../../components/templates/authLayout";
 import SelectOptionForm from "../../components/organisms/SelectOptionForm/selectOptionForm";
 import PasswordSecurityQuestion from "../../components/organisms/PasswordSecurityQuestion/passwordSecurityQuestion";
