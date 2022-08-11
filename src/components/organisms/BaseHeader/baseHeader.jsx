@@ -65,7 +65,6 @@ export default function BaseHeader({ OnLogoutClicked }) {
               {pages.map((page) => (
                 <Button
                   key={page}
-                  data-testid="user-menu"
                   onClick={handleCloseNavMenu}
                   sx={styles.bottonStyledDesktop}
                 >

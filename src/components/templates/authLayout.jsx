@@ -49,7 +49,7 @@ export default function Layout({
               className={styles.authComponentContainer}
               sx={{
                 paddingTop: {
-                  xs: showMobileImage ? "16px!important" : "75px!important",
+                  xs: showMobileImage ? "35px!important" : "75px!important",
                   md: "100px!important",
                   lg: "146px!important",
                 },
