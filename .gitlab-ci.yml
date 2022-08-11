@@ -13,8 +13,8 @@ stages:
   - test
   # - build
   - sonar
-  # - imagebuild
-  # - deploy
+  - imagebuild
+  - deploy
 
 
 install:
