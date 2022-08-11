@@ -17,6 +17,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import LogoutIcon from "@mui/icons-material/Logout";
 import Cookies from "universal-cookie";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 const pages = [
   "Appointments",
@@ -29,6 +30,7 @@ const pages = [
 export default function BaseHeader({ OnLogoutClicked }) {
   const [isUserLoged, setUserLoged] = React.useState(false);
   const router = useRouter();
+  const logo = "/logo.png";
 
   React.useEffect(() => {
     const cookies = new Cookies();
@@ -59,7 +61,13 @@ export default function BaseHeader({ OnLogoutClicked }) {
       <Container maxWidth="xl">
         {isUserLoged ? (
           <Toolbar disableGutters>
-            <EyeCareLogo sx={styles.logoStyled} />
+            <Image
+              src={logo}
+              width="124px"
+              height="36px"
+              alt="logo"
+              style={styles.logoStyled}
+            ></Image>
             {/* Menu Desktop*/}
             <Box sx={styles.boxStyled}>
               {pages.map((page) => (
@@ -166,7 +174,14 @@ export default function BaseHeader({ OnLogoutClicked }) {
           </Toolbar>
         ) : (
           <Toolbar disableGutters>
-            <EyeCareLogo sx={styles.eyecareLogoToolbarStyled} />
+            <Image
+              src={logo}
+              width="124px"
+              height="36px"
+              alt="logo"
+              quality={100}
+              style={styles.logoStyled}
+            ></Image>
           </Toolbar>
         )}
       </Container>
