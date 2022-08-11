@@ -14,9 +14,7 @@ class MyDocument extends Document {
       });
 
     // Run the parent `getInitialProps`, it now includes the custom `renderPage`
-    const initialProps = await Document.getInitialProps(ctx);
-
-    return initialProps;
+    return Document.getInitialProps(ctx);
   }
 
   render() {
@@ -24,7 +22,13 @@ class MyDocument extends Document {
       <Html>
         <Head>
           <link
-            href="http://fonts.cdnfonts.com/css/bw-nista-geometric-demo"
+            href="https://fonts.cdnfonts.com/css/bw-nista-geometric-demo"
+            rel="stylesheet"
+          />
+          <link rel="preconnect" href="https://fonts.googleapis.com" />
+          <link rel="preconnect" href="https://fonts.gstatic.com" />
+          <link
+            href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@600&display=swap"
             rel="stylesheet"
           />
         </Head>

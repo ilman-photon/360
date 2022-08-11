@@ -9,34 +9,38 @@ variables:
 image:  node:16.10.0
 
 stages:
-  # - install
-  # - test
+  - install
+  - test
   # - build
   - sonar
   - imagebuild
   - deploy
 
 
-# install:
-#    stage: install
-#    script:
-#       - npm install
-#    artifacts:
-#       name: "artifacts"
-#       untracked: true
-#       expire_in: 30 mins
-#       paths:
-#         - .npm/
-#         - node_modules/
-#         - .next/
+install:
+    stage: install
+    tags:
+    - Frontend-runner
+    script:
+     - npm install
+    artifacts:
+       name: "artifacts"
+       untracked: true
+      #  expire_in: 1 days
+       paths:
+         - .npm/
+         - node_modules/
+         - .next/
 
-# test:
-#   stage: test
-#   script:
-#     - npm run test
-#   dependencies:
-#       - install
-#   coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+test:
+   stage: test
+   tags:
+    - Frontend-runner
+   script:
+     - npm run test
+   dependencies:
+       - install
+   coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
 
 # build:
 #    stage: build
@@ -54,7 +58,13 @@ sonar:
     - Frontend-runner
   image: sonarsource/sonar-scanner-cli
   script:
-    - /usr/bin/entrypoint.sh sonar-scanner -Dsonar.host.url=https://dev.eyecare360plus.eyecare-partners.com/pipeline/sonarqube -Dsonar.projectKey=E360-Frontend-Patient-and-Provider-Portal -Dsonar.login=$SONAR_TOKEN_PHOTON
+    - /usr/bin/entrypoint.sh sonar-scanner -Dsonar.host.url=https://dev.eyecare360plus.eyecare-partners.com/pipeline/sonarqube -Dsonar.projectKey=E360-Frontend-Patient-and-Provider-Portal -Dsonar.login=$SONAR_TOKEN_PHOTON -Dsonar.sources=src -Dsonar.exclusions=coverage/**/*,**/*.stories.jsx -Dsonar.typescript.lcov.reportPaths=./coverage/lcov.info
+  artifacts:
+       name: "artifacts"
+       untracked: true
+      #  expire_in: 10 days
+       paths:
+         - coverage
 
 imagebuild:
   stage: imagebuild

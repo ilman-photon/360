@@ -14,3 +14,10 @@
   }
   font-family: "Libre Franklin", sans-serif;
 }
+
+.contanierPage {
+  align-self: flex-end;
+  @media (max-width: 992px) {
+    align-self: center;
+  }
+}

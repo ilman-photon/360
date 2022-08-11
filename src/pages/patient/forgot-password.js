@@ -1,5 +1,4 @@
-import React, { Suspense, useState } from "react";
-import styles from "../../../styles/Login.module.css";
+import React, { useState } from "react";
 import AuthLayout from "../../components/templates/authLayout";
 import SelectOptionForm from "../../components/organisms/SelectOptionForm/selectOptionForm";
 import PasswordSecurityQuestion from "../../components/organisms/PasswordSecurityQuestion/passwordSecurityQuestion";
@@ -9,16 +8,10 @@ import constants from "../../utils/constants";
 import RowRadioButtonsGroup from "../../components/atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import InsertLinkIcon from "@mui/icons-material/InsertLink";
 import { Controller } from "react-hook-form";
-import { useTranslation } from "react-i18next";
-import dynamic from "next/dynamic";
-
-//Prevent html being match between server and client
-const ForgotPassword = dynamic(
-  () => import("../../components/organisms/ForgotPassword/forgotPassword"),
-  {
-    ssr: false,
-  }
-);
+import { useTranslation } from "next-i18next";
+import ForgotPassword from "../../components/organisms/ForgotPassword/forgotPassword";
+import { Box } from "@mui/material";
+import globalStyles from "../../styles/Global.module.scss";
 
 let confirmationFormProps = {
   title: constants.EMPTY_STRING,
@@ -130,7 +123,7 @@ export default function ForgotPasswordPage() {
         const userCommunicationCode =
           modeOfCommuication.toLowerCase() === "email"
             ? response.email
-            : response.phoneNumber;
+            : response.phone;
         // Handle success to call API
         confirmationFormProps = {
           title: t("titlePasswordReset"),
@@ -220,8 +213,8 @@ export default function ForgotPasswordPage() {
         confirmationFormProps.onCTAButtonClicked = function ({ data }) {
           const modeComunication =
             data[constants.MODE_COMMUNICATION_KEY] === constants.EMAIL
-              ? "Email"
-              : "Phone number";
+              ? "email"
+              : "phone";
           onCalledResetPasswordAPI(modeComunication);
         };
       } else {
@@ -255,65 +248,59 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <div className={[styles.forgotPasswordPage, "hide-scrollbar"].join(" ")}>
-      <section className={styles.forgotPasswordComponentContainer}>
-        {showForgotPassword ? (
-          <Suspense fallback={`Loading...`}>
-            <ForgotPassword
-              {...backToLoginProps}
-              onContinueButtonClicked={onContinueButtonClicked}
-              showPostMessage={showPostMessage}
-              setShowPostMessage={setShowPostMessage}
-              onCalledValidateUsernameAPI={onCalledValidateUsernameAPI}
-            />
-          </Suspense>
-        ) : (
-          <></>
-        )}
-        {showSelectOption ? (
-          <SelectOptionForm
-            {...backToLoginProps}
-            onContinueButtonClicked={onContinueButtonClicked}
-            hasSecurityQuestion={
-              patientData && patientData.securityQuestionsSet
-            }
-          />
-        ) : (
-          <></>
-        )}
-        {showPasswordSecurityQuestion ? (
-          <PasswordSecurityQuestion
-            {...backToLoginProps}
-            showPostMessage={showPostMessage}
-            setShowPostMessage={setShowPostMessage}
-            securityQuestionData={patientData.securityQuestions}
-            onContinueButtonClicked={onContinueButtonClicked}
-          />
-        ) : (
-          <></>
-        )}
-        {showOneTimeLink ? (
-          <ConfirmationForm
-            {...confirmationFormProps}
-            {...backToLoginProps}
-            showPostMessage={showPostMessage}
-            setShowPostMessage={setShowPostMessage}
-          />
-        ) : (
-          <></>
-        )}
-        {showPasswordReset ? (
-          <ConfirmationForm
-            {...confirmationFormProps}
-            {...backToLoginProps}
-            showPostMessage={showPostMessage}
-            setShowPostMessage={setShowPostMessage}
-          />
-        ) : (
-          <></>
-        )}
-      </section>
-    </div>
+    <Box className={globalStyles.contanierPage}>
+      {showForgotPassword ? (
+        <ForgotPassword
+          {...backToLoginProps}
+          onContinueButtonClicked={onContinueButtonClicked}
+          showPostMessage={showPostMessage}
+          setShowPostMessage={setShowPostMessage}
+          onCalledValidateUsernameAPI={onCalledValidateUsernameAPI}
+        />
+      ) : (
+        <></>
+      )}
+      {showSelectOption ? (
+        <SelectOptionForm
+          {...backToLoginProps}
+          onContinueButtonClicked={onContinueButtonClicked}
+          hasSecurityQuestion={patientData && patientData.securityQuestionsSet}
+        />
+      ) : (
+        <></>
+      )}
+      {showPasswordSecurityQuestion ? (
+        <PasswordSecurityQuestion
+          {...backToLoginProps}
+          showPostMessage={showPostMessage}
+          setShowPostMessage={setShowPostMessage}
+          securityQuestionData={patientData.securityQuestions}
+          onContinueButtonClicked={onContinueButtonClicked}
+        />
+      ) : (
+        <></>
+      )}
+      {showOneTimeLink ? (
+        <ConfirmationForm
+          {...confirmationFormProps}
+          {...backToLoginProps}
+          showPostMessage={showPostMessage}
+          setShowPostMessage={setShowPostMessage}
+        />
+      ) : (
+        <></>
+      )}
+      {showPasswordReset ? (
+        <ConfirmationForm
+          {...confirmationFormProps}
+          {...backToLoginProps}
+          showPostMessage={showPostMessage}
+          setShowPostMessage={setShowPostMessage}
+        />
+      ) : (
+        <></>
+      )}
+    </Box>
   );
 }
 

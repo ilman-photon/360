@@ -3,7 +3,7 @@ import { Link, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { StyledInput } from "../../atoms/Input/input";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from "next-i18next";
 import globalStyles from "../../../styles/Global.module.scss";
 import { useRouter } from "next/router";
 import { StyledButton } from "../../atoms/Button/button";
@@ -88,6 +88,7 @@ const ForgotPassword = ({
             size="large"
             gradient={false}
             style={styles.margin}
+            data-testid="forgot-submit"
           >
             {t("resetPasswordText")}
           </StyledButton>

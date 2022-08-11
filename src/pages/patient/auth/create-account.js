@@ -1,11 +1,11 @@
-import { useState } from "react";
 import AuthLayout from "../../../components/templates/authLayout";
 import Register from "../../../components/organisms/Register/register";
 import { useDispatch, useSelector } from "react-redux";
 import { resetFormMessage, setFormMessage } from "../../../store";
-import Link from "next/link";
 import { Api } from "../../api/api";
 import RESPONSE_MESSAGES from "../../../utils/responseCodes";
+import { Box } from "@mui/material";
+import globalStyles from "../../../styles/Global.module.scss";
 export default function CreateAccountPage() {
   const dispatch = useDispatch();
 
@@ -42,12 +42,12 @@ export default function CreateAccountPage() {
   };
 
   return (
-    <section>
+    <Box className={globalStyles.contanierPage}>
       <Register
         formMessage={formMessage}
         OnRegisterClicked={OnRegisterClicked}
       />
-    </section>
+    </Box>
   );
 }
 

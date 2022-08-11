@@ -1,19 +1,47 @@
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import { Avatar, Box, Button, Stack, Typography } from "@mui/material";
-import { useRef } from "react";
+import Image from "next/image";
+import { useRef, useState } from "react";
 import { colors } from "../../../styles/theme";
 import { stringAvatar } from "../../../utils/avatar";
 
-export const ProfilePhotoUploader = () => {
+export const ProfilePhotoUploader = ({
+  username = "",
+  source = "",
+  OnPhotoChange = () => {
+    // This is intended
+  },
+}) => {
+  const [previewPhoto, setPreviewPhoto] = useState("");
   const inputImage = useRef(null);
+
+  const handleInputChange = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      const blobFile = URL.createObjectURL(event.target.files[0]);
+      console.log(blobFile);
+      setPreviewPhoto(blobFile);
+      OnPhotoChange(blobFile);
+    }
+  };
   return (
     <Stack spacing={1}>
       <Box sx={{ border: "solid 1px #DDDBDA", px: 2, py: 3 }}>
         <Stack direction="row" spacing={4} alignItems="center">
-          <Avatar
-            {...stringAvatar("John Doe")}
-            sx={{ width: 80, height: 80 }}
-          ></Avatar>
+          {source ? (
+            <img
+              src={previewPhoto || source}
+              width={80}
+              height={80}
+              style={{ borderRadius: "50%" }}
+              alt="photo"
+            ></img>
+          ) : (
+            <Avatar
+              {...stringAvatar(username)}
+              sx={{ width: 80, height: 80 }}
+            ></Avatar>
+          )}
+
           <Button
             onClick={() => {
               inputImage.current.click();
@@ -28,13 +56,14 @@ export const ProfilePhotoUploader = () => {
             <Stack direction="row" alignItems="center" spacing={1}>
               <FileUploadOutlinedIcon sx={{ width: 20, height: 20 }} />
               <span style={{ fontSize: 16, textTransform: "none" }}>
-                upload photo
+                {source ? "change" : "upload"} photo
               </span>
               <input
                 ref={inputImage}
                 type="file"
                 accept="image/png, image/gif, image/jpeg"
                 hidden
+                onChange={handleInputChange}
               />
             </Stack>
           </Button>

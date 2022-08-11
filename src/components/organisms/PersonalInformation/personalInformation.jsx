@@ -21,6 +21,7 @@ import { ImageUploader } from "../../molecules/ImageUploader/imageUploader";
 import { connect } from "react-redux";
 import { useEffect } from "react";
 import { StyledSelect } from "../../atoms/Select/select";
+import { formatSocialSecurity } from "../../../utils/ssnFormatter";
 
 export default function PersonalInformation({
   userData = {},
@@ -46,6 +47,11 @@ export default function PersonalInformation({
     { label: "Female", value: "Female" },
   ];
 
+  const userTitleOptions = [
+    { label: "Mr", value: "Mr" },
+    { label: "Mrs", value: "Mrs" },
+  ];
+
   useEffect(() => {
     if (userData) reset(userData);
   }, [userData]);
@@ -69,13 +75,25 @@ export default function PersonalInformation({
       <Fade in={!isEditing} unmountOnExit>
         <Stack spacing={3} divider={<Divider />}>
           <LabelWithInfo label="Photo">
-            <Avatar
-              {...stringAvatar(userData.name)}
-              sx={{ width: 122, height: 122, border: "solid 1px black" }}
-            ></Avatar>
+            {userData.profilePhoto ? (
+              <img
+                src={userData.profilePhoto}
+                width={122}
+                height={122}
+                style={{ borderRadius: "50%" }}
+              ></img>
+            ) : (
+              <Avatar
+                {...stringAvatar(userData.name)}
+                sx={{ width: 122, height: 122, border: "solid 1px black" }}
+              ></Avatar>
+            )}
           </LabelWithInfo>
 
-          <LabelWithInfo label="Name" tooltipContent="Test">
+          <LabelWithInfo
+            label="Name"
+            tooltipContent="If you wish to change this information, please contact Customer Support"
+          >
             {userData.name}
           </LabelWithInfo>
 
@@ -83,20 +101,29 @@ export default function PersonalInformation({
             {userData.preferredName || "---"}
           </LabelWithInfo>
 
-          <LabelWithInfo label="Title">Mr</LabelWithInfo>
+          <LabelWithInfo label="Title">{userData.title}</LabelWithInfo>
 
-          <LabelWithInfo label="Date of Birth" tooltipContent="Test">
-            01/10/1987
+          <LabelWithInfo
+            label="Date of Birth"
+            tooltipContent="If you wish to change this information, please contact Customer Support"
+          >
+            {new Date(userData.dob).toLocaleDateString()}
           </LabelWithInfo>
 
-          <LabelWithInfo label="Age" tooltipContent="Test">
-            49
+          <LabelWithInfo
+            label="Age"
+            tooltipContent="If you wish to change this information, please contact Customer Support"
+          >
+            {userData.age}
           </LabelWithInfo>
 
-          <LabelWithInfo label="Gender">Male</LabelWithInfo>
+          <LabelWithInfo label="Gender">{userData.gender}</LabelWithInfo>
 
-          <LabelWithInfo label="SSN" tooltipContent="Test">
-            ***-***-1989
+          <LabelWithInfo
+            label="SSN"
+            tooltipContent="If you wish to change this information, please contact Customer Support"
+          >
+            {formatSocialSecurity(String(userData.ssn))}
           </LabelWithInfo>
 
           <div>
@@ -133,24 +160,24 @@ export default function PersonalInformation({
         <form onSubmit={handleSubmit(onSubmit)}>
           <Stack spacing={3}>
             <div className={styles.labelForm}>Photo</div>
-            <ProfilePhotoUploader />
-
-            <Stack direction="row" justifyContent="flex-end" spacing={2}>
-              <Button
-                onClick={handleCancel}
-                variant="contained"
-                className={[styles.formButton, styles.outlined].join(" ")}
-              >
-                Cancel
-              </Button>
-              <Button
-                type="submit"
-                variant="contained"
-                className={[styles.formButton, styles.primary].join(" ")}
-              >
-                Save
-              </Button>
-            </Stack>
+            <Controller
+              name="profilePhoto"
+              control={control}
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => {
+                return (
+                  <>
+                    <ProfilePhotoUploader
+                      username={userData.name}
+                      source={userData.profilePhoto}
+                      OnPhotoChange={onChange}
+                    />
+                  </>
+                );
+              }}
+            />
 
             <Divider />
 
@@ -211,15 +238,13 @@ export default function PersonalInformation({
                 fieldState: { error },
               }) => {
                 return (
-                  <StyledInput
-                    type="text"
+                  <StyledSelect
                     id="title"
                     label="Title"
+                    options={userTitleOptions}
                     value={value}
                     onChange={onChange}
                     error={!!error}
-                    size="small"
-                    variant="filled"
                     helperText={error ? error.message : null}
                   />
                 );
@@ -285,17 +310,6 @@ export default function PersonalInformation({
                 fieldState: { error },
               }) => {
                 return (
-                  // <StyledInput
-                  //   type="text"
-                  //   id="gender"
-                  //   label="Gender"
-                  //   value={value}
-                  //   onChange={onChange}
-                  //   error={!!error}
-                  //   size="small"
-                  //   variant="filled"
-                  //   helperText={error ? error.message : null}
-                  // />
                   <StyledSelect
                     id="gender"
                     label="Gender"

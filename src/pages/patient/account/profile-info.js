@@ -4,7 +4,7 @@ import ContactInformation from "../../../components/organisms/ContactInformation
 import { Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUser } from "../../../store/user";
+import { fetchUser, setUserData } from "../../../store/user";
 export default function CreateAccountPage() {
   const [contactEditing, setContactEditing] = useState(false);
   const [personalEditing, setPersonalEditing] = useState(false);
@@ -12,6 +12,11 @@ export default function CreateAccountPage() {
   const userData = useSelector((state) => state.user.userData);
 
   const dispatch = useDispatch();
+
+  const onSavePersonalData = (payload) => {
+    dispatch(setUserData(payload));
+    setPersonalEditing(false);
+  };
 
   useEffect(() => {
     dispatch(fetchUser());
@@ -26,7 +31,7 @@ export default function CreateAccountPage() {
             isEditing={personalEditing}
             OnEditClicked={(_) => setPersonalEditing(true)}
             OnCancelEditClicked={(_) => setPersonalEditing(false)}
-            OnSaveClicked={(_) => setPersonalEditing(false)}
+            OnSaveClicked={onSavePersonalData}
           />
         </Grid>
         <Grid item xs={6}>

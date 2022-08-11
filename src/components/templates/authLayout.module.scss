@@ -1,26 +1,14 @@
 .authLayout {
   display: flex;
   flex-direction: column;
-
-  // -webkit-mask-image: radial-gradient(50% 75% at right, transparent 100%, #fff 51%);
-  // mask-image: radial-gradient(50% 75% at right, transparent 100%, #fff 51%);
   background: linear-gradient(96.59deg, #003b4a 10.15%, #0389ab 140.82%);
   min-height: 100vh;
 }
 
 .authContainer {
-  /* width: 100vw;
-  -webkit-mask-image: radial-gradient(50% 75% at right, transparent 100%, #fff 51%);
-  mask-image: radial-gradient(50% 75% at right, transparent 100%, #fff 51%);
-  background: linear-gradient(140deg,#103139,#003b4a);
-  position: absolute;
-  left: 0;
-  height: 100vh;
-  display: flex; */
-
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 1rem; /* 16px */
+  //gap: 1rem; /* 16px */
   flex: 1;
 
   @media (max-width: 992px) {
@@ -58,16 +46,10 @@
 }
 
 .authImageContainer {
-  /* width: 50vw;
-  height: 100vh;
-  position: absolute;
-  right: 0;
-  z-index: -1; */
-
   width: 100%;
   overflow: hidden;
   grid-column: span 1 / span 1;
-  padding: 0px;
+  padding: 0px !important;
 }
 .imageBannerContainer {
   width: 100%;
@@ -83,49 +65,33 @@
   }
 }
 
-//styling for image without rounded
-// .imageBannerContainer > span > img {
-//   position: fixed !important;
-//   width: auto !important;
-//   height: 100vh !important;
-//   right: 0 !important;
-//   object-fit: contain;
-//   min-width: unset !important;
-//   max-width: unset !important;
-//   left: unset !important;
-//   min-height: unset !important;
-//   max-height: unset !important;
-//   @media (max-width: 768px) {
-//     width: 100vw !important;
-//     height: auto !important;
-//     bottom: unset !important;
-//     position: absolute !important;
-//   }
-// }
-
 .imageBannerContainer > span > img {
+  border-top-left-radius: 100vh;
+  border-bottom-left-radius: 100vh;
+
   position: fixed !important;
-  width: 125vh !important;
-  height: 125vh !important;
-  left: 50vw !important;
-  top: 64px !important;
+  width: 50vw !important;
+  height: 110vh !important;
+  right: -50vw !important;
+  top: 0px !important;
   -o-object-fit: contain;
   object-fit: cover;
   min-width: unset !important;
   max-width: unset !important;
   min-height: unset !important;
   max-height: unset !important;
-  border-radius: 100% 100%;
+  object-position: center -4vh;
   @media (max-width: 992px) {
-    width: 124vw !important;
-    height: 35vh !important;
-    right: -11.5vw !important;
+    width: 105vw !important;
+    height: 29vh !important;
+    right: -2.5vw !important;
     bottom: unset !important;
     position: absolute !important;
-    top: 0px !important;
+    top: 40px !important;
     left: unset !important;
     border-radius: 0;
-    border-bottom-left-radius: 100% 80%;
-    border-bottom-right-radius: 100% 80%;
+    border-bottom-left-radius: 80%;
+    border-bottom-right-radius: 80%;
+    object-position: center -10vh;
   }
 }

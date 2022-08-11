@@ -23,12 +23,13 @@ const DEFAULT_USER_DATA = {
   issuedCardFront: "",
   issuedCardBack: "",
   dob: new Date(),
-  title: "",
-  ssn: "",
+  title: "Mr",
+  ssn: 1234567,
   address: "",
   city: "",
   state: "",
   zip: "",
+  age: "49",
   gender: "Male",
   preferredCommunication: "Both",
 };
@@ -43,17 +44,16 @@ const userSlice = createSlice({
     resetUserData: (state, action) => {
       state.loading = action.payload;
     },
+    setUserData: (state, { payload }) => {
+      state.userData = payload;
+    },
   },
   extraReducers: {
     [fetchUser.pending]: (state, action) => {
       state.status = "loading";
     },
     [fetchUser.fulfilled]: (state, { payload }) => {
-      state.userData = {
-        name: `${payload.firstName} ${payload.lastName}`,
-        preferredName: payload.firstName,
-        ...payload,
-      };
+      state.userData = payload;
       state.status = "success";
     },
     [fetchUser.rejected]: (state, action) => {
@@ -61,5 +61,8 @@ const userSlice = createSlice({
     },
   },
 });
+
+// Action creators are generated for each case reducer function
+export const { setUserData } = userSlice.actions;
 
 export default userSlice.reducer;

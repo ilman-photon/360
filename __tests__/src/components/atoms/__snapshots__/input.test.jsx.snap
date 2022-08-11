@@ -3,8 +3,7 @@
 exports[`StyledInput renders input components with type text 1`] = `
 <div>
   <div
-    class="MuiFormControl-root MuiTextField-root custom-input css-m4ej1r-MuiFormControl-root-MuiTextField-root"
-    style="margin-top: 11px;"
+    class="MuiFormControl-root MuiTextField-root custom-input css-85j6yj-MuiFormControl-root-MuiTextField-root"
     withicon="true"
   >
     <div

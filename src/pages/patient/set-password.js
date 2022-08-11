@@ -1,21 +1,14 @@
-import styles from "../../../styles/Login.module.css";
 import AuthLayout from "../../components/templates/authLayout";
-import dynamic from "next/dynamic";
 import { useDispatch, useSelector } from "react-redux";
 import { resetFormMessage, setFormMessage } from "../../store";
 import Link from "next/link";
 import { Api } from "../api/api";
 import { useRouter } from "next/router";
 import RESPONSE_MESSAGES from "../../utils/responseCodes";
-import { Suspense } from "react";
+import { Box } from "@mui/material";
+import SetPasswordComponent from "../../components/organisms/SetPassword/setPassword";
+import globalStyles from "../../styles/Global.module.scss";
 
-//Prevent html being match between server and client
-const SetPasswordComponent = dynamic(
-  () => import("../../components/organisms/SetPassword/setPassword"),
-  {
-    ssr: false,
-  }
-);
 export default function SetPasswordPage() {
   const dispatch = useDispatch();
   const router = useRouter();
@@ -62,26 +55,22 @@ export default function SetPasswordPage() {
     }
   };
   return (
-    <div className={styles.forgotPasswordPage}>
-      <section className={styles.forgotPasswordComponentContainer}>
-        <Suspense fallback={`Loading...`}>
-          <SetPasswordComponent
-            title={"Set Password"}
-            subtitle={"Enter a password to setup your account."}
-            username={username}
-            formMessage={formMessage}
-            onSetPasswordClicked={OnSetPasswordClicked}
-          />
-        </Suspense>
-      </section>
-    </div>
+    <Box className={globalStyles.contanierPage}>
+      <SetPasswordComponent
+        title={"Set Password"}
+        subtitle={"Enter a password to setup your account."}
+        username={username}
+        formMessage={formMessage}
+        onSetPasswordClicked={OnSetPasswordClicked}
+      />
+    </Box>
   );
 }
 
 SetPasswordPage.getLayout = function getLayout(page) {
   const backgroundImage = "/login-bg.png";
   return (
-    <AuthLayout showMobileImage={true} imageSrc={backgroundImage}>
+    <AuthLayout showMobileImage={false} imageSrc={backgroundImage}>
       {page}
     </AuthLayout>
   );
