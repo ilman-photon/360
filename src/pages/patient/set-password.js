@@ -67,6 +67,9 @@ export default function SetPasswordPage({ username }) {
         username={username}
         formMessage={formMessage}
         onSetPasswordClicked={OnSetPasswordClicked}
+        onBackToLoginClicked={function (router) {
+          router.push("/patient/login");
+        }}
       />
     </Box>
   );
