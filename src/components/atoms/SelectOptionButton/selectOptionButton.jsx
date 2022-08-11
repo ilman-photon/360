@@ -3,6 +3,8 @@ import FormControl from "@mui/material/FormControl";
 import { InputLabel, MenuItem, Select } from "@mui/material";
 import { ThemeProvider, styled, alpha } from "@mui/material/styles";
 import { colors } from "../../../styles/theme";
+import InputAdornment from "@mui/material/InputAdornment";
+import SearchIcon from '@mui/icons-material/Search';
 
 export const CustomFormControl = styled((props) => <FormControl {...props} />)(
   ({ theme }) => ({
