@@ -4,6 +4,7 @@ import styles from "./insuranceInformationNew.module.scss";
 import { useForm } from "react-hook-form";
 import { colors } from "../../../styles/theme";
 import AccountCard from "../../molecules/AccountCard/accountCard";
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 import * as React from "react";
 import Image from "next/image";
@@ -117,12 +118,13 @@ export default function InsuranceForm({
 
         <LabelWithInfo label="Insurance Priority">Primary</LabelWithInfo>
 
-        <Stack direction="row" justifyContent="flex-end" spacing={2}>
+        <Stack direction="row" justifyContent="flex-end" spacing={2} sx={{ alignSelf: "flex-end", p: 2, mt: 2 }}>
           <Button
             onClick={handleCancel}
-            variant="contained"
+            variant="text"
             className={[styles.formButton, styles.outlined].join(" ")}
           >
+            <DeleteOutlineIcon sx={{ width: 18, height: 18 }} />
             Remove Insurance
           </Button>
           <Button
