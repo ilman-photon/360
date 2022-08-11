@@ -21,8 +21,8 @@ import { Regex } from "../../../utils/regex";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import SelectOptionButton from "../../atoms/SelectOptionButton/selectOptionButton";
 
-import InsuranceForm from "./insuranceForm"
-import InsuranceView from "./insuranceView"
+import InsuranceForm from "./insuranceForm";
+import InsuranceView from "./insuranceView";
 
 export default function InsuranceDocument({
   isEditing = true,
@@ -62,10 +62,7 @@ export default function InsuranceDocument({
     "preferredCommunication",
   ]);
 
-  const relationshipList = [
-      "Single",
-      "Double"
-  ]
+  const relationshipList = ["Single", "Double"];
 
   const handleCancel = () => {
     reset(DEFAULT_CONTACT_INFO);
@@ -85,14 +82,13 @@ export default function InsuranceDocument({
       <InsuranceView
         isEditing={isEditing}
         OnEditClicked={(_) => OnEditClicked(true)}
-  />
-
+      />
 
       <InsuranceForm
-isEditing={isEditing}
-OnCancelEditClicked={(_) => OnCancelEditClicked(false)}
-OnSaveClicked={(_) => OnSaveClicked(false)}
-  />
+        isEditing={isEditing}
+        OnCancelEditClicked={(_) => OnCancelEditClicked(false)}
+        OnSaveClicked={(_) => OnSaveClicked(false)}
+      />
     </AccountCard>
   );
 }
