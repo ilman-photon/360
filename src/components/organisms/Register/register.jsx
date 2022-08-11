@@ -12,8 +12,10 @@ import { PasswordValidator } from "../../molecules/PasswordValidator/passwordVal
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import { styles } from "./style";
 import { Regex } from "../../../utils/regex";
+import { useRouter } from "next/router";
 
 export default function Register({ OnRegisterClicked, formMessage = null }) {
+  const router = useRouter();
   const { handleSubmit, control, watch } = useForm({
     defaultValues: {
       firstName: "",
@@ -125,7 +127,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
     });
 
     if (validatePassword(errors1, errors2)) {
-      OnRegisterClicked(data);
+      OnRegisterClicked(data, router);
     }
   };
 
@@ -376,6 +378,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             Register
           </Button>
         </form>
+        <Link href="/patient">asdas</Link>
 
         <Typography variant="caption" style={styles.bottomParagraph}>
           By registering, you accept to our Terms &<br /> Conditions and Privacy
