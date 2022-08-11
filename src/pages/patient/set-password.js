@@ -1,5 +1,4 @@
 import AuthLayout from "../../components/templates/authLayout";
-import dynamic from "next/dynamic";
 import { useDispatch, useSelector } from "react-redux";
 import { resetFormMessage, setFormMessage } from "../../store";
 import Link from "next/link";
@@ -71,7 +70,7 @@ export default function SetPasswordPage() {
 SetPasswordPage.getLayout = function getLayout(page) {
   const backgroundImage = "/login-bg.png";
   return (
-    <AuthLayout showMobileImage={true} imageSrc={backgroundImage}>
+    <AuthLayout showMobileImage={false} imageSrc={backgroundImage}>
       {page}
     </AuthLayout>
   );

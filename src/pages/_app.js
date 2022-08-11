@@ -1,7 +1,6 @@
 import Cookies from "universal-cookie";
 import { Provider } from "react-redux";
 import store from "../store/store";
-//import i18n from "../i18n/i18n";
 import "../../styles/globals.scss";
 
 import { appWithTranslation } from "next-i18next";
