@@ -90,6 +90,7 @@ export default function ContactInformation({
     <AccountCard
       titleIcon={<PermContactCalendarOutlinedIcon />}
       title="Contact Information"
+      isEditing={isEditing}
       OnEditClicked={OnEditClicked}
     >
       <Fade in={!isEditing} unmountOnExit>

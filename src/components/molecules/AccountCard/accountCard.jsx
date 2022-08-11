@@ -9,6 +9,7 @@ export const AccountCard = ({
   title,
   titleIcon,
   children,
+  isEditing,
   OnEditClicked,
   OnAddInsurance,
   ...props
@@ -33,7 +34,7 @@ export const AccountCard = ({
           </div>
         }
         action={
-          OnEditClicked ? (
+          !isEditing ? (
             <Button
               onClick={OnEditClicked}
               variant="text"
@@ -53,7 +54,9 @@ export const AccountCard = ({
               <AddIcon sx={{ width: 20, height: 20 }} />
               Add Insurance
             </Button>
-          ) : null
+          ) : (
+            ""
+          )
         }
       />
       <CardContent sx={{ p: 4 }}>{children}</CardContent>

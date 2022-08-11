@@ -78,6 +78,7 @@ export default function InsuranceDocument({
       titleIcon={<PermContactCalendarOutlinedIcon />}
       title="Insurance Documents"
       OnAddInsurance={true}
+      isEditing={isEditing}
     >
       <InsuranceView
         isEditing={isEditing}

@@ -12,6 +12,15 @@ export class Api {
     });
   }
 
+  dummy(url, postbody) {
+    return axios.create({
+      headers: {
+        "Content-Type": "application/json",
+      },
+      timeout: 10000,
+    });
+  }
+
   getResponse(url, postbody) {
     const api = new Api();
     return new Promise((resolve, reject) => {

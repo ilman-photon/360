@@ -8,24 +8,52 @@ export const fetchUser = createAsyncThunk(
     // you can dispatch any action from here!
     // dispatch(del(2))
     return fetch(
-      "api/user"
+      "/api/dummy/user"
       // `https://jsonplaceholder.typicode.com/posts?_limit=${payload.limit}`
     ).then((res) => res.json());
   }
 );
 
+const DEFAULT_USER_DATA = {
+  firstName: "",
+  lastName: "",
+  name: "Eyecare User",
+  preferredName: "---",
+  profilePhoto: "",
+  issuedCardFront: "",
+  issuedCardBack: "",
+  dob: new Date(),
+  title: "",
+  ssn: "",
+  address: "",
+  city: "",
+  state: "",
+  zip: "",
+  gender: "Male",
+  preferredCommunication: "Both",
+};
+
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    userData: {},
+    userData: DEFAULT_USER_DATA,
     status: null,
+  },
+  reducers: {
+    resetUserData: (state, action) => {
+      state.loading = action.payload;
+    },
   },
   extraReducers: {
     [fetchUser.pending]: (state, action) => {
       state.status = "loading";
     },
     [fetchUser.fulfilled]: (state, { payload }) => {
-      state.userData = payload;
+      state.userData = {
+        name: `${payload.firstName} ${payload.lastName}`,
+        preferredName: payload.firstName,
+        ...payload,
+      };
       state.status = "success";
     },
     [fetchUser.rejected]: (state, action) => {
