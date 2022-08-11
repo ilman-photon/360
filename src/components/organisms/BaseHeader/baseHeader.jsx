@@ -1,5 +1,4 @@
 import * as React from "react";
-import EyeCareLogo from "../../../assets/icons/eyeCareLogo.svg";
 import { styles } from "./style";
 import { Button } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
