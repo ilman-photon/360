@@ -26,7 +26,7 @@ install:
     artifacts:
        name: "artifacts"
        untracked: true
-       expire_in: 30 mins
+      #  expire_in: 1 days
        paths:
          - .npm/
          - node_modules/
@@ -59,6 +59,12 @@ sonar:
   image: sonarsource/sonar-scanner-cli
   script:
     - /usr/bin/entrypoint.sh sonar-scanner -Dsonar.host.url=https://dev.eyecare360plus.eyecare-partners.com/pipeline/sonarqube -Dsonar.projectKey=E360-Frontend-Patient-and-Provider-Portal -Dsonar.login=$SONAR_TOKEN_PHOTON -Dsonar.sources=src -Dsonar.exclusions=coverage/**/*,**/*.stories.jsx -Dsonar.typescript.lcov.reportPaths=./coverage/lcov.info
+  artifacts:
+       name: "artifacts"
+       untracked: true
+      #  expire_in: 10 days
+       paths:
+         - coverage
 
 imagebuild:
   stage: imagebuild
