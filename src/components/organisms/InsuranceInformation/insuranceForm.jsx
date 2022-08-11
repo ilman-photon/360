@@ -70,22 +70,24 @@ export default function InsuranceForm({
   };
 
   const DisclaimerText = (data) => {
-   return ( <FormLabel
-    id="row-input-disclaimer"
-    sx={{
-      fontSize: 12,
-      "&.Mui-focused": {
-        color: "black",
-      },
-      paddingLeft: 2,
-      display: "inline-flex",
-      alignItems: "center",
-      color: "#424747",
-    }}
-  >
-    {data.label}
-  </FormLabel>)
-  }
+    return (
+      <FormLabel
+        id="row-input-disclaimer"
+        sx={{
+          fontSize: 12,
+          "&.Mui-focused": {
+            color: "black",
+          },
+          paddingLeft: 2,
+          display: "inline-flex",
+          alignItems: "center",
+          color: "#424747",
+        }}
+      >
+        {data.label}
+      </FormLabel>
+    );
+  };
 
   return (
     <Fade in={isEditing} unmountOnExit>
@@ -106,7 +108,7 @@ export default function InsuranceForm({
                         "& .MuiFilledInput-root": {
                           border: "1px solid #bbb",
                           backgroundColor: "#fff",
-                          fontSize: "16px"
+                          fontSize: "16px",
                         },
                       }}
                       label="Insurance Provider"
@@ -319,18 +321,18 @@ export default function InsuranceForm({
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
                 <>
-                <StyledInput
-                  type="dob"
-                  id="dob"
-                  label="Subscriber Date of Birth"
-                  value={value}
-                  onChange={onChange}
-                  error={!!error}
-                  size="small"
-                  variant="filled"
-                  helperText={error ? error.message : null}
-                />
-                <DisclaimerText label="MM/DD/YYYY" />
+                  <StyledInput
+                    type="dob"
+                    id="dob"
+                    label="Subscriber Date of Birth"
+                    value={value}
+                    onChange={onChange}
+                    error={!!error}
+                    size="small"
+                    variant="filled"
+                    helperText={error ? error.message : null}
+                  />
+                  <DisclaimerText label="MM/DD/YYYY" />
                 </>
               );
             }}
