@@ -8,17 +8,52 @@ export const fetchUser = createAsyncThunk(
     // you can dispatch any action from here!
     // dispatch(del(2))
     return fetch(
-      "api/user"
+      "/api/dummy/user"
       // `https://jsonplaceholder.typicode.com/posts?_limit=${payload.limit}`
     ).then((res) => res.json());
   }
 );
 
+const DEFAULT_USER_DATA = {
+  firstName: "",
+  lastName: "laste",
+  name: "Eyecare User",
+  preferredName: "---",
+  profilePhoto: "",
+  issuedCardFront: "",
+  issuedCardBack: "",
+  dob: new Date(),
+  title: "Mr",
+  ssn: 1234567,
+  address: "",
+  city: "",
+  state: "",
+  zip: "",
+  age: "49",
+  gender: "Male",
+  preferredCommunication: "both",
+  relationship: "",
+  insurancePriority: "",
+  planName: "",
+  subscriberMember: "",
+  groupId: "",
+  isSubscriber: "",
+  relationship: "",
+};
+
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    userData: {},
+    userData: DEFAULT_USER_DATA,
     status: null,
+  },
+  reducers: {
+    resetUserData: (state, action) => {
+      state.loading = action.payload;
+    },
+    setUserData: (state, { payload }) => {
+      state.userData = payload;
+    },
   },
   extraReducers: {
     [fetchUser.pending]: (state, action) => {
@@ -33,5 +68,8 @@ const userSlice = createSlice({
     },
   },
 });
+
+// Action creators are generated for each case reducer function
+export const { setUserData } = userSlice.actions;
 
 export default userSlice.reducer;

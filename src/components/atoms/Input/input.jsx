@@ -204,7 +204,6 @@ export const CustomInput = styled(({ ...props }) => {
               renderInput={(params) => (
                 <RedditTextField
                   variant="filled"
-                  style={{ marginTop: 11 }}
                   sx={{
                     backgroundColor: "white",
                     borderRadius: "4px",
@@ -223,7 +222,7 @@ export const CustomInput = styled(({ ...props }) => {
     case "phone":
       return (
         <>
-          <CustomFormControl sx={{ m: 1 }} variant="filled">
+          <CustomFormControl variant="filled">
             <InputMask mask="(999) 999-9999" maskPlaceholder="" {...props}>
               <RedditTextField name="phone" type="text" />
             </InputMask>
@@ -236,7 +235,6 @@ export const CustomInput = styled(({ ...props }) => {
         <>
           <RedditTextField
             variant="filled"
-            style={{ marginTop: 11 }}
             sx={{
               backgroundColor: "white",
               borderRadius: "4px",
