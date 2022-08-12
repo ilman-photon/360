@@ -19,16 +19,18 @@ export default function CreateAccountPage() {
   const OnRegisterClicked = async function (postbody) {
     try {
       dispatch(resetFormMessage());
-      await api.client.post("/userregistration", postbody);
+      await api.getResponse("/ecp/patient/userregistration", postbody, "post");
       cookies.set("authorized", true, { path: "/patient" });
 
       const hostname = window.location.origin;
       window.location.href = `${hostname}/patient`;
-
-      // router.push('/patient')
     } catch (err) {
+      console.err({ err });
       if (err.response) {
-        const errorMessage = RESPONSE_MESSAGES[err.response.data.ResponseCode];
+        const errorMessage =
+          RESPONSE_MESSAGES[
+            err.response.data ? err.response.data.ResponseCode : 3500
+          ];
 
         dispatch(
           setFormMessage({
