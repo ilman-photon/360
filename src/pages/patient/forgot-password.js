@@ -132,10 +132,11 @@ export default function ForgotPasswordPage() {
           postMessage: `Link sent to your ${modeOfCommuication.toLowerCase()}`,
           successPostMessage: true,
           buttonLabel: t("primaryButtonTextPasswordResetSuccess"),
-          additional: null,
-          onCTAButtonClicked: function () {
-            onContinueButtonClicked(constants.ONE_TIME_LINK);
+          additional: function (control) {
+            return <></>;
           },
+          butttonMode: constants.SECONDARY,
+          buttonLabel: "Back to Login",
         };
         setShowPostMessage(true);
       })
