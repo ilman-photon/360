@@ -18,6 +18,11 @@ export default function CreateAccountPage() {
     setPersonalEditing(false);
   };
 
+  const onSaveContactData = (payload) => {
+    dispatch(setUserData(payload));
+    setContactEditing(false);
+  };
+
   useEffect(() => {
     dispatch(fetchUser());
   }, [dispatch]);
@@ -40,7 +45,7 @@ export default function CreateAccountPage() {
             isEditing={contactEditing}
             OnEditClicked={(_) => setContactEditing(true)}
             OnCancelEditClicked={(_) => setContactEditing(false)}
-            OnSaveClicked={(_) => setContactEditing(false)}
+            OnSaveClicked={onSaveContactData}
           />
         </Grid>
       </Grid>
