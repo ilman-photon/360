@@ -1,5 +1,4 @@
 import AuthLayout from "../../components/templates/authLayout";
-import dynamic from "next/dynamic";
 import { useDispatch, useSelector } from "react-redux";
 import { resetFormMessage, setFormMessage } from "../../store";
 import Link from "next/link";

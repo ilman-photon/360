@@ -10,7 +10,6 @@ const loginProps = {
     api
       .login(postbody)
       .then(function (response) {
-        //router.push("/patient");
         const hostname = window.location.origin;
         window.location.href = `${hostname}/patient`;
         cookies.set("authorized", true, { path: "/patient" });
@@ -18,7 +17,6 @@ const loginProps = {
       })
       .catch(function (err) {
         const isLockedAccount = err.ResponseCode === 2004;
-        const isInvalidCredentials = err.ResponseCode === 2001;
         const title = isLockedAccount ? "Account Locked" : "";
         const description = isLockedAccount
           ? "Too many login attempts. Your account is locked. Please contact customer support to unlock your account"
@@ -32,7 +30,9 @@ const loginProps = {
         });
       });
   },
-  OnGuestClicked: function () {},
+  OnGuestClicked: function () {
+    // This is intentional
+  },
   OnCreateAccountClicked: function (router) {
     router.push("/patient/auth/create-account");
   },
