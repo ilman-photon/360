@@ -11,9 +11,11 @@ import SessionExpiredModal from "../components/organisms/SessionExpiredModal/ses
 
 function App({ Component, pageProps }) {
   // Use the layout defined at the page level, if available
+  const cookies = new Cookies();
   const getLayout = Component.getLayout || ((page) => page);
 
-  const timeout = 1000 * 60 * 20; //Idle Timer
+  const idleTime = cookies.get("IdleTimeOut") || 1000 * 60 * 20;
+  const timeout = parseInt(idleTime); //Idle Timer
   const promptTimeout = 60000; //Remaining Time
   // Time before idle
   const [remaining, setRemaining] = useState(0);
@@ -39,7 +41,7 @@ function App({ Component, pageProps }) {
     setRemaining(0);
   };
 
-  const { getRemainingTime, isPrompted, activate, pause } = useIdleTimer({
+  const { getRemainingTime, isPrompted, activate } = useIdleTimer({
     timeout,
     promptTimeout,
     onIdle,
@@ -66,7 +68,6 @@ function App({ Component, pageProps }) {
     };
   }, [getRemainingTime, isPrompted]);
 
-  const cookies = new Cookies();
   const isLogin = cookies.get("authorized");
   return getLayout(
     <Provider store={store}>

@@ -10,9 +10,11 @@ const loginProps = {
     api
       .login(postbody)
       .then(function (response) {
+        const IdleTimeOut = response.IdleTimeOut * 1000 || 1200 * 1000;
         const hostname = window.location.origin;
         window.location.href = `${hostname}/patient`;
         cookies.set("authorized", true, { path: "/patient" });
+        cookies.set("IdleTimeOut", IdleTimeOut, { path: "/patient" });
         callback({ status: "success" });
       })
       .catch(function (err) {
