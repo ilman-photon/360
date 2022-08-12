@@ -9,8 +9,10 @@ export default function MfaPage() {
   const router = useRouter();
   const [confirm, setConfirm] = React.useState(false);
   const [rememberMe, setRememberMe] = React.useState(false);
+  const [mfaCode, setMfaCode] = React.useState("");
 
   function onConfirmClicked() {
+    setMfaCode("1234");
     setConfirm(true);
   }
 
@@ -25,15 +27,21 @@ export default function MfaPage() {
     cookies.set("authorized", true, { path: "/patient" });
   }
 
-  function onSubmitClicked(callback) {
-    //redirectToDashboard()
-    callback({
-      status: "failed",
-      message: {
-        title: "Incorrect Code.",
-        description: "Please try again.",
-      },
-    });
+  function onSubmitClicked(inputMfaCode, callback) {
+    //just fo check the functionality
+    console.log(inputMfaCode === mfaCode);
+    if (inputMfaCode === mfaCode) {
+      redirectToDashboard();
+    } else {
+      callback({
+        status: "failed",
+        isLock: false,
+        message: {
+          title: "Incorrect Code.",
+          description: "Please try again.",
+        },
+      });
+    }
   }
 
   function onResendCodeClicked(callback) {

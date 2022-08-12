@@ -13,6 +13,7 @@ export default function MultiFactorAuthentication({
 }) {
   const [postMessage, setPostMessage] = React.useState("");
   const [isEndView, setEndView] = React.useState(false);
+  const [mfaCode, setMfaCode] = React.useState("");
   const image = "/mail-mfa.png";
   const content = () => {
     return (
@@ -21,13 +22,20 @@ export default function MultiFactorAuthentication({
         label="Enter Code"
         fullWidth
         type="number"
+        value={mfaCode}
         variant={constants.FILLED}
+        onChange={(event) => {
+          setMfaCode(event.target.value);
+        }}
       />
     );
   };
 
   const checkSubmitMessage = (message) => {
-    setPostMessage(message);
+    if (message.status === "failed") {
+      setMfaCode("");
+      setPostMessage(message);
+    }
   };
 
   const checkResendCodeMessage = (message) => {
@@ -48,7 +56,7 @@ export default function MultiFactorAuthentication({
           secondaryButtonTitle={"Resend Code"}
           linkTitle={"Back to Login"}
           onClickPrimaryButton={() => {
-            onSubmitClicked(checkSubmitMessage);
+            onSubmitClicked(mfaCode, checkSubmitMessage);
           }}
           onClickSecondaryButton={() => {
             onResendCodeClicked(checkResendCodeMessage);
