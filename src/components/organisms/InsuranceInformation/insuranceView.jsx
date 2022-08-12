@@ -11,7 +11,7 @@ import Image from "next/image";
 
 export default function InsuranceForm({
   userData = {},
-  isEditing = true,
+  isEditing = false,
   OnEditClicked = () => {
     // This is intentional
   },
@@ -37,7 +37,7 @@ export default function InsuranceForm({
   };
 
   const { handleSubmit, control, watch, reset } = useForm({
-    defaultValues: DEFAULT_CONTACT_INFO,
+    defaultValues: userData.userData,
   });
 
   const priorityOptions = [
@@ -65,7 +65,7 @@ export default function InsuranceForm({
         <Grid container>
           <Grid item xs={4} p={0}>
             <LabelWithInfo label="Insurance Provider">
-              {userData.name}
+              {userData.insuranceProvider}
             </LabelWithInfo>
           </Grid>
 

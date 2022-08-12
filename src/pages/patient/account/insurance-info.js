@@ -11,6 +11,7 @@ export default function CreateAccountPage() {
   const userData = useSelector((state) => state.user.userData);
 
   const onSaveInsuranceData = (payload) => {
+    console.log(payload, "payload");
     dispatch(setUserData(payload));
     setInsuranceEditing(false);
   };
@@ -29,7 +30,7 @@ export default function CreateAccountPage() {
         isEditing={insuranceEditing}
         OnEditClicked={(_) => setInsuranceEditing(true)}
         OnCancelEditClicked={(_) => setInsuranceEditing(false)}
-        OnSaveClicked={(_) => onSaveInsuranceData(false)}
+        OnSaveClicked={onSaveInsuranceData}
       />
     </section>
   );

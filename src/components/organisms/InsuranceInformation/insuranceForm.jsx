@@ -36,7 +36,7 @@ export default function InsuranceForm({
   },
 }) {
   const { handleSubmit, control, watch, reset } = useForm({
-    defaultValues: userData, // Object.assign({}, userData),
+    defaultValues: {}, // Object.assign({}, userData),
   });
 
   console.log({ userData }, "from");
@@ -45,22 +45,20 @@ export default function InsuranceForm({
     if (userData) reset(userData);
   }, [userData]);
 
-  const priorityOptions = [
-    { label: "Primary", value: "Primary" },
-    { label: "Secondary", value: "Secondary" },
-    { label: "Tertiary", value: "Tertiary" },
+  const isSubsciberOptions = [
+    { label: "Yes", value: "yes" },
+    { label: "No", value: "no" },
   ];
 
-  const [watchedEmail, watchedMobile, watchedPreferredCommunication] = watch([
-    "email",
-    "mobile",
-    "preferredCommunication",
-  ]);
+  const priorityOptions = [
+    { label: "Primary", value: "primary" },
+    { label: "Secondary", value: "secondary" },
+    { label: "Tertiary", value: "tertiary" },
+  ];
 
   const relationshipList = ["Single", "Double"];
 
   const handleCancel = () => {
-    reset(userData);
     OnCancelEditClicked();
   };
 
@@ -194,7 +192,7 @@ export default function InsuranceForm({
           <Grid container>
             <Grid item xs={4}>
               <Controller
-                name="group"
+                name="groupId"
                 control={control}
                 render={({
                   field: { onChange, value },
@@ -203,7 +201,7 @@ export default function InsuranceForm({
                   return (
                     <StyledInput
                       type="text"
-                      id="group"
+                      id="groupId"
                       label="Group #"
                       value={value}
                       onChange={onChange}
@@ -243,7 +241,7 @@ export default function InsuranceForm({
                     value={value}
                     onChange={onChange}
                     label="Are you the Subscriber?"
-                    options={priorityOptions}
+                    options={isSubsciberOptions}
                     helperText={error ? error.message : null}
                     tooltipContent="Test"
                   />

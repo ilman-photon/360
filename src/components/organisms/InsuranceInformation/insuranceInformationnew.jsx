@@ -26,7 +26,7 @@ import InsuranceView from "./insuranceView";
 
 export default function InsuranceDocument({
   userData = {},
-  isEditing = true,
+  isEditing = false,
   OnSaveClicked = () => {
     // This is intended
   },
@@ -37,22 +37,6 @@ export default function InsuranceDocument({
     // This is intended
   },
 }) {
-  const DEFAULT_CONTACT_INFO = {
-    email: "",
-    mobile: "",
-    address: "",
-    city: "",
-    state: "",
-    zip: "",
-    preferredCommunication: "both",
-  };
-
-  const priorityOptions = [
-    { label: "Primary", value: "Primary" },
-    { label: "Secondary", value: "Secondary" },
-    { label: "Tertiary", value: "Tertiary" },
-  ];
-
   const onSubmit = (data) => {
     OnSaveClicked(data);
   };
@@ -73,7 +57,7 @@ export default function InsuranceDocument({
       <InsuranceForm
         isEditing={isEditing}
         OnCancelEditClicked={(_) => OnCancelEditClicked(false)}
-        OnSaveClicked={(_) => OnSaveClicked(false)}
+        OnSaveClicked={OnSaveClicked}
         userData={userData}
       />
     </AccountCard>
