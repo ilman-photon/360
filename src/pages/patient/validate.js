@@ -99,9 +99,9 @@ export default function ValidatePage({ query }) {
     const api = new Api();
     api
       .tokenValidation(postbody, true)
-      .then(function () {
+      .then(function (response) {
         //Navigate to Update
-        const name = "Smith1@photon.com";
+        const name = response.email || "Smith1@photon.com";
         router.push(`update-password?username=${name}`);
       })
       .catch(function () {
