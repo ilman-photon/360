@@ -72,7 +72,6 @@ export default function BaseHeader({ OnLogoutClicked }) {
               {pages.map((page) => (
                 <Button
                   key={page}
-                  data-testid="user-menu"
                   onClick={handleCloseNavMenu}
                   sx={styles.bottonStyledDesktop}
                 >
@@ -88,6 +87,7 @@ export default function BaseHeader({ OnLogoutClicked }) {
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
+                data-testid="user-menu-nav-open"
                 onClick={handleOpenNavMenu}
               >
                 <MenuIcon />
@@ -105,6 +105,7 @@ export default function BaseHeader({ OnLogoutClicked }) {
                   horizontal: "left",
                 }}
                 open={Boolean(anchorElNav)}
+                data-testid="user-menu-nav-close"
                 onClose={handleCloseNavMenu}
                 sx={styles.menuMobile}
               >
@@ -132,6 +133,7 @@ export default function BaseHeader({ OnLogoutClicked }) {
                   variant="text"
                   sx={styles.boxButtonStyles}
                   startIcon={<Avatar />}
+                  data-testid="user-menu-open"
                   endIcon={<ExpandMoreIcon />}
                   onClick={handleOpenUserMenu}
                 >
@@ -152,6 +154,7 @@ export default function BaseHeader({ OnLogoutClicked }) {
                 //   horizontal: 'right',
                 // }}
                 open={Boolean(anchorElUser)}
+                data-testid="user-menu-close"
                 onClose={handleCloseUserMenu}
               >
                 {
@@ -159,6 +162,7 @@ export default function BaseHeader({ OnLogoutClicked }) {
                     <Button
                       variant="text"
                       sx={styles.buttonProfileMenu}
+                      data-testid="user-logout"
                       startIcon={<LogoutIcon />}
                       onClick={() => {
                         OnLogoutClicked(router);
