@@ -127,7 +127,7 @@ export default function ForgotPasswordPage() {
         // Handle success to call API
         confirmationFormProps = {
           title: t("titlePasswordReset"),
-          subtitle: `Check ${userCommunicationCode} for an email to reset your password.`,
+          subtitle: `Check ${userCommunicationCode} for a link to reset your password.`,
           description: t("descriptionPasswordResetSuccess"),
           postMessage: `Link sent to your ${modeOfCommuication.toLowerCase()}`,
           successPostMessage: true,
