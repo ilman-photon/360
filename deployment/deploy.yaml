@@ -18,7 +18,7 @@ spec:
         app: frontend
     spec:
       containers:
-      - image: 056640875000.dkr.ecr.us-east-1.amazonaws.com/photon-ecp-ppp-qa:ecp-frontend-TAG
+      - image: 056640875000.dkr.ecr.us-east-1.amazonaws.com/photon-ecp-ppp-dev:ecp-frontend-TAG
         name: frontend
         imagePullPolicy: Always
         resources: {}

@@ -44,7 +44,6 @@ export const FormMessage = ({ ...props }, ref) => {
             lineHeight: "24px",
             letterSpacing: "0.0016em",
           }}
-          data-testid="submission-message"
         >
           {props.title ? (
             <div style={{ fontWeight: "bold" }}>{props.title}</div>

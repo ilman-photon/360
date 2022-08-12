@@ -1,77 +1,50 @@
 import axios from "axios";
 export class Api {
-  getResponse(url, postbody, method) {
+  client;
+  constructor(url) {
+    this.client = axios.create({
+      baseURL: process.env.NEXT_PUBLIC_API_URL,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      timeout: 10000,
+    });
+  }
+
+  getResponse(url, postbody) {
+    const api = new Api();
     return new Promise((resolve, reject) => {
-      const client = axios.create({
-        baseURL: process.env.NEXT_PUBLIC_API_URL,
-        headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
-        },
-        timeout: 10000,
-      });
-      if (client[method]) {
-        client[method](url, postbody)
-          .then(function (response) {
-            if (response && response.data) {
-              resolve(response.data);
-            } else {
-              reject(response);
-            }
-          })
-          .catch(function (err) {
-            if (err && err.response && err.response.data) {
-              reject(err.response.data);
-            } else {
-              reject(err);
-            }
-          });
-      } else {
-        reject(new Error("Error http request method"));
-      }
+      api.client
+        .post(url, postbody)
+        .then(function (response) {
+          if (response && response.data) {
+            resolve(response.data);
+          } else {
+            reject(response);
+          }
+        })
+        .catch(function (err) {
+          if (err && err.response && err.response.data) {
+            reject(err.response.data);
+          } else {
+            reject(err);
+          }
+        });
     });
   }
 
   logout(postbody) {
-    const url = "/ecp/patient/logout";
-    return this.forgotFeatureValidation(url, postbody, "post", 2005);
-  }
-
-  login(postbody) {
-    const url = "/ecp/patient/login";
-    return this.forgotFeatureValidation(url, postbody, "post", 2000);
-  }
-
-  validateUserName(postbody) {
-    const url = "/ecp/patient/validate";
-    return this.forgotFeatureValidation(url, postbody, "post");
-  }
-
-  resetPassword(postbody) {
-    const url = "/ecp/patient/resetPassword";
-    return this.forgotFeatureValidation(url, postbody, "post");
-  }
-
-  oneTimeLink(postbody) {
-    const url = "/ecp/patient/onetimelink";
-    return this.forgotFeatureValidation(url, postbody, "post");
-  }
-
-  updatePassword(postbody) {
-    const url = "/ecp/patient/updatepassword";
-    return this.forgotFeatureValidation(url, postbody, "post");
-  }
-
-  forgotFeatureValidation(url, postbody, method, expectedCode) {
-    if (!expectedCode) {
-      expectedCode = 1000;
-    }
+    const api = new Api();
+    const url =
+      "http://a82a5fdbdd77040d6b7a58563b3620f8-1670930037.us-east-1.elb.amazonaws.com/ecp/patient/logout";
     return new Promise((resolve, reject) => {
-      this.getResponse(url, postbody, method)
+      api
+        .getResponse(url, postbody)
         .then(function (data) {
           const responseCode = data.ResponseCode;
           const responseType = data.ResponseType;
-          if (responseCode === expectedCode && responseType === "success") {
+          if (responseCode === 2005 && responseType === "success") {
             resolve(data);
           } else {
             reject(data);
@@ -83,13 +56,123 @@ export class Api {
     });
   }
 
-  tokenValidation(postbody, isResetPassword) {
-    let url = "/ecp/patient/oneTimeLinkToken";
-    if (isResetPassword) {
-      url = "/ecp/patient/resetPasswordToken";
-    }
+  login(postbody) {
+    const api = new Api();
+    const url =
+      "http://a82a5fdbdd77040d6b7a58563b3620f8-1670930037.us-east-1.elb.amazonaws.com/ecp/patient/login";
     return new Promise((resolve, reject) => {
-      this.getResponse(url, postbody, "post")
+      api
+        .getResponse(url, postbody)
+        .then(function (data) {
+          const responseCode = data.ResponseCode;
+          const responseType = data.ResponseType;
+          if (responseCode === 2000 && responseType === "success") {
+            resolve(data);
+          } else {
+            reject(data);
+          }
+        })
+        .catch(function (err) {
+          reject(err);
+        });
+    });
+  }
+
+  validateUserName(postbody) {
+    const api = new Api();
+    const url =
+      "http://a82a5fdbdd77040d6b7a58563b3620f8-1670930037.us-east-1.elb.amazonaws.com/ecp/patient/validate";
+    return new Promise((resolve, reject) => {
+      api
+        .getResponse(url, postbody)
+        .then(function (data) {
+          const responseCode = data.ResponseCode;
+          const responseType = data.ResponseType;
+          if (responseCode === 1000 && responseType === "success") {
+            resolve(data);
+          } else {
+            reject(data);
+          }
+        })
+        .catch(function (err) {
+          reject(err);
+        });
+    });
+  }
+
+  resetPassword(postbody) {
+    const api = new Api();
+    const url =
+      "http://a82a5fdbdd77040d6b7a58563b3620f8-1670930037.us-east-1.elb.amazonaws.com/ecp/patient/resetPassword";
+    return new Promise((resolve, reject) => {
+      api
+        .getResponse(url, postbody)
+        .then(function (data) {
+          const responseCode = data.ResponseCode;
+          const responseType = data.ResponseType;
+          if (responseCode === 1000 && responseType === "success") {
+            resolve(data);
+          } else {
+            reject(data);
+          }
+        })
+        .catch(function (err) {
+          reject(err);
+        });
+    });
+  }
+
+  oneTimeLink(postbody) {
+    const api = new Api();
+    const url =
+      "http://a82a5fdbdd77040d6b7a58563b3620f8-1670930037.us-east-1.elb.amazonaws.com/ecp/patient/onetimelink";
+    return new Promise((resolve, reject) => {
+      api
+        .getResponse(url, postbody)
+        .then(function (data) {
+          const responseCode = data.ResponseCode;
+          const responseType = data.ResponseType;
+          if (responseCode === 1000 && responseType === "success") {
+            resolve(data);
+          } else {
+            reject(data);
+          }
+        })
+        .catch(function (err) {
+          reject(err);
+        });
+    });
+  }
+
+  updatePassword(postbody) {
+    const api = new Api();
+    const url =
+      "http://a82a5fdbdd77040d6b7a58563b3620f8-1670930037.us-east-1.elb.amazonaws.com/ecp/patient/updatepassword";
+    return new Promise((resolve, reject) => {
+      api
+        .getResponse(url, postbody)
+        .then(function (data) {
+          const responseCode = data.ResponseCode;
+          const responseType = data.ResponseType;
+          if (responseCode === 1000 && responseType === "success") {
+            resolve(data);
+          } else {
+            reject(data);
+          }
+        })
+        .catch(function (err) {
+          reject(err);
+        });
+    });
+  }
+
+  oneTimeLinkValidation(postbody) {
+    const api = new Api();
+    const url =
+      "http://a82a5fdbdd77040d6b7a58563b3620f8-1670930037.us-east-1.elb.amazonaws.com/ecp/patient/oneTimeLinkToken";
+    return new Promise((resolve, reject) => {
+      api
+        .getResponse(url, postbody)
         .then(function (data) {
           if (data) {
             resolve(data);
@@ -99,6 +182,46 @@ export class Api {
         })
         .catch(function (err) {
           reject(err);
+        });
+    });
+  }
+
+  resetPasswordValidation(postbody) {
+    const api = new Api();
+    const url =
+      "http://a82a5fdbdd77040d6b7a58563b3620f8-1670930037.us-east-1.elb.amazonaws.com/ecp/patient/resetPasswordToken";
+    return new Promise((resolve, reject) => {
+      api
+        .getResponse(url, postbody)
+        .then(function (data) {
+          if (data) {
+            resolve(data);
+          } else {
+            reject(data);
+          }
+        })
+        .catch(function (err) {
+          reject(err);
+        });
+    });
+  }
+
+  providerForgotPassword(postbody) {
+    const api = new Api();
+    const url =
+      "http://a82a5fdbdd77040d6b7a58563b3620f8-1670930037.us-east-1.elb.amazonaws.com/ecp/provider/forgot-password";
+    return new Promise((resolve, reject) => {
+      api.client
+        .post(url, postbody)
+        .then(function (response) {
+          if (response && response.status === 200) {
+            resolve(response.response);
+          } else {
+            reject(response.response);
+          }
+        })
+        .catch(function (err) {
+          reject(err.response);
         });
     });
   }
