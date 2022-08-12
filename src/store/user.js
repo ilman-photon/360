@@ -32,6 +32,13 @@ const DEFAULT_USER_DATA = {
   age: "49",
   gender: "Male",
   preferredCommunication: "both",
+  relationship: "",
+  insurancePriority: "",
+  planName: "",
+  subscriberMember: "",
+  groupId: "",
+  isSubscriber: "",
+  relationship: "",
 };
 
 const userSlice = createSlice({

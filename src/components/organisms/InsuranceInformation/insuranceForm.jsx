@@ -16,14 +16,17 @@ import { StyledInput } from "../../atoms/Input/input";
 import { colors } from "../../../styles/theme";
 import FormLabel from "@mui/material/FormLabel";
 
-import * as React from "react";
+// import * as React from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Regex } from "../../../utils/regex";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import SelectOptionButton from "../../atoms/SelectOptionButton/selectOptionButton";
 import { ImageUploader } from "../../molecules/ImageUploader/imageUploader";
+import { StyledSelect } from "../../atoms/Select/select";
 
 export default function InsuranceForm({
+  userData = {},
   isEditing = true,
   OnSaveClicked = () => {
     // This is intended
@@ -32,40 +35,35 @@ export default function InsuranceForm({
     // This is intended
   },
 }) {
-  const DEFAULT_CONTACT_INFO = {
-    email: "",
-    mobile: "",
-    address: "",
-    city: "",
-    state: "",
-    zip: "",
-    preferredCommunication: "both",
-  };
-
   const { handleSubmit, control, watch, reset } = useForm({
-    defaultValues: DEFAULT_CONTACT_INFO,
+    defaultValues: {}, // Object.assign({}, userData),
   });
 
-  const priorityOptions = [
-    { label: "Primary", value: "Primary" },
-    { label: "Secondary", value: "Secondary" },
-    { label: "Tertiary", value: "Tertiary" },
+  console.log({ userData }, "from");
+
+  useEffect(() => {
+    if (userData) reset(userData);
+  }, [userData]);
+
+  const isSubsciberOptions = [
+    { label: "Yes", value: "yes" },
+    { label: "No", value: "no" },
   ];
 
-  const [watchedEmail, watchedMobile, watchedPreferredCommunication] = watch([
-    "email",
-    "mobile",
-    "preferredCommunication",
-  ]);
+  const priorityOptions = [
+    { label: "Primary", value: "primary" },
+    { label: "Secondary", value: "secondary" },
+    { label: "Tertiary", value: "tertiary" },
+  ];
 
   const relationshipList = ["Single", "Double"];
 
   const handleCancel = () => {
-    reset(DEFAULT_CONTACT_INFO);
     OnCancelEditClicked();
   };
 
   const onSubmit = (data) => {
+    console.log({ data }, "subb");
     OnSaveClicked(data);
   };
 
@@ -194,7 +192,7 @@ export default function InsuranceForm({
           <Grid container>
             <Grid item xs={4}>
               <Controller
-                name="group"
+                name="groupId"
                 control={control}
                 render={({
                   field: { onChange, value },
@@ -203,7 +201,7 @@ export default function InsuranceForm({
                   return (
                     <StyledInput
                       type="text"
-                      id="group"
+                      id="groupId"
                       label="Group #"
                       value={value}
                       onChange={onChange}
@@ -243,7 +241,7 @@ export default function InsuranceForm({
                     value={value}
                     onChange={onChange}
                     label="Are you the Subscriber?"
-                    options={priorityOptions}
+                    options={isSubsciberOptions}
                     helperText={error ? error.message : null}
                     tooltipContent="Test"
                   />
@@ -354,7 +352,7 @@ export default function InsuranceForm({
                   }}
                   label="Relationship"
                   labelId="Relationship-Id"
-                  id="Relationship-Id"
+                  id="relationship"
                   options={relationshipList}
                   value={value}
                   onChange={(event) => {
