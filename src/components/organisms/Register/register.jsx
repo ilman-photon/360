@@ -197,7 +197,13 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                 />
               );
             }}
-            rules={{ required: "This field is required" }}
+            rules={{
+              required: "This field is required",
+              pattern: {
+                value: Regex.noSpecialRegex,
+                message: "Incorrect format",
+              },
+            }}
           />
           <Controller
             name="lastName"
@@ -220,6 +226,10 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             }}
             rules={{
               required: "This field is required",
+              pattern: {
+                value: Regex.noSpecialRegex,
+                message: "Incorrect format",
+              },
             }}
           />
 
@@ -243,6 +253,10 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             }}
             rules={{
               required: "This field is required",
+              pattern: {
+                value: Regex.specialRegex,
+                message: "Incorrect email format",
+              },
             }}
           />
           <Controller
