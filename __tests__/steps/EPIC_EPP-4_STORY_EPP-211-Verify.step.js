@@ -1,5 +1,8 @@
-import { fireEvent, render } from "@testing-library/react";
+import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
+import MockAdapter from "axios-mock-adapter";
+import axios from "axios";
+import AuthPage from "../../src/pages/patient/login";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-211.feature", {
@@ -14,17 +17,32 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
+    let container, login;
+        const mock = new MockAdapter(axios);
+        const element = document.createElement("div");
+        const expectedResult = {
+          ResponseCode: 2000,
+          ResponseType: "success",
+          userType: "patient",
+        };
         test('Verify if user not able to login with valid credentials when account is locked.', ({ given, and, when, then }) => {
           given('user/admin user launch the \'XXX\' url', () => {
 
           });
 
           and('user/ admin user navigates to the Patient Portal application', () => {
-
+            mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
           });
 
           when('user/ admin user lands onto “Patient Login” screen', () => {
-
+            act(() => {
+              container = render(<AuthPage />, {
+                container: document.body.appendChild(element),
+                legacyRoot: true,
+              });
+            });
+            const title = container.getByText("formTitle");
+            expect("formTitle").toEqual(title.textContent);
           });
 
           and(/^user provides (.*) and Invalid (.*) for (\d+)st time$/, (arg0, arg1, arg2) => {
@@ -32,11 +50,13 @@ defineFeature(feature, (test) => {
           });
 
           and(/^user clicks on "(.*)" button$/, (arg0) => {
-
+            const login = container.getByRole("button", { name: /Login/i });
+            fireEvent.click(login);
           });
 
           then(/^user should see the message "(.*)"$/, (arg0) => {
-
+            const error = container.getByText( "Invalid username or Password, Please try again");
+            expect( "Invalid username or Password, Please try again").toEqual(error.textContent);
           });
 
           when(/^user provides (.*) and Invalid (.*) for (\d+)nd time$/, (arg0, arg1, arg2) => {
@@ -44,7 +64,8 @@ defineFeature(feature, (test) => {
           });
 
           and(/^user clicks on "(.*)" button$/, (arg0) => {
-
+            const login = container.getByRole("button", { name: /Login/i });
+            fireEvent.click(login);
           });
 
           then(/^user should see the message "(.*)"$/, (arg0) => {
@@ -56,11 +77,13 @@ defineFeature(feature, (test) => {
           });
 
           and(/^user clicks on "(.*)" button$/, (arg0) => {
-
+            const login = container.getByRole("button", { name: /Login/i });
+            fireEvent.click(login);
           });
 
           then(/^user should see the message "(.*)"$/, (arg0) => {
-
+            const error = container.getByText( "Invalid username or Password, Please try again");
+            expect( "Invalid username or Password, Please try again").toEqual(error.textContent);
           });
 
           when(/^user provides (.*) and Invalid (.*) for (\d+)st time$/, (arg0, arg1, arg2) => {
@@ -68,11 +91,13 @@ defineFeature(feature, (test) => {
           });
 
           and(/^user clicks on "(.*)" button$/, (arg0) => {
-
+            const login = container.getByRole("button", { name: /Login/i });
+            fireEvent.click(login);
           });
 
           then(/^user should see the message "(.*)"$/, (arg0) => {
-
+            const error = container.getByText( "Invalid username or Password, Please try again");
+            expect( "Invalid username or Password, Please try again").toEqual(error.textContent);
           });
 
           when(/^user provides (.*) and Invalid (.*) for (\d+)nd time$/, (arg0, arg1, arg2) => {
@@ -80,7 +105,8 @@ defineFeature(feature, (test) => {
           });
 
           and(/^user clicks on "(.*)" button$/, (arg0) => {
-
+            const login = container.getByRole("button", { name: /Login/i });
+            fireEvent.click(login);
           });
 
           then('user account should get locked', () => {
@@ -88,15 +114,22 @@ defineFeature(feature, (test) => {
           });
 
           and('user should see the message “Your account has been locked after too many failed attempts. Please contact Customer Support to unlock your account”', () => {
-
+            const error = container.getByText( "Your account has been locked after too many failed attempts. Please contact Customer Support to unlock your account");
+            expect( "Your account has been locked after too many failed attempts. Please contact Customer Support to unlock your account").toEqual(error.textContent);
           });
 
           when(/^user provides valid  (.*) and (.*) in Login Screen$/, (arg0, arg1) => {
-
+            const usernameField = container.getByLabelText("Username");
+                  const passwordField = container.getByLabelText("Password");
+                  fireEvent.change(usernameField, { target: { value: "validUsername" } });
+                  fireEvent.change(passwordField, { target: { value: "wrongPassword" } });
+                  expect(usernameField.value).toEqual("validUsername");
+                  expect(passwordField.value).not.toEqual("validPassword");
           });
 
           and(/^user clicks on "(.*)" button$/, (arg0) => {
-
+            const login = container.getByRole("button", { name: /Login/i });
+            fireEvent.click(login);
           });
 
           then('user should not able to login', () => {
@@ -104,6 +137,8 @@ defineFeature(feature, (test) => {
           });
 
           and('user should see the message “Your account has been locked after too many failed attempts. Please contact Customer Support to unlock your account”', () => {
+            const error = container.getByText( "Your account has been locked after too many failed attempts. Please contact Customer Support to unlock your account");
+            expect( "Your account has been locked after too many failed attempts. Please contact Customer Support to unlock your account").toEqual(error.textContent);
 
           });
       });
