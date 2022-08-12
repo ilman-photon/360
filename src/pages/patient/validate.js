@@ -78,14 +78,6 @@ export default function ValidatePage({ query }) {
     setShowExpiredForm(true);
   };
 
-  const onValidateQuesryParam = function () {
-    if (queryParam && queryParam.oneTimeToken) {
-      onCalledOneTimeLinkValidationAPI();
-    } else if (queryParam && queryParam.resetPasswordToken) {
-      onCalledResetPasswordValidationAPI();
-    }
-  };
-
   const onCalledOneTimeLinkValidationAPI = function () {
     const cookies = new Cookies();
     const postbody = queryParam;
@@ -115,6 +107,14 @@ export default function ValidatePage({ query }) {
       .catch(function () {
         onShowErrorPostMessage(postbody);
       });
+  };
+
+  const onValidateQuesryParam = function () {
+    if (queryParam && queryParam.oneTimeToken) {
+      onCalledOneTimeLinkValidationAPI();
+    } else if (queryParam && queryParam.resetPasswordToken) {
+      onCalledResetPasswordValidationAPI();
+    }
   };
 
   useEffect(() => {
