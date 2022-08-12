@@ -122,12 +122,12 @@ export default function ForgotPasswordPage() {
       .then(function (response) {
         const userCommunicationCode =
           modeOfCommuication.toLowerCase() === "email"
-            ? response.email
-            : response.phone;
+            ? `${response.email} for an email`
+            : `${response.phone} for a link`;
         // Handle success to call API
         confirmationFormProps = {
           title: t("titlePasswordReset"),
-          subtitle: `Check ${userCommunicationCode} for a link to reset your password.`,
+          subtitle: `Check ${userCommunicationCode} to reset your password.`,
           description: t("descriptionPasswordResetSuccess"),
           postMessage: `Link sent to your ${modeOfCommuication.toLowerCase()}`,
           successPostMessage: true,
