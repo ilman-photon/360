@@ -42,6 +42,12 @@ test:
    dependencies:
        - install
    coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+   artifacts:
+       name: "artifacts"
+       untracked: true
+      #  expire_in: 10 days
+       paths:
+         - coverage
 
 # build:
 #    stage: build
