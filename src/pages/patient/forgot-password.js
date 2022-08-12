@@ -137,6 +137,9 @@ export default function ForgotPasswordPage() {
           },
           butttonMode: constants.SECONDARY,
           buttonLabel: "Back to Login",
+          onCTAButtonClicked: function ({ data, router }) {
+            router.push("/patient/login");
+          },
         };
         setShowPostMessage(true);
       })
@@ -170,6 +173,7 @@ export default function ForgotPasswordPage() {
             ? t("answerSecurityQuestionsLabel")
             : t("receiveLinkToResetPasswordLabel"),
           additional: null,
+          butttonMode: constants.PRIMARY,
           onCTAButtonClicked: function () {
             onContinueButtonClicked(
               patientData.securityQuestionsSet
@@ -211,13 +215,14 @@ export default function ForgotPasswordPage() {
         confirmationFormProps.buttonIcon = (
           <InsertLinkIcon sx={{ marginRight: "10px" }} />
         );
-        confirmationFormProps.onCTAButtonClicked = function ({ data }) {
-          const modeComunication =
-            data[constants.MODE_COMMUNICATION_KEY] === constants.EMAIL
-              ? "email"
-              : "phone";
-          onCalledResetPasswordAPI(modeComunication);
-        };
+        (confirmationFormProps.butttonMode = constants.PRIMARY),
+          (confirmationFormProps.onCTAButtonClicked = function ({ data }) {
+            const modeComunication =
+              data[constants.MODE_COMMUNICATION_KEY] === constants.EMAIL
+                ? "email"
+                : "phone";
+            onCalledResetPasswordAPI(modeComunication);
+          });
       } else {
         //Call service for password reset
         onCalledResetPasswordAPI(patientData.preferredComunication);
@@ -235,9 +240,10 @@ export default function ForgotPasswordPage() {
         confirmationFormProps.buttonIcon = (
           <InsertLinkIcon sx={{ marginRight: "10px" }} />
         );
-        confirmationFormProps.onCTAButtonClicked = function () {
-          onCalledOneTimeLinkAPI();
-        };
+        (confirmationFormProps.butttonMode = constants.PRIMARY),
+          (confirmationFormProps.onCTAButtonClicked = function () {
+            onCalledOneTimeLinkAPI();
+          });
       } else {
         //Call service for one time link
         onCalledOneTimeLinkAPI();
