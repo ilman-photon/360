@@ -6,26 +6,26 @@ import { Api } from "../../api/api";
 import RESPONSE_MESSAGES from "../../../utils/responseCodes";
 import { Box } from "@mui/material";
 import globalStyles from "../../../styles/Global.module.scss";
+import Cookies from "universal-cookie";
+import { useRouter } from "next/router";
 export default function CreateAccountPage() {
   const dispatch = useDispatch();
+  // const router = useRouter()
+  const cookies = new Cookies();
+  const api = new Api();
 
   const formMessage = useSelector((state) => state.index.formMessage);
 
-  const OnRegisterClicked = async function (postbody, _router) {
+  const OnRegisterClicked = async function (postbody) {
     try {
       dispatch(resetFormMessage());
-      const api = new Api();
+      await api.client.post("/userregistration", postbody);
+      cookies.set("authorized", true, { path: "/patient" });
 
-      const response = await api.client.post("/userregistration", postbody);
-      const successMessage = RESPONSE_MESSAGES[response.data.ResponseCode];
+      const hostname = window.location.origin;
+      window.location.href = `${hostname}/patient`;
 
-      dispatch(
-        setFormMessage({
-          success: true,
-          title: successMessage.title,
-          content: successMessage.content,
-        })
-      );
+      // router.push('/patient')
     } catch (err) {
       if (err.response) {
         const errorMessage = RESPONSE_MESSAGES[err.response.data.ResponseCode];

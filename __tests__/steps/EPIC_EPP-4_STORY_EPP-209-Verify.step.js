@@ -1,5 +1,7 @@
-import { fireEvent, render } from "@testing-library/react";
+import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
+import MockAdapter from "axios-mock-adapter";
+import axios from "axios";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-209.feature", {
@@ -14,20 +16,27 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    let container;
+    let container, login;
+    const mock = new MockAdapter(axios);
+    const element = document.createElement("div");
     given("Admin launch the \'XXX\' url", () => {
       expect(true).toBeTruthy()
     });
 
     and("Admin navigates to the Patient Portal application", () => {
-        expect(true).toBeTruthy()
+      const expectedResult = {
+        ResponseCode: 2001,
+        ResponseType: "failure",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     when('Admin lands onto E360+ \“Patient Login\” screen', () => {
         expect(true).toBeTruthy()
     });
     and('Admin provides valid \"<Email>\" and valid \"<password>\"', () => {
-          expect(true).toBeTruthy()
+      expect(true).toBeTruthy()
     });
     and("Admin click \'Login\' button.", () => {
         expect(true).toBeTruthy()
