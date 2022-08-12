@@ -122,19 +122,23 @@ export default function ForgotPasswordPage() {
       .then(function (response) {
         const userCommunicationCode =
           modeOfCommuication.toLowerCase() === "email"
-            ? response.email
-            : response.phone;
+            ? `${response.email} for an email`
+            : `${response.phone} for a link`;
         // Handle success to call API
         confirmationFormProps = {
           title: t("titlePasswordReset"),
-          subtitle: `Check ${userCommunicationCode} for an email to reset your password.`,
+          subtitle: `Check ${userCommunicationCode} to reset your password.`,
           description: t("descriptionPasswordResetSuccess"),
           postMessage: `Link sent to your ${modeOfCommuication.toLowerCase()}`,
           successPostMessage: true,
           buttonLabel: t("primaryButtonTextPasswordResetSuccess"),
-          additional: null,
-          onCTAButtonClicked: function () {
-            onContinueButtonClicked(constants.ONE_TIME_LINK);
+          additional: function (control) {
+            return <></>;
+          },
+          butttonMode: constants.SECONDARY,
+          buttonLabel: "Back to Login",
+          onCTAButtonClicked: function ({ data, router }) {
+            router.push("/patient/login");
           },
         };
         setShowPostMessage(true);
@@ -169,6 +173,7 @@ export default function ForgotPasswordPage() {
             ? t("answerSecurityQuestionsLabel")
             : t("receiveLinkToResetPasswordLabel"),
           additional: null,
+          butttonMode: constants.PRIMARY,
           onCTAButtonClicked: function () {
             onContinueButtonClicked(
               patientData.securityQuestionsSet
@@ -210,13 +215,14 @@ export default function ForgotPasswordPage() {
         confirmationFormProps.buttonIcon = (
           <InsertLinkIcon sx={{ marginRight: "10px" }} />
         );
-        confirmationFormProps.onCTAButtonClicked = function ({ data }) {
-          const modeComunication =
-            data[constants.MODE_COMMUNICATION_KEY] === constants.EMAIL
-              ? "email"
-              : "phone";
-          onCalledResetPasswordAPI(modeComunication);
-        };
+        (confirmationFormProps.butttonMode = constants.PRIMARY),
+          (confirmationFormProps.onCTAButtonClicked = function ({ data }) {
+            const modeComunication =
+              data[constants.MODE_COMMUNICATION_KEY] === constants.EMAIL
+                ? "email"
+                : "phone";
+            onCalledResetPasswordAPI(modeComunication);
+          });
       } else {
         //Call service for password reset
         onCalledResetPasswordAPI(patientData.preferredComunication);
@@ -234,9 +240,10 @@ export default function ForgotPasswordPage() {
         confirmationFormProps.buttonIcon = (
           <InsertLinkIcon sx={{ marginRight: "10px" }} />
         );
-        confirmationFormProps.onCTAButtonClicked = function () {
-          onCalledOneTimeLinkAPI();
-        };
+        (confirmationFormProps.butttonMode = constants.PRIMARY),
+          (confirmationFormProps.onCTAButtonClicked = function () {
+            onCalledOneTimeLinkAPI();
+          });
       } else {
         //Call service for one time link
         onCalledOneTimeLinkAPI();
