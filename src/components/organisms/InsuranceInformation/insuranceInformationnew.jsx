@@ -25,8 +25,9 @@ import InsuranceForm from "./insuranceForm";
 import InsuranceView from "./insuranceView";
 
 export default function InsuranceDocument({
+  userData = {},
   isEditing = true,
-  OnSaveClicked = (data) => {
+  OnSaveClicked = () => {
     // This is intended
   },
   OnCancelEditClicked = () => {
@@ -46,28 +47,11 @@ export default function InsuranceDocument({
     preferredCommunication: "both",
   };
 
-  const { handleSubmit, control, watch, reset } = useForm({
-    defaultValues: DEFAULT_CONTACT_INFO,
-  });
-
   const priorityOptions = [
     { label: "Primary", value: "Primary" },
     { label: "Secondary", value: "Secondary" },
     { label: "Tertiary", value: "Tertiary" },
   ];
-
-  const [watchedEmail, watchedMobile, watchedPreferredCommunication] = watch([
-    "email",
-    "mobile",
-    "preferredCommunication",
-  ]);
-
-  const relationshipList = ["Single", "Double"];
-
-  const handleCancel = () => {
-    reset(DEFAULT_CONTACT_INFO);
-    OnCancelEditClicked();
-  };
 
   const onSubmit = (data) => {
     OnSaveClicked(data);
@@ -83,12 +67,14 @@ export default function InsuranceDocument({
       <InsuranceView
         isEditing={isEditing}
         OnEditClicked={(_) => OnEditClicked(true)}
+        userData={userData}
       />
 
       <InsuranceForm
         isEditing={isEditing}
         OnCancelEditClicked={(_) => OnCancelEditClicked(false)}
         OnSaveClicked={(_) => OnSaveClicked(false)}
+        userData={userData}
       />
     </AccountCard>
   );

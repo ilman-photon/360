@@ -16,14 +16,17 @@ import { StyledInput } from "../../atoms/Input/input";
 import { colors } from "../../../styles/theme";
 import FormLabel from "@mui/material/FormLabel";
 
-import * as React from "react";
+// import * as React from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import { Regex } from "../../../utils/regex";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import SelectOptionButton from "../../atoms/SelectOptionButton/selectOptionButton";
 import { ImageUploader } from "../../molecules/ImageUploader/imageUploader";
+import { StyledSelect } from "../../atoms/Select/select";
 
 export default function InsuranceForm({
+  userData = {},
   isEditing = true,
   OnSaveClicked = () => {
     // This is intended
@@ -32,19 +35,15 @@ export default function InsuranceForm({
     // This is intended
   },
 }) {
-  const DEFAULT_CONTACT_INFO = {
-    email: "",
-    mobile: "",
-    address: "",
-    city: "",
-    state: "",
-    zip: "",
-    preferredCommunication: "both",
-  };
-
   const { handleSubmit, control, watch, reset } = useForm({
-    defaultValues: DEFAULT_CONTACT_INFO,
+    defaultValues: userData, // Object.assign({}, userData),
   });
+
+  console.log({ userData }, "from");
+
+  useEffect(() => {
+    if (userData) reset(userData);
+  }, [userData]);
 
   const priorityOptions = [
     { label: "Primary", value: "Primary" },
@@ -61,11 +60,12 @@ export default function InsuranceForm({
   const relationshipList = ["Single", "Double"];
 
   const handleCancel = () => {
-    reset(DEFAULT_CONTACT_INFO);
+    reset(userData);
     OnCancelEditClicked();
   };
 
   const onSubmit = (data) => {
+    console.log({ data }, "subb");
     OnSaveClicked(data);
   };
 

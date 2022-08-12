@@ -6,10 +6,11 @@ import { colors } from "../../../styles/theme";
 import AccountCard from "../../molecules/AccountCard/accountCard";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
-import * as React from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 
 export default function InsuranceForm({
+  userData = {},
   isEditing = true,
   OnEditClicked = () => {
     // This is intentional
@@ -28,6 +29,13 @@ export default function InsuranceForm({
     preferredCommunication: "both",
   };
 
+  console.log({ userData }, "view");
+
+  const handleCancel = () => {
+    reset(userData);
+    OnCancelEditClicked();
+  };
+
   const { handleSubmit, control, watch, reset } = useForm({
     defaultValues: DEFAULT_CONTACT_INFO,
   });
@@ -38,16 +46,9 @@ export default function InsuranceForm({
     { label: "Tertiary", value: "Tertiary" },
   ];
 
-  const [watchedEmail, watchedMobile, watchedPreferredCommunication] = watch([
-    "email",
-    "mobile",
-    "preferredCommunication",
-  ]);
-
-  const handleCancel = () => {
-    reset(DEFAULT_CONTACT_INFO);
-    OnCancelEditClicked();
-  };
+  useEffect(() => {
+    if (userData) reset(userData);
+  }, [userData]);
 
   const onSubmit = (data) => {
     OnSaveClicked(data);
@@ -63,45 +64,55 @@ export default function InsuranceForm({
       <Stack spacing={3} divider={<Divider />}>
         <Grid container>
           <Grid item xs={4} p={0}>
-            <LabelWithInfo label="Insurance Provider">Aetna</LabelWithInfo>
+            <LabelWithInfo label="Insurance Provider">
+              {userData.name}
+            </LabelWithInfo>
           </Grid>
 
           <Grid item xs={4} p={0}>
-            <LabelWithInfo label="Plan Name">Southern</LabelWithInfo>
+            <LabelWithInfo label="Plan Name">{userData.planName}</LabelWithInfo>
           </Grid>
 
           <Grid item xs={4} p={0}>
             <LabelWithInfo label="Subscriber ID/Member ID">
-              Southern
+              {userData.subscriberId}
             </LabelWithInfo>
           </Grid>
         </Grid>
 
-        <LabelWithInfo label="Group #">12321</LabelWithInfo>
+        <LabelWithInfo label="Group #">{userData.groupId}</LabelWithInfo>
 
         <div>
           <Typography variant="h3" sx={{ pb: 2, color: colors.black }}>
             Policy Holder
           </Typography>
 
-          <LabelWithInfo label="Are you the  Subscriber?">No</LabelWithInfo>
+          <LabelWithInfo label="Are you the  Subscriber?">
+            {userData.isSubscriber}
+          </LabelWithInfo>
         </div>
 
         <Grid container>
           <Grid item xs={4} p={0}>
-            <LabelWithInfo label="First Name">Aetna</LabelWithInfo>
+            <LabelWithInfo label="First Name">
+              {userData.firstName}
+            </LabelWithInfo>
           </Grid>
 
           <Grid item xs={4} p={0}>
-            <LabelWithInfo label="Last Name">Southern</LabelWithInfo>
+            <LabelWithInfo label="Last Name">{userData.lastName}</LabelWithInfo>
           </Grid>
 
           <Grid item xs={4} p={0}>
-            <LabelWithInfo label="Date of Birth">01/01/1980</LabelWithInfo>
+            <LabelWithInfo label="Date of Birth">
+              {new Date(userData.dob).toLocaleDateString()}
+            </LabelWithInfo>
           </Grid>
         </Grid>
 
-        <LabelWithInfo label="Relationship">---</LabelWithInfo>
+        <LabelWithInfo label="Relationship">
+          {userData.relationship}
+        </LabelWithInfo>
 
         <div>
           <Typography variant="bodyRegular" sx={{ pb: 3 }} component="div">
@@ -119,7 +130,9 @@ export default function InsuranceForm({
           </Grid>
         </div>
 
-        <LabelWithInfo label="Insurance Priority">Primary</LabelWithInfo>
+        <LabelWithInfo label="Insurance Priority">
+          {userData.primary}
+        </LabelWithInfo>
 
         <Stack
           direction="row"
