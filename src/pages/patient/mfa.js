@@ -15,10 +15,12 @@ export default function MfaPage() {
   const router = useRouter();
   const [componentName, setComponentName] = React.useState("");
   const [rememberMe, setRememberMe] = React.useState(false);
+  const [mfaCode, setMfaCode] = React.useState("");
   const [successSubmit, setSuccessSubmit] = React.useState(false);
   const [securityQuestionList, setSecurityQuestionList] = React.useState([]);
 
   function onConfirmClicked() {
+    setMfaCode("1234");
     setComponentName(constants.MFA_COMPONENT_NAME);
   }
 
@@ -36,17 +38,18 @@ export default function MfaPage() {
   function onSubmitClicked(callback) {
     //TODO: Call service
 
-    //sucess submit MFA, show security question
-    onShowSecurityQuestionForm();
-
-    //redirectToDashboard()
-    // callback({
-    //   status: "failed",
-    //   message: {
-    //     title: "Incorrect Code.",
-    //     description: "Please try again.",
-    //   },
-    // });
+    if (inputMfaCode === mfaCode) {
+      onShowSecurityQuestionForm();
+    } else {
+      callback({
+        status: "failed",
+        isLock: false,
+        message: {
+          title: "Incorrect Code.",
+          description: "Please try again.",
+        },
+      });
+    }
   }
 
   function onResendCodeClicked(callback) {
