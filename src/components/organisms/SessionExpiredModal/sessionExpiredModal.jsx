@@ -1,31 +1,29 @@
 import React, { useState, useEffect } from "react";
-import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
-import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import { StyledButton } from "../../atoms/Button/button";
 import { Box } from "@mui/material";
 import { styles } from "./styles";
+import { useRouter } from "next/router";
+import Cookies from "universal-cookie";
 
-function SessionExpiredModal({ showModal = false }) {
-  const [isExpired, setExpired] = useState(false);
-
-  let timer;
-  const validateErrorPassword = function () {
-    window.clearTimeout(timer);
-    timer = window.setTimeout(function () {
-      setExpired(true);
-      window.clearTimeout(timer);
-    }, 60000);
+function SessionExpiredModal({
+  showModal = false,
+  onStayLoggedIn = () => {},
+  isExpired = false,
+  remaining = 0,
+  onLoggedOff = () => {},
+}) {
+  const router = useRouter();
+  const onLoggedOffClicked = () => {
+    const cookies = new Cookies();
+    cookies.remove("authorized", { path: "/patient" });
+    router.push("/patient");
+    onLoggedOff();
   };
-
-  useEffect(() => {
-    validateErrorPassword();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <Dialog
@@ -47,7 +45,7 @@ function SessionExpiredModal({ showModal = false }) {
       >
         <FormMessage success={false} sx={styles.postMessage}>
           {!isExpired
-            ? "Your session is about to time-out. You will be logged out in 60 seconds."
+            ? `Your session is about to time-out. You will be logged out in ${remaining} seconds.`
             : "Your session expired. Please login again."}
         </FormMessage>
       </DialogContent>
@@ -60,6 +58,7 @@ function SessionExpiredModal({ showModal = false }) {
               size="small"
               gradient={false}
               style={styles.buttonStyle}
+              onClick={onLoggedOffClicked}
             >
               Log Off
             </StyledButton>
@@ -69,6 +68,7 @@ function SessionExpiredModal({ showModal = false }) {
               size="small"
               gradient={false}
               style={styles.buttonStyle}
+              onClick={onStayLoggedIn}
             >
               Stay Logged in
             </StyledButton>
@@ -81,6 +81,7 @@ function SessionExpiredModal({ showModal = false }) {
               size="small"
               gradient={false}
               style={styles.buttonStyle}
+              onClick={onLoggedOffClicked}
             >
               OK
             </StyledButton>
