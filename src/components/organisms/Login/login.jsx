@@ -118,6 +118,7 @@ export default function Login({
             <Grid container justifyContent={constants.FLEX_END}>
               <Link
                 className={styles.link}
+                data-testid="forgot-link"
                 onClick={function () {
                   OnForgotPasswordClicked(router);
                 }}

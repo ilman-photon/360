@@ -1,7 +1,9 @@
-import { fireEvent, render } from "@testing-library/react";
+import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
-import LoginPage from "../../src/pages/patient/login";
-
+import Login from "../../src/components/organisms/Login/login";
+import  AuthPage from "../../src/pages/patient/login"; 
+import MockAdapter from "axios-mock-adapter";
+import axios from "axios";
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-207.feature", {
     tagFilter: '@included and not @excluded'
@@ -15,23 +17,43 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    let container;
-    given("user launch the 'XXX' url", () => {
+    let container, login;
+    const mock = new MockAdapter(axios);
+    const element = document.createElement("div");
+    given("user launch the \'XXX\' url", () => {
       expect(true).toBeTruthy()
     });
 
     and("user navigates to the Patient Portal application", () => {
-        expect(true).toBeTruthy()
+      const expectedResult = {
+        ResponseCode: 2001,
+        ResponseType: "failure",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
-    when(`user lands onto \“Patient Login\” screen`, () => {
-        expect(true).toBeTruthy()
+    when("user lands onto “Patient Login” screen", () => {
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
     and('user provides valid "<Email or Phone Number>" and valid "<password>"', () => {
-          expect(true).toBeTruthy()
+      const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, { target: { value: "wrongUserName" } });
+        fireEvent.change(passwordField, { target: { value: "validPassword" } });
+        expect(usernameField.value).not.toEqual("validUsername");
+        expect(passwordField.value).toEqual("validPassword");
     });
     and("user click 'Login' button.", () => {
-        expect(true).toBeTruthy()
+      const login = container.getByRole("button", { name: /Login/i });
+      fireEvent.click(login);
     });
 
     then(
@@ -47,23 +69,39 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    let container;
+    let container, login;
+    const mock = new MockAdapter(axios);
+    const element = document.createElement("div");
+    
     given("user launch the 'XXX' url", () => {
       expect(true).toBeTruthy()
     });
   
     and("user navigates to the Patient Portal application", () => {
-        expect(true).toBeTruthy()
+      const expectedResult = {
+        ResponseCode: 2001,
+        ResponseType: "failure",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
   
     when(`user lands onto “Patient Login” screen`, () => {
-        expect(true).toBeTruthy()
+      container = render(<AuthPage />);
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
     and('user provides valid "<Email>" and valid"<password>"', () => {
-      expect(true).toBeTruthy()
+      const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, { target: { value: "wrongUserName" } });
+        fireEvent.change(passwordField, { target: { value: "validPassword" } });
+        expect(usernameField.value).not.toEqual("validUsername");
+        expect(passwordField.value).toEqual("validPassword");
     });
     and("user click 'Login' button.", () => {
-      expect(true).toBeTruthy()
+      const login = container.getByRole("button", { name: /Login/i });
+      fireEvent.click(login);
     });
     then(
       'user should view Home/Dashboard page',
@@ -78,21 +116,31 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    let container;
+    let container, login;
+    const mock = new MockAdapter(axios);
+    const element = document.createElement("div");
     given("user launch the 'XXX' url", () => {
       expect(true).toBeTruthy()
     });
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy()
+      const expectedResult = {
+        ResponseCode: 2001,
+        ResponseType: "failure",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
       });
       when(`user lands onto “Patient Login” screen`, () => {
-        expect(true).toBeTruthy()
+        container = render(<AuthPage />);
+        const title = container.getByText("formTitle");
+        expect("formTitle").toEqual(title.textContent);
     });
     and('user provides valid "<Phone Number>" and valid"<password>"', () => {
       expect(true).toBeTruthy()
     });
     and('user click \'Login\' button.', () => {
-      expect(true).toBeTruthy()
+      const login = container.getByRole("button", { name: /Login/i });
+      fireEvent.click(login);
     });
     then(
       'user should view Home/Dashboard page',
@@ -107,12 +155,19 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    let container;
+    let container, login;
+    const mock = new MockAdapter(axios);
+    const element = document.createElement("div");
+    const expectedResult = {
+      ResponseCode: 2000,
+      ResponseType: "success",
+      userType: "patient",
+    };
     given("user launch the 'XXX' url", () => {
       expect(true).toBeTruthy()
     });
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy()
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
   });
 
   when(`turn off the Data`, () => {
@@ -133,12 +188,24 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    let container;
+    let container, login;
+    const mock = new MockAdapter(axios);
+    const element = document.createElement("div");
+    const expectedResult = {
+      ResponseCode: 2000,
+      ResponseType: "success",
+      userType: "patient",
+    };
     given('user user launch the \'XXX\' url', () => {
       expect(true).toBeTruthy()
     });
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy()
+      const expectedResult = {
+        ResponseCode: 2001,
+        ResponseType: "failure",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
   });
 
   when(`user lands onto “Patient Login” screen`, () => {
@@ -168,7 +235,9 @@ defineFeature(feature, (test) => {
   });
 
   when(`user lands onto “Patient Login” screen`, () => {
-      expect(true).toBeTruthy()
+    container = render(<AuthPage />);
+    const title = container.getByText("formTitle");
+    expect("formTitle").toEqual(title.textContent);
   });
   and("press the F12 button from the keyboard.", () => {
     expect(true).toBeTruthy()

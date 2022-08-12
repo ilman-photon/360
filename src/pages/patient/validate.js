@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import styles from "../../../styles/Login.module.css";
 import AuthLayout from "../../components/templates/authLayout";
 import Cookies from "universal-cookie";
 import constants from "../../utils/constants";
@@ -79,20 +78,12 @@ export default function ValidatePage({ query }) {
     setShowExpiredForm(true);
   };
 
-  const onValidateQuesryParam = function () {
-    if (queryParam && queryParam.oneTimeToken) {
-      onCalledOneTimeLinkValidationAPI();
-    } else if (queryParam && queryParam.resetPasswordToken) {
-      onCalledResetPasswordValidationAPI();
-    }
-  };
-
   const onCalledOneTimeLinkValidationAPI = function () {
     const cookies = new Cookies();
     const postbody = queryParam;
     const api = new Api();
     api
-      .oneTimeLinkValidation(postbody)
+      .tokenValidation(postbody)
       .then(function () {
         cookies.set("authorized", true, { path: "/patient" });
         const hostname = window.location.origin;
@@ -107,15 +98,23 @@ export default function ValidatePage({ query }) {
     const postbody = queryParam;
     const api = new Api();
     api
-      .resetPasswordValidation(postbody)
-      .then(function () {
+      .tokenValidation(postbody, true)
+      .then(function (response) {
         //Navigate to Update
-        const name = "Smith1@photon.com";
+        const name = response.email || "Smith1@photon.com";
         router.push(`update-password?username=${name}`);
       })
       .catch(function () {
         onShowErrorPostMessage(postbody);
       });
+  };
+
+  const onValidateQuesryParam = function () {
+    if (queryParam && queryParam.oneTimeToken) {
+      onCalledOneTimeLinkValidationAPI();
+    } else if (queryParam && queryParam.resetPasswordToken) {
+      onCalledResetPasswordValidationAPI();
+    }
   };
 
   useEffect(() => {

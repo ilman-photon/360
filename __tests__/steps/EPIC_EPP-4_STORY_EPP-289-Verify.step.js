@@ -1,5 +1,8 @@
-import { fireEvent, render } from "@testing-library/react";
+import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
+import MockAdapter from "axios-mock-adapter";
+import axios from "axios";
+import AuthPage from "../../src/pages/patient/login";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-289.feature", {
@@ -14,12 +17,20 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
+    let container, login;
+    const mock = new MockAdapter(axios);
+    const element = document.createElement("div");
     given('user launch the \'XXX\' url', () => {
       expect(true).toBeTruthy()
     });
 
-    and('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy()
+     and("user navigates to the Patient Portal application", () => {
+      const expectedResult = {
+        ResponseCode: 2001,
+        ResponseType: "failure",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     when('lands onto “Patient Login” screen', () => {
@@ -196,8 +207,15 @@ defineFeature(feature, (test) => {
 
     });
 
-    when('user lands onto “Patient Login” screen', () => {
-
+    when("user lands onto “Patient Login” screen", () => {
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     then(/^user should see (.*) field$/, (arg0) => {

@@ -88,6 +88,7 @@ const ForgotPassword = ({
             size="large"
             gradient={false}
             style={styles.margin}
+            data-testid="forgot-submit"
           >
             {t("resetPasswordText")}
           </StyledButton>
