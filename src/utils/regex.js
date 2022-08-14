@@ -8,4 +8,5 @@ export class Regex {
   static hasTripleRegex = /([a-z\\d])\\1\\1/;
   static hasAlpahabet = /^([A-Za-z ])+$/i;
   static isValidPhoneFormat = /^(\([0-9]{3}\) |[0-9]{3}-)[0-9]{3}-[0-9]{4}$/i;
+  static noSpecialRegex = /^[a-z0-9]+$/gi;
 }

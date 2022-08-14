@@ -57,7 +57,9 @@ export default function Login({
   };
 
   return (
-    <Box className={globalStyles.container}>
+    <Box
+      className={[styles.overideContainer, globalStyles.container].join(" ")}
+    >
       <Typography variant={constants.H1} className={styles.title}>
         {t("formTitle")}
       </Typography>
