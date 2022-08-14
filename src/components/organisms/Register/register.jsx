@@ -392,7 +392,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             Register
           </Button>
         </form>
-        <Link href="/patient">asdas</Link>
 
         <Typography variant="caption" style={styles.bottomParagraph}>
           By registering, you accept to our Terms &<br /> Conditions and Privacy

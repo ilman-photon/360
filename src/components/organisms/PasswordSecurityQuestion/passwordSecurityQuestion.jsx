@@ -29,15 +29,6 @@ const PasswordSecurityQuestion = ({
   const [postMessage, setPostMessage] = useState({ title: "", message: "" });
 
   const onSubmit = (data) => {
-    if (countLock >= constants.ACCOUNT_LOCK_COUNT) {
-      setPostMessage({
-        title: t("errorAccountLockTitle"),
-        message: t("errorAccountLock"),
-      });
-      setShowPostMessage(true);
-      return;
-    }
-
     let isValid = true;
     for (let i = 0; i < securityQuestionData.length; i++) {
       if (
@@ -52,8 +43,16 @@ const PasswordSecurityQuestion = ({
     }
 
     if (!isValid) {
-      setPostMessage({ title: "", message: t("errorIncorrectAnswer") });
-      setShowPostMessage(true);
+      if (countLock >= constants.ACCOUNT_LOCK_COUNT) {
+        setPostMessage({
+          title: t("errorAccountLockTitle"),
+          message: t("errorAccountLock"),
+        });
+        setShowPostMessage(true);
+      } else {
+        setPostMessage({ title: "", message: t("errorIncorrectAnswer") });
+        setShowPostMessage(true);
+      }
     } else {
       //TO DO: Navigate to update password
       onContinueButtonClicked("updatePassword", router);
