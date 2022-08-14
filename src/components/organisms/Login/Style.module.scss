@@ -22,3 +22,14 @@
 .form {
   margin: -8px;
 }
+
+.overideContainer {
+  @media (min-width: 992px) and (max-height: 720px) {
+    position: relative;
+    transform: scale(0.9);
+    margin-right: 75px !important;
+    margin-top: -100px;
+    margin-bottom: unset !important;
+    top: 10px;
+  }
+}
