@@ -22,7 +22,6 @@ export const AccountDrawer = ({
     // This is intended
   },
 }) => {
-  // const [isDrawerOpen, setIsDrawerOpen] = useState(true);
   const [isAccountDrawer, setIsAccountDrawer] = useState(false);
 
   const sidebarLinks = [

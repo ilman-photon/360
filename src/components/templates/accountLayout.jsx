@@ -6,7 +6,7 @@ import AccountSidebar from "../molecules/AccountSidebar/accountSidebar";
 import AccountTitleHeading from "../atoms/AccountTitleHeading/accountTitleHeading";
 import AccountDrawer from "../molecules/AccountDrawer/accountDrawer";
 import { patientTypography, providerTypography } from "../../styles/theme";
-import { ThemeProvider, Button } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
 import * as React from "react";
 
 //Prevent html being match between server and client
@@ -15,7 +15,7 @@ const BaseHeader = dynamic(() => import("../organisms/BaseHeader/baseHeader"), {
 });
 
 export default function Layout({ theme = "patient", children }) {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(true);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const isPatient = theme === "patient";
 
   const onClose = () => {
