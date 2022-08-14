@@ -1,11 +1,13 @@
 import Head from "next/head";
 import styles from "./accountLayout.module.scss";
 import dynamic from "next/dynamic";
-import { Suspense } from "react";
+import { useState, Suspense } from "react";
 import AccountSidebar from "../molecules/AccountSidebar/accountSidebar";
 import AccountTitleHeading from "../atoms/AccountTitleHeading/accountTitleHeading";
+import AccountDrawer from "../molecules/AccountDrawer/accountDrawer";
 import { patientTypography, providerTypography } from "../../styles/theme";
-import { ThemeProvider } from "@mui/material";
+import { ThemeProvider, Button } from "@mui/material";
+import * as React from "react";
 
 //Prevent html being match between server and client
 const BaseHeader = dynamic(() => import("../organisms/BaseHeader/baseHeader"), {
@@ -13,7 +15,13 @@ const BaseHeader = dynamic(() => import("../organisms/BaseHeader/baseHeader"), {
 });
 
 export default function Layout({ theme = "patient", children }) {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(true);
   const isPatient = theme === "patient";
+
+  const onClose = () => {
+    setIsDrawerOpen(false);
+  };
+
   return (
     <>
       <Head>
@@ -33,6 +41,7 @@ export default function Layout({ theme = "patient", children }) {
             </div>
             <div className={styles.pageContainer}>{children}</div>
           </div>
+          {isDrawerOpen ? <AccountDrawer onClose={onClose} /> : null}
         </ThemeProvider>
       </div>
     </>

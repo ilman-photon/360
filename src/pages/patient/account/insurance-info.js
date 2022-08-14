@@ -9,7 +9,6 @@ import { fetchUser, setUserData } from "../../../store/user";
 export default function CreateAccountPage() {
   const [insuranceEditing, setInsuranceEditing] = useState(true);
 
-
   const userData = useSelector((state) => state.user.userData);
 
   const onSaveInsuranceData = (payload) => {
@@ -23,12 +22,11 @@ export default function CreateAccountPage() {
     dispatch(fetchUser());
   }, [dispatch]);
 
-
   return (
     <section>
       {/* <InsuranceInformation /> */}
       <InsuranceInformationNew
-      userData={userData}
+        userData={userData}
         isEditing={insuranceEditing}
         OnEditClicked={(_) => setInsuranceEditing(true)}
         OnCancelEditClicked={(_) => setInsuranceEditing(false)}
