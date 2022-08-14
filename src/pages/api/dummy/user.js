@@ -18,10 +18,17 @@ export default function handler(req, res) {
         gender: faker.helpers.arrayElement(["Male", "Female"]),
         title: faker.helpers.arrayElement(["Mr", "Mrs"]),
         ssn: faker.datatype.number({ min: 1000000000, max: 9999999999 }),
+        mobile: faker.phone.number("(###) ###-####"),
+        email: faker.internet.email(),
         address: faker.address.streetAddress(),
         city: faker.address.city(),
         state: faker.address.state(),
-        zip: faker.address.zipCode("####"),
+        zip: faker.address.zipCode("#####"),
+        preferredCommunication: faker.helpers.arrayElement([
+          "both",
+          "email",
+          "phone",
+        ]),
       });
     }
   }

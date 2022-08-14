@@ -19,6 +19,7 @@ import { useEffect } from "react";
 import Image from "next/image";
 import { Regex } from "../../../utils/regex";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
+import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 
 export default function ContactInformation({
   userData = {},
@@ -33,16 +34,6 @@ export default function ContactInformation({
     // This is intended
   },
 }) {
-  const DEFAULT_CONTACT_INFO = {
-    email: "",
-    mobileNumber: "",
-    address: "",
-    city: "",
-    state: "",
-    zip: "",
-    preferredCommunication: "both",
-  };
-
   const { handleSubmit, control, watch, reset } = useForm({
     // defaultValues: DEFAULT_CONTACT_INFO,
     defaultValues: userData, // Object.assign({}, userData),
@@ -102,26 +93,36 @@ export default function ContactInformation({
     >
       <Fade in={!isEditing} unmountOnExit>
         <Stack spacing={3} divider={<Divider />}>
-          <LabelWithInfo label="Phone Number">(858) 183-9939</LabelWithInfo>
+          <LabelWithInfo label="Phone Number">
+            {userData.mobile ? formatPhoneNumber(userData.mobile) : ""}
+          </LabelWithInfo>
 
-          <LabelWithInfo label="Email ID">donJohn@yahoo.com</LabelWithInfo>
+          <LabelWithInfo label="Email ID">
+            {userData.email || "-"}
+          </LabelWithInfo>
 
-          <LabelWithInfo label="Address">145 Stree Main, Apt 3</LabelWithInfo>
+          <LabelWithInfo label="Address">
+            {userData.address || "-"}
+          </LabelWithInfo>
 
-          <LabelWithInfo label="City">New Jersey</LabelWithInfo>
+          <LabelWithInfo label="City">{userData.city || "-"}</LabelWithInfo>
 
           <Grid container>
             <Grid item xs={6} p={0}>
-              <LabelWithInfo label="State">New York</LabelWithInfo>
+              <LabelWithInfo label="State">
+                {userData.state || "-"}
+              </LabelWithInfo>
             </Grid>
 
             <Grid item xs={6} p={0}>
-              <LabelWithInfo label="Zip">92099</LabelWithInfo>
+              <LabelWithInfo label="Zip">{userData.zip || "-"}</LabelWithInfo>
             </Grid>
           </Grid>
 
           <LabelWithInfo label="Prefered Mode(s) of communication">
-            Mobile, Email
+            {userData.preferredCommunication === "both"
+              ? "Mobile,Email"
+              : userData.preferredCommunication || "-"}
           </LabelWithInfo>
         </Stack>
       </Fade>
