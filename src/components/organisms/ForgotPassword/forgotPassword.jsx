@@ -21,7 +21,7 @@ const ForgotPassword = ({
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "ForgotPassword" });
   const { handleSubmit, control, setError } = useForm();
-
+  const { FORGOT_TEST_ID } = constants.TEST_ID;
   const onSubmit = ({ username }) => {
     if (
       constants.REGEX_PHONE_NUMBER.test(username) ||
@@ -67,6 +67,7 @@ const ForgotPassword = ({
                   id="username"
                   variant="filled"
                   value={value}
+                  data-testid={FORGOT_TEST_ID.email}
                   onChange={(event) => {
                     onChange(event);
                     if (showPostMessage) {
@@ -88,7 +89,7 @@ const ForgotPassword = ({
             size="large"
             gradient={false}
             style={styles.margin}
-            data-testid="forgot-submit"
+            data-testid={FORGOT_TEST_ID.continueBtn}
           >
             {t("resetPasswordText")}
           </StyledButton>
@@ -96,6 +97,7 @@ const ForgotPassword = ({
         <Link
           style={{ ...styles.margin, ...styles.link }}
           color={"#2095a9"}
+          data-testid={FORGOT_TEST_ID.loginLink}
           onClick={function () {
             onBackToLoginClicked(router);
           }}
