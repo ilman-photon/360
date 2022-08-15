@@ -4,7 +4,7 @@ Feature: Patient Portal : MFA - Provide details to receive code
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-265 - Verify user should see second MFA screen with all of components (Prefered Mode of Communication both)
     Feature: Authentication - MFA
 
@@ -47,7 +47,7 @@ Feature: Patient Portal : MFA - Provide details to receive code
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-265 - Verify user should see second MFA screen with all of component (Prefered Mode of Communication Email)
     Feature: Authentication - MFA
 
@@ -89,7 +89,7 @@ Feature: Patient Portal : MFA - Provide details to receive code
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-265 - Verify user should see second MFA screen with all of component (Prefered Mode of Communication Phone)
     Feature: Authentication - MFA
 
@@ -132,7 +132,7 @@ Feature: Patient Portal : MFA - Provide details to receive code
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-265 - Verify user should be able to request new code when click on "Resend Code" button (Prefered Mode of Communication both)
     Feature: Authentication - MFA
 
@@ -175,7 +175,7 @@ Feature: Patient Portal : MFA - Provide details to receive code
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario: EPIC_EPP-3_STORY_EPP-265 - Verify user should be able to request new code when click on "Resend Code" button (Prefered Mode of Communication Email)
     Feature: Authentication - MFA
 
@@ -213,7 +213,7 @@ Feature: Patient Portal : MFA - Provide details to receive code
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-265 - Verify user should be able to request new code when click on "Resend Code" button (Prefered Mode of Communication Phone)
     Feature: Authentication - MFA
 
@@ -254,7 +254,7 @@ Feature: Patient Portal : MFA - Provide details to receive code
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-265 - Verify user should lands onto “Patient Login” screen when user click on "Back to Login" link
     Feature: Authentication - MFA
 
@@ -294,7 +294,7 @@ Feature: Patient Portal : MFA - Provide details to receive code
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-265 - Verify user should see "<Enter Code>" field is blank after reload the screen
     Feature: Authentication - MFA
 
@@ -336,7 +336,7 @@ Feature: Patient Portal : MFA - Provide details to receive code
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-265 - Verify user see error screen when internet is unavailable
     Feature: Authentication - MFA
 
@@ -378,7 +378,7 @@ Feature: Patient Portal : MFA - Provide details to receive code
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-265 - Verify user see error screen when service is unavailable
     Feature: Authentication - MFA
 
@@ -420,7 +420,7 @@ Feature: Patient Portal : MFA - Provide details to receive code
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-265 - Verify user should not see any error when user tap on F12 keyboard in console
     Feature: Authentication - MFA
 
@@ -460,7 +460,7 @@ Feature: Patient Portal : MFA - Provide details to receive code
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-265 - Verify user should see "second MFA" screen within 3 second
     Feature: Authentication - MFA
 
