@@ -86,6 +86,7 @@ export default function Container({
               mode={constants.PRIMARY}
               type="button"
               size={constants.SMALL}
+              data-testid="primary-button"
               gradient={false}
               onClick={() => {
                 onClickPrimaryButton();
@@ -99,6 +100,7 @@ export default function Container({
                 mode={constants.SECONDARY}
                 type="button"
                 size={constants.SMALL}
+                data-testid="econdary-button"
                 gradient={false}
                 onClick={() => {
                   onClickSecondaryButton();
