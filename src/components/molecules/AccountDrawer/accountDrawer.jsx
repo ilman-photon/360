@@ -30,10 +30,8 @@ export const AccountDrawer = ({
     { label: "Insurance documents", href: "/patient/account/insurance-info" },
     { label: "Multi factor authentication", href: "#" },
   ],
-  
 }) => {
   const [isAccountDrawer, setIsAccountDrawer] = useState(false);
-
 
   const MuiDrawer = styled(Drawer)(() => ({
     "& .MuiDrawer-paper": {

@@ -41,7 +41,6 @@ export default function InsuranceForm({
 
   console.log({ userData }, "from");
 
-
   const isSubsciberOptions = [
     { label: "Yes", value: "yes" },
     { label: "No", value: "no" },

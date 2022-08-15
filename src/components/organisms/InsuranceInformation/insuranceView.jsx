@@ -26,7 +26,6 @@ export default function InsuranceForm({
     defaultValues: userData.userData,
   });
 
-
   return (
     <Fade in={!isEditing} unmountOnExit>
       {/* <AccountCard
