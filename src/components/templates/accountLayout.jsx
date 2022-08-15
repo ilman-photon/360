@@ -41,7 +41,7 @@ export default function Layout({ theme = "patient", children }) {
             </div>
             <div className={styles.pageContainer}>{children}</div>
           </div>
-          {isDrawerOpen ? <AccountDrawer onClose={onClose} /> : null}
+          {/* {isDrawerOpen ? <AccountDrawer onClose={onClose} /> : null} */}
         </ThemeProvider>
       </div>
     </>

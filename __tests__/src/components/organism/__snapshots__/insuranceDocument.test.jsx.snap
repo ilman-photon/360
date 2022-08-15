@@ -1,0 +1,938 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SecurityQuestion Components SecurityQuestionrender 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
+      >
+        <div
+          class="MuiCardHeader-root cardHeader css-1ele1k2-MuiCardHeader-root"
+        >
+          <div
+            class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-h5 MuiCardHeader-title css-1qvr50w-MuiTypography-root"
+            >
+              <div>
+                <span
+                  style="margin-right: 8px; display: flex; align-items: center;"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                    data-testid="PermContactCalendarOutlinedIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M20.84 4.22c-.05-.12-.11-.23-.18-.34-.14-.21-.33-.4-.54-.54-.11-.07-.22-.13-.34-.18-.24-.1-.5-.16-.78-.16h-1V1h-2v2H8V1H6v2H5c-.42 0-.8.13-1.12.34-.21.14-.4.33-.54.54-.07.11-.13.22-.18.34-.1.24-.16.5-.16.78v14c0 1.1.89 2 2 2h14c.28 0 .54-.06.78-.16.12-.05.23-.11.34-.18.21-.14.4-.33.54-.54.21-.32.34-.71.34-1.12V5c0-.28-.06-.54-.16-.78zM5 19V5h14v14H5zm7-6.12c-2.03 0-6 1.08-6 3.58V18h12v-1.53c0-2.51-3.97-3.59-6-3.59zM8.31 16c.69-.56 2.38-1.12 3.69-1.12s3.01.56 3.69 1.12H8.31zM12 12c1.65 0 3-1.35 3-3s-1.35-3-3-3-3 1.35-3 3 1.35 3 3 3zm0-4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1z"
+                    />
+                  </svg>
+                </span>
+                <div
+                  class="title"
+                >
+                  Insurance Documents
+                </div>
+              </div>
+            </span>
+          </div>
+          <div
+            class="MuiCardHeader-action css-sgoict-MuiCardHeader-action"
+          >
+            <button
+              class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root editButton css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1xhbeow-MuiSvgIcon-root"
+                data-testid="EditOutlinedIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="m14.06 9.02.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"
+                />
+              </svg>
+              <div
+                style="margin-left: 4px;"
+                type="link"
+              >
+                Edit
+              </div>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+        <div
+          class="MuiCardContent-root css-o8l425-MuiCardContent-root"
+        >
+          <div
+            class="css-1lwbda4-MuiStack-root"
+            style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-18wgjoz-MuiGrid-root"
+              >
+                <div
+                  class="css-1p5q5e5-MuiStack-root"
+                >
+                  <div
+                    class="labelContainer"
+                  >
+                    <div
+                      class="label"
+                    >
+                      Insurance Provider
+                    </div>
+                  </div>
+                  <div
+                    class="css-1okj3ks-MuiStack-root"
+                  >
+                    <div
+                      style="margin-top: 10px;"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-18wgjoz-MuiGrid-root"
+              >
+                <div
+                  class="css-1p5q5e5-MuiStack-root"
+                >
+                  <div
+                    class="labelContainer"
+                  >
+                    <div
+                      class="label"
+                    >
+                      Plan Name
+                    </div>
+                  </div>
+                  <div
+                    class="css-1okj3ks-MuiStack-root"
+                  >
+                    <div
+                      style="margin-top: 10px;"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-18wgjoz-MuiGrid-root"
+              >
+                <div
+                  class="css-1p5q5e5-MuiStack-root"
+                >
+                  <div
+                    class="labelContainer"
+                  >
+                    <div
+                      class="label"
+                    >
+                      Subscriber ID/Member ID
+                    </div>
+                  </div>
+                  <div
+                    class="css-1okj3ks-MuiStack-root"
+                  >
+                    <div
+                      style="margin-top: 10px;"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr
+              class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+            />
+            <div
+              class="css-1p5q5e5-MuiStack-root"
+            >
+              <div
+                class="labelContainer"
+              >
+                <div
+                  class="label"
+                >
+                  Group #
+                </div>
+              </div>
+              <div
+                class="css-1okj3ks-MuiStack-root"
+              >
+                <div
+                  style="margin-top: 10px;"
+                />
+              </div>
+            </div>
+            <hr
+              class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+            />
+            <div>
+              <h3
+                class="MuiTypography-root MuiTypography-h3 css-1mie9p3-MuiTypography-root"
+              >
+                Policy Holder
+              </h3>
+              <div
+                class="css-1p5q5e5-MuiStack-root"
+              >
+                <div
+                  class="labelContainer"
+                >
+                  <div
+                    class="label"
+                  >
+                    Are you the Subscriber?
+                  </div>
+                </div>
+                <div
+                  class="css-1okj3ks-MuiStack-root"
+                >
+                  <div
+                    style="margin-top: 10px;"
+                  />
+                </div>
+              </div>
+            </div>
+            <hr
+              class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+            />
+            <div
+              class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-18wgjoz-MuiGrid-root"
+              >
+                <div
+                  class="css-1p5q5e5-MuiStack-root"
+                >
+                  <div
+                    class="labelContainer"
+                  >
+                    <div
+                      class="label"
+                    >
+                      First Name
+                    </div>
+                  </div>
+                  <div
+                    class="css-1okj3ks-MuiStack-root"
+                  >
+                    <div
+                      style="margin-top: 10px;"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-18wgjoz-MuiGrid-root"
+              >
+                <div
+                  class="css-1p5q5e5-MuiStack-root"
+                >
+                  <div
+                    class="labelContainer"
+                  >
+                    <div
+                      class="label"
+                    >
+                      Last Name
+                    </div>
+                  </div>
+                  <div
+                    class="css-1okj3ks-MuiStack-root"
+                  >
+                    <div
+                      style="margin-top: 10px;"
+                    />
+                  </div>
+                </div>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-18wgjoz-MuiGrid-root"
+              >
+                <div
+                  class="css-1p5q5e5-MuiStack-root"
+                >
+                  <div
+                    class="labelContainer"
+                  >
+                    <div
+                      class="label"
+                    >
+                      Date of Birth
+                    </div>
+                  </div>
+                  <div
+                    class="css-1okj3ks-MuiStack-root"
+                  >
+                    <div
+                      style="margin-top: 10px;"
+                    >
+                      Invalid Date
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr
+              class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+            />
+            <div
+              class="css-1p5q5e5-MuiStack-root"
+            >
+              <div
+                class="labelContainer"
+              >
+                <div
+                  class="label"
+                >
+                  Relationship
+                </div>
+              </div>
+              <div
+                class="css-1okj3ks-MuiStack-root"
+              >
+                <div
+                  style="margin-top: 10px;"
+                />
+              </div>
+            </div>
+            <hr
+              class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+            />
+            <div>
+              <div
+                class="MuiTypography-root MuiTypography-bodyRegular css-15atyh3-MuiTypography-root"
+              >
+                Upload images of your insurance.
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+              >
+                <div
+                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-18wgjoz-MuiGrid-root"
+                >
+                  <span
+                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                  >
+                    <span
+                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                    >
+                      <img
+                        alt=""
+                        aria-hidden="true"
+                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27100%27%20height=%27183%27/%3e"
+                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                      />
+                    </span>
+                    <img
+                      alt=""
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                    />
+                    <noscript />
+                  </span>
+                </div>
+                <div
+                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-18wgjoz-MuiGrid-root"
+                >
+                  <span
+                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                  >
+                    <span
+                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                    >
+                      <img
+                        alt=""
+                        aria-hidden="true"
+                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27100%27%20height=%27183%27/%3e"
+                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                      />
+                    </span>
+                    <img
+                      alt=""
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                    />
+                    <noscript />
+                  </span>
+                </div>
+              </div>
+            </div>
+            <hr
+              class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+            />
+            <div
+              class="css-1p5q5e5-MuiStack-root"
+            >
+              <div
+                class="labelContainer"
+              >
+                <div
+                  class="label"
+                >
+                  Insurance Priority
+                </div>
+              </div>
+              <div
+                class="css-1okj3ks-MuiStack-root"
+              >
+                <div
+                  style="margin-top: 10px;"
+                />
+              </div>
+            </div>
+            <hr
+              class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+            />
+            <div
+              class="css-7mzo53-MuiStack-root"
+            >
+              <button
+                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root formButton outlined css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1b5efw0-MuiSvgIcon-root"
+                  data-testid="DeleteOutlineIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5-1-1h-5l-1 1H5v2h14V4z"
+                  />
+                </svg>
+                Remove Insurance
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+              <button
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-sghohy-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="submit"
+              >
+                Edit
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
+    >
+      <div
+        class="MuiCardHeader-root cardHeader css-1ele1k2-MuiCardHeader-root"
+      >
+        <div
+          class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+        >
+          <span
+            class="MuiTypography-root MuiTypography-h5 MuiCardHeader-title css-1qvr50w-MuiTypography-root"
+          >
+            <div>
+              <span
+                style="margin-right: 8px; display: flex; align-items: center;"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                  data-testid="PermContactCalendarOutlinedIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M20.84 4.22c-.05-.12-.11-.23-.18-.34-.14-.21-.33-.4-.54-.54-.11-.07-.22-.13-.34-.18-.24-.1-.5-.16-.78-.16h-1V1h-2v2H8V1H6v2H5c-.42 0-.8.13-1.12.34-.21.14-.4.33-.54.54-.07.11-.13.22-.18.34-.1.24-.16.5-.16.78v14c0 1.1.89 2 2 2h14c.28 0 .54-.06.78-.16.12-.05.23-.11.34-.18.21-.14.4-.33.54-.54.21-.32.34-.71.34-1.12V5c0-.28-.06-.54-.16-.78zM5 19V5h14v14H5zm7-6.12c-2.03 0-6 1.08-6 3.58V18h12v-1.53c0-2.51-3.97-3.59-6-3.59zM8.31 16c.69-.56 2.38-1.12 3.69-1.12s3.01.56 3.69 1.12H8.31zM12 12c1.65 0 3-1.35 3-3s-1.35-3-3-3-3 1.35-3 3 1.35 3 3 3zm0-4c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1z"
+                  />
+                </svg>
+              </span>
+              <div
+                class="title"
+              >
+                Insurance Documents
+              </div>
+            </div>
+          </span>
+        </div>
+        <div
+          class="MuiCardHeader-action css-sgoict-MuiCardHeader-action"
+        >
+          <button
+            class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root editButton css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+            tabindex="0"
+            type="button"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1xhbeow-MuiSvgIcon-root"
+              data-testid="EditOutlinedIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="m14.06 9.02.92.92L5.92 19H5v-.92l9.06-9.06M17.66 3c-.25 0-.51.1-.7.29l-1.83 1.83 3.75 3.75 1.83-1.83c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.2-.2-.45-.29-.71-.29zm-3.6 3.19L3 17.25V21h3.75L17.81 9.94l-3.75-3.75z"
+              />
+            </svg>
+            <div
+              style="margin-left: 4px;"
+              type="link"
+            >
+              Edit
+            </div>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+        </div>
+      </div>
+      <div
+        class="MuiCardContent-root css-o8l425-MuiCardContent-root"
+      >
+        <div
+          class="css-1lwbda4-MuiStack-root"
+          style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-18wgjoz-MuiGrid-root"
+            >
+              <div
+                class="css-1p5q5e5-MuiStack-root"
+              >
+                <div
+                  class="labelContainer"
+                >
+                  <div
+                    class="label"
+                  >
+                    Insurance Provider
+                  </div>
+                </div>
+                <div
+                  class="css-1okj3ks-MuiStack-root"
+                >
+                  <div
+                    style="margin-top: 10px;"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-18wgjoz-MuiGrid-root"
+            >
+              <div
+                class="css-1p5q5e5-MuiStack-root"
+              >
+                <div
+                  class="labelContainer"
+                >
+                  <div
+                    class="label"
+                  >
+                    Plan Name
+                  </div>
+                </div>
+                <div
+                  class="css-1okj3ks-MuiStack-root"
+                >
+                  <div
+                    style="margin-top: 10px;"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-18wgjoz-MuiGrid-root"
+            >
+              <div
+                class="css-1p5q5e5-MuiStack-root"
+              >
+                <div
+                  class="labelContainer"
+                >
+                  <div
+                    class="label"
+                  >
+                    Subscriber ID/Member ID
+                  </div>
+                </div>
+                <div
+                  class="css-1okj3ks-MuiStack-root"
+                >
+                  <div
+                    style="margin-top: 10px;"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr
+            class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+          />
+          <div
+            class="css-1p5q5e5-MuiStack-root"
+          >
+            <div
+              class="labelContainer"
+            >
+              <div
+                class="label"
+              >
+                Group #
+              </div>
+            </div>
+            <div
+              class="css-1okj3ks-MuiStack-root"
+            >
+              <div
+                style="margin-top: 10px;"
+              />
+            </div>
+          </div>
+          <hr
+            class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+          />
+          <div>
+            <h3
+              class="MuiTypography-root MuiTypography-h3 css-1mie9p3-MuiTypography-root"
+            >
+              Policy Holder
+            </h3>
+            <div
+              class="css-1p5q5e5-MuiStack-root"
+            >
+              <div
+                class="labelContainer"
+              >
+                <div
+                  class="label"
+                >
+                  Are you the Subscriber?
+                </div>
+              </div>
+              <div
+                class="css-1okj3ks-MuiStack-root"
+              >
+                <div
+                  style="margin-top: 10px;"
+                />
+              </div>
+            </div>
+          </div>
+          <hr
+            class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+          />
+          <div
+            class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-18wgjoz-MuiGrid-root"
+            >
+              <div
+                class="css-1p5q5e5-MuiStack-root"
+              >
+                <div
+                  class="labelContainer"
+                >
+                  <div
+                    class="label"
+                  >
+                    First Name
+                  </div>
+                </div>
+                <div
+                  class="css-1okj3ks-MuiStack-root"
+                >
+                  <div
+                    style="margin-top: 10px;"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-18wgjoz-MuiGrid-root"
+            >
+              <div
+                class="css-1p5q5e5-MuiStack-root"
+              >
+                <div
+                  class="labelContainer"
+                >
+                  <div
+                    class="label"
+                  >
+                    Last Name
+                  </div>
+                </div>
+                <div
+                  class="css-1okj3ks-MuiStack-root"
+                >
+                  <div
+                    style="margin-top: 10px;"
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-18wgjoz-MuiGrid-root"
+            >
+              <div
+                class="css-1p5q5e5-MuiStack-root"
+              >
+                <div
+                  class="labelContainer"
+                >
+                  <div
+                    class="label"
+                  >
+                    Date of Birth
+                  </div>
+                </div>
+                <div
+                  class="css-1okj3ks-MuiStack-root"
+                >
+                  <div
+                    style="margin-top: 10px;"
+                  >
+                    Invalid Date
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr
+            class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+          />
+          <div
+            class="css-1p5q5e5-MuiStack-root"
+          >
+            <div
+              class="labelContainer"
+            >
+              <div
+                class="label"
+              >
+                Relationship
+              </div>
+            </div>
+            <div
+              class="css-1okj3ks-MuiStack-root"
+            >
+              <div
+                style="margin-top: 10px;"
+              />
+            </div>
+          </div>
+          <hr
+            class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+          />
+          <div>
+            <div
+              class="MuiTypography-root MuiTypography-bodyRegular css-15atyh3-MuiTypography-root"
+            >
+              Upload images of your insurance.
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-18wgjoz-MuiGrid-root"
+              >
+                <span
+                  style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                >
+                  <span
+                    style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                  >
+                    <img
+                      alt=""
+                      aria-hidden="true"
+                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27100%27%20height=%27183%27/%3e"
+                      style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                    />
+                  </span>
+                  <img
+                    alt=""
+                    data-nimg="intrinsic"
+                    decoding="async"
+                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                    style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                  />
+                  <noscript />
+                </span>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-18wgjoz-MuiGrid-root"
+              >
+                <span
+                  style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                >
+                  <span
+                    style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                  >
+                    <img
+                      alt=""
+                      aria-hidden="true"
+                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27100%27%20height=%27183%27/%3e"
+                      style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                    />
+                  </span>
+                  <img
+                    alt=""
+                    data-nimg="intrinsic"
+                    decoding="async"
+                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                    style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                  />
+                  <noscript />
+                </span>
+              </div>
+            </div>
+          </div>
+          <hr
+            class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+          />
+          <div
+            class="css-1p5q5e5-MuiStack-root"
+          >
+            <div
+              class="labelContainer"
+            >
+              <div
+                class="label"
+              >
+                Insurance Priority
+              </div>
+            </div>
+            <div
+              class="css-1okj3ks-MuiStack-root"
+            >
+              <div
+                style="margin-top: 10px;"
+              />
+            </div>
+          </div>
+          <hr
+            class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+          />
+          <div
+            class="css-7mzo53-MuiStack-root"
+          >
+            <button
+              class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root formButton outlined css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1b5efw0-MuiSvgIcon-root"
+                data-testid="DeleteOutlineIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5-1-1h-5l-1 1H5v2h14V4z"
+                />
+              </svg>
+              Remove Insurance
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+            <button
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-sghohy-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="submit"
+            >
+              Edit
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

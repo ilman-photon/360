@@ -17,6 +17,8 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import Cookies from "universal-cookie";
 import { useRouter } from "next/router";
 import Image from "next/image";
+import AccountSidebar from "../../molecules/AccountSidebar/accountSidebar";
+import AccountDrawer from "../../molecules/AccountDrawer/accountDrawer";
 
 const pages = [
   "Appointments",
@@ -26,7 +28,11 @@ const pages = [
   "Billing",
 ];
 
-export default function BaseHeader({ OnLogoutClicked }) {
+export default function BaseHeader({
+  OnLogoutClicked = () => {
+    // This is intended
+  },
+}) {
   const [isUserLoged, setUserLoged] = React.useState(false);
   const router = useRouter();
   const logo = "/logo.png";
@@ -37,7 +43,7 @@ export default function BaseHeader({ OnLogoutClicked }) {
     setUserLoged(isLogin);
   }, []);
 
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
+  const [anchorElNav, setAnchorElNav] = React.useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
   const handleOpenNavMenu = (event) => {
@@ -88,24 +94,14 @@ export default function BaseHeader({ OnLogoutClicked }) {
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
-                onClick={handleOpenNavMenu}
+                onClick={() => {
+                  setAnchorElNav(true);
+                }}
               >
                 <MenuIcon />
               </IconButton>
-              <Menu
+              {/* <Menu
                 id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
                 sx={styles.menuMobile}
               >
                 {pages.map((page) => (
@@ -122,11 +118,19 @@ export default function BaseHeader({ OnLogoutClicked }) {
                     Logout
                   </Button>
                 </MenuItem>
-              </Menu>
+              </Menu> */}
+              {/* <MenuIcon onClick={() => { setAnchorElNav(true) }} /> */}
             </Box>
+            <AccountDrawer
+              onClose={() => {
+                setAnchorElNav(false);
+              }}
+              opened={anchorElNav}
+              onLogoutClicked={OnLogoutClicked(router)}
+            />
 
             {/* profile menu */}
-            <Box sx={styles.boxProfileMenuStyles}>
+            {/* <Box sx={styles.boxProfileMenuStyles}>
               <Tooltip title="Open settings">
                 <Button
                   variant="text"
@@ -169,7 +173,7 @@ export default function BaseHeader({ OnLogoutClicked }) {
                   </MenuItem>
                 }
               </Menu>
-            </Box>
+            </Box> */}
           </Toolbar>
         ) : (
           <Toolbar disableGutters>
