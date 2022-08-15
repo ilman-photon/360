@@ -19,6 +19,10 @@ export default function MfaPage() {
   const [successSubmit, setSuccessSubmit] = React.useState(false);
   const [securityQuestionList, setSecurityQuestionList] = React.useState([]);
 
+  //just mock
+  const [submitCounter, setSubmitCounter] = React.useState(0);
+  const [requestCounter, setRequestCounter] = React.useState(0);
+
   function onConfirmClicked() {
     setMfaCode("1234");
     setComponentName(constants.MFA_COMPONENT_NAME);
@@ -41,25 +45,43 @@ export default function MfaPage() {
     if (inputMfaCode === mfaCode) {
       onShowSecurityQuestionForm();
     } else {
-      callback({
-        status: "failed",
-        isLock: false,
-        message: {
-          title: "Incorrect Code.",
-          description: "Please try again.",
-        },
-      });
+      if (submitCounter > 2) {
+        callback({
+          status: "failed",
+          isEndView: true,
+          message: {
+            title: "Too many attempts.",
+            description:
+              "Please try setting up multi factor authentication after 30 minutes.",
+          },
+        });
+      } else {
+        setSubmitCounter(submitCounter + 1);
+        callback({
+          status: "failed",
+          message: {
+            title: "Incorrect Code.",
+            description: "Please try again.",
+          },
+        });
+      }
     }
   }
 
   function onResendCodeClicked(callback) {
-    callback({
-      status: "failed",
-      message: {
-        title: "Code sent multiple times.",
-        description: "Please try again after 30 minutes.",
-      },
-    });
+    if (requestCounter > 2) {
+      callback({
+        status: "failed",
+        isEndView: true,
+        message: {
+          description:
+            "Code sent multiple times. Please try again after 30 minutes.",
+        },
+      });
+    } else {
+      setMfaCode("4321");
+      setRequestCounter(requestCounter + 1);
+    }
   }
 
   function onSetRememberMe(value) {
