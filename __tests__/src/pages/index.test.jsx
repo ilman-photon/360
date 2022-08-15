@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { cleanup, render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
 import store from "../../../src/store/store";
@@ -21,6 +21,7 @@ jest.mock("universal-cookie", () => {
   return MockCookies;
 });
 describe("Home", () => {
+  afterEach(cleanup);
   it("renders homepage non login user", async () => {
     Cookies.result = false;
     const response = await getServerSideProps({
@@ -55,7 +56,7 @@ describe("Home", () => {
       req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
       res: jest.fn(),
     });
-    const { container, getByTestId } = render(
+    const { container, getByTestId, getAllByTestId } = render(
       <Provider store={store}>
         <HomePage />
       </Provider>
@@ -65,7 +66,8 @@ describe("Home", () => {
     expect(response).toEqual({
       props: {},
     });
-    fireEvent.click(getByTestId("user-logout"));
+    fireEvent.click(getByTestId("user-menu-open"));
+    fireEvent.click(getAllByTestId("logout")[0]);
     jest.resetAllMocks();
   });
 
@@ -81,29 +83,7 @@ describe("Home", () => {
       req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
       res: jest.fn(),
     });
-    const { container, getByTestId } = render(
-      <Provider store={store}>
-        <HomePage />
-      </Provider>
-    );
-    expect(await getByTestId("user-menu-nav-open")).toBeInTheDocument();
-    expect(container).toMatchSnapshot();
-    expect(response).toEqual({
-      props: {},
-    });
-    fireEvent.click(getByTestId("user-menu-nav-open"));
-    fireEvent.click(getByTestId("user-logout"));
-    fireEvent.click(getByTestId("user-menu-nav-close"));
-    jest.resetAllMocks();
-  });
-
-  it("renders homepage user logout failed", async () => {
-    Cookies.result = "true";
-    const response = await getServerSideProps({
-      req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-      res: jest.fn(),
-    });
-    const { container, getByTestId } = render(
+    const { container, getByTestId, getAllByTestId } = render(
       <Provider store={store}>
         <HomePage />
       </Provider>
@@ -114,7 +94,29 @@ describe("Home", () => {
       props: {},
     });
     fireEvent.click(getByTestId("user-menu-open"));
-    expect(await getByTestId("user-logout")).toBeInTheDocument();
+    fireEvent.click(getAllByTestId("logout")[0]);
+    fireEvent.click(getByTestId("user-menu-nav-close"));
+    jest.resetAllMocks();
+  });
+
+  it("renders homepage user logout failed", async () => {
+    Cookies.result = "true";
+    const response = await getServerSideProps({
+      req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
+      res: jest.fn(),
+    });
+    const { container, getByTestId, getAllByTestId } = render(
+      <Provider store={store}>
+        <HomePage />
+      </Provider>
+    );
+    expect(await getByTestId("user-menu-nav-open")).toBeInTheDocument();
+    expect(container).toMatchSnapshot();
+    expect(response).toEqual({
+      props: {},
+    });
+    fireEvent.click(getByTestId("user-menu-open"));
+    expect(await getAllByTestId("logout")[0]).toBeInTheDocument();
     fireEvent.click(getByTestId("user-menu-close"));
     jest.resetAllMocks();
   });
