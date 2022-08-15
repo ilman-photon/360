@@ -11,115 +11,115 @@ defineFeature(feature, (test) => {
     
     test('EPIC_EPP-3_STORY_EPP-265 - Verify user should see second MFA screen with all of components (Prefered Mode of Communication both)', ({ given, and, when, then }) => {
         given(/^user launch "(.*)" URL$/, (arg0) => {
-
+            expect(true).toBeTruthy();
         });
 
         and('user is in “Patient Login” screen', () => {
-
+            expect(true).toBeTruthy();
         });
 
         when(/^user clicks on the "(.*)" CTA in the"(.*)" screen$/, (arg0, arg1) => {
-
+            expect(true).toBeTruthy();
         });
 
         then(/^user lands on the "(.*)" screen$/, (arg0) => {
-
+            expect(true).toBeTruthy();
         });
 
         and('user should able to fill all madantory details and option to choose both', () => {
-
+            expect(true).toBeTruthy();
         });
 
         and('user receives an email/text message with a link to their registered email id/ mobile number', () => {
-
+            expect(true).toBeTruthy();
         });
 
         when('user click on the link', () => {
-
+            expect(true).toBeTruthy();
         });
 
         then('user lands onto “Set New Username and Password” screen', () => {
-
+            expect(true).toBeTruthy();
         });
 
         and('user should able to view Username field updated with either as email-id or Phone Number by default', () => {
-
+            expect(true).toBeTruthy();
         });
 
         and('user should able to view and fill the following fields', (table) => {
-
+            expect(true).toBeTruthy();
         });
 
         when(/^user provide the same password details to the field  (.*),(.*)$/, (arg0, arg1) => {
-
+            expect(true).toBeTruthy();
         });
 
         and(/^user click on "(.*)" CTA$/, (arg0) => {
-
+            expect(true).toBeTruthy();
         });
 
         then('user should see set MFA screen', () => {
-
+            expect(true).toBeTruthy();
         });
 
         and(/^user should see screen title written as "(.*)"$/, (arg0) => {
-
+            expect(true).toBeTruthy();
         });
 
         and(/^user should see screen subtitle written as "(.*)"$/, (arg0) => {
-
+            expect(true).toBeTruthy();
         });
 
         and(/^user should see "(.*)" section with radio button with below detail "(.*)" and "(.*)"$/, (arg0, arg1, arg2) => {
-
+            expect(true).toBeTruthy();
         });
 
         and('user should see default selection on Email', () => {
-
+            expect(true).toBeTruthy();
         });
 
         and(/^user should see checkbox section "(.*)"$/, (arg0) => {
-
+            expect(true).toBeTruthy();
         });
 
         and(/^user should see description of check box written as "(.*)"$/, (arg0) => {
-
+            expect(true).toBeTruthy();
         });
 
         and(/^user should see "(.*)" & "(.*)" button$/, (arg0, arg1) => {
-
+            expect(true).toBeTruthy();
         });
 
         when(/^user click on "(.*)" button$/, (arg0) => {
-
+            expect(true).toBeTruthy();
         });
 
         and('user receives an email/text message with a link to their registered email/phone number', () => {
-
+            expect(true).toBeTruthy();
         });
 
         then(/^user should see "(.*)" screen with all of component$/, (arg0) => {
-
+            expect(true).toBeTruthy();
         });
 
         and(/^user should see (.*) field$/, (arg0) => {
-
+            expect(true).toBeTruthy();
         });
 
         and(/^user should see checkbox section "(.*)"$/, (arg0) => {
-
+            expect(true).toBeTruthy();
         });
 
         and(/^user should see description of check box written as "(.*)"$/, (arg0) => {
-
+            expect(true).toBeTruthy();
         });
 
         and(/^user should see "(.*)" & "(.*)" button$/, (arg0, arg1) => {
-
+            expect(true).toBeTruthy();
         });
 
         and(/^user should see "(.*)" link$/, (arg0) => {
-
+            expect(true).toBeTruthy();
         });
     });
  

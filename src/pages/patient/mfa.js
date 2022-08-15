@@ -35,7 +35,7 @@ export default function MfaPage() {
     cookies.set("authorized", true, { path: "/patient" });
   }
 
-  function onSubmitClicked(callback) {
+  function onSubmitClicked(inputMfaCode, callback) {
     //TODO: Call service
 
     if (inputMfaCode === mfaCode) {
