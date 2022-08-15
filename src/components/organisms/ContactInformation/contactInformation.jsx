@@ -15,13 +15,21 @@ import { useForm, Controller } from "react-hook-form";
 import { StyledInput } from "../../atoms/Input/input";
 import { colors } from "../../../styles/theme";
 
-import { useEffect } from "react";
+import { useCallback, useEffect } from "react";
 import Image from "next/image";
 import { Regex } from "../../../utils/regex";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
+// import { AddressAutofill } from '@mapbox/search-js-react';
+import dynamic from "next/dynamic";
+
+const ClientAddressAutofill = dynamic(
+  () => import("@mapbox/search-js-react").then((mod) => mod.AddressAutofill),
+  { ssr: false }
+);
 
 export default function ContactInformation({
+  autoFillAPIToken = "",
   userData = {},
   isEditing = true,
   OnSaveClicked = () => {
@@ -120,9 +128,11 @@ export default function ContactInformation({
           </Grid>
 
           <LabelWithInfo label="Prefered Mode(s) of communication">
-            {userData.preferredCommunication === "both"
-              ? "Mobile,Email"
-              : userData.preferredCommunication || "-"}
+            <span style={{ textTransform: "capitalize" }}>
+              {userData.preferredCommunication === "both"
+                ? "Mobile,Email"
+                : userData.preferredCommunication || "-"}
+            </span>
           </LabelWithInfo>
         </Stack>
       </Fade>
@@ -199,37 +209,42 @@ export default function ContactInformation({
               }}
             />
 
-            <Controller
-              name="address"
-              control={control}
-              render={({
-                field: { onChange, value },
-                fieldState: { error },
-              }) => {
-                return (
-                  <StyledInput
-                    type="text"
-                    id="address"
-                    label="Address"
-                    value={value}
-                    onChange={onChange}
-                    error={!!error}
-                    size="small"
-                    variant="filled"
-                    helperText={error ? error.message : null}
-                  />
-                );
-              }}
-              rules={
-                {
-                  // required: "This field is required",
-                  // pattern: {
-                  //   value: Regex.isValidPhoneFormat,
-                  //   message: "Incorrect format",
-                  // },
+            <ClientAddressAutofill accessToken={autoFillAPIToken}>
+              <Controller
+                name="address"
+                control={control}
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => {
+                  return (
+                    <StyledInput
+                      type="text"
+                      id="address"
+                      label="Address"
+                      autoComplete="address-line1"
+                      placeholder="Start typing your address, e.g. 123 United States..."
+                      sx={{ width: "100%" }}
+                      value={value}
+                      onChange={onChange}
+                      error={!!error}
+                      size="small"
+                      variant="filled"
+                      helperText={error ? error.message : null}
+                    />
+                  );
+                }}
+                rules={
+                  {
+                    // required: "This field is required",
+                    // pattern: {
+                    //   value: Regex.isValidPhoneFormat,
+                    //   message: "Incorrect format",
+                    // },
+                  }
                 }
-              }
-            />
+              />
+            </ClientAddressAutofill>
 
             <Controller
               name="city"
@@ -243,6 +258,7 @@ export default function ContactInformation({
                     type="text"
                     id="city"
                     label="City"
+                    autoComplete="address-level2"
                     value={value}
                     onChange={onChange}
                     error={!!error}
@@ -277,6 +293,7 @@ export default function ContactInformation({
                         type="text"
                         id="state"
                         label="State"
+                        autoComplete="address-level1"
                         value={value}
                         onChange={onChange}
                         error={!!error}
@@ -312,6 +329,7 @@ export default function ContactInformation({
                         type="text"
                         id="zip"
                         label="Zip"
+                        autoComplete="postal-code"
                         value={value}
                         onChange={onChange}
                         error={!!error}

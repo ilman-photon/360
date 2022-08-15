@@ -146,6 +146,12 @@ export const RedditTextField = styled((props) => (
       backgroundColor: "transparent",
       color: "#193138",
     },
+    input: {
+      height: "unset",
+    },
+    "input::placeholder": {
+      fontSize: 12,
+    },
   },
 }));
 
