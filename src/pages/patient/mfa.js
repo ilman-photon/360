@@ -9,9 +9,39 @@ import { Box } from "@mui/material";
 import Cookies from "universal-cookie";
 import AccountTitleHeading from "../../components/atoms/AccountTitleHeading/accountTitleHeading";
 import FormMessage from "../../components/molecules/FormMessage/formMessage";
+
 import { Api } from "../api/api";
 
-export default function MfaPage() {
+export async function getServerSideProps(context) {
+  const cookies = new Cookies(context.req.headers.cookie);
+
+  if (!cookies.get("username")) {
+    return {
+      redirect: {
+        destination: "/patient/login",
+        permanent: false,
+      },
+    };
+  }
+
+  const api = new Api();
+  const data = api.getCommunicationMethod(cookies.get("username"));
+
+  return {
+    props: {
+      communicationMethod: await data
+        .then((response) => {
+          return response;
+        })
+        .catch(() => {
+          return {};
+        }),
+    },
+  };
+}
+
+export default function MfaPage(props) {
+  const api = new Api();
   const router = useRouter();
   const [componentName, setComponentName] = React.useState("");
   const [rememberMe, setRememberMe] = React.useState(false);
@@ -24,7 +54,13 @@ export default function MfaPage() {
   const [requestCounter, setRequestCounter] = React.useState(0);
 
   function onConfirmClicked() {
-    setMfaCode("1234");
+    api
+      .requestCode()
+      .then((response) => {
+        setMfaCode(response);
+        setConfirm(true);
+      })
+      .catch(() => {});
     setComponentName(constants.MFA_COMPONENT_NAME);
   }
 
@@ -36,6 +72,10 @@ export default function MfaPage() {
     const cookies = new Cookies();
     const hostname = window.location.origin;
     window.location.href = `${hostname}/patient`;
+    //Alternative 1
+    cookies.set("rememberMe", rememberMe, { path: "/patient" });
+    //Alternative 2
+    api.setRemeberMe(rememberMe);
     cookies.set("authorized", true, { path: "/patient" });
   }
 
@@ -79,8 +119,13 @@ export default function MfaPage() {
         },
       });
     } else {
-      setMfaCode("4321");
-      setRequestCounter(requestCounter + 1);
+      api
+        .requestNewCode()
+        .then((response) => {
+          setMfaCode(response);
+          setRequestCounter(requestCounter + 1);
+        })
+        .catch(() => {});
     }
   }
 
@@ -179,10 +224,7 @@ export default function MfaPage() {
         onBackToLoginClicked={onBackToLoginClicked}
         rememberMe={rememberMe}
         setRememberMe={onSetRememberMe}
-        data={{
-          email: "m********@yahoo.com",
-          phone: "(8***)***-***31",
-        }}
+        data={props.communicationMethod}
       />
     );
   }
