@@ -22,6 +22,7 @@ import { connect } from "react-redux";
 import { useEffect } from "react";
 import { StyledSelect } from "../../atoms/Select/select";
 import { formatSocialSecurity } from "../../../utils/ssnFormatter";
+import { GENDER_LIST, TITLE_LIST } from "../../../utils/constantData";
 
 export default function PersonalInformation({
   userData = {},
@@ -42,15 +43,13 @@ export default function PersonalInformation({
 
   console.log({ userData });
 
-  const genderOptions = [
-    { label: "Male", value: "Male" },
-    { label: "Female", value: "Female" },
-  ];
+  const genderOptions = GENDER_LIST.map((gender) => {
+    return { label: gender, value: gender };
+  });
 
-  const userTitleOptions = [
-    { label: "Mr", value: "Mr" },
-    { label: "Mrs", value: "Mrs" },
-  ];
+  const userTitleOptions = TITLE_LIST.map((title) => {
+    return { label: title, value: title };
+  });
 
   useEffect(() => {
     if (userData) reset(userData);
@@ -141,7 +140,12 @@ export default function PersonalInformation({
                 helperText="JPG or PNG file formats only. (File size limit is 4 MB)"
               >
                 <div className={styles.issuedCardContainer}>
-                  <Image width="100%" height={183} src="/login-bg.png" alt="" />
+                  <img
+                    width={267}
+                    height={175}
+                    src={userData.issuedCardFront}
+                    alt="front-id"
+                  />
                 </div>
               </LabelWithInfo>
               <LabelWithInfo
@@ -149,7 +153,12 @@ export default function PersonalInformation({
                 helperText="JPG or PNG file formats only. (File size limit is 4 MB)"
               >
                 <div className={styles.issuedCardContainer}>
-                  <Image width="100%" height={183} src="/login-bg.png" alt="" />
+                  <img
+                    width={267}
+                    height={175}
+                    src={userData.issuedCardBack}
+                    alt="back-id"
+                  />
                 </div>
               </LabelWithInfo>
             </Stack>
@@ -164,8 +173,8 @@ export default function PersonalInformation({
               name="profilePhoto"
               control={control}
               render={({
-                field: { onChange, value },
-                fieldState: { error },
+                field: { onChange, _value },
+                fieldState: { _error },
               }) => {
                 return (
                   <>
@@ -365,12 +374,27 @@ export default function PersonalInformation({
                 >
                   Front Card
                 </Typography>
-                <ImageUploader
-                  OnUpload={() => {}}
-                  label="Upload Front"
-                  width="100%"
-                  src="/login-bg.png"
-                  alt=""
+
+                <Controller
+                  name="issuedCardFront"
+                  control={control}
+                  render={({
+                    field: { onChange, _value },
+                    fieldState: { _error },
+                  }) => {
+                    return (
+                      <>
+                        <ImageUploader
+                          OnUpload={onChange}
+                          source={userData.issuedCardFront}
+                          label="Upload Front"
+                          width="100%"
+                          src="/login-bg.png"
+                          alt=""
+                        />
+                      </>
+                    );
+                  }}
                 />
               </Stack>
               <Stack spacing={2}>
@@ -380,12 +404,25 @@ export default function PersonalInformation({
                 >
                   Back Card
                 </Typography>
-                <ImageUploader
-                  OnUpload={() => {}}
-                  label="Upload Back"
-                  width="100%"
-                  src="/login-bg.png"
-                  alt=""
+                <Controller
+                  name="issuedCardBack"
+                  control={control}
+                  render={({
+                    field: { onChange, _value },
+                    fieldState: { _error },
+                  }) => {
+                    return (
+                      <>
+                        <ImageUploader
+                          OnUpload={onChange}
+                          source={userData.issuedCardBack}
+                          label="Upload Back"
+                          width="100%"
+                          alt=""
+                        />
+                      </>
+                    );
+                  }}
                 />
               </Stack>
             </Stack>

@@ -5,7 +5,15 @@ import { Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser, setUserData } from "../../../store/user";
-export default function CreateAccountPage() {
+
+export async function getStaticProps() {
+  return {
+    props: {
+      autoFillAPIToken: process.env.MAPBOX_API_TOKEN,
+    },
+  };
+}
+export default function CreateAccountPage({ autoFillAPIToken }) {
   const [contactEditing, setContactEditing] = useState(false);
   const [personalEditing, setPersonalEditing] = useState(false);
 
@@ -46,6 +54,7 @@ export default function CreateAccountPage() {
             OnEditClicked={(_) => setContactEditing(true)}
             OnCancelEditClicked={(_) => setContactEditing(false)}
             OnSaveClicked={onSaveContactData}
+            autoFillAPIToken={autoFillAPIToken}
           />
         </Grid>
       </Grid>
