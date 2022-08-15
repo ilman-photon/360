@@ -1,6 +1,6 @@
 import { Box } from "@mui/material";
 
-import Drawer from "@mui/material/Drawer";
+import SwipeableDrawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
@@ -16,12 +16,19 @@ import { styled, useTheme } from "@mui/material/styles";
 import { ThemeProvider, Button } from "@mui/material";
 
 import styles from "./accountDrawer.module.scss";
+import Link from "next/link";
+import { useRouter } from "next/router";
 
 export const AccountDrawer = ({
+  opened = false,
   onClose = () => {
     // This is intended
   },
+  onLogoutClicked = () => {
+    // This is intended
+  },
 }) => {
+  const router = useRouter();
   const [isAccountDrawer, setIsAccountDrawer] = useState(false);
 
   const sidebarLinks = [
@@ -34,57 +41,67 @@ export const AccountDrawer = ({
     { label: "Multi factor authentication", href: "#" },
   ];
 
-  const MuiDrawer = styled(Drawer)(() => ({
+  const MuiDrawer = styled(SwipeableDrawer)(() => ({
     "& .MuiDrawer-paper": {
       width: "85%",
     },
   }));
 
-  const list = () => (
+  const drawerContent = () => (
     <Box
       sx={{ width: "100%", padding: "16px" }}
       role="presentation"
-      // onClick={toggleDrawer(false)}
-      // onKeyDown={toggleDrawer(false)}
+      // onClick={onClose}
+      // onKeyDown={onClose}
     >
-      {isAccountDrawer ? (
-        <>
-          <List>
-            <ListItemButton sx={{ background: "#F4F4F4" }} disablePadding>
-              <ListItemIcon sx={{ placeContent: "start" }}>
-                <KeyboardArrowLeftIcon />
-              </ListItemIcon>
-              <ListItemText
-                primary={"Account"}
-                onClick={() => setIsAccountDrawer(false)}
-                disablePadding
-              />
-            </ListItemButton>
-            {sidebarLinks.map((list) => (
-              <ListItem
-                key={list}
-                disablePadding
-                className={styles.listItemDrawer}
+      {/* {isAccountDrawer ? ( */}
+      <>
+        <List>
+          <ListItemButton sx={{ background: "#F4F4F4" }}>
+            <ListItemIcon sx={{ placeContent: "start" }}>
+              <KeyboardArrowLeftIcon />
+            </ListItemIcon>
+            <ListItemText primary={"Account"} onClick={onClose} />
+          </ListItemButton>
+
+          {sidebarLinks.map((link, idx) => (
+            <ListItem key={idx} className={styles.listItemDrawer}>
+              <ListItemButton
+                onClick={() => {
+                  router.push(link.href);
+                  onClose();
+                }}
               >
-                <ListItemButton href={list.href}>
-                  <ListItemText primary={list.label} disablePadding />
+                <>
+                  <ListItemText primary={link.label} />
                   <ListItemIcon sx={{ placeContent: "end" }}>
                     <KeyboardArrowRightIcon />
                   </ListItemIcon>
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-        </>
-      ) : (
-        <>
+                </>
+              </ListItemButton>
+            </ListItem>
+          ))}
+
+          <ListItemButton className={styles.logoutButton}>
+            <Button
+              onClick={onLogoutClicked}
+              variant="contained"
+              // className={[styles.formButton, styles.outlined].join(" ")}
+            >
+              LOG OUT
+            </Button>
+          </ListItemButton>
+        </List>
+      </>
+      {/* ) : ( */}
+      {/* <>
           <ListItemButton sx={{ placeContent: "end" }}>
             <CloseIcon onClick={onClose} />
           </ListItemButton>
           <List>
             <ListItem
               key={"Home"}
-              disablePadding
+              
               className={styles.listItemDrawer}
             >
               <ListItemButton>
@@ -96,7 +113,7 @@ export const AccountDrawer = ({
             </ListItem>
             <ListItem
               key={"Account"}
-              disablePadding
+              
               className={styles.listItemDrawer}
               onClick={() => setIsAccountDrawer(true)}
             >
@@ -119,20 +136,20 @@ export const AccountDrawer = ({
             </Button>
           </ListItemButton>
         </>
-      )}
+      )} */}
     </Box>
   );
 
   return (
     <>
-      <MuiDrawer
+      <SwipeableDrawer
         anchor="right"
-        open={true}
+        open={opened}
         onClose={onClose}
-        sx={{ width: "85%" }}
+        sx={{ width: "70%" }}
       >
-        {list()}
-      </MuiDrawer>
+        {drawerContent()}
+      </SwipeableDrawer>
     </>
   );
 };
