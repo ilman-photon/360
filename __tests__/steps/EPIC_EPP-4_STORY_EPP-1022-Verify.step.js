@@ -2,6 +2,7 @@ import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
+import MfaPage from "../../src/pages/patient/mfa";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint3/EPP-1022.feature", {
@@ -24,7 +25,14 @@ defineFeature(feature, (test) => {
             });
     
             when(/^user lands onto "(.*)" screen$/, (arg0) => {
-                expect(true).toBeTruthy()
+                act(() => {
+                    container = render(<MfaPage />, {
+                      container: document.body.appendChild(element),
+                      legacyRoot: true,
+                    });
+                  });
+                  const title = container.getByText("formTitle");
+                  expect("formTitle").toEqual(title.textContent);
             });
     
             then(/^user see (.*) and (.*) fields that was MFA was set up$/, (arg0, arg1) => {
@@ -36,15 +44,22 @@ defineFeature(feature, (test) => {
             });
     
             and(/^user should fill valid (.*) field$/, (arg0) => {
-                expect(true).toBeTruthy()
+                const usernameField = container.getByLabelText("emailUserLabel");
+                const passwordField = container.getByLabelText("passwordLabel");
+                fireEvent.change(usernameField, { target: { value: "wrongUserName" } });
+                fireEvent.change(passwordField, { target: { value: "validPassword" } });
+                expect(usernameField.value).not.toEqual("validUsername");
+                expect(passwordField.value).toEqual("validPassword");
             });
     
             and(/^user should see the "(.*)" option has been selected that Remember me has exipred$/, (arg0) => {
-                expect(true).toBeTruthy()
+                const remeberMeLabe = container.getByText("Remember me");
+                expect("Remember me").toEqual(remeberMeLabe.textContent);
             });
     
             when(/^user clicks on "(.*)" button$/, (arg0) => {
-                expect(true).toBeTruthy()
+                const Confirm = container.getByRole("button", { name: /Confirm/i });
+                fireEvent.click(Confirm);
             });
     
             then(/^user should see "(.*)" screen with all of component$/, (arg0) => {
@@ -52,11 +67,13 @@ defineFeature(feature, (test) => {
             });
     
             and(/^user should see (.*) field$/, (arg0) => {
-                expect(true).toBeTruthy()
+                const objCheckBox = container.getByText("Select a method");
+                expect("Select a method").toEqual(objCheckBox.textContent);
             });
     
             and(/^user should see checkbox section "(.*)"$/, (arg0) => {
-                expect(true).toBeTruthy()
+                const objCheckBox = container.getByText("Select a method");
+                expect("Select a method").toEqual(objCheckBox.textContent);
             });
     
             and(/^user should see description of check box written as "(.*)"$/, (arg0) => {
@@ -343,7 +360,7 @@ defineFeature(feature, (test) => {
     });
     
     test('EPIC_EPP-3_STORY_EPP-1022-Existing-Verify user should be able to login from device that was set up with "Remember me" option selected, without being asked for MFA using phone number', ({  }) => {
-       
+        
     });
     test('EPIC_EPP-3_STORY_EPP-1022-Existing-Verify user should be able to login from device without being asked for MFA using registered phone number within 3 seconds', ({  }) => {
 
