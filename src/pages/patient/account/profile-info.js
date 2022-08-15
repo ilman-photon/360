@@ -1,10 +1,11 @@
 import AccountLayout from "../../../components/templates/accountLayout";
 import PersonalInformation from "../../../components/organisms/PersonalInformation/personalInformation";
 import ContactInformation from "../../../components/organisms/ContactInformation/contactInformation";
-import { Grid } from "@mui/material";
+import { Grid, useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser, setUserData } from "../../../store/user";
+import { useRouter } from "next/router";
 
 export async function getStaticProps() {
   return {
@@ -13,7 +14,7 @@ export async function getStaticProps() {
     },
   };
 }
-export default function CreateAccountPage({ autoFillAPIToken }) {
+export default function ProfileInformationPage({ autoFillAPIToken }) {
   const [contactEditing, setContactEditing] = useState(false);
   const [personalEditing, setPersonalEditing] = useState(false);
 
@@ -62,6 +63,11 @@ export default function CreateAccountPage({ autoFillAPIToken }) {
   );
 }
 
-CreateAccountPage.getLayout = function getLayout(page) {
-  return <AccountLayout>{page}</AccountLayout>;
+ProfileInformationPage.getLayout = function getLayout(page) {
+  const isMobile = useMediaQuery("(max-width: 768px)");
+  return (
+    <AccountLayout currentActivePage={!isMobile ? "profile-info" : ""}>
+      {page}
+    </AccountLayout>
+  );
 };

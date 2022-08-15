@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser, setUserData } from "../../../store/user";
 
-export default function CreateAccountPage() {
+export default function InsuranceInformationPage() {
   const [insuranceEditing, setInsuranceEditing] = useState(true);
 
   const userData = useSelector((state) => state.user.userData);
@@ -36,6 +36,11 @@ export default function CreateAccountPage() {
   );
 }
 
-CreateAccountPage.getLayout = function getLayout(page) {
-  return <AccountLayout>{page}</AccountLayout>;
+InsuranceInformationPage.getLayout = function getLayout(page) {
+  const isMobile = useMediaQuery("(max-width: 768px)");
+  return (
+    <AccountLayout currentActivePage={!isMobile ? "insurance-info" : ""}>
+      {page}
+    </AccountLayout>
+  );
 };

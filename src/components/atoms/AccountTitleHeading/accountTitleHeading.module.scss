@@ -11,6 +11,9 @@
   z-index: 2;
 
   // margin-top: 64px;
+  @media (max-width: 767px) {
+    padding: 12px 6px;
+  }
 
   .title {
     /* ECP/Desktop/Headline/H3 */
@@ -29,5 +32,11 @@
     align-items: center;
     grid-column: span 2 / span 2;
     text-align: right;
+
+    @media (max-width: 767px) {
+      grid-column: span 7 / span 7;
+      text-align: center;
+      font-size: 18px;
+    }
   }
 }

@@ -6,7 +6,7 @@ import AccountSidebar from "../molecules/AccountSidebar/accountSidebar";
 import AccountTitleHeading from "../atoms/AccountTitleHeading/accountTitleHeading";
 import AccountDrawer from "../molecules/AccountDrawer/accountDrawer";
 import { patientTypography, providerTypography } from "../../styles/theme";
-import { ThemeProvider } from "@mui/material";
+import { ThemeProvider, useMediaQuery } from "@mui/material";
 import * as React from "react";
 
 //Prevent html being match between server and client
@@ -14,12 +14,28 @@ const BaseHeader = dynamic(() => import("../organisms/BaseHeader/baseHeader"), {
   suspense: true,
 });
 
-export default function Layout({ theme = "patient", children }) {
+export default function Layout({
+  theme = "patient",
+  currentActivePage = "",
+  children,
+}) {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const isPatient = theme === "patient";
+  const isMobile = useMediaQuery("(max-width: 768px)");
 
   const onClose = () => {
     setIsDrawerOpen(false);
+  };
+
+  const getHeadingTitle = (pageName) => {
+    switch (pageName) {
+      case "profile-info":
+        return "Profile Information";
+      case "insurance-info":
+        return "Insurance Documents";
+      default:
+        return "Your Account";
+    }
   };
 
   return (
@@ -34,7 +50,7 @@ export default function Layout({ theme = "patient", children }) {
           <Suspense fallback={`Loading...`}>
             <BaseHeader />
           </Suspense>
-          <AccountTitleHeading title="Your Account" />
+          <AccountTitleHeading title={getHeadingTitle(currentActivePage)} />
           <div className={styles.container}>
             <div className={styles.sidebarContainer}>
               <AccountSidebar />
