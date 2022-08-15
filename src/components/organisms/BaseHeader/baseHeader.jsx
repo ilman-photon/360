@@ -118,6 +118,9 @@ export default function BaseHeader({ OnLogoutClicked }) {
                     variant="text"
                     sx={styles.menuItemMobile}
                     startIcon={<LogoutIcon />}
+                    onClick={() => {
+                      OnLogoutClicked(router);
+                    }}
                   >
                     Logout
                   </Button>
