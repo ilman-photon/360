@@ -35,15 +35,12 @@ export default function InsuranceForm({
     // This is intended
   },
 }) {
-  const { handleSubmit, control, watch, reset } = useForm({
+  const { handleSubmit, control } = useForm({
     defaultValues: {}, // Object.assign({}, userData),
   });
 
   console.log({ userData }, "from");
 
-  useEffect(() => {
-    if (userData) reset(userData);
-  }, [userData]);
 
   const isSubsciberOptions = [
     { label: "Yes", value: "yes" },
