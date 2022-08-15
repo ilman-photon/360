@@ -7,10 +7,8 @@ import RESPONSE_MESSAGES from "../../../utils/responseCodes";
 import { Box } from "@mui/material";
 import globalStyles from "../../../styles/Global.module.scss";
 import Cookies from "universal-cookie";
-import { useRouter } from "next/router";
 export default function CreateAccountPage() {
   const dispatch = useDispatch();
-  // const router = useRouter()
   const cookies = new Cookies();
   const api = new Api();
 

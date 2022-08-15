@@ -136,7 +136,6 @@ export default function ForgotPasswordPage() {
             return <></>;
           },
           butttonMode: constants.SECONDARY,
-          buttonLabel: "Back to Login",
           onCTAButtonClicked: function ({ data, router }) {
             router.push("/patient/login");
           },

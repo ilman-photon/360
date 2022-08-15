@@ -286,7 +286,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                 },
               },
               pattern: {
-                value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i,
+                value: Regex.isEmailCorrect,
                 message: "Incorrect email format",
               },
             }}
