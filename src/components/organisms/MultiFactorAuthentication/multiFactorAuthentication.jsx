@@ -31,17 +31,15 @@ export default function MultiFactorAuthentication({
     );
   };
 
-  const checkSubmitMessage = (message) => {
+  const checkMessage = (message) => {
     if (message.status === "failed") {
+      console.log(message);
+      if (message.isEndView) {
+        setEndView(true);
+      }
       setMfaCode("");
       setPostMessage(message);
     }
-  };
-
-  const checkResendCodeMessage = (message) => {
-    console.log(message);
-    setPostMessage(message);
-    setEndView(true);
   };
 
   return (
@@ -56,10 +54,10 @@ export default function MultiFactorAuthentication({
           secondaryButtonTitle={"Resend Code"}
           linkTitle={"Back to Login"}
           onClickPrimaryButton={() => {
-            onSubmitClicked(mfaCode, checkSubmitMessage);
+            onSubmitClicked(mfaCode, checkMessage);
           }}
           onClickSecondaryButton={() => {
-            onResendCodeClicked(checkResendCodeMessage);
+            onResendCodeClicked(checkMessage);
           }}
           onClickLink={() => {
             onBackToLoginClicked();
