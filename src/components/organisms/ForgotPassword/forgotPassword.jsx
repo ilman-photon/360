@@ -11,6 +11,7 @@ import FormMessage from "../../molecules/FormMessage/formMessage";
 import { styles } from "./style";
 import { useForm, Controller } from "react-hook-form";
 import constants from "../../../utils/constants";
+import { Regex } from "../../../utils/regex";
 
 const ForgotPassword = ({
   onBackToLoginClicked,
@@ -24,8 +25,8 @@ const ForgotPassword = ({
   const { FORGOT_TEST_ID } = constants.TEST_ID;
   const onSubmit = ({ username }) => {
     if (
-      constants.REGEX_PHONE_NUMBER.test(username) ||
-      constants.REGEX_EMAIL.test(username)
+      Regex.REGEX_PHONE_NUMBER.test(username) ||
+      Regex.isEmailCorrect.test(username)
     ) {
       onCalledValidateUsernameAPI(
         {

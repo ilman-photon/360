@@ -14,20 +14,40 @@ jest.mock("next/dynamic", () => ({
   },
 }));
 
-jest.mock('next/router', () => ({
+jest.mock("next/router", () => ({
   useRouter() {
-    return ({
-      route: '/',
-      pathname: '',
-      query: '',
-      asPath: '',
+    return {
+      route: "/",
+      pathname: "",
+      query: "",
+      asPath: "",
       push: jest.fn(),
       events: {
         on: jest.fn(),
-        off: jest.fn()
+        off: jest.fn(),
       },
       beforePopState: jest.fn(() => null),
-      prefetch: jest.fn(() => null)
-    });
+      prefetch: jest.fn(() => null),
+    };
+  },
+}));
+
+jest.mock("next-i18next", () => ({
+  use: () => {
+    return {
+      init: () => {},
+    };
+  },
+  t: (k) => k,
+  appWithTranslation: (Component) => {
+    return Component;
+  },
+  useTranslation: () => {
+    return {
+      t: (str) => str,
+      i18n: {
+        changeLanguage: () => new Promise(() => {}),
+      },
+    };
   },
 }));

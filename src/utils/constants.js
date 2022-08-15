@@ -25,8 +25,6 @@ module.exports = {
   EMAIL: "email",
   PHONE: "phone",
   YES: "yes",
-  REGEX_PHONE_NUMBER: /^\d{10,}$/,
-  REGEX_EMAIL: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i,
   TEST_ID: {
     LOGIN_TEST_ID: {
       email: "emailorphonenumber",
@@ -40,6 +38,9 @@ module.exports = {
       email: "emailorphonenumber",
       continueBtn: "continuebtn",
       loginLink: "backtologin",
+      answerQuestions: "answerquestions",
+      oneTimeLink: "onetimelink",
+      securityQuestion: "securityquestion",
     },
     REGISTER_TEST_ID: {
       firstname: "firstname",

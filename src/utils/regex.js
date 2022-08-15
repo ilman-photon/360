@@ -10,4 +10,5 @@ export class Regex {
   static isValidPhoneFormat = /^(\(\d{3}\) |\d{3}-)\d{3}-\d{4}$/i;
   static noSpecialRegex = /^[a-z0-9]+$/gi;
   static isEmailCorrect = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i;
+  static REGEX_PHONE_NUMBER = /^\d{10,}$/;
 }

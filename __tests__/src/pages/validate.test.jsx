@@ -29,7 +29,7 @@ describe("Validate", () => {
     mock.onPost(`/ecp/patient/oneTimeLinkToken`).reply(404, {});
     const container = render(
       <Provider store={store}>
-        <Validate query={{ oneTimeToken: "345" }} />
+        {Validate.getLayout(<Validate query={{ oneTimeToken: "345" }} />)}
       </Provider>
     );
     expect(container).toMatchSnapshot();
