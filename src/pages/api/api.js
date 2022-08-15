@@ -62,6 +62,41 @@ export class Api {
     return this.forgotFeatureValidation(url, postbody, "post");
   }
 
+  getCommunicationMethod(postbody) {
+    // const url = "/ecp/patient/updatepassword";
+    // return this.forgotFeatureValidation(url, postbody, "post");
+    return new Promise((resolve, reject) => {
+      if (postbody === "9876543210") {
+        resolve({
+          phone: "(8***)***-***31",
+        });
+      } else {
+        resolve({
+          email: "m********@yahoo.com",
+          phone: "(8***)***-***31",
+        });
+      }
+    });
+  }
+
+  requestNewCode(postbody) {
+    return new Promise((resolve, reject) => {
+      resolve("4321");
+    });
+  }
+
+  requestCode(postbody) {
+    return new Promise((resolve, reject) => {
+      resolve("1234");
+    });
+  }
+
+  setRemeberMe(postbody) {
+    return new Promise((resolve, reject) => {
+      resolve("success");
+    });
+  }
+
   forgotFeatureValidation(url, postbody, method, expectedCode) {
     if (!expectedCode) {
       expectedCode = 1000;
