@@ -33,7 +33,7 @@ export default function Layout({
       setImageSrcState(imageSrc);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [title, imageSrc]);
   return (
     <>
       <Head>
