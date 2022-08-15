@@ -10,10 +10,23 @@ const loginProps = {
     api
       .login(postbody)
       .then(function (response) {
-        // const hostname = window.location.origin;
-        // window.location.href = `${hostname}/patient`;
-        router.push("/patient/mfa");
-        //cookies.set("authorized", true, { path: "/patient" });
+        cookies.set("username", postbody.username, { path: "/patient" });
+        //Alternative 1
+        const isRememberMe =
+          cookies.get("rememberMe", { path: "/patient" }) === "true";
+        const usernameCookie = cookies.get("username", { path: "/patient" });
+        const isNotNeedMfa =
+          isRememberMe && usernameCookie === postbody.username;
+
+        //Alternative 2
+        //const isNotNeedMfa = response.isRememberMe
+
+        isNotNeedMfa && cookies.set("authorized", true, { path: "/patient" });
+        const hostname = window.location.origin;
+        window.location.href = isNotNeedMfa
+          ? `${hostname}/patient`
+          : `${hostname}/patient/mfa`;
+        //router.push("/patient/mfa/");
         callback({ status: "success" });
       })
       .catch(function (err) {
