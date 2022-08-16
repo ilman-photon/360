@@ -7,15 +7,18 @@ import {
   Grid,
   Stack,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import LabelWithInfo from "../../atoms/LabelWithInfo/labelWithInfo";
 import AccountCard from "../../molecules/AccountCard/accountCard";
 import styles from "./contactInformation.module.scss";
 import { useForm, Controller } from "react-hook-form";
 import { StyledInput } from "../../atoms/Input/input";
+import { StyledButton } from "../../atoms/Button/button";
 import { colors } from "../../../styles/theme";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
-import { useCallback, useEffect } from "react";
+import { startTransition, Suspense, useCallback, useEffect } from "react";
 import Image from "next/image";
 import { Regex } from "../../../utils/regex";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
@@ -23,10 +26,16 @@ import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 // import { AddressAutofill } from '@mapbox/search-js-react';
 import dynamic from "next/dynamic";
 
-const ClientAddressAutofill = dynamic(
-  () => import("@mapbox/search-js-react").then((mod) => mod.AddressAutofill),
-  { ssr: false }
-);
+let ClientAddressAutofill;
+
+startTransition(async () => {
+  ClientAddressAutofill = await dynamic(
+    () => import("@mapbox/search-js-react").then((mod) => mod.AddressAutofill),
+    { ssr: false }
+  );
+
+  ClientAddressAutofill.accessToken = process.env.MAPBOX_API_TOKEN;
+});
 
 export default function ContactInformation({
   autoFillAPIToken = "",
@@ -46,6 +55,8 @@ export default function ContactInformation({
     // defaultValues: DEFAULT_CONTACT_INFO,
     defaultValues: userData, // Object.assign({}, userData),
   });
+
+  const isDesktop = useMediaQuery("(min-width: 769px)");
 
   const communicationOptions = [
     { label: "Email", value: "email" },
@@ -97,7 +108,30 @@ export default function ContactInformation({
       titleIcon={<PermContactCalendarOutlinedIcon />}
       title="Contact Information"
       isEditing={isEditing}
-      OnEditClicked={OnEditClicked}
+      // OnEditClicked={OnEditClicked}
+      actionContent={
+        isDesktop ? (
+          <Button
+            onClick={OnEditClicked}
+            variant="text"
+            className={styles.editButton}
+          >
+            <EditOutlinedIcon sx={{ width: 20, height: 20 }} />
+            <div type="link" style={{ marginLeft: 4 }}>
+              Edit
+            </div>
+          </Button>
+        ) : (
+          <StyledButton
+            mode="primary"
+            size="small"
+            onClick={OnEditClicked}
+            sx={{ my: 4 }}
+          >
+            Edit
+          </StyledButton>
+        )
+      }
     >
       <Fade in={!isEditing} unmountOnExit>
         <Stack spacing={3} divider={<Divider />}>
@@ -209,42 +243,44 @@ export default function ContactInformation({
               }}
             />
 
-            <ClientAddressAutofill accessToken={autoFillAPIToken}>
-              <Controller
-                name="address"
-                control={control}
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => {
-                  return (
-                    <StyledInput
-                      type="text"
-                      id="address"
-                      label="Address"
-                      autoComplete="address-line1"
-                      placeholder="Start typing your address, e.g. 123 United States..."
-                      sx={{ width: "100%" }}
-                      value={value}
-                      onChange={onChange}
-                      error={!!error}
-                      size="small"
-                      variant="filled"
-                      helperText={error ? error.message : null}
-                    />
-                  );
-                }}
-                rules={
-                  {
-                    // required: "This field is required",
-                    // pattern: {
-                    //   value: Regex.isValidPhoneFormat,
-                    //   message: "Incorrect format",
-                    // },
+            <Suspense fallback={`Loading...`}>
+              <ClientAddressAutofill accessToken={autoFillAPIToken}>
+                <Controller
+                  name="address"
+                  control={control}
+                  render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                  }) => {
+                    return (
+                      <StyledInput
+                        type="text"
+                        id="address"
+                        label="Address"
+                        autoComplete="address-line1"
+                        placeholder="Start typing your address, e.g. 123 United States..."
+                        sx={{ width: "100%" }}
+                        value={value}
+                        onChange={onChange}
+                        error={!!error}
+                        size="small"
+                        variant="filled"
+                        helperText={error ? error.message : null}
+                      />
+                    );
+                  }}
+                  rules={
+                    {
+                      // required: "This field is required",
+                      // pattern: {
+                      //   value: Regex.isValidPhoneFormat,
+                      //   message: "Incorrect format",
+                      // },
+                    }
                   }
-                }
-              />
-            </ClientAddressAutofill>
+                />
+              </ClientAddressAutofill>
+            </Suspense>
 
             <Controller
               name="city"

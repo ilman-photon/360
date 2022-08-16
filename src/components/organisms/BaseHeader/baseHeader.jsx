@@ -126,7 +126,9 @@ export default function BaseHeader({
                 setAnchorElNav(false);
               }}
               opened={anchorElNav}
-              onLogoutClicked={OnLogoutClicked(router)}
+              onLogoutClicked={() => {
+                OnLogoutClicked(router);
+              }}
             />
 
             {/* profile menu */}

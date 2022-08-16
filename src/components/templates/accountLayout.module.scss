@@ -21,6 +21,10 @@
 
     .sidebarContainer {
       grid-column: span 2 / span 2;
+
+      @media (max-width: 767px) {
+        display: none;
+      }
     }
 
     .pageContainer {
@@ -28,6 +32,15 @@
       padding: 40px 24px;
       height: calc(100vh - 64px - 80px);
       overflow: auto;
+
+      @media (max-width: 767px) {
+        grid-column: span 7 / span 7;
+        padding: 0;
+
+        > section {
+          max-width: unset;
+        }
+      }
 
       > section {
         max-width: 950px;

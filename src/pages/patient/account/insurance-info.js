@@ -5,6 +5,7 @@ import InsuranceInformationNew from "../../../components/organisms/InsuranceInfo
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser, setUserData } from "../../../store/user";
+import { useMediaQuery } from "@mui/material";
 
 export default function InsuranceInformationPage() {
   const [insuranceEditing, setInsuranceEditing] = useState(true);
@@ -37,10 +38,7 @@ export default function InsuranceInformationPage() {
 }
 
 InsuranceInformationPage.getLayout = function getLayout(page) {
-  const isMobile = useMediaQuery("(max-width: 768px)");
   return (
-    <AccountLayout currentActivePage={!isMobile ? "insurance-info" : ""}>
-      {page}
-    </AccountLayout>
+    <AccountLayout currentActivePage={"insurance-info"}>{page}</AccountLayout>
   );
 };

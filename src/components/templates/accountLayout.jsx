@@ -8,11 +8,12 @@ import AccountDrawer from "../molecules/AccountDrawer/accountDrawer";
 import { patientTypography, providerTypography } from "../../styles/theme";
 import { ThemeProvider, useMediaQuery } from "@mui/material";
 import * as React from "react";
+import BaseHeader from "../organisms/BaseHeader/baseHeader";
 
 //Prevent html being match between server and client
-const BaseHeader = dynamic(() => import("../organisms/BaseHeader/baseHeader"), {
-  suspense: true,
-});
+// const BaseHeader = dynamic(() => import("../organisms/BaseHeader/baseHeader"), {
+//   suspense: true,
+// });
 
 export default function Layout({
   theme = "patient",
@@ -28,6 +29,7 @@ export default function Layout({
   };
 
   const getHeadingTitle = (pageName) => {
+    if (!isMobile) return "Your Account";
     switch (pageName) {
       case "profile-info":
         return "Profile Information";
@@ -47,9 +49,9 @@ export default function Layout({
         <ThemeProvider
           theme={isPatient ? patientTypography : providerTypography}
         >
-          <Suspense fallback={`Loading...`}>
-            <BaseHeader />
-          </Suspense>
+          {/* <Suspense fallback={`Loading...`}> */}
+          <BaseHeader />
+          {/* </Suspense> */}
           <AccountTitleHeading title={getHeadingTitle(currentActivePage)} />
           <div className={styles.container}>
             <div className={styles.sidebarContainer}>

@@ -6,6 +6,7 @@ import {
   Fade,
   Stack,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import LabelWithInfo from "../../atoms/LabelWithInfo/labelWithInfo";
 import AccountCard from "../../molecules/AccountCard/accountCard";
@@ -17,12 +18,14 @@ import { Controller, useForm } from "react-hook-form";
 import { ProfilePhotoUploader } from "../../molecules/ProfilePhotoUploader/profilePhotoUploader";
 import { stringAvatar } from "../../../utils/avatar";
 import StyledInput from "../../atoms/Input/input";
+import { StyledButton } from "../../atoms/Button/button";
 import { ImageUploader } from "../../molecules/ImageUploader/imageUploader";
 import { connect } from "react-redux";
 import { useEffect } from "react";
 import { StyledSelect } from "../../atoms/Select/select";
 import { formatSocialSecurity } from "../../../utils/ssnFormatter";
 import { GENDER_LIST, TITLE_LIST } from "../../../utils/constantData";
+import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
 export default function PersonalInformation({
   userData = {},
@@ -42,6 +45,10 @@ export default function PersonalInformation({
   });
 
   console.log({ userData });
+
+  const isDesktop = useMediaQuery("(min-width: 769px)");
+  const tooltipContentDefault =
+    "If you wish to change this information, please contact Customer Support";
 
   const genderOptions = GENDER_LIST.map((gender) => {
     return { label: gender, value: gender };
@@ -69,7 +76,30 @@ export default function PersonalInformation({
       titleIcon={<AccountCircleOutlinedIcon />}
       title="Personal Information"
       isEditing={isEditing}
-      OnEditClicked={OnEditClicked}
+      // OnEditClicked={OnEditClicked}
+      actionContent={
+        isDesktop ? (
+          <Button
+            onClick={OnEditClicked}
+            variant="text"
+            className={styles.editButton}
+          >
+            <EditOutlinedIcon sx={{ width: 20, height: 20 }} />
+            <div type="link" style={{ marginLeft: 4 }}>
+              Edit
+            </div>
+          </Button>
+        ) : (
+          <StyledButton
+            mode="primary"
+            size="small"
+            onClick={OnEditClicked}
+            sx={{ my: 4 }}
+          >
+            Edit
+          </StyledButton>
+        )
+      }
     >
       <Fade in={!isEditing} unmountOnExit>
         <Stack spacing={3} divider={<Divider />}>
@@ -89,10 +119,7 @@ export default function PersonalInformation({
             )}
           </LabelWithInfo>
 
-          <LabelWithInfo
-            label="Name"
-            tooltipContent="If you wish to change this information, please contact Customer Support"
-          >
+          <LabelWithInfo label="Name" tooltipContent={tooltipContentDefault}>
             {userData.name}
           </LabelWithInfo>
 
@@ -104,24 +131,18 @@ export default function PersonalInformation({
 
           <LabelWithInfo
             label="Date of Birth"
-            tooltipContent="If you wish to change this information, please contact Customer Support"
+            tooltipContent={tooltipContentDefault}
           >
             {new Date(userData.dob).toLocaleDateString()}
           </LabelWithInfo>
 
-          <LabelWithInfo
-            label="Age"
-            tooltipContent="If you wish to change this information, please contact Customer Support"
-          >
+          <LabelWithInfo label="Age" tooltipContent={tooltipContentDefault}>
             {userData.age}
           </LabelWithInfo>
 
           <LabelWithInfo label="Gender">{userData.gender}</LabelWithInfo>
 
-          <LabelWithInfo
-            label="SSN"
-            tooltipContent="If you wish to change this information, please contact Customer Support"
-          >
+          <LabelWithInfo label="SSN" tooltipContent={tooltipContentDefault}>
             {formatSocialSecurity(String(userData.ssn))}
           </LabelWithInfo>
 
