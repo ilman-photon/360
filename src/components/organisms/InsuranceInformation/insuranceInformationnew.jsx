@@ -20,6 +20,7 @@ import Image from "next/image";
 import { Regex } from "../../../utils/regex";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import SelectOptionButton from "../../atoms/SelectOptionButton/selectOptionButton";
+import AddIcon from "@mui/icons-material/Add";
 
 import InsuranceForm from "./insuranceForm";
 import InsuranceView from "./insuranceView";
@@ -45,8 +46,17 @@ export default function InsuranceDocument({
     <AccountCard
       titleIcon={<PermContactCalendarOutlinedIcon />}
       title="Insurance Documents"
-      OnAddInsurance={true}
       isEditing={isEditing}
+      actionContent={
+        <Button
+          onClick={OnEditClicked}
+          variant="text"
+          className={styles.addInsuranceButton}
+        >
+          <AddIcon sx={{ width: 20, height: 20 }} />
+          Add Insurance
+        </Button>
+      }
     >
       <InsuranceView
         isEditing={isEditing}

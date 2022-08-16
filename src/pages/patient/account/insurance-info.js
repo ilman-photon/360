@@ -1,7 +1,6 @@
 import AccountLayout from "../../../components/templates/accountLayout";
 import InsuranceInformation from "../../../components/organisms/InsuranceInformation/insuranceInformation";
 import InsuranceInformationNew from "../../../components/organisms/InsuranceInformation/insuranceInformationNew";
-// import { useState } from "react";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUser, setUserData } from "../../../store/user";

@@ -18,7 +18,7 @@ export const AccountCard = ({
   isEditing,
   actionContent,
   OnEditClicked,
-  OnAddInsurance,
+  // OnAddInsurance,
   ...props
 }) => {
   const isDesktop = useMediaQuery("(min-width: 769px)");
@@ -47,22 +47,7 @@ export const AccountCard = ({
                 <div className={styles.title}>{title}</div>
               </div>
             }
-            action={
-              !isEditing ? (
-                { actionContent }
-              ) : OnAddInsurance ? (
-                <Button
-                  // onClick={OnEditClicked}
-                  variant="text"
-                  className={styles.addInsuranceButton}
-                >
-                  <AddIcon sx={{ width: 20, height: 20 }} />
-                  Add Insurance
-                </Button>
-              ) : (
-                ""
-              )
-            }
+            action={!isEditing ? actionContent : ""}
           />
         )}
         <CardContent sx={{ px: { xs: 3, md: 4 }, py: { xs: 4, md: 4 } }}>

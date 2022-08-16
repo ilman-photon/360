@@ -16,7 +16,7 @@ export const fetchUser = createAsyncThunk(
 
 const DEFAULT_USER_DATA = {
   firstName: "",
-  lastName: "",
+  lastName: "laste",
   name: "Eyecare User",
   preferredName: "---",
   profilePhoto: "",
@@ -34,14 +34,12 @@ const DEFAULT_USER_DATA = {
   preferredCommunication: "both",
   age: "49",
   gender: "Male",
-  preferredCommunication: "both",
   relationship: "",
   insurancePriority: "",
   planName: "",
   subscriberMember: "",
   groupId: "",
   isSubscriber: "",
-  relationship: "",
 };
 
 const userSlice = createSlice({

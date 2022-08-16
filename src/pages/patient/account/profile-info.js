@@ -77,8 +77,8 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
     <section>
       <Tabs
         sx={{
-          md: {
-            display: "none",
+          display: {
+            md: "none",
           },
         }}
         value={activeTabs}

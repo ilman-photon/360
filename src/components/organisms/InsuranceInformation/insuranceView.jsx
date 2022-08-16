@@ -47,7 +47,7 @@ export default function InsuranceForm({
 
           <Grid item xs={4} p={0}>
             <LabelWithInfo label="Subscriber ID/Member ID">
-              {userData.subscriberMember}
+              {userData.subscriberId}
             </LabelWithInfo>
           </Grid>
         </Grid>

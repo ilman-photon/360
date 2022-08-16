@@ -44,7 +44,7 @@ export default function PersonalInformation({
     defaultValues: userData, // Object.assign({}, userData),
   });
 
-  console.log({ userData });
+  console.log({ userData }, "PersonalInformation");
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
   const tooltipContentDefault =
@@ -68,7 +68,7 @@ export default function PersonalInformation({
   };
 
   const onSubmit = (data) => {
-    console.log({ data });
+    console.log({ data }, "onSubmit");
     OnSaveClicked(data);
   };
   return (
