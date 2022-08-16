@@ -36,14 +36,12 @@ const loginProps = {
       })
       .catch(function (err) {
         const isLockedAccount = err.ResponseCode === 2004;
-        const title = isLockedAccount ? "Account Locked" : "";
         const description = isLockedAccount
-          ? "Too many login attempts. Your account is locked. Please contact customer support to unlock your account"
+          ? "Your account has been locked after too many failed attempts. Please contact Customer Support to unlock your account."
           : "Invalid Username or Password";
         callback({
           status: "failed",
           message: {
-            title,
             description,
           },
         });

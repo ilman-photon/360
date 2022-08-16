@@ -24,7 +24,7 @@ export default function Login({
   const [postMessage, setPostMessage] = React.useState("");
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "Login" });
-
+  const { LOGIN_TEST_ID } = constants.TEST_ID;
   const { handleSubmit, setError, control } = useForm();
 
   const onSubmit = ({ username, password }) => {
@@ -57,7 +57,9 @@ export default function Login({
   };
 
   return (
-    <Box className={globalStyles.container}>
+    <Box
+      className={[styles.overideContainer, globalStyles.container].join(" ")}
+    >
       <Typography variant={constants.H1} className={styles.title}>
         {t("formTitle")}
       </Typography>
@@ -79,6 +81,7 @@ export default function Login({
                     label={t("emailUserLabel")}
                     size={constants.SMALL}
                     variant={constants.FILLED}
+                    data-testid={LOGIN_TEST_ID.email}
                     type={constants.INPUT_TEXT}
                     value={value}
                     onChange={onChange}
@@ -102,6 +105,7 @@ export default function Login({
                 return (
                   <StyledInput
                     id="password"
+                    data-testid={LOGIN_TEST_ID.password}
                     label={t("passwordLabel")}
                     type={constants.INPUT_PASSWORD}
                     size={constants.SMALL}
@@ -118,7 +122,7 @@ export default function Login({
             <Grid container justifyContent={constants.FLEX_END}>
               <Link
                 className={styles.link}
-                data-testid="forgot-link"
+                data-testid={LOGIN_TEST_ID.forgotLink}
                 onClick={function () {
                   OnForgotPasswordClicked(router);
                 }}
@@ -131,6 +135,7 @@ export default function Login({
               mode={constants.PRIMARY}
               type="submit"
               size={constants.SMALL}
+              data-testid={LOGIN_TEST_ID.loginBtn}
               gradient={false}
             >
               {t("loginButtonLabel")}
@@ -143,6 +148,7 @@ export default function Login({
           size={constants.SMALL}
           gradient={false}
           onClick={OnGuestClicked}
+          data-testid={LOGIN_TEST_ID.guestBtn}
         >
           {t("continueAsPasswordButtonLabel")}
         </StyledButton>
@@ -159,6 +165,7 @@ export default function Login({
           mode={constants.SECONDARY}
           size={constants.SMALL}
           gradient={false}
+          data-testid={LOGIN_TEST_ID.createAccountBtn}
           onClick={function () {
             OnCreateAccountClicked(router);
           }}

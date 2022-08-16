@@ -13,15 +13,19 @@ const feature = loadFeature(
 );
 
 defineFeature(feature, (test) => {
+  let container, login;
+  const mock = new MockAdapter(axios);
+  const element = document.createElement("div");
+  afterEach(() => {
+    mock.reset();
+  });
+
   test('EPIC_EPP-4_STORY_EPP-208-Verify whether the "Invalid Username or Password" error message is displaying when user provides Invalid Email or Phone Number and Valid Password', ({
     given,
     when,
     then,
     and,
   }) => {
-    let container, login;
-    const mock = new MockAdapter(axios);
-    const element = document.createElement("div");
     given("user launch the 'XXX' url", () => {
       expect(true).toBeTruthy();
     });
