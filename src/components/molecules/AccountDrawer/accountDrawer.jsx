@@ -27,11 +27,7 @@ export const AccountDrawer = ({
   onLogoutClicked = () => {
     // This is intended
   },
-}) => {
-  const router = useRouter();
-  const [isAccountDrawer, setIsAccountDrawer] = useState(false);
-
-  const sidebarLinks = [
+  sidebarLinks = [
     { label: "Profile Information", href: "/patient/account/profile-info" },
     { label: "Financial Information", href: "#" },
     { label: "Toggle accounts", href: "#" },
@@ -39,7 +35,10 @@ export const AccountDrawer = ({
     { label: "Prescriptions", href: "#" },
     { label: "Insurance documents", href: "/patient/account/insurance-info" },
     { label: "Multi factor authentication", href: "#" },
-  ];
+  ],
+}) => {
+  const router = useRouter();
+  const [isAccountDrawer, setIsAccountDrawer] = useState(false);
 
   const MuiDrawer = styled(SwipeableDrawer)(() => ({
     "& .MuiDrawer-paper": {

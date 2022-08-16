@@ -3,10 +3,8 @@ import LabelWithInfo from "../../atoms/LabelWithInfo/labelWithInfo";
 import styles from "./insuranceInformationNew.module.scss";
 import { useForm } from "react-hook-form";
 import { colors } from "../../../styles/theme";
-import AccountCard from "../../molecules/AccountCard/accountCard";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
-import { useEffect, useState } from "react";
 import Image from "next/image";
 
 export default function InsuranceForm({
@@ -19,40 +17,14 @@ export default function InsuranceForm({
     // This is intentional
   },
 }) {
-  const DEFAULT_CONTACT_INFO = {
-    email: "",
-    mobile: "",
-    address: "",
-    city: "",
-    state: "",
-    zip: "",
-    preferredCommunication: "both",
-  };
-
-  console.log({ userData }, "view");
-
   const handleCancel = () => {
     reset(userData);
     OnCancelEditClicked();
   };
 
-  const { handleSubmit, control, watch, reset } = useForm({
+  const { control, watch, reset } = useForm({
     defaultValues: userData.userData,
   });
-
-  const priorityOptions = [
-    { label: "Primary", value: "Primary" },
-    { label: "Secondary", value: "Secondary" },
-    { label: "Tertiary", value: "Tertiary" },
-  ];
-
-  useEffect(() => {
-    if (userData) reset(userData);
-  }, [userData]);
-
-  const onSubmit = (data) => {
-    OnSaveClicked(data);
-  };
 
   return (
     <Fade in={!isEditing} unmountOnExit>

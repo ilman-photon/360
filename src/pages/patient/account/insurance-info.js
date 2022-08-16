@@ -25,7 +25,6 @@ export default function InsuranceInformationPage() {
 
   return (
     <section>
-      {/* <InsuranceInformation /> */}
       <InsuranceInformationNew
         userData={userData}
         isEditing={insuranceEditing}
