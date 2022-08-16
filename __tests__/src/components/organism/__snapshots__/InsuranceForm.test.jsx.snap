@@ -184,7 +184,7 @@ Object {
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
             >
               <div
-                class="MuiFormControl-root MuiTextField-root custom-input css-11rladx-MuiFormControl-root-MuiTextField-root"
+                class="MuiFormControl-root MuiTextField-root custom-input css-1p4p0rn-MuiFormControl-root-MuiTextField-root"
                 withicon="true"
               >
                 <label
@@ -372,7 +372,7 @@ Object {
               style="padding-left: 0px;"
             >
               <div
-                class="MuiFormControl-root MuiTextField-root custom-input css-11rladx-MuiFormControl-root-MuiTextField-root"
+                class="MuiFormControl-root MuiTextField-root custom-input css-1p4p0rn-MuiFormControl-root-MuiTextField-root"
                 withicon="true"
               >
                 <label
@@ -401,7 +401,7 @@ Object {
               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1lojpzt-MuiGrid-root"
             >
               <div
-                class="MuiFormControl-root MuiTextField-root custom-input css-11rladx-MuiFormControl-root-MuiTextField-root"
+                class="MuiFormControl-root MuiTextField-root custom-input css-1p4p0rn-MuiFormControl-root-MuiTextField-root"
                 withicon="true"
               >
                 <label
@@ -428,7 +428,7 @@ Object {
             </div>
           </div>
           <div
-            class="MuiFormControl-root MuiTextField-root css-6pfuxt-MuiFormControl-root-MuiTextField-root"
+            class="MuiFormControl-root MuiTextField-root css-1emi9pb-MuiFormControl-root-MuiTextField-root"
           >
             <label
               class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
@@ -449,7 +449,7 @@ Object {
                 id=":r5:"
                 readonly=""
                 type="text"
-                value="08/15/2022"
+                value="08/16/2022"
               />
             </div>
           </div>
@@ -533,7 +533,6 @@ Object {
                 >
                   <button
                     class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root  css-1y9skq0-MuiButtonBase-root-MuiButton-root"
-                    mode="secondary"
                     tabindex="0"
                     type="button"
                   >
@@ -556,16 +555,16 @@ Object {
                       >
                         Upload Front
                       </span>
-                      <input
-                        accept="image/png, image/gif, image/jpeg"
-                        hidden=""
-                        type="file"
-                      />
                     </div>
                     <span
                       class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                     />
                   </button>
+                  <input
+                    accept="image/png, image/gif, image/jpeg"
+                    hidden=""
+                    type="file"
+                  />
                 </div>
                 <span
                   class="MuiTypography-root MuiTypography-bodySmallMedium css-37jdci-MuiTypography-root"
@@ -585,7 +584,6 @@ Object {
                 >
                   <button
                     class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root  css-1y9skq0-MuiButtonBase-root-MuiButton-root"
-                    mode="secondary"
                     tabindex="0"
                     type="button"
                   >
@@ -608,16 +606,16 @@ Object {
                       >
                         Upload Back
                       </span>
-                      <input
-                        accept="image/png, image/gif, image/jpeg"
-                        hidden=""
-                        type="file"
-                      />
                     </div>
                     <span
                       class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                     />
                   </button>
+                  <input
+                    accept="image/png, image/gif, image/jpeg"
+                    hidden=""
+                    type="file"
+                  />
                 </div>
                 <span
                   class="MuiTypography-root MuiTypography-bodySmallMedium css-37jdci-MuiTypography-root"
@@ -1015,7 +1013,7 @@ Object {
             class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
           >
             <div
-              class="MuiFormControl-root MuiTextField-root custom-input css-11rladx-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiTextField-root custom-input css-1p4p0rn-MuiFormControl-root-MuiTextField-root"
               withicon="true"
             >
               <label
@@ -1203,7 +1201,7 @@ Object {
             style="padding-left: 0px;"
           >
             <div
-              class="MuiFormControl-root MuiTextField-root custom-input css-11rladx-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiTextField-root custom-input css-1p4p0rn-MuiFormControl-root-MuiTextField-root"
               withicon="true"
             >
               <label
@@ -1232,7 +1230,7 @@ Object {
             class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1lojpzt-MuiGrid-root"
           >
             <div
-              class="MuiFormControl-root MuiTextField-root custom-input css-11rladx-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiTextField-root custom-input css-1p4p0rn-MuiFormControl-root-MuiTextField-root"
               withicon="true"
             >
               <label
@@ -1259,7 +1257,7 @@ Object {
           </div>
         </div>
         <div
-          class="MuiFormControl-root MuiTextField-root css-6pfuxt-MuiFormControl-root-MuiTextField-root"
+          class="MuiFormControl-root MuiTextField-root css-1emi9pb-MuiFormControl-root-MuiTextField-root"
         >
           <label
             class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
@@ -1280,7 +1278,7 @@ Object {
               id=":r5:"
               readonly=""
               type="text"
-              value="08/15/2022"
+              value="08/16/2022"
             />
           </div>
         </div>
@@ -1364,7 +1362,6 @@ Object {
               >
                 <button
                   class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root  css-1y9skq0-MuiButtonBase-root-MuiButton-root"
-                  mode="secondary"
                   tabindex="0"
                   type="button"
                 >
@@ -1387,16 +1384,16 @@ Object {
                     >
                       Upload Front
                     </span>
-                    <input
-                      accept="image/png, image/gif, image/jpeg"
-                      hidden=""
-                      type="file"
-                    />
                   </div>
                   <span
                     class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                   />
                 </button>
+                <input
+                  accept="image/png, image/gif, image/jpeg"
+                  hidden=""
+                  type="file"
+                />
               </div>
               <span
                 class="MuiTypography-root MuiTypography-bodySmallMedium css-37jdci-MuiTypography-root"
@@ -1416,7 +1413,6 @@ Object {
               >
                 <button
                   class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root  css-1y9skq0-MuiButtonBase-root-MuiButton-root"
-                  mode="secondary"
                   tabindex="0"
                   type="button"
                 >
@@ -1439,16 +1435,16 @@ Object {
                     >
                       Upload Back
                     </span>
-                    <input
-                      accept="image/png, image/gif, image/jpeg"
-                      hidden=""
-                      type="file"
-                    />
                   </div>
                   <span
                     class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                   />
                 </button>
+                <input
+                  accept="image/png, image/gif, image/jpeg"
+                  hidden=""
+                  type="file"
+                />
               </div>
               <span
                 class="MuiTypography-root MuiTypography-bodySmallMedium css-37jdci-MuiTypography-root"
