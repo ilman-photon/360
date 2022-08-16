@@ -2,12 +2,14 @@ import BlockIcon from "@mui/icons-material/Block";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { Box, Stack } from "@mui/material";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { forwardRef } from "react";
 import { colors } from "../../../styles/theme";
 import SidebarLink from "../../atoms/SidebarLink/sidebarLink";
 import styles from "./accountSidebar.module.scss";
 
 export const AccountSidebar = ({ ...props }, ref) => {
+  const router = useRouter();
   const sidebarLinks = [
     { label: "Profile Information", href: "/patient/account/profile-info" },
     { label: "Financial Information", href: "#" },
@@ -30,6 +32,7 @@ export const AccountSidebar = ({ ...props }, ref) => {
         {sidebarLinks.map((link, idx) => {
           return (
             <SidebarLink
+              router={router}
               key={idx}
               href={link.href}
               className={styles.sidebarLink}

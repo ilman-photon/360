@@ -95,7 +95,6 @@ describe("Home", () => {
     });
     fireEvent.click(getByTestId("user-menu-open"));
     fireEvent.click(getAllByTestId("logout")[0]);
-    fireEvent.click(getByTestId("user-menu-nav-close"));
     jest.resetAllMocks();
   });
 

@@ -1,4 +1,3 @@
-import { withRouter } from "next/router";
 import React from "react";
 import { colors } from "../../../styles/theme";
 import styles from "./sidebarLink.module.scss";
@@ -30,4 +29,4 @@ const SidebarLink = ({ router, href, isLeftSideBar = false, children }) => {
   );
 };
 
-export default withRouter(SidebarLink);
+export default SidebarLink;

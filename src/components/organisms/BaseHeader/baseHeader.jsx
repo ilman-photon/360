@@ -103,6 +103,19 @@ export default function BaseHeader({
               </IconButton>
               {/* <Menu
                 id="menu-appbar"
+                anchorEl={anchorElNav}
+                anchorOrigin={{
+                  vertical: "bottom",
+                  horizontal: "left",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "left",
+                }}
+                open={Boolean(anchorElNav)}
+                data-testid="user-menu-nav-close"
+                onClose={handleCloseNavMenu}
                 sx={styles.menuMobile}
               >
                 {pages.map(({ page, testId }) => (
@@ -128,9 +141,9 @@ export default function BaseHeader({
                   </Button>
                 </MenuItem>
               </Menu> */}
-              {/* <MenuIcon onClick={() => { setAnchorElNav(true) }} /> */}
             </Box>
             <AccountDrawer
+              data-testid="user-menu-nav-close"
               onClose={() => {
                 setAnchorElNav(false);
               }}
@@ -141,7 +154,7 @@ export default function BaseHeader({
             />
 
             {/* profile menu */}
-            {/* <Box sx={styles.boxProfileMenuStyles}>
+            <Box sx={styles.boxProfileMenuStyles}>
               <Tooltip title="Open settings">
                 <Button
                   variant="text"
@@ -187,7 +200,7 @@ export default function BaseHeader({
                   </MenuItem>
                 }
               </Menu>
-            </Box> */}
+            </Box>
           </Toolbar>
         ) : (
           <Toolbar disableGutters>
