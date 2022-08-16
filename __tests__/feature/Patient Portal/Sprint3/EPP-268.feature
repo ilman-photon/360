@@ -5,7 +5,7 @@ Feature: Patient Portal : MFA - Incorrect code provided during setting up multi 
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-268 - Verify user should see error message when enter invalid code (Prefered Mode of Communication both)
     Feature: Authentication - MFA
 
@@ -25,7 +25,7 @@ Feature: Patient Portal : MFA - Incorrect code provided during setting up multi 
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-268 - Verify user should see error message when enter invalid code (Prefered Mode of Communication Email)
     Feature: Authentication - MFA
 
@@ -45,7 +45,7 @@ Feature: Patient Portal : MFA - Incorrect code provided during setting up multi 
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-268 - Verify user should see error message when enter invalid code (Prefered Mode of Communication Phone)
     Feature: Authentication - MFA
 
@@ -65,7 +65,7 @@ Feature: Patient Portal : MFA - Incorrect code provided during setting up multi 
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-268 - Verify user should see error message when user leaves as blank field (Prefered Mode of Communication both)
     Feature: Authentication - MFA
 
@@ -85,7 +85,7 @@ Feature: Patient Portal : MFA - Incorrect code provided during setting up multi 
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-268 - Verify user should see error message when user leaves as blank field (Prefered Mode of Communication Email)
     Feature: Authentication - MFA
 
@@ -105,7 +105,7 @@ Feature: Patient Portal : MFA - Incorrect code provided during setting up multi 
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-268 - Verify user should see error message when user leaves as blank field (Prefered Mode of Communication Phone)
     Feature: Authentication - MFA
 
@@ -126,7 +126,7 @@ Feature: Patient Portal : MFA - Incorrect code provided during setting up multi 
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-268 - Verify user should able to request code after 30 minutes (Prefered Mode of Communication both)
     Feature: Authentication - MFA
 
@@ -156,7 +156,7 @@ Feature: Patient Portal : MFA - Incorrect code provided during setting up multi 
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-268 - Verify user should able to request code after 30 minutes (Prefered Mode of Communication Email)
     Feature: Authentication - MFA
 
@@ -186,7 +186,7 @@ Feature: Patient Portal : MFA - Incorrect code provided during setting up multi 
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-268 - Verify user should able to request code after 30 minutes (Prefered Mode of Communication Phone)
     Feature: Authentication - MFA
 
@@ -215,7 +215,7 @@ Feature: Patient Portal : MFA - Incorrect code provided during setting up multi 
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-268 - Verify user see error screen when service is unavailable
     Feature: Authentication - MFA
 
@@ -234,7 +234,7 @@ Feature: Patient Portal : MFA - Incorrect code provided during setting up multi 
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-268 - Verify user see error screen when internet is unavailable
     Feature: Authentication - MFA
 
@@ -253,7 +253,7 @@ Feature: Patient Portal : MFA - Incorrect code provided during setting up multi 
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-268 - Verify user should not see any error when user tap on F12 keyboard in console
     Feature: Authentication - MFA
 
@@ -270,7 +270,7 @@ Feature: Patient Portal : MFA - Incorrect code provided during setting up multi 
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-268 - Verify user should be able to enter only numeric in "<Enter code>" field
     Feature: Authentication - MFA
 

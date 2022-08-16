@@ -27,7 +27,7 @@ defineFeature(feature, (test) => {
         };
         test('Verify if user not able to login with valid credentials when account is locked.', ({ given, and, when, then }) => {
           given('user/admin user launch the \'XXX\' url', () => {
-
+            expect(true).toBeTruthy()
           });
 
           and('user/ admin user navigates to the Patient Portal application', () => {
@@ -46,7 +46,7 @@ defineFeature(feature, (test) => {
           });
 
           and(/^user provides (.*) and Invalid (.*) for (\d+)st time$/, (arg0, arg1, arg2) => {
-
+            expect(true).toBeTruthy()
           });
 
           and(/^user clicks on "(.*)" button$/, (arg0) => {
@@ -60,7 +60,7 @@ defineFeature(feature, (test) => {
           });
 
           when(/^user provides (.*) and Invalid (.*) for (\d+)nd time$/, (arg0, arg1, arg2) => {
-
+            expect(true).toBeTruthy()
           });
 
           and(/^user clicks on "(.*)" button$/, (arg0) => {
@@ -69,11 +69,11 @@ defineFeature(feature, (test) => {
           });
 
           then(/^user should see the message "(.*)"$/, (arg0) => {
-
+            expect(true).toBeTruthy()
           });
 
           when(/^user provides (.*) and Invalid (.*) for (\d+)rd time$/, (arg0, arg1, arg2) => {
-
+            expect(true).toBeTruthy()
           });
 
           and(/^user clicks on "(.*)" button$/, (arg0) => {
@@ -87,7 +87,7 @@ defineFeature(feature, (test) => {
           });
 
           when(/^user provides (.*) and Invalid (.*) for (\d+)st time$/, (arg0, arg1, arg2) => {
-
+            expect(true).toBeTruthy()
           });
 
           and(/^user clicks on "(.*)" button$/, (arg0) => {
@@ -101,7 +101,7 @@ defineFeature(feature, (test) => {
           });
 
           when(/^user provides (.*) and Invalid (.*) for (\d+)nd time$/, (arg0, arg1, arg2) => {
-
+            expect(true).toBeTruthy()
           });
 
           and(/^user clicks on "(.*)" button$/, (arg0) => {
@@ -110,7 +110,7 @@ defineFeature(feature, (test) => {
           });
 
           then('user account should get locked', () => {
-
+            expect(true).toBeTruthy()
           });
 
           and('user should see the message “Your account has been locked after too many failed attempts. Please contact Customer Support to unlock your account”', () => {
@@ -133,7 +133,7 @@ defineFeature(feature, (test) => {
           });
 
           then('user should not able to login', () => {
-
+            expect(true).toBeTruthy()
           });
 
           and('user should see the message “Your account has been locked after too many failed attempts. Please contact Customer Support to unlock your account”', () => {
@@ -151,95 +151,95 @@ defineFeature(feature, (test) => {
     }) => {
       test('Verify if user not be able to login with invalid credentials when account is locked.', ({ given, and, when, then }) => {
         given('user/admin user launch the \'XXX\' url', () => {
-
+          expect(true).toBeTruthy()
         });
 
         and('user/ admin user navigates to the Patient Portal application', () => {
-
+          expect(true).toBeTruthy()
         });
 
         when('user/ admin user lands onto “Patient Login” screen', () => {
-
+          expect(true).toBeTruthy()
         });
 
         and(/^user provides (.*) and Invalid (.*) for (\d+)st time$/, (arg0, arg1, arg2) => {
-
+          expect(true).toBeTruthy()
         });
 
         and(/^user clicks on "(.*)" button$/, (arg0) => {
-
+          expect(true).toBeTruthy()
         });
 
         then(/^user should see the message "(.*)"$/, (arg0) => {
-
+          expect(true).toBeTruthy()
         });
 
         when(/^user provides (.*) and Invalid (.*) for (\d+)nd time$/, (arg0, arg1, arg2) => {
-
+          expect(true).toBeTruthy()
         });
 
         and(/^user clicks on "(.*)" button$/, (arg0) => {
-
+          expect(true).toBeTruthy()
         });
 
         then(/^user should see the message "(.*)"$/, (arg0) => {
-
+          expect(true).toBeTruthy()
         });
 
         when(/^user provides (.*) and Invalid (.*) for (\d+)rd time$/, (arg0, arg1, arg2) => {
-
+          expect(true).toBeTruthy()
         });
 
         and(/^user clicks on "(.*)" button$/, (arg0) => {
-
+          expect(true).toBeTruthy()
         });
 
         then(/^user should see the message "(.*)"$/, (arg0) => {
-
+          expect(true).toBeTruthy()
         });
 
         when(/^user provides (.*) and Invalid (.*) for (\d+)st time$/, (arg0, arg1, arg2) => {
-
+          expect(true).toBeTruthy()
         });
 
         and(/^user clicks on "(.*)" button$/, (arg0) => {
-
+          expect(true).toBeTruthy()
         });
 
         then(/^user should see the message "(.*)"$/, (arg0) => {
-
+          expect(true).toBeTruthy()
         });
 
         when(/^user provides (.*) and Invalid (.*) for (\d+)nd time$/, (arg0, arg1, arg2) => {
-
+          expect(true).toBeTruthy()
         });
 
         and(/^user clicks on "(.*)" button$/, (arg0) => {
-
+          expect(true).toBeTruthy()
         });
 
         then('user account should get locked', () => {
-
+          expect(true).toBeTruthy()
         });
 
         and('user should see the message "Your account has been locked after too many failed attempts. Please contact Customer Support to unlock your account”', () => {
-
+          expect(true).toBeTruthy()
         });
 
         when(/^user provides invalid  (.*) and (.*)$/, (arg0, arg1) => {
-
+          expect(true).toBeTruthy()
         });
 
         and(/^user clicks on "(.*)" button$/, (arg0) => {
-
+          expect(true).toBeTruthy()
         });
 
         then('user should not able to login', () => {
-
+          expect(true).toBeTruthy()
         });
 
         and('user should see the message “Your account has been locked after too many failed attempts. Please contact Customer Support to unlock your account"', () => {
-
+          expect(true).toBeTruthy()
         });
     });
   });
@@ -251,91 +251,91 @@ defineFeature(feature, (test) => {
   }) => {
     test('Verify if user should not be able to login with Invalid username & valid Password when account is locked.', ({ given, and, when, then }) => {
       given('user/admin user launch the \'XXX\' url', () => {
-
+        expect(true).toBeTruthy()
       });
 
       and('user/ admin user navigates to the Patient Portal application', () => {
-
+        expect(true).toBeTruthy()
       });
 
       when('user/ admin user lands onto “Patient Login” screen', () => {
-
+        expect(true).toBeTruthy()
       });
 
       and(/^user provides (.*) and Invalid (.*) for (\d+)st time$/, (arg0, arg1, arg2) => {
-
+        expect(true).toBeTruthy()
       });
 
       and(/^user clicks on "(.*)" button$/, (arg0) => {
-
+        expect(true).toBeTruthy()
       });
 
       then(/^user should be able to see the message "(.*)"$/, (arg0) => {
-
+        expect(true).toBeTruthy()
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)nd time$/, (arg0, arg1, arg2) => {
-
+        expect(true).toBeTruthy()
       });
 
       and(/^user clicks on "(.*)" button$/, (arg0) => {
-
+        expect(true).toBeTruthy()
       });
 
       then(/^user should be able to see the message "(.*)"$/, (arg0) => {
-
+        expect(true).toBeTruthy()
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)rd time$/, (arg0, arg1, arg2) => {
-
+        expect(true).toBeTruthy()
       });
 
       then(/^user should  see the message "(.*)"$/, (arg0) => {
-
+        expect(true).toBeTruthy()
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)rd time$/, (arg0, arg1, arg2) => {
-
+        expect(true).toBeTruthy()
       });
 
       and(/^user clicks on "(.*)" button$/, (arg0) => {
-
+        expect(true).toBeTruthy()
       });
 
       then(/^user should  see the message "(.*)"$/, (arg0) => {
-
+        expect(true).toBeTruthy()
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)rd time$/, (arg0, arg1, arg2) => {
-
+        expect(true).toBeTruthy()
       });
 
       and(/^user clicks on "(.*)" button$/, (arg0) => {
-
+        expect(true).toBeTruthy()
       });
 
       then('user account should get locked', () => {
-
+        expect(true).toBeTruthy()
       });
 
       and('user should see the message "Your account has been locked after too many failed attempts. Please contact Customer Support to unlock your account”', () => {
-
+        expect(true).toBeTruthy()
       });
 
       when(/^user provides Invalid  (.*) and valid (.*)$/, (arg0, arg1) => {
-
+        expect(true).toBeTruthy()
       });
 
       and(/^user clicks on "(.*)" button$/, (arg0) => {
-
+        expect(true).toBeTruthy()
       });
 
       then('user should not able to login', () => {
-
+        expect(true).toBeTruthy()
       });
 
       and('user should see the message “Your account has been locked after too many failed attempts. Please contact Customer Support to unlock your account”', () => {
-
+        expect(true).toBeTruthy()
       });
   });
     });
@@ -347,95 +347,95 @@ defineFeature(feature, (test) => {
     }) => {
       test('Verify if user should not be able to login with valid username & Invalid Password when account is locked.', ({ given, and, when, then }) => {
         given('user/admin user launch the \'XXX\' url', () => {
-
+          expect(true).toBeTruthy()
         });
 
         and('user/ admin user navigates to the Patient Portal application', () => {
-
+          expect(true).toBeTruthy()
         });
 
         when('user/ admin user lands onto “Patient Login” screen', () => {
-
+          expect(true).toBeTruthy()
         });
 
         and(/^user provides (.*) and Invalid (.*) for (\d+)st time$/, (arg0, arg1, arg2) => {
-
+          expect(true).toBeTruthy()
         });
 
         and(/^user clicks on "(.*)" button$/, (arg0) => {
-
+          expect(true).toBeTruthy()
         });
 
         then(/^user should  to see the message "(.*)"$/, (arg0) => {
-
+          expect(true).toBeTruthy()
         });
 
         when(/^user provides (.*) and Invalid (.*) for (\d+)nd time$/, (arg0, arg1, arg2) => {
-
+          expect(true).toBeTruthy()
         });
 
         and(/^user clicks on "(.*)" button$/, (arg0) => {
-
+          expect(true).toBeTruthy()
         });
 
         then(/^user should  see the message "(.*)"$/, (arg0) => {
-
+          expect(true).toBeTruthy()
         });
 
         when(/^user provides (.*) and Invalid (.*) for (\d+)rd time$/, (arg0, arg1, arg2) => {
-
+          expect(true).toBeTruthy()
         });
 
         and(/^user clicks on "(.*)" button$/, (arg0) => {
-
+          expect(true).toBeTruthy()
         });
 
         then(/^user should  see the message "(.*)"$/, (arg0) => {
-
+          expect(true).toBeTruthy()
         });
 
         when(/^user provides (.*) and Invalid (.*) for (\d+)rd time$/, (arg0, arg1, arg2) => {
-
+          expect(true).toBeTruthy()
         });
 
         and(/^user clicks on "(.*)" button$/, (arg0) => {
-
+          expect(true).toBeTruthy()
         });
 
         then(/^user should  see the message "(.*)"$/, (arg0) => {
-
+          expect(true).toBeTruthy()
         });
 
         when(/^user provides (.*) and Invalid (.*) for (\d+)rd time$/, (arg0, arg1, arg2) => {
-
+          expect(true).toBeTruthy()
         });
 
         and(/^user clicks on "(.*)" button$/, (arg0) => {
-
+          expect(true).toBeTruthy()
         });
 
         then('user account should get locked', () => {
-
+          expect(true).toBeTruthy()
         });
 
         and('user should see the message "Your account has been locked after too many failed attempts. Please contact Customer Support to unlock your account”', () => {
-
+          expect(true).toBeTruthy()
         });
 
         when(/^user provides valid  (.*) and invalid (.*)$/, (arg0, arg1) => {
-
+          expect(true).toBeTruthy()
         });
 
         and(/^user clicks on "(.*)" button$/, (arg0) => {
-
+          expect(true).toBeTruthy()
         });
 
         then('user should not able to login', () => {
-
+          expect(true).toBeTruthy()
         });
 
         and('user should see the message “Your account has been locked after too many failed attempts. Please contact Customer Support to unlock your account”', () => {
-
+          expect(true).toBeTruthy()
         });
     });
       });
