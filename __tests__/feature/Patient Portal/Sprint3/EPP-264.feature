@@ -28,7 +28,7 @@ Feature: Patient Portal : MFA - View multi factor authentication set up - (P1)
     And user should see "Select a method" section with radio button with below detail "Email: m********@yahoo.com" and "Phone: (8***)***-***31"
     And user should see default selection on Email
     And user should see checkbox section "Remember me"
-    And user should see description of check box written as "This means you won’t have to authenticate at every sign-in"
+    And user should see description of check box written as "This means you won't have to authenticate at every sign-in"
     And user should see "Confirm" & "Back to Login" button
 
     Examples:

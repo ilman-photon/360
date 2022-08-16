@@ -66,6 +66,9 @@ export default function AuthPage() {
     if (cookies.get("mfa")) {
       cookies.remove("mfa", { path: "/patient" });
     }
+    if (cookies.get("authorized")) {
+      cookies.remove("authorized", { path: "/patient" });
+    }
   });
 
   return <Login {...loginProps} />;

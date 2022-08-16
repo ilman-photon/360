@@ -76,7 +76,7 @@ export default function Container({
                 </Typography>
               </Box>
               <Typography variant="body2" className={styles.checkBoxText}>
-                This means you wont have to authenticate at every sign-in
+                {`This means you won't have to authenticate at every sign-in`}
               </Typography>
             </Box>
           )}

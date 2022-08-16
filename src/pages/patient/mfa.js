@@ -198,10 +198,13 @@ export default function MfaPage() {
             <Box
               sx={{
                 paddingTop: "80px",
-                maxWidth: 1400,
+                maxWidth: "75.1%",
                 minWidth: 686,
                 margin: "auto",
                 background: "#fff",
+                borderWidth: "0px 1px",
+                borderColor: "#F3F3F3",
+                borderStyle: "solid",
               }}
             >
               <SecurityQuestion

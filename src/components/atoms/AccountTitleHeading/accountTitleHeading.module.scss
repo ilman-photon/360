@@ -1,21 +1,24 @@
 .titleHeadingWrapper {
   position: fixed;
   width: 100%;
-  display: flex;
   // padding: 24px 10px 24px 240px;
   padding: 24px 10px;
   gap: 10px;
   background: linear-gradient(96.59deg, #003b4a 10.15%, #0389ab 140.82%);
   display: grid;
-  grid-template-columns: repeat(7, minmax(0, 1fr));
+  grid-template-columns: repeat(7, minmax(7, 1fr));
   z-index: 2;
-
+  @media (max-width: 992px) {
+    width: 100%;
+    grid-template-columns: unset;
+    padding: 24px 16px;
+  }
   // margin-top: 64px;
 
   .title {
     /* ECP/Desktop/Headline/H3 */
 
-    font-family: "Bw Nista Geometric DEMO";
+    font-family: "Bw Nista Geometric DEMO", sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: 26px;
@@ -28,6 +31,6 @@
     flex-direction: row;
     align-items: center;
     grid-column: span 2 / span 2;
-    text-align: right;
+    text-align: left;
   }
 }
