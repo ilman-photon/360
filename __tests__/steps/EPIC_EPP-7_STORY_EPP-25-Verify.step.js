@@ -39,12 +39,12 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see 'Forgot Password' link", () => {
-      const link = container.getByTestId("forgot-link");
+      const link = container.getByTestId("forgotpswd");
       expect("forgotPassword").toEqual(link.textContent);
     });
 
     when(`user clicks on 'Forgot Password' link`, () => {
-      const link = container.getByTestId("forgot-link");
+      const link = container.getByTestId("forgotpswd");
       fireEvent.click(link);
       const expectedResult = {
         ResponseCode: 1000,
@@ -80,7 +80,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user should see 'Continue' button", () => {
-      const continueId = container.getByTestId("forgot-submit");
+      const continueId = container.getByTestId("continuebtn");
       fireEvent.submit(continueId);
     });
 
