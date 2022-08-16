@@ -124,7 +124,7 @@ Feature: Patient Portal : MFA - Receive Emails/ Text messages when logged in fro
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-269 - Verify user should see the following success message "Multi factor Authentication has been set successfully" when user logs in from different device/IP Address and receives text alert from a registered phone number
     Scenario: "EPIC_EPP-3_STORY_EPP-269 - Verify user should see the following success message "Multi factor Authentication has been set successfully" when user logs in from different device/IP Address and receives text alert from a registered phone number"
 
@@ -174,7 +174,7 @@ Feature: Patient Portal : MFA - Receive Emails/ Text messages when logged in fro
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-269 - Verify user should see the following success message "Multi factor Authentication has been set successfully" within "3 seconds" when user logs in from different device/IP Address
     Scenario: "EPIC_EPP-3_STORY_EPP-269 - Verify user should see the following success message "Multi factor Authentication has been set successfully" within "3 seconds" when user logs in from different device/IP Address"
 
@@ -225,7 +225,7 @@ Feature: Patient Portal : MFA - Receive Emails/ Text messages when logged in fro
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-269 - Verify user should not see the any errors script when user clicks F12 on the console when user succes set up MFA due to user logs in from different device/IP Address
     Scenario: "EPIC_EPP-3_STORY_EPP-269 - Verify user should not see the any errors script when user clicks F12 on the console when user succes set up MFA due to user logs in from different device/IP Address"
 
@@ -277,7 +277,7 @@ Feature: Patient Portal : MFA - Receive Emails/ Text messages when logged in fro
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify user should see the following error message "Incorrect Code. Please try again." when user logs in from different device/IP Address and receives text alert from a registered mail-id
     Scenario: "EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify user should see the following error message "Incorrect Code. Please try again." when user logs in from different device/IP Address and receives text alert from a registered mail-id"
 
@@ -327,7 +327,7 @@ Feature: Patient Portal : MFA - Receive Emails/ Text messages when logged in fro
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify user should see the following error message "Incorrect Code. Please try again." when user logs in from different device/IP Address and receives text alert from a registered phone number
     Scenario: "EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify User should see the following error message "Incorrect Code. Please try again." when user Set up Multi Factor Authentication from a different device/IP Address"
 
@@ -377,7 +377,7 @@ Feature: Patient Portal : MFA - Receive Emails/ Text messages when logged in fro
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify user logs in from different device/IP Address and should see the error message when the internet service is unavailable
     Scenario: "EPIC_EPP-3_STORY_EPP-269 - Negative Test Cases - Verify user logs in from different device/IP Address and should see the error message when the internet service is unavailable"
 
