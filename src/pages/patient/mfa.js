@@ -82,14 +82,11 @@ export default function MfaPage() {
     //Alternative 1
     rememberMe && cookies.set("rememberMe", rememberMe, { path: "/patient" });
     //Alternative 2
-    //api.setRemeberMe(rememberMe);
     cookies.set("authorized", true, { path: "/patient" });
     cookies.remove("mfa", { path: "/patient" });
   }
 
   function onSubmitClicked(inputMfaCode, callback) {
-    //TODO: Call service
-
     if (inputMfaCode === mfaCode) {
       onShowSecurityQuestionForm();
     } else {

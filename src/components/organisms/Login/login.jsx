@@ -15,7 +15,7 @@ import { useTranslation } from "next-i18next";
 
 const constants = require("../../../utils/constants");
 
-export default function Login({
+export function Login({
   OnLoginClicked,
   OnGuestClicked,
   OnCreateAccountClicked,

@@ -63,7 +63,7 @@ export class Api {
   }
 
   getCommunicationMethod(postbody) {
-    return new Promise((resolve, _reject) => {
+    return new Promise((resolve) => {
       if (postbody === "9876543210") {
         resolve({
           phone: "(8***)***-***31",
@@ -77,15 +77,15 @@ export class Api {
     });
   }
 
-  requestNewCode(_postbody) {
+  requestNewCode() {
     return Promise.resolve("4321");
   }
 
-  requestCode(_postbody) {
+  requestCode() {
     return Promise.resolve("1234");
   }
 
-  setRemeberMe(_postbody) {
+  setRemeberMe() {
     return Promise.resolve("success");
   }
 
@@ -131,9 +131,6 @@ export class Api {
   }
 
   getSecurityQuestion() {
-    //const url = "/ecp/patient/getsecurityquestion";
-    // Remove the hardcoded if the services is done
-    // return this.forgotFeatureValidation(url, postbody, "post");
     return Promise.resolve({
       responseCode: 1000,
       securityQuestionList: [
@@ -152,9 +149,6 @@ export class Api {
   }
 
   submitSecurityQuestion() {
-    //const url = "/ecp/patient/submitsecurityquestion";
-    // Remove the hardcoded if the services is done
-    // return this.forgotFeatureValidation(url, postbody, "post");
     return Promise.resolve({
       responseCode: 1000,
     });
