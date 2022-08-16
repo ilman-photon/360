@@ -1,5 +1,9 @@
-import { fireEvent, render } from "@testing-library/react";
+import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
+import MockAdapter from "axios-mock-adapter";
+import axios from "axios";
+import MfaPage from "../../src/pages/patient/mfa";
+import AuthPage from "../../src/pages/patient/login";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint3/EPP-281.feature", {
@@ -15,11 +19,18 @@ defineFeature(feature, (test) => {
         });
 
         and('user navigates to the Patient Portal application', () => {
-          expect(true).toBeTruthy()
+          mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
         });
 
         when(/^user lands onto "(.*)" screen$/, (arg0) => {
-          expect(true).toBeTruthy()
+          act(() => {
+            container = render(<AuthPage />, {
+              container: document.body.appendChild(element),
+              legacyRoot: true,
+            });
+          });
+          const title = container.getByText("formTitle");
+          expect("formTitle").toEqual(title.textContent);
         });
 
         then(/^user see (.*) and (.*) fields that was MFA was set up$/, (arg0, arg1) => {
@@ -35,11 +46,13 @@ defineFeature(feature, (test) => {
         });
 
         and(/^user should see the "(.*)" option has been selected that Remember me has not expired$/, (arg0) => {
-          expect(true).toBeTruthy()
+          const remembermeOptin = container.getByText( "Remember me" );
+          expect( "Remember me").toEqual(remembermeOptin.textContent);
         });
 
         when(/^user clicks on "(.*)" button$/, (arg0) => {
-          expect(true).toBeTruthy()
+            const button = container.getByLabelText("Continue");
+            fireEvent.click(button);
         });
 
         then(/^user should see "(.*)" screen$/, (arg0) => {
