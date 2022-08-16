@@ -12,6 +12,7 @@ import { useTranslation } from "next-i18next";
 import ForgotPassword from "../../components/organisms/ForgotPassword/forgotPassword";
 import { Box } from "@mui/material";
 import globalStyles from "../../styles/Global.module.scss";
+import Head from "next/head";
 
 let confirmationFormProps = {
   title: constants.EMPTY_STRING,
@@ -92,6 +93,7 @@ export default function ForgotPasswordPage() {
     useState(false);
   const [showOneTimeLink, setShowOneTimeLink] = useState(false);
   const [showPasswordReset, setShowPasswordReset] = useState(false);
+  const [titleState, setTitle] = useState(`Forgot Password`);
 
   //Call API for userame validation
   const onCalledValidateUsernameAPI = function ({ username }, showForm) {
@@ -148,6 +150,7 @@ export default function ForgotPasswordPage() {
             router.push("/patient/login");
           },
         };
+        setTitle(t("titlePasswordReset"));
         setShowPostMessage(true);
       })
       .catch(function () {
@@ -190,9 +193,11 @@ export default function ForgotPasswordPage() {
           },
         };
         setShowPostMessage(true);
+        setTitle(`One-time link sent`);
       })
       .catch(function () {
         console.error("Somthing went wrong");
+        setTitle(`One-time link expired`);
       });
   };
 
@@ -207,13 +212,16 @@ export default function ForgotPasswordPage() {
 
     if (form === constants.SELECT_OPTION) {
       setShowSelectOption(true);
+      setTitle(`Select an Option`);
     } else if (form === constants.SECURITY_QUESTION) {
       setShowPasswordSecurityQuestion(true);
+      setTitle(`Password recovery security questions`);
     } else if (form === constants.PASSWORD_RESET) {
       //TO DO: handle showing the reset password form
       if (
         patientData.preferredComunication.toLocaleLowerCase() === constants.BOTH
       ) {
+        setTitle(t("titlePasswordReset"));
         //TO DO: Set props for one time link
         confirmationFormProps.title = t("titlePasswordReset");
         confirmationFormProps.subtitle = t("subtitlePasswordReset");
@@ -241,6 +249,7 @@ export default function ForgotPasswordPage() {
       if (
         patientData.preferredComunication.toLocaleLowerCase() === constants.BOTH
       ) {
+        setTitle(`One-time link`);
         //TO DO: Set props for one time link
         confirmationFormProps.title = t("titleOneTime");
         confirmationFormProps.subtitle = t("subtitleOneTime");
@@ -267,6 +276,9 @@ export default function ForgotPasswordPage() {
 
   return (
     <Box className={globalStyles.contanierPage}>
+      <Head>
+        <title>{titleState}</title>
+      </Head>
       {showForgotPassword ? (
         <ForgotPassword
           {...backToLoginProps}

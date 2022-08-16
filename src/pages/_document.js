@@ -31,6 +31,10 @@ class MyDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@600&display=swap"
             rel="stylesheet"
           />
+          <link
+            rel="shortcut icon"
+            href="//images.ctfassets.net/pyp8qw75m305/4dJIAIfGopppmKhlUHXtqL/d04ec76c6ae08b9b81dd4f3a96b12609/eyecare_partners_favicon.png?w=48&amp;h=48"
+          ></link>
         </Head>
         <body>
           <Main />

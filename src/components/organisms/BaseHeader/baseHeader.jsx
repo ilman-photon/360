@@ -64,7 +64,7 @@ export default function BaseHeader({ OnLogoutClicked }) {
               src={logo}
               width="124px"
               height="36px"
-              alt="logo"
+              alt="Eyecare Provider name with logo"
               style={styles.logoStyled}
             ></Image>
             {/* Menu Desktop*/}
