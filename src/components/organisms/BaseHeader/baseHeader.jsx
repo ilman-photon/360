@@ -17,20 +17,20 @@ import LogoutIcon from "@mui/icons-material/Logout";
 import Cookies from "universal-cookie";
 import { useRouter } from "next/router";
 import Image from "next/image";
-
-const pages = [
-  "Appointments",
-  "My Health Chart",
-  "My Care Team",
-  "Lab Results",
-  "Billing",
-];
+import constants from "../../../utils/constants";
 
 export default function BaseHeader({ OnLogoutClicked }) {
+  const { HOME_TEST_ID } = constants.TEST_ID;
+  const pages = [
+    { page: "Appointments", testId: HOME_TEST_ID.appoinments },
+    { page: "My Health Chart", testId: HOME_TEST_ID.myhealthchart },
+    { page: "My Care Team", testId: HOME_TEST_ID.mycareteam },
+    { page: "Lab Results", testId: HOME_TEST_ID.labresults },
+    { page: "Billing", testId: HOME_TEST_ID.billing },
+  ];
   const [isUserLoged, setUserLoged] = React.useState(false);
   const router = useRouter();
   const logo = "/logo.png";
-
   React.useEffect(() => {
     const cookies = new Cookies();
     const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
@@ -69,12 +69,12 @@ export default function BaseHeader({ OnLogoutClicked }) {
             ></Image>
             {/* Menu Desktop*/}
             <Box sx={styles.boxStyled}>
-              {pages.map((page) => (
+              {pages.map(({ page, testId }) => (
                 <Button
                   key={page}
-                  data-testid="user-menu"
                   onClick={handleCloseNavMenu}
                   sx={styles.bottonStyledDesktop}
+                  data-testid={testId}
                 >
                   {page}
                 </Button>
@@ -88,6 +88,7 @@ export default function BaseHeader({ OnLogoutClicked }) {
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
                 aria-haspopup="true"
+                data-testid="user-menu-nav-open"
                 onClick={handleOpenNavMenu}
               >
                 <MenuIcon />
@@ -105,11 +106,16 @@ export default function BaseHeader({ OnLogoutClicked }) {
                   horizontal: "left",
                 }}
                 open={Boolean(anchorElNav)}
+                data-testid="user-menu-nav-close"
                 onClose={handleCloseNavMenu}
                 sx={styles.menuMobile}
               >
-                {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
+                {pages.map(({ page, testId }) => (
+                  <MenuItem
+                    key={page}
+                    onClick={handleCloseNavMenu}
+                    data-testid={testId}
+                  >
                     <Typography textAlign="center">{page}</Typography>
                   </MenuItem>
                 ))}
@@ -117,7 +123,11 @@ export default function BaseHeader({ OnLogoutClicked }) {
                   <Button
                     variant="text"
                     sx={styles.menuItemMobile}
+                    data-testid={HOME_TEST_ID.logout}
                     startIcon={<LogoutIcon />}
+                    onClick={() => {
+                      OnLogoutClicked(router);
+                    }}
                   >
                     Logout
                   </Button>
@@ -132,6 +142,7 @@ export default function BaseHeader({ OnLogoutClicked }) {
                   variant="text"
                   sx={styles.boxButtonStyles}
                   startIcon={<Avatar />}
+                  data-testid="user-menu-open"
                   endIcon={<ExpandMoreIcon />}
                   onClick={handleOpenUserMenu}
                 >
@@ -152,6 +163,7 @@ export default function BaseHeader({ OnLogoutClicked }) {
                 //   horizontal: 'right',
                 // }}
                 open={Boolean(anchorElUser)}
+                data-testid="user-menu-close"
                 onClose={handleCloseUserMenu}
               >
                 {
@@ -159,6 +171,7 @@ export default function BaseHeader({ OnLogoutClicked }) {
                     <Button
                       variant="text"
                       sx={styles.buttonProfileMenu}
+                      data-testid={HOME_TEST_ID.logout}
                       startIcon={<LogoutIcon />}
                       onClick={() => {
                         OnLogoutClicked(router);

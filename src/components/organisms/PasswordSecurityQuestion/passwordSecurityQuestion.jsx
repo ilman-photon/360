@@ -27,17 +27,8 @@ const PasswordSecurityQuestion = ({
   const { handleSubmit, control } = useForm();
   const [countLock, setCountLock] = useState(0);
   const [postMessage, setPostMessage] = useState({ title: "", message: "" });
-
+  const { FORGOT_TEST_ID } = constants.TEST_ID;
   const onSubmit = (data) => {
-    if (countLock >= constants.ACCOUNT_LOCK_COUNT) {
-      setPostMessage({
-        title: t("errorAccountLockTitle"),
-        message: t("errorAccountLock"),
-      });
-      setShowPostMessage(true);
-      return;
-    }
-
     let isValid = true;
     for (let i = 0; i < securityQuestionData.length; i++) {
       if (
@@ -52,8 +43,16 @@ const PasswordSecurityQuestion = ({
     }
 
     if (!isValid) {
-      setPostMessage({ title: "", message: t("errorIncorrectAnswer") });
-      setShowPostMessage(true);
+      if (countLock >= constants.ACCOUNT_LOCK_COUNT) {
+        setPostMessage({
+          title: t("errorAccountLockTitle"),
+          message: t("errorAccountLock"),
+        });
+        setShowPostMessage(true);
+      } else {
+        setPostMessage({ title: "", message: t("errorIncorrectAnswer") });
+        setShowPostMessage(true);
+      }
     } else {
       //TO DO: Navigate to update password
       onContinueButtonClicked("updatePassword", router);
@@ -126,6 +125,7 @@ const PasswordSecurityQuestion = ({
             mode={constants.PRIMARY}
             size={constants.LARGE}
             gradient={false}
+            data-testid={FORGOT_TEST_ID.continueBtn}
             style={styles.margin}
           >
             {t("continueButton")}
@@ -138,6 +138,7 @@ const PasswordSecurityQuestion = ({
             ...styles.link,
           }}
           color={"#2095a9"}
+          data-testid={FORGOT_TEST_ID.loginLink}
           onClick={function () {
             onBackToLoginClicked(router);
           }}
