@@ -14,7 +14,7 @@ import Avatar from "@mui/material/Avatar";
 import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import LogoutIcon from "@mui/icons-material/Logout";
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import Cookies from "universal-cookie";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -147,7 +147,7 @@ export default function BaseHeader({ OnLogoutClicked }) {
                   endIcon={<ExpandMoreIcon />}
                   onClick={handleOpenUserMenu}
                 >
-                  User Name 
+                  User Name
                 </Button>
               </Tooltip>
               <Menu
