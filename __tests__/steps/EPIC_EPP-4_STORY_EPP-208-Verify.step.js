@@ -2,8 +2,8 @@ import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
-import AuthPage from "../../src/pages/patient/login";
 import HomePage from "../../src/pages/patient";
+import AuthPage from "../../src/pages/patient/login";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-208.feature",
