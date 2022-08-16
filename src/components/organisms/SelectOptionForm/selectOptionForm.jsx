@@ -16,6 +16,7 @@ const SelectOptionForm = ({
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "SetOption" });
+  const { FORGOT_TEST_ID } = constants.TEST_ID;
 
   return (
     <Card className={globalStyles.container} style={styles.cardStyle}>
@@ -26,6 +27,7 @@ const SelectOptionForm = ({
           mode={constants.PRIMARY}
           size={constants.LARGE}
           gradient={false}
+          data-testid={FORGOT_TEST_ID.answerQuestions}
           onClick={() => {
             onContinueButtonClicked(
               hasSecurityQuestion
@@ -49,6 +51,7 @@ const SelectOptionForm = ({
           mode={constants.SECONDARY}
           size={constants.LARGE}
           gradient={false}
+          data-testid={FORGOT_TEST_ID.oneTimeLink}
           onClick={() => {
             onContinueButtonClicked(constants.ONE_TIME_LINK);
           }}
@@ -62,6 +65,7 @@ const SelectOptionForm = ({
             ...styles.backToLoginMargin,
             ...styles.link,
           }}
+          data-testid={FORGOT_TEST_ID.loginLink}
           color={"#2095a9"}
           onClick={function () {
             onBackToLoginClicked(router);
