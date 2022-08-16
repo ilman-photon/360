@@ -18,33 +18,36 @@ export async function getServerSideProps(context) {
     };
   }
 
-  const api = new Api();
-  const data = api.getCommunicationMethod(cookies.get("username"));
-
   return {
-    props: {
-      communicationMethod: await data
-        .then((response) => {
-          return response;
-        })
-        .catch(() => {
-          return {};
-        }),
-    },
+    props: {},
   };
 }
 
-export default function MfaPage(props) {
+export default function MfaPage() {
   const api = new Api();
   const cookies = new Cookies();
   const router = useRouter();
   const [confirm, setConfirm] = React.useState(false);
   const [rememberMe, setRememberMe] = React.useState(false);
   const [mfaCode, setMfaCode] = React.useState("");
+  const [communicationMethod, setCommunicationMethod] = React.useState({});
 
   //just mock
   const [submitCounter, setSubmitCounter] = React.useState(0);
   const [requestCounter, setRequestCounter] = React.useState(0);
+
+  React.useEffect(() => {
+    if (Object.keys(communicationMethod).length == 0) {
+      const data = api.getCommunicationMethod(
+        cookies.get("username", { path: "/patient" })
+      );
+      data
+        .then((response) => {
+          setCommunicationMethod(response);
+        })
+        .catch(() => {});
+    }
+  });
 
   function onConfirmClicked() {
     api
@@ -66,8 +69,9 @@ export default function MfaPage(props) {
     //Alternative 1
     rememberMe && cookies.set("rememberMe", rememberMe, { path: "/patient" });
     //Alternative 2
-    api.setRemeberMe(rememberMe);
+    //api.setRemeberMe(rememberMe);
     cookies.set("authorized", true, { path: "/patient" });
+    cookies.remove("mfa", { path: "/patient" });
   }
 
   function onSubmitClicked(inputMfaCode, callback) {
@@ -140,7 +144,7 @@ export default function MfaPage(props) {
         onBackToLoginClicked={onBackToLoginClicked}
         rememberMe={rememberMe}
         setRememberMe={onSetRememberMe}
-        data={props.communicationMethod}
+        data={communicationMethod}
       />
     );
   }
