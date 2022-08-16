@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { resetFormMessage, setFormMessage } from "../../store";
 import Link from "next/link";
 import { Api } from "../api/api";
-import RESPONSE_MESSAGES from "../../utils/responseCodes";
 import { Box } from "@mui/material";
 import SetPasswordComponent from "../../components/organisms/SetPassword/setPassword";
 import globalStyles from "../../styles/Global.module.scss";

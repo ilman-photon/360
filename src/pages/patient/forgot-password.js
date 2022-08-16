@@ -26,8 +26,16 @@ let confirmationFormProps = {
 
 const modeOfCommuicationUI = function (control) {
   const options = [
-    { label: "Email", value: constants.EMAIL },
-    { label: "Phone", value: constants.PHONE },
+    {
+      label: "Email",
+      value: constants.EMAIL,
+      testId: constants.TEST_ID.REGISTER_TEST_ID.emailradio,
+    },
+    {
+      label: "Phone",
+      value: constants.PHONE,
+      testId: constants.TEST_ID.REGISTER_TEST_ID.phoneradio,
+    },
   ];
   return (
     <Controller
@@ -136,7 +144,6 @@ export default function ForgotPasswordPage() {
             return <></>;
           },
           butttonMode: constants.SECONDARY,
-          buttonLabel: "Back to Login",
           onCTAButtonClicked: function ({ data, router }) {
             router.push("/patient/login");
           },
@@ -212,6 +219,8 @@ export default function ForgotPasswordPage() {
         confirmationFormProps.subtitle = t("subtitlePasswordReset");
         confirmationFormProps.additional = modeOfCommuicationUI;
         confirmationFormProps.buttonLabel = t("primaryButtonOneTime");
+        confirmationFormProps.primaryButtonTestId =
+          constants.TEST_ID.FORGOT_TEST_ID.oneTimeLink;
         confirmationFormProps.buttonIcon = (
           <InsertLinkIcon sx={{ marginRight: "10px" }} />
         );
@@ -237,6 +246,8 @@ export default function ForgotPasswordPage() {
         confirmationFormProps.subtitle = t("subtitleOneTime");
         confirmationFormProps.additional = modeOfCommuicationUI;
         confirmationFormProps.buttonLabel = t("primaryButtonOneTime");
+        confirmationFormProps.primaryButtonTestId =
+          constants.TEST_ID.FORGOT_TEST_ID.oneTimeLink;
         confirmationFormProps.buttonIcon = (
           <InsertLinkIcon sx={{ marginRight: "10px" }} />
         );

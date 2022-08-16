@@ -1,15 +1,15 @@
 import AuthLayout from "../../components/templates/authLayout";
 import Cookies from "universal-cookie";
 import { Api } from "../api/api";
-import Login from "../../components/organisms/Login/login";
+import { Login as LoginComponent } from "../../components/organisms/Login/login";
 
 const loginProps = {
-  OnLoginClicked: function (postbody, router, callback) {
+  OnLoginClicked: function (postbody, _router, callback) {
     const api = new Api();
     const cookies = new Cookies();
     api
       .login(postbody)
-      .then(function (response) {
+      .then(function () {
         const hostname = window.location.origin;
         window.location.href = `${hostname}/patient`;
         cookies.set("authorized", true, { path: "/patient" });
@@ -17,14 +17,12 @@ const loginProps = {
       })
       .catch(function (err) {
         const isLockedAccount = err.ResponseCode === 2004;
-        const title = isLockedAccount ? "Account Locked" : "";
         const description = isLockedAccount
-          ? "Too many login attempts. Your account is locked. Please contact customer support to unlock your account"
+          ? "Your account has been locked after too many failed attempts. Please contact Customer Support to unlock your account."
           : "Invalid Username or Password";
         callback({
           status: "failed",
           message: {
-            title,
             description,
           },
         });
@@ -41,11 +39,11 @@ const loginProps = {
   },
 };
 
-export default function AuthPage() {
-  return <Login {...loginProps} />;
+export default function login() {
+  return <LoginComponent {...loginProps} />;
 }
 
-AuthPage.getLayout = function getLayout(page) {
+login.getLayout = function getLayout(page) {
   const backgroundImage = "/login-bg.png";
   return (
     <AuthLayout showMobileImage={true} imageSrc={backgroundImage}>

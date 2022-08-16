@@ -1,18 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-export const fetchUser = createAsyncThunk(
-  "user/fetchUser",
-  async (payload, { dispatch, getState }) => {
-    // const { todos } = getState()
-    // console.log({ todos })
-    // you can dispatch any action from here!
-    // dispatch(del(2))
-    return fetch(
-      "api/user"
-      // `https://jsonplaceholder.typicode.com/posts?_limit=${payload.limit}`
-    ).then((res) => res.json());
-  }
-);
+export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
+  return fetch("api/user").then((res) => res.json());
+});
 
 const userSlice = createSlice({
   name: "user",
@@ -21,14 +11,14 @@ const userSlice = createSlice({
     status: null,
   },
   extraReducers: {
-    [fetchUser.pending]: (state, action) => {
+    [fetchUser.pending]: (state) => {
       state.status = "loading";
     },
     [fetchUser.fulfilled]: (state, { payload }) => {
       state.userData = payload;
       state.status = "success";
     },
-    [fetchUser.rejected]: (state, action) => {
+    [fetchUser.rejected]: (state) => {
       state.status = "failed";
     },
   },

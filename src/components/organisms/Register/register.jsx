@@ -13,6 +13,7 @@ import FormMessage from "../../molecules/FormMessage/formMessage";
 import { styles } from "./style";
 import { Regex } from "../../../utils/regex";
 import { useRouter } from "next/router";
+import constants from "../../../utils/constants";
 
 export default function Register({ OnRegisterClicked, formMessage = null }) {
   const router = useRouter();
@@ -27,7 +28,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
       preferredCommunication: "both",
     },
   });
-
+  const { REGISTER_TEST_ID } = constants.TEST_ID;
   const validatePassword = (errors1 = [], errors2 = []) => {
     return errors1.length === 0 && errors2.length <= 1;
   };
@@ -50,9 +51,9 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
   };
 
   const options = [
-    { label: "Email", value: "email" },
-    { label: "Phone", value: "phone" },
-    { label: "Both", value: "both" },
+    { label: "Email", value: "email", testId: REGISTER_TEST_ID.emailradio },
+    { label: "Phone", value: "phone", testId: REGISTER_TEST_ID.phoneradio },
+    { label: "Both", value: "both", testId: REGISTER_TEST_ID.bothradio },
   ];
 
   const watchedPassword = watch("password", "");
@@ -188,6 +189,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   id="firstName"
                   label="First Name"
                   value={value}
+                  data-testid={REGISTER_TEST_ID.firstname}
                   onChange={onChange}
                   error={!!error}
                   size="small"
@@ -214,6 +216,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   type="text"
                   id="lastName"
                   label="Last Name"
+                  data-testid={REGISTER_TEST_ID.lastname}
                   value={value}
                   onChange={onChange}
                   error={!!error}
@@ -242,6 +245,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   disableFuture
                   type="dob"
                   id="dob"
+                  data-testid={REGISTER_TEST_ID.dateofbirth}
                   label="Date of Birth"
                   variant="filled"
                   value={value}
@@ -269,6 +273,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   id="email"
                   label="Email"
                   value={value}
+                  data-testid={REGISTER_TEST_ID.email}
                   onChange={onChange}
                   error={!!error}
                   size="small"
@@ -286,7 +291,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                 },
               },
               pattern: {
-                value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i,
+                value: Regex.isEmailCorrect,
                 message: "Incorrect email format",
               },
             }}
@@ -299,6 +304,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                 <StyledInput
                   type="phone"
                   id="mobile"
+                  data-testid={REGISTER_TEST_ID.mobilenumber}
                   label="Mobile Number"
                   value={value}
                   onChange={onChange}
@@ -334,6 +340,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   type="password"
                   id="password"
                   label="Password"
+                  data-testid={REGISTER_TEST_ID.password}
                   value={value}
                   onChange={onChange}
                   error={!!error}
@@ -388,7 +395,12 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             />
           </div>
 
-          <Button type="submit" variant="contained" sx={styles.containedButton}>
+          <Button
+            type="submit"
+            variant="contained"
+            sx={styles.containedButton}
+            data-testid={REGISTER_TEST_ID.registerbtn}
+          >
             Register
           </Button>
         </form>
@@ -400,7 +412,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
         <Divider margin={3} sx={{ width: "288px", alignSelf: "center" }} />
         <Typography variant="caption" style={styles.bottomParagraph}>
           Already have an account?{" "}
-          <Link href="/patient/login">
+          <Link href="/patient/login" data-testid={REGISTER_TEST_ID.loginlink}>
             <a style={styles.loginLink}>Login</a>
           </Link>
         </Typography>
