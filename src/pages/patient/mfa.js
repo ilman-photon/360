@@ -9,7 +9,7 @@ import { Api } from "../api/api";
 export async function getServerSideProps(context) {
   const cookies = new Cookies(context.req.headers.cookie);
 
-  if (!cookies.get("username")) {
+  if (!cookies.get("mfa")) {
     return {
       redirect: {
         destination: "/patient/login",
@@ -36,6 +36,7 @@ export async function getServerSideProps(context) {
 
 export default function MfaPage(props) {
   const api = new Api();
+  const cookies = new Cookies();
   const router = useRouter();
   const [confirm, setConfirm] = React.useState(false);
   const [rememberMe, setRememberMe] = React.useState(false);
@@ -60,11 +61,10 @@ export default function MfaPage(props) {
   }
 
   function redirectToDashboard() {
-    const cookies = new Cookies();
     const hostname = window.location.origin;
     window.location.href = `${hostname}/patient`;
     //Alternative 1
-    cookies.set("rememberMe", rememberMe, { path: "/patient" });
+    rememberMe && cookies.set("rememberMe", rememberMe, { path: "/patient" });
     //Alternative 2
     api.setRemeberMe(rememberMe);
     cookies.set("authorized", true, { path: "/patient" });

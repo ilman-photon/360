@@ -2,6 +2,7 @@ import AuthLayout from "../../components/templates/authLayout";
 import Cookies from "universal-cookie";
 import { Api } from "../api/api";
 import Login from "../../components/organisms/Login/login";
+import { useEffect } from "react";
 
 const loginProps = {
   OnLoginClicked: function (postbody, router, callback) {
@@ -21,7 +22,11 @@ const loginProps = {
         //Alternative 2
         //const isNotNeedMfa = response.isRememberMe
 
-        isNotNeedMfa && cookies.set("authorized", true, { path: "/patient" });
+        if (isNotNeedMfa) {
+          cookies.set("authorized", true, { path: "/patient" });
+        } else {
+          cookies.set("mfa", true, { path: "/patient" });
+        }
         const hostname = window.location.origin;
         window.location.href = isNotNeedMfa
           ? `${hostname}/patient`
@@ -56,6 +61,13 @@ const loginProps = {
 };
 
 export default function AuthPage() {
+  useEffect(() => {
+    const cookies = new Cookies();
+    if (cookies.get("mfa")) {
+      cookies.remove("mfa", { path: "/patient" });
+    }
+  });
+
   return <Login {...loginProps} />;
 }
 
