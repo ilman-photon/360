@@ -1,6 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
-class _document extends Document {
+class CustomDocuments extends Document {
   static async getInitialProps(ctx) {
     const originalRenderPage = ctx.renderPage;
 
@@ -41,4 +41,4 @@ class _document extends Document {
   }
 }
 
-export default _document;
+export default CustomDocuments;
