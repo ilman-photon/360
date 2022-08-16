@@ -25,13 +25,14 @@ const ConfirmationForm = ({
   showPostMessage = false,
   onCTAButtonClicked,
   postMessageTitle,
+  primaryButtonTestId,
   formStyle = additional ? styles.margin : styles.marginDescription,
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "OneTimeLink" });
 
   const { handleSubmit, control } = useForm();
-
+  const { FORGOT_TEST_ID } = constants.TEST_ID;
   const onSubmit = (data) => {
     onCTAButtonClicked(additional ? { data, router } : constants.EMPTY_STRING);
   };
@@ -72,6 +73,7 @@ const ConfirmationForm = ({
             mode={butttonMode}
             size={constants.LARGE}
             gradient={false}
+            data-testid={primaryButtonTestId}
             style={{ ...styles.margin, marginTop: additional ? "0px" : "16px" }}
           >
             {buttonIcon}
@@ -86,6 +88,7 @@ const ConfirmationForm = ({
               ...styles.backToLoginMargin,
               ...styles.link,
             }}
+            data-testid={FORGOT_TEST_ID.loginLink}
             color={"#2095a9"}
             onClick={function () {
               onBackToLoginClicked(router);

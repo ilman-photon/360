@@ -1,27 +1,32 @@
 import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import Login from "../../src/components/organisms/Login/login";
-import  AuthPage from "../../src/pages/patient/login"; 
+import AuthPage from "../../src/pages/patient/login";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 const feature = loadFeature(
-  "./__tests__/feature/Patient Portal/Sprint2/EPP-207.feature", {
-    tagFilter: '@included and not @excluded'
+  "./__tests__/feature/Patient Portal/Sprint2/EPP-207.feature",
+  {
+    tagFilter: "@included and not @excluded",
   }
 );
 
 defineFeature(feature, (test) => {
+  let container, login;
+  const mock = new MockAdapter(axios);
+  const element = document.createElement("div");
+  afterEach(() => {
+    mock.reset();
+  });
+
   test("EPIC_EPP-4_STORY_EPP-207-Verify whether the Registered Patient is able to Login with Valid Email or Phone Number and Valid Password", ({
     given,
     when,
     then,
     and,
   }) => {
-    let container, login;
-    const mock = new MockAdapter(axios);
-    const element = document.createElement("div");
-    given("user launch the \'XXX\' url", () => {
-      expect(true).toBeTruthy()
+    given("user launch the 'XXX' url", () => {
+      expect(true).toBeTruthy();
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -43,25 +48,25 @@ defineFeature(feature, (test) => {
       const title = container.getByText("formTitle");
       expect("formTitle").toEqual(title.textContent);
     });
-    and('user provides valid "<Email or Phone Number>" and valid "<password>"', () => {
-      const usernameField = container.getByLabelText("emailUserLabel");
+    and(
+      'user provides valid "<Email or Phone Number>" and valid "<password>"',
+      () => {
+        const usernameField = container.getByLabelText("emailUserLabel");
         const passwordField = container.getByLabelText("passwordLabel");
         fireEvent.change(usernameField, { target: { value: "wrongUserName" } });
         fireEvent.change(passwordField, { target: { value: "validPassword" } });
         expect(usernameField.value).not.toEqual("validUsername");
         expect(passwordField.value).toEqual("validPassword");
-    });
+      }
+    );
     and("user click 'Login' button.", () => {
       const login = container.getByRole("button", { name: /Login/i });
       fireEvent.click(login);
     });
 
-    then(
-      'user should view Home/Dashboard page',
-      () => {
-        expect(true).toBeTruthy()
-      }
-    );
+    then("user should view Home/Dashboard page", () => {
+      expect(true).toBeTruthy();
+    });
   });
   test("EPIC_EPP-4_STORY_EPP-207-Verify whether the Patient is able to login with Email and valid Password.", ({
     given,
@@ -72,11 +77,11 @@ defineFeature(feature, (test) => {
     let container, login;
     const mock = new MockAdapter(axios);
     const element = document.createElement("div");
-    
+
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy()
+      expect(true).toBeTruthy();
     });
-  
+
     and("user navigates to the Patient Portal application", () => {
       const expectedResult = {
         ResponseCode: 2001,
@@ -85,7 +90,7 @@ defineFeature(feature, (test) => {
       };
       mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
-  
+
     when(`user lands onto “Patient Login” screen`, () => {
       container = render(<AuthPage />);
       const title = container.getByText("formTitle");
@@ -93,22 +98,19 @@ defineFeature(feature, (test) => {
     });
     and('user provides valid "<Email>" and valid"<password>"', () => {
       const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
-        fireEvent.change(usernameField, { target: { value: "wrongUserName" } });
-        fireEvent.change(passwordField, { target: { value: "validPassword" } });
-        expect(usernameField.value).not.toEqual("validUsername");
-        expect(passwordField.value).toEqual("validPassword");
+      const passwordField = container.getByLabelText("passwordLabel");
+      fireEvent.change(usernameField, { target: { value: "wrongUserName" } });
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+      expect(usernameField.value).not.toEqual("validUsername");
+      expect(passwordField.value).toEqual("validPassword");
     });
     and("user click 'Login' button.", () => {
       const login = container.getByRole("button", { name: /Login/i });
       fireEvent.click(login);
     });
-    then(
-      'user should view Home/Dashboard page',
-      () => {
-        expect(true).toBeTruthy()
-      }
-    );
+    then("user should view Home/Dashboard page", () => {
+      expect(true).toBeTruthy();
+    });
   });
   test("EPIC_EPP-4_STORY_EPP-207-Verify whether the Patient is able to login with Phone number with valid Password.", ({
     given,
@@ -120,7 +122,7 @@ defineFeature(feature, (test) => {
     const mock = new MockAdapter(axios);
     const element = document.createElement("div");
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy()
+      expect(true).toBeTruthy();
     });
     and("user navigates to the Patient Portal application", () => {
       const expectedResult = {
@@ -129,25 +131,22 @@ defineFeature(feature, (test) => {
         userType: "patient",
       };
       mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
-      });
-      when(`user lands onto “Patient Login” screen`, () => {
-        container = render(<AuthPage />);
-        const title = container.getByText("formTitle");
-        expect("formTitle").toEqual(title.textContent);
+    });
+    when(`user lands onto “Patient Login” screen`, () => {
+      container = render(<AuthPage />);
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
     and('user provides valid "<Phone Number>" and valid"<password>"', () => {
-      expect(true).toBeTruthy()
+      expect(true).toBeTruthy();
     });
-    and('user click \'Login\' button.', () => {
+    and("user click 'Login' button.", () => {
       const login = container.getByRole("button", { name: /Login/i });
       fireEvent.click(login);
     });
-    then(
-      'user should view Home/Dashboard page',
-      () => {
-        expect(true).toBeTruthy()
-      }
-    );
+    then("user should view Home/Dashboard page", () => {
+      expect(true).toBeTruthy();
+    });
   });
   test("EPIC_EPP-4_STORY_EPP-207-Verify whether the user is able to see the Patient Login page without Internet connection", ({
     given,
@@ -164,23 +163,19 @@ defineFeature(feature, (test) => {
       userType: "patient",
     };
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy()
+      expect(true).toBeTruthy();
     });
     and("user navigates to the Patient Portal application", () => {
       mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
-  });
+    });
 
-  when(`turn off the Data`, () => {
-      expect(true).toBeTruthy()
-  });
+    when(`turn off the Data`, () => {
+      expect(true).toBeTruthy();
+    });
 
-  then(
-    'user should view appropriate error message',
-    () => {
-      expect(true).toBeTruthy()
-    }
-  );
-    
+    then("user should view appropriate error message", () => {
+      expect(true).toBeTruthy();
+    });
   });
   test("EPIC_EPP-4_STORY_EPP-207-Verify whether the page is loading with in 3 seconds", ({
     given,
@@ -196,8 +191,8 @@ defineFeature(feature, (test) => {
       ResponseType: "success",
       userType: "patient",
     };
-    given('user user launch the \'XXX\' url', () => {
-      expect(true).toBeTruthy()
+    given("user user launch the 'XXX' url", () => {
+      expect(true).toBeTruthy();
     });
     and("user navigates to the Patient Portal application", () => {
       const expectedResult = {
@@ -206,19 +201,15 @@ defineFeature(feature, (test) => {
         userType: "patient",
       };
       mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
-  });
+    });
 
-  when(`user lands onto “Patient Login” screen`, () => {
-      expect(true).toBeTruthy()
-  });
+    when(`user lands onto “Patient Login” screen`, () => {
+      expect(true).toBeTruthy();
+    });
 
-  then(
-    'page should load in 3 seconds',
-    () => {
-      expect(true).toBeTruthy()
-    }
-  );
-    
+    then("page should load in 3 seconds", () => {
+      expect(true).toBeTruthy();
+    });
   });
   test("EPIC_EPP-4_STORY_EPP-207-Verify whether any error is displaying when we press F12 after navigating to the Patient Login page.", ({
     given,
@@ -227,28 +218,24 @@ defineFeature(feature, (test) => {
     and,
   }) => {
     let container;
-    given('user user launch the \'XXX\' url', () => {
-      expect(true).toBeTruthy()
+    given("user user launch the 'XXX' url", () => {
+      expect(true).toBeTruthy();
     });
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy()
-  });
+      expect(true).toBeTruthy();
+    });
 
-  when(`user lands onto “Patient Login” screen`, () => {
-    container = render(<AuthPage />);
-    const title = container.getByText("formTitle");
-    expect("formTitle").toEqual(title.textContent);
-  });
-  and("press the F12 button from the keyboard.", () => {
-    expect(true).toBeTruthy()
-});
-  then(
-    'none of the javascript error should be seen by the user.',
-    () => {
-      expect(true).toBeTruthy()
-    }
-  );
-    
+    when(`user lands onto “Patient Login” screen`, () => {
+      container = render(<AuthPage />);
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
+    });
+    and("press the F12 button from the keyboard.", () => {
+      expect(true).toBeTruthy();
+    });
+    then("none of the javascript error should be seen by the user.", () => {
+      expect(true).toBeTruthy();
+    });
   });
   test("EPIC_EPP-4_STORY_EPP-207-Verify whether the error message is displaying when the service is unavailable.", ({
     given,
@@ -257,25 +244,24 @@ defineFeature(feature, (test) => {
     and,
   }) => {
     let container;
-    given('user launch the \'XXX\' url', () => {
-      expect(true).toBeTruthy()
+    given("user launch the 'XXX' url", () => {
+      expect(true).toBeTruthy();
     });
     when(`the service is unavailable`, () => {
-      expect(true).toBeTruthy()
-  });
+      expect(true).toBeTruthy();
+    });
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy()
-  });
-    and('user lands on “Patient Login” screen', () => {
-      expect(true).toBeTruthy()
-  });
- 
-  then(
-    'error message \'503 - Server is not ready to handle the request\' should get display.',
-    () => {
-      expect(true).toBeTruthy()
-    }
-  );
-    
+      expect(true).toBeTruthy();
+    });
+    and("user lands on “Patient Login” screen", () => {
+      expect(true).toBeTruthy();
+    });
+
+    then(
+      "error message '503 - Server is not ready to handle the request' should get display.",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
   });
 });

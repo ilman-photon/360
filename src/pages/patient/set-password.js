@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { resetFormMessage, setFormMessage } from "../../store";
 import Link from "next/link";
 import { Api } from "../api/api";
-import RESPONSE_MESSAGES from "../../utils/responseCodes";
 import { Box } from "@mui/material";
 import SetPasswordComponent from "../../components/organisms/SetPassword/setPassword";
 import globalStyles from "../../styles/Global.module.scss";
+import Cookies from "universal-cookie";
 
 export async function getServerSideProps({ query }) {
   return {
@@ -24,22 +24,18 @@ export default function SetPasswordPage({ username }) {
   const OnSetPasswordClicked = async function (postbody, _router) {
     try {
       dispatch(resetFormMessage());
+      const cookies = new Cookies();
       const api = new Api();
 
-      const response = await api.client.post(
-        "/registrationsetpassword",
-        postbody
+      await api.getResponse(
+        "/ecp/patient/registrationsetpassword",
+        postbody,
+        "post"
       );
+      cookies.set("authorized", true, { path: "/patient" });
 
-      const successMessage = RESPONSE_MESSAGES[response.data.ResponseCode];
-
-      dispatch(
-        setFormMessage({
-          success: true,
-          title: successMessage.title,
-          content: successMessage.content,
-        })
-      );
+      const hostname = window.location.origin;
+      window.location.href = `${hostname}/patient`;
     } catch (err) {
       console.error({ err });
 

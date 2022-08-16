@@ -15,7 +15,7 @@ export async function getServerSideProps({ req, res }) {
   if (!cookies.get("authorized")) {
     return {
       redirect: {
-        destination: "/login",
+        destination: "/patient",
         permanent: false,
       },
     };

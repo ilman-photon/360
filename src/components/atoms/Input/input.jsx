@@ -90,6 +90,11 @@ export const CustomPasswordInput = styled((props) => (
       backgroundColor: "transparent",
       color: "#193138",
     },
+    "&.MuiFilledInput-input": {
+      "&.::-ms-reveal": {
+        display: "none",
+      },
+    },
   },
 }));
 
@@ -153,6 +158,11 @@ export const RedditTextField = styled((props) => (
       fontSize: 12,
     },
   },
+  "& .MuiFormHelperText-root": {
+    "&.Mui-error": {
+      color: "#B00020",
+    },
+  },
 }));
 
 export const CustomInput = styled(({ ...props }) => {
@@ -194,6 +204,7 @@ export const CustomInput = styled(({ ...props }) => {
               adorment={props.adorment}
               helperText={props.helperText}
               style={props.style}
+              onPaste={handleMouseDownPassword}
             />
           </CustomFormControl>
         </>
