@@ -63,9 +63,7 @@ export class Api {
   }
 
   getCommunicationMethod(postbody) {
-    // const url = "/ecp/patient/updatepassword";
-    // return this.forgotFeatureValidation(url, postbody, "post");
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve, _reject) => {
       if (postbody === "9876543210") {
         resolve({
           phone: "(8***)***-***31",
@@ -79,22 +77,16 @@ export class Api {
     });
   }
 
-  requestNewCode(postbody) {
-    return new Promise((resolve, reject) => {
-      resolve("4321");
-    });
+  requestNewCode(_postbody) {
+    return Promise.resolve("4321");
   }
 
-  requestCode(postbody) {
-    return new Promise((resolve, reject) => {
-      resolve("1234");
-    });
+  requestCode(_postbody) {
+    return Promise.resolve("1234");
   }
 
-  setRemeberMe(postbody) {
-    return new Promise((resolve, reject) => {
-      resolve("success");
-    });
+  setRemeberMe(_postbody) {
+    return Promise.resolve("success");
   }
 
   forgotFeatureValidation(url, postbody, method, expectedCode) {
@@ -139,36 +131,32 @@ export class Api {
   }
 
   getSecurityQuestion() {
-    const url = "/ecp/patient/getsecurityquestion";
+    //const url = "/ecp/patient/getsecurityquestion";
     // Remove the hardcoded if the services is done
     // return this.forgotFeatureValidation(url, postbody, "post");
-    return new Promise((resolve, reject) => {
-      resolve({
-        responseCode: 1000,
-        securityQuestionList: [
-          "What was the first concert you attended?",
-          "In what city or town did your parents meet?",
-          "What was the make and model of your first car?",
-          "Who is your all-time favorite movie character?",
-          "What was your favorite cartoon character during your childhood?",
-          "What was the first book you read?",
-          "What was the first thing you learned to cook?",
-          "What was the first film you saw in a theater?",
-          "Where did you go the first time you flew on a plane?",
-          "What is your favorite cold-weather activity?",
-        ],
-      });
+    return Promise.resolve({
+      responseCode: 1000,
+      securityQuestionList: [
+        "What was the first concert you attended?",
+        "In what city or town did your parents meet?",
+        "What was the make and model of your first car?",
+        "Who is your all-time favorite movie character?",
+        "What was your favorite cartoon character during your childhood?",
+        "What was the first book you read?",
+        "What was the first thing you learned to cook?",
+        "What was the first film you saw in a theater?",
+        "Where did you go the first time you flew on a plane?",
+        "What is your favorite cold-weather activity?",
+      ],
     });
   }
 
   submitSecurityQuestion() {
-    const url = "/ecp/patient/submitsecurityquestion";
+    //const url = "/ecp/patient/submitsecurityquestion";
     // Remove the hardcoded if the services is done
     // return this.forgotFeatureValidation(url, postbody, "post");
-    return new Promise((resolve, reject) => {
-      resolve({
-        responseCode: 1000,
-      });
+    return Promise.resolve({
+      responseCode: 1000,
     });
   }
 }

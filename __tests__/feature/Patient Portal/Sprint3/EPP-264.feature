@@ -4,7 +4,7 @@ Feature: Patient Portal : MFA - View multi factor authentication set up - (P1)
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-264 - Verify user should see set MFA screen after completing registration (Prefered Mode of Communication both)
     Feature: Authentication
 
@@ -40,7 +40,7 @@ Feature: Patient Portal : MFA - View multi factor authentication set up - (P1)
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-264 - Verify user should be able to choose other preferred mode(s) of communication
     Feature: Authentication
 
@@ -74,7 +74,7 @@ Feature: Patient Portal : MFA - View multi factor authentication set up - (P1)
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-264 - Verify user should see set MFA screen after completing registration (Prefered Mode of Communication Email)
     Feature: Authentication
      
@@ -108,7 +108,7 @@ Feature: Patient Portal : MFA - View multi factor authentication set up - (P1)
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-264 - Verify user should see set MFA screen after completing registration (Prefered Mode of Communication Phone)
     Feature: Authentication
 
@@ -143,7 +143,7 @@ Feature: Patient Portal : MFA - View multi factor authentication set up - (P1)
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-264 - Verify user should see "MFA" screen with default selection preferred mode(s) of communication
     Feature: Authentication
 
@@ -179,7 +179,7 @@ Feature: Patient Portal : MFA - View multi factor authentication set up - (P1)
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-264 - Verify user see error screen when internet is unavailable
     Feature: Authentication
 
@@ -216,7 +216,7 @@ Feature: Patient Portal : MFA - View multi factor authentication set up - (P1)
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-264 - Verify user see error screen when service is unavailable
     Feature: Authentication
 
@@ -290,7 +290,7 @@ Feature: Patient Portal : MFA - View multi factor authentication set up - (P1)
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-264 - Verify user see set MFA screen within 3 second
     Feature: Authentication
 

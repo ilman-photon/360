@@ -31,7 +31,9 @@ const loginProps = {
         window.location.href = isNotNeedMfa
           ? `${hostname}/patient`
           : `${hostname}/patient/mfa`;
-        //router.push("/patient/mfa/");
+        /**
+         * TODO navigate to mfa router.push("/patient/mfa/");
+         */
         callback({ status: "success" });
       })
       .catch(function (err) {

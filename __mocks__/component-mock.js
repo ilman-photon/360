@@ -30,6 +30,13 @@ jest.mock("next/router", () => ({
       prefetch: jest.fn(() => null),
     };
   },
+  withRouter: (component) => {
+    component.defaultProps = {
+      ...component.defaultProps,
+      router: { pathname: "mocked-path" },
+    };
+    return component;
+  },
 }));
 
 jest.mock("next-i18next", () => ({
@@ -50,7 +57,7 @@ jest.mock("next-i18next", () => ({
       },
     };
   },
-  withRouter(){
-    return jest.fn()
-  }
+  withRouter() {
+    return jest.fn();
+  },
 }));

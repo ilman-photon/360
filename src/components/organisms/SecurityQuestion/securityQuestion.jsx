@@ -14,8 +14,12 @@ const SecurityQuestion = ({
   propsShowPostMessage = false,
   postMessage = "You must answer all security questions",
   securityQuestionCount = 5,
-  onClickedSubmitButton = () => {},
-  onClickedSkipButton = () => {},
+  onClickedSubmitButton = () => {
+    // This is intentional
+  },
+  onClickedSkipButton = () => {
+    // This is intentional
+  },
 }) => {
   const [showPostMessage, setShowPostMessage] = useState(propsShowPostMessage);
   const { handleSubmit, control } = useForm();

@@ -24,23 +24,12 @@ export async function getServerSideProps(context) {
     };
   }
 
-  const api = new Api();
-  const data = api.getCommunicationMethod(cookies.get("username"));
-
   return {
-    props: {
-      communicationMethod: await data
-        .then((response) => {
-          return response;
-        })
-        .catch(() => {
-          return {};
-        }),
-    },
+    props: {},
   };
 }
 
-export default function MfaPage(props) {
+export default function MfaPage() {
   const api = new Api();
   const cookies = new Cookies();
   const router = useRouter();
@@ -49,10 +38,26 @@ export default function MfaPage(props) {
   const [mfaCode, setMfaCode] = React.useState("");
   const [successSubmit, setSuccessSubmit] = React.useState(false);
   const [securityQuestionList, setSecurityQuestionList] = React.useState([]);
+  const [communicationMethod, setCommunicationMethod] = React.useState({});
 
   //just mock
   const [submitCounter, setSubmitCounter] = React.useState(0);
   const [requestCounter, setRequestCounter] = React.useState(0);
+
+  React.useEffect(() => {
+    if (Object.keys(communicationMethod).length == 0) {
+      const data = api.getCommunicationMethod(
+        cookies.get("username", { path: "/patient" })
+      );
+      data
+        .then((response) => {
+          setCommunicationMethod(response);
+        })
+        .catch(() => {
+          // This is intentional
+        });
+    }
+  });
 
   function onConfirmClicked() {
     api
@@ -61,7 +66,9 @@ export default function MfaPage(props) {
         setMfaCode(response);
         setConfirm(true);
       })
-      .catch(() => {});
+      .catch(() => {
+        // This is intentional
+      });
     setComponentName(constants.MFA_COMPONENT_NAME);
   }
 
@@ -75,8 +82,9 @@ export default function MfaPage(props) {
     //Alternative 1
     rememberMe && cookies.set("rememberMe", rememberMe, { path: "/patient" });
     //Alternative 2
-    api.setRemeberMe(rememberMe);
+    //api.setRemeberMe(rememberMe);
     cookies.set("authorized", true, { path: "/patient" });
+    cookies.remove("mfa", { path: "/patient" });
   }
 
   function onSubmitClicked(inputMfaCode, callback) {
@@ -125,7 +133,9 @@ export default function MfaPage(props) {
           setMfaCode(response);
           setRequestCounter(requestCounter + 1);
         })
-        .catch(() => {});
+        .catch(() => {
+          // This is intentional
+        });
     }
   }
 
@@ -134,7 +144,6 @@ export default function MfaPage(props) {
   }
 
   function onShowSecurityQuestionForm() {
-    const api = new Api();
     api
       .getSecurityQuestion()
       .then(function (response) {
@@ -147,10 +156,9 @@ export default function MfaPage(props) {
   }
 
   function onSubmitSecurityQuestionClicked(callback) {
-    const api = new Api();
     api
       .submitSecurityQuestion()
-      .then(function (response) {
+      .then(function () {
         setSuccessSubmit(true);
         setTimeout(() => {
           redirectToDashboard();
@@ -185,7 +193,7 @@ export default function MfaPage(props) {
         }}
       >
         {!successSubmit ? (
-          <Box>
+          <Box sx={{ background: "#FAFAFA" }}>
             <AccountTitleHeading title={"Set-up Security Questions"} />:
             <Box
               sx={{
@@ -224,7 +232,7 @@ export default function MfaPage(props) {
         onBackToLoginClicked={onBackToLoginClicked}
         rememberMe={rememberMe}
         setRememberMe={onSetRememberMe}
-        data={props.communicationMethod}
+        data={communicationMethod}
       />
     );
   }
