@@ -3,7 +3,7 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 import MockAdapter from "axios-mock-adapter";
 import "@testing-library/jest-dom";
 import axios from "axios";
-import MfaPage from "../../src/pages/patient/mfa";
+import MfaPage, { getServerSideProps } from "../../src/pages/patient/mfa";
 import { act } from "react-dom/test-utils";
 
 const feature = loadFeature(
@@ -20,6 +20,19 @@ defineFeature(feature, (test) => {
   afterEach(() => {
     mock.reset();
   });
+  const validateTextInDocument = (arg0) => {
+    expect(container.getByText(arg0)).toBeInTheDocument();
+  };
+  const renderMFA = async () => {
+    act(() => {
+      container = render(<MfaPage />, {
+        container: document.body.appendChild(element),
+        legacyRoot: true,
+      });
+    });
+    await waitFor(() => container.getByText(/Select a method/i));
+    expect(container).toMatchSnapshot();
+  };
   test("EPIC_EPP-3_STORY_EPP-264 - Verify user should see set MFA screen after completing registration (Prefered Mode of Communication both)", ({
     given,
     and,
@@ -102,23 +115,27 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see set MFA screen", async () => {
-      act(() => {
-        container = render(<MfaPage />, {
-          container: document.body.appendChild(element),
-          legacyRoot: true,
-        });
-      });
-      await waitFor(() => container.getByText(/Select a method/i));
-      expect(container).toMatchSnapshot();
+      const contex = {
+        req: {
+          headers: {
+            cookie: "username=user1%40photon.com; mfa=true",
+          },
+        },
+      };
+
+      getServerSideProps(contex);
+      renderMFA();
     });
 
-    and(/^user should see screen title written as "(.*)"$/, (arg0) => {
-      expect(container.getByText(arg0)).toBeInTheDocument();
-    });
+    and(
+      /^user should see screen title written as "(.*)"$/,
+      validateTextInDocument
+    );
 
-    and(/^user should see screen subtitle written as "(.*)"$/, (arg0) => {
-      expect(container.getByText(arg0)).toBeInTheDocument();
-    });
+    and(
+      /^user should see screen subtitle written as "(.*)"$/,
+      validateTextInDocument
+    );
 
     and(
       /^user should see "(.*)" section with radio button with below detail "(.*)" and "(.*)"$/,
@@ -133,20 +150,16 @@ defineFeature(feature, (test) => {
       expect(email).toBeChecked();
     });
 
-    and(/^user should see checkbox section "(.*)"$/, (arg0) => {
-      expect(container.getByText(arg0)).toBeInTheDocument();
-    });
+    and(/^user should see checkbox section "(.*)"$/, validateTextInDocument);
 
     and(
       /^user should see description of check box written as "(.*)"$/,
-      (arg0) => {
-        expect(container.getByText(arg0)).toBeInTheDocument();
-      }
+      validateTextInDocument
     );
 
     and(/^user should see "(.*)" & "(.*)" button$/, (arg0, arg1) => {
-      expect(container.getByText(arg0)).toBeInTheDocument();
-      expect(container.getByText(arg1)).toBeInTheDocument();
+      validateTextInDocument(arg0);
+      validateTextInDocument(arg1);
     });
   });
 
@@ -232,44 +245,45 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then("user should see set MFA screen", () => {
-      expect(true).toBeTruthy();
-      expect(true).toBeTruthy();
-    });
+    then("user should see set MFA screen", renderMFA);
 
-    and(/^user should see screen title written as "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user should see screen title written as "(.*)"$/,
+      validateTextInDocument
+    );
 
-    and(/^user should see screen subtitle written as "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user should see screen subtitle written as "(.*)"$/,
+      validateTextInDocument
+    );
 
     and(
       /^user should see "(.*)" section with radio button with below detail "(.*)" and "(.*)"$/,
       (arg0, arg1, arg2) => {
-        expect(true).toBeTruthy();
-        expect(true).toBeTruthy();
+        const title = container.getByText("Select a method");
+        const email = container.getByTestId("email-radio-button");
+        const phone = container.getByTestId("phone-radio-button");
+        expect(email).toBeVisible();
+        expect(phone).toBeVisible();
+        expect(title).toBeVisible();
       }
     );
 
     and("user should see default selection on Email", () => {
-      expect(true).toBeTruthy();
-      expect(true).toBeTruthy();
+      const email = container.getByDisplayValue("email");
+      expect(email).toBeChecked();
     });
 
     when("user click on Phone radio button", () => {
-      expect(true).toBeTruthy();
-      expect(true).toBeTruthy();
+      const phone = container.getByTestId("phone-radio-button");
+      fireEvent.click(phone);
     });
 
     then(
       "user should see radio button is selected on Phone radio button",
       () => {
-        expect(true).toBeTruthy();
-        expect(true).toBeTruthy();
+        const phone = container.getByDisplayValue("phone");
+        expect(phone).toBeChecked();
       }
     );
   });
@@ -350,35 +364,29 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then("user should see set MFA screen", () => {
-      expect(true).toBeTruthy();
-    });
+    then("user should see set MFA screen", renderMFA);
 
-    and(/^user should see screen title written as "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user should see screen title written as "(.*)"$/,
+      validateTextInDocument
+    );
 
     and(/^user should see screen subtitle written as "(.*)"$/, (arg0) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see text  "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(/^user should see text  "(.*)"$/, validateTextInDocument);
 
-    and(/^user should see checkbox section "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(/^user should see checkbox section "(.*)"$/, validateTextInDocument);
 
     and(
       /^user should see description of check box written as "(.*)"$/,
-      (arg0) => {
-        expect(true).toBeTruthy();
-      }
+      validateTextInDocument
     );
 
     and(/^user should see "(.*)" & "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      validateTextInDocument(arg0);
+      validateTextInDocument(arg1);
     });
   });
 
@@ -452,13 +460,12 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then("user should see set MFA screen", () => {
-      expect(true).toBeTruthy();
-    });
+    then("user should see set MFA screen", renderMFA);
 
-    and(/^user should see screen title written as "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(
+      /^user should see screen title written as "(.*)"$/,
+      validateTextInDocument
+    );
 
     and(/^user should see screen subtitle written as "(.*)"$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -468,19 +475,19 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see checkbox section "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(/^user should see checkbox section "(.*)"$/, validateTextInDocument);
 
     and(
       /^user should see description of check box written as "(.*)"$/,
-      (arg0) => {
-        expect(true).toBeTruthy();
-      }
+      validateTextInDocument
     );
 
     and(/^user should see "(.*)" & "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      validateTextInDocument(arg0);
+      validateTextInDocument(arg1);
+
+      const confirm = container.getByTestId("secondary-button");
+      fireEvent.click(confirm);
     });
   });
 
@@ -554,8 +561,15 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then("user should see set MFA screen", () => {
-      expect(true).toBeTruthy();
+    then("user should see set MFA screen", async () => {
+      act(() => {
+        container = render(<MfaPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      await waitFor(() => container.getByText(/Select a method/i));
+      expect(container).toMatchSnapshot();
     });
 
     and(/^user should see screen title written as "(.*)"$/, (arg0) => {
@@ -670,8 +684,15 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then("user should see set MFA screen", () => {
-      expect(true).toBeTruthy();
+    then("user should see set MFA screen", async () => {
+      act(() => {
+        container = render(<MfaPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      await waitFor(() => container.getByText(/Select a method/i));
+      expect(container).toMatchSnapshot();
     });
 
     and(/^user should see screen title written as "(.*)"$/, (arg0) => {
@@ -693,23 +714,21 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see checkbox section "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(/^user should see checkbox section "(.*)"$/, validateTextInDocument);
 
     and(
       /^user should see description of check box written as "(.*)"$/,
-      (arg0) => {
-        expect(true).toBeTruthy();
-      }
+      validateTextInDocument
     );
 
     and(/^user should see "(.*)" & "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      validateTextInDocument(arg0);
+      validateTextInDocument(arg1);
     });
 
     when(/^user click on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const confirm = container.getByTestId("primary-button");
+      fireEvent.click(confirm);
     });
 
     then("user should see error screen", () => {
@@ -787,8 +806,15 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then("user should see set MFA screen", () => {
-      expect(true).toBeTruthy();
+    then("user should see set MFA screen", async () => {
+      act(() => {
+        container = render(<MfaPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      await waitFor(() => container.getByText(/Select a method/i));
+      expect(container).toMatchSnapshot();
     });
 
     and(/^user should see screen title written as "(.*)"$/, (arg0) => {
@@ -810,23 +836,21 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and(/^user should see checkbox section "(.*)"$/, (arg0) => {
-      expect(true).toBeTruthy();
-    });
+    and(/^user should see checkbox section "(.*)"$/, validateTextInDocument);
 
     and(
       /^user should see description of check box written as "(.*)"$/,
-      (arg0) => {
-        expect(true).toBeTruthy();
-      }
+      validateTextInDocument
     );
 
     and(/^user should see "(.*)" & "(.*)" button$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      validateTextInDocument(arg0);
+      validateTextInDocument(arg1);
     });
 
     when(/^user click on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const confirm = container.getByTestId("primary-button");
+      fireEvent.click(confirm);
     });
 
     then("user should see error screen", () => {
@@ -904,8 +928,15 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    then("user should see set MFA screen", () => {
-      expect(true).toBeTruthy();
+    then("user should see set MFA screen", async () => {
+      act(() => {
+        container = render(<MfaPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      await waitFor(() => container.getByText(/Select a method/i));
+      expect(container).toMatchSnapshot();
     });
 
     and(/^user should see set MFA screen within (\d+) second$/, (arg0) => {

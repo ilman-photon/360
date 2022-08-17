@@ -100,7 +100,7 @@ export default function Container({
                 mode={constants.SECONDARY}
                 type="button"
                 size={constants.SMALL}
-                data-testid="econdary-button"
+                data-testid="secondary-button"
                 gradient={false}
                 onClick={() => {
                   onClickSecondaryButton();
