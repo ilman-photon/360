@@ -7,13 +7,31 @@ import { useEffect } from "react";
 const loginProps = {
   OnLoginClicked: function (postbody, _router, callback) {
     const api = new Api();
+    const cookies = new Cookies();
     api
       .login(postbody)
       .then(function () {
+        cookies.set("username", postbody.username, { path: "/patient" });
+        //Alternative 1
+        const isRememberMe =
+          cookies.get("rememberMe", { path: "/patient" }) === "true";
+        const usernameCookie = cookies.get("username", { path: "/patient" });
+        const isNotNeedMfa =
+          isRememberMe && usernameCookie === postbody.username;
+
+        //Alternative 2
+        //const isNotNeedMfa = response.isRememberMe
+
+        if (isNotNeedMfa) {
+          cookies.set("authorized", true, { path: "/patient" });
+        } else {
+          cookies.set("mfa", true, { path: "/patient" });
+        }
         const hostname = window.location.origin;
         window.location.href = isNotNeedMfa
           ? `${hostname}/patient`
           : `${hostname}/patient/mfa`;
+
         callback({ status: "success" });
       })
       .catch(function (err) {
