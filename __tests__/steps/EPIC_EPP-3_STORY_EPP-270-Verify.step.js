@@ -72,13 +72,13 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      await waitFor(() => container.getByText("Select a method"));
+      await waitFor(() => container.getByText("communicationMethodTitle"));
     });
 
     and(
       /^user should see "(.*)" section with radio button with below detail "(.*)" and "(.*)"$/,
       (arg0, arg1, arg2) => {
-        const title = container.getByText("Select a method");
+        const title = container.getByText("communicationMethodTitle");
         const email = container.getByTestId("email-radio-button");
         const phone = container.getByTestId("phone-radio-button");
         expect(email).toBeVisible();

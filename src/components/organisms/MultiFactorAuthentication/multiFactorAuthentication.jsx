@@ -1,6 +1,7 @@
 import * as React from "react";
 import Container from "./container";
 import { StyledInput } from "../../atoms/Input/input";
+import { useTranslation } from "next-i18next";
 
 const constants = require("../../../utils/constants");
 
@@ -15,11 +16,14 @@ export default function MultiFactorAuthentication({
   const [isEndView, setEndView] = React.useState(false);
   const [mfaCode, setMfaCode] = React.useState("");
   const image = "/mail-mfa.png";
+
+  const { t } = useTranslation("translation", { keyPrefix: "mfaPage" });
+
   const content = () => {
     return (
       <StyledInput
         id="mfaCode"
-        label="Enter Code"
+        label={t("mfaLabel")}
         fullWidth
         type="number"
         value={mfaCode}
@@ -46,13 +50,13 @@ export default function MultiFactorAuthentication({
     <>
       {!isEndView ? (
         <Container
-          title={"Multi-Factor Authentication"}
-          description={"A verification code has been sent. Enter code below"}
+          title={t("mfaTitle")}
+          description={t("mfaDescription")}
           image={image}
           content={content()}
-          primaryButtonTitle={"Submit"}
-          secondaryButtonTitle={"Resend Code"}
-          linkTitle={"Back to Login"}
+          primaryButtonTitle={t("submitBtn")}
+          secondaryButtonTitle={t("resendCodeBtn")}
+          linkTitle={t("backToLoginBtn")}
           onClickPrimaryButton={() => {
             onSubmitClicked(mfaCode, checkMessage);
           }}
@@ -68,9 +72,9 @@ export default function MultiFactorAuthentication({
         />
       ) : (
         <Container
-          title={"Multi-Factor Authentication"}
+          title={t("MFATitle")}
           image={image}
-          primaryButtonTitle={"Back to Login"}
+          primaryButtonTitle={t("backToLoginBtn")}
           onClickPrimaryButton={() => {
             onBackToLoginClicked();
           }}

@@ -1,24 +1,24 @@
 .titleHeadingWrapper {
   position: fixed;
   width: 100%;
+  display: flex;
   // padding: 24px 10px 24px 240px;
   padding: 24px 10px;
   gap: 10px;
   background: linear-gradient(96.59deg, #003b4a 10.15%, #0389ab 140.82%);
   display: grid;
-  grid-template-columns: repeat(7, minmax(7, 1fr));
+  grid-template-columns: repeat(7, minmax(0, 1fr));
   z-index: 2;
-  @media (max-width: 992px) {
-    width: 100%;
-    grid-template-columns: unset;
-    padding: 24px 16px;
-  }
+
   // margin-top: 64px;
+  @media (max-width: 767px) {
+    padding: 12px 6px;
+  }
 
   .title {
     /* ECP/Desktop/Headline/H3 */
 
-    font-family: "Bw Nista Geometric DEMO", sans-serif;
+    font-family: "Bw Nista Geometric DEMO";
     font-style: normal;
     font-weight: 400;
     font-size: 26px;
@@ -31,6 +31,12 @@
     flex-direction: row;
     align-items: center;
     grid-column: span 2 / span 2;
-    text-align: left;
+    text-align: right;
+
+    @media (max-width: 767px) {
+      grid-column: span 7 / span 7;
+      text-align: center;
+      font-size: 18px;
+    }
   }
 }
