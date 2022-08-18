@@ -17,19 +17,19 @@ npm run check-lint ||
         false; 
 )
 
-# Check tsconfig standards
-npm run test ||
-(
-    echo 'Please fix the failed unit test'
-    false;
-)
-
 # If everything passes... Now we can commit
 
 # Check tsconfig standards
 npm run sonar-lint ||
 (
     echo 'Please fix the sonar issue'
+    false;
+)
+
+# Check tsconfig standards
+npm run test ||
+(
+    echo 'Please fix the failed unit test'
     false;
 )
 
