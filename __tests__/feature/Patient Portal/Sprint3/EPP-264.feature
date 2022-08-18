@@ -4,7 +4,7 @@ Feature: Patient Portal : MFA - View multi factor authentication set up - (P1)
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-264 - Verify user should see set MFA screen after completing registration (Prefered Mode of Communication both)
     Feature: Authentication
 
@@ -28,7 +28,7 @@ Feature: Patient Portal : MFA - View multi factor authentication set up - (P1)
     And user should see "Select a method" section with radio button with below detail "Email: m********@yahoo.com" and "Phone: (8***)***-***31"
     And user should see default selection on Email
     And user should see checkbox section "Remember me"
-    And user should see description of check box written as "This means you won’t have to authenticate at every sign-in"
+    And user should see description of check box written as "This means you won't have to authenticate at every sign-in"
     And user should see "Confirm" & "Back to Login" button
 
     Examples:
@@ -40,7 +40,7 @@ Feature: Patient Portal : MFA - View multi factor authentication set up - (P1)
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-264 - Verify user should be able to choose other preferred mode(s) of communication
     Feature: Authentication
 
@@ -74,7 +74,7 @@ Feature: Patient Portal : MFA - View multi factor authentication set up - (P1)
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-264 - Verify user should see set MFA screen after completing registration (Prefered Mode of Communication Email)
     Feature: Authentication
      
@@ -97,7 +97,7 @@ Feature: Patient Portal : MFA - View multi factor authentication set up - (P1)
     And user should see screen subtitle written as "Confirm your email below and we’ll send a code to set-up multi-factor authentication."
     And user should see text  "Email: m********@yahoo.com"
     And user should see checkbox section "Remember me"
-    And user should see description of check box written as "This means you won’t have to authenticate at every sign-in"
+    And user should see description of check box written as "This means you won't have to authenticate at every sign-in"
     And user should see "Confirm" & "Back to Login" button
 
     Examples:
@@ -108,7 +108,7 @@ Feature: Patient Portal : MFA - View multi factor authentication set up - (P1)
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-264 - Verify user should see set MFA screen after completing registration (Prefered Mode of Communication Phone)
     Feature: Authentication
 
@@ -131,7 +131,7 @@ Feature: Patient Portal : MFA - View multi factor authentication set up - (P1)
     And user should see screen subtitle written as "Confirm your phone below and we’ll send a code to set-up multi-factor authentication."
     And user should see text "Phone: (8***)***-***31"
     And user should see checkbox section "Remember me"
-    And user should see description of check box written as "This means you won’t have to authenticate at every sign-in"
+    And user should see description of check box written as "This means you won't have to authenticate at every sign-in"
     And user should see "Confirm" & "Back to Login" button
 
     Examples:
@@ -143,7 +143,7 @@ Feature: Patient Portal : MFA - View multi factor authentication set up - (P1)
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-264 - Verify user should see "MFA" screen with default selection preferred mode(s) of communication
     Feature: Authentication
 
@@ -179,7 +179,7 @@ Feature: Patient Portal : MFA - View multi factor authentication set up - (P1)
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-264 - Verify user see error screen when internet is unavailable
     Feature: Authentication
 
@@ -203,7 +203,7 @@ Feature: Patient Portal : MFA - View multi factor authentication set up - (P1)
     And user should see "Select a method" section with radio button with below detail "Email: m********@yahoo.com" and "Phone: (8***)***-***31"
     And user should see default selection on Email
     And user should see checkbox section "Remember me"
-    And user should see description of check box written as "This means you won’t have to authenticate at every sign-in"
+    And user should see description of check box written as "This means you won't have to authenticate at every sign-in"
     And user should see "Confirm" & "Back to Login" button
     When user click on "Confirm" button
     Then user should see error screen
@@ -216,7 +216,7 @@ Feature: Patient Portal : MFA - View multi factor authentication set up - (P1)
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-264 - Verify user see error screen when service is unavailable
     Feature: Authentication
 
@@ -240,7 +240,7 @@ Feature: Patient Portal : MFA - View multi factor authentication set up - (P1)
     And user should see "Select a method" section with radio button with below detail "Email: m********@yahoo.com" and "Phone: (8***)***-***31"
     And user should see default selection on Email
     And user should see checkbox section "Remember me"
-    And user should see description of check box written as "This means you won’t have to authenticate at every sign-in"
+    And user should see description of check box written as "This means you won't have to authenticate at every sign-in"
     And user should see "Confirm" & "Back to Login" button
     When user click on "Confirm" button
     Then user should see error screen
@@ -277,7 +277,7 @@ Feature: Patient Portal : MFA - View multi factor authentication set up - (P1)
     And user should see "Select a method" section with radio button with below detail "Email: m********@yahoo.com" and "Phone: (8***)***-***31"
     And user should see default selection on Email
     And user should see checkbox section "Remember me"
-    And user should see description of check box written as "This means you won’t have to authenticate at every sign-in"
+    And user should see description of check box written as "This means you won't have to authenticate at every sign-in"
     And user should see "Confirm" & "Back to Login" button
     When user tap on F12 on keyboard
     Then user should not see any error in console when user tap on F12 keyboard
@@ -290,7 +290,7 @@ Feature: Patient Portal : MFA - View multi factor authentication set up - (P1)
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-264 - Verify user see set MFA screen within 3 second
     Feature: Authentication
 

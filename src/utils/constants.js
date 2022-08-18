@@ -25,6 +25,8 @@ module.exports = {
   EMAIL: "email",
   PHONE: "phone",
   YES: "yes",
+  MFA_COMPONENT_NAME: "MultiFactorAuthentication",
+  SQ_COMPONENT_NAME: "SecurityQuestion",
   TEST_ID: {
     LOGIN_TEST_ID: {
       email: "emailorphonenumber",
