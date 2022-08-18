@@ -11,13 +11,11 @@ export const styles = {
   },
   buttonContainer: {
     display: "flex",
-    flexDirection: "row",
   },
   questionContainer: {
     marginBottom: "24px",
   },
   buttonStyle: {
-    minWidth: "40px !important",
     marginRight: "10px",
     fontSize: "14px",
     boxShadow: "none",

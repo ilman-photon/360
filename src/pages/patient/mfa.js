@@ -186,15 +186,22 @@ export default function MfaPage() {
     return (
       <Box
         sx={{
-          marginTop: "-10px",
+          marginTop: "-15px",
         }}
       >
         {!successSubmit ? (
           <Box sx={{ background: "#FAFAFA" }}>
-            <AccountTitleHeading title={"Set-up Security Questions"} />:
+            <AccountTitleHeading
+              title={"Set-up Security Questions"}
+              sx={{
+                textAlign: "left",
+                paddingLeft: "16px",
+              }}
+            />
+            :
             <Box
               sx={{
-                paddingTop: "80px",
+                paddingTop: "65px",
                 maxWidth: "75.1%",
                 minWidth: 686,
                 margin: "auto",
@@ -202,6 +209,9 @@ export default function MfaPage() {
                 borderWidth: "0px 1px",
                 borderColor: "#F3F3F3",
                 borderStyle: "solid",
+                ["@media (max-width: 992px)"]: {
+                  paddingTop: "45px",
+                },
               }}
             >
               <SecurityQuestion

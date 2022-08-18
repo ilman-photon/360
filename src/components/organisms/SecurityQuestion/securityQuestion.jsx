@@ -128,7 +128,15 @@ const SecurityQuestion = ({
       )}
       <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
         {securityQuestionUI()}
-        <Box style={styles.buttonContainer}>
+        <Box
+          style={styles.buttonContainer}
+          sx={{
+            flexDirection: "row",
+            ["@media (max-width: 992px)"]: {
+              flexDirection: "column",
+            },
+          }}
+        >
           <StyledButton
             type="submit"
             theme="patient"
@@ -136,6 +144,11 @@ const SecurityQuestion = ({
             size="small"
             gradient={false}
             style={styles.buttonStyle}
+            sx={{
+              ["@media (max-width: 992px)"]: {
+                marginBottom: "16px",
+              },
+            }}
           >
             Submit
           </StyledButton>
