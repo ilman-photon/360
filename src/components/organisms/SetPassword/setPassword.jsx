@@ -147,7 +147,7 @@ const SetPasswordComponent = ({
     if (Regex.specialRegex.test(pass)) {
       ++passes;
     }
-    if (Regex.upperCaseRegex.test(pass) > -1) {
+    if (Regex.upperCaseRegex.test(pass)) {
       ++passes;
     }
     if (Regex.lowerCaseRegex.test(pass)) {
@@ -205,10 +205,13 @@ const SetPasswordComponent = ({
 
   const passwordRules = () => {
     return {
-      isLength: (v) => Regex.lengthRegex.test(v),
-      isNoWhitespace: (v) => Regex.noWhitespaceRegex.test(v),
-      isAtLeastOneNumber: (v) => Regex.numberRegex.test(v),
-      is3of4: (v) => is3of4(v),
+      isLength: (v) =>
+        Regex.lengthRegex.test(v) || t("passwordNotMeetRequirements"),
+      isNoWhitespace: (v) =>
+        Regex.noWhitespaceRegex.test(v) || t("passwordNotMeetRequirements"),
+      isAtLeastOneNumber: (v) =>
+        Regex.numberRegex.test(v) || t("passwordNotMeetRequirements"),
+      is3of4: (v) => is3of4(v) || t("passwordNotMeetRequirements"),
       isContainUserName: (v) =>
         v.indexOf(watchedEmail) <= -1 ||
         "Password should not contain your username",
