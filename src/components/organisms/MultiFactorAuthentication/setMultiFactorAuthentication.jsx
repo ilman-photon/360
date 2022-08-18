@@ -1,11 +1,11 @@
 import { Typography } from "@mui/material";
 import Container from "./container";
 import styles from "./style.module.scss";
-
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
+import { useTranslation } from "next-i18next";
 
 export default function SetMultiFactorAuthentication({
   onConfirmClicked,
@@ -14,6 +14,7 @@ export default function SetMultiFactorAuthentication({
   setRememberMe,
   data,
 }) {
+  const { t } = useTranslation("translation", { keyPrefix: "mfaPage" });
   const image = "/lock-mfa.png";
   const isMultipleComunication = Object.keys(data).length > 1;
 
@@ -29,7 +30,7 @@ export default function SetMultiFactorAuthentication({
       return (
         <FormControl>
           <Typography variant="body2" className={styles.radioLabel}>
-            Select a method
+            {t("communicationMethodTitle")}
           </Typography>
           <RadioGroup
             aria-labelledby="communication-radio-buttons-group-label"
@@ -91,12 +92,12 @@ export default function SetMultiFactorAuthentication({
   return (
     <>
       <Container
-        title={"Set Multi-Factor Authentication"}
-        description={"Select a delivery method to identify your identity."}
+        title={t("setMFATitle")}
+        description={t("setMFADescription")}
         image={image}
         content={content()}
-        primaryButtonTitle={"Confirm"}
-        secondaryButtonTitle={"Back to Login"}
+        primaryButtonTitle={t("confrimBtn")}
+        secondaryButtonTitle={t("backToLoginBtn")}
         onClickPrimaryButton={() => {
           onConfirmClicked();
         }}

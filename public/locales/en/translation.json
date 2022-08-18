@@ -106,5 +106,28 @@
     "expiredTitleResetPassword": "Reset Password link expired",
     "expiredPostmessageResetPassword": "Reset Password link has been expired",
     "backButtonLink": "Back to Log in"
+  },
+  "mfaPage": {
+    "setMFATitle": "Set Multi-Factor Authentication",
+    "setMFADescription": "Select a delivery method to identify your identity.",
+    "communicationMethodTitle": "Select a method",
+    "confrimBtn": "Confirm",
+    "backToLoginBtn": "Back to Login",
+    
+    "mfaTitle": "Multi-Factor Authentication",
+    "mfaDescription": "A verification code has been sent. Enter code below",
+    "mfaLabel": "Enter Code",
+    "submitBtn": "Submit",
+    "confrimBtn": "Resend Code",
+
+    "rememberMeLabel": "Remember me",
+    "rememberMeDescription": "This means you won't have to authenticate at every sign-in",
+    
+    "mfaFailedTitle": "Incorrect Code.",
+    "mfaFailedDescription": "Please try again.",
+    "mfaLockTitle": "Too many attempts.",
+    "mfaLockDescription": "Please try setting up multi factor authentication after 30 minutes.",
+    "resendCodeLockDescription": "Code sent multiple times. Please try again after 30 minutes."
+
   }
 }

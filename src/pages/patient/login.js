@@ -22,7 +22,6 @@ const loginProps = {
           isRememberMe && usernameCookie === postbody.username;
 
         //Alternative 2
-
         if (isNotNeedMfa) {
           cookies.set("authorized", true, { path: "/patient" });
         } else {
