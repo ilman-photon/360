@@ -10,7 +10,7 @@ const loginProps = {
     const cookies = new Cookies();
     api
       .login(postbody)
-      .then(function () {
+      .then(function (response) {
         const IdleTimeOut = response.IdleTimeOut * 1000 || 1200 * 1000;
         cookies.set("IdleTimeOut", IdleTimeOut, { path: "/patient" });
         cookies.set("username", postbody.username, { path: "/patient" });
