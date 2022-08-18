@@ -7,6 +7,7 @@ import FormMessage from "../../molecules/FormMessage/formMessage";
 import { StyledButton } from "../../atoms/Button/button";
 import styles from "./style.module.scss";
 import Stack from "@mui/material/Stack";
+import { useTranslation } from "next-i18next";
 
 const constants = require("../../../utils/constants");
 
@@ -26,6 +27,7 @@ export default function Container({
   rememberMe,
   setRememberMe,
 }) {
+  const { t } = useTranslation("translation", { keyPrefix: "mfaPage" });
   const renderFromMessage = () => {
     if (postMessage && postMessage !== "") {
       return (
@@ -72,11 +74,11 @@ export default function Container({
                   }}
                 />
                 <Typography className={styles.checkBoxLabel}>
-                  Remember me
+                  {t("rememberMeLabel")}
                 </Typography>
               </Box>
               <Typography variant="body2" className={styles.checkBoxText}>
-                {`This means you won't have to authenticate at every sign-in`}
+                {t("rememberMeDescription")}
               </Typography>
             </Box>
           )}
@@ -100,7 +102,7 @@ export default function Container({
                 mode={constants.SECONDARY}
                 type="button"
                 size={constants.SMALL}
-                data-testid="econdary-button"
+                data-testid="secondary-button"
                 gradient={false}
                 onClick={() => {
                   onClickSecondaryButton();

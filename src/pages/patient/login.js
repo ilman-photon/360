@@ -20,8 +20,6 @@ const loginProps = {
           isRememberMe && usernameCookie === postbody.username;
 
         //Alternative 2
-        //const isNotNeedMfa = response.isRememberMe
-
         if (isNotNeedMfa) {
           cookies.set("authorized", true, { path: "/patient" });
         } else {
