@@ -47,14 +47,14 @@ const userSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchUser.pending]: (state, action) => {
+    [fetchUser.pending]: (state) => {
       state.status = "loading";
     },
     [fetchUser.fulfilled]: (state, { payload }) => {
       state.userData = payload;
       state.status = "success";
     },
-    [fetchUser.rejected]: (state, action) => {
+    [fetchUser.rejected]: (state) => {
       state.status = "failed";
     },
   },
