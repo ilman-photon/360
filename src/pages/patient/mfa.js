@@ -151,9 +151,18 @@ export default function MfaPage() {
       });
   }
 
-  function onSubmitSecurityQuestionClicked(callback) {
+  function onSubmitSecurityQuestionClicked(data, callback) {
+    const questionAnswer = {};
+    for (let i = 0; i < data.answer.length; i++) {
+      questionAnswer[data.question[i]] = data.answer[i];
+    }
+
+    const postBody = {
+      username: cookies.get("username", { path: "/patient" }),
+      SecurityQuestions: [questionAnswer],
+    };
     api
-      .submitSecurityQuestion()
+      .submitSecurityQuestion(postBody)
       .then(function () {
         setSuccessSubmit(true);
         setTimeout(() => {

@@ -33,7 +33,20 @@ const SecurityQuestion = ({
       }
     }
     if (validate) {
-      onClickedSubmitButton(checkSubmitMessage);
+      const questionAnswer = {};
+      const question = [];
+      const answer = [];
+      for (const [key, value] of Object.entries(data)) {
+        if (key.indexOf("answer") > -1) {
+          answer.push(value);
+        } else {
+          question.push(value);
+        }
+      }
+      questionAnswer["question"] = question;
+      questionAnswer["answer"] = answer;
+
+      onClickedSubmitButton(questionAnswer, checkSubmitMessage);
     } else {
       setShowPostMessage(true);
       //Scroll to top

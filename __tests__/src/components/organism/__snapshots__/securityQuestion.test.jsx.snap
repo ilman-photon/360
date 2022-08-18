@@ -26,6 +26,7 @@ Object {
               </label>
               <div
                 class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                data-testid="select-question-id-1"
               >
                 <div
                   aria-expanded="false"
@@ -105,6 +106,7 @@ Object {
               </label>
               <div
                 class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                data-testid="select-question-id-2"
               >
                 <div
                   aria-expanded="false"
@@ -184,6 +186,7 @@ Object {
               </label>
               <div
                 class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                data-testid="select-question-id-3"
               >
                 <div
                   aria-expanded="false"
@@ -263,6 +266,7 @@ Object {
               </label>
               <div
                 class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                data-testid="select-question-id-4"
               >
                 <div
                   aria-expanded="false"
@@ -342,6 +346,7 @@ Object {
               </label>
               <div
                 class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                data-testid="select-question-id-5"
               >
                 <div
                   aria-expanded="false"
@@ -457,6 +462,7 @@ Object {
             </label>
             <div
               class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+              data-testid="select-question-id-1"
             >
               <div
                 aria-expanded="false"
@@ -536,6 +542,7 @@ Object {
             </label>
             <div
               class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+              data-testid="select-question-id-2"
             >
               <div
                 aria-expanded="false"
@@ -615,6 +622,7 @@ Object {
             </label>
             <div
               class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+              data-testid="select-question-id-3"
             >
               <div
                 aria-expanded="false"
@@ -694,6 +702,7 @@ Object {
             </label>
             <div
               class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+              data-testid="select-question-id-4"
             >
               <div
                 aria-expanded="false"
@@ -773,6 +782,7 @@ Object {
             </label>
             <div
               class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+              data-testid="select-question-id-5"
             >
               <div
                 aria-expanded="false"
