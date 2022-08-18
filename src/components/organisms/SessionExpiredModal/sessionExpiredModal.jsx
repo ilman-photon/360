@@ -9,6 +9,7 @@ import { Box } from "@mui/material";
 import { styles } from "./styles";
 import { useRouter } from "next/router";
 import Cookies from "universal-cookie";
+import { logoutProps } from "../../../utils/authetication";
 
 function SessionExpiredModal({
   showModal = false,
@@ -19,9 +20,7 @@ function SessionExpiredModal({
 }) {
   const router = useRouter();
   const onLoggedOffClicked = () => {
-    const cookies = new Cookies();
-    cookies.remove("authorized", { path: "/patient" });
-    router.push("/patient");
+    logoutProps.OnLogoutClicked(router);
     onLoggedOff();
   };
 
