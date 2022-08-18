@@ -19,6 +19,7 @@ function App({ Component, pageProps }) {
   const promptTimeout = 60000; //Remaining Time
   // Time before idle
   const [remaining, setRemaining] = useState(0);
+  const [idleInterval, setIdleInterval] = useState(null);
 
   // Modal open state
   const [open, setOpen] = useState(false);
@@ -56,6 +57,7 @@ function App({ Component, pageProps }) {
   const onClickedLoggedOff = () => {
     setOpen(false);
   };
+  const isLogin = cookies.get("authorized") || cookies.get("mfa");
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -68,7 +70,6 @@ function App({ Component, pageProps }) {
     };
   }, [getRemainingTime, isPrompted]);
 
-  const isLogin = cookies.get("authorized");
   return getLayout(
     <Provider store={store}>
       {isLogin ? (
