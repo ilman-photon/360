@@ -9,7 +9,6 @@ import SelectOptionButton from "../../atoms/SelectOptionButton/selectOptionButto
 import { ImageUploader } from "../../molecules/ImageUploader/imageUploader";
 
 export default function InsuranceForm({
-  userData = {},
   isEditing = true,
   OnSaveClicked = () => {
     // This is intended
@@ -19,10 +18,8 @@ export default function InsuranceForm({
   },
 }) {
   const { handleSubmit, control } = useForm({
-    defaultValues: {}, // Object.assign({}, userData),
+    defaultValues: {},
   });
-
-  console.log({ userData }, "from");
 
   const isSubsciberOptions = [
     { label: "Yes", value: "yes" },
@@ -77,7 +74,7 @@ export default function InsuranceForm({
                 control={control}
                 render={({
                   field: { onChange, value },
-                  fieldState: { error },
+                  fieldState: { _error },
                 }) => {
                   return (
                     <SelectOptionButton
@@ -109,7 +106,7 @@ export default function InsuranceForm({
                 control={control}
                 render={({
                   field: { onChange, value },
-                  fieldState: { error },
+                  fieldState: { _error },
                 }) => {
                   return (
                     <SelectOptionButton
@@ -141,7 +138,7 @@ export default function InsuranceForm({
                 control={control}
                 render={({
                   field: { onChange, value },
-                  fieldState: { error },
+                  fieldState: { _error },
                 }) => {
                   return (
                     <SelectOptionButton
@@ -319,7 +316,10 @@ export default function InsuranceForm({
           <Controller
             name="relationship"
             control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
+            render={({
+              field: { onChange, value },
+              fieldState: { _error },
+            }) => {
               return (
                 <SelectOptionButton
                   sx={{
@@ -351,7 +351,9 @@ export default function InsuranceForm({
           <Grid container>
             <Grid item xs={4} pr={2}>
               <ImageUploader
-                OnUpload={() => {}}
+                OnUpload={() => {
+                  // This is intended
+                }}
                 label="Upload Front"
                 width="100%"
                 src="/login-bg.png"
@@ -360,7 +362,9 @@ export default function InsuranceForm({
             </Grid>
             <Grid item xs={4}>
               <ImageUploader
-                OnUpload={() => {}}
+                OnUpload={() => {
+                  // This is intended
+                }}
                 label="Upload Back"
                 width="100%"
                 src="/login-bg.png"

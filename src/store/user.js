@@ -10,8 +10,8 @@ const DEFAULT_USER_DATA = {
   name: "Eyecare User",
   preferredName: "---",
   profilePhoto: "",
-  issuedCardFront: "",
-  issuedCardBack: "",
+  issuedCardFront: "/transparent.png",
+  issuedCardBack: "/transparent.png",
   dob: new Date(),
   title: "Mr",
   ssn: 1234567,
@@ -47,14 +47,14 @@ const userSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchUser.pending]: (state, action) => {
+    [fetchUser.pending]: (state, _action) => {
       state.status = "loading";
     },
     [fetchUser.fulfilled]: (state, { payload }) => {
       state.userData = payload;
       state.status = "success";
     },
-    [fetchUser.rejected]: (state, action) => {
+    [fetchUser.rejected]: (state, _action) => {
       state.status = "failed";
     },
   },

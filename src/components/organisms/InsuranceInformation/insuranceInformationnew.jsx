@@ -7,7 +7,7 @@ import AddIcon from "@mui/icons-material/Add";
 import InsuranceForm from "./insuranceForm";
 import InsuranceView from "./insuranceView";
 
-export default function InsuranceDocument({
+export default function InsuranceInformationNew({
   userData = {},
   isEditing = false,
   OnSaveClicked = () => {
@@ -20,10 +20,6 @@ export default function InsuranceDocument({
     // This is intended
   },
 }) {
-  const onSubmit = (data) => {
-    OnSaveClicked(data);
-  };
-
   return (
     <AccountCard
       titleIcon={<PermContactCalendarOutlinedIcon />}

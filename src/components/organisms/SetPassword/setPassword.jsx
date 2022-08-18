@@ -13,10 +13,6 @@ import { Link, Typography } from "@mui/material";
 import { PasswordValidator } from "../../molecules/PasswordValidator/passwordValidator";
 import { Regex } from "../../../utils/regex";
 
-const headingStyles = {
-  marginBottom: 30,
-};
-
 const cardContentStyle = {
   display: "flex",
   flexDirection: "column",

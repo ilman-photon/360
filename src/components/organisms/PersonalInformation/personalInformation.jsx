@@ -23,6 +23,7 @@ import { StyledSelect } from "../../atoms/Select/select";
 import { formatSocialSecurity } from "../../../utils/ssnFormatter";
 import { GENDER_LIST, TITLE_LIST } from "../../../utils/constantData";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
+import Image from "next/image";
 
 export default function PersonalInformation({
   userData = {},
@@ -37,11 +38,9 @@ export default function PersonalInformation({
     // This is intended
   },
 }) {
-  const { handleSubmit, control, watch, reset } = useForm({
-    defaultValues: userData, // Object.assign({}, userData),
+  const { handleSubmit, control, reset } = useForm({
+    defaultValues: userData,
   });
-
-  console.log({ userData }, "PersonalInformation");
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
   const tooltipContentDefault =
@@ -57,7 +56,7 @@ export default function PersonalInformation({
 
   useEffect(() => {
     if (userData) reset(userData);
-  }, [userData]);
+  }, [userData, reset]);
 
   const handleCancel = () => {
     reset(userData);
@@ -102,12 +101,13 @@ export default function PersonalInformation({
         <Stack spacing={3} divider={<Divider />}>
           <LabelWithInfo label="Photo">
             {userData.profilePhoto ? (
-              <img
+              <Image
                 src={userData.profilePhoto}
                 width={122}
                 height={122}
                 style={{ borderRadius: "50%" }}
-              ></img>
+                alt="profile"
+              ></Image>
             ) : (
               <Avatar
                 {...stringAvatar(userData.name)}
@@ -158,7 +158,7 @@ export default function PersonalInformation({
                 helperText="JPG or PNG file formats only. (File size limit is 4 MB)"
               >
                 <div className={styles.issuedCardContainer}>
-                  <img
+                  <Image
                     width={267}
                     height={175}
                     src={userData.issuedCardFront}
@@ -171,7 +171,7 @@ export default function PersonalInformation({
                 helperText="JPG or PNG file formats only. (File size limit is 4 MB)"
               >
                 <div className={styles.issuedCardContainer}>
-                  <img
+                  <Image
                     width={267}
                     height={175}
                     src={userData.issuedCardBack}

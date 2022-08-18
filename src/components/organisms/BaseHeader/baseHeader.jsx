@@ -44,9 +44,6 @@ export default function BaseHeader({
   const [anchorElNav, setAnchorElNav] = React.useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
 
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
@@ -99,46 +96,6 @@ export default function BaseHeader({
               >
                 <MenuIcon />
               </IconButton>
-              {/* <Menu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
-                }}
-                open={Boolean(anchorElNav)}
-                data-testid="user-menu-nav-close"
-                onClose={handleCloseNavMenu}
-                sx={styles.menuMobile}
-              >
-                {pages.map(({ page, testId }) => (
-                  <MenuItem
-                    key={page}
-                    onClick={handleCloseNavMenu}
-                    data-testid={testId}
-                  >
-                    <Typography textAlign="center">{page}</Typography>
-                  </MenuItem>
-                ))}
-                <MenuItem onClick={handleCloseNavMenu}>
-                  <Button
-                    variant="text"
-                    sx={styles.menuItemMobile}
-                    data-testid={HOME_TEST_ID.logout}
-                    startIcon={<ExitToAppIcon />}
-                    onClick={() => {
-                      OnLogoutClicked(router);
-                    }}
-                  >
-                    Logout
-                  </Button>
-                </MenuItem>
-              </Menu> */}
             </Box>
             <AccountDrawer
               data-testid="user-menu-nav-close"

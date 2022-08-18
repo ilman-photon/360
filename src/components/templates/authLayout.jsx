@@ -9,7 +9,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 
-export default function Layout({
+export default function AuthLayout({
   children,
   showMobileImage = false,
   theme = "patient",

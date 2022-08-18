@@ -7,7 +7,7 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 import Image from "next/image";
 
-export default function InsuranceForm({
+export default function InsuranceView({
   userData = {},
   isEditing = false,
   OnEditClicked = () => {
@@ -22,17 +22,12 @@ export default function InsuranceForm({
     OnCancelEditClicked();
   };
 
-  const { control, watch, reset } = useForm({
+  const { reset } = useForm({
     defaultValues: userData.userData,
   });
 
   return (
     <Fade in={!isEditing} unmountOnExit>
-      {/* <AccountCard
-      // titleIcon={<PermContactCalendarOutlinedIcon />}
-      title="Primary"
-      // OnAddInsurance={true}
-    > */}
       <Stack spacing={3} divider={<Divider />}>
         <Grid container>
           <Grid item xs={4} p={0}>
