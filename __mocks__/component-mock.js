@@ -61,3 +61,11 @@ jest.mock("next-i18next", () => ({
     return jest.fn();
   },
 }));
+
+jest.mock("react-idle-timer", () => ({
+  useIdleTimer: jest.fn().mockReturnValue({
+    getRemainingTime: jest.fn(),
+    isPrompted: jest.fn(),
+    activate: jest.fn(),
+  }),
+}));
