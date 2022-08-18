@@ -1,6 +1,6 @@
 import { fireEvent, render } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import InsuranceView from "../../../../src/components/organisms/InsuranceInformation/InsuranceView";
+import InsuranceView from "../../../../src/components/organisms/InsuranceInformation/insuranceView";
 
 describe("SecurityQuestion Components", () => {
   let container;
