@@ -3,7 +3,13 @@ import { useRouter } from "next/router";
 import MfaLayout from "../../components/templates/mfaLayout";
 import SetMultiFactorAuthentication from "../../components/organisms/MultiFactorAuthentication/setMultiFactorAuthentication";
 import MultiFactorAuthentication from "../../components/organisms/MultiFactorAuthentication/multiFactorAuthentication";
+import constants from "../../utils/constants";
+import SecurityQuestion from "../../components/organisms/SecurityQuestion/securityQuestion";
+import { Box } from "@mui/material";
 import Cookies from "universal-cookie";
+import AccountTitleHeading from "../../components/atoms/AccountTitleHeading/accountTitleHeading";
+import FormMessage from "../../components/molecules/FormMessage/formMessage";
+
 import { Api } from "../api/api";
 
 export async function getServerSideProps(context) {
@@ -27,9 +33,11 @@ export default function MfaPage() {
   const api = new Api();
   const cookies = new Cookies();
   const router = useRouter();
-  const [confirm, setConfirm] = React.useState(false);
+  const [componentName, setComponentName] = React.useState("");
   const [rememberMe, setRememberMe] = React.useState(false);
   const [mfaCode, setMfaCode] = React.useState("");
+  const [successSubmit, setSuccessSubmit] = React.useState(false);
+  const [securityQuestionList, setSecurityQuestionList] = React.useState([]);
   const [communicationMethod, setCommunicationMethod] = React.useState({});
 
   //just mock
@@ -45,7 +53,9 @@ export default function MfaPage() {
         .then((response) => {
           setCommunicationMethod(response);
         })
-        .catch(() => {});
+        .catch(() => {
+          // This is intentional
+        });
     }
   });
 
@@ -56,7 +66,10 @@ export default function MfaPage() {
         setMfaCode(response);
         setConfirm(true);
       })
-      .catch(() => {});
+      .catch(() => {
+        // This is intentional
+      });
+    setComponentName(constants.MFA_COMPONENT_NAME);
   }
 
   function onBackToLoginClicked() {
@@ -69,15 +82,13 @@ export default function MfaPage() {
     //Alternative 1
     rememberMe && cookies.set("rememberMe", rememberMe, { path: "/patient" });
     //Alternative 2
-    //api.setRemeberMe(rememberMe);
     cookies.set("authorized", true, { path: "/patient" });
     cookies.remove("mfa", { path: "/patient" });
   }
 
   function onSubmitClicked(inputMfaCode, callback) {
     if (inputMfaCode === mfaCode) {
-      setSubmitCounter(0);
-      redirectToDashboard();
+      onShowSecurityQuestionForm();
     } else {
       if (submitCounter > 2) {
         callback({
@@ -119,7 +130,9 @@ export default function MfaPage() {
           setMfaCode(response);
           setRequestCounter(requestCounter + 1);
         })
-        .catch(() => {});
+        .catch(() => {
+          // This is intentional
+        });
     }
   }
 
@@ -127,7 +140,39 @@ export default function MfaPage() {
     setRememberMe(value);
   }
 
-  if (confirm) {
+  function onShowSecurityQuestionForm() {
+    api
+      .getSecurityQuestion()
+      .then(function (response) {
+        setSecurityQuestionList(response.securityQuestionList);
+        setComponentName(constants.SQ_COMPONENT_NAME);
+      })
+      .catch(function () {
+        console.error("Something went wrong");
+      });
+  }
+
+  function onSubmitSecurityQuestionClicked(callback) {
+    api
+      .submitSecurityQuestion()
+      .then(function () {
+        setSuccessSubmit(true);
+        setTimeout(() => {
+          redirectToDashboard();
+        }, 3000);
+      })
+      .catch(function () {
+        callback({
+          status: "failed",
+          message: {
+            title: "Code sent multiple times.",
+            description: "Please try again after 30 minutes.",
+          },
+        });
+      });
+  }
+
+  if (componentName === constants.MFA_COMPONENT_NAME) {
     return (
       <MultiFactorAuthentication
         onSubmitClicked={onSubmitClicked}
@@ -136,6 +181,49 @@ export default function MfaPage() {
         rememberMe={rememberMe}
         setRememberMe={onSetRememberMe}
       />
+    );
+  } else if (componentName === constants.SQ_COMPONENT_NAME) {
+    return (
+      <Box
+        sx={{
+          marginTop: "-10px",
+        }}
+      >
+        {!successSubmit ? (
+          <Box sx={{ background: "#FAFAFA" }}>
+            <AccountTitleHeading title={"Set-up Security Questions"} />:
+            <Box
+              sx={{
+                paddingTop: "80px",
+                maxWidth: "75.1%",
+                minWidth: 686,
+                margin: "auto",
+                background: "#fff",
+                borderWidth: "0px 1px",
+                borderColor: "#F3F3F3",
+                borderStyle: "solid",
+              }}
+            >
+              <SecurityQuestion
+                onClickedSubmitButton={onSubmitSecurityQuestionClicked}
+                onClickedSkipButton={redirectToDashboard}
+                securityQuestionList={securityQuestionList}
+              />
+            </Box>
+          </Box>
+        ) : (
+          <FormMessage
+            success={true}
+            sx={{
+              borderRadius: "0px",
+              justifyContent: "center",
+              backgroundColor: "#04844B",
+            }}
+          >
+            Security questions set up successfully
+          </FormMessage>
+        )}
+      </Box>
     );
   } else {
     return (

@@ -3,7 +3,7 @@ import Cookies from "universal-cookie";
 import BaseHeader from "../../components/organisms/BaseHeader/baseHeader";
 import { Api } from "../api/api";
 
-export async function getServerSideProps({ req, res }) {
+export async function getServerSideProps({ req }) {
   const cookies = new Cookies(req.headers.cookie);
 
   if (!cookies.get("authorized")) {
@@ -29,14 +29,13 @@ const logoutProps = {
 
     api
       .logout(postbody)
-      .then(function (response) {
+      .then(function () {
         const cookies = new Cookies();
         cookies.remove("authorized", { path: "/patient" });
         router.push("patient/login");
-        console.log("log out success", response);
       })
-      .catch(function (err) {
-        console.log("log out failed", err);
+      .catch(() => {
+        //this is intentional
       });
   },
 };

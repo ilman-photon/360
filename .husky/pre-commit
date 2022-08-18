@@ -26,6 +26,15 @@ npm run test ||
 
 # If everything passes... Now we can commit
 
+# Check tsconfig standards
+npm run sonar-lint ||
+(
+    echo 'Please fix the sonar issue'
+    false;
+)
+
+# If everything passes... Now we can commit
+
 npm run build ||
 (
     echo 'Next build failed: View the errors above to see why. 

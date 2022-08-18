@@ -38,6 +38,7 @@ export default function SetMultiFactorAuthentication({
           >
             <FormControlLabel
               value="email"
+              data-testid="email-radio-button"
               label={`Email: ${data.email}`}
               sx={{
                 ".MuiFormControlLabel-label": {
@@ -60,6 +61,7 @@ export default function SetMultiFactorAuthentication({
             />
             <FormControlLabel
               value="phone"
+              data-testid="phone-radio-button"
               label={`Phone${data.phone}`}
               sx={{
                 ".MuiFormControlLabel-label": {

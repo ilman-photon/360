@@ -15,13 +15,13 @@ export const indexStore = createSlice({
     setLoading: (state, action) => {
       state.loading = action.payload;
     },
-    increment: (state, action) => {
+    increment: (state) => {
       state.counter++;
     },
     setFormMessage: (state, action) => {
       state.formMessage = action.payload;
     },
-    resetFormMessage: (state, action) => {
+    resetFormMessage: (state) => {
       state.formMessage = DEFAULT_FORM_MESSAGE;
     },
   },

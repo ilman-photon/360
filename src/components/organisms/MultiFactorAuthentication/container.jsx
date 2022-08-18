@@ -76,7 +76,7 @@ export default function Container({
                 </Typography>
               </Box>
               <Typography variant="body2" className={styles.checkBoxText}>
-                This means you wont have to authenticate at every sign-in
+                {`This means you won't have to authenticate at every sign-in`}
               </Typography>
             </Box>
           )}
@@ -86,6 +86,7 @@ export default function Container({
               mode={constants.PRIMARY}
               type="button"
               size={constants.SMALL}
+              data-testid="primary-button"
               gradient={false}
               onClick={() => {
                 onClickPrimaryButton();
@@ -99,6 +100,7 @@ export default function Container({
                 mode={constants.SECONDARY}
                 type="button"
                 size={constants.SMALL}
+                data-testid="secondary-button"
                 gradient={false}
                 onClick={() => {
                   onClickSecondaryButton();

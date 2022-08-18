@@ -23,12 +23,9 @@ export default function CreateAccountPage() {
       const hostname = window.location.origin;
       window.location.href = `${hostname}/patient`;
     } catch (err) {
-      console.err({ err });
-      if (err.response) {
-        const errorMessage =
-          RESPONSE_MESSAGES[
-            err.response.data ? err.response.data.ResponseCode : 3500
-          ];
+      console.error({ err });
+      if (err.ResponseCode) {
+        const errorMessage = RESPONSE_MESSAGES[err.ResponseCode || 3500];
 
         dispatch(
           setFormMessage({
