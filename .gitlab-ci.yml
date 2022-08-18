@@ -9,7 +9,7 @@ variables:
 image: node:16.10.0
 
 stages:
-  # - install
+  - install
   # - test
   # - build
   # - sonar
