@@ -63,15 +63,14 @@ defineFeature(feature, (test) => {
 
         and(/^user should fill valid (.*) field with the email$/, (arg0) => {
           const usernameField = container.getByLabelText("Username");
-          const passwordField = container.getByLabelText("Password");
           fireEvent.change(usernameField, { target: { value: "validUsername" } });
-          fireEvent.change(passwordField, { target: { value: "wrongPassword" } });
           expect(usernameField.value).toEqual("validUsername");
-          expect(passwordField.value).not.toEqual("validPassword");
         });
 
         and(/^user should fill valid (.*) field$/, (arg0) => {
-          expect(true).toBeTruthy()
+          const passwordField = container.getByLabelText("passwordLabel");
+          fireEvent.change(passwordField, { target: { value: "validPassword" } });
+          expect(passwordField.value).toEqual("validPassword");
         });
 
         and(/^user should see the "(.*)" option has been selected that Remember me has not expired$/, (arg0) => {
