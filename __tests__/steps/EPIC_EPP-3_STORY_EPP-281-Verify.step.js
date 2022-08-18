@@ -2,8 +2,9 @@ import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
-import MfaPage from "../../src/pages/patient/mfa";
-import AuthPage from "../../src/pages/patient/login";
+import MfaPage, { getServerSideProps }  from "../../src/pages/patient/mfa";
+import "@testing-library/jest-dom";
+
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint3/EPP-281.feature", {
@@ -12,13 +13,36 @@ const feature = loadFeature(
 );
 
 defineFeature(feature, (test) => {
+  let container
+    beforeEach(async () => {
+        const contex = {
+            req: {
+                headers: {
+                    cookie: "username=user1%40photon.com; mfa=true"
+                }
+            }
+        }
+
+        getServerSideProps(contex)
+        container = render(<MfaPage />)
+        await waitFor(() => container.getByText("Set Multi-Factor Authentication"));
+
+    });
   test('EPIC_EPP-3_STORY_EPP-281-Existing-Verify user should be able to login from device that was set up with "Remember me" option selected, without being asked for MFA using registered mail-id', ({  }) => {
       test('"EPIC_EPP-3_STORY_EPP-281-Existing-Verify user should be able to login from device that was set up with "Remember me" option selected, without being asked for MFA using registered mail-id"', ({ given, and, when, then }) => {
+        let container, login;
+        const mock = new MockAdapter(axios);
+        const element = document.createElement("div");
         given(/^user launch the "(.*)" url$/, (arg0) => {
           expect(true).toBeTruthy()
         });
 
         and('user navigates to the Patient Portal application', () => {
+          const expectedResult = {
+            ResponseCode: 2001,
+            ResponseType: "failure",
+            userType: "patient",
+          };
           mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
         });
 
@@ -38,7 +62,12 @@ defineFeature(feature, (test) => {
         });
 
         and(/^user should fill valid (.*) field with the email$/, (arg0) => {
-          expect(true).toBeTruthy()
+          const usernameField = container.getByLabelText("Username");
+          const passwordField = container.getByLabelText("Password");
+          fireEvent.change(usernameField, { target: { value: "validUsername" } });
+          fireEvent.change(passwordField, { target: { value: "wrongPassword" } });
+          expect(usernameField.value).toEqual("validUsername");
+          expect(passwordField.value).not.toEqual("validPassword");
         });
 
         and(/^user should fill valid (.*) field$/, (arg0) => {
@@ -51,12 +80,13 @@ defineFeature(feature, (test) => {
         });
 
         when(/^user clicks on "(.*)" button$/, (arg0) => {
-            const button = container.getByLabelText("Continue");
-            fireEvent.click(button);
+            const title = container.getByText("Continue");
+            expect("Continue").toEqual(title.textContent);
         });
 
         then(/^user should see "(.*)" screen$/, (arg0) => {
-          expect(true).toBeTruthy()
+          const title = container.getByText("Multi factor Authentication has been set successfully");
+          expect("Multi factor Authentication has been set successfully").toEqual(title.textContent);
         });
       });
   });
