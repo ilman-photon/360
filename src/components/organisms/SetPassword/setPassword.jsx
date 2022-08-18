@@ -56,6 +56,7 @@ const SetPasswordComponent = ({
   passwordPlaceHolder = "Password",
   confirmPasswordPlaceHolder = "Confirm Password",
   ctaButtonLabel = "Create Account",
+  showBackToLogin = true,
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "SetPassword" });
@@ -146,7 +147,7 @@ const SetPasswordComponent = ({
     if (Regex.specialRegex.test(pass)) {
       ++passes;
     }
-    if (Regex.upperCaseRegex.test(pass) > -1) {
+    if (Regex.upperCaseRegex.test(pass)) {
       ++passes;
     }
     if (Regex.lowerCaseRegex.test(pass)) {
@@ -188,6 +189,10 @@ const SetPasswordComponent = ({
       if (validateErrorPassword(errors1, errors2, errorForkedValidation)) {
         onSetPasswordClicked(data);
       } else {
+        setError("password", {
+          type: "custom",
+          message: t("passwordNotMeetRequirements"),
+        });
         setError("confirmPassword", {
           type: "custom",
           message: t("passwordNotMeetRequirements"),
@@ -200,13 +205,18 @@ const SetPasswordComponent = ({
 
   const passwordRules = () => {
     return {
-      isLength: (v) => Regex.lengthRegex.test(v),
-      isAtLeastOneNumber: (v) => Regex.numberRegex.test(v),
-      is3of4: (v) => is3of4(v),
-      isContainUserName: () => {
-        return !pass.indexOf(watchedEmail) > -1;
-      },
+      isLength: (v) =>
+        Regex.lengthRegex.test(v) || t("passwordNotMeetRequirements"),
+      isNoWhitespace: (v) =>
+        Regex.noWhitespaceRegex.test(v) || t("passwordNotMeetRequirements"),
+      isAtLeastOneNumber: (v) =>
+        Regex.numberRegex.test(v) || t("passwordNotMeetRequirements"),
+      is3of4: (v) => is3of4(v) || t("passwordNotMeetRequirements"),
+      isContainUserName: (v) =>
+        v.indexOf(watchedEmail) <= -1 ||
+        "Password should not contain your username",
       isNotPreviousPassword: (v) => {
+        if (!isUpdatePassword) return true;
         return Regex.hasTripleRegex.test(v);
       },
     };
@@ -334,7 +344,7 @@ const SetPasswordComponent = ({
             }}
             rules={{
               required: "This field is required",
-              validate: !isUpdatePassword ? passwordRules : {},
+              validate: passwordRules(),
             }}
           />
           {!isUpdatePassword ? (
@@ -370,7 +380,7 @@ const SetPasswordComponent = ({
             }}
             rules={{
               required: t("errorEmptyField"),
-              validate: isUpdatePassword ? passwordRules : {},
+              validate: passwordRules(),
             }}
           />
           {isUpdatePassword ? (
@@ -394,15 +404,19 @@ const SetPasswordComponent = ({
             {ctaButtonLabel}
           </StyledButton>
         </form>
-        <Link
-          style={{ ...styles.margin, ...styles.link }}
-          color={"#2095a9"}
-          onClick={function () {
-            onBackToLoginClicked(router);
-          }}
-        >
-          {t("backButtonLink")}
-        </Link>
+        {showBackToLogin ? (
+          <Link
+            style={{ ...styles.margin, ...styles.link }}
+            color={"#2095a9"}
+            onClick={function () {
+              onBackToLoginClicked(router);
+            }}
+          >
+            {t("backButtonLink")}
+          </Link>
+        ) : (
+          <></>
+        )}
       </CardContent>
     </Card>
   );

@@ -172,6 +172,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             ref={formMessageComp}
             success={formMessage.success}
             title={formMessage.title}
+            isBackToLogin={formMessage.isBackToLogin}
           >
             {formMessage.content}
           </FormMessage>
