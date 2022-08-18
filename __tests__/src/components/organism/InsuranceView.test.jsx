@@ -5,8 +5,7 @@ import InsuranceView from "../../../../src/components/organisms/InsuranceInforma
 describe("SecurityQuestion Components", () => {
   let container;
   beforeEach(() => {
-    container = render(<InsuranceView 
-    />);
+    container = render(<InsuranceView />);
   });
 
   it("select option render", () => {
