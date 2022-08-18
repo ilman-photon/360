@@ -13,10 +13,14 @@ import { logoutProps } from "../../../utils/authetication";
 
 function SessionExpiredModal({
   showModal = false,
-  onStayLoggedIn = () => {},
+  onStayLoggedIn = () => {
+    //this is intentional
+  },
   isExpired = false,
   remaining = 0,
-  onLoggedOff = () => {},
+  onLoggedOff = () => {
+    //this is intentional
+  },
 }) {
   const router = useRouter();
   const onLoggedOffClicked = () => {
@@ -57,6 +61,7 @@ function SessionExpiredModal({
               size="small"
               gradient={false}
               style={styles.buttonStyle}
+              data-testid="session-logoff-btn"
               onClick={onLoggedOffClicked}
             >
               Log Off
@@ -67,6 +72,7 @@ function SessionExpiredModal({
               size="small"
               gradient={false}
               style={styles.buttonStyle}
+              data-testid="session-stay-btn"
               onClick={onStayLoggedIn}
             >
               Stay Logged in
@@ -79,6 +85,7 @@ function SessionExpiredModal({
               mode="primary"
               size="small"
               gradient={false}
+              data-testid="session-ok-btn"
               style={styles.buttonStyle}
               onClick={onLoggedOffClicked}
             >
