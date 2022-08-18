@@ -66,6 +66,7 @@ export default function SetPasswordPage({ username }) {
         onBackToLoginClicked={function (router) {
           router.push("/patient/login");
         }}
+        showBackToLogin={false}
       />
     </Box>
   );

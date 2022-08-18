@@ -56,6 +56,7 @@ const SetPasswordComponent = ({
   passwordPlaceHolder = "Password",
   confirmPasswordPlaceHolder = "Confirm Password",
   ctaButtonLabel = "Create Account",
+  showBackToLogin = true,
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "SetPassword" });
@@ -394,15 +395,19 @@ const SetPasswordComponent = ({
             {ctaButtonLabel}
           </StyledButton>
         </form>
-        <Link
-          style={{ ...styles.margin, ...styles.link }}
-          color={"#2095a9"}
-          onClick={function () {
-            onBackToLoginClicked(router);
-          }}
-        >
-          {t("backButtonLink")}
-        </Link>
+        {showBackToLogin ? (
+          <Link
+            style={{ ...styles.margin, ...styles.link }}
+            color={"#2095a9"}
+            onClick={function () {
+              onBackToLoginClicked(router);
+            }}
+          >
+            {t("backButtonLink")}
+          </Link>
+        ) : (
+          <></>
+        )}
       </CardContent>
     </Card>
   );
