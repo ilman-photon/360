@@ -1,5 +1,5 @@
 import { Button, Fade, Grid, Stack, Typography } from "@mui/material";
-import styles from "./insuranceInformationNew.module.scss";
+import styles from "./InsuranceInformationNew.module.scss";
 import { useForm, Controller } from "react-hook-form";
 import { StyledInput } from "../../atoms/Input/input";
 import { colors } from "../../../styles/theme";
