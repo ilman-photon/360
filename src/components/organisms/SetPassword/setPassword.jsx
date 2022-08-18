@@ -189,6 +189,10 @@ const SetPasswordComponent = ({
       if (validateErrorPassword(errors1, errors2, errorForkedValidation)) {
         onSetPasswordClicked(data);
       } else {
+        setError("password", {
+          type: "custom",
+          message: t("passwordNotMeetRequirements"),
+        });
         setError("confirmPassword", {
           type: "custom",
           message: t("passwordNotMeetRequirements"),
@@ -202,6 +206,7 @@ const SetPasswordComponent = ({
   const passwordRules = () => {
     return {
       isLength: (v) => Regex.lengthRegex.test(v),
+      isNoWhitespace: (v) => Regex.noWhitespaceRegex.test(v),
       isAtLeastOneNumber: (v) => Regex.numberRegex.test(v),
       is3of4: (v) => is3of4(v),
       isContainUserName: () => {
@@ -319,18 +324,21 @@ const SetPasswordComponent = ({
             defaultValue=""
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
-                <StyledInput
-                  id="password"
-                  label={passwordPlaceHolder}
-                  type="password"
-                  value={value}
-                  onChange={(event) => {
-                    onChange(event);
-                    onChangePasswordValue();
-                  }}
-                  error={!!error}
-                  helperText={error ? error.message : null}
-                />
+                <>
+                  {JSON.stringify(error)}
+                  <StyledInput
+                    id="password"
+                    label={passwordPlaceHolder}
+                    type="password"
+                    value={value}
+                    onChange={(event) => {
+                      onChange(event);
+                      onChangePasswordValue();
+                    }}
+                    error={!!error}
+                    helperText={error ? error.message : null}
+                  />
+                </>
               );
             }}
             rules={{
@@ -354,19 +362,22 @@ const SetPasswordComponent = ({
             defaultValue=""
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
-                <StyledInput
-                  id="confirmPassword"
-                  label={confirmPasswordPlaceHolder}
-                  type="password"
-                  value={value}
-                  // style={styles.margin}
-                  onChange={(event) => {
-                    onChange(event);
-                    onChangePasswordValue();
-                  }}
-                  error={!!error}
-                  helperText={error ? error.message : null}
-                />
+                <>
+                  {JSON.stringify(error)}
+                  <StyledInput
+                    id="confirmPassword"
+                    label={confirmPasswordPlaceHolder}
+                    type="password"
+                    value={value}
+                    // style={styles.margin}
+                    onChange={(event) => {
+                      onChange(event);
+                      onChangePasswordValue();
+                    }}
+                    error={!!error}
+                    helperText={error ? error.message : null}
+                  />
+                </>
               );
             }}
             rules={{
