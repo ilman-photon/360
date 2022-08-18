@@ -209,10 +209,11 @@ const SetPasswordComponent = ({
       isNoWhitespace: (v) => Regex.noWhitespaceRegex.test(v),
       isAtLeastOneNumber: (v) => Regex.numberRegex.test(v),
       is3of4: (v) => is3of4(v),
-      isContainUserName: () => {
-        return !pass.indexOf(watchedEmail) > -1;
-      },
+      isContainUserName: (v) =>
+        v.indexOf(watchedEmail) <= -1 ||
+        "Password should not contain your username",
       isNotPreviousPassword: (v) => {
+        if (!isUpdatePassword) return true;
         return Regex.hasTripleRegex.test(v);
       },
     };
@@ -340,7 +341,7 @@ const SetPasswordComponent = ({
             }}
             rules={{
               required: "This field is required",
-              validate: !isUpdatePassword ? passwordRules : {},
+              validate: passwordRules(),
             }}
           />
           {!isUpdatePassword ? (
@@ -376,7 +377,7 @@ const SetPasswordComponent = ({
             }}
             rules={{
               required: t("errorEmptyField"),
-              validate: isUpdatePassword ? passwordRules : {},
+              validate: passwordRules(),
             }}
           />
           {isUpdatePassword ? (
