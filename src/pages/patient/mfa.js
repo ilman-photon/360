@@ -9,8 +9,8 @@ import { Box } from "@mui/material";
 import Cookies from "universal-cookie";
 import AccountTitleHeading from "../../components/atoms/AccountTitleHeading/accountTitleHeading";
 import FormMessage from "../../components/molecules/FormMessage/formMessage";
-
 import { Api } from "../api/api";
+import { useTranslation } from "next-i18next";
 
 export async function getServerSideProps(context) {
   const cookies = new Cookies(context.req.headers.cookie);
@@ -39,7 +39,7 @@ export default function MfaPage() {
   const [successSubmit, setSuccessSubmit] = React.useState(false);
   const [securityQuestionList, setSecurityQuestionList] = React.useState([]);
   const [communicationMethod, setCommunicationMethod] = React.useState({});
-
+  const { t } = useTranslation("translation", { keyPrefix: "mfaPage" });
   //just mock
   const [submitCounter, setSubmitCounter] = React.useState(0);
   const [requestCounter, setRequestCounter] = React.useState(0);
@@ -95,9 +95,8 @@ export default function MfaPage() {
           status: "failed",
           isEndView: true,
           message: {
-            title: "Too many attempts.",
-            description:
-              "Please try setting up multi factor authentication after 30 minutes.",
+            title: t("mfaLockTitle"),
+            description: t("mfaLockDescription"),
           },
         });
       } else {
@@ -105,8 +104,8 @@ export default function MfaPage() {
         callback({
           status: "failed",
           message: {
-            title: "Incorrect Code.",
-            description: "Please try again.",
+            title: t("mfaFailedTitle"),
+            description: t("Please try again."),
           },
         });
       }

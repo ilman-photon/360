@@ -24,7 +24,7 @@ defineFeature(feature, (test) => {
 
         getServerSideProps(contex)
         container = render(<MfaPage />)
-        await waitFor(() => container.getByText("Set Multi-Factor Authentication"));
+        await waitFor(() => container.getByText("setMFATitle"));
 
     });
     test('EPIC_EPP-3_STORY_EPP-1022-Existing-Verify user should be able to login from device that was set up with "Remember me" option selected, without being asked for MFA using registered mail-id', ({  }) => {
@@ -76,36 +76,36 @@ defineFeature(feature, (test) => {
             when(/^user clicks on "(.*)" button$/, (arg0) => {
                 const confirmButton = container.getByRole("button", { name: /Confirm/i });
                 fireEvent.click(confirmButton)
-                const title = container.getByText("Multi-Factor Authentication");
-                expect("Multi-Factor Authentication").toEqual(title.textContent);
+                const title = container.getByText("setMFATitle");
+                expect("setMFATitle").toEqual(title.textContent);
             });
     
             then(/^user should see "(.*)" screen with all of component$/, (arg0) => {
-                const title = container.getByText("Set Multi-Factor Authentication");
-                expect("Set Multi-Factor Authentication").toEqual(title.textContent);
+                const title = container.getByText("setMFATitle");
+                expect("setMFATitle").toEqual(title.textContent);
                     });
             
                     and(/^user should see (.*) field$/, (arg0) => {
                         const submissionMessage = container.getByTestId("mfaCode");
-                        expect("Enter Code").toEqual(
+                        expect("mfaLabel").toEqual(
                         submissionMessage.placeHolder
                         )
             });
     
             and(/^user should see checkbox section "(.*)"$/, (arg0) => {
                 async () => {
-                    const confirmButton = container.getByRole("button", { name: /Confirm/i });
+                    const confirmButton = container.getByRole("button", { name: /confrimBtn/i });
                     fireEvent.click(confirmButton)
             
-                    await waitFor(() => container.getByRole("button", { name: /Resend Code/i }))
+                    await waitFor(() => container.getByRole("button", { name: /resendCodeBtn/i }))
             
-                    const resendCodeButton = container.getByRole("button", { name: /Resend Code/i });
+                    const resendCodeButton = container.getByRole("button", { name: /resendCodeBtn/i });
                     fireEvent.click(resendCodeButton)
             
-                    await waitFor(() => container.getByText("Multi-Factor Authentication"))
+                    await waitFor(() => container.getByText("mfaTitle"))
             
-                    const title = container.getByText("Multi-Factor Authentication");
-                    expect("Multi-Factor Authentication").toEqual(title.textContent);
+                    const title = container.getByText("mfaTitle");
+                    expect("mfaTitle").toEqual(title.textContent);
                 }
             });
     
@@ -116,8 +116,8 @@ defineFeature(feature, (test) => {
                       legacyRoot: true,
                     });
                   });
-                  const title = container.getByText("This means you won’t have to authenticate at every sign-in");
-                  expect("formTitle").toEqual(title.textContent);
+                  const title = container.getByText("mfaTitle");
+                  expect("mfaTitle").toEqual(title.textContent);
             });
     
             and(/^user should see "(.*)" & "(.*)" button$/, (arg0, arg1) => {
@@ -125,12 +125,12 @@ defineFeature(feature, (test) => {
             });
     
             when(/^user clicks on "(.*)" button$/, (arg0) => {
-                const confirmButton = container.getByRole("button", { name: /Confirm/i });
+                const confirmButton = container.getByRole("button", { name: /confrimBtn/i });
                 fireEvent.click(confirmButton)
-                const resendCodeButton = container.getByRole("button", { name: /Resend Code/i });
+                const resendCodeButton = container.getByRole("button", { name: /resendCodeBtn/i });
                 fireEvent.click(resendCodeButton)
-                const title = container.getByText("Multi-Factor Authentication");
-                expect("Multi-Factor Authentication").toEqual(title.textContent);
+                const title = container.getByText("mfaTitle");
+                expect("mfaTitle").toEqual(title.textContent);
             });
     
             then('user receives an email/text message with the code to the email and mobile number', () => {
@@ -142,33 +142,33 @@ defineFeature(feature, (test) => {
             });
     
             and(/^user fill (.*) field with valid code$/, (arg0) => {
-                    const error = container.getByText("Remember me");
-                        expect("Remember me").toEqual(error.textContent);
+                    const error = container.getByText("rememberMeLabel");
+                        expect("rememberMeLabel").toEqual(error.textContent);
             });
     
             when(/^user click on "(.*)" button$/, (arg0) => {
                 async () => {
-                    const confirmButton = container.getByRole("button", { name: /Confirm/i });
+                    const confirmButton = container.getByRole("button", { name: /confrimBtn/i });
                     fireEvent.click(confirmButton)
             
-                    await waitFor(() => container.getByRole("button", { name: /Submit/i }))
+                    await waitFor(() => container.getByRole("button", { name: /submitBtn/i }))
             
-                    const mfaField = container.getByLabelText("Enter Code");
+                    const mfaField = container.getByLabelText("mfaLabel");
                     fireEvent.change(mfaField, { target: { value: "1234" } });
             
-                    const submitButton = container.getByRole("button", { name: /Submit/i });
+                    const submitButton = container.getByRole("button", { name: /submitBtn/i });
                     fireEvent.click(submitButton)
             
-                    await waitFor(() => container.getByText("Multi-Factor Authentication"))
+                    await waitFor(() => container.getByText("mfaTitle"))
             
-                    const title = container.getByText("Multi-Factor Authentication");
-                    expect("Multi-Factor Authentication").toEqual(title.textContent);
+                    const title = container.getByText("mfaTitle");
+                    expect("mfaTitle").toEqual(title.textContent);
                 }
             });
     
             then(/^user should see the following message "(.*)"$/, (arg0) => {
-                const errorMessage = container.getByLabelText("Multi factor Authentication has been set successfully");
-                expect("Multi factor Authentication has been set successfully").toEqual(
+                const errorMessage = container.getByLabelText("mfaDescription");
+                expect("mfaDescription").toEqual(
                     errorMessage.textContent
                   );
             });
