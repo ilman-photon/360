@@ -3,8 +3,6 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import MfaPage, { getServerSideProps }  from "../../src/pages/patient/mfa";
-// import MfaPage, { getServerSideProps } from '../../../src/pages/patient/mfa';
-import Cookies from "universal-cookie";
 import "@testing-library/jest-dom";
 
 const feature = loadFeature(
