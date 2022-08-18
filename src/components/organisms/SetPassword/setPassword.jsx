@@ -324,21 +324,18 @@ const SetPasswordComponent = ({
             defaultValue=""
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
-                <>
-                  {JSON.stringify(error)}
-                  <StyledInput
-                    id="password"
-                    label={passwordPlaceHolder}
-                    type="password"
-                    value={value}
-                    onChange={(event) => {
-                      onChange(event);
-                      onChangePasswordValue();
-                    }}
-                    error={!!error}
-                    helperText={error ? error.message : null}
-                  />
-                </>
+                <StyledInput
+                  id="password"
+                  label={passwordPlaceHolder}
+                  type="password"
+                  value={value}
+                  onChange={(event) => {
+                    onChange(event);
+                    onChangePasswordValue();
+                  }}
+                  error={!!error}
+                  helperText={error ? error.message : null}
+                />
               );
             }}
             rules={{
@@ -362,22 +359,19 @@ const SetPasswordComponent = ({
             defaultValue=""
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
-                <>
-                  {JSON.stringify(error)}
-                  <StyledInput
-                    id="confirmPassword"
-                    label={confirmPasswordPlaceHolder}
-                    type="password"
-                    value={value}
-                    // style={styles.margin}
-                    onChange={(event) => {
-                      onChange(event);
-                      onChangePasswordValue();
-                    }}
-                    error={!!error}
-                    helperText={error ? error.message : null}
-                  />
-                </>
+                <StyledInput
+                  id="confirmPassword"
+                  label={confirmPasswordPlaceHolder}
+                  type="password"
+                  value={value}
+                  // style={styles.margin}
+                  onChange={(event) => {
+                    onChange(event);
+                    onChangePasswordValue();
+                  }}
+                  error={!!error}
+                  helperText={error ? error.message : null}
+                />
               );
             }}
             rules={{
