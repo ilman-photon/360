@@ -30,6 +30,13 @@ jest.mock("next/router", () => ({
       prefetch: jest.fn(() => null),
     };
   },
+  withRouter: (component) => {
+    component.defaultProps = {
+      ...component.defaultProps,
+      router: { pathname: "mocked-path" },
+    };
+    return component;
+  },
 }));
 
 jest.mock("next-i18next", () => ({
@@ -50,4 +57,15 @@ jest.mock("next-i18next", () => ({
       },
     };
   },
+  withRouter() {
+    return jest.fn();
+  },
+}));
+
+jest.mock("react-idle-timer", () => ({
+  useIdleTimer: jest.fn().mockReturnValue({
+    getRemainingTime: jest.fn(),
+    isPrompted: jest.fn(),
+    activate: jest.fn(),
+  }),
 }));

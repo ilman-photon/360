@@ -33,6 +33,11 @@ const nextConfig = {
         permanent: false,
         destination: "/login",
       },
+      {
+        source: "/",
+        destination: "/patient/login",
+        permanent: false,
+      }
     ];
   },
   async rewrites() {

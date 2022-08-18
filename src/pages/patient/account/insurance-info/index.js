@@ -1,22 +1,19 @@
-import AccountLayout from "../../../components/templates/accountLayout";
-import InsuranceInformation from "../../../components/organisms/InsuranceInformation/insuranceInformation";
-import InsuranceInformationNew from "../../../components/organisms/InsuranceInformation/insuranceInformationNew";
+import AccountLayout from "../../../../components/templates/accountLayout";
+import InsuranceInformationNew from "../../../../components/organisms/InsuranceInformation/insuranceInformationNew";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUser, setUserData } from "../../../store/user";
-import { useMediaQuery } from "@mui/material";
+import { fetchUser, setUserData } from "../../../../store/user";
 
 export default function InsuranceInformationPage() {
   const [insuranceEditing, setInsuranceEditing] = useState(true);
 
   const userData = useSelector((state) => state.user.userData);
+  const dispatch = useDispatch();
 
   const onSaveInsuranceData = (payload) => {
     dispatch(setUserData(payload));
     setInsuranceEditing(false);
   };
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchUser());
@@ -27,8 +24,8 @@ export default function InsuranceInformationPage() {
       <InsuranceInformationNew
         userData={userData}
         isEditing={insuranceEditing}
-        OnEditClicked={(_) => setInsuranceEditing(true)}
-        OnCancelEditClicked={(_) => setInsuranceEditing(false)}
+        OnEditClicked={() => setInsuranceEditing(true)}
+        OnCancelEditClicked={() => setInsuranceEditing(false)}
         OnSaveClicked={onSaveInsuranceData}
       />
     </section>

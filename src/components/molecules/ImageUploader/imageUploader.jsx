@@ -2,6 +2,7 @@ import { Box, Button, Stack, Typography } from "@mui/material";
 import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
 import { useRef, useState } from "react";
 import { colors } from "../../../styles/theme";
+import Image from "next/image";
 
 export const ImageUploader = ({
   label,
@@ -35,13 +36,13 @@ export const ImageUploader = ({
         <>
           {source ? (
             <Stack>
-              <img
+              <Image
                 src={previewPhoto || source}
                 width={275}
                 height={173}
                 style={{ borderRadius: 4 }}
                 alt="photo"
-              ></img>
+              />
             </Stack>
           ) : (
             <Button

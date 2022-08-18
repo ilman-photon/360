@@ -3,6 +3,5 @@ export function formatSocialSecurity(val) {
   val = val.replace(/^(\d{3})/, "***-");
   val = val.replace(/-(\d{3})/, "-***-");
   val = val.replace(/(\d)-(\d{4}).*/, "$1-$2");
-  // val = val.replace(/^(\d{3})/, '***');
   return val;
 }

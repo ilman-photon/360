@@ -1,7 +1,7 @@
 import axios from "axios";
 export class Api {
   client;
-  constructor(url) {
+  constructor() {
     this.client = axios.create({
       baseURL: process.env.NEXT_PUBLIC_API_URL,
       headers: {
@@ -12,25 +12,32 @@ export class Api {
     });
   }
 
-  getResponse(url, postbody) {
+  getResponse(url, postbody, method) {
     const api = new Api();
     return new Promise((resolve, reject) => {
-      api.client
-        .post(url, postbody)
-        .then(function (response) {
-          if (response && response.data) {
-            resolve(response.data);
-          } else {
-            reject(response);
-          }
-        })
-        .catch(function (err) {
-          if (err && err.response && err.response.data) {
-            reject(err.response.data);
-          } else {
-            reject(err);
-          }
-        });
+      const resolver = function (response) {
+        if (response && response.data) {
+          resolve(response.data);
+        } else {
+          reject(response);
+        }
+      };
+      const rejecter = function (err) {
+        if (err && err.response && err.response.data) {
+          reject(err.response.data);
+        } else {
+          reject(err);
+        }
+      };
+
+      switch (method) {
+        case "get":
+          return api.client.get(url, postbody).then(resolver).catch(rejecter);
+        case "post":
+          return api.client.post(url, postbody).then(resolver).catch(rejecter);
+        default:
+          return api.client.get(url, postbody).then(resolver).catch(rejecter);
+      }
     });
   }
 
@@ -62,6 +69,33 @@ export class Api {
   updatePassword(postbody) {
     const url = "/ecp/patient/updatepassword";
     return this.forgotFeatureValidation(url, postbody, "post");
+  }
+
+  getCommunicationMethod(postbody) {
+    return new Promise((resolve) => {
+      if (postbody === "9876543210") {
+        resolve({
+          phone: "(8***)***-***31",
+        });
+      } else {
+        resolve({
+          email: "m********@yahoo.com",
+          phone: "(8***)***-***31",
+        });
+      }
+    });
+  }
+
+  requestNewCode() {
+    return Promise.resolve("4321");
+  }
+
+  requestCode() {
+    return Promise.resolve("1234");
+  }
+
+  setRemeberMe() {
+    return Promise.resolve("success");
   }
 
   forgotFeatureValidation(url, postbody, method, expectedCode) {
@@ -102,6 +136,30 @@ export class Api {
         .catch(function (err) {
           reject(err);
         });
+    });
+  }
+
+  getSecurityQuestion() {
+    return Promise.resolve({
+      responseCode: 1000,
+      securityQuestionList: [
+        "What was the first concert you attended?",
+        "In what city or town did your parents meet?",
+        "What was the make and model of your first car?",
+        "Who is your all-time favorite movie character?",
+        "What was your favorite cartoon character during your childhood?",
+        "What was the first book you read?",
+        "What was the first thing you learned to cook?",
+        "What was the first film you saw in a theater?",
+        "Where did you go the first time you flew on a plane?",
+        "What is your favorite cold-weather activity?",
+      ],
+    });
+  }
+
+  submitSecurityQuestion() {
+    return Promise.resolve({
+      responseCode: 1000,
     });
   }
 }

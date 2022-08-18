@@ -1,6 +1,6 @@
 import Document, { Html, Head, Main, NextScript } from "next/document";
 
-class MyDocument extends Document {
+class CustomDocuments extends Document {
   static async getInitialProps(ctx) {
     const originalRenderPage = ctx.renderPage;
 
@@ -28,7 +28,7 @@ class MyDocument extends Document {
           <link rel="preconnect" href="https://fonts.googleapis.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link
-            href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@600&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@600&family=Roboto:wght@700&display=swap"
             rel="stylesheet"
           />
         </Head>
@@ -41,4 +41,4 @@ class MyDocument extends Document {
   }
 }
 
-export default MyDocument;
+export default CustomDocuments;

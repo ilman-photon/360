@@ -12,7 +12,7 @@ export const FormMessage = ({ ...props }, ref) => {
         sx={{
           backgroundColor: props.success ? colors.foundationGreen : "#C23934",
           width: "auto",
-          p: 2,
+          p: 1,
           borderRadius: "4px",
           display: "flex",
           ...props.sx,

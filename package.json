@@ -11,9 +11,10 @@
     "build-storybook": "build-storybook",
     "test": "jest --verbose --coverage --passWithNoTests --forceExit",
     "check-format": "prettier --check \"src/**/*.[jt]s?(x)\" \"./styles\" \"src/**/*.css\" \"src/**/*.scss\" \"src/**/*.css\"",
+    "sonar-lint": "sonarlint --src 'src/**' --tests '__tests__/**' --exclude 'src/**/_*.js'",
     "check-lint": "eslint src --ext .js,.jsx",
     "format": "prettier --write \"src/**/*.[jt]s?(x)\" \"./styles\" \"src/**/*.css\" \"src/**/*.scss\" \"src/**/*.css\"",
-    "test-all": "npm run check-format && npm run check-lint && npm run test",
+    "test-all": "npm run check-format && npm run check-lint && npm run sonar-lint && npm run test",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -43,6 +44,7 @@
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.33.1",
+    "react-idle-timer": "^5.4.1",
     "react-input-mask": "^3.0.0-alpha.2",
     "react-redux": "^8.0.2",
     "sass-loader": "10.0.0",
@@ -76,6 +78,7 @@
     "jest-cucumber": "^3.0.1",
     "jest-environment-jsdom": "^27.1.3",
     "sass": "^1.53.0",
+    "sonarlint": "^1.1.0",
     "webpack": "^4.46.0"
   },
   "engines": {

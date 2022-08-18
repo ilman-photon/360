@@ -8,7 +8,7 @@ Feature: Patient Portal : Session Security Capability - Session time out prompt
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario: EPIC_EPP-3_STORY_EPP-274 - Verify that  User should be prompted regarding session time out.
     Given user launch the "XXX" url	
     When user provides  "<username or phone number>" and "<password>" 
@@ -24,7 +24,7 @@ Feature: Patient Portal : Session Security Capability - Session time out prompt
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario: EPIC_EPP-3_STORY_EPP-274 - Verify that User should be prompted regarding session time out with an option to ‘Stay logged in’ and ‘Log off’
     Given user launch the "XXX" url	
     When user provides  "<username or phone number>" and "<password>" 
@@ -41,7 +41,7 @@ Feature: Patient Portal : Session Security Capability - Session time out prompt
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario: EPIC_EPP-3_STORY_EPP-274 - Verify that User should be prompted Session Expired message after the given time
     Given user launch the "XXX" url	
     When user provides  "<username or phone number>" and "<password>" 
@@ -60,7 +60,7 @@ Feature: Patient Portal : Session Security Capability - Session time out prompt
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario: EPIC_EPP-3_STORY_EPP-274 - Verify that when user clicks "OK" button, system should logout the user
     Given user launch the "XXX" url	
     When user provides  "<username or phone number>" and "<password>" 
@@ -70,7 +70,7 @@ Feature: Patient Portal : Session Security Capability - Session time out prompt
     When user is idle for 20 mins
     Then user should be prompted regarding session time out.
     Then user should validate the message “Your session is about to time-out. You will be logged out in 60 seconds”
-    Then user should validate the message with the option "<Stay logged in>" and "Log off" Button
+    Then user should validate the message with the option "Stay Logged in" and "Log Off" Button
     When Session is Expired after the given Time
     Then user should validate the message "Your session expired. Please login again" with  "OK" Button
     When  user clicks "OK" button
@@ -100,7 +100,7 @@ Feature: Patient Portal : Session Security Capability - Session time out prompt
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario: EPIC_EPP-3_STORY_EPP-274 - Verify that when user clicks "OK" button, system should logout within 3 seconds
     Given user launch the "XXX" url	
     When user provides  "<username or phone number>" and "<password>" 
