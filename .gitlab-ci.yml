@@ -11,7 +11,7 @@ image: node:16.10.0
 stages:
   - install
   - test
-  - build
+  # - build
   - sonar
   - imagebuild
   - deploy
@@ -47,16 +47,16 @@ test:
     paths:
       - coverage
 
-build:
-   stage: build
-   script:
-      - yarn build
-   dependencies:
-      - install
-   artifacts:
-      paths:
-         - build
-      expire_in: 30 mins
+# build:
+#    stage: build
+#    script:
+#       - yarn build
+#    dependencies:
+#       - install
+#    artifacts:
+#       paths:
+#          - build
+#       expire_in: 30 mins
 sonar:
   stage: sonar
   tags:
