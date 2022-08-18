@@ -11,13 +11,11 @@ export const MESSAGES = {
       <>
         <span>
           You are already a registered user. Please login to the application
-          using your username and password.{" "}
+          using your username and password.
         </span>
-        <Link href="/patient/login">
-          <a style={{ textDecoration: "underline" }}>Login</a>
-        </Link>
       </>
     ),
+    isBackToLogin: true,
   },
   3002: {
     title: null,
