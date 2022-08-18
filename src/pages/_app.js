@@ -19,7 +19,6 @@ function App({ Component, pageProps }) {
   const promptTimeout = 60000; //Remaining Time
   // Time before idle
   const [remaining, setRemaining] = useState(0);
-  const [idleInterval, setIdleInterval] = useState(null);
 
   // Modal open state
   const [open, setOpen] = useState(false);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
@@ -8,7 +8,6 @@ import { StyledButton } from "../../atoms/Button/button";
 import { Box } from "@mui/material";
 import { styles } from "./styles";
 import { useRouter } from "next/router";
-import Cookies from "universal-cookie";
 import { logoutProps } from "../../../utils/authetication";
 
 function SessionExpiredModal({
