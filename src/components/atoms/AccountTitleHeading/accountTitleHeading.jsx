@@ -1,5 +1,4 @@
 import React from "react";
-import { colors } from "../../../styles/theme";
 import styles from "./accountTitleHeading.module.scss";
 
 const AccountTitleHeading = ({ title }) => {

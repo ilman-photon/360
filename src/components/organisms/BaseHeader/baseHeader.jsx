@@ -11,15 +11,12 @@ import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
 import Avatar from "@mui/material/Avatar";
-import Typography from "@mui/material/Typography";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import LogoutIcon from "@mui/icons-material/Logout";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import Cookies from "universal-cookie";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import constants from "../../../utils/constants";
-import AccountSidebar from "../../molecules/AccountSidebar/accountSidebar";
 import AccountDrawer from "../../molecules/AccountDrawer/accountDrawer";
 
 export default function BaseHeader({

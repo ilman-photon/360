@@ -1,4 +1,4 @@
-import { Box } from "@mui/material";
+import { Box, Button } from "@mui/material";
 
 import SwipeableDrawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
@@ -6,17 +6,11 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import HomeIcon from "@mui/icons-material/Home";
-import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircle";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
-import CloseIcon from "@mui/icons-material/Close";
 import { useState } from "react";
-import { styled, useTheme } from "@mui/material/styles";
-import { ThemeProvider, Button } from "@mui/material";
-
+import { styled } from "@mui/material/styles";
 import styles from "./accountDrawer.module.scss";
-import Link from "next/link";
 import { useRouter } from "next/router";
 
 export const AccountDrawer = ({

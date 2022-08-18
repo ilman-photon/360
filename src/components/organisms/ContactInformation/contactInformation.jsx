@@ -1,12 +1,10 @@
 import PermContactCalendarOutlinedIcon from "@mui/icons-material/PermContactCalendarOutlined";
 import {
-  Avatar,
   Button,
   Divider,
   Fade,
   Grid,
   Stack,
-  Typography,
   useMediaQuery,
 } from "@mui/material";
 import LabelWithInfo from "../../atoms/LabelWithInfo/labelWithInfo";
@@ -15,15 +13,12 @@ import styles from "./contactInformation.module.scss";
 import { useForm, Controller } from "react-hook-form";
 import { StyledInput } from "../../atoms/Input/input";
 import { StyledButton } from "../../atoms/Button/button";
-import { colors } from "../../../styles/theme";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 
-import { startTransition, Suspense, useCallback, useEffect } from "react";
-import Image from "next/image";
+import { startTransition, Suspense, useEffect } from "react";
 import { Regex } from "../../../utils/regex";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
-// import { AddressAutofill } from '@mapbox/search-js-react';
 import dynamic from "next/dynamic";
 
 let ClientAddressAutofill;

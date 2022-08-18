@@ -1,10 +1,8 @@
 import Head from "next/head";
 import styles from "./accountLayout.module.scss";
-import dynamic from "next/dynamic";
-import { useState, Suspense } from "react";
+import { useState } from "react";
 import AccountSidebar from "../molecules/AccountSidebar/accountSidebar";
 import AccountTitleHeading from "../atoms/AccountTitleHeading/accountTitleHeading";
-import AccountDrawer from "../molecules/AccountDrawer/accountDrawer";
 import { patientTypography, providerTypography } from "../../styles/theme";
 import { ThemeProvider, useMediaQuery } from "@mui/material";
 import * as React from "react";

@@ -1,27 +1,9 @@
 import PermContactCalendarOutlinedIcon from "@mui/icons-material/PermContactCalendarOutlined";
-import {
-  Avatar,
-  Button,
-  Divider,
-  Fade,
-  Grid,
-  Stack,
-  Typography,
-} from "@mui/material";
-import LabelWithInfo from "../../atoms/LabelWithInfo/labelWithInfo";
+import { Button } from "@mui/material";
 import AccountCard from "../../molecules/AccountCard/accountCard";
 import styles from "./insuranceInformationNew.module.scss";
-import { useForm, Controller } from "react-hook-form";
-import { StyledInput } from "../../atoms/Input/input";
-import { colors } from "../../../styles/theme";
-
 import * as React from "react";
-import Image from "next/image";
-import { Regex } from "../../../utils/regex";
-import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
-import SelectOptionButton from "../../atoms/SelectOptionButton/selectOptionButton";
 import AddIcon from "@mui/icons-material/Add";
-
 import InsuranceForm from "./insuranceForm";
 import InsuranceView from "./insuranceView";
 

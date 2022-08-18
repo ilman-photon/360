@@ -1,15 +1,5 @@
-import {
-  Button,
-  Card,
-  CardContent,
-  CardHeader,
-  useMediaQuery,
-} from "@mui/material";
-import Link from "next/link";
-import { colors } from "../../../styles/theme";
+import { Card, CardContent, CardHeader, useMediaQuery } from "@mui/material";
 import styles from "./accountCard.module.scss";
-import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import AddIcon from "@mui/icons-material/Add";
 
 export const AccountCard = ({
   title,

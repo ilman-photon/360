@@ -12,15 +12,12 @@ import LabelWithInfo from "../../atoms/LabelWithInfo/labelWithInfo";
 import AccountCard from "../../molecules/AccountCard/accountCard";
 import styles from "./personalInformation.module.scss";
 import { colors } from "../../../styles/theme";
-
-import Image from "next/image";
 import { Controller, useForm } from "react-hook-form";
 import { ProfilePhotoUploader } from "../../molecules/ProfilePhotoUploader/profilePhotoUploader";
 import { stringAvatar } from "../../../utils/avatar";
 import StyledInput from "../../atoms/Input/input";
 import { StyledButton } from "../../atoms/Button/button";
 import { ImageUploader } from "../../molecules/ImageUploader/imageUploader";
-import { connect } from "react-redux";
 import { useEffect } from "react";
 import { StyledSelect } from "../../atoms/Select/select";
 import { formatSocialSecurity } from "../../../utils/ssnFormatter";

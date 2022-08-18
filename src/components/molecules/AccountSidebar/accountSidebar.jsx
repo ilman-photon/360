@@ -1,10 +1,5 @@
-import BlockIcon from "@mui/icons-material/Block";
-import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
-import { Box, Stack } from "@mui/material";
-import Link from "next/link";
+import { Stack } from "@mui/material";
 import { useRouter } from "next/router";
-import { forwardRef } from "react";
-import { colors } from "../../../styles/theme";
 import SidebarLink from "../../atoms/SidebarLink/sidebarLink";
 import styles from "./accountSidebar.module.scss";
 

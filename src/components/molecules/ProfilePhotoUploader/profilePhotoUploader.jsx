@@ -28,13 +28,13 @@ export const ProfilePhotoUploader = ({
       <Box sx={{ border: "solid 1px #DDDBDA", px: 2, py: 3 }}>
         <Stack direction="row" spacing={4} alignItems="center">
           {source ? (
-            <img
+            <Image
               src={previewPhoto || source}
               width={80}
               height={80}
               style={{ borderRadius: "50%" }}
               alt="photo"
-            ></img>
+            />
           ) : (
             <Avatar
               {...stringAvatar(username)}
