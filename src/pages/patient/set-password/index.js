@@ -1,11 +1,11 @@
-import AuthLayout from "../../components/templates/authLayout";
+import AuthLayout from "../../../components/templates/authLayout";
 import { useDispatch, useSelector } from "react-redux";
-import { resetFormMessage, setFormMessage } from "../../store";
+import { resetFormMessage, setFormMessage } from "../../../store";
 import Link from "next/link";
-import { Api } from "../api/api";
+import { Api } from "../../api/api";
 import { Box } from "@mui/material";
-import SetPasswordComponent from "../../components/organisms/SetPassword/setPassword";
-import globalStyles from "../../styles/Global.module.scss";
+import SetPasswordComponent from "../../../components/organisms/SetPassword/setPassword";
+import globalStyles from "../../../styles/Global.module.scss";
 import Cookies from "universal-cookie";
 
 export async function getServerSideProps({ query }) {
@@ -66,6 +66,7 @@ export default function SetPasswordPage({ username }) {
         onBackToLoginClicked={function (router) {
           router.push("/patient/login");
         }}
+        showBackToLogin={false}
       />
     </Box>
   );

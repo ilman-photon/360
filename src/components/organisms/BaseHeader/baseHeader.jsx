@@ -1,6 +1,6 @@
 import * as React from "react";
 import { styles } from "./style";
-import { Button } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Container from "@mui/material/Container";
 import Toolbar from "@mui/material/Toolbar";
@@ -35,6 +35,7 @@ export default function BaseHeader({
   const [isUserLoged, setUserLoged] = React.useState(false);
   const router = useRouter();
   const logo = "/logo.png";
+
   React.useEffect(() => {
     const cookies = new Cookies();
     const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
@@ -47,7 +48,6 @@ export default function BaseHeader({
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
-
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
@@ -98,7 +98,6 @@ export default function BaseHeader({
               </IconButton>
             </Box>
             <AccountDrawer
-              data-testid="user-menu-nav-close"
               onClose={() => {
                 setAnchorElNav(false);
               }}
@@ -107,7 +106,6 @@ export default function BaseHeader({
                 OnLogoutClicked(router);
               }}
             />
-
             {/* profile menu */}
             <Box sx={styles.boxProfileMenuStyles}>
               <Tooltip title="Open settings">
@@ -131,28 +129,38 @@ export default function BaseHeader({
                   horizontal: "left",
                 }}
                 keepMounted
-                // transformOrigin={{
-                //   vertical: 'top',
-                //   horizontal: 'right',
-                // }}
                 open={Boolean(anchorElUser)}
                 data-testid="user-menu-close"
                 onClose={handleCloseUserMenu}
               >
                 {
-                  <MenuItem onClick={handleCloseNavMenu}>
-                    <Button
-                      variant="text"
-                      sx={styles.buttonProfileMenu}
-                      data-testid={HOME_TEST_ID.logout}
-                      startIcon={<ExitToAppIcon />}
-                      onClick={() => {
-                        OnLogoutClicked(router);
-                      }}
-                    >
-                      Logout
-                    </Button>
-                  </MenuItem>
+                  <Stack spacing={2}>
+                    <MenuItem>
+                      <Button
+                        variant="text"
+                        sx={styles.buttonProfileMenu}
+                        data-testid={HOME_TEST_ID.account}
+                        onClick={() => {
+                          router.push("/patient/account/profile-info");
+                        }}
+                      >
+                        Account
+                      </Button>
+                    </MenuItem>
+                    <MenuItem onClick={handleCloseNavMenu}>
+                      <Button
+                        variant="text"
+                        sx={styles.buttonProfileMenu}
+                        data-testid={HOME_TEST_ID.logout}
+                        startIcon={<ExitToAppIcon />}
+                        onClick={() => {
+                          OnLogoutClicked(router);
+                        }}
+                      >
+                        Logout
+                      </Button>
+                    </MenuItem>
+                  </Stack>
                 }
               </Menu>
             </Box>

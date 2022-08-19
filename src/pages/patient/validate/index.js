@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
-import AuthLayout from "../../components/templates/authLayout";
+import AuthLayout from "../../../components/templates/authLayout";
 import Cookies from "universal-cookie";
-import constants from "../../utils/constants";
+import constants from "../../../utils/constants";
 import { useTranslation } from "next-i18next";
 import { Box, Link, Typography } from "@mui/material";
 import { useRouter } from "next/router";
-import { Api } from "../api/api";
-import { colors } from "../../styles/theme";
-import ConfirmationForm from "../../components/organisms/ConfirmationForm/confirmationForm";
-import globalStyles from "../../styles/Global.module.scss";
+import { Api } from "../../api/api";
+import { colors } from "../../../styles/theme";
+import ConfirmationForm from "../../../components/organisms/ConfirmationForm/confirmationForm";
+import globalStyles from "../../../styles/Global.module.scss";
 
 export async function getServerSideProps({ query }) {
   return {

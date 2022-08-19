@@ -1,6 +1,6 @@
 import { Button, Divider, Fade, Grid, Stack, Typography } from "@mui/material";
 import LabelWithInfo from "../../atoms/LabelWithInfo/labelWithInfo";
-import styles from "./insuranceInformationNew.module.scss";
+import styles from "./InsuranceInformationNew.module.scss";
 import { useForm } from "react-hook-form";
 import { colors } from "../../../styles/theme";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";

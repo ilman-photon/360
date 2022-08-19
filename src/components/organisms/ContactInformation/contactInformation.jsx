@@ -86,7 +86,7 @@ export default function ContactInformation({
 
   useEffect(() => {
     if (userData) reset(userData);
-  }, [userData]);
+  }, [userData, reset]);
 
   const handleCancel = () => {
     reset(userData);

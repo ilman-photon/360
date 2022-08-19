@@ -6,6 +6,7 @@ import { patientTypography, providerTypography } from "../../styles/theme";
 import { ThemeProvider, useMediaQuery } from "@mui/material";
 import * as React from "react";
 import BaseHeader from "../organisms/BaseHeader/baseHeader";
+import { logoutProps } from "../../utils/authetication";
 
 export default function AccountLayout({
   theme = "patient",
@@ -36,7 +37,7 @@ export default function AccountLayout({
         <ThemeProvider
           theme={isPatient ? patientTypography : providerTypography}
         >
-          <BaseHeader />
+          <BaseHeader {...logoutProps} />
           <AccountTitleHeading title={getHeadingTitle(currentActivePage)} />
           <div className={styles.container}>
             <div className={styles.sidebarContainer}>
