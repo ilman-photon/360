@@ -15,7 +15,6 @@ export default function CreateAccountPage() {
   const formMessage = useSelector((state) => state.index.formMessage);
 
   const OnRegisterClicked = async function (postbody) {
-    let errorMessage = {};
     dispatch(resetFormMessage());
     try {
       await api.getResponse("/ecp/patient/userregistration", postbody, "post");
@@ -26,7 +25,7 @@ export default function CreateAccountPage() {
     } catch (err) {
       console.error({ err });
       if (err.ResponseCode) {
-        errorMessage = RESPONSE_MESSAGES[err.ResponseCode || 3500];
+        const errorMessage = RESPONSE_MESSAGES[err.ResponseCode || 3500];
 
         dispatch(
           setFormMessage({

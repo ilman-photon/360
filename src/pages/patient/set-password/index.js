@@ -7,6 +7,9 @@ import { Box } from "@mui/material";
 import SetPasswordComponent from "../../../components/organisms/SetPassword/setPassword";
 import globalStyles from "../../../styles/Global.module.scss";
 import Cookies from "universal-cookie";
+import { useState } from "react";
+import constants from "../../../utils/constants";
+import ConfirmationForm from "../../../components/organisms/ConfirmationForm/confirmationForm";
 
 export async function getServerSideProps({ query }) {
   return {
@@ -20,6 +23,20 @@ export default function SetPasswordPage({ username }) {
   const dispatch = useDispatch();
 
   const formMessage = useSelector((state) => state.index.formMessage);
+  const [showPostMessage, setShowPostMessage] = useState(false);
+
+  const confirmationFormProps = {
+    title: "Password Set",
+    postMessage: "Password has been set",
+    showPostMessage: true,
+    isSuccessPostMessage: true,
+    buttonLabel: "Back to Login",
+    butttonMode: constants.SECONDARY,
+    onCTAButtonClicked: function () {
+      route.push(`/patient/login`);
+    },
+    formStyle: { marginTop: "0px" },
+  };
 
   const OnSetPasswordClicked = async function (postbody, _router) {
     try {
@@ -32,10 +49,13 @@ export default function SetPasswordPage({ username }) {
         postbody,
         "post"
       );
-      cookies.set("authorized", true, { path: "/patient" });
+      setShowPostMessage(true);
 
-      const hostname = window.location.origin;
-      window.location.href = `${hostname}/patient`;
+      setTimeout(() => {
+        cookies.set("authorized", true, { path: "/patient" });
+        const hostname = window.location.origin;
+        window.location.href = `${hostname}/patient`;
+      }, 3000);
     } catch (err) {
       console.error({ err });
 
@@ -56,18 +76,22 @@ export default function SetPasswordPage({ username }) {
     }
   };
   return (
-    <Box className={globalStyles.contanierPage}>
-      <SetPasswordComponent
-        title={"Set Password"}
-        subtitle={"Enter a password to setup your account."}
-        username={username}
-        formMessage={formMessage}
-        onSetPasswordClicked={OnSetPasswordClicked}
-        onBackToLoginClicked={function (router) {
-          router.push("/patient/login");
-        }}
-        showBackToLogin={false}
-      />
+    <Box className={globalStyles.containerPage}>
+      {!showPostMessage ? (
+        <SetPasswordComponent
+          title={"Set Password"}
+          subtitle={"Enter a password to setup your account."}
+          username={username}
+          formMessage={formMessage}
+          onSetPasswordClicked={OnSetPasswordClicked}
+          onBackToLoginClicked={function (router) {
+            router.push("/patient/login");
+          }}
+          showBackToLogin={false}
+        />
+      ) : (
+        <ConfirmationForm {...confirmationFormProps} />
+      )}
     </Box>
   );
 }
