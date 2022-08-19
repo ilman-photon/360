@@ -10,8 +10,8 @@ const DEFAULT_USER_DATA = {
   name: "Eyecare User",
   preferredName: "---",
   profilePhoto: "",
-  issuedCardFront: "",
-  issuedCardBack: "",
+  issuedCardFront: "/transparent.png",
+  issuedCardBack: "/transparent.png",
   dob: new Date(),
   title: "Mr",
   ssn: 1234567,
@@ -32,10 +32,26 @@ const DEFAULT_USER_DATA = {
   isSubscriber: "",
 };
 
+const DEFAULT_INSURANCE_DATA = {
+  provider: null,
+  plan: null,
+  memberID: "",
+  groupID: "",
+  isSubscriber: "yes",
+  subscriberData: {
+    firstName: "",
+    lastName: "",
+    dob: null,
+    relationship: "",
+  },
+  priority: "primary",
+};
+
 const userSlice = createSlice({
   name: "user",
   initialState: {
     userData: DEFAULT_USER_DATA,
+    userInsuranceData: DEFAULT_INSURANCE_DATA,
     status: null,
   },
   reducers: {
@@ -44,6 +60,12 @@ const userSlice = createSlice({
     },
     setUserData: (state, { payload }) => {
       state.userData = payload;
+    },
+    resetUserInsuranceData: (state, action) => {
+      state.loading = action.payload;
+    },
+    setUserInsuranceData: (state, { payload }) => {
+      state.userInsuranceData = payload;
     },
   },
   extraReducers: {
@@ -61,6 +83,6 @@ const userSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setUserData } = userSlice.actions;
+export const { setUserData, setUserInsuranceData } = userSlice.actions;
 
 export default userSlice.reducer;

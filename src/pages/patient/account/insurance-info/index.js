@@ -1,19 +1,23 @@
 import AccountLayout from "../../../../components/templates/accountLayout";
-import InsuranceInformationNew from "../../../../components/organisms/InsuranceInformation/insuranceInformationnew";
+import InsuranceInformationNew from "../../../../components/organisms/InsuranceInformation/insuranceInformationNew";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchUser, setUserData } from "../../../../store/user";
+import { fetchUser, setUserInsuranceData } from "../../../../store/user";
 
-export default function InsuranceInformationPage() {
+export default function CreateAccountPage() {
   const [insuranceEditing, setInsuranceEditing] = useState(true);
 
-  const userData = useSelector((state) => state.user.userData);
-  const dispatch = useDispatch();
+  const userInsuranceData = useSelector(
+    (state) => state.user.userInsuranceData
+  );
 
   const onSaveInsuranceData = (payload) => {
-    dispatch(setUserData(payload));
+    console.log(payload, "payload");
+    dispatch(setUserInsuranceData(payload));
     setInsuranceEditing(false);
   };
+
+  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchUser());
@@ -22,17 +26,17 @@ export default function InsuranceInformationPage() {
   return (
     <section>
       <InsuranceInformationNew
-        userData={userData}
+        insuranceData={userInsuranceData}
         isEditing={insuranceEditing}
-        OnEditClicked={() => setInsuranceEditing(true)}
-        OnCancelEditClicked={() => setInsuranceEditing(false)}
+        OnEditClicked={(_) => setInsuranceEditing(true)}
+        OnCancelEditClicked={(_) => setInsuranceEditing(false)}
         OnSaveClicked={onSaveInsuranceData}
       />
     </section>
   );
 }
 
-InsuranceInformationPage.getLayout = function getLayout(page) {
+CreateAccountPage.getLayout = function getLayout(page) {
   return (
     <AccountLayout currentActivePage={"insurance-info"}>{page}</AccountLayout>
   );

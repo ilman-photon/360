@@ -1,29 +1,20 @@
 import { Button, Divider, Fade, Grid, Stack, Typography } from "@mui/material";
 import LabelWithInfo from "../../atoms/LabelWithInfo/labelWithInfo";
-import styles from "./InsuranceInformationNew.module.scss";
-import { useForm } from "react-hook-form";
+import styles from "./insuranceInformationNew.module.scss";
 import { colors } from "../../../styles/theme";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 
 import Image from "next/image";
 
-export default function InsuranceForm({
+export default function InsuranceView({
   userData = {},
   isEditing = false,
   OnEditClicked = () => {
     // This is intentional
   },
-  OnCancelEditClicked = () => {
-    // This is intentional
-  },
 }) {
   return (
     <Fade in={!isEditing} unmountOnExit>
-      {/* <AccountCard
-      // titleIcon={<PermContactCalendarOutlinedIcon />}
-      title="Primary"
-      // OnAddInsurance={true}
-    > */}
       <Stack spacing={3} divider={<Divider />}>
         <Grid container>
           <Grid item xs={4} p={0}>
