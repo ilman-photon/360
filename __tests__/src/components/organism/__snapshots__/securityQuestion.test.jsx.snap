@@ -410,6 +410,7 @@ Object {
           >
             <button
               class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-108x9j9-MuiButtonBase-root-MuiButton-root"
+              data-testid="primary-button"
               style="margin-right: 10px; font-size: 14px; box-shadow: none; transform: none;"
               tabindex="0"
               type="submit"
@@ -421,6 +422,7 @@ Object {
             </button>
             <button
               class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1yd4il8-MuiButtonBase-root-MuiButton-root"
+              data-testid="secondary-button"
               style="margin-right: 10px; font-size: 14px; box-shadow: none; transform: none;"
               tabindex="0"
               type="button"
@@ -841,6 +843,7 @@ Object {
         >
           <button
             class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-108x9j9-MuiButtonBase-root-MuiButton-root"
+            data-testid="primary-button"
             style="margin-right: 10px; font-size: 14px; box-shadow: none; transform: none;"
             tabindex="0"
             type="submit"
@@ -852,6 +855,7 @@ Object {
           </button>
           <button
             class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1yd4il8-MuiButtonBase-root-MuiButton-root"
+            data-testid="secondary-button"
             style="margin-right: 10px; font-size: 14px; box-shadow: none; transform: none;"
             tabindex="0"
             type="button"
