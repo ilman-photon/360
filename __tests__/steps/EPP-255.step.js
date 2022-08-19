@@ -3,6 +3,25 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 import SetPasswordComponent from "../../src/components/organisms/SetPassword/setPassword";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
+import Cookies from "universal-cookie";
+
+jest.mock("universal-cookie", () => {
+  class MockCookies {
+    static result = {};
+    get(param) {
+      if (param === "username") return "user1@photon.com"
+
+      return MockCookies.result;
+    }
+    remove() {
+      return jest.fn();
+    }
+    set() {
+      return jest.fn();
+    }
+  }
+  return MockCookies;
+});
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-255.feature"

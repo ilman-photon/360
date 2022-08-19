@@ -72,33 +72,27 @@ export class Api {
   }
 
   getUserData(postbody) {
-    return new Promise((resolve, reject) => {
-      this.getIpAddress()
-        .then((ip) => {
-          if (postbody.username === "9876543210") {
-            resolve({
-              communicationMethod: {
-                phone: "(8***)***-***31",
-              },
-              mfaAccessToken: "12345678",
-              ResponseCode: 4000,
-              ResponseType: "success",
-              ip,
-            });
-          } else {
-            resolve({
-              communicationMethod: {
-                email: "u*******@mail.com",
-                phone: "(8***)***-***31",
-              },
-              ResponseCode: 4000,
-              ResponseType: "success",
-            });
-          }
-        })
-        .catch(() => {
-          reject();
+    return new Promise((resolve) => {
+      if (postbody.username === "9876543210") {
+        resolve({
+          communicationMethod: {
+            phone: "(8***)***-***31",
+          },
+          mfaAccessToken: "12345678",
+          ResponseCode: 4000,
+          ResponseType: "success",
+          ip,
         });
+      } else {
+        resolve({
+          communicationMethod: {
+            email: "u*******@mail.com",
+            phone: "(8***)***-***31",
+          },
+          ResponseCode: 4000,
+          ResponseType: "success",
+        });
+      }
     });
   }
 
@@ -222,8 +216,8 @@ export class Api {
         .then((response) => {
           resolve(response.data.ip);
         })
-        .catch((err) => {
-          reject(err);
+        .catch(() => {
+          reject();
         });
     });
   }

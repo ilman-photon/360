@@ -76,6 +76,7 @@ export default function MfaPage() {
   function onBackToLoginClicked() {
     cookies.remove("mfa", { path: "/patient" });
     cookies.remove("username", { path: "/patient" });
+    cookies.remove("ip", { path: "/patient" });
     router.push("/patient/login");
   }
 

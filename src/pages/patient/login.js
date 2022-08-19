@@ -77,9 +77,18 @@ const loginProps = {
 };
 
 export default function login() {
+  const api = new Api();
+  const cookies = new Cookies();
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    const cookies = new Cookies();
+    if (!cookies.get("ip")) {
+      api
+        .getIpAddress()
+        .then((ip) => {
+          cookies.set("ip", ip, { path: "/patient" });
+        })
+        .catch();
+    }
     if (cookies.get("mfa")) {
       cookies.remove("mfa", { path: "/patient" });
     }

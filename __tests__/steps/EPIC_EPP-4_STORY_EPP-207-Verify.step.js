@@ -4,6 +4,26 @@ import Login from "../../src/components/organisms/Login/login";
 import AuthPage from "../../src/pages/patient/login";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
+import Cookies from "universal-cookie";
+
+jest.mock("universal-cookie", () => {
+  class MockCookies {
+    static result = {};
+    get(param) {
+      if (param === "username") return "user1@photon.com"
+
+      return MockCookies.result;
+    }
+    remove() {
+      return jest.fn();
+    }
+    set() {
+      return jest.fn();
+    }
+  }
+  return MockCookies;
+});
+
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-207.feature",
   {
@@ -39,6 +59,7 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
       act(() => {
         container = render(<AuthPage />, {
           container: document.body.appendChild(element),
@@ -92,6 +113,7 @@ defineFeature(feature, (test) => {
     });
 
     when(`user lands onto “Patient Login” screen`, () => {
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
       container = render(<AuthPage />);
       const title = container.getByText("formTitle");
       expect("formTitle").toEqual(title.textContent);
@@ -133,6 +155,7 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
     when(`user lands onto “Patient Login” screen`, () => {
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
       container = render(<AuthPage />);
       const title = container.getByText("formTitle");
       expect("formTitle").toEqual(title.textContent);
@@ -226,6 +249,7 @@ defineFeature(feature, (test) => {
     });
 
     when(`user lands onto “Patient Login” screen`, () => {
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
       container = render(<AuthPage />);
       const title = container.getByText("formTitle");
       expect("formTitle").toEqual(title.textContent);
