@@ -19,6 +19,7 @@ jest.mock("universal-cookie", () => {
       static result = {};
       get(param) {
         if (param === "username") return "user1@photon.com"
+        else if (param === "securityQuestions") return []
   
         return MockCookies.result;
       }
@@ -89,6 +90,23 @@ defineFeature(feature, (test) => {
         });
 
         and('user setup MFA successfully', async () => {
+            const expectedResult = {
+                "SetUpSecurityQuestions": [
+                    {
+                        "Where did you go the first time you flew on a plane?": "",
+                        "What was the first book you read?": "",
+                        "What was the first film you saw in a theater?": "",
+                        "What was the make and model of your first car?": "",
+                        "What was the first concert you attended?": "",
+                        "What was your favorite cartoon character during your childhood?": "",
+                        "What was the first thing you learned to cook?": "",
+                        "What is your favorite cold-weather activity?": "",
+                        "In what city or town did your parents meet?": "",
+                        "Who is your all-time favorite movie character?": ""
+                    }
+                ]
+            }
+            mock.onGet(`/ecp/patient/getsecurityQuestions`).reply(200, expectedResult);
             const confirm = container.getByTestId("primary-button");
             fireEvent.click(confirm);
             await waitFor(() => container.getByText("mfaTitle"))

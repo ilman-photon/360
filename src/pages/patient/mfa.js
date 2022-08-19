@@ -98,11 +98,18 @@ export default function MfaPage() {
     api
       .submitMfaCode(postBody)
       .then((response) => {
-        if (response.mfaAccessToken)
+        if (response.mfaAccessToken) {
           cookies.set("mfaAccessToken", response.mfaAccessToken, {
             path: "/patient",
           });
-        onShowSecurityQuestionForm();
+        }
+        
+        const securityQuestions = cookies.get("securityQuestions");
+        if (securityQuestions.length === 0) {
+          onShowSecurityQuestionForm();
+        } else {
+          redirectToDashboard();
+        }
       })
       .catch((err) => {
         if (err.ResponseCode === 4003) {
@@ -189,10 +196,7 @@ export default function MfaPage() {
       .catch(function () {
         callback({
           status: "failed",
-          message: {
-            title: "Code sent multiple times.",
-            description: "Please try again after 30 minutes.",
-          },
+          message: "Failed to sumbit the security question.",
         });
       });
   }

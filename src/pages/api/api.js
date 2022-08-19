@@ -186,28 +186,25 @@ export class Api {
   }
 
   getSecurityQuestion() {
-    return Promise.resolve({
-      SetUpSecurityQuestions: [
-        {
-          "What was the first concert you attended?": "",
-          "In what city or town did your parents meet?": "",
-          "What was the make and model of your first car?": "",
-          "Who is your all-time favorite movie character?": "",
-          "What was your favorite cartoon character during your childhood?": "",
-          "What was the first book you read?": "",
-          "What was the first thing you learned to cook?": "",
-          "What was the first film you saw in a theater?": "",
-          "Where did you go the first time you flew on a plane?": "",
-          "What is your favorite cold-weather activity?": "",
-        },
-      ],
+    const url = "/ecp/patient/getsecurityQuestions";
+    return new Promise((resolve, reject) => {
+      this.getResponse(url, {}, "get")
+        .then(function (data) {
+          if (data) {
+            resolve(data);
+          } else {
+            reject(data);
+          }
+        })
+        .catch(function (err) {
+          reject(err);
+        });
     });
   }
 
-  submitSecurityQuestion() {
-    return Promise.resolve({
-      responseCode: 1000,
-    });
+  submitSecurityQuestion(postbody) {
+    const url = "/ecp/patient/securityQuestions";
+    return this.forgotFeatureValidation(url, postbody, "post", 2000);
   }
 
   getIpAddress() {

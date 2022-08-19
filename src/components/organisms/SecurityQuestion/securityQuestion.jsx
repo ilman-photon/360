@@ -12,7 +12,6 @@ import globalStyles from "../../../styles/Global.module.scss";
 const SecurityQuestion = ({
   securityQuestionList = [],
   propsShowPostMessage = false,
-  postMessage = "You must answer all security questions",
   securityQuestionCount = 5,
   onClickedSubmitButton = () => {
     // This is intentional
@@ -22,6 +21,9 @@ const SecurityQuestion = ({
   },
 }) => {
   const [showPostMessage, setShowPostMessage] = useState(propsShowPostMessage);
+  const [postMessage, setPostMessage] = React.useState(
+    "You must answer all security questions"
+  );
   const { handleSubmit, control } = useForm();
 
   const onSubmit = (data) => {
@@ -48,14 +50,21 @@ const SecurityQuestion = ({
 
       onClickedSubmitButton(questionAnswer, checkSubmitMessage);
     } else {
-      setShowPostMessage(true);
-      //Scroll to top
-      window.scrollTo(0, 0);
+      onShowPostMessage("You must answer all security questions");
     }
   };
 
-  const checkSubmitMessage = (message) => {
+  const checkSubmitMessage = ({ status, message }) => {
+    if (status === "failed") {
+      onShowPostMessage(message);
+    }
+  };
+
+  const onShowPostMessage = function (message) {
+    setShowPostMessage(true);
     setPostMessage(message);
+    //Scroll to top
+    window.scrollTo(0, 0);
   };
 
   const securityQuestionUI = function () {

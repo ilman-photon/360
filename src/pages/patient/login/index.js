@@ -37,8 +37,12 @@ const loginProps = {
       .login(postbody)
       .then(function (response) {
         const IdleTimeOut = response.IdleTimeOut * 1000 || 1200 * 1000;
+        const securityQuestions = response.SecurityQuestions || [];
         cookies.set("IdleTimeOut", IdleTimeOut, { path: "/patient" });
         cookies.set("username", postbody.username, { path: "/patient" });
+        cookies.set("securityQuestions", securityQuestions, {
+          path: "/patient",
+        });
         getUserData(postbody.username, (isNotNeedMfa) => {
           if (isNotNeedMfa) {
             cookies.set("authorized", true, { path: "/patient" });
