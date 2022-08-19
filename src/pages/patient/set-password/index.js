@@ -8,8 +8,8 @@ import SetPasswordComponent from "../../../components/organisms/SetPassword/setP
 import globalStyles from "../../../styles/Global.module.scss";
 import Cookies from "universal-cookie";
 import { useState } from "react";
-import constants from "../../utils/constants";
-import ConfirmationForm from "../../components/organisms/ConfirmationForm/confirmationForm";
+import constants from "../../../utils/constants";
+import ConfirmationForm from "../../../components/organisms/ConfirmationForm/confirmationForm";
 
 export async function getServerSideProps({ query }) {
   return {
