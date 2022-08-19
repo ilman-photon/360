@@ -1,6 +1,8 @@
+import { Regex } from "./regex";
+
 export function formatPhoneNumber(phoneNumberString) {
-  var cleaned = ("" + phoneNumberString).replace(/\D/g, "");
-  var match = cleaned.match(/^(\d{3})(\d{3})(\d{4})$/);
+  let cleaned = ("" + phoneNumberString).replace(/\D/g, "");
+  const match = cleaned.match(Regex.isValidPhoneFormat);
   if (match) {
     return "(" + match[1] + ") " + match[2] + "-" + match[3];
   }
