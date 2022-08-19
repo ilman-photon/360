@@ -75,7 +75,11 @@ export default function SetPasswordPage({ username }) {
 SetPasswordPage.getLayout = function getLayout(page) {
   const backgroundImage = "/login-bg.png";
   return (
-    <AuthLayout showMobileImage={false} imageSrc={backgroundImage}>
+    <AuthLayout
+      showMobileImage={false}
+      imageSrc={backgroundImage}
+      title={"Set Password"}
+    >
       {page}
     </AuthLayout>
   );
