@@ -12,6 +12,8 @@ import { styles } from "./style";
 import { useForm, Controller } from "react-hook-form";
 import constants from "../../../utils/constants";
 import { Regex } from "../../../utils/regex";
+import { HeadingTitle } from "../../atoms/Heading";
+import { getLinkAria } from "../../../utils/viewUtil";
 
 const ForgotPassword = ({
   onBackToLoginClicked,
@@ -48,7 +50,7 @@ const ForgotPassword = ({
       sx={{ minWidth: 275, padding: "16px" }}
     >
       <CardContent style={styles.cardContentStyle}>
-        <Typography variant="h2">{t("title")}</Typography>
+        <HeadingTitle variant={constants.H2} title={t("title")} />
         {showPostMessage ? (
           <FormMessage success={false} sx={styles.postMessage}>
             {t("errorUsernameNotFound")}
@@ -102,6 +104,7 @@ const ForgotPassword = ({
           onClick={function () {
             onBackToLoginClicked(router);
           }}
+          {...getLinkAria(t("backButtonLink"))}
         >
           {t("backButtonLink")}
         </Link>
