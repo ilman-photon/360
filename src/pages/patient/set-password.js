@@ -77,17 +77,21 @@ export default function SetPasswordPage({ username }) {
   };
   return (
     <Box className={globalStyles.containerPage}>
-      {!showPostMessage ? <SetPasswordComponent
-        title={"Set Password"}
-        subtitle={"Enter a password to setup your account."}
-        username={username}
-        formMessage={formMessage}
-        onSetPasswordClicked={OnSetPasswordClicked}
-        onBackToLoginClicked={function (router) {
-          router.push("/patient/login");
-        }}
-        showBackToLogin={false}
-      />: <ConfirmationForm {...confirmationFormProps} />}
+      {!showPostMessage ? (
+        <SetPasswordComponent
+          title={"Set Password"}
+          subtitle={"Enter a password to setup your account."}
+          username={username}
+          formMessage={formMessage}
+          onSetPasswordClicked={OnSetPasswordClicked}
+          onBackToLoginClicked={function (router) {
+            router.push("/patient/login");
+          }}
+          showBackToLogin={false}
+        />
+      ) : (
+        <ConfirmationForm {...confirmationFormProps} />
+      )}
     </Box>
   );
 }
