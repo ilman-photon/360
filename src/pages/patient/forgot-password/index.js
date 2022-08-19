@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import AuthLayout from "../../components/templates/authLayout";
-import SelectOptionForm from "../../components/organisms/SelectOptionForm/selectOptionForm";
-import PasswordSecurityQuestion from "../../components/organisms/PasswordSecurityQuestion/passwordSecurityQuestion";
-import ConfirmationForm from "../../components/organisms/ConfirmationForm/confirmationForm";
-import { Api } from "../api/api";
-import constants from "../../utils/constants";
-import RowRadioButtonsGroup from "../../components/atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
+import AuthLayout from "../../../components/templates/authLayout";
+import SelectOptionForm from "../../../components/organisms/SelectOptionForm/selectOptionForm";
+import PasswordSecurityQuestion from "../../../components/organisms/PasswordSecurityQuestion/passwordSecurityQuestion";
+import ConfirmationForm from "../../../components/organisms/ConfirmationForm/confirmationForm";
+import { Api } from "../../api/api";
+import constants from "../../../utils/constants";
+import RowRadioButtonsGroup from "../../../components/atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import InsertLinkIcon from "@mui/icons-material/InsertLink";
 import { Controller } from "react-hook-form";
 import { useTranslation } from "next-i18next";
-import ForgotPassword from "../../components/organisms/ForgotPassword/forgotPassword";
+import ForgotPassword from "../../../components/organisms/ForgotPassword/forgotPassword";
 import { Box } from "@mui/material";
-import globalStyles from "../../styles/Global.module.scss";
+import globalStyles from "../../../styles/Global.module.scss";
 
 let confirmationFormProps = {
   title: constants.EMPTY_STRING,
@@ -140,11 +140,11 @@ export default function ForgotPasswordPage() {
           postMessage: `Link sent to your ${modeOfCommuication.toLowerCase()}`,
           successPostMessage: true,
           buttonLabel: t("primaryButtonTextPasswordResetSuccess"),
-          additional: function (control) {
+          additional: function () {
             return <></>;
           },
           butttonMode: constants.SECONDARY,
-          onCTAButtonClicked: function ({ data, router }) {
+          onCTAButtonClicked: function ({ router }) {
             router.push("/patient/login");
           },
         };
@@ -224,14 +224,14 @@ export default function ForgotPasswordPage() {
         confirmationFormProps.buttonIcon = (
           <InsertLinkIcon sx={{ marginRight: "10px" }} />
         );
-        (confirmationFormProps.butttonMode = constants.PRIMARY),
-          (confirmationFormProps.onCTAButtonClicked = function ({ data }) {
-            const modeComunication =
-              data[constants.MODE_COMMUNICATION_KEY] === constants.EMAIL
-                ? "email"
-                : "phone";
-            onCalledResetPasswordAPI(modeComunication);
-          });
+        confirmationFormProps.butttonMode = constants.PRIMARY;
+        confirmationFormProps.onCTAButtonClicked = function ({ data }) {
+          const modeComunication =
+            data[constants.MODE_COMMUNICATION_KEY] === constants.EMAIL
+              ? "email"
+              : "phone";
+          onCalledResetPasswordAPI(modeComunication);
+        };
       } else {
         //Call service for password reset
         onCalledResetPasswordAPI(patientData.preferredComunication);
@@ -251,10 +251,10 @@ export default function ForgotPasswordPage() {
         confirmationFormProps.buttonIcon = (
           <InsertLinkIcon sx={{ marginRight: "10px" }} />
         );
-        (confirmationFormProps.butttonMode = constants.PRIMARY),
-          (confirmationFormProps.onCTAButtonClicked = function () {
-            onCalledOneTimeLinkAPI();
-          });
+        confirmationFormProps.butttonMode = constants.PRIMARY;
+        confirmationFormProps.onCTAButtonClicked = function () {
+          onCalledOneTimeLinkAPI();
+        };
       } else {
         //Call service for one time link
         onCalledOneTimeLinkAPI();
