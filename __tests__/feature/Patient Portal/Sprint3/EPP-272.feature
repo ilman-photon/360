@@ -148,7 +148,7 @@ Feature: Patient Portal : Security Questions - Submit security questions
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-272 - Verify if user  click submit button after answering all the security question
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -255,6 +255,7 @@ Feature: Patient Portal : Security Questions - Submit security questions
   @Authentication
   @Patient_Portal
   @Sprint2
+  @included
   Scenario Outline:  EPIC_EPP-3_STORY_EPP-272 - Verify the success message after setting up  the security question 
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application

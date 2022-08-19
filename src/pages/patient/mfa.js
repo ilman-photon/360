@@ -103,7 +103,7 @@ export default function MfaPage() {
             path: "/patient",
           });
         }
-        
+
         const securityQuestions = cookies.get("securityQuestions");
         if (securityQuestions.length === 0) {
           onShowSecurityQuestionForm();
