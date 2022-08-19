@@ -10,8 +10,7 @@ Object {
       >
         <form>
           <div
-            class="MuiBox-root css-0"
-            style="margin-bottom: 24px;"
+            class="MuiBox-root css-6u6h6j"
           >
             <div
               class="MuiFormControl-root css-1n0ywti-MuiFormControl-root"
@@ -63,8 +62,8 @@ Object {
               </div>
             </div>
             <div
-              class="MuiFormControl-root MuiTextField-root custom-input css-1xyh24v-MuiFormControl-root-MuiTextField-root"
-              style="margin-top: 8px; width: 100%;"
+              class="MuiFormControl-root MuiTextField-root custom-input css-1462qs2-MuiFormControl-root-MuiTextField-root"
+              style="width: 100%;"
               withicon="true"
             >
               <label
@@ -90,8 +89,7 @@ Object {
             </div>
           </div>
           <div
-            class="MuiBox-root css-0"
-            style="margin-bottom: 24px;"
+            class="MuiBox-root css-6u6h6j"
           >
             <div
               class="MuiFormControl-root css-1n0ywti-MuiFormControl-root"
@@ -143,8 +141,8 @@ Object {
               </div>
             </div>
             <div
-              class="MuiFormControl-root MuiTextField-root custom-input css-1xyh24v-MuiFormControl-root-MuiTextField-root"
-              style="margin-top: 8px; width: 100%;"
+              class="MuiFormControl-root MuiTextField-root custom-input css-1462qs2-MuiFormControl-root-MuiTextField-root"
+              style="width: 100%;"
               withicon="true"
             >
               <label
@@ -170,8 +168,7 @@ Object {
             </div>
           </div>
           <div
-            class="MuiBox-root css-0"
-            style="margin-bottom: 24px;"
+            class="MuiBox-root css-6u6h6j"
           >
             <div
               class="MuiFormControl-root css-1n0ywti-MuiFormControl-root"
@@ -223,8 +220,8 @@ Object {
               </div>
             </div>
             <div
-              class="MuiFormControl-root MuiTextField-root custom-input css-1xyh24v-MuiFormControl-root-MuiTextField-root"
-              style="margin-top: 8px; width: 100%;"
+              class="MuiFormControl-root MuiTextField-root custom-input css-1462qs2-MuiFormControl-root-MuiTextField-root"
+              style="width: 100%;"
               withicon="true"
             >
               <label
@@ -250,8 +247,7 @@ Object {
             </div>
           </div>
           <div
-            class="MuiBox-root css-0"
-            style="margin-bottom: 24px;"
+            class="MuiBox-root css-6u6h6j"
           >
             <div
               class="MuiFormControl-root css-1n0ywti-MuiFormControl-root"
@@ -303,8 +299,8 @@ Object {
               </div>
             </div>
             <div
-              class="MuiFormControl-root MuiTextField-root custom-input css-1xyh24v-MuiFormControl-root-MuiTextField-root"
-              style="margin-top: 8px; width: 100%;"
+              class="MuiFormControl-root MuiTextField-root custom-input css-1462qs2-MuiFormControl-root-MuiTextField-root"
+              style="width: 100%;"
               withicon="true"
             >
               <label
@@ -330,8 +326,7 @@ Object {
             </div>
           </div>
           <div
-            class="MuiBox-root css-0"
-            style="margin-bottom: 24px;"
+            class="MuiBox-root css-6u6h6j"
           >
             <div
               class="MuiFormControl-root css-1n0ywti-MuiFormControl-root"
@@ -383,8 +378,8 @@ Object {
               </div>
             </div>
             <div
-              class="MuiFormControl-root MuiTextField-root custom-input css-1xyh24v-MuiFormControl-root-MuiTextField-root"
-              style="margin-top: 8px; width: 100%;"
+              class="MuiFormControl-root MuiTextField-root custom-input css-1462qs2-MuiFormControl-root-MuiTextField-root"
+              style="width: 100%;"
               withicon="true"
             >
               <label
@@ -446,8 +441,7 @@ Object {
     >
       <form>
         <div
-          class="MuiBox-root css-0"
-          style="margin-bottom: 24px;"
+          class="MuiBox-root css-6u6h6j"
         >
           <div
             class="MuiFormControl-root css-1n0ywti-MuiFormControl-root"
@@ -499,8 +493,8 @@ Object {
             </div>
           </div>
           <div
-            class="MuiFormControl-root MuiTextField-root custom-input css-1xyh24v-MuiFormControl-root-MuiTextField-root"
-            style="margin-top: 8px; width: 100%;"
+            class="MuiFormControl-root MuiTextField-root custom-input css-1462qs2-MuiFormControl-root-MuiTextField-root"
+            style="width: 100%;"
             withicon="true"
           >
             <label
@@ -526,8 +520,7 @@ Object {
           </div>
         </div>
         <div
-          class="MuiBox-root css-0"
-          style="margin-bottom: 24px;"
+          class="MuiBox-root css-6u6h6j"
         >
           <div
             class="MuiFormControl-root css-1n0ywti-MuiFormControl-root"
@@ -579,8 +572,8 @@ Object {
             </div>
           </div>
           <div
-            class="MuiFormControl-root MuiTextField-root custom-input css-1xyh24v-MuiFormControl-root-MuiTextField-root"
-            style="margin-top: 8px; width: 100%;"
+            class="MuiFormControl-root MuiTextField-root custom-input css-1462qs2-MuiFormControl-root-MuiTextField-root"
+            style="width: 100%;"
             withicon="true"
           >
             <label
@@ -606,8 +599,7 @@ Object {
           </div>
         </div>
         <div
-          class="MuiBox-root css-0"
-          style="margin-bottom: 24px;"
+          class="MuiBox-root css-6u6h6j"
         >
           <div
             class="MuiFormControl-root css-1n0ywti-MuiFormControl-root"
@@ -659,8 +651,8 @@ Object {
             </div>
           </div>
           <div
-            class="MuiFormControl-root MuiTextField-root custom-input css-1xyh24v-MuiFormControl-root-MuiTextField-root"
-            style="margin-top: 8px; width: 100%;"
+            class="MuiFormControl-root MuiTextField-root custom-input css-1462qs2-MuiFormControl-root-MuiTextField-root"
+            style="width: 100%;"
             withicon="true"
           >
             <label
@@ -686,8 +678,7 @@ Object {
           </div>
         </div>
         <div
-          class="MuiBox-root css-0"
-          style="margin-bottom: 24px;"
+          class="MuiBox-root css-6u6h6j"
         >
           <div
             class="MuiFormControl-root css-1n0ywti-MuiFormControl-root"
@@ -739,8 +730,8 @@ Object {
             </div>
           </div>
           <div
-            class="MuiFormControl-root MuiTextField-root custom-input css-1xyh24v-MuiFormControl-root-MuiTextField-root"
-            style="margin-top: 8px; width: 100%;"
+            class="MuiFormControl-root MuiTextField-root custom-input css-1462qs2-MuiFormControl-root-MuiTextField-root"
+            style="width: 100%;"
             withicon="true"
           >
             <label
@@ -766,8 +757,7 @@ Object {
           </div>
         </div>
         <div
-          class="MuiBox-root css-0"
-          style="margin-bottom: 24px;"
+          class="MuiBox-root css-6u6h6j"
         >
           <div
             class="MuiFormControl-root css-1n0ywti-MuiFormControl-root"
@@ -819,8 +809,8 @@ Object {
             </div>
           </div>
           <div
-            class="MuiFormControl-root MuiTextField-root custom-input css-1xyh24v-MuiFormControl-root-MuiTextField-root"
-            style="margin-top: 8px; width: 100%;"
+            class="MuiFormControl-root MuiTextField-root custom-input css-1462qs2-MuiFormControl-root-MuiTextField-root"
+            style="width: 100%;"
             withicon="true"
           >
             <label

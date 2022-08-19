@@ -12,9 +12,6 @@ export const styles = {
   buttonContainer: {
     display: "flex",
   },
-  questionContainer: {
-    marginBottom: "24px",
-  },
   buttonStyle: {
     marginRight: "10px",
     fontSize: "14px",
@@ -22,7 +19,6 @@ export const styles = {
     transform: "none",
   },
   answerInputStyle: {
-    marginTop: 8,
     width: "100%",
   },
   postMessage: {

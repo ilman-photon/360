@@ -158,7 +158,9 @@ export default function MfaPage() {
     api
       .getSecurityQuestion()
       .then(function (response) {
-        setSecurityQuestionList(response.securityQuestionList);
+        setSecurityQuestionList(
+          mappingSecurityQuestionList(response.SetUpSecurityQuestions)
+        );
         setComponentName(constants.SQ_COMPONENT_NAME);
       })
       .catch(function () {
@@ -193,6 +195,17 @@ export default function MfaPage() {
           },
         });
       });
+  }
+
+  function mappingSecurityQuestionList(securityQuestionList = []) {
+    const questionList = [];
+    securityQuestionList = securityQuestionList[0]
+      ? securityQuestionList[0]
+      : {};
+    for (const [key, value] of Object.entries(securityQuestionList)) {
+      questionList.push(key);
+    }
+    return questionList;
   }
 
   if (componentName === constants.MFA_COMPONENT_NAME) {

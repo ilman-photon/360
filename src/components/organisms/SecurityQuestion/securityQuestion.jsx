@@ -63,7 +63,16 @@ const SecurityQuestion = ({
     for (let i = 0; i < securityQuestionCount; i++) {
       const index = i + 1;
       indents.push(
-        <Box key={index} style={styles.questionContainer}>
+        <Box
+          key={index}
+          style={styles.questionContainer}
+          sx={{
+            marginBottom: "24px",
+            ["@media (max-width: 992px)"]: {
+              marginBottom: "32px",
+            },
+          }}
+        >
           <Controller
             as={SelectOptionButton}
             name={`question-${index}`}
@@ -102,6 +111,10 @@ const SecurityQuestion = ({
               return (
                 <StyledInput
                   sx={{
+                    marginTop: "8px",
+                    ["@media (max-width: 992px)"]: {
+                      marginTop: "16px",
+                    },
                     "& .MuiFilledInput-root": {
                       border: "1px solid #bbb",
                       backgroundColor: "#fff",
