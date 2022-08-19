@@ -17,15 +17,6 @@ export default function InsuranceForm({
     // This is intentional
   },
 }) {
-  const handleCancel = () => {
-    reset(userData);
-    OnCancelEditClicked();
-  };
-
-  const { control, watch, reset } = useForm({
-    defaultValues: userData.userData,
-  });
-
   return (
     <Fade in={!isEditing} unmountOnExit>
       {/* <AccountCard
@@ -113,7 +104,6 @@ export default function InsuranceForm({
           sx={{ alignSelf: "flex-end", p: 2, mt: 2 }}
         >
           <Button
-            onClick={handleCancel}
             variant="text"
             className={[styles.formButton, styles.outlined].join(" ")}
           >

@@ -9,7 +9,6 @@ import SelectOptionButton from "../../atoms/SelectOptionButton/selectOptionButto
 import { ImageUploader } from "../../molecules/ImageUploader/imageUploader";
 
 export default function InsuranceForm({
-  userData = {},
   isEditing = true,
   OnSaveClicked = () => {
     // This is intended
@@ -18,13 +17,21 @@ export default function InsuranceForm({
     // This is intended
   },
 }) {
+  const DEFAULT_CONTACT_INFO = {
+    email: "",
+    mobile: "",
+    address: "",
+    city: "",
+    state: "",
+    zip: "",
+    preferredCommunication: "both",
+  };
+
   const { handleSubmit, control } = useForm({
-    defaultValues: {}, // Object.assign({}, userData),
+    defaultValues: DEFAULT_CONTACT_INFO,
   });
 
-  console.log({ userData }, "from");
-
-  const isSubsciberOptions = [
+  const isSubscriberOptions = [
     { label: "Yes", value: "yes" },
     { label: "No", value: "no" },
   ];
@@ -220,7 +227,7 @@ export default function InsuranceForm({
                     value={value}
                     onChange={onChange}
                     label="Are you the Subscriber?"
-                    options={isSubsciberOptions}
+                    options={isSubscriberOptions}
                     helperText={error ? error.message : null}
                     tooltipContent="Test"
                   />
