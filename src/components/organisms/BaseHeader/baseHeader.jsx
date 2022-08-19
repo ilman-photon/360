@@ -64,8 +64,9 @@ export default function BaseHeader({
               src={logo}
               width="124px"
               height="36px"
-              alt="logo"
               style={styles.logoStyled}
+              alt="Eyecare Provider name with logo"
+              aria-disabled
             ></Image>
             {/* Menu Desktop*/}
             <Box sx={styles.boxStyled}>
@@ -170,9 +171,9 @@ export default function BaseHeader({
               src={logo}
               width="124px"
               height="36px"
-              alt="logo"
               quality={100}
               style={styles.logoStyled}
+              alt="Eyecare Provider name with logo"
             ></Image>
           </Toolbar>
         )}

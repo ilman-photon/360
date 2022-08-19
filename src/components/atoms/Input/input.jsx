@@ -42,7 +42,11 @@ export const CustomPasswordInput = styled((props) => (
       endAdornment: (
         <InputAdornment position="end">
           <IconButton
-            aria-label="toggle password visibility"
+            aria-label={`${
+              props.type !== "password"
+                ? "Password hide icon"
+                : "Password unhide icon"
+            }`}
             {...props.customevent}
             edge="end"
           >

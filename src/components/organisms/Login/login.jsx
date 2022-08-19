@@ -12,6 +12,8 @@ import { StyledButton } from "../../atoms/Button/button";
 import { useForm, Controller } from "react-hook-form";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import { useTranslation } from "next-i18next";
+import { HeadingTitle } from "../../atoms/Heading";
+import { getLinkAria } from "../../../utils/viewUtil";
 
 const constants = require("../../../utils/constants");
 
@@ -55,14 +57,15 @@ export function Login({
       )
     );
   };
-
   return (
     <Box
       className={[styles.overideContainer, globalStyles.container].join(" ")}
     >
-      <Typography variant={constants.H1} className={styles.title}>
-        {t("formTitle")}
-      </Typography>
+      <HeadingTitle
+        variant={constants.H1}
+        className={styles.title}
+        title={t("formTitle")}
+      />
       {renderFromMessage()}
       <Stack spacing={2}>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -123,6 +126,7 @@ export function Login({
               <Link
                 className={styles.link}
                 data-testid={LOGIN_TEST_ID.forgotLink}
+                {...getLinkAria(t("forgotPassword"))}
                 onClick={function () {
                   OnForgotPasswordClicked(router);
                 }}
