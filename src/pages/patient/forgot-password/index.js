@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import AuthLayout from "../../components/templates/authLayout";
-import SelectOptionForm from "../../components/organisms/SelectOptionForm/selectOptionForm";
-import PasswordSecurityQuestion from "../../components/organisms/PasswordSecurityQuestion/passwordSecurityQuestion";
-import ConfirmationForm from "../../components/organisms/ConfirmationForm/confirmationForm";
-import { Api } from "../api/api";
-import constants from "../../utils/constants";
-import RowRadioButtonsGroup from "../../components/atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
+import AuthLayout from "../../../components/templates/authLayout";
+import SelectOptionForm from "../../../components/organisms/SelectOptionForm/selectOptionForm";
+import PasswordSecurityQuestion from "../../../components/organisms/PasswordSecurityQuestion/passwordSecurityQuestion";
+import ConfirmationForm from "../../../components/organisms/ConfirmationForm/confirmationForm";
+import { Api } from "../../api/api";
+import constants from "../../../utils/constants";
+import RowRadioButtonsGroup from "../../../components/atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import InsertLinkIcon from "@mui/icons-material/InsertLink";
 import { Controller } from "react-hook-form";
 import { useTranslation } from "next-i18next";
-import ForgotPassword from "../../components/organisms/ForgotPassword/forgotPassword";
+import ForgotPassword from "../../../components/organisms/ForgotPassword/forgotPassword";
 import { Box } from "@mui/material";
-import globalStyles from "../../styles/Global.module.scss";
+import globalStyles from "../../../styles/Global.module.scss";
 
 let confirmationFormProps = {
   title: constants.EMPTY_STRING,
