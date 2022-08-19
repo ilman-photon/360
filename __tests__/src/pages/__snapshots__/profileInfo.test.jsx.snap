@@ -1,0 +1,900 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProfileInformationPage Components ProfileInformationPage render 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <section>
+        <div
+          class="MuiTabs-root css-4km1ta-MuiTabs-root"
+        >
+          <div
+            class="MuiTabs-scroller MuiTabs-fixed css-jpln7h-MuiTabs-scroller"
+            style="overflow: hidden; margin-bottom: 0px;"
+          >
+            <div
+              class="MuiTabs-flexContainer css-heg063-MuiTabs-flexContainer"
+              role="tablist"
+            >
+              <button
+                aria-controls="full-width-tabpanel-0"
+                aria-selected="true"
+                class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth Mui-selected css-1vw5i9y-MuiButtonBase-root-MuiTab-root"
+                id="full-width-tab-0"
+                role="tab"
+                tabindex="0"
+                type="button"
+              >
+                Profile
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+              <button
+                aria-controls="full-width-tabpanel-1"
+                aria-selected="false"
+                class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth css-1vw5i9y-MuiButtonBase-root-MuiTab-root"
+                id="full-width-tab-1"
+                role="tab"
+                tabindex="-1"
+                type="button"
+              >
+                Contact
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <span
+              class="MuiTabs-indicator css-1aquho2-MuiTabs-indicator"
+              style="left: 0px; width: 0px;"
+            />
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
+          >
+            <div
+              class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
+            >
+              <div
+                class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
+              >
+                <div
+                  class="css-1lwbda4-MuiStack-root"
+                  style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+                >
+                  <div
+                    class="css-1p5q5e5-MuiStack-root"
+                  >
+                    <div
+                      class="labelContainer"
+                    >
+                      <div
+                        class="label"
+                      >
+                        Photo
+                      </div>
+                    </div>
+                    <div
+                      class="css-1okj3ks-MuiStack-root"
+                    >
+                      <div
+                        style="margin-top: 10px;"
+                      >
+                        <div
+                          class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-2wkcz1-MuiAvatar-root"
+                        >
+                          EU
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <hr
+                    class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                  />
+                  <div
+                    class="css-1p5q5e5-MuiStack-root"
+                  >
+                    <div
+                      class="labelContainer"
+                    >
+                      <div
+                        class="label"
+                      >
+                        Name
+                      </div>
+                      <svg
+                        aria-hidden="true"
+                        aria-label="If you wish to change this information, please contact Customer Support"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yagxpu-MuiSvgIcon-root"
+                        data-mui-internal-clone-element="true"
+                        data-testid="ErrorOutlineOutlinedIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      class="css-1okj3ks-MuiStack-root"
+                    >
+                      <div
+                        style="margin-top: 10px;"
+                      />
+                    </div>
+                  </div>
+                  <hr
+                    class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                  />
+                  <div
+                    class="css-1p5q5e5-MuiStack-root"
+                  >
+                    <div
+                      class="labelContainer"
+                    >
+                      <div
+                        class="label"
+                      >
+                        Preferred Name
+                      </div>
+                    </div>
+                    <div
+                      class="css-1okj3ks-MuiStack-root"
+                    >
+                      <div
+                        style="margin-top: 10px;"
+                      >
+                        ---
+                      </div>
+                    </div>
+                  </div>
+                  <hr
+                    class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                  />
+                  <div
+                    class="css-1p5q5e5-MuiStack-root"
+                  >
+                    <div
+                      class="labelContainer"
+                    >
+                      <div
+                        class="label"
+                      >
+                        Title
+                      </div>
+                    </div>
+                    <div
+                      class="css-1okj3ks-MuiStack-root"
+                    >
+                      <div
+                        style="margin-top: 10px;"
+                      />
+                    </div>
+                  </div>
+                  <hr
+                    class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                  />
+                  <div
+                    class="css-1p5q5e5-MuiStack-root"
+                  >
+                    <div
+                      class="labelContainer"
+                    >
+                      <div
+                        class="label"
+                      >
+                        Date of Birth
+                      </div>
+                      <svg
+                        aria-hidden="true"
+                        aria-label="If you wish to change this information, please contact Customer Support"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yagxpu-MuiSvgIcon-root"
+                        data-mui-internal-clone-element="true"
+                        data-testid="ErrorOutlineOutlinedIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      class="css-1okj3ks-MuiStack-root"
+                    >
+                      <div
+                        style="margin-top: 10px;"
+                      >
+                        Invalid Date
+                      </div>
+                    </div>
+                  </div>
+                  <hr
+                    class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                  />
+                  <div
+                    class="css-1p5q5e5-MuiStack-root"
+                  >
+                    <div
+                      class="labelContainer"
+                    >
+                      <div
+                        class="label"
+                      >
+                        Age
+                      </div>
+                      <svg
+                        aria-hidden="true"
+                        aria-label="If you wish to change this information, please contact Customer Support"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yagxpu-MuiSvgIcon-root"
+                        data-mui-internal-clone-element="true"
+                        data-testid="ErrorOutlineOutlinedIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      class="css-1okj3ks-MuiStack-root"
+                    >
+                      <div
+                        style="margin-top: 10px;"
+                      />
+                    </div>
+                  </div>
+                  <hr
+                    class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                  />
+                  <div
+                    class="css-1p5q5e5-MuiStack-root"
+                  >
+                    <div
+                      class="labelContainer"
+                    >
+                      <div
+                        class="label"
+                      >
+                        Gender
+                      </div>
+                    </div>
+                    <div
+                      class="css-1okj3ks-MuiStack-root"
+                    >
+                      <div
+                        style="margin-top: 10px;"
+                      />
+                    </div>
+                  </div>
+                  <hr
+                    class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                  />
+                  <div
+                    class="css-1p5q5e5-MuiStack-root"
+                  >
+                    <div
+                      class="labelContainer"
+                    >
+                      <div
+                        class="label"
+                      >
+                        SSN
+                      </div>
+                      <svg
+                        aria-hidden="true"
+                        aria-label="If you wish to change this information, please contact Customer Support"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yagxpu-MuiSvgIcon-root"
+                        data-mui-internal-clone-element="true"
+                        data-testid="ErrorOutlineOutlinedIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                        />
+                      </svg>
+                    </div>
+                    <div
+                      class="css-1okj3ks-MuiStack-root"
+                    >
+                      <div
+                        style="margin-top: 10px;"
+                      />
+                    </div>
+                  </div>
+                  <hr
+                    class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                  />
+                  <div>
+                    <h3
+                      class="MuiTypography-root MuiTypography-h3 css-1mie9p3-MuiTypography-root"
+                    >
+                      State Issued ID
+                    </h3>
+                    <div
+                      class="MuiTypography-root MuiTypography-bodyRegular css-15atyh3-MuiTypography-root"
+                    >
+                      Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID.
+                    </div>
+                    <div
+                      class="css-14w0e8k-MuiStack-root"
+                    >
+                      <div
+                        class="css-1p5q5e5-MuiStack-root"
+                      >
+                        <div
+                          class="labelContainer"
+                        >
+                          <div
+                            class="label"
+                          >
+                            Front Card
+                          </div>
+                        </div>
+                        <div
+                          class="css-1okj3ks-MuiStack-root"
+                        >
+                          <div
+                            style="margin-top: 10px;"
+                          >
+                            <div
+                              class="issuedCardContainer"
+                            >
+                              <img
+                                alt="front-id"
+                                height="175"
+                                width="267"
+                              />
+                            </div>
+                          </div>
+                          <span
+                            class="MuiTypography-root MuiTypography-bodySmallRegular css-1r97m9f-MuiTypography-root"
+                          >
+                            JPG or PNG file formats only. (File size limit is 4 MB)
+                          </span>
+                        </div>
+                      </div>
+                      <div
+                        class="css-1p5q5e5-MuiStack-root"
+                      >
+                        <div
+                          class="labelContainer"
+                        >
+                          <div
+                            class="label"
+                          >
+                            Back Card
+                          </div>
+                        </div>
+                        <div
+                          class="css-1okj3ks-MuiStack-root"
+                        >
+                          <div
+                            style="margin-top: 10px;"
+                          >
+                            <div
+                              class="issuedCardContainer"
+                            >
+                              <img
+                                alt="back-id"
+                                height="175"
+                                width="267"
+                              />
+                            </div>
+                          </div>
+                          <span
+                            class="MuiTypography-root MuiTypography-bodySmallRegular css-1r97m9f-MuiTypography-root"
+                          >
+                            JPG or PNG file formats only. (File size limit is 4 MB)
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              style="position: fixed; bottom: 16px; right: 16px;"
+            >
+              <button
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-2ak3pm-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="button"
+              >
+                Edit
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
+          />
+        </div>
+      </section>
+    </div>
+  </body>,
+  "container": <div>
+    <section>
+      <div
+        class="MuiTabs-root css-4km1ta-MuiTabs-root"
+      >
+        <div
+          class="MuiTabs-scroller MuiTabs-fixed css-jpln7h-MuiTabs-scroller"
+          style="overflow: hidden; margin-bottom: 0px;"
+        >
+          <div
+            class="MuiTabs-flexContainer css-heg063-MuiTabs-flexContainer"
+            role="tablist"
+          >
+            <button
+              aria-controls="full-width-tabpanel-0"
+              aria-selected="true"
+              class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth Mui-selected css-1vw5i9y-MuiButtonBase-root-MuiTab-root"
+              id="full-width-tab-0"
+              role="tab"
+              tabindex="0"
+              type="button"
+            >
+              Profile
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+            <button
+              aria-controls="full-width-tabpanel-1"
+              aria-selected="false"
+              class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth css-1vw5i9y-MuiButtonBase-root-MuiTab-root"
+              id="full-width-tab-1"
+              role="tab"
+              tabindex="-1"
+              type="button"
+            >
+              Contact
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+          <span
+            class="MuiTabs-indicator css-1aquho2-MuiTabs-indicator"
+            style="left: 0px; width: 0px;"
+          />
+        </div>
+      </div>
+      <div
+        class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+      >
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
+        >
+          <div
+            class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
+          >
+            <div
+              class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
+            >
+              <div
+                class="css-1lwbda4-MuiStack-root"
+                style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+              >
+                <div
+                  class="css-1p5q5e5-MuiStack-root"
+                >
+                  <div
+                    class="labelContainer"
+                  >
+                    <div
+                      class="label"
+                    >
+                      Photo
+                    </div>
+                  </div>
+                  <div
+                    class="css-1okj3ks-MuiStack-root"
+                  >
+                    <div
+                      style="margin-top: 10px;"
+                    >
+                      <div
+                        class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-2wkcz1-MuiAvatar-root"
+                      >
+                        EU
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr
+                  class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                />
+                <div
+                  class="css-1p5q5e5-MuiStack-root"
+                >
+                  <div
+                    class="labelContainer"
+                  >
+                    <div
+                      class="label"
+                    >
+                      Name
+                    </div>
+                    <svg
+                      aria-hidden="true"
+                      aria-label="If you wish to change this information, please contact Customer Support"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yagxpu-MuiSvgIcon-root"
+                      data-mui-internal-clone-element="true"
+                      data-testid="ErrorOutlineOutlinedIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                      />
+                    </svg>
+                  </div>
+                  <div
+                    class="css-1okj3ks-MuiStack-root"
+                  >
+                    <div
+                      style="margin-top: 10px;"
+                    />
+                  </div>
+                </div>
+                <hr
+                  class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                />
+                <div
+                  class="css-1p5q5e5-MuiStack-root"
+                >
+                  <div
+                    class="labelContainer"
+                  >
+                    <div
+                      class="label"
+                    >
+                      Preferred Name
+                    </div>
+                  </div>
+                  <div
+                    class="css-1okj3ks-MuiStack-root"
+                  >
+                    <div
+                      style="margin-top: 10px;"
+                    >
+                      ---
+                    </div>
+                  </div>
+                </div>
+                <hr
+                  class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                />
+                <div
+                  class="css-1p5q5e5-MuiStack-root"
+                >
+                  <div
+                    class="labelContainer"
+                  >
+                    <div
+                      class="label"
+                    >
+                      Title
+                    </div>
+                  </div>
+                  <div
+                    class="css-1okj3ks-MuiStack-root"
+                  >
+                    <div
+                      style="margin-top: 10px;"
+                    />
+                  </div>
+                </div>
+                <hr
+                  class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                />
+                <div
+                  class="css-1p5q5e5-MuiStack-root"
+                >
+                  <div
+                    class="labelContainer"
+                  >
+                    <div
+                      class="label"
+                    >
+                      Date of Birth
+                    </div>
+                    <svg
+                      aria-hidden="true"
+                      aria-label="If you wish to change this information, please contact Customer Support"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yagxpu-MuiSvgIcon-root"
+                      data-mui-internal-clone-element="true"
+                      data-testid="ErrorOutlineOutlinedIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                      />
+                    </svg>
+                  </div>
+                  <div
+                    class="css-1okj3ks-MuiStack-root"
+                  >
+                    <div
+                      style="margin-top: 10px;"
+                    >
+                      Invalid Date
+                    </div>
+                  </div>
+                </div>
+                <hr
+                  class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                />
+                <div
+                  class="css-1p5q5e5-MuiStack-root"
+                >
+                  <div
+                    class="labelContainer"
+                  >
+                    <div
+                      class="label"
+                    >
+                      Age
+                    </div>
+                    <svg
+                      aria-hidden="true"
+                      aria-label="If you wish to change this information, please contact Customer Support"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yagxpu-MuiSvgIcon-root"
+                      data-mui-internal-clone-element="true"
+                      data-testid="ErrorOutlineOutlinedIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                      />
+                    </svg>
+                  </div>
+                  <div
+                    class="css-1okj3ks-MuiStack-root"
+                  >
+                    <div
+                      style="margin-top: 10px;"
+                    />
+                  </div>
+                </div>
+                <hr
+                  class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                />
+                <div
+                  class="css-1p5q5e5-MuiStack-root"
+                >
+                  <div
+                    class="labelContainer"
+                  >
+                    <div
+                      class="label"
+                    >
+                      Gender
+                    </div>
+                  </div>
+                  <div
+                    class="css-1okj3ks-MuiStack-root"
+                  >
+                    <div
+                      style="margin-top: 10px;"
+                    />
+                  </div>
+                </div>
+                <hr
+                  class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                />
+                <div
+                  class="css-1p5q5e5-MuiStack-root"
+                >
+                  <div
+                    class="labelContainer"
+                  >
+                    <div
+                      class="label"
+                    >
+                      SSN
+                    </div>
+                    <svg
+                      aria-hidden="true"
+                      aria-label="If you wish to change this information, please contact Customer Support"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yagxpu-MuiSvgIcon-root"
+                      data-mui-internal-clone-element="true"
+                      data-testid="ErrorOutlineOutlinedIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                      />
+                    </svg>
+                  </div>
+                  <div
+                    class="css-1okj3ks-MuiStack-root"
+                  >
+                    <div
+                      style="margin-top: 10px;"
+                    />
+                  </div>
+                </div>
+                <hr
+                  class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                />
+                <div>
+                  <h3
+                    class="MuiTypography-root MuiTypography-h3 css-1mie9p3-MuiTypography-root"
+                  >
+                    State Issued ID
+                  </h3>
+                  <div
+                    class="MuiTypography-root MuiTypography-bodyRegular css-15atyh3-MuiTypography-root"
+                  >
+                    Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID.
+                  </div>
+                  <div
+                    class="css-14w0e8k-MuiStack-root"
+                  >
+                    <div
+                      class="css-1p5q5e5-MuiStack-root"
+                    >
+                      <div
+                        class="labelContainer"
+                      >
+                        <div
+                          class="label"
+                        >
+                          Front Card
+                        </div>
+                      </div>
+                      <div
+                        class="css-1okj3ks-MuiStack-root"
+                      >
+                        <div
+                          style="margin-top: 10px;"
+                        >
+                          <div
+                            class="issuedCardContainer"
+                          >
+                            <img
+                              alt="front-id"
+                              height="175"
+                              width="267"
+                            />
+                          </div>
+                        </div>
+                        <span
+                          class="MuiTypography-root MuiTypography-bodySmallRegular css-1r97m9f-MuiTypography-root"
+                        >
+                          JPG or PNG file formats only. (File size limit is 4 MB)
+                        </span>
+                      </div>
+                    </div>
+                    <div
+                      class="css-1p5q5e5-MuiStack-root"
+                    >
+                      <div
+                        class="labelContainer"
+                      >
+                        <div
+                          class="label"
+                        >
+                          Back Card
+                        </div>
+                      </div>
+                      <div
+                        class="css-1okj3ks-MuiStack-root"
+                      >
+                        <div
+                          style="margin-top: 10px;"
+                        >
+                          <div
+                            class="issuedCardContainer"
+                          >
+                            <img
+                              alt="back-id"
+                              height="175"
+                              width="267"
+                            />
+                          </div>
+                        </div>
+                        <span
+                          class="MuiTypography-root MuiTypography-bodySmallRegular css-1r97m9f-MuiTypography-root"
+                        >
+                          JPG or PNG file formats only. (File size limit is 4 MB)
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            style="position: fixed; bottom: 16px; right: 16px;"
+          >
+            <button
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-2ak3pm-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="button"
+            >
+              Edit
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
+        />
+      </div>
+    </section>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

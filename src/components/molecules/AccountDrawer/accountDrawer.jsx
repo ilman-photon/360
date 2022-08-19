@@ -41,12 +41,7 @@ export const AccountDrawer = ({
   }));
 
   const drawerContent = () => (
-    <Box
-      sx={{ width: "100%", padding: "16px" }}
-      role="presentation"
-      // onClick={onClose}
-      // onKeyDown={onClose}
-    >
+    <Box sx={{ width: "100%", padding: "16px" }} role="presentation">
       {/* {isAccountDrawer ? ( */}
       <>
         <List>

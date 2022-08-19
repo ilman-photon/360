@@ -167,7 +167,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
         <Typography variant="h1" sx={styles.titleStyles}>
           User Registration
         </Typography>
-        {formMessage.content ? (
+        {formMessage?.content ? (
           <FormMessage
             ref={formMessageComp}
             success={formMessage.success}

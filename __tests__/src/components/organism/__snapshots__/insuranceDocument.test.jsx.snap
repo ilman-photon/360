@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SecurityQuestion Components SecurityQuestionrender 1`] = `
+exports[`InsuranceDocument Components InsuranceDocument render 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>

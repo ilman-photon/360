@@ -4,13 +4,13 @@ import InsuranceDocument from "../../../../src/components/organisms/InsuranceInf
 
 window.scrollTo = jest.fn();
 
-describe("SecurityQuestion Components", () => {
+describe("InsuranceDocument Components", () => {
   let container;
   beforeEach(() => {
     container = render(<InsuranceDocument />);
   });
 
-  it("SecurityQuestionrender", () => {
+  it("InsuranceDocument render", () => {
     expect(container).toMatchSnapshot();
   });
 

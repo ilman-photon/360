@@ -37,7 +37,7 @@ export default function PersonalInformation({
     // This is intended
   },
 }) {
-  const { handleSubmit, control, watch, reset } = useForm({
+  const { handleSubmit, control, reset } = useForm({
     defaultValues: userData, // Object.assign({}, userData),
   });
 

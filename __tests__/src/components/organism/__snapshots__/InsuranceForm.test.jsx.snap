@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SecurityQuestion Components select option render 1`] = `
+exports[`InsuranceForm Components select option render 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -449,7 +449,7 @@ Object {
                 id=":r5:"
                 readonly=""
                 type="text"
-                value="08/18/2022"
+                value="08/19/2022"
               />
             </div>
           </div>
@@ -1278,7 +1278,7 @@ Object {
               id=":r5:"
               readonly=""
               type="text"
-              value="08/18/2022"
+              value="08/19/2022"
             />
           </div>
         </div>
