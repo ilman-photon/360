@@ -5,6 +5,25 @@ import MockAdapter from "axios-mock-adapter";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import AuthPage from "../../src/pages/patient/login";
 import MfaPage from "../../src/pages/patient/mfa";
+import Cookies from "universal-cookie";
+
+jest.mock("universal-cookie", () => {
+  class MockCookies {
+    static result = {};
+    get(param) {
+      if (param === "username") return "user1@photon.com"
+
+      return MockCookies.result;
+    }
+    remove() {
+      return jest.fn();
+    }
+    set() {
+      return jest.fn();
+    }
+  }
+  return MockCookies;
+});
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint3/EPP-270.feature",
@@ -66,6 +85,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see MFA Setup screen", async () => {
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
       act(() => {
         container = render(<MfaPage />, {
           container: document.body.appendChild(element),

@@ -1,7 +1,6 @@
 import * as React from "react";
 import Cookies from "universal-cookie";
 import BaseHeader from "../../components/organisms/BaseHeader/baseHeader";
-import { Api } from "../api/api";
 import { logoutProps } from "../../utils/authetication";
 
 export async function getServerSideProps({ req }) {

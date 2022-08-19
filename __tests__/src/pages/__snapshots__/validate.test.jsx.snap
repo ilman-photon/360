@@ -49,7 +49,7 @@ Object {
             class="authComponentContainer MuiBox-root css-1h4hxqr"
           >
             <div
-              class="contanierPage MuiBox-root css-0"
+              class="containerPage MuiBox-root css-0"
             />
           </div>
           <div
@@ -121,7 +121,7 @@ Object {
           class="authComponentContainer MuiBox-root css-1h4hxqr"
         >
           <div
-            class="contanierPage MuiBox-root css-0"
+            class="containerPage MuiBox-root css-0"
           />
         </div>
         <div
@@ -207,13 +207,13 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="contanierPage MuiBox-root css-0"
+        class="containerPage MuiBox-root css-0"
       />
     </div>
   </body>,
   "container": <div>
     <div
-      class="contanierPage MuiBox-root css-0"
+      class="containerPage MuiBox-root css-0"
     />
   </div>,
   "debug": [Function],
@@ -276,13 +276,13 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="contanierPage MuiBox-root css-0"
+        class="containerPage MuiBox-root css-0"
       />
     </div>
   </body>,
   "container": <div>
     <div
-      class="contanierPage MuiBox-root css-0"
+      class="containerPage MuiBox-root css-0"
     />
   </div>,
   "debug": [Function],
@@ -345,13 +345,13 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="contanierPage MuiBox-root css-0"
+        class="containerPage MuiBox-root css-0"
       />
     </div>
   </body>,
   "container": <div>
     <div
-      class="contanierPage MuiBox-root css-0"
+      class="containerPage MuiBox-root css-0"
     />
   </div>,
   "debug": [Function],

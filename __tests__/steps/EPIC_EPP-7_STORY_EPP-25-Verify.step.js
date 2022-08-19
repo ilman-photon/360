@@ -5,12 +5,32 @@ import MockAdapter from "axios-mock-adapter";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import ForgotPasswordPage from "../../src/pages/patient/forgot-password";
 import AuthPage from "../../src/pages/patient/login";
+import Cookies from "universal-cookie";
+
+jest.mock("universal-cookie", () => {
+  class MockCookies {
+    static result = {};
+    get(param) {
+      if (param === "username") return "user1@photon.com"
+
+      return MockCookies.result;
+    }
+    remove() {
+      return jest.fn();
+    }
+    set() {
+      return jest.fn();
+    }
+  }
+  return MockCookies;
+});
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-25.feature"
 );
 
 defineFeature(feature, (test) => {
+  const mock = new MockAdapter(axios);
   test("EPIC_EPP-7 _STORY_EPP-25 - Verify user should see inline error below Email or Phone Number field if Email or Phone Number is blank", ({
     given,
     when,
@@ -25,6 +45,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user navigates to the Patient Portal application", () => {
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
       act(() => {
         container = render(<AuthPage />, {
           container: document.body.appendChild(element),

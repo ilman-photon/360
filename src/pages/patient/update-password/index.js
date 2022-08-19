@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import AuthLayout from "../../components/templates/authLayout";
+import AuthLayout from "../../../components/templates/authLayout";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import constants from "../../utils/constants";
-import { Api } from "../api/api";
-import ConfirmationForm from "../../components/organisms/ConfirmationForm/confirmationForm";
+import constants from "../../../utils/constants";
+import { Api } from "../../api/api";
+import ConfirmationForm from "../../../components/organisms/ConfirmationForm/confirmationForm";
 import { Box } from "@mui/material";
-import SetPasswordComponent from "../../components/organisms/SetPassword/setPassword";
-import globalStyles from "../../styles/Global.module.scss";
+import SetPasswordComponent from "../../../components/organisms/SetPassword/setPassword";
+import globalStyles from "../../../styles/Global.module.scss";
 
 const setUsernameFromQuery = function (route) {
   return route && route.query && route.query.username
@@ -56,7 +56,7 @@ export default function UpdatePasswordPage() {
   };
 
   return (
-    <Box className={globalStyles.contanierPage}>
+    <Box className={globalStyles.containerPage}>
       {showUpdatePassword ? (
         <SetPasswordComponent
           username={username}

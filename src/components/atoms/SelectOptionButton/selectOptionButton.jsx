@@ -1,7 +1,7 @@
 import * as React from "react";
 import FormControl from "@mui/material/FormControl";
 import { InputLabel, MenuItem, Select } from "@mui/material";
-import { ThemeProvider, styled, alpha } from "@mui/material/styles";
+import { styled, alpha } from "@mui/material/styles";
 import { colors } from "../../../styles/theme";
 
 export const CustomFormControl = styled((props) => <FormControl {...props} />)(
