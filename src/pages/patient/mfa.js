@@ -35,7 +35,6 @@ export default function MfaPage() {
   const router = useRouter();
   const [componentName, setComponentName] = React.useState("");
   const [rememberMe, setRememberMe] = React.useState(false);
-  const [mfaCode, setMfaCode] = React.useState("");
   const [successSubmit, setSuccessSubmit] = React.useState(false);
   const [securityQuestionList, setSecurityQuestionList] = React.useState([]);
   const [communicationMethod, setCommunicationMethod] = React.useState({});
@@ -46,12 +45,15 @@ export default function MfaPage() {
 
   React.useEffect(() => {
     if (Object.keys(communicationMethod).length == 0) {
-      const data = api.getCommunicationMethod(
-        cookies.get("username", { path: "/patient" })
-      );
-      data
+      const username = cookies.get("username", { path: "/patient" });
+      const postBody = {
+        username,
+      };
+      api
+        .getUserData(postBody)
         .then((response) => {
-          setCommunicationMethod(response);
+          const method = response.communicationMethod;
+          setCommunicationMethod(method);
         })
         .catch(() => {
           // This is intentional
@@ -61,9 +63,8 @@ export default function MfaPage() {
 
   function onConfirmClicked() {
     api
-      .requestCode()
-      .then((response) => {
-        setMfaCode(response);
+      .sendMfaCode()
+      .then(() => {
         setConfirm(true);
       })
       .catch(() => {
@@ -73,66 +74,79 @@ export default function MfaPage() {
   }
 
   function onBackToLoginClicked() {
+    cookies.remove("mfa", { path: "/patient" });
+    cookies.remove("username", { path: "/patient" });
     router.push("/patient/login");
   }
 
   function redirectToDashboard() {
     const hostname = window.location.origin;
     window.location.href = `${hostname}/patient/account/profile-info`;
-    //Alternative 1
-    rememberMe && cookies.set("rememberMe", rememberMe, { path: "/patient" });
-    //Alternative 2
+
     cookies.set("authorized", true, { path: "/patient" });
     cookies.remove("mfa", { path: "/patient" });
+    !rememberMe && cookies.remove("mfaAccessToken", { path: "/patient" });
   }
 
   function onSubmitClicked(inputMfaCode, callback) {
-    if (inputMfaCode === mfaCode) {
-      onShowSecurityQuestionForm();
-    } else {
-      if (submitCounter > 2) {
+    const postBody = {
+      username: cookies.get("username", { path: "/patient" }),
+      mfaCode: submitCounter > 2 ? "lock" : inputMfaCode,
+      rememberMe,
+    };
+    api
+      .submitMfaCode(postBody)
+      .then((response) => {
+        if (response.mfaAccessToken)
+          cookies.set("mfaAccessToken", response.mfaAccessToken, {
+            path: "/patient",
+          });
+        onShowSecurityQuestionForm();
+      })
+      .catch((err) => {
+        if (err.ResponseCode === 4003) {
+          callback({
+            status: "failed",
+            isEndView: true,
+            message: {
+              title: t("mfaLockTitle"),
+              description: t("mfaLockDescription"),
+            },
+          });
+        } else {
+          setSubmitCounter(submitCounter + 1);
+          callback({
+            status: "failed",
+            message: {
+              title: t("mfaFailedTitle"),
+              description: t("Please try again."),
+            },
+          });
+        }
+      });
+  }
+
+  function onResendCodeClicked(callback) {
+    let postBody = "";
+    if (requestCounter > 2) {
+      postBody = "error";
+    }
+
+    api
+      .resendMfaCode(postBody)
+      .then(() => {
+        setRequestCounter(requestCounter + 1);
+      })
+      .catch(() => {
         callback({
           status: "failed",
           isEndView: true,
           message: {
-            title: t("mfaLockTitle"),
-            description: t("mfaLockDescription"),
+            description:
+              "Code sent multiple times. Please try again after 30 minutes.",
           },
         });
-      } else {
-        setSubmitCounter(submitCounter + 1);
-        callback({
-          status: "failed",
-          message: {
-            title: t("mfaFailedTitle"),
-            description: t("Please try again."),
-          },
-        });
-      }
-    }
-  }
-
-  function onResendCodeClicked(callback) {
-    if (requestCounter > 2) {
-      callback({
-        status: "failed",
-        isEndView: true,
-        message: {
-          description:
-            "Code sent multiple times. Please try again after 30 minutes.",
-        },
       });
-    } else {
-      api
-        .requestNewCode()
-        .then((response) => {
-          setMfaCode(response);
-          setRequestCounter(requestCounter + 1);
-        })
-        .catch(() => {
-          // This is intentional
-        });
-    }
   }
 
   function onSetRememberMe(value) {

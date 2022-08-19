@@ -7,6 +7,7 @@ import { patientTypography, providerTypography } from "../../styles/theme";
 import { ThemeProvider, useMediaQuery } from "@mui/material";
 import * as React from "react";
 import BaseHeader from "../organisms/BaseHeader/baseHeader";
+import { logoutProps } from "../../utils/authetication";
 
 //Prevent html being match between server and client
 // const BaseHeader = dynamic(() => import("../organisms/BaseHeader/baseHeader"), {
@@ -48,7 +49,7 @@ export default function Layout({
           theme={isPatient ? patientTypography : providerTypography}
         >
           {/* <Suspense fallback={`Loading...`}> */}
-          <BaseHeader />
+          <BaseHeader {...logoutProps} />
           {/* </Suspense> */}
           <AccountTitleHeading title={getHeadingTitle(currentActivePage)} />
           <div className={styles.container}>

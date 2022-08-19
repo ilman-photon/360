@@ -71,31 +71,83 @@ export class Api {
     return this.forgotFeatureValidation(url, postbody, "post");
   }
 
-  getCommunicationMethod(postbody) {
-    return new Promise((resolve) => {
-      if (postbody === "9876543210") {
-        resolve({
-          phone: "(8***)***-***31",
+  getUserData(postbody) {
+    return new Promise((resolve, reject) => {
+      this.getIpAddress()
+        .then((ip) => {
+          if (postbody.username === "9876543210") {
+            resolve({
+              communicationMethod: {
+                phone: "(8***)***-***31",
+              },
+              mfaAccessToken: "12345678",
+              ResponseCode: 4000,
+              ResponseType: "success",
+              ip,
+            });
+          } else {
+            resolve({
+              communicationMethod: {
+                email: "u*******@mail.com",
+                phone: "(8***)***-***31",
+              },
+              ResponseCode: 4000,
+              ResponseType: "success",
+            });
+          }
+        })
+        .catch(() => {
+          reject();
         });
-      } else {
-        resolve({
-          email: "m********@yahoo.com",
-          phone: "(8***)***-***31",
-        });
-      }
     });
   }
 
-  requestNewCode() {
-    return Promise.resolve("4321");
+  resendMfaCode(postbody) {
+    if (postbody !== "error") {
+      return Promise.resolve({
+        ResponseCode: 4000,
+        ResponseType: "success",
+      });
+    } else {
+      return Promise.reject({
+        ResponseCode: 4001,
+        ResponseType: "failed",
+      });
+    }
   }
 
-  requestCode() {
-    return Promise.resolve("1234");
+  sendMfaCode() {
+    return Promise.resolve({
+      ResponseCode: 4000,
+      ResponseType: "success",
+    });
   }
 
-  setRemeberMe() {
-    return Promise.resolve("success");
+  submitMfaCode(postbody) {
+    if (postbody.mfaCode === "1234" || postbody.mfaCode === "4321") {
+      if (postbody.rememberMe) {
+        return Promise.resolve({
+          ResponseCode: 4000,
+          ResponseType: "success",
+          mfaAccessToken: "12345678",
+        });
+      } else {
+        return Promise.resolve({
+          ResponseCode: 4000,
+          ResponseType: "success",
+        });
+      }
+    } else if (postbody.mfaCode === "lock") {
+      return Promise.reject({
+        ResponseCode: 4003,
+        ResponseType: "failed",
+      });
+    } else {
+      return Promise.reject({
+        ResponseCode: 4002,
+        ResponseType: "failed",
+      });
+    }
   }
 
   forgotFeatureValidation(url, postbody, method, expectedCode) {
@@ -160,6 +212,19 @@ export class Api {
   submitSecurityQuestion() {
     return Promise.resolve({
       responseCode: 1000,
+    });
+  }
+
+  getIpAddress() {
+    return new Promise((resolve, reject) => {
+      axios
+        .get("https://api.ipify.org?format=json")
+        .then((response) => {
+          resolve(response.data.ip);
+        })
+        .catch((err) => {
+          reject(err);
+        });
     });
   }
 }

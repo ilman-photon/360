@@ -4,6 +4,31 @@ import { Api } from "../api/api";
 import { Login as LoginComponent } from "../../components/organisms/Login/login";
 import { useEffect } from "react";
 
+function getUserData(username, callback) {
+  const api = new Api();
+  const cookies = new Cookies();
+  const postBody = {
+    username,
+  };
+  api
+    .getUserData(postBody)
+    .then((response) => {
+      const mfaAccessToken = response.mfaAccessToken || "";
+      const mfaAccessTokenCookie = cookies.get("mfaAccessToken", {
+        path: "/patient",
+      });
+
+      if (mfaAccessToken === mfaAccessTokenCookie) {
+        callback(true);
+      } else {
+        callback(false);
+      }
+    })
+    .catch(() => {
+      callback(false);
+    });
+}
+
 const loginProps = {
   OnLoginClicked: function (postbody, _router, callback) {
     const api = new Api();
@@ -14,24 +39,18 @@ const loginProps = {
         const IdleTimeOut = response.IdleTimeOut * 1000 || 1200 * 1000;
         cookies.set("IdleTimeOut", IdleTimeOut, { path: "/patient" });
         cookies.set("username", postbody.username, { path: "/patient" });
-        //Alternative 1
-        const isRememberMe =
-          cookies.get("rememberMe", { path: "/patient" }) === "true";
-        const usernameCookie = cookies.get("username", { path: "/patient" });
-        const isNotNeedMfa =
-          isRememberMe && usernameCookie === postbody.username;
-
-        //Alternative 2
-        if (isNotNeedMfa) {
-          cookies.set("authorized", true, { path: "/patient" });
-        } else {
-          cookies.set("mfa", true, { path: "/patient" });
-        }
-        const hostname = window.location.origin;
-        window.location.href = isNotNeedMfa
-          ? `${hostname}/patient`
-          : `${hostname}/patient/mfa`;
-        callback({ status: "success" });
+        getUserData(postbody.username, (isNotNeedMfa) => {
+          if (isNotNeedMfa) {
+            cookies.set("authorized", true, { path: "/patient" });
+          } else {
+            cookies.set("mfa", true, { path: "/patient" });
+          }
+          const hostname = window.location.origin;
+          window.location.href = isNotNeedMfa
+            ? `${hostname}/patient/account/profile-info`
+            : `${hostname}/patient/mfa`;
+          callback({ status: "success" });
+        });
       })
       .catch(function (err) {
         const isLockedAccount = err.ResponseCode === 2004;

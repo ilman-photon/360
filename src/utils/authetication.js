@@ -14,6 +14,7 @@ export const logoutProps = {
       .then(function () {
         const cookies = new Cookies();
         cookies.remove("authorized", { path: "/patient" });
+        cookies.remove("username", { path: "/patient" });
         router.push("/patient/login");
       })
       .catch(() => {
