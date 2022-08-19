@@ -1,7 +1,7 @@
-import AuthLayout from "../../components/templates/authLayout";
+import AuthLayout from "../../../components/templates/authLayout";
 import Cookies from "universal-cookie";
-import { Api } from "../api/api";
-import { Login as LoginComponent } from "../../components/organisms/Login/login";
+import { Api } from "../../api/api";
+import { Login as LoginComponent } from "../../../components/organisms/Login/login";
 
 const loginProps = {
   OnLoginClicked: function (postbody, _router, callback) {
