@@ -6,7 +6,7 @@ variables:
   DOCKER_DRIVER: overlay2
   DOCKER_TLS_CERTDIR: ""
 
-image:  node:16.10.0
+image: node:16.10.0
 
 stages:
   - install
@@ -16,37 +16,36 @@ stages:
   - imagebuild
   - deploy
 
-
 install:
-    stage: install
-    tags:
+  stage: install
+  tags:
     - Frontend-runner
-    script:
-     - npm install
-    artifacts:
-       name: "artifacts"
-       untracked: true
-      #  expire_in: 1 days
-       paths:
-         - .npm/
-         - node_modules/
-         - .next/
+  script:
+    - npm install
+  artifacts:
+    name: "artifacts"
+    untracked: true
+    #  expire_in: 1 days
+    paths:
+      - .npm/
+      - node_modules/
+      - .next/
 
 test:
-   stage: test
-   tags:
+  stage: test
+  tags:
     - Frontend-runner
-   script:
-     - npm run test
-   dependencies:
-       - install
-   coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
-   artifacts:
-       name: "artifacts"
-       untracked: true
-      #  expire_in: 10 days
-       paths:
-         - coverage
+  script:
+    - npm run test
+  dependencies:
+    - install
+  coverage: /All files[^|]*\|[^|]*\s+([\d\.]+)/
+  artifacts:
+    name: "artifacts"
+    untracked: true
+    #  expire_in: 10 days
+    paths:
+      - coverage
 
 # build:
 #    stage: build
@@ -66,11 +65,11 @@ sonar:
   script:
     - /usr/bin/entrypoint.sh sonar-scanner -Dsonar.host.url=https://dev.eyecare360plus.eyecare-partners.com/pipeline/sonarqube -Dsonar.projectKey=E360-Frontend-Patient-and-Provider-Portal -Dsonar.login=$SONAR_TOKEN_PHOTON -Dsonar.sources=src -Dsonar.exclusions=coverage/**/*,**/*.stories.*sx -Dsonar.typescript.lcov.reportPaths=./coverage/lcov.info
   artifacts:
-       name: "artifacts"
-       untracked: true
-      #  expire_in: 10 days
-       paths:
-         - coverage
+    name: "artifacts"
+    untracked: true
+    #  expire_in: 10 days
+    paths:
+      - coverage
 
 imagebuild:
   stage: imagebuild
@@ -82,7 +81,6 @@ imagebuild:
   script:
     - echo "{\"credsStore\":\"ecr-login\",\"credHelpers\":{\"$AWS_ACCOUNT_ID.dkr.ecr.region.amazonaws.com\":\"ecr-login\"}}" > /kaniko/.docker/config.json
     - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $AWS_REPOSITORY:ecp-frontend-$CI_PIPELINE_IID
-
 
 deploy_to:
   stage: deploy

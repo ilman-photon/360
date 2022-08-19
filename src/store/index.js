@@ -6,6 +6,7 @@ const INITIAL_STATE = {
   loading: true,
   counter: 0,
   formMessage: DEFAULT_FORM_MESSAGE,
+  isBackToLogin: false,
 };
 
 export const indexStore = createSlice({

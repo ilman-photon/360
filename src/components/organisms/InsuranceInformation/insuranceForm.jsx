@@ -1,5 +1,5 @@
 import { Button, Fade, Grid, Stack, Typography } from "@mui/material";
-import styles from "./insuranceInformationNew.module.scss";
+import styles from "./InsuranceInformationNew.module.scss";
 import { useForm, Controller } from "react-hook-form";
 import { StyledInput } from "../../atoms/Input/input";
 import { colors } from "../../../styles/theme";
@@ -77,7 +77,7 @@ export default function InsuranceForm({
                 control={control}
                 render={({
                   field: { onChange, value },
-                  fieldState: { error },
+                  fieldState: { _error },
                 }) => {
                   return (
                     <SelectOptionButton
@@ -109,7 +109,7 @@ export default function InsuranceForm({
                 control={control}
                 render={({
                   field: { onChange, value },
-                  fieldState: { error },
+                  fieldState: { _error },
                 }) => {
                   return (
                     <SelectOptionButton
@@ -141,7 +141,7 @@ export default function InsuranceForm({
                 control={control}
                 render={({
                   field: { onChange, value },
-                  fieldState: { error },
+                  fieldState: { _error },
                 }) => {
                   return (
                     <SelectOptionButton
@@ -319,7 +319,10 @@ export default function InsuranceForm({
           <Controller
             name="relationship"
             control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
+            render={({
+              field: { onChange, value },
+              fieldState: { _error },
+            }) => {
               return (
                 <SelectOptionButton
                   sx={{
@@ -351,7 +354,9 @@ export default function InsuranceForm({
           <Grid container>
             <Grid item xs={4} pr={2}>
               <ImageUploader
-                OnUpload={() => {}}
+                OnUpload={() => {
+                  // This is intended
+                }}
                 label="Upload Front"
                 width="100%"
                 src="/login-bg.png"
@@ -360,7 +365,9 @@ export default function InsuranceForm({
             </Grid>
             <Grid item xs={4}>
               <ImageUploader
-                OnUpload={() => {}}
+                OnUpload={() => {
+                  // This is intended
+                }}
                 label="Upload Back"
                 width="100%"
                 src="/login-bg.png"

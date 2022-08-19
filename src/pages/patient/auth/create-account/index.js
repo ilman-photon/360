@@ -1,11 +1,11 @@
-import AuthLayout from "../../../components/templates/authLayout";
-import Register from "../../../components/organisms/Register/register";
+import AuthLayout from "../../../../components/templates/authLayout";
+import Register from "../../../../components/organisms/Register/register";
 import { useDispatch, useSelector } from "react-redux";
-import { resetFormMessage, setFormMessage } from "../../../store";
-import { Api } from "../../api/api";
-import RESPONSE_MESSAGES from "../../../utils/responseCodes";
+import { resetFormMessage, setFormMessage } from "../../../../store";
+import { Api } from "../../../api/api";
+import RESPONSE_MESSAGES from "../../../../utils/responseCodes";
 import { Box } from "@mui/material";
-import globalStyles from "../../../styles/Global.module.scss";
+import globalStyles from "../../../../styles/Global.module.scss";
 import Cookies from "universal-cookie";
 export default function CreateAccountPage() {
   const dispatch = useDispatch();
@@ -15,8 +15,8 @@ export default function CreateAccountPage() {
   const formMessage = useSelector((state) => state.index.formMessage);
 
   const OnRegisterClicked = async function (postbody) {
+    dispatch(resetFormMessage());
     try {
-      dispatch(resetFormMessage());
       await api.getResponse("/ecp/patient/userregistration", postbody, "post");
       cookies.set("authorized", true, { path: "/patient" });
 
@@ -31,7 +31,8 @@ export default function CreateAccountPage() {
           setFormMessage({
             success: false,
             title: errorMessage.title,
-            content: <>{errorMessage.content}</>,
+            content: errorMessage.content,
+            isBackToLogin: errorMessage.isBackToLogin,
           })
         );
       }
