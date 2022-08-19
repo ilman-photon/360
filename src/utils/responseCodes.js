@@ -1,5 +1,3 @@
-import Link from "next/link";
-
 export const MESSAGES = {
   3000: {
     title: "Success",
