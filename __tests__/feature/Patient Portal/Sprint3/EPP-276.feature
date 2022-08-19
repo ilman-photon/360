@@ -5,7 +5,7 @@ Feature: Patient Portal : Session Security Capability - Cancel the session
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario: EPIC_EPP-3_STORY_EPP-276 - Verify that  User should be prompted regarding session time out.
     Given user launch the "XXX" url	
     When user provides  "<username or phone number>" and "<password>" 
@@ -21,7 +21,7 @@ Feature: Patient Portal : Session Security Capability - Cancel the session
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario: EPIC_EPP-3_STORY_EPP-276 - Verify that User should be prompted regarding session time out with an option to ‘Stay logged in’ and ‘Log off’
     Given user launch the "XXX" url	
     When user provides  "<username or phone number>" and "<password>" 
@@ -37,7 +37,7 @@ Feature: Patient Portal : Session Security Capability - Cancel the session
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario: EPIC_EPP-3_STORY_EPP-276 - Verify that User should be logged out of the patient portal and land on Patient login page
     When user provides  "<username or phone number>" and "<password>" 
     And user clicks on "Login" button
