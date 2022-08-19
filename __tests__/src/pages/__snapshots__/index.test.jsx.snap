@@ -64,7 +64,7 @@ exports[`Home renders homepage user logout failed 1`] = `
             />
           </span>
           <img
-            alt="logo"
+            alt="Eyecare Provider name with logo"
             data-nimg="intrinsic"
             decoding="async"
             src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
@@ -241,7 +241,7 @@ exports[`Home renders homepage user logout failed 2`] = `
             />
           </span>
           <img
-            alt="logo"
+            alt="Eyecare Provider name with logo"
             data-nimg="intrinsic"
             decoding="async"
             src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
@@ -418,7 +418,7 @@ exports[`Home renders homepage user logout success 1`] = `
             />
           </span>
           <img
-            alt="logo"
+            alt="Eyecare Provider name with logo"
             data-nimg="intrinsic"
             decoding="async"
             src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"

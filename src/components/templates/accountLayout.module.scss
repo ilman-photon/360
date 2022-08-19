@@ -1,0 +1,50 @@
+.accountLayout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  padding-top: 64px;
+
+  @media (max-width: 767px) {
+    padding-top: 56px;
+  }
+
+  .container {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    padding-top: 80px;
+
+    @media (max-width: 767px) {
+      padding-top: 56px;
+    }
+
+    .sidebarContainer {
+      grid-column: span 2 / span 2;
+
+      @media (max-width: 767px) {
+        display: none;
+      }
+    }
+
+    .pageContainer {
+      grid-column: span 5 / span 5;
+      padding: 40px 24px;
+      height: calc(100vh - 64px - 80px);
+      overflow: auto;
+
+      @media (max-width: 767px) {
+        grid-column: span 7 / span 7;
+        padding: 0;
+
+        > section {
+          max-width: unset;
+        }
+      }
+
+      > section {
+        max-width: 950px;
+      }
+    }
+  }
+}

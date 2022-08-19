@@ -56,7 +56,7 @@ export default function SetPasswordPage({ username }) {
     }
   };
   return (
-    <Box className={globalStyles.contanierPage}>
+    <Box className={globalStyles.containerPage}>
       <SetPasswordComponent
         title={"Set Password"}
         subtitle={"Enter a password to setup your account."}
@@ -66,6 +66,7 @@ export default function SetPasswordPage({ username }) {
         onBackToLoginClicked={function (router) {
           router.push("/patient/login");
         }}
+        showBackToLogin={false}
       />
     </Box>
   );

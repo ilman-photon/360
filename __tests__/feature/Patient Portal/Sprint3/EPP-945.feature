@@ -26,7 +26,6 @@ Feature: Patient Portal : Profile Information/ Demographics - View - (P1)
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
   Scenario: EPIC_EPP-8_STORY_EPP-945 - Verify that  User should be able to view my profile information/ demographic details in Desktop
     Given user launch the "XXX" url	
     When user provides  "<Email or Phone Number>" and "<password>" 

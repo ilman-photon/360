@@ -123,7 +123,7 @@ export default function ValidatePage({ query }) {
   }, []);
 
   return (
-    <Box className={globalStyles.contanierPage}>
+    <Box className={globalStyles.containerPage}>
       {showExpiredForm ? (
         <ConfirmationForm {...confirmationFormData} showPostMessage={true} />
       ) : (

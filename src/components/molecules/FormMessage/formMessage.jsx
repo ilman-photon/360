@@ -1,6 +1,7 @@
 import BlockIcon from "@mui/icons-material/Block";
 import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import { Box } from "@mui/material";
+import Link from "next/link";
 import { forwardRef } from "react";
 import { colors } from "../../../styles/theme";
 
@@ -12,7 +13,7 @@ export const FormMessage = ({ ...props }, ref) => {
         sx={{
           backgroundColor: props.success ? colors.foundationGreen : "#C23934",
           width: "auto",
-          p: 2,
+          p: 1,
           borderRadius: "4px",
           display: "flex",
           ...props.sx,
@@ -51,7 +52,16 @@ export const FormMessage = ({ ...props }, ref) => {
           ) : (
             <></>
           )}
-          <div style={{ fontSize: 14 }}>{props.children}</div>
+          <div style={{ fontSize: 14 }}>
+            {props.children}
+            {props.isBackToLogin ? (
+              <Link href="/patient/login">
+                <a style={{ textDecoration: "underline" }}> Login</a>
+              </Link>
+            ) : (
+              ""
+            )}
+          </div>
         </div>
       </Box>
     </>

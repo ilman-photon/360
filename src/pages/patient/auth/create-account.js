@@ -15,26 +15,24 @@ export default function CreateAccountPage() {
   const formMessage = useSelector((state) => state.index.formMessage);
 
   const OnRegisterClicked = async function (postbody) {
+    dispatch(resetFormMessage());
     try {
-      dispatch(resetFormMessage());
       await api.getResponse("/ecp/patient/userregistration", postbody, "post");
       cookies.set("authorized", true, { path: "/patient" });
 
       const hostname = window.location.origin;
       window.location.href = `${hostname}/patient`;
     } catch (err) {
-      console.err({ err });
-      if (err.response) {
-        const errorMessage =
-          RESPONSE_MESSAGES[
-            err.response.data ? err.response.data.ResponseCode : 3500
-          ];
+      console.error({ err });
+      if (err.ResponseCode) {
+        const errorMessage = RESPONSE_MESSAGES[err.ResponseCode || 3500];
 
         dispatch(
           setFormMessage({
             success: false,
             title: errorMessage.title,
-            content: <>{errorMessage.content}</>,
+            content: errorMessage.content,
+            isBackToLogin: errorMessage.isBackToLogin,
           })
         );
       }

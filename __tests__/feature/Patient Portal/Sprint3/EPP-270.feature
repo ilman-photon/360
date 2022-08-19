@@ -60,7 +60,7 @@ Feature: Patient Portal : Security Questions - Security questions set up - View
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-270 - Verify if New user able to navigate to “Set up Security questions” screen after MFA setup through both Email,Phone number
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application

@@ -1,18 +1,36 @@
 import AuthLayout from "../../components/templates/authLayout";
 import Cookies from "universal-cookie";
 import { Api } from "../api/api";
-import Login from "../../components/organisms/Login/login";
+import { Login as LoginComponent } from "../../components/organisms/Login/login";
+import { useEffect } from "react";
 
 const loginProps = {
-  OnLoginClicked: function (postbody, router, callback) {
+  OnLoginClicked: function (postbody, _router, callback) {
     const api = new Api();
     const cookies = new Cookies();
     api
       .login(postbody)
       .then(function (response) {
+        const IdleTimeOut = response.IdleTimeOut * 1000 || 1200 * 1000;
+        cookies.set("IdleTimeOut", IdleTimeOut, { path: "/patient" });
+        cookies.set("username", postbody.username, { path: "/patient" });
+        //Alternative 1
+        const isRememberMe =
+          cookies.get("rememberMe", { path: "/patient" }) === "true";
+        const usernameCookie = cookies.get("username", { path: "/patient" });
+        const isNotNeedMfa =
+          isRememberMe && usernameCookie === postbody.username;
+
+        //Alternative 2
+        if (isNotNeedMfa) {
+          cookies.set("authorized", true, { path: "/patient" });
+        } else {
+          cookies.set("mfa", true, { path: "/patient" });
+        }
         const hostname = window.location.origin;
-        window.location.href = `${hostname}/patient`;
-        cookies.set("authorized", true, { path: "/patient" });
+        window.location.href = isNotNeedMfa
+          ? `${hostname}/patient`
+          : `${hostname}/patient/mfa`;
         callback({ status: "success" });
       })
       .catch(function (err) {
@@ -39,11 +57,22 @@ const loginProps = {
   },
 };
 
-export default function AuthPage() {
-  return <Login {...loginProps} />;
+export default function login() {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  useEffect(() => {
+    const cookies = new Cookies();
+    if (cookies.get("mfa")) {
+      cookies.remove("mfa", { path: "/patient" });
+    }
+    if (cookies.get("authorized")) {
+      cookies.remove("authorized", { path: "/patient" });
+    }
+  });
+
+  return <LoginComponent {...loginProps} />;
 }
 
-AuthPage.getLayout = function getLayout(page) {
+login.getLayout = function getLayout(page) {
   const backgroundImage = "/login-bg.png";
   return (
     <AuthLayout showMobileImage={true} imageSrc={backgroundImage}>

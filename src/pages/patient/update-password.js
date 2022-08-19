@@ -56,7 +56,7 @@ export default function UpdatePasswordPage() {
   };
 
   return (
-    <Box className={globalStyles.contanierPage}>
+    <Box className={globalStyles.containerPage}>
       {showUpdatePassword ? (
         <SetPasswordComponent
           username={username}
