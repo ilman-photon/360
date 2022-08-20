@@ -44,6 +44,7 @@ export default function BaseHeader({
 
   const [anchorElNav, setAnchorElNav] = React.useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };

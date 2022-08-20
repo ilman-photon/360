@@ -86,7 +86,7 @@ export default function ContactInformation({
 
   useEffect(() => {
     if (userData) reset(userData);
-  }, [userData]);
+  }, [userData, reset]);
 
   const handleCancel = () => {
     reset(userData);
@@ -232,7 +232,7 @@ export default function ContactInformation({
                   },
                 },
                 pattern: {
-                  value: /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i,
+                  value: Regex.isEmailCorrect,
                   message: "Incorrect email format",
                 },
               }}
