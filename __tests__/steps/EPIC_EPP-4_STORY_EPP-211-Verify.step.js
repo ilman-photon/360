@@ -25,6 +25,7 @@ defineFeature(feature, (test) => {
           ResponseType: "success",
           userType: "patient",
         };
+        mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
         test('Verify if user not able to login with valid credentials when account is locked.', ({ given, and, when, then }) => {
           given('user/admin user launch the \'XXX\' url', () => {
             expect(true).toBeTruthy()

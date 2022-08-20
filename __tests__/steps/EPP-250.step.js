@@ -5,12 +5,16 @@ import RegisterPage from "../../src/pages/patient/auth/create-account";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
 import { TRUE } from "sass";
+import MockAdapter from "axios-mock-adapter";
+import axios from "axios";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-250.feature"
 );
 
 defineFeature(feature, (test) => {
+  const mock = new MockAdapter(axios);
+  mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
   test("EPIC_EPP-2_STORY_EPP-250 - Verify if user able to view the Registration screen", () => {});
   test("Verify if user able to view the Registration screen", ({
     given,

@@ -499,7 +499,8 @@ export default function InsuranceForm({
             }}
             rules={{ required: "This field is required" }}
           />
-          <hr />
+          
+          <Divider />
 
           <Stack
             direction="row"
@@ -516,7 +517,7 @@ export default function InsuranceForm({
               onClick={handleCancel}
               variant="contained"
               className={[styles.formButton, styles.outlined].join(" ")}
-              sx={{ width: "100%" }}
+              sx={{ width: {xs:"100%", md: 'fit-content'} }}
             >
               Cancel
             </Button>
@@ -524,7 +525,7 @@ export default function InsuranceForm({
               type="submit"
               variant="contained"
               className={[styles.formButton, styles.primary].join(" ")}
-              sx={{ width: "100%" }}
+              sx={{ width: {xs:"100%", md: 'fit-content'} }}
             >
               Save
             </Button>

@@ -2,8 +2,29 @@ import { render, fireEvent, act, waitFor } from "@testing-library/react";
 import MfaPage, { getServerSideProps } from '../../../src/pages/patient/mfa';
 import Cookies from "universal-cookie";
 import "@testing-library/jest-dom";
+import MockAdapter from "axios-mock-adapter";
+import axios from "axios";
+
+jest.mock("universal-cookie", () => {
+    class MockCookies {
+      static result = {};
+      get(param) {
+        if (param === "username") return "user1@photon.com"
+
+        return MockCookies.result;
+      }
+      remove() {
+        return jest.fn();
+      }
+      set() {
+        return jest.fn();
+      }
+    }
+    return MockCookies;
+  });
 
 describe("Multi-Factor Authentication", () => {
+    const mock = new MockAdapter(axios);
     let container
     beforeEach(async () => {
         const contex = {
@@ -13,10 +34,11 @@ describe("Multi-Factor Authentication", () => {
                 }
             }
         }
+        mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
 
         getServerSideProps(contex)
         container = render(<MfaPage />)
-        await waitFor(() => container.getByText("setMFATitle"));
+        await waitFor(() => container.getByText("communicationMethodTitle"));
 
     });
 

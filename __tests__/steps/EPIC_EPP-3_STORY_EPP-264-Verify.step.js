@@ -5,6 +5,25 @@ import "@testing-library/jest-dom";
 import axios from "axios";
 import MfaPage, { getServerSideProps } from "../../src/pages/patient/mfa";
 import { act } from "react-dom/test-utils";
+import Cookies from "universal-cookie";
+
+jest.mock("universal-cookie", () => {
+  class MockCookies {
+    static result = {};
+    get(param) {
+      if (param === "username") return "user1@photon.com"
+
+      return MockCookies.result;
+    }
+    remove() {
+      return jest.fn();
+    }
+    set() {
+      return jest.fn();
+    }
+  }
+  return MockCookies;
+});
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint3/EPP-264.feature",
@@ -24,6 +43,7 @@ defineFeature(feature, (test) => {
     //expect(container.getByText(arg0)).toBeInTheDocument();
   };
   const renderMFA = async () => {
+    mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
     act(() => {
       container = render(<MfaPage />, {
         container: document.body.appendChild(element),
@@ -562,6 +582,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see set MFA screen", async () => {
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
       act(() => {
         container = render(<MfaPage />, {
           container: document.body.appendChild(element),
@@ -685,6 +706,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see set MFA screen", async () => {
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
       act(() => {
         container = render(<MfaPage />, {
           container: document.body.appendChild(element),
@@ -807,6 +829,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see set MFA screen", async () => {
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
       act(() => {
         container = render(<MfaPage />, {
           container: document.body.appendChild(element),
@@ -929,6 +952,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see set MFA screen", async () => {
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
       act(() => {
         container = render(<MfaPage />, {
           container: document.body.appendChild(element),

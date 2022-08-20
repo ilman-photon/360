@@ -12,6 +12,8 @@ import FormMessage from "../../molecules/FormMessage/formMessage";
 import { Link, Typography } from "@mui/material";
 import { PasswordValidator } from "../../molecules/PasswordValidator/passwordValidator";
 import { Regex } from "../../../utils/regex";
+import constants from "../../../utils/constants";
+import { HeadingTitle } from "../../atoms/Heading";
 
 const cardContentStyle = {
   display: "flex",
@@ -248,9 +250,11 @@ const SetPasswordComponent = ({
       sx={{ minWidth: 275, margin: 10, marginTop: 0 }}
     >
       <CardContent style={cardContentStyle}>
-        <Typography variant="h2" sx={{ marginLeft: "8px" }}>
-          {title}
-        </Typography>
+        <HeadingTitle
+          variant={constants.H2}
+          sx={{ marginLeft: "8px" }}
+          title={title}
+        />
         {subtitle ? (
           <Typography variant="h4" sx={styles.titleStyles2}>
             {subtitle}
