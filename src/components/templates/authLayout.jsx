@@ -67,9 +67,7 @@ export default function Layout({
             }}
           >
             <div className={styles.imageBannerContainer}>
-              {hasImage && (
-                <Image alt="auth-image" src={imageSrcState} layout="fill" />
-              )}
+              {hasImage && <Image alt="" src={imageSrcState} layout="fill" />}
             </div>
           </Container>
         </div>

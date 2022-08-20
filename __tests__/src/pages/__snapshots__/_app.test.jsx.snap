@@ -25,7 +25,7 @@ exports[`App renders App unchanged 1`] = `
             />
           </span>
           <img
-            alt="logo"
+            alt="Eyecare Provider name with logo"
             data-nimg="intrinsic"
             decoding="async"
             src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"

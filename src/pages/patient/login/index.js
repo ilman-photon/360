@@ -3,6 +3,7 @@ import Cookies from "universal-cookie";
 import { Api } from "../../api/api";
 import { Login as LoginComponent } from "../../../components/organisms/Login/login";
 import { useEffect } from "react";
+import { useTranslation } from "next-i18next";
 
 function getUserData(username, callback) {
   const api = new Api();
@@ -116,7 +117,11 @@ export default function login() {
 login.getLayout = function getLayout(page) {
   const backgroundImage = "/login-bg.png";
   return (
-    <AuthLayout showMobileImage={true} imageSrc={backgroundImage}>
+    <AuthLayout
+      showMobileImage={true}
+      imageSrc={backgroundImage}
+      title={"Patient Login"}
+    >
       {page}
     </AuthLayout>
   );

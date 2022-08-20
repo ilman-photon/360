@@ -52,7 +52,11 @@ export default function CreateAccountPage() {
 CreateAccountPage.getLayout = function getLayout(page) {
   const backgroundImage = "/register-bg.png";
   return (
-    <AuthLayout showMobileImage={false} imageSrc={backgroundImage}>
+    <AuthLayout
+      showMobileImage={false}
+      imageSrc={backgroundImage}
+      title={"User Registration"}
+    >
       {page}
     </AuthLayout>
   );
