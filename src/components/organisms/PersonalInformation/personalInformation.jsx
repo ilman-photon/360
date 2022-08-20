@@ -64,7 +64,6 @@ export default function PersonalInformation({
   };
 
   const onSubmit = (data) => {
-    console.log({ data }, "onSubmit");
     OnSaveClicked(data);
   };
   return (
@@ -81,7 +80,7 @@ export default function PersonalInformation({
             className={styles.editButton}
           >
             <EditOutlinedIcon sx={{ width: 20, height: 20 }} />
-            <div type="link" style={{ marginLeft: 4 }}>
+            <div type="link" style={{ marginLeft: 4, color: "#008294" }}>
               Edit
             </div>
           </Button>

@@ -6,10 +6,10 @@ Feature: Patient Portal : Profile Information/ Demographics - View - (P1)
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario: EPIC_EPP-8_STORY_EPP-945 - Verify that  User should be able to view my profile information/ demographic details in Android or IOS
-    Given user launch the "XXX" url	
-    When user provides  "<Email or Phone Number>" and "<password>" 
+    Given user launch the "XXX" url
+    When user provides  "<Email or Phone Number>" and "<password>"
     And user clicks on "Login" button
     Then user navigates to the Patient Portal application
     And user clicks on the "Account" link
@@ -26,9 +26,10 @@ Feature: Patient Portal : Profile Information/ Demographics - View - (P1)
   @Patient_Portal
   @Regression
   @Sprint3
+  @included
   Scenario: EPIC_EPP-8_STORY_EPP-945 - Verify that  User should be able to view my profile information/ demographic details in Desktop
-    Given user launch the "XXX" url	
-    When user provides  "<Email or Phone Number>" and "<password>" 
+    Given user launch the "XXX" url
+    When user provides  "<Email or Phone Number>" and "<password>"
     And user clicks on "Login" button
     Then user navigates to the Patient Portal application
     And user clicks on the "Account" link
@@ -45,10 +46,10 @@ Feature: Patient Portal : Profile Information/ Demographics - View - (P1)
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario: EPIC_EPP-8_STORY_EPP-945 - Verify that  User should be able to view my profile information/ demographic details1
-    Given user launch the "XXX" url	
-    When user provides  "<Email or Phone Number>" and "<password>" 
+    Given user launch the "XXX" url
+    When user provides  "<Email or Phone Number>" and "<password>"
     And user clicks on "Login" button
     Then user navigates to the Patient Portal application
     And user clicks on the "Account" link
@@ -67,7 +68,7 @@ Feature: Patient Portal : Profile Information/ Demographics - View - (P1)
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario: EPIC_EPP-8_STORY_EPP-945 - Verify that  User should be able to view my profile information/ demographic details2
     Given user launch the "XXX" url
     When user provides  "<Email or Phone Number>" and "<password>"
@@ -89,10 +90,10 @@ Feature: Patient Portal : Profile Information/ Demographics - View - (P1)
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario: EPIC_EPP-8_STORY_EPP-945-Verify whether the user is able to view my profile information without Internet connection
-    Given user launch the "XXX" url	
-    When user provides  "<Email or Phone Number>" and "<password>" 
+    Given user launch the "XXX" url
+    When user provides  "<Email or Phone Number>" and "<password>"
     And user clicks on "Login" button
     And user navigates to the Patient Portal application
     And user clicks on the "Account" link
@@ -110,10 +111,10 @@ Feature: Patient Portal : Profile Information/ Demographics - View - (P1)
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario: EPIC_EPP-8_STORY_EPP-945-Verify whether the page is loading with in 3 seconds
-    Given user launch the "XXX" url	
-    When user provides  "<Email or Phone Number>" and "<password>" 
+    Given user launch the "XXX" url
+    When user provides  "<Email or Phone Number>" and "<password>"
     And user clicks on "Login" button
     And user navigates to the Patient Portal application
     And user clicks on the "Account" link
@@ -129,10 +130,10 @@ Feature: Patient Portal : Profile Information/ Demographics - View - (P1)
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario: EPIC_EPP-8_STORY_EPP-945-Verify whether any error is displaying when we press F12 after navigating to the Profile information page.
-    Given user launch the "XXX" url	
-    When user provides  "<Email or Phone Number>" and "<password>" 
+    Given user launch the "XXX" url
+    When user provides  "<Email or Phone Number>" and "<password>"
     And user clicks on "Login" button
     And user navigates to the Patient Portal application
     And user clicks on the "Account" link
@@ -150,11 +151,10 @@ Feature: Patient Portal : Profile Information/ Demographics - View - (P1)
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario: EPIC_EPP-8_STORY_EPP-945-Verify whether the error message is displaying when the service is unavailable.
-    Given user user launch the "XXX" url
-    When the service is unavailable	
-    When user provides  "<Email or Phone Number>" and "<password>" 
+    Given user launch the "XXX" url
+    When user provides  "<Email or Phone Number>" and "<password>"
     And user clicks on "Login" button
     And user navigates to the Patient Portal application
     And user clicks on the "Account" link

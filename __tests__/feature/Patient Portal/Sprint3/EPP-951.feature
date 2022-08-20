@@ -19,7 +19,7 @@ Feature: Patient Portal : lnsurance Information - Edit existing insurance inform
     And user navigates to the "insurance documents"
     And clicks on" insurance documents"
     And user sees existing insurance documents
-    And select a existing insurance 
+    And select an existing insurance 
     Then the selected insurance opened
     And "click on" edit button
     Then "Edit button" is enabled user sees the edit the fields
@@ -46,13 +46,16 @@ Feature: Patient Portal : lnsurance Information - Edit existing insurance inform
     And user navigates to the "insurance documents"
     And clicks on" insurance documents"
     And user sees existing insurance documents
-    And select a existing insurance 
+    And select an existing insurance 
     Then the selected insurance opened
     And "click on" edit button
     Then "Edit button" is enabled user sees the edit the fields
     And user selelect a field "edit" the values
     And "Clicks" on the "cancel button"
-    Then Edited fields are earased
+    Then Edited fields are earased  
+    Examples:
+    |Insurance Provider| 
+    |!@ASD$123|
 
   @BDDTEST-EPP-2297
   @InsuranceInformation
@@ -78,6 +81,9 @@ Feature: Patient Portal : lnsurance Information - Edit existing insurance inform
     Then "Insurance documents" is edited 
     And "Clicks" on the "Save button"
     Then the User sees the error message “This field is required”  under the respective field.
+    Examples:
+    |Insurance Provider| 
+    |!@ASD$123|
 
   @BDDTEST-EPP-2298
   @InsuranceInformation
@@ -100,6 +106,9 @@ Feature: Patient Portal : lnsurance Information - Edit existing insurance inform
     And user selects a field "edit " the values
     And "Clicks" on the "Save button"
     Then the User sees the error message “Incorrect format”  under the respective field.
+    Examples:
+    |Insurance Provider| 
+    |!@ASD$123|
 
   @BDDTEST-EPP-2299
   @InsuranceInformation
@@ -122,6 +131,10 @@ Feature: Patient Portal : lnsurance Information - Edit existing insurance inform
     And user selects a field "edit " the values
     And Refresh the browser
     Then user sees the sees all edited fields are erased..
+    Examples:
+    |Insurance Provider| 
+    |!@ASD$123|
+
 
   @BDDTEST-EPP-2300
   @InsuranceInformation
@@ -146,6 +159,9 @@ Feature: Patient Portal : lnsurance Information - Edit existing insurance inform
     And user selects a field "edit " the values 
     And "Clicks" on the "Save" "Button"
     Then the user sees the error message  "503 Service unavailable"
+    Examples:
+    |Insurance Provider| 
+    |!@ASD$123|
 
   @BDDTEST-EPP-2301
   @InsuranceInformation
@@ -170,3 +186,6 @@ Feature: Patient Portal : lnsurance Information - Edit existing insurance inform
     And user selects a field "edit" the values
     And "Clicks" on the "Save button"
     Then "Insurance documents" is edited and is added to the list.
+    Examples:
+    |Insurance Provider| 
+    |!@ASD$123|

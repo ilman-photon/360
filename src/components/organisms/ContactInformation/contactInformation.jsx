@@ -94,7 +94,6 @@ export default function ContactInformation({
   };
 
   const onSubmit = (data) => {
-    console.log({ data });
     OnSaveClicked(data);
   };
 
@@ -112,7 +111,7 @@ export default function ContactInformation({
             className={styles.editButton}
           >
             <EditOutlinedIcon sx={{ width: 20, height: 20 }} />
-            <div type="link" style={{ marginLeft: 4 }}>
+            <div type="link" style={{ marginLeft: 4, color: "#008294" }}>
               Edit
             </div>
           </Button>

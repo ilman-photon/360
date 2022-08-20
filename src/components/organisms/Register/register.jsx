@@ -167,10 +167,10 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
       <Stack spacing={3}>
         <HeadingTitle
           variant={constants.H1}
-          className={styles.titleStyles}
+          sx={styles.titleStyles}
           title={"User Registration"}
         />
-        {formMessage.content ? (
+        {formMessage?.content ? (
           <FormMessage
             ref={formMessageComp}
             success={formMessage.success}

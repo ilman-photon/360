@@ -7,7 +7,6 @@ import FormLabel from "@mui/material/FormLabel";
 import { FormHelperText, Tooltip } from "@mui/material";
 import { colors } from "../../../styles/theme";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
-import { getLinkAria } from "../../../utils/viewUtil";
 
 export default function RowRadioButtonsGroup({
   helperText = null,
