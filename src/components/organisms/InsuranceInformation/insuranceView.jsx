@@ -242,7 +242,9 @@ export default function InsuranceView({
                               mode="primary"
                               type="submit"
                               size="small"
-                              onClick={OnEditClicked}
+                              onClick={() => {
+                                OnEditClicked(item);
+                              }}
                             >
                               Edit
                             </StyledButton>

@@ -77,6 +77,16 @@ const userSlice = createSlice({
     setUserInsuranceData: (state, { payload }) => {
       state.userInsuranceData = payload;
     },
+    setUserInsuranceDataByIndex: (state, { payload }) => {
+      state.userInsuranceData = state.userInsuranceData.map((item, idx) => {
+        console.log("compare", payload, idx);
+        if (payload.id === idx) {
+          item = payload;
+        }
+        return item;
+      });
+      // state.userInsuranceData[payload.id] = payload;
+    },
     addUserInsuranceData: (state, { payload }) => {
       state.userInsuranceData.push(payload);
     },
@@ -104,6 +114,7 @@ export const {
   setUserInsuranceData,
   addUserInsuranceData,
   removeUserInsuranceData,
+  setUserInsuranceDataByIndex,
 } = userSlice.actions;
 
 export default userSlice.reducer;
