@@ -6,7 +6,7 @@ import InsuranceForm from "./insuranceForm";
 export default function InsuranceInformationNew({
   insuranceData = {},
   isEditing = false,
-  OnSaveClicked = () => {
+  OnCreateInsurance = () => {
     // This is intended
   },
   OnCancelEditClicked = () => {
@@ -28,10 +28,10 @@ export default function InsuranceInformationNew({
             You have no insurance on file
           </Typography>
           <InsuranceForm
-            insuranceData={insuranceData}
+            formData={insuranceData}
             isEditing={isEditing}
             OnCancelEditClicked={(_) => OnCancelEditClicked(false)}
-            OnSaveClicked={OnSaveClicked}
+            OnSaveClicked={OnCreateInsurance}
           />
         </Stack>
       </AccountCard>

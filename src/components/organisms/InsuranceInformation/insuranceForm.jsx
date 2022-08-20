@@ -18,9 +18,10 @@ import SelectOptionButton from "../../atoms/SelectOptionButton/selectOptionButto
 import { ImageUploader } from "../../molecules/ImageUploader/imageUploader";
 import AutoCompleteInput from "../../molecules/AutoCompleteInput";
 import { useEffect } from "react";
+import { DEFAULT_INSURANCE_DATA } from "../../../store/user";
 
 export default function InsuranceForm({
-  insuranceData = {},
+  formData = {},
   isEditing = true,
   OnSaveClicked = () => {
     // This is intended
@@ -29,15 +30,15 @@ export default function InsuranceForm({
     // This is intended
   },
 }) {
-  const { handleSubmit, control, reset } = useForm({
-    defaultValues: insuranceData
+  const { handleSubmit, control, reset, watch } = useForm({
+    defaultValues: DEFAULT_INSURANCE_DATA,
   });
 
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   // useEffect(() => {
-  //   if (insuranceData) reset(insuranceData);
-  // }, [insuranceData]);
+  //   if (formData) reset(formData);
+  // }, [formData]);
 
   const providerList = [
     { id: 0, label: "Provider 1" },
@@ -50,21 +51,30 @@ export default function InsuranceForm({
   ];
 
   const isSubscriberOptions = [
-    { label: "Yes", value: "yes" },
-    { label: "No", value: "no" },
+    { label: "Yes", value: "Yes" },
+    { label: "No", value: "No" },
   ];
 
   const priorityOptions = [
-    { label: "Primary", value: "primary" },
-    { label: "Secondary", value: "secondary" },
-    { label: "Tertiary", value: "tertiary" },
+    { label: "Primary", value: "Primary" },
+    { label: "Secondary", value: "Secondary" },
+    { label: "Tertiary", value: "Tertiary" },
   ];
 
   const relationshipList = ["Spouse", "Father", "Mother", "Self", "Son"];
 
+  const requiredIfSubscriber = (v) => {
+    if (watchedSubscriber === "No" && !v) {
+      return "This field is required";
+    }
+  };
+
   const handleCancel = () => {
     OnCancelEditClicked();
   };
+
+  const watchedSubscriber = watch("isSubscriber", "");
+  console.log({ watchedSubscriber });
 
   const onSubmit = (data) => {
     console.log({ data }, "subb");
@@ -222,17 +232,15 @@ export default function InsuranceForm({
             control={control}
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
-                <>
-                  <RowRadioButtonsGroup
-                    error={!!error}
-                    value={value}
-                    onChange={onChange}
-                    label="Are you the Subscriber?"
-                    options={isSubscriberOptions}
-                    helperText={error ? error.message : null}
-                    tooltipContent="The person who pays for health insurance premiums. For example, if you have health insurance through your spouse’s health insurance plan, he or she is the primary subscriber."
-                  />
-                </>
+                <RowRadioButtonsGroup
+                  error={!!error}
+                  value={value}
+                  onChange={onChange}
+                  label="Are you the Subscriber?"
+                  options={isSubscriberOptions}
+                  helperText={error ? error.message : null}
+                  tooltipContent="The person who pays for health insurance premiums. For example, if you have health insurance through your spouse’s health insurance plan, he or she is the primary subscriber."
+                />
               );
             }}
             rules={{ required: "This field is required" }}
@@ -268,7 +276,11 @@ export default function InsuranceForm({
                       />
                     );
                   }}
-                  rules={{ required: "This field is required" }}
+                  rules={{
+                    validate: {
+                      requiredIfSubscriber,
+                    },
+                  }}
                 />
               </Grid>
 
@@ -294,7 +306,11 @@ export default function InsuranceForm({
                       />
                     );
                   }}
-                  rules={{ required: "This field is required" }}
+                  rules={{
+                    validate: {
+                      requiredIfSubscriber,
+                    },
+                  }}
                 />
               </Grid>
 
@@ -328,7 +344,15 @@ export default function InsuranceForm({
                       </>
                     );
                   }}
-                  rules={{ required: "This field is required" }}
+                  rules={{
+                    validate: {
+                      requiredIfSubscriber: (v) => {
+                        if (watchedSubscriber === "No" && !v) {
+                          return "This field is required";
+                        }
+                      },
+                    },
+                  }}
                 />
               </Grid>
 
@@ -388,35 +412,53 @@ export default function InsuranceForm({
             }}
           >
             <Grid item xs={12} md={4}>
-              <ImageUploader
-                OnUpload={() => {
-                  // This is intended
+              <Controller
+                name="frontCard"
+                control={control}
+                render={({
+                  field: { onChange, _value },
+                  fieldState: { _error },
+                }) => {
+                  return (
+                    <ImageUploader
+                      OnUpload={onChange}
+                      label="Upload Front"
+                      width="100%"
+                      src="/login-bg.png"
+                      alt=""
+                      helperText={
+                        isMobile
+                          ? "*JPG or PNG file formats only. (File size limit is 4 MB)"
+                          : ""
+                      }
+                    />
+                  );
                 }}
-                label="Upload Front"
-                width="100%"
-                src="/login-bg.png"
-                alt=""
-                helperText={
-                  isMobile
-                    ? "*JPG or PNG file formats only. (File size limit is 4 MB)"
-                    : ""
-                }
               />
             </Grid>
             <Grid item xs={12} md={4}>
-              <ImageUploader
-                OnUpload={() => {
-                  // This is intended
+              <Controller
+                name="backCard"
+                control={control}
+                render={({
+                  field: { onChange, _value },
+                  fieldState: { _error },
+                }) => {
+                  return (
+                    <ImageUploader
+                      OnUpload={onChange}
+                      label="Upload Back"
+                      width="100%"
+                      src="/login-bg.png"
+                      alt=""
+                      helperText={
+                        isMobile
+                          ? "*JPG or PNG file formats only. (File size limit is 4 MB)"
+                          : ""
+                      }
+                    />
+                  );
                 }}
-                label="Upload Back"
-                width="100%"
-                src="/login-bg.png"
-                alt=""
-                helperText={
-                  isMobile
-                    ? "*JPG or PNG file formats only. (File size limit is 4 MB)"
-                    : ""
-                }
               />
             </Grid>
             <Grid item xs={12} md={8} sx={{ display: "none" }}>

@@ -83,7 +83,8 @@ function App({ Component, pageProps }) {
         <></>
       )}
       <Component {...pageProps} />
-    </Provider>
+    </Provider>,
+    store
   );
 }
 export default appWithTranslation(App, nextI18nConfig);

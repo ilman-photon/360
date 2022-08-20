@@ -251,6 +251,7 @@ Object {
             class="MuiFormControl-root css-1nrlq1o-MuiFormControl-root"
             label="Are you the Subscriber?"
             options="[object Object],[object Object]"
+            value="Yes"
           >
             <label
               class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1upt16w-MuiFormLabel-root"
@@ -280,13 +281,14 @@ Object {
                 class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
               >
                 <span
-                  class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
+                  class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-81lzf2-MuiButtonBase-root-MuiRadio-root"
                 >
                   <input
+                    checked=""
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     name="row-radio-buttons-group"
                     type="radio"
-                    value="yes"
+                    value="Yes"
                   />
                   <span
                     class="css-hyxlzm"
@@ -304,7 +306,7 @@ Object {
                     </svg>
                     <svg
                       aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hhw7if-MuiSvgIcon-root"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-11zohuh-MuiSvgIcon-root"
                       data-testid="RadioButtonCheckedIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
@@ -334,7 +336,7 @@ Object {
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     name="row-radio-buttons-group"
                     type="radio"
-                    value="no"
+                    value="No"
                   />
                   <span
                     class="css-hyxlzm"
@@ -458,8 +460,8 @@ Object {
                   class="MuiFormControl-root MuiTextField-root css-p3pjcm-MuiFormControl-root-MuiTextField-root"
                 >
                   <label
-                    class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
-                    data-shrink="true"
+                    class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
+                    data-shrink="false"
                     for=":ra:"
                     id=":ra:-label"
                   >
@@ -477,11 +479,11 @@ Object {
                       id=":ra:"
                       readonly=""
                       type="text"
-                      value="08/19/2022"
+                      value=""
                     />
                   </div>
                   <p
-                    class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained MuiFormHelperText-filled css-s6t1lu-MuiFormHelperText-root"
+                    class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained css-s6t1lu-MuiFormHelperText-root"
                     id=":ra:-helper-text"
                   >
                     MM/DD/YYYY
@@ -672,6 +674,7 @@ Object {
             class="MuiFormControl-root css-1nrlq1o-MuiFormControl-root"
             label="Insurance Priority"
             options="[object Object],[object Object],[object Object]"
+            value="Primary"
           >
             <label
               class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1upt16w-MuiFormLabel-root"
@@ -701,13 +704,14 @@ Object {
                 class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
               >
                 <span
-                  class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
+                  class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-81lzf2-MuiButtonBase-root-MuiRadio-root"
                 >
                   <input
+                    checked=""
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     name="row-radio-buttons-group"
                     type="radio"
-                    value="primary"
+                    value="Primary"
                   />
                   <span
                     class="css-hyxlzm"
@@ -725,7 +729,7 @@ Object {
                     </svg>
                     <svg
                       aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hhw7if-MuiSvgIcon-root"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-11zohuh-MuiSvgIcon-root"
                       data-testid="RadioButtonCheckedIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
@@ -755,7 +759,7 @@ Object {
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     name="row-radio-buttons-group"
                     type="radio"
-                    value="secondary"
+                    value="Secondary"
                   />
                   <span
                     class="css-hyxlzm"
@@ -803,7 +807,7 @@ Object {
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     name="row-radio-buttons-group"
                     type="radio"
-                    value="tertiary"
+                    value="Tertiary"
                   />
                   <span
                     class="css-hyxlzm"
@@ -1122,6 +1126,7 @@ Object {
           class="MuiFormControl-root css-1nrlq1o-MuiFormControl-root"
           label="Are you the Subscriber?"
           options="[object Object],[object Object]"
+          value="Yes"
         >
           <label
             class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1upt16w-MuiFormLabel-root"
@@ -1151,13 +1156,14 @@ Object {
               class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
             >
               <span
-                class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
+                class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-81lzf2-MuiButtonBase-root-MuiRadio-root"
               >
                 <input
+                  checked=""
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   name="row-radio-buttons-group"
                   type="radio"
-                  value="yes"
+                  value="Yes"
                 />
                 <span
                   class="css-hyxlzm"
@@ -1175,7 +1181,7 @@ Object {
                   </svg>
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hhw7if-MuiSvgIcon-root"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-11zohuh-MuiSvgIcon-root"
                     data-testid="RadioButtonCheckedIcon"
                     focusable="false"
                     viewBox="0 0 24 24"
@@ -1205,7 +1211,7 @@ Object {
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   name="row-radio-buttons-group"
                   type="radio"
-                  value="no"
+                  value="No"
                 />
                 <span
                   class="css-hyxlzm"
@@ -1329,8 +1335,8 @@ Object {
                 class="MuiFormControl-root MuiTextField-root css-p3pjcm-MuiFormControl-root-MuiTextField-root"
               >
                 <label
-                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
-                  data-shrink="true"
+                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="false"
                   for=":ra:"
                   id=":ra:-label"
                 >
@@ -1348,11 +1354,11 @@ Object {
                     id=":ra:"
                     readonly=""
                     type="text"
-                    value="08/19/2022"
+                    value=""
                   />
                 </div>
                 <p
-                  class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained MuiFormHelperText-filled css-s6t1lu-MuiFormHelperText-root"
+                  class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained css-s6t1lu-MuiFormHelperText-root"
                   id=":ra:-helper-text"
                 >
                   MM/DD/YYYY
@@ -1543,6 +1549,7 @@ Object {
           class="MuiFormControl-root css-1nrlq1o-MuiFormControl-root"
           label="Insurance Priority"
           options="[object Object],[object Object],[object Object]"
+          value="Primary"
         >
           <label
             class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1upt16w-MuiFormLabel-root"
@@ -1572,13 +1579,14 @@ Object {
               class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
             >
               <span
-                class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
+                class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-81lzf2-MuiButtonBase-root-MuiRadio-root"
               >
                 <input
+                  checked=""
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   name="row-radio-buttons-group"
                   type="radio"
-                  value="primary"
+                  value="Primary"
                 />
                 <span
                   class="css-hyxlzm"
@@ -1596,7 +1604,7 @@ Object {
                   </svg>
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hhw7if-MuiSvgIcon-root"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-11zohuh-MuiSvgIcon-root"
                     data-testid="RadioButtonCheckedIcon"
                     focusable="false"
                     viewBox="0 0 24 24"
@@ -1626,7 +1634,7 @@ Object {
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   name="row-radio-buttons-group"
                   type="radio"
-                  value="secondary"
+                  value="Secondary"
                 />
                 <span
                   class="css-hyxlzm"
@@ -1674,7 +1682,7 @@ Object {
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   name="row-radio-buttons-group"
                   type="radio"
-                  value="tertiary"
+                  value="Tertiary"
                 />
                 <span
                   class="css-hyxlzm"

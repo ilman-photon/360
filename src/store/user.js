@@ -4,6 +4,13 @@ export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
   return fetch("/api/dummy/user").then((res) => res.json());
 });
 
+export const fetchInsurance = createAsyncThunk(
+  "user/fetchInsurance",
+  async () => {
+    return fetch("/api/dummy/insurance").then((res) => res.json());
+  }
+);
+
 const DEFAULT_USER_DATA = {
   firstName: "",
   lastName: "laste",
@@ -32,26 +39,29 @@ const DEFAULT_USER_DATA = {
   isSubscriber: "",
 };
 
-const DEFAULT_INSURANCE_DATA = {
+export const DEFAULT_INSURANCE_DATA = {
+  id: 0,
   provider: null,
   plan: null,
   memberID: "",
   groupID: "",
-  isSubscriber: "yes",
+  isSubscriber: "Yes",
   subscriberData: {
     firstName: "",
     lastName: "",
     dob: null,
     relationship: "",
   },
-  priority: "primary",
+  priority: "Primary",
+  frontCard: "",
+  backCard: "",
 };
 
 const userSlice = createSlice({
   name: "user",
   initialState: {
     userData: DEFAULT_USER_DATA,
-    userInsuranceData: DEFAULT_INSURANCE_DATA,
+    userInsuranceData: [],
     status: null,
   },
   reducers: {
@@ -66,6 +76,10 @@ const userSlice = createSlice({
     },
     setUserInsuranceData: (state, { payload }) => {
       state.userInsuranceData = payload;
+    },
+    addUserInsuranceData: (state, { payload }) => {
+      console.log({ payload });
+      state.userInsuranceData.push(payload);
     },
   },
   extraReducers: {
@@ -83,6 +97,7 @@ const userSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setUserData, setUserInsuranceData } = userSlice.actions;
+export const { setUserData, setUserInsuranceData, addUserInsuranceData } =
+  userSlice.actions;
 
 export default userSlice.reducer;
