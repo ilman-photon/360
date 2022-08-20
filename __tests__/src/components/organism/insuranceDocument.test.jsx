@@ -1,6 +1,6 @@
 import { fireEvent, render } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import InsuranceInformationNew from "../../../../src/components/organisms/InsuranceInformation/insuranceInformationnew";
+import InsuranceInformationNew from "../../../../src/components/organisms/InsuranceInformation/insuranceInformationNew";
 
 window.scrollTo = jest.fn();
 
