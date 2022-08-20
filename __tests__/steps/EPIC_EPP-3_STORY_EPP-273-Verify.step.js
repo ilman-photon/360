@@ -112,7 +112,7 @@ defineFeature(feature, (test) => {
       await waitFor(() => container.getByText("mfaTitle"))
 
       const mfaField = container.getByLabelText("mfaLabel");
-      fireEvent.change(mfaField, { target: { value: "1234" } });
+      fireEvent.change(mfaField, { target: { value: "123456" } });
 
       const primaryButton = container.getByTestId("primary-button");
       fireEvent.click(primaryButton);
@@ -271,7 +271,7 @@ defineFeature(feature, (test) => {
       await waitFor(() => container.getByText("mfaTitle"))
 
       const mfaField = container.getByLabelText("mfaLabel");
-      fireEvent.change(mfaField, { target: { value: "1234" } });
+      fireEvent.change(mfaField, { target: { value: "123456" } });
 
       const primaryButton = container.getByTestId("primary-button");
       fireEvent.click(primaryButton);
@@ -414,7 +414,7 @@ defineFeature(feature, (test) => {
       await waitFor(() => container.getByText("mfaTitle"))
 
       const mfaField = container.getByLabelText("mfaLabel");
-      fireEvent.change(mfaField, { target: { value: "1234" } });
+      fireEvent.change(mfaField, { target: { value: "123456" } });
 
       const primaryButton = container.getByTestId("primary-button");
       fireEvent.click(primaryButton);
@@ -553,7 +553,7 @@ defineFeature(feature, (test) => {
       await waitFor(() => container.getByText("mfaTitle"))
 
       const mfaField = container.getByLabelText("mfaLabel");
-      fireEvent.change(mfaField, { target: { value: "1234" } });
+      fireEvent.change(mfaField, { target: { value: "123456" } });
 
       const primaryButton = container.getByTestId("primary-button");
       fireEvent.click(primaryButton);
@@ -696,7 +696,7 @@ defineFeature(feature, (test) => {
       await waitFor(() => container.getByText("mfaTitle"))
 
       const mfaField = container.getByLabelText("mfaLabel");
-      fireEvent.change(mfaField, { target: { value: "1234" } });
+      fireEvent.change(mfaField, { target: { value: "123456" } });
 
       const primaryButton = container.getByTestId("primary-button");
       fireEvent.click(primaryButton);

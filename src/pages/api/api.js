@@ -118,7 +118,7 @@ export class Api {
   }
 
   submitMfaCode(postbody) {
-    if (postbody.mfaCode === "1234" || postbody.mfaCode === "4321") {
+    if (postbody.mfaCode === "123456" || postbody.mfaCode === "654321") {
       if (postbody.rememberMe) {
         return Promise.resolve({
           ResponseCode: 4000,

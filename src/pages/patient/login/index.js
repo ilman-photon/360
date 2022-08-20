@@ -83,6 +83,16 @@ const loginProps = {
 export default function login() {
   const api = new Api();
   const cookies = new Cookies();
+
+  const removeCookies = () => {
+    if (cookies.get("mfa")) {
+      cookies.remove("mfa", { path: "/patient" });
+    }
+    if (cookies.get("authorized")) {
+      cookies.remove("authorized", { path: "/patient" });
+    }
+  };
+
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     if (!cookies.get("ip")) {
@@ -90,14 +100,13 @@ export default function login() {
         .getIpAddress()
         .then((ip) => {
           cookies.set("ip", ip, { path: "/patient" });
+          removeCookies();
         })
-        .catch();
-    }
-    if (cookies.get("mfa")) {
-      cookies.remove("mfa", { path: "/patient" });
-    }
-    if (cookies.get("authorized")) {
-      cookies.remove("authorized", { path: "/patient" });
+        .catch(() => {
+          removeCookies();
+        });
+    } else {
+      removeCookies();
     }
   });
 
