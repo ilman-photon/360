@@ -379,184 +379,201 @@ Object {
               class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained css-1wc848c-MuiFormHelperText-root"
             />
           </div>
-          <span
-            class="MuiTypography-root MuiTypography-bodyRegular css-37jdci-MuiTypography-root"
-          >
-            Enter the subscriber’s details
-          </span>
           <div
-            class="MuiBox-root css-0"
+            class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-bz4dnt-MuiCollapse-root"
+            style="min-height: 0px;"
           >
             <div
-              class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
+              class="MuiCollapse-wrapper MuiCollapse-vertical css-smkl36-MuiCollapse-wrapper"
             >
               <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
+                class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
               >
                 <div
-                  class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
-                  maxlength="50"
-                  minlength="2"
-                  withicon="true"
+                  class="css-1lwbda4-MuiStack-root"
                 >
-                  <label
-                    class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
-                    data-shrink="false"
-                    for=":r8:"
-                    id=":r8:-label"
+                  <span
+                    class="MuiTypography-root MuiTypography-bodyRegular css-37jdci-MuiTypography-root"
                   >
-                    Subscriber First Name
-                  </label>
+                    Enter the subscriber’s details
+                  </span>
                   <div
-                    class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
-                  >
-                    <input
-                      aria-invalid="false"
-                      class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
-                      id=":r8:"
-                      placeholder=""
-                      type="text"
-                      value=""
-                    />
-                  </div>
-                </div>
-              </div>
-              <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
-              >
-                <div
-                  class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
-                  withicon="true"
-                >
-                  <label
-                    class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
-                    data-shrink="false"
-                    for=":r9:"
-                    id=":r9:-label"
-                  >
-                    Subscriber Last Name
-                  </label>
-                  <div
-                    class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
-                  >
-                    <input
-                      aria-invalid="false"
-                      class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
-                      id=":r9:"
-                      placeholder=""
-                      type="text"
-                      value=""
-                    />
-                  </div>
-                </div>
-              </div>
-              <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-fn1ww3-MuiGrid-root"
-              />
-              <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
-              >
-                <div
-                  class="MuiFormControl-root MuiTextField-root css-p3pjcm-MuiFormControl-root-MuiTextField-root"
-                >
-                  <label
-                    class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
-                    data-shrink="false"
-                    for=":ra:"
-                    id=":ra:-label"
-                  >
-                    Subscriber Date of Birth
-                  </label>
-                  <div
-                    class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
-                  >
-                    <input
-                      aria-describedby=":ra:-helper-text"
-                      aria-invalid="false"
-                      aria-label="Choose date"
-                      aria-readonly="true"
-                      class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
-                      id=":ra:"
-                      readonly=""
-                      type="text"
-                      value=""
-                    />
-                  </div>
-                  <p
-                    class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained css-s6t1lu-MuiFormHelperText-root"
-                    id=":ra:-helper-text"
-                  >
-                    MM/DD/YYYY
-                  </p>
-                </div>
-              </div>
-              <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-fn1ww3-MuiGrid-root"
-              />
-              <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-fn1ww3-MuiGrid-root"
-              />
-              <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
-              >
-                <div
-                  class="MuiFormControl-root css-14ljafm-MuiFormControl-root"
-                  style="width: 100%;"
-                >
-                  <label
-                    class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
-                    data-shrink="false"
-                    id="demo-simple-select-label"
-                  >
-                    Relationship
-                  </label>
-                  <div
-                    class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                    class="MuiBox-root css-0"
                   >
                     <div
-                      aria-expanded="false"
-                      aria-haspopup="listbox"
-                      class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
-                      role="button"
-                      tabindex="0"
+                      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
                     >
-                      <span
-                        class="notranslate"
+                      <div
+                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
                       >
-                        ​
-                      </span>
-                    </div>
-                    <input
-                      aria-hidden="true"
-                      class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
-                      tabindex="-1"
-                      value=""
-                    />
-                    <svg
-                      aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-                      data-testid="ArrowDropDownIcon"
-                      focusable="false"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="M7 10l5 5 5-5z"
+                        <div
+                          class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
+                          maxlength="50"
+                          minlength="2"
+                          withicon="true"
+                        >
+                          <label
+                            class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
+                            data-shrink="false"
+                            for=":r8:"
+                            id=":r8:-label"
+                          >
+                            Subscriber First Name
+                          </label>
+                          <div
+                            class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+                          >
+                            <input
+                              aria-invalid="false"
+                              class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
+                              id=":r8:"
+                              placeholder=""
+                              type="text"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
+                      >
+                        <div
+                          class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
+                          withicon="true"
+                        >
+                          <label
+                            class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
+                            data-shrink="false"
+                            for=":r9:"
+                            id=":r9:-label"
+                          >
+                            Subscriber Last Name
+                          </label>
+                          <div
+                            class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+                          >
+                            <input
+                              aria-invalid="false"
+                              class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
+                              id=":r9:"
+                              placeholder=""
+                              type="text"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-fn1ww3-MuiGrid-root"
                       />
-                    </svg>
+                      <div
+                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
+                      >
+                        <div
+                          class="MuiFormControl-root MuiTextField-root css-p3pjcm-MuiFormControl-root-MuiTextField-root"
+                        >
+                          <label
+                            class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
+                            data-shrink="false"
+                            for=":ra:"
+                            id=":ra:-label"
+                          >
+                            Subscriber Date of Birth
+                          </label>
+                          <div
+                            class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
+                          >
+                            <input
+                              aria-describedby=":ra:-helper-text"
+                              aria-invalid="false"
+                              aria-label="Choose date"
+                              aria-readonly="true"
+                              class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
+                              id=":ra:"
+                              readonly=""
+                              type="text"
+                              value=""
+                            />
+                          </div>
+                          <p
+                            class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained css-s6t1lu-MuiFormHelperText-root"
+                            id=":ra:-helper-text"
+                          >
+                            MM/DD/YYYY
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-fn1ww3-MuiGrid-root"
+                      />
+                      <div
+                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-fn1ww3-MuiGrid-root"
+                      />
+                      <div
+                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
+                      >
+                        <div
+                          class="MuiFormControl-root css-14ljafm-MuiFormControl-root"
+                          style="width: 100%;"
+                        >
+                          <label
+                            class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
+                            data-shrink="false"
+                            id="demo-simple-select-label"
+                          >
+                            Relationship
+                          </label>
+                          <div
+                            class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                          >
+                            <div
+                              aria-expanded="false"
+                              aria-haspopup="listbox"
+                              class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
+                              role="button"
+                              tabindex="0"
+                            >
+                              <span
+                                class="notranslate"
+                              >
+                                ​
+                              </span>
+                            </div>
+                            <input
+                              aria-hidden="true"
+                              class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+                              tabindex="-1"
+                              value=""
+                            />
+                            <svg
+                              aria-hidden="true"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
+                              data-testid="ArrowDropDownIcon"
+                              focusable="false"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M7 10l5 5 5-5z"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
                   </div>
+                  <label
+                    class="MuiFormLabel-root MuiFormLabel-colorPrimary css-yxw8bb-MuiFormLabel-root"
+                    id="row-input-disclaimer"
+                  >
+                    Optional
+                  </label>
+                  <hr
+                    class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                  />
                 </div>
               </div>
             </div>
           </div>
-          <label
-            class="MuiFormLabel-root MuiFormLabel-colorPrimary css-yxw8bb-MuiFormLabel-root"
-            id="row-input-disclaimer"
-          >
-            Optional
-          </label>
-          <hr
-            class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
-          />
           <div
             class="MuiTypography-root MuiTypography-bodyRegular css-37jdci-MuiTypography-root"
           >
@@ -852,7 +869,8 @@ Object {
           </div>
           <hr />
           <div
-            class="css-hjyf6k-MuiStack-root"
+            class="css-1lnp4wh-MuiStack-root"
+            md="[object Object]"
           >
             <button
               class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-1fu7jd5-MuiButtonBase-root-MuiButton-root"
@@ -1254,184 +1272,201 @@ Object {
             class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained css-1wc848c-MuiFormHelperText-root"
           />
         </div>
-        <span
-          class="MuiTypography-root MuiTypography-bodyRegular css-37jdci-MuiTypography-root"
-        >
-          Enter the subscriber’s details
-        </span>
         <div
-          class="MuiBox-root css-0"
+          class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-bz4dnt-MuiCollapse-root"
+          style="min-height: 0px;"
         >
           <div
-            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
+            class="MuiCollapse-wrapper MuiCollapse-vertical css-smkl36-MuiCollapse-wrapper"
           >
             <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
+              class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
             >
               <div
-                class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
-                maxlength="50"
-                minlength="2"
-                withicon="true"
+                class="css-1lwbda4-MuiStack-root"
               >
-                <label
-                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
-                  data-shrink="false"
-                  for=":r8:"
-                  id=":r8:-label"
+                <span
+                  class="MuiTypography-root MuiTypography-bodyRegular css-37jdci-MuiTypography-root"
                 >
-                  Subscriber First Name
-                </label>
+                  Enter the subscriber’s details
+                </span>
                 <div
-                  class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
-                >
-                  <input
-                    aria-invalid="false"
-                    class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
-                    id=":r8:"
-                    placeholder=""
-                    type="text"
-                    value=""
-                  />
-                </div>
-              </div>
-            </div>
-            <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
-            >
-              <div
-                class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
-                withicon="true"
-              >
-                <label
-                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
-                  data-shrink="false"
-                  for=":r9:"
-                  id=":r9:-label"
-                >
-                  Subscriber Last Name
-                </label>
-                <div
-                  class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
-                >
-                  <input
-                    aria-invalid="false"
-                    class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
-                    id=":r9:"
-                    placeholder=""
-                    type="text"
-                    value=""
-                  />
-                </div>
-              </div>
-            </div>
-            <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-fn1ww3-MuiGrid-root"
-            />
-            <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
-            >
-              <div
-                class="MuiFormControl-root MuiTextField-root css-p3pjcm-MuiFormControl-root-MuiTextField-root"
-              >
-                <label
-                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
-                  data-shrink="false"
-                  for=":ra:"
-                  id=":ra:-label"
-                >
-                  Subscriber Date of Birth
-                </label>
-                <div
-                  class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
-                >
-                  <input
-                    aria-describedby=":ra:-helper-text"
-                    aria-invalid="false"
-                    aria-label="Choose date"
-                    aria-readonly="true"
-                    class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
-                    id=":ra:"
-                    readonly=""
-                    type="text"
-                    value=""
-                  />
-                </div>
-                <p
-                  class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained css-s6t1lu-MuiFormHelperText-root"
-                  id=":ra:-helper-text"
-                >
-                  MM/DD/YYYY
-                </p>
-              </div>
-            </div>
-            <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-fn1ww3-MuiGrid-root"
-            />
-            <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-fn1ww3-MuiGrid-root"
-            />
-            <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
-            >
-              <div
-                class="MuiFormControl-root css-14ljafm-MuiFormControl-root"
-                style="width: 100%;"
-              >
-                <label
-                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
-                  data-shrink="false"
-                  id="demo-simple-select-label"
-                >
-                  Relationship
-                </label>
-                <div
-                  class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                  class="MuiBox-root css-0"
                 >
                   <div
-                    aria-expanded="false"
-                    aria-haspopup="listbox"
-                    class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
-                    role="button"
-                    tabindex="0"
+                    class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
                   >
-                    <span
-                      class="notranslate"
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
                     >
-                      ​
-                    </span>
-                  </div>
-                  <input
-                    aria-hidden="true"
-                    class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
-                    tabindex="-1"
-                    value=""
-                  />
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-                    data-testid="ArrowDropDownIcon"
-                    focusable="false"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M7 10l5 5 5-5z"
+                      <div
+                        class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
+                        maxlength="50"
+                        minlength="2"
+                        withicon="true"
+                      >
+                        <label
+                          class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
+                          data-shrink="false"
+                          for=":r8:"
+                          id=":r8:-label"
+                        >
+                          Subscriber First Name
+                        </label>
+                        <div
+                          class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+                        >
+                          <input
+                            aria-invalid="false"
+                            class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
+                            id=":r8:"
+                            placeholder=""
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
+                    >
+                      <div
+                        class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
+                        withicon="true"
+                      >
+                        <label
+                          class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
+                          data-shrink="false"
+                          for=":r9:"
+                          id=":r9:-label"
+                        >
+                          Subscriber Last Name
+                        </label>
+                        <div
+                          class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+                        >
+                          <input
+                            aria-invalid="false"
+                            class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
+                            id=":r9:"
+                            placeholder=""
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-fn1ww3-MuiGrid-root"
                     />
-                  </svg>
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
+                    >
+                      <div
+                        class="MuiFormControl-root MuiTextField-root css-p3pjcm-MuiFormControl-root-MuiTextField-root"
+                      >
+                        <label
+                          class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
+                          data-shrink="false"
+                          for=":ra:"
+                          id=":ra:-label"
+                        >
+                          Subscriber Date of Birth
+                        </label>
+                        <div
+                          class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
+                        >
+                          <input
+                            aria-describedby=":ra:-helper-text"
+                            aria-invalid="false"
+                            aria-label="Choose date"
+                            aria-readonly="true"
+                            class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
+                            id=":ra:"
+                            readonly=""
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                        <p
+                          class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained css-s6t1lu-MuiFormHelperText-root"
+                          id=":ra:-helper-text"
+                        >
+                          MM/DD/YYYY
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-fn1ww3-MuiGrid-root"
+                    />
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-fn1ww3-MuiGrid-root"
+                    />
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
+                    >
+                      <div
+                        class="MuiFormControl-root css-14ljafm-MuiFormControl-root"
+                        style="width: 100%;"
+                      >
+                        <label
+                          class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
+                          data-shrink="false"
+                          id="demo-simple-select-label"
+                        >
+                          Relationship
+                        </label>
+                        <div
+                          class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                        >
+                          <div
+                            aria-expanded="false"
+                            aria-haspopup="listbox"
+                            class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
+                            role="button"
+                            tabindex="0"
+                          >
+                            <span
+                              class="notranslate"
+                            >
+                              ​
+                            </span>
+                          </div>
+                          <input
+                            aria-hidden="true"
+                            class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+                            tabindex="-1"
+                            value=""
+                          />
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
+                            data-testid="ArrowDropDownIcon"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M7 10l5 5 5-5z"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+                <label
+                  class="MuiFormLabel-root MuiFormLabel-colorPrimary css-yxw8bb-MuiFormLabel-root"
+                  id="row-input-disclaimer"
+                >
+                  Optional
+                </label>
+                <hr
+                  class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                />
               </div>
             </div>
           </div>
         </div>
-        <label
-          class="MuiFormLabel-root MuiFormLabel-colorPrimary css-yxw8bb-MuiFormLabel-root"
-          id="row-input-disclaimer"
-        >
-          Optional
-        </label>
-        <hr
-          class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
-        />
         <div
           class="MuiTypography-root MuiTypography-bodyRegular css-37jdci-MuiTypography-root"
         >
@@ -1727,7 +1762,8 @@ Object {
         </div>
         <hr />
         <div
-          class="css-hjyf6k-MuiStack-root"
+          class="css-1lnp4wh-MuiStack-root"
+          md="[object Object]"
         >
           <button
             class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-1fu7jd5-MuiButtonBase-root-MuiButton-root"

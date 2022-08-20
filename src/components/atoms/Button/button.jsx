@@ -6,8 +6,7 @@ import Button from "@mui/material/Button";
 import {
   patientButtonPrimary,
   patientButtonSecondary,
-  providerButtonPrimary,
-  providerButtonSecondary,
+  patientButtonError,
 } from "../../../styles/theme";
 
 export const CustomButton = styled(Button)(
@@ -32,23 +31,22 @@ export const CustomButton = styled(Button)(
 `
 );
 
+const getButtonTheme = ({ isPrimary, isError }) => {
+  if (isError) return patientButtonError;
+  else if (isPrimary) return patientButtonPrimary;
+  else return patientButtonSecondary;
+};
+
 export const StyledButton = ({
-  theme = "patient" || "provider",
   mode = "primary" || "secondary",
   size = "large",
   gradient,
   ...props
 }) => {
-  const isPatient = theme === "patient";
   const isPrimary = mode === "primary";
+  const isError = mode === "error";
   const isLarge = size === "large";
-  let themeSelector = isPatient
-    ? isPrimary
-      ? patientButtonPrimary
-      : patientButtonSecondary
-    : isPrimary
-    ? providerButtonPrimary
-    : providerButtonSecondary;
+  let themeSelector = getButtonTheme({ isPrimary, isError });
   let sizeSelector = isLarge
     ? styles.customButtonLarge
     : styles.customButtonSmall;

@@ -4,8 +4,6 @@ import AccountCard from "../../molecules/AccountCard/accountCard";
 import InsuranceForm from "./insuranceForm";
 
 export default function InsuranceInformationNew({
-  insuranceData = {},
-  isEditing = false,
   OnCreateInsurance = () => {
     // This is intended
   },
@@ -28,8 +26,6 @@ export default function InsuranceInformationNew({
             You have no insurance on file
           </Typography>
           <InsuranceForm
-            formData={insuranceData}
-            isEditing={isEditing}
             OnCancelEditClicked={(_) => OnCancelEditClicked(false)}
             OnSaveClicked={OnCreateInsurance}
           />

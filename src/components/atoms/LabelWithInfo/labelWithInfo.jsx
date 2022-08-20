@@ -9,7 +9,7 @@ export const LabelWithInfo = ({
   helperText,
   children,
 }) => (
-  <Stack spacing={2}>
+  <Stack>
     <div className={styles.labelContainer}>
       <div className={styles.label}>{label}</div>
       {tooltipContent ? (

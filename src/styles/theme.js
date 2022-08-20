@@ -23,6 +23,7 @@ export const colors = {
   foundationRed: "#C23934",
   foundationBlue: "#0E1941",
   foundationGrey: "#6B7789",
+  error: "#B93632",
 };
 
 // declare module '@mui/material/styles' {
@@ -223,6 +224,15 @@ export const patientButtonSecondary = createTheme({
     background: "white",
     color: colors.teal,
     borderColor: "#205A63",
+  },
+});
+export const patientButtonError = createTheme({
+  typography: {
+    fontFamily: "Libre Franklin",
+  },
+  button: {
+    background: colors.error,
+    color: "white",
   },
 });
 export const providerButtonPrimary = createTheme({

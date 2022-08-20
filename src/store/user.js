@@ -78,8 +78,10 @@ const userSlice = createSlice({
       state.userInsuranceData = payload;
     },
     addUserInsuranceData: (state, { payload }) => {
-      console.log({ payload });
       state.userInsuranceData.push(payload);
+    },
+    removeUserInsuranceData: (state, { payload }) => {
+      state.userInsuranceData.splice(payload, 1);
     },
   },
   extraReducers: {
@@ -97,7 +99,11 @@ const userSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setUserData, setUserInsuranceData, addUserInsuranceData } =
-  userSlice.actions;
+export const {
+  setUserData,
+  setUserInsuranceData,
+  addUserInsuranceData,
+  removeUserInsuranceData,
+} = userSlice.actions;
 
 export default userSlice.reducer;

@@ -6,7 +6,7 @@ import { patientTypography, providerTypography } from "../../styles/theme";
 import { ThemeProvider, useMediaQuery } from "@mui/material";
 import * as React from "react";
 import BaseHeader from "../organisms/BaseHeader/baseHeader";
-import { Provider, useSelector, connect } from "react-redux";
+import { Provider, connect } from "react-redux";
 import store from "../../store/store";
 
 function AccountLayout({

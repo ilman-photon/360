@@ -1,117 +1,262 @@
-import { Button, Divider, Fade, Grid, Stack, Typography } from "@mui/material";
+import {
+  Accordion,
+  AccordionDetails,
+  AccordionSummary,
+  Divider,
+  Fade,
+  Grid,
+  Stack,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import LabelWithInfo from "../../atoms/LabelWithInfo/labelWithInfo";
-import styles from "./insuranceInformationNew.module.scss";
+import { StyledButton } from "../../atoms/Button/button";
 import { colors } from "../../../styles/theme";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Image from "next/image";
+import styles from "./insuranceView.module.scss";
 
 export default function InsuranceView({
-  userData = {},
+  insuranceData = [],
   isEditing = false,
   OnEditClicked = () => {
     // This is intentional
   },
+  OnRemoveClicked = () => {
+    // This is intentional
+  },
 }) {
+  const transformedData = {
+    Primary: [],
+    Secondary: [],
+    Tertiary: [],
+  };
+
+  const isDesktop = useMediaQuery("(min-width: 769px)");
+
+  insuranceData.forEach((element) => {
+    if (element.priority) {
+      if (transformedData[element.priority].push)
+        transformedData[element.priority].push(element);
+    }
+  });
+
+  console.log({ transformedData });
+
   return (
     <Fade in={!isEditing} unmountOnExit>
-      <Stack spacing={3} divider={<Divider />}>
-        <Grid container>
-          <Grid item xs={4} p={0}>
-            <LabelWithInfo label="Insurance Provider">
-              {userData.insuranceProvider}
-            </LabelWithInfo>
-          </Grid>
+      <Stack spacing={3}>
+        {Object.keys(transformedData).map((category, idx) => {
+          const items = transformedData[category];
+          if (items.length > 0) {
+            return (
+              <Accordion key={idx}>
+                <AccordionSummary
+                  expandIcon={<ExpandMoreIcon />}
+                  aria-controls="panel1a-content"
+                  sx={{ background: "#FAFAFA" }}
+                >
+                  <Stack spacing={1} direction="row" alignItems="center">
+                    <Typography variant="h4">{category}</Typography>
+                    <div className={styles.totalCategoryItemsWrapper}>
+                      {items.length}
+                    </div>
+                  </Stack>
+                </AccordionSummary>
+                <AccordionDetails>
+                  <Stack
+                    spacing={4}
+                    divider={<Divider sx={{ borderBottomWidth: 8 }} />}
+                  >
+                    {items.map((item, itemIdx) => {
+                      console.log({ item });
+                      return (
+                        <Stack key={itemIdx} spacing={3} divider={<Divider />}>
+                          <Grid container spacing={{ xs: 4 }}>
+                            <Grid item xs={12} md={4}>
+                              <LabelWithInfo label="Insurance Provider">
+                                {item.provider.label}
+                              </LabelWithInfo>
+                            </Grid>
 
-          <Grid item xs={4} p={0}>
-            <LabelWithInfo label="Plan Name">{userData.planName}</LabelWithInfo>
-          </Grid>
+                            <Grid item xs={12} md={4}>
+                              <LabelWithInfo label="Plan Name">
+                                {item.plan.label}
+                              </LabelWithInfo>
+                            </Grid>
 
-          <Grid item xs={4} p={0}>
-            <LabelWithInfo label="Subscriber ID/Member ID">
-              {userData.subscriberId}
-            </LabelWithInfo>
-          </Grid>
-        </Grid>
+                            <Grid item xs={12} md={4}>
+                              <LabelWithInfo label="Subscriber ID/Member ID">
+                                {item.memberID}
+                              </LabelWithInfo>
+                            </Grid>
+                          </Grid>
 
-        <LabelWithInfo label="Group #">{userData.groupId}</LabelWithInfo>
+                          <LabelWithInfo label="Group #">
+                            {item.groupID}
+                          </LabelWithInfo>
 
-        <div>
-          <Typography variant="h3" sx={{ pb: 2, color: colors.black }}>
-            Policy Holder
-          </Typography>
+                          <div>
+                            <Typography
+                              variant="h3"
+                              sx={{ pb: 2, color: colors.black }}
+                            >
+                              Policy Holder
+                            </Typography>
 
-          <LabelWithInfo label="Are you the  Subscriber?">
-            {userData.isSubscriber}
-          </LabelWithInfo>
-        </div>
+                            <LabelWithInfo label="Are you the  Subscriber?">
+                              {item.isSubscriber}
+                            </LabelWithInfo>
+                          </div>
 
-        <Grid container>
-          <Grid item xs={4} p={0}>
-            <LabelWithInfo label="First Name">
-              {userData.firstName}
-            </LabelWithInfo>
-          </Grid>
+                          {item.isSubscriber === "No" && item.subscriberData ? (
+                            <>
+                              <Typography variant="h4">
+                                Subscriber&apos;s details
+                              </Typography>
+                              <Grid container rowSpacing={2}>
+                                <Grid item xs={6} md={4}>
+                                  <LabelWithInfo label="First Name">
+                                    {item.subscriberData.firstName || "-"}
+                                  </LabelWithInfo>
+                                </Grid>
 
-          <Grid item xs={4} p={0}>
-            <LabelWithInfo label="Last Name">{userData.lastName}</LabelWithInfo>
-          </Grid>
+                                <Grid item xs={6} md={4}>
+                                  <LabelWithInfo label="Last Name">
+                                    {item.subscriberData.lastName || "-"}
+                                  </LabelWithInfo>
+                                </Grid>
 
-          <Grid item xs={4} p={0}>
-            <LabelWithInfo label="Date of Birth">
-              {new Date(userData.dob).toLocaleDateString()}
-            </LabelWithInfo>
-          </Grid>
-        </Grid>
+                                <Grid
+                                  item
+                                  xs={6}
+                                  sx={{ display: isDesktop ? "none" : "" }}
+                                >
+                                  <LabelWithInfo label="Relationship">
+                                    {item.subscriberData.relationship}
+                                  </LabelWithInfo>
+                                </Grid>
 
-        <LabelWithInfo label="Relationship">
-          {userData.relationship}
-        </LabelWithInfo>
+                                <Grid item xs={6} md={4}>
+                                  <LabelWithInfo label="Date of Birth">
+                                    {new Date(
+                                      item.subscriberData.dob
+                                    ).toLocaleDateString() || "-"}
+                                  </LabelWithInfo>
+                                </Grid>
+                              </Grid>
 
-        <div>
-          <Typography variant="bodyRegular" sx={{ pb: 3 }} component="div">
-            Upload images of your insurance.
-          </Typography>
+                              <Divider />
 
-          <Grid container>
-            <Grid item xs={4} p={0}>
-              <Image width="100%" height={183} src="/login-bg.png" alt="" />
-            </Grid>
+                              <LabelWithInfo
+                                xs={6}
+                                label="Relationship"
+                                sx={{ display: isDesktop ? "" : "none" }}
+                              >
+                                {item.subscriberData.relationship}
+                              </LabelWithInfo>
+                            </>
+                          ) : (
+                            ""
+                          )}
 
-            <Grid item xs={4} p={0}>
-              <Image width="100%" height={183} src="/login-bg.png" alt="" />
-            </Grid>
-          </Grid>
-        </div>
+                          <div>
+                            <Typography
+                              variant={isDesktop ? "bodyRegular" : "h3"}
+                              sx={{ pb: 3 }}
+                              component="div"
+                            >
+                              Upload images of your insurance.
+                            </Typography>
 
-        <LabelWithInfo label="Insurance Priority">
-          {userData.primary}
-        </LabelWithInfo>
+                            <Grid container spacing={2}>
+                              <Grid item xs={12} md={4} p={0}>
+                                <Typography
+                                  variant="h4"
+                                  sx={{
+                                    display: isDesktop ? "none" : "",
+                                    mb: 1,
+                                  }}
+                                >
+                                  Insurance Card - Front
+                                </Typography>
+                                <div className={styles.insuranceImageContainer}>
+                                  <Image
+                                    width={263}
+                                    height={139}
+                                    src={item.frontCard || "/transparent.png"}
+                                    alt="front"
+                                  />
+                                </div>
+                              </Grid>
 
-        <Stack
-          direction="row"
-          justifyContent="flex-end"
-          spacing={2}
-          sx={{ alignSelf: "flex-end", p: 2, mt: 2 }}
-        >
-          <Button
-            variant="text"
-            className={[styles.formButton, styles.outlined].join(" ")}
-          >
-            <DeleteOutlineIcon sx={{ width: 18, height: 18 }} />
-            Remove Insurance
-          </Button>
-          <Button
-            type="submit"
-            variant="contained"
-            className={[styles.formButton, styles.primary].join(" ")}
-            onClick={OnEditClicked}
-          >
-            Edit
-          </Button>
-        </Stack>
+                              <Grid item xs={12} md={4}>
+                                <Typography
+                                  variant="h4"
+                                  sx={{
+                                    display: isDesktop ? "none" : "",
+                                    mb: 1,
+                                  }}
+                                >
+                                  Insurance Card - Back
+                                </Typography>
+                                <div className={styles.insuranceImageContainer}>
+                                  <Image
+                                    width={263}
+                                    height={139}
+                                    src={item.backCard || "/transparent.png"}
+                                    alt="back"
+                                    className={styles.insuranceImage}
+                                  />
+                                </div>
+                              </Grid>
+                            </Grid>
+                          </div>
+
+                          <LabelWithInfo label="Insurance Priority">
+                            {item.priority}
+                          </LabelWithInfo>
+
+                          <Stack
+                            direction="row"
+                            justifyContent="flex-end"
+                            spacing={2}
+                            sx={{ alignSelf: "flex-end", p: 2, mt: 2 }}
+                          >
+                            <StyledButton
+                              mode="secondary"
+                              size="small"
+                              onClick={() => {
+                                OnRemoveClicked(idx);
+                              }}
+                            >
+                              <Stack direction="row" alignItems="center">
+                                <DeleteOutlineIcon
+                                  sx={{ width: 18, height: 18, mr: 1 }}
+                                />
+                                <span>Remove Insurance</span>
+                              </Stack>
+                            </StyledButton>
+                            <StyledButton
+                              mode="primary"
+                              type="submit"
+                              size="small"
+                              onClick={OnEditClicked}
+                            >
+                              Edit
+                            </StyledButton>
+                          </Stack>
+                        </Stack>
+                      );
+                    })}
+                  </Stack>
+                </AccordionDetails>
+              </Accordion>
+            );
+          }
+        })}
       </Stack>
-      {/* </AccountCard> */}
     </Fade>
   );
 }

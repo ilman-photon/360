@@ -1,6 +1,7 @@
 import {
   Box,
   Button,
+  Collapse,
   Divider,
   Fade,
   Grid,
@@ -17,25 +18,25 @@ import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButto
 import SelectOptionButton from "../../atoms/SelectOptionButton/selectOptionButton";
 import { ImageUploader } from "../../molecules/ImageUploader/imageUploader";
 import AutoCompleteInput from "../../molecules/AutoCompleteInput";
-import { useEffect } from "react";
 import { DEFAULT_INSURANCE_DATA } from "../../../store/user";
 
 export default function InsuranceForm({
-  formData = {},
+  _formData = {}, // later will be used for edit
   isEditing = true,
   OnSaveClicked = () => {
     // This is intended
   },
-  OnCancelEditClicked = () => {
+  OnCancelClicked = () => {
     // This is intended
   },
 }) {
-  const { handleSubmit, control, reset, watch } = useForm({
+  const { handleSubmit, control, watch } = useForm({
     defaultValues: DEFAULT_INSURANCE_DATA,
   });
 
   const isMobile = useMediaQuery("(max-width: 768px)");
 
+  // Later will be used for edit
   // useEffect(() => {
   //   if (formData) reset(formData);
   // }, [formData]);
@@ -70,11 +71,10 @@ export default function InsuranceForm({
   };
 
   const handleCancel = () => {
-    OnCancelEditClicked();
+    OnCancelClicked();
   };
 
   const watchedSubscriber = watch("isSubscriber", "");
-  console.log({ watchedSubscriber });
 
   const onSubmit = (data) => {
     console.log({ data }, "subb");
@@ -246,158 +246,158 @@ export default function InsuranceForm({
             rules={{ required: "This field is required" }}
           />
 
-          <Typography variant="bodyRegular">
-            Enter the subscriber’s details
-          </Typography>
+          <Collapse in={watchedSubscriber === "No"}>
+            <Stack spacing={3}>
+              <Typography variant="bodyRegular">
+                Enter the subscriber’s details
+              </Typography>
 
-          <Box>
-            <Grid container spacing={2}>
-              <Grid item xs={12} md={4}>
-                <Controller
-                  name="subscriberData.firstName"
-                  control={control}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => {
-                    return (
-                      <StyledInput
-                        type="text"
-                        label="Subscriber First Name"
-                        minLength={2}
-                        maxLength={50}
-                        value={value}
-                        onChange={onChange}
-                        error={!!error}
-                        size="small"
-                        variant="filled"
-                        helperText={error ? error.message : null}
-                        sx={{ width: "100%" }}
-                      />
-                    );
-                  }}
-                  rules={{
-                    validate: {
-                      requiredIfSubscriber,
-                    },
-                  }}
-                />
-              </Grid>
+              <Box>
+                <Grid container spacing={2}>
+                  <Grid item xs={12} md={4}>
+                    <Controller
+                      name="subscriberData.firstName"
+                      control={control}
+                      render={({
+                        field: { onChange, value },
+                        fieldState: { error },
+                      }) => {
+                        return (
+                          <StyledInput
+                            type="text"
+                            label="Subscriber First Name"
+                            minLength={2}
+                            maxLength={50}
+                            value={value}
+                            onChange={onChange}
+                            error={!!error}
+                            size="small"
+                            variant="filled"
+                            helperText={error ? error.message : null}
+                            sx={{ width: "100%" }}
+                          />
+                        );
+                      }}
+                      rules={{
+                        validate: {
+                          requiredIfSubscriber,
+                        },
+                      }}
+                    />
+                  </Grid>
 
-              <Grid item xs={12} md={4}>
-                <Controller
-                  name="subscriberData.lastName"
-                  control={control}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => {
-                    return (
-                      <StyledInput
-                        type="text"
-                        label="Subscriber Last Name"
-                        value={value}
-                        onChange={onChange}
-                        error={!!error}
-                        size="small"
-                        variant="filled"
-                        helperText={error ? error.message : null}
-                        sx={{ width: "100%" }}
-                      />
-                    );
-                  }}
-                  rules={{
-                    validate: {
-                      requiredIfSubscriber,
-                    },
-                  }}
-                />
-              </Grid>
+                  <Grid item xs={12} md={4}>
+                    <Controller
+                      name="subscriberData.lastName"
+                      control={control}
+                      render={({
+                        field: { onChange, value },
+                        fieldState: { error },
+                      }) => {
+                        return (
+                          <StyledInput
+                            type="text"
+                            label="Subscriber Last Name"
+                            value={value}
+                            onChange={onChange}
+                            error={!!error}
+                            size="small"
+                            variant="filled"
+                            helperText={error ? error.message : null}
+                            sx={{ width: "100%" }}
+                          />
+                        );
+                      }}
+                      rules={{
+                        validate: {
+                          requiredIfSubscriber,
+                        },
+                      }}
+                    />
+                  </Grid>
 
-              <Grid item xs={12} md={4} sx={{ display: "none" }} />
+                  <Grid item xs={12} md={4} sx={{ display: "none" }} />
 
-              <Grid
-                item
-                xs={12}
-                md={4}
-                sx={{ ".MuiFormControl-root": { width: "100%", m: 0 } }}
-              >
-                <Controller
-                  name="subscriberData.dob"
-                  control={control}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => {
-                    return (
-                      <>
-                        <StyledInput
-                          type="dob"
-                          label="Subscriber Date of Birth"
-                          value={value}
-                          onChange={onChange}
-                          error={!!error}
-                          size="small"
-                          variant="filled"
-                          helperText={error ? error.message : "MM/DD/YYYY"}
-                        />
-                      </>
-                    );
-                  }}
-                  rules={{
-                    validate: {
-                      requiredIfSubscriber: (v) => {
-                        if (watchedSubscriber === "No" && !v) {
-                          return "This field is required";
-                        }
-                      },
-                    },
-                  }}
-                />
-              </Grid>
+                  <Grid
+                    item
+                    xs={12}
+                    md={4}
+                    sx={{ ".MuiFormControl-root": { width: "100%", m: 0 } }}
+                  >
+                    <Controller
+                      name="subscriberData.dob"
+                      control={control}
+                      render={({
+                        field: { onChange, value },
+                        fieldState: { error },
+                      }) => {
+                        return (
+                          <>
+                            <StyledInput
+                              type="dob"
+                              label="Subscriber Date of Birth"
+                              value={value}
+                              onChange={onChange}
+                              error={!!error}
+                              size="small"
+                              variant="filled"
+                              helperText={error ? error.message : "MM/DD/YYYY"}
+                            />
+                          </>
+                        );
+                      }}
+                      rules={{
+                        validate: {
+                          requiredIfSubscriber
+                        },
+                      }}
+                    />
+                  </Grid>
 
-              <Grid item xs={12} md={4} sx={{ display: "none" }} />
-              <Grid item xs={12} md={4} sx={{ display: "none" }} />
+                  <Grid item xs={12} md={4} sx={{ display: "none" }} />
+                  <Grid item xs={12} md={4} sx={{ display: "none" }} />
 
-              <Grid
-                item
-                xs={12}
-                md={4}
-                sx={{ ".MuiFormControl-root": { width: "100%", m: 0 } }}
-              >
-                <Controller
-                  name="subscriberData.relationship"
-                  control={control}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { _error },
-                  }) => {
-                    return (
-                      <SelectOptionButton
-                        sx={{
-                          "& .MuiFilledInput-root": {
-                            border: "1px solid #bbb",
-                            backgroundColor: "#fff",
-                            fontSize: "16px",
-                          },
-                        }}
-                        label="Relationship"
-                        options={relationshipList}
-                        value={value}
-                        onChange={(event) => {
-                          onChange(event);
-                        }}
-                      />
-                    );
-                  }}
-                />
-              </Grid>
-            </Grid>
-          </Box>
+                  <Grid
+                    item
+                    xs={12}
+                    md={4}
+                    sx={{ ".MuiFormControl-root": { width: "100%", m: 0 } }}
+                  >
+                    <Controller
+                      name="subscriberData.relationship"
+                      control={control}
+                      render={({
+                        field: { onChange, value },
+                        fieldState: { _error },
+                      }) => {
+                        return (
+                          <SelectOptionButton
+                            sx={{
+                              "& .MuiFilledInput-root": {
+                                border: "1px solid #bbb",
+                                backgroundColor: "#fff",
+                                fontSize: "16px",
+                              },
+                            }}
+                            label="Relationship"
+                            options={relationshipList}
+                            value={value}
+                            onChange={(event) => {
+                              onChange(event);
+                            }}
+                          />
+                        );
+                      }}
+                    />
+                  </Grid>
+                </Grid>
+              </Box>
 
-          <DisclaimerText label="Optional" />
+              <DisclaimerText label="Optional" />
 
-          <Divider />
+              <Divider />
+            </Stack>
+          </Collapse>
 
           <Typography variant="bodyRegular" component="div">
             Upload images of your insurance.
@@ -505,7 +505,7 @@ export default function InsuranceForm({
             direction="row"
             justifyContent="flex-end"
             spacing={2}
-            sx={{
+            md={{
               width: { xs: "100%", md: "fit-content" },
               alignSelf: "flex-end",
               p: 2,
