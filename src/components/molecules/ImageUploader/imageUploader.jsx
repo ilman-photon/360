@@ -6,6 +6,7 @@ import Image from "next/image";
 
 export const ImageUploader = ({
   label,
+  helperText = false,
   source = "",
   OnUpload = () => {
     // This is intended
@@ -17,7 +18,6 @@ export const ImageUploader = ({
   const handleInputChange = (event) => {
     if (event.target.files && event.target.files[0]) {
       const blobFile = URL.createObjectURL(event.target.files[0]);
-      console.log(blobFile);
       setPreviewPhoto(blobFile);
       OnUpload(blobFile);
     }
@@ -34,7 +34,7 @@ export const ImageUploader = ({
         }}
       >
         <>
-          {source ? (
+          {previewPhoto || source ? (
             <Stack>
               <Image
                 src={previewPhoto || source}
@@ -73,9 +73,14 @@ export const ImageUploader = ({
           />
         </>
       </Box>
-      <Typography variant="bodySmallMedium">
-        *JPG or PNG file formats only. (File size limit is 4 MB)
-      </Typography>
+      {helperText ? (
+        <Typography variant="bodySmallMedium">
+          *JPG or PNG file formats only. (File size limit is 4 MB)
+        </Typography>
+      ) : (
+        ""
+      )}
+
       {source ? (
         <Button
           variant="text"

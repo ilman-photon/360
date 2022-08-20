@@ -15,10 +15,6 @@ import { Regex } from "../../../utils/regex";
 import constants from "../../../utils/constants";
 import { HeadingTitle } from "../../atoms/Heading";
 
-const headingStyles = {
-  marginBottom: 30,
-};
-
 const cardContentStyle = {
   display: "flex",
   flexDirection: "column",

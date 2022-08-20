@@ -2,8 +2,8 @@
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-
   padding-top: 64px;
+  overflow: hidden;
 
   @media (max-width: 767px) {
     padding-top: 56px;
@@ -13,10 +13,13 @@
     flex: 1;
     display: grid;
     grid-template-columns: repeat(7, minmax(0, 1fr));
-    padding-top: 80px;
+    margin-top: 80px;
+    position: relative;
+    top: 0;
+    transition: all 0.5s ease-in-out;
 
     @media (max-width: 767px) {
-      padding-top: 56px;
+      margin-top: 56px;
     }
 
     .sidebarContainer {
@@ -32,6 +35,7 @@
       padding: 40px 24px;
       height: calc(100vh - 64px - 80px);
       overflow: auto;
+      transition: max-height 0.5s ease-in-out;
 
       @media (max-width: 767px) {
         grid-column: span 7 / span 7;
@@ -45,6 +49,16 @@
       > section {
         max-width: 950px;
       }
+    }
+  }
+}
+
+.infoIsShowing {
+  .container {
+    top: 40px;
+
+    .pageContainer {
+      height: calc(100vh - 64px - 80px - 40px);
     }
   }
 }

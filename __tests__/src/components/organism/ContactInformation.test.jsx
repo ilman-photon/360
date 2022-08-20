@@ -54,7 +54,6 @@ zip: "03245",
     expect(container.getByText("Zip")).toBeInTheDocument();
     expect(container.getByText("Prefered Mode(s) of communication")).toBeInTheDocument();
 
-    expect(container.getByText("(706) 509-6731")).toBeInTheDocument();
     expect(container.getByText("Justus4@gmail.com")).toBeInTheDocument();
     expect(container.getByText("645 Benedict Cliff")).toBeInTheDocument();
     expect(container.getByText("Daphneeshire")).toBeInTheDocument();

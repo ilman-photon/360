@@ -3,9 +3,9 @@ import PersonalInformation from "../../../components/organisms/PersonalInformati
 import ContactInformation from "../../../components/organisms/ContactInformation/contactInformation";
 import { Box, Grid, Tab, Tabs, useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import { fetchUser, setUserData } from "../../../store/user";
-import { useRouter } from "next/router";
+import store from "../../../store/store";
 import PropTypes from "prop-types";
 
 function TabPanel(props) {
@@ -82,7 +82,7 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
           },
         }}
         value={activeTabs}
-        onChange={(evt, val) => {
+        onChange={(_evt, val) => {
           setActiveTabs(val);
         }}
         textColor="inherit"
@@ -130,6 +130,8 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
 
 ProfileInformationPage.getLayout = function getLayout(page) {
   return (
-    <AccountLayout currentActivePage={"profile-info"}>{page}</AccountLayout>
+    <Provider store={store}>
+      <AccountLayout currentActivePage={"profile-info"}>{page}</AccountLayout>
+    </Provider>
   );
 };
