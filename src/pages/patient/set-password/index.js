@@ -26,6 +26,7 @@ export default function SetPasswordPage({ username }) {
   const [showPostMessage, setShowPostMessage] = useState(false);
 
   const confirmationFormProps = {
+    pageTitle: "Password Set page",
     title: "Password Set",
     postMessage: "Password has been set",
     showPostMessage: true,
