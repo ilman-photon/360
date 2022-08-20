@@ -9,10 +9,7 @@ import {
   removeUserInsuranceData,
 } from "../../../../store/user";
 import FormMessage from "../../../../components/molecules/FormMessage/formMessage";
-import {
-  closePageMessage,
-  setPageMessage,
-} from "../../../../store";
+import { closePageMessage, setPageMessage } from "../../../../store";
 import store from "../../../../store/store";
 import {
   Accordion,

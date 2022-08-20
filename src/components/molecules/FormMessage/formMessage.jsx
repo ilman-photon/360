@@ -5,12 +5,15 @@ import Link from "next/link";
 import { forwardRef } from "react";
 import { colors } from "../../../styles/theme";
 
-export const FormMessage = ({
-  onClick = () => {
-    // This is intended
+export const FormMessage = (
+  {
+    onClick = () => {
+      // This is intended
+    },
+    ...props
   },
-  ...props
-}, ref) => {
+  ref
+) => {
   return (
     <>
       <Box

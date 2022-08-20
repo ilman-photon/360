@@ -38,6 +38,7 @@ const getButtonTheme = ({ isPrimary, isError }) => {
 };
 
 export const StyledButton = ({
+  theme = "patient",
   mode = "primary" || "secondary",
   size = "large",
   gradient,

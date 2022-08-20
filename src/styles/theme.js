@@ -235,22 +235,3 @@ export const patientButtonError = createTheme({
     color: "white",
   },
 });
-export const providerButtonPrimary = createTheme({
-  typography: {
-    fontFamily: "Roboto",
-  },
-  button: {
-    background: "darkGray",
-    color: "white",
-  },
-});
-export const providerButtonSecondary = createTheme({
-  typography: {
-    fontFamily: "Roboto",
-  },
-  button: {
-    background: "white",
-    color: "darkGray",
-    borderColor: "darkGray",
-  },
-});
