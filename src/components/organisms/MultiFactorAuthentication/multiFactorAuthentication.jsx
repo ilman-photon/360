@@ -37,7 +37,6 @@ export default function MultiFactorAuthentication({
 
   const checkMessage = (message) => {
     if (message.status === "failed") {
-      console.log(message);
       if (message.isEndView) {
         setEndView(true);
       }

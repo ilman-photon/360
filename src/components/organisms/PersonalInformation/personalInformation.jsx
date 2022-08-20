@@ -64,7 +64,6 @@ export default function PersonalInformation({
   };
 
   const onSubmit = (data) => {
-    console.log({ data }, "onSubmit");
     OnSaveClicked(data);
   };
   return (

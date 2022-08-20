@@ -94,7 +94,6 @@ export default function ContactInformation({
   };
 
   const onSubmit = (data) => {
-    console.log({ data });
     OnSaveClicked(data);
   };
 

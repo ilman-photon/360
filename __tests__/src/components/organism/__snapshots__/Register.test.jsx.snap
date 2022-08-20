@@ -364,6 +364,7 @@ Object {
                   role="radiogroup"
                 >
                   <label
+                    aria-label="Email Radio Button"
                     class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
                   >
                     <span
@@ -412,6 +413,7 @@ Object {
                     </span>
                   </label>
                   <label
+                    aria-label="Phone Radio Button"
                     class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
                   >
                     <span
@@ -460,6 +462,7 @@ Object {
                     </span>
                   </label>
                   <label
+                    aria-label="Both Radio Button"
                     class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
                   >
                     <span
@@ -916,6 +919,7 @@ Object {
                 role="radiogroup"
               >
                 <label
+                  aria-label="Email Radio Button"
                   class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
                 >
                   <span
@@ -964,6 +968,7 @@ Object {
                   </span>
                 </label>
                 <label
+                  aria-label="Phone Radio Button"
                   class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
                 >
                   <span
@@ -1012,6 +1017,7 @@ Object {
                   </span>
                 </label>
                 <label
+                  aria-label="Both Radio Button"
                   class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
                 >
                   <span

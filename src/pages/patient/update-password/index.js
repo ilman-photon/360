@@ -52,7 +52,7 @@ export default function UpdatePasswordPage() {
         setShowUpdatePassword(false);
       })
       .catch(function () {
-        console.error("Somthing went wrong");
+        console.error("Something went wrong");
       });
   };
 

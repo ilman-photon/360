@@ -39,7 +39,6 @@ export default function InsuranceForm({
   };
 
   const onSubmit = (data) => {
-    console.log({ data }, "subb");
     OnSaveClicked(data);
   };
 

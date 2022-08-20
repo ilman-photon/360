@@ -17,7 +17,6 @@ export const ImageUploader = ({
   const handleInputChange = (event) => {
     if (event.target.files && event.target.files[0]) {
       const blobFile = URL.createObjectURL(event.target.files[0]);
-      console.log(blobFile);
       setPreviewPhoto(blobFile);
       OnUpload(blobFile);
     }
