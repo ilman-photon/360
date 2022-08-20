@@ -1,4 +1,12 @@
 import { defineFeature, loadFeature } from "jest-cucumber";
+import { fireEvent, render, waitFor } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import PersonalInformation from "../../src/components/organisms/PersonalInformation/personalInformation";
+import ProfileInformationPage from "../../src/pages/patient/account/profile-info";
+import AccountSidebar from "../../src/components/molecules/AccountSidebar/accountSidebar";
+
+import { Provider } from "react-redux";
+import store from "../../src/store/store";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint3/EPP-946.feature", {
@@ -7,7 +15,40 @@ const feature = loadFeature(
 );
 
 defineFeature(feature, (test) => {
-  let container;
+    let container, screen, sidebar;
+    const mockUserdata = {
+      address: "645 Benedict Cliff",
+      age: 63,
+      city: "Daphneeshire",
+      dob: "2022-08-18T13:08:18.012Z",
+      email: "Justus4@gmail.com",
+      firstName: "Karlie",
+      gender: "Transgender",
+      issuedCardBack: "https://loremflickr.com/275/173",
+      issuedCardFront: "https://loremflickr.com/275/173",
+      lastName: "Ernser",
+      mobile: "(706) 509-6731",
+      name: "Rupert Jerde",
+      preferredCommunication: "email",
+      preferredName: "---",
+      profilePhoto: "https://loremflickr.com/640/480",
+      ssn: 3777306119,
+      state: "South Dakota",
+      title: "Mrs.",
+      zip: "03245",
+    };
+  beforeEach(() => {
+    const mockCallBack = jest.fn();
+    container = render(<PersonalInformation isEditing={false} userData={mockUserdata} 
+      OnEditClicked={mockCallBack}
+      OnCancelEditClicked={mockCallBack}
+      OnSaveClicked={mockCallBack}
+    />)
+    screen = render(<Provider store={store}><ProfileInformationPage 
+        /></Provider>);
+    sidebar = render(<AccountSidebar />);
+  })
+
   const defaultValidation = () => {
     expect(true).toBeTruthy();
   };
@@ -38,19 +79,24 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Personal Information” section$/, (arg0) => {
-            defaultValidation();
+            const profileButton = screen.getByText("Profile");
+            fireEvent.click(profileButton);
         });
 
-        then(/^user should be able to edit "(.*)" field$/, (arg0) => {
-            defaultValidation();
+        then(/^user should be able to edit "(.*)" field$/, async (arg0) => {
+            const button = await waitFor(() => screen.getAllByText("Edit")[0]);
+            fireEvent.click(button);
         });
 
         and('Photo will be Pre-populated if captured during ECP visit', () => {
@@ -66,7 +112,7 @@ defineFeature(feature, (test) => {
         });
 
         and(/^user should able to see the text “JPG or PNG file formats only. \(File size limit is (\d+) MB\)”$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         and(/^click on "(.*)" CTA$/, (arg0) => {
@@ -128,11 +174,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Personal Information” section$/, (arg0) => {
@@ -199,11 +248,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Personal Information” section$/, (arg0) => {
@@ -270,11 +322,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Personal Information” section$/, (arg0) => {
@@ -325,11 +380,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Personal Information” section$/, (arg0) => {
@@ -372,11 +430,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Personal Information” section$/, (arg0) => {
@@ -423,11 +484,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Personal Information” section$/, (arg0) => {
@@ -470,11 +534,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Personal Information” section$/, (arg0) => {
@@ -529,11 +596,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Personal Information” section$/, (arg0) => {
@@ -587,11 +657,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and('user clicks on ‘Edit’ CTA in “Personal Information” menu', () => {
@@ -638,11 +711,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         then(/^user should be able to edit "(.*)" field$/, (arg0) => {
@@ -745,11 +821,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         then(/^user should be able to edit "(.*)" field$/, (arg0) => {
@@ -819,11 +898,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         then(/^user should be able to edit "(.*)" field$/, (arg0) => {
@@ -894,11 +976,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Personal Information” section$/, (arg0) => {
@@ -949,11 +1034,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Personal Information” section$/, (arg0) => {
@@ -999,11 +1087,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Personal Information” section$/, (arg0) => {
@@ -1057,11 +1148,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Personal Information” section$/, (arg0) => {
@@ -1107,11 +1201,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Contact Information” section$/, (arg0) => {
@@ -1161,11 +1258,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Contact Information” section$/, (arg0) => {
@@ -1219,11 +1319,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Contact Information” section$/, (arg0) => {
@@ -1273,11 +1376,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Contact Information” section$/, (arg0) => {
@@ -1332,11 +1438,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and('user clicks on Edit CTA in “Contact Information” section', () => {
@@ -1394,11 +1503,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and('user clicks on Edit CTA in “Contact Information” section', () => {
@@ -1452,11 +1564,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Contact Information” section$/, (arg0) => {
@@ -1510,11 +1625,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Contact Information” section$/, (arg0) => {
@@ -1568,11 +1686,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Contact Information” section$/, (arg0) => {
@@ -1626,11 +1747,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Contact Information” section$/, (arg0) => {
@@ -1684,11 +1808,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Contact Information” section$/, (arg0) => {
@@ -1742,11 +1869,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Contact Information” section$/, (arg0) => {
@@ -1801,11 +1931,14 @@ defineFeature(feature, (test) => {
         });
 
         and('user clicks on “Profile Information” menu', () => {
-            defaultValidation();
+            expect(sidebar.getByText("Profile Information")).toBeInTheDocument();
+            const sidebarButton = sidebar.getByText("Profile Information");
+            fireEvent.click(sidebarButton);
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Contact Information” section$/, (arg0) => {
@@ -1858,8 +1991,9 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Contact Information” section$/, (arg0) => {
@@ -1908,8 +2042,9 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Contact Information” section$/, (arg0) => {
@@ -1966,8 +2101,9 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        then('Section names to be displayed - “Personal Information”, “Contact Information”', () => {
-            defaultValidation();
+        then('Section names to be displayed - “Personal Information”, “Contact Information”', async () => {
+            await waitFor(() => screen.getByText("Profile"));
+            await waitFor(() => screen.getByText("Contact"));
         });
 
         and(/^user clicks on "(.*)" CTA in “Contact Information” section$/, (arg0) => {

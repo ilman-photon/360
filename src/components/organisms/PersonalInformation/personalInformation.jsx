@@ -41,8 +41,6 @@ export default function PersonalInformation({
     defaultValues: userData, // Object.assign({}, userData),
   });
 
-  console.log({ userData }, "PersonalInformation");
-
   const isDesktop = useMediaQuery("(min-width: 769px)");
   const tooltipContentDefault =
     "If you wish to change this information, please contact Customer Support";

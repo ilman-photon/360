@@ -6,27 +6,27 @@ window.scrollTo = jest.fn();
 
 describe("PersonalInformation Components", () => {
   let container;
-    const mockUserdata = {
-        address: "645 Benedict Cliff",
-age: 63,
-city: "Daphneeshire",
-dob: "2022-08-18T13:08:18.012Z",
-email: "Justus4@gmail.com",
-firstName: "Karlie",
-gender: "Transgender",
-issuedCardBack: "https://loremflickr.com/275/173",
-issuedCardFront: "https://loremflickr.com/275/173",
-lastName: "Ernser",
-mobile: "(706) 509-6731",
-name: "Rupert Jerde",
-preferredCommunication: "email",
-preferredName: "---",
-profilePhoto: "https://loremflickr.com/640/480",
-ssn: 3777306119,
-state: "South Dakota",
-title: "Mrs.",
-zip: "03245",
-    };
+  const mockUserdata = {
+    address: "645 Benedict Cliff",
+    age: 63,
+    city: "Daphneeshire",
+    dob: "2022-08-18T13:08:18.012Z",
+    email: "Justus4@gmail.com",
+    firstName: "Karlie",
+    gender: "Transgender",
+    issuedCardBack: "https://loremflickr.com/275/173",
+    issuedCardFront: "https://loremflickr.com/275/173",
+    lastName: "Ernser",
+    mobile: "(706) 509-6731",
+    name: "Rupert Jerde",
+    preferredCommunication: "email",
+    preferredName: "---",
+    profilePhoto: "https://loremflickr.com/640/480",
+    ssn: 3777306119,
+    state: "South Dakota",
+    title: "Mrs.",
+    zip: "03245",
+  };
 
   beforeEach(async () => {
     const mockCallBack = jest.fn();
@@ -95,35 +95,33 @@ zip: "03245",
     expect(field1).toBeDisabled();
 
     expect(container.getAllByRole("button", { name: "Change File" })[0]).toBeVisible();
+    fireEvent.click(container.getAllByRole("button", { name: "Change File" })[0])
 });
 
 
 test("is cancel button clicked", async () => {
   container.rerender(<PersonalInformation isEditing={true} userData={mockUserdata} />);
 
-        const field = container.getByLabelText("Age")
-        expect(field.value).toEqual("63");
-        fireEvent.change(field, { target: { value: 45 } });
-        expect(field.value).toEqual("45");
-    const cancelButton = container.getByRole("button", { name: "Cancel" });
-    fireEvent.click(cancelButton);
-
-    expect(field.value).toEqual("63");
+  const field = container.getByLabelText("Age")
+  expect(field.value).toEqual("63");
+  fireEvent.change(field, { target: { value: 45 } });
+  expect(field.value).toEqual("45");
+  const cancelButton = container.getByRole("button", { name: "Cancel" });
+  fireEvent.click(cancelButton);
+  expect(field.value).toEqual("63");
 });
 
 test("is save button clicked", () => {
   container.rerender(<PersonalInformation isEditing={true} userData={mockUserdata} />);
+  const field = container.getByLabelText("Age")
+  expect(field.value).toEqual("63");
+  fireEvent.change(field, { target: { value: 45 } });
+  expect(field.value).toEqual("45");
 
-        const field = container.getByLabelText("Age")
-        expect(field.value).toEqual("63");
-        fireEvent.change(field, { target: { value: 45 } });
-        expect(field.value).toEqual("45");
+  const saveButton = container.getByRole("button", { name: "Save" });
+  fireEvent.click(saveButton);
 
-    const saveButton = container.getByRole("button", { name: "Save" });
-    fireEvent.click(saveButton);
-
-
-    expect(field.value).toEqual("45");
+  expect(field.value).toEqual("45");
 });
 
 })
