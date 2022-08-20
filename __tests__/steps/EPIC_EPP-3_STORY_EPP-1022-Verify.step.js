@@ -12,6 +12,16 @@ const feature = loadFeature(
 );
 
 defineFeature(feature, (test) => {
+    const renderMFA = async () => {
+        act(() => {
+          container = render(<MfaPage />, {
+            container: document.body.appendChild(element),
+            legacyRoot: true,
+          });
+        });
+        await waitFor(() => container.getByText(/communicationMethodTitle/i));
+        expect(container).toMatchSnapshot();
+      };
     let container
     beforeEach(async () => {
         const contex = {
@@ -21,22 +31,32 @@ defineFeature(feature, (test) => {
                 }
             }
         }
-
+    
         getServerSideProps(contex)
         container = render(<MfaPage />)
         await waitFor(() => container.getByText("setMFATitle"));
-
+    
     });
     test('EPIC_EPP-3_STORY_EPP-1022-Existing-Verify user should be able to login from device that was set up with "Remember me" option selected, without being asked for MFA using registered mail-id', ({  }) => {
+        let container, login;
+        const mock = new MockAdapter(axios);
+        const element = document.createElement("div");
         test('"EPIC_EPP-3_STORY_EPP-1022-Existing-Verify user should be able to login from device that was set up with "Remember me" option selected, without being asked for MFA using registered mail-id"', ({ given, and, when, then }) => {
             let container, login;
             const mock = new MockAdapter(axios);
             const element = document.createElement("div");
-            given(/^user launch the "(.*)" url$/, (arg0) => {
-                expect(true).toBeTruthy()
+            given(/^user launch the "(.*)" url$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and('user navigates to the Patient Portal application', () => {
+            and('user navigates to the Patient Portal application', async () => {
                 const expectedResult = {
                     ResponseCode: 2001,
                     ResponseType: "failure",
@@ -45,7 +65,7 @@ defineFeature(feature, (test) => {
                   mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
             });
     
-            when(/^user lands onto "(.*)" screen$/, (arg0) => {
+            when(/^user lands onto "(.*)" screen$/, async (arg0) => {
                 act(() => {
                     container = render(<MfaPage />, {
                       container: document.body.appendChild(element),
@@ -56,43 +76,64 @@ defineFeature(feature, (test) => {
                   expect("formTitle").toEqual(title.textContent);
             });
     
-            then(/^user see (.*) and (.*) fields that was MFA was set up$/, (arg0, arg1) => {
-                expect(true).toBeTruthy()
+            then(/^user see (.*) and (.*) fields that was MFA was set up$/, async (arg0, arg1) => {
+                act(() => {
+                    container = render(<MfaPage />, {
+                      container: document.body.appendChild(element),
+                      legacyRoot: true,
+                    });
+                  });
+                  await waitFor(() => container.getByText(/communicationMethodTitle/i));
+                  expect(container).toMatchSnapshot();
             });
     
-            and(/^user should fill valid (.*) field with the email$/, (arg0) => {
+            and(/^user should fill valid (.*) field with the email$/, async (arg0) => {
                 const inputFieldError = container.getByLabelText();
                 expect(true).toBeTruthy()
             });
     
-            and(/^user should fill valid (.*) field$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user should fill valid (.*) field$/, async (arg0) => {
+                act(() => {
+                    container = render(<MfaPage />, {
+                      container: document.body.appendChild(element),
+                      legacyRoot: true,
+                    });
+                  });
+                  await waitFor(() => container.getByText(/communicationMethodTitle/i));
+                  expect(container).toMatchSnapshot();
             });
     
-            and(/^user should see the "(.*)" option has been selected that Remember me has exipred$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user should see the "(.*)" option has been selected that Remember me has exipred$/, async (arg0) => {
+                act(() => {
+                    container = render(<MfaPage />, {
+                      container: document.body.appendChild(element),
+                      legacyRoot: true,
+                    });
+                  });
+                  await waitFor(() => container.getByText(/communicationMethodTitle/i));
+                  expect(container).toMatchSnapshot();
             });
     
-            when(/^user clicks on "(.*)" button$/, (arg0) => {
+            when(/^user clicks on "(.*)" button$/, async (arg0) => {
                 const confirmButton = container.getByRole("button", { name: /Confirm/i });
                 fireEvent.click(confirmButton)
                 const title = container.getByText("setMFATitle");
                 expect("setMFATitle").toEqual(title.textContent);
             });
     
-            then(/^user should see "(.*)" screen with all of component$/, (arg0) => {
+            then(/^user should see "(.*)" screen with all of component$/, async (arg0) => {
                 const title = container.getByText("setMFATitle");
                 expect("setMFATitle").toEqual(title.textContent);
                     });
             
-                    and(/^user should see (.*) field$/, (arg0) => {
+                    and(/^user should see (.*) field$/, async (arg0) => {
                         const submissionMessage = container.getByTestId("mfaCode");
                         expect("mfaLabel").toEqual(
                         submissionMessage.placeHolder
                         )
             });
     
-            and(/^user should see checkbox section "(.*)"$/, (arg0) => {
+            and(/^user should see checkbox section "(.*)"$/, async (arg0) => {
                 async () => {
                     const confirmButton = container.getByRole("button", { name: /confrimBtn/i });
                     fireEvent.click(confirmButton)
@@ -109,7 +150,7 @@ defineFeature(feature, (test) => {
                 }
             });
     
-            and(/^user should see description of check box written as "(.*)"$/, (arg0) => {
+            and(/^user should see description of check box written as "(.*)"$/, async (arg0) => {
                 act(() => {
                     container = render(<MfaPage />, {
                       container: document.body.appendChild(element),
@@ -120,11 +161,18 @@ defineFeature(feature, (test) => {
                   expect("mfaTitle").toEqual(title.textContent);
             });
     
-            and(/^user should see "(.*)" & "(.*)" button$/, (arg0, arg1) => {
-                expect(true).toBeTruthy()
+            and(/^user should see "(.*)" & "(.*)" button$/, async (arg0, arg1) => {
+                act(() => {
+                    container = render(<MfaPage />, {
+                      container: document.body.appendChild(element),
+                      legacyRoot: true,
+                    });
+                  });
+                  await waitFor(() => container.getByText(/communicationMethodTitle/i));
+                  expect(container).toMatchSnapshot();
             });
     
-            when(/^user clicks on "(.*)" button$/, (arg0) => {
+            when(/^user clicks on "(.*)" button$/, async (arg0) => {
                 const confirmButton = container.getByRole("button", { name: /confrimBtn/i });
                 fireEvent.click(confirmButton)
                 const resendCodeButton = container.getByRole("button", { name: /resendCodeBtn/i });
@@ -133,20 +181,34 @@ defineFeature(feature, (test) => {
                 expect("mfaTitle").toEqual(title.textContent);
             });
     
-            then('user receives an email/text message with the code to the email and mobile number', () => {
-                expect(true).toBeTruthy()
+            then('user receives an email/text message with the code to the email and mobile number', async () => {
+                act(() => {
+                    container = render(<MfaPage />, {
+                      container: document.body.appendChild(element),
+                      legacyRoot: true,
+                    });
+                  });
+                  await waitFor(() => container.getByText(/communicationMethodTitle/i));
+                  expect(container).toMatchSnapshot();
             });
     
-            and(/^user should see (.*) field$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user should see (.*) field$/, async (arg0) => {
+                act(() => {
+                    container = render(<MfaPage />, {
+                      container: document.body.appendChild(element),
+                      legacyRoot: true,
+                    });
+                  });
+                  await waitFor(() => container.getByText(/communicationMethodTitle/i));
+                  expect(container).toMatchSnapshot();
             });
     
-            and(/^user fill (.*) field with valid code$/, (arg0) => {
+            and(/^user fill (.*) field with valid code$/, async (arg0) => {
                     const error = container.getByText("rememberMeLabel");
                         expect("rememberMeLabel").toEqual(error.textContent);
             });
     
-            when(/^user click on "(.*)" button$/, (arg0) => {
+            when(/^user click on "(.*)" button$/, async (arg0) => {
                 async () => {
                     const confirmButton = container.getByRole("button", { name: /confrimBtn/i });
                     fireEvent.click(confirmButton)
@@ -166,7 +228,7 @@ defineFeature(feature, (test) => {
                 }
             });
     
-            then(/^user should see the following message "(.*)"$/, (arg0) => {
+            then(/^user should see the following message "(.*)"$/, async (arg0) => {
                 const errorMessage = container.getByLabelText("mfaDescription");
                 expect("mfaDescription").toEqual(
                     errorMessage.textContent
@@ -176,248 +238,647 @@ defineFeature(feature, (test) => {
     });
    
     test('EPIC_EPP-3_STORY_EPP-1022-Existing-Verify user should be able to login from device without being asked for MFA using registered mail-id within 3 seconds', ({  }) => {
-
-    
+        let container, login;
+        const mock = new MockAdapter(axios);
+        const element = document.createElement("div");
         test('"EPIC_EPP-3_STORY_EPP-1022-Existing-Verify user should be able to login from device without being asked for MFA using registered mail-id within 3 seconds"', ({ given, and, when, then }) => {
-            given(/^user launch the "(.*)" url$/, (arg0) => {
-                expect(true).toBeTruthy()
+            given(/^user launch the "(.*)" url$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and('user navigates to the Patient Portal application', () => {
-                expect(true).toBeTruthy()
+            and('user navigates to the Patient Portal application', async () => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            when(/^user lands onto "(.*)" screen$/, (arg0) => {
-                expect(true).toBeTruthy()
+            when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            then(/^user see (.*) and (.*) fields that was MFA was set up$/, (arg0, arg1) => {
-                expect(true).toBeTruthy()
+            then(/^user see (.*) and (.*) fields that was MFA was set up$/, async (arg0, arg1) => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user should fill valid (.*) field with the email$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user should fill valid (.*) field with the email$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user should fill valid (.*) field$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user should fill valid (.*) field$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user should see the "(.*)" option has been selected that Remember me has exipred$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user should see the "(.*)" option has been selected that Remember me has exipred$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            when(/^user clicks on "(.*)" button$/, (arg0) => {
-                expect(true).toBeTruthy()
+            when(/^user clicks on "(.*)" button$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            then(/^user should see "(.*)" screen with all of component$/, (arg0) => {
-                expect(true).toBeTruthy()
+            then(/^user should see "(.*)" screen with all of component$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user should see (.*) field$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user should see (.*) field$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user should see checkbox section "(.*)"$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user should see checkbox section "(.*)"$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user should see description of check box written as "(.*)"$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user should see description of check box written as "(.*)"$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user should see "(.*)" & "(.*)" button$/, (arg0, arg1) => {
-                expect(true).toBeTruthy()
+            and(/^user should see "(.*)" & "(.*)" button$/, async (arg0, arg1) => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            when(/^user clicks on "(.*)" button$/, (arg0) => {
-                expect(true).toBeTruthy()
+            when(/^user clicks on "(.*)" button$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            then('user receives an email/text message with the code to the email and mobile number', () => {
-                expect(true).toBeTruthy()
+            then('user receives an email/text message with the code to the email and mobile number', async () => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user should see (.*) field$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user should see (.*) field$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user fill (.*) field with valid code$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user fill (.*) field with valid code$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            when(/^user click on "(.*)" button$/, (arg0) => {
-                expect(true).toBeTruthy()
+            when(/^user click on "(.*)" button$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            then(/^user should see the page loads within "(.*)"$/, (arg0) => {
-                expect(true).toBeTruthy()
+            then(/^user should see the page loads within "(.*)"$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user should see the following message "(.*)"$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user should see the following message "(.*)"$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
         });
     });
    
     test("EPIC_EPP-3_STORY_EPP-1022-Negative-Existing-Verify user should user should see the error message when the service is unavailable when user logs in from device without being asked for MFA using registered registered mail-id", ({  }) => {
+        let container, login;
+        const mock = new MockAdapter(axios);
+        const element = document.createElement("div");
         test('"EPIC_EPP-3_STORY_EPP-1022-Negative-Existing-Verify user should user should see the error message when the service is unavailable when user logs in from device without being asked for MFA using registered registered mail-id"', ({ given, and, when, then }) => {
-            given(/^user launch the "(.*)" url$/, (arg0) => {
-                expect(true).toBeTruthy()
+            given(/^user launch the "(.*)" url$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and('user navigates to the Patient Portal application', () => {
-                expect(true).toBeTruthy()
+            and('user navigates to the Patient Portal application', async () => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            when(/^user lands onto "(.*)" screen$/, (arg0) => {
-                expect(true).toBeTruthy()
+            when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            then(/^user see (.*) and (.*) fields that was MFA was set up$/, (arg0, arg1) => {
-                expect(true).toBeTruthy()
+            then(/^user see (.*) and (.*) fields that was MFA was set up$/, async (arg0, arg1) => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user should fill valid (.*) field with the email$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user should fill valid (.*) field with the email$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user should fill valid (.*) field$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user should fill valid (.*) field$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user should see the "(.*)" option has been selected that Remember me has exipred$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user should see the "(.*)" option has been selected that Remember me has exipred$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            when(/^user clicks on "(.*)" button$/, (arg0) => {
-                expect(true).toBeTruthy()
+            when(/^user clicks on "(.*)" button$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            then(/^user should see "(.*)" screen with all of component$/, (arg0) => {
-                expect(true).toBeTruthy()
+            then(/^user should see "(.*)" screen with all of component$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user should see (.*) field$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user should see (.*) field$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user should see checkbox section "(.*)"$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user should see checkbox section "(.*)"$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user should see description of check box written as "(.*)"$/, (arg0) => {
+            and(/^user should see description of check box written as "(.*)"$/, async (arg0) => {
     
             });
     
-            and(/^user should see "(.*)" & "(.*)" button$/, (arg0, arg1) => {
-                expect(true).toBeTruthy()
+            and(/^user should see "(.*)" & "(.*)" button$/, async (arg0, arg1) => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            when(/^user clicks on "(.*)" button$/, (arg0) => {
-                expect(true).toBeTruthy()
+            when(/^user clicks on "(.*)" button$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            then('user receives an email/text message with the code to the email and mobile number', () => {
-                expect(true).toBeTruthy()
+            then('user receives an email/text message with the code to the email and mobile number', async () => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user should see (.*) field$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user should see (.*) field$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user fill (.*) field with valid code$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user fill (.*) field with valid code$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            when(/^user click on "(.*)" button$/, (arg0) => {
-                expect(true).toBeTruthy()
+            when(/^user click on "(.*)" button$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            then('user should see the appropriate error message', () => {
-                expect(true).toBeTruthy()
+            then('user should see the appropriate error message', async () => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
         });
          
     });
     
     test('EPIC_EPP-3_STORY_EPP-1022-Negative-Existing-Verify user should user should see the error message when the internet service is unavailable when user logs in from device using registered mail-id', ({  }) => {
+        let container, login;
+        const mock = new MockAdapter(axios);
+        const element = document.createElement("div");
         test('"EPIC_EPP-3_STORY_EPP-1022-Existing-Verify user should be able to login from device that was set up with "Remember me" option selected, without being asked for MFA using registered mail-id"', ({ given, and, when, then }) => {
-            given(/^user launch the "(.*)" url$/, (arg0) => {
-                expect(true).toBeTruthy()
+            given(/^user launch the "(.*)" url$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and('user navigates to the Patient Portal application', () => {
-                expect(true).toBeTruthy()
+            and('user navigates to the Patient Portal application', async () => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            when(/^user lands onto "(.*)" screen$/, (arg0) => {
-                expect(true).toBeTruthy()
+            when(/^user lands onto "(.*)" screen$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            then(/^user see (.*) and (.*) fields that was MFA was set up$/, (arg0, arg1) => {
-                expect(true).toBeTruthy()
+            then(/^user see (.*) and (.*) fields that was MFA was set up$/, async (arg0, arg1) => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user should fill valid (.*) field with the email$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user should fill valid (.*) field with the email$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user should fill valid (.*) field$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user should fill valid (.*) field$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user should see the "(.*)" option has been selected that Remember me has exipred$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user should see the "(.*)" option has been selected that Remember me has exipred$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            when(/^user clicks on "(.*)" button$/, (arg0) => {
-                expect(true).toBeTruthy()
+            when(/^user clicks on "(.*)" button$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            then(/^user should see "(.*)" screen with all of component$/, (arg0) => {
-                expect(true).toBeTruthy()
+            then(/^user should see "(.*)" screen with all of component$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user should see (.*) field$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user should see (.*) field$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user should see checkbox section "(.*)"$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user should see checkbox section "(.*)"$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user should see description of check box written as "(.*)"$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user should see description of check box written as "(.*)"$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user should see "(.*)" & "(.*)" button$/, (arg0, arg1) => {
+            and(/^user should see "(.*)" & "(.*)" button$/, async (arg0, arg1) => {
     
             });
     
-            when(/^user clicks on "(.*)" button$/, (arg0) => {
-                expect(true).toBeTruthy()
+            when(/^user clicks on "(.*)" button$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            then('user receives an email/text message with the code to the email and mobile number', () => {
-                expect(true).toBeTruthy()
+            then('user receives an email/text message with the code to the email and mobile number', async () => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user should see (.*) field$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user should see (.*) field$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            and(/^user fill (.*) field with valid code$/, (arg0) => {
-                expect(true).toBeTruthy()
+            and(/^user fill (.*) field with valid code$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            when(/^user click on "(.*)" button$/, (arg0) => {
-                expect(true).toBeTruthy()
+            when(/^user click on "(.*)" button$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
-            then(/^user should see the following message "(.*)"$/, (arg0) => {
-                expect(true).toBeTruthy()
+            then(/^user should see the following message "(.*)"$/, async (arg0) => {
+             act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
             });
     
             
@@ -434,6 +895,216 @@ defineFeature(feature, (test) => {
         expect(true).toBeTruthy()
     });
     test('EPIC_EPP-3_STORY_EPP-1022-Negative -Existing-Verify user should user should see the error message when the internet service is unavailable when user logs in from device without being asked for MFA using registered phone number', ({  }) => {
-        expect(true).toBeTruthy()
+        
+    });
+    test('"EPIC_EPP-3_STORY_EPP-1022-Negative -Existing-Verify user should user should see the error message when the internet service is unavailable when user logs in from device without being asked for MFA using registered phone number"', ({ given, and, when, then }) => {
+        given(/^user launch the "(.*)" url$/, async () => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
+        });
+
+        and('user navigates to the Patient Portal application', async () => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
+        });
+
+        when(/^user lands onto "(.*)" screen$/, async () => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
+        });
+
+        then(/^user see (.*) and (.*) fields that was MFA was set up$/, async (arg0, arg1) => {
+               act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
+        });
+
+        and(/^user should fill valid (.*) field with the Phone Number$/, async () => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
+        });
+
+        and(/^user should fill valid (.*) field$/, async () => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
+        });
+
+        and(/^user should see the "(.*)" option has been selected that Remember me has exipred$/, async () => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
+        });
+
+        when(/^user clicks on "(.*)" button$/, async () => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
+        });
+
+        then(/^user should see "(.*)" screen with all of component$/, async () => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
+        });
+
+        and(/^user should see (.*) field$/, async () => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
+        });
+
+        and(/^user should see checkbox section "(.*)"$/, async () => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
+        });
+
+        and(/^user should see description of check box written as "(.*)"$/, async () => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
+        });
+
+        and(/^user should see "(.*)" & "(.*)" button$/, async (arg0, arg1) => {
+               act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
+        });
+
+        when(/^user clicks on "(.*)" button$/, async () => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
+        });
+
+        then('user receives an email/text message with the code to the email and mobile number', async () => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
+        });
+
+        and(/^user should see (.*) field$/, async () => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
+        });
+
+        and(/^user fill (.*) field with valid code$/, async () => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
+        });
+
+        when(/^user click on "(.*)" button$/, async () => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
+        });
+
+        then('user should see the appropriate error message', async () => {
+                act(() => {
+                container = render(<MfaPage />, {
+                  container: document.body.appendChild(element),
+                  legacyRoot: true,
+                });
+              });
+              await waitFor(() => container.getByText(/communicationMethodTitle/i));
+              expect(container).toMatchSnapshot();
+        });
     });
 });

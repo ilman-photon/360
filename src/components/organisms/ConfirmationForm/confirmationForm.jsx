@@ -10,6 +10,8 @@ import { styles } from "./style";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import { useForm } from "react-hook-form";
 import constants from "../../../utils/constants";
+import { HeadingTitle } from "../../atoms/Heading";
+import { getLinkAria } from "../../../utils/viewUtil";
 
 const ConfirmationForm = ({
   onBackToLoginClicked,
@@ -40,7 +42,7 @@ const ConfirmationForm = ({
   return (
     <Card className={globalStyles.container} style={styles.cardStyle}>
       <CardContent style={styles.cardContentStyle}>
-        <Typography variant={constants.H2}>{title}</Typography>
+        <HeadingTitle variant={constants.H2} title={title} />
         {showPostMessage ? (
           <FormMessage
             success={isSuccessPostMessage}
@@ -93,6 +95,7 @@ const ConfirmationForm = ({
             onClick={function () {
               onBackToLoginClicked(router);
             }}
+            {...getLinkAria(t("backButtonLink"))}
           >
             {t("backButtonLink")}
           </Link>

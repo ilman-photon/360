@@ -118,7 +118,7 @@
     "mfaDescription": "A verification code has been sent. Enter code below",
     "mfaLabel": "Enter Code",
     "submitBtn": "Submit",
-    "confrimBtn": "Resend Code",
+    "resendCodeBtn": "Resend Code",
 
     "rememberMeLabel": "Remember me",
     "rememberMeDescription": "This means you won't have to authenticate at every sign-in",

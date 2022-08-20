@@ -14,6 +14,7 @@ import { styles } from "./style";
 import { Regex } from "../../../utils/regex";
 import { useRouter } from "next/router";
 import constants from "../../../utils/constants";
+import { HeadingTitle } from "../../atoms/Heading";
 
 export default function Register({ OnRegisterClicked, formMessage = null }) {
   const router = useRouter();
@@ -164,9 +165,11 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
   return (
     <Box className={globalStyles.container}>
       <Stack spacing={3}>
-        <Typography variant="h1" sx={styles.titleStyles}>
-          User Registration
-        </Typography>
+        <HeadingTitle
+          variant={constants.H1}
+          className={styles.titleStyles}
+          title={"User Registration"}
+        />
         {formMessage?.content ? (
           <FormMessage
             ref={formMessageComp}
@@ -407,7 +410,12 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           </Button>
         </form>
 
-        <Typography variant="caption" style={styles.bottomParagraph}>
+        <Typography
+          variant="caption"
+          style={styles.bottomParagraph}
+          aria-label="By registering, you accept to our Terms & Conditions and Privacy
+          Policy"
+        >
           By registering, you accept to our Terms &<br /> Conditions and Privacy
           Policy
         </Typography>

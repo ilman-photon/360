@@ -12,7 +12,9 @@ Object {
           class="css-1lwbda4-MuiStack-root"
         >
           <h1
-            class="MuiTypography-root MuiTypography-h1 css-ltzsrn-MuiTypography-root"
+            aria-label="User Registration heading"
+            aria-roledescription=""
+            class="MuiTypography-root MuiTypography-h1 paddingTop marginLeft marginRight color fontSize css-o2w69a-MuiTypography-root"
           >
             User Registration
           </h1>
@@ -189,7 +191,7 @@ Object {
                     class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-filled MuiInputAdornment-sizeMedium css-jv61v3-MuiInputAdornment-root"
                   >
                     <button
-                      aria-label="toggle password visibility"
+                      aria-label="Password unhide icon"
                       class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root"
                       tabindex="0"
                       type="button"
@@ -525,6 +527,7 @@ Object {
             </button>
           </form>
           <span
+            aria-label="By registering, you accept to our Terms & Conditions and Privacy Policy"
             class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
             style="color: rgb(54, 106, 112); text-align: center; font-size: 14px;"
           >
@@ -561,7 +564,9 @@ Object {
         class="css-1lwbda4-MuiStack-root"
       >
         <h1
-          class="MuiTypography-root MuiTypography-h1 css-ltzsrn-MuiTypography-root"
+          aria-label="User Registration heading"
+          aria-roledescription=""
+          class="MuiTypography-root MuiTypography-h1 paddingTop marginLeft marginRight color fontSize css-o2w69a-MuiTypography-root"
         >
           User Registration
         </h1>
@@ -738,7 +743,7 @@ Object {
                   class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-filled MuiInputAdornment-sizeMedium css-jv61v3-MuiInputAdornment-root"
                 >
                   <button
-                    aria-label="toggle password visibility"
+                    aria-label="Password unhide icon"
                     class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root"
                     tabindex="0"
                     type="button"
@@ -1074,6 +1079,7 @@ Object {
           </button>
         </form>
         <span
+          aria-label="By registering, you accept to our Terms & Conditions and Privacy Policy"
           class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
           style="color: rgb(54, 106, 112); text-align: center; font-size: 14px;"
         >
