@@ -25,6 +25,7 @@ export default function UpdatePasswordPage() {
   const username = setUsernameFromQuery(route);
 
   const confirmationFormProps = {
+    pageTitle: "Password Updated page",
     title: t("successUpdatePassword"),
     postMessage: t("postMessage"),
     showPostMessage: true,
@@ -88,7 +89,11 @@ export default function UpdatePasswordPage() {
 UpdatePasswordPage.getLayout = function getLayout(page) {
   const backgroundImage = "/login-bg.png";
   return (
-    <AuthLayout showMobileImage={false} imageSrc={backgroundImage}>
+    <AuthLayout
+      showMobileImage={false}
+      imageSrc={backgroundImage}
+      title={"Update Password page"}
+    >
       {page}
     </AuthLayout>
   );

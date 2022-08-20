@@ -36,7 +36,7 @@ defineFeature(feature, (test) => {
       const emailField = container.getByRole("textbox", { name: "Email" });
       const mobileField = container.getByLabelText(/Mobile Number/i);
       const passwordField = container.getByLabelText("Password");
-      const communicationRadio = container.getByLabelText(/Both/i);
+      const communicationRadio = container.getByRole("radio", { name: /Both/i });
       fireEvent.change(firstnameField, { target: { value: "username" } });
       fireEvent.change(lastnameField, { target: { value: "username" } });
       fireEvent.change(emailField, { target: { value: "a@aa.aa" } });

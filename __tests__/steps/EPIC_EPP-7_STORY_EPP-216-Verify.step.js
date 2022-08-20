@@ -133,7 +133,7 @@ defineFeature(feature, (test) => {
     );
 
     and(`user should select only 1 "Mode of Communication" as "Email"`, () => {
-      const email = container.getByRole("radio", { name: "Email" });
+      const email = container.getByRole("radio", { name: /Email/i });
       fireEvent.click(email);
       setTimeout(() => {
         expect(email).toBeChecked();

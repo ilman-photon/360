@@ -262,6 +262,7 @@ Object {
               role="radiogroup"
             >
               <label
+                aria-label="Yes Radio Button"
                 class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
               >
                 <span
@@ -310,6 +311,7 @@ Object {
                 </span>
               </label>
               <label
+                aria-label="No Radio Button"
                 class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
               >
                 <span
@@ -660,6 +662,7 @@ Object {
               role="radiogroup"
             >
               <label
+                aria-label="Primary Radio Button"
                 class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
               >
                 <span
@@ -708,6 +711,7 @@ Object {
                 </span>
               </label>
               <label
+                aria-label="Secondary Radio Button"
                 class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
               >
                 <span
@@ -756,6 +760,7 @@ Object {
                 </span>
               </label>
               <label
+                aria-label="Tertiary Radio Button"
                 class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
               >
                 <span
@@ -1095,6 +1100,7 @@ Object {
             role="radiogroup"
           >
             <label
+              aria-label="Yes Radio Button"
               class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
             >
               <span
@@ -1143,6 +1149,7 @@ Object {
               </span>
             </label>
             <label
+              aria-label="No Radio Button"
               class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
             >
               <span
@@ -1493,6 +1500,7 @@ Object {
             role="radiogroup"
           >
             <label
+              aria-label="Primary Radio Button"
               class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
             >
               <span
@@ -1541,6 +1549,7 @@ Object {
               </span>
             </label>
             <label
+              aria-label="Secondary Radio Button"
               class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
             >
               <span
@@ -1589,6 +1598,7 @@ Object {
               </span>
             </label>
             <label
+              aria-label="Tertiary Radio Button"
               class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
             >
               <span
