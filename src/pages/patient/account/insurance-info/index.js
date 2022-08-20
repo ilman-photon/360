@@ -7,6 +7,7 @@ import {
   addUserInsuranceData,
   fetchInsurance,
   removeUserInsuranceData,
+  setUserInsuranceDataByIndex,
 } from "../../../../store/user";
 import FormMessage from "../../../../components/molecules/FormMessage/formMessage";
 import { closePageMessage, setPageMessage } from "../../../../store";
@@ -38,6 +39,8 @@ export default function InsuranceInfoPage() {
   const [confirmationDeleteDialog, setConfirmationDeleteDialog] =
     useState(false);
   const [formDeleteInsurance, setFormDeleteInsurance] = useState(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [editForm, setEditForm] = useState(null);
 
   const pageMessage = useSelector((state) => state.index.pageMessage);
 
@@ -65,6 +68,20 @@ export default function InsuranceInfoPage() {
   const OnConfirmRemoveInsurance = () => {
     dispatch(removeUserInsuranceData(formDeleteInsurance));
     setConfirmationDeleteDialog(false);
+  };
+
+  const OnOpenEditInsuranceForm = (payload) => {
+    console.log("open edit", payload);
+    setEditForm(payload);
+    setIsEditing(true);
+  };
+
+  const OnEditInsurance = (payload) => {
+    console.log(payload);
+    if (!payload) return;
+    dispatch(setUserInsuranceDataByIndex(payload));
+    setEditForm(null);
+    setIsEditing(false);
   };
 
   const dispatch = useDispatch();
@@ -124,43 +141,57 @@ export default function InsuranceInfoPage() {
               </StyledButton>
             }
           >
-            <Stack spacing={3}>
-              {/* {view user insurance data} */}
-              <InsuranceView
-                insuranceData={userInsuranceData}
-                OnRemoveClicked={OnRemoveInsurance}
-              />
-
-              {/* add more insurance data */}
-              <Collapse in={openNewInsuranceForm}>
-                <Accordion
-                  defaultExpanded
-                  sx={{
-                    ".MuiAccordionSummary-root": {
-                      pointerEvents: "none",
-                    },
+            <Collapse in={isEditing}>
+              <Box>
+                <InsuranceForm
+                  formData={editForm}
+                  OnSaveClicked={OnEditInsurance}
+                  OnCancelClicked={() => {
+                    setIsEditing(false);
                   }}
-                >
-                  <AccordionSummary
-                    expandIcon={<ExpandMoreIcon />}
-                    aria-controls="panel1a-content"
-                    sx={{ background: "#FAFAFA" }}
+                />
+              </Box>
+            </Collapse>
+            <Collapse in={!isEditing}>
+              <Stack spacing={3}>
+                {/* {view user insurance data} */}
+                <InsuranceView
+                  insuranceData={userInsuranceData}
+                  OnRemoveClicked={OnRemoveInsurance}
+                  OnEditClicked={OnOpenEditInsuranceForm}
+                />
+
+                {/* add more insurance data */}
+                <Collapse in={openNewInsuranceForm}>
+                  <Accordion
+                    defaultExpanded
+                    sx={{
+                      ".MuiAccordionSummary-root": {
+                        pointerEvents: "none",
+                      },
+                    }}
                   >
-                    <Stack spacing={1} direction="row" alignItems="center">
-                      <Typography variant="h4">New Insurance</Typography>
-                    </Stack>
-                  </AccordionSummary>
-                  <AccordionDetails>
-                    <InsuranceForm
-                      OnSaveClicked={OnCreateInsurance}
-                      OnCancelClicked={() => {
-                        setOpenNewInsuranceForm(false);
-                      }}
-                    />
-                  </AccordionDetails>
-                </Accordion>
-              </Collapse>
-            </Stack>
+                    <AccordionSummary
+                      expandIcon={<ExpandMoreIcon />}
+                      aria-controls="panel1a-content"
+                      sx={{ background: "#FAFAFA" }}
+                    >
+                      <Stack spacing={1} direction="row" alignItems="center">
+                        <Typography variant="h4">New Insurance</Typography>
+                      </Stack>
+                    </AccordionSummary>
+                    <AccordionDetails>
+                      <InsuranceForm
+                        OnSaveClicked={OnCreateInsurance}
+                        OnCancelClicked={() => {
+                          setOpenNewInsuranceForm(false);
+                        }}
+                      />
+                    </AccordionDetails>
+                  </Accordion>
+                </Collapse>
+              </Stack>
+            </Collapse>
           </AccountCard>
         </Stack>
       </Fade>
@@ -214,8 +245,6 @@ export default function InsuranceInfoPage() {
     </section>
   );
 }
-
-console.log({ InsuranceInfoPage });
 
 InsuranceInfoPage.getLayout = function getLayout(page) {
   return (

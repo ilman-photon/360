@@ -19,9 +19,10 @@ import SelectOptionButton from "../../atoms/SelectOptionButton/selectOptionButto
 import { ImageUploader } from "../../molecules/ImageUploader/imageUploader";
 import AutoCompleteInput from "../../molecules/AutoCompleteInput";
 import { DEFAULT_INSURANCE_DATA } from "../../../store/user";
+import { useEffect } from "react";
 
 export default function InsuranceForm({
-  _formData = {}, // later will be used for edit
+  formData = null, // later will be used for edit
   isEditing = true,
   OnSaveClicked = () => {
     // This is intended
@@ -30,16 +31,17 @@ export default function InsuranceForm({
     // This is intended
   },
 }) {
-  const { handleSubmit, control, watch } = useForm({
+  const { handleSubmit, control, watch, reset } = useForm({
     defaultValues: DEFAULT_INSURANCE_DATA,
   });
 
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   // Later will be used for edit
-  // useEffect(() => {
-  //   if (formData) reset(formData);
-  // }, [formData]);
+  useEffect(() => {
+    console.log("reset");
+    if (formData) reset(formData);
+  }, [formData]);
 
   const providerList = [
     { id: 0, label: "Provider 1" },
@@ -79,6 +81,7 @@ export default function InsuranceForm({
   const onSubmit = (data) => {
     console.log({ data }, "subb");
     OnSaveClicked(data);
+    reset(DEFAULT_INSURANCE_DATA);
   };
 
   const DisclaimerText = (data) => {
