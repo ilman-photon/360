@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { ImageUploader } from "../../../../src/components/molecules/ImageUploader/imageUploader";
 import { faker } from "@faker-js/faker";
@@ -15,8 +15,17 @@ describe("ImageUploader Components", () => {
         alt=""/>);
   });
 
-  it("ImageUploader render", () => {
+  it("ImageUploader render", async () => {
     expect(container).toMatchSnapshot();
-    expect(container.getByText("*JPG or PNG file formats only. (File size limit is 4 MB)")).toBeInTheDocument();
+    await waitFor(() => container.getByText("Change File"));
+    expect(container.getByText("Change File")).toBeInTheDocument();
+
+    container.rerender(<ImageUploader source={""} OnUpload={mockCallBack}
+      label="Upload Front"
+      width="100%"
+      src=""
+      alt=""/>);
+
+      expect(container.getByText("Upload Front")).toBeInTheDocument();
   });
 });

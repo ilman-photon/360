@@ -1,6 +1,16 @@
 import { faker } from "@faker-js/faker";
 import { RELATIONSHIP_LIST } from "../../../utils/constantData";
 
+const PROVIDER_LIST_DUMMY = [
+  { id: 0, label: "Provider 1" },
+  { id: 1, label: "Provider 2" },
+];
+
+const PLAN_LIST_DUMMY = [
+  { id: 0, label: "Plan 1" },
+  { id: 1, label: "Plan 2" },
+];
+
 export default function insurance(req, res) {
   const landscapeImage = faker.image.imageUrl(275, 173);
 
@@ -33,13 +43,3 @@ export default function insurance(req, res) {
     res.status(200).json(userInsurances);
   }
 }
-
-const PROVIDER_LIST_DUMMY = [
-  { id: 0, label: "Provider 1" },
-  { id: 1, label: "Provider 2" },
-];
-
-const PLAN_LIST_DUMMY = [
-  { id: 0, label: "Plan 1" },
-  { id: 1, label: "Plan 2" },
-];

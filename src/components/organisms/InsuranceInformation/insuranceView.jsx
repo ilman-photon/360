@@ -35,7 +35,7 @@ export default function InsuranceView({
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
 
-  insuranceData.forEach((element) => {
+  insuranceData?.forEach((element) => {
     if (element.priority) {
       if (transformedData[element.priority].push)
         transformedData[element.priority].push(element);

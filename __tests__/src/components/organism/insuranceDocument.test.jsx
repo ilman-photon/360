@@ -73,6 +73,13 @@ describe("InsuranceDocument Components", () => {
         uploadText.textContent
       );
 
+      const uploadDisclaimer = container.getByText(
+        "*JPG or PNG file formats only. (File size limit is 4 MB)"
+      );
+      expect("*JPG or PNG file formats only. (File size limit is 4 MB)").toEqual(
+        uploadDisclaimer.textContent
+      );
+
       const insurancePriority = container.getByLabelText("Primary");
       fireEvent.click(insurancePriority);
       expect(insurancePriority.value).toEqual("primary");

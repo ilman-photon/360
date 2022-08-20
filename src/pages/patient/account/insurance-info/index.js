@@ -47,9 +47,8 @@ export default function InsuranceInfoPage() {
   const userInsuranceData = useSelector(
     (state) => state.user.userInsuranceData
   );
-  useEffect(() => {
-    console.log(userInsuranceData);
-  }, [userInsuranceData]);
+
+  const dispatch = useDispatch();
 
   const OnCreateInsurance = (payload) => {
     dispatch(addUserInsuranceData(payload));
@@ -71,20 +70,18 @@ export default function InsuranceInfoPage() {
   };
 
   const OnOpenEditInsuranceForm = (payload) => {
-    console.log("open edit", payload);
     setEditForm(payload);
     setIsEditing(true);
   };
 
   const OnEditInsurance = (payload) => {
-    console.log(payload);
-    if (!payload) return;
+    if (!payload) {
+      return;
+    }
     dispatch(setUserInsuranceDataByIndex(payload));
     setEditForm(null);
     setIsEditing(false);
   };
-
-  const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchInsurance());

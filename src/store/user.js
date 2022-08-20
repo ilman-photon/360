@@ -79,7 +79,6 @@ const userSlice = createSlice({
     },
     setUserInsuranceDataByIndex: (state, { payload }) => {
       state.userInsuranceData = state.userInsuranceData.map((item, idx) => {
-        console.log("compare", payload, idx);
         if (payload.id === idx) {
           item = payload;
         }

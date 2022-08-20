@@ -8,14 +8,1032 @@ Object {
       <div
         class="css-1lwbda4-MuiStack-root"
         style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
-      />
+      >
+        <div
+          class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-1elwnq4-MuiPaper-root-MuiAccordion-root"
+        >
+          <div
+            aria-controls="panel1a-content"
+            aria-expanded="false"
+            class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters css-169k922-MuiButtonBase-root-MuiAccordionSummary-root"
+            role="button"
+            tabindex="0"
+          >
+            <div
+              class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-o4b71y-MuiAccordionSummary-content"
+            >
+              <div
+                class="css-1q36rmd-MuiStack-root"
+              >
+                <h4
+                  class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
+                >
+                  Primary
+                </h4>
+                <div
+                  class="totalCategoryItemsWrapper"
+                >
+                  1
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiAccordionSummary-expandIconWrapper css-yw020d-MuiAccordionSummary-expandIconWrapper"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                data-testid="ExpandMoreIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                />
+              </svg>
+            </div>
+          </div>
+          <div
+            class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-bz4dnt-MuiCollapse-root"
+            style="min-height: 0px;"
+          >
+            <div
+              class="MuiCollapse-wrapper MuiCollapse-vertical css-smkl36-MuiCollapse-wrapper"
+            >
+              <div
+                class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
+              >
+                <div
+                  class="MuiAccordion-region"
+                  id="panel1a-content"
+                  role="region"
+                >
+                  <div
+                    class="MuiAccordionDetails-root css-15v22id-MuiAccordionDetails-root"
+                  >
+                    <div
+                      class="css-678bp8-MuiStack-root"
+                    >
+                      <div
+                        class="css-1lwbda4-MuiStack-root"
+                      >
+                        <div
+                          class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4 css-1qnwest-MuiGrid-root"
+                        >
+                          <div
+                            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
+                          >
+                            <div
+                              class="css-nen11g-MuiStack-root"
+                            >
+                              <div
+                                class="labelContainer"
+                              >
+                                <div
+                                  class="label"
+                                >
+                                  Insurance Provider
+                                </div>
+                              </div>
+                              <div
+                                class="css-1okj3ks-MuiStack-root"
+                              >
+                                <div
+                                  style="margin-top: 10px;"
+                                >
+                                  Provider 1
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
+                          >
+                            <div
+                              class="css-nen11g-MuiStack-root"
+                            >
+                              <div
+                                class="labelContainer"
+                              >
+                                <div
+                                  class="label"
+                                >
+                                  Plan Name
+                                </div>
+                              </div>
+                              <div
+                                class="css-1okj3ks-MuiStack-root"
+                              >
+                                <div
+                                  style="margin-top: 10px;"
+                                >
+                                  Plan 1
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
+                          >
+                            <div
+                              class="css-nen11g-MuiStack-root"
+                            >
+                              <div
+                                class="labelContainer"
+                              >
+                                <div
+                                  class="label"
+                                >
+                                  Subscriber ID/Member ID
+                                </div>
+                              </div>
+                              <div
+                                class="css-1okj3ks-MuiStack-root"
+                              >
+                                <div
+                                  style="margin-top: 10px;"
+                                >
+                                  123
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <hr
+                          class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                        />
+                        <div
+                          class="css-nen11g-MuiStack-root"
+                        >
+                          <div
+                            class="labelContainer"
+                          >
+                            <div
+                              class="label"
+                            >
+                              Group #
+                            </div>
+                          </div>
+                          <div
+                            class="css-1okj3ks-MuiStack-root"
+                          >
+                            <div
+                              style="margin-top: 10px;"
+                            >
+                              321
+                            </div>
+                          </div>
+                        </div>
+                        <hr
+                          class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                        />
+                        <div>
+                          <h3
+                            class="MuiTypography-root MuiTypography-h3 css-1mie9p3-MuiTypography-root"
+                          >
+                            Policy Holder
+                          </h3>
+                          <div
+                            class="css-nen11g-MuiStack-root"
+                          >
+                            <div
+                              class="labelContainer"
+                            >
+                              <div
+                                class="label"
+                              >
+                                Are you the Subscriber?
+                              </div>
+                            </div>
+                            <div
+                              class="css-1okj3ks-MuiStack-root"
+                            >
+                              <div
+                                style="margin-top: 10px;"
+                              >
+                                No
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <hr
+                          class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                        />
+                        <h4
+                          class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
+                        >
+                          Subscriber's details
+                        </h4>
+                        <div
+                          class="MuiGrid-root MuiGrid-container css-1jzi3sl-MuiGrid-root"
+                        >
+                          <div
+                            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-md-4 css-14a3zbu-MuiGrid-root"
+                          >
+                            <div
+                              class="css-nen11g-MuiStack-root"
+                            >
+                              <div
+                                class="labelContainer"
+                              >
+                                <div
+                                  class="label"
+                                >
+                                  First Name
+                                </div>
+                              </div>
+                              <div
+                                class="css-1okj3ks-MuiStack-root"
+                              >
+                                <div
+                                  style="margin-top: 10px;"
+                                >
+                                  first
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-md-4 css-14a3zbu-MuiGrid-root"
+                          >
+                            <div
+                              class="css-nen11g-MuiStack-root"
+                            >
+                              <div
+                                class="labelContainer"
+                              >
+                                <div
+                                  class="label"
+                                >
+                                  Last Name
+                                </div>
+                              </div>
+                              <div
+                                class="css-1okj3ks-MuiStack-root"
+                              >
+                                <div
+                                  style="margin-top: 10px;"
+                                >
+                                  last
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-lydjt-MuiGrid-root"
+                          >
+                            <div
+                              class="css-nen11g-MuiStack-root"
+                            >
+                              <div
+                                class="labelContainer"
+                              >
+                                <div
+                                  class="label"
+                                >
+                                  Relationship
+                                </div>
+                              </div>
+                              <div
+                                class="css-1okj3ks-MuiStack-root"
+                              >
+                                <div
+                                  style="margin-top: 10px;"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-md-4 css-14a3zbu-MuiGrid-root"
+                          >
+                            <div
+                              class="css-nen11g-MuiStack-root"
+                            >
+                              <div
+                                class="labelContainer"
+                              >
+                                <div
+                                  class="label"
+                                >
+                                  Date of Birth
+                                </div>
+                              </div>
+                              <div
+                                class="css-1okj3ks-MuiStack-root"
+                              >
+                                <div
+                                  style="margin-top: 10px;"
+                                >
+                                  1/1/1970
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <hr
+                          class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                        />
+                        <div
+                          class="css-nen11g-MuiStack-root"
+                        >
+                          <div
+                            class="labelContainer"
+                          >
+                            <div
+                              class="label"
+                            >
+                              Relationship
+                            </div>
+                          </div>
+                          <div
+                            class="css-1okj3ks-MuiStack-root"
+                          >
+                            <div
+                              style="margin-top: 10px;"
+                            />
+                          </div>
+                        </div>
+                        <hr
+                          class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                        />
+                        <div>
+                          <div
+                            class="MuiTypography-root MuiTypography-h3 css-1s77zd8-MuiTypography-root"
+                          >
+                            Upload images of your insurance.
+                          </div>
+                          <div
+                            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
+                          >
+                            <div
+                              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-zidx8y-MuiGrid-root"
+                            >
+                              <h4
+                                class="MuiTypography-root MuiTypography-h4 css-vau1h4-MuiTypography-root"
+                              >
+                                Insurance Card - Front
+                              </h4>
+                              <div
+                                class="insuranceImageContainer"
+                              >
+                                <span
+                                  style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                                >
+                                  <span
+                                    style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                                  >
+                                    <img
+                                      alt=""
+                                      aria-hidden="true"
+                                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27263%27%20height=%27139%27/%3e"
+                                      style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                                    />
+                                  </span>
+                                  <img
+                                    alt="front"
+                                    data-nimg="intrinsic"
+                                    decoding="async"
+                                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                                    style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                                  />
+                                  <noscript />
+                                </span>
+                              </div>
+                            </div>
+                            <div
+                              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
+                            >
+                              <h4
+                                class="MuiTypography-root MuiTypography-h4 css-vau1h4-MuiTypography-root"
+                              >
+                                Insurance Card - Back
+                              </h4>
+                              <div
+                                class="insuranceImageContainer"
+                              >
+                                <span
+                                  style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                                >
+                                  <span
+                                    style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                                  >
+                                    <img
+                                      alt=""
+                                      aria-hidden="true"
+                                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27263%27%20height=%27139%27/%3e"
+                                      style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                                    />
+                                  </span>
+                                  <img
+                                    alt="back"
+                                    class="insuranceImage"
+                                    data-nimg="intrinsic"
+                                    decoding="async"
+                                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                                    style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                                  />
+                                  <noscript />
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <hr
+                          class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                        />
+                        <div
+                          class="css-nen11g-MuiStack-root"
+                        >
+                          <div
+                            class="labelContainer"
+                          >
+                            <div
+                              class="label"
+                            >
+                              Insurance Priority
+                            </div>
+                          </div>
+                          <div
+                            class="css-1okj3ks-MuiStack-root"
+                          >
+                            <div
+                              style="margin-top: 10px;"
+                            >
+                              Primary
+                            </div>
+                          </div>
+                        </div>
+                        <hr
+                          class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                        />
+                        <div
+                          class="css-1mf892b-MuiStack-root"
+                        >
+                          <button
+                            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-v79u1v-MuiButtonBase-root-MuiButton-root"
+                            tabindex="0"
+                            type="button"
+                          >
+                            <div
+                              class="css-1d9cypr-MuiStack-root"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-wpnemu-MuiSvgIcon-root"
+                                data-testid="DeleteOutlineIcon"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5-1-1h-5l-1 1H5v2h14V4z"
+                                />
+                              </svg>
+                              <span
+                                style="font-size: 14px;"
+                              >
+                                Remove Insurance
+                              </span>
+                            </div>
+                            <span
+                              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                            />
+                          </button>
+                          <button
+                            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1xx3bwd-MuiButtonBase-root-MuiButton-root"
+                            tabindex="0"
+                            type="submit"
+                          >
+                            Edit
+                            <span
+                              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                            />
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </body>,
   "container": <div>
     <div
       class="css-1lwbda4-MuiStack-root"
       style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
-    />
+    >
+      <div
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiAccordion-root MuiAccordion-rounded MuiAccordion-gutters css-1elwnq4-MuiPaper-root-MuiAccordion-root"
+      >
+        <div
+          aria-controls="panel1a-content"
+          aria-expanded="false"
+          class="MuiButtonBase-root MuiAccordionSummary-root MuiAccordionSummary-gutters css-169k922-MuiButtonBase-root-MuiAccordionSummary-root"
+          role="button"
+          tabindex="0"
+        >
+          <div
+            class="MuiAccordionSummary-content MuiAccordionSummary-contentGutters css-o4b71y-MuiAccordionSummary-content"
+          >
+            <div
+              class="css-1q36rmd-MuiStack-root"
+            >
+              <h4
+                class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
+              >
+                Primary
+              </h4>
+              <div
+                class="totalCategoryItemsWrapper"
+              >
+                1
+              </div>
+            </div>
+          </div>
+          <div
+            class="MuiAccordionSummary-expandIconWrapper css-yw020d-MuiAccordionSummary-expandIconWrapper"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="ExpandMoreIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+              />
+            </svg>
+          </div>
+        </div>
+        <div
+          class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-bz4dnt-MuiCollapse-root"
+          style="min-height: 0px;"
+        >
+          <div
+            class="MuiCollapse-wrapper MuiCollapse-vertical css-smkl36-MuiCollapse-wrapper"
+          >
+            <div
+              class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
+            >
+              <div
+                class="MuiAccordion-region"
+                id="panel1a-content"
+                role="region"
+              >
+                <div
+                  class="MuiAccordionDetails-root css-15v22id-MuiAccordionDetails-root"
+                >
+                  <div
+                    class="css-678bp8-MuiStack-root"
+                  >
+                    <div
+                      class="css-1lwbda4-MuiStack-root"
+                    >
+                      <div
+                        class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-4 css-1qnwest-MuiGrid-root"
+                      >
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
+                        >
+                          <div
+                            class="css-nen11g-MuiStack-root"
+                          >
+                            <div
+                              class="labelContainer"
+                            >
+                              <div
+                                class="label"
+                              >
+                                Insurance Provider
+                              </div>
+                            </div>
+                            <div
+                              class="css-1okj3ks-MuiStack-root"
+                            >
+                              <div
+                                style="margin-top: 10px;"
+                              >
+                                Provider 1
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
+                        >
+                          <div
+                            class="css-nen11g-MuiStack-root"
+                          >
+                            <div
+                              class="labelContainer"
+                            >
+                              <div
+                                class="label"
+                              >
+                                Plan Name
+                              </div>
+                            </div>
+                            <div
+                              class="css-1okj3ks-MuiStack-root"
+                            >
+                              <div
+                                style="margin-top: 10px;"
+                              >
+                                Plan 1
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
+                        >
+                          <div
+                            class="css-nen11g-MuiStack-root"
+                          >
+                            <div
+                              class="labelContainer"
+                            >
+                              <div
+                                class="label"
+                              >
+                                Subscriber ID/Member ID
+                              </div>
+                            </div>
+                            <div
+                              class="css-1okj3ks-MuiStack-root"
+                            >
+                              <div
+                                style="margin-top: 10px;"
+                              >
+                                123
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <hr
+                        class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                      />
+                      <div
+                        class="css-nen11g-MuiStack-root"
+                      >
+                        <div
+                          class="labelContainer"
+                        >
+                          <div
+                            class="label"
+                          >
+                            Group #
+                          </div>
+                        </div>
+                        <div
+                          class="css-1okj3ks-MuiStack-root"
+                        >
+                          <div
+                            style="margin-top: 10px;"
+                          >
+                            321
+                          </div>
+                        </div>
+                      </div>
+                      <hr
+                        class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                      />
+                      <div>
+                        <h3
+                          class="MuiTypography-root MuiTypography-h3 css-1mie9p3-MuiTypography-root"
+                        >
+                          Policy Holder
+                        </h3>
+                        <div
+                          class="css-nen11g-MuiStack-root"
+                        >
+                          <div
+                            class="labelContainer"
+                          >
+                            <div
+                              class="label"
+                            >
+                              Are you the Subscriber?
+                            </div>
+                          </div>
+                          <div
+                            class="css-1okj3ks-MuiStack-root"
+                          >
+                            <div
+                              style="margin-top: 10px;"
+                            >
+                              No
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <hr
+                        class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                      />
+                      <h4
+                        class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
+                      >
+                        Subscriber's details
+                      </h4>
+                      <div
+                        class="MuiGrid-root MuiGrid-container css-1jzi3sl-MuiGrid-root"
+                      >
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-md-4 css-14a3zbu-MuiGrid-root"
+                        >
+                          <div
+                            class="css-nen11g-MuiStack-root"
+                          >
+                            <div
+                              class="labelContainer"
+                            >
+                              <div
+                                class="label"
+                              >
+                                First Name
+                              </div>
+                            </div>
+                            <div
+                              class="css-1okj3ks-MuiStack-root"
+                            >
+                              <div
+                                style="margin-top: 10px;"
+                              >
+                                first
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-md-4 css-14a3zbu-MuiGrid-root"
+                        >
+                          <div
+                            class="css-nen11g-MuiStack-root"
+                          >
+                            <div
+                              class="labelContainer"
+                            >
+                              <div
+                                class="label"
+                              >
+                                Last Name
+                              </div>
+                            </div>
+                            <div
+                              class="css-1okj3ks-MuiStack-root"
+                            >
+                              <div
+                                style="margin-top: 10px;"
+                              >
+                                last
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-lydjt-MuiGrid-root"
+                        >
+                          <div
+                            class="css-nen11g-MuiStack-root"
+                          >
+                            <div
+                              class="labelContainer"
+                            >
+                              <div
+                                class="label"
+                              >
+                                Relationship
+                              </div>
+                            </div>
+                            <div
+                              class="css-1okj3ks-MuiStack-root"
+                            >
+                              <div
+                                style="margin-top: 10px;"
+                              />
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-md-4 css-14a3zbu-MuiGrid-root"
+                        >
+                          <div
+                            class="css-nen11g-MuiStack-root"
+                          >
+                            <div
+                              class="labelContainer"
+                            >
+                              <div
+                                class="label"
+                              >
+                                Date of Birth
+                              </div>
+                            </div>
+                            <div
+                              class="css-1okj3ks-MuiStack-root"
+                            >
+                              <div
+                                style="margin-top: 10px;"
+                              >
+                                1/1/1970
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <hr
+                        class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                      />
+                      <div
+                        class="css-nen11g-MuiStack-root"
+                      >
+                        <div
+                          class="labelContainer"
+                        >
+                          <div
+                            class="label"
+                          >
+                            Relationship
+                          </div>
+                        </div>
+                        <div
+                          class="css-1okj3ks-MuiStack-root"
+                        >
+                          <div
+                            style="margin-top: 10px;"
+                          />
+                        </div>
+                      </div>
+                      <hr
+                        class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                      />
+                      <div>
+                        <div
+                          class="MuiTypography-root MuiTypography-h3 css-1s77zd8-MuiTypography-root"
+                        >
+                          Upload images of your insurance.
+                        </div>
+                        <div
+                          class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
+                        >
+                          <div
+                            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-zidx8y-MuiGrid-root"
+                          >
+                            <h4
+                              class="MuiTypography-root MuiTypography-h4 css-vau1h4-MuiTypography-root"
+                            >
+                              Insurance Card - Front
+                            </h4>
+                            <div
+                              class="insuranceImageContainer"
+                            >
+                              <span
+                                style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                              >
+                                <span
+                                  style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                                >
+                                  <img
+                                    alt=""
+                                    aria-hidden="true"
+                                    src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27263%27%20height=%27139%27/%3e"
+                                    style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                                  />
+                                </span>
+                                <img
+                                  alt="front"
+                                  data-nimg="intrinsic"
+                                  decoding="async"
+                                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                                />
+                                <noscript />
+                              </span>
+                            </div>
+                          </div>
+                          <div
+                            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
+                          >
+                            <h4
+                              class="MuiTypography-root MuiTypography-h4 css-vau1h4-MuiTypography-root"
+                            >
+                              Insurance Card - Back
+                            </h4>
+                            <div
+                              class="insuranceImageContainer"
+                            >
+                              <span
+                                style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                              >
+                                <span
+                                  style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                                >
+                                  <img
+                                    alt=""
+                                    aria-hidden="true"
+                                    src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27263%27%20height=%27139%27/%3e"
+                                    style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                                  />
+                                </span>
+                                <img
+                                  alt="back"
+                                  class="insuranceImage"
+                                  data-nimg="intrinsic"
+                                  decoding="async"
+                                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                                />
+                                <noscript />
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <hr
+                        class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                      />
+                      <div
+                        class="css-nen11g-MuiStack-root"
+                      >
+                        <div
+                          class="labelContainer"
+                        >
+                          <div
+                            class="label"
+                          >
+                            Insurance Priority
+                          </div>
+                        </div>
+                        <div
+                          class="css-1okj3ks-MuiStack-root"
+                        >
+                          <div
+                            style="margin-top: 10px;"
+                          >
+                            Primary
+                          </div>
+                        </div>
+                      </div>
+                      <hr
+                        class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                      />
+                      <div
+                        class="css-1mf892b-MuiStack-root"
+                      >
+                        <button
+                          class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-v79u1v-MuiButtonBase-root-MuiButton-root"
+                          tabindex="0"
+                          type="button"
+                        >
+                          <div
+                            class="css-1d9cypr-MuiStack-root"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-wpnemu-MuiSvgIcon-root"
+                              data-testid="DeleteOutlineIcon"
+                              focusable="false"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5-1-1h-5l-1 1H5v2h14V4z"
+                              />
+                            </svg>
+                            <span
+                              style="font-size: 14px;"
+                            >
+                              Remove Insurance
+                            </span>
+                          </div>
+                          <span
+                            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                          />
+                        </button>
+                        <button
+                          class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1xx3bwd-MuiButtonBase-root-MuiButton-root"
+                          tabindex="0"
+                          type="submit"
+                        >
+                          Edit
+                          <span
+                            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                          />
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],

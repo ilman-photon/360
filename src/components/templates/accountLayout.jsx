@@ -31,8 +31,6 @@ function AccountLayout({
     }
   };
 
-  console.log({ pageMessage });
-
   return (
     <Provider store={store}>
       <Head>

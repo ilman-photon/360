@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import InsuranceInformationPage from "../../../src/pages/patient/account/insurance-info";
 
@@ -12,8 +12,9 @@ describe("InsuranceInformationPage Components", () => {
     /></Provider>);
   });
 
-  it("InsuranceInformationPage render", () => {
+  it("InsuranceInformationPage render", async () => {
     expect(container).toMatchSnapshot();
+    await waitFor(() => container.getByText("You have no insurance on file"));
   });
 
 });
