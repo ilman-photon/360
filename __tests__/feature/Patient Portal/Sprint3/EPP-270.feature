@@ -193,7 +193,7 @@ Feature: Patient Portal : Security Questions - Security questions set up - View
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-270 - Verify if user able to view list of preset security questions 3and answer3field
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -274,7 +274,7 @@ Feature: Patient Portal : Security Questions - Security questions set up - View
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario: EPIC_EPP-3_STORY_EPP-270 - Verify if user able to view ‘Submit’ button
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -295,7 +295,7 @@ Feature: Patient Portal : Security Questions - Security questions set up - View
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario Outline: EPIC_EPP-3_STORY_EPP-270 - Verify if user able to ‘Skip’ security question by clicking  skip button
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application
