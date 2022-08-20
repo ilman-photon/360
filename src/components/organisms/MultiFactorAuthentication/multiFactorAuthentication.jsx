@@ -71,7 +71,7 @@ export default function MultiFactorAuthentication({
         />
       ) : (
         <Container
-          title={t("MFATitle")}
+          title={t("mfaTitle")}
           image={image}
           primaryButtonTitle={t("backToLoginBtn")}
           onClickPrimaryButton={() => {
