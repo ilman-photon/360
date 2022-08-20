@@ -14,6 +14,7 @@ import { PasswordValidator } from "../../molecules/PasswordValidator/passwordVal
 import { Regex } from "../../../utils/regex";
 import constants from "../../../utils/constants";
 import { HeadingTitle } from "../../atoms/Heading";
+import { getLinkAria } from "../../../utils/viewUtil";
 
 const cardContentStyle = {
   display: "flex",
@@ -397,7 +398,7 @@ const SetPasswordComponent = ({
             type="submit"
             theme="patient"
             mode="primary"
-            size="large"
+            size="small"
             gradient={false}
             style={styles.margin}
           >
@@ -411,6 +412,7 @@ const SetPasswordComponent = ({
             onClick={function () {
               onBackToLoginClicked(router);
             }}
+            {...getLinkAria(t("backButtonLink"))}
           >
             {t("backButtonLink")}
           </Link>

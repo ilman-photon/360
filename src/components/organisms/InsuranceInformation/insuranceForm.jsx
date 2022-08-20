@@ -79,7 +79,6 @@ export default function InsuranceForm({
   const watchedSubscriber = watch("isSubscriber", "");
 
   const onSubmit = (data) => {
-    console.log({ data }, "subb");
     OnSaveClicked(data);
     reset(DEFAULT_INSURANCE_DATA);
   };

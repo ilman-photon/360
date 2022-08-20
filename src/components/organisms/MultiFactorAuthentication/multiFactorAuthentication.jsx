@@ -37,7 +37,6 @@ export default function MultiFactorAuthentication({
 
   const checkMessage = (message) => {
     if (message.status === "failed") {
-      console.log(message);
       if (message.isEndView) {
         setEndView(true);
       }
@@ -72,7 +71,7 @@ export default function MultiFactorAuthentication({
         />
       ) : (
         <Container
-          title={t("MFATitle")}
+          title={t("mfaTitle")}
           image={image}
           primaryButtonTitle={t("backToLoginBtn")}
           onClickPrimaryButton={() => {

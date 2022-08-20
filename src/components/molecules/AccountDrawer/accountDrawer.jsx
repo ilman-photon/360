@@ -44,7 +44,7 @@ export const AccountDrawer = ({
           {sidebarLinks.map((link, idx) => (
             <ListItem key={idx} className={styles.listItemDrawer}>
               <ListItemButton
-                data-test-id="user-menu-nav-close"
+                data-testid="user-menu-nav-close"
                 onClick={() => {
                   router.push(link.href);
                   onClose();

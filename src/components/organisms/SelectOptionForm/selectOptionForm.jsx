@@ -27,7 +27,7 @@ const SelectOptionForm = ({
         <StyledButton
           theme={constants.PATIENT}
           mode={constants.PRIMARY}
-          size={constants.LARGE}
+          size={constants.SMALL}
           gradient={false}
           data-testid={FORGOT_TEST_ID.answerQuestions}
           onClick={() => {
@@ -51,7 +51,7 @@ const SelectOptionForm = ({
         <StyledButton
           theme={constants.PATIENT}
           mode={constants.SECONDARY}
-          size={constants.LARGE}
+          size={constants.SMALL}
           gradient={false}
           data-testid={FORGOT_TEST_ID.oneTimeLink}
           onClick={() => {

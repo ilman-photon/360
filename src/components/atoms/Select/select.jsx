@@ -37,6 +37,7 @@ const CustomSelect = (props) => {
         }}
         onChange={props.onChange}
         value={props.value}
+        data-testid={`styled-select-${props.id}`}
       >
         {options.map((option, idx) => {
           return (

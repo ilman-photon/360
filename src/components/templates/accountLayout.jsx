@@ -8,6 +8,7 @@ import * as React from "react";
 import BaseHeader from "../organisms/BaseHeader/baseHeader";
 import { Provider, connect } from "react-redux";
 import store from "../../store/store";
+import { logoutProps } from "../../utils/authetication";
 
 function AccountLayout({
   pageMessage = { content: null },
@@ -46,9 +47,7 @@ function AccountLayout({
         <ThemeProvider
           theme={isPatient ? patientTypography : providerTypography}
         >
-          {/* <Suspense fallback={`Loading...`}> */}
-          <BaseHeader />
-          {/* </Suspense> */}
+          <BaseHeader {...logoutProps} />
           <AccountTitleHeading title={getHeadingTitle(currentActivePage)} />
           <div className={styles.container}>
             <div className={styles.sidebarContainer}>
