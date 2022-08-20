@@ -32,6 +32,7 @@ Object {
                 </span>
                 <img
                   alt="Eyecare Provider name with logo"
+                  aria-label="Eyecare Provider name with logo"
                   data-nimg="intrinsic"
                   decoding="async"
                   src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
@@ -104,6 +105,7 @@ Object {
               </span>
               <img
                 alt="Eyecare Provider name with logo"
+                aria-label="Eyecare Provider name with logo"
                 data-nimg="intrinsic"
                 decoding="async"
                 src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"

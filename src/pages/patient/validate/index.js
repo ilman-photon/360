@@ -40,7 +40,12 @@ export default function ValidatePage({ query }) {
 
   const expiredOneTimeLinkDescription = function () {
     return (
-      <Typography style={{ marginBottom: "22px" }}>
+      <Typography
+        style={{ marginBottom: "22px" }}
+        aria-label={
+          "Link has expired. Go to Forgot password and request for a new link"
+        }
+      >
         Link has expired. Go to{" '"}
         <Link
           href="/patient/forgot-password"
@@ -59,6 +64,7 @@ export default function ValidatePage({ query }) {
     if (postbody && postbody.oneTimeToken) {
       confirmationFormProps = {
         ...confirmationFormData,
+        pageTitle: "One-time link expired page",
         title: t("expiredTitleOneTime"),
         postMessage: t("expiredPostmessageOneTime"),
         buttonLabel: t("backButtonLink"),
@@ -68,6 +74,7 @@ export default function ValidatePage({ query }) {
     } else if (postbody && postbody.resetPasswordToken) {
       confirmationFormProps = {
         ...confirmationFormData,
+        pageTitle: "Password reset page",
         title: t("expiredTitleResetPassword"),
         postMessage: t("expiredPostmessageResetPassword"),
         buttonLabel: t("backButtonLink"),

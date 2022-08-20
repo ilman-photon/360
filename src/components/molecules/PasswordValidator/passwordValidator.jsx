@@ -6,13 +6,6 @@ import { colors } from "../../../styles/theme";
 
 export const PasswordValidator = ({ ...props }) => {
   const validator = props.validator || [];
-  let isValid = true;
-  if (props.password) {
-    //validate
-    validator.forEach((element) => {
-      if (element.validate) isValid = false;
-    });
-  }
   let errors1 = [];
   let errors2 = [];
 

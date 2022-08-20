@@ -12,6 +12,7 @@ import { useForm } from "react-hook-form";
 import constants from "../../../utils/constants";
 import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
+import Head from "next/head";
 
 const ConfirmationForm = ({
   onBackToLoginClicked,
@@ -29,6 +30,7 @@ const ConfirmationForm = ({
   postMessageTitle,
   primaryButtonTestId,
   formStyle = additional ? styles.margin : styles.marginDescription,
+  pageTitle = "",
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "OneTimeLink" });
@@ -40,70 +42,78 @@ const ConfirmationForm = ({
   };
 
   return (
-    <Card className={globalStyles.container} style={styles.cardStyle}>
-      <CardContent style={styles.cardContentStyle}>
-        <HeadingTitle variant={constants.H2} title={title} />
-        {showPostMessage ? (
-          <FormMessage
-            success={isSuccessPostMessage}
-            sx={styles.postMessage}
-            title={postMessageTitle}
-          >
-            {postMessage}
-          </FormMessage>
-        ) : (
-          <></>
-        )}
-        {subtitle ? (
-          <Typography variant="bodyMedium" style={styles.margin}>
-            {subtitle}
-          </Typography>
-        ) : (
-          <></>
-        )}
-        <form onSubmit={handleSubmit(onSubmit)} style={formStyle}>
-          {additional ? (
-            <Box>{additional(control)}</Box>
+    <>
+      <Head>
+        <title>{pageTitle}</title>
+      </Head>
+      <Card className={globalStyles.container} style={styles.cardStyle}>
+        <CardContent style={styles.cardContentStyle}>
+          <HeadingTitle variant={constants.H2} title={title} />
+          {showPostMessage ? (
+            <FormMessage
+              success={isSuccessPostMessage}
+              sx={styles.postMessage}
+              title={postMessageTitle}
+            >
+              {postMessage}
+            </FormMessage>
           ) : (
-            <Typography variant="bodyRegular" style={styles.descriptionStyle}>
-              {description}
-            </Typography>
+            <></>
           )}
-          <StyledButton
-            type={constants.SUBMIT}
-            theme={constants.PATIENT}
-            mode={butttonMode}
-            size={constants.LARGE}
-            gradient={false}
-            data-testid={primaryButtonTestId}
-            style={{ ...styles.margin, marginTop: additional ? "0px" : "16px" }}
-          >
-            {buttonIcon}
-            {buttonLabel}
-          </StyledButton>
-        </form>
-        {butttonMode !== constants.SECONDARY ? (
-          <Link
-            style={{
-              ...styles.margin,
-              ...styles.textAlign,
-              ...styles.backToLoginMargin,
-              ...styles.link,
-            }}
-            data-testid={FORGOT_TEST_ID.loginLink}
-            color={"#2095a9"}
-            onClick={function () {
-              onBackToLoginClicked(router);
-            }}
-            {...getLinkAria(t("backButtonLink"))}
-          >
-            {t("backButtonLink")}
-          </Link>
-        ) : (
-          <></>
-        )}
-      </CardContent>
-    </Card>
+          {subtitle ? (
+            <Typography variant="bodyMedium" style={styles.margin}>
+              {subtitle}
+            </Typography>
+          ) : (
+            <></>
+          )}
+          <form onSubmit={handleSubmit(onSubmit)} style={formStyle}>
+            {additional ? (
+              <Box>{additional(control)}</Box>
+            ) : (
+              <Typography variant="bodyRegular" style={styles.descriptionStyle}>
+                {description}
+              </Typography>
+            )}
+            <StyledButton
+              type={constants.SUBMIT}
+              theme={constants.PATIENT}
+              mode={butttonMode}
+              size={constants.SMALL}
+              gradient={false}
+              data-testid={primaryButtonTestId}
+              style={{
+                ...styles.margin,
+                marginTop: additional ? "0px" : "16px",
+              }}
+            >
+              {buttonIcon}
+              {buttonLabel}
+            </StyledButton>
+          </form>
+          {butttonMode !== constants.SECONDARY ? (
+            <Link
+              style={{
+                ...styles.margin,
+                ...styles.textAlign,
+                ...styles.backToLoginMargin,
+                ...styles.link,
+              }}
+              data-testid={FORGOT_TEST_ID.loginLink}
+              color={"#2095a9"}
+              onClick={function () {
+                onBackToLoginClicked(router);
+              }}
+              {...getLinkAria(t("backButtonLink"))}
+            >
+              {t("backButtonLink")}
+            </Link>
+          ) : (
+            <></>
+          )}
+        </CardContent>
+      </Card>
+    </>
   );
 };
 

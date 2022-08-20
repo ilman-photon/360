@@ -8,12 +8,7 @@ import * as React from "react";
 import BaseHeader from "../organisms/BaseHeader/baseHeader";
 import { logoutProps } from "../../utils/authetication";
 
-//Prevent html being match between server and client
-// const BaseHeader = dynamic(() => import("../organisms/BaseHeader/baseHeader"), {
-//   suspense: true,
-// });
-
-export default function Layout({
+export default function AccountLayout({
   theme = "patient",
   currentActivePage = "",
   children,

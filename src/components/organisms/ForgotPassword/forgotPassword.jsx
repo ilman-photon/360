@@ -14,12 +14,14 @@ import constants from "../../../utils/constants";
 import { Regex } from "../../../utils/regex";
 import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
+import Head from "next/head";
 
 const ForgotPassword = ({
   onBackToLoginClicked,
   showPostMessage,
   setShowPostMessage,
   onCalledValidateUsernameAPI,
+  title = "",
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "ForgotPassword" });
@@ -45,71 +47,79 @@ const ForgotPassword = ({
   };
 
   return (
-    <Card
-      className={globalStyles.container}
-      sx={{ minWidth: 275, padding: "16px" }}
-    >
-      <CardContent style={styles.cardContentStyle}>
-        <HeadingTitle variant={constants.H2} title={t("title")} />
-        {showPostMessage ? (
-          <FormMessage success={false} sx={styles.postMessage}>
-            {t("errorUsernameNotFound")}
-          </FormMessage>
-        ) : (
-          <></>
-        )}
-        <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
-          <Controller
-            name="username"
-            control={control}
-            defaultValue=""
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
-              return (
-                <StyledInput
-                  label={t("usernamePlaceHolder")}
-                  id="username"
-                  variant="filled"
-                  value={value}
-                  data-testid={FORGOT_TEST_ID.email}
-                  onChange={(event) => {
-                    onChange(event);
-                    if (showPostMessage) {
-                      setShowPostMessage(false);
-                    }
-                  }}
-                  error={!!error}
-                  helperText={error ? error.message : null}
-                />
-              );
-            }}
-            rules={{ required: t("errorEmptyField") }}
-          />
+    <>
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <Card
+        className={globalStyles.container}
+        sx={{ minWidth: 275, padding: "16px" }}
+      >
+        <CardContent style={styles.cardContentStyle}>
+          <HeadingTitle variant={constants.H2} title={t("title")} />
+          {showPostMessage ? (
+            <FormMessage success={false} sx={styles.postMessage}>
+              {t("errorUsernameNotFound")}
+            </FormMessage>
+          ) : (
+            <></>
+          )}
+          <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
+            <Controller
+              name="username"
+              control={control}
+              defaultValue=""
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => {
+                return (
+                  <StyledInput
+                    label={t("usernamePlaceHolder")}
+                    id="username"
+                    variant="filled"
+                    value={value}
+                    data-testid={FORGOT_TEST_ID.email}
+                    onChange={(event) => {
+                      onChange(event);
+                      if (showPostMessage) {
+                        setShowPostMessage(false);
+                      }
+                    }}
+                    error={!!error}
+                    helperText={error ? error.message : null}
+                  />
+                );
+              }}
+              rules={{ required: t("errorEmptyField") }}
+            />
 
-          <StyledButton
-            type="submit"
-            theme="patient"
-            mode="primary"
-            size="large"
-            gradient={false}
-            style={styles.margin}
-            data-testid={FORGOT_TEST_ID.continueBtn}
+            <StyledButton
+              type="submit"
+              theme="patient"
+              mode="primary"
+              size="small"
+              gradient={false}
+              style={styles.margin}
+              data-testid={FORGOT_TEST_ID.continueBtn}
+            >
+              {t("resetPasswordText")}
+            </StyledButton>
+          </form>
+          <Link
+            style={{ ...styles.margin, ...styles.link }}
+            color={"#2095a9"}
+            data-testid={FORGOT_TEST_ID.loginLink}
+            onClick={function () {
+              onBackToLoginClicked(router);
+            }}
+            {...getLinkAria(t("backButtonLink"))}
           >
-            {t("resetPasswordText")}
-          </StyledButton>
-        </form>
-        <Link
-          style={{ ...styles.margin, ...styles.link }}
-          color={"#2095a9"}
-          data-testid={FORGOT_TEST_ID.loginLink}
-          onClick={function () {
-            onBackToLoginClicked(router);
-          }}
-          {...getLinkAria(t("backButtonLink"))}
-        >
-          {t("backButtonLink")}
-        </Link>
-      </CardContent>
-    </Card>
+            {t("backButtonLink")}
+          </Link>
+        </CardContent>
+      </Card>
+    </>
   );
 };
 
