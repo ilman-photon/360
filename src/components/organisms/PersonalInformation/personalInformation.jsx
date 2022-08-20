@@ -402,6 +402,7 @@ export default function PersonalInformation({
                     return (
                       <>
                         <ImageUploader
+                          helperText
                           OnUpload={onChange}
                           source={userData.issuedCardFront}
                           label="Upload Front"
@@ -431,6 +432,7 @@ export default function PersonalInformation({
                     return (
                       <>
                         <ImageUploader
+                          helperText
                           OnUpload={onChange}
                           source={userData.issuedCardBack}
                           label="Upload Back"

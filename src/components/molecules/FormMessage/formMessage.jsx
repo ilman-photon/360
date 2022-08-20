@@ -5,11 +5,20 @@ import Link from "next/link";
 import { forwardRef } from "react";
 import { colors } from "../../../styles/theme";
 
-export const FormMessage = ({ ...props }, ref) => {
+export const FormMessage = (
+  {
+    onClick = () => {
+      // This is intended
+    },
+    ...props
+  },
+  ref
+) => {
   return (
     <>
       <Box
         ref={ref}
+        onClick={onClick}
         sx={{
           backgroundColor: props.success ? colors.foundationGreen : "#C23934",
           width: "auto",

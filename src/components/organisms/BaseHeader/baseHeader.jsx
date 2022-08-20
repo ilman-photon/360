@@ -48,6 +48,7 @@ export default function BaseHeader({
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
+
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };

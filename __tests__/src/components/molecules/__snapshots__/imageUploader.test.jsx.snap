@@ -43,11 +43,6 @@ Object {
             type="file"
           />
         </div>
-        <span
-          class="MuiTypography-root MuiTypography-bodySmallMedium css-37jdci-MuiTypography-root"
-        >
-          *JPG or PNG file formats only. (File size limit is 4 MB)
-        </span>
         <button
           class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-7wwv5e-MuiButtonBase-root-MuiButton-root"
           tabindex="0"
@@ -100,11 +95,6 @@ Object {
           type="file"
         />
       </div>
-      <span
-        class="MuiTypography-root MuiTypography-bodySmallMedium css-37jdci-MuiTypography-root"
-      >
-        *JPG or PNG file formats only. (File size limit is 4 MB)
-      </span>
       <button
         class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-7wwv5e-MuiButtonBase-root-MuiButton-root"
         tabindex="0"

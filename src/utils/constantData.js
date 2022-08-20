@@ -12,3 +12,5 @@ export const GENDER_LIST = [
 ];
 
 export const TITLE_LIST = ["Dr.", "Mr.", "Mrs.", "Miss", "Ms."];
+
+export const RELATIONSHIP_LIST = ["Spouse", "Father", "Mother", "Self", "Son"];
