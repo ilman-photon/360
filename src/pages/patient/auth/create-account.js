@@ -15,8 +15,8 @@ export default function CreateAccountPage() {
   const formMessage = useSelector((state) => state.index.formMessage);
 
   const OnRegisterClicked = async function (postbody) {
+    dispatch(resetFormMessage());
     try {
-      dispatch(resetFormMessage());
       await api.getResponse("/ecp/patient/userregistration", postbody, "post");
       cookies.set("authorized", true, { path: "/patient" });
 
@@ -31,7 +31,8 @@ export default function CreateAccountPage() {
           setFormMessage({
             success: false,
             title: errorMessage.title,
-            content: <>{errorMessage.content}</>,
+            content: errorMessage.content,
+            isBackToLogin: errorMessage.isBackToLogin,
           })
         );
       }

@@ -9,8 +9,8 @@ import { Box } from "@mui/material";
 import Cookies from "universal-cookie";
 import AccountTitleHeading from "../../components/atoms/AccountTitleHeading/accountTitleHeading";
 import FormMessage from "../../components/molecules/FormMessage/formMessage";
-
 import { Api } from "../api/api";
+import { useTranslation } from "next-i18next";
 
 export async function getServerSideProps(context) {
   const cookies = new Cookies(context.req.headers.cookie);
@@ -39,7 +39,7 @@ export default function MfaPage() {
   const [successSubmit, setSuccessSubmit] = React.useState(false);
   const [securityQuestionList, setSecurityQuestionList] = React.useState([]);
   const [communicationMethod, setCommunicationMethod] = React.useState({});
-
+  const { t } = useTranslation("translation", { keyPrefix: "mfaPage" });
   //just mock
   const [submitCounter, setSubmitCounter] = React.useState(0);
   const [requestCounter, setRequestCounter] = React.useState(0);
@@ -78,7 +78,7 @@ export default function MfaPage() {
 
   function redirectToDashboard() {
     const hostname = window.location.origin;
-    window.location.href = `${hostname}/patient`;
+    window.location.href = `${hostname}/patient/account/profile-info`;
     //Alternative 1
     rememberMe && cookies.set("rememberMe", rememberMe, { path: "/patient" });
     //Alternative 2
@@ -95,9 +95,8 @@ export default function MfaPage() {
           status: "failed",
           isEndView: true,
           message: {
-            title: "Too many attempts.",
-            description:
-              "Please try setting up multi factor authentication after 30 minutes.",
+            title: t("mfaLockTitle"),
+            description: t("mfaLockDescription"),
           },
         });
       } else {
@@ -105,8 +104,8 @@ export default function MfaPage() {
         callback({
           status: "failed",
           message: {
-            title: "Incorrect Code.",
-            description: "Please try again.",
+            title: t("mfaFailedTitle"),
+            description: t("Please try again."),
           },
         });
       }
@@ -186,15 +185,22 @@ export default function MfaPage() {
     return (
       <Box
         sx={{
-          marginTop: "-10px",
+          marginTop: "-15px",
         }}
       >
         {!successSubmit ? (
           <Box sx={{ background: "#FAFAFA" }}>
-            <AccountTitleHeading title={"Set-up Security Questions"} />:
+            <AccountTitleHeading
+              title={"Set-up Security Questions"}
+              sx={{
+                textAlign: "left",
+                paddingLeft: "16px",
+              }}
+            />
+            :
             <Box
               sx={{
-                paddingTop: "80px",
+                paddingTop: "65px",
                 maxWidth: "75.1%",
                 minWidth: 686,
                 margin: "auto",
@@ -202,6 +208,9 @@ export default function MfaPage() {
                 borderWidth: "0px 1px",
                 borderColor: "#F3F3F3",
                 borderStyle: "solid",
+                ["@media (max-width: 992px)"]: {
+                  paddingTop: "45px",
+                },
               }}
             >
               <SecurityQuestion

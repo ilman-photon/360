@@ -2,8 +2,9 @@ import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
-import MfaPage from "../../src/pages/patient/mfa";
-import AuthPage from "../../src/pages/patient/login";
+import MfaPage, { getServerSideProps }  from "../../src/pages/patient/mfa";
+import "@testing-library/jest-dom";
+
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint3/EPP-280.feature", {
@@ -12,6 +13,21 @@ const feature = loadFeature(
 );
 
 defineFeature(feature, (test) => {
+    let container
+    beforeEach(async () => {
+        const contex = {
+            req: {
+                headers: {
+                    cookie: "username=user1%40photon.com; mfa=true"
+                }
+            }
+        }
+
+        getServerSideProps(contex)
+        container = render(<MfaPage />)
+        await waitFor(() => container.getByText("Set Multi-Factor Authentication"));
+
+    });
     test('EPIC_EPP-3_STORY_EPP-280 - Register User - Verify User should receive an email/text message with the code to the email and mobile number when user clicks "Resend Code" button (Preferred Mode of Communication both)', ({  }) => {
         test('"EPIC_EPP-3_STORY_EPP-280 - Register User - Verify User should receive an email/txt message with the code to the email and mobile number when user clicks "Resend Code" button (Preferred Mode of Communication both)"', ({ given, and, when, then }) => {
             given(/^user launch "(.*)" URL$/, (arg0) => {
@@ -19,7 +35,12 @@ defineFeature(feature, (test) => {
             });
     
             and(/^user is in "(.*)" screen$/, (arg0) => {
-                expect(true).toBeTruthy()
+                const expectedResult = {
+                    ResponseCode: 2001,
+                    ResponseType: "failure",
+                    userType: "patient",
+                  };
+                  mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
             });
     
             when(/^user clicks on the "(.*)" button in the"(.*)" screen$/, (arg0, arg1) => {
@@ -46,11 +67,13 @@ defineFeature(feature, (test) => {
             });
     
             when('user clicks on the link', () => {
-                expect(true).toBeTruthy()
+                const confirmButton = container.getByRole("button", { name: /Link/i });
+                fireEvent.click(confirmButton)
             });
     
             then(/^user lands onto "(.*)" screen$/, (arg0) => {
-                expect(true).toBeTruthy()
+                const title = container.getByText("Set Multi-Factor Authentication");
+                expect("Set Multi-Factor Authentication").toEqual(title.textContent);
             });
     
             and('user should see the updated Username field with either as email-id or Phone Number by default', () => {
@@ -70,15 +93,18 @@ defineFeature(feature, (test) => {
             });
     
             then(/^user should see "(.*)" screen$/, (arg0) => {
-                expect(true).toBeTruthy()
+                const title = container.getByText("Set Multi-Factor Authentication");
+                expect("Set Multi-Factor Authentication").toEqual(title.textContent);
             });
     
             and(/^user should see screen title written as "(.*)"$/, (arg0) => {
-                expect(true).toBeTruthy()
+                const title = container.getByText("Set Multi-Factor Authentication");
+                expect("Set Multi-Factor Authentication").toEqual(title.textContent);
             });
     
             and(/^user should see screen subtitle written as "(.*)"$/, (arg0) => {
-                expect(true).toBeTruthy()
+                const title = container.getByText("Select a delivery method to identify your identity.");
+                expect("Select a delivery method to identify your identity.").toEqual(title.textContent);
             });
     
             and(/^user should see "(.*)" section with radio button with below detail "(.*)" and "(.*)"$/, (arg0, arg1, arg2) => {
@@ -90,7 +116,8 @@ defineFeature(feature, (test) => {
             });
     
             and(/^user should see checkbox section "(.*)"$/, (arg0) => {
-                expect(true).toBeTruthy()
+                const title = container.getByText("Remember me");
+                expect("Remember me").toEqual(title.textContent);
             });
     
             and(/^user should see description of check box written as "(.*)"$/, (arg0) => {
@@ -118,7 +145,8 @@ defineFeature(feature, (test) => {
             });
     
             and(/^user should see checkbox section "(.*)"$/, (arg0) => {
-                expect(true).toBeTruthy()
+                const remembermeOptin = container.getByText( "Remember me" );
+                expect( "Remember me").toEqual(remembermeOptin.textContent);
             });
     
             and(/^user should see description of check box written as "(.*)"$/, (arg0) => {
@@ -126,11 +154,15 @@ defineFeature(feature, (test) => {
             });
     
             and(/^user should see "(.*)" & "(.*)" button$/, (arg0, arg1) => {
-                expect(true).toBeTruthy()
+                const ConfirmButton = container.getByText("Confirm");
+                expect("Confirm").toEqual(ConfirmButton.textContent);
+                const BackToLogginButton = container.getByText("Back to Login");
+                expect("Back to Login").toEqual(BackToLogginButton.textContent);
             });
     
             when(/^user clicks on "(.*)" button$/, (arg0) => {
-                expect(true).toBeTruthy()
+                const confirmButton = container.getByRole("button", { name: /Confirm/i });
+                 fireEvent.click(confirmButton)
             });
     
             then('user receives an email/text message with the code to the email and mobile number', () => {
@@ -145,13 +177,28 @@ defineFeature(feature, (test) => {
                 expect(true).toBeTruthy()
             });
     
-            when(/^user click on "(.*)" button$/, (arg0) => {
-                const button = container.getByLabelText("Continue");
-                  fireEvent.click(button);
+            when(/^user click on "(.*)" button$/, (arg0) => {async () => {
+                const confirmButton = container.getByRole("button", { name: /Confirm/i });
+                fireEvent.click(confirmButton)
+        
+                await waitFor(() => container.getByRole("button", { name: /Submit/i }))
+        
+                const mfaField = container.getByLabelText("Enter Code");
+                fireEvent.change(mfaField, { target: { value: "1234" } });
+        
+                const submitButton = container.getByRole("button", { name: /Submit/i });
+                fireEvent.click(submitButton)
+        
+                await waitFor(() => container.getByText("Multi-Factor Authentication"))
+        
+                const title = container.getByText("Multi-Factor Authentication");
+                expect("Multi-Factor Authentication").toEqual(title.textContent);
+            }
             });
     
             then(/^user should see the following message "(.*)"$/, (arg0) => {
-                expect(true).toBeTruthy()
+                const title = container.getByText("Multi factor Authentication has been set successfully");
+                expect("Multi factor Authentication has been set successfully").toEqual(title.textContent);
             });
         });
     });
@@ -170,7 +217,8 @@ defineFeature(feature, (test) => {
             });
     
             then(/^user lands on the "(.*)" screen$/, (arg0) => {
-                expect(true).toBeTruthy()
+                const title = container.getByText("Set Multi-Factor Authentication");
+                expect("Set Multi-Factor Authentication").toEqual(title.textContent);
             });
     
             and('user should able to fill all mandantory details and option to choose email', () => {

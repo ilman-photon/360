@@ -1,12 +1,12 @@
 import Head from "next/head";
 import styles from "./accountLayout.module.scss";
-import { useState } from "react";
 import AccountSidebar from "../molecules/AccountSidebar/accountSidebar";
 import AccountTitleHeading from "../atoms/AccountTitleHeading/accountTitleHeading";
 import { patientTypography, providerTypography } from "../../styles/theme";
 import { ThemeProvider, useMediaQuery } from "@mui/material";
 import * as React from "react";
 import BaseHeader from "../organisms/BaseHeader/baseHeader";
+import { logoutProps } from "../../utils/authetication";
 
 //Prevent html being match between server and client
 // const BaseHeader = dynamic(() => import("../organisms/BaseHeader/baseHeader"), {
@@ -18,13 +18,8 @@ export default function Layout({
   currentActivePage = "",
   children,
 }) {
-  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const isPatient = theme === "patient";
   const isMobile = useMediaQuery("(max-width: 768px)");
-
-  const onClose = () => {
-    setIsDrawerOpen(false);
-  };
 
   const getHeadingTitle = (pageName) => {
     if (!isMobile) return "Your Account";
@@ -47,9 +42,7 @@ export default function Layout({
         <ThemeProvider
           theme={isPatient ? patientTypography : providerTypography}
         >
-          {/* <Suspense fallback={`Loading...`}> */}
-          <BaseHeader />
-          {/* </Suspense> */}
+          <BaseHeader {...logoutProps} />
           <AccountTitleHeading title={getHeadingTitle(currentActivePage)} />
           <div className={styles.container}>
             <div className={styles.sidebarContainer}>
@@ -57,7 +50,6 @@ export default function Layout({
             </div>
             <div className={styles.pageContainer}>{children}</div>
           </div>
-          {/* {isDrawerOpen ? <AccountDrawer onClose={onClose} /> : null} */}
         </ThemeProvider>
       </div>
     </>

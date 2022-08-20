@@ -65,6 +65,7 @@ module.exports = {
       labresults: "labresults",
       billing: "billing",
       username: "username",
+      account: "account",
       logout: "logout",
     },
   },

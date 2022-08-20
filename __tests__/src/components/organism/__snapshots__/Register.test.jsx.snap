@@ -334,7 +334,7 @@ Object {
               </div>
             </div>
             <div
-              style="padding: 16px; border-radius: 4px; color: rgb(54, 106, 112); background-color: rgba(0, 149, 169, 0.051); margin: 8px;"
+              style="padding: 16px; border-radius: 4px; color: rgb(54, 106, 112); background-color: rgba(0, 149, 169, 0.051); margin: 8px; word-break: break-all;"
             >
               <div>
                 Your username will be 
@@ -883,7 +883,7 @@ Object {
             </div>
           </div>
           <div
-            style="padding: 16px; border-radius: 4px; color: rgb(54, 106, 112); background-color: rgba(0, 149, 169, 0.051); margin: 8px;"
+            style="padding: 16px; border-radius: 4px; color: rgb(54, 106, 112); background-color: rgba(0, 149, 169, 0.051); margin: 8px; word-break: break-all;"
           >
             <div>
               Your username will be 
