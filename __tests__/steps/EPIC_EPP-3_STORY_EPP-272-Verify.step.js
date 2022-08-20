@@ -635,7 +635,7 @@ defineFeature(feature, (test) => {
             
             const mySelectComponent5 = container.getByTestId('select-question-id-5');
             const selectNode5 = mySelectComponent5.childNodes[1]
-            fireEvent.change(selectNode3, { target: { value: "What was the first thing you learned to cook?" } });
+            fireEvent.change(selectNode5, { target: { value: "What was the first thing you learned to cook?" } });
 
             const answer1 = container.getByLabelText("Answer 1")
             fireEvent.change(answer1, { target: { value: "test answer 1" } });
