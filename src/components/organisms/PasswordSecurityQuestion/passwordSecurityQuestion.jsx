@@ -10,6 +10,8 @@ import { StyledButton } from "../../atoms/Button/button";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import { styles } from "./style";
 import { useForm, Controller } from "react-hook-form";
+import { HeadingTitle } from "../../atoms/Heading";
+import { getLinkAria } from "../../../utils/viewUtil";
 
 const constants = require("../../../utils/constants");
 
@@ -65,7 +67,7 @@ const PasswordSecurityQuestion = ({
       sx={{ minWidth: 275, padding: "16px" }}
     >
       <CardContent style={styles.cardContentStyle}>
-        <Typography variant={constants.H2}>{t("title")}</Typography>
+        <HeadingTitle variant={constants.H2} title={t("title")} />
         <Typography
           variant={constants.BODY_REGULAR}
           style={styles.subTitleMargin}
@@ -142,6 +144,7 @@ const PasswordSecurityQuestion = ({
           onClick={function () {
             onBackToLoginClicked(router);
           }}
+          {...getLinkAria(t("backButtonLink"))}
         >
           {t("backButtonLink")}
         </Link>

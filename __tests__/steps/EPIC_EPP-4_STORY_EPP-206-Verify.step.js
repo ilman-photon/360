@@ -115,7 +115,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
     when(`user click the Unmask icon`, () => {
-      const button = container.getByLabelText("toggle password visibility");
+      const button = container.getByLabelText("Password unhide icon");
       fireEvent.click(button);
     });
 
