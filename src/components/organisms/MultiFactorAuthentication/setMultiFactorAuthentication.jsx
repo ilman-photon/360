@@ -20,7 +20,9 @@ export default function SetMultiFactorAuthentication({
 
   const content = () => {
     if (!isMultipleComunication) {
-      const value = data.email ? `Email: ${data.email}` : `Phone${data.phone}`;
+      const value = data.email
+        ? `Email: ${data.email}`
+        : `Phone: ${data.phone}`;
       return (
         <Typography variant="body2" className={styles.description}>
           {value}

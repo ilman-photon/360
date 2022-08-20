@@ -1,6 +1,6 @@
 import { render, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import ContactInformation from "../../../../src/components/organisms/ContactInformation/ContactInformation";
+import ContactInformation from "../../../../src/components/organisms/ContactInformation/contactInformation";
 
 window.scrollTo = jest.fn();
 

@@ -58,7 +58,7 @@ exports[`App renders App unchanged 1`] = `
               <h1
                 aria-label="User Registration heading"
                 aria-roledescription=""
-                class="MuiTypography-root MuiTypography-h1 paddingTop marginLeft marginRight color fontSize css-1qjdygv-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-h1 css-1j9i2ku-MuiTypography-root"
               >
                 User Registration
               </h1>

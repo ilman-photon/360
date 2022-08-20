@@ -14,7 +14,7 @@ Object {
           <h1
             aria-label="User Registration heading"
             aria-roledescription=""
-            class="MuiTypography-root MuiTypography-h1 paddingTop marginLeft marginRight color fontSize css-o2w69a-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-h1 css-ltzsrn-MuiTypography-root"
           >
             User Registration
           </h1>
@@ -569,7 +569,7 @@ Object {
         <h1
           aria-label="User Registration heading"
           aria-roledescription=""
-          class="MuiTypography-root MuiTypography-h1 paddingTop marginLeft marginRight color fontSize css-o2w69a-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-h1 css-ltzsrn-MuiTypography-root"
         >
           User Registration
         </h1>
