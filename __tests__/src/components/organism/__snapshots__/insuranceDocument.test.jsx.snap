@@ -889,8 +889,7 @@ Object {
                     class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
                   />
                   <div
-                    class="css-1lnp4wh-MuiStack-root"
-                    md="[object Object]"
+                    class="css-1281pzv-MuiStack-root"
                   >
                     <button
                       class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-1rzk0sh-MuiButtonBase-root-MuiButton-root"
@@ -1809,8 +1808,7 @@ Object {
                   class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
                 />
                 <div
-                  class="css-1lnp4wh-MuiStack-root"
-                  md="[object Object]"
+                  class="css-1281pzv-MuiStack-root"
                 >
                   <button
                     class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-1rzk0sh-MuiButtonBase-root-MuiButton-root"

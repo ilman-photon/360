@@ -425,6 +425,7 @@ export default function InsuranceForm({
                   return (
                     <ImageUploader
                       OnUpload={onChange}
+                      source={formData ? formData.frontCard : null}
                       label="Upload Front"
                       width="100%"
                       src="/login-bg.png"
@@ -450,6 +451,7 @@ export default function InsuranceForm({
                   return (
                     <ImageUploader
                       OnUpload={onChange}
+                      source={formData ? formData.backCard : null}
                       label="Upload Back"
                       width="100%"
                       src="/login-bg.png"
@@ -509,9 +511,9 @@ export default function InsuranceForm({
             direction="row"
             justifyContent="flex-end"
             spacing={2}
-            md={{
+            sx={{
               width: { xs: "100%", md: "fit-content" },
-              alignSelf: "flex-end",
+              alignSelf: { xs: "center", md: "flex-end" },
               p: 2,
               mt: 2,
             }}

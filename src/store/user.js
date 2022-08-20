@@ -85,7 +85,6 @@ const userSlice = createSlice({
         }
         return item;
       });
-      // state.userInsuranceData[payload.id] = payload;
     },
     addUserInsuranceData: (state, { payload }) => {
       state.userInsuranceData.push(payload);

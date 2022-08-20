@@ -128,6 +128,7 @@ export default function InsuranceInfoPage() {
                 onClick={() => {
                   setOpenNewInsuranceForm(true);
                 }}
+                sx={{ display: { xs: "none" } }}
               >
                 <Stack
                   direction="row"
@@ -154,6 +155,24 @@ export default function InsuranceInfoPage() {
             </Collapse>
             <Collapse in={!isEditing}>
               <Stack spacing={3}>
+                <StyledButton
+                  className={styles.addButton}
+                  disabled={openNewInsuranceForm}
+                  onClick={() => {
+                    setOpenNewInsuranceForm(true);
+                  }}
+                >
+                  <Stack
+                    direction="row"
+                    alignItems="center"
+                    sx={{ color: "white" }}
+                    component="span"
+                  >
+                    <AddIcon />
+                    Add Insurance
+                  </Stack>
+                </StyledButton>
+
                 {/* {view user insurance data} */}
                 <InsuranceView
                   insuranceData={userInsuranceData}

@@ -222,7 +222,12 @@ export default function InsuranceView({
                             direction="row"
                             justifyContent="flex-end"
                             spacing={2}
-                            sx={{ alignSelf: "flex-end", p: 2, mt: 2 }}
+                            sx={{
+                              alignSelf: { xs: "center", md: "flex-end" },
+                              width: { xs: "100%", md: "fit-content" },
+                              p: { xs: 0, md: 2 },
+                              mt: 2,
+                            }}
                           >
                             <StyledButton
                               mode="secondary"
@@ -230,12 +235,15 @@ export default function InsuranceView({
                               onClick={() => {
                                 OnRemoveClicked(idx);
                               }}
+                              sx={{ width: "fit-content", padding: { xs: 1 } }}
                             >
                               <Stack direction="row" alignItems="center">
                                 <DeleteOutlineIcon
                                   sx={{ width: 18, height: 18, mr: 1 }}
                                 />
-                                <span>Remove Insurance</span>
+                                <span style={{ fontSize: 14 }}>
+                                  Remove Insurance
+                                </span>
                               </Stack>
                             </StyledButton>
                             <StyledButton
@@ -244,6 +252,11 @@ export default function InsuranceView({
                               size="small"
                               onClick={() => {
                                 OnEditClicked(item);
+                              }}
+                              sx={{
+                                width: "fit-content",
+                                padding: { xs: 1 },
+                                fontSize: 14,
                               }}
                             >
                               Edit
