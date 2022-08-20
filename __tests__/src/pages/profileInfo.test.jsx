@@ -7,9 +7,13 @@ import store from "../../../src/store/store";
 
 describe("ProfileInformationPage Components", () => {
   let container;
-  beforeEach(async() => {
-    container = render(<Provider store={store}><ProfileInformationPage 
-    /></Provider>);
+  beforeEach(async () => {
+    jest.useFakeTimers().setSystemTime(new Date("2022-08-20"));
+    container = render(
+      <Provider store={store}>
+        <ProfileInformationPage />
+      </Provider>
+    );
     await waitFor(() => container.getByText("Profile"));
     await waitFor(() => container.getByText("Contact"));
     await waitFor(() => container.getByRole("button", { name: /Edit/i }));
@@ -18,6 +22,4 @@ describe("ProfileInformationPage Components", () => {
   it("ProfileInformationPage render", () => {
     expect(container).toMatchSnapshot();
   });
-
-
 });
