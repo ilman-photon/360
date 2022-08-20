@@ -1,13 +1,13 @@
 import { fireEvent, render } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import InsuranceDocument from "../../../../src/components/organisms/InsuranceInformation/insuranceInformationnew";
+import InsuranceInformationNew from "../../../../src/components/organisms/InsuranceInformation/insuranceInformationnew";
 
 window.scrollTo = jest.fn();
 
 describe("InsuranceDocument Components", () => {
   let container;
   beforeEach(() => {
-    container = render(<InsuranceDocument />);
+    container = render(<InsuranceInformationNew />);
   });
 
   it("InsuranceDocument render", () => {
@@ -76,9 +76,9 @@ describe("InsuranceDocument Components", () => {
       const uploadDisclaimer = container.getByText(
         "*JPG or PNG file formats only. (File size limit is 4 MB)"
       );
-      expect("*JPG or PNG file formats only. (File size limit is 4 MB)").toEqual(
-        uploadDisclaimer.textContent
-      );
+      expect(
+        "*JPG or PNG file formats only. (File size limit is 4 MB)"
+      ).toEqual(uploadDisclaimer.textContent);
 
       const insurancePriority = container.getByLabelText("Primary");
       fireEvent.click(insurancePriority);
