@@ -6,14 +6,12 @@ import { patientTypography, providerTypography } from "../../styles/theme";
 import { ThemeProvider, useMediaQuery } from "@mui/material";
 import * as React from "react";
 import BaseHeader from "../organisms/BaseHeader/baseHeader";
+import { Provider, connect } from "react-redux";
+import store from "../../store/store";
 import { logoutProps } from "../../utils/authetication";
 
-//Prevent html being match between server and client
-// const BaseHeader = dynamic(() => import("../organisms/BaseHeader/baseHeader"), {
-//   suspense: true,
-// });
-
-export default function Layout({
+function AccountLayout({
+  pageMessage = { content: null },
   theme = "patient",
   currentActivePage = "",
   children,
@@ -34,11 +32,16 @@ export default function Layout({
   };
 
   return (
-    <>
+    <Provider store={store}>
       <Head>
         <title>EyeCare - Account Information</title>
       </Head>
-      <div className={styles.accountLayout}>
+      <div
+        className={[
+          styles.accountLayout,
+          pageMessage.isShow ? styles.infoIsShowing : "",
+        ].join(" ")}
+      >
         <ThemeProvider
           theme={isPatient ? patientTypography : providerTypography}
         >
@@ -52,6 +55,14 @@ export default function Layout({
           </div>
         </ThemeProvider>
       </div>
-    </>
+    </Provider>
   );
 }
+
+const mapStateToProps = function (state) {
+  return {
+    pageMessage: state.index.pageMessage,
+  };
+};
+
+export default connect(mapStateToProps)(AccountLayout);

@@ -22,6 +22,7 @@ let confirmationFormProps = {
   buttonLabel: constants.EMPTY_STRING,
   buttonIcon: null,
   additional: null,
+  pageTitle: constants.EMPTY_STRING,
 };
 
 const modeOfCommuicationUI = function (control) {
@@ -134,6 +135,7 @@ export default function ForgotPasswordPage() {
             : `${response.phone} for a link`;
         // Handle success to call API
         confirmationFormProps = {
+          pageTitle: "Password reset page",
           title: t("titlePasswordReset"),
           subtitle: `Check ${userCommunicationCode} to reset your password.`,
           description: t("descriptionPasswordResetSuccess"),
@@ -151,7 +153,7 @@ export default function ForgotPasswordPage() {
         setShowPostMessage(true);
       })
       .catch(function () {
-        console.error("Somthing went wrong");
+        console.error("Something went wrong");
       });
   };
 
@@ -167,6 +169,7 @@ export default function ForgotPasswordPage() {
       .oneTimeLink(postbody)
       .then(function () {
         confirmationFormProps = {
+          pageTitle: "One-time link sent page",
           title: t("successSentLinkTitleOneTime"),
           subtitle: t("subtitleOneTimeSuccess"),
           description: `If you did not receive the link, try to ${(patientData.securityQuestionsSet
@@ -192,7 +195,7 @@ export default function ForgotPasswordPage() {
         setShowPostMessage(true);
       })
       .catch(function () {
-        console.error("Somthing went wrong");
+        console.error("Something went wrong");
       });
   };
 
@@ -215,6 +218,7 @@ export default function ForgotPasswordPage() {
         patientData.preferredComunication.toLocaleLowerCase() === constants.BOTH
       ) {
         //TO DO: Set props for one time link
+        confirmationFormProps.pageTitle = "Password reset page";
         confirmationFormProps.title = t("titlePasswordReset");
         confirmationFormProps.subtitle = t("subtitlePasswordReset");
         confirmationFormProps.additional = modeOfCommuicationUI;
@@ -242,6 +246,7 @@ export default function ForgotPasswordPage() {
         patientData.preferredComunication.toLocaleLowerCase() === constants.BOTH
       ) {
         //TO DO: Set props for one time link
+        confirmationFormProps.pageTitle = "One-time link page";
         confirmationFormProps.title = t("titleOneTime");
         confirmationFormProps.subtitle = t("subtitleOneTime");
         confirmationFormProps.additional = modeOfCommuicationUI;
@@ -274,6 +279,7 @@ export default function ForgotPasswordPage() {
           showPostMessage={showPostMessage}
           setShowPostMessage={setShowPostMessage}
           onCalledValidateUsernameAPI={onCalledValidateUsernameAPI}
+          title={"Forgot Password Page"}
         />
       ) : (
         <></>
@@ -294,6 +300,7 @@ export default function ForgotPasswordPage() {
           setShowPostMessage={setShowPostMessage}
           securityQuestionData={patientData.securityQuestions}
           onContinueButtonClicked={onContinueButtonClicked}
+          title={"Password recovery security questions page"}
         />
       ) : (
         <></>

@@ -3,6 +3,7 @@ import Cookies from "universal-cookie";
 import { Api } from "../../api/api";
 import { Login as LoginComponent } from "../../../components/organisms/Login/login";
 import { useEffect } from "react";
+import { useTranslation } from "next-i18next";
 
 function getUserData(username, callback) {
   const api = new Api();
@@ -29,8 +30,12 @@ const loginProps = {
       .login(postbody)
       .then(function (response) {
         const IdleTimeOut = response.IdleTimeOut * 1000 || 1200 * 1000;
+        const securityQuestions = response.SecurityQuestions || [];
         cookies.set("IdleTimeOut", IdleTimeOut, { path: "/patient" });
         cookies.set("username", postbody.username, { path: "/patient" });
+        cookies.set("securityQuestions", securityQuestions, {
+          path: "/patient",
+        });
         getUserData(postbody.username, (isNotNeedMfa) => {
           if (isNotNeedMfa) {
             cookies.set("authorized", true, { path: "/patient" });
@@ -104,7 +109,11 @@ export default function login() {
 login.getLayout = function getLayout(page) {
   const backgroundImage = "/login-bg.png";
   return (
-    <AuthLayout showMobileImage={true} imageSrc={backgroundImage}>
+    <AuthLayout
+      showMobileImage={true}
+      imageSrc={backgroundImage}
+      title={"Patient Login"}
+    >
       {page}
     </AuthLayout>
   );

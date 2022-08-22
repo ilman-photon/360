@@ -28,7 +28,7 @@ export default function SetMultiFactorAuthentication({
         value = `Email: ${data.email}`;
         selectedCommunication === "" && setSelectedCommunication("email");
       } else if (data.phone) {
-        value = `Phone${data.phone}`;
+        value = `Phone: ${data.phone}`;
         selectedCommunication === "" && setSelectedCommunication("phone");
       }
       return (

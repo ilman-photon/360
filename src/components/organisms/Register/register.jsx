@@ -14,6 +14,7 @@ import { styles } from "./style";
 import { Regex } from "../../../utils/regex";
 import { useRouter } from "next/router";
 import constants from "../../../utils/constants";
+import { HeadingTitle } from "../../atoms/Heading";
 
 export default function Register({ OnRegisterClicked, formMessage = null }) {
   const router = useRouter();
@@ -164,10 +165,12 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
   return (
     <Box className={globalStyles.container}>
       <Stack spacing={3}>
-        <Typography variant="h1" sx={styles.titleStyles}>
-          User Registration
-        </Typography>
-        {formMessage.content ? (
+        <HeadingTitle
+          variant={constants.H1}
+          sx={styles.titleStyles}
+          title={"User Registration"}
+        />
+        {formMessage?.content ? (
           <FormMessage
             ref={formMessageComp}
             success={formMessage.success}
@@ -355,9 +358,14 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             rules={{
               required: "This field is required",
               validate: {
-                isLength: (v) => Regex.lengthRegex.test(v),
-                isAtLeastOneNumber: (v) => Regex.numberRegex.test(v),
-                is3of4: (v) => is3of4(v),
+                isLength: (v) =>
+                  Regex.lengthRegex.test(v) ||
+                  "Password does not meet requirements",
+                isAtLeastOneNumber: (v) =>
+                  Regex.numberRegex.test(v) ||
+                  "Password does not meet requirements",
+                is3of4: (v) =>
+                  is3of4(v) || "Password does not meet requirements",
               },
             }}
           />
@@ -407,7 +415,12 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           </Button>
         </form>
 
-        <Typography variant="caption" style={styles.bottomParagraph}>
+        <Typography
+          variant="caption"
+          style={styles.bottomParagraph}
+          aria-label="By registering, you accept to our Terms & Conditions and Privacy
+          Policy"
+        >
           By registering, you accept to our Terms &<br /> Conditions and Privacy
           Policy
         </Typography>

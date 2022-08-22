@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`SecurityQuestion Components select option render 1`] = `
+exports[`InsuranceForm Components select option render 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -12,186 +12,209 @@ Object {
           class="css-1lwbda4-MuiStack-root"
         >
           <div
-            class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
           >
             <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-7nwx4d-MuiGrid-root"
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
             >
               <div
-                class="MuiFormControl-root css-14ljafm-MuiFormControl-root"
-                style="width: 100%;"
+                class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-16awh2u-MuiAutocomplete-root"
               >
-                <label
-                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
-                  data-shrink="false"
-                  id="demo-simple-select-label"
-                >
-                  Insurance Provider
-                </label>
                 <div
-                  class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                  class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1krnp8b-MuiFormControl-root-MuiTextField-root"
+                  withicon="true"
                 >
+                  <label
+                    class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-1vtu5nf-MuiFormLabel-root-MuiInputLabel-root"
+                    data-shrink="false"
+                    for=":r0:"
+                    id=":r0:-label"
+                  >
+                    Insurance Provider
+                  </label>
                   <div
-                    aria-expanded="false"
-                    aria-haspopup="listbox"
-                    aria-labelledby="Insurance-Provider-Id Insurance-Provider-Id"
-                    class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
-                    id="Insurance-Provider-Id"
-                    role="button"
-                    tabindex="0"
+                    class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1cousx2-MuiInputBase-root-MuiOutlinedInput-root"
                   >
-                    <span
-                      class="notranslate"
-                    >
-                      ​
-                    </span>
-                  </div>
-                  <input
-                    aria-hidden="true"
-                    class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
-                    tabindex="-1"
-                    value=""
-                  />
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-                    data-testid="ArrowDropDownIcon"
-                    focusable="false"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M7 10l5 5 5-5z"
+                    <input
+                      aria-autocomplete="list"
+                      aria-expanded="false"
+                      aria-invalid="false"
+                      autocapitalize="none"
+                      autocomplete="off"
+                      class="MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
+                      id=":r0:"
+                      placeholder=""
+                      role="combobox"
+                      spellcheck="false"
+                      type="text"
+                      value=""
                     />
-                  </svg>
+                    <div
+                      class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+                    >
+                      <button
+                        aria-label="Open"
+                        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+                        tabindex="-1"
+                        title="Open"
+                        type="button"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                          data-testid="ArrowDropDownIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M7 10l5 5 5-5z"
+                          />
+                        </svg>
+                        <span
+                          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                        />
+                      </button>
+                    </div>
+                    <fieldset
+                      aria-hidden="true"
+                      class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+                    >
+                      <legend
+                        class="css-1ftyaf0"
+                      >
+                        <span>
+                          Insurance Provider
+                        </span>
+                      </legend>
+                    </fieldset>
+                  </div>
                 </div>
               </div>
             </div>
             <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-7nwx4d-MuiGrid-root"
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
             >
               <div
-                class="MuiFormControl-root css-14ljafm-MuiFormControl-root"
-                style="width: 100%;"
+                class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-16awh2u-MuiAutocomplete-root"
               >
-                <label
-                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
-                  data-shrink="false"
-                  id="demo-simple-select-label"
-                >
-                  Plan Name
-                </label>
                 <div
-                  class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                  class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1krnp8b-MuiFormControl-root-MuiTextField-root"
+                  withicon="true"
                 >
+                  <label
+                    class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-1vtu5nf-MuiFormLabel-root-MuiInputLabel-root"
+                    data-shrink="false"
+                    for=":r2:"
+                    id=":r2:-label"
+                  >
+                    Plan Name
+                  </label>
                   <div
-                    aria-expanded="false"
-                    aria-haspopup="listbox"
-                    aria-labelledby="Plan-Name-Id Plan-Name-Id"
-                    class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
-                    id="Plan-Name-Id"
-                    role="button"
-                    tabindex="0"
+                    class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1cousx2-MuiInputBase-root-MuiOutlinedInput-root"
                   >
-                    <span
-                      class="notranslate"
-                    >
-                      ​
-                    </span>
-                  </div>
-                  <input
-                    aria-hidden="true"
-                    class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
-                    tabindex="-1"
-                    value=""
-                  />
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-                    data-testid="ArrowDropDownIcon"
-                    focusable="false"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M7 10l5 5 5-5z"
+                    <input
+                      aria-autocomplete="list"
+                      aria-expanded="false"
+                      aria-invalid="false"
+                      autocapitalize="none"
+                      autocomplete="off"
+                      class="MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
+                      id=":r2:"
+                      placeholder=""
+                      role="combobox"
+                      spellcheck="false"
+                      type="text"
+                      value=""
                     />
-                  </svg>
+                    <div
+                      class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+                    >
+                      <button
+                        aria-label="Open"
+                        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+                        tabindex="-1"
+                        title="Open"
+                        type="button"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                          data-testid="ArrowDropDownIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M7 10l5 5 5-5z"
+                          />
+                        </svg>
+                        <span
+                          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                        />
+                      </button>
+                    </div>
+                    <fieldset
+                      aria-hidden="true"
+                      class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+                    >
+                      <legend
+                        class="css-1ftyaf0"
+                      >
+                        <span>
+                          Plan Name
+                        </span>
+                      </legend>
+                    </fieldset>
+                  </div>
                 </div>
               </div>
               <label
                 class="MuiFormLabel-root MuiFormLabel-colorPrimary css-yxw8bb-MuiFormLabel-root"
                 id="row-input-disclaimer"
               >
-                optional
+                (Optional)
               </label>
             </div>
             <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-7nwx4d-MuiGrid-root"
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
             >
               <div
-                class="MuiFormControl-root css-14ljafm-MuiFormControl-root"
-                style="width: 100%;"
-              >
-                <label
-                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
-                  data-shrink="false"
-                  id="demo-simple-select-label"
-                >
-                  Insurance Subscriber ID/ Member ID
-                </label>
-                <div
-                  class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
-                >
-                  <div
-                    aria-expanded="false"
-                    aria-haspopup="listbox"
-                    aria-labelledby="Subscriber-Member-Id Subscriber-Member-Id"
-                    class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
-                    id="Subscriber-Member-Id"
-                    role="button"
-                    tabindex="0"
-                  >
-                    <span
-                      class="notranslate"
-                    >
-                      ​
-                    </span>
-                  </div>
-                  <input
-                    aria-hidden="true"
-                    class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
-                    tabindex="-1"
-                    value=""
-                  />
-                  <svg
-                    aria-hidden="true"
-                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-                    data-testid="ArrowDropDownIcon"
-                    focusable="false"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      d="M7 10l5 5 5-5z"
-                    />
-                  </svg>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
-          >
-            <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
-            >
-              <div
-                class="MuiFormControl-root MuiTextField-root custom-input css-7xekc6-MuiFormControl-root-MuiTextField-root"
+                class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
                 withicon="true"
               >
                 <label
                   class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
                   data-shrink="false"
-                  for="groupId"
-                  id="groupId-label"
+                  for=":r4:"
+                  id=":r4:-label"
+                >
+                  Subscriber ID/ Member ID
+                </label>
+                <div
+                  class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+                >
+                  <input
+                    aria-invalid="false"
+                    class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
+                    id=":r4:"
+                    placeholder=""
+                    type="number"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
+            >
+              <div
+                class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
+                withicon="true"
+              >
+                <label
+                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="false"
+                  for=":r5:"
+                  id=":r5:-label"
                 >
                   Group #
                 </label>
@@ -201,9 +224,9 @@ Object {
                   <input
                     aria-invalid="false"
                     class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
-                    id="groupId"
+                    id=":r5:"
                     placeholder=""
-                    type="text"
+                    type="number"
                     value=""
                   />
                 </div>
@@ -212,20 +235,15 @@ Object {
                 class="MuiFormLabel-root MuiFormLabel-colorPrimary css-yxw8bb-MuiFormLabel-root"
                 id="row-input-disclaimer"
               >
-                optional
+                (Optional)
               </label>
             </div>
-            <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-7nwx4d-MuiGrid-root"
-            />
-            <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-7nwx4d-MuiGrid-root"
-            />
           </div>
-          <hr />
+          <hr
+            class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+          />
           <h3
             class="MuiTypography-root MuiTypography-h3 css-1mie9p3-MuiTypography-root"
-            tooltipcontent="Test"
           >
             Policy Holder
           </h3>
@@ -233,6 +251,7 @@ Object {
             class="MuiFormControl-root css-1nrlq1o-MuiFormControl-root"
             label="Are you the Subscriber?"
             options="[object Object],[object Object]"
+            value="Yes"
           >
             <label
               class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1upt16w-MuiFormLabel-root"
@@ -241,8 +260,8 @@ Object {
               Are you the Subscriber?
               <svg
                 aria-hidden="true"
-                aria-label="Test"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-nxxc8s-MuiSvgIcon-root"
+                aria-label="The person who pays for health insurance premiums. For example, if you have health insurance through your spouse’s health insurance plan, he or she is the primary subscriber."
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-d8yrgm-MuiSvgIcon-root"
                 data-mui-internal-clone-element="true"
                 data-testid="ErrorOutlineOutlinedIcon"
                 focusable="false"
@@ -259,16 +278,18 @@ Object {
               role="radiogroup"
             >
               <label
+                aria-label="Yes Radio Button"
                 class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
               >
                 <span
-                  class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
+                  class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-81lzf2-MuiButtonBase-root-MuiRadio-root"
                 >
                   <input
+                    checked=""
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     name="row-radio-buttons-group"
                     type="radio"
-                    value="yes"
+                    value="Yes"
                   />
                   <span
                     class="css-hyxlzm"
@@ -286,7 +307,7 @@ Object {
                     </svg>
                     <svg
                       aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hhw7if-MuiSvgIcon-root"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-11zohuh-MuiSvgIcon-root"
                       data-testid="RadioButtonCheckedIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
@@ -307,6 +328,7 @@ Object {
                 </span>
               </label>
               <label
+                aria-label="No Radio Button"
                 class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
               >
                 <span
@@ -316,7 +338,7 @@ Object {
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     name="row-radio-buttons-group"
                     type="radio"
-                    value="no"
+                    value="No"
                   />
                   <span
                     class="css-hyxlzm"
@@ -360,170 +382,211 @@ Object {
             />
           </div>
           <div
-            class="MuiTypography-root MuiTypography-bodyRegular css-15atyh3-MuiTypography-root"
-          >
-            Enter the subscriber’s details
-          </div>
-          <div
-            class="MuiGrid-root MuiGrid-container css-o1xwpy-MuiGrid-root"
+            class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-bz4dnt-MuiCollapse-root"
+            style="min-height: 0px;"
           >
             <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
-              style="padding-left: 0px;"
+              class="MuiCollapse-wrapper MuiCollapse-vertical css-smkl36-MuiCollapse-wrapper"
             >
               <div
-                class="MuiFormControl-root MuiTextField-root custom-input css-7xekc6-MuiFormControl-root-MuiTextField-root"
-                withicon="true"
+                class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
               >
-                <label
-                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
-                  data-shrink="false"
-                  for="firstName"
-                  id="firstName-label"
-                >
-                  Subscriber First Name
-                </label>
                 <div
-                  class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+                  class="css-1lwbda4-MuiStack-root"
                 >
-                  <input
-                    aria-invalid="false"
-                    class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
-                    id="firstName"
-                    placeholder=""
-                    type="text"
-                    value=""
+                  <span
+                    class="MuiTypography-root MuiTypography-bodyRegular css-37jdci-MuiTypography-root"
+                  >
+                    Enter the subscriber’s details
+                  </span>
+                  <div
+                    class="MuiBox-root css-0"
+                  >
+                    <div
+                      class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
+                    >
+                      <div
+                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
+                      >
+                        <div
+                          class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
+                          maxlength="50"
+                          minlength="2"
+                          withicon="true"
+                        >
+                          <label
+                            class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
+                            data-shrink="false"
+                            for=":r8:"
+                            id=":r8:-label"
+                          >
+                            Subscriber First Name
+                          </label>
+                          <div
+                            class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+                          >
+                            <input
+                              aria-invalid="false"
+                              class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
+                              id=":r8:"
+                              placeholder=""
+                              type="text"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
+                      >
+                        <div
+                          class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
+                          withicon="true"
+                        >
+                          <label
+                            class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
+                            data-shrink="false"
+                            for=":r9:"
+                            id=":r9:-label"
+                          >
+                            Subscriber Last Name
+                          </label>
+                          <div
+                            class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+                          >
+                            <input
+                              aria-invalid="false"
+                              class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
+                              id=":r9:"
+                              placeholder=""
+                              type="text"
+                              value=""
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-fn1ww3-MuiGrid-root"
+                      />
+                      <div
+                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
+                      >
+                        <div
+                          class="MuiFormControl-root MuiTextField-root css-p3pjcm-MuiFormControl-root-MuiTextField-root"
+                        >
+                          <label
+                            class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
+                            data-shrink="false"
+                            for=":ra:"
+                            id=":ra:-label"
+                          >
+                            Subscriber Date of Birth
+                          </label>
+                          <div
+                            class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
+                          >
+                            <input
+                              aria-describedby=":ra:-helper-text"
+                              aria-invalid="false"
+                              aria-label="Choose date"
+                              aria-readonly="true"
+                              class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
+                              id=":ra:"
+                              readonly=""
+                              type="text"
+                              value=""
+                            />
+                          </div>
+                          <p
+                            class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained css-s6t1lu-MuiFormHelperText-root"
+                            id=":ra:-helper-text"
+                          >
+                            MM/DD/YYYY
+                          </p>
+                        </div>
+                      </div>
+                      <div
+                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-fn1ww3-MuiGrid-root"
+                      />
+                      <div
+                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-fn1ww3-MuiGrid-root"
+                      />
+                      <div
+                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
+                      >
+                        <div
+                          class="MuiFormControl-root css-14ljafm-MuiFormControl-root"
+                          style="width: 100%;"
+                        >
+                          <label
+                            class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
+                            data-shrink="false"
+                            id="demo-simple-select-label"
+                          >
+                            Relationship
+                          </label>
+                          <div
+                            class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                            data-testid="select-undefined"
+                          >
+                            <div
+                              aria-expanded="false"
+                              aria-haspopup="listbox"
+                              class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
+                              role="button"
+                              tabindex="0"
+                            >
+                              <span
+                                class="notranslate"
+                              >
+                                ​
+                              </span>
+                            </div>
+                            <input
+                              aria-hidden="true"
+                              class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+                              tabindex="-1"
+                              value=""
+                            />
+                            <svg
+                              aria-hidden="true"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
+                              data-testid="ArrowDropDownIcon"
+                              focusable="false"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M7 10l5 5 5-5z"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <label
+                    class="MuiFormLabel-root MuiFormLabel-colorPrimary css-yxw8bb-MuiFormLabel-root"
+                    id="row-input-disclaimer"
+                  >
+                    Optional
+                  </label>
+                  <hr
+                    class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
                   />
                 </div>
               </div>
             </div>
-            <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1lojpzt-MuiGrid-root"
-            >
-              <div
-                class="MuiFormControl-root MuiTextField-root custom-input css-7xekc6-MuiFormControl-root-MuiTextField-root"
-                withicon="true"
-              >
-                <label
-                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
-                  data-shrink="false"
-                  for="lastName"
-                  id="lastName-label"
-                >
-                  Subscriber Last Name
-                </label>
-                <div
-                  class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
-                >
-                  <input
-                    aria-invalid="false"
-                    class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
-                    id="lastName"
-                    placeholder=""
-                    type="text"
-                    value=""
-                  />
-                </div>
-              </div>
-            </div>
           </div>
-          <div
-            class="MuiFormControl-root MuiTextField-root css-p3pjcm-MuiFormControl-root-MuiTextField-root"
-          >
-            <label
-              class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
-              data-shrink="true"
-              for=":r5:"
-              id=":r5:-label"
-            >
-              Subscriber Date of Birth
-            </label>
-            <div
-              class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
-            >
-              <input
-                aria-invalid="false"
-                aria-label="Choose date"
-                aria-readonly="true"
-                class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
-                id=":r5:"
-                readonly=""
-                type="text"
-                value="08/22/2022"
-              />
-            </div>
-          </div>
-          <label
-            class="MuiFormLabel-root MuiFormLabel-colorPrimary css-yxw8bb-MuiFormLabel-root"
-            id="row-input-disclaimer"
-          >
-            MM/DD/YYYY
-          </label>
-          <div
-            class="MuiFormControl-root css-14ljafm-MuiFormControl-root"
-            style="width: 100%;"
-          >
-            <label
-              class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
-              data-shrink="false"
-              id="demo-simple-select-label"
-            >
-              Relationship
-            </label>
-            <div
-              class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
-            >
-              <div
-                aria-expanded="false"
-                aria-haspopup="listbox"
-                aria-labelledby="Relationship-Id relationship"
-                class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
-                id="relationship"
-                role="button"
-                tabindex="0"
-              >
-                <span
-                  class="notranslate"
-                >
-                  ​
-                </span>
-              </div>
-              <input
-                aria-hidden="true"
-                class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
-                tabindex="-1"
-                value=""
-              />
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-                data-testid="ArrowDropDownIcon"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M7 10l5 5 5-5z"
-                />
-              </svg>
-            </div>
-          </div>
-          <label
-            class="MuiFormLabel-root MuiFormLabel-colorPrimary css-yxw8bb-MuiFormLabel-root"
-            id="row-input-disclaimer"
-          >
-            optional
-          </label>
-          <hr />
           <div
             class="MuiTypography-root MuiTypography-bodyRegular css-37jdci-MuiTypography-root"
           >
             Upload images of your insurance.
           </div>
           <div
-            class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-container MuiGrid-spacing-md-2 css-1msbs0v-MuiGrid-root"
           >
             <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-7nwx4d-MuiGrid-root"
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
             >
               <div
                 class="css-1okj3ks-MuiStack-root"
@@ -566,15 +629,10 @@ Object {
                     type="file"
                   />
                 </div>
-                <span
-                  class="MuiTypography-root MuiTypography-bodySmallMedium css-37jdci-MuiTypography-root"
-                >
-                  *JPG or PNG file formats only. (File size limit is 4 MB)
-                </span>
               </div>
             </div>
             <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
             >
               <div
                 class="css-1okj3ks-MuiStack-root"
@@ -617,19 +675,26 @@ Object {
                     type="file"
                   />
                 </div>
-                <span
-                  class="MuiTypography-root MuiTypography-bodySmallMedium css-37jdci-MuiTypography-root"
-                >
-                  *JPG or PNG file formats only. (File size limit is 4 MB)
-                </span>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8 css-yakw3f-MuiGrid-root"
+            >
+              <div
+                class="MuiTypography-root MuiTypography-bodySmallMedium css-1hypn4f-MuiTypography-root"
+              >
+                *JPG or PNG file formats only. (File size limit is 4 MB)
               </div>
             </div>
           </div>
-          <hr />
+          <hr
+            class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+          />
           <div
             class="MuiFormControl-root css-1nrlq1o-MuiFormControl-root"
             label="Insurance Priority"
             options="[object Object],[object Object],[object Object]"
+            value="Primary"
           >
             <label
               class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1upt16w-MuiFormLabel-root"
@@ -638,8 +703,8 @@ Object {
               Insurance Priority
               <svg
                 aria-hidden="true"
-                aria-label="Test"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-nxxc8s-MuiSvgIcon-root"
+                aria-label="You can legally have multiple insurances to cover your eyecare expenses. Picking a primary insurance will allow you to decide which insurance takes priority."
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-d8yrgm-MuiSvgIcon-root"
                 data-mui-internal-clone-element="true"
                 data-testid="ErrorOutlineOutlinedIcon"
                 focusable="false"
@@ -652,20 +717,22 @@ Object {
             </label>
             <div
               aria-labelledby="row-radio-buttons-group-label"
-              class="MuiFormGroup-root MuiFormGroup-row css-qfz70r-MuiFormGroup-root"
+              class="MuiFormGroup-root css-dmmspl-MuiFormGroup-root"
               role="radiogroup"
             >
               <label
+                aria-label="Primary Radio Button"
                 class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
               >
                 <span
-                  class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
+                  class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-81lzf2-MuiButtonBase-root-MuiRadio-root"
                 >
                   <input
+                    checked=""
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     name="row-radio-buttons-group"
                     type="radio"
-                    value="primary"
+                    value="Primary"
                   />
                   <span
                     class="css-hyxlzm"
@@ -683,7 +750,7 @@ Object {
                     </svg>
                     <svg
                       aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hhw7if-MuiSvgIcon-root"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-11zohuh-MuiSvgIcon-root"
                       data-testid="RadioButtonCheckedIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
@@ -704,6 +771,7 @@ Object {
                 </span>
               </label>
               <label
+                aria-label="Secondary Radio Button"
                 class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
               >
                 <span
@@ -713,7 +781,7 @@ Object {
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     name="row-radio-buttons-group"
                     type="radio"
-                    value="secondary"
+                    value="Secondary"
                   />
                   <span
                     class="css-hyxlzm"
@@ -752,6 +820,7 @@ Object {
                 </span>
               </label>
               <label
+                aria-label="Tertiary Radio Button"
                 class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
               >
                 <span
@@ -761,7 +830,7 @@ Object {
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     name="row-radio-buttons-group"
                     type="radio"
-                    value="tertiary"
+                    value="Tertiary"
                   />
                   <span
                     class="css-hyxlzm"
@@ -804,12 +873,14 @@ Object {
               class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained css-1wc848c-MuiFormHelperText-root"
             />
           </div>
-          <hr />
+          <hr
+            class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+          />
           <div
-            class="css-27laqj-MuiStack-root"
+            class="css-1281pzv-MuiStack-root"
           >
             <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-sghohy-MuiButtonBase-root-MuiButton-root"
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-1rzk0sh-MuiButtonBase-root-MuiButton-root"
               tabindex="0"
               type="button"
             >
@@ -819,7 +890,7 @@ Object {
               />
             </button>
             <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-sghohy-MuiButtonBase-root-MuiButton-root"
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-1rzk0sh-MuiButtonBase-root-MuiButton-root"
               tabindex="0"
               type="submit"
             >
@@ -841,186 +912,209 @@ Object {
         class="css-1lwbda4-MuiStack-root"
       >
         <div
-          class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+          class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
         >
           <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-7nwx4d-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
           >
             <div
-              class="MuiFormControl-root css-14ljafm-MuiFormControl-root"
-              style="width: 100%;"
+              class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-16awh2u-MuiAutocomplete-root"
             >
-              <label
-                class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
-                data-shrink="false"
-                id="demo-simple-select-label"
-              >
-                Insurance Provider
-              </label>
               <div
-                class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1krnp8b-MuiFormControl-root-MuiTextField-root"
+                withicon="true"
               >
+                <label
+                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-1vtu5nf-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="false"
+                  for=":r0:"
+                  id=":r0:-label"
+                >
+                  Insurance Provider
+                </label>
                 <div
-                  aria-expanded="false"
-                  aria-haspopup="listbox"
-                  aria-labelledby="Insurance-Provider-Id Insurance-Provider-Id"
-                  class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
-                  id="Insurance-Provider-Id"
-                  role="button"
-                  tabindex="0"
+                  class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1cousx2-MuiInputBase-root-MuiOutlinedInput-root"
                 >
-                  <span
-                    class="notranslate"
-                  >
-                    ​
-                  </span>
-                </div>
-                <input
-                  aria-hidden="true"
-                  class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
-                  tabindex="-1"
-                  value=""
-                />
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-                  data-testid="ArrowDropDownIcon"
-                  focusable="false"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M7 10l5 5 5-5z"
+                  <input
+                    aria-autocomplete="list"
+                    aria-expanded="false"
+                    aria-invalid="false"
+                    autocapitalize="none"
+                    autocomplete="off"
+                    class="MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
+                    id=":r0:"
+                    placeholder=""
+                    role="combobox"
+                    spellcheck="false"
+                    type="text"
+                    value=""
                   />
-                </svg>
+                  <div
+                    class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+                  >
+                    <button
+                      aria-label="Open"
+                      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+                      tabindex="-1"
+                      title="Open"
+                      type="button"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                        data-testid="ArrowDropDownIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M7 10l5 5 5-5z"
+                        />
+                      </svg>
+                      <span
+                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                      />
+                    </button>
+                  </div>
+                  <fieldset
+                    aria-hidden="true"
+                    class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+                  >
+                    <legend
+                      class="css-1ftyaf0"
+                    >
+                      <span>
+                        Insurance Provider
+                      </span>
+                    </legend>
+                  </fieldset>
+                </div>
               </div>
             </div>
           </div>
           <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-7nwx4d-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
           >
             <div
-              class="MuiFormControl-root css-14ljafm-MuiFormControl-root"
-              style="width: 100%;"
+              class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-16awh2u-MuiAutocomplete-root"
             >
-              <label
-                class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
-                data-shrink="false"
-                id="demo-simple-select-label"
-              >
-                Plan Name
-              </label>
               <div
-                class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1krnp8b-MuiFormControl-root-MuiTextField-root"
+                withicon="true"
               >
+                <label
+                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-1vtu5nf-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="false"
+                  for=":r2:"
+                  id=":r2:-label"
+                >
+                  Plan Name
+                </label>
                 <div
-                  aria-expanded="false"
-                  aria-haspopup="listbox"
-                  aria-labelledby="Plan-Name-Id Plan-Name-Id"
-                  class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
-                  id="Plan-Name-Id"
-                  role="button"
-                  tabindex="0"
+                  class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1cousx2-MuiInputBase-root-MuiOutlinedInput-root"
                 >
-                  <span
-                    class="notranslate"
-                  >
-                    ​
-                  </span>
-                </div>
-                <input
-                  aria-hidden="true"
-                  class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
-                  tabindex="-1"
-                  value=""
-                />
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-                  data-testid="ArrowDropDownIcon"
-                  focusable="false"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M7 10l5 5 5-5z"
+                  <input
+                    aria-autocomplete="list"
+                    aria-expanded="false"
+                    aria-invalid="false"
+                    autocapitalize="none"
+                    autocomplete="off"
+                    class="MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
+                    id=":r2:"
+                    placeholder=""
+                    role="combobox"
+                    spellcheck="false"
+                    type="text"
+                    value=""
                   />
-                </svg>
+                  <div
+                    class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+                  >
+                    <button
+                      aria-label="Open"
+                      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+                      tabindex="-1"
+                      title="Open"
+                      type="button"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                        data-testid="ArrowDropDownIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M7 10l5 5 5-5z"
+                        />
+                      </svg>
+                      <span
+                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                      />
+                    </button>
+                  </div>
+                  <fieldset
+                    aria-hidden="true"
+                    class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
+                  >
+                    <legend
+                      class="css-1ftyaf0"
+                    >
+                      <span>
+                        Plan Name
+                      </span>
+                    </legend>
+                  </fieldset>
+                </div>
               </div>
             </div>
             <label
               class="MuiFormLabel-root MuiFormLabel-colorPrimary css-yxw8bb-MuiFormLabel-root"
               id="row-input-disclaimer"
             >
-              optional
+              (Optional)
             </label>
           </div>
           <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-7nwx4d-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
           >
             <div
-              class="MuiFormControl-root css-14ljafm-MuiFormControl-root"
-              style="width: 100%;"
-            >
-              <label
-                class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
-                data-shrink="false"
-                id="demo-simple-select-label"
-              >
-                Insurance Subscriber ID/ Member ID
-              </label>
-              <div
-                class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
-              >
-                <div
-                  aria-expanded="false"
-                  aria-haspopup="listbox"
-                  aria-labelledby="Subscriber-Member-Id Subscriber-Member-Id"
-                  class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
-                  id="Subscriber-Member-Id"
-                  role="button"
-                  tabindex="0"
-                >
-                  <span
-                    class="notranslate"
-                  >
-                    ​
-                  </span>
-                </div>
-                <input
-                  aria-hidden="true"
-                  class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
-                  tabindex="-1"
-                  value=""
-                />
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-                  data-testid="ArrowDropDownIcon"
-                  focusable="false"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    d="M7 10l5 5 5-5z"
-                  />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div
-          class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
-        >
-          <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
-          >
-            <div
-              class="MuiFormControl-root MuiTextField-root custom-input css-7xekc6-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
               withicon="true"
             >
               <label
                 class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="false"
-                for="groupId"
-                id="groupId-label"
+                for=":r4:"
+                id=":r4:-label"
+              >
+                Subscriber ID/ Member ID
+              </label>
+              <div
+                class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+              >
+                <input
+                  aria-invalid="false"
+                  class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
+                  id=":r4:"
+                  placeholder=""
+                  type="number"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
+          >
+            <div
+              class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
+              withicon="true"
+            >
+              <label
+                class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
+                data-shrink="false"
+                for=":r5:"
+                id=":r5:-label"
               >
                 Group #
               </label>
@@ -1030,9 +1124,9 @@ Object {
                 <input
                   aria-invalid="false"
                   class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
-                  id="groupId"
+                  id=":r5:"
                   placeholder=""
-                  type="text"
+                  type="number"
                   value=""
                 />
               </div>
@@ -1041,20 +1135,15 @@ Object {
               class="MuiFormLabel-root MuiFormLabel-colorPrimary css-yxw8bb-MuiFormLabel-root"
               id="row-input-disclaimer"
             >
-              optional
+              (Optional)
             </label>
           </div>
-          <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-7nwx4d-MuiGrid-root"
-          />
-          <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-7nwx4d-MuiGrid-root"
-          />
         </div>
-        <hr />
+        <hr
+          class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+        />
         <h3
           class="MuiTypography-root MuiTypography-h3 css-1mie9p3-MuiTypography-root"
-          tooltipcontent="Test"
         >
           Policy Holder
         </h3>
@@ -1062,6 +1151,7 @@ Object {
           class="MuiFormControl-root css-1nrlq1o-MuiFormControl-root"
           label="Are you the Subscriber?"
           options="[object Object],[object Object]"
+          value="Yes"
         >
           <label
             class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1upt16w-MuiFormLabel-root"
@@ -1070,8 +1160,8 @@ Object {
             Are you the Subscriber?
             <svg
               aria-hidden="true"
-              aria-label="Test"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-nxxc8s-MuiSvgIcon-root"
+              aria-label="The person who pays for health insurance premiums. For example, if you have health insurance through your spouse’s health insurance plan, he or she is the primary subscriber."
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-d8yrgm-MuiSvgIcon-root"
               data-mui-internal-clone-element="true"
               data-testid="ErrorOutlineOutlinedIcon"
               focusable="false"
@@ -1088,16 +1178,18 @@ Object {
             role="radiogroup"
           >
             <label
+              aria-label="Yes Radio Button"
               class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
             >
               <span
-                class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
+                class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-81lzf2-MuiButtonBase-root-MuiRadio-root"
               >
                 <input
+                  checked=""
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   name="row-radio-buttons-group"
                   type="radio"
-                  value="yes"
+                  value="Yes"
                 />
                 <span
                   class="css-hyxlzm"
@@ -1115,7 +1207,7 @@ Object {
                   </svg>
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hhw7if-MuiSvgIcon-root"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-11zohuh-MuiSvgIcon-root"
                     data-testid="RadioButtonCheckedIcon"
                     focusable="false"
                     viewBox="0 0 24 24"
@@ -1136,6 +1228,7 @@ Object {
               </span>
             </label>
             <label
+              aria-label="No Radio Button"
               class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
             >
               <span
@@ -1145,7 +1238,7 @@ Object {
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   name="row-radio-buttons-group"
                   type="radio"
-                  value="no"
+                  value="No"
                 />
                 <span
                   class="css-hyxlzm"
@@ -1189,170 +1282,211 @@ Object {
           />
         </div>
         <div
-          class="MuiTypography-root MuiTypography-bodyRegular css-15atyh3-MuiTypography-root"
-        >
-          Enter the subscriber’s details
-        </div>
-        <div
-          class="MuiGrid-root MuiGrid-container css-o1xwpy-MuiGrid-root"
+          class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-bz4dnt-MuiCollapse-root"
+          style="min-height: 0px;"
         >
           <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1osj8n2-MuiGrid-root"
-            style="padding-left: 0px;"
+            class="MuiCollapse-wrapper MuiCollapse-vertical css-smkl36-MuiCollapse-wrapper"
           >
             <div
-              class="MuiFormControl-root MuiTextField-root custom-input css-7xekc6-MuiFormControl-root-MuiTextField-root"
-              withicon="true"
+              class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
             >
-              <label
-                class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
-                data-shrink="false"
-                for="firstName"
-                id="firstName-label"
-              >
-                Subscriber First Name
-              </label>
               <div
-                class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+                class="css-1lwbda4-MuiStack-root"
               >
-                <input
-                  aria-invalid="false"
-                  class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
-                  id="firstName"
-                  placeholder=""
-                  type="text"
-                  value=""
+                <span
+                  class="MuiTypography-root MuiTypography-bodyRegular css-37jdci-MuiTypography-root"
+                >
+                  Enter the subscriber’s details
+                </span>
+                <div
+                  class="MuiBox-root css-0"
+                >
+                  <div
+                    class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
+                  >
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
+                    >
+                      <div
+                        class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
+                        maxlength="50"
+                        minlength="2"
+                        withicon="true"
+                      >
+                        <label
+                          class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
+                          data-shrink="false"
+                          for=":r8:"
+                          id=":r8:-label"
+                        >
+                          Subscriber First Name
+                        </label>
+                        <div
+                          class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+                        >
+                          <input
+                            aria-invalid="false"
+                            class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
+                            id=":r8:"
+                            placeholder=""
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
+                    >
+                      <div
+                        class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
+                        withicon="true"
+                      >
+                        <label
+                          class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
+                          data-shrink="false"
+                          for=":r9:"
+                          id=":r9:-label"
+                        >
+                          Subscriber Last Name
+                        </label>
+                        <div
+                          class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+                        >
+                          <input
+                            aria-invalid="false"
+                            class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
+                            id=":r9:"
+                            placeholder=""
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-fn1ww3-MuiGrid-root"
+                    />
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
+                    >
+                      <div
+                        class="MuiFormControl-root MuiTextField-root css-p3pjcm-MuiFormControl-root-MuiTextField-root"
+                      >
+                        <label
+                          class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
+                          data-shrink="false"
+                          for=":ra:"
+                          id=":ra:-label"
+                        >
+                          Subscriber Date of Birth
+                        </label>
+                        <div
+                          class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
+                        >
+                          <input
+                            aria-describedby=":ra:-helper-text"
+                            aria-invalid="false"
+                            aria-label="Choose date"
+                            aria-readonly="true"
+                            class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
+                            id=":ra:"
+                            readonly=""
+                            type="text"
+                            value=""
+                          />
+                        </div>
+                        <p
+                          class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained css-s6t1lu-MuiFormHelperText-root"
+                          id=":ra:-helper-text"
+                        >
+                          MM/DD/YYYY
+                        </p>
+                      </div>
+                    </div>
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-fn1ww3-MuiGrid-root"
+                    />
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-fn1ww3-MuiGrid-root"
+                    />
+                    <div
+                      class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
+                    >
+                      <div
+                        class="MuiFormControl-root css-14ljafm-MuiFormControl-root"
+                        style="width: 100%;"
+                      >
+                        <label
+                          class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
+                          data-shrink="false"
+                          id="demo-simple-select-label"
+                        >
+                          Relationship
+                        </label>
+                        <div
+                          class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                          data-testid="select-undefined"
+                        >
+                          <div
+                            aria-expanded="false"
+                            aria-haspopup="listbox"
+                            class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
+                            role="button"
+                            tabindex="0"
+                          >
+                            <span
+                              class="notranslate"
+                            >
+                              ​
+                            </span>
+                          </div>
+                          <input
+                            aria-hidden="true"
+                            class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+                            tabindex="-1"
+                            value=""
+                          />
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
+                            data-testid="ArrowDropDownIcon"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M7 10l5 5 5-5z"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <label
+                  class="MuiFormLabel-root MuiFormLabel-colorPrimary css-yxw8bb-MuiFormLabel-root"
+                  id="row-input-disclaimer"
+                >
+                  Optional
+                </label>
+                <hr
+                  class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
                 />
               </div>
             </div>
           </div>
-          <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1lojpzt-MuiGrid-root"
-          >
-            <div
-              class="MuiFormControl-root MuiTextField-root custom-input css-7xekc6-MuiFormControl-root-MuiTextField-root"
-              withicon="true"
-            >
-              <label
-                class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
-                data-shrink="false"
-                for="lastName"
-                id="lastName-label"
-              >
-                Subscriber Last Name
-              </label>
-              <div
-                class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
-              >
-                <input
-                  aria-invalid="false"
-                  class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
-                  id="lastName"
-                  placeholder=""
-                  type="text"
-                  value=""
-                />
-              </div>
-            </div>
-          </div>
         </div>
-        <div
-          class="MuiFormControl-root MuiTextField-root css-p3pjcm-MuiFormControl-root-MuiTextField-root"
-        >
-          <label
-            class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
-            data-shrink="true"
-            for=":r5:"
-            id=":r5:-label"
-          >
-            Subscriber Date of Birth
-          </label>
-          <div
-            class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
-          >
-            <input
-              aria-invalid="false"
-              aria-label="Choose date"
-              aria-readonly="true"
-              class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
-              id=":r5:"
-              readonly=""
-              type="text"
-              value="08/22/2022"
-            />
-          </div>
-        </div>
-        <label
-          class="MuiFormLabel-root MuiFormLabel-colorPrimary css-yxw8bb-MuiFormLabel-root"
-          id="row-input-disclaimer"
-        >
-          MM/DD/YYYY
-        </label>
-        <div
-          class="MuiFormControl-root css-14ljafm-MuiFormControl-root"
-          style="width: 100%;"
-        >
-          <label
-            class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
-            data-shrink="false"
-            id="demo-simple-select-label"
-          >
-            Relationship
-          </label>
-          <div
-            class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
-          >
-            <div
-              aria-expanded="false"
-              aria-haspopup="listbox"
-              aria-labelledby="Relationship-Id relationship"
-              class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
-              id="relationship"
-              role="button"
-              tabindex="0"
-            >
-              <span
-                class="notranslate"
-              >
-                ​
-              </span>
-            </div>
-            <input
-              aria-hidden="true"
-              class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
-              tabindex="-1"
-              value=""
-            />
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-              data-testid="ArrowDropDownIcon"
-              focusable="false"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M7 10l5 5 5-5z"
-              />
-            </svg>
-          </div>
-        </div>
-        <label
-          class="MuiFormLabel-root MuiFormLabel-colorPrimary css-yxw8bb-MuiFormLabel-root"
-          id="row-input-disclaimer"
-        >
-          optional
-        </label>
-        <hr />
         <div
           class="MuiTypography-root MuiTypography-bodyRegular css-37jdci-MuiTypography-root"
         >
           Upload images of your insurance.
         </div>
         <div
-          class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+          class="MuiGrid-root MuiGrid-container MuiGrid-spacing-md-2 css-1msbs0v-MuiGrid-root"
         >
           <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-7nwx4d-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
           >
             <div
               class="css-1okj3ks-MuiStack-root"
@@ -1395,15 +1529,10 @@ Object {
                   type="file"
                 />
               </div>
-              <span
-                class="MuiTypography-root MuiTypography-bodySmallMedium css-37jdci-MuiTypography-root"
-              >
-                *JPG or PNG file formats only. (File size limit is 4 MB)
-              </span>
             </div>
           </div>
           <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 css-gj1fbr-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
           >
             <div
               class="css-1okj3ks-MuiStack-root"
@@ -1446,19 +1575,26 @@ Object {
                   type="file"
                 />
               </div>
-              <span
-                class="MuiTypography-root MuiTypography-bodySmallMedium css-37jdci-MuiTypography-root"
-              >
-                *JPG or PNG file formats only. (File size limit is 4 MB)
-              </span>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8 css-yakw3f-MuiGrid-root"
+          >
+            <div
+              class="MuiTypography-root MuiTypography-bodySmallMedium css-1hypn4f-MuiTypography-root"
+            >
+              *JPG or PNG file formats only. (File size limit is 4 MB)
             </div>
           </div>
         </div>
-        <hr />
+        <hr
+          class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+        />
         <div
           class="MuiFormControl-root css-1nrlq1o-MuiFormControl-root"
           label="Insurance Priority"
           options="[object Object],[object Object],[object Object]"
+          value="Primary"
         >
           <label
             class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1upt16w-MuiFormLabel-root"
@@ -1467,8 +1603,8 @@ Object {
             Insurance Priority
             <svg
               aria-hidden="true"
-              aria-label="Test"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-nxxc8s-MuiSvgIcon-root"
+              aria-label="You can legally have multiple insurances to cover your eyecare expenses. Picking a primary insurance will allow you to decide which insurance takes priority."
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-d8yrgm-MuiSvgIcon-root"
               data-mui-internal-clone-element="true"
               data-testid="ErrorOutlineOutlinedIcon"
               focusable="false"
@@ -1481,20 +1617,22 @@ Object {
           </label>
           <div
             aria-labelledby="row-radio-buttons-group-label"
-            class="MuiFormGroup-root MuiFormGroup-row css-qfz70r-MuiFormGroup-root"
+            class="MuiFormGroup-root css-dmmspl-MuiFormGroup-root"
             role="radiogroup"
           >
             <label
+              aria-label="Primary Radio Button"
               class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
             >
               <span
-                class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
+                class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-81lzf2-MuiButtonBase-root-MuiRadio-root"
               >
                 <input
+                  checked=""
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   name="row-radio-buttons-group"
                   type="radio"
-                  value="primary"
+                  value="Primary"
                 />
                 <span
                   class="css-hyxlzm"
@@ -1512,7 +1650,7 @@ Object {
                   </svg>
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hhw7if-MuiSvgIcon-root"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-11zohuh-MuiSvgIcon-root"
                     data-testid="RadioButtonCheckedIcon"
                     focusable="false"
                     viewBox="0 0 24 24"
@@ -1533,6 +1671,7 @@ Object {
               </span>
             </label>
             <label
+              aria-label="Secondary Radio Button"
               class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
             >
               <span
@@ -1542,7 +1681,7 @@ Object {
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   name="row-radio-buttons-group"
                   type="radio"
-                  value="secondary"
+                  value="Secondary"
                 />
                 <span
                   class="css-hyxlzm"
@@ -1581,6 +1720,7 @@ Object {
               </span>
             </label>
             <label
+              aria-label="Tertiary Radio Button"
               class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
             >
               <span
@@ -1590,7 +1730,7 @@ Object {
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   name="row-radio-buttons-group"
                   type="radio"
-                  value="tertiary"
+                  value="Tertiary"
                 />
                 <span
                   class="css-hyxlzm"
@@ -1633,12 +1773,14 @@ Object {
             class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained css-1wc848c-MuiFormHelperText-root"
           />
         </div>
-        <hr />
+        <hr
+          class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+        />
         <div
-          class="css-27laqj-MuiStack-root"
+          class="css-1281pzv-MuiStack-root"
         >
           <button
-            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-sghohy-MuiButtonBase-root-MuiButton-root"
+            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-1rzk0sh-MuiButtonBase-root-MuiButton-root"
             tabindex="0"
             type="button"
           >
@@ -1648,7 +1790,7 @@ Object {
             />
           </button>
           <button
-            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-sghohy-MuiButtonBase-root-MuiButton-root"
+            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-1rzk0sh-MuiButtonBase-root-MuiButton-root"
             tabindex="0"
             type="submit"
           >

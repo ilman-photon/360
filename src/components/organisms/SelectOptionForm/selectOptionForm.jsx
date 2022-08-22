@@ -8,6 +8,8 @@ import { useRouter } from "next/router";
 import { StyledButton } from "../../atoms/Button/button";
 import { styles } from "./style";
 import constants from "../../../utils/constants";
+import { HeadingTitle } from "../../atoms/Heading";
+import { getLinkAria } from "../../../utils/viewUtil";
 
 const SelectOptionForm = ({
   onBackToLoginClicked,
@@ -21,11 +23,11 @@ const SelectOptionForm = ({
   return (
     <Card className={globalStyles.container} style={styles.cardStyle}>
       <CardContent style={styles.cardContentStyle}>
-        <Typography variant="h2">{t("title")}</Typography>
+        <HeadingTitle variant={constants.H2} title={t("title")} />
         <StyledButton
           theme={constants.PATIENT}
           mode={constants.PRIMARY}
-          size={constants.LARGE}
+          size={constants.SMALL}
           gradient={false}
           data-testid={FORGOT_TEST_ID.answerQuestions}
           onClick={() => {
@@ -49,7 +51,7 @@ const SelectOptionForm = ({
         <StyledButton
           theme={constants.PATIENT}
           mode={constants.SECONDARY}
-          size={constants.LARGE}
+          size={constants.SMALL}
           gradient={false}
           data-testid={FORGOT_TEST_ID.oneTimeLink}
           onClick={() => {
@@ -70,6 +72,7 @@ const SelectOptionForm = ({
           onClick={function () {
             onBackToLoginClicked(router);
           }}
+          {...getLinkAria(t("backButtonLink"))}
         >
           {t("backButtonLink")}
         </Link>

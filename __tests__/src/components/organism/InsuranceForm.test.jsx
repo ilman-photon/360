@@ -1,8 +1,8 @@
-import { fireEvent, render } from "@testing-library/react";
+import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import InsuranceForm from "../../../../src/components/organisms/InsuranceInformation/insuranceForm";
 
-describe("SecurityQuestion Components", () => {
+describe("InsuranceForm Components", () => {
   let container;
   beforeEach(() => {
     container = render(<InsuranceForm />);

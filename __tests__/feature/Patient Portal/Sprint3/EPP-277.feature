@@ -6,7 +6,7 @@ Feature: Patient Portal : Concurrent Sessions - Login/access Patient Portal via 
   @Authentication
   @Patient_Portal
   @Sprint3
-  @excluded
+  @included
   Scenario: EPIC_EPP-3_STORY_EPP-277 - Verify that  User should be prompted regarding session time out in multiple devices
     Given user launch the "XXX" url in Device A
     When user provides  "<username or phone number>" and "<password>" in Device A

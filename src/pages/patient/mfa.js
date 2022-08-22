@@ -110,11 +110,18 @@ export default function MfaPage() {
     api
       .submitMfaCode(postBody)
       .then((response) => {
-        if (response.mfaAccessToken)
+        if (response.mfaAccessToken) {
           cookies.set("mfaAccessToken", response.mfaAccessToken, {
             path: "/patient",
           });
-        onShowSecurityQuestionForm();
+        }
+
+        const securityQuestions = cookies.get("securityQuestions");
+        if (securityQuestions.length === 0) {
+          onShowSecurityQuestionForm();
+        } else {
+          redirectToDashboard();
+        }
       })
       .catch((err) => {
         if (err.ResponseCode === 4003) {
@@ -173,7 +180,9 @@ export default function MfaPage() {
     api
       .getSecurityQuestion()
       .then(function (response) {
-        setSecurityQuestionList(response.securityQuestionList);
+        setSecurityQuestionList(
+          mappingSecurityQuestionList(response.SetUpSecurityQuestions)
+        );
         setComponentName(constants.SQ_COMPONENT_NAME);
       })
       .catch(function () {
@@ -181,9 +190,18 @@ export default function MfaPage() {
       });
   }
 
-  function onSubmitSecurityQuestionClicked(callback) {
+  function onSubmitSecurityQuestionClicked(data, callback) {
+    const questionAnswer = {};
+    for (let i = 0; i < data.answer.length; i++) {
+      questionAnswer[data.question[i]] = data.answer[i];
+    }
+
+    const postBody = {
+      username: cookies.get("username", { path: "/patient" }),
+      SecurityQuestions: [questionAnswer],
+    };
     api
-      .submitSecurityQuestion()
+      .submitSecurityQuestion(postBody)
       .then(function () {
         setSuccessSubmit(true);
         setTimeout(() => {
@@ -193,12 +211,20 @@ export default function MfaPage() {
       .catch(function () {
         callback({
           status: "failed",
-          message: {
-            title: "Code sent multiple times.",
-            description: "Please try again after 30 minutes.",
-          },
+          message: "Failed to sumbit the security question.",
         });
       });
+  }
+
+  function mappingSecurityQuestionList(securityQuestionList = []) {
+    const questionList = [];
+    securityQuestionList = securityQuestionList[0]
+      ? securityQuestionList[0]
+      : {};
+    for (const [key, value] of Object.entries(securityQuestionList)) {
+      questionList.push(key);
+    }
+    return questionList;
   }
 
   if (componentName === constants.MFA_COMPONENT_NAME) {

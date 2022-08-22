@@ -4,14 +4,21 @@ export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
   return fetch("/api/dummy/user").then((res) => res.json());
 });
 
+export const fetchInsurance = createAsyncThunk(
+  "user/fetchInsurance",
+  async () => {
+    return fetch("/api/dummy/insurance").then((res) => res.json());
+  }
+);
+
 const DEFAULT_USER_DATA = {
   firstName: "",
   lastName: "laste",
   name: "Eyecare User",
   preferredName: "---",
   profilePhoto: "",
-  issuedCardFront: "",
-  issuedCardBack: "",
+  issuedCardFront: "/transparent.png",
+  issuedCardBack: "/transparent.png",
   dob: new Date(),
   title: "Mr",
   ssn: 1234567,
@@ -32,10 +39,29 @@ const DEFAULT_USER_DATA = {
   isSubscriber: "",
 };
 
+export const DEFAULT_INSURANCE_DATA = {
+  id: 0,
+  provider: null,
+  plan: null,
+  memberID: "",
+  groupID: "",
+  isSubscriber: "Yes",
+  subscriberData: {
+    firstName: "",
+    lastName: "",
+    dob: null,
+    relationship: "",
+  },
+  priority: "Primary",
+  frontCard: "",
+  backCard: "",
+};
+
 const userSlice = createSlice({
   name: "user",
   initialState: {
     userData: DEFAULT_USER_DATA,
+    userInsuranceData: [],
     status: null,
   },
   reducers: {
@@ -44,6 +70,26 @@ const userSlice = createSlice({
     },
     setUserData: (state, { payload }) => {
       state.userData = payload;
+    },
+    resetUserInsuranceData: (state, action) => {
+      state.loading = action.payload;
+    },
+    setUserInsuranceData: (state, { payload }) => {
+      state.userInsuranceData = payload;
+    },
+    setUserInsuranceDataByIndex: (state, { payload }) => {
+      state.userInsuranceData = state.userInsuranceData.map((item, idx) => {
+        if (payload.id === idx) {
+          item = payload;
+        }
+        return item;
+      });
+    },
+    addUserInsuranceData: (state, { payload }) => {
+      state.userInsuranceData.push(payload);
+    },
+    removeUserInsuranceData: (state, { payload }) => {
+      state.userInsuranceData.splice(payload, 1);
     },
   },
   extraReducers: {
@@ -61,6 +107,12 @@ const userSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setUserData } = userSlice.actions;
+export const {
+  setUserData,
+  setUserInsuranceData,
+  addUserInsuranceData,
+  removeUserInsuranceData,
+  setUserInsuranceDataByIndex,
+} = userSlice.actions;
 
 export default userSlice.reducer;

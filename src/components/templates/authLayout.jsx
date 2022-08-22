@@ -9,7 +9,7 @@ import useMediaQuery from "@mui/material/useMediaQuery";
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
 
-export default function Layout({
+export default function AuthLayout({
   children,
   showMobileImage = false,
   theme = "patient",
@@ -67,9 +67,7 @@ export default function Layout({
             }}
           >
             <div className={styles.imageBannerContainer}>
-              {hasImage && (
-                <Image alt="auth-image" src={imageSrcState} layout="fill" />
-              )}
+              {hasImage && <Image alt="" src={imageSrcState} layout="fill" />}
             </div>
           </Container>
         </div>

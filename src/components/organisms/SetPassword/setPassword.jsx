@@ -12,10 +12,9 @@ import FormMessage from "../../molecules/FormMessage/formMessage";
 import { Link, Typography } from "@mui/material";
 import { PasswordValidator } from "../../molecules/PasswordValidator/passwordValidator";
 import { Regex } from "../../../utils/regex";
-
-const headingStyles = {
-  marginBottom: 30,
-};
+import constants from "../../../utils/constants";
+import { HeadingTitle } from "../../atoms/Heading";
+import { getLinkAria } from "../../../utils/viewUtil";
 
 const cardContentStyle = {
   display: "flex",
@@ -189,10 +188,12 @@ const SetPasswordComponent = ({
       if (validateErrorPassword(errors1, errors2, errorForkedValidation)) {
         onSetPasswordClicked(data);
       } else {
-        setError("password", {
-          type: "custom",
-          message: t("passwordNotMeetRequirements"),
-        });
+        if (!isUpdatePassword) {
+          setError("password", {
+            type: "custom",
+            message: t("passwordNotMeetRequirements"),
+          });
+        }
         setError("confirmPassword", {
           type: "custom",
           message: t("passwordNotMeetRequirements"),
@@ -252,9 +253,11 @@ const SetPasswordComponent = ({
       sx={{ minWidth: 275, margin: 10, marginTop: 0 }}
     >
       <CardContent style={cardContentStyle}>
-        <Typography variant="h2" sx={{ marginLeft: "8px" }}>
-          {title}
-        </Typography>
+        <HeadingTitle
+          variant={constants.H2}
+          sx={{ marginLeft: "8px" }}
+          title={title}
+        />
         {subtitle ? (
           <Typography variant="h4" sx={styles.titleStyles2}>
             {subtitle}
@@ -344,7 +347,7 @@ const SetPasswordComponent = ({
             }}
             rules={{
               required: "This field is required",
-              validate: passwordRules(),
+              validate: !isUpdatePassword ? passwordRules() : {},
             }}
           />
           {!isUpdatePassword ? (
@@ -380,7 +383,7 @@ const SetPasswordComponent = ({
             }}
             rules={{
               required: t("errorEmptyField"),
-              validate: passwordRules(),
+              validate: !isUpdatePassword ? passwordRules() : {},
             }}
           />
           {isUpdatePassword ? (
@@ -397,7 +400,7 @@ const SetPasswordComponent = ({
             type="submit"
             theme="patient"
             mode="primary"
-            size="large"
+            size="small"
             gradient={false}
             style={styles.margin}
           >
@@ -411,6 +414,7 @@ const SetPasswordComponent = ({
             onClick={function () {
               onBackToLoginClicked(router);
             }}
+            {...getLinkAria(t("backButtonLink"))}
           >
             {t("backButtonLink")}
           </Link>

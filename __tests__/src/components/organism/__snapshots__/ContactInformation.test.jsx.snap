@@ -1,0 +1,484 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ContactInformation Components ContactInformation render 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
+      >
+        <div
+          class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
+        >
+          <div
+            class="css-1lwbda4-MuiStack-root"
+            style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+          >
+            <div
+              class="css-nen11g-MuiStack-root"
+            >
+              <div
+                class="labelContainer"
+              >
+                <div
+                  class="label"
+                >
+                  Phone Number
+                </div>
+              </div>
+              <div
+                class="css-1okj3ks-MuiStack-root"
+              >
+                <div
+                  style="margin-top: 10px;"
+                />
+              </div>
+            </div>
+            <hr
+              class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+            />
+            <div
+              class="css-nen11g-MuiStack-root"
+            >
+              <div
+                class="labelContainer"
+              >
+                <div
+                  class="label"
+                >
+                  Email ID
+                </div>
+              </div>
+              <div
+                class="css-1okj3ks-MuiStack-root"
+              >
+                <div
+                  style="margin-top: 10px;"
+                >
+                  Justus4@gmail.com
+                </div>
+              </div>
+            </div>
+            <hr
+              class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+            />
+            <div
+              class="css-nen11g-MuiStack-root"
+            >
+              <div
+                class="labelContainer"
+              >
+                <div
+                  class="label"
+                >
+                  Address
+                </div>
+              </div>
+              <div
+                class="css-1okj3ks-MuiStack-root"
+              >
+                <div
+                  style="margin-top: 10px;"
+                >
+                  645 Benedict Cliff
+                </div>
+              </div>
+            </div>
+            <hr
+              class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+            />
+            <div
+              class="css-nen11g-MuiStack-root"
+            >
+              <div
+                class="labelContainer"
+              >
+                <div
+                  class="label"
+                >
+                  City
+                </div>
+              </div>
+              <div
+                class="css-1okj3ks-MuiStack-root"
+              >
+                <div
+                  style="margin-top: 10px;"
+                >
+                  Daphneeshire
+                </div>
+              </div>
+            </div>
+            <hr
+              class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+            />
+            <div
+              class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+            >
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1lojpzt-MuiGrid-root"
+              >
+                <div
+                  class="css-nen11g-MuiStack-root"
+                >
+                  <div
+                    class="labelContainer"
+                  >
+                    <div
+                      class="label"
+                    >
+                      State
+                    </div>
+                  </div>
+                  <div
+                    class="css-1okj3ks-MuiStack-root"
+                  >
+                    <div
+                      style="margin-top: 10px;"
+                    >
+                      South Dakota
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1lojpzt-MuiGrid-root"
+              >
+                <div
+                  class="css-nen11g-MuiStack-root"
+                >
+                  <div
+                    class="labelContainer"
+                  >
+                    <div
+                      class="label"
+                    >
+                      Zip
+                    </div>
+                  </div>
+                  <div
+                    class="css-1okj3ks-MuiStack-root"
+                  >
+                    <div
+                      style="margin-top: 10px;"
+                    >
+                      03245
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr
+              class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+            />
+            <div
+              class="css-nen11g-MuiStack-root"
+            >
+              <div
+                class="labelContainer"
+              >
+                <div
+                  class="label"
+                >
+                  Prefered Mode(s) of communication
+                </div>
+              </div>
+              <div
+                class="css-1okj3ks-MuiStack-root"
+              >
+                <div
+                  style="margin-top: 10px;"
+                >
+                  <span
+                    style="text-transform: capitalize;"
+                  >
+                    email
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        style="position: fixed; bottom: 16px; right: 16px;"
+      >
+        <button
+          class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-2ak3pm-MuiButtonBase-root-MuiButton-root"
+          tabindex="0"
+          type="button"
+        >
+          Edit
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
+    >
+      <div
+        class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
+      >
+        <div
+          class="css-1lwbda4-MuiStack-root"
+          style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+        >
+          <div
+            class="css-nen11g-MuiStack-root"
+          >
+            <div
+              class="labelContainer"
+            >
+              <div
+                class="label"
+              >
+                Phone Number
+              </div>
+            </div>
+            <div
+              class="css-1okj3ks-MuiStack-root"
+            >
+              <div
+                style="margin-top: 10px;"
+              />
+            </div>
+          </div>
+          <hr
+            class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+          />
+          <div
+            class="css-nen11g-MuiStack-root"
+          >
+            <div
+              class="labelContainer"
+            >
+              <div
+                class="label"
+              >
+                Email ID
+              </div>
+            </div>
+            <div
+              class="css-1okj3ks-MuiStack-root"
+            >
+              <div
+                style="margin-top: 10px;"
+              >
+                Justus4@gmail.com
+              </div>
+            </div>
+          </div>
+          <hr
+            class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+          />
+          <div
+            class="css-nen11g-MuiStack-root"
+          >
+            <div
+              class="labelContainer"
+            >
+              <div
+                class="label"
+              >
+                Address
+              </div>
+            </div>
+            <div
+              class="css-1okj3ks-MuiStack-root"
+            >
+              <div
+                style="margin-top: 10px;"
+              >
+                645 Benedict Cliff
+              </div>
+            </div>
+          </div>
+          <hr
+            class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+          />
+          <div
+            class="css-nen11g-MuiStack-root"
+          >
+            <div
+              class="labelContainer"
+            >
+              <div
+                class="label"
+              >
+                City
+              </div>
+            </div>
+            <div
+              class="css-1okj3ks-MuiStack-root"
+            >
+              <div
+                style="margin-top: 10px;"
+              >
+                Daphneeshire
+              </div>
+            </div>
+          </div>
+          <hr
+            class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+          />
+          <div
+            class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+          >
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1lojpzt-MuiGrid-root"
+            >
+              <div
+                class="css-nen11g-MuiStack-root"
+              >
+                <div
+                  class="labelContainer"
+                >
+                  <div
+                    class="label"
+                  >
+                    State
+                  </div>
+                </div>
+                <div
+                  class="css-1okj3ks-MuiStack-root"
+                >
+                  <div
+                    style="margin-top: 10px;"
+                  >
+                    South Dakota
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1lojpzt-MuiGrid-root"
+            >
+              <div
+                class="css-nen11g-MuiStack-root"
+              >
+                <div
+                  class="labelContainer"
+                >
+                  <div
+                    class="label"
+                  >
+                    Zip
+                  </div>
+                </div>
+                <div
+                  class="css-1okj3ks-MuiStack-root"
+                >
+                  <div
+                    style="margin-top: 10px;"
+                  >
+                    03245
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr
+            class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+          />
+          <div
+            class="css-nen11g-MuiStack-root"
+          >
+            <div
+              class="labelContainer"
+            >
+              <div
+                class="label"
+              >
+                Prefered Mode(s) of communication
+              </div>
+            </div>
+            <div
+              class="css-1okj3ks-MuiStack-root"
+            >
+              <div
+                style="margin-top: 10px;"
+              >
+                <span
+                  style="text-transform: capitalize;"
+                >
+                  email
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div
+      style="position: fixed; bottom: 16px; right: 16px;"
+    >
+      <button
+        class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-2ak3pm-MuiButtonBase-root-MuiButton-root"
+        tabindex="0"
+        type="button"
+      >
+        Edit
+        <span
+          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+        />
+      </button>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

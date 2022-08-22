@@ -10,6 +10,9 @@ import { StyledButton } from "../../atoms/Button/button";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import { styles } from "./style";
 import { useForm, Controller } from "react-hook-form";
+import { HeadingTitle } from "../../atoms/Heading";
+import { getLinkAria } from "../../../utils/viewUtil";
+import Head from "next/head";
 
 const constants = require("../../../utils/constants");
 
@@ -19,6 +22,7 @@ const PasswordSecurityQuestion = ({
   setShowPostMessage,
   securityQuestionData = [],
   onContinueButtonClicked,
+  title = "",
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", {
@@ -60,93 +64,100 @@ const PasswordSecurityQuestion = ({
   };
 
   return (
-    <Card
-      className={globalStyles.container}
-      sx={{ minWidth: 275, padding: "16px" }}
-    >
-      <CardContent style={styles.cardContentStyle}>
-        <Typography variant={constants.H2}>{t("title")}</Typography>
-        <Typography
-          variant={constants.BODY_REGULAR}
-          style={styles.subTitleMargin}
-        >
-          {t("subtitle")}
-        </Typography>
-        {showPostMessage ? (
-          <FormMessage
-            success={false}
-            sx={styles.postMessage}
-            title={postMessage["title"]}
+    <>
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <Card
+        className={globalStyles.container}
+        sx={{ minWidth: 275, padding: "16px" }}
+      >
+        <CardContent style={styles.cardContentStyle}>
+          <HeadingTitle variant={constants.H2} title={t("title")} />
+          <Typography
+            variant={constants.BODY_REGULAR}
+            style={styles.subTitleMargin}
           >
-            {postMessage["message"]}
-          </FormMessage>
-        ) : (
-          <></>
-        )}
-        <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
-          {securityQuestionData.map(function (question, i) {
-            return (
-              <Controller
-                key={`controllerQuestion${i}`}
-                name={`securityQuestion${i}`}
-                control={control}
-                defaultValue=""
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => {
-                  return (
-                    <StyledInput
-                      label={question[`Question`]}
-                      id={`securityQuestion${i}`}
-                      variant="filled"
-                      style={styles.margin}
-                      key={`securityQuestion${i}`}
-                      value={value}
-                      onChange={(event) => {
-                        onChange(event);
-                        if (showPostMessage) {
-                          setShowPostMessage(false);
-                        }
-                      }}
-                      error={!!error}
-                      helperText={error ? error.message : null}
-                      sx={{ ".MuiInputLabel-root": { fontSize: "14px" } }}
-                    />
-                  );
-                }}
-                rules={{ required: t("errorEmptyField") }}
-              />
-            );
-          })}
-          <StyledButton
-            type={constants.SUBMIT}
-            theme={constants.PATIENT}
-            mode={constants.PRIMARY}
-            size={constants.LARGE}
-            gradient={false}
-            data-testid={FORGOT_TEST_ID.continueBtn}
-            style={styles.margin}
+            {t("subtitle")}
+          </Typography>
+          {showPostMessage ? (
+            <FormMessage
+              success={false}
+              sx={styles.postMessage}
+              title={postMessage["title"]}
+            >
+              {postMessage["message"]}
+            </FormMessage>
+          ) : (
+            <></>
+          )}
+          <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
+            {securityQuestionData.map(function (question, i) {
+              return (
+                <Controller
+                  key={`controllerQuestion${i}`}
+                  name={`securityQuestion${i}`}
+                  control={control}
+                  defaultValue=""
+                  render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                  }) => {
+                    return (
+                      <StyledInput
+                        aria-label={value}
+                        label={question[`Question`]}
+                        id={`securityQuestion${i}`}
+                        variant="filled"
+                        style={styles.margin}
+                        key={`securityQuestion${i}`}
+                        value={value}
+                        onChange={(event) => {
+                          onChange(event);
+                          if (showPostMessage) {
+                            setShowPostMessage(false);
+                          }
+                        }}
+                        error={!!error}
+                        helperText={error ? error.message : null}
+                        sx={{ ".MuiInputLabel-root": { fontSize: "14px" } }}
+                      />
+                    );
+                  }}
+                  rules={{ required: t("errorEmptyField") }}
+                />
+              );
+            })}
+            <StyledButton
+              type={constants.SUBMIT}
+              theme={constants.PATIENT}
+              mode={constants.PRIMARY}
+              size={constants.SMALL}
+              gradient={false}
+              data-testid={FORGOT_TEST_ID.continueBtn}
+              style={styles.margin}
+            >
+              {t("continueButton")}
+            </StyledButton>
+          </form>
+          <Link
+            style={{
+              ...styles.margin,
+              ...styles.backToLoginMargin,
+              ...styles.link,
+            }}
+            color={"#2095a9"}
+            data-testid={FORGOT_TEST_ID.loginLink}
+            onClick={function () {
+              onBackToLoginClicked(router);
+            }}
+            {...getLinkAria(t("backButtonLink"))}
           >
-            {t("continueButton")}
-          </StyledButton>
-        </form>
-        <Link
-          style={{
-            ...styles.margin,
-            ...styles.backToLoginMargin,
-            ...styles.link,
-          }}
-          color={"#2095a9"}
-          data-testid={FORGOT_TEST_ID.loginLink}
-          onClick={function () {
-            onBackToLoginClicked(router);
-          }}
-        >
-          {t("backButtonLink")}
-        </Link>
-      </CardContent>
-    </Card>
+            {t("backButtonLink")}
+          </Link>
+        </CardContent>
+      </Card>
+    </>
   );
 };
 

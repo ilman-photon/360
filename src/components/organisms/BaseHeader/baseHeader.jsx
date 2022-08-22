@@ -44,9 +44,11 @@ export default function BaseHeader({
 
   const [anchorElNav, setAnchorElNav] = React.useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
   };
+
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
@@ -64,8 +66,9 @@ export default function BaseHeader({
               src={logo}
               width="124px"
               height="36px"
-              alt="logo"
               style={styles.logoStyled}
+              alt="Eyecare Provider name with logo"
+              aria-label={"Eyecare Provider name with logo"}
             ></Image>
             {/* Menu Desktop*/}
             <Box sx={styles.boxStyled}>
@@ -170,9 +173,10 @@ export default function BaseHeader({
               src={logo}
               width="124px"
               height="36px"
-              alt="logo"
               quality={100}
               style={styles.logoStyled}
+              alt="Eyecare Provider name with logo"
+              aria-label={"Eyecare Provider name with logo"}
             ></Image>
           </Toolbar>
         )}

@@ -19,6 +19,7 @@ Object {
         </label>
         <div
           class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+          data-testid="select-question-id"
         >
           <div
             aria-expanded="false"
@@ -71,6 +72,7 @@ Object {
       </label>
       <div
         class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+        data-testid="select-question-id"
       >
         <div
           aria-expanded="false"

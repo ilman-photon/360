@@ -7,9 +7,6 @@ export const AccountCard = ({
   children,
   isEditing,
   actionContent,
-  OnEditClicked,
-  // OnAddInsurance,
-  ...props
 }) => {
   const isDesktop = useMediaQuery("(min-width: 769px)");
   return (

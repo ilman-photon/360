@@ -17,6 +17,7 @@ export const logoutProps = {
         cookies.remove("username", { path: "/patient" });
         cookies.remove("ip", { path: "/patient" });
         cookies.remove("mfaAccessToken", { path: "/patient" });
+        cookies.remove("securityQuestions", { path: "/patient" });
         router.push("/patient/login");
       })
       .catch(() => {

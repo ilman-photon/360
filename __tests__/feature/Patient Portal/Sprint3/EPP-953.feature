@@ -9,7 +9,7 @@ Feature: Patient Portal : Insurance Information - Add new insurance details - (P
   @Patient_Portal
   @Regression
   @Sprint3
-  @excluded
+  @included
   Scenario: EPIC_EPP-10_STORY_EPP-953 - Verify if the all attributes present in "Insurance documents" page
     And user lands on the “Patient Login” screen
     When user login with valid "<username>" and "<password>"
