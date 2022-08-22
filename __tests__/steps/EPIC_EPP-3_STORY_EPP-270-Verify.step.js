@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import AuthPage from "../../src/pages/patient/login";
-import MfaPage from "../../src/pages/patient/mfa";
+import MfaPage, { getServerSideProps } from "../../src/pages/patient/mfa";
 import Cookies from "universal-cookie";
 
 jest.mock("universal-cookie", () => {
@@ -13,6 +13,7 @@ jest.mock("universal-cookie", () => {
     get(param) {
       if (param === "username") return "user1@photon.com"
       else if (param === "securityQuestions") return []
+      if (param === "ip") return "10.10.10.10"
 
       return MockCookies.result;
     }
@@ -37,15 +38,41 @@ defineFeature(feature, (test) => {
   let container;
   const mock = new MockAdapter(axios);
   const element = document.createElement("div");
+  beforeEach(async () => {
+    const contex = {
+      req: {
+        headers: {
+          cookie: "username=user1%40photon.com; mfa=true"
+        }
+      }
+    }
+
+    const userData = {
+      "communicationMethod": {
+        "email": "user1@photon.com",
+        "phone": "9998887772"
+      },
+      "ResponseCode": 4000,
+      "ResponseType": "success",
+    }
+
+    mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
+
+    getServerSideProps(contex)
+    container = render(<MfaPage />)
+    await waitFor(() => container.getByText("setMFATitle"));
+
+  });
+
+  afterEach(() => {
+    mock.reset()
+  })
   test("EPIC_EPP-3_STORY_EPP-270 - Verify if New user able to navigate to “Set up Security questions” screen after MFA setup through both Email,Phone number", ({
     given,
     and,
     then,
     when,
   }) => {
-    let container;
-    const mock = new MockAdapter(axios);
-    const element = document.createElement("div");
     given("user launch the 'XXX' url", () => {
       expect(true).toBeTruthy();
     });
@@ -89,7 +116,6 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see MFA Setup screen", async () => {
-      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
       act(() => {
         container = render(<MfaPage />, {
           container: document.body.appendChild(element),
@@ -98,22 +124,22 @@ defineFeature(feature, (test) => {
       });
       const expectedResult = {
         "SetUpSecurityQuestions": [
-            {
-                "Where did you go the first time you flew on a plane?": "",
-                "What was the first book you read?": "",
-                "What was the first film you saw in a theater?": "",
-                "What was the make and model of your first car?": "",
-                "What was the first concert you attended?": "",
-                "What was your favorite cartoon character during your childhood?": "",
-                "What was the first thing you learned to cook?": "",
-                "What is your favorite cold-weather activity?": "",
-                "In what city or town did your parents meet?": "",
-                "Who is your all-time favorite movie character?": ""
-            }
+          {
+            "Where did you go the first time you flew on a plane?": "",
+            "What was the first book you read?": "",
+            "What was the first film you saw in a theater?": "",
+            "What was the make and model of your first car?": "",
+            "What was the first concert you attended?": "",
+            "What was your favorite cartoon character during your childhood?": "",
+            "What was the first thing you learned to cook?": "",
+            "What is your favorite cold-weather activity?": "",
+            "In what city or town did your parents meet?": "",
+            "Who is your all-time favorite movie character?": ""
+          }
         ]
-    }
-    mock.onGet(`/ecp/patient/getsecurityQuestions`).reply(200, expectedResult);
-    await waitFor(() => container.getByText("communicationMethodTitle"));
+      }
+      mock.onGet(`/ecp/patient/getsecurityQuestions`).reply(200, expectedResult);
+      await waitFor(() => container.getByText("communicationMethodTitle"));
     });
 
     and(
@@ -212,7 +238,6 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see MFA Setup screen", async () => {
-      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
       act(() => {
         container = render(<MfaPage />, {
           container: document.body.appendChild(element),
@@ -225,21 +250,26 @@ defineFeature(feature, (test) => {
     and('user setup MFA successfully', async () => {
       const expectedResult = {
         "SetUpSecurityQuestions": [
-            {
-                "Where did you go the first time you flew on a plane?": "",
-                "What was the first book you read?": "",
-                "What was the first film you saw in a theater?": "",
-                "What was the make and model of your first car?": "",
-                "What was the first concert you attended?": "",
-                "What was your favorite cartoon character during your childhood?": "",
-                "What was the first thing you learned to cook?": "",
-                "What is your favorite cold-weather activity?": "",
-                "In what city or town did your parents meet?": "",
-                "Who is your all-time favorite movie character?": ""
-            }
+          {
+            "Where did you go the first time you flew on a plane?": "",
+            "What was the first book you read?": "",
+            "What was the first film you saw in a theater?": "",
+            "What was the make and model of your first car?": "",
+            "What was the first concert you attended?": "",
+            "What was your favorite cartoon character during your childhood?": "",
+            "What was the first thing you learned to cook?": "",
+            "What is your favorite cold-weather activity?": "",
+            "In what city or town did your parents meet?": "",
+            "Who is your all-time favorite movie character?": ""
+          }
         ]
       }
-      mock.onGet(`/ecp/patient/getsecurityQuestions`).reply(200, expectedResult);
+      const data = {
+        "mfaCode": 660927,
+        "ResponseCode": 4000,
+        "ResponseType": "success"
+      }
+      mock.onPost(`/ecp/patient/mfa/sendotp`).reply(200, data);
       const confirm = container.getByTestId("primary-button");
       fireEvent.click(confirm);
       await waitFor(() => container.getByText("mfaTitle"))
@@ -247,8 +277,14 @@ defineFeature(feature, (test) => {
       const mfaField = container.getByLabelText("mfaLabel");
       fireEvent.change(mfaField, { target: { value: "123456" } });
 
+      const success = {
+        "ResponseCode": 4000,
+        "ResponseType": "success"
+      }
+      mock.onPost(`/ecp/patient/mfa/verifyotp`).reply(200, success);
       const primaryButton = container.getByTestId("primary-button");
       fireEvent.click(primaryButton);
+      mock.onGet(`/ecp/patient/getsecurityQuestions`).reply(200, expectedResult);
     });
 
     then(/^user login with (.*) and (.*)$/, (arg0, arg1) => {
@@ -261,11 +297,11 @@ defineFeature(feature, (test) => {
 
     and('user should prompted to set up Security questions after setup MFA', async () => {
       await waitFor(() => container.getByText(/Security Questions/i));
-  });
+    });
 
-  then('user land on to “Set up Security questions” screen', async () => {
+    then('user land on to “Set up Security questions” screen', async () => {
       await waitFor(() => container.getByText(/Security Questions/i));
-  });
+    });
 
     when(/^user mouse over to "(.*)" dropdown field$/, (arg0) => {
       expect(container.getByText("Question 3")).toBeInTheDocument()
@@ -279,7 +315,7 @@ defineFeature(feature, (test) => {
       expect(container.getByText("Question 3")).toBeInTheDocument()
     });
 
-    and(/^user should see "(.*)" text field below  "(.*)" field$/, async(arg0, arg1) => {
+    and(/^user should see "(.*)" text field below  "(.*)" field$/, async (arg0, arg1) => {
       await waitFor(() => container.getByText(/Answer 3/i));
     });
   });
@@ -328,7 +364,6 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see MFA Setup screen", async () => {
-      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
       act(() => {
         container = render(<MfaPage />, {
           container: document.body.appendChild(element),
@@ -341,21 +376,26 @@ defineFeature(feature, (test) => {
     and('user setup MFA successfully', async () => {
       const expectedResult = {
         "SetUpSecurityQuestions": [
-            {
-                "Where did you go the first time you flew on a plane?": "",
-                "What was the first book you read?": "",
-                "What was the first film you saw in a theater?": "",
-                "What was the make and model of your first car?": "",
-                "What was the first concert you attended?": "",
-                "What was your favorite cartoon character during your childhood?": "",
-                "What was the first thing you learned to cook?": "",
-                "What is your favorite cold-weather activity?": "",
-                "In what city or town did your parents meet?": "",
-                "Who is your all-time favorite movie character?": ""
-            }
+          {
+            "Where did you go the first time you flew on a plane?": "",
+            "What was the first book you read?": "",
+            "What was the first film you saw in a theater?": "",
+            "What was the make and model of your first car?": "",
+            "What was the first concert you attended?": "",
+            "What was your favorite cartoon character during your childhood?": "",
+            "What was the first thing you learned to cook?": "",
+            "What is your favorite cold-weather activity?": "",
+            "In what city or town did your parents meet?": "",
+            "Who is your all-time favorite movie character?": ""
+          }
         ]
       }
-      mock.onGet(`/ecp/patient/getsecurityQuestions`).reply(200, expectedResult);
+      const data = {
+        "mfaCode": 660927,
+        "ResponseCode": 4000,
+        "ResponseType": "success"
+      }
+      mock.onPost(`/ecp/patient/mfa/sendotp`).reply(200, data);
       const confirm = container.getByTestId("primary-button");
       fireEvent.click(confirm);
       await waitFor(() => container.getByText("mfaTitle"))
@@ -363,8 +403,14 @@ defineFeature(feature, (test) => {
       const mfaField = container.getByLabelText("mfaLabel");
       fireEvent.change(mfaField, { target: { value: "123456" } });
 
+      const success = {
+        "ResponseCode": 4000,
+        "ResponseType": "success"
+      }
+      mock.onPost(`/ecp/patient/mfa/verifyotp`).reply(200, success);
       const primaryButton = container.getByTestId("primary-button");
       fireEvent.click(primaryButton);
+      mock.onGet(`/ecp/patient/getsecurityQuestions`).reply(200, expectedResult);
     });
 
     then(/^user login with (.*) and (.*)$/, (arg0, arg1) => {
@@ -383,7 +429,7 @@ defineFeature(feature, (test) => {
       await waitFor(() => container.getByText(/Security Questions/i));
     });
 
-    and('user should see the ‘Submit’ button', async() => {
+    and('user should see the ‘Submit’ button', async () => {
       await waitFor(() => container.getByText(/Submit/i));
     });
   });
@@ -432,7 +478,6 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see MFA Setup screen", async () => {
-      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
       act(() => {
         container = render(<MfaPage />, {
           container: document.body.appendChild(element),
@@ -445,21 +490,26 @@ defineFeature(feature, (test) => {
     and('user setup MFA successfully', async () => {
       const expectedResult = {
         "SetUpSecurityQuestions": [
-            {
-                "Where did you go the first time you flew on a plane?": "",
-                "What was the first book you read?": "",
-                "What was the first film you saw in a theater?": "",
-                "What was the make and model of your first car?": "",
-                "What was the first concert you attended?": "",
-                "What was your favorite cartoon character during your childhood?": "",
-                "What was the first thing you learned to cook?": "",
-                "What is your favorite cold-weather activity?": "",
-                "In what city or town did your parents meet?": "",
-                "Who is your all-time favorite movie character?": ""
-            }
+          {
+            "Where did you go the first time you flew on a plane?": "",
+            "What was the first book you read?": "",
+            "What was the first film you saw in a theater?": "",
+            "What was the make and model of your first car?": "",
+            "What was the first concert you attended?": "",
+            "What was your favorite cartoon character during your childhood?": "",
+            "What was the first thing you learned to cook?": "",
+            "What is your favorite cold-weather activity?": "",
+            "In what city or town did your parents meet?": "",
+            "Who is your all-time favorite movie character?": ""
+          }
         ]
       }
-      mock.onGet(`/ecp/patient/getsecurityQuestions`).reply(200, expectedResult);
+      const data = {
+        "mfaCode": 660927,
+        "ResponseCode": 4000,
+        "ResponseType": "success"
+      }
+      mock.onPost(`/ecp/patient/mfa/sendotp`).reply(200, data);
       const confirm = container.getByTestId("primary-button");
       fireEvent.click(confirm);
       await waitFor(() => container.getByText("mfaTitle"))
@@ -467,8 +517,14 @@ defineFeature(feature, (test) => {
       const mfaField = container.getByLabelText("mfaLabel");
       fireEvent.change(mfaField, { target: { value: "123456" } });
 
+      const success = {
+        "ResponseCode": 4000,
+        "ResponseType": "success"
+      }
+      mock.onPost(`/ecp/patient/mfa/verifyotp`).reply(200, success);
       const primaryButton = container.getByTestId("primary-button");
       fireEvent.click(primaryButton);
+      mock.onGet(`/ecp/patient/getsecurityQuestions`).reply(200, expectedResult);
     });
 
     then(/^user login with (.*) and (.*)$/, (arg0, arg1) => {
