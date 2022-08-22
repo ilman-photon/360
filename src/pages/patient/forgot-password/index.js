@@ -137,7 +137,7 @@ export default function ForgotPasswordPage() {
         confirmationFormProps = {
           pageTitle: "Password reset page",
           title: t("titlePasswordReset"),
-          subtitle: `Check ${userCommunicationCode} to reset yourx password.`,
+          subtitle: `Check ${userCommunicationCode} to reset your password.`,
           description: t("descriptionPasswordResetSuccess"),
           postMessage: `Link sent to your ${modeOfCommuication.toLowerCase()}`,
           successPostMessage: true,
