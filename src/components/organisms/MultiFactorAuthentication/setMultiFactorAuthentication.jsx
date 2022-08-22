@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Typography } from "@mui/material";
 import Container from "./container";
 import styles from "./style.module.scss";
@@ -15,12 +16,21 @@ export default function SetMultiFactorAuthentication({
   data,
 }) {
   const { t } = useTranslation("translation", { keyPrefix: "mfaPage" });
+  const [selectedCommunication, setSelectedCommunication] = React.useState("");
   const image = "/lock-mfa.png";
   const isMultipleComunication = Object.keys(data).length > 1;
+  const [postMessage, setPostMessage] = React.useState("");
 
   const content = () => {
     if (!isMultipleComunication) {
-      const value = data.email ? `Email: ${data.email}` : `Phone${data.phone}`;
+      let value = "";
+      if (data.email) {
+        value = `Email: ${data.email}`;
+        selectedCommunication === "" && setSelectedCommunication("email");
+      } else if (data.phone) {
+        value = `Phone${data.phone}`;
+        selectedCommunication === "" && setSelectedCommunication("phone");
+      }
       return (
         <Typography variant="body2" className={styles.description}>
           {value}
@@ -36,6 +46,9 @@ export default function SetMultiFactorAuthentication({
             aria-labelledby="communication-radio-buttons-group-label"
             name="radio-buttons-group"
             defaultValue="email"
+            onChange={(event) => {
+              setSelectedCommunication(event.target.value);
+            }}
           >
             <FormControlLabel
               value="email"
@@ -89,24 +102,43 @@ export default function SetMultiFactorAuthentication({
     }
   };
 
+  const handleError = (message) => {
+    if (message.status === "failed") {
+      setPostMessage(message);
+    }
+  };
+
   return (
     <>
-      <Container
-        title={t("setMFATitle")}
-        description={t("setMFADescription")}
-        image={image}
-        content={content()}
-        primaryButtonTitle={t("confrimBtn")}
-        secondaryButtonTitle={t("backToLoginBtn")}
-        onClickPrimaryButton={() => {
-          onConfirmClicked();
-        }}
-        onClickSecondaryButton={() => {
-          onBackToLoginClicked();
-        }}
-        rememberMe={rememberMe}
-        setRememberMe={setRememberMe}
-      />
+      {postMessage === "" ? (
+        <Container
+          title={t("setMFATitle")}
+          description={t("setMFADescription")}
+          image={image}
+          content={content()}
+          primaryButtonTitle={t("confrimBtn")}
+          secondaryButtonTitle={t("backToLoginBtn")}
+          onClickPrimaryButton={() => {
+            onConfirmClicked(selectedCommunication, handleError);
+          }}
+          onClickSecondaryButton={() => {
+            onBackToLoginClicked();
+          }}
+          rememberMe={rememberMe}
+          setRememberMe={setRememberMe}
+        />
+      ) : (
+        <Container
+          title={t("setMFATitle")}
+          image={image}
+          primaryButtonTitle={t("backToLoginBtn")}
+          onClickPrimaryButton={() => {
+            onBackToLoginClicked();
+          }}
+          postMessage={postMessage}
+          isEndView={true}
+        />
+      )}
     </>
   );
 }

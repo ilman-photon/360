@@ -4,25 +4,25 @@ import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import AuthPage from "../../src/pages/patient/login";
-import MfaPage from "../../src/pages/patient/mfa";
+import MfaPage, { getServerSideProps }  from "../../src/pages/patient/mfa";
 import Cookies from "universal-cookie";
 
 jest.mock("universal-cookie", () => {
-  class MockCookies {
-    static result = {};
-    get(param) {
-      if (param === "username") return "user1@photon.com"
-
-      return MockCookies.result;
+    class MockCookies {
+        static result = {};
+        get(param) {
+            if (param === "username") return "user1@photon.com"
+            if (param === "ip") return "10.10.10.10"
+            return MockCookies.result;
+        }
+        remove() {
+            return jest.fn();
+        }
+        set() {
+            return jest.fn();
+        }
     }
-    remove() {
-      return jest.fn();
-    }
-    set() {
-      return jest.fn();
-    }
-  }
-  return MockCookies;
+    return MockCookies;
 });
 
 const feature = loadFeature(
@@ -42,6 +42,31 @@ defineFeature(feature, (test) => {
     let container;
     const mock = new MockAdapter(axios);
     const element = document.createElement("div");
+    beforeEach(async () => {
+      const contex = {
+        req: {
+          headers: {
+            cookie: "username=user1%40photon.com; mfa=true"
+          }
+        }
+      }
+
+      const userData = {
+        "communicationMethod": {
+          "email": "user1@photon.com",
+          "phone": "9998887772"
+        },
+        "ResponseCode": 4000,
+        "ResponseType": "success",
+      }
+
+      mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
+
+      getServerSideProps(contex)
+      container = render(<MfaPage />)
+      await waitFor(() => container.getByText("communicationMethodTitle"));
+
+    });
     given("user launch the 'XXX' url", () => {
       expect(true).toBeTruthy();
     });
@@ -85,7 +110,6 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see MFA Setup screen", async () => {
-      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
       act(() => {
         container = render(<MfaPage />, {
           container: document.body.appendChild(element),
