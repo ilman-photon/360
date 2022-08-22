@@ -28,7 +28,12 @@ const ForgotPassword = ({
   const { handleSubmit, control, setError } = useForm();
   const { FORGOT_TEST_ID } = constants.TEST_ID;
   const onSubmit = ({ username }) => {
-    if (
+    if (username.length <= 0) {
+      setError("username", {
+        type: "custom",
+        message: t("errorEmptyField"),
+      });
+    } else if (
       Regex.REGEX_PHONE_NUMBER.test(username) ||
       Regex.isEmailCorrect.test(username)
     ) {
@@ -91,7 +96,6 @@ const ForgotPassword = ({
                   />
                 );
               }}
-              rules={{ required: t("errorEmptyField") }}
             />
 
             <StyledButton
