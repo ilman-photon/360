@@ -3,23 +3,23 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: frontend
-  name: frontend
+    app: patient
+  name: patient
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: frontend
+      app: patient
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: frontend
+        app: patient
     spec:
       containers:
-      - image: 056640875000.dkr.ecr.us-east-1.amazonaws.com/photon-ecp-ppp-qa:ecp-frontend-TAG
-        name: frontend
+      - image: 056640875000.dkr.ecr.us-east-1.amazonaws.com/photon-ecp-ppp-dev:ecp-patient-TAG
+        name: patient
         imagePullPolicy: Always
         resources: {}
 status: {}
@@ -29,8 +29,8 @@ kind: Service
 metadata:
   creationTimestamp: null
   labels:
-    app: frontend
-  name: frontend
+    app: patient
+  name: patient
 spec:
   ports:
   - name: 80-3000
@@ -38,7 +38,7 @@ spec:
     protocol: TCP
     targetPort: 3000
   selector:
-    app: frontend
+    app: patient
   type: LoadBalancer
 status:
   loadBalancer: {}
