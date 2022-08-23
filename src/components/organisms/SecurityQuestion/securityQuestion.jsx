@@ -24,8 +24,27 @@ const SecurityQuestion = ({
     "You must answer all security questions"
   );
   const { handleSubmit, control } = useForm();
-
+  const hasDuplicates = (array) => {
+    var valuesSoFar = Object.create(null);
+    for (var i = 0; i < array.length; ++i) {
+      var value = array[i];
+      if (value in valuesSoFar) {
+        return true;
+      }
+      valuesSoFar[value] = true;
+    }
+    return false;
+  };
   const onSubmit = (data) => {
+    const listQuestion = [];
+    for (const [key, value] of Object.entries(data)) {
+      if (key.indexOf("question") > -1) {
+        listQuestion.push(value);
+      }
+    }
+
+    console.log(hasDuplicates(listQuestion));
+
     let validate = true;
     for (const property in data) {
       if (!data[property]) {
@@ -33,7 +52,9 @@ const SecurityQuestion = ({
         break;
       }
     }
-    if (validate) {
+    if (validate && hasDuplicates(listQuestion)) {
+      onShowPostMessage("Don’t choose the same question!");
+    } else if (validate && !hasDuplicates(listQuestion)) {
       const questionAnswer = {};
       const question = [];
       const answer = [];
@@ -46,7 +67,6 @@ const SecurityQuestion = ({
       }
       questionAnswer["question"] = question;
       questionAnswer["answer"] = answer;
-
       onClickedSubmitButton(questionAnswer, checkSubmitMessage);
     } else {
       onShowPostMessage("You must answer all security questions");
@@ -101,6 +121,7 @@ const SecurityQuestion = ({
                   options={securityQuestionList}
                   value={value}
                   onChange={(event) => {
+                    console.log(securityQuestionList);
                     onChange(event);
                     if (showPostMessage) {
                       setShowPostMessage(false);
