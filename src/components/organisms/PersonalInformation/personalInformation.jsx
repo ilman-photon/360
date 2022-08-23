@@ -79,7 +79,9 @@ export default function PersonalInformation({
             variant="text"
             className={styles.editButton}
           >
-            <EditOutlinedIcon sx={{ width: 20, height: 20 }} />
+            <EditOutlinedIcon
+              sx={{ width: 20, height: 20, color: colors.link }}
+            />
             <div type="link" style={{ marginLeft: 4, color: "#008294" }}>
               Edit
             </div>
