@@ -141,7 +141,7 @@ export default function ForgotPasswordPage() {
           description: t("descriptionPasswordResetSuccess"),
           postMessage: `Link sent to your ${modeOfCommuication.toLowerCase()}`,
           successPostMessage: true,
-          buttonLabel: t("primaryButtonTextPasswordResetSuccess"),
+          buttonLabel: t("backButtonLink"),
           additional: function () {
             return <></>;
           },

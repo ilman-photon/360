@@ -12,4 +12,5 @@ export class Regex {
   static isEmailCorrect = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i;
   static REGEX_PHONE_NUMBER = /^\d{10,}$/;
   static noWhitespaceRegex = /[^\s-]/;
+  static isTenDigitPhone = /^(\d{3})(\d{3})(\d{4})$/;
 }
