@@ -9,7 +9,10 @@ export class Regex {
   static hasAlpahabet = /^([A-Za-z ])+$/i;
   static isValidPhoneFormat = /^(\(\d{3}\) |\d{3}-)\d{3}-\d{4}$/i;
   static noSpecialRegex = /^[a-z0-9]+$/gi;
+  static nameValidation = /^(?=.*[a-zA-Z])([a-zA-Z0-9]+)$/;
   static isEmailCorrect = /[a-z0-9]+@[a-z]+\.[a-z]{2,3}/i;
+  static emailValidation =
+    /^[\w%\+\-]+(\.[\w%\+\-]+)*@[\w%\+\-]+(\.[\w%\+\-]+)+$/;
   static REGEX_PHONE_NUMBER = /^\d{10,}$/;
   static noWhitespaceRegex = /[^\s-]/;
   static isTenDigitPhone = /^(\d{3})(\d{3})(\d{4})$/;
