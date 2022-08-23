@@ -134,7 +134,7 @@ exports[`Home renders homepage user logout failed 1`] = `
           </button>
         </div>
         <div
-          class="MuiBox-root css-iqpydz"
+          class="MuiBox-root css-dq25au"
         >
           <button
             aria-controls="menu-appbar"
@@ -312,7 +312,7 @@ exports[`Home renders homepage user logout failed 2`] = `
           </button>
         </div>
         <div
-          class="MuiBox-root css-iqpydz"
+          class="MuiBox-root css-dq25au"
         >
           <button
             aria-controls="menu-appbar"
@@ -490,7 +490,7 @@ exports[`Home renders homepage user logout success 1`] = `
           </button>
         </div>
         <div
-          class="MuiBox-root css-iqpydz"
+          class="MuiBox-root css-dq25au"
         >
           <button
             aria-controls="menu-appbar"
