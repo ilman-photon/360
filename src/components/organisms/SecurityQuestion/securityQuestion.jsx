@@ -54,7 +54,6 @@ const SecurityQuestion = ({
       }
     }
 
-    console.log(hasDuplicates(listQuestion));
 
     let validate = true;
     for (const property in data) {
@@ -132,7 +131,6 @@ const SecurityQuestion = ({
                   options={securityQuestionList}
                   value={value}
                   onChange={(event) => {
-                    console.log(securityQuestionList);
                     onChange(event);
                     if (showPostMessage) {
                       setShowPostMessage(false);
