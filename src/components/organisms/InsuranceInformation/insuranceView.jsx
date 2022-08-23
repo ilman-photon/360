@@ -76,13 +76,13 @@ export default function InsuranceView({
                           <Grid container spacing={{ xs: 4 }}>
                             <Grid item xs={12} md={4}>
                               <LabelWithInfo label="Insurance Provider">
-                                {item.provider.label}
+                                {item.provider ? item.provider.label : "-"}
                               </LabelWithInfo>
                             </Grid>
 
                             <Grid item xs={12} md={4}>
                               <LabelWithInfo label="Plan Name">
-                                {item.plan.label}
+                                {item.plan ? item.plan.label : "-"}
                               </LabelWithInfo>
                             </Grid>
 
