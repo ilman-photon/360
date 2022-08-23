@@ -252,6 +252,9 @@ export default function MfaPage() {
       <Box
         sx={{
           marginTop: "-15px",
+          ["@media (max-width: 992px)"]: {
+            marginTop: "-25px",
+          },
         }}
       >
         {!successSubmit ? (
@@ -276,6 +279,8 @@ export default function MfaPage() {
                 borderStyle: "solid",
                 ["@media (max-width: 992px)"]: {
                   paddingTop: "45px",
+                  maxWidth: "100%",
+                  minWidth: "100%",
                 },
               }}
             >
