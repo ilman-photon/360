@@ -54,7 +54,6 @@ const SecurityQuestion = ({
       }
     }
 
-
     let validate = true;
     for (const property in data) {
       if (!data[property]) {
