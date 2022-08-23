@@ -4,7 +4,7 @@ import App from "../../../src/pages/_app";
 import HomePage from "../../../src/pages/patient";
 import Cookies from "universal-cookie";
 import { useIdleTimer } from "react-idle-timer";
-import * as util from "../../setup/util";
+import * as util from "../../../__mocks__/util";
 import { fireEvent } from "@storybook/testing-library";
 
 jest.mock("universal-cookie", () => {
