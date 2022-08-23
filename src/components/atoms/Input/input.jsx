@@ -232,7 +232,7 @@ export const CustomInput = styled(({ ...props }) => {
                     margin: "8px",
                   }}
                   {...params}
-                  error={props.error}
+                  error={props.error || params.error}
                   helperText={props.helperText}
                 />
               )}
