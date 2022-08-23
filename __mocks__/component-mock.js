@@ -1,3 +1,14 @@
+import { createMocks } from "react-idle-timer";
+import { MessageChannel } from "worker_threads";
+import { cleanup } from "@testing-library/react";
+
+beforeAll(() => {
+  createMocks();
+  global.MessageChannel = MessageChannel;
+});
+
+afterAll(cleanup);
+
 jest.mock("@fontsource/roboto", () => {
   return jest.fn();
 });
@@ -62,10 +73,10 @@ jest.mock("next-i18next", () => ({
   },
 }));
 
-jest.mock("react-idle-timer", () => ({
-  useIdleTimer: jest.fn().mockReturnValue({
-    getRemainingTime: jest.fn(),
-    isPrompted: jest.fn(),
-    activate: jest.fn(),
-  }),
-}));
+// jest.mock("react-idle-timer", () => ({
+//   useIdleTimer: jest.fn().mockReturnValue({
+//     getRemainingTime: jest.fn(),
+//     isPrompted: jest.fn(),
+//     activate: jest.fn(),
+//   }),
+// }));
