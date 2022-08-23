@@ -25,7 +25,7 @@ export const LabelWithInfo = ({
     <Stack spacing={1}>
       <div style={{ marginTop: 10 }}>{children}</div>
       {helperText ? (
-        <Typography variant="bodySmallRegular" sx={{ mt: 1 }}>
+        <Typography variant="bodySmallRegular" sx={{ mt: 1, fontWeight: 500 }}>
           {helperText}
         </Typography>
       ) : (
