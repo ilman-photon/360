@@ -336,6 +336,7 @@ export default function InsuranceForm({
                         return (
                           <>
                             <StyledInput
+                              disableFuture
                               type="dob"
                               label="Subscriber Date of Birth"
                               value={value}
