@@ -195,6 +195,11 @@ const SecurityQuestion = ({
             gradient={false}
             style={styles.buttonStyle}
             onClick={onClickedSkipButton}
+            sx={{
+              ["@media (max-width: 992px)"]: {
+                marginBottom: "16px",
+              },
+            }}
           >
             Skip
           </StyledButton>
