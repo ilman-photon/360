@@ -43,8 +43,6 @@ const SecurityQuestion = ({
       }
     }
 
-    console.log(hasDuplicates(listQuestion));
-
     let validate = true;
     for (const property in data) {
       if (!data[property]) {
@@ -121,7 +119,6 @@ const SecurityQuestion = ({
                   options={securityQuestionList}
                   value={value}
                   onChange={(event) => {
-                    console.log(securityQuestionList);
                     onChange(event);
                     if (showPostMessage) {
                       setShowPostMessage(false);
@@ -153,6 +150,7 @@ const SecurityQuestion = ({
                   id={`answer-${index}`}
                   variant="filled"
                   value={value}
+                  inputProps={{ maxLength: 20 }}
                   style={styles.answerInputStyle}
                   onChange={(event) => {
                     onChange(event);
