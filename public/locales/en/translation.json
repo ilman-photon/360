@@ -129,5 +129,14 @@
     "mfaLockDescription": "Please try setting up multi factor authentication after 30 minutes.",
     "resendCodeLockDescription": "Code sent multiple times. Please try again after 30 minutes."
 
+  },
+  "scheduleAppoinment": {
+    "formTitle": "Who is this exam for?",
+    "guestForm": "Provide patient’s basic information",
+    "myself": "Myself",
+    "someoneElse": "Someone else",
+    "continue": "Continue",
+    "location": "Location",
+    "appointmentDetails": "Appointment details"
   }
 }

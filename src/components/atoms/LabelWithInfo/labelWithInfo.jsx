@@ -8,9 +8,19 @@ export const LabelWithInfo = ({
   tooltipContent,
   helperText,
   children,
+  titleIcon,
 }) => (
   <Stack>
     <div className={styles.labelContainer}>
+      <span
+        style={{
+          marginRight: 8,
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        {titleIcon}
+      </span>
       <div className={styles.label}>{label}</div>
       {tooltipContent ? (
         <>
