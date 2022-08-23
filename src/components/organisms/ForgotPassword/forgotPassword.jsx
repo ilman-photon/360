@@ -64,7 +64,7 @@ const ForgotPassword = ({
           <HeadingTitle
             variant={constants.H2}
             title={t("title")}
-            sx={{ fontSize: 32 }}
+            sx={{ fontSize: "32px" }}
           />
           {showPostMessage ? (
             <FormMessage success={false} sx={styles.postMessage}>
