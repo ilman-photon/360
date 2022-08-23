@@ -42,6 +42,11 @@ export default function MfaPage() {
   const [communicationMethod, setCommunicationMethod] = React.useState({});
   const { t } = useTranslation("translation", { keyPrefix: "mfaPage" });
 
+  const onBackButtonEvent = (e) => {
+    e.preventDefault();
+    onBackToLoginClicked();
+  };
+
   React.useEffect(() => {
     if (Object.keys(communicationMethod).length == 0) {
       const postBody = {
@@ -57,6 +62,11 @@ export default function MfaPage() {
           // This is intentional
         });
     }
+    window.history.pushState(null, null, window.location.pathname);
+    window.addEventListener("popstate", onBackButtonEvent);
+    return () => {
+      window.removeEventListener("popstate", onBackButtonEvent);
+    };
   });
 
   function onConfirmClicked(communication, callback) {
