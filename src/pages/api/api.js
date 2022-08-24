@@ -12,9 +12,42 @@ export class Api {
     });
   }
 
-  getResponse(url, postbody, method) {
-    const api = new Api();
-    return new Promise((resolve, reject) => {
+  getToken() {
+    const request = axios.create({
+      baseURL: process.env.NEXT_PUBLIC_API_URL,
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+        Accept: "application/json",
+      },
+      timeout: 10000,
+    });
+
+    const params = new URLSearchParams(); // x-www-form-urlencoded
+    params.append("grant_type", "password");
+    params.append("client_id", "master-realm");
+    params.append("client_secret", "dd766bf5-fa6e-470d-a13f-8d357bf6ee71");
+    params.append("username", "test.photon");
+    params.append("password", "Password@1");
+
+    try {
+      return request.post("/ecp/gettoken", params);
+    } catch (err) {
+      csoneol.log(err);
+      return err.response.data;
+    }
+  }
+
+  // this somehow doesn't work ??
+  setAuthorizationHeader(payload) {
+    this.client.defaults.headers.common["Authorization"] = payload;
+  }
+
+  getResponse(url, postbody, method, token) {
+    if (token) {
+      this.client.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    }
+
+    return new Promise(async (resolve, reject) => {
       const resolver = function (response) {
         if (response && response.data) {
           resolve(response.data);
@@ -32,11 +65,11 @@ export class Api {
 
       switch (method) {
         case "get":
-          return api.client.get(url, postbody).then(resolver).catch(rejecter);
+          return this.client.get(url).then(resolver).catch(rejecter);
         case "post":
-          return api.client.post(url, postbody).then(resolver).catch(rejecter);
+          return this.client.post(url, postbody).then(resolver).catch(rejecter);
         default:
-          return api.client.get(url, postbody).then(resolver).catch(rejecter);
+          return this.client.get(url, postbody).then(resolver).catch(rejecter);
       }
     });
   }

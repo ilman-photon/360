@@ -173,7 +173,7 @@ defineFeature(feature, (test) => {
 
     then('user able to view the "Name", "Prefered Name", "Title", "Date of Birth", "Photo", "Age", "Gender", "SSN" and "State Issued ID" fields under "Personal information" section', async () => {
         await waitFor(() => expect(screen.getAllByText("Name")[0]).toBeInTheDocument());
-        await waitFor(() => expect(screen.getAllByText("Preferred Name")[0]).toBeInTheDocument());
+        await waitFor(() => expect(screen.getAllByText("Prefered Name")[0]).toBeInTheDocument());
         await waitFor(() => expect(screen.getAllByText("Title")[0]).toBeInTheDocument());
         await waitFor(() => expect(screen.getAllByText("Date of Birth")[0]).toBeInTheDocument());
         await waitFor(() => expect(screen.getAllByText("Photo")[0]).toBeInTheDocument());

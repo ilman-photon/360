@@ -7,6 +7,7 @@ import { Provider, useDispatch, useSelector } from "react-redux";
 import { fetchUser, setUserData } from "../../../store/user";
 import store from "../../../store/store";
 import PropTypes from "prop-types";
+import { fetchToken } from "../../../store";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -43,6 +44,7 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
   const [activeTabs, setActiveTabs] = useState(0);
 
   const userData = useSelector((state) => state.user.userData);
+  const accessToken = useSelector((state) => state.index.accessToken);
 
   const dispatch = useDispatch();
   const isDesktop = useMediaQuery("(min-width: 769px)");
@@ -58,8 +60,15 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
   };
 
   useEffect(() => {
-    dispatch(fetchUser());
-  }, [dispatch]);
+    dispatch(fetchToken());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  console.log({ userData });
+
+  useEffect(() => {
+    dispatch(fetchUser(accessToken));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [accessToken]);
 
   useEffect(() => {
     setPersonalEditing(false);

@@ -125,7 +125,7 @@ export default function InsuranceInfoPage() {
                 onClick={() => {
                   setOpenNewInsuranceForm(true);
                 }}
-                sx={{ display: { xs: "none" } }}
+                sx={{ display: { xs: "none", md: "flex" } }}
               >
                 <Stack
                   direction="row"
@@ -158,6 +158,7 @@ export default function InsuranceInfoPage() {
                   onClick={() => {
                     setOpenNewInsuranceForm(true);
                   }}
+                  sx={{ display: { xs: "flex", md: "none" } }}
                 >
                   <Stack
                     direction="row"

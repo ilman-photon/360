@@ -35,7 +35,7 @@ describe("PersonalInformation Components", () => {
       OnCancelEditClicked={mockCallBack}
       OnSaveClicked={mockCallBack}/>)
 
-  await waitFor(() => container.getByText("Preferred Name"));
+  await waitFor(() => container.getByText("Prefered Name"));
   });
 
 
@@ -46,7 +46,7 @@ describe("PersonalInformation Components", () => {
   it("PersonalInformation View render", () => {
 
     expect(container.getByText("Name")).toBeInTheDocument();
-    expect(container.getByText("Preferred Name")).toBeInTheDocument();
+    expect(container.getByText("Prefered Name")).toBeInTheDocument();
     expect(container.getByText("Title")).toBeInTheDocument();
     expect(container.getByText("Date of Birth")).toBeInTheDocument();
     expect(container.getByText("Age")).toBeInTheDocument();
@@ -54,7 +54,6 @@ describe("PersonalInformation Components", () => {
     expect(container.getByText("SSN")).toBeInTheDocument();
 
     expect(container.getByText("Rupert Jerde")).toBeInTheDocument();
-    expect(container.getByText("---")).toBeInTheDocument();
     expect(container.getByText("Mrs.")).toBeInTheDocument();
     expect(container.getByText("8/18/2022")).toBeInTheDocument();
     expect(container.getByText(63)).toBeInTheDocument();
@@ -70,8 +69,7 @@ describe("PersonalInformation Components", () => {
         const field1 = container.getByLabelText("Name")
         expect(field1).toBeDisabled();
 
-    const field2 = container.getByLabelText("Preferred Name")
-    expect(field2.value).toEqual("---");
+    const field2 = container.getByLabelText("Prefered Name")
     fireEvent.change(field2, { target: { value: "test field 2" } });
     expect(field2.value).toEqual("test field 2");
     

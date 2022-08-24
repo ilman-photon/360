@@ -108,7 +108,7 @@ Object {
                 <div
                   class="label"
                 >
-                  Preferred Name
+                  Prefered Name
                 </div>
               </div>
               <div
@@ -116,9 +116,7 @@ Object {
               >
                 <div
                   style="margin-top: 10px;"
-                >
-                  ---
-                </div>
+                />
               </div>
             </div>
             <hr
@@ -531,7 +529,7 @@ Object {
               <div
                 class="label"
               >
-                Preferred Name
+                Prefered Name
               </div>
             </div>
             <div
@@ -539,9 +537,7 @@ Object {
             >
               <div
                 style="margin-top: 10px;"
-              >
-                ---
-              </div>
+              />
             </div>
           </div>
           <hr

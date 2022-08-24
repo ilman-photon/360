@@ -39,7 +39,7 @@ defineFeature(feature, (test) => {
     };
   beforeEach(() => {
     const mockCallBack = jest.fn();
-    container = render(<PersonalInformation isEditing={false} userData={mockUserdata} 
+    render(<PersonalInformation isEditing={false} userData={mockUserdata} 
       OnEditClicked={mockCallBack}
       OnCancelEditClicked={mockCallBack}
       OnSaveClicked={mockCallBack}

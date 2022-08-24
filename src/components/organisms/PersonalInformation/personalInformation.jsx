@@ -42,6 +42,8 @@ export default function PersonalInformation({
     defaultValues: userData,
   });
 
+  // console.log({userData})
+
   const isDesktop = useMediaQuery("(min-width: 769px)");
   const tooltipContentDefault =
     "If you wish to change this information, please contact Customer Support";
@@ -119,8 +121,8 @@ export default function PersonalInformation({
             {userData.name}
           </LabelWithInfo>
 
-          <LabelWithInfo label="Preferred Name">
-            {userData.preferredName || "---"}
+          <LabelWithInfo label="Prefered Name">
+            {userData.preferedName}
           </LabelWithInfo>
 
           <LabelWithInfo label="Title">{userData.title}</LabelWithInfo>
@@ -234,7 +236,7 @@ export default function PersonalInformation({
             />
 
             <Controller
-              name="preferredName"
+              name="preferedName"
               control={control}
               render={({
                 field: { onChange, value },
@@ -243,8 +245,8 @@ export default function PersonalInformation({
                 return (
                   <StyledInput
                     type="text"
-                    id="preferredName"
-                    label="Preferred Name"
+                    id="preferedName"
+                    label="Prefered Name"
                     value={value}
                     onChange={onChange}
                     error={!!error}

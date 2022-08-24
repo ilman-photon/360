@@ -1,7 +1,19 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { Api } from "../pages/api/api";
+import { GENDER_LIST, TITLE_LIST } from "../utils/constantData";
 
-export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
-  return fetch("/api/dummy/user").then((res) => res.json());
+export const fetchUser = createAsyncThunk("user/fetchUser", async (token) => {
+  const api = new Api();
+  return api
+    .getResponse(
+      "/ecp/patient-management/v1/patients/cad95dea-3b1a-4c37-9fa0-602023b92099",
+      null,
+      "get",
+      token
+    )
+    .then((res) => {
+      return res;
+    });
 });
 
 export const fetchInsurance = createAsyncThunk(
@@ -15,7 +27,7 @@ const DEFAULT_USER_DATA = {
   firstName: "",
   lastName: "laste",
   name: "Eyecare User",
-  preferredName: "---",
+  preferedName: "---",
   profilePhoto: "",
   issuedCardFront: "/transparent.png",
   issuedCardBack: "/transparent.png",
@@ -97,7 +109,53 @@ const userSlice = createSlice({
       state.status = "loading";
     },
     [fetchUser.fulfilled]: (state, { payload }) => {
-      state.userData = payload;
+      const userAddress = payload.address[0] || {};
+
+      let userPreferredCommunication = "";
+      if (payload.contactInformation) {
+        if (payload.contactInformation.contactPreferenceDetail) {
+          if (payload.contactInformation.contactPreferenceDetail.phone) {
+            if (payload.contactInformation.contactPreferenceDetail.email) {
+              userPreferredCommunication = "Both";
+            } else {
+              userPreferredCommunication = "Email";
+            }
+          } else userPreferredCommunication = "Phone";
+        }
+      }
+
+      state.userData = {
+        firstName: payload.firstName,
+        lastName: payload.lastName,
+        name: `${payload.firstName} ${payload.lastName}`,
+        preferedName: "---",
+        profilePhoto: "",
+        issuedCardFront: "/transparent.png",
+        issuedCardBack: "/transparent.png",
+        dob: payload.dob,
+        title: TITLE_LIST[payload.title - 1],
+        ssn: payload.ssn,
+        email: payload.contactInformation.emails[0]
+          ? payload.contactInformation.emails[0].email
+          : "-",
+        mobile: payload.contactInformation.phones[0]
+          ? payload.contactInformation.phones[0].number
+          : "-",
+        address: userAddress.addressLine1,
+        city: userAddress.city,
+        state: userAddress.state,
+        zip: userAddress.zip,
+        preferredCommunication: userPreferredCommunication,
+        age: payload.age,
+        gender: GENDER_LIST[payload.sex - 1],
+        // insurances
+        relationship: "",
+        insurancePriority: "",
+        planName: "",
+        subscriberMember: "",
+        groupId: "",
+        isSubscriber: "",
+      };
       state.status = "success";
     },
     [fetchUser.rejected]: (state) => {

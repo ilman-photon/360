@@ -9,7 +9,7 @@ export default function user(req, res) {
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       name: `${faker.name.firstName()} ${faker.name.lastName()}`,
-      preferredName: "---",
+      preferedName: "---",
       profilePhoto: faker.image.imageUrl(),
       issuedCardFront: landscapeImage,
       issuedCardBack: landscapeImage,
