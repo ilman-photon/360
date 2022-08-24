@@ -7,7 +7,6 @@ import { useTranslation } from "next-i18next";
 
 function getUserData(username, callback) {
   const api = new Api();
-  const cookies = new Cookies();
   const postBody = {
     username,
   };
@@ -15,15 +14,8 @@ function getUserData(username, callback) {
     .getUserData(postBody)
     .then((response) => {
       const mfaAccessToken = response.mfaAccessToken || "";
-      const mfaAccessTokenCookie = cookies.get("mfaAccessToken", {
-        path: "/patient",
-      });
-
-      if (mfaAccessToken === mfaAccessTokenCookie) {
-        callback(true);
-      } else {
-        callback(false);
-      }
+      const isHasMfaAccessToken = mfaAccessToken !== "";
+      callback(isHasMfaAccessToken);
     })
     .catch(() => {
       callback(false);

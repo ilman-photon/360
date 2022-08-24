@@ -3,16 +3,15 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import MfaPage, { getServerSideProps } from "../../src/pages/patient/mfa";
-import Cookies from "universal-cookie";
 import "@testing-library/jest-dom";
-import { PhoneAndroidOutlined } from "@mui/icons-material";
+import Cookies from "universal-cookie";
 
 jest.mock("universal-cookie", () => {
     class MockCookies {
         static result = {};
         get(param) {
             if (param === "username") return "user1@photon.com"
-
+            if (param === "ip") return "10.10.10.10"
             return MockCookies.result;
         }
         remove() {
@@ -44,16 +43,22 @@ defineFeature(feature, (test) => {
                 }
             }
         }
-        mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+
+        const userData = {
+            "communicationMethod": {
+                "email": "user1@photon.com",
+                "phone": "9998887772"
+            },
+            "ResponseCode": 4000,
+            "ResponseType": "success",
+        }
+
+        mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
 
         getServerSideProps(contex)
-        act(() => {
-            container = render(<MfaPage />, {
-                container: document.body.appendChild(element),
-                legacyRoot: true,
-            });
-        });
+        container = render(<MfaPage />)
         await waitFor(() => container.getByText("communicationMethodTitle"));
+
     });
 
     afterEach(() => {
@@ -374,10 +379,19 @@ defineFeature(feature, (test) => {
         });
 
         when(/^user click on "(.*)" button$/, async (arg0) => {
+            const data = {
+                "mfaCode": 660927,
+                "ResponseCode": 4000,
+                "ResponseType": "success"
+            }
+            mock.onPost(`/ecp/patient/mfa/sendotp`).reply(200, data);
             const confirmButton = container.getByRole("button", { name: /confrimBtn/i });
             fireEvent.click(confirmButton)
-
+    
             await waitFor(() => container.getByText("mfaTitle"))
+    
+            const title = container.getByText("mfaTitle");
+            expect("mfaTitle").toEqual(title.textContent);
         });
 
         and('user receives an email/text message with a link to their registered email/phone number', () => {

@@ -105,76 +105,18 @@ export class Api {
   }
 
   getUserData(postbody) {
-    return new Promise((resolve) => {
-      if (postbody.username === "9876543210") {
-        resolve({
-          communicationMethod: {
-            phone: "(8***)***-***31",
-          },
-          mfaAccessToken: "12345678",
-          ResponseCode: 4000,
-          ResponseType: "success",
-          ip,
-        });
-      } else {
-        resolve({
-          communicationMethod: {
-            email: "u*******@mail.com",
-            phone: "(8***)***-***31",
-          },
-          ResponseCode: 4000,
-          ResponseType: "success",
-        });
-      }
-    });
+    const url = "/ecp/patient/mfa/getUserData";
+    return this.forgotFeatureValidation(url, postbody, "post", 4000);
   }
 
-  resendMfaCode(postbody) {
-    if (postbody !== "error") {
-      return Promise.resolve({
-        ResponseCode: 4000,
-        ResponseType: "success",
-      });
-    } else {
-      return Promise.reject({
-        ResponseCode: 4001,
-        ResponseType: "failed",
-      });
-    }
-  }
-
-  sendMfaCode() {
-    return Promise.resolve({
-      ResponseCode: 4000,
-      ResponseType: "success",
-    });
+  sendMfaCode(postbody) {
+    const url = "/ecp/patient/mfa/sendotp";
+    return this.forgotFeatureValidation(url, postbody, "post", 4000);
   }
 
   submitMfaCode(postbody) {
-    if (postbody.mfaCode === "123456" || postbody.mfaCode === "654321") {
-      if (postbody.rememberMe) {
-        return Promise.resolve({
-          ResponseCode: 4000,
-          ResponseType: "success",
-          mfaAccessToken: "12345678",
-        });
-      } else {
-        return Promise.resolve({
-          ResponseCode: 4000,
-          ResponseType: "success",
-        });
-      }
-    } else if (postbody.mfaCode === "lock") {
-      return Promise.reject({
-        ResponseCode: 4003,
-        ResponseType: "failed",
-      });
-    } else {
-      return Promise.reject({
-        ResponseCode: 4002,
-        ResponseType: "failed",
-      });
-    }
+    const url = "/ecp/patient/mfa/verifyotp";
+    return this.forgotFeatureValidation(url, postbody, "post", 4000);
   }
 
   forgotFeatureValidation(url, postbody, method, expectedCode) {
