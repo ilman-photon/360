@@ -48,7 +48,7 @@ export const AutoCompleteCreatable = ({
 
   React.useEffect(() => {
     props.onChange(value);
-  }, [value, props]);
+  }, [value]);
 
   return (
     <Autocomplete
