@@ -222,6 +222,11 @@ export const CustomInput = styled(({ ...props }) => {
               label={props.label}
               onChange={props.onChange}
               value={props.value}
+              components={{
+                OpenPickerIcon: function () {
+                  return null;
+                },
+              }}
               renderInput={(params) => (
                 <RedditTextField
                   variant="filled"
