@@ -81,7 +81,7 @@ export const ImageUploader = ({
         ""
       )}
 
-      {source ? (
+      {previewPhoto || source ? (
         <Button
           variant="text"
           sx={{
@@ -95,7 +95,7 @@ export const ImageUploader = ({
             inputImage.current.click();
           }}
         >
-          Change File
+          Change photo
         </Button>
       ) : (
         ""
