@@ -27,6 +27,7 @@ const CustomSelect = (props) => {
           "&.MuiFilledInput-root": {
             background: "transparent",
             border: "solid 1px #e2e2e1",
+            borderRadius: "4px",
           },
           "::before": {
             borderBottom: "none",
