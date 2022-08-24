@@ -15,7 +15,6 @@ export const CustomButton = styled(Button)(
   background: ${theme.button.background};
   border-color:${theme.button.borderColor};
   color: ${theme.button.color};
-  border-radius: 46px;
   padding: 16px;
 
   font-style: normal;
@@ -51,6 +50,7 @@ export const StyledButton = ({
   let sizeSelector = isLarge
     ? styles.customButtonLarge
     : styles.customButtonSmall;
+  sizeSelector = mode === "filter" ? styles.customButtonFilter : sizeSelector;
   return (
     <ThemeProvider theme={themeSelector}>
       <CustomButton

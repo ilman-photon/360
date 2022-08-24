@@ -1,9 +1,15 @@
 import AppointmentLayout from "../../../components/templates/appointmentLayout";
 import { Provider } from "react-redux";
 import store from "../../../store/store";
+import { Box } from "@mui/material";
+import FilterHeading from "../../../components/molecules/FilterHeading/filterHeading";
 
 export default function Appointment() {
-  return <section></section>;
+  return (
+    <Box>
+      <FilterHeading />
+    </Box>
+  );
 }
 
 Appointment.getLayout = function getLayout(page) {

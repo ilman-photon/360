@@ -68,5 +68,9 @@ module.exports = {
       account: "account",
       logout: "logout",
     },
+    APPOINTMENT_TEST_ID: {
+      location: "location",
+      searchbtn: "searchbtn",
+    },
   },
 };

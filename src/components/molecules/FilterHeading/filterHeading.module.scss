@@ -1,0 +1,19 @@
+.titleHeadingWrapper {
+  margin-top: -15px;
+  position: fixed;
+  width: 100%;
+  height: 151px;
+  padding: 24px 10px;
+  gap: 10px;
+  background: linear-gradient(96.59deg, #003b4a 10.15%, #0389ab 140.82%);
+  display: flex;
+  z-index: 2;
+  justify-content: center;
+}
+
+.centeredElement {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
