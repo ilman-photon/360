@@ -1,11 +1,14 @@
 import * as React from "react";
 import { Box, Stack, Typography, Button, Divider } from "@mui/material";
-import styles from "./Style.module.scss";
 import { useTranslation } from "next-i18next";
+import { StyledButton } from "../../atoms/Button/button";
 
-import constants from "../../../utils/constants";
-
-export default function ScheduleAppointment() {
+export default function ScheduleAppointment({
+  selectedSelf,
+  OnSetSelectedSelf = () => {
+    // This is intended
+  },
+}) {
   const { t } = useTranslation("translation", {
     keyPrefix: "scheduleAppoinment",
   });
@@ -13,50 +16,71 @@ export default function ScheduleAppointment() {
   return (
     <Stack spacing={2}>
       <Stack spacing={2}>
-        <Typography variant="h2" aria-label={"Who is this exam for?"}>
+        <Typography
+          sx={{ fontSize: { xs: "26px", md: "32px" } }}
+          aria-label={"Who is this exam for?"}
+        >
           {t("formTitle")}
         </Typography>
-        <Stack container direction="row" spacing={2} justifyContent="center">
-          <Box
+        <Stack
+          container
+          direction={{ xs: "column", md: "row" }}
+          spacing={2}
+          alignItems="center"
+          justifyContent="center"
+        >
+          <Button
+            // variant="text"
             sx={{
+              height: { xs: "61px", md: "102px" },
               border: "solid 1px #003B4A",
-              p: "36px",
-              width: 230,
-              height: 102,
+              p: "40px",
+              width: { xs: "100%", md: "230px" },
               borderRadius: "8px",
+              textAlign: "center",
+              textTransform: "none",
+              background: `${selectedSelf === 1 ? "#E4E4E4" : "#FAFAFA"}`,
             }}
+            onClick={OnSetSelectedSelf(true)}
           >
             <Typography
               variant="h4"
-              style={{ color: "#003B4A", fontSize: "18px" }}
+              sx={{ color: "#003B4A", fontSize: "18px" }}
               aria-label={"Myself"}
             >
               {t("myself")}
             </Typography>
-          </Box>
-          <Box
+          </Button>
+          <Button
             sx={{
+              height: { xs: "61px", md: "102px" },
               border: "solid 1px #003B4A",
-              p: "36px",
-              width: 230,
-              height: 102,
+              p: "40px",
+              width: { xs: "100%", md: "230px" },
               borderRadius: "8px",
+              textAlign: "center",
+              textTransform: "none",
+              background: `${selectedSelf === 2 ? "#FAFAFA" : "#E4E4E4"}`,
             }}
+            onClick={OnSetSelectedSelf(false)}
           >
-            <Typography variant="h4" aria-label={"Someone Else"}>
+            <Typography
+              variant="h4"
+              sx={{ color: "#003B4A", fontSize: "18px" }}
+              aria-label={"Myself"}
+            >
               {t("someoneElse")}
             </Typography>
-          </Box>
+          </Button>
         </Stack>
         <Divider />
-        <Button
-          type="submit"
-          variant="contained"
-          sx={{ width: "222px", alignSelf: "self-end" }}
-          className={[styles.formButton, styles.primary].join(" ")}
+        <StyledButton
+          mode="primary"
+          size="small"
+          sx={{ width: { xs: "100%", md: "222px" }, alignSelf: "self-end" }}
         >
           {t("continue")}
-        </Button>
+        </StyledButton>
       </Stack>
     </Stack>
   );

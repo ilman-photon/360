@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Stack, Button } from "@mui/material";
+import { Stack, Button, Typography } from "@mui/material";
 import styles from "./Style.module.scss";
 import { useTranslation } from "next-i18next";
 import AccountCard from "../../molecules/AccountCard/accountCard";
@@ -34,16 +34,37 @@ export default function AppointmentDetails() {
       }
     >
       <Stack spacing={2}>
-        <LabelWithInfo label="Name" titleIcon={<CalendarTodayIcon />}>
-          Saturday, Sep 11 - 8:30 am EST
+        <LabelWithInfo
+          label="Name"
+          titleIcon={<CalendarTodayIcon />}
+          sxRow={{ justifyContent: "unset" }}
+          sxText={{ color: "#003B4A" }}
+        >
+          <Typography variant="bodyMedium" sx={{ color: "#003B4A" }}>
+            Saturday, Sep 11 - 8:30 am EST
+          </Typography>
         </LabelWithInfo>
 
-        <LabelWithInfo label="Preferred Name" titleIcon={<ContactMailIcon />}>
-          No Insurance provided
+        <LabelWithInfo
+          label="Preferred Name"
+          titleIcon={<ContactMailIcon />}
+          sxRow={{ justifyContent: "unset" }}
+          sxText={{ color: "#003B4A" }}
+        >
+          <Typography variant="bodyMedium" sx={{ color: "#003B4A" }}>
+            No Insurance provided
+          </Typography>
         </LabelWithInfo>
 
-        <LabelWithInfo label="fsd Name" titleIcon={<BusinessIcon />}>
-          Eye Exam
+        <LabelWithInfo
+          label="fsd Name"
+          titleIcon={<BusinessIcon />}
+          sxRow={{ justifyContent: "unset" }}
+          sxText={{ color: "#003B4A" }}
+        >
+          <Typography variant="bodyMedium" sx={{ color: "#003B4A" }}>
+            Eye Exam
+          </Typography>
         </LabelWithInfo>
       </Stack>
     </AccountCard>
