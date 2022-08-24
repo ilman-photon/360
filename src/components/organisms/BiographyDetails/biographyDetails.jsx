@@ -1,9 +1,18 @@
 import { Link, Typography, Stack, Box, Divider } from "@mui/material";
 import styles from "./styles.module.scss";
+import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
 
-export default function DetailedBio({ profileData }) {
+export default function BiographyDetails({ profileData }) {
   return (
     <Box className={styles.detailedBio}>
+      <Box className={styles.stickyMenu}>
+        <Box className={styles.stickyMenuContainer}>
+          <Link className={styles.menuTextSelected}>About</Link>
+          <Link className={styles.menuText}>Locations</Link>
+          <Link className={styles.menuText}>Insurances</Link>
+          <Link className={styles.menuText}>Education</Link>
+        </Box>
+      </Box>
       <Box className={styles.menu}>
         <Divider />
         <Box className={styles.menuContainer}>
@@ -14,7 +23,7 @@ export default function DetailedBio({ profileData }) {
         </Box>
         <Divider />
       </Box>
-      <Stack spacing={3}>
+      <Stack spacing={3} className={styles.detailedBioContainer}>
         <Typography variant="h3">About Paul Wagner, MD</Typography>
         <Typography variant="body2">
           {
@@ -25,24 +34,23 @@ export default function DetailedBio({ profileData }) {
         <Typography variant="body2">Male</Typography>
         <Typography variant="h3">Locations</Typography>
         <Box className={styles.mapContainer}>
-          <Box
-            width={471}
-            height={270}
-            sx={{ backgroundColor: "skyBlue" }}
-          ></Box>
-          <Box sx={{ marginLeft: "24px" }}>
-            <Typography variant="body2" width={362}>
+          <Box className={styles.map}></Box>
+          <Box className={styles.mapAddressContainer}>
+            <Typography variant="body2" className={styles.mapAddress}>
               {`51 West 51st Street,
-                            Floor 3, Suite 320
+                            Floor 3, Suite 320\n
                             Midtown, New York, NY, 10019`}
             </Typography>
-            <Link>Get directions</Link>
+            <Box className={styles.getDirectionLinkContainer}>
+              <DirectionsOutlinedIcon></DirectionsOutlinedIcon>
+              <Link className={styles.getDirectionLink}>Get directions</Link>
+            </Box>
           </Box>
         </Box>
         <Typography variant="h3">Languages</Typography>
         <Typography variant="body2">English, Spanish</Typography>
         <Typography variant="h3">In-network insurances</Typography>
-        <Box display={"flex"}>
+        <Box className={styles.insurancesContainer}>
           <ul className={styles.insurancestList}>
             <li>
               <Typography variant="body2">Blue Cross Blue Shield</Typography>
@@ -55,14 +63,15 @@ export default function DetailedBio({ profileData }) {
             </li>
             <li>
               <Typography variant="body2">
-                16+ more in-network insurances <Link>View All</Link>
+                16+ more in-network insurances{" "}
+                <Link className={styles.viewAllLink}>View All</Link>
               </Typography>
             </li>
           </ul>
         </Box>
 
         <Typography variant="h3">Education</Typography>
-        <Box>
+        <Box className={styles.educationContainer}>
           <Typography variant="body2">
             {"New England College of Optometry, Doctor of Optometry"}
           </Typography>
@@ -72,7 +81,7 @@ export default function DetailedBio({ profileData }) {
         </Box>
 
         <Typography variant="h3">Memberships and Afilliations</Typography>
-        <Box>
+        <Box className={styles.educationContainer}>
           <Typography variant="body2">
             {"New England College of Optometry, Doctor of Optometry"}
           </Typography>
