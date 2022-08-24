@@ -51,9 +51,9 @@ export const CustomPasswordInput = styled((props) => (
             edge="end"
           >
             {props.type !== "password" ? (
-              <VisibilityOffOutlinedIcon sx={{ transform: "scaleX(-1)" }} />
-            ) : (
               <VisibilityOutlinedIcon />
+            ) : (
+              <VisibilityOffOutlinedIcon sx={{ transform: "scaleX(-1)" }} />
             )}
           </IconButton>
         </InputAdornment>
