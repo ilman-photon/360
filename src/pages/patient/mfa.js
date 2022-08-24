@@ -33,19 +33,22 @@ export default function MfaPage() {
   const api = new Api();
   const cookies = new Cookies();
   const router = useRouter();
+  const username = cookies.get("username", { path: "/patient" });
+  const ip = cookies.get("ip", { path: "/patient" });
   const [componentName, setComponentName] = React.useState("");
   const [rememberMe, setRememberMe] = React.useState(false);
   const [successSubmit, setSuccessSubmit] = React.useState(false);
   const [securityQuestionList, setSecurityQuestionList] = React.useState([]);
   const [communicationMethod, setCommunicationMethod] = React.useState({});
   const { t } = useTranslation("translation", { keyPrefix: "mfaPage" });
-  //just mock
-  const [submitCounter, setSubmitCounter] = React.useState(0);
-  const [requestCounter, setRequestCounter] = React.useState(0);
+
+  const onBackButtonEvent = (e) => {
+    e.preventDefault();
+    onBackToLoginClicked();
+  };
 
   React.useEffect(() => {
     if (Object.keys(communicationMethod).length == 0) {
-      const username = cookies.get("username", { path: "/patient" });
       const postBody = {
         username,
       };
@@ -59,24 +62,43 @@ export default function MfaPage() {
           // This is intentional
         });
     }
+    window.history.pushState(null, null, window.location.pathname);
+    window.addEventListener("popstate", onBackButtonEvent);
+    return () => {
+      window.removeEventListener("popstate", onBackButtonEvent);
+    };
   });
 
-  function onConfirmClicked() {
+  function onConfirmClicked(communication, callback) {
+    const deviceId = ip.replace(/\./g, "");
+    const postBody = {
+      username,
+      deviceId,
+      communication,
+    };
     api
-      .sendMfaCode()
+      .sendMfaCode(postBody)
       .then(() => {
-        setConfirm(true);
+        setComponentName(constants.MFA_COMPONENT_NAME);
       })
-      .catch(() => {
-        // This is intentional
+      .catch((err) => {
+        if (err.ResponseCode === 4004) {
+          callback({
+            status: "failed",
+            isEndView: true,
+            message: {
+              description: err.ResponseType,
+            },
+          });
+        }
       });
-    setComponentName(constants.MFA_COMPONENT_NAME);
   }
 
   function onBackToLoginClicked() {
     cookies.remove("mfa", { path: "/patient" });
     cookies.remove("username", { path: "/patient" });
     cookies.remove("ip", { path: "/patient" });
+    cookies.remove("mfaAccessToken", { path: "/patient" });
     router.push("/patient/login");
   }
 
@@ -91,9 +113,9 @@ export default function MfaPage() {
 
   function onSubmitClicked(inputMfaCode, callback) {
     const postBody = {
-      username: cookies.get("username", { path: "/patient" }),
-      mfaCode: submitCounter > 2 ? "lock" : inputMfaCode,
+      username,
       rememberMe,
+      otp: inputMfaCode,
     };
     api
       .submitMfaCode(postBody)
@@ -122,12 +144,11 @@ export default function MfaPage() {
             },
           });
         } else {
-          setSubmitCounter(submitCounter + 1);
           callback({
             status: "failed",
             message: {
               title: t("mfaFailedTitle"),
-              description: t("Please try again."),
+              description: t("mfaFailedDescription"),
             },
           });
         }
@@ -135,25 +156,29 @@ export default function MfaPage() {
   }
 
   function onResendCodeClicked(callback) {
-    let postBody = "";
-    if (requestCounter > 2) {
-      postBody = "error";
-    }
-
+    const deviceId = ip.replace(/\./g, "");
+    const postBody = {
+      username,
+      deviceId,
+      codeType: "resendCode",
+    };
     api
-      .resendMfaCode(postBody)
+      .sendMfaCode(postBody)
       .then(() => {
-        setRequestCounter(requestCounter + 1);
-      })
-      .catch(() => {
         callback({
-          status: "failed",
-          isEndView: true,
-          message: {
-            description:
-              "Code sent multiple times. Please try again after 30 minutes.",
-          },
+          status: "success",
         });
+      })
+      .catch((err) => {
+        if (err.ResponseCode === 4001) {
+          callback({
+            status: "failed",
+            isEndView: true,
+            message: {
+              description: err.ResponseType,
+            },
+          });
+        }
       });
   }
 
@@ -227,6 +252,9 @@ export default function MfaPage() {
       <Box
         sx={{
           marginTop: "-15px",
+          ["@media (max-width: 992px)"]: {
+            marginTop: "-25px",
+          },
         }}
       >
         {!successSubmit ? (
@@ -251,6 +279,8 @@ export default function MfaPage() {
                 borderStyle: "solid",
                 ["@media (max-width: 992px)"]: {
                   paddingTop: "45px",
+                  maxWidth: "100%",
+                  minWidth: "100%",
                 },
               }}
             >

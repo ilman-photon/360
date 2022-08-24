@@ -4,31 +4,32 @@ import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import AuthPage from "../../src/pages/patient/login";
-import MfaPage from "../../src/pages/patient/mfa";
+import MfaPage, {getServerSideProps} from "../../src/pages/patient/mfa";
 import Cookies from "universal-cookie";
 
 const feature = loadFeature(
-  "./__tests__/feature/Patient Portal/Sprint3/EPP-272.feature",
-  {
-    tagFilter: "@included and not @excluded",
-  }
+    "./__tests__/feature/Patient Portal/Sprint3/EPP-272.feature",
+    {
+        tagFilter: "@included and not @excluded",
+    }
 );
 
 jest.mock("universal-cookie", () => {
     class MockCookies {
-      static result = {};
-      get(param) {
-        if (param === "username") return "user1@photon.com"
-        else if (param === "securityQuestions") return []
-  
-        return MockCookies.result;
-      }
-      remove() {
-        return jest.fn();
-      }
-      set() {
-        return jest.fn();
-      }
+        static result = {};
+        get(param) {
+            if (param === "username") return "user1@photon.com"
+            else if (param === "securityQuestions") return []
+            if (param === "ip") return "10.10.10.10"
+
+            return MockCookies.result;
+        }
+        remove() {
+            return jest.fn();
+        }
+        set() {
+            return jest.fn();
+        }
     }
     return MockCookies;
 });
@@ -37,6 +38,54 @@ defineFeature(feature, (test) => {
     let container;
     const mock = new MockAdapter(axios);
     const element = document.createElement("div");
+    beforeEach(async () => {
+        const contex = {
+            req: {
+                headers: {
+                    cookie: "username=user1%40photon.com; mfa=true"
+                }
+            }
+        }
+
+        const userData = {
+            "communicationMethod": {
+                "email": "user1@photon.com",
+                "phone": "9998887772"
+            },
+            "ResponseCode": 4000,
+            "ResponseType": "success",
+        }
+
+        const expectedResult = {
+            "SetUpSecurityQuestions": [
+                {
+                    "Where did you go the first time you flew on a plane?": "",
+                    "What was the first book you read?": "",
+                    "What was the first film you saw in a theater?": "",
+                    "What was the make and model of your first car?": "",
+                    "What was the first concert you attended?": "",
+                    "What was your favorite cartoon character during your childhood?": "",
+                    "What was the first thing you learned to cook?": "",
+                    "What is your favorite cold-weather activity?": "",
+                    "In what city or town did your parents meet?": "",
+                    "Who is your all-time favorite movie character?": ""
+                }
+            ]
+        }
+
+        mock.onGet(`/ecp/patient/getsecurityQuestions`).reply(200, expectedResult);
+
+        mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
+
+        getServerSideProps(contex)
+        container = render(<MfaPage />)
+        await waitFor(() => container.getByText("setMFATitle"));
+
+    });
+
+    afterEach(() => {
+        mock.reset()
+    })
     test('EPIC_EPP-3_STORY_EPP-272 - Verify if user able to answer  security "Question1"', ({ given, and, then, when }) => {
         given('user launch the \'XXX\' url', () => {
             expect(true).toBeTruthy();
@@ -47,12 +96,12 @@ defineFeature(feature, (test) => {
                 ResponseCode: 2001,
                 ResponseType: "failure",
                 userType: "patient",
-              };
+            };
             mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
         });
 
         then('user lands onto “Patient Login” screen', () => {
-            mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
+            mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
             act(() => {
                 container = render(<AuthPage />, {
                     container: document.body.appendChild(element),
@@ -66,8 +115,8 @@ defineFeature(feature, (test) => {
         when(/^user clicks on the "(.*)" CTA in the"(.*)" screen$/, (arg0, arg1) => {
             const createAccount = container.getByRole("button", {
                 name: /createAccountButtonLabel/i,
-              });
-              fireEvent.click(createAccount);
+            });
+            fireEvent.click(createAccount);
         });
 
         then(/^user lands on the "(.*)" screen$/, (arg0) => {
@@ -79,43 +128,37 @@ defineFeature(feature, (test) => {
         });
 
         then('user should see MFA Setup screen', async () => {
-            mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
+            mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
             act(() => {
                 container = render(<MfaPage />, {
-                  container: document.body.appendChild(element),
-                  legacyRoot: true,
+                    container: document.body.appendChild(element),
+                    legacyRoot: true,
                 });
-              });
-              await waitFor(() => container.getByText("communicationMethodTitle"));
+            });
+            await waitFor(() => container.getByText("communicationMethodTitle"));
         });
 
         and('user setup MFA successfully', async () => {
-            const expectedResult = {
-                "SetUpSecurityQuestions": [
-                    {
-                        "Where did you go the first time you flew on a plane?": "",
-                        "What was the first book you read?": "",
-                        "What was the first film you saw in a theater?": "",
-                        "What was the make and model of your first car?": "",
-                        "What was the first concert you attended?": "",
-                        "What was your favorite cartoon character during your childhood?": "",
-                        "What was the first thing you learned to cook?": "",
-                        "What is your favorite cold-weather activity?": "",
-                        "In what city or town did your parents meet?": "",
-                        "Who is your all-time favorite movie character?": ""
-                    }
-                ]
-            }
-            mock.onGet(`/ecp/patient/getsecurityQuestions`).reply(200, expectedResult);
-            const confirm = container.getByTestId("primary-button");
-            fireEvent.click(confirm);
-            await waitFor(() => container.getByText("mfaTitle"))
-
-            const mfaField = container.getByLabelText("mfaLabel");
-            fireEvent.change(mfaField, { target: { value: "123456" } });
-
-            const primaryButton = container.getByTestId("primary-button");
-            fireEvent.click(primaryButton);
+            const data = {
+                "mfaCode": 660927,
+                "ResponseCode": 4000,
+                "ResponseType": "success"
+              }
+              mock.onPost(`/ecp/patient/mfa/sendotp`).reply(200, data);
+              const confirm = container.getByTestId("primary-button");
+              fireEvent.click(confirm);
+              await waitFor(() => container.getByText("mfaTitle"))
+        
+              const mfaField = container.getByLabelText("mfaLabel");
+              fireEvent.change(mfaField, { target: { value: "123456" } });
+        
+              const success = {
+                "ResponseCode": 4000,
+                "ResponseType": "success"
+              }
+              mock.onPost(`/ecp/patient/mfa/verifyotp`).reply(200, success);
+              const primaryButton = container.getByTestId("primary-button");
+              fireEvent.click(primaryButton);
         });
 
         then(/^user login with (.*) and (.*)$/, (arg0, arg1) => {
@@ -170,12 +213,12 @@ defineFeature(feature, (test) => {
                 ResponseCode: 2001,
                 ResponseType: "failure",
                 userType: "patient",
-              };
+            };
             mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
         });
 
         then('user lands onto “Patient Login” screen', () => {
-            mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
+            mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
             act(() => {
                 container = render(<AuthPage />, {
                     container: document.body.appendChild(element),
@@ -189,8 +232,8 @@ defineFeature(feature, (test) => {
         when(/^user clicks on the "(.*)" CTA in the"(.*)" screen$/, (arg0, arg1) => {
             const createAccount = container.getByRole("button", {
                 name: /createAccountButtonLabel/i,
-              });
-              fireEvent.click(createAccount);
+            });
+            fireEvent.click(createAccount);
         });
 
         then(/^user lands on the "(.*)" screen$/, (arg0) => {
@@ -202,26 +245,36 @@ defineFeature(feature, (test) => {
         });
 
         then('user should see MFA Setup screen', async () => {
-            mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
             act(() => {
                 container = render(<MfaPage />, {
-                  container: document.body.appendChild(element),
-                  legacyRoot: true,
+                    container: document.body.appendChild(element),
+                    legacyRoot: true,
                 });
-              });
-              await waitFor(() => container.getByText("communicationMethodTitle"));
+            });
+            await waitFor(() => container.getByText("communicationMethodTitle"));
         });
 
         and('user setup MFA successfully', async () => {
-            const confirm = container.getByTestId("primary-button");
-            fireEvent.click(confirm);
-            await waitFor(() => container.getByText("mfaTitle"))
-
-            const mfaField = container.getByLabelText("mfaLabel");
-            fireEvent.change(mfaField, { target: { value: "123456" } });
-
-            const primaryButton = container.getByTestId("primary-button");
-            fireEvent.click(primaryButton);
+            const data = {
+                "mfaCode": 660927,
+                "ResponseCode": 4000,
+                "ResponseType": "success"
+              }
+              mock.onPost(`/ecp/patient/mfa/sendotp`).reply(200, data);
+              const confirm = container.getByTestId("primary-button");
+              fireEvent.click(confirm);
+              await waitFor(() => container.getByText("mfaTitle"))
+        
+              const mfaField = container.getByLabelText("mfaLabel");
+              fireEvent.change(mfaField, { target: { value: "660927" } });
+        
+              const success = {
+                "ResponseCode": 4000,
+                "ResponseType": "success"
+              }
+              mock.onPost(`/ecp/patient/mfa/verifyotp`).reply(200, success);
+              const primaryButton = container.getByTestId("primary-button");
+              fireEvent.click(primaryButton);
         });
 
         then(/^user login with (.*) and (.*)$/, (arg0, arg1) => {
@@ -272,12 +325,12 @@ defineFeature(feature, (test) => {
                 ResponseCode: 2001,
                 ResponseType: "failure",
                 userType: "patient",
-              };
+            };
             mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
         });
 
         then('user lands onto “Patient Login” screen', () => {
-            mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
+            mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
             act(() => {
                 container = render(<AuthPage />, {
                     container: document.body.appendChild(element),
@@ -291,8 +344,8 @@ defineFeature(feature, (test) => {
         when(/^user clicks on the "(.*)" CTA in the"(.*)" screen$/, (arg0, arg1) => {
             const createAccount = container.getByRole("button", {
                 name: /createAccountButtonLabel/i,
-              });
-              fireEvent.click(createAccount);
+            });
+            fireEvent.click(createAccount);
         });
 
         then(/^user lands on the "(.*)" screen$/, (arg0) => {
@@ -304,26 +357,37 @@ defineFeature(feature, (test) => {
         });
 
         then('user should see MFA Setup screen', async () => {
-            mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
+            mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
             act(() => {
                 container = render(<MfaPage />, {
-                  container: document.body.appendChild(element),
-                  legacyRoot: true,
+                    container: document.body.appendChild(element),
+                    legacyRoot: true,
                 });
-              });
-              await waitFor(() => container.getByText("communicationMethodTitle"));
+            });
+            await waitFor(() => container.getByText("communicationMethodTitle"));
         });
 
         and('user setup MFA successfully', async () => {
-            const confirm = container.getByTestId("primary-button");
-            fireEvent.click(confirm);
-            await waitFor(() => container.getByText("mfaTitle"))
-
-            const mfaField = container.getByLabelText("mfaLabel");
-            fireEvent.change(mfaField, { target: { value: "123456" } });
-
-            const primaryButton = container.getByTestId("primary-button");
-            fireEvent.click(primaryButton);
+            const data = {
+                "mfaCode": 660927,
+                "ResponseCode": 4000,
+                "ResponseType": "success"
+              }
+              mock.onPost(`/ecp/patient/mfa/sendotp`).reply(200, data);
+              const confirm = container.getByTestId("primary-button");
+              fireEvent.click(confirm);
+              await waitFor(() => container.getByText("mfaTitle"))
+        
+              const mfaField = container.getByLabelText("mfaLabel");
+              fireEvent.change(mfaField, { target: { value: "660927" } });
+        
+              const success = {
+                "ResponseCode": 4000,
+                "ResponseType": "success"
+              }
+              mock.onPost(`/ecp/patient/mfa/verifyotp`).reply(200, success);
+              const primaryButton = container.getByTestId("primary-button");
+              fireEvent.click(primaryButton);
         });
 
         then(/^user login with (.*) and (.*)$/, (arg0, arg1) => {
@@ -378,12 +442,12 @@ defineFeature(feature, (test) => {
                 ResponseCode: 2001,
                 ResponseType: "failure",
                 userType: "patient",
-              };
+            };
             mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
         });
 
         then('user lands onto “Patient Login” screen', () => {
-            mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
+            mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
             act(() => {
                 container = render(<AuthPage />, {
                     container: document.body.appendChild(element),
@@ -397,8 +461,8 @@ defineFeature(feature, (test) => {
         when(/^user clicks on the "(.*)" CTA in the"(.*)" screen$/, (arg0, arg1) => {
             const createAccount = container.getByRole("button", {
                 name: /createAccountButtonLabel/i,
-              });
-              fireEvent.click(createAccount);
+            });
+            fireEvent.click(createAccount);
         });
 
         then(/^user lands on the "(.*)" screen$/, (arg0) => {
@@ -410,26 +474,37 @@ defineFeature(feature, (test) => {
         });
 
         then('user should see MFA Setup screen', async () => {
-            mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
+            mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
             act(() => {
                 container = render(<MfaPage />, {
-                  container: document.body.appendChild(element),
-                  legacyRoot: true,
+                    container: document.body.appendChild(element),
+                    legacyRoot: true,
                 });
-              });
-              await waitFor(() => container.getByText("communicationMethodTitle"));
+            });
+            await waitFor(() => container.getByText("communicationMethodTitle"));
         });
 
         and('user setup MFA successfully', async () => {
-            const confirm = container.getByTestId("primary-button");
-            fireEvent.click(confirm);
-            await waitFor(() => container.getByText("mfaTitle"))
-
-            const mfaField = container.getByLabelText("mfaLabel");
-            fireEvent.change(mfaField, { target: { value: "123456" } });
-
-            const primaryButton = container.getByTestId("primary-button");
-            fireEvent.click(primaryButton);
+            const data = {
+                "mfaCode": 660927,
+                "ResponseCode": 4000,
+                "ResponseType": "success"
+              }
+              mock.onPost(`/ecp/patient/mfa/sendotp`).reply(200, data);
+              const confirm = container.getByTestId("primary-button");
+              fireEvent.click(confirm);
+              await waitFor(() => container.getByText("mfaTitle"))
+        
+              const mfaField = container.getByLabelText("mfaLabel");
+              fireEvent.change(mfaField, { target: { value: "660927" } });
+        
+              const success = {
+                "ResponseCode": 4000,
+                "ResponseType": "success"
+              }
+              mock.onPost(`/ecp/patient/mfa/verifyotp`).reply(200, success);
+              const primaryButton = container.getByTestId("primary-button");
+              fireEvent.click(primaryButton);
         });
 
         then(/^user login with (.*) and (.*)$/, (arg0, arg1) => {
@@ -440,7 +515,7 @@ defineFeature(feature, (test) => {
             expect(true).toBeTruthy();
         });
 
-        and('user should prompted to set up Security questions after setup MFA', async() => {
+        and('user should prompted to set up Security questions after setup MFA', async () => {
             await waitFor(() => container.getByText(/Security Questions/i));
         });
 
@@ -484,7 +559,7 @@ defineFeature(feature, (test) => {
             const mySelectComponent4 = container.getByTestId('select-question-id-4');
             const selectNode4 = mySelectComponent4.childNodes[1]
             fireEvent.change(selectNode4, { target: { value: "What was your favorite cartoon character during your childhood?" } });
-            
+
             const mySelectComponent5 = container.getByTestId('select-question-id-5');
             const selectNode5 = mySelectComponent5.childNodes[1]
             fireEvent.change(selectNode3, { target: { value: "What was the first thing you learned to cook?" } });
@@ -526,12 +601,12 @@ defineFeature(feature, (test) => {
                 ResponseCode: 2001,
                 ResponseType: "failure",
                 userType: "patient",
-              };
+            };
             mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
         });
 
         then('user lands onto “Patient Login” screen', () => {
-            mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
+            mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
             act(() => {
                 container = render(<AuthPage />, {
                     container: document.body.appendChild(element),
@@ -545,8 +620,8 @@ defineFeature(feature, (test) => {
         when(/^user clicks on the "(.*)" CTA in the"(.*)" screen$/, (arg0, arg1) => {
             const createAccount = container.getByRole("button", {
                 name: /createAccountButtonLabel/i,
-              });
-              fireEvent.click(createAccount);
+            });
+            fireEvent.click(createAccount);
         });
 
         then(/^user lands on the "(.*)" screen$/, (arg0) => {
@@ -558,26 +633,37 @@ defineFeature(feature, (test) => {
         });
 
         then('user should see MFA Setup screen', async () => {
-            mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
+            mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
             act(() => {
                 container = render(<MfaPage />, {
-                  container: document.body.appendChild(element),
-                  legacyRoot: true,
+                    container: document.body.appendChild(element),
+                    legacyRoot: true,
                 });
-              });
-              await waitFor(() => container.getByText("communicationMethodTitle"));
+            });
+            await waitFor(() => container.getByText("communicationMethodTitle"));
         });
 
         and('user setup MFA successfully', async () => {
-            const confirm = container.getByTestId("primary-button");
-            fireEvent.click(confirm);
-            await waitFor(() => container.getByText("mfaTitle"))
-
-            const mfaField = container.getByLabelText("mfaLabel");
-            fireEvent.change(mfaField, { target: { value: "123456" } });
-
-            const primaryButton = container.getByTestId("primary-button");
-            fireEvent.click(primaryButton);
+            const data = {
+                "mfaCode": 660927,
+                "ResponseCode": 4000,
+                "ResponseType": "success"
+              }
+              mock.onPost(`/ecp/patient/mfa/sendotp`).reply(200, data);
+              const confirm = container.getByTestId("primary-button");
+              fireEvent.click(confirm);
+              await waitFor(() => container.getByText("mfaTitle"))
+        
+              const mfaField = container.getByLabelText("mfaLabel");
+              fireEvent.change(mfaField, { target: { value: "660927" } });
+        
+              const success = {
+                "ResponseCode": 4000,
+                "ResponseType": "success"
+              }
+              mock.onPost(`/ecp/patient/mfa/verifyotp`).reply(200, success);
+              const primaryButton = container.getByTestId("primary-button");
+              fireEvent.click(primaryButton);
         });
 
         then(/^user login with (.*) and (.*)$/, (arg0, arg1) => {
@@ -632,7 +718,7 @@ defineFeature(feature, (test) => {
             const mySelectComponent4 = container.getByTestId('select-question-id-4');
             const selectNode4 = mySelectComponent4.childNodes[1]
             fireEvent.change(selectNode4, { target: { value: "What was your favorite cartoon character during your childhood?" } });
-            
+
             const mySelectComponent5 = container.getByTestId('select-question-id-5');
             const selectNode5 = mySelectComponent5.childNodes[1]
             fireEvent.change(selectNode5, { target: { value: "What was the first thing you learned to cook?" } });

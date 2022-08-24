@@ -757,7 +757,7 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        then("user able to see ''Change photo'' CTA to give user the ability to change the photo", () => {
+        then(/^user able to see ''Change file'' CTA to give user the ability to change the photo$/, () => {
             defaultValidation();
         });
 
@@ -777,7 +777,7 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        then("user able to see ''Change photo'' CTA to give user the ability to change the photo", () => {
+        then(/^user able to see ''Change file'' CTA to give user the ability to change the photo$/, () => {
             defaultValidation();
         });
 
@@ -792,7 +792,6 @@ defineFeature(feature, (test) => {
         and(/^if u want to discard the changes click on "(.*)" button$/, (arg0) => {
             defaultValidation();
         });
-
     });
 
     test('EPIC_EPP-8_STORY_EPP-946 - Verify that  As a user, whether able to upload State Issue ID field when selecting a file other than "JPG" and "PNG" format regarding my profile information/ demographics.', ({ given, and, when, then }) => {

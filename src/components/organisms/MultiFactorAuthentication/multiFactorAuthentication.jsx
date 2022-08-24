@@ -42,6 +42,8 @@ export default function MultiFactorAuthentication({
       }
       setMfaCode("");
       setPostMessage(message);
+    } else {
+      setPostMessage("");
     }
   };
 

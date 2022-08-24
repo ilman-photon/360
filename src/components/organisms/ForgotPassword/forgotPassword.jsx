@@ -28,7 +28,12 @@ const ForgotPassword = ({
   const { handleSubmit, control, setError } = useForm();
   const { FORGOT_TEST_ID } = constants.TEST_ID;
   const onSubmit = ({ username }) => {
-    if (
+    if (username.length <= 0) {
+      setError("username", {
+        type: "custom",
+        message: t("errorEmptyField"),
+      });
+    } else if (
       Regex.REGEX_PHONE_NUMBER.test(username) ||
       Regex.isEmailCorrect.test(username)
     ) {
@@ -56,7 +61,11 @@ const ForgotPassword = ({
         sx={{ minWidth: 275, padding: "16px" }}
       >
         <CardContent style={styles.cardContentStyle}>
-          <HeadingTitle variant={constants.H2} title={t("title")} />
+          <HeadingTitle
+            variant={constants.H2}
+            title={t("title")}
+            sx={{ fontSize: "32px" }}
+          />
           {showPostMessage ? (
             <FormMessage success={false} sx={styles.postMessage}>
               {t("errorUsernameNotFound")}
@@ -91,7 +100,6 @@ const ForgotPassword = ({
                   />
                 );
               }}
-              rules={{ required: t("errorEmptyField") }}
             />
 
             <StyledButton

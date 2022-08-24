@@ -188,10 +188,12 @@ const SetPasswordComponent = ({
       if (validateErrorPassword(errors1, errors2, errorForkedValidation)) {
         onSetPasswordClicked(data);
       } else {
-        setError("password", {
-          type: "custom",
-          message: t("passwordNotMeetRequirements"),
-        });
+        if (!isUpdatePassword) {
+          setError("password", {
+            type: "custom",
+            message: t("passwordNotMeetRequirements"),
+          });
+        }
         setError("confirmPassword", {
           type: "custom",
           message: t("passwordNotMeetRequirements"),
@@ -345,7 +347,7 @@ const SetPasswordComponent = ({
             }}
             rules={{
               required: "This field is required",
-              validate: passwordRules(),
+              validate: !isUpdatePassword ? passwordRules() : {},
             }}
           />
           {!isUpdatePassword ? (
@@ -381,7 +383,7 @@ const SetPasswordComponent = ({
             }}
             rules={{
               required: t("errorEmptyField"),
-              validate: passwordRules(),
+              validate: !isUpdatePassword ? passwordRules() : {},
             }}
           />
           {isUpdatePassword ? (

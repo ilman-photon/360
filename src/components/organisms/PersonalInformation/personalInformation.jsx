@@ -400,8 +400,6 @@ export default function PersonalInformation({
               }}
             />
 
-            <Divider />
-
             <Typography variant="h3" sx={{ mb: 2, color: colors.black }}>
               State Issued ID
             </Typography>
