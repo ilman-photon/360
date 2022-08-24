@@ -757,7 +757,7 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        then("user able to see ''Change file'' CTA to give user the ability to change the photo", () => {
+        then("user able to see ''Change photo'' CTA to give user the ability to change the photo", () => {
             defaultValidation();
         });
 
@@ -777,7 +777,7 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        then("user able to see ''Change file'' CTA to give user the ability to change the photo", () => {
+        then("user able to see ''Change photo'' CTA to give user the ability to change the photo", () => {
             defaultValidation();
         });
 

@@ -75,7 +75,7 @@ Object {
                 <svg
                   aria-hidden="true"
                   aria-label="If you wish to change this information, please contact Customer Support"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yagxpu-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ffn8hz-MuiSvgIcon-root"
                   data-mui-internal-clone-element="true"
                   data-testid="ErrorOutlineOutlinedIcon"
                   focusable="false"
@@ -163,7 +163,7 @@ Object {
                 <svg
                   aria-hidden="true"
                   aria-label="If you wish to change this information, please contact Customer Support"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yagxpu-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ffn8hz-MuiSvgIcon-root"
                   data-mui-internal-clone-element="true"
                   data-testid="ErrorOutlineOutlinedIcon"
                   focusable="false"
@@ -201,7 +201,7 @@ Object {
                 <svg
                   aria-hidden="true"
                   aria-label="If you wish to change this information, please contact Customer Support"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yagxpu-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ffn8hz-MuiSvgIcon-root"
                   data-mui-internal-clone-element="true"
                   data-testid="ErrorOutlineOutlinedIcon"
                   focusable="false"
@@ -264,7 +264,7 @@ Object {
                 <svg
                   aria-hidden="true"
                   aria-label="If you wish to change this information, please contact Customer Support"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yagxpu-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ffn8hz-MuiSvgIcon-root"
                   data-mui-internal-clone-element="true"
                   data-testid="ErrorOutlineOutlinedIcon"
                   focusable="false"
@@ -348,7 +348,7 @@ Object {
                       </div>
                     </div>
                     <span
-                      class="MuiTypography-root MuiTypography-bodySmallRegular css-1r97m9f-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-bodySmallRegular css-mqoq23-MuiTypography-root"
                     >
                       JPG or PNG file formats only. (File size limit is 4 MB)
                     </span>
@@ -400,7 +400,7 @@ Object {
                       </div>
                     </div>
                     <span
-                      class="MuiTypography-root MuiTypography-bodySmallRegular css-1r97m9f-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-bodySmallRegular css-mqoq23-MuiTypography-root"
                     >
                       JPG or PNG file formats only. (File size limit is 4 MB)
                     </span>
@@ -498,7 +498,7 @@ Object {
               <svg
                 aria-hidden="true"
                 aria-label="If you wish to change this information, please contact Customer Support"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yagxpu-MuiSvgIcon-root"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ffn8hz-MuiSvgIcon-root"
                 data-mui-internal-clone-element="true"
                 data-testid="ErrorOutlineOutlinedIcon"
                 focusable="false"
@@ -586,7 +586,7 @@ Object {
               <svg
                 aria-hidden="true"
                 aria-label="If you wish to change this information, please contact Customer Support"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yagxpu-MuiSvgIcon-root"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ffn8hz-MuiSvgIcon-root"
                 data-mui-internal-clone-element="true"
                 data-testid="ErrorOutlineOutlinedIcon"
                 focusable="false"
@@ -624,7 +624,7 @@ Object {
               <svg
                 aria-hidden="true"
                 aria-label="If you wish to change this information, please contact Customer Support"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yagxpu-MuiSvgIcon-root"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ffn8hz-MuiSvgIcon-root"
                 data-mui-internal-clone-element="true"
                 data-testid="ErrorOutlineOutlinedIcon"
                 focusable="false"
@@ -687,7 +687,7 @@ Object {
               <svg
                 aria-hidden="true"
                 aria-label="If you wish to change this information, please contact Customer Support"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yagxpu-MuiSvgIcon-root"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ffn8hz-MuiSvgIcon-root"
                 data-mui-internal-clone-element="true"
                 data-testid="ErrorOutlineOutlinedIcon"
                 focusable="false"
@@ -771,7 +771,7 @@ Object {
                     </div>
                   </div>
                   <span
-                    class="MuiTypography-root MuiTypography-bodySmallRegular css-1r97m9f-MuiTypography-root"
+                    class="MuiTypography-root MuiTypography-bodySmallRegular css-mqoq23-MuiTypography-root"
                   >
                     JPG or PNG file formats only. (File size limit is 4 MB)
                   </span>
@@ -823,7 +823,7 @@ Object {
                     </div>
                   </div>
                   <span
-                    class="MuiTypography-root MuiTypography-bodySmallRegular css-1r97m9f-MuiTypography-root"
+                    class="MuiTypography-root MuiTypography-bodySmallRegular css-mqoq23-MuiTypography-root"
                   >
                     JPG or PNG file formats only. (File size limit is 4 MB)
                   </span>

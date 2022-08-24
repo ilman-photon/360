@@ -18,12 +18,13 @@ import { stringAvatar } from "../../../utils/avatar";
 import StyledInput from "../../atoms/Input/input";
 import { StyledButton } from "../../atoms/Button/button";
 import { ImageUploader } from "../../molecules/ImageUploader/imageUploader";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { StyledSelect } from "../../atoms/Select/select";
 import { formatSocialSecurity } from "../../../utils/ssnFormatter";
 import { GENDER_LIST, TITLE_LIST } from "../../../utils/constantData";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import Image from "next/image";
+import FormMessage from "../../molecules/FormMessage/formMessage";
 
 export default function PersonalInformation({
   userData = {},
@@ -41,6 +42,16 @@ export default function PersonalInformation({
   const { handleSubmit, control, reset } = useForm({
     defaultValues: userData,
   });
+
+  const [formProfilePhotoState, setFormProfilePhotoState] = useState({
+    success: false,
+    title: null,
+    content: null,
+  });
+
+  const onFormProfilePhotoError = (payload) => {
+    setFormProfilePhotoState(payload);
+  };
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
   const tooltipContentDefault =
@@ -191,6 +202,16 @@ export default function PersonalInformation({
         <form onSubmit={handleSubmit(onSubmit)}>
           <Stack spacing={3}>
             <div className={styles.labelForm}>Photo</div>
+            {formProfilePhotoState.content ? (
+              <FormMessage
+                success={formProfilePhotoState.success}
+                title={formProfilePhotoState.title}
+              >
+                {formProfilePhotoState.content}
+              </FormMessage>
+            ) : (
+              ""
+            )}
             <Controller
               name="profilePhoto"
               control={control}
@@ -204,6 +225,7 @@ export default function PersonalInformation({
                       username={userData.name}
                       source={userData.profilePhoto}
                       OnPhotoChange={onChange}
+                      OnInputError={onFormProfilePhotoError}
                     />
                   </>
                 );
@@ -409,6 +431,7 @@ export default function PersonalInformation({
                         <ImageUploader
                           helperText
                           OnUpload={onChange}
+                          OnInputError={onFormProfilePhotoError}
                           source={userData.issuedCardFront}
                           label="Upload Front"
                           width="100%"
@@ -439,6 +462,7 @@ export default function PersonalInformation({
                         <ImageUploader
                           helperText
                           OnUpload={onChange}
+                          OnInputError={onFormProfilePhotoError}
                           source={userData.issuedCardBack}
                           label="Upload Back"
                           width="100%"

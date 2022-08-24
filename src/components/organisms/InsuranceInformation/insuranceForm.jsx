@@ -39,7 +39,6 @@ export default function InsuranceForm({
 
   // Later will be used for edit
   useEffect(() => {
-    console.log("reset");
     if (formData) reset(formData);
   }, [formData]);
 
