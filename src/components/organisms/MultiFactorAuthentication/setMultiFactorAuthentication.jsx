@@ -76,7 +76,7 @@ export default function SetMultiFactorAuthentication({
             <FormControlLabel
               value="phone"
               data-testid="phone-radio-button"
-              label={`Phone${data.phone}`}
+              label={`Phone: ${data.phone}`}
               sx={{
                 ".MuiFormControlLabel-label": {
                   color: "#242526",
