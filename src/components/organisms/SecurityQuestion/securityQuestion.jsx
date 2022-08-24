@@ -161,6 +161,7 @@ const SecurityQuestion = ({
                   id={`answer-${index}`}
                   variant="filled"
                   value={value}
+                  inputProps={{ maxLength: 20 }}
                   style={styles.answerInputStyle}
                   onChange={(event) => {
                     onChange(event);
