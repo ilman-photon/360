@@ -3,44 +3,42 @@
 
 echo '🏗️👷 Styling, testing and building your project before committing'
 
-# # Check Prettier standards
-# npm run check-format ||
-# (
-#     echo 'Prettier Check Failed. Run npm run format, add changes and try commit again.';
-#     false;
-# )
+# Check Prettier standards
+npm run check-format ||
+(
+    echo 'Prettier Check Failed. Run npm run format, add changes and try commit again.';
+    false;
+)
 
-# # Check ESLint Standards
-# npm run check-lint ||
-# (
-#         echo 'ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
-#         false; 
-# )
+# Check ESLint Standards
+npm run check-lint ||
+(
+        echo 'ESLint Check Failed. Make the required changes listed above, add changes and try to commit again.'
+        false; 
+)
 
-# # If everything passes... Now we can commit
+# Check tsconfig standards
+npm run sonar-lint ||
+(
+    echo 'Please fix the sonar issue'
+    false;
+)
 
-# # Check tsconfig standards
-# npm run sonar-lint ||
-# (
-#     echo 'Please fix the sonar issue'
-#     false;
-# )
+# Check tsconfig standards
+npm run test ||
+(
+    echo 'Please fix the failed unit test'
+    false;
+)
 
-# # Check tsconfig standards
-# npm run test ||
-# (
-#     echo 'Please fix the failed unit test'
-#     false;
-# )
+# Check build error
 
-# # If everything passes... Now we can commit
-
-# npm run build ||
-# (
-#     echo 'Next build failed: View the errors above to see why. 
-#     '
-#     false;
-# )
+npm run build ||
+(
+    echo 'Next build failed: View the errors above to see why. 
+    '
+    false;
+)
 
 # If everything passes... Now we can commit
 echo '✅ Prettier Check, ESLint Check and Next build. Committing this now. ✅'
