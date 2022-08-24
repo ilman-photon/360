@@ -176,7 +176,7 @@ describe("ContactInformation Components", () => {
     fireEvent.change(field2, { target: { value: "invalid@email" } });
     expect(field2.value).toEqual("invalid@email");
 
-    await waitFor(() => container.getByText("Incorrect email format"));
-    expect(container.getByText("Incorrect email format")).toBeInTheDocument();
+    await waitFor(() => container.getByText("Incorrect format"));
+    expect(container.getByText("Incorrect format")).toBeInTheDocument();
   }, 10000);
 });
