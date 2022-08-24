@@ -1,0 +1,48 @@
+.shortBio {
+  display: flex;
+  width: 942px;
+  margin-left: 12vw;
+  margin-bottom: 32px;
+
+  @media (max-width: 992px) {
+    width: 100vw;
+    flex-direction: column;
+  }
+}
+
+.specialistTitle {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.specialistList {
+  column-count: 2;
+  margin-block-start: 4px;
+  padding-inline-start: 25px;
+}
+
+.newColumn {
+  break-before: column;
+}
+
+.specialistTitle > li {
+  width: 170px;
+}
+
+.profilePhoto {
+  border-radius: 90px;
+}
+
+.displayFlex {
+  display: flex;
+}
+
+.bioContainer {
+  margin-left: 12px;
+  margin-right: 25px;
+  width: 20vw;
+}
+
+.ratingContainer {
+  margin-top: 50px;
+}
