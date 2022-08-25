@@ -51,9 +51,9 @@ export const CustomPasswordInput = styled((props) => (
             edge="end"
           >
             {props.type !== "password" ? (
-              <VisibilityOffOutlinedIcon sx={{ transform: "scaleX(-1)" }} />
-            ) : (
               <VisibilityOutlinedIcon />
+            ) : (
+              <VisibilityOffOutlinedIcon sx={{ transform: "scaleX(-1)" }} />
             )}
           </IconButton>
         </InputAdornment>
@@ -222,6 +222,11 @@ export const CustomInput = styled(({ ...props }) => {
               label={props.label}
               onChange={props.onChange}
               value={props.value}
+              components={{
+                OpenPickerIcon: function () {
+                  return null;
+                },
+              }}
               renderInput={(params) => (
                 <RedditTextField
                   variant="filled"

@@ -67,6 +67,12 @@ export default function InsuranceInfoPage() {
   const OnConfirmRemoveInsurance = () => {
     dispatch(removeUserInsuranceData(formDeleteInsurance));
     setConfirmationDeleteDialog(false);
+    dispatch(
+      setPageMessage({
+        isShow: true,
+        content: "Insurance successfully removed",
+      })
+    );
   };
 
   const OnOpenEditInsuranceForm = (payload) => {
