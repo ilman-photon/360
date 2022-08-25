@@ -18,6 +18,7 @@ const Marker = (options) => {
         marker.setMap(null);
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [marker]);
   useEffect(() => {
     if (marker) {
@@ -27,4 +28,4 @@ const Marker = (options) => {
   return null;
 };
 
-export default Marker
+export default Marker;

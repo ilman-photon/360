@@ -1,14 +1,11 @@
 import { useEffect, useState } from "react";
-// {options: {}, contentString = '', marker}
-const InfoWindow = ({options, map, contentString = '', marker}) => {
-  console.log(options)
+
+const InfoWindow = (options) => {
   const [infoWindow, setInfoWindow] = useState(null);
 
   useEffect(() => {
     if (!infoWindow) {
-      setInfoWindow(new google.maps.InfoWindow({
-        content: contentString,
-      }));
+      setInfoWindow(new google.maps.InfoWindow());
     }
 
     // remove infoWindow from map on unmount
@@ -17,23 +14,16 @@ const InfoWindow = ({options, map, contentString = '', marker}) => {
         infoWindow.setMap(null);
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [infoWindow]);
-  
+
   useEffect(() => {
-    console.log({options})
     if (infoWindow) {
       infoWindow.setOptions(options);
     }
   }, [infoWindow, options]);
 
-  useEffect(() => {
-    console.log('op',{map, options})
-    // if (options.anchor) {
-    //   infoWindow.open(options)
-    // }
-  },[options])
-
   return null;
 };
 
-export default InfoWindow
+export default InfoWindow;
