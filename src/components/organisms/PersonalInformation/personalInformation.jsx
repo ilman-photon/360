@@ -447,7 +447,7 @@ export default function PersonalInformation({
                   name="issuedCardFront"
                   control={control}
                   render={({
-                    field: { onChange, _value },
+                    field: { onChange, value },
                     fieldState: { _error },
                   }) => {
                     return (
@@ -489,7 +489,7 @@ export default function PersonalInformation({
                   name="issuedCardBack"
                   control={control}
                   render={({
-                    field: { onChange, _value },
+                    field: { onChange, value },
                     fieldState: { _error },
                   }) => {
                     return (

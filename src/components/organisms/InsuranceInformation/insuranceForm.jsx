@@ -19,7 +19,7 @@ import SelectOptionButton from "../../atoms/SelectOptionButton/selectOptionButto
 import { ImageUploader } from "../../molecules/ImageUploader/imageUploader";
 import AutoCompleteInput from "../../molecules/AutoCompleteInput";
 import { DEFAULT_INSURANCE_DATA } from "../../../store/user";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 
 export default function InsuranceForm({
@@ -41,6 +41,7 @@ export default function InsuranceForm({
   // Later will be used for edit
   useEffect(() => {
     if (formData) reset(formData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
 
   const providerList = [

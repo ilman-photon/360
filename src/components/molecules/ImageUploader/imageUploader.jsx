@@ -1,6 +1,6 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { colors } from "../../../styles/theme";
 import Image from "next/image";
 import { Regex } from "../../../utils/regex";
