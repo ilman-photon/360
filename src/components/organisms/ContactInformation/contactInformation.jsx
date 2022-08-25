@@ -68,14 +68,14 @@ export default function ContactInformation({
   const isOneOfPreferredValid = (name, value) => {
     switch (name) {
       case "email":
-        if (watchedPreferredCommunication === "phone") return true;
-        else if (watchedPreferredCommunication === "email" && !value)
+        if (watchedPreferredCommunication == "phone") return true;
+        else if (watchedPreferredCommunication == "email" && !value)
           return false;
         else if (watchedEmail || watchedMobile) return true;
         break;
       case "phone":
-        if (watchedPreferredCommunication === "email") return true;
-        else if (watchedPreferredCommunication === "phone" && !value)
+        if (watchedPreferredCommunication == "email") return true;
+        else if (watchedPreferredCommunication == "phone" && !value)
           return false;
         else if (watchedEmail || watchedMobile) return true;
         break;
