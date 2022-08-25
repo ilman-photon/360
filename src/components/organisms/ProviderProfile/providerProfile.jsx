@@ -4,31 +4,6 @@ import styles from "./styles.module.scss";
 import StyledRating from "../../atoms/Rating/styledRating";
 
 export default function ProviderProfile() {
-  const specialist = ["Opthometry", "Opthalmology", "Catarac", "Glaucoma"];
-  const renderSpecialistList = () => {
-    return (
-      <Box>
-        <Typography variant="subtitle1" className={styles.specialistTitle}>
-          Specialties and Sub-specialties:{" "}
-        </Typography>
-        <ul className={styles.specialistList}>
-          {specialist.map((item, index) => {
-            return (
-              <li key={index}>
-                <Typography
-                  variant="body2"
-                  className={index === 3 ? styles.newColumn : ""}
-                >
-                  {item}
-                </Typography>
-              </li>
-            );
-          })}
-        </ul>
-      </Box>
-    );
-  };
-
   return (
     <Box className={styles.shortBio}>
       <Box className={styles.displayFlex}>
@@ -38,7 +13,6 @@ export default function ProviderProfile() {
             width={90}
             height={90}
             className={styles.profilePhoto}
-            alt="Doctor Image"
           ></Image>
         </Box>
         <Box className={styles.bioContainer}>
@@ -56,7 +30,27 @@ export default function ProviderProfile() {
           </Box>
         </Box>
       </Box>
-      <Box>{renderSpecialistList()}</Box>
+      <Box>
+        <Box>
+          <Typography variant="subtitle1" className={styles.specialistTitle}>
+            Specialties and Sub-specialties:{" "}
+          </Typography>
+          <ul className={styles.specialistList}>
+            <li>
+              <Typography variant="body2">Opthometry</Typography>
+            </li>
+            <li>
+              <Typography variant="body2">Opthalmology</Typography>
+            </li>
+            <li>
+              <Typography variant="body2">Catarac</Typography>
+            </li>
+            <li className={styles.newColumn}>
+              <Typography variant="body2">Glaucoma</Typography>
+            </li>
+          </ul>
+        </Box>
+      </Box>
     </Box>
   );
 }
