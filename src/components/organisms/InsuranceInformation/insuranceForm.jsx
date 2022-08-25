@@ -19,7 +19,7 @@ import SelectOptionButton from "../../atoms/SelectOptionButton/selectOptionButto
 import { ImageUploader } from "../../molecules/ImageUploader/imageUploader";
 import AutoCompleteInput from "../../molecules/AutoCompleteInput";
 import { DEFAULT_INSURANCE_DATA } from "../../../store/user";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 
 export default function InsuranceForm({
@@ -66,23 +66,26 @@ export default function InsuranceForm({
 
   const relationshipList = ["Spouse", "Father", "Mother", "Self", "Son"];
 
-  const [formCardFrontState, setFormCardFrontState] = useState({
+  const DEFAULT_FORM_FIELD_STATE = {
     success: false,
     title: null,
     content: null,
-  });
+  };
+
+  const [formCardFrontState, setFormCardFrontState] = useState(
+    DEFAULT_FORM_FIELD_STATE
+  );
   const onFormCardFrontError = (payload) => {
     setFormCardFrontState(payload);
   };
-  const [formCardBackState, setFormCardBackState] = useState({
-    success: false,
-    title: null,
-    content: null,
-  });
+  const [formCardBackState, setFormCardBackState] = useState(
+    DEFAULT_FORM_FIELD_STATE
+  );
   const onFormCardBackError = (payload) => {
     setFormCardBackState(payload);
   };
 
+  const watchedSubscriber = watch("isSubscriber", "");
   const requiredIfSubscriber = (v) => {
     if (watchedSubscriber === "No" && !v) {
       return "This field is required";
@@ -91,9 +94,10 @@ export default function InsuranceForm({
 
   const handleCancel = () => {
     OnCancelClicked();
+    reset(DEFAULT_INSURANCE_DATA);
+    setFormCardFrontState(DEFAULT_FORM_FIELD_STATE);
+    setFormCardBackState(DEFAULT_FORM_FIELD_STATE);
   };
-
-  const watchedSubscriber = watch("isSubscriber", "");
 
   const onSubmit = (data) => {
     OnSaveClicked(data);
@@ -435,7 +439,7 @@ export default function InsuranceForm({
               <div
                 style={{ position: "absolute", width: "100%", top: "-25px" }}
               >
-                <Collapse in={formCardFrontState.content}>
+                <Collapse in={!!formCardFrontState.content}>
                   <FormMessage
                     success={formCardFrontState.success}
                     title={formCardFrontState.title}
@@ -448,14 +452,18 @@ export default function InsuranceForm({
                 name="frontCard"
                 control={control}
                 render={({
-                  field: { onChange, _value },
+                  field: { onChange, value },
                   fieldState: { _error },
                 }) => {
+                  {
+                    JSON.stringify(value);
+                  }
                   return (
                     <ImageUploader
                       OnUpload={onChange}
                       OnInputError={onFormCardFrontError}
                       source={formData ? formData.frontCard : null}
+                      preview={value}
                       label="Upload Front"
                       width="100%"
                       src="/login-bg.png"
@@ -478,7 +486,7 @@ export default function InsuranceForm({
                   top: "-25px",
                 }}
               >
-                <Collapse in={formCardBackState.content}>
+                <Collapse in={!!formCardBackState.content}>
                   <FormMessage
                     success={formCardBackState.success}
                     title={formCardBackState.title}
@@ -491,7 +499,7 @@ export default function InsuranceForm({
                 name="backCard"
                 control={control}
                 render={({
-                  field: { onChange, _value },
+                  field: { onChange, value },
                   fieldState: { _error },
                 }) => {
                   return (
@@ -499,6 +507,7 @@ export default function InsuranceForm({
                       OnUpload={onChange}
                       OnInputError={onFormCardBackError}
                       source={formData ? formData.backCard : null}
+                      preview={value}
                       label="Upload Back"
                       width="100%"
                       src="/login-bg.png"

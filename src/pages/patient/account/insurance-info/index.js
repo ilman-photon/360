@@ -113,7 +113,7 @@ export default function InsuranceInfoPage() {
         <Stack>
           <AccountCard
             titleIcon={<PersonOutlinedIcon />}
-            title="Contact Information"
+            title="Insurance Documents"
             // OnEditClicked={OnEditClicked}
             sx={{ px: 3, py: 5 }}
             actionContent={

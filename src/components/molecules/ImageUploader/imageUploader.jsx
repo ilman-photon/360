@@ -7,16 +7,16 @@ import { Regex } from "../../../utils/regex";
 
 export const ImageUploader = ({
   label,
+  preview,
   helperText = false,
   source = "",
-  OnPhotoChange = () => {
+  OnUpload = () => {
     // This is intended
   },
   OnInputError = () => {
     // This is intended
   },
 }) => {
-  const [previewPhoto, setPreviewPhoto] = useState("");
   const inputImage = useRef(null);
 
   const handleInputChange = (event) => {
@@ -50,8 +50,7 @@ export const ImageUploader = ({
         event.target.value = null;
       } else {
         const blobFile = URL.createObjectURL(event.target.files[0]);
-        setPreviewPhoto(blobFile);
-        OnPhotoChange(blobFile);
+        OnUpload(blobFile);
       }
       OnInputError(error);
     }
@@ -68,10 +67,10 @@ export const ImageUploader = ({
         }}
       >
         <>
-          {previewPhoto || source ? (
+          {preview || source ? (
             <Stack>
               <Image
-                src={previewPhoto || source}
+                src={preview || source}
                 width={275}
                 height={173}
                 style={{ borderRadius: 4 }}
@@ -115,7 +114,7 @@ export const ImageUploader = ({
         ""
       )}
 
-      {previewPhoto || source ? (
+      {preview || source ? (
         <Button
           variant="text"
           sx={{

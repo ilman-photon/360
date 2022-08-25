@@ -457,6 +457,7 @@ export default function PersonalInformation({
                           OnUpload={onChange}
                           OnInputError={onFormIssuedFrontError}
                           source={userData.issuedCardFront}
+                          preview={value}
                           label="Upload Front"
                           width="100%"
                           src="/login-bg.png"
@@ -498,6 +499,7 @@ export default function PersonalInformation({
                           OnUpload={onChange}
                           OnInputError={onFormIssuedBackError}
                           source={userData.issuedCardBack}
+                          preview={value}
                           label="Upload Back"
                           width="100%"
                           alt=""
