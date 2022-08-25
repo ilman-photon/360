@@ -1,0 +1,53 @@
+@import "../../../../styles/colors.scss";
+
+.titleHeadingWrapper {
+  margin-top: -15px;
+  position: fixed;
+  width: 100%;
+  height: 151px;
+  padding: 24px 10px;
+  gap: 10px;
+  background: linear-gradient(96.59deg, #003b4a 10.15%, #0389ab 140.82%);
+  display: flex;
+  z-index: 2;
+  justify-content: center;
+}
+
+.centeredElement {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.mobileContainer {
+  background-image: url("../../../../public/filterHeader-bg.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 70vh;
+  padding: 16px;
+}
+
+.mobileFilterContainer {
+  margin-top: -25px;
+  min-height: 100vh;
+  background: $link;
+}
+
+.mobileTitle {
+  color: #ffffff;
+  line-height: 36px;
+}
+
+.searchButton {
+  -webkit-box-align: null;
+  transition: null;
+}
+
+.errorField {
+  border: 1px solid $errorField;
+  border-bottom-left-radius: 50px;
+  border-top-left-radius: 50px;
+}

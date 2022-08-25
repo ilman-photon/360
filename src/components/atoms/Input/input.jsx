@@ -229,13 +229,20 @@ export const CustomInput = styled(({ ...props }) => {
                     backgroundColor: "white",
                     borderRadius: "4px",
                     borderColor: "#B5B5B5",
-                    margin: "8px",
+                    margin: !props.isFilter ? "8px" : 0,
+                    ["& .MuiFilledInput-root"]: {
+                      border: props.isFilter
+                        ? "0px solid #ffff"
+                        : "1px solid #e2e2e1",
+                    },
                   }}
                   {...params}
+                  onClick={props.onClick}
                   error={props.error}
                   helperText={props.helperText}
                 />
               )}
+              {...props}
             />
           </LocalizationProvider>
         </>

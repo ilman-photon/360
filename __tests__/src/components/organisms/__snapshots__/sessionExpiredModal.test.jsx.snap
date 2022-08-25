@@ -80,7 +80,7 @@ Object {
               style="display: flex; flex-direction: row; margin-bottom: 16px;"
             >
               <button
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1yd4il8-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-logoff-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
                 tabindex="0"
@@ -92,7 +92,7 @@ Object {
                 />
               </button>
               <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-i2fzad-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-stay-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
                 tabindex="0"
@@ -251,7 +251,7 @@ Object {
               style="display: flex; flex-direction: row; margin-bottom: 16px;"
             >
               <button
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1yd4il8-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-logoff-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
                 tabindex="0"
@@ -263,7 +263,7 @@ Object {
                 />
               </button>
               <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-i2fzad-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-stay-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
                 tabindex="0"
@@ -357,7 +357,7 @@ Object {
               style="display: flex; flex-direction: row; margin-bottom: 16px;"
             >
               <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-i2fzad-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-ok-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
                 tabindex="0"
@@ -515,7 +515,7 @@ Object {
               style="display: flex; flex-direction: row; margin-bottom: 16px;"
             >
               <button
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1yd4il8-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-logoff-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
                 tabindex="0"
@@ -527,7 +527,7 @@ Object {
                 />
               </button>
               <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-i2fzad-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-stay-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
                 tabindex="0"
