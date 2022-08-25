@@ -21,6 +21,7 @@ import AutoCompleteInput from "../../molecules/AutoCompleteInput";
 import { DEFAULT_INSURANCE_DATA } from "../../../store/user";
 import { useEffect, useState } from "react";
 import FormMessage from "../../molecules/FormMessage/formMessage";
+import { AutoCompleteCreatable } from "../../molecules/AutoCompleteCreatable";
 
 export default function InsuranceForm({
   formData = null, // later will be used for edit
@@ -44,10 +45,10 @@ export default function InsuranceForm({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
 
-  const providerList = [
+  const [providerList, setProviderList] = useState([
     { id: 0, label: "Provider 1" },
     { id: 1, label: "Provider 2" },
-  ];
+  ]);
 
   const planList = [
     { id: 0, label: "Plan 1" },
@@ -139,7 +140,7 @@ export default function InsuranceForm({
                   fieldState: { error },
                 }) => {
                   return (
-                    <AutoCompleteInput
+                    <AutoCompleteCreatable
                       onFetch={(e) => {
                         console.log(e);
                       }}
@@ -148,9 +149,7 @@ export default function InsuranceForm({
                       }}
                       options={providerList}
                       inputLabel="Insurance Provider"
-                      onChange={(_e, data) => {
-                        onChange(data);
-                      }}
+                      onChange={onChange}
                       value={value}
                       error={!!error}
                       helperText={error ? error.message : null}

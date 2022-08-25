@@ -70,12 +70,12 @@ describe("ContactInformation Components", () => {
       <ContactInformation isEditing={true} userData={mockUserdata} />
     );
 
-    const field1 = container.getByLabelText("Mobile Number");
+    const field1 = container.getByLabelText("Phone Number");
     expect(field1.value).toEqual("(706) 509-6731");
     fireEvent.change(field1, { target: { value: "(123) 123-1234" } });
     expect(field1.value).toEqual("(123) 123-1234");
 
-    const field2 = container.getByRole("textbox", { name: "Email" });
+    const field2 = container.getByRole("textbox", { name: "Email ID" });
     expect(field2.value).toEqual("Justus4@gmail.com");
     fireEvent.change(field2, { target: { value: "aa@aa.aa" } });
     expect(field2.value).toEqual("aa@aa.aa");
@@ -149,12 +149,12 @@ describe("ContactInformation Components", () => {
     container.rerender(
       <ContactInformation isEditing={true} userData={mockUserdata} />
     );
-    const field1 = container.getByLabelText("Mobile Number");
+    const field1 = container.getByLabelText("Phone Number");
     expect(field1.value).toEqual("(706) 509-6731");
     fireEvent.change(field1, { target: { value: "" } });
     expect(field1.value).toEqual("(");
 
-    const field2 = container.getByRole("textbox", { name: "Email" });
+    const field2 = container.getByRole("textbox", { name: "Email ID" });
     expect(field2.value).toEqual("Justus4@gmail.com");
     fireEvent.change(field2, { target: { value: "" } });
     expect(field2.value).toEqual("");

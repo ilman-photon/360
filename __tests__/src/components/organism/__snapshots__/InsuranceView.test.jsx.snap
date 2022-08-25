@@ -25,11 +25,11 @@ Object {
               <div
                 class="css-1q36rmd-MuiStack-root"
               >
-                <h4
-                  class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
+                <h3
+                  class="MuiTypography-root MuiTypography-h3 css-1xxnx8a-MuiTypography-root"
                 >
                   Primary
-                </h4>
+                </h3>
                 <div
                   class="totalCategoryItemsWrapper"
                 >
@@ -479,7 +479,7 @@ Object {
                             >
                               <svg
                                 aria-hidden="true"
-                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-wpnemu-MuiSvgIcon-root"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-bml1kk-MuiSvgIcon-root"
                                 data-testid="DeleteOutlineIcon"
                                 focusable="false"
                                 viewBox="0 0 24 24"
@@ -541,11 +541,11 @@ Object {
             <div
               class="css-1q36rmd-MuiStack-root"
             >
-              <h4
-                class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
+              <h3
+                class="MuiTypography-root MuiTypography-h3 css-1xxnx8a-MuiTypography-root"
               >
                 Primary
-              </h4>
+              </h3>
               <div
                 class="totalCategoryItemsWrapper"
               >
@@ -995,7 +995,7 @@ Object {
                           >
                             <svg
                               aria-hidden="true"
-                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-wpnemu-MuiSvgIcon-root"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-bml1kk-MuiSvgIcon-root"
                               data-testid="DeleteOutlineIcon"
                               focusable="false"
                               viewBox="0 0 24 24"
