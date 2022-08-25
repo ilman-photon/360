@@ -48,9 +48,26 @@ export default function PersonalInformation({
     title: null,
     content: null,
   });
-
   const onFormProfilePhotoError = (payload) => {
     setFormProfilePhotoState(payload);
+  };
+
+  const [formIssuedFrontState, setFormIssuedFrontState] = useState({
+    success: false,
+    title: null,
+    content: null,
+  });
+  const onFormIssuedFrontError = (payload) => {
+    setFormIssuedFrontState(payload);
+  };
+
+  const [formIssuedBackState, setFormIssuedBackState] = useState({
+    success: false,
+    title: null,
+    content: null,
+  });
+  const onFormIssuedBackError = (payload) => {
+    setFormIssuedBackState(payload);
   };
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
@@ -416,7 +433,16 @@ export default function PersonalInformation({
                 >
                   Front Card
                 </Typography>
-
+                {formIssuedFrontState.content ? (
+                  <FormMessage
+                    success={formIssuedFrontState.success}
+                    title={formIssuedFrontState.title}
+                  >
+                    {formIssuedFrontState.content}
+                  </FormMessage>
+                ) : (
+                  ""
+                )}
                 <Controller
                   name="issuedCardFront"
                   control={control}
@@ -429,7 +455,7 @@ export default function PersonalInformation({
                         <ImageUploader
                           helperText
                           OnUpload={onChange}
-                          OnInputError={onFormProfilePhotoError}
+                          OnInputError={onFormIssuedFrontError}
                           source={userData.issuedCardFront}
                           label="Upload Front"
                           width="100%"
@@ -448,6 +474,16 @@ export default function PersonalInformation({
                 >
                   Back Card
                 </Typography>
+                {formIssuedBackState.content ? (
+                  <FormMessage
+                    success={formIssuedBackState.success}
+                    title={formIssuedBackState.title}
+                  >
+                    {formIssuedBackState.content}
+                  </FormMessage>
+                ) : (
+                  ""
+                )}
                 <Controller
                   name="issuedCardBack"
                   control={control}
@@ -460,7 +496,7 @@ export default function PersonalInformation({
                         <ImageUploader
                           helperText
                           OnUpload={onChange}
-                          OnInputError={onFormProfilePhotoError}
+                          OnInputError={onFormIssuedBackError}
                           source={userData.issuedCardBack}
                           label="Upload Back"
                           width="100%"

@@ -19,7 +19,8 @@ import SelectOptionButton from "../../atoms/SelectOptionButton/selectOptionButto
 import { ImageUploader } from "../../molecules/ImageUploader/imageUploader";
 import AutoCompleteInput from "../../molecules/AutoCompleteInput";
 import { DEFAULT_INSURANCE_DATA } from "../../../store/user";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import FormMessage from "../../molecules/FormMessage/formMessage";
 
 export default function InsuranceForm({
   formData = null, // later will be used for edit
@@ -64,6 +65,23 @@ export default function InsuranceForm({
   ];
 
   const relationshipList = ["Spouse", "Father", "Mother", "Self", "Son"];
+
+  const [formCardFrontState, setFormCardFrontState] = useState({
+    success: false,
+    title: null,
+    content: null,
+  });
+  const onFormCardFrontError = (payload) => {
+    setFormCardFrontState(payload);
+  };
+  const [formCardBackState, setFormCardBackState] = useState({
+    success: false,
+    title: null,
+    content: null,
+  });
+  const onFormCardBackError = (payload) => {
+    setFormCardBackState(payload);
+  };
 
   const requiredIfSubscriber = (v) => {
     if (watchedSubscriber === "No" && !v) {
@@ -413,7 +431,19 @@ export default function InsuranceForm({
               ".MuiGrid-item:first-child": { pt: { xs: 0, md: 2 }, pl: 0 },
             }}
           >
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={4} sx={{ position: "relative", pl: "-8px" }}>
+              <div
+                style={{ position: "absolute", width: "100%", top: "-25px" }}
+              >
+                <Collapse in={formCardFrontState.content}>
+                  <FormMessage
+                    success={formCardFrontState.success}
+                    title={formCardFrontState.title}
+                  >
+                    {formCardFrontState.content}
+                  </FormMessage>
+                </Collapse>
+              </div>
               <Controller
                 name="frontCard"
                 control={control}
@@ -424,6 +454,7 @@ export default function InsuranceForm({
                   return (
                     <ImageUploader
                       OnUpload={onChange}
+                      OnInputError={onFormCardFrontError}
                       source={formData ? formData.frontCard : null}
                       label="Upload Front"
                       width="100%"
@@ -439,7 +470,23 @@ export default function InsuranceForm({
                 }}
               />
             </Grid>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={4} sx={{ position: "relative" }}>
+              <div
+                style={{
+                  position: "absolute",
+                  width: "calc(100% - 16px)",
+                  top: "-25px",
+                }}
+              >
+                <Collapse in={formCardBackState.content}>
+                  <FormMessage
+                    success={formCardBackState.success}
+                    title={formCardBackState.title}
+                  >
+                    {formCardBackState.content}
+                  </FormMessage>
+                </Collapse>
+              </div>
               <Controller
                 name="backCard"
                 control={control}
@@ -450,6 +497,7 @@ export default function InsuranceForm({
                   return (
                     <ImageUploader
                       OnUpload={onChange}
+                      OnInputError={onFormCardBackError}
                       source={formData ? formData.backCard : null}
                       label="Upload Back"
                       width="100%"

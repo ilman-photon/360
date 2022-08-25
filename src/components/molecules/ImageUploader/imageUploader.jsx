@@ -9,7 +9,7 @@ export const ImageUploader = ({
   label,
   helperText = false,
   source = "",
-  OnUpload = () => {
+  OnPhotoChange = () => {
     // This is intended
   },
   OnInputError = () => {
