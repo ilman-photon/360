@@ -1,7 +1,9 @@
 import * as React from "react";
 import Cookies from "universal-cookie";
-import MapsWrapper from "../../../components/organisms/Google/Maps/mapsWrapper";
+import GMaps from "../../../components/organisms/Google/Maps/gMaps";
+// import MapsWrapper from "../../../components/organisms/Google/Maps/mapsWrapper";
 import { logoutProps } from "../../../utils/authetication";
+import { useLoadScript } from "@react-google-maps/api";
 
 export async function getStaticProps() {
   return {
@@ -12,9 +14,10 @@ export async function getStaticProps() {
 }
 
 export default function AppointmentsPage({ googleApiKey }) {
-  return (
-    <section>
-      <MapsWrapper apiKey={googleApiKey} />
-    </section>
-  );
+  // const { isLoaded } = useLoadScript({
+  //   googleMapsApiKey: googleApiKey
+  // });
+
+  // return isLoaded ? <GMaps apiKey={googleApiKey} /> : null;
+  return <GMaps apiKey={googleApiKey} />;
 }
