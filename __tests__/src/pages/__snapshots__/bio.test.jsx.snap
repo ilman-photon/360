@@ -492,11 +492,9 @@ Object {
                     Cigna
                   </p>
                 </li>
-                <li
-                  class="newColumn"
-                >
+                <li>
                   <p
-                    class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                    class="MuiTypography-root MuiTypography-body2 newColumn css-e784if-MuiTypography-root"
                   >
                     UnitedHeathcare
                   </p>
@@ -1047,11 +1045,9 @@ Object {
                   Cigna
                 </p>
               </li>
-              <li
-                class="newColumn"
-              >
+              <li>
                 <p
-                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 newColumn css-e784if-MuiTypography-root"
                 >
                   UnitedHeathcare
                 </p>

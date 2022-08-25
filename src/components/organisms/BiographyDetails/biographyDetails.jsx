@@ -14,6 +14,58 @@ export default function BiographyDetails({ profileData }) {
   const insurancesMenuRef = useRef(null);
   const educationMenuRef = useRef(null);
 
+  const insurances = [
+    "Blue Cross Blue Shield",
+    "Cigna",
+    "UnitedHeathcare",
+    "aaa",
+  ];
+
+  const renderInsurances = () => {
+    const insurancesLength = insurances.length;
+    const isRenderViewAll = insurancesLength > 3;
+    return (
+      <Box className={styles.insurancesContainer}>
+        <ul className={styles.insurancestList}>
+          {insurances.map((item, index) => {
+            if (!isRenderViewAll) {
+              return (
+                <li key={index}>
+                  <Typography
+                    variant="body2"
+                    className={index === 2 ? styles.newColumn : ""}
+                  >
+                    {item}
+                  </Typography>
+                </li>
+              );
+            }
+            if (isRenderViewAll && index !== insurancesLength - 1) {
+              return (
+                <li key={index}>
+                  <Typography
+                    variant="body2"
+                    className={index === 2 ? styles.newColumn : ""}
+                  >
+                    {item}
+                  </Typography>
+                </li>
+              );
+            }
+          })}
+          {isRenderViewAll && (
+            <li>
+              <Typography variant="body2">
+                16+ more in-network insurances{" "}
+                <Link className={styles.viewAllLink}>View All</Link>
+              </Typography>
+            </li>
+          )}
+        </ul>
+      </Box>
+    );
+  };
+
   const resetMenuStyle = () => {
     aboutMenuRef.current.className = styles.menuText;
     locationMenuRef.current.className = styles.menuText;
@@ -143,25 +195,7 @@ export default function BiographyDetails({ profileData }) {
         <Typography variant="h3" ref={insurancesRef}>
           In-network insurances
         </Typography>
-        <Box className={styles.insurancesContainer}>
-          <ul className={styles.insurancestList}>
-            <li>
-              <Typography variant="body2">Blue Cross Blue Shield</Typography>
-            </li>
-            <li>
-              <Typography variant="body2">Cigna</Typography>
-            </li>
-            <li className={styles.newColumn}>
-              <Typography variant="body2">UnitedHeathcare</Typography>
-            </li>
-            <li>
-              <Typography variant="body2">
-                16+ more in-network insurances{" "}
-                <Link className={styles.viewAllLink}>View All</Link>
-              </Typography>
-            </li>
-          </ul>
-        </Box>
+        {renderInsurances()}
 
         <Typography variant="h3" ref={educationRef}>
           Education

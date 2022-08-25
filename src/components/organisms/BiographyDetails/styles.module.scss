@@ -73,11 +73,22 @@
   text-align: center;
   margin: 0;
   height: 48px;
+  @media (max-width: 992px) {
+    gap: 44px;
+    justify-content: center;
+  }
+  @media (max-width: 360px) {
+    gap: 22px;
+    justify-content: center;
+  }
 }
 
 .stickyMenuContainer a {
   padding: 0 22px;
   margin: unset !important;
+  @media (max-width: 992px) {
+    padding: unset;
+  }
 }
 
 .stickyMenuContainer a.menuTextSelected {
@@ -85,6 +96,9 @@
   margin: unset !important;
   border-bottom: 2px solid #008294;
   @extend .menuText;
+  @media (max-width: 992px) {
+    padding: unset;
+  }
 }
 
 .menuText {
@@ -100,11 +114,22 @@
   color: black;
   @media (max-width: 992px) {
     font-size: 12px;
+    margin: unset;
   }
 }
 
 .menuContainer {
   margin: 16px 0px;
+  @media (max-width: 992px) {
+    gap: 44px;
+    display: flex;
+    justify-content: center;
+  }
+  @media (max-width: 360px) {
+    gap: 22px;
+    display: flex;
+    justify-content: center;
+  }
 }
 
 .insurancesContainer {
@@ -123,10 +148,15 @@
 
 .insurancestList > li > p {
   line-height: 3.5;
+  width: 320px;
   @media (max-width: 992px) {
     line-height: normal;
     margin: 8px 0;
     font-size: 14px;
+    width: 160px;
+  }
+  @media (max-width: 360px) {
+    width: unset;
   }
 }
 
