@@ -10,7 +10,7 @@ export default function Bio() {
   return (
     <Box className={styles.bioPage}>
       <Box className={styles.shortBioContainer}>
-        <ProviderProfile variant={"bio"} />
+        <ProviderProfile variant={"appointment"} showPosition isPhoneLink />
       </Box>
       <BiographyDetails />
     </Box>

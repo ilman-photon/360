@@ -13,10 +13,16 @@
   }
 }
 
+.appointment {
+  display: flex;
+  width: auto;
+  max-width: 368px;
+}
+
 .address {
   color: #000;
   letter-spacing: 0.0016em;
-
+  width: 226px;
   @media (max-width: 992px) {
     font-size: 14px;
   }
@@ -29,6 +35,18 @@
   @media (max-width: 992px) {
     font-size: 14px;
   }
+}
+
+.phoneLink {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.0016em;
+  text-decoration-line: underline;
+  color: #008294;
+  text-decoration-color: inherit;
 }
 
 .specialistTitle {
@@ -71,10 +89,9 @@
   }
 }
 
-.bioContainer > h2 {
+.shortBio h2 {
   font-family: "Inter", sans-serif;
   font-style: normal;
-  font-size: 32px;
   @media (max-width: 992px) {
     font-weight: 700;
     font-size: 18px;
@@ -82,11 +99,30 @@
   }
 }
 
+.appointment h2.doctorNameAppointment {
+  font-weight: 700;
+  line-height: 28px !important;
+  margin-bottom: 4px;
+}
+
+.bioContainer h3 {
+  font-family: "Libre Franklin", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #003b4a;
+}
+
 .ratingContainer {
   margin-top: 50px;
   @media (max-width: 992px) {
     margin-top: 12px;
   }
+}
+
+.phoneContainer {
+  margin-top: 5px;
 }
 
 .specialistList > li > p {

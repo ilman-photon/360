@@ -48,7 +48,7 @@ Object {
                 class="bioContainer MuiBox-root css-0"
               >
                 <h2
-                  class="MuiTypography-root MuiTypography-h2 css-1sra7t5-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-h2 css-uggzmc-MuiTypography-root"
                 >
                   Paul Wagner, MD
                 </h2>
@@ -600,7 +600,7 @@ Object {
               class="bioContainer MuiBox-root css-0"
             >
               <h2
-                class="MuiTypography-root MuiTypography-h2 css-1sra7t5-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-h2 css-uggzmc-MuiTypography-root"
               >
                 Paul Wagner, MD
               </h2>
