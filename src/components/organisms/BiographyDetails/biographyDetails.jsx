@@ -78,7 +78,7 @@ export default function BiographyDetails({ profileData }) {
     aboutMenuRef.current.className = styles.menuTextSelected;
     window.scrollTo({
       left: 0,
-      top: aboutRef.current.offsetTop - 150,
+      top: 0,
       behavior: "smooth",
     });
   };
