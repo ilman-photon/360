@@ -25,6 +25,7 @@ import {
   Fade,
   Stack,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import AccountCard from "../../../../components/molecules/AccountCard/accountCard";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
@@ -50,6 +51,8 @@ export default function InsuranceInfoPage() {
   );
 
   const dispatch = useDispatch();
+
+  const isDesktop = useMediaQuery("(min-width: 769px)");
 
   const OnCreateInsurance = (payload) => {
     dispatch(addUserInsuranceData(payload));
@@ -139,26 +142,27 @@ export default function InsuranceInfoPage() {
             // OnEditClicked={OnEditClicked}
             sx={{ px: 3, py: 5 }}
             actionContent={
-              <StyledButton
-                mode="primary"
-                size="small"
-                className={styles.addButton}
-                disabled={openNewInsuranceForm}
-                onClick={() => {
-                  setOpenNewInsuranceForm(true);
-                }}
-                sx={{ display: { xs: "none" } }}
-              >
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  sx={{ color: "white" }}
-                  component="span"
+              isDesktop ? (
+                <StyledButton
+                  mode="primary"
+                  size="small"
+                  className={styles.addButton}
+                  disabled={openNewInsuranceForm}
+                  onClick={OnAddNewInsurance}
                 >
-                  <AddIcon />
-                  Add Insurance
-                </Stack>
-              </StyledButton>
+                  <Stack
+                    direction="row"
+                    alignItems="center"
+                    sx={{ color: "white" }}
+                    component="span"
+                  >
+                    <AddIcon />
+                    Add Insurance
+                  </Stack>
+                </StyledButton>
+              ) : (
+                <></>
+              )
             }
           >
             <Collapse in={isEditing}>
@@ -174,21 +178,25 @@ export default function InsuranceInfoPage() {
             </Collapse>
             <Collapse in={!isEditing}>
               <Stack spacing={3}>
-                <StyledButton
-                  className={styles.addButton}
-                  disabled={openNewInsuranceForm}
-                  onClick={OnAddNewInsurance}
-                >
-                  <Stack
-                    direction="row"
-                    alignItems="center"
-                    sx={{ color: "white" }}
-                    component="span"
+                {!isDesktop ? (
+                  <StyledButton
+                    className={styles.addButton}
+                    disabled={openNewInsuranceForm}
+                    onClick={OnAddNewInsurance}
                   >
-                    <AddIcon />
-                    Add Insurance
-                  </Stack>
-                </StyledButton>
+                    <Stack
+                      direction="row"
+                      alignItems="center"
+                      sx={{ color: "white" }}
+                      component="span"
+                    >
+                      <AddIcon />
+                      Add Insurance
+                    </Stack>
+                  </StyledButton>
+                ) : (
+                  <></>
+                )}
 
                 {/* {view user insurance data} */}
                 <InsuranceView
