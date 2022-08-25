@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./filterHeading.module.scss";
 import {
   Autocomplete,
@@ -26,8 +26,12 @@ const FilterHeading = ({ isDesktop = true }) => {
   const imageSrcState = "/bx_insurance_card.png";
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
   const { handleSubmit, control } = useForm();
+  const [isEmptyLocation, setEmptyLocation] = useState(false);
   const onSubmit = (data) => {
     console.log(data);
+    if (!data.location) {
+      setEmptyLocation(true);
+    }
   };
 
   const [open, setOpen] = React.useState(false);
@@ -98,6 +102,7 @@ const FilterHeading = ({ isDesktop = true }) => {
               }}
               renderInput={(params) => (
                 <Box
+                  className={isEmptyLocation ? styles.errorField : ""}
                   sx={{
                     display: "flex",
                     alignItems: "flex-end",
@@ -349,7 +354,7 @@ const FilterHeading = ({ isDesktop = true }) => {
               gradient={false}
               data-testid={APPOINTMENT_TEST_ID.searchbtn}
               sx={{
-                height: "52px",
+                height: isEmptyLocation ? "54px" : "52px",
                 background: "#BFE4E8",
                 border: "0px",
               }}
@@ -357,6 +362,27 @@ const FilterHeading = ({ isDesktop = true }) => {
               <SearchIcon sx={{ color: colors.darkGreen, width: 26 }} />
             </StyledButton>
           </form>
+          <Box className={styles.centeredField}>
+            <Typography
+              className={styles.errorText}
+              variant={"bodyMedium"}
+              sx={{ visibility: isEmptyLocation ? "visible" : "hidden" }}
+            >
+              This field is required
+            </Typography>
+            <Typography
+              className={styles.optionalPurposeText}
+              variant={"bodyTinyRegular"}
+            >
+              (Optional)
+            </Typography>
+            <Typography
+              className={styles.optionalInsuranceText}
+              variant={"bodyTinyRegular"}
+            >
+              (Optional)
+            </Typography>
+          </Box>
         </Box>
       </Box>
     );
