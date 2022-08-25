@@ -1,30 +1,119 @@
 import { Link, Typography, Stack, Box, Divider } from "@mui/material";
 import styles from "./styles.module.scss";
 import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
+import { useRef } from "react";
 
 export default function BiographyDetails({ profileData }) {
+  const aboutRef = useRef(null);
+  const locationRef = useRef(null);
+  const insurancesRef = useRef(null);
+  const educationRef = useRef(null);
+
+  const aboutMenuRef = useRef(null);
+  const locationMenuRef = useRef(null);
+  const insurancesMenuRef = useRef(null);
+  const educationMenuRef = useRef(null);
+
+  const resetMenuStyle = () => {
+    aboutMenuRef.current.className = styles.menuText;
+    locationMenuRef.current.className = styles.menuText;
+    insurancesMenuRef.current.className = styles.menuText;
+    educationMenuRef.current.className = styles.menuText;
+  };
+
+  const onClickAbout = () => {
+    resetMenuStyle();
+    aboutMenuRef.current.className = styles.menuTextSelected;
+    window.scrollTo({
+      left: 0,
+      top: aboutRef.current.offsetTop - 150,
+      behavior: "smooth",
+    });
+  };
+  const onClickLocation = () => {
+    resetMenuStyle();
+    locationMenuRef.current.className = styles.menuTextSelected;
+    window.scrollTo({
+      left: 0,
+      top: locationRef.current.offsetTop - 120,
+      behavior: "smooth",
+    });
+  };
+  const onClickInsurances = () => {
+    resetMenuStyle();
+    insurancesMenuRef.current.className = styles.menuTextSelected;
+    window.scrollTo({
+      left: 0,
+      top: insurancesRef.current.offsetTop - 120,
+      behavior: "smooth",
+    });
+  };
+  const onClickEducation = () => {
+    resetMenuStyle();
+    educationMenuRef.current.className = styles.menuTextSelected;
+    window.scrollTo({
+      left: 0,
+      top: educationRef.current.offsetTop - 120,
+      behavior: "smooth",
+    });
+  };
+
   return (
     <Box className={styles.detailedBio}>
       <Box className={styles.stickyMenu}>
         <Box className={styles.stickyMenuContainer}>
-          <Link className={styles.menuTextSelected}>About</Link>
-          <Link className={styles.menuText}>Locations</Link>
-          <Link className={styles.menuText}>Insurances</Link>
-          <Link className={styles.menuText}>Education</Link>
+          <Link
+            ref={aboutMenuRef}
+            className={styles.menuText}
+            onClick={onClickAbout}
+          >
+            About
+          </Link>
+          <Link
+            ref={locationMenuRef}
+            className={styles.menuText}
+            onClick={onClickLocation}
+          >
+            Locations
+          </Link>
+          <Link
+            ref={insurancesMenuRef}
+            className={styles.menuText}
+            onClick={onClickInsurances}
+          >
+            Insurances
+          </Link>
+          <Link
+            ref={educationMenuRef}
+            className={styles.menuText}
+            onClick={onClickEducation}
+          >
+            Education
+          </Link>
         </Box>
       </Box>
       <Box className={styles.menu}>
         <Divider />
         <Box className={styles.menuContainer}>
-          <Link className={styles.menuText}>About</Link>
-          <Link className={styles.menuText}>Locations</Link>
-          <Link className={styles.menuText}>Insurances</Link>
-          <Link className={styles.menuText}>Education</Link>
+          <Link className={styles.menuText} onClick={onClickAbout}>
+            About
+          </Link>
+          <Link className={styles.menuText} onClick={onClickLocation}>
+            Locations
+          </Link>
+          <Link className={styles.menuText} onClick={onClickInsurances}>
+            Insurances
+          </Link>
+          <Link className={styles.menuText} onClick={onClickEducation}>
+            Education
+          </Link>
         </Box>
         <Divider />
       </Box>
       <Stack spacing={3} className={styles.detailedBioContainer}>
-        <Typography variant="h3">About Paul Wagner, MD</Typography>
+        <Typography variant="h3" ref={aboutRef}>
+          About Paul Wagner, MD
+        </Typography>
         <Typography variant="body2">
           {
             "Dr. Esfandiari's current areas of emphasis include primary eye care, specialty contact lenses, refractive surgery consultation, surgical co-management. Dr. Esfandiari's knowledge and experience in ophthalmic optics has continually helped patients obtain optimal and healthy vision.show more"
@@ -32,7 +121,9 @@ export default function BiographyDetails({ profileData }) {
         </Typography>
         <Typography variant="h3">Gender</Typography>
         <Typography variant="body2">Male</Typography>
-        <Typography variant="h3">Locations</Typography>
+        <Typography variant="h3" ref={locationRef}>
+          Locations
+        </Typography>
         <Box className={styles.mapContainer}>
           <Box className={styles.map}></Box>
           <Box className={styles.mapAddressContainer}>
@@ -49,7 +140,9 @@ export default function BiographyDetails({ profileData }) {
         </Box>
         <Typography variant="h3">Languages</Typography>
         <Typography variant="body2">English, Spanish</Typography>
-        <Typography variant="h3">In-network insurances</Typography>
+        <Typography variant="h3" ref={insurancesRef}>
+          In-network insurances
+        </Typography>
         <Box className={styles.insurancesContainer}>
           <ul className={styles.insurancestList}>
             <li>
@@ -70,7 +163,9 @@ export default function BiographyDetails({ profileData }) {
           </ul>
         </Box>
 
-        <Typography variant="h3">Education</Typography>
+        <Typography variant="h3" ref={educationRef}>
+          Education
+        </Typography>
         <Box className={styles.educationContainer}>
           <Typography variant="body2">
             {"New England College of Optometry, Doctor of Optometry"}

@@ -8,6 +8,11 @@
   padding-left: 12vw;
   top: 65px;
   z-index: 1;
+  @media (max-width: 992px) {
+    top: 60px;
+    padding-left: 21px;
+    height: 58px;
+  }
 }
 
 .arrowIcon {

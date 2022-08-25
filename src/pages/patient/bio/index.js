@@ -4,11 +4,14 @@ import store from "../../../store/store";
 import ProviderProfile from "../../../components/organisms/ProviderProfile/providerProfile";
 import BiographyDetails from "../../../components/organisms/BiographyDetails/biographyDetails";
 import { Box } from "@mui/material";
+import styles from "./styles.module.scss";
 
 export default function Bio() {
   return (
-    <Box marginTop="80px">
-      <ProviderProfile />
+    <Box className={styles.bioPage}>
+      <Box className={styles.shortBioContainer}>
+        <ProviderProfile />
+      </Box>
       <BiographyDetails />
     </Box>
   );
