@@ -16,8 +16,13 @@
 .centeredElement {
   margin: 0;
   position: absolute;
-  top: 50%;
+  top: 58%;
   transform: translateY(-50%);
+}
+
+.centeredField {
+  flex-direction: row;
+  display: flex;
 }
 
 .mobileContainer {
@@ -50,4 +55,29 @@
   border: 1px solid $errorField;
   border-bottom-left-radius: 50px;
   border-top-left-radius: 50px;
+}
+
+.errorText {
+  color: $errorTextField;
+  margin-left: 21px;
+}
+
+.optionalPurposeText {
+  position: absolute;
+  left: 46%;
+  top: 77%;
+  color: #ffffff;
+  opacity: 0.8;
+}
+
+.optionalInsuranceText {
+  position: absolute;
+  left: 71%;
+  top: 77%;
+  color: #ffffff;
+  opacity: 0.8;
+}
+
+.hideText {
+  visibility: hidden;
 }
