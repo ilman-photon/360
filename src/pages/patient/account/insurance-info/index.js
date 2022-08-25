@@ -33,6 +33,7 @@ import { StyledButton } from "../../../../components/atoms/Button/button";
 import styles from "./styles.module.scss";
 import InsuranceForm from "../../../../components/organisms/InsuranceInformation/insuranceForm";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import AccountCircleOutlined from "@mui/icons-material/AccountCircleOutlined";
 
 export default function InsuranceInfoPage() {
   const [openNewInsuranceForm, setOpenNewInsuranceForm] = useState(false);
@@ -89,6 +90,21 @@ export default function InsuranceInfoPage() {
     setIsEditing(false);
   };
 
+  const OnAddNewInsurance = () => {
+    if (userInsuranceData.length < 5) {
+      setOpenNewInsuranceForm(true);
+    } else {
+      dispatch(
+        setPageMessage({
+          isShow: true,
+          content:
+            "Cannot add any more insurances. Maximum limit has been reached",
+          error: true,
+        })
+      );
+    }
+  };
+
   useEffect(() => {
     dispatch(fetchInsurance());
   }, [dispatch]);
@@ -100,17 +116,17 @@ export default function InsuranceInfoPage() {
           dispatch(closePageMessage());
         }}
         role="button"
-        success={true}
+        success={pageMessage.error ? false : true}
         sx={{
           borderRadius: "0px",
           justifyContent: "center",
-          backgroundColor: "#04844B",
           position: "absolute",
           top: "-40px",
           left: 0,
           width: "100%",
           transition: "0.3 s ease-in-out",
           cursor: "pointer",
+          fontSize: "14px",
         }}
       >
         {pageMessage.content}
@@ -118,8 +134,8 @@ export default function InsuranceInfoPage() {
       <Fade in={userInsuranceData.length > 0} unmountOnExit>
         <Stack>
           <AccountCard
-            titleIcon={<PersonOutlinedIcon />}
-            title="Contact Information"
+            titleIcon={<AccountCircleOutlined />}
+            title="Insurance Document"
             // OnEditClicked={OnEditClicked}
             sx={{ px: 3, py: 5 }}
             actionContent={
@@ -161,9 +177,7 @@ export default function InsuranceInfoPage() {
                 <StyledButton
                   className={styles.addButton}
                   disabled={openNewInsuranceForm}
-                  onClick={() => {
-                    setOpenNewInsuranceForm(true);
-                  }}
+                  onClick={OnAddNewInsurance}
                 >
                   <Stack
                     direction="row"
@@ -241,8 +255,10 @@ export default function InsuranceInfoPage() {
           },
         }}
       >
-        <DialogTitle>Remove Insurance</DialogTitle>
-        <DialogContent>
+        <DialogTitle sx={{ color: "#003B4A", fontSize: "22px" }}>
+          Remove Insurance
+        </DialogTitle>
+        <DialogContent sx={{ color: "#6C757D" }}>
           Are you sure you want to remove insurance?
         </DialogContent>
         <DialogActions>
@@ -251,6 +267,7 @@ export default function InsuranceInfoPage() {
               size="small"
               mode="secondary"
               onClick={() => setConfirmationDeleteDialog(false)}
+              sx={{ fontSize: "14px" }}
             >
               No, keep Insurance
             </StyledButton>
@@ -258,6 +275,7 @@ export default function InsuranceInfoPage() {
               size="small"
               mode="error"
               onClick={OnConfirmRemoveInsurance}
+              sx={{ fontSize: "14px" }}
             >
               Yes, remove Insurance
             </StyledButton>

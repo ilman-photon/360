@@ -7,11 +7,11 @@ Object {
     <div>
       <section>
         <div
-          class="MuiBox-root css-1kexx3j"
+          class="MuiBox-root css-11hpkl2"
         >
           <svg
             aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-6q45yw-MuiSvgIcon-root"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-z30ms6-MuiSvgIcon-root"
             data-testid="CheckCircleOutlineIcon"
             focusable="false"
             viewBox="0 0 24 24"
@@ -961,11 +961,11 @@ Object {
   "container": <div>
     <section>
       <div
-        class="MuiBox-root css-1kexx3j"
+        class="MuiBox-root css-11hpkl2"
       >
         <svg
           aria-hidden="true"
-          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-6q45yw-MuiSvgIcon-root"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-z30ms6-MuiSvgIcon-root"
           data-testid="CheckCircleOutlineIcon"
           focusable="false"
           viewBox="0 0 24 24"

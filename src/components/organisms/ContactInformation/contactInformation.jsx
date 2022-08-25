@@ -178,7 +178,7 @@ export default function ContactInformation({
                   <StyledInput
                     type="phone"
                     id="mobile"
-                    label="Mobile Number"
+                    label="Phone Number"
                     value={value}
                     onChange={onChange}
                     error={!!error}
@@ -213,7 +213,7 @@ export default function ContactInformation({
                   <StyledInput
                     type="text"
                     id="email"
-                    label="Email"
+                    label="Email ID"
                     value={value}
                     onChange={onChange}
                     error={!!error}
