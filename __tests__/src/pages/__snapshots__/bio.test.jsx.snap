@@ -34,6 +34,7 @@ Object {
                     />
                   </span>
                   <img
+                    alt="Doctor Image"
                     class="profilePhoto"
                     data-nimg="intrinsic"
                     decoding="async"
@@ -311,11 +312,9 @@ Object {
                       Catarac
                     </p>
                   </li>
-                  <li
-                    class="newColumn"
-                  >
+                  <li>
                     <p
-                      class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body2 newColumn css-e784if-MuiTypography-root"
                     >
                       Glaucoma
                     </p>
@@ -587,6 +586,7 @@ Object {
                   />
                 </span>
                 <img
+                  alt="Doctor Image"
                   class="profilePhoto"
                   data-nimg="intrinsic"
                   decoding="async"
@@ -864,11 +864,9 @@ Object {
                     Catarac
                   </p>
                 </li>
-                <li
-                  class="newColumn"
-                >
+                <li>
                   <p
-                    class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                    class="MuiTypography-root MuiTypography-body2 newColumn css-e784if-MuiTypography-root"
                   >
                     Glaucoma
                   </p>
