@@ -11,7 +11,11 @@ export const AccountCard = ({
   const isDesktop = useMediaQuery("(min-width: 769px)");
   return (
     <>
-      <Card variant="outlined" className={styles.card}>
+      <Card
+        variant="outlined"
+        className={styles.card}
+        sx={{ borderRadius: "0" }}
+      >
         {isDesktop && (
           <CardHeader
             className={styles.cardHeader}
