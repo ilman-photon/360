@@ -8,7 +8,9 @@ import { useIdleTimer } from "react-idle-timer";
 import { appWithTranslation } from "next-i18next";
 import nextI18nConfig from "../../next-i18next.config";
 import SessionExpiredModal from "../components/organisms/SessionExpiredModal/sessionExpiredModal";
-
+export function reportWebVitals(metric) {
+  console.log(metric);
+}
 function App({ Component, pageProps }) {
   // Use the layout defined at the page level, if available
   const cookies = new Cookies();

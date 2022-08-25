@@ -163,6 +163,7 @@ const SetPasswordComponent = ({
       const errors1 = [];
       const errors2 = [];
       const errorForkedValidation = [];
+      console.log(">>>>", passwordValidator);
       passwordValidator.forEach((err) => {
         if (err.mandatory && err.validate) {
           errors1.push(err.validate);
@@ -371,7 +372,7 @@ const SetPasswordComponent = ({
                   label={confirmPasswordPlaceHolder}
                   type="password"
                   value={value}
-                  // style={styles.margin}
+                  style={styles.margin}
                   onChange={(event) => {
                     onChange(event);
                     onChangePasswordValue();
