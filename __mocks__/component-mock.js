@@ -30,7 +30,7 @@ jest.mock("next/router", () => ({
     return {
       route: "/",
       pathname: "",
-      query: "",
+      query: jest.fn(),
       asPath: "",
       push: jest.fn(),
       events: {
