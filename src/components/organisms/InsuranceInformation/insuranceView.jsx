@@ -2,6 +2,7 @@ import {
   Accordion,
   AccordionDetails,
   AccordionSummary,
+  Button,
   Divider,
   Fade,
   Grid,
@@ -9,6 +10,7 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
+import style from "./InsuranceInformationNew.module.scss";
 import LabelWithInfo from "../../atoms/LabelWithInfo/labelWithInfo";
 import { StyledButton } from "../../atoms/Button/button";
 import { colors } from "../../../styles/theme";
@@ -237,7 +239,12 @@ export default function InsuranceView({
                               onClick={() => {
                                 OnRemoveClicked(idx);
                               }}
-                              sx={{ width: "fit-content", padding: { xs: 1 } }}
+                              sx={{
+                                width: { xs: "100%", md: "fit-content" },
+                                padding: { xs: 1 },
+                                borderColor: "#003B4A",
+                                height: "40px !important",
+                              }}
                             >
                               <Stack direction="row" alignItems="center">
                                 <DeleteOutlineIcon
@@ -248,26 +255,29 @@ export default function InsuranceView({
                                     color: "#003B4A",
                                   }}
                                 />
-                                <span style={{ fontSize: 14 }}>
+                                <span
+                                  style={{ fontSize: 14, color: "#007E8F" }}
+                                >
                                   Remove Insurance
                                 </span>
                               </Stack>
                             </StyledButton>
-                            <StyledButton
-                              mode="primary"
+                            <Button
                               type="submit"
-                              size="small"
+                              variant="contained"
                               onClick={() => {
                                 OnEditClicked(item);
                               }}
+                              className={[style.formButton, style.primary].join(
+                                " "
+                              )}
                               sx={{
-                                width: "fit-content",
-                                padding: { xs: 1 },
-                                fontSize: 14,
+                                width: { xs: "100%", md: "fit-content" },
+                                textTransform: "none",
                               }}
                             >
                               Edit
-                            </StyledButton>
+                            </Button>
                           </Stack>
                         </Stack>
                       );

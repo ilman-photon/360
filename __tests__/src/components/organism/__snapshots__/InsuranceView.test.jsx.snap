@@ -470,7 +470,7 @@ Object {
                           class="css-1mf892b-MuiStack-root"
                         >
                           <button
-                            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-v79u1v-MuiButtonBase-root-MuiButton-root"
+                            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1qq7elj-MuiButtonBase-root-MuiButton-root"
                             tabindex="0"
                             type="button"
                           >
@@ -489,7 +489,7 @@ Object {
                                 />
                               </svg>
                               <span
-                                style="font-size: 14px;"
+                                style="font-size: 14px; color: rgb(0, 126, 143);"
                               >
                                 Remove Insurance
                               </span>
@@ -499,7 +499,7 @@ Object {
                             />
                           </button>
                           <button
-                            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1xx3bwd-MuiButtonBase-root-MuiButton-root"
+                            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-14zuhkj-MuiButtonBase-root-MuiButton-root"
                             tabindex="0"
                             type="submit"
                           >
@@ -986,7 +986,7 @@ Object {
                         class="css-1mf892b-MuiStack-root"
                       >
                         <button
-                          class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-v79u1v-MuiButtonBase-root-MuiButton-root"
+                          class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1qq7elj-MuiButtonBase-root-MuiButton-root"
                           tabindex="0"
                           type="button"
                         >
@@ -1005,7 +1005,7 @@ Object {
                               />
                             </svg>
                             <span
-                              style="font-size: 14px;"
+                              style="font-size: 14px; color: rgb(0, 126, 143);"
                             >
                               Remove Insurance
                             </span>
@@ -1015,7 +1015,7 @@ Object {
                           />
                         </button>
                         <button
-                          class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1xx3bwd-MuiButtonBase-root-MuiButton-root"
+                          class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-14zuhkj-MuiButtonBase-root-MuiButton-root"
                           tabindex="0"
                           type="submit"
                         >
