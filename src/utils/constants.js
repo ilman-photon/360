@@ -27,6 +27,20 @@ module.exports = {
   YES: "yes",
   MFA_COMPONENT_NAME: "MultiFactorAuthentication",
   SQ_COMPONENT_NAME: "SecurityQuestion",
+  MONTH_NAME: [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ],
   TEST_ID: {
     LOGIN_TEST_ID: {
       email: "emailorphonenumber",
@@ -71,6 +85,7 @@ module.exports = {
     APPOINTMENT_TEST_ID: {
       location: "location",
       searchbtn: "searchbtn",
+      filterbtn: "filterbtn",
     },
   },
 };

@@ -7,6 +7,7 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
   const specialist = ["Opthometry", "Opthalmology", "Catarac", "Glaucoma"];
   const isAppointment = variant === "appointment";
   const isBio = variant === "bio";
+  const isViewSchedule = variant === "viewschedule";
   const renderSpecialistList = () => {
     return (
       <Box>
@@ -47,7 +48,9 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
           <Typography
             variant="h2"
             fontSize={isBio ? "32px" : "18px"}
-            className={isAppointment && styles.doctorNameAppointment}
+            className={
+              isAppointment || (isViewSchedule && styles.doctorNameAppointment)
+            }
           >
             Paul Wagner, MD
           </Typography>
@@ -63,6 +66,7 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
             className={isBio ? styles.ratingContainer : styles.phoneContainer}
           >
             {isBio && <StyledRating value={3.5} />}
+            {isViewSchedule && <StyledRating value={3.5} />}
             {!phoneLink ? (
               <Typography variant="body2" className={styles.phone}>
                 (857) 299-9989
@@ -73,7 +77,7 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
           </Box>
         </Box>
       </Box>
-      <Box>{!isAppointment && renderSpecialistList()}</Box>
+      <Box>{!isAppointment || (isViewSchedule && renderSpecialistList())}</Box>
     </Box>
   );
 }
