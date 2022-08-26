@@ -19,6 +19,26 @@ import Link from "@mui/material/Link";
 import { getLinkAria } from "../../../utils/viewUtil";
 import FormLabel from "@mui/material/FormLabel";
 
+const DisclaimerText = (data) => {
+  return (
+    <FormLabel
+      id="row-input-disclaimer"
+      sx={{
+        fontSize: 12,
+        "&.Mui-focused": {
+          color: "black",
+        },
+        paddingLeft: 2,
+        display: "inline-flex",
+        alignItems: "center",
+        color: "#424747",
+      }}
+    >
+      {data.label}
+    </FormLabel>
+  );
+};
+
 export default function SelfForm() {
   const { handleSubmit, control } = useForm({
     defaultValues: {
@@ -56,26 +76,6 @@ export default function SelfForm() {
   });
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
-
-  const DisclaimerText = (data) => {
-    return (
-      <FormLabel
-        id="row-input-disclaimer"
-        sx={{
-          fontSize: 12,
-          "&.Mui-focused": {
-            color: "black",
-          },
-          paddingLeft: 2,
-          display: "inline-flex",
-          alignItems: "center",
-          color: "#424747",
-        }}
-      >
-        {data.label}
-      </FormLabel>
-    );
-  };
 
   return (
     <Stack spacing={2}>
