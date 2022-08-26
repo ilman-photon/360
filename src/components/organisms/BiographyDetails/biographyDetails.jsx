@@ -2,6 +2,7 @@ import { Link, Typography, Stack, Box, Divider } from "@mui/material";
 import styles from "./styles.module.scss";
 import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
 import { useRef } from "react";
+import constants from "../../../utils/constants";
 
 export default function BiographyDetails({ profileData }) {
   const aboutRef = useRef(null);
@@ -21,7 +22,7 @@ export default function BiographyDetails({ profileData }) {
     "aaa",
   ];
 
-  const renderInsurances = () => {
+  const renderInsurances = (BIOGRAPHY_TEST_ID) => {
     const insurancesLength = insurances.length;
     const isRenderViewAll = insurancesLength > 3;
     return (
@@ -57,7 +58,12 @@ export default function BiographyDetails({ profileData }) {
             <li>
               <Typography variant="body2">
                 16+ more in-network insurances{" "}
-                <Link className={styles.viewAllLink}>View All</Link>
+                <Link
+                  className={styles.viewAllLink}
+                  data-testid={BIOGRAPHY_TEST_ID.viewAll}
+                >
+                  View All
+                </Link>
               </Typography>
             </li>
           )}
@@ -110,6 +116,8 @@ export default function BiographyDetails({ profileData }) {
     });
   };
 
+  const { BIOGRAPHY_TEST_ID } = constants.TEST_ID;
+
   return (
     <Box className={styles.detailedBio}>
       <Box className={styles.stickyMenu}>
@@ -117,6 +125,7 @@ export default function BiographyDetails({ profileData }) {
           <Link
             ref={aboutMenuRef}
             className={styles.menuText}
+            data-testid={BIOGRAPHY_TEST_ID.about}
             onClick={onClickAbout}
           >
             About
@@ -124,6 +133,7 @@ export default function BiographyDetails({ profileData }) {
           <Link
             ref={locationMenuRef}
             className={styles.menuText}
+            data-testid={BIOGRAPHY_TEST_ID.location}
             onClick={onClickLocation}
           >
             Locations
@@ -131,6 +141,7 @@ export default function BiographyDetails({ profileData }) {
           <Link
             ref={insurancesMenuRef}
             className={styles.menuText}
+            data-testid={BIOGRAPHY_TEST_ID.insurance}
             onClick={onClickInsurances}
           >
             Insurances
@@ -138,6 +149,7 @@ export default function BiographyDetails({ profileData }) {
           <Link
             ref={educationMenuRef}
             className={styles.menuText}
+            data-testid={BIOGRAPHY_TEST_ID.education}
             onClick={onClickEducation}
           >
             Education
@@ -195,7 +207,7 @@ export default function BiographyDetails({ profileData }) {
         <Typography variant="h3" ref={insurancesRef}>
           In-network insurances
         </Typography>
-        {renderInsurances()}
+        {renderInsurances(BIOGRAPHY_TEST_ID)}
 
         <Typography variant="h3" ref={educationRef}>
           Education

@@ -1,6 +1,5 @@
 import Box from "@mui/material/Box";
 import React from "react";
-import Button from "@mui/material/Button";
 import Link from "@mui/material/Link";
 import { StyledButton } from "../../atoms/Button/button";
 export const WeekAvailability = () => {
