@@ -4,8 +4,8 @@ import { Typography } from "@mui/material";
 import { StyledButton } from "../../../atoms/Button/button";
 
 const containerStyle = {
-  width: "100vw",
-  height: "100vh",
+  width: "100%",
+  height: "100%",
 };
 
 const center = {
