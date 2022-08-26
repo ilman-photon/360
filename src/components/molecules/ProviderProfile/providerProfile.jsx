@@ -38,8 +38,8 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
         <Box>
           <Image
             src="/doctor.png"
-            width={90}
-            height={90}
+            width={100}
+            height={100}
             className={styles.profilePhoto}
             alt="Doctor Image"
           ></Image>

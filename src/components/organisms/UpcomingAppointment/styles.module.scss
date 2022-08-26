@@ -3,14 +3,25 @@
   margin: 0 auto;
   background-color: white;
   padding: 24px;
+  margin-top: 115px;
+
+  @media (max-width: 992px) {
+    width: 100vw;
+    margin-top: 60px;
+    padding: 16px;
+  }
 }
 
 .title {
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", sans-serif !important;
   font-style: normal;
-  font-weight: 500;
-  font-size: 32px;
-  line-height: 44px;
+  font-weight: 500 !important;
+  font-size: 32px !important;
+  line-height: 44px !important;
+
+  @media (max-width: 992px) {
+    font-size: 26px !important;
+  }
 }
 
 .itemContainer {
@@ -19,6 +30,9 @@
   align-items: center;
   padding: 24px;
   flex-direction: column;
+  @media (max-width: 992px) {
+    padding: 22px;
+  }
 }
 
 .getDirectionLink {
@@ -65,20 +79,20 @@
 }
 
 .patientTitle {
-  font-size: 26px;
-  line-height: 32px;
+  font-size: 26px !important;
+  line-height: 32px !important;
   @extend .title;
 }
 
 .patientName {
-  margin-top: 24px;
-  margin-bottom: 10px;
+  margin-top: 24px !important;
+  margin-bottom: 10px !important;
   font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
   letter-spacing: 0.0016em;
-  color: #000000;
+  color: #000000 !important;
 }
 
 .patientContainer {

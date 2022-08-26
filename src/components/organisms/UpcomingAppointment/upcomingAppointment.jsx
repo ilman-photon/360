@@ -9,7 +9,7 @@ import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 export default function UpcomingAppointment() {
   return (
     <Box className={styles.upcomingAppointments}>
-      <Stack spacing={3.5}>
+      <Stack spacing={{ xs: 2, lg: 3.5 }}>
         <Typography variant="h2" className={styles.title}>
           Upcoming appointments
         </Typography>
