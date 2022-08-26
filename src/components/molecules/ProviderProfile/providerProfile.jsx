@@ -65,8 +65,7 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
           <Box
             className={isBio ? styles.ratingContainer : styles.phoneContainer}
           >
-            {isBio && <StyledRating value={3.5} />}
-            {isViewSchedule && <StyledRating value={3.5} />}
+            {(isBio || isViewSchedule) && <StyledRating value={3.5} />}
             {!phoneLink ? (
               <Typography variant="body2" className={styles.phone}>
                 (857) 299-9989
@@ -77,7 +76,7 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
           </Box>
         </Box>
       </Box>
-      <Box>{(!isAppointment || isViewSchedule) && renderSpecialistList()}</Box>
+      <Box>{(isBio || isViewSchedule) && renderSpecialistList()}</Box>
     </Box>
   );
 }
