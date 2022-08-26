@@ -94,9 +94,6 @@ export default function SomeoneElseForm() {
               sx={styles.link}
               data-testid={SCHEDULE_GUEST_TEST_ID.signInlink}
               {...getLinkAria(t("signIn"))}
-              onClick={function () {
-                OnForgotPasswordClicked(router);
-              }}
             >
               {t("signIn")}
             </Link>
