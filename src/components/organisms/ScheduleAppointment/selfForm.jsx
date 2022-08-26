@@ -33,8 +33,8 @@ export default function SelfForm() {
   });
   const { SCHEDULE_GUEST_TEST_ID } = constants.TEST_ID;
 
-  const onSubmit = (data) => {
-    console.log(data, "guest");
+  const onSubmit = () => {
+    // this is intentional
   };
 
   const options = [
