@@ -37,7 +37,7 @@ export default function BaseHeader({
   ];
   const [isUserLoged, setUserLoged] = React.useState(false);
   const router = useRouter();
-  const logo = "/logo.png";
+  const logo = "/eyecarelogo.png";
 
   React.useEffect(() => {
     const cookies = new Cookies();

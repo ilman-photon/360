@@ -94,8 +94,8 @@ describe("PersonalInformation Components", () => {
     expect(field6.value).toEqual("3777306119");
     expect(field1).toBeDisabled();
 
-    expect(container.getAllByRole("button", { name: "Change File" })[0]).toBeVisible();
-    fireEvent.click(container.getAllByRole("button", { name: "Change File" })[0])
+    expect(container.getAllByRole("button", { name: "Change photo" })[0]).toBeVisible();
+    fireEvent.click(container.getAllByRole("button", { name: "Change photo" })[0])
 });
 
 

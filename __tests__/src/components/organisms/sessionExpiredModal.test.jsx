@@ -31,6 +31,12 @@ describe("SessionExpiredModal Components", () => {
     );
     expect(container).toMatchSnapshot();
   });
+  it("render component expired true", () => {
+    container = render(
+      <SessionExpiredModal showModal={false} isExpired={true} />
+    );
+    expect(container).toMatchSnapshot();
+  });
   it("render component show modal false", () => {
     container = render(<SessionExpiredModal showModal={false} />);
     expect(container).toMatchSnapshot();

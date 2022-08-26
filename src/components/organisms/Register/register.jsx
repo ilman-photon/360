@@ -206,7 +206,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             rules={{
               required: "This field is required",
               pattern: {
-                value: Regex.noSpecialRegex,
+                value: Regex.nameValidation,
                 message: "Incorrect format",
               },
             }}
@@ -234,7 +234,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             rules={{
               required: "This field is required",
               pattern: {
-                value: Regex.noSpecialRegex,
+                value: Regex.nameValidation,
                 message: "Incorrect format",
               },
             }}
@@ -295,7 +295,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                 },
               },
               pattern: {
-                value: Regex.isEmailCorrect,
+                value: Regex.emailValidation,
                 message: "Incorrect email format",
               },
             }}

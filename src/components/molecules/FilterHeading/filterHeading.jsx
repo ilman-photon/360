@@ -22,7 +22,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import Image from "next/image";
 import { render } from "@testing-library/react";
 
-const FilterHeading = ({ isDesktop = true }) => {
+const FilterHeading = ({ isDesktop = true, onSearchProvider = () => {} }) => {
   const imageSrcState = "/bx_insurance_card.png";
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
   const { handleSubmit, control } = useForm();
@@ -31,6 +31,8 @@ const FilterHeading = ({ isDesktop = true }) => {
     console.log(data);
     if (!data.location) {
       setEmptyLocation(true);
+    } else {
+      onSearchProvider();
     }
   };
 
@@ -92,7 +94,12 @@ const FilterHeading = ({ isDesktop = true }) => {
               freeSolo
               id="location"
               value={value}
-              onChange={onChange}
+              onChange={(_e, data) => {
+                onChange(data);
+              }}
+              onInputChange={(event, newInputValue) => {
+                onChange(newInputValue);
+              }}
               disableClearable={true}
               options={mapsData}
               sx={{
@@ -286,6 +293,13 @@ const FilterHeading = ({ isDesktop = true }) => {
                 width: isDesktop ? "320px" : "auto",
                 background: "#FFF",
                 marginTop: isDesktop ? "0px" : "16px",
+              }}
+              value={value}
+              onChange={(_e, data) => {
+                onChange(data);
+              }}
+              onInputChange={(event, newInputValue) => {
+                onChange(newInputValue);
               }}
               renderInput={(params) => (
                 <Box

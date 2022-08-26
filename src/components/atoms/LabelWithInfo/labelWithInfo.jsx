@@ -15,7 +15,9 @@ export const LabelWithInfo = ({
       {tooltipContent ? (
         <>
           <Tooltip title={tooltipContent} placement="top">
-            <ErrorOutlineOutlinedIcon sx={{ width: 16, height: 16 }} />
+            <ErrorOutlineOutlinedIcon
+              sx={{ width: 20, height: 20, color: "#00000080" }}
+            />
           </Tooltip>
         </>
       ) : (
@@ -25,7 +27,7 @@ export const LabelWithInfo = ({
     <Stack spacing={1}>
       <div style={{ marginTop: 10 }}>{children}</div>
       {helperText ? (
-        <Typography variant="bodySmallRegular" sx={{ mt: 1 }}>
+        <Typography variant="bodySmallRegular" sx={{ mt: 1, fontWeight: 500 }}>
           {helperText}
         </Typography>
       ) : (

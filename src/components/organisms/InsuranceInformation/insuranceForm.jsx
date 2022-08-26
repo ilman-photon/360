@@ -19,7 +19,9 @@ import SelectOptionButton from "../../atoms/SelectOptionButton/selectOptionButto
 import { ImageUploader } from "../../molecules/ImageUploader/imageUploader";
 import AutoCompleteInput from "../../molecules/AutoCompleteInput";
 import { DEFAULT_INSURANCE_DATA } from "../../../store/user";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import FormMessage from "../../molecules/FormMessage/formMessage";
+import { AutoCompleteCreatable } from "../../molecules/AutoCompleteCreatable";
 
 export default function InsuranceForm({
   formData = null, // later will be used for edit
@@ -39,14 +41,14 @@ export default function InsuranceForm({
 
   // Later will be used for edit
   useEffect(() => {
-    console.log("reset");
     if (formData) reset(formData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
 
-  const providerList = [
+  const [providerList, setProviderList] = useState([
     { id: 0, label: "Provider 1" },
     { id: 1, label: "Provider 2" },
-  ];
+  ]);
 
   const planList = [
     { id: 0, label: "Plan 1" },
@@ -66,6 +68,26 @@ export default function InsuranceForm({
 
   const relationshipList = ["Spouse", "Father", "Mother", "Self", "Son"];
 
+  const DEFAULT_FORM_FIELD_STATE = {
+    success: false,
+    title: null,
+    content: null,
+  };
+
+  const [formCardFrontState, setFormCardFrontState] = useState(
+    DEFAULT_FORM_FIELD_STATE
+  );
+  const onFormCardFrontError = (payload) => {
+    setFormCardFrontState(payload);
+  };
+  const [formCardBackState, setFormCardBackState] = useState(
+    DEFAULT_FORM_FIELD_STATE
+  );
+  const onFormCardBackError = (payload) => {
+    setFormCardBackState(payload);
+  };
+
+  const watchedSubscriber = watch("isSubscriber", "");
   const requiredIfSubscriber = (v) => {
     if (watchedSubscriber === "No" && !v) {
       return "This field is required";
@@ -74,9 +96,10 @@ export default function InsuranceForm({
 
   const handleCancel = () => {
     OnCancelClicked();
+    reset(DEFAULT_INSURANCE_DATA);
+    setFormCardFrontState(DEFAULT_FORM_FIELD_STATE);
+    setFormCardBackState(DEFAULT_FORM_FIELD_STATE);
   };
-
-  const watchedSubscriber = watch("isSubscriber", "");
 
   const onSubmit = (data) => {
     OnSaveClicked(data);
@@ -117,7 +140,7 @@ export default function InsuranceForm({
                   fieldState: { error },
                 }) => {
                   return (
-                    <AutoCompleteInput
+                    <AutoCompleteCreatable
                       onFetch={(e) => {
                         console.log(e);
                       }}
@@ -126,9 +149,7 @@ export default function InsuranceForm({
                       }}
                       options={providerList}
                       inputLabel="Insurance Provider"
-                      onChange={(_e, data) => {
-                        onChange(data);
-                      }}
+                      onChange={onChange}
                       value={value}
                       error={!!error}
                       helperText={error ? error.message : null}
@@ -336,6 +357,7 @@ export default function InsuranceForm({
                         return (
                           <>
                             <StyledInput
+                              disableFuture
                               type="dob"
                               label="Subscriber Date of Birth"
                               value={value}
@@ -413,18 +435,35 @@ export default function InsuranceForm({
               ".MuiGrid-item:first-child": { pt: { xs: 0, md: 2 }, pl: 0 },
             }}
           >
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={4} sx={{ position: "relative", pl: "-8px" }}>
+              <div
+                style={{ position: "absolute", width: "100%", top: "-25px" }}
+              >
+                <Collapse in={!!formCardFrontState.content}>
+                  <FormMessage
+                    success={formCardFrontState.success}
+                    title={formCardFrontState.title}
+                  >
+                    {formCardFrontState.content}
+                  </FormMessage>
+                </Collapse>
+              </div>
               <Controller
                 name="frontCard"
                 control={control}
                 render={({
-                  field: { onChange, _value },
+                  field: { onChange, value },
                   fieldState: { _error },
                 }) => {
+                  {
+                    JSON.stringify(value);
+                  }
                   return (
                     <ImageUploader
                       OnUpload={onChange}
+                      OnInputError={onFormCardFrontError}
                       source={formData ? formData.frontCard : null}
+                      preview={value}
                       label="Upload Front"
                       width="100%"
                       src="/login-bg.png"
@@ -439,18 +478,36 @@ export default function InsuranceForm({
                 }}
               />
             </Grid>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} md={4} sx={{ position: "relative" }}>
+              <div
+                style={{
+                  position: "absolute",
+                  width: "calc(100% - 16px)",
+                  top: "-25px",
+                }}
+              >
+                <Collapse in={!!formCardBackState.content}>
+                  <FormMessage
+                    success={formCardBackState.success}
+                    title={formCardBackState.title}
+                  >
+                    {formCardBackState.content}
+                  </FormMessage>
+                </Collapse>
+              </div>
               <Controller
                 name="backCard"
                 control={control}
                 render={({
-                  field: { onChange, _value },
+                  field: { onChange, value },
                   fieldState: { _error },
                 }) => {
                   return (
                     <ImageUploader
                       OnUpload={onChange}
+                      OnInputError={onFormCardBackError}
                       source={formData ? formData.backCard : null}
+                      preview={value}
                       label="Upload Back"
                       width="100%"
                       src="/login-bg.png"

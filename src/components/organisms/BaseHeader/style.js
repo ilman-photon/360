@@ -23,7 +23,7 @@ export const styles = {
   boxStyledMobile: {
     flexGrow: 1,
     display: { xs: "flex", md: "none" },
-    justifyContent: "end",
+    justifyContent: "flex-end",
   },
   menuMobile: {
     display: { xs: "block", md: "none" },
