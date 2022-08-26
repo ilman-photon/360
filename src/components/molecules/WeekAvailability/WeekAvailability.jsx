@@ -5,6 +5,7 @@ import { StyledButton } from "../../atoms/Button/button";
 import styles from "./styles.module.scss";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import { Divider } from "@mui/material";
+import { useRouter } from "next/router";
 
 export const WeekAvailability = ({
   scheduleData = {
@@ -16,6 +17,7 @@ export const WeekAvailability = ({
     saturday: ["09:30am", "", "", ""],
   },
 }) => {
+  const router = useRouter();
   function renderScheduleData() {
     let renderUI = [];
     for (const [key, value] of Object.entries(scheduleData)) {
@@ -43,6 +45,10 @@ export const WeekAvailability = ({
             size={constants.SMALL}
             gradient={false}
             className={styles.scheduleBtn}
+            onClick={() => {
+              //TO DO: temporary navigate, move to page when start developing functionality
+              router.push("/patient/appointments");
+            }}
           >
             {label}
             {isTypeMore && (

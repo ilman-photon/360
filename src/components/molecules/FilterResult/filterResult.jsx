@@ -3,7 +3,10 @@ import constants from "../../../utils/constants";
 import ItemResult from "../../organisms/ItemResult/ItemResult";
 import FilterResultHeading from "../FilterResultHeading/filterResultHeading";
 
-export const FilterResult = ({ dataCount = 3 }) => {
+export const FilterResult = ({
+  dataCount = 3,
+  onSelectSchedule = () => {},
+}) => {
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
 
   function renderItemResult() {

@@ -86,6 +86,10 @@ module.exports = {
       location: "location",
       searchbtn: "searchbtn",
       filterbtn: "filterbtn",
+      locationInput: "locationInput",
+      dateInput: "dateInput",
+      purposeInput: "purposeInput",
+      insuranceInput: "insuranceInput",
     },
     BIOGRAPHY_TEST_ID: {
       about: "biography-about",
