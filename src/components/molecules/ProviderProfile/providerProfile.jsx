@@ -49,7 +49,7 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
             variant="h2"
             fontSize={isBio ? "32px" : "18px"}
             className={
-              isAppointment || (isViewSchedule && styles.doctorNameAppointment)
+              (isAppointment || isViewSchedule) && styles.doctorNameAppointment
             }
           >
             Paul Wagner, MD
@@ -77,7 +77,7 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
           </Box>
         </Box>
       </Box>
-      <Box>{!isAppointment || (isViewSchedule && renderSpecialistList())}</Box>
+      <Box>{(!isAppointment || isViewSchedule) && renderSpecialistList()}</Box>
     </Box>
   );
 }

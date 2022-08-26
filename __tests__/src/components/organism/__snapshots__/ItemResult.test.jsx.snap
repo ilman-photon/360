@@ -278,7 +278,50 @@ Object {
             </div>
             <div
               class="MuiBox-root css-0"
-            />
+            >
+              <div
+                class="MuiBox-root css-0"
+              >
+                <h6
+                  class="MuiTypography-root MuiTypography-subtitle1 specialistTitle css-10wpov9-MuiTypography-root"
+                >
+                  Specialties and Sub-specialties:
+                   
+                </h6>
+                <ul
+                  class="specialistList"
+                >
+                  <li>
+                    <p
+                      class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                    >
+                      Opthometry
+                    </p>
+                  </li>
+                  <li>
+                    <p
+                      class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                    >
+                      Opthalmology
+                    </p>
+                  </li>
+                  <li>
+                    <p
+                      class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                    >
+                      Catarac
+                    </p>
+                  </li>
+                  <li>
+                    <p
+                      class="MuiTypography-root MuiTypography-body2 newColumn css-e784if-MuiTypography-root"
+                    >
+                      Glaucoma
+                    </p>
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
         <div
@@ -787,7 +830,50 @@ Object {
           </div>
           <div
             class="MuiBox-root css-0"
-          />
+          >
+            <div
+              class="MuiBox-root css-0"
+            >
+              <h6
+                class="MuiTypography-root MuiTypography-subtitle1 specialistTitle css-10wpov9-MuiTypography-root"
+              >
+                Specialties and Sub-specialties:
+                 
+              </h6>
+              <ul
+                class="specialistList"
+              >
+                <li>
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  >
+                    Opthometry
+                  </p>
+                </li>
+                <li>
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  >
+                    Opthalmology
+                  </p>
+                </li>
+                <li>
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  >
+                    Catarac
+                  </p>
+                </li>
+                <li>
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 newColumn css-e784if-MuiTypography-root"
+                  >
+                    Glaucoma
+                  </p>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
       <div

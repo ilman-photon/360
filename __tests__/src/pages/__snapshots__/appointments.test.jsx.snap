@@ -103,7 +103,7 @@ Object {
                     class="bioContainer MuiBox-root css-0"
                   >
                     <h2
-                      class="MuiTypography-root MuiTypography-h2 css-1i5ehwd-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-1i5ehwd-MuiTypography-root"
                     >
                       Paul Wagner, MD
                     </h2>
@@ -779,7 +779,7 @@ Object {
                   class="bioContainer MuiBox-root css-0"
                 >
                   <h2
-                    class="MuiTypography-root MuiTypography-h2 css-1i5ehwd-MuiTypography-root"
+                    class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-1i5ehwd-MuiTypography-root"
                   >
                     Paul Wagner, MD
                   </h2>

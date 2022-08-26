@@ -44,14 +44,13 @@
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0.0016em;
-  text-decoration-line: underline;
-  color: #008294;
-  text-decoration-color: inherit;
+  color: #008294 !important;
+  text-decoration-color: inherit !important;
 }
 
 .specialistTitle {
-  font-weight: 700;
-  font-size: 16px;
+  font-weight: 700 !important;
+  font-size: 16px !important;
   @media (max-width: 992px) {
     margin-bottom: 12px;
   }
