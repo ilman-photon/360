@@ -14,7 +14,7 @@ import { useForm, Controller } from "react-hook-form";
 import { StyledInput } from "../../atoms/Input/input";
 import { StyledButton } from "../../atoms/Button/button";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-
+import { colors } from "../../../styles/theme";
 import { startTransition, Suspense, useEffect } from "react";
 import { Regex } from "../../../utils/regex";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
@@ -68,14 +68,14 @@ export default function ContactInformation({
   const isOneOfPreferredValid = (name, value) => {
     switch (name) {
       case "email":
-        if (watchedPreferredCommunication === "phone") return true;
-        else if (watchedPreferredCommunication === "email" && !value)
+        if (watchedPreferredCommunication == "phone") return true;
+        else if (watchedPreferredCommunication == "email" && !value)
           return false;
         else if (watchedEmail || watchedMobile) return true;
         break;
       case "phone":
-        if (watchedPreferredCommunication === "email") return true;
-        else if (watchedPreferredCommunication === "phone" && !value)
+        if (watchedPreferredCommunication == "email") return true;
+        else if (watchedPreferredCommunication == "phone" && !value)
           return false;
         else if (watchedEmail || watchedMobile) return true;
         break;
@@ -110,8 +110,13 @@ export default function ContactInformation({
             variant="text"
             className={styles.editButton}
           >
-            <EditOutlinedIcon sx={{ width: 20, height: 20 }} />
-            <div type="link" style={{ marginLeft: 4, color: "#008294" }}>
+            <EditOutlinedIcon
+              sx={{ width: 20, height: 20, color: colors.link }}
+            />
+            <div
+              className={styles.actionText}
+              style={{ marginLeft: 4, color: "#008294" }}
+            >
               Edit
             </div>
           </Button>
@@ -178,7 +183,7 @@ export default function ContactInformation({
                   <StyledInput
                     type="phone"
                     id="mobile"
-                    label="Mobile Number"
+                    label="Phone Number"
                     value={value}
                     onChange={onChange}
                     error={!!error}
@@ -213,7 +218,7 @@ export default function ContactInformation({
                   <StyledInput
                     type="text"
                     id="email"
-                    label="Email"
+                    label="Email ID"
                     value={value}
                     onChange={onChange}
                     error={!!error}
@@ -232,7 +237,7 @@ export default function ContactInformation({
                 },
                 pattern: {
                   value: Regex.isEmailCorrect,
-                  message: "Incorrect email format",
+                  message: "Incorrect format",
                 },
               }}
             />
@@ -372,7 +377,7 @@ export default function ContactInformation({
                   rules={{
                     // required: "This field is required",
                     pattern: {
-                      value: /\b\d{5}\b/g,
+                      value: /^\s?\d{5}\s?$/,
                       message: "Incorrect format",
                     },
                   }}

@@ -12,6 +12,7 @@ const SecurityQuestion = ({
   securityQuestionList = [],
   propsShowPostMessage = false,
   securityQuestionCount = 5,
+
   onClickedSubmitButton = () => {
     // This is intentional
   },
@@ -19,13 +20,40 @@ const SecurityQuestion = ({
     // This is intentional
   },
 }) => {
+  const handleChangeInput = (event) => {
+    const { value, maxLength } = event.target;
+    const message = value.slice(0, maxLength);
+
+    this.setState({
+      form: {
+        message,
+      },
+    });
+  };
   const [showPostMessage, setShowPostMessage] = useState(propsShowPostMessage);
   const [postMessage, setPostMessage] = React.useState(
     "You must answer all security questions"
   );
   const { handleSubmit, control } = useForm();
-
+  const hasDuplicates = (array) => {
+    var valuesSoFar = Object.create(null);
+    for (var i = 0; i < array.length; ++i) {
+      var value = array[i];
+      if (value in valuesSoFar) {
+        return true;
+      }
+      valuesSoFar[value] = true;
+    }
+    return false;
+  };
   const onSubmit = (data) => {
+    const listQuestion = [];
+    for (const [key, value] of Object.entries(data)) {
+      if (key.indexOf("question") > -1) {
+        listQuestion.push(value);
+      }
+    }
+
     let validate = true;
     for (const property in data) {
       if (!data[property]) {
@@ -33,7 +61,9 @@ const SecurityQuestion = ({
         break;
       }
     }
-    if (validate) {
+    if (validate && hasDuplicates(listQuestion)) {
+      onShowPostMessage("Don’t choose the same question!");
+    } else if (validate && !hasDuplicates(listQuestion)) {
       const questionAnswer = {};
       const question = [];
       const answer = [];
@@ -46,7 +76,6 @@ const SecurityQuestion = ({
       }
       questionAnswer["question"] = question;
       questionAnswer["answer"] = answer;
-
       onClickedSubmitButton(questionAnswer, checkSubmitMessage);
     } else {
       onShowPostMessage("You must answer all security questions");
@@ -132,6 +161,7 @@ const SecurityQuestion = ({
                   id={`answer-${index}`}
                   variant="filled"
                   value={value}
+                  inputProps={{ maxLength: 20 }}
                   style={styles.answerInputStyle}
                   onChange={(event) => {
                     onChange(event);
@@ -195,6 +225,11 @@ const SecurityQuestion = ({
             gradient={false}
             style={styles.buttonStyle}
             onClick={onClickedSkipButton}
+            sx={{
+              ["@media (max-width: 992px)"]: {
+                marginBottom: "16px",
+              },
+            }}
           >
             Skip
           </StyledButton>

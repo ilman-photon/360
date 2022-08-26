@@ -89,7 +89,7 @@
     "receiveLinkToResetPasswordLabel": "Receive link to reset password",
     "postMessageOneTime": "One-time link is sent",
     "successLabel": "Success",
-    "backButtonLink": "Back to Log in"
+    "backButtonLink": "Back to Login"
   },
   "UpdatePasswordPage":{
     "title": "Update Password",
