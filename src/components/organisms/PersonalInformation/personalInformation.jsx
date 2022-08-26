@@ -18,12 +18,13 @@ import { stringAvatar } from "../../../utils/avatar";
 import StyledInput from "../../atoms/Input/input";
 import { StyledButton } from "../../atoms/Button/button";
 import { ImageUploader } from "../../molecules/ImageUploader/imageUploader";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { StyledSelect } from "../../atoms/Select/select";
 import { formatSocialSecurity } from "../../../utils/ssnFormatter";
 import { GENDER_LIST, TITLE_LIST } from "../../../utils/constantData";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import Image from "next/image";
+import FormMessage from "../../molecules/FormMessage/formMessage";
 
 export default function PersonalInformation({
   userData = {},
@@ -41,6 +42,33 @@ export default function PersonalInformation({
   const { handleSubmit, control, reset } = useForm({
     defaultValues: userData,
   });
+
+  const [formProfilePhotoState, setFormProfilePhotoState] = useState({
+    success: false,
+    title: null,
+    content: null,
+  });
+  const onFormProfilePhotoError = (payload) => {
+    setFormProfilePhotoState(payload);
+  };
+
+  const [formIssuedFrontState, setFormIssuedFrontState] = useState({
+    success: false,
+    title: null,
+    content: null,
+  });
+  const onFormIssuedFrontError = (payload) => {
+    setFormIssuedFrontState(payload);
+  };
+
+  const [formIssuedBackState, setFormIssuedBackState] = useState({
+    success: false,
+    title: null,
+    content: null,
+  });
+  const onFormIssuedBackError = (payload) => {
+    setFormIssuedBackState(payload);
+  };
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
   const tooltipContentDefault =
@@ -79,8 +107,13 @@ export default function PersonalInformation({
             variant="text"
             className={styles.editButton}
           >
-            <EditOutlinedIcon sx={{ width: 20, height: 20 }} />
-            <div type="link" style={{ marginLeft: 4, color: "#008294" }}>
+            <EditOutlinedIcon
+              sx={{ width: 20, height: 20, color: colors.link }}
+            />
+            <div
+              className={styles.actionText}
+              style={{ marginLeft: 4, color: "#008294" }}
+            >
               Edit
             </div>
           </Button>
@@ -186,6 +219,16 @@ export default function PersonalInformation({
         <form onSubmit={handleSubmit(onSubmit)}>
           <Stack spacing={3}>
             <div className={styles.labelForm}>Photo</div>
+            {formProfilePhotoState.content ? (
+              <FormMessage
+                success={formProfilePhotoState.success}
+                title={formProfilePhotoState.title}
+              >
+                {formProfilePhotoState.content}
+              </FormMessage>
+            ) : (
+              ""
+            )}
             <Controller
               name="profilePhoto"
               control={control}
@@ -199,6 +242,7 @@ export default function PersonalInformation({
                       username={userData.name}
                       source={userData.profilePhoto}
                       OnPhotoChange={onChange}
+                      OnInputError={onFormProfilePhotoError}
                     />
                   </>
                 );
@@ -373,8 +417,6 @@ export default function PersonalInformation({
               }}
             />
 
-            <Divider />
-
             <Typography variant="h3" sx={{ mb: 2, color: colors.black }}>
               State Issued ID
             </Typography>
@@ -391,12 +433,21 @@ export default function PersonalInformation({
                 >
                   Front Card
                 </Typography>
-
+                {formIssuedFrontState.content ? (
+                  <FormMessage
+                    success={formIssuedFrontState.success}
+                    title={formIssuedFrontState.title}
+                  >
+                    {formIssuedFrontState.content}
+                  </FormMessage>
+                ) : (
+                  ""
+                )}
                 <Controller
                   name="issuedCardFront"
                   control={control}
                   render={({
-                    field: { onChange, _value },
+                    field: { onChange, value },
                     fieldState: { _error },
                   }) => {
                     return (
@@ -404,7 +455,9 @@ export default function PersonalInformation({
                         <ImageUploader
                           helperText
                           OnUpload={onChange}
+                          OnInputError={onFormIssuedFrontError}
                           source={userData.issuedCardFront}
+                          preview={value}
                           label="Upload Front"
                           width="100%"
                           src="/login-bg.png"
@@ -422,11 +475,21 @@ export default function PersonalInformation({
                 >
                   Back Card
                 </Typography>
+                {formIssuedBackState.content ? (
+                  <FormMessage
+                    success={formIssuedBackState.success}
+                    title={formIssuedBackState.title}
+                  >
+                    {formIssuedBackState.content}
+                  </FormMessage>
+                ) : (
+                  ""
+                )}
                 <Controller
                   name="issuedCardBack"
                   control={control}
                   render={({
-                    field: { onChange, _value },
+                    field: { onChange, value },
                     fieldState: { _error },
                   }) => {
                     return (
@@ -434,7 +497,9 @@ export default function PersonalInformation({
                         <ImageUploader
                           helperText
                           OnUpload={onChange}
+                          OnInputError={onFormIssuedBackError}
                           source={userData.issuedCardBack}
+                          preview={value}
                           label="Upload Back"
                           width="100%"
                           alt=""

@@ -46,6 +46,7 @@ export const AutoCompleteInput = ({
     if (!open) {
       onInputEmpty();
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open]);
 
   return (

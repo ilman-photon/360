@@ -61,7 +61,11 @@ const ForgotPassword = ({
         sx={{ minWidth: 275, padding: "16px" }}
       >
         <CardContent style={styles.cardContentStyle}>
-          <HeadingTitle variant={constants.H2} title={t("title")} />
+          <HeadingTitle
+            variant={constants.H2}
+            title={t("title")}
+            sx={{ fontSize: "32px" }}
+          />
           {showPostMessage ? (
             <FormMessage success={false} sx={styles.postMessage}>
               {t("errorUsernameNotFound")}

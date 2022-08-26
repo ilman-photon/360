@@ -51,9 +51,9 @@ export const CustomPasswordInput = styled((props) => (
             edge="end"
           >
             {props.type !== "password" ? (
-              <VisibilityOffOutlinedIcon sx={{ transform: "scaleX(-1)" }} />
-            ) : (
               <VisibilityOutlinedIcon />
+            ) : (
+              <VisibilityOffOutlinedIcon sx={{ transform: "scaleX(-1)" }} />
             )}
           </IconButton>
         </InputAdornment>
@@ -218,10 +218,16 @@ export const CustomInput = styled(({ ...props }) => {
         <>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
+              disabled={props.disabled}
               disableFuture={props.disableFuture}
               label={props.label}
               onChange={props.onChange}
               value={props.value}
+              components={{
+                OpenPickerIcon: function () {
+                  return null;
+                },
+              }}
               renderInput={(params) => (
                 <RedditTextField
                   variant="filled"
@@ -229,20 +235,13 @@ export const CustomInput = styled(({ ...props }) => {
                     backgroundColor: "white",
                     borderRadius: "4px",
                     borderColor: "#B5B5B5",
-                    margin: !props.isFilter ? "8px" : 0,
-                    ["& .MuiFilledInput-root"]: {
-                      border: props.isFilter
-                        ? "0px solid #ffff"
-                        : "1px solid #e2e2e1",
-                    },
+                    margin: "8px",
                   }}
                   {...params}
-                  onClick={props.onClick}
-                  error={props.error}
+                  error={props.error || params.error}
                   helperText={props.helperText}
                 />
               )}
-              {...props}
             />
           </LocalizationProvider>
         </>

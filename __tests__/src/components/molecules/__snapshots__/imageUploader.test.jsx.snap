@@ -48,7 +48,7 @@ Object {
           tabindex="0"
           type="button"
         >
-          Change File
+          Change photo
           <span
             class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
           />
@@ -100,7 +100,7 @@ Object {
         tabindex="0"
         type="button"
       >
-        Change File
+        Change photo
         <span
           class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
         />

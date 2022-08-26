@@ -17,8 +17,8 @@ describe("ImageUploader Components", () => {
 
   it("ImageUploader render", async () => {
     expect(container).toMatchSnapshot();
-    await waitFor(() => container.getByText("Change File"));
-    expect(container.getByText("Change File")).toBeInTheDocument();
+    await waitFor(() => container.getByText("Change photo"));
+    expect(container.getByText("Change photo")).toBeInTheDocument();
 
     container.rerender(<ImageUploader source={""} OnUpload={mockCallBack}
       label="Upload Front"

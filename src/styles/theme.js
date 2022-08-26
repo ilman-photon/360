@@ -25,6 +25,7 @@ export const colors = {
   foundationGrey: "#6B7789",
   error: "#B93632",
   primaryButton: "#007e8f",
+  link: "#008294",
 };
 
 // declare module '@mui/material/styles' {

@@ -7,11 +7,11 @@ Object {
     <div>
       <section>
         <div
-          class="MuiBox-root css-1kexx3j"
+          class="MuiBox-root css-11hpkl2"
         >
           <svg
             aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-6q45yw-MuiSvgIcon-root"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-z30ms6-MuiSvgIcon-root"
             data-testid="CheckCircleOutlineIcon"
             focusable="false"
             viewBox="0 0 24 24"
@@ -37,7 +37,7 @@ Object {
             class="MuiBox-root css-8u5xrh"
           >
             <div
-              class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
+              class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1wf0srh-MuiPaper-root-MuiCard-root"
             >
               <div
                 class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
@@ -517,7 +517,7 @@ Object {
                                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
                                   >
                                     <div
-                                      class="MuiFormControl-root MuiTextField-root css-104anf4-MuiFormControl-root-MuiTextField-root"
+                                      class="MuiFormControl-root MuiTextField-root css-p3pjcm-MuiFormControl-root-MuiTextField-root"
                                     >
                                       <label
                                         class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
@@ -631,8 +631,48 @@ Object {
                         class="MuiGrid-root MuiGrid-container MuiGrid-spacing-md-2 css-1msbs0v-MuiGrid-root"
                       >
                         <div
-                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-5bavhz-MuiGrid-root"
                         >
+                          <div
+                            style="position: absolute; width: 100%; top: -25px;"
+                          >
+                            <div
+                              class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-bz4dnt-MuiCollapse-root"
+                              style="min-height: 0px;"
+                            >
+                              <div
+                                class="MuiCollapse-wrapper MuiCollapse-vertical css-smkl36-MuiCollapse-wrapper"
+                              >
+                                <div
+                                  class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
+                                >
+                                  <div
+                                    class="MuiBox-root css-8whbkc"
+                                  >
+                                    <svg
+                                      aria-hidden="true"
+                                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-6q45yw-MuiSvgIcon-root"
+                                      data-testid="BlockIcon"
+                                      focusable="false"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9C4.63 15.55 4 13.85 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1C19.37 8.45 20 10.15 20 12c0 4.42-3.58 8-8 8z"
+                                      />
+                                    </svg>
+                                    <div
+                                      data-testid="submission-message"
+                                      style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
+                                    >
+                                      <div
+                                        style="font-size: 14px;"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                           <div
                             class="css-1okj3ks-MuiStack-root"
                           >
@@ -677,8 +717,48 @@ Object {
                           </div>
                         </div>
                         <div
-                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
+                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1r8ycnl-MuiGrid-root"
                         >
+                          <div
+                            style="position: absolute; width: calc(100% - 16px); top: -25px;"
+                          >
+                            <div
+                              class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-bz4dnt-MuiCollapse-root"
+                              style="min-height: 0px;"
+                            >
+                              <div
+                                class="MuiCollapse-wrapper MuiCollapse-vertical css-smkl36-MuiCollapse-wrapper"
+                              >
+                                <div
+                                  class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
+                                >
+                                  <div
+                                    class="MuiBox-root css-8whbkc"
+                                  >
+                                    <svg
+                                      aria-hidden="true"
+                                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-6q45yw-MuiSvgIcon-root"
+                                      data-testid="BlockIcon"
+                                      focusable="false"
+                                      viewBox="0 0 24 24"
+                                    >
+                                      <path
+                                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9C4.63 15.55 4 13.85 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1C19.37 8.45 20 10.15 20 12c0 4.42-3.58 8-8 8z"
+                                      />
+                                    </svg>
+                                    <div
+                                      data-testid="submission-message"
+                                      style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
+                                    >
+                                      <div
+                                        style="font-size: 14px;"
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
                           <div
                             class="css-1okj3ks-MuiStack-root"
                           >
@@ -961,11 +1041,11 @@ Object {
   "container": <div>
     <section>
       <div
-        class="MuiBox-root css-1kexx3j"
+        class="MuiBox-root css-11hpkl2"
       >
         <svg
           aria-hidden="true"
-          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-6q45yw-MuiSvgIcon-root"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-z30ms6-MuiSvgIcon-root"
           data-testid="CheckCircleOutlineIcon"
           focusable="false"
           viewBox="0 0 24 24"
@@ -991,7 +1071,7 @@ Object {
           class="MuiBox-root css-8u5xrh"
         >
           <div
-            class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
+            class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1wf0srh-MuiPaper-root-MuiCard-root"
           >
             <div
               class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
@@ -1471,7 +1551,7 @@ Object {
                                   class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
                                 >
                                   <div
-                                    class="MuiFormControl-root MuiTextField-root css-104anf4-MuiFormControl-root-MuiTextField-root"
+                                    class="MuiFormControl-root MuiTextField-root css-p3pjcm-MuiFormControl-root-MuiTextField-root"
                                   >
                                     <label
                                       class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
@@ -1585,8 +1665,48 @@ Object {
                       class="MuiGrid-root MuiGrid-container MuiGrid-spacing-md-2 css-1msbs0v-MuiGrid-root"
                     >
                       <div
-                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
+                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-5bavhz-MuiGrid-root"
                       >
+                        <div
+                          style="position: absolute; width: 100%; top: -25px;"
+                        >
+                          <div
+                            class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-bz4dnt-MuiCollapse-root"
+                            style="min-height: 0px;"
+                          >
+                            <div
+                              class="MuiCollapse-wrapper MuiCollapse-vertical css-smkl36-MuiCollapse-wrapper"
+                            >
+                              <div
+                                class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
+                              >
+                                <div
+                                  class="MuiBox-root css-8whbkc"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-6q45yw-MuiSvgIcon-root"
+                                    data-testid="BlockIcon"
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9C4.63 15.55 4 13.85 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1C19.37 8.45 20 10.15 20 12c0 4.42-3.58 8-8 8z"
+                                    />
+                                  </svg>
+                                  <div
+                                    data-testid="submission-message"
+                                    style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
+                                  >
+                                    <div
+                                      style="font-size: 14px;"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         <div
                           class="css-1okj3ks-MuiStack-root"
                         >
@@ -1631,8 +1751,48 @@ Object {
                         </div>
                       </div>
                       <div
-                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
+                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1r8ycnl-MuiGrid-root"
                       >
+                        <div
+                          style="position: absolute; width: calc(100% - 16px); top: -25px;"
+                        >
+                          <div
+                            class="MuiCollapse-root MuiCollapse-vertical MuiCollapse-hidden css-bz4dnt-MuiCollapse-root"
+                            style="min-height: 0px;"
+                          >
+                            <div
+                              class="MuiCollapse-wrapper MuiCollapse-vertical css-smkl36-MuiCollapse-wrapper"
+                            >
+                              <div
+                                class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
+                              >
+                                <div
+                                  class="MuiBox-root css-8whbkc"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-6q45yw-MuiSvgIcon-root"
+                                    data-testid="BlockIcon"
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9C4.63 15.55 4 13.85 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1C19.37 8.45 20 10.15 20 12c0 4.42-3.58 8-8 8z"
+                                    />
+                                  </svg>
+                                  <div
+                                    data-testid="submission-message"
+                                    style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
+                                  >
+                                    <div
+                                      style="font-size: 14px;"
+                                    />
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                         <div
                           class="css-1okj3ks-MuiStack-root"
                         >

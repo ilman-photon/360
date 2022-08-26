@@ -58,7 +58,9 @@ export default function InsuranceView({
                   sx={{ background: "#FAFAFA" }}
                 >
                   <Stack spacing={1} direction="row" alignItems="center">
-                    <Typography variant="h4">{category}</Typography>
+                    <Typography variant="h3" sx={{ fontSize: "24px" }}>
+                      {category}
+                    </Typography>
                     <div className={styles.totalCategoryItemsWrapper}>
                       {items.length}
                     </div>
@@ -76,13 +78,13 @@ export default function InsuranceView({
                           <Grid container spacing={{ xs: 4 }}>
                             <Grid item xs={12} md={4}>
                               <LabelWithInfo label="Insurance Provider">
-                                {item.provider.label}
+                                {item.provider ? item.provider.label : "-"}
                               </LabelWithInfo>
                             </Grid>
 
                             <Grid item xs={12} md={4}>
                               <LabelWithInfo label="Plan Name">
-                                {item.plan.label}
+                                {item.plan ? item.plan.label : "-"}
                               </LabelWithInfo>
                             </Grid>
 
@@ -239,7 +241,12 @@ export default function InsuranceView({
                             >
                               <Stack direction="row" alignItems="center">
                                 <DeleteOutlineIcon
-                                  sx={{ width: 18, height: 18, mr: 1 }}
+                                  sx={{
+                                    width: 18,
+                                    height: 18,
+                                    mr: 1,
+                                    color: "#003B4A",
+                                  }}
                                 />
                                 <span style={{ fontSize: 14 }}>
                                   Remove Insurance
