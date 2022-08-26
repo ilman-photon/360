@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="MuiBox-root css-0"
+        class="container MuiBox-root css-0"
       >
         <div
           class="upcomingAppointments MuiBox-root css-0"
@@ -203,7 +203,6 @@ Object {
                     </svg>
                   </span>
                   Reschedule
-                   
                   <span
                     class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                   />
@@ -231,12 +230,159 @@ Object {
             </div>
           </div>
         </div>
+        <div
+          class="pastAppointment MuiBox-root css-0"
+        >
+          <h2
+            class="MuiTypography-root MuiTypography-h2 title css-1sra7t5-MuiTypography-root"
+          >
+            Past Appointments
+          </h2>
+          <div
+            class="MuiBox-root css-0"
+          >
+            <div
+              class="MuiBox-root css-0"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+              >
+                2022
+              </p>
+            </div>
+            <div
+              class="MuiBox-root css-0"
+            >
+              <div
+                class="MuiBox-root css-0"
+              >
+                <span
+                  style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                >
+                  <span
+                    style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                  >
+                    <img
+                      alt=""
+                      aria-hidden="true"
+                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2790%27%20height=%2790%27/%3e"
+                      style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                    />
+                  </span>
+                  <img
+                    alt="Doctor Image"
+                    class="profilePhoto"
+                    data-nimg="intrinsic"
+                    decoding="async"
+                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                    style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                  />
+                  <noscript />
+                </span>
+              </div>
+              <div
+                class="MuiBox-root css-0"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                >
+                  Tuesday, May 24 - 3:00PM PST
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                >
+                  Visit Purpose: 
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                >
+                  Routine
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-0"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                >
+                  Dr. Sonha Nguyen
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                >
+                  Patient: 
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                >
+                  Don John
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-0"
+              >
+                <div
+                  class="MuiBox-root css-0"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                  >
+                    Location
+                  </p>
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                  >
+                    Scripps Eyecare
+                  </p>
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                  >
+                    5755 Burke Centre Parkway
+                  </p>
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                  >
+                    (703) 250-9000
+                  </p>
+                </div>
+                <div
+                  class="MuiBox-root css-0"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                  >
+                    Insurance
+                  </p>
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                  >
+                    ECP Vision
+                  </p>
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                  >
+                    BlueCare Vision
+                  </p>
+                </div>
+              </div>
+              <div
+                class="MuiBox-root css-0"
+              >
+                <a
+                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
+                >
+                  View appointment details
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </body>,
   "container": <div>
     <div
-      class="MuiBox-root css-0"
+      class="container MuiBox-root css-0"
     >
       <div
         class="upcomingAppointments MuiBox-root css-0"
@@ -433,7 +579,6 @@ Object {
                   </svg>
                 </span>
                 Reschedule
-                 
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
@@ -458,6 +603,153 @@ Object {
             >
               Mary Jane Smith
             </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="pastAppointment MuiBox-root css-0"
+      >
+        <h2
+          class="MuiTypography-root MuiTypography-h2 title css-1sra7t5-MuiTypography-root"
+        >
+          Past Appointments
+        </h2>
+        <div
+          class="MuiBox-root css-0"
+        >
+          <div
+            class="MuiBox-root css-0"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+            >
+              2022
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-0"
+          >
+            <div
+              class="MuiBox-root css-0"
+            >
+              <span
+                style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+              >
+                <span
+                  style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                >
+                  <img
+                    alt=""
+                    aria-hidden="true"
+                    src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2790%27%20height=%2790%27/%3e"
+                    style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                  />
+                </span>
+                <img
+                  alt="Doctor Image"
+                  class="profilePhoto"
+                  data-nimg="intrinsic"
+                  decoding="async"
+                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                />
+                <noscript />
+              </span>
+            </div>
+            <div
+              class="MuiBox-root css-0"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+              >
+                Tuesday, May 24 - 3:00PM PST
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+              >
+                Visit Purpose: 
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+              >
+                Routine
+              </p>
+            </div>
+            <div
+              class="MuiBox-root css-0"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+              >
+                Dr. Sonha Nguyen
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+              >
+                Patient: 
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+              >
+                Don John
+              </p>
+            </div>
+            <div
+              class="MuiBox-root css-0"
+            >
+              <div
+                class="MuiBox-root css-0"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                >
+                  Location
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                >
+                  Scripps Eyecare
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                >
+                  5755 Burke Centre Parkway
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                >
+                  (703) 250-9000
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-0"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                >
+                  Insurance
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                >
+                  ECP Vision
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                >
+                  BlueCare Vision
+                </p>
+              </div>
+            </div>
+            <div
+              class="MuiBox-root css-0"
+            >
+              <a
+                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
+              >
+                View appointment details
+              </a>
+            </div>
           </div>
         </div>
       </div>

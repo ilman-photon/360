@@ -6,7 +6,7 @@ import AppointmentButton from "../../atoms/AppointmentButton/appointmentButton";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 
-export default function UpcomingAppointments() {
+export default function UpcomingAppointment() {
   return (
     <Box className={styles.upcomingAppointments}>
       <Stack spacing={3.5}>
@@ -38,7 +38,7 @@ export default function UpcomingAppointments() {
               Cancel
             </AppointmentButton>
             <AppointmentButton icon={<CalendarTodayIcon />}>
-              Reschedule{" "}
+              Reschedule
             </AppointmentButton>
           </Box>
         </Box>
