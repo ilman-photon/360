@@ -2,172 +2,94 @@ import Box from "@mui/material/Box";
 import React from "react";
 import Link from "@mui/material/Link";
 import { StyledButton } from "../../atoms/Button/button";
-export const WeekAvailability = () => {
+import styles from "./styles.module.scss";
+import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
+import { Divider } from "@mui/material";
+
+export const WeekAvailability = ({
+  scheduleData = {
+    monday: ["11:30am", "", "", ""],
+    tuesday: ["08:00am", "10:30am", "11:00am", "3 more"],
+    wednesday: ["08:30am", "10:30am", "11:30am", "5 more"],
+    thursday: ["09:30am", "11:00am", "", ""],
+    friday: ["09:30am", "", "", ""],
+    saturday: ["09:30am", "", "", ""],
+  },
+}) => {
+  function renderScheduleData() {
+    let renderUI = [];
+    for (const [key, value] of Object.entries(scheduleData)) {
+      for (let i = 0; i < value.length; i++) {
+        let gridArea = `${key}Schedule${i}`;
+        let isTypeMore = false;
+        if (value[i].indexOf("more") > -1) {
+          gridArea = `more${key}Schedule`;
+          isTypeMore = true;
+        }
+        renderUI.push(buttonSchedule(value[i], gridArea, isTypeMore));
+      }
+    }
+    return renderUI;
+  }
+
+  function buttonSchedule(label, gridArea, isTypeMore = false) {
+    if (label) {
+      return (
+        <Box sx={{ gridArea: gridArea, width: "90px" }}>
+          <StyledButton
+            theme={constants.PATIENT}
+            mode={constants.PRIMARY}
+            type="submit"
+            size={constants.SMALL}
+            gradient={false}
+            className={styles.scheduleBtn}
+          >
+            {label}
+            {isTypeMore && (
+              <KeyboardArrowDownOutlinedIcon sx={{ width: "18px" }} />
+            )}
+          </StyledButton>
+        </Box>
+      );
+    }
+    return (
+      <Box className={styles.dividerContainer}>
+        <Divider className={styles.divider} />
+      </Box>
+    );
+  }
+
   const constants = require("../../../utils/constants");
   return (
     <Box
       sx={{
         display: "grid",
-        width: 600,
+        width: 598,
         gridTemplateColumns: "repeat(6, 1fr)",
         gap: 1,
         justifyContent: "center",
         alignContent: "center",
-        p: 2,
-        m: 2,
         gridTemplateRows: "auto",
-        gridTemplateAreas: `"mondayScheduleOne tuesdayScheduleOne wenesdayScheduleOne thursdayScheduleOne fridayScheduleOne saturdayScheduleOne"
-        "mondayScheduleTwo tuesdayScheduleTwo wenesdayScheduleTwo thursdayScheduleTwo fridayScheduleTwo saturdayScheduleTwo"
-        "mondayScheduleThree tuesdayScheduleThree  wenesdayScheduleThree thursdayScheduleThree fridayScheduleThree saturdayScheduleThree"
-        "moremondaySchedule moretuesdaySchedule morewenesdaySchedule morethursdaySchedule morefridaySchedule moresaturdaySchedule"
-        "linkAvability linkAvability linkAvability linkAvability linkAvability linkAvability"`,
+        gridTemplateAreas: `"mondaySchedule0 tuesdaySchedule0 wednesdaySchedule0 thursdaySchedule0 fridaySchedule0 saturdaySchedule0"
+                            "mondaySchedule1 tuesdaySchedule1 wednesdaySchedule1 thursdaySchedule1 fridaySchedule1 saturdaySchedule1"
+                            "mondaySchedule2 tuesdaySchedule2 wednesdaySchedule2 thursdaySchedule2 fridaySchedule2 saturdaySchedule2"
+                            "moremondaySchedule moretuesdaySchedule morewednesdaySchedule morethursdaySchedule morefridaySchedule moresaturdaySchedule"
+                            "linkAvability linkAvability linkAvability linkAvability linkAvability linkAvability"`,
       }}
     >
-      <Box sx={{ gridArea: "tuesdayScheduleOne" }}>
-        <StyledButton
-          theme={constants.PATIENT}
-          mode={constants.PRIMARY}
-          type="submit"
-          size={constants.SMALL}
-          gradient={false}
-        >
-          13.25 Am
-        </StyledButton>
-      </Box>
-      <Box sx={{ gridArea: "wenesdayScheduleOne" }}>
-        <StyledButton
-          theme={constants.PATIENT}
-          mode={constants.PRIMARY}
-          type="submit"
-          size={constants.SMALL}
-          gradient={false}
-        >
-          13.25 Am
-        </StyledButton>
-      </Box>
-      <Box sx={{ gridArea: "fridayScheduleThree" }}>
-        <StyledButton
-          theme={constants.PATIENT}
-          mode={constants.PRIMARY}
-          type="submit"
-          size={constants.SMALL}
-          gradient={false}
-        >
-          13.25 Am
-        </StyledButton>
-      </Box>
-      <Box sx={{ gridArea: "fridayScheduleOne" }}>
-        <StyledButton
-          theme={constants.PATIENT}
-          mode={constants.PRIMARY}
-          type="submit"
-          size={constants.SMALL}
-          gradient={false}
-        >
-          13.25 Am
-        </StyledButton>
-      </Box>
-      <Box sx={{ gridArea: "saturdayScheduleOne" }}>
-        <StyledButton
-          theme={constants.PATIENT}
-          mode={constants.PRIMARY}
-          type="submit"
-          size={constants.SMALL}
-          gradient={false}
-        >
-          13.25 Am
-        </StyledButton>
-      </Box>
-
-      <Box sx={{ gridArea: "tuesdayScheduleTwo" }}>
-        <StyledButton
-          theme={constants.PATIENT}
-          mode={constants.PRIMARY}
-          type="submit"
-          size={constants.SMALL}
-          gradient={false}
-        >
-          13.25 Am
-        </StyledButton>
-      </Box>
-      <Box sx={{ gridArea: "wenesdayScheduleTwo" }}>
-        <StyledButton
-          theme={constants.PATIENT}
-          mode={constants.PRIMARY}
-          type="submit"
-          size={constants.SMALL}
-          gradient={false}
-        >
-          13.25 Am
-        </StyledButton>
-      </Box>
-      <Box sx={{ gridArea: "thursdayScheduleTwo" }}>
-        <StyledButton
-          theme={constants.PATIENT}
-          mode={constants.PRIMARY}
-          type="submit"
-          size={constants.SMALL}
-          gradient={false}
-        >
-          13.25 Am
-        </StyledButton>
-      </Box>
-
-      <Box sx={{ gridArea: "tuesdayScheduleThree" }}>
-        <StyledButton
-          theme={constants.PATIENT}
-          mode={constants.PRIMARY}
-          type="submit"
-          size={constants.SMALL}
-          gradient={false}
-        >
-          13.25 Am
-        </StyledButton>
-      </Box>
-      <Box sx={{ gridArea: "wenesdayScheduleThree" }}>
-        <StyledButton
-          theme={constants.PATIENT}
-          mode={constants.PRIMARY}
-          type="submit"
-          size={constants.SMALL}
-          gradient={false}
-        >
-          13.25 Am
-        </StyledButton>
-      </Box>
-
-      <Box sx={{ gridArea: "moretuesdaySchedule" }}>
-        <StyledButton
-          theme={constants.PATIENT}
-          mode={constants.PRIMARY}
-          type="submit"
-          size={constants.SMALL}
-          gradient={false}
-        >
-          13.25 Am
-        </StyledButton>
-      </Box>
-      <Box sx={{ gridArea: "morewenesdaySchedule" }}>
-        <StyledButton
-          theme={constants.PATIENT}
-          mode={constants.PRIMARY}
-          type="submit"
-          size={constants.SMALL}
-          gradient={false}
-        >
-          13.25 Am
-        </StyledButton>
-      </Box>
+      {renderScheduleData()}
       <Box
         sx={{
           gridArea: "linkAvability",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          p: 1,
+          p: 3,
         }}
       >
-        <Link href="#">View all Availability</Link>
+        <Link href="#" className={styles.linkAvailabelity}>
+          View all Availability
+        </Link>
       </Box>
     </Box>
   );

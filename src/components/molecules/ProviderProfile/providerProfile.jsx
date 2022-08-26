@@ -2,12 +2,14 @@ import Image from "next/image";
 import { Typography, Box, Link } from "@mui/material";
 import styles from "./styles.module.scss";
 import StyledRating from "../../atoms/Rating/styledRating";
+import { useEffect } from "react";
 
 export default function ProviderProfile({ variant, showPosition, phoneLink }) {
   const specialist = ["Opthometry", "Opthalmology", "Catarac", "Glaucoma"];
   const isAppointment = variant === "appointment";
   const isBio = variant === "bio";
   const isViewSchedule = variant === "viewschedule";
+
   const renderSpecialistList = () => {
     return (
       <Box>
@@ -32,6 +34,19 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
     );
   };
 
+  function getNameFontSize() {
+    let size;
+    if (isBio) {
+      size = "32px";
+    } else if (isViewSchedule) {
+      size = "16px";
+    } else {
+      size = "18px";
+    }
+
+    return size;
+  }
+
   return (
     <Box className={isBio ? styles.shortBio : styles.appointment}>
       <Box className={styles.displayFlex}>
@@ -47,7 +62,7 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
         <Box className={styles.bioContainer}>
           <Typography
             variant="h2"
-            fontSize={isBio ? "32px" : "18px"}
+            fontSize={getNameFontSize()}
             className={
               (isAppointment || isViewSchedule) && styles.doctorNameAppointment
             }
@@ -57,7 +72,11 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
           {showPosition && (
             <Typography variant="h3">Scripps Eyecare</Typography>
           )}
-          <Typography variant="body2" className={styles.address}>
+          <Typography
+            variant="body2"
+            className={styles.address}
+            fontSize={isViewSchedule ? "14px" : "16px"}
+          >
             {`51 West 51st Street, 
                         Floor 3, Suite 320
                         Midtown, New York, NY, 10019`}
@@ -76,7 +95,7 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
           </Box>
         </Box>
       </Box>
-      <Box>{(isBio || isViewSchedule) && renderSpecialistList()}</Box>
+      <Box>{isBio && renderSpecialistList()}</Box>
     </Box>
   );
 }

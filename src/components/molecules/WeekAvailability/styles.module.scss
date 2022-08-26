@@ -1,0 +1,46 @@
+.scheduleBtn {
+  width: 90px;
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 13px 0px;
+  background: #007e8f;
+  border-radius: 30px;
+  font-family: "Libre Franklin";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 18px;
+  margin-top: 8px;
+}
+
+.linkAvailabelity {
+  font-family: "Libre Franklin";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  /* identical to box height, or 129% */
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.0016em;
+  text-decoration-line: underline;
+
+  /* ECP/Controls/Button/Text */
+
+  color: #007e8f;
+}
+
+.divider {
+  width: 37px;
+}
+
+.dividerContainer {
+  margin-top: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
