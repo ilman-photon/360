@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GMaps GMaps render 1`] = `
+<GoogleMap
+  center={
+    Object {
+      "lat": 41.881832,
+      "lng": -87.623177,
+    }
+  }
+  mapContainerStyle={
+    Object {
+      "height": "100vh",
+      "width": "100vw",
+    }
+  }
+  onLoad={[Function]}
+  onUnmount={[Function]}
+  zoom={4}
+>
+  <Marker
+    onClick={[Function]}
+    position={
+      Object {
+        "lat": 41.881832,
+        "lng": -87.623177,
+      }
+    }
+  />
+  <Marker
+    onClick={[Function]}
+    position={
+      Object {
+        "lat": 39.739235,
+        "lng": -104.99025,
+      }
+    }
+  />
+  <Marker
+    onClick={[Function]}
+    position={
+      Object {
+        "lat": 34.052235,
+        "lng": -118.243683,
+      }
+    }
+  />
+  <Marker
+    onClick={[Function]}
+    position={
+      Object {
+        "lat": 40.712776,
+        "lng": -74.005974,
+      }
+    }
+  />
+</GoogleMap>
+`;

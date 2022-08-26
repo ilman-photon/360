@@ -1,10 +1,5 @@
 import React from "react";
-import {
-  GoogleMap,
-  useJsApiLoader,
-  Marker,
-  InfoWindowF,
-} from "@react-google-maps/api";
+import { GoogleMap, Marker, InfoWindowF } from "@react-google-maps/api";
 import { Typography } from "@mui/material";
 import { StyledButton } from "../../../atoms/Button/button";
 
@@ -41,7 +36,7 @@ const markers = [
   },
 ];
 
-const DummyComponent = ({ OnProviderClick = () => {} }) => {
+const DummyComponent = () => {
   return (
     <div>
       <Typography variant="h4">Ceritanya list provider</Typography>
@@ -56,13 +51,8 @@ const DummyComponent = ({ OnProviderClick = () => {} }) => {
   );
 };
 
-function MyComponent({ apiKey }) {
-  const { isLoaded } = useJsApiLoader({
-    id: "google-map-script",
-    googleMapsApiKey: apiKey,
-  });
-
-  const [map, setMap] = React.useState(null);
+function GMaps({ apiKey }) {
+  const [mapContext, setMapContext] = React.useState(null);
   const [activeMarker, setActiveMarker] = React.useState(null);
 
   const handleActiveMarker = (marker) => {
@@ -73,19 +63,16 @@ function MyComponent({ apiKey }) {
   };
 
   const onLoad = React.useCallback(function callback(map) {
-    // const bounds = new window.google.maps.LatLngBounds(center);
-    // map.fitBounds(bounds);
-    // setMap(map)
     const bounds = new google.maps.LatLngBounds();
     markers.forEach(({ position }) => bounds.extend(position));
     map.fitBounds(bounds);
   }, []);
 
   const onUnmount = React.useCallback(function callback(map) {
-    setMap(null);
+    setMapContext(null);
   }, []);
 
-  return isLoaded ? (
+  return (
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
@@ -94,7 +81,7 @@ function MyComponent({ apiKey }) {
       onUnmount={onUnmount}
     >
       {/* Child components, such as markers, info windows, etc. */}
-      {markers.map(({ id, name, position }) => (
+      {markers.map(({ id, position }) => (
         <Marker
           key={id}
           position={position}
@@ -105,15 +92,10 @@ function MyComponent({ apiKey }) {
               <DummyComponent />
             </InfoWindowF>
           ) : null}
-          {/* <InfoWindow onCloseClick={() => setActiveMarker(null)}>
-            <div>{name}</div>
-          </InfoWindow> */}
         </Marker>
       ))}
     </GoogleMap>
-  ) : (
-    <></>
   );
 }
 
-export default React.memo(MyComponent);
+export default React.memo(GMaps);
