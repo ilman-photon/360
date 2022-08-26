@@ -14,7 +14,7 @@ import { useForm, Controller } from "react-hook-form";
 import { StyledInput } from "../../atoms/Input/input";
 import { StyledButton } from "../../atoms/Button/button";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-
+import { colors } from "../../../styles/theme";
 import { startTransition, Suspense, useEffect } from "react";
 import { Regex } from "../../../utils/regex";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
@@ -110,8 +110,13 @@ export default function ContactInformation({
             variant="text"
             className={styles.editButton}
           >
-            <EditOutlinedIcon sx={{ width: 20, height: 20 }} />
-            <div type="link" style={{ marginLeft: 4, color: "#008294" }}>
+            <EditOutlinedIcon
+              sx={{ width: 20, height: 20, color: colors.link }}
+            />
+            <div
+              className={styles.actionText}
+              style={{ marginLeft: 4, color: "#008294" }}
+            >
               Edit
             </div>
           </Button>

@@ -218,6 +218,7 @@ export const CustomInput = styled(({ ...props }) => {
         <>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
+              disabled={props.disabled}
               disableFuture={props.disableFuture}
               label={props.label}
               onChange={props.onChange}
@@ -237,7 +238,7 @@ export const CustomInput = styled(({ ...props }) => {
                     margin: "8px",
                   }}
                   {...params}
-                  error={props.error}
+                  error={props.error || params.error}
                   helperText={props.helperText}
                 />
               )}
