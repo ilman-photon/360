@@ -25,11 +25,11 @@ Object {
               <div
                 class="css-1q36rmd-MuiStack-root"
               >
-                <h4
-                  class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
+                <h3
+                  class="MuiTypography-root MuiTypography-h3 css-1xxnx8a-MuiTypography-root"
                 >
                   Primary
-                </h4>
+                </h3>
                 <div
                   class="totalCategoryItemsWrapper"
                 >
@@ -470,7 +470,7 @@ Object {
                           class="css-1mf892b-MuiStack-root"
                         >
                           <button
-                            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-v79u1v-MuiButtonBase-root-MuiButton-root"
+                            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1rc47z3-MuiButtonBase-root-MuiButton-root"
                             tabindex="0"
                             type="button"
                           >
@@ -479,7 +479,7 @@ Object {
                             >
                               <svg
                                 aria-hidden="true"
-                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-wpnemu-MuiSvgIcon-root"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-bml1kk-MuiSvgIcon-root"
                                 data-testid="DeleteOutlineIcon"
                                 focusable="false"
                                 viewBox="0 0 24 24"
@@ -499,7 +499,7 @@ Object {
                             />
                           </button>
                           <button
-                            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1xx3bwd-MuiButtonBase-root-MuiButton-root"
+                            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-blagpg-MuiButtonBase-root-MuiButton-root"
                             tabindex="0"
                             type="submit"
                           >
@@ -541,11 +541,11 @@ Object {
             <div
               class="css-1q36rmd-MuiStack-root"
             >
-              <h4
-                class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
+              <h3
+                class="MuiTypography-root MuiTypography-h3 css-1xxnx8a-MuiTypography-root"
               >
                 Primary
-              </h4>
+              </h3>
               <div
                 class="totalCategoryItemsWrapper"
               >
@@ -986,7 +986,7 @@ Object {
                         class="css-1mf892b-MuiStack-root"
                       >
                         <button
-                          class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-v79u1v-MuiButtonBase-root-MuiButton-root"
+                          class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1rc47z3-MuiButtonBase-root-MuiButton-root"
                           tabindex="0"
                           type="button"
                         >
@@ -995,7 +995,7 @@ Object {
                           >
                             <svg
                               aria-hidden="true"
-                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-wpnemu-MuiSvgIcon-root"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-bml1kk-MuiSvgIcon-root"
                               data-testid="DeleteOutlineIcon"
                               focusable="false"
                               viewBox="0 0 24 24"
@@ -1015,7 +1015,7 @@ Object {
                           />
                         </button>
                         <button
-                          class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1xx3bwd-MuiButtonBase-root-MuiButton-root"
+                          class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-blagpg-MuiButtonBase-root-MuiButton-root"
                           tabindex="0"
                           type="submit"
                         >

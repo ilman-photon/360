@@ -51,9 +51,9 @@ export const CustomPasswordInput = styled((props) => (
             edge="end"
           >
             {props.type !== "password" ? (
-              <VisibilityOffOutlinedIcon sx={{ transform: "scaleX(-1)" }} />
-            ) : (
               <VisibilityOutlinedIcon />
+            ) : (
+              <VisibilityOffOutlinedIcon sx={{ transform: "scaleX(-1)" }} />
             )}
           </IconButton>
         </InputAdornment>
@@ -218,10 +218,16 @@ export const CustomInput = styled(({ ...props }) => {
         <>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
+              disabled={props.disabled}
               disableFuture={props.disableFuture}
               label={props.label}
               onChange={props.onChange}
               value={props.value}
+              components={{
+                OpenPickerIcon: function () {
+                  return null;
+                },
+              }}
               renderInput={(params) => (
                 <RedditTextField
                   variant="filled"
@@ -232,7 +238,7 @@ export const CustomInput = styled(({ ...props }) => {
                     margin: "8px",
                   }}
                   {...params}
-                  error={props.error}
+                  error={props.error || params.error}
                   helperText={props.helperText}
                 />
               )}

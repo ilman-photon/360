@@ -33,8 +33,9 @@ export const FormMessage = (
             sx={{
               color: "#fff",
               marginRight: "12.92px",
-              width: "22.15px",
-              height: "22.15px",
+              width: "18.33px",
+              height: "18.33px",
+              alignSelf: "center",
             }}
           />
         ) : (

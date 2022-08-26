@@ -21,8 +21,17 @@
 
 .customButtonSmall {
   min-width: 112px !important;
+  border-radius: 46px;
+}
+
+.customButtonFilter {
+  min-width: 52px;
+  height: 52px;
+  border-top-right-radius: 50px;
+  border-bottom-right-radius: 50px;
 }
 
 .customButtonLarge {
   min-width: 322px !important;
+  border-radius: 46px;
 }

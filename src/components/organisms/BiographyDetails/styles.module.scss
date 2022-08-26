@@ -1,0 +1,244 @@
+.detailedBio {
+  max-width: 942px;
+  margin-left: 12vw;
+  padding-bottom: 80px;
+  @media (max-width: 992px) {
+    width: 100vw;
+    margin-left: unset;
+  }
+}
+
+.detailedBio > div > h3 {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-size: 26px;
+  font-weight: 500;
+}
+
+.detailedBio > div p {
+  line-height: 28px;
+  letter-spacing: 0.0016em;
+  color: #000000;
+
+  @media (max-width: 992px) {
+    margin-top: 8px;
+    font-size: 14px;
+    line-height: 18px;
+  }
+}
+
+.menu {
+  margin-bottom: 4px;
+  padding-bottom: 20px;
+  position: relative;
+  z-index: 10;
+  background-color: white;
+  width: 100vw;
+  margin-left: -12vw;
+  padding-left: 12vw;
+
+  @media (max-width: 992px) {
+    margin-left: unset;
+    padding-left: unset;
+    max-width: unset;
+    width: 100vw;
+  }
+}
+
+.menu hr {
+  width: 942px;
+  @media (max-width: 992px) {
+    width: 100vw;
+  }
+}
+
+.stickyMenu {
+  margin-bottom: 24px;
+  position: fixed;
+  top: 59px;
+  width: 100vw;
+  left: 0px;
+  background: white;
+  padding-left: 12vw;
+  border-bottom: 2px solid #d4d4d4;
+  @media (max-width: 992px) {
+    top: 50px;
+    padding-left: unset;
+  }
+}
+
+.stickyMenuContainer {
+  display: flex;
+  align-items: flex-end;
+  text-align: center;
+  margin: 0;
+  height: 48px;
+  @media (max-width: 992px) {
+    gap: 44px;
+    justify-content: center;
+  }
+  @media (max-width: 360px) {
+    gap: 22px;
+    justify-content: center;
+  }
+}
+
+.stickyMenuContainer a {
+  padding: 0 22px;
+  margin: unset !important;
+  @media (max-width: 992px) {
+    padding: unset;
+  }
+}
+
+.stickyMenuContainer a.menuTextSelected {
+  padding: 0 22px;
+  margin: unset !important;
+  border-bottom: 2px solid #008294;
+  @extend .menuText;
+  @media (max-width: 992px) {
+    padding: unset;
+  }
+}
+
+.menuText {
+  font-family: "Libre Franklin", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.0016em;
+  margin: 16px 22px;
+  text-decoration: none;
+  cursor: pointer;
+  color: black;
+  @media (max-width: 992px) {
+    font-size: 12px;
+    margin: unset;
+  }
+}
+
+.menuContainer {
+  margin: 16px 0px;
+  @media (max-width: 992px) {
+    gap: 44px;
+    display: flex;
+    justify-content: center;
+  }
+  @media (max-width: 360px) {
+    gap: 22px;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+.insurancesContainer {
+  display: flex;
+  @media (max-width: 992px) {
+    margin-top: 8px !important;
+  }
+}
+
+.insurancestList {
+  column-count: 2;
+  list-style-type: none;
+  margin: unset;
+  padding-inline-start: 0;
+}
+
+.insurancestList > li > p {
+  line-height: 3.5;
+  width: 320px;
+  @media (max-width: 992px) {
+    line-height: normal;
+    margin: 8px 0;
+    font-size: 14px;
+    width: 160px;
+  }
+  @media (max-width: 360px) {
+    width: unset;
+  }
+}
+
+.newColumn {
+  break-before: column;
+}
+
+.mapContainer {
+  display: flex;
+  @media (max-width: 992px) {
+    margin-top: 8px !important;
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.map {
+  width: 471px;
+  height: 270px;
+  background-color: skyblue;
+  @media (max-width: 556px) {
+    width: 100%;
+    height: 128px;
+    margin-bottom: 8px;
+  }
+  @media (max-width: 992px) {
+    width: 100%;
+    height: 256px;
+    margin-bottom: 8px;
+  }
+}
+
+.mapAddressContainer {
+  margin-left: 24px;
+  @media (max-width: 992px) {
+    margin-left: unset;
+  }
+}
+
+.viewAllLink {
+  color: #008294;
+  cursor: pointer;
+}
+
+.getDirectionLinkContainer {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 8px;
+  @media (max-width: 992px) {
+    justify-content: center;
+  }
+}
+
+.getDirectionLink {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.0016em;
+  text-decoration-line: underline;
+  color: #008294;
+  cursor: pointer;
+  text-decoration-color: inherit;
+}
+
+.detailedBioContainer {
+  @media (max-width: 992px) {
+    margin: 0 16px;
+  }
+}
+
+.mapAddress {
+  width: 362px;
+  @media (max-width: 992px) {
+    width: auto;
+  }
+}
+
+.educationContainer {
+  @media (max-width: 992px) {
+    margin-top: 0px !important;
+  }
+}

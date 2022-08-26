@@ -1,0 +1,88 @@
+.upcomingAppointments {
+  width: 1026px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 24px;
+}
+
+.title {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 32px;
+  line-height: 44px;
+}
+
+.itemContainer {
+  border: 1px solid #dfdbdb;
+  display: flex;
+  align-items: center;
+  padding: 24px;
+  flex-direction: column;
+}
+
+.getDirectionLink {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 19px;
+}
+
+.getDirectionLinkText {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.0016em;
+  text-decoration-line: underline;
+  color: #008294;
+  cursor: pointer;
+  text-decoration-color: inherit;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 16px;
+  margin-top: 19px;
+}
+
+.calendarContainer h6 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.0016em;
+  color: #000000;
+}
+
+.date {
+  margin-bottom: 16px;
+}
+
+.purpose {
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+.patientTitle {
+  font-size: 26px;
+  line-height: 32px;
+  @extend .title;
+}
+
+.patientName {
+  margin-top: 24px;
+  margin-bottom: 10px;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.0016em;
+  color: #000000;
+}
+
+.patientContainer {
+  align-items: flex-start;
+  @extend .itemContainer;
+}

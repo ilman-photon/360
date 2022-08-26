@@ -18,11 +18,14 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import constants from "../../../utils/constants";
 import AccountDrawer from "../../molecules/AccountDrawer/accountDrawer";
+import SubNavigation from "../../molecules/SubNavigation/subNavigation";
 
 export default function BaseHeader({
   OnLogoutClicked = () => {
     // This is intended
   },
+  backTitle,
+  onBackClicked,
 }) {
   const { HOME_TEST_ID } = constants.TEST_ID;
   const pages = [
@@ -34,7 +37,7 @@ export default function BaseHeader({
   ];
   const [isUserLoged, setUserLoged] = React.useState(false);
   const router = useRouter();
-  const logo = "/logo.png";
+  const logo = "/eyecarelogo.png";
 
   React.useEffect(() => {
     const cookies = new Cookies();
@@ -58,129 +61,134 @@ export default function BaseHeader({
   };
 
   return (
-    <AppBar position="fixed" sx={{ backgroundColor: "white" }}>
-      <Container maxWidth="xl">
-        {isUserLoged ? (
-          <Toolbar disableGutters>
-            <Image
-              src={logo}
-              width="124px"
-              height="36px"
-              style={styles.logoStyled}
-              alt="Eyecare Provider name with logo"
-              aria-label={"Eyecare Provider name with logo"}
-            ></Image>
-            {/* Menu Desktop*/}
-            <Box sx={styles.boxStyled}>
-              {pages.map(({ page, testId }) => (
-                <Button
-                  key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={styles.bottonStyledDesktop}
-                  data-testid={testId}
-                >
-                  {page}
-                </Button>
-              ))}
-            </Box>
+    <>
+      <AppBar position="fixed" sx={{ backgroundColor: "white" }}>
+        <Container maxWidth="xl">
+          {isUserLoged ? (
+            <Toolbar disableGutters>
+              <Image
+                src={logo}
+                width="124px"
+                height="36px"
+                style={styles.logoStyled}
+                alt="Eyecare Provider name with logo"
+                aria-label={"Eyecare Provider name with logo"}
+              ></Image>
+              {/* Menu Desktop*/}
+              <Box sx={styles.boxStyled}>
+                {pages.map(({ page, testId }) => (
+                  <Button
+                    key={page}
+                    onClick={handleCloseNavMenu}
+                    sx={styles.bottonStyledDesktop}
+                    data-testid={testId}
+                  >
+                    {page}
+                  </Button>
+                ))}
+              </Box>
 
-            {/* Menu Mobile*/}
-            <Box sx={styles.boxStyledMobile}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                data-testid="user-menu-nav-open"
-                onClick={() => {
-                  setAnchorElNav(true);
-                }}
-              >
-                <MenuIcon />
-              </IconButton>
-            </Box>
-            <AccountDrawer
-              onClose={() => {
-                setAnchorElNav(false);
-              }}
-              opened={anchorElNav}
-              onLogoutClicked={() => {
-                OnLogoutClicked(router);
-              }}
-            />
-            {/* profile menu */}
-            <Box sx={styles.boxProfileMenuStyles}>
-              <Tooltip title="Open settings">
-                <Button
-                  variant="text"
-                  sx={styles.boxButtonStyles}
-                  startIcon={<Avatar />}
-                  data-testid="user-menu-open"
-                  endIcon={<ExpandMoreIcon />}
-                  onClick={handleOpenUserMenu}
+              {/* Menu Mobile*/}
+              <Box sx={styles.boxStyledMobile}>
+                <IconButton
+                  size="large"
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  data-testid="user-menu-nav-open"
+                  onClick={() => {
+                    setAnchorElNav(true);
+                  }}
                 >
-                  User Name
-                </Button>
-              </Tooltip>
-              <Menu
-                sx={styles.menuProfileMenu}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "left",
+                  <MenuIcon />
+                </IconButton>
+              </Box>
+              <AccountDrawer
+                onClose={() => {
+                  setAnchorElNav(false);
                 }}
-                keepMounted
-                open={Boolean(anchorElUser)}
-                data-testid="user-menu-close"
-                onClose={handleCloseUserMenu}
-              >
-                {
-                  <Stack spacing={2}>
-                    <MenuItem>
-                      <Button
-                        variant="text"
-                        sx={styles.buttonProfileMenu}
-                        data-testid={HOME_TEST_ID.account}
-                        onClick={() => {
-                          router.push("/patient/account/profile-info");
-                        }}
-                      >
-                        Account
-                      </Button>
-                    </MenuItem>
-                    <MenuItem onClick={handleCloseNavMenu}>
-                      <Button
-                        variant="text"
-                        sx={styles.buttonProfileMenu}
-                        data-testid={HOME_TEST_ID.logout}
-                        startIcon={<ExitToAppIcon />}
-                        onClick={() => {
-                          OnLogoutClicked(router);
-                        }}
-                      >
-                        Logout
-                      </Button>
-                    </MenuItem>
-                  </Stack>
-                }
-              </Menu>
-            </Box>
-          </Toolbar>
-        ) : (
-          <Toolbar disableGutters>
-            <Image
-              src={logo}
-              width="124px"
-              height="36px"
-              quality={100}
-              style={styles.logoStyled}
-              alt="Eyecare Provider name with logo"
-              aria-label={"Eyecare Provider name with logo"}
-            ></Image>
-          </Toolbar>
-        )}
-      </Container>
-    </AppBar>
+                opened={anchorElNav}
+                onLogoutClicked={() => {
+                  OnLogoutClicked(router);
+                }}
+              />
+              {/* profile menu */}
+              <Box sx={styles.boxProfileMenuStyles}>
+                <Tooltip title="Open settings">
+                  <Button
+                    variant="text"
+                    sx={styles.boxButtonStyles}
+                    startIcon={<Avatar />}
+                    data-testid="user-menu-open"
+                    endIcon={<ExpandMoreIcon />}
+                    onClick={handleOpenUserMenu}
+                  >
+                    User Name
+                  </Button>
+                </Tooltip>
+                <Menu
+                  sx={styles.menuProfileMenu}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
+                  }}
+                  keepMounted
+                  open={Boolean(anchorElUser)}
+                  data-testid="user-menu-close"
+                  onClose={handleCloseUserMenu}
+                >
+                  {
+                    <Stack spacing={2}>
+                      <MenuItem>
+                        <Button
+                          variant="text"
+                          sx={styles.buttonProfileMenu}
+                          data-testid={HOME_TEST_ID.account}
+                          onClick={() => {
+                            router.push("/patient/account/profile-info");
+                          }}
+                        >
+                          Account
+                        </Button>
+                      </MenuItem>
+                      <MenuItem onClick={handleCloseNavMenu}>
+                        <Button
+                          variant="text"
+                          sx={styles.buttonProfileMenu}
+                          data-testid={HOME_TEST_ID.logout}
+                          startIcon={<ExitToAppIcon />}
+                          onClick={() => {
+                            OnLogoutClicked(router);
+                          }}
+                        >
+                          Logout
+                        </Button>
+                      </MenuItem>
+                    </Stack>
+                  }
+                </Menu>
+              </Box>
+            </Toolbar>
+          ) : (
+            <Toolbar disableGutters>
+              <Image
+                src={logo}
+                width="124px"
+                height="36px"
+                quality={100}
+                style={styles.logoStyled}
+                alt="Eyecare Provider name with logo"
+                aria-label={"Eyecare Provider name with logo"}
+              ></Image>
+            </Toolbar>
+          )}
+        </Container>
+      </AppBar>
+      {backTitle && (
+        <SubNavigation onClick={onBackClicked} backTitle={backTitle} />
+      )}
+    </>
   );
 }
