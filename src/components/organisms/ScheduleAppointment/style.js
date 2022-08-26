@@ -86,8 +86,10 @@ export const styles = {
     justifySelf: "right",
   },
   editLink: {
-    marginleft: 4,
+    marginLeft: 4,
     color: "#008294",
     textDecorationLine: "underline",
+    textTransform: "capitalize",
+    fontSize: "18px",
   },
 };

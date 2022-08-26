@@ -65,7 +65,7 @@ Object {
                   />
                 </svg>
                 <div
-                  style="color: rgb(0, 130, 148); text-decoration-line: underline;"
+                  style="margin-left: 4px; color: rgb(0, 130, 148); text-decoration-line: underline; text-transform: capitalize; font-size: 18px;"
                   type="link"
                 >
                   Edit
@@ -119,7 +119,7 @@ Object {
                     class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
                     style="color: rgb(0, 59, 74); font-size: 18px; font-weight: 700;"
                   >
-                    myself
+                    Dr. Sonha Nguyen
                   </h4>
                   <span
                     aria-label="Myself"
@@ -211,7 +211,7 @@ Object {
                 />
               </svg>
               <div
-                style="color: rgb(0, 130, 148); text-decoration-line: underline;"
+                style="margin-left: 4px; color: rgb(0, 130, 148); text-decoration-line: underline; text-transform: capitalize; font-size: 18px;"
                 type="link"
               >
                 Edit
@@ -265,7 +265,7 @@ Object {
                   class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
                   style="color: rgb(0, 59, 74); font-size: 18px; font-weight: 700;"
                 >
-                  myself
+                  Dr. Sonha Nguyen
                 </h4>
                 <span
                   aria-label="Myself"

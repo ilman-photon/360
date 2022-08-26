@@ -8,7 +8,6 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { useTranslation } from "next-i18next";
-import { StyledButton } from "../../atoms/Button/button";
 import { styles } from "./style";
 
 import SomeoneElseForm from "./someoneElseForm";

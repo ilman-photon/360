@@ -50,7 +50,7 @@ Object {
                 />
               </svg>
               <div
-                style="color: rgb(0, 130, 148); text-decoration-line: underline;"
+                style="margin-left: 4px; color: rgb(0, 130, 148); text-decoration-line: underline; text-transform: capitalize; font-size: 18px;"
                 type="link"
               >
                 Edit
@@ -247,7 +247,7 @@ Object {
               />
             </svg>
             <div
-              style="color: rgb(0, 130, 148); text-decoration-line: underline;"
+              style="margin-left: 4px; color: rgb(0, 130, 148); text-decoration-line: underline; text-transform: capitalize; font-size: 18px;"
               type="link"
             >
               Edit

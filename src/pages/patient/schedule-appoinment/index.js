@@ -149,7 +149,7 @@ export default function ScheduleAppointmentPage() {
   return (
     <section style={{ paddingTop: "64px" }}>
       <BaseHeader />
-      {isDesktop ? <AccountTitleHeading title={headerText[1]} /> : ""}
+      {isDesktop ? <AccountTitleHeading title={headerText[activeStep]} /> : ""}
       <StepperAppoinment activeStep={activeStep} steps={steps} />
       {activeStep === 2 ? (
         <Grid

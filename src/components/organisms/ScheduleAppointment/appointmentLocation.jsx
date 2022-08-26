@@ -46,7 +46,7 @@ export default function AppointmentLocation() {
                 style={{ ...styles.detailText, ...styles.boldText }}
                 aria-label={"Myself"}
               >
-                {t("myself")}
+                Dr. Sonha Nguyen
               </Typography>
               <Typography
                 variant="regularBold"
