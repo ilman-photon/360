@@ -1,6 +1,7 @@
-import { act, render, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import Bio from "../../src/pages/patient/bio";
+import constants from "../../src/utils/constants";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-2518.feature",
@@ -89,6 +90,18 @@ defineFeature(feature, (test) => {
         container.getByLabelText(/Eyecare Provider name with logo/i)
       );
       expect(container).toMatchSnapshot();
+      fireEvent.click(
+        container.getByTestId(constants.TEST_ID.BIOGRAPHY_TEST_ID.about)
+      );
+      fireEvent.click(
+        container.getByTestId(constants.TEST_ID.BIOGRAPHY_TEST_ID.insurance)
+      );
+      fireEvent.click(
+        container.getByTestId(constants.TEST_ID.BIOGRAPHY_TEST_ID.location)
+      );
+      fireEvent.click(
+        container.getByTestId(constants.TEST_ID.BIOGRAPHY_TEST_ID.education)
+      );
     });
   });
 });

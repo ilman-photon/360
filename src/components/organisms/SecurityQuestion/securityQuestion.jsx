@@ -20,16 +20,6 @@ const SecurityQuestion = ({
     // This is intentional
   },
 }) => {
-  const handleChangeInput = (event) => {
-    const { value, maxLength } = event.target;
-    const message = value.slice(0, maxLength);
-
-    this.setState({
-      form: {
-        message,
-      },
-    });
-  };
   const [showPostMessage, setShowPostMessage] = useState(propsShowPostMessage);
   const [postMessage, setPostMessage] = React.useState(
     "You must answer all security questions"

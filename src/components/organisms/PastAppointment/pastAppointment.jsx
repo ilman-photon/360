@@ -1,10 +1,5 @@
-import { Box, Stack, Typography, Link } from "@mui/material";
-import ProviderProfile from "../../molecules/ProviderProfile/providerProfile";
-import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
+import { Box, Typography, Link } from "@mui/material";
 import styles from "./styles.module.scss";
-import AppointmentButton from "../../atoms/AppointmentButton/appointmentButton";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import Image from "next/image";
 
 export function PastAppointmentCard({

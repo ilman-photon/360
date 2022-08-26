@@ -397,21 +397,25 @@ Object {
                 >
                   <a
                     class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                    data-testid="biography-about"
                   >
                     About
                   </a>
                   <a
                     class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                    data-testid="biography-location"
                   >
                     Locations
                   </a>
                   <a
                     class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                    data-testid="biography-insurance"
                   >
                     Insurances
                   </a>
                   <a
                     class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                    data-testid="biography-education"
                   >
                     Education
                   </a>
@@ -568,6 +572,7 @@ Object {
                          
                         <a
                           class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways viewAllLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                          data-testid="biography-view-all-insurance"
                         >
                           View All
                         </a>
@@ -1012,21 +1017,25 @@ Object {
               >
                 <a
                   class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                  data-testid="biography-about"
                 >
                   About
                 </a>
                 <a
                   class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                  data-testid="biography-location"
                 >
                   Locations
                 </a>
                 <a
                   class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                  data-testid="biography-insurance"
                 >
                   Insurances
                 </a>
                 <a
                   class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                  data-testid="biography-education"
                 >
                   Education
                 </a>
@@ -1183,6 +1192,7 @@ Object {
                        
                       <a
                         class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways viewAllLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                        data-testid="biography-view-all-insurance"
                       >
                         View All
                       </a>

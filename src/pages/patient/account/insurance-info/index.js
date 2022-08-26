@@ -28,7 +28,6 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import AccountCard from "../../../../components/molecules/AccountCard/accountCard";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import AddIcon from "@mui/icons-material/Add";
 import { StyledButton } from "../../../../components/atoms/Button/button";
 import styles from "./styles.module.scss";
