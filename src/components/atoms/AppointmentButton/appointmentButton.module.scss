@@ -1,26 +1,26 @@
 .appointmentButton {
   flex-direction: row;
-  justify-content: center;
-  padding: 0px 20px;
+  justify-content: center !important;
+  padding: 0px 20px !important;
   gap: 4px;
   height: 40px;
   background: #ffffff;
-  border: 1px solid #003b4a;
-  border-radius: 4px;
-  text-transform: capitalize;
-  font-family: "Libre Franklin";
+  border: 1px solid #003b4a !important;
+  border-radius: 4px !important;
+  text-transform: capitalize !important;
+  font-family: "Libre Franklin", sans-serif !important;
   font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 18px;
-  align-items: center;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  line-height: 18px !important;
+  align-items: center !important;
   letter-spacing: 0.0016em;
-  color: #008294;
+  color: #008294 !important;
 }
 
 .appointmentButton:hover {
   background: #ffffff;
-  border: 1px solid #003b4a;
+  border: 1px solid #003b4a !important;
 }
 
 .appointmentButton > span {

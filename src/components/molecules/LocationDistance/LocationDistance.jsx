@@ -1,19 +1,19 @@
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import React from "react";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
-import DirectionsIcon from "@mui/icons-material/Directions";
+import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
+import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
+import { colors } from "../../../styles/theme";
+import styles from "./styles.module.scss";
+
 export const LocationDistance = () => {
   return (
     <Box
       sx={{
         display: "grid",
         gridTemplateColumns: "repeat(2, 1fr)",
-        gap: 1,
         justifyContent: "center",
         alignContent: "center",
-        p: 1,
-        m: 1,
         gridTemplateRows: "auto",
         gridTemplateAreas: `"distanceDoctor"
         "directoryMap"`,
@@ -27,12 +27,13 @@ export const LocationDistance = () => {
           gridArea: "distanceDoctor",
         }}
       >
-        <LocationOnIcon sx={{ width: 30, height: 30, m: 1 }} />
+        <LocationOnOutlinedIcon sx={{ width: 16, color: colors.darkGreen }} />
         <Typography
           sx={{ display: "block" }}
           component="span"
           variant="body2"
           color="text.primary"
+          className={styles.distanceLabel}
         >
           10 ml
         </Typography>
@@ -45,9 +46,12 @@ export const LocationDistance = () => {
           m: 1,
           justifyContent: "center",
           alignItems: "center",
+          marginTop: "40px",
         }}
       >
-        <DirectionsIcon sx={{ width: 50, height: 50 }} />
+        <DirectionsOutlinedIcon
+          sx={{ width: 18, height: 18, color: colors.darkGreen }}
+        />
       </Box>
     </Box>
   );

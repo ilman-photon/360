@@ -1,21 +1,32 @@
-import Grid from "@mui/material/Grid";
 import React from "react";
 import { WeekAvailability } from "../../../components/molecules/WeekAvailability/WeekAvailability";
 import { LocationDistance } from "../../../components/molecules/LocationDistance/LocationDistance";
 import ProviderProfile from "../../molecules/ProviderProfile/providerProfile";
+import styles from "./styles.module.scss";
+import { Box } from "@mui/system";
 
 export default function ItemResult() {
   return (
-    <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-      <Grid item xs={5}>
+    <Box
+      sx={{
+        marginTop: "16px",
+        display: "grid",
+        gap: "6px",
+        gridTemplateColumns: "388px 100px 598px",
+        gridTemplateRows: "auto",
+        gridTemplateAreas: `"providerProvile locationDistance weekAvailability"`,
+      }}
+      className={styles.itemContainer}
+    >
+      <Box sx={{ gridArea: "providerProvile" }}>
         <ProviderProfile variant={"viewschedule"} />
-      </Grid>
-      <Grid item xs={2}>
+      </Box>
+      <Box sx={{ gridArea: "locationDistance" }}>
         <LocationDistance />
-      </Grid>
-      <Grid item xs={5}>
+      </Box>
+      <Box sx={{ gridArea: "weekAvailability" }}>
         <WeekAvailability />
-      </Grid>
-    </Grid>
+      </Box>
+    </Box>
   );
 }

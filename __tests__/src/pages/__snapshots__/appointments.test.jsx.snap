@@ -103,7 +103,7 @@ Object {
                     class="bioContainer MuiBox-root css-0"
                   >
                     <h2
-                      class="MuiTypography-root MuiTypography-h2 css-1i5ehwd-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-1i5ehwd-MuiTypography-root"
                     >
                       Paul Wagner, MD
                     </h2>
@@ -113,7 +113,7 @@ Object {
                       Scripps Eyecare
                     </h3>
                     <p
-                      class="MuiTypography-root MuiTypography-body2 address css-e784if-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
                     >
                       51 West 51st Street, 
                         Floor 3, Suite 320
@@ -239,22 +239,22 @@ Object {
             Past Appointments
           </h2>
           <div
-            class="MuiBox-root css-0"
+            class="pastAppointmentsContainer MuiBox-root css-0"
           >
             <div
-              class="MuiBox-root css-0"
+              class="years MuiBox-root css-0"
             >
-              <p
-                class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+              <span
+                class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
               >
                 2022
-              </p>
+              </span>
             </div>
             <div
-              class="MuiBox-root css-0"
+              class="pastAppointmentDetail MuiBox-root css-0"
             >
               <div
-                class="MuiBox-root css-0"
+                class="imageContainer MuiBox-root css-0"
               >
                 <span
                   style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
@@ -265,7 +265,7 @@ Object {
                     <img
                       alt=""
                       aria-hidden="true"
-                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2790%27%20height=%2790%27/%3e"
+                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27100%27%20height=%27100%27/%3e"
                       style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
                     />
                   </span>
@@ -281,95 +281,395 @@ Object {
                 </span>
               </div>
               <div
-                class="MuiBox-root css-0"
+                class="dateContainer MuiBox-root css-0"
               >
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                <h6
+                  class="MuiTypography-root MuiTypography-subtitle1 date css-10wpov9-MuiTypography-root"
                 >
                   Tuesday, May 24 - 3:00PM PST
-                </p>
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                </h6>
+                <div
+                  class="subTitleWrapper MuiBox-root css-0"
                 >
-                  Visit Purpose: 
-                </p>
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
-                >
-                  Routine
-                </p>
+                  <h6
+                    class="MuiTypography-root MuiTypography-subtitle1 css-10wpov9-MuiTypography-root"
+                  >
+                    Visit Purpose: 
+                  </h6>
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  >
+                    Routine
+                  </p>
+                </div>
               </div>
               <div
-                class="MuiBox-root css-0"
+                class="nameContainer MuiBox-root css-0"
               >
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                <h6
+                  class="MuiTypography-root MuiTypography-subtitle1 doctorName css-10wpov9-MuiTypography-root"
                 >
                   Dr. Sonha Nguyen
-                </p>
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                </h6>
+                <div
+                  class="subTitleWrapper MuiBox-root css-0"
                 >
-                  Patient: 
-                </p>
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
-                >
-                  Don John
-                </p>
+                  <h6
+                    class="MuiTypography-root MuiTypography-subtitle1 css-10wpov9-MuiTypography-root"
+                  >
+                    Patient: 
+                  </h6>
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  >
+                    Don John
+                  </p>
+                </div>
               </div>
               <div
-                class="MuiBox-root css-0"
+                class="locationContainer MuiBox-root css-0"
               >
                 <div
-                  class="MuiBox-root css-0"
+                  class="locationWrapper MuiBox-root css-0"
                 >
-                  <p
-                    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                  <h6
+                    class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-ati914-MuiTypography-root"
                   >
                     Location
-                  </p>
+                  </h6>
                   <p
-                    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                    class="MuiTypography-root MuiTypography-body1 bodyTitle css-ahj2mt-MuiTypography-root"
                   >
                     Scripps Eyecare
                   </p>
                   <p
-                    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                    class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
                   >
                     5755 Burke Centre Parkway
                   </p>
-                  <p
-                    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                  <a
+                    class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
                   >
                     (703) 250-9000
-                  </p>
+                  </a>
                 </div>
                 <div
-                  class="MuiBox-root css-0"
+                  class="insuranceWrapper MuiBox-root css-0"
                 >
-                  <p
-                    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                  <h6
+                    class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-ati914-MuiTypography-root"
                   >
                     Insurance
-                  </p>
+                  </h6>
                   <p
-                    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                    class="MuiTypography-root MuiTypography-body1 bodyTitle css-ahj2mt-MuiTypography-root"
                   >
                     ECP Vision
                   </p>
                   <p
-                    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                    class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
                   >
                     BlueCare Vision
                   </p>
                 </div>
               </div>
               <div
-                class="MuiBox-root css-0"
+                class="viewDetails MuiBox-root css-0"
               >
                 <a
-                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
+                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                >
+                  View appointment details
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="pastAppointmentsContainer MuiBox-root css-0"
+          >
+            <div
+              class="years MuiBox-root css-0"
+            >
+              <span
+                class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
+              >
+                2022
+              </span>
+            </div>
+            <div
+              class="pastAppointmentDetail MuiBox-root css-0"
+            >
+              <div
+                class="imageContainer MuiBox-root css-0"
+              >
+                <span
+                  style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                >
+                  <span
+                    style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                  >
+                    <img
+                      alt=""
+                      aria-hidden="true"
+                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27100%27%20height=%27100%27/%3e"
+                      style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                    />
+                  </span>
+                  <img
+                    alt="Doctor Image"
+                    class="profilePhoto"
+                    data-nimg="intrinsic"
+                    decoding="async"
+                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                    style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                  />
+                  <noscript />
+                </span>
+              </div>
+              <div
+                class="dateContainer MuiBox-root css-0"
+              >
+                <h6
+                  class="MuiTypography-root MuiTypography-subtitle1 date css-10wpov9-MuiTypography-root"
+                >
+                  Tuesday, May 24 - 3:00PM PST
+                </h6>
+                <div
+                  class="subTitleWrapper MuiBox-root css-0"
+                >
+                  <h6
+                    class="MuiTypography-root MuiTypography-subtitle1 css-10wpov9-MuiTypography-root"
+                  >
+                    Visit Purpose: 
+                  </h6>
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  >
+                    Routine
+                  </p>
+                </div>
+              </div>
+              <div
+                class="nameContainer MuiBox-root css-0"
+              >
+                <h6
+                  class="MuiTypography-root MuiTypography-subtitle1 doctorName css-10wpov9-MuiTypography-root"
+                >
+                  Dr. Sonha Nguyen
+                </h6>
+                <div
+                  class="subTitleWrapper MuiBox-root css-0"
+                >
+                  <h6
+                    class="MuiTypography-root MuiTypography-subtitle1 css-10wpov9-MuiTypography-root"
+                  >
+                    Patient: 
+                  </h6>
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  >
+                    Don John
+                  </p>
+                </div>
+              </div>
+              <div
+                class="locationContainer MuiBox-root css-0"
+              >
+                <div
+                  class="locationWrapper MuiBox-root css-0"
+                >
+                  <h6
+                    class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-ati914-MuiTypography-root"
+                  >
+                    Location
+                  </h6>
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 bodyTitle css-ahj2mt-MuiTypography-root"
+                  >
+                    Scripps Eyecare
+                  </p>
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  >
+                    5755 Burke Centre Parkway
+                  </p>
+                  <a
+                    class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                  >
+                    (703) 250-9000
+                  </a>
+                </div>
+                <div
+                  class="insuranceWrapper MuiBox-root css-0"
+                >
+                  <h6
+                    class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-ati914-MuiTypography-root"
+                  >
+                    Insurance
+                  </h6>
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 bodyTitle css-ahj2mt-MuiTypography-root"
+                  >
+                    ECP Vision
+                  </p>
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  >
+                    BlueCare Vision
+                  </p>
+                </div>
+              </div>
+              <div
+                class="viewDetails MuiBox-root css-0"
+              >
+                <a
+                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                >
+                  View appointment details
+                </a>
+              </div>
+            </div>
+          </div>
+          <div
+            class="pastAppointmentsContainer MuiBox-root css-0"
+          >
+            <div
+              class="years MuiBox-root css-0"
+            >
+              <span
+                class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
+              >
+                2022
+              </span>
+            </div>
+            <div
+              class="pastAppointmentDetail MuiBox-root css-0"
+            >
+              <div
+                class="imageContainer MuiBox-root css-0"
+              >
+                <span
+                  style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                >
+                  <span
+                    style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                  >
+                    <img
+                      alt=""
+                      aria-hidden="true"
+                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27100%27%20height=%27100%27/%3e"
+                      style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                    />
+                  </span>
+                  <img
+                    alt="Doctor Image"
+                    class="profilePhoto"
+                    data-nimg="intrinsic"
+                    decoding="async"
+                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                    style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                  />
+                  <noscript />
+                </span>
+              </div>
+              <div
+                class="dateContainer MuiBox-root css-0"
+              >
+                <h6
+                  class="MuiTypography-root MuiTypography-subtitle1 date css-10wpov9-MuiTypography-root"
+                >
+                  Tuesday, May 24 - 3:00PM PST
+                </h6>
+                <div
+                  class="subTitleWrapper MuiBox-root css-0"
+                >
+                  <h6
+                    class="MuiTypography-root MuiTypography-subtitle1 css-10wpov9-MuiTypography-root"
+                  >
+                    Visit Purpose: 
+                  </h6>
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  >
+                    Routine
+                  </p>
+                </div>
+              </div>
+              <div
+                class="nameContainer MuiBox-root css-0"
+              >
+                <h6
+                  class="MuiTypography-root MuiTypography-subtitle1 doctorName css-10wpov9-MuiTypography-root"
+                >
+                  Dr. Sonha Nguyen
+                </h6>
+                <div
+                  class="subTitleWrapper MuiBox-root css-0"
+                >
+                  <h6
+                    class="MuiTypography-root MuiTypography-subtitle1 css-10wpov9-MuiTypography-root"
+                  >
+                    Patient: 
+                  </h6>
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  >
+                    Don John
+                  </p>
+                </div>
+              </div>
+              <div
+                class="locationContainer MuiBox-root css-0"
+              >
+                <div
+                  class="locationWrapper MuiBox-root css-0"
+                >
+                  <h6
+                    class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-ati914-MuiTypography-root"
+                  >
+                    Location
+                  </h6>
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 bodyTitle css-ahj2mt-MuiTypography-root"
+                  >
+                    Scripps Eyecare
+                  </p>
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  >
+                    5755 Burke Centre Parkway
+                  </p>
+                  <a
+                    class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                  >
+                    (703) 250-9000
+                  </a>
+                </div>
+                <div
+                  class="insuranceWrapper MuiBox-root css-0"
+                >
+                  <h6
+                    class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-ati914-MuiTypography-root"
+                  >
+                    Insurance
+                  </h6>
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 bodyTitle css-ahj2mt-MuiTypography-root"
+                  >
+                    ECP Vision
+                  </p>
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                  >
+                    BlueCare Vision
+                  </p>
+                </div>
+              </div>
+              <div
+                class="viewDetails MuiBox-root css-0"
+              >
+                <a
+                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
                 >
                   View appointment details
                 </a>
@@ -479,7 +779,7 @@ Object {
                   class="bioContainer MuiBox-root css-0"
                 >
                   <h2
-                    class="MuiTypography-root MuiTypography-h2 css-1i5ehwd-MuiTypography-root"
+                    class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-1i5ehwd-MuiTypography-root"
                   >
                     Paul Wagner, MD
                   </h2>
@@ -489,7 +789,7 @@ Object {
                     Scripps Eyecare
                   </h3>
                   <p
-                    class="MuiTypography-root MuiTypography-body2 address css-e784if-MuiTypography-root"
+                    class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
                   >
                     51 West 51st Street, 
                         Floor 3, Suite 320
@@ -615,22 +915,22 @@ Object {
           Past Appointments
         </h2>
         <div
-          class="MuiBox-root css-0"
+          class="pastAppointmentsContainer MuiBox-root css-0"
         >
           <div
-            class="MuiBox-root css-0"
+            class="years MuiBox-root css-0"
           >
-            <p
-              class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+            <span
+              class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
             >
               2022
-            </p>
+            </span>
           </div>
           <div
-            class="MuiBox-root css-0"
+            class="pastAppointmentDetail MuiBox-root css-0"
           >
             <div
-              class="MuiBox-root css-0"
+              class="imageContainer MuiBox-root css-0"
             >
               <span
                 style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
@@ -641,7 +941,7 @@ Object {
                   <img
                     alt=""
                     aria-hidden="true"
-                    src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2790%27%20height=%2790%27/%3e"
+                    src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27100%27%20height=%27100%27/%3e"
                     style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
                   />
                 </span>
@@ -657,95 +957,395 @@ Object {
               </span>
             </div>
             <div
-              class="MuiBox-root css-0"
+              class="dateContainer MuiBox-root css-0"
             >
-              <p
-                class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+              <h6
+                class="MuiTypography-root MuiTypography-subtitle1 date css-10wpov9-MuiTypography-root"
               >
                 Tuesday, May 24 - 3:00PM PST
-              </p>
-              <p
-                class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+              </h6>
+              <div
+                class="subTitleWrapper MuiBox-root css-0"
               >
-                Visit Purpose: 
-              </p>
-              <p
-                class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
-              >
-                Routine
-              </p>
+                <h6
+                  class="MuiTypography-root MuiTypography-subtitle1 css-10wpov9-MuiTypography-root"
+                >
+                  Visit Purpose: 
+                </h6>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                >
+                  Routine
+                </p>
+              </div>
             </div>
             <div
-              class="MuiBox-root css-0"
+              class="nameContainer MuiBox-root css-0"
             >
-              <p
-                class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+              <h6
+                class="MuiTypography-root MuiTypography-subtitle1 doctorName css-10wpov9-MuiTypography-root"
               >
                 Dr. Sonha Nguyen
-              </p>
-              <p
-                class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+              </h6>
+              <div
+                class="subTitleWrapper MuiBox-root css-0"
               >
-                Patient: 
-              </p>
-              <p
-                class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
-              >
-                Don John
-              </p>
+                <h6
+                  class="MuiTypography-root MuiTypography-subtitle1 css-10wpov9-MuiTypography-root"
+                >
+                  Patient: 
+                </h6>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                >
+                  Don John
+                </p>
+              </div>
             </div>
             <div
-              class="MuiBox-root css-0"
+              class="locationContainer MuiBox-root css-0"
             >
               <div
-                class="MuiBox-root css-0"
+                class="locationWrapper MuiBox-root css-0"
               >
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                <h6
+                  class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-ati914-MuiTypography-root"
                 >
                   Location
-                </p>
+                </h6>
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 bodyTitle css-ahj2mt-MuiTypography-root"
                 >
                   Scripps Eyecare
                 </p>
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
                 >
                   5755 Burke Centre Parkway
                 </p>
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                <a
+                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
                 >
                   (703) 250-9000
-                </p>
+                </a>
               </div>
               <div
-                class="MuiBox-root css-0"
+                class="insuranceWrapper MuiBox-root css-0"
               >
-                <p
-                  class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                <h6
+                  class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-ati914-MuiTypography-root"
                 >
                   Insurance
-                </p>
+                </h6>
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 bodyTitle css-ahj2mt-MuiTypography-root"
                 >
                   ECP Vision
                 </p>
                 <p
-                  class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
                 >
                   BlueCare Vision
                 </p>
               </div>
             </div>
             <div
-              class="MuiBox-root css-0"
+              class="viewDetails MuiBox-root css-0"
             >
               <a
-                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
+                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+              >
+                View appointment details
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pastAppointmentsContainer MuiBox-root css-0"
+        >
+          <div
+            class="years MuiBox-root css-0"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
+            >
+              2022
+            </span>
+          </div>
+          <div
+            class="pastAppointmentDetail MuiBox-root css-0"
+          >
+            <div
+              class="imageContainer MuiBox-root css-0"
+            >
+              <span
+                style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+              >
+                <span
+                  style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                >
+                  <img
+                    alt=""
+                    aria-hidden="true"
+                    src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27100%27%20height=%27100%27/%3e"
+                    style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                  />
+                </span>
+                <img
+                  alt="Doctor Image"
+                  class="profilePhoto"
+                  data-nimg="intrinsic"
+                  decoding="async"
+                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                />
+                <noscript />
+              </span>
+            </div>
+            <div
+              class="dateContainer MuiBox-root css-0"
+            >
+              <h6
+                class="MuiTypography-root MuiTypography-subtitle1 date css-10wpov9-MuiTypography-root"
+              >
+                Tuesday, May 24 - 3:00PM PST
+              </h6>
+              <div
+                class="subTitleWrapper MuiBox-root css-0"
+              >
+                <h6
+                  class="MuiTypography-root MuiTypography-subtitle1 css-10wpov9-MuiTypography-root"
+                >
+                  Visit Purpose: 
+                </h6>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                >
+                  Routine
+                </p>
+              </div>
+            </div>
+            <div
+              class="nameContainer MuiBox-root css-0"
+            >
+              <h6
+                class="MuiTypography-root MuiTypography-subtitle1 doctorName css-10wpov9-MuiTypography-root"
+              >
+                Dr. Sonha Nguyen
+              </h6>
+              <div
+                class="subTitleWrapper MuiBox-root css-0"
+              >
+                <h6
+                  class="MuiTypography-root MuiTypography-subtitle1 css-10wpov9-MuiTypography-root"
+                >
+                  Patient: 
+                </h6>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                >
+                  Don John
+                </p>
+              </div>
+            </div>
+            <div
+              class="locationContainer MuiBox-root css-0"
+            >
+              <div
+                class="locationWrapper MuiBox-root css-0"
+              >
+                <h6
+                  class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-ati914-MuiTypography-root"
+                >
+                  Location
+                </h6>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 bodyTitle css-ahj2mt-MuiTypography-root"
+                >
+                  Scripps Eyecare
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                >
+                  5755 Burke Centre Parkway
+                </p>
+                <a
+                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                >
+                  (703) 250-9000
+                </a>
+              </div>
+              <div
+                class="insuranceWrapper MuiBox-root css-0"
+              >
+                <h6
+                  class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-ati914-MuiTypography-root"
+                >
+                  Insurance
+                </h6>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 bodyTitle css-ahj2mt-MuiTypography-root"
+                >
+                  ECP Vision
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                >
+                  BlueCare Vision
+                </p>
+              </div>
+            </div>
+            <div
+              class="viewDetails MuiBox-root css-0"
+            >
+              <a
+                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+              >
+                View appointment details
+              </a>
+            </div>
+          </div>
+        </div>
+        <div
+          class="pastAppointmentsContainer MuiBox-root css-0"
+        >
+          <div
+            class="years MuiBox-root css-0"
+          >
+            <span
+              class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
+            >
+              2022
+            </span>
+          </div>
+          <div
+            class="pastAppointmentDetail MuiBox-root css-0"
+          >
+            <div
+              class="imageContainer MuiBox-root css-0"
+            >
+              <span
+                style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+              >
+                <span
+                  style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                >
+                  <img
+                    alt=""
+                    aria-hidden="true"
+                    src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27100%27%20height=%27100%27/%3e"
+                    style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                  />
+                </span>
+                <img
+                  alt="Doctor Image"
+                  class="profilePhoto"
+                  data-nimg="intrinsic"
+                  decoding="async"
+                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                />
+                <noscript />
+              </span>
+            </div>
+            <div
+              class="dateContainer MuiBox-root css-0"
+            >
+              <h6
+                class="MuiTypography-root MuiTypography-subtitle1 date css-10wpov9-MuiTypography-root"
+              >
+                Tuesday, May 24 - 3:00PM PST
+              </h6>
+              <div
+                class="subTitleWrapper MuiBox-root css-0"
+              >
+                <h6
+                  class="MuiTypography-root MuiTypography-subtitle1 css-10wpov9-MuiTypography-root"
+                >
+                  Visit Purpose: 
+                </h6>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                >
+                  Routine
+                </p>
+              </div>
+            </div>
+            <div
+              class="nameContainer MuiBox-root css-0"
+            >
+              <h6
+                class="MuiTypography-root MuiTypography-subtitle1 doctorName css-10wpov9-MuiTypography-root"
+              >
+                Dr. Sonha Nguyen
+              </h6>
+              <div
+                class="subTitleWrapper MuiBox-root css-0"
+              >
+                <h6
+                  class="MuiTypography-root MuiTypography-subtitle1 css-10wpov9-MuiTypography-root"
+                >
+                  Patient: 
+                </h6>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                >
+                  Don John
+                </p>
+              </div>
+            </div>
+            <div
+              class="locationContainer MuiBox-root css-0"
+            >
+              <div
+                class="locationWrapper MuiBox-root css-0"
+              >
+                <h6
+                  class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-ati914-MuiTypography-root"
+                >
+                  Location
+                </h6>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 bodyTitle css-ahj2mt-MuiTypography-root"
+                >
+                  Scripps Eyecare
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                >
+                  5755 Burke Centre Parkway
+                </p>
+                <a
+                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                >
+                  (703) 250-9000
+                </a>
+              </div>
+              <div
+                class="insuranceWrapper MuiBox-root css-0"
+              >
+                <h6
+                  class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-ati914-MuiTypography-root"
+                >
+                  Insurance
+                </h6>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 bodyTitle css-ahj2mt-MuiTypography-root"
+                >
+                  ECP Vision
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+                >
+                  BlueCare Vision
+                </p>
+              </div>
+            </div>
+            <div
+              class="viewDetails MuiBox-root css-0"
+            >
+              <a
+                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
               >
                 View appointment details
               </a>

@@ -95,9 +95,19 @@
   padding: 0 22px;
   margin: unset !important;
   border-bottom: 2px solid #008294;
-  @extend .menuText;
+  font-family: "Libre Franklin", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.0016em;
+  text-decoration: none !important;
+  cursor: pointer;
+  color: black !important;
   @media (max-width: 992px) {
     padding: unset;
+    font-size: 12px;
+    margin: unset !important;
   }
 }
 
@@ -108,13 +118,13 @@
   font-size: 16px;
   line-height: 24px;
   letter-spacing: 0.0016em;
-  margin: 16px 22px;
-  text-decoration: none;
+  margin: 16px 22px !important;
+  text-decoration: none !important;
   cursor: pointer;
-  color: black;
+  color: black !important;
   @media (max-width: 992px) {
     font-size: 12px;
-    margin: unset;
+    margin: unset !important;
   }
 }
 
@@ -197,8 +207,9 @@
 }
 
 .viewAllLink {
-  color: #008294;
+  color: #008294 !important;
   cursor: pointer;
+  text-decoration-color: inherit !important;
 }
 
 .getDirectionLinkContainer {
@@ -218,10 +229,9 @@
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0.0016em;
-  text-decoration-line: underline;
-  color: #008294;
+  color: #008294 !important;
   cursor: pointer;
-  text-decoration-color: inherit;
+  text-decoration-color: inherit !important;
 }
 
 .detailedBioContainer {

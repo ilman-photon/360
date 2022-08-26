@@ -115,7 +115,7 @@ Object {
                       Paul Wagner, MD
                     </h2>
                     <p
-                      class="MuiTypography-root MuiTypography-body2 address css-1b03qeg-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body2 address css-fky267-MuiTypography-root"
                     >
                       51 West 51st Street, 
                         Floor 3, Suite 320
@@ -340,7 +340,50 @@ Object {
                 </div>
                 <div
                   class="MuiBox-root css-0"
-                />
+                >
+                  <div
+                    class="MuiBox-root css-0"
+                  >
+                    <h6
+                      class="MuiTypography-root MuiTypography-subtitle1 specialistTitle css-8t55lz-MuiTypography-root"
+                    >
+                      Specialties and Sub-specialties:
+                       
+                    </h6>
+                    <ul
+                      class="specialistList"
+                    >
+                      <li>
+                        <p
+                          class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        >
+                          Opthometry
+                        </p>
+                      </li>
+                      <li>
+                        <p
+                          class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        >
+                          Opthalmology
+                        </p>
+                      </li>
+                      <li>
+                        <p
+                          class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        >
+                          Catarac
+                        </p>
+                      </li>
+                      <li>
+                        <p
+                          class="MuiTypography-root MuiTypography-body2 newColumn css-1b03qeg-MuiTypography-root"
+                        >
+                          Glaucoma
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
             <div
@@ -354,21 +397,25 @@ Object {
                 >
                   <a
                     class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                    data-testid="biography-about"
                   >
                     About
                   </a>
                   <a
                     class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                    data-testid="biography-location"
                   >
                     Locations
                   </a>
                   <a
                     class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                    data-testid="biography-insurance"
                   >
                     Insurances
                   </a>
                   <a
                     class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                    data-testid="biography-education"
                   >
                     Education
                   </a>
@@ -525,6 +572,7 @@ Object {
                          
                         <a
                           class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways viewAllLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                          data-testid="biography-view-all-insurance"
                         >
                           View All
                         </a>
@@ -687,7 +735,7 @@ Object {
                     Paul Wagner, MD
                   </h2>
                   <p
-                    class="MuiTypography-root MuiTypography-body2 address css-1b03qeg-MuiTypography-root"
+                    class="MuiTypography-root MuiTypography-body2 address css-fky267-MuiTypography-root"
                   >
                     51 West 51st Street, 
                         Floor 3, Suite 320
@@ -912,7 +960,50 @@ Object {
               </div>
               <div
                 class="MuiBox-root css-0"
-              />
+              >
+                <div
+                  class="MuiBox-root css-0"
+                >
+                  <h6
+                    class="MuiTypography-root MuiTypography-subtitle1 specialistTitle css-8t55lz-MuiTypography-root"
+                  >
+                    Specialties and Sub-specialties:
+                     
+                  </h6>
+                  <ul
+                    class="specialistList"
+                  >
+                    <li>
+                      <p
+                        class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                      >
+                        Opthometry
+                      </p>
+                    </li>
+                    <li>
+                      <p
+                        class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                      >
+                        Opthalmology
+                      </p>
+                    </li>
+                    <li>
+                      <p
+                        class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                      >
+                        Catarac
+                      </p>
+                    </li>
+                    <li>
+                      <p
+                        class="MuiTypography-root MuiTypography-body2 newColumn css-1b03qeg-MuiTypography-root"
+                      >
+                        Glaucoma
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
           <div
@@ -926,21 +1017,25 @@ Object {
               >
                 <a
                   class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                  data-testid="biography-about"
                 >
                   About
                 </a>
                 <a
                   class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                  data-testid="biography-location"
                 >
                   Locations
                 </a>
                 <a
                   class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                  data-testid="biography-insurance"
                 >
                   Insurances
                 </a>
                 <a
                   class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                  data-testid="biography-education"
                 >
                   Education
                 </a>
@@ -1097,6 +1192,7 @@ Object {
                        
                       <a
                         class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways viewAllLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                        data-testid="biography-view-all-insurance"
                       >
                         View All
                       </a>

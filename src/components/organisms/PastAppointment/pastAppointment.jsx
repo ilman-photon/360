@@ -1,10 +1,5 @@
-import { Box, Stack, Typography, Link } from "@mui/material";
-import ProviderProfile from "../../molecules/ProviderProfile/providerProfile";
-import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
+import { Box, Typography, Link } from "@mui/material";
 import styles from "./styles.module.scss";
-import AppointmentButton from "../../atoms/AppointmentButton/appointmentButton";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import Image from "next/image";
 
 export function PastAppointmentCard({
@@ -18,45 +13,61 @@ export function PastAppointmentCard({
   insurances,
 }) {
   return (
-    <Box>
-      <Box>
-        <Typography>2022</Typography>
+    <Box className={styles.pastAppointmentsContainer}>
+      <Box className={styles.years}>
+        <Typography variant="caption">2022</Typography>
       </Box>
-      <Box>
-        <Box>
+      <Box className={styles.pastAppointmentDetail}>
+        <Box className={styles.imageContainer}>
           <Image
             src="/doctor.png"
-            width={90}
-            height={90}
+            width={100}
+            height={100}
             className={styles.profilePhoto}
             alt="Doctor Image"
           ></Image>
         </Box>
-        <Box>
-          <Typography>Tuesday, May 24 - 3:00PM PST</Typography>
-          <Typography>Visit Purpose: </Typography>
-          <Typography>Routine</Typography>
-        </Box>
-        <Box>
-          <Typography>Dr. Sonha Nguyen</Typography>
-          <Typography>Patient: </Typography>
-          <Typography>Don John</Typography>
-        </Box>
-        <Box>
-          <Box>
-            <Typography>Location</Typography>
-            <Typography>Scripps Eyecare</Typography>
-            <Typography>5755 Burke Centre Parkway</Typography>
-            <Typography>(703) 250-9000</Typography>
-          </Box>
-          <Box>
-            <Typography>Insurance</Typography>
-            <Typography>ECP Vision</Typography>
-            <Typography>BlueCare Vision</Typography>
+        <Box className={styles.dateContainer}>
+          <Typography variant="subtitle1" className={styles.date}>
+            Tuesday, May 24 - 3:00PM PST
+          </Typography>
+          <Box className={styles.subTitleWrapper}>
+            <Typography variant="subtitle1">Visit Purpose: </Typography>
+            <Typography variant="body2">Routine</Typography>
           </Box>
         </Box>
-        <Box>
-          <Link>View appointment details</Link>
+        <Box className={styles.nameContainer}>
+          <Typography variant="subtitle1" className={styles.doctorName}>
+            Dr. Sonha Nguyen
+          </Typography>
+          <Box className={styles.subTitleWrapper}>
+            <Typography variant="subtitle1">Patient: </Typography>
+            <Typography variant="body2">Don John</Typography>
+          </Box>
+        </Box>
+        <Box className={styles.locationContainer}>
+          <Box className={styles.locationWrapper}>
+            <Typography variant="subtitle2" className={styles.titleLocation}>
+              Location
+            </Typography>
+            <Typography variant="body1" className={styles.bodyTitle}>
+              Scripps Eyecare
+            </Typography>
+            <Typography variant="body2">5755 Burke Centre Parkway</Typography>
+            <Link className={styles.link}>(703) 250-9000</Link>
+          </Box>
+          <Box className={styles.insuranceWrapper}>
+            <Typography variant="subtitle2" className={styles.titleLocation}>
+              Insurance
+            </Typography>
+            <Typography variant="body1" className={styles.bodyTitle}>
+              ECP Vision
+            </Typography>
+            <Typography variant="body2">BlueCare Vision</Typography>
+          </Box>
+        </Box>
+        <Box className={styles.viewDetails}>
+          <Link className={styles.link}>View appointment details</Link>
         </Box>
       </Box>
     </Box>
@@ -70,7 +81,9 @@ export default function PastAppointment() {
         Past Appointments
       </Typography>
 
-      <PastAppointmentCard></PastAppointmentCard>
+      <PastAppointmentCard />
+      <PastAppointmentCard />
+      <PastAppointmentCard />
     </Box>
   );
 }

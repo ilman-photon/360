@@ -35,10 +35,9 @@
   font-size: 16px;
   line-height: 20px;
   letter-spacing: 0.0016em;
-  text-decoration-line: underline;
-  color: #008294;
+  color: #008294 !important;
   cursor: pointer;
-  text-decoration-color: inherit;
+  text-decoration-color: inherit !important;
 }
 
 .buttonContainer {
@@ -57,12 +56,12 @@
 }
 
 .date {
-  margin-bottom: 16px;
+  margin-bottom: 16px !important;
 }
 
 .purpose {
-  margin-top: 24px;
-  margin-bottom: 8px;
+  margin-top: 24px !important;
+  margin-bottom: 8px !important;
 }
 
 .patientTitle {

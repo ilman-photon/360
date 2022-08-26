@@ -87,5 +87,12 @@ module.exports = {
       searchbtn: "searchbtn",
       filterbtn: "filterbtn",
     },
+    BIOGRAPHY_TEST_ID: {
+      about: "biography-about",
+      location: "biography-location",
+      insurance: "biography-insurance",
+      education: "biography-education",
+      viewAll: "biography-view-all-insurance",
+    },
   },
 };
