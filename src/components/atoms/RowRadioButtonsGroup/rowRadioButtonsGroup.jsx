@@ -12,6 +12,7 @@ export default function RowRadioButtonsGroup({
   row = true,
   helperText = null,
   tooltipContent,
+  textSx = {},
   ...props
 }) {
   const options = props.options || [];
@@ -50,6 +51,7 @@ export default function RowRadioButtonsGroup({
         row={row}
         aria-labelledby="row-radio-buttons-group-label"
         name="row-radio-buttons-group"
+        sx={textSx}
       >
         {options.map((option, idx) => {
           return (

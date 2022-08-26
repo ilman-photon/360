@@ -14,16 +14,18 @@ export const LabelWithInfo = ({
 }) => (
   <Stack>
     <div className={styles.labelContainer} style={sxRow}>
-      <span
-        style={{
-          marginRight: 8,
-          display: "flex",
-          alignItems: "center",
-          width: "18px",
-        }}
-      >
-        {titleIcon}
-      </span>
+      {titleIcon && (
+        <span
+          style={{
+            marginRight: 8,
+            display: "flex",
+            alignItems: "center",
+            width: "18px",
+          }}
+        >
+          {titleIcon}
+        </span>
+      )}
       <div className={styles.label} style={sxText}>
         {label}
       </div>

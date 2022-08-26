@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Stack, Button, Typography } from "@mui/material";
-import styles from "./Style.module.scss";
 import { useTranslation } from "next-i18next";
 import AccountCard from "../../molecules/AccountCard/accountCard";
 import LabelWithInfo from "../../atoms/LabelWithInfo/labelWithInfo";
@@ -10,6 +9,8 @@ import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
 import BusinessIcon from "@mui/icons-material/Business";
 
+import { styles } from "./style";
+
 export default function AppointmentDetails() {
   const { t } = useTranslation("translation", {
     keyPrefix: "scheduleAppoinment",
@@ -18,8 +19,8 @@ export default function AppointmentDetails() {
   return (
     <AccountCard
       title={t("appointmentDetails")}
-      //   isEditing={isEditing}
-      // OnEditClicked={OnEditClicked}
+      textStyle={{ fontWeight: "700" }}
+      isAppoinment={true}
       actionContent={
         <Button
           // onClick={OnEditClicked}
@@ -27,7 +28,7 @@ export default function AppointmentDetails() {
           className={styles.editButton}
         >
           <EditOutlinedIcon sx={{ width: 20, height: 20 }} />
-          <div type="link" style={{ marginLeft: 4, color: "#008294" }}>
+          <div type="link" style={styles.editLink}>
             Edit
           </div>
         </Button>
@@ -38,7 +39,7 @@ export default function AppointmentDetails() {
           label="Name"
           titleIcon={<CalendarTodayIcon />}
           sxRow={{ justifyContent: "unset" }}
-          sxText={{ color: "#003B4A" }}
+          sxText={{ paddingLeft: "4px", color: "#003B4A" }}
         >
           <Typography variant="bodyMedium" sx={{ color: "#003B4A" }}>
             Saturday, Sep 11 - 8:30 am EST
@@ -49,7 +50,7 @@ export default function AppointmentDetails() {
           label="Preferred Name"
           titleIcon={<ContactMailIcon />}
           sxRow={{ justifyContent: "unset" }}
-          sxText={{ color: "#003B4A" }}
+          sxText={{ paddingLeft: "4px", color: "#003B4A" }}
         >
           <Typography variant="bodyMedium" sx={{ color: "#003B4A" }}>
             No Insurance provided
@@ -60,7 +61,7 @@ export default function AppointmentDetails() {
           label="fsd Name"
           titleIcon={<BusinessIcon />}
           sxRow={{ justifyContent: "unset" }}
-          sxText={{ color: "#003B4A" }}
+          sxText={{ paddingLeft: "4px", color: "#003B4A" }}
         >
           <Typography variant="bodyMedium" sx={{ color: "#003B4A" }}>
             Eye Exam

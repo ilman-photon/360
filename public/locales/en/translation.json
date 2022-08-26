@@ -137,6 +137,15 @@
     "someoneElse": "Someone else",
     "continue": "Continue",
     "location": "Location",
-    "appointmentDetails": "Appointment details"
+    "appointmentDetails": "Appointment details",
+    "guestTitle": "Tell us more about yourself",
+    "sigInInfo": "Already have an account?",
+    "signIn": "Sign In",
+    "optional": "Optional",
+    "passwordInfo": "Create a password to have access to your dashboard, manage, and track your appointment details.",
+    "passwordLabel": "Password",
+    "scheduleAppoinment": "Schedule Appointment",
+    "thisFieldRequired" : "This field is required",
+    "preferredCommunication": "Preferred mode of Communication"
   }
 }

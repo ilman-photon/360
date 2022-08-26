@@ -1,0 +1,968 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App SelfForm render 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="css-1p5q5e5-MuiStack-root"
+      >
+        <div
+          class="css-1p5q5e5-MuiStack-root"
+        >
+          <div
+            class="MuiBox-root css-1ynyhby"
+          >
+            <p
+              aria-label="Who is this exam for?"
+              class="MuiTypography-root MuiTypography-body1 css-17lkhvu-MuiTypography-root"
+            >
+              guestTitle
+            </p>
+            <div
+              class="MuiGrid-root css-ermewa-MuiGrid-root"
+            >
+              <h1
+                class="MuiTypography-root MuiTypography-h1 css-1u0wopn-MuiTypography-root"
+              >
+                sigInInfo
+              </h1>
+              <a
+                aria-label="signIn link"
+                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-4wpxtz-MuiTypography-root-MuiLink-root"
+                data-testid="signInlink"
+              >
+                signIn
+              </a>
+            </div>
+          </div>
+          <form
+            style="display: grid;"
+          >
+            <div
+              class="MuiFormControl-root MuiTextField-root custom-input css-9oi4yo-MuiFormControl-root-MuiTextField-root"
+              data-testid="firstname"
+              withicon="true"
+            >
+              <label
+                class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
+                data-shrink="false"
+                for="firstName"
+                id="firstName-label"
+              >
+                First Name
+              </label>
+              <div
+                class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+              >
+                <input
+                  aria-invalid="false"
+                  class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
+                  id="firstName"
+                  placeholder=""
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="MuiFormControl-root MuiTextField-root custom-input css-9oi4yo-MuiFormControl-root-MuiTextField-root"
+              data-testid="lastname"
+              withicon="true"
+            >
+              <label
+                class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
+                data-shrink="false"
+                for="lastName"
+                id="lastName-label"
+              >
+                Last Name
+              </label>
+              <div
+                class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+              >
+                <input
+                  aria-invalid="false"
+                  class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
+                  id="lastName"
+                  placeholder=""
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="MuiFormControl-root MuiTextField-root custom-input css-9oi4yo-MuiFormControl-root-MuiTextField-root"
+              data-testid="email"
+              withicon="true"
+            >
+              <label
+                class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
+                data-shrink="false"
+                for="email"
+                id="email-label"
+              >
+                Email
+              </label>
+              <div
+                class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+              >
+                <input
+                  aria-invalid="false"
+                  class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
+                  id="email"
+                  placeholder=""
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+            <div
+              class="MuiFormControl-root css-1hqe463-MuiFormControl-root"
+            >
+              <div
+                class="MuiFormControl-root MuiTextField-root custom-input css-fbdkil-MuiFormControl-root-MuiTextField-root"
+                data-testid="mobilenumber"
+                withicon="true"
+              >
+                <label
+                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="false"
+                  for="mobile"
+                  id="mobile-label"
+                >
+                  Mobile Number
+                </label>
+                <div
+                  class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+                >
+                  <input
+                    aria-invalid="false"
+                    class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
+                    id="mobile"
+                    name="phone"
+                    placeholder=""
+                    type="phone"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+            <div
+              class="MuiBox-root css-6gs9hh"
+            >
+              <div
+                class="MuiFormControl-root MuiTextField-root css-p3pjcm-MuiFormControl-root-MuiTextField-root"
+              >
+                <label
+                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="false"
+                  for=":r4:"
+                  id=":r4:-label"
+                >
+                  Date of Birth
+                </label>
+                <div
+                  class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
+                >
+                  <input
+                    aria-invalid="false"
+                    aria-label="Choose date"
+                    aria-readonly="true"
+                    class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
+                    id=":r4:"
+                    readonly=""
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+            </div>
+            <label
+              class="MuiFormLabel-root MuiFormLabel-colorPrimary css-yxw8bb-MuiFormLabel-root"
+              id="row-input-disclaimer"
+            >
+              Month, Day, Year
+            </label>
+            <div
+              style="margin-top: 32px; margin-left: 8px; margin-right: 8px;"
+            >
+              <div
+                class="MuiFormControl-root css-1jpmcq-MuiFormControl-root"
+                label="Preferred mode of Communication"
+                options="[object Object],[object Object],[object Object]"
+                value="both"
+              >
+                <label
+                  class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1upt16w-MuiFormLabel-root"
+                  id="row-radio-buttons-group-label"
+                >
+                  Preferred mode of Communication
+                </label>
+                <div
+                  aria-labelledby="row-radio-buttons-group-label"
+                  class="MuiFormGroup-root MuiFormGroup-row css-169kweb-MuiFormGroup-root"
+                  role="radiogroup"
+                >
+                  <label
+                    aria-label="Email Radio Button"
+                    class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                  >
+                    <span
+                      class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
+                    >
+                      <input
+                        class="PrivateSwitchBase-input css-1m9pwf3"
+                        name="row-radio-buttons-group"
+                        type="radio"
+                        value="email"
+                      />
+                      <span
+                        class="css-hyxlzm"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hbvpl3-MuiSvgIcon-root"
+                          data-testid="RadioButtonUncheckedIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                          />
+                        </svg>
+                        <svg
+                          aria-hidden="true"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hhw7if-MuiSvgIcon-root"
+                          data-testid="RadioButtonCheckedIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M8.465 8.465C9.37 7.56 10.62 7 12 7C14.76 7 17 9.24 17 12C17 13.38 16.44 14.63 15.535 15.535C14.63 16.44 13.38 17 12 17C9.24 17 7 14.76 7 12C7 10.62 7.56 9.37 8.465 8.465Z"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                      />
+                    </span>
+                    <span
+                      class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-ahj2mt-MuiTypography-root"
+                    >
+                      Email
+                    </span>
+                  </label>
+                  <label
+                    aria-label="Phone Radio Button"
+                    class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                  >
+                    <span
+                      class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
+                    >
+                      <input
+                        class="PrivateSwitchBase-input css-1m9pwf3"
+                        name="row-radio-buttons-group"
+                        type="radio"
+                        value="phone"
+                      />
+                      <span
+                        class="css-hyxlzm"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hbvpl3-MuiSvgIcon-root"
+                          data-testid="RadioButtonUncheckedIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                          />
+                        </svg>
+                        <svg
+                          aria-hidden="true"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hhw7if-MuiSvgIcon-root"
+                          data-testid="RadioButtonCheckedIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M8.465 8.465C9.37 7.56 10.62 7 12 7C14.76 7 17 9.24 17 12C17 13.38 16.44 14.63 15.535 15.535C14.63 16.44 13.38 17 12 17C9.24 17 7 14.76 7 12C7 10.62 7.56 9.37 8.465 8.465Z"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                      />
+                    </span>
+                    <span
+                      class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-ahj2mt-MuiTypography-root"
+                    >
+                      Phone
+                    </span>
+                  </label>
+                  <label
+                    aria-label="Both Radio Button"
+                    class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                  >
+                    <span
+                      class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-81lzf2-MuiButtonBase-root-MuiRadio-root"
+                    >
+                      <input
+                        checked=""
+                        class="PrivateSwitchBase-input css-1m9pwf3"
+                        name="row-radio-buttons-group"
+                        type="radio"
+                        value="both"
+                      />
+                      <span
+                        class="css-hyxlzm"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hbvpl3-MuiSvgIcon-root"
+                          data-testid="RadioButtonUncheckedIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                          />
+                        </svg>
+                        <svg
+                          aria-hidden="true"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-11zohuh-MuiSvgIcon-root"
+                          data-testid="RadioButtonCheckedIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M8.465 8.465C9.37 7.56 10.62 7 12 7C14.76 7 17 9.24 17 12C17 13.38 16.44 14.63 15.535 15.535C14.63 16.44 13.38 17 12 17C9.24 17 7 14.76 7 12C7 10.62 7.56 9.37 8.465 8.465Z"
+                          />
+                        </svg>
+                      </span>
+                      <span
+                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                      />
+                    </span>
+                    <span
+                      class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-ahj2mt-MuiTypography-root"
+                    >
+                      Both
+                    </span>
+                  </label>
+                </div>
+                <p
+                  class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained css-1wc848c-MuiFormHelperText-root"
+                />
+              </div>
+            </div>
+            <hr
+              class="MuiDivider-root MuiDivider-fullWidth css-14qwiik-MuiDivider-root"
+            />
+            <div
+              class="MuiGrid-root css-1pe44ce-MuiGrid-root"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-y6kppe-MuiTypography-root"
+              >
+                optional
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1 css-j12844-MuiTypography-root"
+              >
+                passwordInfo
+              </p>
+            </div>
+            <div
+              class="MuiFormControl-root css-1c2vtuz-MuiFormControl-root"
+            >
+              <div
+                class="MuiFormControl-root MuiTextField-root css-59czre-MuiFormControl-root-MuiTextField-root"
+                customevent="[object Object]"
+              >
+                <label
+                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="false"
+                  for="password"
+                  id="password-label"
+                >
+                  passwordLabel
+                </label>
+                <div
+                  class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-v0xomr-MuiInputBase-root-MuiFilledInput-root"
+                >
+                  <input
+                    aria-invalid="false"
+                    class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd css-1gctnaj-MuiInputBase-input-MuiFilledInput-input"
+                    id="password"
+                    placeholder=""
+                    type="password"
+                    value=""
+                  />
+                  <div
+                    class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-filled MuiInputAdornment-sizeMedium css-jv61v3-MuiInputAdornment-root"
+                  >
+                    <button
+                      aria-label="Password unhide icon"
+                      class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root"
+                      tabindex="0"
+                      type="button"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                        data-testid="VisibilityOutlinedIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M12 6c3.79 0 7.17 2.13 8.82 5.5C19.17 14.87 15.79 17 12 17s-7.17-2.13-8.82-5.5C4.83 8.13 8.21 6 12 6m0-2C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4zm0 5c1.38 0 2.5 1.12 2.5 2.5S13.38 14 12 14s-2.5-1.12-2.5-2.5S10.62 9 12 9m0-2c-2.48 0-4.5 2.02-4.5 4.5S9.52 16 12 16s4.5-2.02 4.5-4.5S14.48 7 12 7z"
+                        />
+                      </svg>
+                      <span
+                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                      />
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <label
+              class="MuiFormLabel-root MuiFormLabel-colorPrimary css-yxw8bb-MuiFormLabel-root"
+              id="row-input-disclaimer"
+            >
+              (Optional)
+            </label>
+            <hr
+              class="MuiDivider-root MuiDivider-fullWidth css-6s38d-MuiDivider-root"
+            />
+            <div
+              style="justify-self: right;"
+            >
+              <button
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  css-xo91zr-MuiButtonBase-root-MuiButton-root"
+                style="height: 40px; align-self: self-end; border-radius: 46px; text-transform: capitalize; color: rgb(255, 255, 255);"
+                tabindex="0"
+                type="button"
+              >
+                scheduleAppoinment
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="css-1p5q5e5-MuiStack-root"
+    >
+      <div
+        class="css-1p5q5e5-MuiStack-root"
+      >
+        <div
+          class="MuiBox-root css-1ynyhby"
+        >
+          <p
+            aria-label="Who is this exam for?"
+            class="MuiTypography-root MuiTypography-body1 css-17lkhvu-MuiTypography-root"
+          >
+            guestTitle
+          </p>
+          <div
+            class="MuiGrid-root css-ermewa-MuiGrid-root"
+          >
+            <h1
+              class="MuiTypography-root MuiTypography-h1 css-1u0wopn-MuiTypography-root"
+            >
+              sigInInfo
+            </h1>
+            <a
+              aria-label="signIn link"
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-4wpxtz-MuiTypography-root-MuiLink-root"
+              data-testid="signInlink"
+            >
+              signIn
+            </a>
+          </div>
+        </div>
+        <form
+          style="display: grid;"
+        >
+          <div
+            class="MuiFormControl-root MuiTextField-root custom-input css-9oi4yo-MuiFormControl-root-MuiTextField-root"
+            data-testid="firstname"
+            withicon="true"
+          >
+            <label
+              class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
+              data-shrink="false"
+              for="firstName"
+              id="firstName-label"
+            >
+              First Name
+            </label>
+            <div
+              class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+            >
+              <input
+                aria-invalid="false"
+                class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
+                id="firstName"
+                placeholder=""
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            class="MuiFormControl-root MuiTextField-root custom-input css-9oi4yo-MuiFormControl-root-MuiTextField-root"
+            data-testid="lastname"
+            withicon="true"
+          >
+            <label
+              class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
+              data-shrink="false"
+              for="lastName"
+              id="lastName-label"
+            >
+              Last Name
+            </label>
+            <div
+              class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+            >
+              <input
+                aria-invalid="false"
+                class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
+                id="lastName"
+                placeholder=""
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            class="MuiFormControl-root MuiTextField-root custom-input css-9oi4yo-MuiFormControl-root-MuiTextField-root"
+            data-testid="email"
+            withicon="true"
+          >
+            <label
+              class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
+              data-shrink="false"
+              for="email"
+              id="email-label"
+            >
+              Email
+            </label>
+            <div
+              class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+            >
+              <input
+                aria-invalid="false"
+                class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
+                id="email"
+                placeholder=""
+                type="text"
+                value=""
+              />
+            </div>
+          </div>
+          <div
+            class="MuiFormControl-root css-1hqe463-MuiFormControl-root"
+          >
+            <div
+              class="MuiFormControl-root MuiTextField-root custom-input css-fbdkil-MuiFormControl-root-MuiTextField-root"
+              data-testid="mobilenumber"
+              withicon="true"
+            >
+              <label
+                class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
+                data-shrink="false"
+                for="mobile"
+                id="mobile-label"
+              >
+                Mobile Number
+              </label>
+              <div
+                class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-sizeSmall css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+              >
+                <input
+                  aria-invalid="false"
+                  class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
+                  id="mobile"
+                  name="phone"
+                  placeholder=""
+                  type="phone"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+          <div
+            class="MuiBox-root css-6gs9hh"
+          >
+            <div
+              class="MuiFormControl-root MuiTextField-root css-p3pjcm-MuiFormControl-root-MuiTextField-root"
+            >
+              <label
+                class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
+                data-shrink="false"
+                for=":r4:"
+                id=":r4:-label"
+              >
+                Date of Birth
+              </label>
+              <div
+                class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
+              >
+                <input
+                  aria-invalid="false"
+                  aria-label="Choose date"
+                  aria-readonly="true"
+                  class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
+                  id=":r4:"
+                  readonly=""
+                  type="text"
+                  value=""
+                />
+              </div>
+            </div>
+          </div>
+          <label
+            class="MuiFormLabel-root MuiFormLabel-colorPrimary css-yxw8bb-MuiFormLabel-root"
+            id="row-input-disclaimer"
+          >
+            Month, Day, Year
+          </label>
+          <div
+            style="margin-top: 32px; margin-left: 8px; margin-right: 8px;"
+          >
+            <div
+              class="MuiFormControl-root css-1jpmcq-MuiFormControl-root"
+              label="Preferred mode of Communication"
+              options="[object Object],[object Object],[object Object]"
+              value="both"
+            >
+              <label
+                class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1upt16w-MuiFormLabel-root"
+                id="row-radio-buttons-group-label"
+              >
+                Preferred mode of Communication
+              </label>
+              <div
+                aria-labelledby="row-radio-buttons-group-label"
+                class="MuiFormGroup-root MuiFormGroup-row css-169kweb-MuiFormGroup-root"
+                role="radiogroup"
+              >
+                <label
+                  aria-label="Email Radio Button"
+                  class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                >
+                  <span
+                    class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
+                  >
+                    <input
+                      class="PrivateSwitchBase-input css-1m9pwf3"
+                      name="row-radio-buttons-group"
+                      type="radio"
+                      value="email"
+                    />
+                    <span
+                      class="css-hyxlzm"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hbvpl3-MuiSvgIcon-root"
+                        data-testid="RadioButtonUncheckedIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                        />
+                      </svg>
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hhw7if-MuiSvgIcon-root"
+                        data-testid="RadioButtonCheckedIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M8.465 8.465C9.37 7.56 10.62 7 12 7C14.76 7 17 9.24 17 12C17 13.38 16.44 14.63 15.535 15.535C14.63 16.44 13.38 17 12 17C9.24 17 7 14.76 7 12C7 10.62 7.56 9.37 8.465 8.465Z"
+                        />
+                      </svg>
+                    </span>
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </span>
+                  <span
+                    class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-ahj2mt-MuiTypography-root"
+                  >
+                    Email
+                  </span>
+                </label>
+                <label
+                  aria-label="Phone Radio Button"
+                  class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                >
+                  <span
+                    class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
+                  >
+                    <input
+                      class="PrivateSwitchBase-input css-1m9pwf3"
+                      name="row-radio-buttons-group"
+                      type="radio"
+                      value="phone"
+                    />
+                    <span
+                      class="css-hyxlzm"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hbvpl3-MuiSvgIcon-root"
+                        data-testid="RadioButtonUncheckedIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                        />
+                      </svg>
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hhw7if-MuiSvgIcon-root"
+                        data-testid="RadioButtonCheckedIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M8.465 8.465C9.37 7.56 10.62 7 12 7C14.76 7 17 9.24 17 12C17 13.38 16.44 14.63 15.535 15.535C14.63 16.44 13.38 17 12 17C9.24 17 7 14.76 7 12C7 10.62 7.56 9.37 8.465 8.465Z"
+                        />
+                      </svg>
+                    </span>
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </span>
+                  <span
+                    class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-ahj2mt-MuiTypography-root"
+                  >
+                    Phone
+                  </span>
+                </label>
+                <label
+                  aria-label="Both Radio Button"
+                  class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                >
+                  <span
+                    class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-81lzf2-MuiButtonBase-root-MuiRadio-root"
+                  >
+                    <input
+                      checked=""
+                      class="PrivateSwitchBase-input css-1m9pwf3"
+                      name="row-radio-buttons-group"
+                      type="radio"
+                      value="both"
+                    />
+                    <span
+                      class="css-hyxlzm"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hbvpl3-MuiSvgIcon-root"
+                        data-testid="RadioButtonUncheckedIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                        />
+                      </svg>
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-11zohuh-MuiSvgIcon-root"
+                        data-testid="RadioButtonCheckedIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M8.465 8.465C9.37 7.56 10.62 7 12 7C14.76 7 17 9.24 17 12C17 13.38 16.44 14.63 15.535 15.535C14.63 16.44 13.38 17 12 17C9.24 17 7 14.76 7 12C7 10.62 7.56 9.37 8.465 8.465Z"
+                        />
+                      </svg>
+                    </span>
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </span>
+                  <span
+                    class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-ahj2mt-MuiTypography-root"
+                  >
+                    Both
+                  </span>
+                </label>
+              </div>
+              <p
+                class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained css-1wc848c-MuiFormHelperText-root"
+              />
+            </div>
+          </div>
+          <hr
+            class="MuiDivider-root MuiDivider-fullWidth css-14qwiik-MuiDivider-root"
+          />
+          <div
+            class="MuiGrid-root css-1pe44ce-MuiGrid-root"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-y6kppe-MuiTypography-root"
+            >
+              optional
+            </p>
+            <p
+              class="MuiTypography-root MuiTypography-body1 css-j12844-MuiTypography-root"
+            >
+              passwordInfo
+            </p>
+          </div>
+          <div
+            class="MuiFormControl-root css-1c2vtuz-MuiFormControl-root"
+          >
+            <div
+              class="MuiFormControl-root MuiTextField-root css-59czre-MuiFormControl-root-MuiTextField-root"
+              customevent="[object Object]"
+            >
+              <label
+                class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
+                data-shrink="false"
+                for="password"
+                id="password-label"
+              >
+                passwordLabel
+              </label>
+              <div
+                class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-v0xomr-MuiInputBase-root-MuiFilledInput-root"
+              >
+                <input
+                  aria-invalid="false"
+                  class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd css-1gctnaj-MuiInputBase-input-MuiFilledInput-input"
+                  id="password"
+                  placeholder=""
+                  type="password"
+                  value=""
+                />
+                <div
+                  class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-filled MuiInputAdornment-sizeMedium css-jv61v3-MuiInputAdornment-root"
+                >
+                  <button
+                    aria-label="Password unhide icon"
+                    class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root"
+                    tabindex="0"
+                    type="button"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                      data-testid="VisibilityOutlinedIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 6c3.79 0 7.17 2.13 8.82 5.5C19.17 14.87 15.79 17 12 17s-7.17-2.13-8.82-5.5C4.83 8.13 8.21 6 12 6m0-2C7 4 2.73 7.11 1 11.5 2.73 15.89 7 19 12 19s9.27-3.11 11-7.5C21.27 7.11 17 4 12 4zm0 5c1.38 0 2.5 1.12 2.5 2.5S13.38 14 12 14s-2.5-1.12-2.5-2.5S10.62 9 12 9m0-2c-2.48 0-4.5 2.02-4.5 4.5S9.52 16 12 16s4.5-2.02 4.5-4.5S14.48 7 12 7z"
+                      />
+                    </svg>
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <label
+            class="MuiFormLabel-root MuiFormLabel-colorPrimary css-yxw8bb-MuiFormLabel-root"
+            id="row-input-disclaimer"
+          >
+            (Optional)
+          </label>
+          <hr
+            class="MuiDivider-root MuiDivider-fullWidth css-6s38d-MuiDivider-root"
+          />
+          <div
+            style="justify-self: right;"
+          >
+            <button
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  css-xo91zr-MuiButtonBase-root-MuiButton-root"
+              style="height: 40px; align-self: self-end; border-radius: 46px; text-transform: capitalize; color: rgb(255, 255, 255);"
+              tabindex="0"
+              type="button"
+            >
+              scheduleAppoinment
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
