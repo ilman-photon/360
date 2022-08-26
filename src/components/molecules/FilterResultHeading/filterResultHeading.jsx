@@ -10,7 +10,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Typography } from "@mui/material";
 
 export const FilterResultHeading = ({
-  appliedFilter = ["Spanish", "In Network"],
+  appliedFilter = [],
   numberFilter = 30,
   dateWeek = ["Sep 19", "Sep 20", "Sep 21", "Sep 22", "Sep 23", "Sep 24"],
 }) => {
@@ -61,7 +61,7 @@ export const FilterResultHeading = ({
           sx={{
             marginTop: "16px",
             display: "grid",
-            gridTemplateColumns: "30% 70%",
+            gridTemplateColumns: "490px 638px",
             justifyContent: "center",
             alignContent: "center",
             gridTemplateRows: "auto",

@@ -177,10 +177,10 @@ const FilterHeading = ({ isDesktop = true, onSearchProvider = () => {} }) => {
                 display: "flex",
                 alignItems: "flex-end",
                 background: "#fff",
-                width: isDesktop ? "210px" : "auto",
+                width: "210px",
                 paddingLeft: "15px",
-                borderRadius: isDesktop ? 0 : "50px",
-                marginTop: isDesktop ? "0px" : "16px",
+                borderRadius: 0,
+                marginTop: "0px",
               }}
             >
               <CalendarTodayIcon
@@ -192,7 +192,6 @@ const FilterHeading = ({ isDesktop = true, onSearchProvider = () => {} }) => {
                 }}
               />
               <StyledInput
-                inputProps={{ readOnly: true }}
                 open={open}
                 onOpen={() => setOpen(true)}
                 onClose={() => setOpen(false)}
@@ -203,8 +202,6 @@ const FilterHeading = ({ isDesktop = true, onSearchProvider = () => {} }) => {
                 isFilter={true}
                 value={value}
                 onChange={onChange}
-                error={!!error}
-                helperText={error ? error.message : null}
                 sx={{
                   margin: 0,
                   ["& .MuiFilledInput-root"]: {
