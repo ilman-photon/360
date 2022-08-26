@@ -9,6 +9,7 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
   const isAppointment = variant === "appointment";
   const isBio = variant === "bio";
   const isViewSchedule = variant === "viewschedule";
+  const isMap = variant === "map";
 
   const renderSpecialistList = () => {
     return (
@@ -48,7 +49,10 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
   }
 
   return (
-    <Box className={isBio ? styles.shortBio : styles.appointment}>
+    <Box
+      className={isBio ? styles.shortBio : styles.appointment}
+      sx={{ maxWidth: isMap ? "unset" : "368px" }}
+    >
       <Box className={styles.displayFlex}>
         <Box>
           <Image
@@ -59,7 +63,10 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
             alt="Doctor Image"
           ></Image>
         </Box>
-        <Box className={styles.bioContainer}>
+        <Box
+          className={styles.bioContainer}
+          sx={{ width: isMap ? "unset" : "20vw" }}
+        >
           <Typography
             variant="h2"
             fontSize={getNameFontSize()}

@@ -18,7 +18,7 @@ exports[`GMaps GMaps render 1`] = `
   onUnmount={[Function]}
   zoom={4}
 >
-  <Marker
+  <UNDEFINED
     onClick={[Function]}
     position={
       Object {
@@ -27,7 +27,7 @@ exports[`GMaps GMaps render 1`] = `
       }
     }
   />
-  <Marker
+  <UNDEFINED
     onClick={[Function]}
     position={
       Object {
@@ -36,7 +36,7 @@ exports[`GMaps GMaps render 1`] = `
       }
     }
   />
-  <Marker
+  <UNDEFINED
     onClick={[Function]}
     position={
       Object {
@@ -45,7 +45,7 @@ exports[`GMaps GMaps render 1`] = `
       }
     }
   />
-  <Marker
+  <UNDEFINED
     onClick={[Function]}
     position={
       Object {

@@ -74,7 +74,7 @@ Object {
               class="shortBioContainer MuiBox-root css-0"
             >
               <div
-                class="shortBio MuiBox-root css-0"
+                class="shortBio MuiBox-root css-1qa5ro4"
               >
                 <div
                   class="displayFlex MuiBox-root css-0"
@@ -107,7 +107,7 @@ Object {
                     </span>
                   </div>
                   <div
-                    class="bioContainer MuiBox-root css-0"
+                    class="bioContainer MuiBox-root css-10n7hpz"
                   >
                     <h2
                       class="MuiTypography-root MuiTypography-h2 css-izw0or-MuiTypography-root"
@@ -694,7 +694,7 @@ Object {
             class="shortBioContainer MuiBox-root css-0"
           >
             <div
-              class="shortBio MuiBox-root css-0"
+              class="shortBio MuiBox-root css-1qa5ro4"
             >
               <div
                 class="displayFlex MuiBox-root css-0"
@@ -727,7 +727,7 @@ Object {
                   </span>
                 </div>
                 <div
-                  class="bioContainer MuiBox-root css-0"
+                  class="bioContainer MuiBox-root css-10n7hpz"
                 >
                   <h2
                     class="MuiTypography-root MuiTypography-h2 css-izw0or-MuiTypography-root"
