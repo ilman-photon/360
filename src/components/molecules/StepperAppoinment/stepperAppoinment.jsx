@@ -25,7 +25,7 @@ export default function StepperAppoinment({ ...props }) {
         alternativeLabel
         sx={{ width: "800px" }}
       >
-        {steps.map((label, idx) => (
+        {steps?.map((label, idx) => (
           <Step sx={{ color: "#87C9D2" }} key={label}>
             <StepLabel
               sx={{
