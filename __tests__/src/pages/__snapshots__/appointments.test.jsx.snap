@@ -20,9 +20,48 @@ Object {
               Upcoming appointments
             </h2>
             <div
-              class="itemContainer MuiBox-root css-0"
+              class="itemContainer calendarContainer MuiBox-root css-0"
             >
-              Test
+              <h6
+                class="MuiTypography-root MuiTypography-subtitle2 date css-ati914-MuiTypography-root"
+              >
+                Saturday, Sep 21, 2022, AT 8:30 AM EST
+              </h6>
+              <button
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root appointmentButton css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                    data-testid="CalendarTodayIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"
+                    />
+                  </svg>
+                </span>
+                Add to calendar
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+              <h6
+                class="MuiTypography-root MuiTypography-subtitle2 purpose css-ati914-MuiTypography-root"
+              >
+                Purpose of Visit
+              </h6>
+              <p
+                class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+              >
+                Eye exam
+              </p>
             </div>
             <div
               class="itemContainer MuiBox-root css-0"
@@ -115,11 +154,80 @@ Object {
                   Get directions
                 </a>
               </div>
+              <div
+                class="buttonContainer MuiBox-root css-0"
+              >
+                <button
+                  class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root appointmentButton css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  <span
+                    class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                      data-testid="CancelOutlinedIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.59-13L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z"
+                      />
+                    </svg>
+                  </span>
+                  Cancel
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+                <button
+                  class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root appointmentButton css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+                  tabindex="0"
+                  type="button"
+                >
+                  <span
+                    class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                      data-testid="CalendarTodayIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"
+                      />
+                    </svg>
+                  </span>
+                  Reschedule
+                   
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
             </div>
             <div
-              class="itemContainer MuiBox-root css-0"
+              class="patientContainer MuiBox-root css-0"
             >
-              Test
+              <h3
+                class="MuiTypography-root MuiTypography-h3 patientTitle css-gepadz-MuiTypography-root"
+              >
+                Patient Information
+              </h3>
+              <h6
+                class="MuiTypography-root MuiTypography-subtitle2 patientName css-ati914-MuiTypography-root"
+              >
+                Name
+              </h6>
+              <p
+                class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+              >
+                Mary Jane Smith
+              </p>
             </div>
           </div>
         </div>
@@ -142,9 +250,48 @@ Object {
             Upcoming appointments
           </h2>
           <div
-            class="itemContainer MuiBox-root css-0"
+            class="itemContainer calendarContainer MuiBox-root css-0"
           >
-            Test
+            <h6
+              class="MuiTypography-root MuiTypography-subtitle2 date css-ati914-MuiTypography-root"
+            >
+              Saturday, Sep 21, 2022, AT 8:30 AM EST
+            </h6>
+            <button
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root appointmentButton css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="button"
+            >
+              <span
+                class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                  data-testid="CalendarTodayIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"
+                  />
+                </svg>
+              </span>
+              Add to calendar
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+            <h6
+              class="MuiTypography-root MuiTypography-subtitle2 purpose css-ati914-MuiTypography-root"
+            >
+              Purpose of Visit
+            </h6>
+            <p
+              class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+            >
+              Eye exam
+            </p>
           </div>
           <div
             class="itemContainer MuiBox-root css-0"
@@ -237,11 +384,80 @@ Object {
                 Get directions
               </a>
             </div>
+            <div
+              class="buttonContainer MuiBox-root css-0"
+            >
+              <button
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root appointmentButton css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                    data-testid="CancelOutlinedIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm3.59-13L12 10.59 8.41 7 7 8.41 10.59 12 7 15.59 8.41 17 12 13.41 15.59 17 17 15.59 13.41 12 17 8.41z"
+                    />
+                  </svg>
+                </span>
+                Cancel
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+              <button
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root appointmentButton css-1rwt2y5-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                    data-testid="CalendarTodayIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"
+                    />
+                  </svg>
+                </span>
+                Reschedule
+                 
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
           </div>
           <div
-            class="itemContainer MuiBox-root css-0"
+            class="patientContainer MuiBox-root css-0"
           >
-            Test
+            <h3
+              class="MuiTypography-root MuiTypography-h3 patientTitle css-gepadz-MuiTypography-root"
+            >
+              Patient Information
+            </h3>
+            <h6
+              class="MuiTypography-root MuiTypography-subtitle2 patientName css-ati914-MuiTypography-root"
+            >
+              Name
+            </h6>
+            <p
+              class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
+            >
+              Mary Jane Smith
+            </p>
           </div>
         </div>
       </div>
