@@ -1,7 +1,7 @@
 import Grid from "@mui/material/Grid";
 import React from "react";
 import { WeekAvailability } from "../../../components/molecules/WeekAvailability/WeekAvailability";
-import { LocationDistance } from "../../../components/molecules/LocationDistance /LocationDistance";
+import { LocationDistance } from "../../../components/molecules/LocationDistance/LocationDistance";
 import ProviderProfile from "../../molecules/ProviderProfile/providerProfile";
 
 export default function ItemResult() {

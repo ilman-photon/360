@@ -58,6 +58,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Short bio o
   @Appointments
   @Patient_Portal
   @Sprint4
+  @excluded
   Scenario: EPIC_EPP-44_STORY_EPP-2518-Verify User should see the selected location, date of appointment, the purpose of visit, and insurance carrier
     Given User launch the "Marketing Site" url		
     When User clicks on the "Schedule your Eye Exam" button
@@ -74,6 +75,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Short bio o
   @Appointments
   @Patient_Portal
   @Sprint4
+  @included
   Scenario: EPIC_EPP-44_STORY_EPP-2518-Verify User should see the short bio of Provider
     Given User launch the "Marketing Site" url		
     When User clicks on the "Schedule your Eye Exam" button
@@ -94,6 +96,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Short bio o
   @Patient_Portal
   @Regression
   @Sprint4
+  @excluded
   Scenario: EPIC_EPP-44_STORY_EPP-2518-Verify User should see the following sections of Provider
     Given User launch the "Marketing Site" url		
     When User clicks on the "Schedule your Eye Exam" button
@@ -124,6 +127,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Short bio o
   @Patient_Portal
   @Regression
   @Sprint4
+  @excluded
   Scenario: EPIC_EPP-44_STORY_EPP-2518-Verify User should see <About> sections of Provider as "Short Bio of the provider with Name and Image" description
     Given User launch the "Marketing Site" url		
     When User clicks on the "Schedule your Eye Exam" button
@@ -144,6 +148,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Short bio o
   @Patient_Portal
   @Regression
   @Sprint4
+  @excluded
   Scenario: EPIC_EPP-44_STORY_EPP-2518-Verify User should see <Specialties> sections of Provider as "Specialities of the provider (Eg. OPT,OPH)" description
     Given User launch the "Marketing Site" url		
     When User clicks on the "Schedule your Eye Exam" button
@@ -164,6 +169,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Short bio o
   @Patient_Portal
   @Regression
   @Sprint4
+  @excluded
   Scenario: EPIC_EPP-44_STORY_EPP-2518-Verify User should see <Sub-specialities> sections of Provider as "Sub-specialities of the provider (Cataract, Glaucoma etc..)" description
     Given User launch the "Marketing Site" url		
     When User clicks on the "Schedule your Eye Exam" button
@@ -184,6 +190,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Short bio o
   @Patient_Portal
   @Regression
   @Sprint4
+  @excluded
   Scenario: EPIC_EPP-44_STORY_EPP-2518-Verify User should see <Gender> sections of Provider as "Gender of the provider" description
     Given User launch the "Marketing Site" url		
     When User clicks on the "Schedule your Eye Exam" button
@@ -204,6 +211,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Short bio o
   @Patient_Portal
   @Regression
   @Sprint4
+  @excluded
   Scenario: EPIC_EPP-44_STORY_EPP-2518-Verify User should see <Languages> sections of Provider as "Languages the provider speaks" description
     Given User launch the "Marketing Site" url		
     When User clicks on the "Schedule your Eye Exam" button
@@ -224,6 +232,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Short bio o
   @Patient_Portal
   @Regression
   @Sprint4
+  @excluded
   Scenario: EPIC_EPP-44_STORY_EPP-2518-Verify User should see <In-network Insurances> sections of Provider as "Insurances that are in their network" description
     Given User launch the "Marketing Site" url		
     When User clicks on the "Schedule your Eye Exam" button
@@ -244,6 +253,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Short bio o
   @Patient_Portal
   @Regression
   @Sprint4
+  @excluded
   Scenario: EPIC_EPP-44_STORY_EPP-2518-Verify User should see <Location> sections of Provider as "Address of the location with "Get directions" button which would redirect the user to maps" description
     Given User launch the "Marketing Site" url		
     When User clicks on the "Schedule your Eye Exam" button
@@ -264,6 +274,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Short bio o
   @Patient_Portal
   @Regression
   @Sprint4
+  @excluded
   Scenario: EPIC_EPP-44_STORY_EPP-2518-Verify User should navigated to maps when user clicks on "Get directions" button on Location Section
     Given User launch the "Marketing Site" url		
     When User clicks on the "Schedule your Eye Exam" button
@@ -285,6 +296,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Short bio o
   @Appointments
   @Patient_Portal
   @Sprint4
+  @excluded
   Scenario: EPIC_EPP-44_STORY_EPP-2518-Verify User should see two Doctor's location (if any) as Primary and Secondary on Location Section
     Given User launch the "Marketing Site" url		
     When User clicks on the "Schedule your Eye Exam" button
@@ -305,6 +317,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Short bio o
   @Patient_Portal
   @Regression
   @Sprint4
+  @excluded
   Scenario: EPIC_EPP-44_STORY_EPP-2518-Verify User should see <Education> sections of Provider as "Education qualification of the provider" description
     Given User launch the "Marketing Site" url		
     When User clicks on the "Schedule your Eye Exam" button
@@ -325,6 +338,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Short bio o
   @Patient_Portal
   @Regression
   @Sprint4
+  @excluded
   Scenario: EPIC_EPP-44_STORY_EPP-2518-Verify User should see <Memberships and Affiliations> sections of Provider as "Memberships and Affiliations of the provider" description
     Given User launch the "Marketing Site" url		
     When User clicks on the "Schedule your Eye Exam" button
@@ -345,6 +359,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Short bio o
   @Patient_Portal
   @Regression
   @Sprint4
+  @excluded
   Scenario: EPIC_EPP-44_STORY_EPP-2518-Verify User should see <Ratings> sections of Provider as "Ratings for that Provider" description
     Given User launch the "Marketing Site" url		
     When User clicks on the "Schedule your Eye Exam" button
@@ -364,6 +379,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Short bio o
   @Appointments
   @Patient_Portal
   @Sprint4
+  @excluded
   Scenario: EPIC_EPP-44_STORY_EPP-2518-Verify User should see the short bio of Provider within 3 seconds
     Given User launch the "Marketing Site" url		
     When User clicks on the "Schedule your Eye Exam" button
@@ -386,6 +402,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Short bio o
   @Appointments
   @Patient_Portal
   @Sprint4
+  @excluded
   Scenario: EPIC_EPP-44_STORY_EPP-2518-Verify User should not see the any errors script when user clicks F12 on the console
     Given User launch the "Marketing Site" url		
     When User clicks on the "Schedule your Eye Exam" button
@@ -405,6 +422,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Short bio o
   @Appointments
   @Patient_Portal
   @Sprint4
+  @excluded
   Scenario: EPIC_EPP-44_STORY_EPP-2518-Negative Test Cases-Verify user should see the error message when the internet service is unavailable
     Given User launch the "Marketing Site" url		
     When User clicks on the "Schedule your Eye Exam" button
@@ -425,6 +443,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Short bio o
   @Appointments
   @Patient_Portal
   @Sprint4
+  @excluded
   Scenario: EPIC_EPP-44_STORY_EPP-2518-Negative Test Cases-Verify user should see the error message when the service is unavailable
     Given User launch the "Marketing Site" url		
     When User clicks on the "Schedule your Eye Exam" button
