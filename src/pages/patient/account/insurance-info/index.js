@@ -120,6 +120,7 @@ export default function InsuranceInfoPage() {
         }}
         role="button"
         success={pageMessage.error ? false : true}
+        fontTitle={16}
         sx={{
           borderRadius: "0px",
           justifyContent: "center",
@@ -129,7 +130,6 @@ export default function InsuranceInfoPage() {
           width: "100%",
           transition: "0.3 s ease-in-out",
           cursor: "pointer",
-          fontSize: "14px",
         }}
       >
         {pageMessage.content}
