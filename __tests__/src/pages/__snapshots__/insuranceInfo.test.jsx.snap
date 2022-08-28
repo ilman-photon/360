@@ -117,7 +117,7 @@ Object {
           >
             <section>
               <div
-                class="MuiBox-root css-11hpkl2"
+                class="MuiBox-root css-1kexx3j"
               >
                 <svg
                   aria-hidden="true"
@@ -135,7 +135,7 @@ Object {
                   style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
                 >
                   <div
-                    style="font-size: 14px;"
+                    style="font-size: 16px;"
                   />
                 </div>
               </div>
@@ -1274,7 +1274,7 @@ Object {
         >
           <section>
             <div
-              class="MuiBox-root css-11hpkl2"
+              class="MuiBox-root css-1kexx3j"
             >
               <svg
                 aria-hidden="true"
@@ -1292,7 +1292,7 @@ Object {
                 style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
               >
                 <div
-                  style="font-size: 14px;"
+                  style="font-size: 16px;"
                 />
               </div>
             </div>
