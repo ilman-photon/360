@@ -22,7 +22,7 @@ export default function BiographyDetails({ profileData }) {
     "aaa",
   ];
 
-  const renderInsurances = (BIOGRAPHY_TEST_ID) => {
+  const renderInsurances = () => {
     const insurancesLength = insurances.length;
     const isRenderViewAll = insurancesLength > 3;
     return (

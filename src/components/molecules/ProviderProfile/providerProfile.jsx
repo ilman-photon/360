@@ -2,7 +2,7 @@ import Image from "next/image";
 import { Typography, Box, Link } from "@mui/material";
 import styles from "./styles.module.scss";
 import StyledRating from "../../atoms/Rating/styledRating";
-import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function ProviderProfile({ variant, showPosition, phoneLink }) {
   const specialist = ["Opthometry", "Opthalmology", "Catarac", "Glaucoma"];
@@ -10,6 +10,7 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
   const isBio = variant === "bio";
   const isViewSchedule = variant === "viewschedule";
 
+  const router = useRouter();
   const renderSpecialistList = () => {
     return (
       <Box>
@@ -63,6 +64,9 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
           <Typography
             variant="h2"
             fontSize={getNameFontSize()}
+            onClick={() => {
+              router.push("/patient/bio");
+            }}
             className={
               (isAppointment || isViewSchedule) && styles.doctorNameAppointment
             }

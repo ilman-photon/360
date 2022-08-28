@@ -5,10 +5,10 @@ import FilterResultHeading from "../FilterResultHeading/filterResultHeading";
 
 export const FilterResult = ({
   dataCount = 3,
-  onSelectSchedule = () => {},
+  onSelectSchedule = () => {
+    // This is intentional
+  },
 }) => {
-  const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
-
   function renderItemResult() {
     const indents = [];
     for (let i = 0; i < dataCount; i++) {

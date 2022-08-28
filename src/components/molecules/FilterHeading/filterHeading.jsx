@@ -21,7 +21,12 @@ import { StyledButton } from "../../atoms/Button/button";
 import SearchIcon from "@mui/icons-material/Search";
 import Image from "next/image";
 
-const FilterHeading = ({ isDesktop = true, onSearchProvider = () => {} }) => {
+const FilterHeading = ({
+  isDesktop = true,
+  onSearchProvider = () => {
+    // This is intentional
+  },
+}) => {
   const imageSrcState = "/bx_insurance_card.png";
   const muiInputRoot = "& .MuiFilledInput-root";
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
