@@ -3,7 +3,6 @@ import Cookies from "universal-cookie";
 import { Api } from "../../api/api";
 import { Login as LoginComponent } from "../../../components/organisms/Login/login";
 import { useEffect } from "react";
-import { useTranslation } from "next-i18next";
 
 function getUserData(username, callback) {
   const api = new Api();

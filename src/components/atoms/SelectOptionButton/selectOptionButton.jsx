@@ -49,6 +49,7 @@ export default function SelectOptionButton({
   id,
   value = "",
   onChange,
+  renderMenuListUI = null,
   ...props
 }) {
   return (
@@ -63,6 +64,7 @@ export default function SelectOptionButton({
             fontFamily: "Libre Franklin",
             fontSize: "1rem",
           },
+          ...props.inputPropsSx,
         }}
       >
         {label}
@@ -82,11 +84,15 @@ export default function SelectOptionButton({
         }}
       >
         {options.map((option, idx) => {
-          return (
-            <MenuItem key={idx} value={option} sx={{ fontSize: "16px" }}>
-              {option}
-            </MenuItem>
-          );
+          if (renderMenuListUI) {
+            return renderMenuListUI(option, idx);
+          } else {
+            return (
+              <MenuItem key={idx} value={option} sx={{ fontSize: "16px" }}>
+                {option}
+              </MenuItem>
+            );
+          }
         })}
       </Select>
     </CustomFormControl>

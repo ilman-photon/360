@@ -51,6 +51,7 @@ export const AutoCompleteInput = ({
 
   return (
     <Autocomplete
+      data-testid={props.testId}
       open={open}
       onOpen={() => {
         setOpen(true);

@@ -1,0 +1,73 @@
+@import "../../../../styles/colors.scss";
+
+.filterContainer {
+  width: 1128px;
+}
+
+.filterButtonContainer {
+  display: flex;
+}
+
+.filterButton {
+  width: 148px;
+  height: 30px;
+  border: 1px solid #205a63;
+  border-radius: 24px;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 18px;
+  justify-content: left;
+}
+
+.filterChildButton {
+  background: #ffffff;
+  border: 1px solid #003b4a;
+  border-radius: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 4px 3px 10px;
+  margin-left: 10px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #6d6f73;
+}
+
+.tuneIcon {
+  color: $iconBlack;
+}
+
+.keydownIcon {
+  position: absolute;
+  left: 72%;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.closeIcon {
+  width: 14px;
+  margin-left: 5px;
+}
+
+.filterFound {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: $darkGreen;
+}
+
+.calenderDay {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 17px;
+  text-align: center;
+  color: $darkGreen;
+  text-transform: capitalize;
+}

@@ -36,6 +36,7 @@ Object {
                     >
                       <div
                         class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-16awh2u-MuiAutocomplete-root"
+                        data-testid="loc_inputProvider"
                       >
                         <div
                           class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1krnp8b-MuiFormControl-root-MuiTextField-root"
@@ -113,6 +114,7 @@ Object {
                     >
                       <div
                         class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-16awh2u-MuiAutocomplete-root"
+                        data-testid="loc_inputPlan"
                       >
                         <div
                           class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1krnp8b-MuiFormControl-root-MuiTextField-root"
@@ -196,6 +198,7 @@ Object {
                     >
                       <div
                         class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
+                        data-testid="loc_inputSubsId"
                         withicon="true"
                       >
                         <label
@@ -225,6 +228,7 @@ Object {
                     >
                       <div
                         class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
+                        data-testid="loc_inputGroup"
                         withicon="true"
                       >
                         <label
@@ -489,7 +493,7 @@ Object {
                                 class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
                               >
                                 <div
-                                  class="MuiFormControl-root MuiTextField-root css-p3pjcm-MuiFormControl-root-MuiTextField-root"
+                                  class="MuiFormControl-root MuiTextField-root css-104anf4-MuiFormControl-root-MuiTextField-root"
                                 >
                                   <label
                                     class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
@@ -600,7 +604,7 @@ Object {
                     Upload images of your insurance.
                   </div>
                   <div
-                    class="MuiGrid-root MuiGrid-container MuiGrid-spacing-md-2 css-1msbs0v-MuiGrid-root"
+                    class="MuiGrid-root MuiGrid-container MuiGrid-spacing-md-2 css-1lnta3l-MuiGrid-root"
                   >
                     <div
                       class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-5bavhz-MuiGrid-root"
@@ -653,6 +657,7 @@ Object {
                         >
                           <button
                             class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root  css-1y9skq0-MuiButtonBase-root-MuiButton-root"
+                            data-testid="loc_btnUploadFront"
                             tabindex="0"
                             type="button"
                           >
@@ -682,6 +687,7 @@ Object {
                           </button>
                           <input
                             accept="image/png, image/gif, image/jpeg"
+                            data-testid="loc_uploadImage"
                             hidden=""
                             type="file"
                           />
@@ -739,6 +745,7 @@ Object {
                         >
                           <button
                             class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root  css-1y9skq0-MuiButtonBase-root-MuiButton-root"
+                            data-testid="loc_btnUploadBack"
                             tabindex="0"
                             type="button"
                           >
@@ -768,6 +775,7 @@ Object {
                           </button>
                           <input
                             accept="image/png, image/gif, image/jpeg"
+                            data-testid="loc_uploadImage"
                             hidden=""
                             type="file"
                           />
@@ -978,6 +986,7 @@ Object {
                   >
                     <button
                       class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-1rzk0sh-MuiButtonBase-root-MuiButton-root"
+                      data-testid="loc_btnCancelInsuranve"
                       tabindex="0"
                       type="button"
                     >
@@ -988,6 +997,7 @@ Object {
                     </button>
                     <button
                       class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-1rzk0sh-MuiButtonBase-root-MuiButton-root"
+                      data-testid="loc_btnSaveInsuranve"
                       tabindex="0"
                       type="submit"
                     >
@@ -1040,6 +1050,7 @@ Object {
                   >
                     <div
                       class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-16awh2u-MuiAutocomplete-root"
+                      data-testid="loc_inputProvider"
                     >
                       <div
                         class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1krnp8b-MuiFormControl-root-MuiTextField-root"
@@ -1117,6 +1128,7 @@ Object {
                   >
                     <div
                       class="MuiAutocomplete-root MuiAutocomplete-hasPopupIcon css-16awh2u-MuiAutocomplete-root"
+                      data-testid="loc_inputPlan"
                     >
                       <div
                         class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1krnp8b-MuiFormControl-root-MuiTextField-root"
@@ -1200,6 +1212,7 @@ Object {
                   >
                     <div
                       class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
+                      data-testid="loc_inputSubsId"
                       withicon="true"
                     >
                       <label
@@ -1229,6 +1242,7 @@ Object {
                   >
                     <div
                       class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
+                      data-testid="loc_inputGroup"
                       withicon="true"
                     >
                       <label
@@ -1493,7 +1507,7 @@ Object {
                               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
                             >
                               <div
-                                class="MuiFormControl-root MuiTextField-root css-p3pjcm-MuiFormControl-root-MuiTextField-root"
+                                class="MuiFormControl-root MuiTextField-root css-104anf4-MuiFormControl-root-MuiTextField-root"
                               >
                                 <label
                                   class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
@@ -1604,7 +1618,7 @@ Object {
                   Upload images of your insurance.
                 </div>
                 <div
-                  class="MuiGrid-root MuiGrid-container MuiGrid-spacing-md-2 css-1msbs0v-MuiGrid-root"
+                  class="MuiGrid-root MuiGrid-container MuiGrid-spacing-md-2 css-1lnta3l-MuiGrid-root"
                 >
                   <div
                     class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-5bavhz-MuiGrid-root"
@@ -1657,6 +1671,7 @@ Object {
                       >
                         <button
                           class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root  css-1y9skq0-MuiButtonBase-root-MuiButton-root"
+                          data-testid="loc_btnUploadFront"
                           tabindex="0"
                           type="button"
                         >
@@ -1686,6 +1701,7 @@ Object {
                         </button>
                         <input
                           accept="image/png, image/gif, image/jpeg"
+                          data-testid="loc_uploadImage"
                           hidden=""
                           type="file"
                         />
@@ -1743,6 +1759,7 @@ Object {
                       >
                         <button
                           class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root  css-1y9skq0-MuiButtonBase-root-MuiButton-root"
+                          data-testid="loc_btnUploadBack"
                           tabindex="0"
                           type="button"
                         >
@@ -1772,6 +1789,7 @@ Object {
                         </button>
                         <input
                           accept="image/png, image/gif, image/jpeg"
+                          data-testid="loc_uploadImage"
                           hidden=""
                           type="file"
                         />
@@ -1982,6 +2000,7 @@ Object {
                 >
                   <button
                     class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-1rzk0sh-MuiButtonBase-root-MuiButton-root"
+                    data-testid="loc_btnCancelInsuranve"
                     tabindex="0"
                     type="button"
                   >
@@ -1992,6 +2011,7 @@ Object {
                   </button>
                   <button
                     class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-1rzk0sh-MuiButtonBase-root-MuiButton-root"
+                    data-testid="loc_btnSaveInsuranve"
                     tabindex="0"
                     type="submit"
                   >

@@ -1,0 +1,147 @@
+.shortBio {
+  display: flex;
+  width: 942px;
+  margin-left: 12vw;
+  padding: 16px 0 32px 0;
+
+  @media (max-width: 992px) {
+    width: auto;
+    max-width: 552px;
+    flex-direction: column;
+    margin: unset;
+    padding: 16px 16px 0;
+  }
+}
+
+.appointment {
+  display: flex;
+  width: auto;
+  max-width: 368px;
+}
+
+.address {
+  color: #000;
+  letter-spacing: 0.0016em;
+  width: 226px;
+  @media (max-width: 992px) {
+    font-size: 14px !important;
+  }
+}
+
+.phone {
+  color: #424747;
+  letter-spacing: 0.0016em;
+
+  @media (max-width: 992px) {
+    font-size: 14px;
+  }
+}
+
+.phoneLink {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.0016em;
+  color: #008294 !important;
+  text-decoration-color: inherit !important;
+}
+
+.specialistTitle {
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  @media (max-width: 992px) {
+    margin-bottom: 12px;
+  }
+}
+
+.specialistList {
+  column-count: 2;
+  margin-block-start: 4px;
+  padding-inline-start: 25px;
+}
+
+.newColumn {
+  break-before: column;
+}
+
+.specialistTitle > li {
+  width: 170px;
+}
+
+.profilePhoto {
+  border-radius: 90px;
+}
+
+.displayFlex {
+  display: flex;
+}
+
+.bioContainer {
+  margin-left: 12px;
+  margin-right: 25px;
+  width: 20vw;
+
+  @media (max-width: 992px) {
+    width: auto;
+    margin-right: unset;
+  }
+}
+
+.shortBio h2 {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  @media (max-width: 992px) {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+  }
+}
+
+.appointment h2.doctorNameAppointment {
+  font-weight: 700;
+  line-height: 28px !important;
+  margin-bottom: 4px;
+  cursor: pointer;
+  @media (max-width: 992px) {
+    font-size: 18px;
+  }
+}
+
+.bioContainer h3 {
+  font-family: "Libre Franklin", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  color: #003b4a;
+}
+
+.ratingContainer {
+  margin-top: 50px;
+  @media (max-width: 992px) {
+    margin-top: 12px;
+  }
+}
+
+.phoneContainer {
+  margin-top: 5px;
+}
+
+.specialistList > li > p {
+  width: 200px;
+  line-height: 24px;
+  @media (max-width: 992px) {
+    width: unset;
+  }
+}
+
+.specialistList > li::marker {
+  font-size: 14px;
+}
+
+.starRating {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
