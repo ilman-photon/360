@@ -1,0 +1,400 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FilterHeading Components FilterHeading render 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div
+        class="filterContainer MuiBox-root css-0"
+      >
+        <div
+          class="filterButtonContainer MuiBox-root css-0"
+        >
+          <button
+            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root filterButton css-18fc0i1-MuiButtonBase-root-MuiButton-root"
+            data-testid="filterbtn"
+            tabindex="0"
+            type="button"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium tuneIcon css-i4bv87-MuiSvgIcon-root"
+              data-testid="TuneIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z"
+              />
+            </svg>
+            Filter
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium keydownIcon css-i4bv87-MuiSvgIcon-root"
+              data-testid="KeyboardArrowDownIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
+        </div>
+        <div
+          class="MuiBox-root css-sesgiw"
+        >
+          <div
+            class="MuiBox-root css-jy5pi"
+          >
+            <p
+              class="MuiTypography-root MuiTypography-body1 filterFound css-ahj2mt-MuiTypography-root"
+            >
+              30 In-network providers
+            </p>
+          </div>
+          <div
+            class="MuiBox-root css-1qe922y"
+          >
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1w23uea-MuiSvgIcon-root"
+              data-testid="ArrowBackIosIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11.67 3.87 9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"
+              />
+            </svg>
+            <div
+              class="MuiBox-root css-g9lo0d"
+            >
+              <div
+                class="MuiBox-root css-1prvghn"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+                >
+                  mon
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+                >
+                  Sep 19
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-19wmdl0"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+                >
+                  tue
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+                >
+                  Sep 20
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-114qxfe"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+                >
+                  wed
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+                >
+                  Sep 21
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-cg2h46"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+                >
+                  thu
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+                >
+                  Sep 22
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-oacha6"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+                >
+                  fri
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+                >
+                  Sep 23
+                </p>
+              </div>
+              <div
+                class="MuiBox-root css-1ibu2l3"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+                >
+                  sat
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+                >
+                  Sep 24
+                </p>
+              </div>
+            </div>
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-x1a2ui-MuiSvgIcon-root"
+              data-testid="ArrowForwardIosIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="filterContainer MuiBox-root css-0"
+    >
+      <div
+        class="filterButtonContainer MuiBox-root css-0"
+      >
+        <button
+          class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root filterButton css-18fc0i1-MuiButtonBase-root-MuiButton-root"
+          data-testid="filterbtn"
+          tabindex="0"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium tuneIcon css-i4bv87-MuiSvgIcon-root"
+            data-testid="TuneIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M3 17v2h6v-2H3zM3 5v2h10V5H3zm10 16v-2h8v-2h-8v-2h-2v6h2zM7 9v2H3v2h4v2h2V9H7zm14 4v-2H11v2h10zm-6-4h2V7h4V5h-4V3h-2v6z"
+            />
+          </svg>
+          Filter
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium keydownIcon css-i4bv87-MuiSvgIcon-root"
+            data-testid="KeyboardArrowDownIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
+            />
+          </svg>
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
+      </div>
+      <div
+        class="MuiBox-root css-sesgiw"
+      >
+        <div
+          class="MuiBox-root css-jy5pi"
+        >
+          <p
+            class="MuiTypography-root MuiTypography-body1 filterFound css-ahj2mt-MuiTypography-root"
+          >
+            30 In-network providers
+          </p>
+        </div>
+        <div
+          class="MuiBox-root css-1qe922y"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1w23uea-MuiSvgIcon-root"
+            data-testid="ArrowBackIosIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M11.67 3.87 9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"
+            />
+          </svg>
+          <div
+            class="MuiBox-root css-g9lo0d"
+          >
+            <div
+              class="MuiBox-root css-1prvghn"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+              >
+                mon
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+              >
+                Sep 19
+              </p>
+            </div>
+            <div
+              class="MuiBox-root css-19wmdl0"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+              >
+                tue
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+              >
+                Sep 20
+              </p>
+            </div>
+            <div
+              class="MuiBox-root css-114qxfe"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+              >
+                wed
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+              >
+                Sep 21
+              </p>
+            </div>
+            <div
+              class="MuiBox-root css-cg2h46"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+              >
+                thu
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+              >
+                Sep 22
+              </p>
+            </div>
+            <div
+              class="MuiBox-root css-oacha6"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+              >
+                fri
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+              >
+                Sep 23
+              </p>
+            </div>
+            <div
+              class="MuiBox-root css-1ibu2l3"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+              >
+                sat
+              </p>
+              <p
+                class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+              >
+                Sep 24
+              </p>
+            </div>
+          </div>
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-x1a2ui-MuiSvgIcon-root"
+            data-testid="ArrowForwardIosIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z"
+            />
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

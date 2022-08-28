@@ -1,0 +1,34 @@
+.backHeader {
+  background-color: #f4f4f4;
+  height: 72px;
+  position: absolute;
+  width: 100vw;
+  align-items: center;
+  display: flex;
+  padding-left: 12vw;
+  top: 65px;
+  z-index: 1;
+  @media (max-width: 992px) {
+    top: 60px;
+    padding-left: 21px;
+    height: 58px;
+  }
+}
+
+.arrowIcon {
+  color: rgba(0, 0, 0, 0.54);
+  width: 16px !important;
+  height: 16px !important;
+}
+
+.link {
+  font-family: "Libre Franklin", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.0016em;
+  color: #0095a9 !important;
+  text-decoration: none !important;
+  cursor: pointer;
+}

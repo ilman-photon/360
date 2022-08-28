@@ -1,0 +1,1299 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Patient Portal : Schedule Appointment from marketing site - Short bio of Provider EPIC_EPP-44_STORY_EPP-2518-Verify User should see the short bio of Provider 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div />
+    <div>
+      <div
+        class="defaultLayout"
+      >
+        <header
+          class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-1nft05v-MuiPaper-root-MuiAppBar-root"
+        >
+          <div
+            class="MuiContainer-root MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root"
+          >
+            <div
+              class="MuiToolbar-root MuiToolbar-regular css-r6ewbb-MuiToolbar-root"
+            >
+              <span
+                style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+              >
+                <span
+                  style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                >
+                  <img
+                    alt=""
+                    aria-hidden="true"
+                    src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27124%27%20height=%2736%27/%3e"
+                    style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                  />
+                </span>
+                <img
+                  alt="Eyecare Provider name with logo"
+                  aria-label="Eyecare Provider name with logo"
+                  data-nimg="intrinsic"
+                  decoding="async"
+                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                />
+                <noscript />
+              </span>
+            </div>
+          </div>
+        </header>
+        <div
+          class="backHeader MuiBox-root css-0"
+        >
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium arrowIcon css-i4bv87-MuiSvgIcon-root"
+            data-testid="ChevronLeftIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"
+            />
+          </svg>
+          <a
+            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+          >
+            Back to search
+          </a>
+        </div>
+        <div
+          class="defaultContainer"
+        >
+          <div
+            class="bioPage MuiBox-root css-0"
+          >
+            <div
+              class="shortBioContainer MuiBox-root css-0"
+            >
+              <div
+                class="shortBio MuiBox-root css-0"
+              >
+                <div
+                  class="displayFlex MuiBox-root css-0"
+                >
+                  <div
+                    class="MuiBox-root css-0"
+                  >
+                    <span
+                      style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                    >
+                      <span
+                        style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                      >
+                        <img
+                          alt=""
+                          aria-hidden="true"
+                          src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27100%27%20height=%27100%27/%3e"
+                          style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                        />
+                      </span>
+                      <img
+                        alt="Doctor Image"
+                        class="profilePhoto"
+                        data-nimg="intrinsic"
+                        decoding="async"
+                        src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                        style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                      />
+                      <noscript />
+                    </span>
+                  </div>
+                  <div
+                    class="bioContainer MuiBox-root css-0"
+                  >
+                    <h2
+                      class="MuiTypography-root MuiTypography-h2 css-izw0or-MuiTypography-root"
+                    >
+                      Paul Wagner, MD
+                    </h2>
+                    <p
+                      class="MuiTypography-root MuiTypography-body2 address css-fky267-MuiTypography-root"
+                    >
+                      51 West 51st Street, 
+                        Floor 3, Suite 320
+                        Midtown, New York, NY, 10019
+                    </p>
+                    <div
+                      class="ratingContainer MuiBox-root css-0"
+                    >
+                      <span
+                        aria-label="3.5 Stars"
+                        class="MuiRating-root MuiRating-sizeSmall MuiRating-readyOnly css-1cpqf3w-MuiRating-root"
+                        role="img"
+                      >
+                        <span
+                          class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                        >
+                          <span
+                            style="width: 0%; overflow: hidden; position: absolute;"
+                          >
+                            <span
+                              class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                data-testid="StarIcon"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                />
+                              </svg>
+                            </span>
+                          </span>
+                          <span>
+                            <span
+                              class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                data-testid="StarIcon"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                />
+                              </svg>
+                            </span>
+                          </span>
+                        </span>
+                        <span
+                          class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                        >
+                          <span
+                            style="width: 0%; overflow: hidden; position: absolute;"
+                          >
+                            <span
+                              class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                data-testid="StarIcon"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                />
+                              </svg>
+                            </span>
+                          </span>
+                          <span>
+                            <span
+                              class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                data-testid="StarIcon"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                />
+                              </svg>
+                            </span>
+                          </span>
+                        </span>
+                        <span
+                          class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                        >
+                          <span
+                            style="width: 0%; overflow: hidden; position: absolute;"
+                          >
+                            <span
+                              class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                data-testid="StarIcon"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                />
+                              </svg>
+                            </span>
+                          </span>
+                          <span>
+                            <span
+                              class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                data-testid="StarIcon"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                />
+                              </svg>
+                            </span>
+                          </span>
+                        </span>
+                        <span
+                          class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                        >
+                          <span
+                            style="width: 50%; overflow: hidden; position: absolute;"
+                          >
+                            <span
+                              class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                data-testid="StarIcon"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                />
+                              </svg>
+                            </span>
+                          </span>
+                          <span>
+                            <span
+                              class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                data-testid="StarIcon"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                />
+                              </svg>
+                            </span>
+                          </span>
+                        </span>
+                        <span
+                          class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                        >
+                          <span
+                            style="width: 0%; overflow: hidden; position: absolute;"
+                          >
+                            <span
+                              class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                data-testid="StarIcon"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                />
+                              </svg>
+                            </span>
+                          </span>
+                          <span>
+                            <span
+                              class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                data-testid="StarIcon"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                />
+                              </svg>
+                            </span>
+                          </span>
+                        </span>
+                      </span>
+                      <p
+                        class="MuiTypography-root MuiTypography-body2 phone css-1b03qeg-MuiTypography-root"
+                      >
+                        (857) 299-9989
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="MuiBox-root css-0"
+                >
+                  <div
+                    class="MuiBox-root css-0"
+                  >
+                    <h6
+                      class="MuiTypography-root MuiTypography-subtitle1 specialistTitle css-8t55lz-MuiTypography-root"
+                    >
+                      Specialties and Sub-specialties:
+                       
+                    </h6>
+                    <ul
+                      class="specialistList"
+                    >
+                      <li>
+                        <p
+                          class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        >
+                          Opthometry
+                        </p>
+                      </li>
+                      <li>
+                        <p
+                          class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        >
+                          Opthalmology
+                        </p>
+                      </li>
+                      <li>
+                        <p
+                          class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        >
+                          Catarac
+                        </p>
+                      </li>
+                      <li>
+                        <p
+                          class="MuiTypography-root MuiTypography-body2 newColumn css-1b03qeg-MuiTypography-root"
+                        >
+                          Glaucoma
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="detailedBio MuiBox-root css-0"
+            >
+              <div
+                class="stickyMenu MuiBox-root css-0"
+              >
+                <div
+                  class="stickyMenuContainer MuiBox-root css-0"
+                >
+                  <a
+                    class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                    data-testid="biography-about"
+                  >
+                    About
+                  </a>
+                  <a
+                    class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                    data-testid="biography-location"
+                  >
+                    Locations
+                  </a>
+                  <a
+                    class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                    data-testid="biography-insurance"
+                  >
+                    Insurances
+                  </a>
+                  <a
+                    class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                    data-testid="biography-education"
+                  >
+                    Education
+                  </a>
+                </div>
+              </div>
+              <div
+                class="menu MuiBox-root css-0"
+              >
+                <hr
+                  class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                />
+                <div
+                  class="menuContainer MuiBox-root css-0"
+                >
+                  <a
+                    class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                  >
+                    About
+                  </a>
+                  <a
+                    class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                  >
+                    Locations
+                  </a>
+                  <a
+                    class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                  >
+                    Insurances
+                  </a>
+                  <a
+                    class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                  >
+                    Education
+                  </a>
+                </div>
+                <hr
+                  class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+                />
+              </div>
+              <div
+                class="detailedBioContainer css-1lwbda4-MuiStack-root"
+              >
+                <h3
+                  class="MuiTypography-root MuiTypography-h3 css-14r3n6q-MuiTypography-root"
+                >
+                  About Paul Wagner, MD
+                </h3>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                >
+                  Dr. Esfandiari's current areas of emphasis include primary eye care, specialty contact lenses, refractive surgery consultation, surgical co-management. Dr. Esfandiari's knowledge and experience in ophthalmic optics has continually helped patients obtain optimal and healthy vision.show more
+                </p>
+                <h3
+                  class="MuiTypography-root MuiTypography-h3 css-14r3n6q-MuiTypography-root"
+                >
+                  Gender
+                </h3>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                >
+                  Male
+                </p>
+                <h3
+                  class="MuiTypography-root MuiTypography-h3 css-14r3n6q-MuiTypography-root"
+                >
+                  Locations
+                </h3>
+                <div
+                  class="mapContainer MuiBox-root css-0"
+                >
+                  <div
+                    class="map MuiBox-root css-0"
+                  />
+                  <div
+                    class="mapAddressContainer MuiBox-root css-0"
+                  >
+                    <p
+                      class="MuiTypography-root MuiTypography-body2 mapAddress css-1b03qeg-MuiTypography-root"
+                    >
+                      51 West 51st Street,
+                            Floor 3, Suite 320
+
+                            Midtown, New York, NY, 10019
+                    </p>
+                    <div
+                      class="getDirectionLinkContainer MuiBox-root css-0"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1jxdcj3-MuiSvgIcon-root"
+                        data-testid="DirectionsOutlinedIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="m22.43 10.59-9.01-9.01c-.75-.75-2.07-.76-2.83 0l-9 9c-.78.78-.78 2.04 0 2.82l9 9c.39.39.9.58 1.41.58.51 0 1.02-.19 1.41-.58l8.99-8.99c.79-.76.8-2.02.03-2.82zm-10.42 10.4-9-9 9-9 9 9-9 9zM8 11v4h2v-3h4v2.5l3.5-3.5L14 7.5V10H9c-.55 0-1 .45-1 1z"
+                        />
+                      </svg>
+                      <a
+                        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways getDirectionLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                      >
+                        Get directions
+                      </a>
+                    </div>
+                  </div>
+                </div>
+                <h3
+                  class="MuiTypography-root MuiTypography-h3 css-14r3n6q-MuiTypography-root"
+                >
+                  Languages
+                </h3>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                >
+                  English, Spanish
+                </p>
+                <h3
+                  class="MuiTypography-root MuiTypography-h3 css-14r3n6q-MuiTypography-root"
+                >
+                  In-network insurances
+                </h3>
+                <div
+                  class="insurancesContainer MuiBox-root css-0"
+                >
+                  <ul
+                    class="insurancestList"
+                  >
+                    <li>
+                      <p
+                        class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                      >
+                        Blue Cross Blue Shield
+                      </p>
+                    </li>
+                    <li>
+                      <p
+                        class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                      >
+                        Cigna
+                      </p>
+                    </li>
+                    <li>
+                      <p
+                        class="MuiTypography-root MuiTypography-body2 newColumn css-1b03qeg-MuiTypography-root"
+                      >
+                        UnitedHeathcare
+                      </p>
+                    </li>
+                    <li>
+                      <p
+                        class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                      >
+                        16+ more in-network insurances
+                         
+                        <a
+                          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways viewAllLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                          data-testid="biography-view-all-insurance"
+                        >
+                          View All
+                        </a>
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+                <h3
+                  class="MuiTypography-root MuiTypography-h3 css-14r3n6q-MuiTypography-root"
+                >
+                  Education
+                </h3>
+                <div
+                  class="educationContainer MuiBox-root css-0"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                  >
+                    New England College of Optometry, Doctor of Optometry
+                  </p>
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                  >
+                    University of California, San Diego (Bachelor's)
+                  </p>
+                </div>
+                <h3
+                  class="MuiTypography-root MuiTypography-h3 css-14r3n6q-MuiTypography-root"
+                >
+                  Memberships and Afilliations
+                </h3>
+                <div
+                  class="educationContainer MuiBox-root css-0"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                  >
+                    New England College of Optometry, Doctor of Optometry
+                  </p>
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                  >
+                    University of California, San Diego (Bachelor's)
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div
+      class="defaultLayout"
+    >
+      <header
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-1nft05v-MuiPaper-root-MuiAppBar-root"
+      >
+        <div
+          class="MuiContainer-root MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root"
+        >
+          <div
+            class="MuiToolbar-root MuiToolbar-regular css-r6ewbb-MuiToolbar-root"
+          >
+            <span
+              style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+            >
+              <span
+                style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+              >
+                <img
+                  alt=""
+                  aria-hidden="true"
+                  src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27124%27%20height=%2736%27/%3e"
+                  style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                />
+              </span>
+              <img
+                alt="Eyecare Provider name with logo"
+                aria-label="Eyecare Provider name with logo"
+                data-nimg="intrinsic"
+                decoding="async"
+                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+              />
+              <noscript />
+            </span>
+          </div>
+        </div>
+      </header>
+      <div
+        class="backHeader MuiBox-root css-0"
+      >
+        <svg
+          aria-hidden="true"
+          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium arrowIcon css-i4bv87-MuiSvgIcon-root"
+          data-testid="ChevronLeftIcon"
+          focusable="false"
+          viewBox="0 0 24 24"
+        >
+          <path
+            d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"
+          />
+        </svg>
+        <a
+          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+        >
+          Back to search
+        </a>
+      </div>
+      <div
+        class="defaultContainer"
+      >
+        <div
+          class="bioPage MuiBox-root css-0"
+        >
+          <div
+            class="shortBioContainer MuiBox-root css-0"
+          >
+            <div
+              class="shortBio MuiBox-root css-0"
+            >
+              <div
+                class="displayFlex MuiBox-root css-0"
+              >
+                <div
+                  class="MuiBox-root css-0"
+                >
+                  <span
+                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                  >
+                    <span
+                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                    >
+                      <img
+                        alt=""
+                        aria-hidden="true"
+                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27100%27%20height=%27100%27/%3e"
+                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                      />
+                    </span>
+                    <img
+                      alt="Doctor Image"
+                      class="profilePhoto"
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                    />
+                    <noscript />
+                  </span>
+                </div>
+                <div
+                  class="bioContainer MuiBox-root css-0"
+                >
+                  <h2
+                    class="MuiTypography-root MuiTypography-h2 css-izw0or-MuiTypography-root"
+                  >
+                    Paul Wagner, MD
+                  </h2>
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 address css-fky267-MuiTypography-root"
+                  >
+                    51 West 51st Street, 
+                        Floor 3, Suite 320
+                        Midtown, New York, NY, 10019
+                  </p>
+                  <div
+                    class="ratingContainer MuiBox-root css-0"
+                  >
+                    <span
+                      aria-label="3.5 Stars"
+                      class="MuiRating-root MuiRating-sizeSmall MuiRating-readyOnly css-1cpqf3w-MuiRating-root"
+                      role="img"
+                    >
+                      <span
+                        class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                      >
+                        <span
+                          style="width: 0%; overflow: hidden; position: absolute;"
+                        >
+                          <span
+                            class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                              data-testid="StarIcon"
+                              focusable="false"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                              />
+                            </svg>
+                          </span>
+                        </span>
+                        <span>
+                          <span
+                            class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                              data-testid="StarIcon"
+                              focusable="false"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                              />
+                            </svg>
+                          </span>
+                        </span>
+                      </span>
+                      <span
+                        class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                      >
+                        <span
+                          style="width: 0%; overflow: hidden; position: absolute;"
+                        >
+                          <span
+                            class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                              data-testid="StarIcon"
+                              focusable="false"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                              />
+                            </svg>
+                          </span>
+                        </span>
+                        <span>
+                          <span
+                            class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                              data-testid="StarIcon"
+                              focusable="false"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                              />
+                            </svg>
+                          </span>
+                        </span>
+                      </span>
+                      <span
+                        class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                      >
+                        <span
+                          style="width: 0%; overflow: hidden; position: absolute;"
+                        >
+                          <span
+                            class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                              data-testid="StarIcon"
+                              focusable="false"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                              />
+                            </svg>
+                          </span>
+                        </span>
+                        <span>
+                          <span
+                            class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                              data-testid="StarIcon"
+                              focusable="false"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                              />
+                            </svg>
+                          </span>
+                        </span>
+                      </span>
+                      <span
+                        class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                      >
+                        <span
+                          style="width: 50%; overflow: hidden; position: absolute;"
+                        >
+                          <span
+                            class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                              data-testid="StarIcon"
+                              focusable="false"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                              />
+                            </svg>
+                          </span>
+                        </span>
+                        <span>
+                          <span
+                            class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                              data-testid="StarIcon"
+                              focusable="false"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                              />
+                            </svg>
+                          </span>
+                        </span>
+                      </span>
+                      <span
+                        class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                      >
+                        <span
+                          style="width: 0%; overflow: hidden; position: absolute;"
+                        >
+                          <span
+                            class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                              data-testid="StarIcon"
+                              focusable="false"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                              />
+                            </svg>
+                          </span>
+                        </span>
+                        <span>
+                          <span
+                            class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
+                          >
+                            <svg
+                              aria-hidden="true"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                              data-testid="StarIcon"
+                              focusable="false"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                              />
+                            </svg>
+                          </span>
+                        </span>
+                      </span>
+                    </span>
+                    <p
+                      class="MuiTypography-root MuiTypography-body2 phone css-1b03qeg-MuiTypography-root"
+                    >
+                      (857) 299-9989
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="MuiBox-root css-0"
+              >
+                <div
+                  class="MuiBox-root css-0"
+                >
+                  <h6
+                    class="MuiTypography-root MuiTypography-subtitle1 specialistTitle css-8t55lz-MuiTypography-root"
+                  >
+                    Specialties and Sub-specialties:
+                     
+                  </h6>
+                  <ul
+                    class="specialistList"
+                  >
+                    <li>
+                      <p
+                        class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                      >
+                        Opthometry
+                      </p>
+                    </li>
+                    <li>
+                      <p
+                        class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                      >
+                        Opthalmology
+                      </p>
+                    </li>
+                    <li>
+                      <p
+                        class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                      >
+                        Catarac
+                      </p>
+                    </li>
+                    <li>
+                      <p
+                        class="MuiTypography-root MuiTypography-body2 newColumn css-1b03qeg-MuiTypography-root"
+                      >
+                        Glaucoma
+                      </p>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="detailedBio MuiBox-root css-0"
+          >
+            <div
+              class="stickyMenu MuiBox-root css-0"
+            >
+              <div
+                class="stickyMenuContainer MuiBox-root css-0"
+              >
+                <a
+                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                  data-testid="biography-about"
+                >
+                  About
+                </a>
+                <a
+                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                  data-testid="biography-location"
+                >
+                  Locations
+                </a>
+                <a
+                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                  data-testid="biography-insurance"
+                >
+                  Insurances
+                </a>
+                <a
+                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                  data-testid="biography-education"
+                >
+                  Education
+                </a>
+              </div>
+            </div>
+            <div
+              class="menu MuiBox-root css-0"
+            >
+              <hr
+                class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+              />
+              <div
+                class="menuContainer MuiBox-root css-0"
+              >
+                <a
+                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                >
+                  About
+                </a>
+                <a
+                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                >
+                  Locations
+                </a>
+                <a
+                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                >
+                  Insurances
+                </a>
+                <a
+                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways menuText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                >
+                  Education
+                </a>
+              </div>
+              <hr
+                class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
+              />
+            </div>
+            <div
+              class="detailedBioContainer css-1lwbda4-MuiStack-root"
+            >
+              <h3
+                class="MuiTypography-root MuiTypography-h3 css-14r3n6q-MuiTypography-root"
+              >
+                About Paul Wagner, MD
+              </h3>
+              <p
+                class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+              >
+                Dr. Esfandiari's current areas of emphasis include primary eye care, specialty contact lenses, refractive surgery consultation, surgical co-management. Dr. Esfandiari's knowledge and experience in ophthalmic optics has continually helped patients obtain optimal and healthy vision.show more
+              </p>
+              <h3
+                class="MuiTypography-root MuiTypography-h3 css-14r3n6q-MuiTypography-root"
+              >
+                Gender
+              </h3>
+              <p
+                class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+              >
+                Male
+              </p>
+              <h3
+                class="MuiTypography-root MuiTypography-h3 css-14r3n6q-MuiTypography-root"
+              >
+                Locations
+              </h3>
+              <div
+                class="mapContainer MuiBox-root css-0"
+              >
+                <div
+                  class="map MuiBox-root css-0"
+                />
+                <div
+                  class="mapAddressContainer MuiBox-root css-0"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 mapAddress css-1b03qeg-MuiTypography-root"
+                  >
+                    51 West 51st Street,
+                            Floor 3, Suite 320
+
+                            Midtown, New York, NY, 10019
+                  </p>
+                  <div
+                    class="getDirectionLinkContainer MuiBox-root css-0"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1jxdcj3-MuiSvgIcon-root"
+                      data-testid="DirectionsOutlinedIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="m22.43 10.59-9.01-9.01c-.75-.75-2.07-.76-2.83 0l-9 9c-.78.78-.78 2.04 0 2.82l9 9c.39.39.9.58 1.41.58.51 0 1.02-.19 1.41-.58l8.99-8.99c.79-.76.8-2.02.03-2.82zm-10.42 10.4-9-9 9-9 9 9-9 9zM8 11v4h2v-3h4v2.5l3.5-3.5L14 7.5V10H9c-.55 0-1 .45-1 1z"
+                      />
+                    </svg>
+                    <a
+                      class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways getDirectionLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                    >
+                      Get directions
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <h3
+                class="MuiTypography-root MuiTypography-h3 css-14r3n6q-MuiTypography-root"
+              >
+                Languages
+              </h3>
+              <p
+                class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+              >
+                English, Spanish
+              </p>
+              <h3
+                class="MuiTypography-root MuiTypography-h3 css-14r3n6q-MuiTypography-root"
+              >
+                In-network insurances
+              </h3>
+              <div
+                class="insurancesContainer MuiBox-root css-0"
+              >
+                <ul
+                  class="insurancestList"
+                >
+                  <li>
+                    <p
+                      class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                    >
+                      Blue Cross Blue Shield
+                    </p>
+                  </li>
+                  <li>
+                    <p
+                      class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                    >
+                      Cigna
+                    </p>
+                  </li>
+                  <li>
+                    <p
+                      class="MuiTypography-root MuiTypography-body2 newColumn css-1b03qeg-MuiTypography-root"
+                    >
+                      UnitedHeathcare
+                    </p>
+                  </li>
+                  <li>
+                    <p
+                      class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                    >
+                      16+ more in-network insurances
+                       
+                      <a
+                        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways viewAllLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                        data-testid="biography-view-all-insurance"
+                      >
+                        View All
+                      </a>
+                    </p>
+                  </li>
+                </ul>
+              </div>
+              <h3
+                class="MuiTypography-root MuiTypography-h3 css-14r3n6q-MuiTypography-root"
+              >
+                Education
+              </h3>
+              <div
+                class="educationContainer MuiBox-root css-0"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                >
+                  New England College of Optometry, Doctor of Optometry
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                >
+                  University of California, San Diego (Bachelor's)
+                </p>
+              </div>
+              <h3
+                class="MuiTypography-root MuiTypography-h3 css-14r3n6q-MuiTypography-root"
+              >
+                Memberships and Afilliations
+              </h3>
+              <div
+                class="educationContainer MuiBox-root css-0"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                >
+                  New England College of Optometry, Doctor of Optometry
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                >
+                  University of California, San Diego (Bachelor's)
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;

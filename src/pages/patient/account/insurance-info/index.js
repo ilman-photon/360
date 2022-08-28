@@ -28,18 +28,19 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import AccountCard from "../../../../components/molecules/AccountCard/accountCard";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import AddIcon from "@mui/icons-material/Add";
 import { StyledButton } from "../../../../components/atoms/Button/button";
 import styles from "./styles.module.scss";
 import InsuranceForm from "../../../../components/organisms/InsuranceInformation/insuranceForm";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AccountCircleOutlined from "@mui/icons-material/AccountCircleOutlined";
+import constants from "../../../../utils/constants";
 
 export default function InsuranceInfoPage() {
   const [openNewInsuranceForm, setOpenNewInsuranceForm] = useState(false);
   const [confirmationDeleteDialog, setConfirmationDeleteDialog] =
     useState(false);
+  const { INSURANCE_TEST_ID } = constants.TEST_ID;
   const [formDeleteInsurance, setFormDeleteInsurance] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [editForm, setEditForm] = useState(null);
@@ -148,6 +149,7 @@ export default function InsuranceInfoPage() {
                   size="small"
                   className={styles.addButton}
                   disabled={openNewInsuranceForm}
+                  data-testid={INSURANCE_TEST_ID.addButton}
                   onClick={OnAddNewInsurance}
                 >
                   <Stack
@@ -168,6 +170,7 @@ export default function InsuranceInfoPage() {
             <Collapse in={isEditing}>
               <Box>
                 <InsuranceForm
+                  testIds={INSURANCE_TEST_ID}
                   formData={editForm}
                   OnSaveClicked={OnEditInsurance}
                   OnCancelClicked={() => {
@@ -226,6 +229,7 @@ export default function InsuranceInfoPage() {
                     </AccordionSummary>
                     <AccordionDetails>
                       <InsuranceForm
+                        testIds={INSURANCE_TEST_ID}
                         OnSaveClicked={OnCreateInsurance}
                         OnCancelClicked={() => {
                           setOpenNewInsuranceForm(false);
