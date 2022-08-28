@@ -98,5 +98,16 @@ module.exports = {
       education: "biography-education",
       viewAll: "biography-view-all-insurance",
     },
+    INSURANCE_TEST_ID: {
+      addButton: "loc_btnAddInsurance",
+      provider: "loc_inputProvider",
+      planName: "loc_inputPlan",
+      subscriberId: "loc_inputSubsId",
+      group: "loc_inputGroup",
+      save: "loc_btnSaveInsuranve",
+      cancel: "loc_btnCancelInsuranve",
+      uploadFrontImage: "loc_btnUploadFront",
+      uploadBackImage: "loc_btnUploadBack",
+    },
   },
 };

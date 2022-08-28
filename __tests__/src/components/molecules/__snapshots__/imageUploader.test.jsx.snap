@@ -39,6 +39,7 @@ Object {
           </div>
           <input
             accept="image/png, image/gif, image/jpeg"
+            data-testid="loc_uploadImage"
             hidden=""
             type="file"
           />
@@ -91,6 +92,7 @@ Object {
         </div>
         <input
           accept="image/png, image/gif, image/jpeg"
+          data-testid="loc_uploadImage"
           hidden=""
           type="file"
         />

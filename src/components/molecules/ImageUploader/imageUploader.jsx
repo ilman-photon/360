@@ -16,6 +16,7 @@ export const ImageUploader = ({
   OnInputError = () => {
     // This is intended
   },
+  testIds,
 }) => {
   const inputImage = useRef(null);
 
@@ -82,6 +83,7 @@ export const ImageUploader = ({
               onClick={() => {
                 inputImage.current.click();
               }}
+              data-testid={testIds}
               sx={{
                 color: colors.black,
                 textTransform: "none",
@@ -100,6 +102,7 @@ export const ImageUploader = ({
           <input
             ref={inputImage}
             type="file"
+            data-testid={"loc_uploadImage"}
             accept="image/png, image/gif, image/jpeg"
             hidden
             onChange={handleInputChange}
@@ -124,6 +127,7 @@ export const ImageUploader = ({
             width: "fit-content",
             alignSelf: "center",
           }}
+          data-testid={testIds}
           onClick={() => {
             inputImage.current.click();
           }}

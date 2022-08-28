@@ -207,7 +207,7 @@ export default function BiographyDetails({ profileData }) {
         <Typography variant="h3" ref={insurancesRef}>
           In-network insurances
         </Typography>
-        {renderInsurances(BIOGRAPHY_TEST_ID)}
+        {renderInsurances()}
 
         <Typography variant="h3" ref={educationRef}>
           Education
