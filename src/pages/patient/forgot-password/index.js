@@ -222,7 +222,7 @@ export default function ForgotPasswordPage() {
         confirmationFormProps.title = t("titlePasswordReset");
         confirmationFormProps.subtitle = t("subtitlePasswordReset");
         confirmationFormProps.additional = modeOfCommuicationUI;
-        confirmationFormProps.buttonLabel = t("primaryButtonOneTime");
+        confirmationFormProps.buttonLabel = t("primaryButtonResetPassword");
         confirmationFormProps.primaryButtonTestId =
           constants.TEST_ID.FORGOT_TEST_ID.oneTimeLink;
         confirmationFormProps.buttonIcon = (

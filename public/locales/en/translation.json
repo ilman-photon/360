@@ -83,6 +83,7 @@
     "additionalTextOneTime": "Mode of Communication",
     "descriptionOneTime": "Click on the one-time link sent to your email or phone number to access your account",
     "primaryButtonOneTime": "Send one-time link",
+    "primaryButtonResetPassword": "Send link",
     "securityButtonTextOneTime": "Answer security questions",
     "noSecurityButtonTextOneTime": "Receive link to reset password",
     "answerSecurityQuestionsLabel": "Answer security questions",
