@@ -404,9 +404,18 @@ exports[`App renders App unchanged 1`] = `
                       class="MuiTypography-root MuiTypography-regularBold css-37jdci-MuiTypography-root"
                       style="color: rgb(0, 59, 74); font-size: 16px;"
                     >
-                      5755 Burke Centre Parkway
+                      <div>
+                        673 Herzog Locks
+                        <br />
+                        Suite 300
+                        <br />
+                        New York
+                        , 
+                        NY
+                        , 
+                        53891
+                      </div>
                       <br />
-                      Burke, VA 22015-2264
                     </span>
                     <h4
                       aria-label="Myself"
@@ -417,7 +426,7 @@ exports[`App renders App unchanged 1`] = `
                         class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
                         style="color: rgb(0, 130, 148); font-size: 18px;"
                       >
-                        (703) 250-9000
+                        (123) 123-4567
                       </a>
                     </h4>
                   </div>
@@ -514,7 +523,7 @@ exports[`App renders App unchanged 1`] = `
                     class="label"
                     style="padding-left: 4px; color: rgb(0, 59, 74);"
                   >
-                    Name
+                    Date and time
                   </div>
                 </div>
                 <div
@@ -526,7 +535,7 @@ exports[`App renders App unchanged 1`] = `
                     <span
                       class="MuiTypography-root MuiTypography-bodyMedium css-1oitrp4-MuiTypography-root"
                     >
-                      Saturday, Sep 11 - 8:30 am EST
+                      Monday, August 29, 2022, 6:12:55 PM
                     </span>
                   </div>
                 </div>
@@ -557,7 +566,7 @@ exports[`App renders App unchanged 1`] = `
                     class="label"
                     style="padding-left: 4px; color: rgb(0, 59, 74);"
                   >
-                    Preferred Name
+                    Insurance
                   </div>
                 </div>
                 <div
