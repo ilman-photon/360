@@ -1,6 +1,6 @@
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import AppointmentForm from "../../../../src/components/organisms/ScheduleAppointment/AppointmentForm";
+import AppointmentForm from "../../../../src/components/organisms/ScheduleAppointment/appointmentForm";
 
 describe("App", () => {
     let container;
