@@ -1,8 +1,6 @@
 import { faker } from "@faker-js/faker";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 
-// const mockImage = faker.image.imageUrl(275, 173)
-
 const DEFAULT_PROVIDER_INFO_DATA = {
   providerId: 0,
   name: null,

@@ -1,5 +1,7 @@
 export function formatDate(payload) {
-  if (!payload) return "-";
+  if (!payload) { 
+    return "-";
+  }
   const date = new Date(payload);
   return date
     .toLocaleString("en-US", {
