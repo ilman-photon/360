@@ -53,7 +53,7 @@ export default function SelectOptionButton({
   ...props
 }) {
   return (
-    <CustomFormControl variant="filled" {...props} style={{ width: "100%" }}>
+    <CustomFormControl variant="filled" style={{ width: "100%" }}>
       <InputLabel
         id="demo-simple-select-label"
         sx={{
@@ -82,6 +82,7 @@ export default function SelectOptionButton({
             backgroundColor: "#fff",
           },
         }}
+        {...props}
       >
         {options.map((option, idx) => {
           if (renderMenuListUI) {

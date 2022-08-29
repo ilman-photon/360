@@ -81,3 +81,22 @@
 .hideText {
   visibility: hidden;
 }
+
+.selectMenuContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.dialogSelectMenu {
+  margin-top: 16px;
+}
+
+.dialogSelectMenuTitle {
+  font-family: "Libre Franklin";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: 0.0016em;
+  color: $darkGreen;
+}

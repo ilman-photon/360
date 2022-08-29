@@ -160,7 +160,7 @@ exports[`App renders App unchanged 1`] = `
                         id=":r1:"
                         placeholder=""
                         type="default"
-                        value="Fri Apr 01 2022 00:00:00 GMT+0700 (Western Indonesia Time)"
+                        value="Apr 1, 2022"
                       />
                     </div>
                   </div>

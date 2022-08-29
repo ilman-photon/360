@@ -50,12 +50,23 @@ const FilterHeading = ({
   const [openDialog, setOpenDialog] = React.useState(false);
   const [contentDialog, setContentDialog] = React.useState(<></>);
   const [dateValue, setDateValue] = React.useState(new Date());
+  const [purposeOfVisitValue, setpurposeOfVisitValue] = React.useState([]);
 
   const mapsData = ["Use my current location"];
 
   const minDate = new Date();
   const maxDate = new Date(); // add arguments as needed
   maxDate.setMonth(maxDate.getMonth() + 3);
+
+  const handlePurposeOfVisitChange = (event) => {
+    const {
+      target: { value },
+    } = event;
+    setpurposeOfVisitValue(
+      // On autofill we get a stringified value.
+      typeof value === "string" ? value.split(",") : value
+    );
+  };
 
   const purposeOfVisitData = [
     { title: "Eye exam", subtitle: "Test the health of your eye" },
@@ -75,6 +86,22 @@ const FilterHeading = ({
     },
   };
 
+  function getMenuList(title, subtitle) {
+    return (
+      <Box className={styles.selectMenuContainer}>
+        <Typography
+          variant="bodySmallRegular"
+          sx={{ display: "block", color: colors.darkGreen }}
+        >
+          {title}
+        </Typography>
+        <Typography variant="bodySmallMedium" sx={{ color: colors.darkGreen }}>
+          {subtitle}
+        </Typography>
+      </Box>
+    );
+  }
+
   const menuListUI = (option, idx) => {
     return (
       <MenuItem
@@ -82,20 +109,9 @@ const FilterHeading = ({
         value={option.subtitle}
         sx={{
           fontSize: "16px",
-          ["& li"]: {
-            display: "block",
-          },
         }}
       >
-        <Typography
-          variant="bodySmallRegular"
-          sx={{ display: "block", color: colors.darkGreen }}
-        >
-          {option.title}
-        </Typography>
-        <Typography variant="bodySmallMedium" sx={{ color: colors.darkGreen }}>
-          {option.subtitle}
-        </Typography>
+        {getMenuList(option.title, option.subtitle)}
       </MenuItem>
     );
   };
@@ -224,7 +240,7 @@ const FilterHeading = ({
                 value={dateValue}
                 onChange={(e) => {
                   onChange(e);
-                  setDateValue(convertToDate(e));
+                  setDateValue(e);
                 }}
                 sx={{
                   margin: 0,
@@ -238,6 +254,7 @@ const FilterHeading = ({
                     return null;
                   },
                 }}
+                inputFormat={"MMM dd, yyyy"}
               />
             </Box>
           );
@@ -278,18 +295,25 @@ const FilterHeading = ({
                   [muiInputRoot]: {
                     border: "0px solid #bbb",
                     backgroundColor: "#fff",
+                    "&.Mui-focused": {
+                      boxShadow: "none",
+                    },
                   },
                 }}
                 label={"Purposes of Visit"}
                 labelId={`purposes-of-visit`}
                 id={`purposes-of-visit`}
                 options={purposeOfVisitData}
-                value={value}
-                onChange={(event) => {
-                  onChange(event.target.value);
-                }}
+                value={purposeOfVisitValue}
+                onChange={handlePurposeOfVisitChange}
                 renderMenuListUI={menuListUI}
                 data-testid={APPOINTMENT_TEST_ID.purposeInput}
+                renderValue={(selected) => {
+                  if (Array.isArray(selected)) {
+                    return selected.join(", ");
+                  }
+                  return purposeOfVisitValue;
+                }}
               />
             </Box>
           );
@@ -517,7 +541,7 @@ const FilterHeading = ({
       return (
         <StyledInput
           type="default"
-          value={dateValue}
+          value={convertToDate(dateValue)}
           onChange={onChange}
           variant="filled"
           label="Date"
@@ -546,11 +570,14 @@ const FilterHeading = ({
       return (
         <StyledInput
           type="default"
-          value={value}
+          value={purposeOfVisitValue}
           onChange={onChange}
           variant="filled"
           label="Purposes of Visit"
           sx={sxTextField}
+          onClick={() => {
+            handleOpenDialog("purposeInput");
+          }}
         />
       );
     };
@@ -609,12 +636,34 @@ const FilterHeading = ({
             openTo="day"
             value={dateValue}
             onChange={(newValue) => {
-              setDateValue(convertToDate(newValue));
+              setDateValue(newValue);
               handleCloseDialog();
             }}
             renderInput={(props) => <TextField {...props} />}
           />
         </LocalizationProvider>
+      );
+    } else if (type === "purposeInput") {
+      child = (
+        <Box>
+          <Typography className={styles.dialogSelectMenuTitle}>
+            Appointment Type
+          </Typography>
+          {purposeOfVisitData.map((option, idx) => {
+            return (
+              <Box
+                key={idx}
+                className={styles.dialogSelectMenu}
+                onClick={() => {
+                  setpurposeOfVisitValue(option.subtitle);
+                  handleCloseDialog();
+                }}
+              >
+                {getMenuList(option.title, option.subtitle)}
+              </Box>
+            );
+          })}
+        </Box>
       );
     }
     setContentDialog(child);

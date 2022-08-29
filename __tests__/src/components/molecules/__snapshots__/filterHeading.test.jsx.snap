@@ -124,7 +124,7 @@ Object {
                     id=":r2:"
                     readonly=""
                     type="text"
-                    value="04/01/2022"
+                    value="Apr 01, 2022"
                   />
                 </div>
               </div>
@@ -147,8 +147,7 @@ Object {
                 />
               </svg>
               <div
-                class="MuiFormControl-root css-x64fv7-MuiFormControl-root"
-                data-testid="purposeInput"
+                class="MuiFormControl-root css-1nn82kk-MuiFormControl-root"
                 style="width: 100%;"
               >
                 <label
@@ -159,8 +158,8 @@ Object {
                   Purposes of Visit
                 </label>
                 <div
-                  class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
-                  data-testid="select-purposes-of-visit"
+                  class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-jjz489-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                  data-testid="purposeInput"
                 >
                   <div
                     aria-expanded="false"
@@ -431,7 +430,7 @@ Object {
                   id=":r2:"
                   readonly=""
                   type="text"
-                  value="04/01/2022"
+                  value="Apr 01, 2022"
                 />
               </div>
             </div>
@@ -454,8 +453,7 @@ Object {
               />
             </svg>
             <div
-              class="MuiFormControl-root css-x64fv7-MuiFormControl-root"
-              data-testid="purposeInput"
+              class="MuiFormControl-root css-1nn82kk-MuiFormControl-root"
               style="width: 100%;"
             >
               <label
@@ -466,8 +464,8 @@ Object {
                 Purposes of Visit
               </label>
               <div
-                class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
-                data-testid="select-purposes-of-visit"
+                class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-jjz489-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                data-testid="purposeInput"
               >
                 <div
                   aria-expanded="false"
@@ -795,7 +793,7 @@ Object {
                     id=":r8:"
                     readonly=""
                     type="text"
-                    value="04/01/2022"
+                    value="Apr 01, 2022"
                   />
                 </div>
               </div>
@@ -818,8 +816,7 @@ Object {
                 />
               </svg>
               <div
-                class="MuiFormControl-root css-x64fv7-MuiFormControl-root"
-                data-testid="purposeInput"
+                class="MuiFormControl-root css-1nn82kk-MuiFormControl-root"
                 style="width: 100%;"
               >
                 <label
@@ -830,8 +827,8 @@ Object {
                   Purposes of Visit
                 </label>
                 <div
-                  class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
-                  data-testid="select-purposes-of-visit"
+                  class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-jjz489-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                  data-testid="purposeInput"
                 >
                   <div
                     aria-expanded="false"
@@ -1101,7 +1098,7 @@ Object {
                     id=":re:"
                     readonly=""
                     type="text"
-                    value="04/01/2022"
+                    value="Apr 01, 2022"
                   />
                 </div>
               </div>
@@ -1124,8 +1121,7 @@ Object {
                 />
               </svg>
               <div
-                class="MuiFormControl-root css-x64fv7-MuiFormControl-root"
-                data-testid="purposeInput"
+                class="MuiFormControl-root css-1nn82kk-MuiFormControl-root"
                 style="width: 100%;"
               >
                 <label
@@ -1136,8 +1132,8 @@ Object {
                   Purposes of Visit
                 </label>
                 <div
-                  class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
-                  data-testid="select-purposes-of-visit"
+                  class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-jjz489-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                  data-testid="purposeInput"
                 >
                   <div
                     aria-expanded="false"
@@ -1408,7 +1404,7 @@ Object {
                   id=":re:"
                   readonly=""
                   type="text"
-                  value="04/01/2022"
+                  value="Apr 01, 2022"
                 />
               </div>
             </div>
@@ -1431,8 +1427,7 @@ Object {
               />
             </svg>
             <div
-              class="MuiFormControl-root css-x64fv7-MuiFormControl-root"
-              data-testid="purposeInput"
+              class="MuiFormControl-root css-1nn82kk-MuiFormControl-root"
               style="width: 100%;"
             >
               <label
@@ -1443,8 +1438,8 @@ Object {
                 Purposes of Visit
               </label>
               <div
-                class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
-                data-testid="select-purposes-of-visit"
+                class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-jjz489-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                data-testid="purposeInput"
               >
                 <div
                   aria-expanded="false"
