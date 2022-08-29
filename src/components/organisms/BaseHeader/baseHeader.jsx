@@ -71,8 +71,8 @@ export default function BaseHeader({
                 width="124px"
                 height="36px"
                 style={styles.logoStyled}
-                alt="Eyecare Provider name with logo"
-                aria-label={"Eyecare Provider name with logo"}
+                alt="Eyecare Provider logo"
+                aria-label={"Eyecare Provider logo"}
               ></Image>
               {/* Menu Desktop*/}
               <Box sx={styles.boxStyled}>
