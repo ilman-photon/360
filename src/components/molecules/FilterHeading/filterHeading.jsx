@@ -504,6 +504,7 @@ const FilterHeading = ({
           variant="filled"
           label="City, state, or zip code"
           InputProps={{
+            readOnly: true,
             endAdornment: (
               <InputAdornment position="end">
                 <NearMeOutlinedIcon
@@ -549,6 +550,9 @@ const FilterHeading = ({
           onClick={() => {
             handleOpenDialog("date");
           }}
+          InputProps={{
+            readOnly: true,
+          }}
         />
       );
     };
@@ -578,6 +582,9 @@ const FilterHeading = ({
           onClick={() => {
             handleOpenDialog("purposeInput");
           }}
+          InputProps={{
+            readOnly: true,
+          }}
         />
       );
     };
@@ -604,6 +611,9 @@ const FilterHeading = ({
           variant="filled"
           label="Insurance Carrier"
           sx={sxTextField}
+          InputProps={{
+            readOnly: true,
+          }}
         />
       );
     };
