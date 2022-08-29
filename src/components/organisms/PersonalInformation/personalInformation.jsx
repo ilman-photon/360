@@ -122,6 +122,7 @@ export default function PersonalInformation({
             mode="primary"
             size="small"
             onClick={OnEditClicked}
+            data-testid={"loc_edit"}
             sx={{ my: 4 }}
           >
             Edit

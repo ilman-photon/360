@@ -8,17 +8,22 @@ describe("ProfilePhotoUploader Components", () => {
   const landscapeImage = faker.image.imageUrl(275, 173);
   const profilePhoto = {
     name: "my-photo.jpg",
-    source: landscapeImage
-  }
+    source: landscapeImage,
+  };
   const mockCallBack = jest.fn();
   beforeEach(() => {
-    container = render(<ProfilePhotoUploader source={profilePhoto} OnPhotoChange={mockCallBack}
-        />);
+    container = render(
+      <ProfilePhotoUploader
+        source={profilePhoto}
+        OnPhotoChange={mockCallBack}
+      />
+    );
   });
 
   it("ProfilePhotoUploader render", () => {
     expect(container).toMatchSnapshot();
-    expect(container.getAllByRole("button", { name: "change photo" })[0]).toBeVisible();
+    expect(
+      container.getAllByRole("button", { name: "Change photo" })[0]
+    ).toBeVisible();
   });
-
 });

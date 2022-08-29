@@ -67,11 +67,12 @@ Object {
                   <span
                     style="font-size: 16px; text-transform: none;"
                   >
-                    change
+                    Change
                      photo
                   </span>
                   <input
                     accept="image/png, image/gif, image/jpeg"
+                    data-testid="loc_uploadProfileImage"
                     hidden=""
                     type="file"
                   />
@@ -154,11 +155,12 @@ Object {
                 <span
                   style="font-size: 16px; text-transform: none;"
                 >
-                  change
+                  Change
                    photo
                 </span>
                 <input
                   accept="image/png, image/gif, image/jpeg"
+                  data-testid="loc_uploadProfileImage"
                   hidden=""
                   type="file"
                 />

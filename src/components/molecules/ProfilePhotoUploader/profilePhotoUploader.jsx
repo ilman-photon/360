@@ -104,11 +104,12 @@ export const ProfilePhotoUploader = ({
                   <FileUploadOutlinedIcon sx={{ width: 20, height: 20 }} />
                 )}
                 <span style={{ fontSize: 16, textTransform: "none" }}>
-                  {source ? "change" : "upload"} photo
+                  {source ? "Change" : "upload"} photo
                 </span>
                 <input
                   ref={inputImage}
                   type="file"
+                  data-testid={"loc_uploadProfileImage"}
                   accept="image/png, image/gif, image/jpeg"
                   hidden
                   onChange={handleInputChange}
