@@ -5,10 +5,18 @@ import UpcomingAppointment from "../../../components/organisms/UpcomingAppointme
 import { Box } from "@mui/material";
 import PastAppointment from "../../../components/organisms/PastAppointment/pastAppointment";
 import styles from "./styles.module.scss";
+import AccountTitleHeading from "../../../components/atoms/AccountTitleHeading/accountTitleHeading";
 
 export default function Appointments() {
   return (
     <Box className={styles.container}>
+      <AccountTitleHeading
+        title={"Appointments"}
+        sx={{
+          textAlign: "left",
+          paddingLeft: "15vw",
+        }}
+      />
       <UpcomingAppointment />
       <PastAppointment />
     </Box>

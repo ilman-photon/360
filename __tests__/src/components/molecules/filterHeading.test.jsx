@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import FilterHeading from "../../../../src/components/molecules/FilterHeading/filterHeading";
 
@@ -18,5 +18,4 @@ describe("FilterHeading Components", () => {
     container = render(<FilterHeading isDesktop={true}/>);
     expect(container).toMatchSnapshot();
   });
-
 });

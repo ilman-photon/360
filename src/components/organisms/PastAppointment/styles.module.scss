@@ -3,6 +3,11 @@
   margin: 0 auto;
   background-color: white;
   padding: 24px;
+
+  @media (max-width: 992px) {
+    width: 100vw;
+    padding: 16px;
+  }
 }
 
 .title {
@@ -11,6 +16,10 @@
   font-weight: 500;
   font-size: 32px;
   line-height: 44px;
+
+  @media (max-width: 992px) {
+    font-size: 26px;
+  }
 }
 
 .pastAppointmentsContainer {
@@ -31,13 +40,22 @@
 .pastAppointmentDetail {
   padding: 24px;
   border: 2px solid #f3f3f3;
+  @media (max-width: 992px) {
+    padding: 16px;
+  }
 }
 
 .imageContainer {
-  width: auto;
+  width: 100px;
+  height: 100px;
   position: absolute;
   border-radius: 100%;
   margin-top: 70px;
+
+  @media (max-width: 992px) {
+    width: 66px;
+    height: 66px;
+  }
 }
 
 .profilePhoto {
@@ -47,10 +65,18 @@
 .dateContainer {
   display: flex;
   margin-bottom: 42px;
+
+  @media (max-width: 992px) {
+    flex-direction: column;
+    margin-bottom: 24px;
+  }
 }
 
 .date {
   margin-right: 81px !important;
+  @media (max-width: 992px) {
+    margin-right: unset !important;
+  }
 }
 
 .nameContainer {
@@ -60,6 +86,13 @@
   border-bottom: 2px solid #d4d4d4;
   margin-bottom: 14px;
   padding-bottom: 14px;
+
+  @media (max-width: 992px) {
+    flex-direction: column;
+    margin-left: unset;
+    width: auto;
+    padding-left: 85px;
+  }
 }
 
 .doctorName {
@@ -70,6 +103,11 @@
 .locationContainer {
   display: flex;
   margin-left: 120px;
+
+  @media (max-width: 992px) {
+    flex-direction: column;
+    margin-left: unset;
+  }
 }
 
 .locationWrapper {
@@ -78,6 +116,10 @@
   gap: 6px;
   display: flex;
   flex-direction: column;
+
+  @media (max-width: 992px) {
+    margin-bottom: 24px;
+  }
 }
 
 .years > span {
@@ -112,9 +154,9 @@
 
 .pastAppointmentDetail p {
   font-style: normal;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 19px !important;
 }
 
 .subTitleWrapper {
@@ -124,7 +166,7 @@
 }
 
 .titleLocation {
-  margin-bottom: 8px;
+  margin-bottom: 8px !important;
 }
 
 .insuranceWrapper {
@@ -138,10 +180,15 @@
   margin-left: 120px;
   justify-content: center;
   margin-top: 48px;
+  @media (max-width: 992px) {
+    width: auto;
+    margin-left: unset;
+    margin-top: 24px;
+  }
 }
 
 .link {
-  font-family: "Roboto";
+  font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;

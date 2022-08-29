@@ -2,15 +2,17 @@ import Image from "next/image";
 import { Typography, Box, Link } from "@mui/material";
 import styles from "./styles.module.scss";
 import StyledRating from "../../atoms/Rating/styledRating";
-import { useEffect } from "react";
+import { useRouter } from "next/router";
 
 export default function ProviderProfile({ variant, showPosition, phoneLink }) {
   const specialist = ["Opthometry", "Opthalmology", "Catarac", "Glaucoma"];
   const isAppointment = variant === "appointment";
   const isBio = variant === "bio";
   const isViewSchedule = variant === "viewschedule";
+  const isDayAvailableView = false;
   const isMap = variant === "map";
 
+  const router = useRouter();
   const renderSpecialistList = () => {
     return (
       <Box>
@@ -57,8 +59,8 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
         <Box>
           <Image
             src="/doctor.png"
-            width={90}
-            height={90}
+            width={100}
+            height={100}
             className={styles.profilePhoto}
             alt="Doctor Image"
           ></Image>
@@ -70,6 +72,9 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
           <Typography
             variant="h2"
             fontSize={getNameFontSize()}
+            onClick={() => {
+              router.push("/patient/bio");
+            }}
             className={
               (isAppointment || isViewSchedule) && styles.doctorNameAppointment
             }
@@ -88,18 +93,20 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
                         Floor 3, Suite 320
                         Midtown, New York, NY, 10019`}
           </Typography>
-          <Box
-            className={isBio ? styles.ratingContainer : styles.phoneContainer}
-          >
-            {(isBio || isViewSchedule) && <StyledRating value={3.5} />}
-            {!phoneLink ? (
-              <Typography variant="body2" className={styles.phone}>
-                (857) 299-9989
-              </Typography>
-            ) : (
-              <Link className={styles.phoneLink}>(857) 299-9989</Link>
-            )}
-          </Box>
+          {isDayAvailableView && (
+            <Box
+              className={isBio ? styles.ratingContainer : styles.phoneContainer}
+            >
+              {(isBio || isViewSchedule) && <StyledRating value={3.5} />}
+              {!phoneLink ? (
+                <Typography variant="body2" className={styles.phone}>
+                  (857) 299-9989
+                </Typography>
+              ) : (
+                <Link className={styles.phoneLink}>(857) 299-9989</Link>
+              )}
+            </Box>
+          )}
         </Box>
       </Box>
       <Box>{isBio && renderSpecialistList()}</Box>

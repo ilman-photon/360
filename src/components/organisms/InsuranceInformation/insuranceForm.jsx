@@ -22,6 +22,7 @@ import { DEFAULT_INSURANCE_DATA } from "../../../store/user";
 import { useEffect, useState } from "react";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import { AutoCompleteCreatable } from "../../molecules/AutoCompleteCreatable";
+import constants from "../../../utils/constants";
 
 export default function InsuranceForm({
   formData = null, // later will be used for edit
@@ -32,11 +33,11 @@ export default function InsuranceForm({
   OnCancelClicked = () => {
     // This is intended
   },
+  testIds = constants.TEST_ID.INSURANCE_TEST_ID,
 }) {
   const { handleSubmit, control, watch, reset } = useForm({
     defaultValues: DEFAULT_INSURANCE_DATA,
   });
-
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   // Later will be used for edit
@@ -148,6 +149,7 @@ export default function InsuranceForm({
                         console.log(e);
                       }}
                       options={providerList}
+                      testId={testIds.provider}
                       inputLabel="Insurance Provider"
                       onChange={onChange}
                       value={value}
@@ -177,6 +179,7 @@ export default function InsuranceForm({
                       //   console.log(e);
                       // }}
                       options={planList}
+                      testId={testIds.planName}
                       inputLabel="Plan Name"
                       onChange={(_e, data) => {
                         onChange(data);
@@ -205,6 +208,7 @@ export default function InsuranceForm({
                       label="Subscriber ID/ Member ID"
                       value={value}
                       onChange={onChange}
+                      data-testid={testIds.subscriberId}
                       error={!!error}
                       size="small"
                       variant="filled"
@@ -231,6 +235,7 @@ export default function InsuranceForm({
                       label="Group #"
                       value={value}
                       onChange={onChange}
+                      data-testid={testIds.group}
                       error={!!error}
                       size="small"
                       variant="filled"
@@ -432,7 +437,7 @@ export default function InsuranceForm({
             spacing={{ xs: 0, md: 2 }}
             rowSpacing={2}
             sx={{
-              ".MuiGrid-item:first-child": { pt: { xs: 0, md: 2 }, pl: 0 },
+              ".MuiGrid-item:first-of-type": { pt: { xs: 0, md: 2 }, pl: 0 },
             }}
           >
             <Grid item xs={12} md={4} sx={{ position: "relative", pl: "-8px" }}>
@@ -463,6 +468,7 @@ export default function InsuranceForm({
                       OnUpload={onChange}
                       OnInputError={onFormCardFrontError}
                       source={formData ? formData.frontCard : null}
+                      testIds={testIds.uploadFrontImage}
                       preview={value}
                       label="Upload Front"
                       width="100%"
@@ -507,6 +513,7 @@ export default function InsuranceForm({
                       OnUpload={onChange}
                       OnInputError={onFormCardBackError}
                       source={formData ? formData.backCard : null}
+                      testIds={testIds.uploadBackImage}
                       preview={value}
                       label="Upload Back"
                       width="100%"
@@ -578,6 +585,7 @@ export default function InsuranceForm({
               onClick={handleCancel}
               variant="contained"
               className={[styles.formButton, styles.outlined].join(" ")}
+              data-testid={testIds.cancel}
               sx={{ width: { xs: "100%", md: "fit-content" } }}
             >
               Cancel
@@ -586,6 +594,7 @@ export default function InsuranceForm({
               type="submit"
               variant="contained"
               className={[styles.formButton, styles.primary].join(" ")}
+              data-testid={testIds.save}
               sx={{ width: { xs: "100%", md: "fit-content" } }}
             >
               Save

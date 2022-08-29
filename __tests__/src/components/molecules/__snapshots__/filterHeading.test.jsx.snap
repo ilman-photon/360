@@ -16,6 +16,7 @@ Object {
           >
             <div
               class="MuiAutocomplete-root css-miy64m-MuiAutocomplete-root"
+              data-testid="locationInput"
             >
               <div
                 class="MuiBox-root css-1shiw0f"
@@ -147,6 +148,7 @@ Object {
               </svg>
               <div
                 class="MuiFormControl-root css-x64fv7-MuiFormControl-root"
+                data-testid="purposeInput"
                 style="width: 100%;"
               >
                 <label
@@ -200,6 +202,7 @@ Object {
             />
             <div
               class="MuiAutocomplete-root css-16if460-MuiAutocomplete-root"
+              data-testid="insuranceInput"
             >
               <div
                 class="MuiBox-root css-1shiw0f"
@@ -320,6 +323,7 @@ Object {
         >
           <div
             class="MuiAutocomplete-root css-miy64m-MuiAutocomplete-root"
+            data-testid="locationInput"
           >
             <div
               class="MuiBox-root css-1shiw0f"
@@ -451,6 +455,7 @@ Object {
             </svg>
             <div
               class="MuiFormControl-root css-x64fv7-MuiFormControl-root"
+              data-testid="purposeInput"
               style="width: 100%;"
             >
               <label
@@ -504,6 +509,7 @@ Object {
           />
           <div
             class="MuiAutocomplete-root css-16if460-MuiAutocomplete-root"
+            data-testid="insuranceInput"
           >
             <div
               class="MuiBox-root css-1shiw0f"
@@ -681,6 +687,7 @@ Object {
           >
             <div
               class="MuiAutocomplete-root css-miy64m-MuiAutocomplete-root"
+              data-testid="locationInput"
             >
               <div
                 class="MuiBox-root css-1shiw0f"
@@ -812,6 +819,7 @@ Object {
               </svg>
               <div
                 class="MuiFormControl-root css-x64fv7-MuiFormControl-root"
+                data-testid="purposeInput"
                 style="width: 100%;"
               >
                 <label
@@ -865,6 +873,7 @@ Object {
             />
             <div
               class="MuiAutocomplete-root css-16if460-MuiAutocomplete-root"
+              data-testid="insuranceInput"
             >
               <div
                 class="MuiBox-root css-1shiw0f"
@@ -984,6 +993,7 @@ Object {
           >
             <div
               class="MuiAutocomplete-root css-miy64m-MuiAutocomplete-root"
+              data-testid="locationInput"
             >
               <div
                 class="MuiBox-root css-1shiw0f"
@@ -1115,6 +1125,7 @@ Object {
               </svg>
               <div
                 class="MuiFormControl-root css-x64fv7-MuiFormControl-root"
+                data-testid="purposeInput"
                 style="width: 100%;"
               >
                 <label
@@ -1168,6 +1179,7 @@ Object {
             />
             <div
               class="MuiAutocomplete-root css-16if460-MuiAutocomplete-root"
+              data-testid="insuranceInput"
             >
               <div
                 class="MuiBox-root css-1shiw0f"
@@ -1288,6 +1300,7 @@ Object {
         >
           <div
             class="MuiAutocomplete-root css-miy64m-MuiAutocomplete-root"
+            data-testid="locationInput"
           >
             <div
               class="MuiBox-root css-1shiw0f"
@@ -1419,6 +1432,7 @@ Object {
             </svg>
             <div
               class="MuiFormControl-root css-x64fv7-MuiFormControl-root"
+              data-testid="purposeInput"
               style="width: 100%;"
             >
               <label
@@ -1472,6 +1486,7 @@ Object {
           />
           <div
             class="MuiAutocomplete-root css-16if460-MuiAutocomplete-root"
+            data-testid="insuranceInput"
           >
             <div
               class="MuiBox-root css-1shiw0f"

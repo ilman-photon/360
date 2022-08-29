@@ -20,15 +20,20 @@ import SelectOptionButton from "../../atoms/SelectOptionButton/selectOptionButto
 import { StyledButton } from "../../atoms/Button/button";
 import SearchIcon from "@mui/icons-material/Search";
 import Image from "next/image";
-import { render } from "@testing-library/react";
 
-const FilterHeading = ({ isDesktop = true, onSearchProvider = () => {} }) => {
+const FilterHeading = ({
+  isDesktop = true,
+  onSearchProvider = () => {
+    // This is intentional
+  },
+}) => {
   const imageSrcState = "/bx_insurance_card.png";
+  const muiInputRoot = "& .MuiFilledInput-root";
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
   const { handleSubmit, control } = useForm();
   const [isEmptyLocation, setEmptyLocation] = useState(false);
+
   const onSubmit = (data) => {
-    console.log(data);
     if (!data.location) {
       setEmptyLocation(true);
     } else {
@@ -37,6 +42,7 @@ const FilterHeading = ({ isDesktop = true, onSearchProvider = () => {} }) => {
   };
 
   const [open, setOpen] = React.useState(false);
+  const [openDialog, setOpenDialog] = React.useState(false);
   const mapsData = ["Use my current location"];
 
   const purposeOfVisitData = [
@@ -50,7 +56,7 @@ const FilterHeading = ({ isDesktop = true, onSearchProvider = () => {} }) => {
     width: "323px",
     borderTopRightRadius: "50px",
     borderBottomRightRadius: "50px",
-    ["& .MuiFilledInput-root"]: {
+    [muiInputRoot]: {
       border: "0px solid #ffff",
       borderTopRightRadius: "50px",
       borderBottomRightRadius: "50px",
@@ -93,6 +99,7 @@ const FilterHeading = ({ isDesktop = true, onSearchProvider = () => {} }) => {
             <Autocomplete
               freeSolo
               id="location"
+              data-testid={APPOINTMENT_TEST_ID.locationInput}
               value={value}
               onChange={(_e, data) => {
                 onChange(data);
@@ -149,7 +156,7 @@ const FilterHeading = ({ isDesktop = true, onSearchProvider = () => {} }) => {
                     sx={{
                       borderTopLeftRadius: "50px",
                       borderTopRightRadius: "50px",
-                      ["& .MuiFilledInput-root"]: {
+                      [muiInputRoot]: {
                         border: "0px solid #ffff",
                       },
                     }}
@@ -193,6 +200,7 @@ const FilterHeading = ({ isDesktop = true, onSearchProvider = () => {} }) => {
               />
               <StyledInput
                 open={open}
+                data-testid={APPOINTMENT_TEST_ID.dateInput}
                 onOpen={() => setOpen(true)}
                 onClose={() => setOpen(false)}
                 disableFuture
@@ -204,7 +212,7 @@ const FilterHeading = ({ isDesktop = true, onSearchProvider = () => {} }) => {
                 onChange={onChange}
                 sx={{
                   margin: 0,
-                  ["& .MuiFilledInput-root"]: {
+                  [muiInputRoot]: {
                     border: "0px solid #ffff",
                   },
                 }}
@@ -251,7 +259,7 @@ const FilterHeading = ({ isDesktop = true, onSearchProvider = () => {} }) => {
               <SelectOptionButton
                 sx={{
                   fontSize: "16px",
-                  "& .MuiFilledInput-root": {
+                  [muiInputRoot]: {
                     border: "0px solid #bbb",
                     backgroundColor: "#fff",
                   },
@@ -265,6 +273,7 @@ const FilterHeading = ({ isDesktop = true, onSearchProvider = () => {} }) => {
                   onChange(event.target.value);
                 }}
                 renderMenuListUI={menuListUI}
+                data-testid={APPOINTMENT_TEST_ID.purposeInput}
               />
             </Box>
           );
@@ -284,6 +293,7 @@ const FilterHeading = ({ isDesktop = true, onSearchProvider = () => {} }) => {
             <Autocomplete
               freeSolo
               id="insurance-carrier"
+              data-testid={APPOINTMENT_TEST_ID.insuranceInput}
               disableClearable={true}
               options={mapsData}
               sx={{
@@ -323,7 +333,7 @@ const FilterHeading = ({ isDesktop = true, onSearchProvider = () => {} }) => {
                       type: "search",
                     }}
                     sx={{
-                      ["& .MuiFilledInput-root"]: {
+                      [muiInputRoot]: {
                         border: "0px solid #ffff",
                       },
                     }}

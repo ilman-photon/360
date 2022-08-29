@@ -21,8 +21,7 @@ export function PastAppointmentCard({
         <Box className={styles.imageContainer}>
           <Image
             src="/doctor.png"
-            width={100}
-            height={100}
+            layout="fill"
             className={styles.profilePhoto}
             alt="Doctor Image"
           ></Image>

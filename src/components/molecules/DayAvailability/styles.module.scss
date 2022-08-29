@@ -1,0 +1,67 @@
+@import "../../../../styles/colors.scss";
+
+.scheduleContainer {
+  margin-top: 24px;
+}
+
+.noScheduleContainer {
+  display: flex;
+}
+
+.scheduleTitle {
+  font-family: "Libre Franklin";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
+  color: $darkGreen;
+  letter-spacing: 0.0016em;
+  width: 106px;
+}
+
+.noSchedule {
+  width: 106.5px;
+  font-family: "Libre Franklin";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 24px;
+  color: #a5a5ac;
+  letter-spacing: 0.0016em;
+  margin-left: 8px;
+}
+
+.scheduleBtn {
+  width: 78px;
+}
+
+.scheduleTimeContainer {
+  display: flex;
+}
+
+.scheduleTimeTitle {
+  margin-top: 6px;
+  font-family: "Libre Franklin";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 26px;
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.0016em;
+  color: $darkGreen;
+}
+
+.iconTimeContainer {
+  margin-left: 18px;
+  display: flex;
+  align-items: center;
+}
+
+.dividerSchedule {
+  margin-top: 12px;
+}
+
+.iconSchedule {
+  width: 19px;
+}

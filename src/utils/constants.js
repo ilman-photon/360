@@ -86,6 +86,10 @@ module.exports = {
       location: "location",
       searchbtn: "searchbtn",
       filterbtn: "filterbtn",
+      locationInput: "locationInput",
+      dateInput: "dateInput",
+      purposeInput: "purposeInput",
+      insuranceInput: "insuranceInput",
     },
     BIOGRAPHY_TEST_ID: {
       about: "biography-about",
@@ -93,6 +97,17 @@ module.exports = {
       insurance: "biography-insurance",
       education: "biography-education",
       viewAll: "biography-view-all-insurance",
+    },
+    INSURANCE_TEST_ID: {
+      addButton: "loc_btnAddInsurance",
+      provider: "loc_inputProvider",
+      planName: "loc_inputPlan",
+      subscriberId: "loc_inputSubsId",
+      group: "loc_inputGroup",
+      save: "loc_btnSaveInsuranve",
+      cancel: "loc_btnCancelInsuranve",
+      uploadFrontImage: "loc_btnUploadFront",
+      uploadBackImage: "loc_btnUploadBack",
     },
   },
 };

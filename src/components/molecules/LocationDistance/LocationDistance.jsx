@@ -35,7 +35,7 @@ export const LocationDistance = () => {
           color="text.primary"
           className={styles.distanceLabel}
         >
-          10 ml
+          10 mi
         </Typography>
       </Box>
       <Box

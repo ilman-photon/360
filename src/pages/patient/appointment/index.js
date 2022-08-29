@@ -2,13 +2,23 @@ import AppointmentLayout from "../../../components/templates/appointmentLayout";
 import { Provider } from "react-redux";
 import store from "../../../store/store";
 import FilterHeading from "../../../components/molecules/FilterHeading/filterHeading";
-import { CircularProgress, Grid, useMediaQuery } from "@mui/material";
+import {
+  Dialog,
+  DialogContent,
+  DialogTitle,
+  IconButton,
+  CircularProgress,
+  Grid,
+  useMediaQuery,
+} from "@mui/material";
 import Box from "@mui/material/Box";
 import React, { useState } from "react";
 import FilterResult from "../../../components/molecules/FilterResult/filterResult";
 import GMaps from "../../../components/organisms/Google/Maps/gMaps";
 import { useLoadScript } from "@react-google-maps/api";
-
+import CloseIcon from "@mui/icons-material/Close";
+import { DayAvailability } from "../../../components/molecules/DayAvailability/DayAvailability";
+import ProviderProfile from "../../../components/molecules/ProviderProfile/providerProfile";
 export async function getStaticProps() {
   return {
     props: {
@@ -19,6 +29,7 @@ export async function getStaticProps() {
 export default function Appointment({ googleApiKey }) {
   const isDesktop = useMediaQuery("(min-width: 992px)");
   const [isFilterApplied, setFilterApplied] = useState(false);
+  const [open, setOpen] = React.useState(false);
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: googleApiKey,
@@ -26,6 +37,51 @@ export default function Appointment({ googleApiKey }) {
 
   function onSearchProvider() {
     setFilterApplied(true);
+  }
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  function onViewAllAvailability() {
+    //TO DO: set data for view days schedule
+    setOpen(true);
+  }
+
+  function onRenderDialogView() {
+    return (
+      <div>
+        <Dialog
+          open={open}
+          aria-labelledby="alert-dialog-title"
+          aria-describedby="alert-dialog-description"
+        >
+          <DialogTitle id="alert-dialog-title" sx={{ height: "51px" }}>
+            <IconButton
+              aria-label="close"
+              onClick={handleClose}
+              sx={{
+                position: "absolute",
+                right: 8,
+                top: 8,
+                color: (theme) => theme.palette.grey[500],
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+          </DialogTitle>
+          <DialogContent>
+            <Box sx={{ width: "265px" }}>
+              <ProviderProfile
+                variant={"viewschedule"}
+                isDayAvailableView={true}
+              />
+            </Box>
+            <DayAvailability />
+          </DialogContent>
+        </Dialog>
+      </div>
+    );
   }
 
   return (
@@ -52,7 +108,7 @@ export default function Appointment({ googleApiKey }) {
               height: "100%",
             }}
           >
-            <FilterResult />
+            <FilterResult onClickViewAllAvailability={onViewAllAvailability} />
           </Box>
           <Box
             sx={{
@@ -68,6 +124,7 @@ export default function Appointment({ googleApiKey }) {
       ) : (
         <></>
       )}
+      {onRenderDialogView()}
     </Box>
   );
 }

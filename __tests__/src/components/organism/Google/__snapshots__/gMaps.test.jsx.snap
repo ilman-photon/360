@@ -16,9 +16,14 @@ exports[`GMaps GMaps render 1`] = `
   }
   onLoad={[Function]}
   onUnmount={[Function]}
-  zoom={4}
+  zoom={6}
 >
   <UNDEFINED
+    icon={
+      Object {
+        "url": "/provider-pin.svg",
+      }
+    }
     onClick={[Function]}
     position={
       Object {
@@ -28,6 +33,11 @@ exports[`GMaps GMaps render 1`] = `
     }
   />
   <UNDEFINED
+    icon={
+      Object {
+        "url": "/provider-pin.svg",
+      }
+    }
     onClick={[Function]}
     position={
       Object {
@@ -37,6 +47,11 @@ exports[`GMaps GMaps render 1`] = `
     }
   />
   <UNDEFINED
+    icon={
+      Object {
+        "url": "/provider-pin.svg",
+      }
+    }
     onClick={[Function]}
     position={
       Object {
@@ -46,11 +61,30 @@ exports[`GMaps GMaps render 1`] = `
     }
   />
   <UNDEFINED
+    icon={
+      Object {
+        "url": "/provider-pin.svg",
+      }
+    }
     onClick={[Function]}
     position={
       Object {
         "lat": 40.712776,
         "lng": -74.005974,
+      }
+    }
+  />
+  <UNDEFINED
+    icon={
+      Object {
+        "url": "/provider-pin.svg",
+      }
+    }
+    onClick={[Function]}
+    position={
+      Object {
+        "lat": 41.712776,
+        "lng": -74.505974,
       }
     }
   />

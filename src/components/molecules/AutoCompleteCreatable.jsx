@@ -52,6 +52,7 @@ export const AutoCompleteCreatable = ({
 
   return (
     <Autocomplete
+      data-testid={props.testId}
       onOpen={() => {
         setOpen(true);
       }}
