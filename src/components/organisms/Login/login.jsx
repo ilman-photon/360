@@ -116,15 +116,18 @@ export function Login({
                     value={value}
                     onChange={onChange}
                     error={!!error}
+                    aria
                     helperText={error ? error.message : null}
                   />
                 );
               }}
               rules={{ required: t("thisFieldRequired") }}
+              aria-label={"Eyecare Provider logo"}
             />
             <Grid container justifyContent={constants.FLEX_END}>
               <Link
                 className={styles.link}
+                aria-label={t("forgotPassword")}
                 data-testid={LOGIN_TEST_ID.forgotLink}
                 {...getLinkAria(t("forgotPassword"))}
                 onClick={function () {
