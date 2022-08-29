@@ -71,7 +71,6 @@ export default function AppointmentForm({ isForMyself }) {
     { label: "Both", value: "both", testId: SCHEDULE_GUEST_TEST_ID.bothradio },
   ];
 
-  const watchedPassword = watch("password", "");
   const [watchedEmail, watchedMobile, watchedPreferredCommunication] = watch([
     "email",
     "mobile",
@@ -116,8 +115,9 @@ export default function AppointmentForm({ isForMyself }) {
             sx={isDesktop ? { fontSize: "26px" } : { md: "32px" }}
             aria-label={"Who is this exam for?"}
           >
-            {t("guestTitle")}
+            {isForMyself ? t("selfTitle") : t("someoneElseTitle")}
           </Typography>
+          {isForMyself ?
           <Grid sx={{ mt: 2, display: "flex" }}>
             <Typography sx={styles.boldLabel} variant="h1">
               {t("sigInInfo")}
@@ -130,6 +130,7 @@ export default function AppointmentForm({ isForMyself }) {
               {t("signIn")}
             </Link>
           </Grid>
+          : null}
         </Box>
 
         <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>

@@ -21,10 +21,6 @@ export const styles = {
     fontWeight: "700",
     fontSize: "18px",
   },
-  linkText: {
-    color: "#008294",
-    fontSize: "18px",
-  },
   continueText: {
     height: "40px",
     alignSelf: "self-end",
@@ -34,25 +30,22 @@ export const styles = {
   },
   form: {
     display: "grid",
-    // marginTop: "8px",
   },
   titleStyles: {
     paddingTop: "6px",
     marginLeft: "8px",
     marginRight: "8px",
     color: "#366A70",
-    // fontSize: "1.25rem",
     fontSize: "34px",
   },
   link: {
-    color: "#003B4A",
+    color: "#008294",
     cursor: "pointer",
-    fontSize: "16px",
+    fontSize: "1.2rem",
     fontWeight: "700",
     paddingLeft: "16px",
   },
   boldLabel: {
-    // marginTop: "16px",
     fontWeight: "700",
     fontSize: "1.2rem",
     color: "#191919",

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Stack, Button, Typography } from "@mui/material";
+import { Stack, Button, Typography, Box } from "@mui/material";
 import { useTranslation } from "next-i18next";
 import AccountCard from "../../molecules/AccountCard/accountCard";
 import LabelWithInfo from "../../atoms/LabelWithInfo/labelWithInfo";
@@ -24,6 +24,7 @@ export default function AppointmentDetails({
   });
 
   return (
+    <Box>
     <AccountCard
       title={t("appointmentDetails")}
       textStyle={{ fontWeight: "700" }}
@@ -78,5 +79,6 @@ export default function AppointmentDetails({
         </LabelWithInfo>
       </Stack>
     </AccountCard>
+    </Box>
   );
 }
