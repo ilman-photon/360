@@ -134,7 +134,7 @@ export default function PersonalInformation({
           <LabelWithInfo label="Photo">
             {userData.profilePhoto ? (
               <Image
-                src={userData.profilePhoto}
+                src={userData.profilePhoto.source}
                 width={122}
                 height={122}
                 style={{ borderRadius: "50%" }}

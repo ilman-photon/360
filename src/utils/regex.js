@@ -16,5 +16,5 @@ export class Regex {
   static REGEX_PHONE_NUMBER = /^\d{10,}$/;
   static noWhitespaceRegex = /[^\s-]/;
   static isTenDigitPhone = /^(\d{3})(\d{3})(\d{4})$/;
-  static isImageFile = /(image\/(png|jpg|jpeg))/gi;
+  static isImageFile = /(image\/(png|jpg|jpeg))/;
 }

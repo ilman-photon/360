@@ -31,7 +31,10 @@ defineFeature(feature, (test) => {
       name: "Rupert Jerde",
       preferredCommunication: "email",
       preferredName: "---",
-      profilePhoto: "https://loremflickr.com/640/480",
+      profilePhoto: {
+        name: "my-photo.jpg",
+        source: "https://loremflickr.com/640/480"
+      },
       ssn: 3777306119,
       state: "South Dakota",
       title: "Mrs.",

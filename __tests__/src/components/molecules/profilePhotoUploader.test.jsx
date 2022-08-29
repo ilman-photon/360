@@ -6,9 +6,13 @@ import { faker } from "@faker-js/faker";
 describe("ProfilePhotoUploader Components", () => {
   let container;
   const landscapeImage = faker.image.imageUrl(275, 173);
+  const profilePhoto = {
+    name: "my-photo.jpg",
+    source: landscapeImage
+  }
   const mockCallBack = jest.fn();
   beforeEach(() => {
-    container = render(<ProfilePhotoUploader source={landscapeImage} OnPhotoChange={mockCallBack}
+    container = render(<ProfilePhotoUploader source={profilePhoto} OnPhotoChange={mockCallBack}
         />);
   });
 
