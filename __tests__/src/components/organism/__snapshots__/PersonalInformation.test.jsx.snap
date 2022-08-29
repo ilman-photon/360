@@ -416,6 +416,7 @@ Object {
       >
         <button
           class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1xmyltw-MuiButtonBase-root-MuiButton-root"
+          data-testid="loc_edit"
           tabindex="0"
           type="button"
         >
@@ -839,6 +840,7 @@ Object {
     >
       <button
         class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1xmyltw-MuiButtonBase-root-MuiButton-root"
+        data-testid="loc_edit"
         tabindex="0"
         type="button"
       >

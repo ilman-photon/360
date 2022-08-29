@@ -122,6 +122,7 @@ export default function PersonalInformation({
             mode="primary"
             size="small"
             onClick={OnEditClicked}
+            data-testid={"loc_edit"}
             sx={{ my: 4 }}
           >
             Edit
@@ -134,7 +135,7 @@ export default function PersonalInformation({
           <LabelWithInfo label="Photo">
             {userData.profilePhoto ? (
               <Image
-                src={userData.profilePhoto}
+                src={userData.profilePhoto.source}
                 width={122}
                 height={122}
                 style={{ borderRadius: "50%" }}
