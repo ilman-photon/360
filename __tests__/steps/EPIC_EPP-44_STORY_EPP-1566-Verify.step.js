@@ -1,7 +1,4 @@
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
-import Bio from "../../src/pages/patient/bio";
-import constants from "../../src/utils/constants";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-1566.feature",
@@ -11,8 +8,6 @@ const feature = loadFeature(
 );
 
 defineFeature(feature, (test) => {
-  let container;
-  const element = document.createElement("div");
   const defaultValidation = () => {
     expect(true).toBeTruthy();
   };
