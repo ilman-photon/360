@@ -293,6 +293,7 @@ exports[`App renders App unchanged 1`] = `
             </form>
           </div>
         </div>
+        <div />
       </div>
     </div>
   </div>

@@ -16,6 +16,10 @@ export const WeekAvailability = ({
     friday: ["09:30am", "", "", ""],
     saturday: ["09:30am", "", "", ""],
   },
+  onClickViewAllAvailability = () => {
+    // This is intentional
+  },
+  keyWeek = "",
 }) => {
   const router = useRouter();
   function renderScheduleData() {
@@ -28,16 +32,23 @@ export const WeekAvailability = ({
           gridArea = `more${key}Schedule`;
           isTypeMore = true;
         }
-        renderUI.push(buttonSchedule(value[i], gridArea, isTypeMore));
+        renderUI.push(
+          buttonSchedule(
+            value[i],
+            gridArea,
+            isTypeMore,
+            `${keyWeek}-${i}-${key}-schedule-button`
+          )
+        );
       }
     }
     return renderUI;
   }
 
-  function buttonSchedule(label, gridArea, isTypeMore = false) {
+  function buttonSchedule(label, gridArea, isTypeMore = false, index = "") {
     if (label) {
       return (
-        <Box sx={{ gridArea: gridArea, width: "90px" }}>
+        <Box key={index} sx={{ gridArea: gridArea, width: "90px" }}>
           <StyledButton
             theme={constants.PATIENT}
             mode={constants.PRIMARY}
@@ -59,7 +70,7 @@ export const WeekAvailability = ({
       );
     }
     return (
-      <Box className={styles.dividerContainer}>
+      <Box key={index} className={styles.dividerContainer}>
         <Divider className={styles.divider} />
       </Box>
     );
@@ -68,6 +79,7 @@ export const WeekAvailability = ({
   const constants = require("../../../utils/constants");
   return (
     <Box
+      key={keyWeek}
       sx={{
         display: "grid",
         width: 598,
@@ -93,7 +105,10 @@ export const WeekAvailability = ({
           p: 3,
         }}
       >
-        <Link href="#" className={styles.linkAvailabelity}>
+        <Link
+          className={styles.linkAvailabelity}
+          onClick={onClickViewAllAvailability}
+        >
           View all Availability
         </Link>
       </Box>

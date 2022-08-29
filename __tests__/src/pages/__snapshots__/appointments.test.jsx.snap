@@ -129,15 +129,6 @@ Object {
                         Floor 3, Suite 320
                         Midtown, New York, NY, 10019
                     </p>
-                    <div
-                      class="phoneContainer MuiBox-root css-0"
-                    >
-                      <a
-                        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways phoneLink css-1ps4owl-MuiTypography-root-MuiLink-root"
-                      >
-                        (857) 299-9989
-                      </a>
-                    </div>
                   </div>
                 </div>
                 <div
@@ -785,15 +776,6 @@ Object {
                         Floor 3, Suite 320
                         Midtown, New York, NY, 10019
                   </p>
-                  <div
-                    class="phoneContainer MuiBox-root css-0"
-                  >
-                    <a
-                      class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways phoneLink css-1ps4owl-MuiTypography-root-MuiLink-root"
-                    >
-                      (857) 299-9989
-                    </a>
-                  </div>
                 </div>
               </div>
               <div

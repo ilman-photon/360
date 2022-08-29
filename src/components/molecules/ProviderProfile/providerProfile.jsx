@@ -9,6 +9,7 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
   const isAppointment = variant === "appointment";
   const isBio = variant === "bio";
   const isViewSchedule = variant === "viewschedule";
+  const isDayAvailableView = false;
 
   const router = useRouter();
   const renderSpecialistList = () => {
@@ -85,18 +86,20 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
                         Floor 3, Suite 320
                         Midtown, New York, NY, 10019`}
           </Typography>
-          <Box
-            className={isBio ? styles.ratingContainer : styles.phoneContainer}
-          >
-            {(isBio || isViewSchedule) && <StyledRating value={3.5} />}
-            {!phoneLink ? (
-              <Typography variant="body2" className={styles.phone}>
-                (857) 299-9989
-              </Typography>
-            ) : (
-              <Link className={styles.phoneLink}>(857) 299-9989</Link>
-            )}
-          </Box>
+          {isDayAvailableView && (
+            <Box
+              className={isBio ? styles.ratingContainer : styles.phoneContainer}
+            >
+              {(isBio || isViewSchedule) && <StyledRating value={3.5} />}
+              {!phoneLink ? (
+                <Typography variant="body2" className={styles.phone}>
+                  (857) 299-9989
+                </Typography>
+              ) : (
+                <Link className={styles.phoneLink}>(857) 299-9989</Link>
+              )}
+            </Box>
+          )}
         </Box>
       </Box>
       <Box>{isBio && renderSpecialistList()}</Box>
