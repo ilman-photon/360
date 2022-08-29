@@ -100,6 +100,7 @@ exports[`App renders App unchanged 1`] = `
                         class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd css-1gctnaj-MuiInputBase-input-MuiFilledInput-input"
                         id=":r0:"
                         placeholder=""
+                        readonly=""
                         type="default"
                         value=""
                       />
@@ -152,13 +153,14 @@ exports[`App renders App unchanged 1`] = `
                       Date
                     </label>
                     <div
-                      class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+                      class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
                     >
                       <input
                         aria-invalid="false"
                         class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                         id=":r1:"
                         placeholder=""
+                        readonly=""
                         type="default"
                         value="Apr 1, 2022"
                       />
@@ -196,13 +198,14 @@ exports[`App renders App unchanged 1`] = `
                       Purposes of Visit
                     </label>
                     <div
-                      class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+                      class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
                     >
                       <input
                         aria-invalid="false"
                         class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                         id=":r2:"
                         placeholder=""
+                        readonly=""
                         type="default"
                         value=""
                       />
@@ -260,13 +263,14 @@ exports[`App renders App unchanged 1`] = `
                       Insurance Carrier
                     </label>
                     <div
-                      class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+                      class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
                     >
                       <input
                         aria-invalid="false"
                         class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                         id=":r3:"
                         placeholder=""
+                        readonly=""
                         type="default"
                         value=""
                       />
