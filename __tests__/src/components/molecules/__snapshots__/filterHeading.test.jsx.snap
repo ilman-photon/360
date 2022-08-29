@@ -106,8 +106,8 @@ Object {
                 class="MuiFormControl-root MuiTextField-root css-1iuml3b-MuiFormControl-root-MuiTextField-root"
               >
                 <label
-                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
-                  data-shrink="false"
+                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="true"
                   for=":r2:"
                   id=":r2:-label"
                 >
@@ -118,13 +118,13 @@ Object {
                 >
                   <input
                     aria-invalid="false"
-                    aria-label="Choose date"
+                    aria-label="Choose date, selected date is Apr 1, 2022"
                     aria-readonly="true"
                     class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                     id=":r2:"
                     readonly=""
                     type="text"
-                    value=""
+                    value="04/01/2022"
                   />
                 </div>
               </div>
@@ -413,8 +413,8 @@ Object {
               class="MuiFormControl-root MuiTextField-root css-1iuml3b-MuiFormControl-root-MuiTextField-root"
             >
               <label
-                class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
-                data-shrink="false"
+                class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
+                data-shrink="true"
                 for=":r2:"
                 id=":r2:-label"
               >
@@ -425,13 +425,13 @@ Object {
               >
                 <input
                   aria-invalid="false"
-                  aria-label="Choose date"
+                  aria-label="Choose date, selected date is Apr 1, 2022"
                   aria-readonly="true"
                   class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                   id=":r2:"
                   readonly=""
                   type="text"
-                  value=""
+                  value="04/01/2022"
                 />
               </div>
             </div>
@@ -777,8 +777,8 @@ Object {
                 class="MuiFormControl-root MuiTextField-root css-1iuml3b-MuiFormControl-root-MuiTextField-root"
               >
                 <label
-                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
-                  data-shrink="false"
+                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="true"
                   for=":r8:"
                   id=":r8:-label"
                 >
@@ -789,13 +789,13 @@ Object {
                 >
                   <input
                     aria-invalid="false"
-                    aria-label="Choose date"
+                    aria-label="Choose date, selected date is Apr 1, 2022"
                     aria-readonly="true"
                     class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                     id=":r8:"
                     readonly=""
                     type="text"
-                    value=""
+                    value="04/01/2022"
                   />
                 </div>
               </div>
@@ -1083,8 +1083,8 @@ Object {
                 class="MuiFormControl-root MuiTextField-root css-1iuml3b-MuiFormControl-root-MuiTextField-root"
               >
                 <label
-                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
-                  data-shrink="false"
+                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="true"
                   for=":re:"
                   id=":re:-label"
                 >
@@ -1095,13 +1095,13 @@ Object {
                 >
                   <input
                     aria-invalid="false"
-                    aria-label="Choose date"
+                    aria-label="Choose date, selected date is Apr 1, 2022"
                     aria-readonly="true"
                     class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                     id=":re:"
                     readonly=""
                     type="text"
-                    value=""
+                    value="04/01/2022"
                   />
                 </div>
               </div>
@@ -1390,8 +1390,8 @@ Object {
               class="MuiFormControl-root MuiTextField-root css-1iuml3b-MuiFormControl-root-MuiTextField-root"
             >
               <label
-                class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
-                data-shrink="false"
+                class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
+                data-shrink="true"
                 for=":re:"
                 id=":re:-label"
               >
@@ -1402,13 +1402,13 @@ Object {
               >
                 <input
                   aria-invalid="false"
-                  aria-label="Choose date"
+                  aria-label="Choose date, selected date is Apr 1, 2022"
                   aria-readonly="true"
                   class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                   id=":re:"
                   readonly=""
                   type="text"
-                  value=""
+                  value="04/01/2022"
                 />
               </div>
             </div>

@@ -144,8 +144,8 @@ exports[`App renders App unchanged 1`] = `
                     withicon="true"
                   >
                     <label
-                      class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
-                      data-shrink="false"
+                      class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
+                      data-shrink="true"
                       for=":r1:"
                       id=":r1:-label"
                     >
@@ -160,7 +160,7 @@ exports[`App renders App unchanged 1`] = `
                         id=":r1:"
                         placeholder=""
                         type="default"
-                        value=""
+                        value="Fri Apr 01 2022 00:00:00 GMT+0700 (Western Indonesia Time)"
                       />
                     </div>
                   </div>
@@ -292,6 +292,7 @@ exports[`App renders App unchanged 1`] = `
               </button>
             </form>
           </div>
+          <div />
         </div>
         <div />
       </div>

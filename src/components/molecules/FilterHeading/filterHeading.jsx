@@ -6,6 +6,7 @@ import {
   Divider,
   InputAdornment,
   MenuItem,
+  TextField,
   Typography,
 } from "@mui/material";
 import StyledInput from "../../atoms/Input/input";
@@ -20,6 +21,10 @@ import SelectOptionButton from "../../atoms/SelectOptionButton/selectOptionButto
 import { StyledButton } from "../../atoms/Button/button";
 import SearchIcon from "@mui/icons-material/Search";
 import Image from "next/image";
+import CustomizedDialogs from "../../atoms/Dialog/dialog";
+import { LocalizationProvider, StaticDatePicker } from "@mui/x-date-pickers";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import { convertToDate } from "../../../utils/dateFormatter";
 
 const FilterHeading = ({
   isDesktop = true,
@@ -43,7 +48,14 @@ const FilterHeading = ({
 
   const [open, setOpen] = React.useState(false);
   const [openDialog, setOpenDialog] = React.useState(false);
+  const [contentDialog, setContentDialog] = React.useState(<></>);
+  const [dateValue, setDateValue] = React.useState(new Date());
+
   const mapsData = ["Use my current location"];
+
+  const minDate = new Date();
+  const maxDate = new Date(); // add arguments as needed
+  maxDate.setMonth(maxDate.getMonth() + 3);
 
   const purposeOfVisitData = [
     { title: "Eye exam", subtitle: "Test the health of your eye" },
@@ -200,16 +212,20 @@ const FilterHeading = ({
               />
               <StyledInput
                 open={open}
+                minDate={minDate}
+                maxDate={maxDate}
                 data-testid={APPOINTMENT_TEST_ID.dateInput}
                 onOpen={() => setOpen(true)}
                 onClose={() => setOpen(false)}
-                disableFuture
                 type="dob"
                 id="dob"
                 label="Date"
                 isFilter={true}
-                value={value}
-                onChange={onChange}
+                value={dateValue}
+                onChange={(e) => {
+                  onChange(e);
+                  setDateValue(convertToDate(e));
+                }}
                 sx={{
                   margin: 0,
                   [muiInputRoot]: {
@@ -501,11 +517,14 @@ const FilterHeading = ({
       return (
         <StyledInput
           type="default"
-          value={value}
+          value={dateValue}
           onChange={onChange}
           variant="filled"
           label="Date"
           sx={sxTextField}
+          onClick={() => {
+            handleOpenDialog("date");
+          }}
         />
       );
     };
@@ -578,6 +597,44 @@ const FilterHeading = ({
     );
   }
 
+  function handleOpenDialog(type) {
+    let child = <></>;
+    if (type === "date") {
+      child = (
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <StaticDatePicker
+            displayStaticWrapperAs="desktop"
+            minDate={minDate}
+            maxDate={maxDate}
+            openTo="day"
+            value={dateValue}
+            onChange={(newValue) => {
+              setDateValue(convertToDate(newValue));
+              handleCloseDialog();
+            }}
+            renderInput={(props) => <TextField {...props} />}
+          />
+        </LocalizationProvider>
+      );
+    }
+    setContentDialog(child);
+    setOpenDialog(true);
+  }
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+  };
+
+  function renderDialogFilter() {
+    return (
+      <CustomizedDialogs
+        open={openDialog}
+        handleClose={handleCloseDialog}
+        child={contentDialog}
+      />
+    );
+  }
+
   function renderMobileView() {
     return (
       <Box className={styles.mobileFilterContainer}>
@@ -613,6 +670,7 @@ const FilterHeading = ({
             </StyledButton>
           </form>
         </Box>
+        {renderDialogFilter()}
       </Box>
     );
   }
