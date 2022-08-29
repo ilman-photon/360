@@ -122,20 +122,20 @@ export function Login({
                 );
               }}
               rules={{ required: t("thisFieldRequired") }}
-              aria-label={"Eyecare Provider logo"}
             />
             <Grid container justifyContent={constants.FLEX_END}>
-              <Link
-                className={styles.link}
-                aria-label={t("forgotPassword")}
-                data-testid={LOGIN_TEST_ID.forgotLink}
-                {...getLinkAria(t("forgotPassword"))}
-                onClick={function () {
-                  OnForgotPasswordClicked(router);
-                }}
-              >
-                {t("forgotPassword")}
-              </Link>
+              <Typography variant="bodyMedium">
+                <Link
+                  className={styles.link}
+                  data-testid={LOGIN_TEST_ID.forgotLink}
+                  {...getLinkAria(t("forgotPassword"))}
+                  onClick={function () {
+                    OnForgotPasswordClicked(router);
+                  }}
+                >
+                  {t("forgotPassword")}
+                </Link>
+              </Typography>
             </Grid>
             <StyledButton
               theme={constants.PATIENT}
