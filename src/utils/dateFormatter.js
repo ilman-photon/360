@@ -1,5 +1,5 @@
 export function formatDate(payload) {
-  if (!payload) { 
+  if (!payload) {
     return "-";
   }
   const date = new Date(payload);
