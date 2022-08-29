@@ -16,6 +16,11 @@ import { Provider } from "react-redux";
 import store from "../../../store/store";
 import styles from "./styles.module.scss";
 import { useTranslation } from "next-i18next";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  setAppointmentSchedule,
+  setDummyAppointmentSchedule,
+} from "../../../store/appointment";
 
 const MobileTopBar = (data) => {
   return (
@@ -44,6 +49,7 @@ const MobileTopBar = (data) => {
 
 export const PageContent = ({
   activeStep,
+  appointmentScheduleData = {},
   OnsetActiveStep = () => {
     // This is intentional
   },
@@ -62,7 +68,9 @@ export const PageContent = ({
             className={styles.examForComponent}
             p={{ xs: "24px 14px", md: "40px 16px" }}
           >
-            <AppointmentLocation />
+            <AppointmentLocation
+              providerData={appointmentScheduleData.providerInfo}
+            />
             <AppointmentDetails />
             <Divider sx={{ mt: 2 }} />
             <Box sx={{ p: "16px 0", float: "right" }}>
@@ -100,7 +108,9 @@ export const PageContent = ({
             />
           </Grid>
           <Grid md={4} pl={2} sx={{ display: { xs: "none", md: "block" } }}>
-            <AppointmentLocation />
+            <AppointmentLocation
+              providerData={appointmentScheduleData.providerInfo}
+            />
             <AppointmentDetails />
           </Grid>
         </>
@@ -119,7 +129,9 @@ export const PageContent = ({
             <AppointmentForm isForMyself={true} />
           </Grid>
           <Grid md={4} pl={2} sx={{ display: { xs: "none", md: "block" } }}>
-            <AppointmentLocation />
+            <AppointmentLocation
+              providerData={appointmentScheduleData.providerInfo}
+            />
             <AppointmentDetails />
           </Grid>
         </>
@@ -146,6 +158,17 @@ export default function ScheduleAppointmentPage() {
     "Contact Information",
     "Confirm",
   ];
+
+  const appointmentScheduleData = useSelector(
+    (state) => state.appointment.appointmentSchedule
+  );
+
+  // dummy data set, delete later
+  const dispatch = useDispatch();
+  React.useEffect(() => {
+    dispatch(setDummyAppointmentSchedule());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <section style={{ paddingTop: "64px" }}>
@@ -186,6 +209,7 @@ export default function ScheduleAppointmentPage() {
         <PageContent
           activeStep={activeStep}
           OnsetActiveStep={(idx) => setActiveStep(idx)}
+          appointmentScheduleData={appointmentScheduleData}
         />
       </Grid>
     </section>

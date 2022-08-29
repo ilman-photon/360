@@ -8,7 +8,6 @@ import {
 } from "@mui/material";
 import { useTranslation } from "next-i18next";
 import { styles } from "./style";
-
 import AppointmentForm from "./appointmentForm";
 
 export default function ScheduleAppointment({

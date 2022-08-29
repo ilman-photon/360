@@ -8,10 +8,23 @@ import Image from "next/image";
 import { faker } from "@faker-js/faker";
 import { styles } from "./style";
 
-export default function AppointmentLocation() {
+export default function AppointmentLocation({ providerData = {} }) {
   const { t } = useTranslation("translation", {
     keyPrefix: "scheduleAppoinment",
   });
+
+  const getAddress = (address) => {
+    if (!address) return;
+    return (
+      <div>
+        {address.addressLine1}
+        <br />
+        {address.addressLine2}
+        <br />
+        {address.city}, {address.state}, {address.zipcode}
+      </div>
+    );
+  };
 
   return (
     <Box mb={2}>
@@ -33,7 +46,7 @@ export default function AppointmentLocation() {
           <Grid container>
             <Grid p={0}>
               <Image
-                src={faker.image.imageUrl(275, 173)}
+                src={providerData.image || "/transparent.png"}
                 width={105}
                 height={105}
                 style={{ borderRadius: "50%" }}
@@ -46,23 +59,22 @@ export default function AppointmentLocation() {
                 style={{ ...styles.detailText, ...styles.boldText }}
                 aria-label={"Myself"}
               >
-                Dr. Sonha Nguyen
+                {providerData.name}
               </Typography>
               <Typography
                 variant="regularBold"
                 style={styles.detailText}
                 aria-label={"Myself"}
               >
-                5755 Burke Centre Parkway
+                {getAddress(providerData.address)}
                 <br />
-                Burke, VA 22015-2264
               </Typography>
               <Typography
                 variant="h4"
                 style={styles.detailText}
                 aria-label={"Myself"}
               >
-                <Link style={styles.linkText}>(703) 250-9000</Link>
+                <Link style={styles.linkText}>{providerData.phoneNumber}</Link>
               </Typography>
             </Grid>
           </Grid>

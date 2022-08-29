@@ -118,17 +118,13 @@ Object {
                     aria-label="Myself"
                     class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
                     style="color: rgb(0, 59, 74); font-size: 18px; font-weight: 700;"
-                  >
-                    Dr. Sonha Nguyen
-                  </h4>
+                  />
                   <span
                     aria-label="Myself"
                     class="MuiTypography-root MuiTypography-regularBold css-37jdci-MuiTypography-root"
                     style="color: rgb(0, 59, 74); font-size: 16px;"
                   >
-                    5755 Burke Centre Parkway
                     <br />
-                    Burke, VA 22015-2264
                   </span>
                   <h4
                     aria-label="Myself"
@@ -138,9 +134,7 @@ Object {
                     <a
                       class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
                       style="color: rgb(0, 130, 148); font-size: 18px;"
-                    >
-                      (703) 250-9000
-                    </a>
+                    />
                   </h4>
                 </div>
               </div>
@@ -264,17 +258,13 @@ Object {
                   aria-label="Myself"
                   class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
                   style="color: rgb(0, 59, 74); font-size: 18px; font-weight: 700;"
-                >
-                  Dr. Sonha Nguyen
-                </h4>
+                />
                 <span
                   aria-label="Myself"
                   class="MuiTypography-root MuiTypography-regularBold css-37jdci-MuiTypography-root"
                   style="color: rgb(0, 59, 74); font-size: 16px;"
                 >
-                  5755 Burke Centre Parkway
                   <br />
-                  Burke, VA 22015-2264
                 </span>
                 <h4
                   aria-label="Myself"
@@ -284,9 +274,7 @@ Object {
                   <a
                     class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
                     style="color: rgb(0, 130, 148); font-size: 18px;"
-                  >
-                    (703) 250-9000
-                  </a>
+                  />
                 </h4>
               </div>
             </div>
