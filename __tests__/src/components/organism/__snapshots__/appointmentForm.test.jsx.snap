@@ -18,7 +18,7 @@ Object {
               aria-label="Who is this exam for?"
               class="MuiTypography-root MuiTypography-body1 css-17lkhvu-MuiTypography-root"
             >
-              guestTitle
+              selfTitle
             </p>
             <div
               class="MuiGrid-root css-ermewa-MuiGrid-root"
@@ -30,7 +30,7 @@ Object {
               </h1>
               <a
                 aria-label="signIn link"
-                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-4wpxtz-MuiTypography-root-MuiLink-root"
+                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1szbmku-MuiTypography-root-MuiLink-root"
                 data-testid="signInlink"
               >
                 signIn
@@ -195,14 +195,14 @@ Object {
                 value="both"
               >
                 <label
-                  class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1upt16w-MuiFormLabel-root"
+                  class="MuiFormLabel-root MuiFormLabel-colorPrimary css-yn0t1o-MuiFormLabel-root"
                   id="row-radio-buttons-group-label"
                 >
                   Preferred mode of Communication
                 </label>
                 <div
                   aria-labelledby="row-radio-buttons-group-label"
-                  class="MuiFormGroup-root MuiFormGroup-row css-169kweb-MuiFormGroup-root"
+                  class="MuiFormGroup-root MuiFormGroup-row css-1lg4ftd-MuiFormGroup-root"
                   role="radiogroup"
                 >
                   <label
@@ -481,7 +481,7 @@ Object {
             aria-label="Who is this exam for?"
             class="MuiTypography-root MuiTypography-body1 css-17lkhvu-MuiTypography-root"
           >
-            guestTitle
+            selfTitle
           </p>
           <div
             class="MuiGrid-root css-ermewa-MuiGrid-root"
@@ -493,7 +493,7 @@ Object {
             </h1>
             <a
               aria-label="signIn link"
-              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-4wpxtz-MuiTypography-root-MuiLink-root"
+              class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1szbmku-MuiTypography-root-MuiLink-root"
               data-testid="signInlink"
             >
               signIn
@@ -658,14 +658,14 @@ Object {
               value="both"
             >
               <label
-                class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1upt16w-MuiFormLabel-root"
+                class="MuiFormLabel-root MuiFormLabel-colorPrimary css-yn0t1o-MuiFormLabel-root"
                 id="row-radio-buttons-group-label"
               >
                 Preferred mode of Communication
               </label>
               <div
                 aria-labelledby="row-radio-buttons-group-label"
-                class="MuiFormGroup-root MuiFormGroup-row css-169kweb-MuiFormGroup-root"
+                class="MuiFormGroup-root MuiFormGroup-row css-1lg4ftd-MuiFormGroup-root"
                 role="radiogroup"
               >
                 <label

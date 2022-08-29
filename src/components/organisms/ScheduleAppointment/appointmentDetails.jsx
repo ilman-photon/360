@@ -25,60 +25,60 @@ export default function AppointmentDetails({
 
   return (
     <Box>
-    <AccountCard
-      title={t("appointmentDetails")}
-      textStyle={{ fontWeight: "700" }}
-      isAppoinment={true}
-      actionContent={
-        <Button
-          variant="text"
-          className={styles.editButton}
-          onClick={OnEditClicked}
-        >
-          <EditOutlinedIcon sx={{ width: 20, height: 20 }} />
-          <div type="link" style={styles.editLink}>
-            Edit
-          </div>
-        </Button>
-      }
-    >
-      <Stack spacing={2}>
-        <LabelWithInfo
-          label="Date and time"
-          titleIcon={<CalendarTodayIcon />}
-          sxRow={{ justifyContent: "unset" }}
-          sxText={{ paddingLeft: "4px", color: colors.darkGreen }}
-        >
-          <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
-            {formatDate(appointmentData.date)}
-          </Typography>
-        </LabelWithInfo>
+      <AccountCard
+        title={t("appointmentDetails")}
+        textStyle={{ fontWeight: "700" }}
+        isAppoinment={true}
+        actionContent={
+          <Button
+            variant="text"
+            className={styles.editButton}
+            onClick={OnEditClicked}
+          >
+            <EditOutlinedIcon sx={{ width: 20, height: 20 }} />
+            <div type="link" style={styles.editLink}>
+              Edit
+            </div>
+          </Button>
+        }
+      >
+        <Stack spacing={2}>
+          <LabelWithInfo
+            label="Date and time"
+            titleIcon={<CalendarTodayIcon />}
+            sxRow={{ justifyContent: "unset" }}
+            sxText={{ paddingLeft: "4px", color: colors.darkGreen }}
+          >
+            <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
+              {formatDate(appointmentData.date)}
+            </Typography>
+          </LabelWithInfo>
 
-        <LabelWithInfo
-          label="Insurance"
-          titleIcon={<ContactMailIcon />}
-          sxRow={{ justifyContent: "unset" }}
-          sxText={{ paddingLeft: "4px", color: colors.darkGreen }}
-        >
-          <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
-            {appointmentData.insuranceCarrier.length > 0
-              ? appointmentData.insuranceCarrier.join(", ")
-              : "No Insurance provided"}
-          </Typography>
-        </LabelWithInfo>
+          <LabelWithInfo
+            label="Insurance"
+            titleIcon={<ContactMailIcon />}
+            sxRow={{ justifyContent: "unset" }}
+            sxText={{ paddingLeft: "4px", color: colors.darkGreen }}
+          >
+            <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
+              {appointmentData.insuranceCarrier.length > 0
+                ? appointmentData.insuranceCarrier.join(", ")
+                : "No Insurance provided"}
+            </Typography>
+          </LabelWithInfo>
 
-        <LabelWithInfo
-          label="Purpose of visit"
-          titleIcon={<BusinessIcon />}
-          sxRow={{ justifyContent: "unset" }}
-          sxText={{ paddingLeft: "4px", color: colors.darkGreen }}
-        >
-          <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
-            {appointmentData.appointmentType}
-          </Typography>
-        </LabelWithInfo>
-      </Stack>
-    </AccountCard>
+          <LabelWithInfo
+            label="Purpose of visit"
+            titleIcon={<BusinessIcon />}
+            sxRow={{ justifyContent: "unset" }}
+            sxText={{ paddingLeft: "4px", color: colors.darkGreen }}
+          >
+            <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
+              {appointmentData.appointmentType}
+            </Typography>
+          </LabelWithInfo>
+        </Stack>
+      </AccountCard>
     </Box>
   );
 }

@@ -117,20 +117,20 @@ export default function AppointmentForm({ isForMyself }) {
           >
             {isForMyself ? t("selfTitle") : t("someoneElseTitle")}
           </Typography>
-          {isForMyself ?
-          <Grid sx={{ mt: 2, display: "flex" }}>
-            <Typography sx={styles.boldLabel} variant="h1">
-              {t("sigInInfo")}
-            </Typography>
-            <Link
-              sx={styles.link}
-              data-testid={SCHEDULE_GUEST_TEST_ID.signInlink}
-              {...getLinkAria(t("signIn"))}
-            >
-              {t("signIn")}
-            </Link>
-          </Grid>
-          : null}
+          {isForMyself ? (
+            <Grid sx={{ mt: 2, display: "flex" }}>
+              <Typography sx={styles.boldLabel} variant="h1">
+                {t("sigInInfo")}
+              </Typography>
+              <Link
+                sx={styles.link}
+                data-testid={SCHEDULE_GUEST_TEST_ID.signInlink}
+                {...getLinkAria(t("signIn"))}
+              >
+                {t("signIn")}
+              </Link>
+            </Grid>
+          ) : null}
         </Box>
 
         <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
@@ -332,7 +332,11 @@ export default function AppointmentForm({ isForMyself }) {
                       label="Preferred mode of Communication"
                       options={options}
                       helperText={error ? error.message : null}
-                      textSx={{ justifyContent: "space-between" }}
+                      textSx={{
+                        justifyContent: "space-between",
+                        color: "black",
+                        fontWeight: "600",
+                      }}
                       sx={{
                         width: { xs: "100%", md: "56%" },
                         m: 1,

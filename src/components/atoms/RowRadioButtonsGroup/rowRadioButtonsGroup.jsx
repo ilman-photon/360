@@ -28,6 +28,7 @@ export default function RowRadioButtonsGroup({
           },
           display: "inline-flex",
           alignItems: "center",
+          ...textSx,
         }}
       >
         {props.label}
