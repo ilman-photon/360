@@ -179,7 +179,7 @@ Object {
                   class="label"
                   style="padding-left: 4px; color: rgb(0, 59, 74);"
                 >
-                  fsd Name
+                  Purpose of visit
                 </div>
               </div>
               <div
@@ -376,7 +376,7 @@ Object {
                 class="label"
                 style="padding-left: 4px; color: rgb(0, 59, 74);"
               >
-                fsd Name
+                Purpose of visit
               </div>
             </div>
             <div

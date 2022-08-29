@@ -2,7 +2,7 @@ import * as React from "react";
 import ScheduleAppointment from "../../../components/organisms/ScheduleAppointment/scheduleAppointment";
 import AppointmentLocation from "../../../components/organisms/ScheduleAppointment/appointmentLocation";
 import AppointmentDetails from "../../../components/organisms/ScheduleAppointment/appointmentDetails";
-import SelfForm from "../../../components/organisms/ScheduleAppointment/selfForm";
+import AppointmentForm from "../../../components/organisms/ScheduleAppointment/appointmentForm";
 import StepperAppoinment from "../../../components/molecules/StepperAppoinment/stepperAppoinment";
 import AccountTitleHeading from "../../../components/atoms/AccountTitleHeading/accountTitleHeading";
 
@@ -68,11 +68,12 @@ export const PageContent = ({
             <Box sx={{ p: "16px 0", float: "right" }}>
               <Button
                 variant="contained"
+                className={styles.continueText}
                 sx={{
                   width: { xs: "100%", md: "222px" },
                   background: "#0095A9",
+                  borderRadius: "46px",
                 }}
-                className={styles.continueText}
                 onClick={() => OnsetActiveStep(2)}
               >
                 {t("continue")}
@@ -115,7 +116,7 @@ export const PageContent = ({
             className={styles.examForComponent}
             p={{ xs: "24px 14px", md: "40px 16px" }}
           >
-            <SelfForm />
+            <AppointmentForm isForMyself={true} />
           </Grid>
           <Grid md={4} pl={2} sx={{ display: { xs: "none", md: "block" } }}>
             <AppointmentLocation />
@@ -168,6 +169,9 @@ export default function ScheduleAppointmentPage() {
         <Button
           variant="contained"
           className={[styles.formButton, styles.outlined].join(" ")}
+          sx={{
+            borderRadius: "46px",
+          }}
           onClick={() => setActiveStep(activeStep - 1)}
         >
           <ArrowBackIcon className={styles.backIcon} />

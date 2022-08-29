@@ -22,11 +22,7 @@ export default function AppointmentDetails() {
       textStyle={{ fontWeight: "700" }}
       isAppoinment={true}
       actionContent={
-        <Button
-          // onClick={OnEditClicked}
-          variant="text"
-          className={styles.editButton}
-        >
+        <Button variant="text" className={styles.editButton}>
           <EditOutlinedIcon sx={{ width: 20, height: 20 }} />
           <div type="link" style={styles.editLink}>
             Edit
@@ -58,7 +54,7 @@ export default function AppointmentDetails() {
         </LabelWithInfo>
 
         <LabelWithInfo
-          label="fsd Name"
+          label="Purpose of visit"
           titleIcon={<BusinessIcon />}
           sxRow={{ justifyContent: "unset" }}
           sxText={{ paddingLeft: "4px", color: "#003B4A" }}

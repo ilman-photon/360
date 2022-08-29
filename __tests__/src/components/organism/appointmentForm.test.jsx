@@ -1,14 +1,14 @@
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import SomeoneElseForm from "../../../../src/components/organisms/ScheduleAppointment/someoneElseForm";
+import AppointmentForm from "../../../../src/components/organisms/ScheduleAppointment/AppointmentForm";
 
 describe("App", () => {
     let container;
     beforeEach(() => {
-      container = render(<SomeoneElseForm />);
+      container = render(<AppointmentForm />);
     });
   
-    it("SomeoneElseForm render", () => {
+    it("AppointmentForm render", () => {
         expect(container).toMatchSnapshot();
     });
     

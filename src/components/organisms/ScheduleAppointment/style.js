@@ -83,7 +83,8 @@ export const styles = {
     textTransform: "none",
   },
   divRight: {
-    justifySelf: "right",
+    textAlign: "right",
+    width: "100%",
   },
   editLink: {
     marginLeft: 4,

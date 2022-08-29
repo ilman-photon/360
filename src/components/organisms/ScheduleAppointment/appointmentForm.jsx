@@ -39,7 +39,7 @@ const DisclaimerText = (data) => {
   );
 };
 
-export default function SelfForm() {
+export default function AppointmentForm({ isForMyself }) {
   const { handleSubmit, control } = useForm({
     defaultValues: {
       firstName: "",
@@ -299,6 +299,9 @@ export default function SelfForm() {
                         width: { xs: "100%", md: "56%" },
                         m: 1,
                         justifyContent: "space-between",
+                        fontSize: "16px",
+                        fontWeight: "600",
+                        color: "black",
                       }}
                     />
                   </>
@@ -309,41 +312,47 @@ export default function SelfForm() {
           </div>
 
           <Divider sx={{ mx: 1 }} />
+          {isForMyself ? (
+            <>
+              <Grid sx={{ m: "24px 8px 16px" }}>
+                <Typography sx={{ ...styles.boldLabel, mb: 1 }}>
+                  {t("optional")}
+                </Typography>
+                <Typography sx={styles.passwordLabel}>
+                  {t("passwordInfo")}
+                </Typography>
+              </Grid>
 
-          <Grid sx={{ m: "24px 8px 16px" }}>
-            <Typography sx={{ ...styles.boldLabel, mb: 1 }}>
-              {t("optional")}
-            </Typography>
-            <Typography sx={styles.passwordLabel}>
-              {t("passwordInfo")}
-            </Typography>
-          </Grid>
+              <Controller
+                name="password"
+                control={control}
+                defaultValue=""
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => {
+                  return (
+                    <StyledInput
+                      id="password"
+                      data-testid={SCHEDULE_GUEST_TEST_ID.password}
+                      label={t("passwordLabel")}
+                      type={constants.INPUT_PASSWORD}
+                      size={constants.SMALL}
+                      variant={constants.FILLED}
+                      value={value}
+                      onChange={onChange}
+                      error={!!error}
+                      helperText={error ? error.message : null}
+                    />
+                  );
+                }}
+                rules={{ required: t("thisFieldRequired") }}
+              />
+              <DisclaimerText label="(Optional)" />
 
-          <Controller
-            name="password"
-            control={control}
-            defaultValue=""
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
-              return (
-                <StyledInput
-                  id="password"
-                  data-testid={SCHEDULE_GUEST_TEST_ID.password}
-                  label={t("passwordLabel")}
-                  type={constants.INPUT_PASSWORD}
-                  size={constants.SMALL}
-                  variant={constants.FILLED}
-                  value={value}
-                  onChange={onChange}
-                  error={!!error}
-                  helperText={error ? error.message : null}
-                />
-              );
-            }}
-            rules={{ required: t("thisFieldRequired") }}
-          />
-          <DisclaimerText label="(Optional)" />
-
-          <Divider sx={{ mt: 2, mx: 1 }} />
+              <Divider sx={{ mt: 2, mx: 1 }} />
+            </>
+          ) : null}
 
           <div style={styles.divRight}>
             <Button

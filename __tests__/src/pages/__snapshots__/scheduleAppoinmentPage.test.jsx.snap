@@ -256,7 +256,7 @@ exports[`App renders App unchanged 1`] = `
       class="MuiGrid-root css-80hmbl-MuiGrid-root"
     >
       <button
-        class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-sghohy-MuiButtonBase-root-MuiButton-root"
+        class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-lf2gqp-MuiButtonBase-root-MuiButton-root"
         tabindex="0"
         type="button"
       >
@@ -600,7 +600,7 @@ exports[`App renders App unchanged 1`] = `
                     class="label"
                     style="padding-left: 4px; color: rgb(0, 59, 74);"
                   >
-                    fsd Name
+                    Purpose of visit
                   </div>
                 </div>
                 <div
@@ -627,7 +627,7 @@ exports[`App renders App unchanged 1`] = `
           class="MuiBox-root css-isk79j"
         >
           <button
-            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root continueText css-pbvud7-MuiButtonBase-root-MuiButton-root"
+            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root continueText css-haqy6v-MuiButtonBase-root-MuiButton-root"
             tabindex="0"
             type="button"
           >

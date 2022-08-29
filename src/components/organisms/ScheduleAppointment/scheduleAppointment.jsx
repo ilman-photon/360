@@ -9,7 +9,7 @@ import {
 import { useTranslation } from "next-i18next";
 import { styles } from "./style";
 
-import SomeoneElseForm from "./someoneElseForm";
+import AppointmentForm from "./appointmentForm";
 
 export default function ScheduleAppointment({
   selectedSelf,
@@ -81,7 +81,7 @@ export default function ScheduleAppointment({
           </Button>
         </Stack>
 
-        {selectedSelf === 2 ? <SomeoneElseForm /> : null}
+        {selectedSelf === 2 ? <AppointmentForm isForMyself={false} /> : null}
 
         <Divider />
         {selectedSelf === 1 ? (
