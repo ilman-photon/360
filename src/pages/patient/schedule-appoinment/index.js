@@ -17,10 +17,8 @@ import store from "../../../store/store";
 import styles from "./styles.module.scss";
 import { useTranslation } from "next-i18next";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  setAppointmentSchedule,
-  setDummyAppointmentSchedule,
-} from "../../../store/appointment";
+import { setDummyAppointmentSchedule } from "../../../store/appointment";
+import { useRouter } from "next/router";
 
 const MobileTopBar = (data) => {
   return (
@@ -53,6 +51,9 @@ export const PageContent = ({
   OnsetActiveStep = () => {
     // This is intentional
   },
+  OnEditClicked = () => {
+    // This is intentional
+  },
 }) => {
   const [selectedSelf, setSelectedSelf] = React.useState(1);
   const { t } = useTranslation("translation", {
@@ -70,8 +71,12 @@ export const PageContent = ({
           >
             <AppointmentLocation
               providerData={appointmentScheduleData.providerInfo}
+              OnEditClicked={OnEditClicked}
             />
-            <AppointmentDetails />
+            <AppointmentDetails
+              appointmentData={appointmentScheduleData.appointmentInfo}
+              OnEditClicked={OnEditClicked}
+            />
             <Divider sx={{ mt: 2 }} />
             <Box sx={{ p: "16px 0", float: "right" }}>
               <Button
@@ -110,8 +115,12 @@ export const PageContent = ({
           <Grid md={4} pl={2} sx={{ display: { xs: "none", md: "block" } }}>
             <AppointmentLocation
               providerData={appointmentScheduleData.providerInfo}
+              OnEditClicked={OnEditClicked}
             />
-            <AppointmentDetails />
+            <AppointmentDetails
+              appointmentData={appointmentScheduleData.appointmentInfo}
+              OnEditClicked={OnEditClicked}
+            />
           </Grid>
         </>
       );
@@ -131,8 +140,12 @@ export const PageContent = ({
           <Grid md={4} pl={2} sx={{ display: { xs: "none", md: "block" } }}>
             <AppointmentLocation
               providerData={appointmentScheduleData.providerInfo}
+              OnEditClicked={OnEditClicked}
             />
-            <AppointmentDetails />
+            <AppointmentDetails
+              appointmentData={appointmentScheduleData.appointmentInfo}
+              OnEditClicked={OnEditClicked}
+            />
           </Grid>
         </>
       );
@@ -143,6 +156,9 @@ export const PageContent = ({
 export default function ScheduleAppointmentPage() {
   const [activeStep, setActiveStep] = React.useState(1);
   const isDesktop = useMediaQuery("(min-width: 769px)");
+
+  const router = useRouter();
+
   const steps = [
     "Location",
     "Review",
@@ -162,6 +178,11 @@ export default function ScheduleAppointmentPage() {
   const appointmentScheduleData = useSelector(
     (state) => state.appointment.appointmentSchedule
   );
+
+  const handleEditSchedule = () => {
+    console.log("change schedule data");
+    router.push("/patient/appointment");
+  };
 
   // dummy data set, delete later
   const dispatch = useDispatch();
@@ -210,6 +231,7 @@ export default function ScheduleAppointmentPage() {
           activeStep={activeStep}
           OnsetActiveStep={(idx) => setActiveStep(idx)}
           appointmentScheduleData={appointmentScheduleData}
+          OnEditClicked={handleEditSchedule}
         />
       </Grid>
     </section>

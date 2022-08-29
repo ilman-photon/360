@@ -75,7 +75,11 @@ const appointmentSlice = createSlice({
           },
         },
         patientInfo: DEFAULT_PATIENT_INFO_DATA,
-        appointmentInfo: DEFAULT_APPOINTMENT_INFO_DATA,
+        appointmentInfo: {
+          appointmentType: "Eye Exam",
+          date: "2022-08-29T11:12:55.367Z",
+          insuranceCarrier: [],
+        },
       };
     },
   },

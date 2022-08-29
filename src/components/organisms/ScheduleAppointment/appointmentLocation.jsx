@@ -8,7 +8,12 @@ import Image from "next/image";
 import { faker } from "@faker-js/faker";
 import { styles } from "./style";
 
-export default function AppointmentLocation({ providerData = {} }) {
+export default function AppointmentLocation({
+  providerData = {},
+  OnEditClicked = () => {
+    // This is intended
+  },
+}) {
   const { t } = useTranslation("translation", {
     keyPrefix: "scheduleAppoinment",
   });
@@ -34,7 +39,11 @@ export default function AppointmentLocation({ providerData = {} }) {
         textStyle={{ fontWeight: "700" }}
         isAppoinment={true}
         actionContent={
-          <Button variant="text" className={styles.editButton}>
+          <Button
+            variant="text"
+            className={styles.editButton}
+            onClick={OnEditClicked}
+          >
             <EditOutlinedIcon sx={{ width: 20, height: 20 }} />
             <div type="link" style={styles.editLink}>
               Edit
