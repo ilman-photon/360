@@ -1,3 +1,5 @@
+import { colors } from "../../../styles/theme";
+
 export const styles = {
   primaryText: {
     color: "#003B4A",
@@ -92,5 +94,13 @@ export const styles = {
     textDecorationLine: "underline",
     textTransform: "capitalize",
     fontSize: "18px",
+  },
+  registeredUsernameWrapper: {
+    padding: 16,
+    borderRadius: 4,
+    color: "#366A70",
+    backgroundColor: `${colors.teal}0d`,
+    margin: 8,
+    wordBreak: "break-all",
   },
 };

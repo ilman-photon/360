@@ -64,21 +64,20 @@ describe("PersonalInformation Components", () => {
   });
 
   test("is edit button clicked", async () => {
-
     container.rerender(<PersonalInformation isEditing={true} userData={mockUserdata} />);
 
-        const field1 = container.getByLabelText("Name")
-        expect(field1).toBeDisabled();
+    const field1 = container.getByLabelText("Name")
+    expect(field1).toBeDisabled();
 
     const field2 = container.getByLabelText("Preferred Name")
     expect(field2.value).toEqual("---");
     fireEvent.change(field2, { target: { value: "test field 2" } });
     expect(field2.value).toEqual("test field 2");
     
-      expect(container.getByText("Month, date, year")).toBeInTheDocument();  
+    expect(container.getByText("Month, date, year")).toBeInTheDocument();  
 
-      await waitFor(() => container.getByText("Date of Birth"));
-      await waitFor(() => container.getByText("Title"));
+    await waitFor(() => container.getByText("Date of Birth"));
+    await waitFor(() => container.getByText("Title"));
 
     const field3 = container.getByTestId("styled-select-title")
     expect(field3).toBeTruthy();

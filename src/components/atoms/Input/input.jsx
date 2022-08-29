@@ -220,6 +220,7 @@ export const CustomInput = styled(({ ...props }) => {
             <DatePicker
               disabled={props.disabled}
               disableFuture={props.disableFuture}
+              disablePast={props.disablePast}
               label={props.label}
               onChange={props.onChange}
               value={props.value}

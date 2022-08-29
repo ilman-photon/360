@@ -40,7 +40,7 @@ const DisclaimerText = (data) => {
 };
 
 export default function AppointmentForm({ isForMyself }) {
-  const { handleSubmit, control } = useForm({
+  const { handleSubmit, control, watch } = useForm({
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -53,7 +53,7 @@ export default function AppointmentForm({ isForMyself }) {
   });
   const { SCHEDULE_GUEST_TEST_ID } = constants.TEST_ID;
 
-  const onSubmit = () => {
+  const onSubmit = (data) => {
     // this is intentional
   };
 
@@ -71,11 +71,42 @@ export default function AppointmentForm({ isForMyself }) {
     { label: "Both", value: "both", testId: SCHEDULE_GUEST_TEST_ID.bothradio },
   ];
 
+  const watchedPassword = watch("password", "");
+  const [watchedEmail, watchedMobile, watchedPreferredCommunication] = watch([
+    "email",
+    "mobile",
+    "preferredCommunication",
+  ]); // you can also target specific fields by their names
+  const getRegisteredUsername = () => {
+    return (
+      watchedEmail || watchedMobile || "(auto-populated email id/phone number)"
+    );
+  };
+
   const { t } = useTranslation("translation", {
     keyPrefix: "scheduleAppoinment",
   });
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
+
+  const isOneOfPreferredValid = (name, value) => {
+    switch (name) {
+      case "email":
+        if (watchedPreferredCommunication === "phone") return true;
+        else if (watchedPreferredCommunication === "email" && !value)
+          return false;
+        else if (watchedEmail || watchedMobile) return true;
+        break;
+      case "phone":
+        if (watchedPreferredCommunication === "email") return true;
+        else if (watchedPreferredCommunication === "phone" && !value)
+          return false;
+        else if (watchedEmail || watchedMobile) return true;
+        break;
+      default:
+        return false;
+    }
+  };
 
   return (
     <Stack spacing={2}>
@@ -128,9 +159,12 @@ export default function AppointmentForm({ isForMyself }) {
             }}
             rules={{
               required: t("thisFieldRequired"),
-              pattern: {
-                value: Regex.noSpecialRegex,
-                message: "Incorrect format",
+              validate: {
+                isFormat: (v) =>
+                  Regex.nameValidation.test(v) || "Incorrect First Name format",
+                isLength: (v) =>
+                  Regex.minTwoDigitRegex.test(v) ||
+                  "First Name should be greater than 2 characters",
               },
             }}
           />
@@ -160,9 +194,12 @@ export default function AppointmentForm({ isForMyself }) {
             }}
             rules={{
               required: t("thisFieldRequired"),
-              pattern: {
-                value: Regex.noSpecialRegex,
-                message: "Incorrect format",
+              validate: {
+                isFormat: (v) =>
+                  Regex.nameValidation.test(v) || "Incorrect Last Name format",
+                isLength: (v) =>
+                  Regex.minTwoDigitRegex.test(v) ||
+                  "Last Name should be greater than 2 characters",
               },
             }}
           />
@@ -252,7 +289,7 @@ export default function AppointmentForm({ isForMyself }) {
               }) => {
                 return (
                   <StyledInput
-                    disableFuture
+                    disablePast
                     type="dob"
                     id="dob"
                     data-testid={SCHEDULE_GUEST_TEST_ID.dateofbirth}
@@ -270,7 +307,7 @@ export default function AppointmentForm({ isForMyself }) {
                 required: t("thisFieldRequired"),
                 pattern: {
                   value: Regex.specialRegex,
-                  message: "Incorrect email format",
+                  message: "Incorrect date format",
                 },
               }}
             />
@@ -351,11 +388,16 @@ export default function AppointmentForm({ isForMyself }) {
               <DisclaimerText label="(Optional)" />
 
               <Divider sx={{ mt: 2, mx: 1 }} />
+
+              <div style={styles.registeredUsernameWrapper}>
+                <div>Your username will be {getRegisteredUsername()}</div>
+              </div>
             </>
           ) : null}
 
           <div style={styles.divRight}>
             <Button
+              type="submit"
               variant="contained"
               sx={{
                 width: { xs: "100%", md: "222px" },
