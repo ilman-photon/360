@@ -6,14 +6,15 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 import AuthPage from "../../src/pages/patient/login";
 import MfaPage, { getServerSideProps } from "../../src/pages/patient/mfa";
 import Cookies from "universal-cookie";
+import constants from "../../src/utils/constants";
 
 jest.mock("universal-cookie", () => {
   class MockCookies {
     static result = {};
     get(param) {
-      if (param === "username") return "user1@photon.com"
-      else if (param === "securityQuestions") return []
-      if (param === "ip") return "10.10.10.10"
+      if (param === "username") return "user1@photon.com";
+      else if (param === "securityQuestions") return [];
+      if (param === "ip") return "10.10.10.10";
 
       return MockCookies.result;
     }
@@ -42,31 +43,30 @@ defineFeature(feature, (test) => {
     const contex = {
       req: {
         headers: {
-          cookie: "username=user1%40photon.com; mfa=true"
-        }
-      }
-    }
+          cookie: "username=user1%40photon.com; mfa=true",
+        },
+      },
+    };
 
     const userData = {
-      "communicationMethod": {
-        "email": "user1@photon.com",
-        "phone": "9998887772"
+      communicationMethod: {
+        email: "user1@photon.com",
+        phone: "9998887772",
       },
-      "ResponseCode": 4000,
-      "ResponseType": "success",
-    }
+      ResponseCode: 4000,
+      ResponseType: "success",
+    };
 
     mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
 
-    getServerSideProps(contex)
-    container = render(<MfaPage />)
+    getServerSideProps(contex);
+    container = render(<MfaPage />);
     await waitFor(() => container.getByText("setMFATitle"));
-
   });
 
   afterEach(() => {
-    mock.reset()
-  })
+    mock.reset();
+  });
   test("EPIC_EPP-3_STORY_EPP-270 - Verify if New user able to navigate to “Set up Security questions” screen after MFA setup through both Email,Phone number", ({
     given,
     and,
@@ -123,22 +123,25 @@ defineFeature(feature, (test) => {
         });
       });
       const expectedResult = {
-        "SetUpSecurityQuestions": [
+        SetUpSecurityQuestions: [
           {
             "Where did you go the first time you flew on a plane?": "",
             "What was the first book you read?": "",
             "What was the first film you saw in a theater?": "",
             "What was the make and model of your first car?": "",
             "What was the first concert you attended?": "",
-            "What was your favorite cartoon character during your childhood?": "",
+            "What was your favorite cartoon character during your childhood?":
+              "",
             "What was the first thing you learned to cook?": "",
             "What is your favorite cold-weather activity?": "",
             "In what city or town did your parents meet?": "",
-            "Who is your all-time favorite movie character?": ""
-          }
-        ]
-      }
-      mock.onGet(`/ecp/patient/getsecurityQuestions`).reply(200, expectedResult);
+            "Who is your all-time favorite movie character?": "",
+          },
+        ],
+      };
+      mock
+        .onGet(`/ecp/patient/getsecurityQuestions`)
+        .reply(200, expectedResult);
       await waitFor(() => container.getByText("communicationMethodTitle"));
     });
 
@@ -146,8 +149,12 @@ defineFeature(feature, (test) => {
       /^user should see "(.*)" section with radio button with below detail "(.*)" and "(.*)"$/,
       (arg0, arg1, arg2) => {
         const title = container.getByText("communicationMethodTitle");
-        const email = container.getByTestId("email-radio-button");
-        const phone = container.getByTestId("phone-radio-button");
+        const email = container.getByTestId(
+          constants.TEST_ID.MFA_TEST_ID.radioEmail
+        );
+        const phone = container.getByTestId(
+          constants.TEST_ID.MFA_TEST_ID.radioPhone
+        );
         expect(email).toBeVisible();
         expect(phone).toBeVisible();
         expect(title).toBeVisible();
@@ -178,7 +185,9 @@ defineFeature(feature, (test) => {
     });
 
     and(/^user clicks on "(.*)" button$/, (arg0) => {
-      const confirm = container.getByTestId("primary-button");
+      const confirm = container.getByTestId(
+        constants.TEST_ID.MFA_TEST_ID.btnConfirm
+      );
       fireEvent.click(confirm);
     });
 
@@ -194,7 +203,12 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('EPIC_EPP-3_STORY_EPP-270 - Verify if user able to view list of preset security questions 3and answer3field', ({ given, and, then, when }) => {
+  test("EPIC_EPP-3_STORY_EPP-270 - Verify if user able to view list of preset security questions 3and answer3field", ({
+    given,
+    and,
+    then,
+    when,
+  }) => {
     given("user launch the 'XXX' url", () => {
       expect(true).toBeTruthy();
     });
@@ -247,44 +261,51 @@ defineFeature(feature, (test) => {
       await waitFor(() => container.getByText("communicationMethodTitle"));
     });
 
-    and('user setup MFA successfully', async () => {
+    and("user setup MFA successfully", async () => {
       const expectedResult = {
-        "SetUpSecurityQuestions": [
+        SetUpSecurityQuestions: [
           {
             "Where did you go the first time you flew on a plane?": "",
             "What was the first book you read?": "",
             "What was the first film you saw in a theater?": "",
             "What was the make and model of your first car?": "",
             "What was the first concert you attended?": "",
-            "What was your favorite cartoon character during your childhood?": "",
+            "What was your favorite cartoon character during your childhood?":
+              "",
             "What was the first thing you learned to cook?": "",
             "What is your favorite cold-weather activity?": "",
             "In what city or town did your parents meet?": "",
-            "Who is your all-time favorite movie character?": ""
-          }
-        ]
-      }
+            "Who is your all-time favorite movie character?": "",
+          },
+        ],
+      };
       const data = {
-        "mfaCode": 660927,
-        "ResponseCode": 4000,
-        "ResponseType": "success"
-      }
+        mfaCode: 660927,
+        ResponseCode: 4000,
+        ResponseType: "success",
+      };
       mock.onPost(`/ecp/patient/mfa/sendotp`).reply(200, data);
-      const confirm = container.getByTestId("primary-button");
+      const confirm = container.getByTestId(
+        constants.TEST_ID.MFA_TEST_ID.btnConfirm
+      );
       fireEvent.click(confirm);
-      await waitFor(() => container.getByText("mfaTitle"))
+      await waitFor(() => container.getByText("mfaTitle"));
 
       const mfaField = container.getByLabelText("mfaLabel");
       fireEvent.change(mfaField, { target: { value: "123456" } });
 
       const success = {
-        "ResponseCode": 4000,
-        "ResponseType": "success"
-      }
+        ResponseCode: 4000,
+        ResponseType: "success",
+      };
       mock.onPost(`/ecp/patient/mfa/verifyotp`).reply(200, success);
-      const primaryButton = container.getByTestId("primary-button");
+      const primaryButton = container.getByTestId(
+        constants.TEST_ID.MFA_TEST_ID.btnSubmit
+      );
       fireEvent.click(primaryButton);
-      mock.onGet(`/ecp/patient/getsecurityQuestions`).reply(200, expectedResult);
+      mock
+        .onGet(`/ecp/patient/getsecurityQuestions`)
+        .reply(200, expectedResult);
     });
 
     then(/^user login with (.*) and (.*)$/, (arg0, arg1) => {
@@ -295,32 +316,43 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user should prompted to set up Security questions after setup MFA', async () => {
-      await waitFor(() => container.getByText(/Security Questions/i));
-    });
+    and(
+      "user should prompted to set up Security questions after setup MFA",
+      async () => {
+        await waitFor(() => container.getByText(/Security Questions/i));
+      }
+    );
 
-    then('user land on to “Set up Security questions” screen', async () => {
+    then("user land on to “Set up Security questions” screen", async () => {
       await waitFor(() => container.getByText(/Security Questions/i));
     });
 
     when(/^user mouse over to "(.*)" dropdown field$/, (arg0) => {
-      expect(container.getByText("Question 3")).toBeInTheDocument()
+      expect(container.getByText("Question 3")).toBeInTheDocument();
     });
 
-    and('user click on dropdown field', () => {
+    and("user click on dropdown field", () => {
       expect(true).toBeTruthy();
     });
 
     then(/^user should see the "(.*)" text dropdown field$/, (arg0) => {
-      expect(container.getByText("Question 3")).toBeInTheDocument()
+      expect(container.getByText("Question 3")).toBeInTheDocument();
     });
 
-    and(/^user should see "(.*)" text field below  "(.*)" field$/, async (arg0, arg1) => {
-      await waitFor(() => container.getByText(/Answer 3/i));
-    });
+    and(
+      /^user should see "(.*)" text field below  "(.*)" field$/,
+      async (arg0, arg1) => {
+        await waitFor(() => container.getByText(/Answer 3/i));
+      }
+    );
   });
 
-  test('EPIC_EPP-3_STORY_EPP-270 - Verify if user able to view ‘Submit’ button', ({ given, and, then, when }) => {
+  test("EPIC_EPP-3_STORY_EPP-270 - Verify if user able to view ‘Submit’ button", ({
+    given,
+    and,
+    then,
+    when,
+  }) => {
     given("user launch the 'XXX' url", () => {
       expect(true).toBeTruthy();
     });
@@ -373,44 +405,51 @@ defineFeature(feature, (test) => {
       await waitFor(() => container.getByText("communicationMethodTitle"));
     });
 
-    and('user setup MFA successfully', async () => {
+    and("user setup MFA successfully", async () => {
       const expectedResult = {
-        "SetUpSecurityQuestions": [
+        SetUpSecurityQuestions: [
           {
             "Where did you go the first time you flew on a plane?": "",
             "What was the first book you read?": "",
             "What was the first film you saw in a theater?": "",
             "What was the make and model of your first car?": "",
             "What was the first concert you attended?": "",
-            "What was your favorite cartoon character during your childhood?": "",
+            "What was your favorite cartoon character during your childhood?":
+              "",
             "What was the first thing you learned to cook?": "",
             "What is your favorite cold-weather activity?": "",
             "In what city or town did your parents meet?": "",
-            "Who is your all-time favorite movie character?": ""
-          }
-        ]
-      }
+            "Who is your all-time favorite movie character?": "",
+          },
+        ],
+      };
       const data = {
-        "mfaCode": 660927,
-        "ResponseCode": 4000,
-        "ResponseType": "success"
-      }
+        mfaCode: 660927,
+        ResponseCode: 4000,
+        ResponseType: "success",
+      };
       mock.onPost(`/ecp/patient/mfa/sendotp`).reply(200, data);
-      const confirm = container.getByTestId("primary-button");
+      const confirm = container.getByTestId(
+        constants.TEST_ID.MFA_TEST_ID.btnConfirm
+      );
       fireEvent.click(confirm);
-      await waitFor(() => container.getByText("mfaTitle"))
+      await waitFor(() => container.getByText("mfaTitle"));
 
       const mfaField = container.getByLabelText("mfaLabel");
       fireEvent.change(mfaField, { target: { value: "123456" } });
 
       const success = {
-        "ResponseCode": 4000,
-        "ResponseType": "success"
-      }
+        ResponseCode: 4000,
+        ResponseType: "success",
+      };
       mock.onPost(`/ecp/patient/mfa/verifyotp`).reply(200, success);
-      const primaryButton = container.getByTestId("primary-button");
+      const primaryButton = container.getByTestId(
+        constants.TEST_ID.MFA_TEST_ID.btnSubmit
+      );
       fireEvent.click(primaryButton);
-      mock.onGet(`/ecp/patient/getsecurityQuestions`).reply(200, expectedResult);
+      mock
+        .onGet(`/ecp/patient/getsecurityQuestions`)
+        .reply(200, expectedResult);
     });
 
     then(/^user login with (.*) and (.*)$/, (arg0, arg1) => {
@@ -425,16 +464,21 @@ defineFeature(feature, (test) => {
       await waitFor(() => container.getByText(/Security Questions/i));
     });
 
-    then('user land on to “Set up Security questions” screen', async () => {
+    then("user land on to “Set up Security questions” screen", async () => {
       await waitFor(() => container.getByText(/Security Questions/i));
     });
 
-    and('user should see the ‘Submit’ button', async () => {
+    and("user should see the ‘Submit’ button", async () => {
       await waitFor(() => container.getByText(/Submit/i));
     });
   });
 
-  test('EPIC_EPP-3_STORY_EPP-270 - Verify if user able to ‘Skip’ security question by clicking  skip button', ({ given, and, then, when }) => {
+  test("EPIC_EPP-3_STORY_EPP-270 - Verify if user able to ‘Skip’ security question by clicking  skip button", ({
+    given,
+    and,
+    then,
+    when,
+  }) => {
     given("user launch the 'XXX' url", () => {
       expect(true).toBeTruthy();
     });
@@ -487,44 +531,51 @@ defineFeature(feature, (test) => {
       await waitFor(() => container.getByText("communicationMethodTitle"));
     });
 
-    and('user setup MFA successfully', async () => {
+    and("user setup MFA successfully", async () => {
       const expectedResult = {
-        "SetUpSecurityQuestions": [
+        SetUpSecurityQuestions: [
           {
             "Where did you go the first time you flew on a plane?": "",
             "What was the first book you read?": "",
             "What was the first film you saw in a theater?": "",
             "What was the make and model of your first car?": "",
             "What was the first concert you attended?": "",
-            "What was your favorite cartoon character during your childhood?": "",
+            "What was your favorite cartoon character during your childhood?":
+              "",
             "What was the first thing you learned to cook?": "",
             "What is your favorite cold-weather activity?": "",
             "In what city or town did your parents meet?": "",
-            "Who is your all-time favorite movie character?": ""
-          }
-        ]
-      }
+            "Who is your all-time favorite movie character?": "",
+          },
+        ],
+      };
       const data = {
-        "mfaCode": 660927,
-        "ResponseCode": 4000,
-        "ResponseType": "success"
-      }
+        mfaCode: 660927,
+        ResponseCode: 4000,
+        ResponseType: "success",
+      };
       mock.onPost(`/ecp/patient/mfa/sendotp`).reply(200, data);
-      const confirm = container.getByTestId("primary-button");
+      const confirm = container.getByTestId(
+        constants.TEST_ID.MFA_TEST_ID.btnConfirm
+      );
       fireEvent.click(confirm);
-      await waitFor(() => container.getByText("mfaTitle"))
+      await waitFor(() => container.getByText("mfaTitle"));
 
       const mfaField = container.getByLabelText("mfaLabel");
       fireEvent.change(mfaField, { target: { value: "123456" } });
 
       const success = {
-        "ResponseCode": 4000,
-        "ResponseType": "success"
-      }
+        ResponseCode: 4000,
+        ResponseType: "success",
+      };
       mock.onPost(`/ecp/patient/mfa/verifyotp`).reply(200, success);
-      const primaryButton = container.getByTestId("primary-button");
+      const primaryButton = container.getByTestId(
+        constants.TEST_ID.MFA_TEST_ID.btnSubmit
+      );
       fireEvent.click(primaryButton);
-      mock.onGet(`/ecp/patient/getsecurityQuestions`).reply(200, expectedResult);
+      mock
+        .onGet(`/ecp/patient/getsecurityQuestions`)
+        .reply(200, expectedResult);
     });
 
     then(/^user login with (.*) and (.*)$/, (arg0, arg1) => {

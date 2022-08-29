@@ -186,6 +186,7 @@ export default function InsuranceInfoPage() {
                     className={styles.addButton}
                     disabled={openNewInsuranceForm}
                     onClick={OnAddNewInsurance}
+                    data-testid={INSURANCE_TEST_ID.addButton}
                   >
                     <Stack
                       direction="row"

@@ -19,6 +19,7 @@ const SecurityQuestion = ({
   onClickedSkipButton = () => {
     // This is intentional
   },
+  testIds,
 }) => {
   const [showPostMessage, setShowPostMessage] = useState(propsShowPostMessage);
   const [postMessage, setPostMessage] = React.useState(
@@ -196,7 +197,7 @@ const SecurityQuestion = ({
             theme="patient"
             mode="primary"
             size="small"
-            data-testid="primary-button"
+            data-testid={testIds.btnSubmitSecurity || "primary-button"}
             gradient={false}
             style={styles.buttonStyle}
             sx={{
@@ -211,7 +212,7 @@ const SecurityQuestion = ({
             theme="patient"
             mode="secondary"
             size="small"
-            data-testid="secondary-button"
+            data-testid={testIds.btnSkip || "secondary-button"}
             gradient={false}
             style={styles.buttonStyle}
             onClick={onClickedSkipButton}

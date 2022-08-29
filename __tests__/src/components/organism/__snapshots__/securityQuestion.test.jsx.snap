@@ -415,7 +415,7 @@ Object {
           >
             <button
               class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-17rbjdy-MuiButtonBase-root-MuiButton-root"
-              data-testid="primary-button"
+              data-testid="loc_btnSubmitSecurity"
               style="margin-right: 10px; font-size: 14px; box-shadow: none; transform: none;"
               tabindex="0"
               type="submit"
@@ -427,7 +427,7 @@ Object {
             </button>
             <button
               class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-byk6r3-MuiButtonBase-root-MuiButton-root"
-              data-testid="secondary-button"
+              data-testid="loc_btnSkip"
               style="margin-right: 10px; font-size: 14px; box-shadow: none; transform: none;"
               tabindex="0"
               type="button"
@@ -853,7 +853,7 @@ Object {
         >
           <button
             class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-17rbjdy-MuiButtonBase-root-MuiButton-root"
-            data-testid="primary-button"
+            data-testid="loc_btnSubmitSecurity"
             style="margin-right: 10px; font-size: 14px; box-shadow: none; transform: none;"
             tabindex="0"
             type="submit"
@@ -865,7 +865,7 @@ Object {
           </button>
           <button
             class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-byk6r3-MuiButtonBase-root-MuiButton-root"
-            data-testid="secondary-button"
+            data-testid="loc_btnSkip"
             style="margin-right: 10px; font-size: 14px; box-shadow: none; transform: none;"
             tabindex="0"
             type="button"

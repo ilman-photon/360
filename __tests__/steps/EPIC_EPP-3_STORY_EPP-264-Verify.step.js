@@ -6,13 +6,14 @@ import axios from "axios";
 import MfaPage, { getServerSideProps } from "../../src/pages/patient/mfa";
 import { act } from "react-dom/test-utils";
 import Cookies from "universal-cookie";
+import constants from "../../src/utils/constants";
 
 jest.mock("universal-cookie", () => {
   class MockCookies {
     static result = {};
     get(param) {
-      if (param === "username") return "user1@photon.com"
-      if (param === "ip") return "10.10.10.10"
+      if (param === "username") return "user1@photon.com";
+      if (param === "ip") return "10.10.10.10";
       return MockCookies.result;
     }
     remove() {
@@ -44,36 +45,36 @@ defineFeature(feature, (test) => {
     const contex = {
       req: {
         headers: {
-          cookie: "username=user1%40photon.com; mfa=true"
-        }
-      }
-    }
+          cookie: "username=user1%40photon.com; mfa=true",
+        },
+      },
+    };
 
     const userData = {
-      "communicationMethod": {
-        "email": "user1@photon.com",
-        "phone": "9998887772"
+      communicationMethod: {
+        email: "user1@photon.com",
+        phone: "9998887772",
       },
-      "ResponseCode": 4000,
-      "ResponseType": "success",
-    }
+      ResponseCode: 4000,
+      ResponseType: "success",
+    };
 
     mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
     const data = {
-      "mfaCode": 123456,
-      "ResponseCode": 4000,
-      "ResponseType": "success"
-    }
+      mfaCode: 123456,
+      ResponseCode: 4000,
+      ResponseType: "success",
+    };
     mock.onPost(`/ecp/patient/mfa/sendotp`).reply(200, data);
 
-    getServerSideProps(contex)
+    getServerSideProps(contex);
     // act(() => {
     //   container = render(<MfaPage />, {
     //     container: document.body.appendChild(element),
     //     legacyRoot: true,
     //   });
     // });
-    container = render(<MfaPage />)
+    container = render(<MfaPage />);
     ////await waitFor(() => container.getByText(/communicationMethodTitle/i));
     expect(container).toMatchSnapshot();
   };
@@ -84,31 +85,30 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     const mock = new MockAdapter(axios);
-    let page
+    let page;
     beforeEach(async () => {
       const contex = {
         req: {
           headers: {
-            cookie: "username=user1%40photon.com; mfa=true"
-          }
-        }
-      }
+            cookie: "username=user1%40photon.com; mfa=true",
+          },
+        },
+      };
 
       const userData = {
-        "communicationMethod": {
-          "email": "user1@photon.com",
-          "phone": "9998887772"
+        communicationMethod: {
+          email: "user1@photon.com",
+          phone: "9998887772",
         },
-        "ResponseCode": 4000,
-        "ResponseType": "success",
-      }
+        ResponseCode: 4000,
+        ResponseType: "success",
+      };
 
       mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
 
-      getServerSideProps(contex)
-      page = render(<MfaPage />)
+      getServerSideProps(contex);
+      page = render(<MfaPage />);
       ////await waitFor(() => container.getByText("communicationMethodTitle"));
-
     });
     given(/^user launch "(.*)" URL$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -190,21 +190,15 @@ defineFeature(feature, (test) => {
       expect("setMFATitle").toEqual(title.textContent);
     });
 
-    and(
-      /^user should see screen title written as "(.*)"$/,
-      async () => {
-        const title = page.getByText("setMFATitle");
-        expect("setMFATitle").toEqual(title.textContent);
-      }
-    );
-
-    and(
-      /^user should see screen subtitle written as "(.*)"$/,
-      () => {
-        const title = page.getByText("setMFATitle");
+    and(/^user should see screen title written as "(.*)"$/, async () => {
+      const title = page.getByText("setMFATitle");
       expect("setMFATitle").toEqual(title.textContent);
-      }
-    );
+    });
+
+    and(/^user should see screen subtitle written as "(.*)"$/, () => {
+      const title = page.getByText("setMFATitle");
+      expect("setMFATitle").toEqual(title.textContent);
+    });
 
     and(
       /^user should see "(.*)" section with radio button with below detail "(.*)" and "(.*)"$/,
@@ -212,7 +206,7 @@ defineFeature(feature, (test) => {
         () => {
           const title = container.getByText("setMFATitle");
           expect("setMFATitle").toEqual(title.textContent);
-        }
+        };
       }
     );
 
@@ -225,16 +219,13 @@ defineFeature(feature, (test) => {
       () => {
         const title = container.getByText("setMFATitle");
         expect("setMFATitle").toEqual(title.textContent);
-      }
+      };
     });
 
-    and(
-      /^user should see description of check box written as "(.*)"$/,
-      () => {
-        // const title = container.getByText("setMFATitle");
-        // expect("setMFATitle").toEqual(title.textContent);
-      }
-    );
+    and(/^user should see description of check box written as "(.*)"$/, () => {
+      // const title = container.getByText("setMFATitle");
+      // expect("setMFATitle").toEqual(title.textContent);
+    });
 
     and(/^user should see "(.*)" & "(.*)" button$/, (arg0, arg1) => {
       // validateTextInDocument(arg0);
@@ -346,25 +337,25 @@ defineFeature(feature, (test) => {
         const contex = {
           req: {
             headers: {
-              cookie: "username=user1%40photon.com; mfa=true"
-            }
-          }
-        }
+              cookie: "username=user1%40photon.com; mfa=true",
+            },
+          },
+        };
 
         const userData = {
-          "communicationMethod": {
-            "email": "user1@photon.com",
-            "phone": "9998887772"
+          communicationMethod: {
+            email: "user1@photon.com",
+            phone: "9998887772",
           },
-          "ResponseCode": 4000,
-          "ResponseType": "success",
-        }
+          ResponseCode: 4000,
+          ResponseType: "success",
+        };
 
-        mock.reset()
+        mock.reset();
 
         mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
 
-        getServerSideProps(contex)
+        getServerSideProps(contex);
         //const container = render(<MfaPage />)
         //await waitFor(() => container.getByText("communicationMethodTitle"));
         // const title = container.getByText("setMFATitle");
@@ -608,26 +599,26 @@ defineFeature(feature, (test) => {
       const contex = {
         req: {
           headers: {
-            cookie: "username=user1%40photon.com; mfa=true"
-          }
-        }
-      }
+            cookie: "username=user1%40photon.com; mfa=true",
+          },
+        },
+      };
 
       const userData = {
-        "communicationMethod": {
-          "email": "user1@photon.com",
-          "phone": "9998887772"
+        communicationMethod: {
+          email: "user1@photon.com",
+          phone: "9998887772",
         },
-        "ResponseCode": 4000,
-        "ResponseType": "success",
-      }
+        ResponseCode: 4000,
+        ResponseType: "success",
+      };
 
-      mock.reset()
+      mock.reset();
 
       mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
 
-      getServerSideProps(contex)
-      const container = render(<MfaPage />)
+      getServerSideProps(contex);
+      const container = render(<MfaPage />);
 
       // const confirmButton = page.getByRole("button", { name: /confrimBtn/i });
       // fireEvent.click(confirmButton);
@@ -643,7 +634,6 @@ defineFeature(feature, (test) => {
     let container;
     const mock = new MockAdapter(axios);
     const element = document.createElement("div");
-
 
     expect(true).toBeTruthy();
     given(/^user launch "(.*)" URL$/, (arg0) => {
@@ -713,23 +703,23 @@ defineFeature(feature, (test) => {
       const contex = {
         req: {
           headers: {
-            cookie: "username=user1%40photon.com; mfa=true"
-          }
-        }
-      }
+            cookie: "username=user1%40photon.com; mfa=true",
+          },
+        },
+      };
 
       const userData = {
-        "communicationMethod": {
-          "email": "user1@photon.com",
-          "phone": "9998887772"
+        communicationMethod: {
+          email: "user1@photon.com",
+          phone: "9998887772",
         },
-        "ResponseCode": 4000,
-        "ResponseType": "success",
-      }
+        ResponseCode: 4000,
+        ResponseType: "success",
+      };
 
       mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
 
-      getServerSideProps(contex)
+      getServerSideProps(contex);
       act(() => {
         container = render(<MfaPage />, {
           container: document.body.appendChild(element),
@@ -859,23 +849,23 @@ defineFeature(feature, (test) => {
       const contex = {
         req: {
           headers: {
-            cookie: "username=user1%40photon.com; mfa=true"
-          }
-        }
-      }
+            cookie: "username=user1%40photon.com; mfa=true",
+          },
+        },
+      };
 
       const userData = {
-        "communicationMethod": {
-          "email": "user1@photon.com",
-          "phone": "9998887772"
+        communicationMethod: {
+          email: "user1@photon.com",
+          phone: "9998887772",
         },
-        "ResponseCode": 4000,
-        "ResponseType": "success",
-      }
+        ResponseCode: 4000,
+        ResponseType: "success",
+      };
 
       mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
 
-      getServerSideProps(contex)
+      getServerSideProps(contex);
       act(() => {
         container = render(<MfaPage />, {
           container: document.body.appendChild(element),
@@ -918,7 +908,9 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user click on "(.*)" button$/, (arg0) => {
-      const confirm = container.getByTestId("primary-button");
+      const confirm = container.getByTestId(
+        constants.TEST_ID.MFA_TEST_ID.btnConfirm
+      );
       fireEvent.click(confirm);
     });
 
@@ -1005,23 +997,23 @@ defineFeature(feature, (test) => {
       const contex = {
         req: {
           headers: {
-            cookie: "username=user1%40photon.com; mfa=true"
-          }
-        }
-      }
+            cookie: "username=user1%40photon.com; mfa=true",
+          },
+        },
+      };
 
       const userData = {
-        "communicationMethod": {
-          "email": "user1@photon.com",
-          "phone": "9998887772"
+        communicationMethod: {
+          email: "user1@photon.com",
+          phone: "9998887772",
         },
-        "ResponseCode": 4000,
-        "ResponseType": "success",
-      }
+        ResponseCode: 4000,
+        ResponseType: "success",
+      };
 
       mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
 
-      getServerSideProps(contex)
+      getServerSideProps(contex);
       act(() => {
         container = render(<MfaPage />, {
           container: document.body.appendChild(element),
@@ -1064,7 +1056,9 @@ defineFeature(feature, (test) => {
     });
 
     when(/^user click on "(.*)" button$/, (arg0) => {
-      const confirm = container.getByTestId("primary-button");
+      const confirm = container.getByTestId(
+        constants.TEST_ID.MFA_TEST_ID.btnConfirm
+      );
       fireEvent.click(confirm);
     });
 
@@ -1151,22 +1145,22 @@ defineFeature(feature, (test) => {
       const contex = {
         req: {
           headers: {
-            cookie: "username=user1%40photon.com; mfa=true"
-          }
-        }
-      }
+            cookie: "username=user1%40photon.com; mfa=true",
+          },
+        },
+      };
 
       const userData = {
-        "communicationMethod": {
-          "email": "user1@photon.com",
-          "phone": "9998887772"
+        communicationMethod: {
+          email: "user1@photon.com",
+          phone: "9998887772",
         },
-        "ResponseCode": 4000,
-        "ResponseType": "success",
-      }
+        ResponseCode: 4000,
+        ResponseType: "success",
+      };
 
       mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
-      getServerSideProps(contex)
+      getServerSideProps(contex);
       act(() => {
         container = render(<MfaPage />, {
           container: document.body.appendChild(element),
