@@ -518,7 +518,7 @@ Object {
               </div>
             </div>
             <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  css-ypn1ak-MuiButtonBase-root-MuiButton-root"
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  css-hfhogv-MuiButtonBase-root-MuiButton-root"
               data-testid="registerBtn"
               tabindex="0"
               type="submit"
@@ -1073,7 +1073,7 @@ Object {
             </div>
           </div>
           <button
-            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  css-ypn1ak-MuiButtonBase-root-MuiButton-root"
+            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  css-hfhogv-MuiButtonBase-root-MuiButton-root"
             data-testid="registerBtn"
             tabindex="0"
             type="submit"
