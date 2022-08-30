@@ -165,6 +165,7 @@ Object {
                   <div
                     aria-expanded="false"
                     aria-haspopup="listbox"
+                    aria-label="Purposes of Visit. "
                     aria-labelledby="purposes-of-visit purposes-of-visit"
                     class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                     id="purposes-of-visit"
@@ -179,6 +180,7 @@ Object {
                   </div>
                   <input
                     aria-hidden="true"
+                    aria-live="polite"
                     class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
                     tabindex="-1"
                     value=""
@@ -267,7 +269,7 @@ Object {
               </div>
             </div>
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-51mfdi-MuiButtonBase-root-MuiButton-root"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-1jf053t-MuiButtonBase-root-MuiButton-root"
               data-testid="searchbtn"
               tabindex="0"
               type="submit"
@@ -472,6 +474,7 @@ Object {
                 <div
                   aria-expanded="false"
                   aria-haspopup="listbox"
+                  aria-label="Purposes of Visit. "
                   aria-labelledby="purposes-of-visit purposes-of-visit"
                   class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                   id="purposes-of-visit"
@@ -486,6 +489,7 @@ Object {
                 </div>
                 <input
                   aria-hidden="true"
+                  aria-live="polite"
                   class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
                   tabindex="-1"
                   value=""
@@ -574,7 +578,7 @@ Object {
             </div>
           </div>
           <button
-            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-51mfdi-MuiButtonBase-root-MuiButton-root"
+            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-1jf053t-MuiButtonBase-root-MuiButton-root"
             data-testid="searchbtn"
             tabindex="0"
             type="submit"
@@ -836,6 +840,7 @@ Object {
                   <div
                     aria-expanded="false"
                     aria-haspopup="listbox"
+                    aria-label="Purposes of Visit. "
                     aria-labelledby="purposes-of-visit purposes-of-visit"
                     class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                     id="purposes-of-visit"
@@ -850,6 +855,7 @@ Object {
                   </div>
                   <input
                     aria-hidden="true"
+                    aria-live="polite"
                     class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
                     tabindex="-1"
                     value=""
@@ -938,7 +944,7 @@ Object {
               </div>
             </div>
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-51mfdi-MuiButtonBase-root-MuiButton-root"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-1jf053t-MuiButtonBase-root-MuiButton-root"
               data-testid="searchbtn"
               tabindex="0"
               type="submit"
@@ -1142,6 +1148,7 @@ Object {
                   <div
                     aria-expanded="false"
                     aria-haspopup="listbox"
+                    aria-label="Purposes of Visit. "
                     aria-labelledby="purposes-of-visit purposes-of-visit"
                     class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                     id="purposes-of-visit"
@@ -1156,6 +1163,7 @@ Object {
                   </div>
                   <input
                     aria-hidden="true"
+                    aria-live="polite"
                     class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
                     tabindex="-1"
                     value=""
@@ -1244,7 +1252,7 @@ Object {
               </div>
             </div>
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-51mfdi-MuiButtonBase-root-MuiButton-root"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-1jf053t-MuiButtonBase-root-MuiButton-root"
               data-testid="searchbtn"
               tabindex="0"
               type="submit"
@@ -1449,6 +1457,7 @@ Object {
                 <div
                   aria-expanded="false"
                   aria-haspopup="listbox"
+                  aria-label="Purposes of Visit. "
                   aria-labelledby="purposes-of-visit purposes-of-visit"
                   class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                   id="purposes-of-visit"
@@ -1463,6 +1472,7 @@ Object {
                 </div>
                 <input
                   aria-hidden="true"
+                  aria-live="polite"
                   class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
                   tabindex="-1"
                   value=""
@@ -1551,7 +1561,7 @@ Object {
             </div>
           </div>
           <button
-            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-51mfdi-MuiButtonBase-root-MuiButton-root"
+            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-1jf053t-MuiButtonBase-root-MuiButton-root"
             data-testid="searchbtn"
             tabindex="0"
             type="submit"

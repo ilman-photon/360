@@ -22,6 +22,7 @@ export const CustomButton = styled(Button)(
   font-size: 16px;
   line-height: 20px;
   text-transform: none;
+  border-radius: 46px;
 
   :hover {
     background:${theme.button.background};
