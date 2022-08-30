@@ -42,7 +42,6 @@ const FilterHeading = ({
   };
 
   const [open, setOpen] = React.useState(false);
-  const [openDialog, setOpenDialog] = React.useState(false);
   const mapsData = ["Use my current location"];
 
   const purposeOfVisitData = [
