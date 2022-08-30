@@ -61,6 +61,7 @@ Object {
                 />
               </svg>
               <div
+                aria-live="polite"
                 data-testid="submission-message"
                 style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
               >
@@ -234,6 +235,7 @@ Object {
                 />
               </svg>
               <div
+                aria-live="polite"
                 data-testid="submission-message"
                 style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
               >
@@ -408,6 +410,7 @@ Object {
                 />
               </svg>
               <div
+                aria-live="polite"
                 data-testid="submission-message"
                 style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
               >
@@ -517,6 +520,7 @@ Object {
                 />
               </svg>
               <div
+                aria-live="polite"
                 data-testid="submission-message"
                 style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
               >
@@ -677,6 +681,7 @@ Object {
                 />
               </svg>
               <div
+                aria-live="polite"
                 data-testid="submission-message"
                 style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
               >
@@ -850,6 +855,7 @@ Object {
                 />
               </svg>
               <div
+                aria-live="polite"
                 data-testid="submission-message"
                 style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
               >
@@ -1024,6 +1030,7 @@ Object {
                 />
               </svg>
               <div
+                aria-live="polite"
                 data-testid="submission-message"
                 style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
               >
@@ -1133,6 +1140,7 @@ Object {
                 />
               </svg>
               <div
+                aria-live="polite"
                 data-testid="submission-message"
                 style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
               >
@@ -1293,6 +1301,7 @@ Object {
                 />
               </svg>
               <div
+                aria-live="polite"
                 data-testid="submission-message"
                 style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
               >
@@ -1467,6 +1476,7 @@ Object {
                 />
               </svg>
               <div
+                aria-live="polite"
                 data-testid="submission-message"
                 style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
               >
@@ -1576,6 +1586,7 @@ Object {
                 />
               </svg>
               <div
+                aria-live="polite"
                 data-testid="submission-message"
                 style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
               >

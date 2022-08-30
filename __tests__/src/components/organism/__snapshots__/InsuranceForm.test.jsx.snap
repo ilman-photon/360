@@ -536,6 +536,7 @@ Object {
                             <div
                               aria-expanded="false"
                               aria-haspopup="listbox"
+                              aria-label="Relationship. "
                               class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                               role="button"
                               tabindex="0"
@@ -548,6 +549,7 @@ Object {
                             </div>
                             <input
                               aria-hidden="true"
+                              aria-live="polite"
                               class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
                               tabindex="-1"
                               value=""
@@ -620,6 +622,7 @@ Object {
                           />
                         </svg>
                         <div
+                          aria-live="polite"
                           data-testid="submission-message"
                           style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
                         >
@@ -708,6 +711,7 @@ Object {
                           />
                         </svg>
                         <div
+                          aria-live="polite"
                           data-testid="submission-message"
                           style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
                         >
@@ -1526,6 +1530,7 @@ Object {
                           <div
                             aria-expanded="false"
                             aria-haspopup="listbox"
+                            aria-label="Relationship. "
                             class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                             role="button"
                             tabindex="0"
@@ -1538,6 +1543,7 @@ Object {
                           </div>
                           <input
                             aria-hidden="true"
+                            aria-live="polite"
                             class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
                             tabindex="-1"
                             value=""
@@ -1610,6 +1616,7 @@ Object {
                         />
                       </svg>
                       <div
+                        aria-live="polite"
                         data-testid="submission-message"
                         style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
                       >
@@ -1698,6 +1705,7 @@ Object {
                         />
                       </svg>
                       <div
+                        aria-live="polite"
                         data-testid="submission-message"
                         style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
                       >

@@ -47,6 +47,7 @@ Object {
           class="titleHeadingWrapper"
         >
           <div
+            aria-live="polite"
             class="title"
           >
             Your Account
@@ -626,6 +627,7 @@ Object {
         class="titleHeadingWrapper"
       >
         <div
+          aria-live="polite"
           class="title"
         >
           Your Account

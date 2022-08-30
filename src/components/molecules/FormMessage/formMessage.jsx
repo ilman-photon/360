@@ -56,6 +56,7 @@ export const FormMessage = (
             letterSpacing: "0.0016em",
           }}
           data-testid="submission-message"
+          aria-live="polite"
         >
           {props.title ? (
             <div style={{ fontWeight: "bold" }}>{props.title}</div>

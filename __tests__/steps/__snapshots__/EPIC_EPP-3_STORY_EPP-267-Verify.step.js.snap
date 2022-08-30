@@ -41,6 +41,7 @@ Object {
             class="contentContainer MuiBox-root css-0"
           >
             <h1
+              aria-live="polite"
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
             >
               setMFATitle
@@ -169,8 +170,12 @@ Object {
                   data-testid="loc_chkRemember"
                 >
                   <input
+                    aria-checked="false"
+                    aria-label="rememberMeLabel"
+                    aria-live="polite"
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     data-indeterminate="false"
+                    role="checkbox"
                     type="checkbox"
                   />
                   <svg
@@ -189,6 +194,7 @@ Object {
                   />
                 </span>
                 <p
+                  aria-hidden="true"
                   class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
                 >
                   rememberMeLabel
@@ -226,7 +232,10 @@ Object {
                 />
               </button>
               <a
+                aria-label="undefined"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                role="link"
+                tabindex="0"
               />
             </div>
           </div>
@@ -271,6 +280,7 @@ Object {
           class="contentContainer MuiBox-root css-0"
         >
           <h1
+            aria-live="polite"
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
           >
             setMFATitle
@@ -399,8 +409,12 @@ Object {
                 data-testid="loc_chkRemember"
               >
                 <input
+                  aria-checked="false"
+                  aria-label="rememberMeLabel"
+                  aria-live="polite"
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   data-indeterminate="false"
+                  role="checkbox"
                   type="checkbox"
                 />
                 <svg
@@ -419,6 +433,7 @@ Object {
                 />
               </span>
               <p
+                aria-hidden="true"
                 class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
               >
                 rememberMeLabel
@@ -456,7 +471,10 @@ Object {
               />
             </button>
             <a
+              aria-label="undefined"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+              role="link"
+              tabindex="0"
             />
           </div>
         </div>
@@ -558,6 +576,7 @@ Object {
             class="contentContainer MuiBox-root css-0"
           >
             <h1
+              aria-live="polite"
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
             >
               setMFATitle
@@ -692,8 +711,12 @@ Object {
                   data-testid="loc_chkRemember"
                 >
                   <input
+                    aria-checked="false"
+                    aria-label="rememberMeLabel"
+                    aria-live="polite"
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     data-indeterminate="false"
+                    role="checkbox"
                     type="checkbox"
                   />
                   <svg
@@ -712,6 +735,7 @@ Object {
                   />
                 </span>
                 <p
+                  aria-hidden="true"
                   class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
                 >
                   rememberMeLabel
@@ -749,7 +773,10 @@ Object {
                 />
               </button>
               <a
+                aria-label="undefined"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                role="link"
+                tabindex="0"
               />
             </div>
           </div>
@@ -794,6 +821,7 @@ Object {
           class="contentContainer MuiBox-root css-0"
         >
           <h1
+            aria-live="polite"
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
           >
             setMFATitle
@@ -928,8 +956,12 @@ Object {
                 data-testid="loc_chkRemember"
               >
                 <input
+                  aria-checked="false"
+                  aria-label="rememberMeLabel"
+                  aria-live="polite"
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   data-indeterminate="false"
+                  role="checkbox"
                   type="checkbox"
                 />
                 <svg
@@ -948,6 +980,7 @@ Object {
                 />
               </span>
               <p
+                aria-hidden="true"
                 class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
               >
                 rememberMeLabel
@@ -985,7 +1018,10 @@ Object {
               />
             </button>
             <a
+              aria-label="undefined"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+              role="link"
+              tabindex="0"
             />
           </div>
         </div>
@@ -1087,6 +1123,7 @@ Object {
             class="contentContainer MuiBox-root css-0"
           >
             <h1
+              aria-live="polite"
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
             >
               setMFATitle
@@ -1215,8 +1252,12 @@ Object {
                   data-testid="loc_chkRemember"
                 >
                   <input
+                    aria-checked="false"
+                    aria-label="rememberMeLabel"
+                    aria-live="polite"
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     data-indeterminate="false"
+                    role="checkbox"
                     type="checkbox"
                   />
                   <svg
@@ -1235,6 +1276,7 @@ Object {
                   />
                 </span>
                 <p
+                  aria-hidden="true"
                   class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
                 >
                   rememberMeLabel
@@ -1272,7 +1314,10 @@ Object {
                 />
               </button>
               <a
+                aria-label="undefined"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                role="link"
+                tabindex="0"
               />
             </div>
           </div>
@@ -1317,6 +1362,7 @@ Object {
           class="contentContainer MuiBox-root css-0"
         >
           <h1
+            aria-live="polite"
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
           >
             setMFATitle
@@ -1445,8 +1491,12 @@ Object {
                 data-testid="loc_chkRemember"
               >
                 <input
+                  aria-checked="false"
+                  aria-label="rememberMeLabel"
+                  aria-live="polite"
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   data-indeterminate="false"
+                  role="checkbox"
                   type="checkbox"
                 />
                 <svg
@@ -1465,6 +1515,7 @@ Object {
                 />
               </span>
               <p
+                aria-hidden="true"
                 class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
               >
                 rememberMeLabel
@@ -1502,7 +1553,10 @@ Object {
               />
             </button>
             <a
+              aria-label="undefined"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+              role="link"
+              tabindex="0"
             />
           </div>
         </div>
@@ -1604,6 +1658,7 @@ Object {
             class="contentContainer MuiBox-root css-0"
           >
             <h1
+              aria-live="polite"
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
             >
               setMFATitle
@@ -1732,8 +1787,12 @@ Object {
                   data-testid="loc_chkRemember"
                 >
                   <input
+                    aria-checked="false"
+                    aria-label="rememberMeLabel"
+                    aria-live="polite"
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     data-indeterminate="false"
+                    role="checkbox"
                     type="checkbox"
                   />
                   <svg
@@ -1752,6 +1811,7 @@ Object {
                   />
                 </span>
                 <p
+                  aria-hidden="true"
                   class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
                 >
                   rememberMeLabel
@@ -1789,7 +1849,10 @@ Object {
                 />
               </button>
               <a
+                aria-label="undefined"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                role="link"
+                tabindex="0"
               />
             </div>
           </div>
@@ -1834,6 +1897,7 @@ Object {
           class="contentContainer MuiBox-root css-0"
         >
           <h1
+            aria-live="polite"
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
           >
             setMFATitle
@@ -1962,8 +2026,12 @@ Object {
                 data-testid="loc_chkRemember"
               >
                 <input
+                  aria-checked="false"
+                  aria-label="rememberMeLabel"
+                  aria-live="polite"
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   data-indeterminate="false"
+                  role="checkbox"
                   type="checkbox"
                 />
                 <svg
@@ -1982,6 +2050,7 @@ Object {
                 />
               </span>
               <p
+                aria-hidden="true"
                 class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
               >
                 rememberMeLabel
@@ -2019,7 +2088,10 @@ Object {
               />
             </button>
             <a
+              aria-label="undefined"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+              role="link"
+              tabindex="0"
             />
           </div>
         </div>
@@ -2121,6 +2193,7 @@ Object {
             class="contentContainer MuiBox-root css-0"
           >
             <h1
+              aria-live="polite"
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
             >
               setMFATitle
@@ -2249,8 +2322,12 @@ Object {
                   data-testid="loc_chkRemember"
                 >
                   <input
+                    aria-checked="false"
+                    aria-label="rememberMeLabel"
+                    aria-live="polite"
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     data-indeterminate="false"
+                    role="checkbox"
                     type="checkbox"
                   />
                   <svg
@@ -2269,6 +2346,7 @@ Object {
                   />
                 </span>
                 <p
+                  aria-hidden="true"
                   class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
                 >
                   rememberMeLabel
@@ -2306,7 +2384,10 @@ Object {
                 />
               </button>
               <a
+                aria-label="undefined"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                role="link"
+                tabindex="0"
               />
             </div>
           </div>
@@ -2351,6 +2432,7 @@ Object {
           class="contentContainer MuiBox-root css-0"
         >
           <h1
+            aria-live="polite"
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
           >
             setMFATitle
@@ -2479,8 +2561,12 @@ Object {
                 data-testid="loc_chkRemember"
               >
                 <input
+                  aria-checked="false"
+                  aria-label="rememberMeLabel"
+                  aria-live="polite"
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   data-indeterminate="false"
+                  role="checkbox"
                   type="checkbox"
                 />
                 <svg
@@ -2499,6 +2585,7 @@ Object {
                 />
               </span>
               <p
+                aria-hidden="true"
                 class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
               >
                 rememberMeLabel
@@ -2536,7 +2623,10 @@ Object {
               />
             </button>
             <a
+              aria-label="undefined"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+              role="link"
+              tabindex="0"
             />
           </div>
         </div>
@@ -2639,6 +2729,7 @@ Object {
             class="contentContainer MuiBox-root css-0"
           >
             <h1
+              aria-live="polite"
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
             >
               setMFATitle
@@ -2767,8 +2858,12 @@ Object {
                   data-testid="loc_chkRemember"
                 >
                   <input
+                    aria-checked="false"
+                    aria-label="rememberMeLabel"
+                    aria-live="polite"
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     data-indeterminate="false"
+                    role="checkbox"
                     type="checkbox"
                   />
                   <svg
@@ -2787,6 +2882,7 @@ Object {
                   />
                 </span>
                 <p
+                  aria-hidden="true"
                   class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
                 >
                   rememberMeLabel
@@ -2824,7 +2920,10 @@ Object {
                 />
               </button>
               <a
+                aria-label="undefined"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                role="link"
+                tabindex="0"
               />
             </div>
           </div>
@@ -2870,6 +2969,7 @@ Object {
           class="contentContainer MuiBox-root css-0"
         >
           <h1
+            aria-live="polite"
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
           >
             setMFATitle
@@ -2998,8 +3098,12 @@ Object {
                 data-testid="loc_chkRemember"
               >
                 <input
+                  aria-checked="false"
+                  aria-label="rememberMeLabel"
+                  aria-live="polite"
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   data-indeterminate="false"
+                  role="checkbox"
                   type="checkbox"
                 />
                 <svg
@@ -3018,6 +3122,7 @@ Object {
                 />
               </span>
               <p
+                aria-hidden="true"
                 class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
               >
                 rememberMeLabel
@@ -3055,7 +3160,10 @@ Object {
               />
             </button>
             <a
+              aria-label="undefined"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+              role="link"
+              tabindex="0"
             />
           </div>
         </div>

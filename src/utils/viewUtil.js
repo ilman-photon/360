@@ -1,5 +1,7 @@
 export function getLinkAria(title) {
   return {
-    "aria-label": `${title} link`,
+    "aria-label": `${title}`,
+    role: "link",
+    tabindex: 0,
   };
 }

@@ -14,6 +14,7 @@ Object {
           >
             <div
               class="MuiFormControl-root css-1n0ywti-MuiFormControl-root"
+              menuprops="[object Object]"
               style="width: 100%;"
             >
               <label
@@ -26,10 +27,12 @@ Object {
               <div
                 class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
                 data-testid="select-question-id-1"
+                tabindex="0"
               >
                 <div
                   aria-expanded="false"
                   aria-haspopup="listbox"
+                  aria-label="Question 1. "
                   aria-labelledby="question-label-1 question-id-1"
                   class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                   id="question-id-1"
@@ -44,6 +47,7 @@ Object {
                 </div>
                 <input
                   aria-hidden="true"
+                  aria-live="polite"
                   class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
                   tabindex="-1"
                   value=""
@@ -64,6 +68,7 @@ Object {
             <div
               class="MuiFormControl-root MuiTextField-root custom-input css-1462qs2-MuiFormControl-root-MuiTextField-root"
               style="width: 100%;"
+              tabindex="0"
               withicon="true"
             >
               <label
@@ -94,6 +99,7 @@ Object {
           >
             <div
               class="MuiFormControl-root css-1n0ywti-MuiFormControl-root"
+              menuprops="[object Object]"
               style="width: 100%;"
             >
               <label
@@ -106,10 +112,12 @@ Object {
               <div
                 class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
                 data-testid="select-question-id-2"
+                tabindex="1"
               >
                 <div
                   aria-expanded="false"
                   aria-haspopup="listbox"
+                  aria-label="Question 2. "
                   aria-labelledby="question-label-2 question-id-2"
                   class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                   id="question-id-2"
@@ -124,6 +132,7 @@ Object {
                 </div>
                 <input
                   aria-hidden="true"
+                  aria-live="polite"
                   class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
                   tabindex="-1"
                   value=""
@@ -144,6 +153,7 @@ Object {
             <div
               class="MuiFormControl-root MuiTextField-root custom-input css-1462qs2-MuiFormControl-root-MuiTextField-root"
               style="width: 100%;"
+              tabindex="1"
               withicon="true"
             >
               <label
@@ -174,6 +184,7 @@ Object {
           >
             <div
               class="MuiFormControl-root css-1n0ywti-MuiFormControl-root"
+              menuprops="[object Object]"
               style="width: 100%;"
             >
               <label
@@ -186,10 +197,12 @@ Object {
               <div
                 class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
                 data-testid="select-question-id-3"
+                tabindex="2"
               >
                 <div
                   aria-expanded="false"
                   aria-haspopup="listbox"
+                  aria-label="Question 3. "
                   aria-labelledby="question-label-3 question-id-3"
                   class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                   id="question-id-3"
@@ -204,6 +217,7 @@ Object {
                 </div>
                 <input
                   aria-hidden="true"
+                  aria-live="polite"
                   class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
                   tabindex="-1"
                   value=""
@@ -224,6 +238,7 @@ Object {
             <div
               class="MuiFormControl-root MuiTextField-root custom-input css-1462qs2-MuiFormControl-root-MuiTextField-root"
               style="width: 100%;"
+              tabindex="2"
               withicon="true"
             >
               <label
@@ -254,6 +269,7 @@ Object {
           >
             <div
               class="MuiFormControl-root css-1n0ywti-MuiFormControl-root"
+              menuprops="[object Object]"
               style="width: 100%;"
             >
               <label
@@ -266,10 +282,12 @@ Object {
               <div
                 class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
                 data-testid="select-question-id-4"
+                tabindex="3"
               >
                 <div
                   aria-expanded="false"
                   aria-haspopup="listbox"
+                  aria-label="Question 4. "
                   aria-labelledby="question-label-4 question-id-4"
                   class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                   id="question-id-4"
@@ -284,6 +302,7 @@ Object {
                 </div>
                 <input
                   aria-hidden="true"
+                  aria-live="polite"
                   class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
                   tabindex="-1"
                   value=""
@@ -304,6 +323,7 @@ Object {
             <div
               class="MuiFormControl-root MuiTextField-root custom-input css-1462qs2-MuiFormControl-root-MuiTextField-root"
               style="width: 100%;"
+              tabindex="3"
               withicon="true"
             >
               <label
@@ -334,6 +354,7 @@ Object {
           >
             <div
               class="MuiFormControl-root css-1n0ywti-MuiFormControl-root"
+              menuprops="[object Object]"
               style="width: 100%;"
             >
               <label
@@ -346,10 +367,12 @@ Object {
               <div
                 class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
                 data-testid="select-question-id-5"
+                tabindex="4"
               >
                 <div
                   aria-expanded="false"
                   aria-haspopup="listbox"
+                  aria-label="Question 5. "
                   aria-labelledby="question-label-5 question-id-5"
                   class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                   id="question-id-5"
@@ -364,6 +387,7 @@ Object {
                 </div>
                 <input
                   aria-hidden="true"
+                  aria-live="polite"
                   class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
                   tabindex="-1"
                   value=""
@@ -384,6 +408,7 @@ Object {
             <div
               class="MuiFormControl-root MuiTextField-root custom-input css-1462qs2-MuiFormControl-root-MuiTextField-root"
               style="width: 100%;"
+              tabindex="4"
               withicon="true"
             >
               <label
@@ -452,6 +477,7 @@ Object {
         >
           <div
             class="MuiFormControl-root css-1n0ywti-MuiFormControl-root"
+            menuprops="[object Object]"
             style="width: 100%;"
           >
             <label
@@ -464,10 +490,12 @@ Object {
             <div
               class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
               data-testid="select-question-id-1"
+              tabindex="0"
             >
               <div
                 aria-expanded="false"
                 aria-haspopup="listbox"
+                aria-label="Question 1. "
                 aria-labelledby="question-label-1 question-id-1"
                 class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                 id="question-id-1"
@@ -482,6 +510,7 @@ Object {
               </div>
               <input
                 aria-hidden="true"
+                aria-live="polite"
                 class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
                 tabindex="-1"
                 value=""
@@ -502,6 +531,7 @@ Object {
           <div
             class="MuiFormControl-root MuiTextField-root custom-input css-1462qs2-MuiFormControl-root-MuiTextField-root"
             style="width: 100%;"
+            tabindex="0"
             withicon="true"
           >
             <label
@@ -532,6 +562,7 @@ Object {
         >
           <div
             class="MuiFormControl-root css-1n0ywti-MuiFormControl-root"
+            menuprops="[object Object]"
             style="width: 100%;"
           >
             <label
@@ -544,10 +575,12 @@ Object {
             <div
               class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
               data-testid="select-question-id-2"
+              tabindex="1"
             >
               <div
                 aria-expanded="false"
                 aria-haspopup="listbox"
+                aria-label="Question 2. "
                 aria-labelledby="question-label-2 question-id-2"
                 class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                 id="question-id-2"
@@ -562,6 +595,7 @@ Object {
               </div>
               <input
                 aria-hidden="true"
+                aria-live="polite"
                 class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
                 tabindex="-1"
                 value=""
@@ -582,6 +616,7 @@ Object {
           <div
             class="MuiFormControl-root MuiTextField-root custom-input css-1462qs2-MuiFormControl-root-MuiTextField-root"
             style="width: 100%;"
+            tabindex="1"
             withicon="true"
           >
             <label
@@ -612,6 +647,7 @@ Object {
         >
           <div
             class="MuiFormControl-root css-1n0ywti-MuiFormControl-root"
+            menuprops="[object Object]"
             style="width: 100%;"
           >
             <label
@@ -624,10 +660,12 @@ Object {
             <div
               class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
               data-testid="select-question-id-3"
+              tabindex="2"
             >
               <div
                 aria-expanded="false"
                 aria-haspopup="listbox"
+                aria-label="Question 3. "
                 aria-labelledby="question-label-3 question-id-3"
                 class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                 id="question-id-3"
@@ -642,6 +680,7 @@ Object {
               </div>
               <input
                 aria-hidden="true"
+                aria-live="polite"
                 class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
                 tabindex="-1"
                 value=""
@@ -662,6 +701,7 @@ Object {
           <div
             class="MuiFormControl-root MuiTextField-root custom-input css-1462qs2-MuiFormControl-root-MuiTextField-root"
             style="width: 100%;"
+            tabindex="2"
             withicon="true"
           >
             <label
@@ -692,6 +732,7 @@ Object {
         >
           <div
             class="MuiFormControl-root css-1n0ywti-MuiFormControl-root"
+            menuprops="[object Object]"
             style="width: 100%;"
           >
             <label
@@ -704,10 +745,12 @@ Object {
             <div
               class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
               data-testid="select-question-id-4"
+              tabindex="3"
             >
               <div
                 aria-expanded="false"
                 aria-haspopup="listbox"
+                aria-label="Question 4. "
                 aria-labelledby="question-label-4 question-id-4"
                 class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                 id="question-id-4"
@@ -722,6 +765,7 @@ Object {
               </div>
               <input
                 aria-hidden="true"
+                aria-live="polite"
                 class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
                 tabindex="-1"
                 value=""
@@ -742,6 +786,7 @@ Object {
           <div
             class="MuiFormControl-root MuiTextField-root custom-input css-1462qs2-MuiFormControl-root-MuiTextField-root"
             style="width: 100%;"
+            tabindex="3"
             withicon="true"
           >
             <label
@@ -772,6 +817,7 @@ Object {
         >
           <div
             class="MuiFormControl-root css-1n0ywti-MuiFormControl-root"
+            menuprops="[object Object]"
             style="width: 100%;"
           >
             <label
@@ -784,10 +830,12 @@ Object {
             <div
               class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
               data-testid="select-question-id-5"
+              tabindex="4"
             >
               <div
                 aria-expanded="false"
                 aria-haspopup="listbox"
+                aria-label="Question 5. "
                 aria-labelledby="question-label-5 question-id-5"
                 class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                 id="question-id-5"
@@ -802,6 +850,7 @@ Object {
               </div>
               <input
                 aria-hidden="true"
+                aria-live="polite"
                 class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
                 tabindex="-1"
                 value=""
@@ -822,6 +871,7 @@ Object {
           <div
             class="MuiFormControl-root MuiTextField-root custom-input css-1462qs2-MuiFormControl-root-MuiTextField-root"
             style="width: 100%;"
+            tabindex="4"
             withicon="true"
           >
             <label
