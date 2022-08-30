@@ -71,7 +71,6 @@ export default function BaseHeader({
                 width="124px"
                 height="36px"
                 style={styles.logoStyled}
-                alt="Clarkson Eyecare logo"
                 aria-label={"Clarkson Eyecare logo"}
               ></Image>
               {/* Menu Desktop*/}
@@ -179,7 +178,6 @@ export default function BaseHeader({
                 height="36px"
                 quality={100}
                 style={styles.logoStyled}
-                alt="Clarkson Eyecare logo"
                 aria-label={"Clarkson Eyecare logo"}
               ></Image>
             </Toolbar>

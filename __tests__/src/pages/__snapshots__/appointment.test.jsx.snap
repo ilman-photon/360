@@ -28,7 +28,6 @@ exports[`App renders App unchanged 1`] = `
               />
             </span>
             <img
-              alt="Clarkson Eyecare logo"
               aria-label="Clarkson Eyecare logo"
               data-nimg="intrinsic"
               decoding="async"
@@ -284,7 +283,7 @@ exports[`App renders App unchanged 1`] = `
                 </span>
               </div>
               <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root searchButton css-1n24liq-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root searchButton css-1unuvva-MuiButtonBase-root-MuiButton-root"
                 data-testid="searchbtn"
                 tabindex="0"
                 type="submit"
