@@ -40,6 +40,7 @@ export default function InsuranceForm({
     defaultValues: DEFAULT_INSURANCE_DATA,
   });
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const isDesktop = useMediaQuery("(min-width: 769px)");
 
   // Later will be used for edit
   useEffect(() => {
@@ -538,19 +539,23 @@ export default function InsuranceForm({
                 }}
               />
             </Grid>
-            <Grid item xs={12} md={8} sx={{ display: "none" }}>
-              <Typography
-                variant="bodySmallMedium"
-                component="div"
-                sx={{
-                  fontStyle: "italic",
-                  textAlign: "right",
-                  marginLeft: "auto",
-                }}
-              >
-                *JPG or PNG file formats only. (File size limit is 4 MB)
-              </Typography>
-            </Grid>
+            {isDesktop ? (
+              <Grid item xs={12} md={8}>
+                <Typography
+                  variant="bodySmallMedium"
+                  component="div"
+                  sx={{
+                    fontStyle: "italic",
+                    textAlign: "right",
+                    marginLeft: "auto",
+                  }}
+                >
+                  JPG or PNG file formats only. (File size limit is 4 MB)
+                </Typography>
+              </Grid>
+            ) : (
+              ""
+            )}
           </Grid>
 
           <Divider />
@@ -595,7 +600,9 @@ export default function InsuranceForm({
               variant="contained"
               className={[styles.formButton, styles.outlined].join(" ")}
               data-testid={testIds.cancel}
-              sx={{ width: { xs: "100%", md: "fit-content" } }}
+              sx={{
+                width: { xs: "100%", md: "fit-content", textTransform: "none" },
+              }}
             >
               Cancel
             </Button>
@@ -604,7 +611,9 @@ export default function InsuranceForm({
               variant="contained"
               className={[styles.formButton, styles.primary].join(" ")}
               data-testid={testIds.save}
-              sx={{ width: { xs: "100%", md: "fit-content" } }}
+              sx={{
+                width: { xs: "100%", md: "fit-content", textTransform: "none" },
+              }}
             >
               Save
             </Button>

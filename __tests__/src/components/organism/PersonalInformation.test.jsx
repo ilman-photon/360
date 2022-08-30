@@ -97,7 +97,10 @@ describe("PersonalInformation Components", () => {
     // expect(field2.value).toEqual("---");
     // fireEvent.change(field2, { target: { value: "test field 2" } });
     // expect(field2.value).toEqual("test field 2");
+    expect(container.getByText("Month, date, year")).toBeInTheDocument();
 
+    await waitFor(() => container.getByText("Date of Birth"));
+    await waitFor(() => container.getByText("Title"));
     //   expect(container.getByText("Month, date, year")).toBeInTheDocument();
 
     //   await waitFor(() => container.getByText("Date of Birth"));
