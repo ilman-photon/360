@@ -6,14 +6,33 @@ import { styles } from "./style";
 
 const labelStyle = {};
 
-export const LabelWithIcon = ({ error = false, label = "", style = {} }) => (
+export const LabelWithIcon = ({
+  error = false,
+  label = "",
+  style = {},
+  primaryColor = false,
+}) => (
   <Box style={{ ...styles.boxContainer, ...style }}>
     {error ? (
       <CancelIcon sx={{ color: styles.errorColor }} />
     ) : (
-      <CheckCircleRoundedIcon sx={{ color: styles.successColor }} />
+      <CheckCircleRoundedIcon
+        sx={
+          primaryColor
+            ? { color: styles.primaryColor }
+            : { color: styles.successColor }
+        }
+      />
     )}
-    <span style={error ? styles.errorTextStyle : styles.successTextColor}>
+    <span
+      style={
+        error
+          ? styles.errorTextStyle
+          : primaryColor
+          ? styles.primaryTextStyle
+          : styles.successTextColor
+      }
+    >
       {label}
     </span>
   </Box>
