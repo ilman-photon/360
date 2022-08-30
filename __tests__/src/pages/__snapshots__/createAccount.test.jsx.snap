@@ -561,7 +561,7 @@ exports[`App renders App unchanged 1`] = `
                   </div>
                 </div>
                 <button
-                  class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  css-olswfj-MuiButtonBase-root-MuiButton-root"
+                  class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  css-10t5iya-MuiButtonBase-root-MuiButton-root"
                   data-testid="registerBtn"
                   tabindex="0"
                   type="submit"

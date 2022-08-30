@@ -78,7 +78,6 @@ export const AutoCompleteCreatable = ({
       }}
       filterOptions={(optionsContext, params) => {
         const filtered = filter(optionsContext, params);
-
         const { inputValue } = params;
         // Suggest the creation of a new value
         const isExisting = optionsContext.some(
