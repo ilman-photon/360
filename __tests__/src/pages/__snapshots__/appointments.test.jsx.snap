@@ -12,6 +12,7 @@ Object {
           class="titleHeadingWrapper"
         >
           <div
+            aria-live="polite"
             class="title"
             style="text-align: left; padding-left: 15vw;"
           >
@@ -668,6 +669,7 @@ Object {
         class="titleHeadingWrapper"
       >
         <div
+          aria-live="polite"
           class="title"
           style="text-align: left; padding-left: 15vw;"
         >

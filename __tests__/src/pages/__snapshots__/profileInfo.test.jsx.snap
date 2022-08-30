@@ -31,7 +31,6 @@ Object {
                   />
                 </span>
                 <img
-                  alt="Clarkson Eyecare logo"
                   aria-label="Clarkson Eyecare logo"
                   data-nimg="intrinsic"
                   decoding="async"
@@ -47,6 +46,7 @@ Object {
           class="titleHeadingWrapper"
         >
           <div
+            aria-live="polite"
             class="title"
           >
             Your Account
@@ -116,6 +116,29 @@ Object {
             class="pageContainer"
           >
             <section>
+              <div
+                class="MuiBox-root css-1kexx3j"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1rwoo9v-MuiSvgIcon-root"
+                  data-testid="CheckCircleOutlineIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M16.59 7.58 10 14.17l-3.59-3.58L5 12l5 5 8-8zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                  />
+                </svg>
+                <div
+                  data-testid="submission-message"
+                  style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
+                >
+                  <div
+                    style="font-size: 16px;"
+                  />
+                </div>
+              </div>
               <div
                 class="MuiTabs-root css-4km1ta-MuiTabs-root"
               >
@@ -561,7 +584,7 @@ Object {
                     style="position: fixed; bottom: 16px; right: 16px;"
                   >
                     <button
-                      class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-a1g4vb-MuiButtonBase-root-MuiButton-root"
+                      class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-5kb46n-MuiButtonBase-root-MuiButton-root"
                       data-testid="loc_edit"
                       tabindex="0"
                       type="button"
@@ -610,7 +633,6 @@ Object {
                 />
               </span>
               <img
-                alt="Clarkson Eyecare logo"
                 aria-label="Clarkson Eyecare logo"
                 data-nimg="intrinsic"
                 decoding="async"
@@ -626,6 +648,7 @@ Object {
         class="titleHeadingWrapper"
       >
         <div
+          aria-live="polite"
           class="title"
         >
           Your Account
@@ -695,6 +718,29 @@ Object {
           class="pageContainer"
         >
           <section>
+            <div
+              class="MuiBox-root css-1kexx3j"
+            >
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1rwoo9v-MuiSvgIcon-root"
+                data-testid="CheckCircleOutlineIcon"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M16.59 7.58 10 14.17l-3.59-3.58L5 12l5 5 8-8zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                />
+              </svg>
+              <div
+                data-testid="submission-message"
+                style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
+              >
+                <div
+                  style="font-size: 16px;"
+                />
+              </div>
+            </div>
             <div
               class="MuiTabs-root css-4km1ta-MuiTabs-root"
             >
@@ -1140,7 +1186,7 @@ Object {
                   style="position: fixed; bottom: 16px; right: 16px;"
                 >
                   <button
-                    class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-a1g4vb-MuiButtonBase-root-MuiButton-root"
+                    class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-5kb46n-MuiButtonBase-root-MuiButton-root"
                     data-testid="loc_edit"
                     tabindex="0"
                     type="button"

@@ -28,7 +28,6 @@ exports[`App renders App unchanged 1`] = `
               />
             </span>
             <img
-              alt="Clarkson Eyecare logo"
               aria-label="Clarkson Eyecare logo"
               data-nimg="intrinsic"
               decoding="async"
