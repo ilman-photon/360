@@ -208,7 +208,7 @@ export default function InsuranceForm({
                 }) => {
                   return (
                     <StyledInput
-                      type="number"
+                      type="text"
                       label="Subscriber ID/ Member ID"
                       value={value}
                       onChange={onChange}
@@ -221,7 +221,13 @@ export default function InsuranceForm({
                     />
                   );
                 }}
-                rules={{ required: "This field is required" }}
+                rules={{
+                  required: "This field is required",
+                  validate: {
+                    isNumber: (v) =>
+                      Regex.numberOnly.test(v) || "Invalid format",
+                  },
+                }}
               />
             </Grid>
 
