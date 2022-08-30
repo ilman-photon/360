@@ -48,6 +48,7 @@ export const AutoCompleteCreatable = ({
 
   React.useEffect(() => {
     props.onChange(value);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   return (
