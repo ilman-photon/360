@@ -218,6 +218,7 @@ export const CustomInput = styled(({ ...props }) => {
         <>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
+              inputFormat="MM/dd/yyyy"
               disabled={props.disabled}
               disableFuture={props.disableFuture}
               label={props.label}
@@ -232,7 +233,6 @@ export const CustomInput = styled(({ ...props }) => {
                 <RedditTextField
                   variant="filled"
                   sx={{
-                    backgroundColor: "white",
                     borderRadius: "4px",
                     borderColor: "#B5B5B5",
                     margin: !props.isFilter ? "8px" : 0,
@@ -244,7 +244,7 @@ export const CustomInput = styled(({ ...props }) => {
                   }}
                   {...params}
                   onClick={props.onClick}
-                  error={props.error}
+                  error={props.error || params.error}
                   helperText={props.helperText}
                 />
               )}
