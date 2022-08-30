@@ -17,4 +17,5 @@ export class Regex {
   static noWhitespaceRegex = /[^\s-]/;
   static isTenDigitPhone = /^(\d{3})(\d{3})(\d{4})$/;
   static isImageFile = /(image\/(png|jpg|jpeg))/gi;
+  static minTwoDigitRegex = /^[^\s]{2,}$/;
 }

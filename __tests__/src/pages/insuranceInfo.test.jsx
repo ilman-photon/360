@@ -85,7 +85,7 @@ describe("InsuranceInformationPage Components", () => {
   it(
     "InsuranceInformationPage Input Test plan name  & group",
     inputPlanGroup,
-    10000
+    20000
   );
 
   it("InsuranceInformationPage Add insurance cancel button", async () => {

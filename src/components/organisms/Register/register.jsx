@@ -427,7 +427,11 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
         <Divider margin={3} sx={{ width: "288px", alignSelf: "center" }} />
         <Typography variant="caption" style={styles.bottomParagraph}>
           Already have an account?{" "}
-          <Link href="/patient/login" data-testid={REGISTER_TEST_ID.loginlink}>
+          <Link
+            href="/patient/login"
+            data-testid={REGISTER_TEST_ID.loginlink}
+            aria-label={`Login link`}
+          >
             <a style={styles.loginLink}>Login</a>
           </Link>
         </Typography>

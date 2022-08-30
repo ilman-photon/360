@@ -12,7 +12,7 @@ Object {
           class="filterButtonContainer MuiBox-root css-0"
         >
           <button
-            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root filterButton css-18fc0i1-MuiButtonBase-root-MuiButton-root"
+            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root filterButton css-9f95uw-MuiButtonBase-root-MuiButton-root"
             data-testid="filterbtn"
             tabindex="0"
             type="button"
@@ -183,7 +183,7 @@ Object {
         class="filterButtonContainer MuiBox-root css-0"
       >
         <button
-          class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root filterButton css-18fc0i1-MuiButtonBase-root-MuiButton-root"
+          class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root filterButton css-9f95uw-MuiButtonBase-root-MuiButton-root"
           data-testid="filterbtn"
           tabindex="0"
           type="button"

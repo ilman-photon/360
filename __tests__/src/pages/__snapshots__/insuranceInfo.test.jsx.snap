@@ -31,8 +31,8 @@ Object {
                   />
                 </span>
                 <img
-                  alt="Eyecare Provider name with logo"
-                  aria-label="Eyecare Provider name with logo"
+                  alt="Clarkson Eyecare logo"
+                  aria-label="Clarkson Eyecare logo"
                   data-nimg="intrinsic"
                   decoding="async"
                   src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
@@ -147,7 +147,7 @@ Object {
                   class="MuiBox-root css-8u5xrh"
                 >
                   <div
-                    class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1wf0srh-MuiPaper-root-MuiCard-root"
+                    class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
                   >
                     <div
                       class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
@@ -920,15 +920,6 @@ Object {
                                   </div>
                                 </div>
                               </div>
-                              <div
-                                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8 css-yakw3f-MuiGrid-root"
-                              >
-                                <div
-                                  class="MuiTypography-root MuiTypography-bodySmallMedium css-uincrr-MuiTypography-root"
-                                >
-                                  *JPG or PNG file formats only. (File size limit is 4 MB)
-                                </div>
-                              </div>
                             </div>
                             <hr
                               class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
@@ -1123,7 +1114,7 @@ Object {
                               class="css-1281pzv-MuiStack-root"
                             >
                               <button
-                                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-mleb13-MuiButtonBase-root-MuiButton-root"
+                                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-8edxhn-MuiButtonBase-root-MuiButton-root"
                                 data-testid="loc_btnCancelInsuranve"
                                 tabindex="0"
                                 type="button"
@@ -1134,7 +1125,7 @@ Object {
                                 />
                               </button>
                               <button
-                                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-mleb13-MuiButtonBase-root-MuiButton-root"
+                                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-8edxhn-MuiButtonBase-root-MuiButton-root"
                                 data-testid="loc_btnSaveInsuranve"
                                 tabindex="0"
                                 type="submit"
@@ -1188,8 +1179,8 @@ Object {
                 />
               </span>
               <img
-                alt="Eyecare Provider name with logo"
-                aria-label="Eyecare Provider name with logo"
+                alt="Clarkson Eyecare logo"
+                aria-label="Clarkson Eyecare logo"
                 data-nimg="intrinsic"
                 decoding="async"
                 src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
@@ -1304,7 +1295,7 @@ Object {
                 class="MuiBox-root css-8u5xrh"
               >
                 <div
-                  class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1wf0srh-MuiPaper-root-MuiCard-root"
+                  class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
                 >
                   <div
                     class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
@@ -2077,15 +2068,6 @@ Object {
                                 </div>
                               </div>
                             </div>
-                            <div
-                              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8 css-yakw3f-MuiGrid-root"
-                            >
-                              <div
-                                class="MuiTypography-root MuiTypography-bodySmallMedium css-uincrr-MuiTypography-root"
-                              >
-                                *JPG or PNG file formats only. (File size limit is 4 MB)
-                              </div>
-                            </div>
                           </div>
                           <hr
                             class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
@@ -2280,7 +2262,7 @@ Object {
                             class="css-1281pzv-MuiStack-root"
                           >
                             <button
-                              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-mleb13-MuiButtonBase-root-MuiButton-root"
+                              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-8edxhn-MuiButtonBase-root-MuiButton-root"
                               data-testid="loc_btnCancelInsuranve"
                               tabindex="0"
                               type="button"
@@ -2291,7 +2273,7 @@ Object {
                               />
                             </button>
                             <button
-                              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-mleb13-MuiButtonBase-root-MuiButton-root"
+                              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-8edxhn-MuiButtonBase-root-MuiButton-root"
                               data-testid="loc_btnSaveInsuranve"
                               tabindex="0"
                               type="submit"

@@ -8,6 +8,7 @@ import { fetchUser, setUserData } from "../../../store/user";
 import store from "../../../store/store";
 import PropTypes from "prop-types";
 import { useRouter } from "next/router";
+import constants from "../../../utils/constants";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -88,6 +89,7 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
       "aria-controls": `full-width-tabpanel-${index}`,
     };
   }
+  const { PERSONAL_INFO_TEST_ID } = constants.TEST_ID;
 
   return (
     <section>
@@ -117,6 +119,7 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
                 OnEditClicked={(_) => setPersonalEditing(true)}
                 OnCancelEditClicked={(_) => setPersonalEditing(false)}
                 OnSaveClicked={onSavePersonalData}
+                testIds={PERSONAL_INFO_TEST_ID}
               />
             </>
           ) : (

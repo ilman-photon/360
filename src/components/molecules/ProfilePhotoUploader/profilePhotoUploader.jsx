@@ -5,10 +5,11 @@ import { useRef, useState } from "react";
 import { colors } from "../../../styles/theme";
 import { stringAvatar } from "../../../utils/avatar";
 import { Regex } from "../../../utils/regex";
+import SwapIcon from "../../../assets/icons/SwapIcon";
 
 export const ProfilePhotoUploader = ({
   username = "",
-  source = "",
+  source = null,
   OnPhotoChange = () => {
     // This is intended
   },
@@ -29,6 +30,9 @@ export const ProfilePhotoUploader = ({
       const slicedFileTypeFromFilePath = file.name.slice(
         fileTypeDotIndexPosition
       );
+      const isNotImage =
+        !Regex.isImageFile.test(fileType) &&
+        !Regex.isImageFile.test(slicedFileTypeFromFilePath);
       let error = {};
 
       if (file.size > maxSize) {
@@ -37,30 +41,27 @@ export const ProfilePhotoUploader = ({
           title: null,
           content: `File size limit is ${max} MB`,
         };
-      } else if (
-        !Regex.isImageFile.test(fileType) &&
-        !Regex.isImageFile.test(slicedFileTypeFromFilePath)
-      ) {
+      } else if (isNotImage) {
         error = {
           success: false,
           title: null,
           content: "Invalid file type",
         };
       } else {
-        const blobFile = URL.createObjectURL(event.target.files[0]);
-        setPreviewPhoto(blobFile);
-        OnPhotoChange(blobFile);
+        const blobFile = URL.createObjectURL(file);
+        setPreviewPhoto({ name: file.name, source: blobFile });
+        OnPhotoChange({ name: file.name, source: blobFile });
       }
       OnInputError(error);
     }
   };
   return (
     <Stack spacing={1}>
-      <Box sx={{ border: "solid 1px #DDDBDA", px: 2, py: 3 }}>
+      <Box sx={{ border: "1px dashed #DDDBDA", px: 2, py: 3 }}>
         <Stack direction="row" spacing={4} alignItems="center">
-          {source ? (
+          {previewPhoto || source ? (
             <Image
-              src={previewPhoto || source}
+              src={previewPhoto.source || source.source}
               width={80}
               height={80}
               style={{ borderRadius: "50%" }}
@@ -73,31 +74,49 @@ export const ProfilePhotoUploader = ({
             ></Avatar>
           )}
 
-          <Button
-            onClick={() => {
-              inputImage.current.click();
-            }}
-            sx={{
-              border: "solid 1px #6B7789",
-              p: 1,
-              color: colors.foundationBlue,
-              height: 40,
-            }}
-          >
-            <Stack direction="row" alignItems="center" spacing={1}>
-              <FileUploadOutlinedIcon sx={{ width: 20, height: 20 }} />
-              <span style={{ fontSize: 16, textTransform: "none" }}>
-                {source ? "change" : "upload"} photo
-              </span>
-              <input
-                ref={inputImage}
-                type="file"
-                accept="image/png, image/gif, image/jpeg"
-                hidden
-                onChange={handleInputChange}
-              />
-            </Stack>
-          </Button>
+          <Stack spacing={1}>
+            {previewPhoto || source ? (
+              <Typography
+                sx={{ fontSize: "13px", fontWeight: 400, textAlign: "center" }}
+              >
+                {previewPhoto.name || source.name}
+              </Typography>
+            ) : (
+              ""
+            )}
+
+            <Button
+              onClick={() => {
+                inputImage.current.click();
+              }}
+              sx={{
+                border: "solid 1px #6B7789",
+                borderRadius: "41px",
+                p: 1,
+                color: colors.foundationBlue,
+                height: 40,
+              }}
+            >
+              <Stack direction="row" alignItems="center" spacing={1}>
+                {previewPhoto || source ? (
+                  <SwapIcon style={{ width: 20, height: 20 }} />
+                ) : (
+                  <FileUploadOutlinedIcon sx={{ width: 20, height: 20 }} />
+                )}
+                <span style={{ fontSize: 16, textTransform: "none" }}>
+                  {source ? "Change" : "upload"} photo
+                </span>
+                <input
+                  ref={inputImage}
+                  type="file"
+                  data-testid={"loc_uploadProfileImage"}
+                  accept="image/png, image/gif, image/jpeg"
+                  hidden
+                  onChange={handleInputChange}
+                />
+              </Stack>
+            </Button>
+          </Stack>
         </Stack>
       </Box>
       <Typography

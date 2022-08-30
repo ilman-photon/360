@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render } from "@testing-library/react";
 
 import StyledInput from "../../../../src/components/atoms/Input/input";
 import "@testing-library/jest-dom";

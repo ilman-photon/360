@@ -26,6 +26,7 @@ export default function Container({
   isEndView,
   rememberMe,
   setRememberMe,
+  testIds,
 }) {
   const { t } = useTranslation("translation", { keyPrefix: "mfaPage" });
   const renderFromMessage = () => {
@@ -69,6 +70,7 @@ export default function Container({
                     padding: 0,
                   }}
                   checked={rememberMe}
+                  data-testid={testIds.checkbox}
                   onChange={() => {
                     setRememberMe(event.target.checked);
                   }}
@@ -88,7 +90,7 @@ export default function Container({
               mode={constants.PRIMARY}
               type="button"
               size={constants.SMALL}
-              data-testid="primary-button"
+              data-testid={testIds.primary || "primary-button"}
               gradient={false}
               onClick={() => {
                 onClickPrimaryButton();
@@ -102,7 +104,7 @@ export default function Container({
                 mode={constants.SECONDARY}
                 type="button"
                 size={constants.SMALL}
-                data-testid="secondary-button"
+                data-testid={testIds.secondary || "secondary-button"}
                 gradient={false}
                 onClick={() => {
                   onClickSecondaryButton();
@@ -113,6 +115,7 @@ export default function Container({
             )}
             <Link
               className={styles.link}
+              data-testid={testIds.link}
               onClick={() => {
                 onClickLink();
               }}

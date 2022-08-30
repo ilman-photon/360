@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`InsuranceForm Components select option render 1`] = `
+exports[`InsuranceForm Components InsuranceForm render 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>
@@ -765,15 +765,6 @@ Object {
                 </div>
               </div>
             </div>
-            <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8 css-yakw3f-MuiGrid-root"
-            >
-              <div
-                class="MuiTypography-root MuiTypography-bodySmallMedium css-1hypn4f-MuiTypography-root"
-              >
-                *JPG or PNG file formats only. (File size limit is 4 MB)
-              </div>
-            </div>
           </div>
           <hr
             class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
@@ -968,7 +959,7 @@ Object {
             class="css-1281pzv-MuiStack-root"
           >
             <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-1rzk0sh-MuiButtonBase-root-MuiButton-root"
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-14zuhkj-MuiButtonBase-root-MuiButton-root"
               data-testid="loc_btnCancelInsuranve"
               tabindex="0"
               type="button"
@@ -979,7 +970,7 @@ Object {
               />
             </button>
             <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-1rzk0sh-MuiButtonBase-root-MuiButton-root"
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-14zuhkj-MuiButtonBase-root-MuiButton-root"
               data-testid="loc_btnSaveInsuranve"
               tabindex="0"
               type="submit"
@@ -1755,15 +1746,6 @@ Object {
               </div>
             </div>
           </div>
-          <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8 css-yakw3f-MuiGrid-root"
-          >
-            <div
-              class="MuiTypography-root MuiTypography-bodySmallMedium css-1hypn4f-MuiTypography-root"
-            >
-              *JPG or PNG file formats only. (File size limit is 4 MB)
-            </div>
-          </div>
         </div>
         <hr
           class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
@@ -1958,7 +1940,7 @@ Object {
           class="css-1281pzv-MuiStack-root"
         >
           <button
-            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-1rzk0sh-MuiButtonBase-root-MuiButton-root"
+            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-14zuhkj-MuiButtonBase-root-MuiButton-root"
             data-testid="loc_btnCancelInsuranve"
             tabindex="0"
             type="button"
@@ -1969,7 +1951,7 @@ Object {
             />
           </button>
           <button
-            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-1rzk0sh-MuiButtonBase-root-MuiButton-root"
+            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-14zuhkj-MuiButtonBase-root-MuiButton-root"
             data-testid="loc_btnSaveInsuranve"
             tabindex="0"
             type="submit"
