@@ -1,6 +1,7 @@
 import { render, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import PersonalInformation from "../../../../src/components/organisms/PersonalInformation/personalInformation";
+import constants from "../../../../src/utils/constants";
 
 window.scrollTo = jest.fn();
 
@@ -35,6 +36,7 @@ describe("PersonalInformation Components", () => {
     const mockCallBack = jest.fn();
     container = render(
       <PersonalInformation
+        testIds={constants.TEST_ID.PERSONAL_INFO_TEST_ID}
         isEditing={false}
         userData={mockUserdata}
         OnEditClicked={mockCallBack}
@@ -79,6 +81,7 @@ describe("PersonalInformation Components", () => {
     container.rerender(
       <PersonalInformation
         isEditing={true}
+        testIds={constants.TEST_ID.PERSONAL_INFO_TEST_ID}
         userData={mockUserdata}
         OnEditClicked={mockCallBack}
         OnCancelEditClicked={mockCallBack}
@@ -94,7 +97,6 @@ describe("PersonalInformation Components", () => {
     // expect(field2.value).toEqual("---");
     // fireEvent.change(field2, { target: { value: "test field 2" } });
     // expect(field2.value).toEqual("test field 2");
-
     expect(container.getByText("Month, date, year")).toBeInTheDocument();
 
     await waitFor(() => container.getByText("Date of Birth"));

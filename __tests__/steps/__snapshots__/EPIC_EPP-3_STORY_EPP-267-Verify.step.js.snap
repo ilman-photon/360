@@ -65,7 +65,7 @@ Object {
               >
                 <label
                   class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-dm3wl5-MuiFormControlLabel-root"
-                  data-testid="email-radio-button"
+                  data-testid="loc_RadioEmail"
                 >
                   <span
                     class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -112,7 +112,7 @@ Object {
                 </label>
                 <label
                   class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-dm3wl5-MuiFormControlLabel-root"
-                  data-testid="phone-radio-button"
+                  data-testid="loc_RadioPhone"
                 >
                   <span
                     class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -166,6 +166,7 @@ Object {
               >
                 <span
                   class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                  data-testid="loc_chkRemember"
                 >
                   <input
                     class="PrivateSwitchBase-input css-1m9pwf3"
@@ -204,7 +205,7 @@ Object {
             >
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-                data-testid="primary-button"
+                data-testid="loc_btnConfirm"
                 tabindex="0"
                 type="button"
               >
@@ -215,7 +216,7 @@ Object {
               </button>
               <button
                 class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-                data-testid="secondary-button"
+                data-testid="loc_btnBack"
                 tabindex="0"
                 type="button"
               >
@@ -294,7 +295,7 @@ Object {
             >
               <label
                 class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-dm3wl5-MuiFormControlLabel-root"
-                data-testid="email-radio-button"
+                data-testid="loc_RadioEmail"
               >
                 <span
                   class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -341,7 +342,7 @@ Object {
               </label>
               <label
                 class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-dm3wl5-MuiFormControlLabel-root"
-                data-testid="phone-radio-button"
+                data-testid="loc_RadioPhone"
               >
                 <span
                   class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -395,6 +396,7 @@ Object {
             >
               <span
                 class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                data-testid="loc_chkRemember"
               >
                 <input
                   class="PrivateSwitchBase-input css-1m9pwf3"
@@ -433,7 +435,7 @@ Object {
           >
             <button
               class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-              data-testid="primary-button"
+              data-testid="loc_btnConfirm"
               tabindex="0"
               type="button"
             >
@@ -444,7 +446,7 @@ Object {
             </button>
             <button
               class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-              data-testid="secondary-button"
+              data-testid="loc_btnBack"
               tabindex="0"
               type="button"
             >
@@ -580,7 +582,7 @@ Object {
               >
                 <label
                   class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-dm3wl5-MuiFormControlLabel-root"
-                  data-testid="email-radio-button"
+                  data-testid="loc_RadioEmail"
                 >
                   <span
                     class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -630,7 +632,7 @@ Object {
                 </label>
                 <label
                   class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-dm3wl5-MuiFormControlLabel-root"
-                  data-testid="phone-radio-button"
+                  data-testid="loc_RadioPhone"
                 >
                   <span
                     class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -687,6 +689,7 @@ Object {
               >
                 <span
                   class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                  data-testid="loc_chkRemember"
                 >
                   <input
                     class="PrivateSwitchBase-input css-1m9pwf3"
@@ -725,7 +728,7 @@ Object {
             >
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-                data-testid="primary-button"
+                data-testid="loc_btnConfirm"
                 tabindex="0"
                 type="button"
               >
@@ -736,7 +739,7 @@ Object {
               </button>
               <button
                 class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-                data-testid="secondary-button"
+                data-testid="loc_btnBack"
                 tabindex="0"
                 type="button"
               >
@@ -815,7 +818,7 @@ Object {
             >
               <label
                 class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-dm3wl5-MuiFormControlLabel-root"
-                data-testid="email-radio-button"
+                data-testid="loc_RadioEmail"
               >
                 <span
                   class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -865,7 +868,7 @@ Object {
               </label>
               <label
                 class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-dm3wl5-MuiFormControlLabel-root"
-                data-testid="phone-radio-button"
+                data-testid="loc_RadioPhone"
               >
                 <span
                   class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -922,6 +925,7 @@ Object {
             >
               <span
                 class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                data-testid="loc_chkRemember"
               >
                 <input
                   class="PrivateSwitchBase-input css-1m9pwf3"
@@ -960,7 +964,7 @@ Object {
           >
             <button
               class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-              data-testid="primary-button"
+              data-testid="loc_btnConfirm"
               tabindex="0"
               type="button"
             >
@@ -971,7 +975,7 @@ Object {
             </button>
             <button
               class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-              data-testid="secondary-button"
+              data-testid="loc_btnBack"
               tabindex="0"
               type="button"
             >
@@ -1107,7 +1111,7 @@ Object {
               >
                 <label
                   class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-dm3wl5-MuiFormControlLabel-root"
-                  data-testid="email-radio-button"
+                  data-testid="loc_RadioEmail"
                 >
                   <span
                     class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -1154,7 +1158,7 @@ Object {
                 </label>
                 <label
                   class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-dm3wl5-MuiFormControlLabel-root"
-                  data-testid="phone-radio-button"
+                  data-testid="loc_RadioPhone"
                 >
                   <span
                     class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -1208,6 +1212,7 @@ Object {
               >
                 <span
                   class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                  data-testid="loc_chkRemember"
                 >
                   <input
                     class="PrivateSwitchBase-input css-1m9pwf3"
@@ -1246,7 +1251,7 @@ Object {
             >
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-                data-testid="primary-button"
+                data-testid="loc_btnConfirm"
                 tabindex="0"
                 type="button"
               >
@@ -1257,7 +1262,7 @@ Object {
               </button>
               <button
                 class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-                data-testid="secondary-button"
+                data-testid="loc_btnBack"
                 tabindex="0"
                 type="button"
               >
@@ -1336,7 +1341,7 @@ Object {
             >
               <label
                 class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-dm3wl5-MuiFormControlLabel-root"
-                data-testid="email-radio-button"
+                data-testid="loc_RadioEmail"
               >
                 <span
                   class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -1383,7 +1388,7 @@ Object {
               </label>
               <label
                 class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-dm3wl5-MuiFormControlLabel-root"
-                data-testid="phone-radio-button"
+                data-testid="loc_RadioPhone"
               >
                 <span
                   class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -1437,6 +1442,7 @@ Object {
             >
               <span
                 class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                data-testid="loc_chkRemember"
               >
                 <input
                   class="PrivateSwitchBase-input css-1m9pwf3"
@@ -1475,7 +1481,7 @@ Object {
           >
             <button
               class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-              data-testid="primary-button"
+              data-testid="loc_btnConfirm"
               tabindex="0"
               type="button"
             >
@@ -1486,7 +1492,7 @@ Object {
             </button>
             <button
               class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-              data-testid="secondary-button"
+              data-testid="loc_btnBack"
               tabindex="0"
               type="button"
             >
@@ -1622,7 +1628,7 @@ Object {
               >
                 <label
                   class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-dm3wl5-MuiFormControlLabel-root"
-                  data-testid="email-radio-button"
+                  data-testid="loc_RadioEmail"
                 >
                   <span
                     class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -1669,7 +1675,7 @@ Object {
                 </label>
                 <label
                   class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-dm3wl5-MuiFormControlLabel-root"
-                  data-testid="phone-radio-button"
+                  data-testid="loc_RadioPhone"
                 >
                   <span
                     class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -1723,6 +1729,7 @@ Object {
               >
                 <span
                   class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                  data-testid="loc_chkRemember"
                 >
                   <input
                     class="PrivateSwitchBase-input css-1m9pwf3"
@@ -1761,7 +1768,7 @@ Object {
             >
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-                data-testid="primary-button"
+                data-testid="loc_btnConfirm"
                 tabindex="0"
                 type="button"
               >
@@ -1772,7 +1779,7 @@ Object {
               </button>
               <button
                 class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-                data-testid="secondary-button"
+                data-testid="loc_btnBack"
                 tabindex="0"
                 type="button"
               >
@@ -1851,7 +1858,7 @@ Object {
             >
               <label
                 class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-dm3wl5-MuiFormControlLabel-root"
-                data-testid="email-radio-button"
+                data-testid="loc_RadioEmail"
               >
                 <span
                   class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -1898,7 +1905,7 @@ Object {
               </label>
               <label
                 class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-dm3wl5-MuiFormControlLabel-root"
-                data-testid="phone-radio-button"
+                data-testid="loc_RadioPhone"
               >
                 <span
                   class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -1952,6 +1959,7 @@ Object {
             >
               <span
                 class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                data-testid="loc_chkRemember"
               >
                 <input
                   class="PrivateSwitchBase-input css-1m9pwf3"
@@ -1990,7 +1998,7 @@ Object {
           >
             <button
               class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-              data-testid="primary-button"
+              data-testid="loc_btnConfirm"
               tabindex="0"
               type="button"
             >
@@ -2001,7 +2009,7 @@ Object {
             </button>
             <button
               class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-              data-testid="secondary-button"
+              data-testid="loc_btnBack"
               tabindex="0"
               type="button"
             >
@@ -2137,7 +2145,7 @@ Object {
               >
                 <label
                   class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-dm3wl5-MuiFormControlLabel-root"
-                  data-testid="email-radio-button"
+                  data-testid="loc_RadioEmail"
                 >
                   <span
                     class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -2184,7 +2192,7 @@ Object {
                 </label>
                 <label
                   class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-dm3wl5-MuiFormControlLabel-root"
-                  data-testid="phone-radio-button"
+                  data-testid="loc_RadioPhone"
                 >
                   <span
                     class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -2238,6 +2246,7 @@ Object {
               >
                 <span
                   class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                  data-testid="loc_chkRemember"
                 >
                   <input
                     class="PrivateSwitchBase-input css-1m9pwf3"
@@ -2276,7 +2285,7 @@ Object {
             >
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-                data-testid="primary-button"
+                data-testid="loc_btnConfirm"
                 tabindex="0"
                 type="button"
               >
@@ -2287,7 +2296,7 @@ Object {
               </button>
               <button
                 class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-                data-testid="secondary-button"
+                data-testid="loc_btnBack"
                 tabindex="0"
                 type="button"
               >
@@ -2366,7 +2375,7 @@ Object {
             >
               <label
                 class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-dm3wl5-MuiFormControlLabel-root"
-                data-testid="email-radio-button"
+                data-testid="loc_RadioEmail"
               >
                 <span
                   class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -2413,7 +2422,7 @@ Object {
               </label>
               <label
                 class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-dm3wl5-MuiFormControlLabel-root"
-                data-testid="phone-radio-button"
+                data-testid="loc_RadioPhone"
               >
                 <span
                   class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -2467,6 +2476,7 @@ Object {
             >
               <span
                 class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                data-testid="loc_chkRemember"
               >
                 <input
                   class="PrivateSwitchBase-input css-1m9pwf3"
@@ -2505,7 +2515,7 @@ Object {
           >
             <button
               class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-              data-testid="primary-button"
+              data-testid="loc_btnConfirm"
               tabindex="0"
               type="button"
             >
@@ -2516,7 +2526,7 @@ Object {
             </button>
             <button
               class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-              data-testid="secondary-button"
+              data-testid="loc_btnBack"
               tabindex="0"
               type="button"
             >
@@ -2653,7 +2663,7 @@ Object {
               >
                 <label
                   class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-dm3wl5-MuiFormControlLabel-root"
-                  data-testid="email-radio-button"
+                  data-testid="loc_RadioEmail"
                 >
                   <span
                     class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -2700,7 +2710,7 @@ Object {
                 </label>
                 <label
                   class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-dm3wl5-MuiFormControlLabel-root"
-                  data-testid="phone-radio-button"
+                  data-testid="loc_RadioPhone"
                 >
                   <span
                     class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -2754,6 +2764,7 @@ Object {
               >
                 <span
                   class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                  data-testid="loc_chkRemember"
                 >
                   <input
                     class="PrivateSwitchBase-input css-1m9pwf3"
@@ -2792,7 +2803,7 @@ Object {
             >
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-                data-testid="primary-button"
+                data-testid="loc_btnConfirm"
                 tabindex="0"
                 type="button"
               >
@@ -2803,7 +2814,7 @@ Object {
               </button>
               <button
                 class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-                data-testid="secondary-button"
+                data-testid="loc_btnBack"
                 tabindex="0"
                 type="button"
               >
@@ -2883,7 +2894,7 @@ Object {
             >
               <label
                 class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-dm3wl5-MuiFormControlLabel-root"
-                data-testid="email-radio-button"
+                data-testid="loc_RadioEmail"
               >
                 <span
                   class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -2930,7 +2941,7 @@ Object {
               </label>
               <label
                 class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-dm3wl5-MuiFormControlLabel-root"
-                data-testid="phone-radio-button"
+                data-testid="loc_RadioPhone"
               >
                 <span
                   class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -2984,6 +2995,7 @@ Object {
             >
               <span
                 class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                data-testid="loc_chkRemember"
               >
                 <input
                   class="PrivateSwitchBase-input css-1m9pwf3"
@@ -3022,7 +3034,7 @@ Object {
           >
             <button
               class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-              data-testid="primary-button"
+              data-testid="loc_btnConfirm"
               tabindex="0"
               type="button"
             >
@@ -3033,7 +3045,7 @@ Object {
             </button>
             <button
               class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-              data-testid="secondary-button"
+              data-testid="loc_btnBack"
               tabindex="0"
               type="button"
             >
