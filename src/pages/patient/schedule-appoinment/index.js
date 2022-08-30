@@ -12,11 +12,10 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { LabelWithIcon } from "../../../components/atoms/LabelWithIcon/labelWithIcon";
 
 import { Button, Grid, Box, Divider, useMediaQuery } from "@mui/material";
-import { Provider } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "../../../store/store";
 import styles from "./styles.module.scss";
 import { useTranslation } from "next-i18next";
-import { useDispatch, useSelector } from "react-redux";
 import { setDummyAppointmentSchedule } from "../../../store/appointment";
 import { useRouter } from "next/router";
 
@@ -208,31 +207,35 @@ export default function ScheduleAppointmentPage() {
       ) : null}
       <Grid
         className={isDesktop ? styles.container : ""}
-        p={{ xs: "24px 14px 0", md: "30px 240px 0" }}
+        p={{ xs: "24px 14px 0", md: "30px 40px 0" }}
       >
-        <Button
-          variant="contained"
-          className={[styles.formButton, styles.outlined].join(" ")}
-          sx={{
-            borderRadius: "46px",
-          }}
-          onClick={() => setActiveStep(activeStep - 1)}
-        >
-          <ArrowBackIcon className={styles.backIcon} />
-          &nbsp;Back
-        </Button>
+        <Box className={styles.pageWrapper}>
+          <Button
+            variant="contained"
+            className={[styles.formButton, styles.outlined].join(" ")}
+            sx={{
+              borderRadius: "46px",
+            }}
+            onClick={() => setActiveStep(activeStep - 1)}
+          >
+            <ArrowBackIcon className={styles.backIcon} />
+            &nbsp;Back
+          </Button>
+        </Box>
       </Grid>
       <Grid
         container
         className={styles.container}
-        sx={isDesktop ? { p: "24px 240px" } : { p: 0 }}
+        sx={isDesktop ? { p: "24px 40px" } : { p: 0 }}
       >
-        <PageContent
-          activeStep={activeStep}
-          OnsetActiveStep={(idx) => setActiveStep(idx)}
-          appointmentScheduleData={appointmentScheduleData}
-          OnEditClicked={handleEditSchedule}
-        />
+        <div className={styles.pageWrapper}>
+          <PageContent
+            activeStep={activeStep}
+            OnsetActiveStep={(idx) => setActiveStep(idx)}
+            appointmentScheduleData={appointmentScheduleData}
+            OnEditClicked={handleEditSchedule}
+          />
+        </div>
       </Grid>
     </section>
   );
