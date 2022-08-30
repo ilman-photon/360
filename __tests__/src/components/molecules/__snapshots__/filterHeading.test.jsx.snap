@@ -147,7 +147,7 @@ Object {
                 />
               </svg>
               <div
-                class="MuiFormControl-root css-1nn82kk-MuiFormControl-root"
+                class="MuiFormControl-root css-1gvm5em-MuiFormControl-root"
                 style="width: 100%;"
               >
                 <label
@@ -200,7 +200,7 @@ Object {
               class="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
             />
             <div
-              class="MuiAutocomplete-root css-16if460-MuiAutocomplete-root"
+              class="MuiAutocomplete-root css-pbqph1-MuiAutocomplete-root"
               data-testid="insuranceInput"
             >
               <div
@@ -253,12 +253,12 @@ Object {
                       aria-invalid="false"
                       autocapitalize="none"
                       autocomplete="off"
-                      class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputTypeSearch MuiAutocomplete-input MuiAutocomplete-inputFocused css-1lfthva-MuiInputBase-input-MuiFilledInput-input"
+                      class="MuiFilledInput-input MuiInputBase-input MuiAutocomplete-input MuiAutocomplete-inputFocused css-10botns-MuiInputBase-input-MuiFilledInput-input"
                       id="insurance-carrier"
                       placeholder=""
                       role="combobox"
                       spellcheck="false"
-                      type="search"
+                      type="text"
                       value=""
                     />
                   </div>
@@ -291,7 +291,7 @@ Object {
             class="centeredField MuiBox-root css-0"
           >
             <span
-              class="MuiTypography-root MuiTypography-bodyMedium errorText css-1udm2y8-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-bodyMedium errorText css-1fef2lz-MuiTypography-root"
             >
               This field is required
             </span>
@@ -453,7 +453,7 @@ Object {
               />
             </svg>
             <div
-              class="MuiFormControl-root css-1nn82kk-MuiFormControl-root"
+              class="MuiFormControl-root css-1gvm5em-MuiFormControl-root"
               style="width: 100%;"
             >
               <label
@@ -506,7 +506,7 @@ Object {
             class="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
           />
           <div
-            class="MuiAutocomplete-root css-16if460-MuiAutocomplete-root"
+            class="MuiAutocomplete-root css-pbqph1-MuiAutocomplete-root"
             data-testid="insuranceInput"
           >
             <div
@@ -559,12 +559,12 @@ Object {
                     aria-invalid="false"
                     autocapitalize="none"
                     autocomplete="off"
-                    class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputTypeSearch MuiAutocomplete-input MuiAutocomplete-inputFocused css-1lfthva-MuiInputBase-input-MuiFilledInput-input"
+                    class="MuiFilledInput-input MuiInputBase-input MuiAutocomplete-input MuiAutocomplete-inputFocused css-10botns-MuiInputBase-input-MuiFilledInput-input"
                     id="insurance-carrier"
                     placeholder=""
                     role="combobox"
                     spellcheck="false"
-                    type="search"
+                    type="text"
                     value=""
                   />
                 </div>
@@ -597,7 +597,7 @@ Object {
           class="centeredField MuiBox-root css-0"
         >
           <span
-            class="MuiTypography-root MuiTypography-bodyMedium errorText css-1udm2y8-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-bodyMedium errorText css-1fef2lz-MuiTypography-root"
           >
             This field is required
           </span>
@@ -816,7 +816,7 @@ Object {
                 />
               </svg>
               <div
-                class="MuiFormControl-root css-1nn82kk-MuiFormControl-root"
+                class="MuiFormControl-root css-1gvm5em-MuiFormControl-root"
                 style="width: 100%;"
               >
                 <label
@@ -869,7 +869,7 @@ Object {
               class="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
             />
             <div
-              class="MuiAutocomplete-root css-16if460-MuiAutocomplete-root"
+              class="MuiAutocomplete-root css-pbqph1-MuiAutocomplete-root"
               data-testid="insuranceInput"
             >
               <div
@@ -922,12 +922,12 @@ Object {
                       aria-invalid="false"
                       autocapitalize="none"
                       autocomplete="off"
-                      class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputTypeSearch MuiAutocomplete-input MuiAutocomplete-inputFocused css-1lfthva-MuiInputBase-input-MuiFilledInput-input"
+                      class="MuiFilledInput-input MuiInputBase-input MuiAutocomplete-input MuiAutocomplete-inputFocused css-10botns-MuiInputBase-input-MuiFilledInput-input"
                       id="insurance-carrier"
                       placeholder=""
                       role="combobox"
                       spellcheck="false"
-                      type="search"
+                      type="text"
                       value=""
                     />
                   </div>
@@ -960,7 +960,7 @@ Object {
             class="centeredField MuiBox-root css-0"
           >
             <span
-              class="MuiTypography-root MuiTypography-bodyMedium errorText css-1udm2y8-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-bodyMedium errorText css-1fef2lz-MuiTypography-root"
             >
               This field is required
             </span>
@@ -1121,7 +1121,7 @@ Object {
                 />
               </svg>
               <div
-                class="MuiFormControl-root css-1nn82kk-MuiFormControl-root"
+                class="MuiFormControl-root css-1gvm5em-MuiFormControl-root"
                 style="width: 100%;"
               >
                 <label
@@ -1174,7 +1174,7 @@ Object {
               class="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
             />
             <div
-              class="MuiAutocomplete-root css-16if460-MuiAutocomplete-root"
+              class="MuiAutocomplete-root css-pbqph1-MuiAutocomplete-root"
               data-testid="insuranceInput"
             >
               <div
@@ -1227,12 +1227,12 @@ Object {
                       aria-invalid="false"
                       autocapitalize="none"
                       autocomplete="off"
-                      class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputTypeSearch MuiAutocomplete-input MuiAutocomplete-inputFocused css-1lfthva-MuiInputBase-input-MuiFilledInput-input"
+                      class="MuiFilledInput-input MuiInputBase-input MuiAutocomplete-input MuiAutocomplete-inputFocused css-10botns-MuiInputBase-input-MuiFilledInput-input"
                       id="insurance-carrier"
                       placeholder=""
                       role="combobox"
                       spellcheck="false"
-                      type="search"
+                      type="text"
                       value=""
                     />
                   </div>
@@ -1265,7 +1265,7 @@ Object {
             class="centeredField MuiBox-root css-0"
           >
             <span
-              class="MuiTypography-root MuiTypography-bodyMedium errorText css-1udm2y8-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-bodyMedium errorText css-1fef2lz-MuiTypography-root"
             >
               This field is required
             </span>
@@ -1427,7 +1427,7 @@ Object {
               />
             </svg>
             <div
-              class="MuiFormControl-root css-1nn82kk-MuiFormControl-root"
+              class="MuiFormControl-root css-1gvm5em-MuiFormControl-root"
               style="width: 100%;"
             >
               <label
@@ -1480,7 +1480,7 @@ Object {
             class="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
           />
           <div
-            class="MuiAutocomplete-root css-16if460-MuiAutocomplete-root"
+            class="MuiAutocomplete-root css-pbqph1-MuiAutocomplete-root"
             data-testid="insuranceInput"
           >
             <div
@@ -1533,12 +1533,12 @@ Object {
                     aria-invalid="false"
                     autocapitalize="none"
                     autocomplete="off"
-                    class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputTypeSearch MuiAutocomplete-input MuiAutocomplete-inputFocused css-1lfthva-MuiInputBase-input-MuiFilledInput-input"
+                    class="MuiFilledInput-input MuiInputBase-input MuiAutocomplete-input MuiAutocomplete-inputFocused css-10botns-MuiInputBase-input-MuiFilledInput-input"
                     id="insurance-carrier"
                     placeholder=""
                     role="combobox"
                     spellcheck="false"
-                    type="search"
+                    type="text"
                     value=""
                   />
                 </div>
@@ -1571,7 +1571,7 @@ Object {
           class="centeredField MuiBox-root css-0"
         >
           <span
-            class="MuiTypography-root MuiTypography-bodyMedium errorText css-1udm2y8-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-bodyMedium errorText css-1fef2lz-MuiTypography-root"
           >
             This field is required
           </span>
