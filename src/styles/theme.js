@@ -214,7 +214,7 @@ export const patientButtonPrimary = createTheme({
     fontFamily: "Libre Franklin",
   },
   button: {
-    background: colors.teal,
+    background: colors.primaryButton,
     color: "white",
   },
 });
@@ -224,7 +224,7 @@ export const patientButtonSecondary = createTheme({
   },
   button: {
     background: "white",
-    color: colors.teal,
+    color: colors.primaryButton,
     borderColor: "#205A63",
   },
 });
