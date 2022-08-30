@@ -1,9 +1,7 @@
 import Box from "@mui/material/Box";
 import React from "react";
-import Link from "@mui/material/Link";
 import { StyledButton } from "../../atoms/Button/button";
 import styles from "./styles.module.scss";
-import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import { Divider, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import constants from "../../../utils/constants";
