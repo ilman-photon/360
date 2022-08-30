@@ -76,12 +76,12 @@ export const AutoCompleteCreatable = ({
           setValue(newValue);
         }
       }}
-      filterOptions={(options, params) => {
-        const filtered = filter(options, params);
+      filterOptions={(optionsContext, params) => {
+        const filtered = filter(optionsContext, params);
 
         const { inputValue } = params;
         // Suggest the creation of a new value
-        const isExisting = options.some(
+        const isExisting = optionsContext.some(
           (option) => inputValue === option.label
         );
         if (inputValue !== "" && !isExisting) {

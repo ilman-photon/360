@@ -48,7 +48,7 @@ export default function InsuranceForm({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
 
-  const [providerList, setProviderList] = useState([
+  const [providerList] = useState([
     { id: 0, label: "Provider 1" },
     { id: 1, label: "Provider 2" },
   ]);
@@ -160,7 +160,9 @@ export default function InsuranceForm({
                     />
                   );
                 }}
-                rules={{ required: "This field is required" }}
+                rules={{
+                  required: "This field is required",
+                }}
               />
             </Grid>
 
@@ -317,6 +319,9 @@ export default function InsuranceForm({
                       rules={{
                         validate: {
                           requiredIfSubscriber,
+                          isMin2Max50Length: (v) =>
+                            Regex.isMin2Max50Length.test(v) ||
+                            "First Name does not meet requirements",
                         },
                       }}
                     />
@@ -347,6 +352,9 @@ export default function InsuranceForm({
                       rules={{
                         validate: {
                           requiredIfSubscriber,
+                          isMin2Max50Length: (v) =>
+                            Regex.isMin2Max50Length.test(v) ||
+                            "Last Name does not meet requirements",
                         },
                       }}
                     />
