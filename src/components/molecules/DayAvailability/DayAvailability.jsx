@@ -116,7 +116,7 @@ export const DayAvailability = ({
           className={[stylesWeek.scheduleBtn, styles.scheduleBtn].join(" ")}
           onClick={() => {
             //TO DO: temporary navigate, move to page when start developing functionality
-            router.push("/patient/appointments");
+            router.push("/patient/schedule-appointment");
           }}
         >
           {label}

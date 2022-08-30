@@ -69,7 +69,9 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
               router.push("/patient/bio");
             }}
             className={
-              (isAppointment || isViewSchedule) && styles.doctorNameAppointment
+              isAppointment || isViewSchedule
+                ? styles.doctorNameAppointment
+                : ""
             }
           >
             Paul Wagner, MD

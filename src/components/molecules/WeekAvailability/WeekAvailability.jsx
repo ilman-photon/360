@@ -58,7 +58,7 @@ export const WeekAvailability = ({
             className={styles.scheduleBtn}
             onClick={() => {
               //TO DO: temporary navigate, move to page when start developing functionality
-              router.push("/patient/appointments");
+              router.push("/patient/schedule-appointment");
             }}
           >
             {label}
