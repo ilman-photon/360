@@ -8,10 +8,27 @@ export const LabelWithInfo = ({
   tooltipContent,
   helperText,
   children,
+  titleIcon,
+  sxRow,
+  sxText,
 }) => (
   <Stack>
-    <div className={styles.labelContainer}>
-      <div className={styles.label}>{label}</div>
+    <div className={styles.labelContainer} style={sxRow}>
+      {titleIcon && (
+        <span
+          style={{
+            marginRight: 8,
+            display: "flex",
+            alignItems: "center",
+            width: "18px",
+          }}
+        >
+          {titleIcon}
+        </span>
+      )}
+      <div className={styles.label} style={sxText}>
+        {label}
+      </div>
       {tooltipContent ? (
         <>
           <Tooltip title={tooltipContent} placement="top">
