@@ -30,7 +30,7 @@ install:
       - .npm/
       - node_modules/
       - .next/
-      - .lint/
+      # - .lint/
 
 test:
   stage: test
