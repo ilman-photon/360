@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`InsuranceForm Components select option render 1`] = `
+exports[`InsuranceForm Components InsuranceForm render 1`] = `
 Object {
   "asFragment": [Function],
   "baseElement": <body>

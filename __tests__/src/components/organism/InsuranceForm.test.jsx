@@ -8,7 +8,7 @@ describe("InsuranceForm Components", () => {
     container = render(<InsuranceForm />);
   });
 
-  it("select option render", () => {
+  it("InsuranceForm render", () => {
     expect(container).toMatchSnapshot();
   });
 });
