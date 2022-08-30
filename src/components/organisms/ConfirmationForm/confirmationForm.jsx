@@ -13,6 +13,7 @@ import constants from "../../../utils/constants";
 import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
 import Head from "next/head";
+import { colors } from "../../../styles/theme";
 
 const ConfirmationForm = ({
   onBackToLoginClicked,
@@ -100,7 +101,7 @@ const ConfirmationForm = ({
                 ...styles.link,
               }}
               data-testid={FORGOT_TEST_ID.loginLink}
-              color={"#2095a9"}
+              color={colors.link}
               onClick={function () {
                 onBackToLoginClicked(router);
               }}

@@ -15,6 +15,7 @@ import { Regex } from "../../../utils/regex";
 import constants from "../../../utils/constants";
 import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
+import { colors } from "../../../styles/theme";
 
 const cardContentStyle = {
   display: "flex",
@@ -410,7 +411,7 @@ const SetPasswordComponent = ({
         {showBackToLogin ? (
           <Link
             style={{ ...styles.margin, ...styles.link }}
-            color={"#2095a9"}
+            color={colors.link}
             onClick={function () {
               onBackToLoginClicked(router);
             }}
