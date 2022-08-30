@@ -9,6 +9,7 @@ const AccountTitleHeading = ({ title, sx = {} }) => {
         style={{
           ...sx,
         }}
+        aria-live={"polite"}
       >
         {title}
       </div>

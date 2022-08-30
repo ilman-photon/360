@@ -25,7 +25,6 @@ exports[`Home renders homepage non login user 1`] = `
             />
           </span>
           <img
-            alt="Clarkson Eyecare logo"
             aria-label="Clarkson Eyecare logo"
             data-nimg="intrinsic"
             decoding="async"
@@ -65,7 +64,6 @@ exports[`Home renders homepage user logout failed 1`] = `
             />
           </span>
           <img
-            alt="Clarkson Eyecare logo"
             aria-label="Clarkson Eyecare logo"
             data-nimg="intrinsic"
             decoding="async"
@@ -243,7 +241,6 @@ exports[`Home renders homepage user logout failed 2`] = `
             />
           </span>
           <img
-            alt="Clarkson Eyecare logo"
             aria-label="Clarkson Eyecare logo"
             data-nimg="intrinsic"
             decoding="async"
@@ -421,7 +418,6 @@ exports[`Home renders homepage user logout success 1`] = `
             />
           </span>
           <img
-            alt="Clarkson Eyecare logo"
             aria-label="Clarkson Eyecare logo"
             data-nimg="intrinsic"
             decoding="async"
