@@ -19,7 +19,7 @@
 }
 
 .imageContainer {
-  width: 330px;
+  width: 390px;
   border-right: 1px solid #bdbdbd;
   display: flex;
   justify-content: center;
@@ -52,6 +52,8 @@
 }
 
 .description {
+  padding-top: 16px;
+  padding-bottom: 16px;
   letter-spacing: 0.0016em;
   color: #242526;
 }
@@ -60,9 +62,6 @@
   display: flex;
   flex-direction: column;
   padding: 6px 16px 16px;
-
-  /* Light/Info/Shades/190p */
-
   background: linear-gradient(
       0deg,
       rgba(255, 255, 255, 0.9),
@@ -97,27 +96,15 @@
 .checkBoxText {
   font-style: normal;
   line-height: 18px;
-
-  /* or 129% */
-
   letter-spacing: 0.0016em;
-
-  /* Grayscale/Black */
-
   color: #292929;
 }
 
 .radioLabel {
   font-style: normal;
   font-weight: 600 !important;
-  /* identical to box height, or 150% */
-
   letter-spacing: 0.0016em;
-
-  /* Light/Text/Primary */
-
   color: #242526;
-  margin-top: 16px;
 }
 
 .link {
@@ -126,15 +113,11 @@
   font-weight: 600;
   font-size: 16px;
   line-height: 20px;
-  /* identical to box height, or 125% */
   justify-content: center;
   display: flex;
   align-items: center;
   text-decoration-line: underline;
   padding-top: 15px;
-
-  /* ECP/Controls/Button/Text */
-
   color: #008294;
   cursor: pointer;
 }
