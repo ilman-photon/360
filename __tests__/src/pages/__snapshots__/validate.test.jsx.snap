@@ -31,7 +31,6 @@ Object {
                   />
                 </span>
                 <img
-                  alt="Clarkson Eyecare logo"
                   aria-label="Clarkson Eyecare logo"
                   data-nimg="intrinsic"
                   decoding="async"
@@ -104,7 +103,6 @@ Object {
                 />
               </span>
               <img
-                alt="Clarkson Eyecare logo"
                 aria-label="Clarkson Eyecare logo"
                 data-nimg="intrinsic"
                 decoding="async"

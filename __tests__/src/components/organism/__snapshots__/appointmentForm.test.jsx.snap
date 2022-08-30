@@ -29,9 +29,11 @@ Object {
                 sigInInfo
               </h1>
               <a
-                aria-label="signIn link"
+                aria-label="signIn"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1szbmku-MuiTypography-root-MuiLink-root"
                 data-testid="signInlink"
+                role="link"
+                tabindex="0"
               >
                 signIn
               </a>
@@ -492,9 +494,11 @@ Object {
               sigInInfo
             </h1>
             <a
-              aria-label="signIn link"
+              aria-label="signIn"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1szbmku-MuiTypography-root-MuiLink-root"
               data-testid="signInlink"
+              role="link"
+              tabindex="0"
             >
               signIn
             </a>

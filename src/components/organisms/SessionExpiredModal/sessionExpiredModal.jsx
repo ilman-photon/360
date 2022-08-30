@@ -51,7 +51,14 @@ function SessionExpiredModal({
           },
         }}
       >
-        <FormMessage success={false} sx={styles.postMessage}>
+        <FormMessage
+          success={false}
+          id="alert-dialog-description"
+          sx={styles.postMessage}
+          accessibility={{
+            "aria-live": "off",
+          }}
+        >
           {!isExpired
             ? `Your session is about to time-out. You will be logged out in ${remaining} seconds.`
             : "Your session expired. Please login again."}

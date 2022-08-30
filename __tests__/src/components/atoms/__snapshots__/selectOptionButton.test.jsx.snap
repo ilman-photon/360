@@ -24,6 +24,7 @@ Object {
           <div
             aria-expanded="false"
             aria-haspopup="listbox"
+            aria-label="Question. "
             aria-labelledby="question-label question-id"
             class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
             id="question-id"
@@ -38,6 +39,7 @@ Object {
           </div>
           <input
             aria-hidden="true"
+            aria-live="polite"
             class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
             tabindex="-1"
             value=""
@@ -77,6 +79,7 @@ Object {
         <div
           aria-expanded="false"
           aria-haspopup="listbox"
+          aria-label="Question. "
           aria-labelledby="question-label question-id"
           class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
           id="question-id"
@@ -91,6 +94,7 @@ Object {
         </div>
         <input
           aria-hidden="true"
+          aria-live="polite"
           class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
           tabindex="-1"
           value=""
