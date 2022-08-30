@@ -217,7 +217,7 @@ Object {
                             class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
                             id=":r4:"
                             placeholder=""
-                            type="number"
+                            type="text"
                             value=""
                           />
                         </div>
@@ -1222,7 +1222,7 @@ Object {
                           class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
                           id=":r4:"
                           placeholder=""
-                          type="number"
+                          type="text"
                           value=""
                         />
                       </div>

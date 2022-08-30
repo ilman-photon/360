@@ -23,6 +23,7 @@ import { useEffect, useState } from "react";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import { AutoCompleteCreatable } from "../../molecules/AutoCompleteCreatable";
 import constants from "../../../utils/constants";
+import { Regex } from "../../../utils/regex";
 
 export default function InsuranceForm({
   formData = null, // later will be used for edit
@@ -205,7 +206,7 @@ export default function InsuranceForm({
                 }) => {
                   return (
                     <StyledInput
-                      type="number"
+                      type="text"
                       label="Subscriber ID/ Member ID"
                       value={value}
                       onChange={onChange}
@@ -218,7 +219,13 @@ export default function InsuranceForm({
                     />
                   );
                 }}
-                rules={{ required: "This field is required" }}
+                rules={{
+                  required: "This field is required",
+                  validate: {
+                    isNumber: (v) =>
+                      Regex.numberOnly.test(v) || "Invalid format",
+                  },
+                }}
               />
             </Grid>
 
