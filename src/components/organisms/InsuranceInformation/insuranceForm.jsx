@@ -47,7 +47,7 @@ export default function InsuranceForm({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
 
-  const [providerList, setProviderList] = useState([
+  const [providerList] = useState([
     { id: 0, label: "Provider 1" },
     { id: 1, label: "Provider 2" },
   ]);
