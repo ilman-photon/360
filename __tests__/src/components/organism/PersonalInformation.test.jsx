@@ -1,6 +1,7 @@
 import { render, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import PersonalInformation from "../../../../src/components/organisms/PersonalInformation/personalInformation";
+import constants from "../../../../src/utils/constants";
 
 window.scrollTo = jest.fn();
 
@@ -23,7 +24,7 @@ describe("PersonalInformation Components", () => {
     preferredName: "---",
     profilePhoto: {
       name: "my-photo.jpg",
-      source: "https://loremflickr.com/640/480"
+      source: "https://loremflickr.com/640/480",
     },
     ssn: 3777306119,
     state: "South Dakota",
@@ -33,21 +34,25 @@ describe("PersonalInformation Components", () => {
 
   beforeEach(async () => {
     const mockCallBack = jest.fn();
-    container = render(<PersonalInformation isEditing={false} userData={mockUserdata} 
-      OnEditClicked={mockCallBack}
-      OnCancelEditClicked={mockCallBack}
-      OnSaveClicked={mockCallBack}/>)
+    container = render(
+      <PersonalInformation
+        testIds={constants.TEST_ID.PERSONAL_INFO_TEST_ID}
+        isEditing={false}
+        userData={mockUserdata}
+        OnEditClicked={mockCallBack}
+        OnCancelEditClicked={mockCallBack}
+        OnSaveClicked={mockCallBack}
+      />
+    );
 
-  await waitFor(() => container.getByText("Preferred Name"));
+    await waitFor(() => container.getByText("Preferred Name"));
   });
-
 
   it("PersonalInformation render", () => {
     expect(container).toMatchSnapshot();
   });
 
   it("PersonalInformation View render", () => {
-
     expect(container.getByText("Name")).toBeInTheDocument();
     expect(container.getByText("Preferred Name")).toBeInTheDocument();
     expect(container.getByText("Title")).toBeInTheDocument();
@@ -63,18 +68,27 @@ describe("PersonalInformation Components", () => {
     expect(container.getByText(63)).toBeInTheDocument();
     expect(container.getByText("Transgender")).toBeInTheDocument();
     expect(container.getByText("***-***-6119")).toBeInTheDocument();
-    expect(container.getByText("Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID.")).toBeInTheDocument();
+    expect(
+      container.getByText(
+        "Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID."
+      )
+    ).toBeInTheDocument();
   });
 
   test("is edit button clicked", async () => {
     const mockCallBack = jest.fn();
     // console.log(<PersonalInformation isEditing={true} userData={mockUserdata} />)
-    container.rerender(<PersonalInformation isEditing={true} userData={mockUserdata} 
-      OnEditClicked={mockCallBack}
-      OnCancelEditClicked={mockCallBack}
-      OnSaveClicked={mockCallBack}
-    />);
-    console.log({container})
+    container.rerender(
+      <PersonalInformation
+        isEditing={true}
+        testIds={constants.TEST_ID.PERSONAL_INFO_TEST_ID}
+        userData={mockUserdata}
+        OnEditClicked={mockCallBack}
+        OnCancelEditClicked={mockCallBack}
+        OnSaveClicked={mockCallBack}
+      />
+    );
+    console.log({ container });
 
     //     const field1 = container.getByLabelText("Name")
     //     expect(field1).toBeDisabled();
@@ -83,8 +97,8 @@ describe("PersonalInformation Components", () => {
     // expect(field2.value).toEqual("---");
     // fireEvent.change(field2, { target: { value: "test field 2" } });
     // expect(field2.value).toEqual("test field 2");
-    
-    //   expect(container.getByText("Month, date, year")).toBeInTheDocument();  
+
+    //   expect(container.getByText("Month, date, year")).toBeInTheDocument();
 
     //   await waitFor(() => container.getByText("Date of Birth"));
     //   await waitFor(() => container.getByText("Title"));
@@ -105,32 +119,30 @@ describe("PersonalInformation Components", () => {
 
     // expect(container.getAllByRole("button", { name: "Change photo" })[0]).toBeVisible();
     // fireEvent.click(container.getAllByRole("button", { name: "Change photo" })[0])
+  });
+
+  // test("is cancel button clicked", async () => {
+  //   container.rerender(<PersonalInformation isEditing={true} userData={mockUserdata} />);
+
+  //   const field = container.getByLabelText("Age")
+  //   expect(field.value).toEqual("63");
+  //   fireEvent.change(field, { target: { value: 45 } });
+  //   expect(field.value).toEqual("45");
+  //   const cancelButton = container.getByRole("button", { name: "Cancel" });
+  //   fireEvent.click(cancelButton);
+  //   expect(field.value).toEqual("63");
+  // });
+
+  // test("is save button clicked", () => {
+  //   container.rerender(<PersonalInformation isEditing={true} userData={mockUserdata} />);
+  //   const field = container.getByLabelText("Age")
+  //   expect(field.value).toEqual("63");
+  //   fireEvent.change(field, { target: { value: 45 } });
+  //   expect(field.value).toEqual("45");
+
+  //   const saveButton = container.getByRole("button", { name: "Save" });
+  //   fireEvent.click(saveButton);
+
+  //   expect(field.value).toEqual("45");
+  // });
 });
-
-
-// test("is cancel button clicked", async () => {
-//   container.rerender(<PersonalInformation isEditing={true} userData={mockUserdata} />);
-
-//   const field = container.getByLabelText("Age")
-//   expect(field.value).toEqual("63");
-//   fireEvent.change(field, { target: { value: 45 } });
-//   expect(field.value).toEqual("45");
-//   const cancelButton = container.getByRole("button", { name: "Cancel" });
-//   fireEvent.click(cancelButton);
-//   expect(field.value).toEqual("63");
-// });
-
-// test("is save button clicked", () => {
-//   container.rerender(<PersonalInformation isEditing={true} userData={mockUserdata} />);
-//   const field = container.getByLabelText("Age")
-//   expect(field.value).toEqual("63");
-//   fireEvent.change(field, { target: { value: 45 } });
-//   expect(field.value).toEqual("45");
-
-//   const saveButton = container.getByRole("button", { name: "Save" });
-//   fireEvent.click(saveButton);
-
-//   expect(field.value).toEqual("45");
-// });
-
-})
