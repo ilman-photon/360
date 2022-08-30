@@ -103,7 +103,7 @@ Object {
                 />
               </svg>
               <div
-                class="MuiFormControl-root MuiTextField-root css-1iuml3b-MuiFormControl-root-MuiTextField-root"
+                class="MuiFormControl-root MuiTextField-root css-m0ssi0-MuiFormControl-root-MuiTextField-root"
               >
                 <label
                   class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
@@ -158,8 +158,8 @@ Object {
                   Purposes of Visit
                 </label>
                 <div
-                  class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-jjz489-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
-                  data-testid="purposeInput"
+                  class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                  data-testid="select-purposes-of-visit"
                 >
                   <div
                     aria-expanded="false"
@@ -411,7 +411,7 @@ Object {
               />
             </svg>
             <div
-              class="MuiFormControl-root MuiTextField-root css-1iuml3b-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiTextField-root css-m0ssi0-MuiFormControl-root-MuiTextField-root"
             >
               <label
                 class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
@@ -466,8 +466,8 @@ Object {
                 Purposes of Visit
               </label>
               <div
-                class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-jjz489-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
-                data-testid="purposeInput"
+                class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                data-testid="select-purposes-of-visit"
               >
                 <div
                   aria-expanded="false"
@@ -776,7 +776,7 @@ Object {
                 />
               </svg>
               <div
-                class="MuiFormControl-root MuiTextField-root css-1iuml3b-MuiFormControl-root-MuiTextField-root"
+                class="MuiFormControl-root MuiTextField-root css-m0ssi0-MuiFormControl-root-MuiTextField-root"
               >
                 <label
                   class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
@@ -831,8 +831,8 @@ Object {
                   Purposes of Visit
                 </label>
                 <div
-                  class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-jjz489-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
-                  data-testid="purposeInput"
+                  class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                  data-testid="select-purposes-of-visit"
                 >
                   <div
                     aria-expanded="false"
@@ -1083,7 +1083,7 @@ Object {
                 />
               </svg>
               <div
-                class="MuiFormControl-root MuiTextField-root css-1iuml3b-MuiFormControl-root-MuiTextField-root"
+                class="MuiFormControl-root MuiTextField-root css-m0ssi0-MuiFormControl-root-MuiTextField-root"
               >
                 <label
                   class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
@@ -1138,8 +1138,8 @@ Object {
                   Purposes of Visit
                 </label>
                 <div
-                  class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-jjz489-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
-                  data-testid="purposeInput"
+                  class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                  data-testid="select-purposes-of-visit"
                 >
                   <div
                     aria-expanded="false"
@@ -1391,7 +1391,7 @@ Object {
               />
             </svg>
             <div
-              class="MuiFormControl-root MuiTextField-root css-1iuml3b-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiTextField-root css-m0ssi0-MuiFormControl-root-MuiTextField-root"
             >
               <label
                 class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
@@ -1446,8 +1446,8 @@ Object {
                 Purposes of Visit
               </label>
               <div
-                class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-jjz489-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
-                data-testid="purposeInput"
+                class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                data-testid="select-purposes-of-visit"
               >
                 <div
                   aria-expanded="false"
