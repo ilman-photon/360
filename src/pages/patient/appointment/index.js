@@ -11,18 +11,22 @@ import {
 } from "@mui/material";
 import Box from "@mui/material/Box";
 const constants = require("../../../utils/constants");
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import FilterResult from "../../../components/molecules/FilterResult/filterResult";
 import CloseIcon from "@mui/icons-material/Close";
 import { DayAvailability } from "../../../components/molecules/DayAvailability/DayAvailability";
 import ProviderProfile from "../../../components/molecules/ProviderProfile/providerProfile";
+import { useGeolocated } from "react-geolocated";
+import EmptyResult from "../../../components/molecules/FilterResult/emptyResult";
 export default function Appointment() {
   const isDesktop = useMediaQuery("(min-width: 992px)");
   const [isFilterApplied, setFilterApplied] = useState(false);
   const [open, setOpen] = React.useState(false);
+  const [dataFilter, setDataFilter] = React.useState([]);
 
-  function onSearchProvider() {
+  function onSearchProvider(data) {
     setFilterApplied(true);
+    setDataFilter(data);
   }
 
   const handleClose = () => {
@@ -33,6 +37,24 @@ export default function Appointment() {
     //TO DO: set data for view days schedule
     setOpen(true);
   }
+
+  const { coords, isGeolocationEnabled } = useGeolocated({
+    positionOptions: {
+      enableHighAccuracy: false,
+    },
+    userDecisionTimeout: 5000,
+  });
+
+  useEffect(() => {
+    if (dataFilter.location === "Use my current location") {
+      setDataFilter({
+        ...dataFilter,
+        location: "",
+        coords: { lat: coords?.latitude, long: coords?.longitude },
+      });
+    }
+    console.log(dataFilter, "data Filter");
+  }, [dataFilter, coords]);
 
   function onRenderDialogView() {
     return (
@@ -75,6 +97,7 @@ export default function Appointment() {
       <FilterHeading
         isDesktop={isDesktop}
         onSearchProvider={onSearchProvider}
+        isGeolocationEnabled={isGeolocationEnabled}
       />
       {isDesktop && isFilterApplied ? (
         <Box
@@ -94,9 +117,17 @@ export default function Appointment() {
             }}
           >
             <Box sx={{ gridArea: "scheduleSection", maxWidth: "1128px" }}>
-              <FilterResult
-                onClickViewAllAvailability={onViewAllAvailability}
-              />
+              {dataFilter.location !== "Jakarta" ? (
+                <FilterResult
+                  onClickViewAllAvailability={onViewAllAvailability}
+                />
+              ) : (
+                <EmptyResult
+                  message={
+                    "No results found. Please try again with a different search criteria."
+                  }
+                />
+              )}
             </Box>
             <Box sx={{ gridArea: "mapsSection", background: "#F4F4F4" }}>
               {/* Map */}

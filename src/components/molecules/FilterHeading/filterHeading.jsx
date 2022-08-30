@@ -31,6 +31,7 @@ const FilterHeading = ({
   onSearchProvider = () => {
     // This is intentional
   },
+  isGeolocationEnabled,
 }) => {
   const imageSrcState = "/bx_insurance_card.png";
   const muiInputRoot = "& .MuiFilledInput-root";
@@ -42,7 +43,7 @@ const FilterHeading = ({
     if (!data.location) {
       setEmptyLocation(true);
     } else {
-      onSearchProvider();
+      onSearchProvider(data);
     }
   };
 
@@ -51,8 +52,7 @@ const FilterHeading = ({
   const [contentDialog, setContentDialog] = React.useState(<></>);
   const [dateValue, setDateValue] = React.useState(new Date());
   const [purposeOfVisitValue, setpurposeOfVisitValue] = React.useState([]);
-
-  const mapsData = ["Use my current location"];
+  const mapsData = isGeolocationEnabled ? ["Use my current location"] : [];
 
   const minDate = new Date();
   const maxDate = new Date(); // add arguments as needed
