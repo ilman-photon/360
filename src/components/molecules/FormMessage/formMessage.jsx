@@ -10,6 +10,7 @@ export const FormMessage = (
     onClick = () => {
       // This is intended
     },
+    accessibility = {},
     ...props
   },
   ref
@@ -57,6 +58,7 @@ export const FormMessage = (
           }}
           data-testid="submission-message"
           aria-live="polite"
+          {...accessibility}
         >
           {props.title ? (
             <div style={{ fontWeight: "bold" }}>{props.title}</div>
