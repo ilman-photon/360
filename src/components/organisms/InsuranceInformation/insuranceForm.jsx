@@ -23,6 +23,7 @@ import { useEffect, useState } from "react";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import { AutoCompleteCreatable } from "../../molecules/AutoCompleteCreatable";
 import constants from "../../../utils/constants";
+import { Regex } from "../../../utils/regex";
 
 export default function InsuranceForm({
   formData = null, // later will be used for edit
@@ -158,7 +159,9 @@ export default function InsuranceForm({
                     />
                   );
                 }}
-                rules={{ required: "This field is required" }}
+                rules={{
+                  required: "This field is required",
+                }}
               />
             </Grid>
 
@@ -309,6 +312,9 @@ export default function InsuranceForm({
                       rules={{
                         validate: {
                           requiredIfSubscriber,
+                          isMin2Max50Length: (v) =>
+                            Regex.isMin2Max50Length.test(v) ||
+                            "First Name does not meet requirements",
                         },
                       }}
                     />
@@ -339,6 +345,9 @@ export default function InsuranceForm({
                       rules={{
                         validate: {
                           requiredIfSubscriber,
+                          isMin2Max50Length: (v) =>
+                            Regex.isMin2Max50Length.test(v) ||
+                            "Last Name does not meet requirements",
                         },
                       }}
                     />
