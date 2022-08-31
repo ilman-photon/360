@@ -123,6 +123,7 @@ export function Login({
               }}
               rules={{ required: t("thisFieldRequired") }}
             />
+
             <Grid container justifyContent={constants.FLEX_END}>
               <Typography variant="bodyMedium">
                 <Link
@@ -149,16 +150,47 @@ export function Login({
             </StyledButton>
           </Stack>
         </form>
-        <StyledButton
-          theme={constants.PATIENT}
-          mode={constants.SECONDARY}
-          size={constants.SMALL}
-          gradient={false}
-          onClick={OnGuestClicked}
-          data-testid={LOGIN_TEST_ID.guestBtn}
-        >
-          {t("continueAsPasswordButtonLabel")}
-        </StyledButton>
+        {}
+        {!router.pathname === "/patient/login/admin" && (
+          <StyledButton
+            theme={constants.PATIENT}
+            mode={constants.SECONDARY}
+            size={constants.SMALL}
+            gradient={false}
+            onClick={OnGuestClicked}
+            data-testid={LOGIN_TEST_ID.guestBtn}
+          >
+            {t("continueAsPasswordButtonLabel")}
+          </StyledButton>
+        )}
+
+        {router.pathname === "/patient/login/admin" && (
+          <>
+            <Grid container justifyContent={constants.CENTER}>
+              <Typography
+                variant="bodyMedium"
+                sx={{ color: "#003B4A", fontWeight: 600 }}
+              >
+                {t("alreadyHaveAnAppointment")}
+              </Typography>
+            </Grid>
+            <Grid container justifyContent={constants.CENTER}>
+              <Typography variant="bodyMedium">
+                <Link
+                  className={styles.link}
+                  data-testid={LOGIN_TEST_ID.forgotLink}
+                  {...getLinkAria(t("forgotPassword"))}
+                  onClick={function () {
+                    OnForgotPasswordClicked(router);
+                  }}
+                >
+                  {t("syncYourAppointmentInformation")}
+                </Link>
+              </Typography>
+            </Grid>
+          </>
+        )}
+
         <Divider variant={constants.MIDDLE} className={styles.divider} />
 
         <Grid container justifyContent={constants.CENTER}>
