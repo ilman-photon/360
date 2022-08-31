@@ -74,8 +74,11 @@ export const DayAvailability = ({
       "11:30am",
     ],
   },
+  OnDayClicked = () => {
+    // This is intended
+  }
 }) => {
-  const router = useRouter();
+  // const router = useRouter();
   function renderScheduleData() {
     let renderUI = [];
     for (const [key, value] of Object.entries(scheduleData)) {
@@ -114,10 +117,7 @@ export const DayAvailability = ({
           size={constants.SMALL}
           gradient={false}
           className={[stylesWeek.scheduleBtn, styles.scheduleBtn].join(" ")}
-          onClick={() => {
-            //TO DO: temporary navigate, move to page when start developing functionality
-            router.push("/patient/appointments");
-          }}
+          onClick={() => OnDayClicked(label)}
         >
           {label}
         </StyledButton>

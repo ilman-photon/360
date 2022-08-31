@@ -61,8 +61,8 @@ export default function AppointmentDetails({
             sxText={{ paddingLeft: "4px", color: colors.darkGreen }}
           >
             <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
-              {appointmentData.insuranceCarrier.length > 0
-                ? appointmentData.insuranceCarrier.join(", ")
+              {appointmentData.insuranceCarrier
+                ? appointmentData.insuranceCarrier
                 : "No Insurance provided"}
             </Typography>
           </LabelWithInfo>

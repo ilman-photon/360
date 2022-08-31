@@ -9,7 +9,11 @@ export default function ItemResult({
   onClickViewAllAvailability = () => {
     // This is intentional
   },
+  OnDayClicked = () => {
+    // This is intentional
+  },
   keyItem = "",
+  providerData = {}
 }) {
   return (
     <Box
@@ -25,7 +29,7 @@ export default function ItemResult({
       className={styles.itemContainer}
     >
       <Box sx={{ gridArea: "providerProvile" }}>
-        <ProviderProfile variant={"viewschedule"} />
+        <ProviderProfile providerData={providerData} variant={"viewschedule"} />
       </Box>
       <Box sx={{ gridArea: "locationDistance" }}>
         <LocationDistance />
@@ -33,6 +37,7 @@ export default function ItemResult({
       <Box sx={{ gridArea: "weekAvailability" }}>
         <WeekAvailability
           onClickViewAllAvailability={onClickViewAllAvailability}
+          OnDayClicked={OnDayClicked}
           keyWeek={keyItem}
         />
       </Box>

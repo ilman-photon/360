@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./filterHeading.module.scss";
 import {
   Autocomplete,
@@ -23,6 +23,7 @@ import Image from "next/image";
 
 const FilterHeading = ({
   isDesktop = true,
+  filterData = {},
   onSearchProvider = () => {
     // This is intentional
   },
@@ -30,14 +31,20 @@ const FilterHeading = ({
   const imageSrcState = "/bx_insurance_card.png";
   const muiInputRoot = "& .MuiFilledInput-root";
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
-  const { handleSubmit, control } = useForm();
+  const { handleSubmit, control, reset } = useForm({
+    defaultValues: filterData
+  });
+  useEffect(() => {
+    if (filterData) reset(filterData);
+  }, [filterData, reset]);
+  
   const [isEmptyLocation, setEmptyLocation] = useState(false);
 
   const onSubmit = (data) => {
     if (!data.location) {
       setEmptyLocation(true);
     } else {
-      onSearchProvider();
+      onSearchProvider(data);
     }
   };
 
@@ -93,7 +100,6 @@ const FilterHeading = ({
       <Controller
         name="location"
         control={control}
-        defaultValue=""
         render={({ field: { onChange, value }, fieldState: { error } }) => {
           return (
             <Autocomplete
@@ -175,7 +181,6 @@ const FilterHeading = ({
       <Controller
         name="date"
         control={control}
-        defaultValue=""
         sx={{ paddingTop: "16px" }}
         render={({ field: { onChange, value }, fieldState: { error } }) => {
           return (
@@ -235,7 +240,6 @@ const FilterHeading = ({
       <Controller
         name="purposeOfVisit"
         control={control}
-        defaultValue=""
         render={({ field: { onChange, value }, fieldState: { error } }) => {
           return (
             <Box
@@ -287,7 +291,6 @@ const FilterHeading = ({
       <Controller
         name="insuranceCarrier"
         control={control}
-        defaultValue=""
         render={({ field: { onChange, value }, fieldState: { error } }) => {
           return (
             <Autocomplete
@@ -420,7 +423,6 @@ const FilterHeading = ({
         <Controller
           name={controllerName}
           control={control}
-          defaultValue=""
           render={({ field: { onChange, value }, fieldState: { error } }) => {
             return (
               <Box

@@ -4,18 +4,41 @@ import ItemResult from "../../organisms/ItemResult/ItemResult";
 import FilterResultHeading from "../FilterResultHeading/filterResultHeading";
 
 export const FilterResult = ({
-  dataCount = 3,
+  providerList = [
+    {
+      name: 'Paul Wagner, MD',
+      image: '/doctor.png',
+      address: '51 West 51st Street, Floor 3, Suite 320 Midtown, New York, NY, 10019'
+    },
+    {
+      name: 'John Doe, MD',
+      image: '/doctor.png',
+      address: '100 California West, Floor 10, Hotel 15 Chinatown, California, CF, 12345'
+    },
+    {
+      name: 'Paul Wagner, MD',
+      image: '/doctor.png',
+      address: '51 West 51st Street, Floor 3, Suite 320 Midtown, New York, NY, 10019'
+    }
+  ],
   onSelectSchedule = () => {
+    // This is intentional
+  },
+  OnDayClicked = () => {
     // This is intentional
   },
 }) => {
   function renderItemResult() {
     const indents = [];
-    for (let i = 0; i < dataCount; i++) {
+    for (let i = 0; i < providerList.length; i++) {
       indents.push(
         <Box key={i}>
           <ItemResult
             keyItem={`${i}-item-filter`}
+            providerData={providerList[i]}
+            OnDayClicked={(payload) => {
+              OnDayClicked(payload, providerList[i])
+            }}
           />
         </Box>
       );

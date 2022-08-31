@@ -4,7 +4,7 @@ import styles from "./styles.module.scss";
 import StyledRating from "../../atoms/Rating/styledRating";
 import { useRouter } from "next/router";
 
-export default function ProviderProfile({ variant, showPosition, phoneLink }) {
+export default function ProviderProfile({ variant, showPosition, phoneLink, providerData={} }) {
   const specialist = ["Opthometry", "Opthalmology", "Catarac", "Glaucoma"];
   const isAppointment = variant === "appointment";
   const isBio = variant === "bio";
@@ -58,7 +58,7 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
       <Box className={styles.displayFlex}>
         <Box>
           <Image
-            src="/doctor.png"
+            src={providerData.image || '/transparent.png'}
             width={100}
             height={100}
             className={styles.profilePhoto}
@@ -79,7 +79,7 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
               (isAppointment || isViewSchedule) && styles.doctorNameAppointment
             }
           >
-            Paul Wagner, MD
+            {providerData.name}
           </Typography>
           {showPosition && (
             <Typography variant="h3">Scripps Eyecare</Typography>
@@ -89,9 +89,7 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
             className={styles.address}
             fontSize={isViewSchedule ? "14px" : "16px"}
           >
-            {`51 West 51st Street, 
-                        Floor 3, Suite 320
-                        Midtown, New York, NY, 10019`}
+            {providerData.address}
           </Typography>
           {isDayAvailableView && (
             <Box

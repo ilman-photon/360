@@ -1,5 +1,5 @@
 import AppointmentLayout from "../../../components/templates/appointmentLayout";
-import { Provider } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "../../../store/store";
 import FilterHeading from "../../../components/molecules/FilterHeading/filterHeading";
 import {
@@ -19,6 +19,9 @@ import { useLoadScript } from "@react-google-maps/api";
 import CloseIcon from "@mui/icons-material/Close";
 import { DayAvailability } from "../../../components/molecules/DayAvailability/DayAvailability";
 import ProviderProfile from "../../../components/molecules/ProviderProfile/providerProfile";
+import { editAppointmentScheduleData, setFilterData } from "../../../store/appointment";
+import { useRouter } from "next/router";
+
 export async function getStaticProps() {
   return {
     props: {
@@ -31,11 +34,18 @@ export default function Appointment({ googleApiKey }) {
   const [isFilterApplied, setFilterApplied] = useState(false);
   const [open, setOpen] = React.useState(false);
 
+  const router = useRouter()
+  const dispatch = useDispatch()
+
+  const filterData = useSelector(state => state.appointment.filterData)
+
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: googleApiKey,
   });
 
-  function onSearchProvider() {
+  function onSearchProvider(data) {
+    console.log({data})
+    dispatch(setFilterData(data))
     setFilterApplied(true);
   }
 
@@ -46,6 +56,30 @@ export default function Appointment({ googleApiKey }) {
   function onViewAllAvailability() {
     //TO DO: set data for view days schedule
     setOpen(true);
+  }
+
+  const appointmentInfo = useSelector(state => state.appointment.appointmentSchedule.appointmentInfo)
+  const providerInfo = useSelector(state => state.appointment.appointmentSchedule.providerInfo)
+
+  const handleDayClicked = (appointmentDate, providerData) => {
+    console.log('day clicked', appointmentDate, providerData)
+    dispatch(editAppointmentScheduleData({
+      key: 'appointmentInfo',
+      value: {
+        ...appointmentInfo,
+        date: appointmentDate,
+      }
+    }))
+
+    dispatch(editAppointmentScheduleData({
+      key: 'providerInfo',
+      value: {
+        ...providerInfo,
+        ...providerData
+      }
+    }))
+
+    router.push('/patient/schedule-appoinment')
   }
 
   function onRenderDialogView() {
@@ -77,7 +111,7 @@ export default function Appointment({ googleApiKey }) {
                 isDayAvailableView={true}
               />
             </Box>
-            <DayAvailability />
+            <DayAvailability OnDayClicked={handleDayClicked} />
           </DialogContent>
         </Dialog>
       </div>
@@ -89,6 +123,7 @@ export default function Appointment({ googleApiKey }) {
       <FilterHeading
         isDesktop={isDesktop}
         onSearchProvider={onSearchProvider}
+        filterData={filterData}
       />
       {isDesktop && isFilterApplied ? (
         <Grid
@@ -108,7 +143,10 @@ export default function Appointment({ googleApiKey }) {
               height: "100%",
             }}
           >
-            <FilterResult onClickViewAllAvailability={onViewAllAvailability} />
+            <FilterResult
+              onClickViewAllAvailability={onViewAllAvailability}
+              OnDayClicked={handleDayClicked}
+              />
           </Box>
           <Box
             sx={{

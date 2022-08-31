@@ -9,15 +9,24 @@ import { useRouter } from "next/router";
 
 export const WeekAvailability = ({
   scheduleData = {
-    monday: ["11:30am", "", "", ""],
-    tuesday: ["08:00am", "10:30am", "11:00am", "3 more"],
-    wednesday: ["08:30am", "10:30am", "11:30am", "5 more"],
-    thursday: ["09:30am", "11:00am", "", ""],
-    friday: ["09:30am", "", "", ""],
-    saturday: ["09:30am", "", "", ""],
+    // monday: ["11:30am", "", "", ""],
+    // tuesday: ["08:00am", "10:30am", "11:00am", "3 more"],
+    // wednesday: ["08:30am", "10:30am", "11:30am", "5 more"],
+    // thursday: ["09:30am", "11:00am", "", ""],
+    // friday: ["09:30am", "", "", ""],
+    // saturday: ["09:30am", "", "", ""],
+    monday: ['2022-08-31T04:30:00.904Z'],
+    tuesday: ['2022-08-31T01:00:00.904Z', '2022-08-31T03:30:00.904Z', '2022-08-31T04:00:00.904Z', '3 more'],
+    wednesday: ['2022-08-31T01:30:00.904Z', '2022-08-31T03:30:00.904Z', '2022-08-31T04:30:00.904Z', '5 more'],
+    thursday: ['2022-08-31T02:30:00.904Z', '2022-08-31T04:00:00.904Z'],
+    friday: ['2022-08-31T02:30:00.904Z'],
+    saturday: ['2022-08-31T02:30:00.904Z']
   },
   onClickViewAllAvailability = () => {
     // This is intentional
+  },
+  OnDayClicked = () => {
+    // This is intended
   },
   keyWeek = "",
 }) => {
@@ -37,7 +46,8 @@ export const WeekAvailability = ({
             value[i],
             gridArea,
             isTypeMore,
-            `${keyWeek}-${i}-${key}-schedule-button`
+            `${keyWeek}-${i}-${key}-schedule-button`,
+            OnDayClicked
           )
         );
       }
@@ -45,8 +55,15 @@ export const WeekAvailability = ({
     return renderUI;
   }
 
-  function buttonSchedule(label, gridArea, isTypeMore = false, index = "") {
+  function buttonSchedule(label, gridArea, isTypeMore = false, index = "", OnDayClicked = () => {
+    // This is intended
+  }) {
+    function isValidDate(d) {
+      return d instanceof Date && !isNaN(d);
+    }
     if (label) {
+      const date = new Date(label)
+      const labelTime = isValidDate(date) ? date.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }) : label
       return (
         <Box key={index} sx={{ gridArea: gridArea, width: "90px" }}>
           <StyledButton
@@ -56,12 +73,9 @@ export const WeekAvailability = ({
             size={constants.SMALL}
             gradient={false}
             className={styles.scheduleBtn}
-            onClick={() => {
-              //TO DO: temporary navigate, move to page when start developing functionality
-              router.push("/patient/appointments");
-            }}
+            onClick={() => OnDayClicked(label)}
           >
-            {label}
+            {labelTime}
             {isTypeMore && (
               <KeyboardArrowDownOutlinedIcon sx={{ width: "18px" }} />
             )}

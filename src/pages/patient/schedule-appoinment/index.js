@@ -186,7 +186,7 @@ export default function ScheduleAppointmentPage() {
   // dummy data set, delete later
   const dispatch = useDispatch();
   React.useEffect(() => {
-    dispatch(setDummyAppointmentSchedule());
+    // dispatch(setDummyAppointmentSchedule());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
