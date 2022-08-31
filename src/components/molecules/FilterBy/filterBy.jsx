@@ -3,10 +3,7 @@ import {
   Drawer,
   Box,
   FormGroup,
-  Checkbox,
-  FormControlLabel,
   Typography,
-  Button,
   IconButton,
   Link,
   Divider,
@@ -14,24 +11,22 @@ import {
 import * as styles from "./styles.module.scss";
 import CloseIcon from "@mui/icons-material/Close";
 import { StyledButton } from "../../atoms/Button/button";
+import CustomCheckbox from "./customCheckbox";
 
 const constants = require("../../../utils/constants");
 
-const FilterBy = ({ isOpen }) => {
+const FilterBy = ({ isOpen, onClose, onDone, filter, activedFilter = [] }) => {
   const [openDrawer, setOpenDrawer] = React.useState(false);
   const [expand, setExpand] = React.useState(false);
-
-  const toggleDrawer = () => () => {
-    setOpenDrawer(false);
-  };
+  const [activeFilter, setActiveFilter] = React.useState([]);
 
   React.useEffect(() => {
     setOpenDrawer(isOpen);
+    setActiveFilter(activedFilter);
   }, [isOpen]);
 
   const renderCheckbox = (title, items, showDivider) => {
     const isShowSeeMore = items.length > 6;
-    const isExpand = expand;
     return (
       <Box
         className={
@@ -49,10 +44,27 @@ const FilterBy = ({ isOpen }) => {
           {items.map((item, index) => {
             if (index > 5 && !expand) return false;
             return (
-              <FormControlLabel
-                control={<Checkbox value={item.value} />}
-                label={item.label}
-                key={item.value}
+              <CustomCheckbox
+                label={item}
+                key={index}
+                onChange={(target) => {
+                  const value = target.value;
+                  if (target.checked) {
+                    const data = activeFilter;
+                    data.push(value);
+                    setActiveFilter(data);
+                  } else {
+                    const id = activeFilter.indexOf(value);
+                    if (id > -1) {
+                      const data = activeFilter;
+                      data.splice(id, 1);
+                      setActiveFilter(data);
+                    }
+                  }
+                }}
+                checked={() => {
+                  return activeFilter.indexOf(item) > -1;
+                }}
               />
             );
           })}
@@ -77,7 +89,7 @@ const FilterBy = ({ isOpen }) => {
     <Drawer
       anchor="right"
       open={openDrawer}
-      onClose={toggleDrawer}
+      onClose={onClose}
       variant="temporary"
     >
       <>
@@ -85,87 +97,16 @@ const FilterBy = ({ isOpen }) => {
           aria-label="close"
           component="label"
           className={styles.closeButton}
+          onClick={onClose}
         >
           <CloseIcon className={styles.closeImage}></CloseIcon>
         </IconButton>
         <Divider className={styles.topDivider}></Divider>
-        <Box className={styles.checkboxGroup}>
-          {renderCheckbox(
-            "Filter by:",
-            [
-              {
-                label: "Available today",
-                value: "available-today",
-              },
-            ],
-            true
-          )}
-          {renderCheckbox(
-            "Languages spoken",
-            [
-              {
-                label: "Arabic",
-                value: "arabic",
-              },
-              {
-                label: "Chinese",
-                value: "Chinese",
-              },
-              {
-                label: "English",
-                value: "English",
-              },
-              {
-                label: "Farsi",
-                value: "Farsi",
-              },
-              {
-                label: "French",
-                value: "French",
-              },
-              {
-                label: "Spanish",
-                value: "Spanish",
-              },
-              {
-                label: "Bahasa",
-                value: "bahasa",
-              },
-            ],
-            true
-          )}
-          {renderCheckbox(
-            "Insurance",
-            [
-              {
-                label: "In Network",
-                value: "in-network",
-              },
-              {
-                label: "Out of Network",
-                value: "out-of-network",
-              },
-            ],
-            true
-          )}
-          {renderCheckbox(
-            "Gender",
-            [
-              {
-                label: "Male",
-                value: "male",
-              },
-              {
-                label: "Female ",
-                value: "female",
-              },
-              {
-                label: "Non-Binary",
-                value: "non-binary",
-              },
-            ],
-            false
-          )}
+        <Box className={styles.checkboxGroup} id="checkboxGroup">
+          {filter.map((item, index) => {
+            const isLastIndex = index - 1;
+            return renderCheckbox(item.title, item.filter, !isLastIndex);
+          })}
         </Box>
       </>
       <Box className={styles.buttonContainer}>
@@ -174,6 +115,9 @@ const FilterBy = ({ isOpen }) => {
           mode={constants.PRIMARY}
           size={constants.SMALL}
           gradient={false}
+          onClick={() => {
+            setActiveFilter([]);
+          }}
           sx={{
             flex: 1,
           }}
@@ -185,6 +129,9 @@ const FilterBy = ({ isOpen }) => {
           mode={constants.SECONDARY}
           size={constants.SMALL}
           gradient={false}
+          onClick={() => {
+            onDone(activeFilter);
+          }}
           sx={{
             flex: 1,
           }}

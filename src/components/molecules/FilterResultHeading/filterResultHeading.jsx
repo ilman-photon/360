@@ -8,9 +8,11 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import styles from "./filterResultHeading.module.scss";
 import CloseIcon from "@mui/icons-material/Close";
 import { Typography } from "@mui/material";
+import FilterBy from "../FilterBy/filterBy";
+import { useState } from "react";
 
 export const FilterResultHeading = ({
-  appliedFilter = [],
+  appliedFilter,
   numberFilter = 30,
   dateWeek = ["Sep 19", "Sep 20", "Sep 21", "Sep 22", "Sep 23", "Sep 24"],
 }) => {
@@ -23,26 +25,77 @@ export const FilterResultHeading = ({
     "fridaySchedule",
     "saturdaySchedule",
   ];
+  const mockFilter = [
+    {
+      title: "Filter by:",
+      filter: ["Available today"],
+    },
+    {
+      title: "Languages spoken",
+      filter: [
+        "Arabic",
+        "Chinese",
+        "English",
+        "Farsi",
+        "French",
+        "Spanish",
+        "Bahasa",
+      ],
+    },
+    {
+      title: "Insurance",
+      filter: ["In Network", "Out of Network"],
+    },
+    {
+      title: "Gender",
+      filter: ["Male", "Female", "Non-Binary"],
+    },
+  ];
+
+  const [filterOpen, setFilterOpen] = useState(false);
+  const [activeFilter, setActiveFilter] = useState([]);
 
   function renderAppliedFilter() {
-    return appliedFilter.map((option, idx) => {
+    return activeFilter.map((option, idx) => {
       return (
         <Box className={styles.filterChildButton} key={idx}>
           {option}
           <CloseIcon
             className={styles.closeIcon}
             onClick={() => {
-              //TO DO: remove selected filter
+              const id = activeFilter.indexOf(option);
+              if (id > -1) {
+                const data = activeFilter;
+                data.splice(id, 1);
+                setActiveFilter([...data]);
+              }
             }}
           />
         </Box>
       );
     });
   }
+
+  const onSetFilter = (filter) => {
+    setFilterOpen(!filterOpen);
+    setActiveFilter(filter);
+  };
+
   return (
     <>
       <Box className={styles.filterContainer}>
         <Box className={styles.filterButtonContainer}>
+          <FilterBy
+            activedFilter={[...activeFilter]}
+            filter={mockFilter}
+            isOpen={filterOpen}
+            onClose={() => {
+              setFilterOpen(!filterOpen);
+            }}
+            onDone={(filter) => {
+              onSetFilter(filter);
+            }}
+          ></FilterBy>
           <StyledButton
             className={styles.filterButton}
             mode={constants.SECONDARY}
@@ -50,7 +103,7 @@ export const FilterResultHeading = ({
             gradient={false}
             data-testid={APPOINTMENT_TEST_ID.filterbtn}
             onClick={() => {
-              //TO DO: add functionality for onclick
+              setFilterOpen(!filterOpen);
             }}
           >
             <TuneIcon className={styles.tuneIcon} />
