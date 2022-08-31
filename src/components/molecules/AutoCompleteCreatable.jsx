@@ -48,10 +48,12 @@ export const AutoCompleteCreatable = ({
 
   React.useEffect(() => {
     props.onChange(value);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [value]);
 
   return (
     <Autocomplete
+      data-testid={props.testId}
       onOpen={() => {
         setOpen(true);
       }}
@@ -75,12 +77,11 @@ export const AutoCompleteCreatable = ({
           setValue(newValue);
         }
       }}
-      filterOptions={(options, params) => {
-        const filtered = filter(options, params);
-
+      filterOptions={(optionsContext, params) => {
+        const filtered = filter(optionsContext, params);
         const { inputValue } = params;
         // Suggest the creation of a new value
-        const isExisting = options.some(
+        const isExisting = optionsContext.some(
           (option) => inputValue === option.label
         );
         if (inputValue !== "" && !isExisting) {

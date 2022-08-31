@@ -38,6 +38,7 @@ export default function PersonalInformation({
   OnEditClicked = () => {
     // This is intended
   },
+  testIds,
 }) {
   const { handleSubmit, control, reset } = useForm({
     defaultValues: userData,
@@ -122,6 +123,7 @@ export default function PersonalInformation({
             mode="primary"
             size="small"
             onClick={OnEditClicked}
+            data-testid={"loc_edit"}
             sx={{ my: 4 }}
           >
             Edit
@@ -134,7 +136,7 @@ export default function PersonalInformation({
           <LabelWithInfo label="Photo">
             {userData.profilePhoto ? (
               <Image
-                src={userData.profilePhoto}
+                src={userData.profilePhoto.source}
                 width={122}
                 height={122}
                 style={{ borderRadius: "50%" }}
@@ -266,6 +268,7 @@ export default function PersonalInformation({
                       id="name"
                       label="Name"
                       value={value}
+                      data-testid={testIds.txtName}
                       onChange={onChange}
                       error={!!error}
                       size="small"
@@ -519,6 +522,7 @@ export default function PersonalInformation({
           >
             <Button
               onClick={handleCancel}
+              data-testid={testIds.btnCancel}
               variant="contained"
               className={[styles.formButton, styles.outlined].join(" ")}
             >
@@ -526,6 +530,7 @@ export default function PersonalInformation({
             </Button>
             <Button
               type="submit"
+              data-testid={testIds.btnSave}
               variant="contained"
               className={[styles.formButton, styles.primary].join(" ")}
             >

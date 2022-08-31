@@ -14,6 +14,7 @@ export default function SetMultiFactorAuthentication({
   rememberMe,
   setRememberMe,
   data,
+  testIds,
 }) {
   const { t } = useTranslation("translation", { keyPrefix: "mfaPage" });
   const [selectedCommunication, setSelectedCommunication] = React.useState("");
@@ -52,7 +53,7 @@ export default function SetMultiFactorAuthentication({
           >
             <FormControlLabel
               value="email"
-              data-testid="email-radio-button"
+              data-testid={testIds.radioEmail}
               label={`Email: ${data.email}`}
               sx={{
                 ".MuiFormControlLabel-label": {
@@ -75,7 +76,7 @@ export default function SetMultiFactorAuthentication({
             />
             <FormControlLabel
               value="phone"
-              data-testid="phone-radio-button"
+              data-testid={testIds.radioPhone}
               label={`Phone: ${data.phone}`}
               sx={{
                 ".MuiFormControlLabel-label": {
@@ -108,12 +109,23 @@ export default function SetMultiFactorAuthentication({
     }
   };
 
+  const getMfaDescription = () => {
+    console.log(data);
+    if (!isMultipleComunication && data.email) {
+      return t("setMFAEmailDescription");
+    } else if (!isMultipleComunication && data.phone) {
+      return t("setMFAPhoneDescription");
+    } else {
+      return t("setMFADescription");
+    }
+  };
+
   return (
     <>
       {postMessage === "" ? (
         <Container
           title={t("setMFATitle")}
-          description={t("setMFADescription")}
+          description={getMfaDescription()}
           image={image}
           content={content()}
           primaryButtonTitle={t("confrimBtn")}
@@ -126,6 +138,11 @@ export default function SetMultiFactorAuthentication({
           }}
           rememberMe={rememberMe}
           setRememberMe={setRememberMe}
+          testIds={{
+            primary: testIds.btnConfirm,
+            secondary: testIds.btnBack,
+            checkbox: testIds.rememberMe,
+          }}
         />
       ) : (
         <Container
@@ -137,6 +154,11 @@ export default function SetMultiFactorAuthentication({
           }}
           postMessage={postMessage}
           isEndView={true}
+          testIds={{
+            primary: testIds.btnConfirm,
+            secondary: testIds.btnBack,
+            checkbox: testIds.rememberMe,
+          }}
         />
       )}
     </>

@@ -10,6 +10,7 @@ export const FormMessage = (
     onClick = () => {
       // This is intended
     },
+    accessibility = {},
     ...props
   },
   ref
@@ -56,13 +57,15 @@ export const FormMessage = (
             letterSpacing: "0.0016em",
           }}
           data-testid="submission-message"
+          aria-live="polite"
+          {...accessibility}
         >
           {props.title ? (
             <div style={{ fontWeight: "bold" }}>{props.title}</div>
           ) : (
             <></>
           )}
-          <div style={{ fontSize: 14 }}>
+          <div style={{ fontSize: props.fontTitle || 14 }}>
             {props.children}
             {props.isBackToLogin ? (
               <Link href="/patient/login">

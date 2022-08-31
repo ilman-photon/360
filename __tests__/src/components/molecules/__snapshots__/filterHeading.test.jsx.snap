@@ -16,6 +16,7 @@ Object {
           >
             <div
               class="MuiAutocomplete-root css-miy64m-MuiAutocomplete-root"
+              data-testid="locationInput"
             >
               <div
                 class="MuiBox-root css-1shiw0f"
@@ -102,11 +103,11 @@ Object {
                 />
               </svg>
               <div
-                class="MuiFormControl-root MuiTextField-root css-1iuml3b-MuiFormControl-root-MuiTextField-root"
+                class="MuiFormControl-root MuiTextField-root css-m0ssi0-MuiFormControl-root-MuiTextField-root"
               >
                 <label
-                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
-                  data-shrink="false"
+                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="true"
                   for=":r2:"
                   id=":r2:-label"
                 >
@@ -117,13 +118,13 @@ Object {
                 >
                   <input
                     aria-invalid="false"
-                    aria-label="Choose date"
+                    aria-label="Choose date, selected date is Apr 1, 2022"
                     aria-readonly="true"
                     class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                     id=":r2:"
                     readonly=""
                     type="text"
-                    value=""
+                    value="Apr 01, 2022"
                   />
                 </div>
               </div>
@@ -146,7 +147,7 @@ Object {
                 />
               </svg>
               <div
-                class="MuiFormControl-root css-x64fv7-MuiFormControl-root"
+                class="MuiFormControl-root css-1gvm5em-MuiFormControl-root"
                 style="width: 100%;"
               >
                 <label
@@ -163,6 +164,7 @@ Object {
                   <div
                     aria-expanded="false"
                     aria-haspopup="listbox"
+                    aria-label="Purposes of Visit. "
                     aria-labelledby="purposes-of-visit purposes-of-visit"
                     class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                     id="purposes-of-visit"
@@ -177,6 +179,7 @@ Object {
                   </div>
                   <input
                     aria-hidden="true"
+                    aria-live="polite"
                     class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
                     tabindex="-1"
                     value=""
@@ -199,7 +202,8 @@ Object {
               class="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
             />
             <div
-              class="MuiAutocomplete-root css-16if460-MuiAutocomplete-root"
+              class="MuiAutocomplete-root css-pbqph1-MuiAutocomplete-root"
+              data-testid="insuranceInput"
             >
               <div
                 class="MuiBox-root css-1shiw0f"
@@ -251,12 +255,12 @@ Object {
                       aria-invalid="false"
                       autocapitalize="none"
                       autocomplete="off"
-                      class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputTypeSearch MuiAutocomplete-input MuiAutocomplete-inputFocused css-1lfthva-MuiInputBase-input-MuiFilledInput-input"
+                      class="MuiFilledInput-input MuiInputBase-input MuiAutocomplete-input MuiAutocomplete-inputFocused css-10botns-MuiInputBase-input-MuiFilledInput-input"
                       id="insurance-carrier"
                       placeholder=""
                       role="combobox"
                       spellcheck="false"
-                      type="search"
+                      type="text"
                       value=""
                     />
                   </div>
@@ -264,7 +268,7 @@ Object {
               </div>
             </div>
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-51mfdi-MuiButtonBase-root-MuiButton-root"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-1jf053t-MuiButtonBase-root-MuiButton-root"
               data-testid="searchbtn"
               tabindex="0"
               type="submit"
@@ -289,7 +293,7 @@ Object {
             class="centeredField MuiBox-root css-0"
           >
             <span
-              class="MuiTypography-root MuiTypography-bodyMedium errorText css-1udm2y8-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-bodyMedium errorText css-1fef2lz-MuiTypography-root"
             >
               This field is required
             </span>
@@ -320,6 +324,7 @@ Object {
         >
           <div
             class="MuiAutocomplete-root css-miy64m-MuiAutocomplete-root"
+            data-testid="locationInput"
           >
             <div
               class="MuiBox-root css-1shiw0f"
@@ -406,11 +411,11 @@ Object {
               />
             </svg>
             <div
-              class="MuiFormControl-root MuiTextField-root css-1iuml3b-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiTextField-root css-m0ssi0-MuiFormControl-root-MuiTextField-root"
             >
               <label
-                class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
-                data-shrink="false"
+                class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
+                data-shrink="true"
                 for=":r2:"
                 id=":r2:-label"
               >
@@ -421,13 +426,13 @@ Object {
               >
                 <input
                   aria-invalid="false"
-                  aria-label="Choose date"
+                  aria-label="Choose date, selected date is Apr 1, 2022"
                   aria-readonly="true"
                   class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                   id=":r2:"
                   readonly=""
                   type="text"
-                  value=""
+                  value="Apr 01, 2022"
                 />
               </div>
             </div>
@@ -450,7 +455,7 @@ Object {
               />
             </svg>
             <div
-              class="MuiFormControl-root css-x64fv7-MuiFormControl-root"
+              class="MuiFormControl-root css-1gvm5em-MuiFormControl-root"
               style="width: 100%;"
             >
               <label
@@ -467,6 +472,7 @@ Object {
                 <div
                   aria-expanded="false"
                   aria-haspopup="listbox"
+                  aria-label="Purposes of Visit. "
                   aria-labelledby="purposes-of-visit purposes-of-visit"
                   class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                   id="purposes-of-visit"
@@ -481,6 +487,7 @@ Object {
                 </div>
                 <input
                   aria-hidden="true"
+                  aria-live="polite"
                   class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
                   tabindex="-1"
                   value=""
@@ -503,7 +510,8 @@ Object {
             class="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
           />
           <div
-            class="MuiAutocomplete-root css-16if460-MuiAutocomplete-root"
+            class="MuiAutocomplete-root css-pbqph1-MuiAutocomplete-root"
+            data-testid="insuranceInput"
           >
             <div
               class="MuiBox-root css-1shiw0f"
@@ -555,12 +563,12 @@ Object {
                     aria-invalid="false"
                     autocapitalize="none"
                     autocomplete="off"
-                    class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputTypeSearch MuiAutocomplete-input MuiAutocomplete-inputFocused css-1lfthva-MuiInputBase-input-MuiFilledInput-input"
+                    class="MuiFilledInput-input MuiInputBase-input MuiAutocomplete-input MuiAutocomplete-inputFocused css-10botns-MuiInputBase-input-MuiFilledInput-input"
                     id="insurance-carrier"
                     placeholder=""
                     role="combobox"
                     spellcheck="false"
-                    type="search"
+                    type="text"
                     value=""
                   />
                 </div>
@@ -568,7 +576,7 @@ Object {
             </div>
           </div>
           <button
-            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-51mfdi-MuiButtonBase-root-MuiButton-root"
+            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-1jf053t-MuiButtonBase-root-MuiButton-root"
             data-testid="searchbtn"
             tabindex="0"
             type="submit"
@@ -593,7 +601,7 @@ Object {
           class="centeredField MuiBox-root css-0"
         >
           <span
-            class="MuiTypography-root MuiTypography-bodyMedium errorText css-1udm2y8-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-bodyMedium errorText css-1fef2lz-MuiTypography-root"
           >
             This field is required
           </span>
@@ -681,6 +689,7 @@ Object {
           >
             <div
               class="MuiAutocomplete-root css-miy64m-MuiAutocomplete-root"
+              data-testid="locationInput"
             >
               <div
                 class="MuiBox-root css-1shiw0f"
@@ -767,11 +776,11 @@ Object {
                 />
               </svg>
               <div
-                class="MuiFormControl-root MuiTextField-root css-1iuml3b-MuiFormControl-root-MuiTextField-root"
+                class="MuiFormControl-root MuiTextField-root css-m0ssi0-MuiFormControl-root-MuiTextField-root"
               >
                 <label
-                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
-                  data-shrink="false"
+                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="true"
                   for=":r8:"
                   id=":r8:-label"
                 >
@@ -782,13 +791,13 @@ Object {
                 >
                   <input
                     aria-invalid="false"
-                    aria-label="Choose date"
+                    aria-label="Choose date, selected date is Apr 1, 2022"
                     aria-readonly="true"
                     class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                     id=":r8:"
                     readonly=""
                     type="text"
-                    value=""
+                    value="Apr 01, 2022"
                   />
                 </div>
               </div>
@@ -811,7 +820,7 @@ Object {
                 />
               </svg>
               <div
-                class="MuiFormControl-root css-x64fv7-MuiFormControl-root"
+                class="MuiFormControl-root css-1gvm5em-MuiFormControl-root"
                 style="width: 100%;"
               >
                 <label
@@ -828,6 +837,7 @@ Object {
                   <div
                     aria-expanded="false"
                     aria-haspopup="listbox"
+                    aria-label="Purposes of Visit. "
                     aria-labelledby="purposes-of-visit purposes-of-visit"
                     class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                     id="purposes-of-visit"
@@ -842,6 +852,7 @@ Object {
                   </div>
                   <input
                     aria-hidden="true"
+                    aria-live="polite"
                     class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
                     tabindex="-1"
                     value=""
@@ -864,7 +875,8 @@ Object {
               class="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
             />
             <div
-              class="MuiAutocomplete-root css-16if460-MuiAutocomplete-root"
+              class="MuiAutocomplete-root css-pbqph1-MuiAutocomplete-root"
+              data-testid="insuranceInput"
             >
               <div
                 class="MuiBox-root css-1shiw0f"
@@ -916,12 +928,12 @@ Object {
                       aria-invalid="false"
                       autocapitalize="none"
                       autocomplete="off"
-                      class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputTypeSearch MuiAutocomplete-input MuiAutocomplete-inputFocused css-1lfthva-MuiInputBase-input-MuiFilledInput-input"
+                      class="MuiFilledInput-input MuiInputBase-input MuiAutocomplete-input MuiAutocomplete-inputFocused css-10botns-MuiInputBase-input-MuiFilledInput-input"
                       id="insurance-carrier"
                       placeholder=""
                       role="combobox"
                       spellcheck="false"
-                      type="search"
+                      type="text"
                       value=""
                     />
                   </div>
@@ -929,7 +941,7 @@ Object {
               </div>
             </div>
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-51mfdi-MuiButtonBase-root-MuiButton-root"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-1jf053t-MuiButtonBase-root-MuiButton-root"
               data-testid="searchbtn"
               tabindex="0"
               type="submit"
@@ -954,7 +966,7 @@ Object {
             class="centeredField MuiBox-root css-0"
           >
             <span
-              class="MuiTypography-root MuiTypography-bodyMedium errorText css-1udm2y8-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-bodyMedium errorText css-1fef2lz-MuiTypography-root"
             >
               This field is required
             </span>
@@ -984,6 +996,7 @@ Object {
           >
             <div
               class="MuiAutocomplete-root css-miy64m-MuiAutocomplete-root"
+              data-testid="locationInput"
             >
               <div
                 class="MuiBox-root css-1shiw0f"
@@ -1070,11 +1083,11 @@ Object {
                 />
               </svg>
               <div
-                class="MuiFormControl-root MuiTextField-root css-1iuml3b-MuiFormControl-root-MuiTextField-root"
+                class="MuiFormControl-root MuiTextField-root css-m0ssi0-MuiFormControl-root-MuiTextField-root"
               >
                 <label
-                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
-                  data-shrink="false"
+                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="true"
                   for=":re:"
                   id=":re:-label"
                 >
@@ -1085,13 +1098,13 @@ Object {
                 >
                   <input
                     aria-invalid="false"
-                    aria-label="Choose date"
+                    aria-label="Choose date, selected date is Apr 1, 2022"
                     aria-readonly="true"
                     class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                     id=":re:"
                     readonly=""
                     type="text"
-                    value=""
+                    value="Apr 01, 2022"
                   />
                 </div>
               </div>
@@ -1114,7 +1127,7 @@ Object {
                 />
               </svg>
               <div
-                class="MuiFormControl-root css-x64fv7-MuiFormControl-root"
+                class="MuiFormControl-root css-1gvm5em-MuiFormControl-root"
                 style="width: 100%;"
               >
                 <label
@@ -1131,6 +1144,7 @@ Object {
                   <div
                     aria-expanded="false"
                     aria-haspopup="listbox"
+                    aria-label="Purposes of Visit. "
                     aria-labelledby="purposes-of-visit purposes-of-visit"
                     class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                     id="purposes-of-visit"
@@ -1145,6 +1159,7 @@ Object {
                   </div>
                   <input
                     aria-hidden="true"
+                    aria-live="polite"
                     class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
                     tabindex="-1"
                     value=""
@@ -1167,7 +1182,8 @@ Object {
               class="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
             />
             <div
-              class="MuiAutocomplete-root css-16if460-MuiAutocomplete-root"
+              class="MuiAutocomplete-root css-pbqph1-MuiAutocomplete-root"
+              data-testid="insuranceInput"
             >
               <div
                 class="MuiBox-root css-1shiw0f"
@@ -1219,12 +1235,12 @@ Object {
                       aria-invalid="false"
                       autocapitalize="none"
                       autocomplete="off"
-                      class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputTypeSearch MuiAutocomplete-input MuiAutocomplete-inputFocused css-1lfthva-MuiInputBase-input-MuiFilledInput-input"
+                      class="MuiFilledInput-input MuiInputBase-input MuiAutocomplete-input MuiAutocomplete-inputFocused css-10botns-MuiInputBase-input-MuiFilledInput-input"
                       id="insurance-carrier"
                       placeholder=""
                       role="combobox"
                       spellcheck="false"
-                      type="search"
+                      type="text"
                       value=""
                     />
                   </div>
@@ -1232,7 +1248,7 @@ Object {
               </div>
             </div>
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-51mfdi-MuiButtonBase-root-MuiButton-root"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-1jf053t-MuiButtonBase-root-MuiButton-root"
               data-testid="searchbtn"
               tabindex="0"
               type="submit"
@@ -1257,7 +1273,7 @@ Object {
             class="centeredField MuiBox-root css-0"
           >
             <span
-              class="MuiTypography-root MuiTypography-bodyMedium errorText css-1udm2y8-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-bodyMedium errorText css-1fef2lz-MuiTypography-root"
             >
               This field is required
             </span>
@@ -1288,6 +1304,7 @@ Object {
         >
           <div
             class="MuiAutocomplete-root css-miy64m-MuiAutocomplete-root"
+            data-testid="locationInput"
           >
             <div
               class="MuiBox-root css-1shiw0f"
@@ -1374,11 +1391,11 @@ Object {
               />
             </svg>
             <div
-              class="MuiFormControl-root MuiTextField-root css-1iuml3b-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiTextField-root css-m0ssi0-MuiFormControl-root-MuiTextField-root"
             >
               <label
-                class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
-                data-shrink="false"
+                class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
+                data-shrink="true"
                 for=":re:"
                 id=":re:-label"
               >
@@ -1389,13 +1406,13 @@ Object {
               >
                 <input
                   aria-invalid="false"
-                  aria-label="Choose date"
+                  aria-label="Choose date, selected date is Apr 1, 2022"
                   aria-readonly="true"
                   class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                   id=":re:"
                   readonly=""
                   type="text"
-                  value=""
+                  value="Apr 01, 2022"
                 />
               </div>
             </div>
@@ -1418,7 +1435,7 @@ Object {
               />
             </svg>
             <div
-              class="MuiFormControl-root css-x64fv7-MuiFormControl-root"
+              class="MuiFormControl-root css-1gvm5em-MuiFormControl-root"
               style="width: 100%;"
             >
               <label
@@ -1435,6 +1452,7 @@ Object {
                 <div
                   aria-expanded="false"
                   aria-haspopup="listbox"
+                  aria-label="Purposes of Visit. "
                   aria-labelledby="purposes-of-visit purposes-of-visit"
                   class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                   id="purposes-of-visit"
@@ -1449,6 +1467,7 @@ Object {
                 </div>
                 <input
                   aria-hidden="true"
+                  aria-live="polite"
                   class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
                   tabindex="-1"
                   value=""
@@ -1471,7 +1490,8 @@ Object {
             class="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
           />
           <div
-            class="MuiAutocomplete-root css-16if460-MuiAutocomplete-root"
+            class="MuiAutocomplete-root css-pbqph1-MuiAutocomplete-root"
+            data-testid="insuranceInput"
           >
             <div
               class="MuiBox-root css-1shiw0f"
@@ -1523,12 +1543,12 @@ Object {
                     aria-invalid="false"
                     autocapitalize="none"
                     autocomplete="off"
-                    class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputTypeSearch MuiAutocomplete-input MuiAutocomplete-inputFocused css-1lfthva-MuiInputBase-input-MuiFilledInput-input"
+                    class="MuiFilledInput-input MuiInputBase-input MuiAutocomplete-input MuiAutocomplete-inputFocused css-10botns-MuiInputBase-input-MuiFilledInput-input"
                     id="insurance-carrier"
                     placeholder=""
                     role="combobox"
                     spellcheck="false"
-                    type="search"
+                    type="text"
                     value=""
                   />
                 </div>
@@ -1536,7 +1556,7 @@ Object {
             </div>
           </div>
           <button
-            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-51mfdi-MuiButtonBase-root-MuiButton-root"
+            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-1jf053t-MuiButtonBase-root-MuiButton-root"
             data-testid="searchbtn"
             tabindex="0"
             type="submit"
@@ -1561,7 +1581,7 @@ Object {
           class="centeredField MuiBox-root css-0"
         >
           <span
-            class="MuiTypography-root MuiTypography-bodyMedium errorText css-1udm2y8-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-bodyMedium errorText css-1fef2lz-MuiTypography-root"
           >
             This field is required
           </span>

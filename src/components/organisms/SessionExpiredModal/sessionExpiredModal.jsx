@@ -33,7 +33,13 @@ function SessionExpiredModal({
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <DialogTitle id="alert-dialog-title" style={styles.containerPadding}>
+      <DialogTitle
+        id="alert-dialog-title"
+        style={styles.containerPadding}
+        aria-label={
+          !isExpired ? "Session Timeout heading" : "Session Expired heading"
+        }
+      >
         {!isExpired ? "Session Timeout" : "Session Expired"}
       </DialogTitle>
       <DialogContent
@@ -45,7 +51,14 @@ function SessionExpiredModal({
           },
         }}
       >
-        <FormMessage success={false} sx={styles.postMessage}>
+        <FormMessage
+          success={false}
+          id="alert-dialog-description"
+          sx={styles.postMessage}
+          accessibility={{
+            "aria-live": "off",
+          }}
+        >
           {!isExpired
             ? `Your session is about to time-out. You will be logged out in ${remaining} seconds.`
             : "Your session expired. Please login again."}
@@ -62,6 +75,7 @@ function SessionExpiredModal({
               style={styles.buttonStyle}
               data-testid="session-logoff-btn"
               onClick={onLoggedOffClicked}
+              aria-label={"Log off button"}
             >
               Log Off
             </StyledButton>
@@ -73,6 +87,7 @@ function SessionExpiredModal({
               style={styles.buttonStyle}
               data-testid="session-stay-btn"
               onClick={onStayLoggedIn}
+              aria-label={"Stay Logged in button"}
             >
               Stay Logged in
             </StyledButton>
@@ -87,6 +102,7 @@ function SessionExpiredModal({
               data-testid="session-ok-btn"
               style={styles.buttonStyle}
               onClick={onLoggedOffClicked}
+              aria-label={"Ok button"}
             >
               OK
             </StyledButton>

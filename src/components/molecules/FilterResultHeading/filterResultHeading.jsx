@@ -49,7 +49,9 @@ export const FilterResultHeading = ({
             size={constants.SMALL}
             gradient={false}
             data-testid={APPOINTMENT_TEST_ID.filterbtn}
-            onClick={() => {}}
+            onClick={() => {
+              //TO DO: add functionality for onclick
+            }}
           >
             <TuneIcon className={styles.tuneIcon} />
             Filter

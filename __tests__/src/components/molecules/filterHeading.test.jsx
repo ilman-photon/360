@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { fireEvent, render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import FilterHeading from "../../../../src/components/molecules/FilterHeading/filterHeading";
 
@@ -7,6 +7,8 @@ window.scrollTo = jest.fn()
 describe("FilterHeading Components", () => {
   let container;
   beforeEach(() => {
+    jest.useFakeTimers("modern");
+    jest.setSystemTime(new Date(2022, 3, 1));
     container = render(<FilterHeading />);
   });
 
@@ -18,5 +20,4 @@ describe("FilterHeading Components", () => {
     container = render(<FilterHeading isDesktop={true}/>);
     expect(container).toMatchSnapshot();
   });
-
 });

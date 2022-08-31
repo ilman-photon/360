@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "@mui/material";
+import { Link, Typography } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { StyledInput } from "../../atoms/Input/input";
@@ -15,6 +15,7 @@ import { Regex } from "../../../utils/regex";
 import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
 import Head from "next/head";
+import { colors } from "../../../styles/theme";
 
 const ForgotPassword = ({
   onBackToLoginClicked,
@@ -114,17 +115,21 @@ const ForgotPassword = ({
               {t("resetPasswordText")}
             </StyledButton>
           </form>
-          <Link
+          <Typography
+            variant="bodyMedium"
             style={{ ...styles.margin, ...styles.link }}
-            color={"#2095a9"}
-            data-testid={FORGOT_TEST_ID.loginLink}
-            onClick={function () {
-              onBackToLoginClicked(router);
-            }}
-            {...getLinkAria(t("backButtonLink"))}
           >
-            {t("backButtonLink")}
-          </Link>
+            <Link
+              color={colors.link}
+              data-testid={FORGOT_TEST_ID.loginLink}
+              onClick={function () {
+                onBackToLoginClicked(router);
+              }}
+              {...getLinkAria(t("backButtonLink"))}
+            >
+              {t("backButtonLink")}
+            </Link>
+          </Typography>
         </CardContent>
       </Card>
     </>

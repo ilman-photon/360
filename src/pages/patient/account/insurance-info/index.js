@@ -1,7 +1,7 @@
 import AccountLayout from "../../../../components/templates/accountLayout";
 import InsuranceInformationNew from "../../../../components/organisms/InsuranceInformation/insuranceInformationNew";
 import InsuranceView from "../../../../components/organisms/InsuranceInformation/insuranceView";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import {
   addUserInsuranceData,
@@ -34,11 +34,14 @@ import styles from "./styles.module.scss";
 import InsuranceForm from "../../../../components/organisms/InsuranceInformation/insuranceForm";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AccountCircleOutlined from "@mui/icons-material/AccountCircleOutlined";
+import constants from "../../../../utils/constants";
 
 export default function InsuranceInfoPage() {
   const [openNewInsuranceForm, setOpenNewInsuranceForm] = useState(false);
+  const [focusToNewInsurance, setFocusToNewInsurance] = useState(false);
   const [confirmationDeleteDialog, setConfirmationDeleteDialog] =
     useState(false);
+  const { INSURANCE_TEST_ID } = constants.TEST_ID;
   const [formDeleteInsurance, setFormDeleteInsurance] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [editForm, setEditForm] = useState(null);
@@ -52,6 +55,8 @@ export default function InsuranceInfoPage() {
   const dispatch = useDispatch();
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
+
+  const newInsuraceComp = useRef(null);
 
   const OnCreateInsurance = (payload) => {
     dispatch(addUserInsuranceData(payload));
@@ -95,6 +100,7 @@ export default function InsuranceInfoPage() {
   const OnAddNewInsurance = () => {
     if (userInsuranceData.length < 5) {
       setOpenNewInsuranceForm(true);
+      setFocusToNewInsurance(true);
     } else {
       dispatch(
         setPageMessage({
@@ -106,6 +112,15 @@ export default function InsuranceInfoPage() {
       );
     }
   };
+  useEffect(() => {
+    if (newInsuraceComp.current && focusToNewInsurance) {
+      newInsuraceComp.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+        inline: "center",
+      });
+    }
+  }, [openNewInsuranceForm, focusToNewInsurance]);
 
   useEffect(() => {
     dispatch(fetchInsurance());
@@ -119,6 +134,7 @@ export default function InsuranceInfoPage() {
         }}
         role="button"
         success={pageMessage.error ? false : true}
+        fontTitle={16}
         sx={{
           borderRadius: "0px",
           justifyContent: "center",
@@ -128,7 +144,6 @@ export default function InsuranceInfoPage() {
           width: "100%",
           transition: "0.3 s ease-in-out",
           cursor: "pointer",
-          fontSize: "14px",
         }}
       >
         {pageMessage.content}
@@ -147,6 +162,7 @@ export default function InsuranceInfoPage() {
                   size="small"
                   className={styles.addButton}
                   disabled={openNewInsuranceForm}
+                  data-testid={INSURANCE_TEST_ID.addButton}
                   onClick={OnAddNewInsurance}
                 >
                   <Stack
@@ -167,6 +183,7 @@ export default function InsuranceInfoPage() {
             <Collapse in={isEditing}>
               <Box>
                 <InsuranceForm
+                  testIds={INSURANCE_TEST_ID}
                   formData={editForm}
                   OnSaveClicked={OnEditInsurance}
                   OnCancelClicked={() => {
@@ -182,6 +199,7 @@ export default function InsuranceInfoPage() {
                     className={styles.addButton}
                     disabled={openNewInsuranceForm}
                     onClick={OnAddNewInsurance}
+                    data-testid={INSURANCE_TEST_ID.addButton}
                   >
                     <Stack
                       direction="row"
@@ -218,6 +236,7 @@ export default function InsuranceInfoPage() {
                       expandIcon={<ExpandMoreIcon />}
                       aria-controls="panel1a-content"
                       sx={{ background: "#FAFAFA" }}
+                      ref={newInsuraceComp}
                     >
                       <Stack spacing={1} direction="row" alignItems="center">
                         <Typography variant="h4">New Insurance</Typography>
@@ -225,9 +244,11 @@ export default function InsuranceInfoPage() {
                     </AccordionSummary>
                     <AccordionDetails>
                       <InsuranceForm
+                        testIds={INSURANCE_TEST_ID}
                         OnSaveClicked={OnCreateInsurance}
                         OnCancelClicked={() => {
                           setOpenNewInsuranceForm(false);
+                          setFocusToNewInsurance(false);
                         }}
                       />
                     </AccordionDetails>

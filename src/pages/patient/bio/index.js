@@ -20,13 +20,7 @@ export default function Bio() {
 Bio.getLayout = function getLayout(page) {
   return (
     <Provider store={store}>
-      <AppointmentLayout
-        currentActivePage={"bio"}
-        onBackClicked={() => {
-          // This is intentional
-        }}
-        backTitle="Back to search"
-      >
+      <AppointmentLayout currentActivePage={"bio"} backTitle="Back to search">
         {page}
       </AppointmentLayout>
     </Provider>
