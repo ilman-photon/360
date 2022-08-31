@@ -91,6 +91,7 @@ export default function SelectOptionButton({
           "aria-live": "polite",
         }}
         {...props.menuProps}
+        renderValue={props.renderValue}
       >
         {options.map((option, idx) => {
           if (renderMenuListUI) {
