@@ -9,12 +9,20 @@ variables:
 image: node:16.10.0
 
 stages:
+  - lint
   - install
   - test
   # - build
   - sonar
   - imagebuild
   - deploy
+
+lint:
+  stage: lint
+  tags:
+    - Frontend-runner
+  script:
+    - npm run lint
 
 install:
   stage: install
