@@ -31,8 +31,8 @@ Object {
                   />
                 </span>
                 <img
-                  alt="Eyecare Provider name with logo"
-                  aria-label="Eyecare Provider name with logo"
+                  alt="Clarkson Eyecare logo"
+                  aria-label="Clarkson Eyecare logo"
                   data-nimg="intrinsic"
                   decoding="async"
                   src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
@@ -147,7 +147,7 @@ Object {
                   class="MuiBox-root css-8u5xrh"
                 >
                   <div
-                    class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1wf0srh-MuiPaper-root-MuiCard-root"
+                    class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
                   >
                     <div
                       class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
@@ -1188,8 +1188,8 @@ Object {
                 />
               </span>
               <img
-                alt="Eyecare Provider name with logo"
-                aria-label="Eyecare Provider name with logo"
+                alt="Clarkson Eyecare logo"
+                aria-label="Clarkson Eyecare logo"
                 data-nimg="intrinsic"
                 decoding="async"
                 src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
@@ -1304,7 +1304,7 @@ Object {
                 class="MuiBox-root css-8u5xrh"
               >
                 <div
-                  class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1wf0srh-MuiPaper-root-MuiCard-root"
+                  class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
                 >
                   <div
                     class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"

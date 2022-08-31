@@ -83,6 +83,7 @@
     "additionalTextOneTime": "Mode of Communication",
     "descriptionOneTime": "Click on the one-time link sent to your email or phone number to access your account",
     "primaryButtonOneTime": "Send one-time link",
+    "primaryButtonResetPassword": "Send link",
     "securityButtonTextOneTime": "Answer security questions",
     "noSecurityButtonTextOneTime": "Receive link to reset password",
     "answerSecurityQuestionsLabel": "Answer security questions",
@@ -129,5 +130,24 @@
     "mfaLockDescription": "Please try setting up multi factor authentication after 30 minutes.",
     "resendCodeLockDescription": "Code sent multiple times. Please try again after 30 minutes."
 
+  },
+  "scheduleAppoinment": {
+    "formTitle": "Who is this exam for?",
+    "guestForm": "Provide patient’s basic information",
+    "myself": "Myself",
+    "someoneElse": "Someone else",
+    "continue": "Continue",
+    "location": "Location",
+    "appointmentDetails": "Appointment details",
+    "selfTitle": "Tell us more about yourself",
+    "someoneElseTitle": "Provide patient’s basic information",
+    "sigInInfo": "Already have an account?",
+    "signIn": "Sign In",
+    "optional": "Optional",
+    "passwordInfo": "Create a password to have access to your dashboard, manage, and track your appointment details.",
+    "passwordLabel": "Password",
+    "scheduleAppoinment": "Schedule Appointment",
+    "thisFieldRequired" : "This field is required",
+    "preferredCommunication": "Preferred mode of Communication"
   }
 }
