@@ -121,6 +121,7 @@ export default function Appointment() {
           }}
         >
           <Box sx={{ gridArea: "scheduleSection", maxWidth: "1128px" }}>
+            {/* Handle the empty result after integrate services */}
             {dataFilter.location !== "Jakarta" ? (
               <FilterResult
                 onClickViewAllAvailability={onViewAllAvailability}
@@ -158,7 +159,7 @@ export default function Appointment() {
             zIndex: "9",
           }}
         >
-          <FilterResultHeading isDesktop={isDesktop} />
+          <FilterResultHeading isDesktop={isDesktop} filterData={dataFilter} />
           <Stack
             direction={"row"}
             alignItems={"center"}
@@ -215,6 +216,7 @@ export default function Appointment() {
             activeTabs={activeTabs}
             setActiveTabs={setActiveTabs}
             onClickViewAllAvailability={onViewAllAvailability}
+            filterData={dataFilter}
           />
         </Box>
       </Box>

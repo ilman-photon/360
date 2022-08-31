@@ -181,7 +181,7 @@ const FilterHeading = ({
     return (
       <MenuItem
         key={idx}
-        value={option.subtitle}
+        value={option.title}
         sx={{
           fontSize: "16px",
         }}
