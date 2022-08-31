@@ -197,7 +197,7 @@ defineFeature(feature, (test) => {
             });
 
             and('user should see default selection on Email', async ()=> {
-                const email = container.getByTestId("email-radio-button");
+                const email = container.getByTestId(constants.TEST_ID.MFA_TEST_ID.radioEmail);
                 expect(email).toBeVisible();
             });
 

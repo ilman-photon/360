@@ -40,6 +40,7 @@ Object {
           class="contentContainer MuiBox-root css-0"
         >
           <h1
+            aria-live="polite"
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
           >
             setMFATitle
@@ -60,10 +61,15 @@ Object {
             >
               <span
                 class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                data-testid="loc_chkRemember"
               >
                 <input
+                  aria-checked="false"
+                  aria-label="rememberMeLabel"
+                  aria-live="polite"
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   data-indeterminate="false"
+                  role="checkbox"
                   type="checkbox"
                 />
                 <svg
@@ -82,6 +88,7 @@ Object {
                 />
               </span>
               <p
+                aria-hidden="true"
                 class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
               >
                 rememberMeLabel
@@ -97,8 +104,8 @@ Object {
             class="css-1p5q5e5-MuiStack-root"
           >
             <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-              data-testid="primary-button"
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnConfirm"
               tabindex="0"
               type="button"
             >
@@ -108,8 +115,8 @@ Object {
               />
             </button>
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-              data-testid="secondary-button"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnBack"
               tabindex="0"
               type="button"
             >
@@ -119,7 +126,10 @@ Object {
               />
             </button>
             <a
+              aria-label="undefined"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+              role="link"
+              tabindex="0"
             />
           </div>
         </div>
@@ -163,6 +173,7 @@ Object {
           class="contentContainer MuiBox-root css-0"
         >
           <h1
+            aria-live="polite"
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
           >
             setMFATitle
@@ -183,10 +194,15 @@ Object {
             >
               <span
                 class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                data-testid="loc_chkRemember"
               >
                 <input
+                  aria-checked="false"
+                  aria-label="rememberMeLabel"
+                  aria-live="polite"
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   data-indeterminate="false"
+                  role="checkbox"
                   type="checkbox"
                 />
                 <svg
@@ -205,6 +221,7 @@ Object {
                 />
               </span>
               <p
+                aria-hidden="true"
                 class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
               >
                 rememberMeLabel
@@ -220,8 +237,8 @@ Object {
             class="css-1p5q5e5-MuiStack-root"
           >
             <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-              data-testid="primary-button"
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnConfirm"
               tabindex="0"
               type="button"
             >
@@ -231,8 +248,8 @@ Object {
               />
             </button>
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-              data-testid="secondary-button"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnBack"
               tabindex="0"
               type="button"
             >
@@ -242,7 +259,10 @@ Object {
               />
             </button>
             <a
+              aria-label="undefined"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+              role="link"
+              tabindex="0"
             />
           </div>
         </div>
@@ -343,6 +363,7 @@ Object {
           class="contentContainer MuiBox-root css-0"
         >
           <h1
+            aria-live="polite"
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
           >
             setMFATitle
@@ -363,10 +384,15 @@ Object {
             >
               <span
                 class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                data-testid="loc_chkRemember"
               >
                 <input
+                  aria-checked="false"
+                  aria-label="rememberMeLabel"
+                  aria-live="polite"
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   data-indeterminate="false"
+                  role="checkbox"
                   type="checkbox"
                 />
                 <svg
@@ -385,6 +411,7 @@ Object {
                 />
               </span>
               <p
+                aria-hidden="true"
                 class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
               >
                 rememberMeLabel
@@ -400,8 +427,8 @@ Object {
             class="css-1p5q5e5-MuiStack-root"
           >
             <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-              data-testid="primary-button"
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnConfirm"
               tabindex="0"
               type="button"
             >
@@ -411,8 +438,8 @@ Object {
               />
             </button>
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-              data-testid="secondary-button"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnBack"
               tabindex="0"
               type="button"
             >
@@ -422,7 +449,10 @@ Object {
               />
             </button>
             <a
+              aria-label="undefined"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+              role="link"
+              tabindex="0"
             />
           </div>
         </div>
@@ -466,6 +496,7 @@ Object {
           class="contentContainer MuiBox-root css-0"
         >
           <h1
+            aria-live="polite"
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
           >
             setMFATitle
@@ -486,10 +517,15 @@ Object {
             >
               <span
                 class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                data-testid="loc_chkRemember"
               >
                 <input
+                  aria-checked="false"
+                  aria-label="rememberMeLabel"
+                  aria-live="polite"
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   data-indeterminate="false"
+                  role="checkbox"
                   type="checkbox"
                 />
                 <svg
@@ -508,6 +544,7 @@ Object {
                 />
               </span>
               <p
+                aria-hidden="true"
                 class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
               >
                 rememberMeLabel
@@ -523,8 +560,8 @@ Object {
             class="css-1p5q5e5-MuiStack-root"
           >
             <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-              data-testid="primary-button"
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnConfirm"
               tabindex="0"
               type="button"
             >
@@ -534,8 +571,8 @@ Object {
               />
             </button>
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-              data-testid="secondary-button"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnBack"
               tabindex="0"
               type="button"
             >
@@ -545,7 +582,10 @@ Object {
               />
             </button>
             <a
+              aria-label="undefined"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+              role="link"
+              tabindex="0"
             />
           </div>
         </div>
@@ -646,6 +686,7 @@ Object {
           class="contentContainer MuiBox-root css-0"
         >
           <h1
+            aria-live="polite"
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
           >
             setMFATitle
@@ -666,10 +707,15 @@ Object {
             >
               <span
                 class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                data-testid="loc_chkRemember"
               >
                 <input
+                  aria-checked="false"
+                  aria-label="rememberMeLabel"
+                  aria-live="polite"
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   data-indeterminate="false"
+                  role="checkbox"
                   type="checkbox"
                 />
                 <svg
@@ -688,6 +734,7 @@ Object {
                 />
               </span>
               <p
+                aria-hidden="true"
                 class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
               >
                 rememberMeLabel
@@ -703,8 +750,8 @@ Object {
             class="css-1p5q5e5-MuiStack-root"
           >
             <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-              data-testid="primary-button"
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnConfirm"
               tabindex="0"
               type="button"
             >
@@ -714,8 +761,8 @@ Object {
               />
             </button>
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-              data-testid="secondary-button"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnBack"
               tabindex="0"
               type="button"
             >
@@ -725,7 +772,10 @@ Object {
               />
             </button>
             <a
+              aria-label="undefined"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+              role="link"
+              tabindex="0"
             />
           </div>
         </div>
@@ -769,6 +819,7 @@ Object {
           class="contentContainer MuiBox-root css-0"
         >
           <h1
+            aria-live="polite"
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
           >
             setMFATitle
@@ -789,10 +840,15 @@ Object {
             >
               <span
                 class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                data-testid="loc_chkRemember"
               >
                 <input
+                  aria-checked="false"
+                  aria-label="rememberMeLabel"
+                  aria-live="polite"
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   data-indeterminate="false"
+                  role="checkbox"
                   type="checkbox"
                 />
                 <svg
@@ -811,6 +867,7 @@ Object {
                 />
               </span>
               <p
+                aria-hidden="true"
                 class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
               >
                 rememberMeLabel
@@ -826,8 +883,8 @@ Object {
             class="css-1p5q5e5-MuiStack-root"
           >
             <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-              data-testid="primary-button"
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnConfirm"
               tabindex="0"
               type="button"
             >
@@ -837,8 +894,8 @@ Object {
               />
             </button>
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-              data-testid="secondary-button"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnBack"
               tabindex="0"
               type="button"
             >
@@ -848,7 +905,10 @@ Object {
               />
             </button>
             <a
+              aria-label="undefined"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+              role="link"
+              tabindex="0"
             />
           </div>
         </div>
@@ -950,6 +1010,7 @@ Object {
             class="contentContainer MuiBox-root css-0"
           >
             <h1
+              aria-live="polite"
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
             >
               setMFATitle
@@ -970,10 +1031,15 @@ Object {
               >
                 <span
                   class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                  data-testid="loc_chkRemember"
                 >
                   <input
+                    aria-checked="false"
+                    aria-label="rememberMeLabel"
+                    aria-live="polite"
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     data-indeterminate="false"
+                    role="checkbox"
                     type="checkbox"
                   />
                   <svg
@@ -992,6 +1058,7 @@ Object {
                   />
                 </span>
                 <p
+                  aria-hidden="true"
                   class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
                 >
                   rememberMeLabel
@@ -1007,8 +1074,8 @@ Object {
               class="css-1p5q5e5-MuiStack-root"
             >
               <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-                data-testid="primary-button"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnConfirm"
                 tabindex="0"
                 type="button"
               >
@@ -1018,8 +1085,8 @@ Object {
                 />
               </button>
               <button
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-                data-testid="secondary-button"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnBack"
                 tabindex="0"
                 type="button"
               >
@@ -1029,7 +1096,10 @@ Object {
                 />
               </button>
               <a
+                aria-label="undefined"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                role="link"
+                tabindex="0"
               />
             </div>
           </div>
@@ -1073,6 +1143,7 @@ Object {
             class="contentContainer MuiBox-root css-0"
           >
             <h1
+              aria-live="polite"
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
             >
               setMFATitle
@@ -1093,10 +1164,15 @@ Object {
               >
                 <span
                   class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                  data-testid="loc_chkRemember"
                 >
                   <input
+                    aria-checked="false"
+                    aria-label="rememberMeLabel"
+                    aria-live="polite"
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     data-indeterminate="false"
+                    role="checkbox"
                     type="checkbox"
                   />
                   <svg
@@ -1115,6 +1191,7 @@ Object {
                   />
                 </span>
                 <p
+                  aria-hidden="true"
                   class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
                 >
                   rememberMeLabel
@@ -1130,8 +1207,8 @@ Object {
               class="css-1p5q5e5-MuiStack-root"
             >
               <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-                data-testid="primary-button"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnConfirm"
                 tabindex="0"
                 type="button"
               >
@@ -1141,8 +1218,8 @@ Object {
                 />
               </button>
               <button
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-                data-testid="secondary-button"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnBack"
                 tabindex="0"
                 type="button"
               >
@@ -1152,7 +1229,10 @@ Object {
                 />
               </button>
               <a
+                aria-label="undefined"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                role="link"
+                tabindex="0"
               />
             </div>
           </div>
@@ -1197,6 +1277,7 @@ Object {
           class="contentContainer MuiBox-root css-0"
         >
           <h1
+            aria-live="polite"
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
           >
             setMFATitle
@@ -1217,10 +1298,15 @@ Object {
             >
               <span
                 class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                data-testid="loc_chkRemember"
               >
                 <input
+                  aria-checked="false"
+                  aria-label="rememberMeLabel"
+                  aria-live="polite"
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   data-indeterminate="false"
+                  role="checkbox"
                   type="checkbox"
                 />
                 <svg
@@ -1239,6 +1325,7 @@ Object {
                 />
               </span>
               <p
+                aria-hidden="true"
                 class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
               >
                 rememberMeLabel
@@ -1254,8 +1341,8 @@ Object {
             class="css-1p5q5e5-MuiStack-root"
           >
             <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-              data-testid="primary-button"
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnConfirm"
               tabindex="0"
               type="button"
             >
@@ -1265,8 +1352,8 @@ Object {
               />
             </button>
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-              data-testid="secondary-button"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnBack"
               tabindex="0"
               type="button"
             >
@@ -1276,7 +1363,10 @@ Object {
               />
             </button>
             <a
+              aria-label="undefined"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+              role="link"
+              tabindex="0"
             />
           </div>
         </div>
@@ -1378,6 +1468,7 @@ Object {
             class="contentContainer MuiBox-root css-0"
           >
             <h1
+              aria-live="polite"
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
             >
               setMFATitle
@@ -1398,10 +1489,15 @@ Object {
               >
                 <span
                   class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                  data-testid="loc_chkRemember"
                 >
                   <input
+                    aria-checked="false"
+                    aria-label="rememberMeLabel"
+                    aria-live="polite"
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     data-indeterminate="false"
+                    role="checkbox"
                     type="checkbox"
                   />
                   <svg
@@ -1420,6 +1516,7 @@ Object {
                   />
                 </span>
                 <p
+                  aria-hidden="true"
                   class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
                 >
                   rememberMeLabel
@@ -1435,8 +1532,8 @@ Object {
               class="css-1p5q5e5-MuiStack-root"
             >
               <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-                data-testid="primary-button"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnConfirm"
                 tabindex="0"
                 type="button"
               >
@@ -1446,8 +1543,8 @@ Object {
                 />
               </button>
               <button
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-                data-testid="secondary-button"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnBack"
                 tabindex="0"
                 type="button"
               >
@@ -1457,7 +1554,10 @@ Object {
                 />
               </button>
               <a
+                aria-label="undefined"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                role="link"
+                tabindex="0"
               />
             </div>
           </div>
@@ -1501,6 +1601,7 @@ Object {
             class="contentContainer MuiBox-root css-0"
           >
             <h1
+              aria-live="polite"
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
             >
               setMFATitle
@@ -1521,10 +1622,15 @@ Object {
               >
                 <span
                   class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                  data-testid="loc_chkRemember"
                 >
                   <input
+                    aria-checked="false"
+                    aria-label="rememberMeLabel"
+                    aria-live="polite"
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     data-indeterminate="false"
+                    role="checkbox"
                     type="checkbox"
                   />
                   <svg
@@ -1543,6 +1649,7 @@ Object {
                   />
                 </span>
                 <p
+                  aria-hidden="true"
                   class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
                 >
                   rememberMeLabel
@@ -1558,8 +1665,8 @@ Object {
               class="css-1p5q5e5-MuiStack-root"
             >
               <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-                data-testid="primary-button"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnConfirm"
                 tabindex="0"
                 type="button"
               >
@@ -1569,8 +1676,8 @@ Object {
                 />
               </button>
               <button
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-                data-testid="secondary-button"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnBack"
                 tabindex="0"
                 type="button"
               >
@@ -1580,7 +1687,10 @@ Object {
                 />
               </button>
               <a
+                aria-label="undefined"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                role="link"
+                tabindex="0"
               />
             </div>
           </div>
@@ -1624,6 +1734,7 @@ Object {
             class="contentContainer MuiBox-root css-0"
           >
             <h1
+              aria-live="polite"
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
             >
               setMFATitle
@@ -1644,10 +1755,15 @@ Object {
               >
                 <span
                   class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                  data-testid="loc_chkRemember"
                 >
                   <input
+                    aria-checked="false"
+                    aria-label="rememberMeLabel"
+                    aria-live="polite"
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     data-indeterminate="false"
+                    role="checkbox"
                     type="checkbox"
                   />
                   <svg
@@ -1666,6 +1782,7 @@ Object {
                   />
                 </span>
                 <p
+                  aria-hidden="true"
                   class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
                 >
                   rememberMeLabel
@@ -1681,8 +1798,8 @@ Object {
               class="css-1p5q5e5-MuiStack-root"
             >
               <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-                data-testid="primary-button"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnConfirm"
                 tabindex="0"
                 type="button"
               >
@@ -1692,8 +1809,8 @@ Object {
                 />
               </button>
               <button
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-                data-testid="secondary-button"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnBack"
                 tabindex="0"
                 type="button"
               >
@@ -1703,7 +1820,10 @@ Object {
                 />
               </button>
               <a
+                aria-label="undefined"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                role="link"
+                tabindex="0"
               />
             </div>
           </div>
@@ -1748,6 +1868,7 @@ Object {
           class="contentContainer MuiBox-root css-0"
         >
           <h1
+            aria-live="polite"
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
           >
             setMFATitle
@@ -1768,10 +1889,15 @@ Object {
             >
               <span
                 class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                data-testid="loc_chkRemember"
               >
                 <input
+                  aria-checked="false"
+                  aria-label="rememberMeLabel"
+                  aria-live="polite"
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   data-indeterminate="false"
+                  role="checkbox"
                   type="checkbox"
                 />
                 <svg
@@ -1790,6 +1916,7 @@ Object {
                 />
               </span>
               <p
+                aria-hidden="true"
                 class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
               >
                 rememberMeLabel
@@ -1805,8 +1932,8 @@ Object {
             class="css-1p5q5e5-MuiStack-root"
           >
             <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-              data-testid="primary-button"
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnConfirm"
               tabindex="0"
               type="button"
             >
@@ -1816,8 +1943,8 @@ Object {
               />
             </button>
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-              data-testid="secondary-button"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnBack"
               tabindex="0"
               type="button"
             >
@@ -1827,7 +1954,10 @@ Object {
               />
             </button>
             <a
+              aria-label="undefined"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+              role="link"
+              tabindex="0"
             />
           </div>
         </div>
@@ -1929,6 +2059,7 @@ Object {
             class="contentContainer MuiBox-root css-0"
           >
             <h1
+              aria-live="polite"
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
             >
               setMFATitle
@@ -1949,10 +2080,15 @@ Object {
               >
                 <span
                   class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                  data-testid="loc_chkRemember"
                 >
                   <input
+                    aria-checked="false"
+                    aria-label="rememberMeLabel"
+                    aria-live="polite"
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     data-indeterminate="false"
+                    role="checkbox"
                     type="checkbox"
                   />
                   <svg
@@ -1971,6 +2107,7 @@ Object {
                   />
                 </span>
                 <p
+                  aria-hidden="true"
                   class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
                 >
                   rememberMeLabel
@@ -1986,8 +2123,8 @@ Object {
               class="css-1p5q5e5-MuiStack-root"
             >
               <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-                data-testid="primary-button"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnConfirm"
                 tabindex="0"
                 type="button"
               >
@@ -1997,8 +2134,8 @@ Object {
                 />
               </button>
               <button
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-                data-testid="secondary-button"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnBack"
                 tabindex="0"
                 type="button"
               >
@@ -2008,7 +2145,10 @@ Object {
                 />
               </button>
               <a
+                aria-label="undefined"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                role="link"
+                tabindex="0"
               />
             </div>
           </div>
@@ -2052,6 +2192,7 @@ Object {
             class="contentContainer MuiBox-root css-0"
           >
             <h1
+              aria-live="polite"
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
             >
               setMFATitle
@@ -2072,10 +2213,15 @@ Object {
               >
                 <span
                   class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                  data-testid="loc_chkRemember"
                 >
                   <input
+                    aria-checked="false"
+                    aria-label="rememberMeLabel"
+                    aria-live="polite"
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     data-indeterminate="false"
+                    role="checkbox"
                     type="checkbox"
                   />
                   <svg
@@ -2094,6 +2240,7 @@ Object {
                   />
                 </span>
                 <p
+                  aria-hidden="true"
                   class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
                 >
                   rememberMeLabel
@@ -2109,8 +2256,8 @@ Object {
               class="css-1p5q5e5-MuiStack-root"
             >
               <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-                data-testid="primary-button"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnConfirm"
                 tabindex="0"
                 type="button"
               >
@@ -2120,8 +2267,8 @@ Object {
                 />
               </button>
               <button
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-                data-testid="secondary-button"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnBack"
                 tabindex="0"
                 type="button"
               >
@@ -2131,7 +2278,10 @@ Object {
                 />
               </button>
               <a
+                aria-label="undefined"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                role="link"
+                tabindex="0"
               />
             </div>
           </div>
@@ -2175,6 +2325,7 @@ Object {
             class="contentContainer MuiBox-root css-0"
           >
             <h1
+              aria-live="polite"
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
             >
               setMFATitle
@@ -2195,10 +2346,15 @@ Object {
               >
                 <span
                   class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                  data-testid="loc_chkRemember"
                 >
                   <input
+                    aria-checked="false"
+                    aria-label="rememberMeLabel"
+                    aria-live="polite"
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     data-indeterminate="false"
+                    role="checkbox"
                     type="checkbox"
                   />
                   <svg
@@ -2217,6 +2373,7 @@ Object {
                   />
                 </span>
                 <p
+                  aria-hidden="true"
                   class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
                 >
                   rememberMeLabel
@@ -2232,8 +2389,8 @@ Object {
               class="css-1p5q5e5-MuiStack-root"
             >
               <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-                data-testid="primary-button"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnConfirm"
                 tabindex="0"
                 type="button"
               >
@@ -2243,8 +2400,8 @@ Object {
                 />
               </button>
               <button
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-                data-testid="secondary-button"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnBack"
                 tabindex="0"
                 type="button"
               >
@@ -2254,7 +2411,10 @@ Object {
                 />
               </button>
               <a
+                aria-label="undefined"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                role="link"
+                tabindex="0"
               />
             </div>
           </div>
@@ -2298,6 +2458,7 @@ Object {
             class="contentContainer MuiBox-root css-0"
           >
             <h1
+              aria-live="polite"
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
             >
               setMFATitle
@@ -2318,10 +2479,15 @@ Object {
               >
                 <span
                   class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                  data-testid="loc_chkRemember"
                 >
                   <input
+                    aria-checked="false"
+                    aria-label="rememberMeLabel"
+                    aria-live="polite"
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     data-indeterminate="false"
+                    role="checkbox"
                     type="checkbox"
                   />
                   <svg
@@ -2340,6 +2506,7 @@ Object {
                   />
                 </span>
                 <p
+                  aria-hidden="true"
                   class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
                 >
                   rememberMeLabel
@@ -2355,8 +2522,8 @@ Object {
               class="css-1p5q5e5-MuiStack-root"
             >
               <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-                data-testid="primary-button"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnConfirm"
                 tabindex="0"
                 type="button"
               >
@@ -2366,8 +2533,8 @@ Object {
                 />
               </button>
               <button
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-                data-testid="secondary-button"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnBack"
                 tabindex="0"
                 type="button"
               >
@@ -2377,7 +2544,10 @@ Object {
                 />
               </button>
               <a
+                aria-label="undefined"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                role="link"
+                tabindex="0"
               />
             </div>
           </div>
@@ -2422,6 +2592,7 @@ Object {
           class="contentContainer MuiBox-root css-0"
         >
           <h1
+            aria-live="polite"
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
           >
             setMFATitle
@@ -2442,10 +2613,15 @@ Object {
             >
               <span
                 class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                data-testid="loc_chkRemember"
               >
                 <input
+                  aria-checked="false"
+                  aria-label="rememberMeLabel"
+                  aria-live="polite"
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   data-indeterminate="false"
+                  role="checkbox"
                   type="checkbox"
                 />
                 <svg
@@ -2464,6 +2640,7 @@ Object {
                 />
               </span>
               <p
+                aria-hidden="true"
                 class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
               >
                 rememberMeLabel
@@ -2479,8 +2656,8 @@ Object {
             class="css-1p5q5e5-MuiStack-root"
           >
             <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-              data-testid="primary-button"
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnConfirm"
               tabindex="0"
               type="button"
             >
@@ -2490,8 +2667,8 @@ Object {
               />
             </button>
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-              data-testid="secondary-button"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnBack"
               tabindex="0"
               type="button"
             >
@@ -2501,7 +2678,10 @@ Object {
               />
             </button>
             <a
+              aria-label="undefined"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+              role="link"
+              tabindex="0"
             />
           </div>
         </div>
@@ -2603,6 +2783,7 @@ Object {
             class="contentContainer MuiBox-root css-0"
           >
             <h1
+              aria-live="polite"
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
             >
               setMFATitle
@@ -2623,10 +2804,15 @@ Object {
               >
                 <span
                   class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                  data-testid="loc_chkRemember"
                 >
                   <input
+                    aria-checked="false"
+                    aria-label="rememberMeLabel"
+                    aria-live="polite"
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     data-indeterminate="false"
+                    role="checkbox"
                     type="checkbox"
                   />
                   <svg
@@ -2645,6 +2831,7 @@ Object {
                   />
                 </span>
                 <p
+                  aria-hidden="true"
                   class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
                 >
                   rememberMeLabel
@@ -2660,8 +2847,8 @@ Object {
               class="css-1p5q5e5-MuiStack-root"
             >
               <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-                data-testid="primary-button"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnConfirm"
                 tabindex="0"
                 type="button"
               >
@@ -2671,8 +2858,8 @@ Object {
                 />
               </button>
               <button
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-                data-testid="secondary-button"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnBack"
                 tabindex="0"
                 type="button"
               >
@@ -2682,7 +2869,10 @@ Object {
                 />
               </button>
               <a
+                aria-label="undefined"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                role="link"
+                tabindex="0"
               />
             </div>
           </div>
@@ -2726,6 +2916,7 @@ Object {
             class="contentContainer MuiBox-root css-0"
           >
             <h1
+              aria-live="polite"
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
             >
               setMFATitle
@@ -2746,10 +2937,15 @@ Object {
               >
                 <span
                   class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                  data-testid="loc_chkRemember"
                 >
                   <input
+                    aria-checked="false"
+                    aria-label="rememberMeLabel"
+                    aria-live="polite"
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     data-indeterminate="false"
+                    role="checkbox"
                     type="checkbox"
                   />
                   <svg
@@ -2768,6 +2964,7 @@ Object {
                   />
                 </span>
                 <p
+                  aria-hidden="true"
                   class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
                 >
                   rememberMeLabel
@@ -2783,8 +2980,8 @@ Object {
               class="css-1p5q5e5-MuiStack-root"
             >
               <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-                data-testid="primary-button"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnConfirm"
                 tabindex="0"
                 type="button"
               >
@@ -2794,8 +2991,8 @@ Object {
                 />
               </button>
               <button
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-                data-testid="secondary-button"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnBack"
                 tabindex="0"
                 type="button"
               >
@@ -2805,7 +3002,10 @@ Object {
                 />
               </button>
               <a
+                aria-label="undefined"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                role="link"
+                tabindex="0"
               />
             </div>
           </div>
@@ -2849,6 +3049,7 @@ Object {
             class="contentContainer MuiBox-root css-0"
           >
             <h1
+              aria-live="polite"
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
             >
               setMFATitle
@@ -2869,10 +3070,15 @@ Object {
               >
                 <span
                   class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                  data-testid="loc_chkRemember"
                 >
                   <input
+                    aria-checked="false"
+                    aria-label="rememberMeLabel"
+                    aria-live="polite"
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     data-indeterminate="false"
+                    role="checkbox"
                     type="checkbox"
                   />
                   <svg
@@ -2891,6 +3097,7 @@ Object {
                   />
                 </span>
                 <p
+                  aria-hidden="true"
                   class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
                 >
                   rememberMeLabel
@@ -2906,8 +3113,8 @@ Object {
               class="css-1p5q5e5-MuiStack-root"
             >
               <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-                data-testid="primary-button"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnConfirm"
                 tabindex="0"
                 type="button"
               >
@@ -2917,8 +3124,8 @@ Object {
                 />
               </button>
               <button
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-                data-testid="secondary-button"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnBack"
                 tabindex="0"
                 type="button"
               >
@@ -2928,7 +3135,10 @@ Object {
                 />
               </button>
               <a
+                aria-label="undefined"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                role="link"
+                tabindex="0"
               />
             </div>
           </div>
@@ -2972,6 +3182,7 @@ Object {
             class="contentContainer MuiBox-root css-0"
           >
             <h1
+              aria-live="polite"
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
             >
               setMFATitle
@@ -2992,10 +3203,15 @@ Object {
               >
                 <span
                   class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                  data-testid="loc_chkRemember"
                 >
                   <input
+                    aria-checked="false"
+                    aria-label="rememberMeLabel"
+                    aria-live="polite"
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     data-indeterminate="false"
+                    role="checkbox"
                     type="checkbox"
                   />
                   <svg
@@ -3014,6 +3230,7 @@ Object {
                   />
                 </span>
                 <p
+                  aria-hidden="true"
                   class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
                 >
                   rememberMeLabel
@@ -3029,8 +3246,8 @@ Object {
               class="css-1p5q5e5-MuiStack-root"
             >
               <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-                data-testid="primary-button"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnConfirm"
                 tabindex="0"
                 type="button"
               >
@@ -3040,8 +3257,8 @@ Object {
                 />
               </button>
               <button
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-                data-testid="secondary-button"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnBack"
                 tabindex="0"
                 type="button"
               >
@@ -3051,7 +3268,10 @@ Object {
                 />
               </button>
               <a
+                aria-label="undefined"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                role="link"
+                tabindex="0"
               />
             </div>
           </div>
@@ -3095,6 +3315,7 @@ Object {
             class="contentContainer MuiBox-root css-0"
           >
             <h1
+              aria-live="polite"
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
             >
               setMFATitle
@@ -3115,10 +3336,15 @@ Object {
               >
                 <span
                   class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                  data-testid="loc_chkRemember"
                 >
                   <input
+                    aria-checked="false"
+                    aria-label="rememberMeLabel"
+                    aria-live="polite"
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     data-indeterminate="false"
+                    role="checkbox"
                     type="checkbox"
                   />
                   <svg
@@ -3137,6 +3363,7 @@ Object {
                   />
                 </span>
                 <p
+                  aria-hidden="true"
                   class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
                 >
                   rememberMeLabel
@@ -3152,8 +3379,8 @@ Object {
               class="css-1p5q5e5-MuiStack-root"
             >
               <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-                data-testid="primary-button"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnConfirm"
                 tabindex="0"
                 type="button"
               >
@@ -3163,8 +3390,8 @@ Object {
                 />
               </button>
               <button
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-                data-testid="secondary-button"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnBack"
                 tabindex="0"
                 type="button"
               >
@@ -3174,7 +3401,10 @@ Object {
                 />
               </button>
               <a
+                aria-label="undefined"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                role="link"
+                tabindex="0"
               />
             </div>
           </div>
@@ -3219,6 +3449,7 @@ Object {
           class="contentContainer MuiBox-root css-0"
         >
           <h1
+            aria-live="polite"
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
           >
             setMFATitle
@@ -3239,10 +3470,15 @@ Object {
             >
               <span
                 class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                data-testid="loc_chkRemember"
               >
                 <input
+                  aria-checked="false"
+                  aria-label="rememberMeLabel"
+                  aria-live="polite"
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   data-indeterminate="false"
+                  role="checkbox"
                   type="checkbox"
                 />
                 <svg
@@ -3261,6 +3497,7 @@ Object {
                 />
               </span>
               <p
+                aria-hidden="true"
                 class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
               >
                 rememberMeLabel
@@ -3276,8 +3513,8 @@ Object {
             class="css-1p5q5e5-MuiStack-root"
           >
             <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-              data-testid="primary-button"
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnConfirm"
               tabindex="0"
               type="button"
             >
@@ -3287,8 +3524,8 @@ Object {
               />
             </button>
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-              data-testid="secondary-button"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnBack"
               tabindex="0"
               type="button"
             >
@@ -3298,7 +3535,10 @@ Object {
               />
             </button>
             <a
+              aria-label="undefined"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+              role="link"
+              tabindex="0"
             />
           </div>
         </div>
@@ -3399,6 +3639,7 @@ Object {
           class="contentContainer MuiBox-root css-0"
         >
           <h1
+            aria-live="polite"
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
           >
             setMFATitle
@@ -3419,10 +3660,15 @@ Object {
             >
               <span
                 class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                data-testid="loc_chkRemember"
               >
                 <input
+                  aria-checked="false"
+                  aria-label="rememberMeLabel"
+                  aria-live="polite"
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   data-indeterminate="false"
+                  role="checkbox"
                   type="checkbox"
                 />
                 <svg
@@ -3441,6 +3687,7 @@ Object {
                 />
               </span>
               <p
+                aria-hidden="true"
                 class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
               >
                 rememberMeLabel
@@ -3456,8 +3703,8 @@ Object {
             class="css-1p5q5e5-MuiStack-root"
           >
             <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-              data-testid="primary-button"
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnConfirm"
               tabindex="0"
               type="button"
             >
@@ -3467,8 +3714,8 @@ Object {
               />
             </button>
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-              data-testid="secondary-button"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnBack"
               tabindex="0"
               type="button"
             >
@@ -3478,7 +3725,10 @@ Object {
               />
             </button>
             <a
+              aria-label="undefined"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+              role="link"
+              tabindex="0"
             />
           </div>
         </div>
@@ -3522,6 +3772,7 @@ Object {
           class="contentContainer MuiBox-root css-0"
         >
           <h1
+            aria-live="polite"
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
           >
             setMFATitle
@@ -3542,10 +3793,15 @@ Object {
             >
               <span
                 class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                data-testid="loc_chkRemember"
               >
                 <input
+                  aria-checked="false"
+                  aria-label="rememberMeLabel"
+                  aria-live="polite"
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   data-indeterminate="false"
+                  role="checkbox"
                   type="checkbox"
                 />
                 <svg
@@ -3564,6 +3820,7 @@ Object {
                 />
               </span>
               <p
+                aria-hidden="true"
                 class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
               >
                 rememberMeLabel
@@ -3579,8 +3836,8 @@ Object {
             class="css-1p5q5e5-MuiStack-root"
           >
             <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-              data-testid="primary-button"
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnConfirm"
               tabindex="0"
               type="button"
             >
@@ -3590,8 +3847,8 @@ Object {
               />
             </button>
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-              data-testid="secondary-button"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnBack"
               tabindex="0"
               type="button"
             >
@@ -3601,7 +3858,10 @@ Object {
               />
             </button>
             <a
+              aria-label="undefined"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+              role="link"
+              tabindex="0"
             />
           </div>
         </div>
@@ -3703,6 +3963,7 @@ Object {
             class="contentContainer MuiBox-root css-0"
           >
             <h1
+              aria-live="polite"
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
             >
               setMFATitle
@@ -3723,10 +3984,15 @@ Object {
               >
                 <span
                   class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                  data-testid="loc_chkRemember"
                 >
                   <input
+                    aria-checked="false"
+                    aria-label="rememberMeLabel"
+                    aria-live="polite"
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     data-indeterminate="false"
+                    role="checkbox"
                     type="checkbox"
                   />
                   <svg
@@ -3745,6 +4011,7 @@ Object {
                   />
                 </span>
                 <p
+                  aria-hidden="true"
                   class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
                 >
                   rememberMeLabel
@@ -3760,8 +4027,8 @@ Object {
               class="css-1p5q5e5-MuiStack-root"
             >
               <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-                data-testid="primary-button"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnConfirm"
                 tabindex="0"
                 type="button"
               >
@@ -3771,8 +4038,8 @@ Object {
                 />
               </button>
               <button
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-                data-testid="secondary-button"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnBack"
                 tabindex="0"
                 type="button"
               >
@@ -3782,7 +4049,10 @@ Object {
                 />
               </button>
               <a
+                aria-label="undefined"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                role="link"
+                tabindex="0"
               />
             </div>
           </div>
@@ -3826,6 +4096,7 @@ Object {
             class="contentContainer MuiBox-root css-0"
           >
             <h1
+              aria-live="polite"
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
             >
               setMFATitle
@@ -3846,10 +4117,15 @@ Object {
               >
                 <span
                   class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                  data-testid="loc_chkRemember"
                 >
                   <input
+                    aria-checked="false"
+                    aria-label="rememberMeLabel"
+                    aria-live="polite"
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     data-indeterminate="false"
+                    role="checkbox"
                     type="checkbox"
                   />
                   <svg
@@ -3868,6 +4144,7 @@ Object {
                   />
                 </span>
                 <p
+                  aria-hidden="true"
                   class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
                 >
                   rememberMeLabel
@@ -3883,8 +4160,8 @@ Object {
               class="css-1p5q5e5-MuiStack-root"
             >
               <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-                data-testid="primary-button"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnConfirm"
                 tabindex="0"
                 type="button"
               >
@@ -3894,8 +4171,8 @@ Object {
                 />
               </button>
               <button
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-                data-testid="secondary-button"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnBack"
                 tabindex="0"
                 type="button"
               >
@@ -3905,7 +4182,10 @@ Object {
                 />
               </button>
               <a
+                aria-label="undefined"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                role="link"
+                tabindex="0"
               />
             </div>
           </div>
@@ -3950,6 +4230,7 @@ Object {
           class="contentContainer MuiBox-root css-0"
         >
           <h1
+            aria-live="polite"
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
           >
             setMFATitle
@@ -3970,10 +4251,15 @@ Object {
             >
               <span
                 class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                data-testid="loc_chkRemember"
               >
                 <input
+                  aria-checked="false"
+                  aria-label="rememberMeLabel"
+                  aria-live="polite"
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   data-indeterminate="false"
+                  role="checkbox"
                   type="checkbox"
                 />
                 <svg
@@ -3992,6 +4278,7 @@ Object {
                 />
               </span>
               <p
+                aria-hidden="true"
                 class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
               >
                 rememberMeLabel
@@ -4007,8 +4294,8 @@ Object {
             class="css-1p5q5e5-MuiStack-root"
           >
             <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-              data-testid="primary-button"
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnConfirm"
               tabindex="0"
               type="button"
             >
@@ -4018,8 +4305,8 @@ Object {
               />
             </button>
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-              data-testid="secondary-button"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnBack"
               tabindex="0"
               type="button"
             >
@@ -4029,7 +4316,10 @@ Object {
               />
             </button>
             <a
+              aria-label="undefined"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+              role="link"
+              tabindex="0"
             />
           </div>
         </div>
@@ -4131,6 +4421,7 @@ Object {
             class="contentContainer MuiBox-root css-0"
           >
             <h1
+              aria-live="polite"
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
             >
               setMFATitle
@@ -4151,10 +4442,15 @@ Object {
               >
                 <span
                   class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                  data-testid="loc_chkRemember"
                 >
                   <input
+                    aria-checked="false"
+                    aria-label="rememberMeLabel"
+                    aria-live="polite"
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     data-indeterminate="false"
+                    role="checkbox"
                     type="checkbox"
                   />
                   <svg
@@ -4173,6 +4469,7 @@ Object {
                   />
                 </span>
                 <p
+                  aria-hidden="true"
                   class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
                 >
                   rememberMeLabel
@@ -4188,8 +4485,8 @@ Object {
               class="css-1p5q5e5-MuiStack-root"
             >
               <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-                data-testid="primary-button"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnConfirm"
                 tabindex="0"
                 type="button"
               >
@@ -4199,8 +4496,8 @@ Object {
                 />
               </button>
               <button
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-                data-testid="secondary-button"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnBack"
                 tabindex="0"
                 type="button"
               >
@@ -4210,7 +4507,10 @@ Object {
                 />
               </button>
               <a
+                aria-label="undefined"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                role="link"
+                tabindex="0"
               />
             </div>
           </div>
@@ -4254,6 +4554,7 @@ Object {
             class="contentContainer MuiBox-root css-0"
           >
             <h1
+              aria-live="polite"
               class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
             >
               setMFATitle
@@ -4274,10 +4575,15 @@ Object {
               >
                 <span
                   class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                  data-testid="loc_chkRemember"
                 >
                   <input
+                    aria-checked="false"
+                    aria-label="rememberMeLabel"
+                    aria-live="polite"
                     class="PrivateSwitchBase-input css-1m9pwf3"
                     data-indeterminate="false"
+                    role="checkbox"
                     type="checkbox"
                   />
                   <svg
@@ -4296,6 +4602,7 @@ Object {
                   />
                 </span>
                 <p
+                  aria-hidden="true"
                   class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
                 >
                   rememberMeLabel
@@ -4311,8 +4618,8 @@ Object {
               class="css-1p5q5e5-MuiStack-root"
             >
               <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-                data-testid="primary-button"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnConfirm"
                 tabindex="0"
                 type="button"
               >
@@ -4322,8 +4629,8 @@ Object {
                 />
               </button>
               <button
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-                data-testid="secondary-button"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                data-testid="loc_btnBack"
                 tabindex="0"
                 type="button"
               >
@@ -4333,7 +4640,10 @@ Object {
                 />
               </button>
               <a
+                aria-label="undefined"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                role="link"
+                tabindex="0"
               />
             </div>
           </div>
@@ -4378,6 +4688,7 @@ Object {
           class="contentContainer MuiBox-root css-0"
         >
           <h1
+            aria-live="polite"
             class="MuiTypography-root MuiTypography-h1 title css-o2w69a-MuiTypography-root"
           >
             setMFATitle
@@ -4398,10 +4709,15 @@ Object {
             >
               <span
                 class="MuiCheckbox-root MuiCheckbox-colorPrimary MuiButtonBase-root MuiCheckbox-root MuiCheckbox-colorPrimary PrivateSwitchBase-root css-ua6y4i-MuiButtonBase-root-MuiCheckbox-root"
+                data-testid="loc_chkRemember"
               >
                 <input
+                  aria-checked="false"
+                  aria-label="rememberMeLabel"
+                  aria-live="polite"
                   class="PrivateSwitchBase-input css-1m9pwf3"
                   data-indeterminate="false"
+                  role="checkbox"
                   type="checkbox"
                 />
                 <svg
@@ -4420,6 +4736,7 @@ Object {
                 />
               </span>
               <p
+                aria-hidden="true"
                 class="MuiTypography-root MuiTypography-body1 checkBoxLabel css-ahj2mt-MuiTypography-root"
               >
                 rememberMeLabel
@@ -4435,8 +4752,8 @@ Object {
             class="css-1p5q5e5-MuiStack-root"
           >
             <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-mn6rr9-MuiButtonBase-root-MuiButton-root"
-              data-testid="primary-button"
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnConfirm"
               tabindex="0"
               type="button"
             >
@@ -4446,8 +4763,8 @@ Object {
               />
             </button>
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18fc0i1-MuiButtonBase-root-MuiButton-root"
-              data-testid="secondary-button"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+              data-testid="loc_btnBack"
               tabindex="0"
               type="button"
             >
@@ -4457,7 +4774,10 @@ Object {
               />
             </button>
             <a
+              aria-label="undefined"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+              role="link"
+              tabindex="0"
             />
           </div>
         </div>

@@ -82,6 +82,11 @@ export default function SelectOptionButton({
             backgroundColor: "#fff",
           },
         }}
+        inputProps={{
+          "aria-label": `${label}. ${value}`,
+          "aria-live": "polite",
+        }}
+        {...props.menuProps}
       >
         {options.map((option, idx) => {
           if (renderMenuListUI) {

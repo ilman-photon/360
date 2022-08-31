@@ -1,15 +1,11 @@
 import { Stack } from "@mui/material";
 import { Box } from "@mui/system";
-import constants from "../../../utils/constants";
 import ItemResult from "../../organisms/ItemResult/ItemResult";
 import FilterResultHeading from "../FilterResultHeading/filterResultHeading";
 
 export const FilterResult = ({
   dataCount = 3,
   onSelectSchedule = () => {
-    // This is intentional
-  },
-  onClickViewAllAvailability = () => {
     // This is intentional
   },
 }) => {
@@ -20,7 +16,6 @@ export const FilterResult = ({
         <Box key={i}>
           <ItemResult
             keyItem={`${i}-item-filter`}
-            onClickViewAllAvailability={onClickViewAllAvailability}
           />
         </Box>
       );
