@@ -111,6 +111,8 @@
   "mfaPage": {
     "setMFATitle": "Set Multi-Factor Authentication",
     "setMFADescription": "Select a delivery method to identify your identity.",
+    "setMFAEmailDescription": "Confirm your email below and we’ll send a code to set-up multi-factor authentication.",
+    "setMFAPhoneDescription": "Confirm your phone below and we’ll send a code to set-up multi-factor authentication.",
     "communicationMethodTitle": "Select a method",
     "confrimBtn": "Confirm",
     "backToLoginBtn": "Back to Login",

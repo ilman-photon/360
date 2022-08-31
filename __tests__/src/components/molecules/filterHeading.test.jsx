@@ -7,6 +7,8 @@ window.scrollTo = jest.fn()
 describe("FilterHeading Components", () => {
   let container;
   beforeEach(() => {
+    jest.useFakeTimers("modern");
+    jest.setSystemTime(new Date(2022, 3, 1));
     container = render(<FilterHeading />);
   });
 

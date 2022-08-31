@@ -39,11 +39,11 @@ export const styles = {
     fontSize: "14px",
   },
   loginLink: {
-    color: "#3EAFBD",
+    color: colors.link,
     textDecoration: "underline",
   },
   containedButton: {
-    backgroundColor: "#2095a9",
+    backgroundColor: colors.primaryButton,
     borderRadius: 46,
     color: "white",
     "&:hover": {

@@ -23,6 +23,7 @@ import { useEffect, useState } from "react";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import { AutoCompleteCreatable } from "../../molecules/AutoCompleteCreatable";
 import constants from "../../../utils/constants";
+import { Regex } from "../../../utils/regex";
 
 export default function InsuranceForm({
   formData = null, // later will be used for edit
@@ -39,6 +40,7 @@ export default function InsuranceForm({
     defaultValues: DEFAULT_INSURANCE_DATA,
   });
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const isDesktop = useMediaQuery("(min-width: 769px)");
 
   // Later will be used for edit
   useEffect(() => {
@@ -46,7 +48,7 @@ export default function InsuranceForm({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
 
-  const [providerList, setProviderList] = useState([
+  const [providerList] = useState([
     { id: 0, label: "Provider 1" },
     { id: 1, label: "Provider 2" },
   ]);
@@ -158,7 +160,9 @@ export default function InsuranceForm({
                     />
                   );
                 }}
-                rules={{ required: "This field is required" }}
+                rules={{
+                  required: "This field is required",
+                }}
               />
             </Grid>
 
@@ -204,7 +208,7 @@ export default function InsuranceForm({
                 }) => {
                   return (
                     <StyledInput
-                      type="number"
+                      type="text"
                       label="Subscriber ID/ Member ID"
                       value={value}
                       onChange={onChange}
@@ -217,7 +221,13 @@ export default function InsuranceForm({
                     />
                   );
                 }}
-                rules={{ required: "This field is required" }}
+                rules={{
+                  required: "This field is required",
+                  validate: {
+                    isNumber: (v) =>
+                      Regex.numberOnly.test(v) || "Invalid format",
+                  },
+                }}
               />
             </Grid>
 
@@ -309,6 +319,9 @@ export default function InsuranceForm({
                       rules={{
                         validate: {
                           requiredIfSubscriber,
+                          isMin2Max50Length: (v) =>
+                            Regex.isMin2Max50Length.test(v) ||
+                            "First Name does not meet requirements",
                         },
                       }}
                     />
@@ -339,6 +352,9 @@ export default function InsuranceForm({
                       rules={{
                         validate: {
                           requiredIfSubscriber,
+                          isMin2Max50Length: (v) =>
+                            Regex.isMin2Max50Length.test(v) ||
+                            "Last Name does not meet requirements",
                         },
                       }}
                     />
@@ -529,19 +545,23 @@ export default function InsuranceForm({
                 }}
               />
             </Grid>
-            <Grid item xs={12} md={8} sx={{ display: "none" }}>
-              <Typography
-                variant="bodySmallMedium"
-                component="div"
-                sx={{
-                  fontStyle: "italic",
-                  textAlign: "right",
-                  marginLeft: "auto",
-                }}
-              >
-                *JPG or PNG file formats only. (File size limit is 4 MB)
-              </Typography>
-            </Grid>
+            {isDesktop ? (
+              <Grid item xs={12} md={8}>
+                <Typography
+                  variant="bodySmallMedium"
+                  component="div"
+                  sx={{
+                    fontStyle: "italic",
+                    textAlign: "right",
+                    marginLeft: "auto",
+                  }}
+                >
+                  JPG or PNG file formats only. (File size limit is 4 MB)
+                </Typography>
+              </Grid>
+            ) : (
+              ""
+            )}
           </Grid>
 
           <Divider />
@@ -586,7 +606,9 @@ export default function InsuranceForm({
               variant="contained"
               className={[styles.formButton, styles.outlined].join(" ")}
               data-testid={testIds.cancel}
-              sx={{ width: { xs: "100%", md: "fit-content" } }}
+              sx={{
+                width: { xs: "100%", md: "fit-content", textTransform: "none" },
+              }}
             >
               Cancel
             </Button>
@@ -595,7 +617,9 @@ export default function InsuranceForm({
               variant="contained"
               className={[styles.formButton, styles.primary].join(" ")}
               data-testid={testIds.save}
-              sx={{ width: { xs: "100%", md: "fit-content" } }}
+              sx={{
+                width: { xs: "100%", md: "fit-content", textTransform: "none" },
+              }}
             >
               Save
             </Button>

@@ -10,6 +10,7 @@ import { styles } from "./style";
 import constants from "../../../utils/constants";
 import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
+import { colors } from "../../../styles/theme";
 
 const SelectOptionForm = ({
   onBackToLoginClicked,
@@ -68,7 +69,7 @@ const SelectOptionForm = ({
             ...styles.link,
           }}
           data-testid={FORGOT_TEST_ID.loginLink}
-          color={"#2095a9"}
+          color={colors.link}
           onClick={function () {
             onBackToLoginClicked(router);
           }}

@@ -1,5 +1,5 @@
 import { faker } from "@faker-js/faker";
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const DEFAULT_PROVIDER_INFO_DATA = {
   providerId: 0,
