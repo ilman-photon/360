@@ -59,13 +59,12 @@ export const styles = {
     marginLeft: "8px",
     marginRight: "8px",
   },
-  bottomParagraph: {
-    color: "#366A70",
-    textAlign: "center",
-    fontSize: "14px",
-  },
   loginLink: {
     color: "#3EAFBD",
+    textDecoration: "underline",
+  },
+  medicLink: {
+    color: "#EF4836",
     textDecoration: "underline",
   },
   containedButton: {
@@ -92,8 +91,31 @@ export const styles = {
     padding: 16,
     borderRadius: 4,
     color: "#366A70",
-    backgroundColor: `${colors.teal}0d`,
+    backgroundColor: "#F2F7FD",
     margin: 8,
     wordBreak: "break-all",
+  },
+  card: {
+    margin: "8px",
+  },
+  dateBold: {
+    fontWeight: "700",
+    lineHeight: "24px",
+    fontSize: "16px",
+  },
+  cardPatient: {
+    margin: "20px 8px",
+  },
+  bottomParagraph: {
+    color: "#366A70",
+    textAlign: "center",
+    margin: "24px",
+    fontSize: "14px",
+  },
+  patientBoxLabel: {
+    fontWeight: "500",
+    fontSize: "26px",
+    lineHeight: "32px",
+    color: "#003B4A",
   },
 };

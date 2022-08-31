@@ -7,6 +7,9 @@ import ModalScheduling from "../../../components/organisms/ScheduleAppointment/m
 
 import StepperAppoinment from "../../../components/molecules/StepperAppoinment/stepperAppoinment";
 import AccountTitleHeading from "../../../components/atoms/AccountTitleHeading/accountTitleHeading";
+import styles from "./styles.module.scss";
+
+import Link from "@mui/material/Link";
 
 import BaseHeader from "../../../components/organisms/BaseHeader/baseHeader";
 
@@ -16,7 +19,6 @@ import { LabelWithIcon } from "../../../components/atoms/LabelWithIcon/labelWith
 import { Button, Grid, Box, Divider, useMediaQuery } from "@mui/material";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "../../../store/store";
-import styles from "./styles.module.scss";
 import { useTranslation } from "next-i18next";
 import { setDummyAppointmentSchedule } from "../../../store/appointment";
 import { useRouter } from "next/router";
@@ -197,7 +199,7 @@ export default function ScheduleAppointmentPage() {
       <BaseHeader />
       {isDesktop ? <AccountTitleHeading title={headerText[activeStep]} /> : ""}
       <StepperAppoinment activeStep={activeStep} steps={steps} />
-      <ModalScheduling />
+      <ModalScheduling providerData />
       {activeStep === 2 ? (
         <Grid
           className={styles.mobileTopBar}
@@ -211,6 +213,7 @@ export default function ScheduleAppointmentPage() {
       <Grid
         className={isDesktop ? styles.container : ""}
         p={{ xs: "24px 14px 0", md: "30px 40px 0" }}
+        sx={{ justifyContent: "center" }}
       >
         <Box className={styles.pageWrapper}>
           <Button
