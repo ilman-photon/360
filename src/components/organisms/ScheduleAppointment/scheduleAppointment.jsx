@@ -90,7 +90,7 @@ export default function ScheduleAppointment({
               width: { xs: "100%", md: "222px" },
               background: "#0095A9",
             }}
-            style={styles.continueText}
+            style={styles.continueButton}
             onClick={() => setActiveStep(3)}
           >
             {t("continue")}

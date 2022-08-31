@@ -21,12 +21,13 @@ export const styles = {
     fontWeight: "700",
     fontSize: "18px",
   },
-  continueText: {
+  continueButton: {
     height: "40px",
     alignSelf: "self-end",
     borderRadius: "46px",
     textTransform: "capitalize",
     color: "#FFFFFF",
+    backgroundColor: "#0095A9",
   },
   form: {
     display: "grid",

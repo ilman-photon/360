@@ -409,7 +409,7 @@ export default function AppointmentForm({ isForMyself }) {
                 background: "#0095A9",
                 mt: 2,
               }}
-              style={styles.continueText}
+              style={styles.continueButton}
             >
               {t("scheduleAppoinment")}
             </Button>
