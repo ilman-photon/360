@@ -17,12 +17,12 @@ stages:
   - imagebuild
   - deploy
 
-lint:
-  stage: lint
-  tags:
-    - Frontend-runner
-  script:
-    - npm run lint
+# lint:
+#   stage: lint
+#   tags:
+#     - Frontend-runner
+#   script:
+#     - npm run lint
 
 install:
   stage: install
