@@ -14,7 +14,7 @@ import { formatDate } from "../../../utils/dateFormatter";
 import { colors } from "../../../styles/theme";
 
 export default function AppointmentDetails({
-  appointmentData = { insuranceCarrier: [] },
+  appointmentData = {},
   OnEditClicked = () => {
     // This is intended
   },

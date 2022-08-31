@@ -39,7 +39,7 @@ export const styles = {
     fontSize: "14px",
   },
   loginLink: {
-    color: "#3EAFBD",
+    color: colors.link,
     textDecoration: "underline",
   },
   containedButton: {

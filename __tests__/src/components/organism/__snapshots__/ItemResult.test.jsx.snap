@@ -49,16 +49,225 @@ Object {
               >
                 <h2
                   class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-1qu9n3v-MuiTypography-root"
-                >
-                  Paul Wagner, MD
-                </h2>
+                />
                 <p
                   class="MuiTypography-root MuiTypography-body2 address css-5hrm3t-MuiTypography-root"
+                />
+                <div
+                  class="phoneContainer MuiBox-root css-0"
                 >
-                  51 West 51st Street, 
-                        Floor 3, Suite 320
-                        Midtown, New York, NY, 10019
-                </p>
+                  <span
+                    aria-label="3.5 Stars"
+                    class="MuiRating-root MuiRating-sizeSmall MuiRating-readyOnly css-x48yct-MuiRating-root"
+                    role="img"
+                  >
+                    <span
+                      class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                    >
+                      <span
+                        style="width: 0%; overflow: hidden; position: absolute;"
+                      >
+                        <span
+                          class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                            data-testid="StarIcon"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                            />
+                          </svg>
+                        </span>
+                      </span>
+                      <span>
+                        <span
+                          class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                            data-testid="StarIcon"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                            />
+                          </svg>
+                        </span>
+                      </span>
+                    </span>
+                    <span
+                      class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                    >
+                      <span
+                        style="width: 0%; overflow: hidden; position: absolute;"
+                      >
+                        <span
+                          class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                            data-testid="StarIcon"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                            />
+                          </svg>
+                        </span>
+                      </span>
+                      <span>
+                        <span
+                          class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                            data-testid="StarIcon"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                            />
+                          </svg>
+                        </span>
+                      </span>
+                    </span>
+                    <span
+                      class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                    >
+                      <span
+                        style="width: 0%; overflow: hidden; position: absolute;"
+                      >
+                        <span
+                          class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                            data-testid="StarIcon"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                            />
+                          </svg>
+                        </span>
+                      </span>
+                      <span>
+                        <span
+                          class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                            data-testid="StarIcon"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                            />
+                          </svg>
+                        </span>
+                      </span>
+                    </span>
+                    <span
+                      class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                    >
+                      <span
+                        style="width: 50%; overflow: hidden; position: absolute;"
+                      >
+                        <span
+                          class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                            data-testid="StarIcon"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                            />
+                          </svg>
+                        </span>
+                      </span>
+                      <span>
+                        <span
+                          class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                            data-testid="StarIcon"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                            />
+                          </svg>
+                        </span>
+                      </span>
+                    </span>
+                    <span
+                      class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                    >
+                      <span
+                        style="width: 0%; overflow: hidden; position: absolute;"
+                      >
+                        <span
+                          class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                            data-testid="StarIcon"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                            />
+                          </svg>
+                        </span>
+                      </span>
+                      <span>
+                        <span
+                          class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                            data-testid="StarIcon"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                            />
+                          </svg>
+                        </span>
+                      </span>
+                    </span>
+                  </span>
+                  <p
+                    class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
+                  >
+                    (857) 299-9989
+                  </p>
+                </div>
               </div>
             </div>
             <div
@@ -70,10 +279,10 @@ Object {
           class="MuiBox-root css-1e4egx4"
         >
           <div
-            class="MuiBox-root css-152dj84"
+            class="MuiBox-root css-11oh1pw"
           >
             <div
-              class="MuiBox-root css-1y0phqd"
+              class="distanceLabelWarpper MuiBox-root css-1y0phqd"
             >
               <svg
                 aria-hidden="true"
@@ -121,288 +330,263 @@ Object {
             class="MuiBox-root css-1jnq1v7"
           >
             <div
-              class="MuiBox-root css-129r4ni"
+              class="buttonWrapper MuiBox-root css-129r4ni"
             >
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 tabindex="0"
                 type="submit"
               >
-                11:30am
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-            </div>
-            <div
-              class="dividerContainer MuiBox-root css-0"
-            >
-              <hr
-                class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-              />
-            </div>
-            <div
-              class="dividerContainer MuiBox-root css-0"
-            >
-              <hr
-                class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-              />
-            </div>
-            <div
-              class="dividerContainer MuiBox-root css-0"
-            >
-              <hr
-                class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-              />
-            </div>
-            <div
-              class="MuiBox-root css-1qlelg9"
-            >
-              <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
-                tabindex="0"
-                type="submit"
-              >
-                08:00am
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-            </div>
-            <div
-              class="MuiBox-root css-symg6n"
-            >
-              <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
-                tabindex="0"
-                type="submit"
-              >
-                10:30am
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-            </div>
-            <div
-              class="MuiBox-root css-1mdw407"
-            >
-              <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
-                tabindex="0"
-                type="submit"
-              >
-                11:00am
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-            </div>
-            <div
-              class="MuiBox-root css-enxit9"
-            >
-              <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
-                tabindex="0"
-                type="submit"
-              >
-                3 more
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-puv47q-MuiSvgIcon-root"
-                  data-testid="KeyboardArrowDownOutlinedIcon"
-                  focusable="false"
-                  viewBox="0 0 24 24"
+                <p
+                  class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
                 >
-                  <path
-                    d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
-                  />
-                </svg>
+                  11:30 AM
+                </p>
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
             </div>
             <div
-              class="MuiBox-root css-nvlpp0"
+              class="buttonWrapper MuiBox-root css-1qlelg9"
             >
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 tabindex="0"
                 type="submit"
               >
-                08:30am
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-            </div>
-            <div
-              class="MuiBox-root css-eugzp0"
-            >
-              <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
-                tabindex="0"
-                type="submit"
-              >
-                10:30am
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-            </div>
-            <div
-              class="MuiBox-root css-7tv070"
-            >
-              <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
-                tabindex="0"
-                type="submit"
-              >
-                11:30am
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-            </div>
-            <div
-              class="MuiBox-root css-y2y9jp"
-            >
-              <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
-                tabindex="0"
-                type="submit"
-              >
-                5 more
-                <svg
-                  aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-puv47q-MuiSvgIcon-root"
-                  data-testid="KeyboardArrowDownOutlinedIcon"
-                  focusable="false"
-                  viewBox="0 0 24 24"
+                <p
+                  class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
                 >
-                  <path
-                    d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
-                  />
-                </svg>
+                  8:00 AM
+                </p>
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
             </div>
             <div
-              class="MuiBox-root css-1miqoiq"
+              class="buttonWrapper MuiBox-root css-symg6n"
             >
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 tabindex="0"
                 type="submit"
               >
-                09:30am
+                <p
+                  class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
+                >
+                  10:30 AM
+                </p>
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
             </div>
             <div
-              class="MuiBox-root css-1ra7543"
+              class="buttonWrapper MuiBox-root css-1mdw407"
             >
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 tabindex="0"
                 type="submit"
               >
-                11:00am
+                <p
+                  class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
+                >
+                  11:00 AM
+                </p>
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
             </div>
             <div
-              class="dividerContainer MuiBox-root css-0"
-            >
-              <hr
-                class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-              />
-            </div>
-            <div
-              class="dividerContainer MuiBox-root css-0"
-            >
-              <hr
-                class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-              />
-            </div>
-            <div
-              class="MuiBox-root css-1t64eod"
+              class="buttonWrapper MuiBox-root css-enxit9"
             >
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 tabindex="0"
                 type="submit"
               >
-                09:30am
+                <p
+                  class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
+                >
+                  3 more
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-puv47q-MuiSvgIcon-root"
+                    data-testid="KeyboardArrowDownOutlinedIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
+                    />
+                  </svg>
+                </p>
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
             </div>
             <div
-              class="dividerContainer MuiBox-root css-0"
-            >
-              <hr
-                class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-              />
-            </div>
-            <div
-              class="dividerContainer MuiBox-root css-0"
-            >
-              <hr
-                class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-              />
-            </div>
-            <div
-              class="dividerContainer MuiBox-root css-0"
-            >
-              <hr
-                class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-              />
-            </div>
-            <div
-              class="MuiBox-root css-1kizmox"
+              class="buttonWrapper MuiBox-root css-nvlpp0"
             >
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 tabindex="0"
                 type="submit"
               >
-                09:30am
+                <p
+                  class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
+                >
+                  8:30 AM
+                </p>
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
             </div>
             <div
-              class="dividerContainer MuiBox-root css-0"
+              class="buttonWrapper MuiBox-root css-eugzp0"
             >
-              <hr
-                class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-              />
+              <button
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="submit"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
+                >
+                  10:30 AM
+                </p>
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
             </div>
             <div
-              class="dividerContainer MuiBox-root css-0"
+              class="buttonWrapper MuiBox-root css-7tv070"
             >
-              <hr
-                class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-              />
+              <button
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="submit"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
+                >
+                  11:30 AM
+                </p>
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
             </div>
             <div
-              class="dividerContainer MuiBox-root css-0"
+              class="buttonWrapper MuiBox-root css-y2y9jp"
             >
-              <hr
-                class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-              />
+              <button
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="submit"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
+                >
+                  5 more
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-puv47q-MuiSvgIcon-root"
+                    data-testid="KeyboardArrowDownOutlinedIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
+                    />
+                  </svg>
+                </p>
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
             </div>
             <div
-              class="MuiBox-root css-wdc560"
+              class="buttonWrapper MuiBox-root css-1miqoiq"
+            >
+              <button
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="submit"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
+                >
+                  9:30 AM
+                </p>
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="buttonWrapper MuiBox-root css-1ra7543"
+            >
+              <button
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="submit"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
+                >
+                  11:00 AM
+                </p>
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="buttonWrapper MuiBox-root css-1t64eod"
+            >
+              <button
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="submit"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
+                >
+                  9:30 AM
+                </p>
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="buttonWrapper MuiBox-root css-1kizmox"
+            >
+              <button
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="submit"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
+                >
+                  9:30 AM
+                </p>
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="linkWrapper MuiBox-root css-wdc560"
             >
               <a
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways linkAvailabelity css-1ps4owl-MuiTypography-root-MuiLink-root"
@@ -460,16 +644,225 @@ Object {
             >
               <h2
                 class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-1qu9n3v-MuiTypography-root"
-              >
-                Paul Wagner, MD
-              </h2>
+              />
               <p
                 class="MuiTypography-root MuiTypography-body2 address css-5hrm3t-MuiTypography-root"
+              />
+              <div
+                class="phoneContainer MuiBox-root css-0"
               >
-                51 West 51st Street, 
-                        Floor 3, Suite 320
-                        Midtown, New York, NY, 10019
-              </p>
+                <span
+                  aria-label="3.5 Stars"
+                  class="MuiRating-root MuiRating-sizeSmall MuiRating-readyOnly css-x48yct-MuiRating-root"
+                  role="img"
+                >
+                  <span
+                    class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                  >
+                    <span
+                      style="width: 0%; overflow: hidden; position: absolute;"
+                    >
+                      <span
+                        class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                          data-testid="StarIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                          />
+                        </svg>
+                      </span>
+                    </span>
+                    <span>
+                      <span
+                        class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                          data-testid="StarIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                          />
+                        </svg>
+                      </span>
+                    </span>
+                  </span>
+                  <span
+                    class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                  >
+                    <span
+                      style="width: 0%; overflow: hidden; position: absolute;"
+                    >
+                      <span
+                        class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                          data-testid="StarIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                          />
+                        </svg>
+                      </span>
+                    </span>
+                    <span>
+                      <span
+                        class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                          data-testid="StarIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                          />
+                        </svg>
+                      </span>
+                    </span>
+                  </span>
+                  <span
+                    class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                  >
+                    <span
+                      style="width: 0%; overflow: hidden; position: absolute;"
+                    >
+                      <span
+                        class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                          data-testid="StarIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                          />
+                        </svg>
+                      </span>
+                    </span>
+                    <span>
+                      <span
+                        class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                          data-testid="StarIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                          />
+                        </svg>
+                      </span>
+                    </span>
+                  </span>
+                  <span
+                    class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                  >
+                    <span
+                      style="width: 50%; overflow: hidden; position: absolute;"
+                    >
+                      <span
+                        class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                          data-testid="StarIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                          />
+                        </svg>
+                      </span>
+                    </span>
+                    <span>
+                      <span
+                        class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                          data-testid="StarIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                          />
+                        </svg>
+                      </span>
+                    </span>
+                  </span>
+                  <span
+                    class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                  >
+                    <span
+                      style="width: 0%; overflow: hidden; position: absolute;"
+                    >
+                      <span
+                        class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                          data-testid="StarIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                          />
+                        </svg>
+                      </span>
+                    </span>
+                    <span>
+                      <span
+                        class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
+                      >
+                        <svg
+                          aria-hidden="true"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                          data-testid="StarIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                          />
+                        </svg>
+                      </span>
+                    </span>
+                  </span>
+                </span>
+                <p
+                  class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
+                >
+                  (857) 299-9989
+                </p>
+              </div>
             </div>
           </div>
           <div
@@ -481,10 +874,10 @@ Object {
         class="MuiBox-root css-1e4egx4"
       >
         <div
-          class="MuiBox-root css-152dj84"
+          class="MuiBox-root css-11oh1pw"
         >
           <div
-            class="MuiBox-root css-1y0phqd"
+            class="distanceLabelWarpper MuiBox-root css-1y0phqd"
           >
             <svg
               aria-hidden="true"
@@ -532,288 +925,263 @@ Object {
           class="MuiBox-root css-1jnq1v7"
         >
           <div
-            class="MuiBox-root css-129r4ni"
+            class="buttonWrapper MuiBox-root css-129r4ni"
           >
             <button
               class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
               tabindex="0"
               type="submit"
             >
-              11:30am
-              <span
-                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-              />
-            </button>
-          </div>
-          <div
-            class="dividerContainer MuiBox-root css-0"
-          >
-            <hr
-              class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-            />
-          </div>
-          <div
-            class="dividerContainer MuiBox-root css-0"
-          >
-            <hr
-              class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-            />
-          </div>
-          <div
-            class="dividerContainer MuiBox-root css-0"
-          >
-            <hr
-              class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-            />
-          </div>
-          <div
-            class="MuiBox-root css-1qlelg9"
-          >
-            <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
-              tabindex="0"
-              type="submit"
-            >
-              08:00am
-              <span
-                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-              />
-            </button>
-          </div>
-          <div
-            class="MuiBox-root css-symg6n"
-          >
-            <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
-              tabindex="0"
-              type="submit"
-            >
-              10:30am
-              <span
-                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-              />
-            </button>
-          </div>
-          <div
-            class="MuiBox-root css-1mdw407"
-          >
-            <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
-              tabindex="0"
-              type="submit"
-            >
-              11:00am
-              <span
-                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-              />
-            </button>
-          </div>
-          <div
-            class="MuiBox-root css-enxit9"
-          >
-            <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
-              tabindex="0"
-              type="submit"
-            >
-              3 more
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-puv47q-MuiSvgIcon-root"
-                data-testid="KeyboardArrowDownOutlinedIcon"
-                focusable="false"
-                viewBox="0 0 24 24"
+              <p
+                class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
               >
-                <path
-                  d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
-                />
-              </svg>
+                11:30 AM
+              </p>
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
             </button>
           </div>
           <div
-            class="MuiBox-root css-nvlpp0"
+            class="buttonWrapper MuiBox-root css-1qlelg9"
           >
             <button
               class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
               tabindex="0"
               type="submit"
             >
-              08:30am
-              <span
-                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-              />
-            </button>
-          </div>
-          <div
-            class="MuiBox-root css-eugzp0"
-          >
-            <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
-              tabindex="0"
-              type="submit"
-            >
-              10:30am
-              <span
-                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-              />
-            </button>
-          </div>
-          <div
-            class="MuiBox-root css-7tv070"
-          >
-            <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
-              tabindex="0"
-              type="submit"
-            >
-              11:30am
-              <span
-                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-              />
-            </button>
-          </div>
-          <div
-            class="MuiBox-root css-y2y9jp"
-          >
-            <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
-              tabindex="0"
-              type="submit"
-            >
-              5 more
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-puv47q-MuiSvgIcon-root"
-                data-testid="KeyboardArrowDownOutlinedIcon"
-                focusable="false"
-                viewBox="0 0 24 24"
+              <p
+                class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
               >
-                <path
-                  d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
-                />
-              </svg>
+                8:00 AM
+              </p>
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
             </button>
           </div>
           <div
-            class="MuiBox-root css-1miqoiq"
+            class="buttonWrapper MuiBox-root css-symg6n"
           >
             <button
               class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
               tabindex="0"
               type="submit"
             >
-              09:30am
+              <p
+                class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
+              >
+                10:30 AM
+              </p>
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
             </button>
           </div>
           <div
-            class="MuiBox-root css-1ra7543"
+            class="buttonWrapper MuiBox-root css-1mdw407"
           >
             <button
               class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
               tabindex="0"
               type="submit"
             >
-              11:00am
+              <p
+                class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
+              >
+                11:00 AM
+              </p>
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
             </button>
           </div>
           <div
-            class="dividerContainer MuiBox-root css-0"
-          >
-            <hr
-              class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-            />
-          </div>
-          <div
-            class="dividerContainer MuiBox-root css-0"
-          >
-            <hr
-              class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-            />
-          </div>
-          <div
-            class="MuiBox-root css-1t64eod"
+            class="buttonWrapper MuiBox-root css-enxit9"
           >
             <button
               class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
               tabindex="0"
               type="submit"
             >
-              09:30am
+              <p
+                class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
+              >
+                3 more
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-puv47q-MuiSvgIcon-root"
+                  data-testid="KeyboardArrowDownOutlinedIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
+                  />
+                </svg>
+              </p>
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
             </button>
           </div>
           <div
-            class="dividerContainer MuiBox-root css-0"
-          >
-            <hr
-              class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-            />
-          </div>
-          <div
-            class="dividerContainer MuiBox-root css-0"
-          >
-            <hr
-              class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-            />
-          </div>
-          <div
-            class="dividerContainer MuiBox-root css-0"
-          >
-            <hr
-              class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-            />
-          </div>
-          <div
-            class="MuiBox-root css-1kizmox"
+            class="buttonWrapper MuiBox-root css-nvlpp0"
           >
             <button
               class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
               tabindex="0"
               type="submit"
             >
-              09:30am
+              <p
+                class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
+              >
+                8:30 AM
+              </p>
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
             </button>
           </div>
           <div
-            class="dividerContainer MuiBox-root css-0"
+            class="buttonWrapper MuiBox-root css-eugzp0"
           >
-            <hr
-              class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-            />
+            <button
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="submit"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
+              >
+                10:30 AM
+              </p>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
           </div>
           <div
-            class="dividerContainer MuiBox-root css-0"
+            class="buttonWrapper MuiBox-root css-7tv070"
           >
-            <hr
-              class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-            />
+            <button
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="submit"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
+              >
+                11:30 AM
+              </p>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
           </div>
           <div
-            class="dividerContainer MuiBox-root css-0"
+            class="buttonWrapper MuiBox-root css-y2y9jp"
           >
-            <hr
-              class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-            />
+            <button
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="submit"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
+              >
+                5 more
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-puv47q-MuiSvgIcon-root"
+                  data-testid="KeyboardArrowDownOutlinedIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
+                  />
+                </svg>
+              </p>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
           </div>
           <div
-            class="MuiBox-root css-wdc560"
+            class="buttonWrapper MuiBox-root css-1miqoiq"
+          >
+            <button
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="submit"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
+              >
+                9:30 AM
+              </p>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+          <div
+            class="buttonWrapper MuiBox-root css-1ra7543"
+          >
+            <button
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="submit"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
+              >
+                11:00 AM
+              </p>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+          <div
+            class="buttonWrapper MuiBox-root css-1t64eod"
+          >
+            <button
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="submit"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
+              >
+                9:30 AM
+              </p>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+          <div
+            class="buttonWrapper MuiBox-root css-1kizmox"
+          >
+            <button
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root scheduleBtn css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="submit"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
+              >
+                9:30 AM
+              </p>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
+          </div>
+          <div
+            class="linkWrapper MuiBox-root css-wdc560"
           >
             <a
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways linkAvailabelity css-1ps4owl-MuiTypography-root-MuiLink-root"

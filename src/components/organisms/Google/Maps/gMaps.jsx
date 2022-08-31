@@ -1,12 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { GoogleMap, MarkerF, InfoWindowF } from "@react-google-maps/api";
 import { Divider, Grid, Stack, Typography } from "@mui/material";
-import { StyledButton } from "../../../atoms/Button/button";
 import ProviderProfile from "../../../molecules/ProviderProfile/providerProfile";
-import { colors } from "../../../../styles/theme";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import { useState } from "react";
 
 const containerStyle = {
   width: "100%",
@@ -107,7 +104,7 @@ const DummyComponent = () => {
   );
 };
 
-function GMaps({ apiKey }) {
+function GMaps() {
   const [mapContext, setMapContext] = React.useState(null);
   const [activeMarker, setActiveMarker] = React.useState(null);
 

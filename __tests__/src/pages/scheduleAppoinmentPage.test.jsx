@@ -1,7 +1,7 @@
 import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import App from "../../../src/pages/_app";
-import ScheduleAppointmentPage from "../../../src/pages/patient/schedule-appoinment";
+import ScheduleAppointmentPage from "../../../src/pages/patient/schedule-appointment";
 
 describe("App", () => {
   beforeEach(() => {

@@ -4,7 +4,14 @@ import styles from "./styles.module.scss";
 import StyledRating from "../../atoms/Rating/styledRating";
 import { useRouter } from "next/router";
 
-export default function ProviderProfile({ variant, showPosition, phoneLink, providerData={} }) {
+export default function ProviderProfile({
+  variant,
+  showPosition,
+  phoneLink,
+  isShownPhoneAndRating = true,
+  isShownRating = true,
+  providerData = {},
+}) {
   const specialist = ["Opthometry", "Opthalmology", "Catarac", "Glaucoma"];
   const isAppointment = variant === "appointment";
   const isBio = variant === "bio";
@@ -37,6 +44,19 @@ export default function ProviderProfile({ variant, showPosition, phoneLink, prov
     );
   };
 
+  const getAddress = (address) => {
+    if (!address) return;
+    return (
+      <div>
+        {address.addressLine1}
+        <br />
+        {address.addressLine2}
+        <br />
+        {address.city}, {address.state}, {address.zipcode}
+      </div>
+    );
+  };
+
   function getNameFontSize() {
     let size;
     if (isBio) {
@@ -58,7 +78,7 @@ export default function ProviderProfile({ variant, showPosition, phoneLink, prov
       <Box className={styles.displayFlex}>
         <Box>
           <Image
-            src={providerData.image || '/transparent.png'}
+            src={providerData.image || "/transparent.png"}
             width={100}
             height={100}
             className={styles.profilePhoto}
@@ -76,7 +96,9 @@ export default function ProviderProfile({ variant, showPosition, phoneLink, prov
               router.push("/patient/bio");
             }}
             className={
-              (isAppointment || isViewSchedule) && styles.doctorNameAppointment
+              isAppointment || isViewSchedule
+                ? styles.doctorNameAppointment
+                : ""
             }
           >
             {providerData.name}
@@ -89,13 +111,15 @@ export default function ProviderProfile({ variant, showPosition, phoneLink, prov
             className={styles.address}
             fontSize={isViewSchedule ? "14px" : "16px"}
           >
-            {providerData.address}
+            {getAddress(providerData.address)}
           </Typography>
-          {isDayAvailableView && (
+          {isShownPhoneAndRating && (
             <Box
               className={isBio ? styles.ratingContainer : styles.phoneContainer}
             >
-              {(isBio || isViewSchedule) && <StyledRating value={3.5} />}
+              {(isBio || (isViewSchedule && isShownRating)) && (
+                <StyledRating value={3.5} />
+              )}
               {!phoneLink ? (
                 <Typography variant="body2" className={styles.phone}>
                   (857) 299-9989

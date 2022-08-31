@@ -593,7 +593,7 @@ exports[`App renders App unchanged 1`] = `
                  
                 <a
                   href="/patient/login"
-                  style="color: rgb(62, 175, 189); text-decoration: underline;"
+                  style="color: rgb(0, 130, 148); text-decoration: underline;"
                 >
                   Login
                 </a>

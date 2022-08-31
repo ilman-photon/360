@@ -115,9 +115,7 @@ Object {
                   >
                     <h2
                       class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-1i5ehwd-MuiTypography-root"
-                    >
-                      Paul Wagner, MD
-                    </h2>
+                    />
                     <h3
                       class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
                     >
@@ -125,11 +123,16 @@ Object {
                     </h3>
                     <p
                       class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
+                    />
+                    <div
+                      class="phoneContainer MuiBox-root css-0"
                     >
-                      51 West 51st Street, 
-                        Floor 3, Suite 320
-                        Midtown, New York, NY, 10019
-                    </p>
+                      <a
+                        class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways phoneLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                      >
+                        (857) 299-9989
+                      </a>
+                    </div>
                   </div>
                 </div>
                 <div
@@ -763,9 +766,7 @@ Object {
                 >
                   <h2
                     class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-1i5ehwd-MuiTypography-root"
-                  >
-                    Paul Wagner, MD
-                  </h2>
+                  />
                   <h3
                     class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
                   >
@@ -773,11 +774,16 @@ Object {
                   </h3>
                   <p
                     class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
+                  />
+                  <div
+                    class="phoneContainer MuiBox-root css-0"
                   >
-                    51 West 51st Street, 
-                        Floor 3, Suite 320
-                        Midtown, New York, NY, 10019
-                  </p>
+                    <a
+                      class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways phoneLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                    >
+                      (857) 299-9989
+                    </a>
+                  </div>
                 </div>
               </div>
               <div

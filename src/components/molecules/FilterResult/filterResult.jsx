@@ -6,27 +6,76 @@ import FilterResultHeading from "../FilterResultHeading/filterResultHeading";
 export const FilterResult = ({
   providerList = [
     {
-      name: 'Paul Wagner, MD',
-      image: '/doctor.png',
-      address: '51 West 51st Street, Floor 3, Suite 320 Midtown, New York, NY, 10019'
+      providerId: 0,
+      name: "Dr. Sonha Nguyen",
+      address: {
+        addressLine1: "673 Herzog Locks",
+        addressLine2: "Suite 300",
+        city: "New York",
+        state: "NY",
+        zipcode: "53891",
+      },
+      rating: 5,
+      phoneNumber: "(123) 123-4567",
+      distance: "10 mi",
+      image: "/doctor.png",
+      from: new Date(),
+      to: new Date(),
+      location: {
+        latitude: 41.481832,
+        longitude: -87.323177,
+      },
     },
     {
-      name: 'John Doe, MD',
-      image: '/doctor.png',
-      address: '100 California West, Floor 10, Hotel 15 Chinatown, California, CF, 12345'
+      providerId: 1,
+      name: "Paul Wagner, MD",
+      address: {
+        addressLine1: "100 United States",
+        addressLine2: "Hotel 15",
+        city: "Washington",
+        state: "WS",
+        zipcode: "12345",
+      },
+      rating: 5,
+      phoneNumber: "(123) 123-4567",
+      distance: "10 mi",
+      image: "/doctor.png",
+      from: new Date(),
+      to: new Date(),
+      location: {
+        latitude: 41.681832,
+        longitude: -87.123177,
+      },
     },
     {
-      name: 'Paul Wagner, MD',
-      image: '/doctor.png',
-      address: '51 West 51st Street, Floor 3, Suite 320 Midtown, New York, NY, 10019'
-    }
+      providerId: 2,
+      name: "John Doe, MD",
+      address: {
+        addressLine1: "51 West 51st Street",
+        addressLine2: "Floor 3, Suite 320 Midtown",
+        city: "Florida",
+        state: "FR",
+        zipcode: "54231",
+      },
+      rating: 5,
+      phoneNumber: "(123) 123-4567",
+      distance: "10 mi",
+      image: "/doctor.png",
+      from: new Date(),
+      to: new Date(),
+      location: {
+        latitude: 40.681832,
+        longitude: -87.14573177,
+      },
+    },
   ],
-  onSelectSchedule = () => {
+  onClickViewAllAvailability = () => {
     // This is intentional
   },
   OnDayClicked = () => {
     // This is intentional
   },
+  isDesktop = false,
 }) => {
   function renderItemResult() {
     const indents = [];
@@ -35,9 +84,10 @@ export const FilterResult = ({
         <Box key={i}>
           <ItemResult
             keyItem={`${i}-item-filter`}
+            onClickViewAllAvailability={onClickViewAllAvailability}
             providerData={providerList[i]}
             OnDayClicked={(payload) => {
-              OnDayClicked(payload, providerList[i])
+              OnDayClicked(payload, providerList[i]);
             }}
           />
         </Box>
@@ -50,7 +100,7 @@ export const FilterResult = ({
     <>
       <Stack>
         <Box>
-          <FilterResultHeading />
+          <FilterResultHeading isDesktop={isDesktop} />
         </Box>
         <div
           style={{

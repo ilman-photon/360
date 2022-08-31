@@ -2,66 +2,77 @@
 
 .scheduleContainer {
   margin-top: 24px;
+  .scheduleTitle {
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 24px;
+    color: $darkGreen;
+    letter-spacing: 0.0016em;
+    width: 106px;
+  }
+
+  .noSchedule {
+    width: 106.5px;
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 24px;
+    color: #a5a5ac;
+    letter-spacing: 0.0016em;
+    margin-left: 8px;
+  }
 }
 
 .noScheduleContainer {
   display: flex;
 }
 
-.scheduleTitle {
-  font-family: "Libre Franklin";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 24px;
-  color: $darkGreen;
-  letter-spacing: 0.0016em;
-  width: 106px;
-}
-
-.noSchedule {
-  width: 106.5px;
-  font-family: "Libre Franklin";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 15px;
-  line-height: 24px;
-  color: #a5a5ac;
-  letter-spacing: 0.0016em;
-  margin-left: 8px;
-}
-
-.scheduleBtn {
-  width: 78px;
+.scheduleBtnWarpper {
+  .scheduleBtn {
+    width: 78px;
+    height: 30px;
+    padding: 13px 0px;
+    background: #007e8f;
+    border-radius: 30px;
+    margin-top: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+  }
 }
 
 .scheduleTimeContainer {
   display: flex;
-}
-
-.scheduleTimeTitle {
-  margin-top: 6px;
-  font-family: "Libre Franklin";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 26px;
-  display: flex;
-  align-items: center;
-  letter-spacing: 0.0016em;
-  color: $darkGreen;
-}
-
-.iconTimeContainer {
-  margin-left: 18px;
-  display: flex;
-  align-items: center;
-}
-
-.dividerSchedule {
-  margin-top: 12px;
-}
-
-.iconSchedule {
-  width: 19px;
+  .scheduleTimeTitle {
+    margin-top: 6px;
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 26px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.0016em;
+    color: $darkGreen;
+  }
+  .iconTimeContainer {
+    margin-left: 18px;
+    display: flex;
+    align-items: center;
+  }
+  .iconSchedule {
+    width: 19px;
+  }
+  .dividerSchedule {
+    margin-top: 12px;
+  }
 }

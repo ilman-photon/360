@@ -15,6 +15,7 @@ import { Regex } from "../../../utils/regex";
 import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
 import Head from "next/head";
+import { colors } from "../../../styles/theme";
 
 const ForgotPassword = ({
   onBackToLoginClicked,
@@ -119,7 +120,7 @@ const ForgotPassword = ({
             style={{ ...styles.margin, ...styles.link }}
           >
             <Link
-              color={"#2095a9"}
+              color={colors.link}
               data-testid={FORGOT_TEST_ID.loginLink}
               onClick={function () {
                 onBackToLoginClicked(router);

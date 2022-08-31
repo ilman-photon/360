@@ -37,17 +37,6 @@
   }
 }
 
-.phoneLink {
-  font-family: "Roboto", sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
-  letter-spacing: 0.0016em;
-  color: #008294 !important;
-  text-decoration-color: inherit !important;
-}
-
 .specialistTitle {
   font-weight: 700 !important;
   font-size: 16px !important;
@@ -122,10 +111,31 @@
   @media (max-width: 992px) {
     margin-top: 12px;
   }
+
+  .phoneLink {
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.0016em;
+    color: #008294 !important;
+    text-decoration-color: inherit !important;
+  }
 }
 
 .phoneContainer {
   margin-top: 5px;
+  .phoneLink {
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.0016em;
+    color: #008294 !important;
+    text-decoration-color: inherit !important;
+  }
 }
 
 .specialistList > li > p {

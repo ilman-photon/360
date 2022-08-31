@@ -41,14 +41,14 @@ const DEFAULT_FILTER_DATA = {
   date: null,
   location: null,
   insuranceCarrier: null,
-  purposeOfVisit: null
-}
+  purposeOfVisit: null,
+};
 
 const appointmentSlice = createSlice({
   name: "appointment",
   initialState: {
     appointmentSchedule: DEFAULT_USER_SCHEDULE_APPOINTMENT_DATA,
-    filterData: DEFAULT_FILTER_DATA
+    filterData: DEFAULT_FILTER_DATA,
   },
   reducers: {
     setAppointmentSchedule: (state, { payload }) => {
@@ -58,8 +58,8 @@ const appointmentSlice = createSlice({
       state.appointmentSchedule = DEFAULT_USER_SCHEDULE_APPOINTMENT_DATA;
     },
     editAppointmentScheduleData: (state, { payload }) => {
-      console.log("edit", {payload})
-      state.appointmentSchedule[payload.key] = payload.value
+      console.log("edit", { payload });
+      state.appointmentSchedule[payload.key] = payload.value;
     },
     setDummyAppointmentSchedule: (state) => {
       state.appointmentSchedule = {
@@ -98,7 +98,7 @@ const appointmentSlice = createSlice({
         ...state.appointmentSchedule.appointmentInfo,
         appointmentType: payload.purposeOfVisit,
         insuranceCarrier: payload.insuranceCarrier,
-      }
+      };
     },
     resetFilterData: (state) => {
       state.filterData = DEFAULT_FILTER_DATA;
@@ -113,7 +113,7 @@ export const {
   editAppointmentScheduleData,
   setDummyAppointmentSchedule,
   setFilterData,
-  resetFilterData
+  resetFilterData,
 } = appointmentSlice.actions;
 
 export default appointmentSlice.reducer;
