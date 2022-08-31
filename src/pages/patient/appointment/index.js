@@ -101,7 +101,7 @@ export default function Appointment({ googleApiKey }) {
             overflow: "hidden",
           }}
         >
-          {/* <Box
+          <Box
             sx={{
               m: 3,
               overflow: "auto",
@@ -109,7 +109,7 @@ export default function Appointment({ googleApiKey }) {
             }}
           >
             <FilterResult onClickViewAllAvailability={onViewAllAvailability} />
-          </Box> */}
+          </Box>
           <Box
             sx={{
               background: "#F4F4F4",
