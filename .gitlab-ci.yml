@@ -9,7 +9,7 @@ variables:
 image: node:16.10.0
 
 stages:
-  - lint
+  # - lint
   - install
   - test
   # - build
