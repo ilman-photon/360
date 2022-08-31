@@ -90,7 +90,8 @@ export default function SelectOptionButton({
           "aria-label": `${label}. ${value}`,
           "aria-live": "polite",
         }}
-        {...props.menuProps}
+        menuProps={props.menuProps}
+        renderValue={props.renderValue}
       >
         {options.map((option, idx) => {
           if (renderMenuListUI) {

@@ -4,12 +4,17 @@ import styles from "./styles.module.scss";
 import StyledRating from "../../atoms/Rating/styledRating";
 import { useRouter } from "next/router";
 
-export default function ProviderProfile({ variant, showPosition, phoneLink }) {
+export default function ProviderProfile({
+  variant,
+  showPosition,
+  phoneLink,
+  isShownPhoneAndRating = true,
+  isShownRating = true,
+}) {
   const specialist = ["Opthometry", "Opthalmology", "Catarac", "Glaucoma"];
   const isAppointment = variant === "appointment";
   const isBio = variant === "bio";
   const isViewSchedule = variant === "viewschedule";
-  const isDayAvailableView = false;
 
   const router = useRouter();
   const renderSpecialistList = () => {
@@ -88,11 +93,13 @@ export default function ProviderProfile({ variant, showPosition, phoneLink }) {
                         Floor 3, Suite 320
                         Midtown, New York, NY, 10019`}
           </Typography>
-          {isDayAvailableView && (
+          {isShownPhoneAndRating && (
             <Box
               className={isBio ? styles.ratingContainer : styles.phoneContainer}
             >
-              {(isBio || isViewSchedule) && <StyledRating value={3.5} />}
+              {(isBio || (isViewSchedule && isShownRating)) && (
+                <StyledRating value={3.5} />
+              )}
               {!phoneLink ? (
                 <Typography variant="body2" className={styles.phone}>
                   (857) 299-9989

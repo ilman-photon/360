@@ -10,6 +10,7 @@ export const FilterResult = ({
   onClickViewAllAvailability = () => {
     // This is intentional
   },
+  isDesktop = false,
 }) => {
   function renderItemResult() {
     const indents = [];
@@ -30,7 +31,7 @@ export const FilterResult = ({
     <>
       <Box>
         <Box>
-          <FilterResultHeading />
+          <FilterResultHeading isDesktop={isDesktop} />
         </Box>
         {renderItemResult()}
       </Box>

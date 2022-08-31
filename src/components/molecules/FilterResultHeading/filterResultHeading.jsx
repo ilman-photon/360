@@ -7,15 +7,26 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import styles from "./filterResultHeading.module.scss";
 import CloseIcon from "@mui/icons-material/Close";
-import { Typography } from "@mui/material";
 import FilterBy from "../FilterBy/filterBy";
 import { useState } from "react";
+import { Stack, Typography } from "@mui/material";
+import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
+import { colors } from "../../../styles/theme";
+import Image from "next/image";
 
 export const FilterResultHeading = ({
   appliedFilter,
   numberFilter = 30,
   dateWeek = ["Sep 19", "Sep 20", "Sep 21", "Sep 22", "Sep 23", "Sep 24"],
+  isDesktop = false,
+  filterData = {
+    location: "New York, NY",
+    date: "",
+    purposeOfVisit: "Eye exam",
+    insuranceCarrier: "Aethna",
+  },
 }) => {
+  const imageSrcState = "/searchInputIcon.png";
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
   const weekColumn = [
     "mondaySchedule",
@@ -81,8 +92,8 @@ export const FilterResultHeading = ({
     setActiveFilter(filter);
   };
 
-  return (
-    <>
+  function renderDesktopView() {
+    return (
       <Box className={styles.filterContainer}>
         <Box className={styles.filterButtonContainer}>
           <FilterBy
@@ -123,7 +134,10 @@ export const FilterResultHeading = ({
             gridTemplateAreas: `"filterDetails calenderDetails"`,
           }}
         >
-          <Box sx={{ gridArea: "filterDetails" }}>
+          <Box
+            sx={{ gridArea: "filterDetails" }}
+            className={styles.filterFoundWarpper}
+          >
             <Typography className={styles.filterFound}>
               {`${numberFilter} In-network providers`}
             </Typography>
@@ -154,7 +168,11 @@ export const FilterResultHeading = ({
             >
               {weekColumn.map((option, idx) => {
                 return (
-                  <Box key={idx} sx={{ gridArea: option, textAlign: "center" }}>
+                  <Box
+                    key={idx}
+                    sx={{ gridArea: option, textAlign: "center" }}
+                    className={styles.calenderDayWarpper}
+                  >
                     <Typography className={styles.calenderDay}>
                       {option.slice(0, 3)}
                     </Typography>
@@ -171,8 +189,43 @@ export const FilterResultHeading = ({
           </Box>
         </Box>
       </Box>
-    </>
-  );
+    );
+  }
+
+  function renderMobileView() {
+    return (
+      <Box className={styles.mobileFilterContainer}>
+        <Stack justifyContent={"center"} height={"100%"} paddingX={"14px"}>
+          <Stack className={styles.mobileFilterStyle} direction={"row"}>
+            <LocationOnOutlinedIcon
+              sx={{
+                margin: "auto 14px",
+                width: "25px",
+                height: "25px",
+                color: colors.darkGreen,
+              }}
+            />
+            <Box className={styles.mobileFilterTitleContainer}>
+              <Typography
+                variant={"bodyMedium"}
+                className={styles.mobileFilterTitle}
+              >
+                {filterData.location}
+              </Typography>
+              <Typography
+                className={styles.mobileFilterSubtitle}
+              >{`${filterData.purposeOfVisit} * ${filterData.insuranceCarrier}`}</Typography>
+            </Box>
+            <Box className={styles.mobileFilterImageContainer}>
+              <Image alt="" src={imageSrcState} width={31} height={31} />
+            </Box>
+          </Stack>
+        </Stack>
+      </Box>
+    );
+  }
+
+  return <>{isDesktop ? renderDesktopView() : renderMobileView()}</>;
 };
 
 export default FilterResultHeading;

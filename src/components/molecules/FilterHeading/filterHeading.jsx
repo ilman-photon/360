@@ -131,6 +131,8 @@ const FilterHeading = ({
             ) {
               setInsuranceCarrierValue(e.target.value);
               setOpenDialog(false);
+              e.preventDefault();
+              return false;
             }
           }}
         />
@@ -844,15 +846,25 @@ const FilterHeading = ({
               variant="filled"
               defaultValue={locationValue}
               label="City, state, or zip code"
-              onChange={(data) => {
-                setLocationValue(data.target.value);
-              }}
               sx={{
                 width: "100%",
                 [muiInputRoot]: {
                   border: "0px solid #ffff",
                   background: "#fff",
                 },
+              }}
+              onKeyDown={(e) => {
+                if (
+                  e.code &&
+                  e.code.toLowerCase() === "enter" &&
+                  e.target.value &&
+                  setOpenDialog
+                ) {
+                  setLocationValue(e.target.value);
+                  setOpenDialog(false);
+                  e.preventDefault();
+                  return false;
+                }
               }}
             />
           </Box>

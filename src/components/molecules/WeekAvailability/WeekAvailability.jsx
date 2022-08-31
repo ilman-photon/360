@@ -4,8 +4,34 @@ import Link from "@mui/material/Link";
 import { StyledButton } from "../../atoms/Button/button";
 import styles from "./styles.module.scss";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
-import { Divider } from "@mui/material";
+import { Divider, Typography } from "@mui/material";
 import { useRouter } from "next/router";
+
+export function viewAllAvailabilityLinkUI({
+  onClickViewAllAvailability = () => {
+    // This is intentional
+  },
+}) {
+  return (
+    <Box
+      sx={{
+        gridArea: "linkAvability",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        p: 3,
+      }}
+      className={styles.linkWrapper}
+    >
+      <Link
+        className={styles.linkAvailabelity}
+        onClick={onClickViewAllAvailability}
+      >
+        View all Availability
+      </Link>
+    </Box>
+  );
+}
 
 export const WeekAvailability = ({
   scheduleData = {
@@ -48,7 +74,11 @@ export const WeekAvailability = ({
   function buttonSchedule(label, gridArea, isTypeMore = false, index = "") {
     if (label) {
       return (
-        <Box key={index} sx={{ gridArea: gridArea, width: "90px" }}>
+        <Box
+          key={index}
+          sx={{ gridArea: gridArea, width: "90px" }}
+          className={styles.buttonWrapper}
+        >
           <StyledButton
             theme={constants.PATIENT}
             mode={constants.PRIMARY}
@@ -61,10 +91,12 @@ export const WeekAvailability = ({
               router.push("/patient/schedule-appointment");
             }}
           >
-            {label}
-            {isTypeMore && (
-              <KeyboardArrowDownOutlinedIcon sx={{ width: "18px" }} />
-            )}
+            <Typography className={styles.scheduleBtnLabel}>
+              {label}
+              {isTypeMore && (
+                <KeyboardArrowDownOutlinedIcon sx={{ width: "18px" }} />
+              )}
+            </Typography>
           </StyledButton>
         </Box>
       );
@@ -96,22 +128,7 @@ export const WeekAvailability = ({
       }}
     >
       {renderScheduleData()}
-      <Box
-        sx={{
-          gridArea: "linkAvability",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          p: 3,
-        }}
-      >
-        <Link
-          className={styles.linkAvailabelity}
-          onClick={onClickViewAllAvailability}
-        >
-          View all Availability
-        </Link>
-      </Box>
+      {viewAllAvailabilityLinkUI({ onClickViewAllAvailability })}
     </Box>
   );
 };
