@@ -36,3 +36,13 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+//Handle Custom Popper for FilterHeading Component Mobile view
+.MuiAutocomplete-popper {
+  &.filter-heading-mobile {
+    inset: 12px auto auto -20px !important;
+    width: 92% !important;
+    border: 1px solid #bdbdbd;
+    border-radius: 4px;
+  }
+}

@@ -216,7 +216,13 @@ export default function ScheduleAppointmentPage() {
             sx={{
               borderRadius: "46px",
             }}
-            onClick={() => setActiveStep(activeStep - 1)}
+            onClick={() => {
+              if (activeStep - 1 < 1) {
+                handleEditSchedule();
+              } else {
+                setActiveStep(activeStep - 1);
+              }
+            }}
           >
             <ArrowBackIcon className={styles.backIcon} />
             &nbsp;Back

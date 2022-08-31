@@ -81,3 +81,47 @@
 .hideText {
   visibility: hidden;
 }
+
+.selectMenuContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.dialogSelectMenu {
+  margin-top: 16px;
+}
+
+.dialogSelectMenuTitle {
+  font-family: "Libre Franklin", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: 0.0016em;
+  color: $darkGreen;
+}
+
+.dialogSelectMenuInsurance {
+  font-weight: 600;
+  color: $darkGreen;
+  margin-bottom: 6px;
+}
+
+.renderOptionStyle {
+  padding-left: 16px;
+  padding-top: 12px;
+  padding-right: 16px;
+}
+
+.renderDivider {
+  padding-top: 12px;
+}
+
+.linkUseMyLocationStyle {
+  font-family: "Libre Franklin", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: $link;
+}

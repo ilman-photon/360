@@ -7,11 +7,21 @@ export const FilterResult = ({
   onSelectSchedule = () => {
     // This is intentional
   },
+  onClickViewAllAvailability = () => {
+    // This is intentional
+  },
 }) => {
   function renderItemResult() {
     const indents = [];
     for (let i = 0; i < dataCount; i++) {
-      indents.push(<ItemResult />);
+      indents.push(
+        <Box key={i}>
+          <ItemResult
+            keyItem={`${i}-item-filter`}
+            onClickViewAllAvailability={onClickViewAllAvailability}
+          />
+        </Box>
+      );
     }
     return indents;
   }

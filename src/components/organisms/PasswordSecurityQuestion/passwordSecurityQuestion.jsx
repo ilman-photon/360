@@ -13,6 +13,7 @@ import { useForm, Controller } from "react-hook-form";
 import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
 import Head from "next/head";
+import { colors } from "../../../styles/theme";
 
 const constants = require("../../../utils/constants");
 
@@ -146,7 +147,7 @@ const PasswordSecurityQuestion = ({
               ...styles.backToLoginMargin,
               ...styles.link,
             }}
-            color={"#2095a9"}
+            color={colors.link}
             data-testid={FORGOT_TEST_ID.loginLink}
             onClick={function () {
               onBackToLoginClicked(router);

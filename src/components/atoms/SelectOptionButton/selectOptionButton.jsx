@@ -53,7 +53,11 @@ export default function SelectOptionButton({
   ...props
 }) {
   return (
-    <CustomFormControl variant="filled" {...props} style={{ width: "100%" }}>
+    <CustomFormControl
+      variant="filled"
+      sx={{ ...props.sx }}
+      style={{ width: "100%" }}
+    >
       <InputLabel
         id="demo-simple-select-label"
         sx={{

@@ -5,9 +5,15 @@ import ProviderProfile from "../../molecules/ProviderProfile/providerProfile";
 import styles from "./styles.module.scss";
 import { Box } from "@mui/system";
 
-export default function ItemResult() {
+export default function ItemResult({
+  onClickViewAllAvailability = () => {
+    // This is intentional
+  },
+  keyItem = "",
+}) {
   return (
     <Box
+      key={keyItem}
       sx={{
         marginTop: "16px",
         display: "grid",
@@ -25,7 +31,10 @@ export default function ItemResult() {
         <LocationDistance />
       </Box>
       <Box sx={{ gridArea: "weekAvailability" }}>
-        <WeekAvailability />
+        <WeekAvailability
+          onClickViewAllAvailability={onClickViewAllAvailability}
+          keyWeek={keyItem}
+        />
       </Box>
     </Box>
   );
