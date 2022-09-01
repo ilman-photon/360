@@ -1,11 +1,13 @@
 import AuthLayout from "../../../components/templates/authLayout";
 import Cookies from "universal-cookie";
+import { useRouter } from "next/router";
 import { Api } from "../../api/api";
 import { Login as LoginComponent } from "../../../components/organisms/Login/login";
 import { useEffect } from "react";
 
 function getUserData(username, callback) {
   const api = new Api();
+
   const postBody = {
     username,
   };
@@ -73,6 +75,7 @@ const loginProps = {
 };
 
 export default function login() {
+  const router = useRouter();
   const api = new Api();
   const cookies = new Cookies();
 
