@@ -800,7 +800,7 @@ Object {
             </label>
             <div
               aria-labelledby="row-radio-buttons-group-label"
-              class="MuiFormGroup-root css-dmmspl-MuiFormGroup-root"
+              class="MuiFormGroup-root MuiFormGroup-row css-qfz70r-MuiFormGroup-root"
               role="radiogroup"
             >
               <label
@@ -963,7 +963,7 @@ Object {
             class="css-1281pzv-MuiStack-root"
           >
             <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-14zuhkj-MuiButtonBase-root-MuiButton-root"
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-199kdjc-MuiButtonBase-root-MuiButton-root"
               data-testid="loc_btnCancelInsuranve"
               tabindex="0"
               type="button"
@@ -974,7 +974,7 @@ Object {
               />
             </button>
             <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-14zuhkj-MuiButtonBase-root-MuiButton-root"
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-199kdjc-MuiButtonBase-root-MuiButton-root"
               data-testid="loc_btnSaveInsuranve"
               tabindex="0"
               type="submit"
@@ -1785,7 +1785,7 @@ Object {
           </label>
           <div
             aria-labelledby="row-radio-buttons-group-label"
-            class="MuiFormGroup-root css-dmmspl-MuiFormGroup-root"
+            class="MuiFormGroup-root MuiFormGroup-row css-qfz70r-MuiFormGroup-root"
             role="radiogroup"
           >
             <label
@@ -1948,7 +1948,7 @@ Object {
           class="css-1281pzv-MuiStack-root"
         >
           <button
-            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-14zuhkj-MuiButtonBase-root-MuiButton-root"
+            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-199kdjc-MuiButtonBase-root-MuiButton-root"
             data-testid="loc_btnCancelInsuranve"
             tabindex="0"
             type="button"
@@ -1959,7 +1959,7 @@ Object {
             />
           </button>
           <button
-            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-14zuhkj-MuiButtonBase-root-MuiButton-root"
+            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-199kdjc-MuiButtonBase-root-MuiButton-root"
             data-testid="loc_btnSaveInsuranve"
             tabindex="0"
             type="submit"
