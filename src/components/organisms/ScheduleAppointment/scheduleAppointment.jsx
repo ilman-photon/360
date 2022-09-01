@@ -13,7 +13,11 @@ import AppointmentForm from "./appointmentForm";
 export default function ScheduleAppointment({
   selectedSelf,
   isLoggedIn = false,
+  patientData = {},
   OnSetSelectedSelf = () => {
+    // This is intended
+  },
+  OnSubmit = () => {
     // This is intended
   },
   setActiveStep = () => {
@@ -81,7 +85,13 @@ export default function ScheduleAppointment({
           </Button>
         </Stack>
 
-        {selectedSelf === 2 ? <AppointmentForm isForMyself={false} /> : null}
+        {selectedSelf === 2 ? (
+          <AppointmentForm
+            patientData={patientData}
+            isForMyself={false}
+            OnSubmit={OnSubmit}
+          />
+        ) : null}
 
         <Divider />
         {selectedSelf === 1 ? (

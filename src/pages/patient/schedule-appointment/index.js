@@ -13,11 +13,12 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { LabelWithIcon } from "../../../components/atoms/LabelWithIcon/labelWithIcon";
 
 import { Button, Grid, Box, Divider, useMediaQuery } from "@mui/material";
-import { Provider, useSelector } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "../../../store/store";
 import styles from "./styles.module.scss";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
+import { editAppointmentScheduleData } from "../../../store/appointment";
 
 const MobileTopBar = (data) => {
   return (
@@ -46,6 +47,7 @@ const MobileTopBar = (data) => {
 
 export const PageContent = ({
   activeStep,
+  isLoggedIn = false,
   appointmentScheduleData = {},
   OnsetActiveStep = () => {
     // This is intentional
@@ -58,6 +60,19 @@ export const PageContent = ({
   const { t } = useTranslation("translation", {
     keyPrefix: "scheduleAppoinment",
   });
+
+  const dispatch = useDispatch();
+
+  const handleFormSubmit = (payload) => {
+    console.log({ payload });
+    dispatch(
+      editAppointmentScheduleData({
+        key: "patientInfo",
+        value: payload,
+      })
+    );
+    OnsetActiveStep();
+  };
 
   switch (activeStep) {
     case 1:
@@ -88,7 +103,7 @@ export const PageContent = ({
                 }}
                 onClick={() => OnsetActiveStep(2)}
               >
-                {t("continue")}
+                {isLoggedIn ? t("scheduleAppoinment") : t("continue")}
               </Button>
             </Box>
           </Grid>
@@ -106,7 +121,12 @@ export const PageContent = ({
             p={{ xs: "24px 14px", md: "40px 16px" }}
           >
             <ScheduleAppointment
+              patientData={appointmentScheduleData.patientInfo}
               selectedSelf={selectedSelf}
+              OnSubmit={(v) => {
+                handleFormSubmit(v);
+                OnsetActiveStep(4);
+              }}
               OnSetSelectedSelf={(idx) => setSelectedSelf(idx)}
               setActiveStep={(idx) => OnsetActiveStep(idx)}
             />
@@ -134,7 +154,14 @@ export const PageContent = ({
             className={styles.examForComponent}
             p={{ xs: "24px 14px", md: "40px 16px" }}
           >
-            <AppointmentForm isForMyself={true} />
+            <AppointmentForm
+              isForMyself={true}
+              patientData={appointmentScheduleData.patientInfo}
+              OnSubmit={(v) => {
+                handleFormSubmit(v);
+                OnsetActiveStep(4);
+              }}
+            />
           </Grid>
           <Grid md={4} pl={2} sx={{ display: { xs: "none", md: "block" } }}>
             <AppointmentLocation
@@ -174,9 +201,9 @@ export default function ScheduleAppointmentPage() {
     "Confirm",
   ];
 
-  const appointmentScheduleData = useSelector(
-    (state) => state.appointment.appointmentSchedule
-  );
+  const appointmentScheduleData = useSelector((state) => {
+    return state.appointment.appointmentSchedule;
+  });
 
   const handleEditSchedule = () => {
     console.log("change schedule data");
@@ -244,6 +271,7 @@ export default function ScheduleAppointmentPage() {
       >
         <div className={styles.pageWrapper}>
           <PageContent
+            isLoggedIn={isLoggedIn}
             activeStep={activeStep}
             OnsetActiveStep={handleSetActiveStep}
             appointmentScheduleData={appointmentScheduleData}

@@ -261,10 +261,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             }}
             rules={{
               required: "This field is required",
-              pattern: {
-                value: Regex.specialRegex,
-                message: "Incorrect email format",
-              },
             }}
           />
           <Controller
