@@ -29,9 +29,11 @@ Object {
                 sigInInfo
               </h1>
               <a
-                aria-label="signIn link"
+                aria-label="signIn"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1szbmku-MuiTypography-root-MuiLink-root"
                 data-testid="signInlink"
+                role="link"
+                tabindex="0"
               >
                 signIn
               </a>
@@ -153,7 +155,7 @@ Object {
               class="MuiBox-root css-6gs9hh"
             >
               <div
-                class="MuiFormControl-root MuiTextField-root css-104anf4-MuiFormControl-root-MuiTextField-root"
+                class="MuiFormControl-root MuiTextField-root css-1b4zuq3-MuiFormControl-root-MuiTextField-root"
               >
                 <label
                   class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
@@ -440,7 +442,7 @@ Object {
               class="MuiDivider-root MuiDivider-fullWidth css-6s38d-MuiDivider-root"
             />
             <div
-              style="padding: 16px; border-radius: 4px; color: rgb(54, 106, 112); background-color: rgba(0, 149, 169, 0.051); margin: 8px; word-break: break-all;"
+              style="padding: 16px; border-radius: 4px; color: rgb(54, 106, 112); background-color: rgb(242, 247, 253); word-break: break-all;"
             >
               <div>
                 Your username will be 
@@ -492,9 +494,11 @@ Object {
               sigInInfo
             </h1>
             <a
-              aria-label="signIn link"
+              aria-label="signIn"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1szbmku-MuiTypography-root-MuiLink-root"
               data-testid="signInlink"
+              role="link"
+              tabindex="0"
             >
               signIn
             </a>
@@ -616,7 +620,7 @@ Object {
             class="MuiBox-root css-6gs9hh"
           >
             <div
-              class="MuiFormControl-root MuiTextField-root css-104anf4-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiTextField-root css-1b4zuq3-MuiFormControl-root-MuiTextField-root"
             >
               <label
                 class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
@@ -903,7 +907,7 @@ Object {
             class="MuiDivider-root MuiDivider-fullWidth css-6s38d-MuiDivider-root"
           />
           <div
-            style="padding: 16px; border-radius: 4px; color: rgb(54, 106, 112); background-color: rgba(0, 149, 169, 0.051); margin: 8px; word-break: break-all;"
+            style="padding: 16px; border-radius: 4px; color: rgb(54, 106, 112); background-color: rgb(242, 247, 253); word-break: break-all;"
           >
             <div>
               Your username will be 

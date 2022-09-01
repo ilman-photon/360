@@ -4,6 +4,7 @@ import AppointmentLocation from "../../../components/organisms/ScheduleAppointme
 import AppointmentDetails from "../../../components/organisms/ScheduleAppointment/appointmentDetails";
 import AppointmentForm from "../../../components/organisms/ScheduleAppointment/appointmentForm";
 import ModalScheduling from "../../../components/organisms/ScheduleAppointment/modalScheduling";
+import DrawerScheduling from "../../../components/organisms/ScheduleAppointment/drawerScheduling";
 
 import StepperAppoinment from "../../../components/molecules/StepperAppoinment/stepperAppoinment";
 import AccountTitleHeading from "../../../components/atoms/AccountTitleHeading/accountTitleHeading";
@@ -159,6 +160,7 @@ export const PageContent = ({
 export default function ScheduleAppointmentPage() {
   const [activeStep, setActiveStep] = React.useState(1);
   const isDesktop = useMediaQuery("(min-width: 769px)");
+  const [isOpen, setIsOpen] = React.useState(true);
 
   const router = useRouter();
 
@@ -199,7 +201,19 @@ export default function ScheduleAppointmentPage() {
       <BaseHeader />
       {isDesktop ? <AccountTitleHeading title={headerText[activeStep]} /> : ""}
       <StepperAppoinment activeStep={activeStep} steps={steps} />
-      <ModalScheduling providerData />
+      {isDesktop ? (
+        <ModalScheduling
+          providerData={appointmentScheduleData.providerInfo}
+          isOpen={isOpen}
+          OnSetIsOpen={(idx) => setIsOpen(idx)}
+        />
+      ) : (
+        <DrawerScheduling
+          providerData={appointmentScheduleData.providerInfo}
+          isOpen={isOpen}
+          OnSetIsOpen={(idx) => setIsOpen(idx)}
+        />
+      )}
       {activeStep === 2 ? (
         <Grid
           className={styles.mobileTopBar}
@@ -222,7 +236,13 @@ export default function ScheduleAppointmentPage() {
             sx={{
               borderRadius: "46px",
             }}
-            onClick={() => setActiveStep(activeStep - 1)}
+            onClick={() => {
+              if (activeStep - 1 < 1) {
+                handleEditSchedule();
+              } else {
+                setActiveStep(activeStep - 1);
+              }
+            }}
           >
             <ArrowBackIcon className={styles.backIcon} />
             &nbsp;Back

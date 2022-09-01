@@ -31,7 +31,6 @@ Object {
                   />
                 </span>
                 <img
-                  alt="Clarkson Eyecare logo"
                   aria-label="Clarkson Eyecare logo"
                   data-nimg="intrinsic"
                   decoding="async"
@@ -47,6 +46,7 @@ Object {
           class="titleHeadingWrapper"
         >
           <div
+            aria-live="polite"
             class="title"
           >
             Your Account
@@ -131,6 +131,7 @@ Object {
                   />
                 </svg>
                 <div
+                  aria-live="polite"
                   data-testid="submission-message"
                   style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
                 >
@@ -355,7 +356,7 @@ Object {
                                       class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
                                       id=":r4:"
                                       placeholder=""
-                                      type="number"
+                                      type="text"
                                       value=""
                                     />
                                   </div>
@@ -631,7 +632,7 @@ Object {
                                           class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
                                         >
                                           <div
-                                            class="MuiFormControl-root MuiTextField-root css-104anf4-MuiFormControl-root-MuiTextField-root"
+                                            class="MuiFormControl-root MuiTextField-root css-1b4zuq3-MuiFormControl-root-MuiTextField-root"
                                           >
                                             <label
                                               class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
@@ -674,7 +675,7 @@ Object {
                                           class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
                                         >
                                           <div
-                                            class="MuiFormControl-root css-1nn82kk-MuiFormControl-root"
+                                            class="MuiFormControl-root css-14ljafm-MuiFormControl-root"
                                             style="width: 100%;"
                                           >
                                             <label
@@ -685,12 +686,13 @@ Object {
                                               Relationship
                                             </label>
                                             <div
-                                              class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-11i5xk9-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                                              class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-1wtub61-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
                                               data-testid="select-undefined"
                                             >
                                               <div
                                                 aria-expanded="false"
                                                 aria-haspopup="listbox"
+                                                aria-label="Relationship. "
                                                 class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                                                 role="button"
                                                 tabindex="0"
@@ -703,6 +705,7 @@ Object {
                                               </div>
                                               <input
                                                 aria-hidden="true"
+                                                aria-live="polite"
                                                 class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
                                                 tabindex="-1"
                                                 value=""
@@ -775,6 +778,7 @@ Object {
                                             />
                                           </svg>
                                           <div
+                                            aria-live="polite"
                                             data-testid="submission-message"
                                             style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
                                           >
@@ -863,6 +867,7 @@ Object {
                                             />
                                           </svg>
                                           <div
+                                            aria-live="polite"
                                             data-testid="submission-message"
                                             style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
                                           >
@@ -918,15 +923,6 @@ Object {
                                       type="file"
                                     />
                                   </div>
-                                </div>
-                              </div>
-                              <div
-                                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8 css-yakw3f-MuiGrid-root"
-                              >
-                                <div
-                                  class="MuiTypography-root MuiTypography-bodySmallMedium css-uincrr-MuiTypography-root"
-                                >
-                                  *JPG or PNG file formats only. (File size limit is 4 MB)
                                 </div>
                               </div>
                             </div>
@@ -1123,7 +1119,7 @@ Object {
                               class="css-1281pzv-MuiStack-root"
                             >
                               <button
-                                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-mleb13-MuiButtonBase-root-MuiButton-root"
+                                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-8edxhn-MuiButtonBase-root-MuiButton-root"
                                 data-testid="loc_btnCancelInsuranve"
                                 tabindex="0"
                                 type="button"
@@ -1134,7 +1130,7 @@ Object {
                                 />
                               </button>
                               <button
-                                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-mleb13-MuiButtonBase-root-MuiButton-root"
+                                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-8edxhn-MuiButtonBase-root-MuiButton-root"
                                 data-testid="loc_btnSaveInsuranve"
                                 tabindex="0"
                                 type="submit"
@@ -1188,7 +1184,6 @@ Object {
                 />
               </span>
               <img
-                alt="Clarkson Eyecare logo"
                 aria-label="Clarkson Eyecare logo"
                 data-nimg="intrinsic"
                 decoding="async"
@@ -1204,6 +1199,7 @@ Object {
         class="titleHeadingWrapper"
       >
         <div
+          aria-live="polite"
           class="title"
         >
           Your Account
@@ -1288,6 +1284,7 @@ Object {
                 />
               </svg>
               <div
+                aria-live="polite"
                 data-testid="submission-message"
                 style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
               >
@@ -1512,7 +1509,7 @@ Object {
                                     class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
                                     id=":r4:"
                                     placeholder=""
-                                    type="number"
+                                    type="text"
                                     value=""
                                   />
                                 </div>
@@ -1788,7 +1785,7 @@ Object {
                                         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
                                       >
                                         <div
-                                          class="MuiFormControl-root MuiTextField-root css-104anf4-MuiFormControl-root-MuiTextField-root"
+                                          class="MuiFormControl-root MuiTextField-root css-1b4zuq3-MuiFormControl-root-MuiTextField-root"
                                         >
                                           <label
                                             class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
@@ -1831,7 +1828,7 @@ Object {
                                         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
                                       >
                                         <div
-                                          class="MuiFormControl-root css-1nn82kk-MuiFormControl-root"
+                                          class="MuiFormControl-root css-14ljafm-MuiFormControl-root"
                                           style="width: 100%;"
                                         >
                                           <label
@@ -1842,12 +1839,13 @@ Object {
                                             Relationship
                                           </label>
                                           <div
-                                            class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-11i5xk9-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
+                                            class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-1wtub61-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
                                             data-testid="select-undefined"
                                           >
                                             <div
                                               aria-expanded="false"
                                               aria-haspopup="listbox"
+                                              aria-label="Relationship. "
                                               class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                                               role="button"
                                               tabindex="0"
@@ -1860,6 +1858,7 @@ Object {
                                             </div>
                                             <input
                                               aria-hidden="true"
+                                              aria-live="polite"
                                               class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
                                               tabindex="-1"
                                               value=""
@@ -1932,6 +1931,7 @@ Object {
                                           />
                                         </svg>
                                         <div
+                                          aria-live="polite"
                                           data-testid="submission-message"
                                           style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
                                         >
@@ -2020,6 +2020,7 @@ Object {
                                           />
                                         </svg>
                                         <div
+                                          aria-live="polite"
                                           data-testid="submission-message"
                                           style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
                                         >
@@ -2075,15 +2076,6 @@ Object {
                                     type="file"
                                   />
                                 </div>
-                              </div>
-                            </div>
-                            <div
-                              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-8 css-yakw3f-MuiGrid-root"
-                            >
-                              <div
-                                class="MuiTypography-root MuiTypography-bodySmallMedium css-uincrr-MuiTypography-root"
-                              >
-                                *JPG or PNG file formats only. (File size limit is 4 MB)
                               </div>
                             </div>
                           </div>
@@ -2280,7 +2272,7 @@ Object {
                             class="css-1281pzv-MuiStack-root"
                           >
                             <button
-                              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-mleb13-MuiButtonBase-root-MuiButton-root"
+                              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton outlined css-8edxhn-MuiButtonBase-root-MuiButton-root"
                               data-testid="loc_btnCancelInsuranve"
                               tabindex="0"
                               type="button"
@@ -2291,7 +2283,7 @@ Object {
                               />
                             </button>
                             <button
-                              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-mleb13-MuiButtonBase-root-MuiButton-root"
+                              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-8edxhn-MuiButtonBase-root-MuiButton-root"
                               data-testid="loc_btnSaveInsuranve"
                               tabindex="0"
                               type="submit"

@@ -26,7 +26,33 @@ export default function StepperAppoinment({ ...props }) {
         sx={{ width: "800px" }}
       >
         {steps?.map((label, idx) => (
-          <Step sx={{ color: "#87C9D2" }} key={label}>
+          <Step
+            sx={{
+              "& .MuiStepLabel-root .Mui-completed": {
+                color: "#D5F1D4", // circle color (COMPLETED)
+                stroke: "#00B88C",
+                background: "#00B88C",
+                borderRadius: "50%",
+              },
+              "& .MuiStepLabel-label.Mui-completed.MuiStepLabel-alternativeLabel":
+                {
+                  color: "black", // Just text label (COMPLETED)
+                  background: "transparent",
+                },
+              "& .MuiStepLabel-root .Mui-active": {
+                color: "#0095A9", // circle color (ACTIVE)
+              },
+              "& .MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel":
+                {
+                  color: "black", // Just text label (ACTIVE)
+                },
+              "& .Mui-disabled .MuiStepIcon-root": {
+                fill: "transparent", // Hollow icon (INCOMPLETE)
+                stroke: "black",
+              },
+            }}
+            key={label}
+          >
             <StepLabel
               sx={{
                 ".css-qivjh0-MuiStepLabel-label.MuiStepLabel-alternativeLabel":

@@ -5,7 +5,6 @@ import AccountCard from "../../molecules/AccountCard/accountCard";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import Image from "next/image";
-import { faker } from "@faker-js/faker";
 import { styles } from "./style";
 
 export default function AppointmentLocation({

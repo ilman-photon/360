@@ -1,5 +1,4 @@
 import { Box } from "@mui/system";
-import ItemResult from "../../organisms/ItemResult/ItemResult";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import { Typography } from "@mui/material";
 

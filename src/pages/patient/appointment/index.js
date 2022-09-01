@@ -94,11 +94,15 @@ export default function Appointment() {
 
   return (
     <Box>
-      <FilterHeading
-        isDesktop={isDesktop}
-        onSearchProvider={onSearchProvider}
-        isGeolocationEnabled={isGeolocationEnabled}
-      />
+      {!isFilterApplied || isDesktop ? (
+        <FilterHeading
+          isDesktop={isDesktop}
+          onSearchProvider={onSearchProvider}
+          isGeolocationEnabled={isGeolocationEnabled}
+        />
+      ) : (
+        <></>
+      )}
       {isDesktop && isFilterApplied ? (
         <Box
           sx={{

@@ -62,10 +62,12 @@ export const styles = {
   loginLink: {
     color: "#3EAFBD",
     textDecoration: "underline",
+    fontSize: "16px",
   },
   medicLink: {
     color: "#EF4836",
     textDecoration: "underline",
+    fontSize: "16px",
   },
   containedButton: {
     backgroundColor: "#2095a9",
@@ -92,8 +94,20 @@ export const styles = {
     borderRadius: 4,
     color: "#366A70",
     backgroundColor: "#F2F7FD",
-    margin: 8,
     wordBreak: "break-all",
+  },
+  scheduledText: {
+    color: colors.darkGreen,
+    fontWeight: "700",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  thanksBar: {
+    display: "flex",
+    alignItems: "center",
+    lineHeight: "24px",
+    wordBreak: "break-word",
   },
   card: {
     margin: "8px",
@@ -117,5 +131,47 @@ export const styles = {
     fontSize: "26px",
     lineHeight: "32px",
     color: "#003B4A",
+  },
+  addCalendarButton: {
+    fontWeight: "700",
+    fontSize: "14px",
+    lineHeight: "18px",
+    display: "flex",
+    alignItems: "center",
+    color: "#007E8F",
+    justifyContent: "center",
+    padding: "8px 16px",
+    gap: "4px",
+    background: "#FFFFFF",
+    border: "1px solid #003B4A",
+    borderRadius: "4px",
+    textTransform: "capitalize",
+  },
+  itemContainer: {
+    border: "1px solid #dfdbdb",
+    display: "flex",
+    alignItems: "center",
+    padding: "24px",
+    flexDirection: "column",
+  },
+
+  getDirectionLink: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    gap: "9px",
+    marginTop: "19px",
+  },
+
+  getDirectionLinkText: {
+    fontFamily: "Roboto, sans-serif",
+    fontStyle: "normal",
+    fontWeight: 500,
+    fontSize: "16px",
+    lineHeight: "20px",
+    letterSpacing: "0.0016em",
+    color: "#008294 !important",
+    cursor: "pointer",
+    textDecorationColor: "inherit !important",
   },
 };

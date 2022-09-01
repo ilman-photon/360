@@ -1,5 +1,4 @@
 import { Box } from "@mui/system";
-import constants from "../../../utils/constants";
 import ItemResult from "../../organisms/ItemResult/ItemResult";
 import FilterResultHeading from "../FilterResultHeading/filterResultHeading";
 
