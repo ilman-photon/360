@@ -62,7 +62,6 @@ const appointmentSlice = createSlice({
       state.appointmentSchedule = DEFAULT_USER_SCHEDULE_APPOINTMENT_DATA;
     },
     editAppointmentScheduleData: (state, { payload }) => {
-      console.log("edit", { payload });
       state.appointmentSchedule[payload.key] = payload.value;
     },
     setDummyAppointmentSchedule: (state) => {

@@ -1,9 +1,5 @@
 import Box from "@mui/material/Box";
 import React from "react";
-import Link from "@mui/material/Link";
-import { StyledButton } from "../../atoms/Button/button";
-import styles from "../DayAvailability/styles.module.scss";
-import stylesWeek from "../WeekAvailability/styles.module.scss";
 import { useRouter } from "next/router";
 import { viewAllAvailabilityLinkUI } from "../WeekAvailability/WeekAvailability";
 import { buttonSchedule } from "../DayAvailability/DayAvailability";

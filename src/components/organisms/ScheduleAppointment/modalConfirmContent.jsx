@@ -1,10 +1,7 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import { styled } from "@mui/material/styles";
-import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
-import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import LabelWithInfo from "../../atoms/LabelWithInfo/labelWithInfo";
@@ -14,15 +11,11 @@ import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
-import Cookies from "universal-cookie";
-import { useRouter } from "next/router";
-
 import { colors } from "../../../styles/theme";
 import { styles } from "./style";
 import ProviderProfile from "../../molecules/ProviderProfile/providerProfile";
 
 import Link from "@mui/material/Link";
-import Image from "next/image";
 import constants from "../../../utils/constants";
 import { useTranslation } from "next-i18next";
 import {
@@ -32,9 +25,7 @@ import {
   Stack,
   Typography,
   Button,
-  Divider,
   Grid,
-  useMediaQuery,
 } from "@mui/material";
 
 const BootstrapDialogTitle = (props) => {

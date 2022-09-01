@@ -252,6 +252,7 @@ export default function ScheduleAppointmentPage() {
         })
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
 
   const handleSetActiveStep = (idx) => {

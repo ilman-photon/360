@@ -7,24 +7,8 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 
 import ModalConfirmContent from "./modalConfirmContent";
-import { colors } from "../../../styles/theme";
-import { styles } from "./style";
-import ProviderProfile from "../../molecules/ProviderProfile/providerProfile";
-import Link from "@mui/material/Link";
-import Image from "next/image";
-import constants from "../../../utils/constants";
 import { useTranslation } from "next-i18next";
-import {
-  Card,
-  CardContent,
-  Box,
-  Stack,
-  Typography,
-  Button,
-  Divider,
-  Grid,
-  useMediaQuery,
-} from "@mui/material";
+import { useMediaQuery } from "@mui/material";
 import { useRouter } from "next/router";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({

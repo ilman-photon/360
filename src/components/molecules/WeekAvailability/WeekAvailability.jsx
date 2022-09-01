@@ -5,6 +5,7 @@ import { StyledButton } from "../../atoms/Button/button";
 import styles from "./styles.module.scss";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import { Divider, Typography } from "@mui/material";
+import constants from "../../../utils/constants";
 
 export function viewAllAvailabilityLinkUI({
   onClickViewAllAvailability = () => {
@@ -24,6 +25,7 @@ export function viewAllAvailabilityLinkUI({
     >
       <Link
         className={styles.linkAvailabelity}
+        data-testId={constants.TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll}
         onClick={onClickViewAllAvailability}
       >
         View all Availability
@@ -139,7 +141,6 @@ export const WeekAvailability = ({
     );
   }
 
-  const constants = require("../../../utils/constants");
   return (
     <Box
       key={keyWeek}
