@@ -23,6 +23,7 @@ const ForgotPassword = ({
   setShowPostMessage,
   onCalledValidateUsernameAPI,
   title = "",
+  isAppointment = true,
 }) => {
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "ForgotPassword" });
@@ -64,7 +65,7 @@ const ForgotPassword = ({
         <CardContent style={styles.cardContentStyle}>
           <HeadingTitle
             variant={constants.H2}
-            title={t("title")}
+            title={isAppointment ? t("syncTitle") : t("title")}
             sx={{ fontSize: "32px" }}
           />
           {showPostMessage ? (
@@ -112,7 +113,7 @@ const ForgotPassword = ({
               style={styles.margin}
               data-testid={FORGOT_TEST_ID.continueBtn}
             >
-              {t("resetPasswordText")}
+              {isAppointment ? t("syncButton") : t("resetPasswordText")}
             </StyledButton>
           </form>
           <Typography
@@ -125,9 +126,11 @@ const ForgotPassword = ({
               onClick={function () {
                 onBackToLoginClicked(router);
               }}
-              {...getLinkAria(t("backButtonLink"))}
+              {...getLinkAria(
+                isAppointment ? t("backSignIn") : t("backButtonLink")
+              )}
             >
-              {t("backButtonLink")}
+              {isAppointment ? t("backSignIn") : t("backButtonLink")}
             </Link>
           </Typography>
         </CardContent>
