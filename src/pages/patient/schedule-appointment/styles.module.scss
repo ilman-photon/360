@@ -1,0 +1,79 @@
+@import "../../../../styles/colors.scss";
+
+.container {
+  background-color: #e4e4e4;
+  margin: auto;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  .pageWrapper {
+    display: flex;
+    flex-direction: row;
+    max-width: calc(464px + 962px + 24px);
+    width: 100%;
+  }
+}
+
+.mobileTopBar {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.mobileMenuBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 8px 16px;
+  overflow: hidden;
+}
+
+.mobileTextBar {
+  margin: 0;
+  align-items: "center";
+  color: "#316A70";
+  max-width: 70%;
+  // overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.examForComponent {
+  background: white;
+  border-radius: "4px";
+  height: fit-content;
+}
+
+.formButton {
+  display: flex;
+  padding: 13px 20px;
+  border-radius: 30px;
+  font-size: 14px;
+  height: 40px;
+  text-transform: none;
+  font-weight: 600;
+
+  &.primary {
+    background-color: $primaryButton;
+  }
+  &.outlined {
+    background-color: #fafafa;
+    border: solid 1px $primaryButton;
+    color: $primaryButton;
+  }
+}
+
+.backIcon {
+  color: #0000008a;
+  width: 16px;
+}
+
+.continueText {
+  height: 40px;
+  align-self: self-end;
+  border-radius: 46px;
+  text-transform: capitalize;
+  color: #ffffff;
+}

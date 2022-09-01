@@ -113,6 +113,8 @@
   "mfaPage": {
     "setMFATitle": "Set Multi-Factor Authentication",
     "setMFADescription": "Select a delivery method to identify your identity.",
+    "setMFAEmailDescription": "Confirm your email below and we’ll send a code to set-up multi-factor authentication.",
+    "setMFAPhoneDescription": "Confirm your phone below and we’ll send a code to set-up multi-factor authentication.",
     "communicationMethodTitle": "Select a method",
     "confrimBtn": "Confirm",
     "backToLoginBtn": "Back to Login",
@@ -132,5 +134,24 @@
     "mfaLockDescription": "Please try setting up multi factor authentication after 30 minutes.",
     "resendCodeLockDescription": "Code sent multiple times. Please try again after 30 minutes."
 
+  },
+  "scheduleAppoinment": {
+    "formTitle": "Who is this exam for?",
+    "guestForm": "Provide patient’s basic information",
+    "myself": "Myself",
+    "someoneElse": "Someone else",
+    "continue": "Continue",
+    "location": "Location",
+    "appointmentDetails": "Appointment details",
+    "selfTitle": "Tell us more about yourself",
+    "someoneElseTitle": "Provide patient’s basic information",
+    "sigInInfo": "Already have an account?",
+    "signIn": "Sign In",
+    "optional": "Optional",
+    "passwordInfo": "Create a password to have access to your dashboard, manage, and track your appointment details.",
+    "passwordLabel": "Password",
+    "scheduleAppoinment": "Schedule Appointment",
+    "thisFieldRequired" : "This field is required",
+    "preferredCommunication": "Preferred mode of Communication"
   }
 }

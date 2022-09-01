@@ -85,7 +85,7 @@ describe("InsuranceInformationPage Components", () => {
   it(
     "InsuranceInformationPage Input Test plan name  & group",
     inputPlanGroup,
-    10000
+    20000
   );
 
   it("InsuranceInformationPage Add insurance cancel button", async () => {
@@ -106,7 +106,7 @@ describe("InsuranceInformationPage Components", () => {
     });
     await waitFor(() => container.getByText(/Primary/i));
     expect(container.getByText(/Primary/i)).toBeInTheDocument();
-  }, 20000);
+  }, 50000);
 
   it("InsuranceInformationPage upload back foto", async () => {
     global.URL.createObjectURL = jest.fn(() => "/details.png");

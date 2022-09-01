@@ -83,6 +83,7 @@ const SecurityQuestion = ({
 
   const securityQuestionUI = function () {
     const indents = [];
+    let tabindex = 0;
     for (let i = 0; i < securityQuestionCount; i++) {
       const index = i + 1;
       indents.push(
@@ -121,6 +122,9 @@ const SecurityQuestion = ({
                       setShowPostMessage(false);
                     }
                   }}
+                  menuProps={{
+                    tabIndex: tabindex,
+                  }}
                 />
               );
             }}
@@ -157,6 +161,7 @@ const SecurityQuestion = ({
                   }}
                   error={!!error}
                   helperText={error ? error.message : null}
+                  tabIndex={tabindex++}
                 />
               );
             }}
