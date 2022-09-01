@@ -1,4 +1,5 @@
 import * as React from "react";
+import Cookies from "universal-cookie";
 import ScheduleAppointment from "../../../components/organisms/ScheduleAppointment/scheduleAppointment";
 import AppointmentLocation from "../../../components/organisms/ScheduleAppointment/appointmentLocation";
 import AppointmentDetails from "../../../components/organisms/ScheduleAppointment/appointmentDetails";
@@ -182,6 +183,21 @@ export default function ScheduleAppointmentPage() {
     router.push("/patient/appointment");
   };
 
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  React.useEffect(() => {
+    const cookies = new Cookies();
+    const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
+    setIsLoggedIn(isLogin);
+  }, []);
+
+  const handleSetActiveStep = (idx) => {
+    if (isLoggedIn) {
+      setActiveStep(4);
+    } else {
+      setActiveStep(idx);
+    }
+  };
+
   return (
     <section style={{ paddingTop: "64px" }}>
       <BaseHeader />
@@ -229,7 +245,7 @@ export default function ScheduleAppointmentPage() {
         <div className={styles.pageWrapper}>
           <PageContent
             activeStep={activeStep}
-            OnsetActiveStep={(idx) => setActiveStep(idx)}
+            OnsetActiveStep={handleSetActiveStep}
             appointmentScheduleData={appointmentScheduleData}
             OnEditClicked={handleEditSchedule}
           />

@@ -12,6 +12,7 @@ import AppointmentForm from "./appointmentForm";
 
 export default function ScheduleAppointment({
   selectedSelf,
+  isLoggedIn = false,
   OnSetSelectedSelf = () => {
     // This is intended
   },
@@ -91,7 +92,7 @@ export default function ScheduleAppointment({
               background: "#0095A9",
             }}
             style={styles.continueText}
-            onClick={() => setActiveStep(3)}
+            onClick={() => setActiveStep(isLoggedIn ? 5 : 3)}
           >
             {t("continue")}
           </Button>

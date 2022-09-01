@@ -74,7 +74,7 @@ export default function AppointmentDetails({
             sxText={{ paddingLeft: "4px", color: colors.darkGreen }}
           >
             <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
-              {appointmentData.appointmentType}
+              {appointmentData.appointmentType || "-"}
             </Typography>
           </LabelWithInfo>
         </Stack>
