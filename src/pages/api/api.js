@@ -161,4 +161,124 @@ export class Api {
         });
     });
   }
+
+  getProviderDetails() {
+    const url = "/api/dummy/apppointment/biography/getProviderDetails";
+    return new Promise((resolve, reject) => {
+      this.getResponse(url, {}, "post")
+        .then(function (data) {
+          if (data) {
+            resolve(data);
+          } else {
+            reject(data);
+          }
+        })
+        .catch(function (err) {
+          reject(err);
+        });
+    });
+  }
+
+  getProviderAvailibility() {
+    const url =
+      "/api/dummy/apppointment/create-appointment/getProviderAvailibility";
+    return new Promise((resolve, reject) => {
+      this.getResponse(url, {}, "post")
+        .then(function (data) {
+          if (data) {
+            resolve(data);
+          } else {
+            reject(data);
+          }
+        })
+        .catch(function (err) {
+          reject(err);
+        });
+    });
+  }
+
+  getSugestion() {
+    const url = "/api/dummy/apppointment/create-appointment/getSugestion";
+    return new Promise((resolve, reject) => {
+      this.getResponse(url, {}, "post")
+        .then(function (data) {
+          if (data) {
+            resolve(data);
+          } else {
+            reject(data);
+          }
+        })
+        .catch(function (err) {
+          reject(err);
+        });
+    });
+  }
+
+  submitFilter() {
+    const url = "/api/dummy/apppointment/create-appointment/submitFilter";
+    return new Promise((resolve, reject) => {
+      this.getResponse(url, {}, "post")
+        .then(function (data) {
+          if (data) {
+            resolve(data);
+          } else {
+            reject(data);
+          }
+        })
+        .catch(function (err) {
+          reject(err);
+        });
+    });
+  }
+
+  getAllAppointment() {
+    const url = "/api/dummy/apppointment/my-appointment/getAllAppointment";
+    return new Promise((resolve, reject) => {
+      this.getResponse(url, {}, "get")
+        .then(function (data) {
+          if (data) {
+            resolve(data);
+          } else {
+            reject(data);
+          }
+        })
+        .catch(function (err) {
+          reject(err);
+        });
+    });
+  }
+
+  updateAppointment(postbody) {
+    const url = "/api/dummy/apppointment/my-appointment/updateAppointment";
+    return new Promise((resolve, reject) => {
+      this.getResponse(url, postbody, "post")
+        .then(function (data) {
+          if (data) {
+            resolve(data);
+          } else {
+            reject(data);
+          }
+        })
+        .catch(function (err) {
+          reject(err);
+        });
+    });
+  }
+
+  postForm(postbody, method) {
+    const url = "/api/dummy/apppointment/review-details/postForm";
+    return new Promise((resolve, reject) => {
+      this.getResponse(url, postbody, method)
+        .then(function (data) {
+          if (data) {
+            resolve(data);
+          } else {
+            reject(data);
+          }
+        })
+        .catch(function (err) {
+          reject(err);
+        });
+    });
+  }
 }
