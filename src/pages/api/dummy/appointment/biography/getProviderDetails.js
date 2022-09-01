@@ -2,7 +2,7 @@ export default function getProviderDetails(req, res) {
   if (req.method === "POST") {
     res.status(200).json({
       providerId: "1",
-      image: "http//:img-url",
+      image: "/doctor.png",
       name: "Paul Wagner Md",
       rating: "5",
       phoneNumber: "857299998",
@@ -10,8 +10,13 @@ export default function getProviderDetails(req, res) {
       about:
         "Dr. Esfandiari’s current areas of emphasis include primary eye care, specialty contact lenses, refractive surgery consultation, surgical co-management. Dr. Esfandiari’s knowledge and experience in ophthalmic optics has continually helped patients obtain optimal and healthy vision.show more",
       gender: "Male",
-      address:
-        "51 West 51st Street, Floor 3, Suite 320 Midtown, New York, NY, 10019",
+      address: {
+        addressLine1: "51 West 51st Street",
+        addressLine2: "Floor 3, Suite 320 Midtown",
+        city: "Florida",
+        state: "FR",
+        zipcode: "54231",
+      },
       distance: "10 mi",
       language: ["English", "Spanish"],
       networkInsurance: [
@@ -25,10 +30,14 @@ export default function getProviderDetails(req, res) {
         "Cigna",
         "UnitedHeathcare",
       ],
-      education:
-        "New England College of Optometry, Doctor of Optometry University of California, San Diego (Bachelor’s) ",
-      membershipsAffiliation:
-        "New England College of Optometry, Doctor of Optometry University of California, San Diego (Bachelor’s)",
+      education: [
+        "New England College of Optometry, Doctor of Optometry",
+        "University of California, San Diego (Bachelor’s)",
+      ],
+      membershipsAffiliation: [
+        "New England College of Optometry, Doctor of Optometry",
+        "University of California, San Diego (Bachelor’s)",
+      ],
     });
   }
 }

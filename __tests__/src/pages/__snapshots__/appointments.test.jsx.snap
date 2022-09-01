@@ -129,9 +129,7 @@ Object {
                     >
                       <a
                         class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways phoneLink css-1ps4owl-MuiTypography-root-MuiLink-root"
-                      >
-                        (857) 299-9989
-                      </a>
+                      />
                     </div>
                   </div>
                 </div>
@@ -780,9 +778,7 @@ Object {
                   >
                     <a
                       class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways phoneLink css-1ps4owl-MuiTypography-root-MuiLink-root"
-                    >
-                      (857) 299-9989
-                    </a>
+                    />
                   </div>
                 </div>
               </div>

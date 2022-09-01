@@ -1,10 +1,10 @@
 import { Link, Typography, Stack, Box, Divider } from "@mui/material";
 import styles from "./styles.module.scss";
 import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import constants from "../../../utils/constants";
 
-export default function BiographyDetails({ profileData, googleApiKey }) {
+export default function BiographyDetails({ providerData = {}, googleApiKey }) {
   const aboutRef = useRef(null);
   const locationRef = useRef(null);
   const insurancesRef = useRef(null);
@@ -15,52 +15,69 @@ export default function BiographyDetails({ profileData, googleApiKey }) {
   const insurancesMenuRef = useRef(null);
   const educationMenuRef = useRef(null);
 
-  const insurances = [
-    "Blue Cross Blue Shield",
-    "Cigna",
-    "UnitedHeathcare",
-    "aaa",
-  ];
+  const [expand, setExpand] = useState(false);
 
   const renderInsurances = () => {
-    const insurancesLength = insurances.length;
-    const isRenderViewAll = insurancesLength > 3;
+    console.log(expand);
+    const networkInsurance = providerData.networkInsurance;
+    const insurancesLength = networkInsurance && networkInsurance.length;
+    const isRenderViewAll = networkInsurance && insurancesLength > 3;
     return (
       <Box className={styles.insurancesContainer}>
         <ul className={styles.insurancestList}>
-          {insurances.map((item, index) => {
-            if (!isRenderViewAll) {
-              return (
-                <li key={index}>
-                  <Typography
-                    variant="body2"
-                    className={index === 2 ? styles.newColumn : ""}
-                  >
-                    {item}
-                  </Typography>
-                </li>
-              );
-            }
-            if (isRenderViewAll && index !== insurancesLength - 1) {
-              return (
-                <li key={index}>
-                  <Typography
-                    variant="body2"
-                    className={index === 2 ? styles.newColumn : ""}
-                  >
-                    {item}
-                  </Typography>
-                </li>
-              );
-            }
-          })}
-          {isRenderViewAll && (
+          {networkInsurance &&
+            networkInsurance.map((item, index) => {
+              if (expand) {
+                const splitedIndex =
+                  ((insurancesLength % 2) + insurancesLength) / 2;
+                return (
+                  <li key={index}>
+                    <Typography
+                      variant="body2"
+                      className={index === splitedIndex ? styles.newColumn : ""}
+                    >
+                      {item}
+                    </Typography>
+                  </li>
+                );
+              } else {
+                if (!isRenderViewAll) {
+                  return (
+                    <li key={index}>
+                      <Typography
+                        variant="body2"
+                        className={index === 2 ? styles.newColumn : ""}
+                      >
+                        {item}
+                      </Typography>
+                    </li>
+                  );
+                }
+                if (isRenderViewAll && index < 3) {
+                  return (
+                    <li key={index}>
+                      <Typography
+                        variant="body2"
+                        className={index === 2 ? styles.newColumn : ""}
+                      >
+                        {item}
+                      </Typography>
+                    </li>
+                  );
+                }
+              }
+            })}
+
+          {isRenderViewAll && !expand && (
             <li>
               <Typography variant="body2">
                 16+ more in-network insurances{" "}
                 <Link
                   className={styles.viewAllLink}
                   data-testid={BIOGRAPHY_TEST_ID.viewAll}
+                  onClick={() => {
+                    setExpand(true);
+                  }}
                 >
                   View All
                 </Link>
@@ -117,6 +134,16 @@ export default function BiographyDetails({ profileData, googleApiKey }) {
   };
 
   const { BIOGRAPHY_TEST_ID } = constants.TEST_ID;
+
+  const address = providerData.address;
+  const addressQuery =
+    address &&
+    `${address.addressLine1} ${address.addressLine2} ${address.city} ${address.state} ${address.zipcode}`.replace(
+      / /g,
+      "+"
+    );
+
+  console.log(addressQuery);
 
   return (
     <Box className={styles.detailedBio}>
@@ -176,15 +203,11 @@ export default function BiographyDetails({ profileData, googleApiKey }) {
       </Box>
       <Stack spacing={3} className={styles.detailedBioContainer}>
         <Typography variant="h3" ref={aboutRef}>
-          About Paul Wagner, MD
+          {providerData.name}
         </Typography>
-        <Typography variant="body2">
-          {
-            "Dr. Esfandiari's current areas of emphasis include primary eye care, specialty contact lenses, refractive surgery consultation, surgical co-management. Dr. Esfandiari's knowledge and experience in ophthalmic optics has continually helped patients obtain optimal and healthy vision.show more"
-          }
-        </Typography>
+        <Typography variant="body2">{providerData.about}</Typography>
         <Typography variant="h3">Gender</Typography>
-        <Typography variant="body2">Male</Typography>
+        <Typography variant="body2">{providerData.gender}</Typography>
         <Typography variant="h3" ref={locationRef}>
           Locations
         </Typography>
@@ -197,24 +220,47 @@ export default function BiographyDetails({ profileData, googleApiKey }) {
               style={{ border: 0 }}
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              src={`https://www.google.com/maps/embed/v1/place?key=${googleApiKey}&q=51+W+51st+St+Floor+3,+Suite+320,+New+York,+NY+10019,+USA`}
+              src={`https://www.google.com/maps/embed/v1/place?key=${googleApiKey}&q=${addressQuery}`}
             ></iframe>
           </Box>
           <Box className={styles.mapAddressContainer}>
             <Typography variant="body2" className={styles.mapAddress}>
-              {`51 West 51st Street,
-                            Floor 3, Suite 320\n
-                            Midtown, New York, NY, 10019`}
+              {address && (
+                <>
+                  {address.addressLine1}
+                  <br />
+                  {address.addressLine2}
+                  <br />
+                  {address.city}, {address.state}, {address.zipcode}
+                </>
+              )}
             </Typography>
             <Box className={styles.getDirectionLinkContainer}>
               <DirectionsOutlinedIcon></DirectionsOutlinedIcon>
-              <Link className={styles.getDirectionLink}>Get directions</Link>
+              <Link
+                className={styles.getDirectionLink}
+                href={`https://www.google.com/maps/search/?api=1&query=${addressQuery}`}
+                target="_blank"
+                rel="noopener"
+              >
+                Get directions
+              </Link>
             </Box>
           </Box>
         </Box>
 
         <Typography variant="h3">Languages</Typography>
-        <Typography variant="body2">English, Spanish</Typography>
+        <Typography variant="body2">
+          {providerData.language &&
+            providerData.language.map((item, index) => {
+              const isLastIndex = providerData.language.length - 1 === index;
+              if (!isLastIndex) {
+                return `${item}, `;
+              } else {
+                return item;
+              }
+            })}
+        </Typography>
         <Typography variant="h3" ref={insurancesRef}>
           In-network insurances
         </Typography>
@@ -224,22 +270,26 @@ export default function BiographyDetails({ profileData, googleApiKey }) {
           Education
         </Typography>
         <Box className={styles.educationContainer}>
-          <Typography variant="body2">
-            {"New England College of Optometry, Doctor of Optometry"}
-          </Typography>
-          <Typography variant="body2">
-            {"University of California, San Diego (Bachelor's)"}
-          </Typography>
+          {providerData.education &&
+            providerData.education.map((item, index) => {
+              return (
+                <Typography variant="body2" key={index}>
+                  {item}
+                </Typography>
+              );
+            })}
         </Box>
 
         <Typography variant="h3">Memberships and Afilliations</Typography>
         <Box className={styles.educationContainer}>
-          <Typography variant="body2">
-            {"New England College of Optometry, Doctor of Optometry"}
-          </Typography>
-          <Typography variant="body2">
-            {"University of California, San Diego (Bachelor's)"}
-          </Typography>
+          {providerData.membershipsAffiliation &&
+            providerData.membershipsAffiliation.map((item, index) => {
+              return (
+                <Typography variant="body2" key={index}>
+                  {item}
+                </Typography>
+              );
+            })}
         </Box>
       </Stack>
     </Box>

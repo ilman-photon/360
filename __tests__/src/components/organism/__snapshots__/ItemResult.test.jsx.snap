@@ -57,7 +57,7 @@ Object {
                   class="phoneContainer MuiBox-root css-0"
                 >
                   <span
-                    aria-label="3.5 Stars"
+                    aria-label="NaN Stars"
                     class="MuiRating-root MuiRating-sizeSmall MuiRating-readyOnly css-x48yct-MuiRating-root"
                     role="img"
                   >
@@ -68,7 +68,7 @@ Object {
                         style="width: 0%; overflow: hidden; position: absolute;"
                       >
                         <span
-                          class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                          class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                         >
                           <svg
                             aria-hidden="true"
@@ -85,7 +85,7 @@ Object {
                       </span>
                       <span>
                         <span
-                          class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                          class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                         >
                           <svg
                             aria-hidden="true"
@@ -108,7 +108,7 @@ Object {
                         style="width: 0%; overflow: hidden; position: absolute;"
                       >
                         <span
-                          class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                          class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                         >
                           <svg
                             aria-hidden="true"
@@ -125,7 +125,7 @@ Object {
                       </span>
                       <span>
                         <span
-                          class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                          class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                         >
                           <svg
                             aria-hidden="true"
@@ -148,7 +148,7 @@ Object {
                         style="width: 0%; overflow: hidden; position: absolute;"
                       >
                         <span
-                          class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                          class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                         >
                           <svg
                             aria-hidden="true"
@@ -165,7 +165,7 @@ Object {
                       </span>
                       <span>
                         <span
-                          class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                          class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                         >
                           <svg
                             aria-hidden="true"
@@ -185,10 +185,10 @@ Object {
                       class="MuiRating-decimal css-34he1w-MuiRating-decimal"
                     >
                       <span
-                        style="width: 50%; overflow: hidden; position: absolute;"
+                        style="width: 0%; overflow: hidden; position: absolute;"
                       >
                         <span
-                          class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                          class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                         >
                           <svg
                             aria-hidden="true"
@@ -264,9 +264,7 @@ Object {
                   </span>
                   <p
                     class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
-                  >
-                    (857) 299-9989
-                  </p>
+                  />
                 </div>
               </div>
             </div>
@@ -652,7 +650,7 @@ Object {
                 class="phoneContainer MuiBox-root css-0"
               >
                 <span
-                  aria-label="3.5 Stars"
+                  aria-label="NaN Stars"
                   class="MuiRating-root MuiRating-sizeSmall MuiRating-readyOnly css-x48yct-MuiRating-root"
                   role="img"
                 >
@@ -663,7 +661,7 @@ Object {
                       style="width: 0%; overflow: hidden; position: absolute;"
                     >
                       <span
-                        class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                        class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                       >
                         <svg
                           aria-hidden="true"
@@ -680,7 +678,7 @@ Object {
                     </span>
                     <span>
                       <span
-                        class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                        class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                       >
                         <svg
                           aria-hidden="true"
@@ -703,7 +701,7 @@ Object {
                       style="width: 0%; overflow: hidden; position: absolute;"
                     >
                       <span
-                        class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                        class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                       >
                         <svg
                           aria-hidden="true"
@@ -720,7 +718,7 @@ Object {
                     </span>
                     <span>
                       <span
-                        class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                        class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                       >
                         <svg
                           aria-hidden="true"
@@ -743,7 +741,7 @@ Object {
                       style="width: 0%; overflow: hidden; position: absolute;"
                     >
                       <span
-                        class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                        class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                       >
                         <svg
                           aria-hidden="true"
@@ -760,7 +758,7 @@ Object {
                     </span>
                     <span>
                       <span
-                        class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                        class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                       >
                         <svg
                           aria-hidden="true"
@@ -780,10 +778,10 @@ Object {
                     class="MuiRating-decimal css-34he1w-MuiRating-decimal"
                   >
                     <span
-                      style="width: 50%; overflow: hidden; position: absolute;"
+                      style="width: 0%; overflow: hidden; position: absolute;"
                     >
                       <span
-                        class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                        class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                       >
                         <svg
                           aria-hidden="true"
@@ -859,9 +857,7 @@ Object {
                 </span>
                 <p
                   class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
-                >
-                  (857) 299-9989
-                </p>
+                />
               </div>
             </div>
           </div>

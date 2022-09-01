@@ -10,14 +10,14 @@
 }
 
 .checkBoxTitle {
-  font-family: "Libre Franklin";
+  font-family: "Libre Franklin", sans-serif;
   font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 26px;
+  font-weight: 700 !important;
+  font-size: 18px !important;
+  line-height: 26px !important;
   letter-spacing: 0.0016em;
-  color: #242526;
-  margin-bottom: 16px;
+  color: #242526 !important;
+  margin-bottom: 16px !important;
 }
 
 .checkBoxGroup {
@@ -68,7 +68,7 @@
 
 .checkBoxGroup > label > span:nth-child(2),
 .checkBoxGroupExpand > label > span:nth-child(2) {
-  font-family: "Libre Franklin";
+  font-family: "Libre Franklin", sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 16px;
@@ -78,14 +78,14 @@
 }
 
 .link {
-  font-family: "Libre Franklin";
+  font-family: "Libre Franklin", sans-serif;
   font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
   letter-spacing: 0.0016em;
   text-decoration-line: underline;
-  color: #008294;
+  color: #008294 !important;
   cursor: pointer;
 }
 

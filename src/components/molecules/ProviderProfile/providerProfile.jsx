@@ -12,7 +12,6 @@ export default function ProviderProfile({
   isShownRating = true,
   providerData = {},
 }) {
-  const specialist = ["Opthometry", "Opthalmology", "Catarac", "Glaucoma"];
   const isAppointment = variant === "appointment";
   const isBio = variant === "bio";
   const isViewSchedule = variant === "viewschedule";
@@ -20,6 +19,8 @@ export default function ProviderProfile({
   const isMap = variant === "map";
 
   const router = useRouter();
+
+  const phoneNumber = providerData.phoneNumber;
   const renderSpecialistList = () => {
     return (
       <Box>
@@ -27,18 +28,19 @@ export default function ProviderProfile({
           Specialties and Sub-specialties:{" "}
         </Typography>
         <ul className={styles.specialistList}>
-          {specialist.map((item, index) => {
-            return (
-              <li key={index}>
-                <Typography
-                  variant="body2"
-                  className={index === 3 ? styles.newColumn : ""}
-                >
-                  {item}
-                </Typography>
-              </li>
-            );
-          })}
+          {providerData.specialties &&
+            providerData.specialties.map((item, index) => {
+              return (
+                <li key={index}>
+                  <Typography
+                    variant="body2"
+                    className={index === 3 ? styles.newColumn : ""}
+                  >
+                    {item}
+                  </Typography>
+                </li>
+              );
+            })}
         </ul>
       </Box>
     );
@@ -47,13 +49,13 @@ export default function ProviderProfile({
   const getAddress = (address) => {
     if (!address) return;
     return (
-      <div>
+      <>
         {address.addressLine1}
         <br />
         {address.addressLine2}
         <br />
         {address.city}, {address.state}, {address.zipcode}
-      </div>
+      </>
     );
   };
 
@@ -118,14 +120,14 @@ export default function ProviderProfile({
               className={isBio ? styles.ratingContainer : styles.phoneContainer}
             >
               {(isBio || (isViewSchedule && isShownRating)) && (
-                <StyledRating value={3.5} />
+                <StyledRating value={parseInt(providerData.rating)} />
               )}
               {!phoneLink ? (
                 <Typography variant="body2" className={styles.phone}>
-                  (857) 299-9989
+                  {phoneNumber}
                 </Typography>
               ) : (
-                <Link className={styles.phoneLink}>(857) 299-9989</Link>
+                <Link className={styles.phoneLink}>{phoneNumber}</Link>
               )}
             </Box>
           )}

@@ -1,3 +1,4 @@
+import { DomainDisabledOutlined } from "@mui/icons-material";
 import axios from "axios";
 export class Api {
   client;
@@ -163,7 +164,8 @@ export class Api {
   }
 
   getProviderDetails() {
-    const url = "/api/dummy/apppointment/biography/getProviderDetails";
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/appointment/biography/getProviderDetails`;
     return new Promise((resolve, reject) => {
       this.getResponse(url, {}, "post")
         .then(function (data) {

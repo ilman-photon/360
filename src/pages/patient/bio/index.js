@@ -5,6 +5,8 @@ import ProviderProfile from "../../../components/molecules/ProviderProfile/provi
 import BiographyDetails from "../../../components/organisms/BiographyDetails/biographyDetails";
 import { Box } from "@mui/material";
 import styles from "./styles.module.scss";
+import { Api } from "../../api/api";
+import { useEffect, useState } from "react";
 
 export async function getStaticProps() {
   return {
@@ -13,14 +15,31 @@ export async function getStaticProps() {
     },
   };
 }
-
 export default function Bio({ googleApiKey }) {
+  const [providerData, setProviderData] = useState();
+
+  const getProviderData = () => {
+    const api = new Api();
+    !providerData &&
+      api.getProviderDetails().then((response) => {
+        setProviderData(response);
+      });
+  };
+
+  useEffect(() => {
+    getProviderData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [providerData]);
+
   return (
     <Box className={styles.bioPage}>
       <Box className={styles.shortBioContainer}>
-        <ProviderProfile variant={"bio"} />
+        <ProviderProfile providerData={providerData} variant={"bio"} />
       </Box>
-      <BiographyDetails googleApiKey={googleApiKey} />
+      <BiographyDetails
+        googleApiKey={googleApiKey}
+        providerData={providerData}
+      />
     </Box>
   );
 }
