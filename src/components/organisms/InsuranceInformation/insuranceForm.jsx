@@ -576,7 +576,6 @@ export default function InsuranceForm({
               return (
                 <>
                   <RowRadioButtonsGroup
-                    row={false}
                     error={!!error}
                     value={value}
                     onChange={onChange}
@@ -610,7 +609,12 @@ export default function InsuranceForm({
               className={[styles.formButton, styles.outlined].join(" ")}
               data-testid={testIds.cancel}
               sx={{
-                width: { xs: "100%", md: "fit-content", textTransform: "none" },
+                width: {
+                  xs: "100%",
+                  md: "fit-content",
+                  textTransform: "none",
+                  borderRadius: 30,
+                },
               }}
             >
               Cancel
@@ -621,7 +625,12 @@ export default function InsuranceForm({
               className={[styles.formButton, styles.primary].join(" ")}
               data-testid={testIds.save}
               sx={{
-                width: { xs: "100%", md: "fit-content", textTransform: "none" },
+                width: {
+                  xs: "100%",
+                  md: "fit-content",
+                  textTransform: "none",
+                  borderRadius: 30,
+                },
               }}
             >
               Save
