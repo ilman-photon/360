@@ -9,8 +9,7 @@
   align-items: center;
 
   .pageWrapper {
-    // display: flex;
-    // flex-direction: row;
+    display: flex;
     max-width: calc(464px + 962px + 24px);
     width: 100%;
   }
@@ -44,6 +43,7 @@
   background: white;
   border-radius: "4px";
   height: fit-content;
+  flex: 1;
 }
 
 .formButton {

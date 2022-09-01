@@ -114,7 +114,13 @@ export const WeekAvailability = ({
             size={constants.SMALL}
             gradient={false}
             className={styles.scheduleBtn}
-            onClick={() => OnDayClicked(label)}
+            onClick={() => {
+              if (labelTime.indexOf("more") > -1) {
+                onClickViewAllAvailability();
+              } else {
+                OnDayClicked(label);
+              }
+            }}
           >
             <Typography className={styles.scheduleBtnLabel}>
               {labelTime}

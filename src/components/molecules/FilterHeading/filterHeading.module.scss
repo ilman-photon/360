@@ -124,3 +124,15 @@
   line-height: 24px;
   color: $link;
 }
+
+.searchButtonWarpper {
+  .searchOptionalLabel {
+    margin-top: 16px;
+    font-family: "Libre Franklin";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 12px;
+    color: $grey75;
+  }
+}

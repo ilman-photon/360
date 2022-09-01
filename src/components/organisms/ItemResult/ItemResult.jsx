@@ -43,7 +43,9 @@ export default function ItemResult({
         </Box>
         <Box sx={{ gridArea: "weekAvailability" }}>
           <WeekAvailability
-            onClickViewAllAvailability={onClickViewAllAvailability}
+            onClickViewAllAvailability={() => {
+              onClickViewAllAvailability(providerData);
+            }}
             keyWeek={keyItem}
             OnDayClicked={OnDayClicked}
           />
@@ -60,11 +62,18 @@ export default function ItemResult({
         className={styles.stackContainer}
       >
         <Stack direction={"row"}>
-          <ProviderProfile variant={"viewschedule"} isShownRating={false} />
+          <ProviderProfile
+            variant={"viewschedule"}
+            isShownRating={false}
+            providerData={providerData}
+          />
           <LocationDistance isDesktop={isDesktop} />
         </Stack>
         <ScheduleAvailability
-          onClickViewAllAvailability={onClickViewAllAvailability}
+          onClickViewAllAvailability={() => {
+            onClickViewAllAvailability(providerData);
+          }}
+          OnDayClicked={OnDayClicked}
         />
       </Stack>
     );

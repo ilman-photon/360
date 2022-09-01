@@ -13,8 +13,10 @@ export const ScheduleAvailability = ({
   onClickViewAllAvailability = () => {
     // This is intentional
   },
+  OnDayClicked = () => {
+    // This is intended
+  },
 }) => {
-  const router = useRouter();
   return (
     <Box>
       <Box
@@ -29,7 +31,7 @@ export const ScheduleAvailability = ({
         }}
       >
         {scheduleData.map((option, idx) => {
-          return buttonSchedule(option, idx, router);
+          return buttonSchedule(option, idx, OnDayClicked);
         })}
       </Box>
       {viewAllAvailabilityLinkUI({ onClickViewAllAvailability })}

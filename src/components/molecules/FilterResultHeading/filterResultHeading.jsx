@@ -13,6 +13,7 @@ import { Stack, Typography } from "@mui/material";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import { colors } from "../../../styles/theme";
 import Image from "next/image";
+import FilterHeadingFilled from "../FilterHeading/filterHeadingFilled";
 
 export const FilterResultHeading = ({
   appliedFilter,
@@ -25,6 +26,7 @@ export const FilterResultHeading = ({
     purposeOfVisit: "Eye exam",
     insuranceCarrier: "Aethna",
   },
+  onSearchProvider = () => {},
 }) => {
   const imageSrcState = "/searchInputIcon.png";
   const imageSrcFilled = "/searchFilledIcon.png";
@@ -65,6 +67,7 @@ export const FilterResultHeading = ({
   ];
 
   const [filterOpen, setFilterOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState([]);
 
   function renderAppliedFilter() {
@@ -92,6 +95,16 @@ export const FilterResultHeading = ({
     setFilterOpen(!filterOpen);
     setActiveFilter(filter);
   };
+
+  function handleCloseDialog() {
+    //Reset data when cancel the dialog
+    setDialogOpen(false);
+  }
+
+  function handleOpenDialog() {
+    //Reset data when cancel the dialog
+    setDialogOpen(true);
+  }
 
   function renderDesktopView() {
     return (
@@ -217,7 +230,10 @@ export const FilterResultHeading = ({
                 color: colors.darkGreen,
               }}
             />
-            <Box className={styles.mobileFilterTitleContainer}>
+            <Box
+              className={styles.mobileFilterTitleContainer}
+              onClick={handleOpenDialog}
+            >
               <Typography
                 variant={"bodyMedium"}
                 className={styles.mobileFilterTitle}
@@ -243,6 +259,14 @@ export const FilterResultHeading = ({
             </Box>
           </Stack>
         </Stack>
+        {
+          <FilterHeadingFilled
+            openDialog={dialogOpen}
+            onCloseDialog={handleCloseDialog}
+            filterData={filterData}
+            onSearchProvider={onSearchProvider}
+          />
+        }
       </Box>
     );
   }
