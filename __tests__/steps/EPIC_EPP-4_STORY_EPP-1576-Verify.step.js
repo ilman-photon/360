@@ -95,23 +95,38 @@ defineFeature(feature, (test) => {
     });
 
     and("user views the user name and Password fields", () => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText("emailUserLabel");
+      const passwordField = container.getByLabelText("passwordLabel");
+      expect(usernameField.id).toEqual("username");
+      expect(passwordField.id).toEqual("password");
     });
 
     and("user views the Forgot password link", () => {
-      expect(true).toBeTruthy();
+      const forgotPasswordLink = container.getByText("forgotPassword");
+      expect(forgotPasswordLink.textContent).toEqual("forgotPassword");
     });
 
     and("user views the login button", () => {
-      expect(true).toBeTruthy();
+      const logginButton = container.getByText("loginButtonLabel");
+      expect("loginButtonLabel").toEqual(logginButton.textContent);
     });
 
     and("user views the Continue as a guest button", () => {
-      expect(true).toBeTruthy();
+      const continueAsGuestButton = container.getByText(
+        "continueAsPasswordButtonLabel"
+      );
+      expect("continueAsPasswordButtonLabel").toEqual(
+        continueAsGuestButton.textContent
+      );
     });
 
     and("user views the Create Account button", () => {
-      expect(true).toBeTruthy();
+      const createAccountButton = container.getByText(
+        "createAccountButtonLabel"
+      );
+      expect("createAccountButtonLabel").toEqual(
+        createAccountButton.textContent
+      );
     });
 
     and(
@@ -131,27 +146,47 @@ defineFeature(feature, (test) => {
     });
 
     and("admin lands on the patient login screen", () => {
-      expect(true).toBeTruthy();
+      const mockOnLoginClicked = jest.fn((data, route, callback) => {
+        callback({
+          status: "success",
+        });
+      });
+      container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
     });
 
     and("admin views the user name and Password fields", () => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText("emailUserLabel");
+      const passwordField = container.getByLabelText("passwordLabel");
+      expect(usernameField.id).toEqual("username");
+      expect(passwordField.id).toEqual("password");
     });
 
     and("admin views the Forgot password link", () => {
-      expect(true).toBeTruthy();
+      const forgotPasswordLink = container.getByText("forgotPassword");
+      expect(forgotPasswordLink.textContent).toEqual("forgotPassword");
     });
 
     and("admin views the login button", () => {
-      expect(true).toBeTruthy();
+      const logginButton = container.getByText("loginButtonLabel");
+      expect("loginButtonLabel").toEqual(logginButton.textContent);
     });
 
     and("admin views the Continue as a guest button", () => {
-      expect(true).toBeTruthy();
+      const continueAsGuestButton = container.getByText(
+        "continueAsPasswordButtonLabel"
+      );
+      expect("continueAsPasswordButtonLabel").toEqual(
+        continueAsGuestButton.textContent
+      );
     });
 
     and("admin views the Create Account button", () => {
-      expect(true).toBeTruthy();
+      const createAccountButton = container.getByText(
+        "createAccountButtonLabel"
+      );
+      expect("createAccountButtonLabel").toEqual(
+        createAccountButton.textContent
+      );
     });
 
     and(

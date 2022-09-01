@@ -3,10 +3,9 @@
 .container {
   background-color: #e4e4e4;
   margin: auto;
-
   display: flex;
-  flex-direction: column;
   justify-content: center;
+  align-items: center;
 
   .pageWrapper {
     display: flex;
@@ -65,15 +64,23 @@
   }
 }
 
+.formButton.outlined:hover {
+  background-color: #fafafa;
+}
+
 .backIcon {
   color: #0000008a;
   width: 16px;
 }
 
-.continueText {
+.continueButton {
   height: 40px;
   align-self: self-end;
   border-radius: 46px;
   text-transform: capitalize;
   color: #ffffff;
+}
+
+.examForComponent .continueButton:hover {
+  background-color: #0095a9;
 }
