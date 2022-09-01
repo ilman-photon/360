@@ -15,7 +15,9 @@
     "continueAsPasswordButtonLabel" : "Continue as a guest",
     "loginButtonLabel" : "Login",
     "createAccountButtonLabel" : "Create Account",
-    "dontHaveAccountLabel" : "Don't have an account?"
+    "dontHaveAccountLabel" : "Don't have an account?",
+    "syncYourAppointmentInformation" : "Sync your appointment information",
+    "alreadyHaveAnAppointment" : "Already have an appointment?"
   },
   "Input": {
     "usernameLable": "Patient Login",
