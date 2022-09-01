@@ -123,7 +123,7 @@ const SecurityQuestion = ({
                     }
                   }}
                   menuProps={{
-                    tabindex: tabindex,
+                    tabIndex: tabindex,
                   }}
                 />
               );
@@ -161,7 +161,7 @@ const SecurityQuestion = ({
                   }}
                   error={!!error}
                   helperText={error ? error.message : null}
-                  tabindex={tabindex++}
+                  tabIndex={tabindex++}
                 />
               );
             }}
