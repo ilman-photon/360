@@ -23,7 +23,7 @@ export function Login({
   OnGuestClicked,
   OnCreateAccountClicked,
   OnForgotPasswordClicked,
-  isAdmin,
+  onAppointMentClicked,
 }) {
   const [postMessage, setPostMessage] = React.useState("");
   const router = useRouter();
@@ -59,7 +59,7 @@ export function Login({
       )
     );
   };
-  React.useEffect(() => {
+  useEffect(() => {
     if (router.asPath == "/patient/admin/login") {
       setIsThresholdAdmin(true);
     } else {
@@ -179,20 +179,15 @@ export function Login({
             <Grid container justifyContent={constants.CENTER}>
               <Typography
                 variant="bodyMedium"
-                sx={{ color: "#003B4A", fontWeight: 600 }}
+                sx={{ color: "#003B4A", fontWeight: 600, textAlign: "center" }}
               >
                 {t("alreadyHaveAnAppointment")}
-              </Typography>
-            </Grid>
-            <Grid container justifyContent={constants.CENTER}>
-              <Typography variant="bodyMedium">
+                <br />
                 <Link
                   className={styles.link}
-                  data-testid={LOGIN_TEST_ID.forgotLink}
-                  {...getLinkAria(t("forgotPassword"))}
-                  onClick={function () {
-                    OnForgotPasswordClicked(router);
-                  }}
+                  data-testid={LOGIN_TEST_ID.syncAppointmentLink}
+                  {...getLinkAria(t("syncYourAppointmentInformation"))}
+                  href={onAppointMentClicked}
                 >
                   {t("syncYourAppointmentInformation")}
                 </Link>

@@ -1,6 +1,5 @@
 import AuthLayout from "../../../components/templates/authLayout";
 import Cookies from "universal-cookie";
-import { useRouter } from "next/router";
 import { Api } from "../../api/api";
 import { Login as LoginComponent } from "../../../components/organisms/Login/login";
 import { useEffect } from "react";
@@ -72,6 +71,7 @@ const loginProps = {
   OnForgotPasswordClicked: function (router) {
     router.push("/patient/forgot-password");
   },
+  onAppointMentClicked: "/patient/forgot-password",
 };
 
 export default function login() {

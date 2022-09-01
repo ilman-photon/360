@@ -49,6 +49,7 @@ module.exports = {
       loginBtn: "loginbtn",
       guestBtn: "continueasguest",
       createAccountBtn: "createaccount",
+      syncAppointmentLink: "syncAppointmentLink",
     },
     FORGOT_TEST_ID: {
       email: "emailorphonenumber",
