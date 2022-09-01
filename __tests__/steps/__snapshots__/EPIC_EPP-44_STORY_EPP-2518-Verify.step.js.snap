@@ -498,13 +498,6 @@ Object {
                 >
                   In-network insurances
                 </h3>
-                <div
-                  class="insurancesContainer MuiBox-root css-0"
-                >
-                  <ul
-                    class="insurancestList"
-                  />
-                </div>
                 <h3
                   class="MuiTypography-root MuiTypography-h3 css-14r3n6q-MuiTypography-root"
                 >
@@ -1021,13 +1014,6 @@ Object {
               >
                 In-network insurances
               </h3>
-              <div
-                class="insurancesContainer MuiBox-root css-0"
-              >
-                <ul
-                  class="insurancestList"
-                />
-              </div>
               <h3
                 class="MuiTypography-root MuiTypography-h3 css-14r3n6q-MuiTypography-root"
               >

@@ -18,55 +18,39 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
   const [expand, setExpand] = useState(false);
 
   const renderInsurances = () => {
-    console.log(expand);
     const networkInsurance = providerData.networkInsurance;
-    const insurancesLength = networkInsurance && networkInsurance.length;
-    const isRenderViewAll = networkInsurance && insurancesLength > 3;
+    const insurancesLength = networkInsurance.length;
+    const isRenderViewAll = insurancesLength > 3;
     return (
       <Box className={styles.insurancesContainer}>
         <ul className={styles.insurancestList}>
-          {networkInsurance &&
-            networkInsurance.map((item, index) => {
-              if (expand) {
-                const splitedIndex =
-                  ((insurancesLength % 2) + insurancesLength) / 2;
-                return (
-                  <li key={index}>
-                    <Typography
-                      variant="body2"
-                      className={index === splitedIndex ? styles.newColumn : ""}
-                    >
-                      {item}
-                    </Typography>
-                  </li>
-                );
-              } else {
-                if (!isRenderViewAll) {
-                  return (
-                    <li key={index}>
-                      <Typography
-                        variant="body2"
-                        className={index === 2 ? styles.newColumn : ""}
-                      >
-                        {item}
-                      </Typography>
-                    </li>
-                  );
-                }
-                if (isRenderViewAll && index < 3) {
-                  return (
-                    <li key={index}>
-                      <Typography
-                        variant="body2"
-                        className={index === 2 ? styles.newColumn : ""}
-                      >
-                        {item}
-                      </Typography>
-                    </li>
-                  );
-                }
-              }
-            })}
+          {networkInsurance.map((item, index) => {
+            if (expand) {
+              const splitedIndex =
+                ((insurancesLength % 2) + insurancesLength) / 2;
+              return (
+                <li key={index}>
+                  <Typography
+                    variant="body2"
+                    className={index === splitedIndex ? styles.newColumn : ""}
+                  >
+                    {item}
+                  </Typography>
+                </li>
+              );
+            } else if (index < 3) {
+              return (
+                <li key={index}>
+                  <Typography
+                    variant="body2"
+                    className={index === 2 ? styles.newColumn : ""}
+                  >
+                    {item}
+                  </Typography>
+                </li>
+              );
+            }
+          })}
 
           {isRenderViewAll && !expand && (
             <li>
@@ -264,17 +248,17 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
         <Typography variant="h3" ref={insurancesRef}>
           In-network insurances
         </Typography>
-        {renderInsurances()}
+        {providerData.networkInsurance && renderInsurances()}
 
         <Typography variant="h3" ref={educationRef}>
           Education
         </Typography>
         <Box className={styles.educationContainer}>
           {providerData.education &&
-            providerData.education.map((item, index) => {
+            providerData.education.map((education, index) => {
               return (
                 <Typography variant="body2" key={index}>
-                  {item}
+                  {education}
                 </Typography>
               );
             })}
@@ -283,10 +267,10 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
         <Typography variant="h3">Memberships and Afilliations</Typography>
         <Box className={styles.educationContainer}>
           {providerData.membershipsAffiliation &&
-            providerData.membershipsAffiliation.map((item, index) => {
+            providerData.membershipsAffiliation.map((membership, index) => {
               return (
-                <Typography variant="body2" key={index}>
-                  {item}
+                <Typography key={index} variant="body2">
+                  {membership}
                 </Typography>
               );
             })}
