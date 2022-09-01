@@ -25,7 +25,6 @@ const DEFAULT_PATIENT_INFO_DATA = {
   phoneNumber: null,
 
   email: "",
-  mobile: "",
   password: "",
   preferredCommunication: "both",
 };

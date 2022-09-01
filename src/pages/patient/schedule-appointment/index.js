@@ -16,12 +16,20 @@ import BaseHeader from "../../../components/organisms/BaseHeader/baseHeader";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { LabelWithIcon } from "../../../components/atoms/LabelWithIcon/labelWithIcon";
 
-import { Button, Grid, Box, Divider, useMediaQuery } from "@mui/material";
+import {
+  Button,
+  Grid,
+  Box,
+  Divider,
+  useMediaQuery,
+  Stack,
+} from "@mui/material";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "../../../store/store";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { editAppointmentScheduleData } from "../../../store/appointment";
+import { fetchUser, setUserData } from "../../../store/user";
 
 const MobileTopBar = (data) => {
   return (
@@ -51,6 +59,7 @@ const MobileTopBar = (data) => {
 export const PageContent = ({
   activeStep,
   isLoggedIn = false,
+  dispatch,
   appointmentScheduleData = {},
   OnsetActiveStep = () => {
     // This is intentional
@@ -64,10 +73,7 @@ export const PageContent = ({
     keyPrefix: "scheduleAppoinment",
   });
 
-  const dispatch = useDispatch();
-
   const handleFormSubmit = (payload) => {
-    console.log({ payload });
     dispatch(
       editAppointmentScheduleData({
         key: "patientInfo",
@@ -94,7 +100,7 @@ export const PageContent = ({
               OnEditClicked={OnEditClicked}
             />
             <Divider sx={{ mt: 2 }} />
-            <Box sx={{ p: "16px 0", float: "right" }}>
+            <Stack sx={{ p: "16px 0", justifyContent: "right" }}>
               <Button
                 variant="contained"
                 className={styles.continueText}
@@ -107,7 +113,7 @@ export const PageContent = ({
               >
                 {isLoggedIn ? t("scheduleAppoinment") : t("continue")}
               </Button>
-            </Box>
+            </Stack>
           </Grid>
         </>
       );
@@ -187,6 +193,7 @@ export default function ScheduleAppointmentPage() {
   const [isOpen, setIsOpen] = React.useState(true);
 
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const steps = [
     "Location",
@@ -220,6 +227,33 @@ export default function ScheduleAppointmentPage() {
     setIsLoggedIn(isLogin);
   }, []);
 
+  React.useEffect(() => {
+    dispatch(fetchUser());
+  }, [dispatch]);
+
+  const userData = useSelector((state) => state.user.userData);
+
+  React.useEffect(() => {
+    console.log({ isLoggedIn });
+    if (isLoggedIn) {
+      dispatch(
+        editAppointmentScheduleData({
+          key: "patientInfo",
+          value: {
+            name: userData.name,
+            firstName: userData.firstName,
+            lastName: userData.lastName,
+            dob: userData.dob,
+            phoneNumber: userData.mobile,
+
+            email: userData.email,
+            preferredCommunication: userData.preferredCommunication,
+          },
+        })
+      );
+    }
+  }, [isLoggedIn]);
+
   const handleSetActiveStep = (idx) => {
     if (isLoggedIn) {
       setActiveStep(4);
@@ -228,24 +262,30 @@ export default function ScheduleAppointmentPage() {
     }
   };
 
+  const modalConfirmSchedule = () => {
+    return isDesktop ? (
+      <ModalScheduling
+        isLoggedIn={isLoggedIn}
+        patientData={appointmentScheduleData.patientInfo}
+        providerData={appointmentScheduleData.providerInfo}
+        isOpen={isOpen}
+        OnSetIsOpen={(idx) => setIsOpen(idx)}
+      />
+    ) : (
+      <DrawerScheduling
+        patientData={appointmentScheduleData.patientInfo}
+        providerData={appointmentScheduleData.providerInfo}
+        isOpen={isOpen}
+        OnSetIsOpen={(idx) => setIsOpen(idx)}
+      />
+    );
+  };
+
   return (
     <section style={{ paddingTop: "64px" }}>
       <BaseHeader />
       {isDesktop ? <AccountTitleHeading title={headerText[activeStep]} /> : ""}
       <StepperAppoinment activeStep={activeStep} steps={steps} />
-      {isDesktop ? (
-        <ModalScheduling
-          providerData={appointmentScheduleData.providerInfo}
-          isOpen={isOpen}
-          OnSetIsOpen={(idx) => setIsOpen(idx)}
-        />
-      ) : (
-        <DrawerScheduling
-          providerData={appointmentScheduleData.providerInfo}
-          isOpen={isOpen}
-          OnSetIsOpen={(idx) => setIsOpen(idx)}
-        />
-      )}
       {activeStep === 2 ? (
         <Grid
           className={styles.mobileTopBar}
@@ -257,6 +297,7 @@ export default function ScheduleAppointmentPage() {
         </Grid>
       ) : null}
       <Grid
+        width="100%"
         className={isDesktop ? styles.container : ""}
         p={{ xs: "24px 14px 0", md: "30px 40px 0" }}
         sx={{ justifyContent: "center" }}
@@ -282,12 +323,14 @@ export default function ScheduleAppointmentPage() {
         </Box>
       </Grid>
       <Grid
+        width="100%"
         container
         className={styles.container}
         sx={isDesktop ? { p: "24px 40px" } : { p: 0 }}
       >
         <div className={styles.pageWrapper}>
           <PageContent
+            dispatch={dispatch}
             isLoggedIn={isLoggedIn}
             activeStep={activeStep}
             OnsetActiveStep={handleSetActiveStep}
@@ -296,6 +339,8 @@ export default function ScheduleAppointmentPage() {
           />
         </div>
       </Grid>
+
+      {activeStep === 4 ? modalConfirmSchedule() : null}
     </section>
   );
 }

@@ -67,31 +67,22 @@ BootstrapDialogTitle.propTypes = {
 };
 
 export default function ModalConfirmContent({
+  isLoggedIn = false,
+  patientData = {},
   providerData = {},
-  OnSetIsOpen = () => {
+  OnClose = () => {
     // This is intended
   },
 }) {
+  console.log({ providerData });
   const { REGISTER_TEST_ID } = constants.TEST_ID;
-  const [isUserLoged, setUserLoged] = React.useState(false);
-  const router = useRouter();
-  const logo = "/eyecarelogo.png";
-
-  React.useEffect(() => {
-    const cookies = new Cookies();
-    const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
-    setUserLoged(isLogin);
-  }, []);
 
   const { t } = useTranslation("translation", {
     keyPrefix: "scheduleAppoinment",
   });
 
-  const isDesktop = useMediaQuery("(min-width: 769px)");
-
   const handleClose = () => {
-    console.log("masuif");
-    OnSetIsOpen(false);
+    OnClose();
   };
 
   const getAddress = (address) => {
@@ -148,7 +139,7 @@ export default function ModalConfirmContent({
             data-testid={REGISTER_TEST_ID.loginlink}
             aria-label={`Login link`}
           >
-            <a style={styles.medicLink}>Is this a medical emergency?</a>
+            <span style={styles.medicLink}>Is this a medical emergency?</span>
           </Link>
         </div>
 
@@ -202,6 +193,7 @@ export default function ModalConfirmContent({
                   <ProviderProfile
                     variant={"appointment"}
                     showPosition
+                    providerData={providerData}
                     isDayAvailableView={true}
                   />
                   <Box sx={styles.getDirectionLink}>
@@ -225,18 +217,18 @@ export default function ModalConfirmContent({
             </Typography>
 
             <LabelWithInfo
-              label="name"
+              label="Name"
               sxRow={{ justifyContent: "unset" }}
               sxText={{ color: colors.darkGreen }}
             >
               <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
-                {providerData.name || "No Insurance provided"}
+                {patientData.name || "-"}
               </Typography>
             </LabelWithInfo>
           </CardContent>
         </Card>
 
-        {isUserLoged ? (
+        {!isLoggedIn ? (
           <div style={styles.bottomParagraph}>
             <Typography variant="caption" sx={{ fontSize: "16px" }}>
               Already have an account?{" "}

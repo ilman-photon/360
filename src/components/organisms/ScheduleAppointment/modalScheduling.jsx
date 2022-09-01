@@ -25,6 +25,7 @@ import {
   Grid,
   useMediaQuery,
 } from "@mui/material";
+import { useRouter } from "next/router";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -65,7 +66,9 @@ BootstrapDialogTitle.propTypes = {
 };
 
 export default function ModalScheduling({
+  isLoggedIn,
   isOpen,
+  patientData,
   providerData,
   OnSetIsOpen = () => {
     // This is intended
@@ -81,8 +84,11 @@ export default function ModalScheduling({
     OnSetIsOpen(true);
   };
 
+  const router = useRouter();
+
   const handleClose = () => {
-    OnSetIsOpen(false);
+    // OnSetIsOpen(false);
+    router.push("/patient/appointments");
   };
 
   const getAddress = (saddress) => {
@@ -108,7 +114,12 @@ export default function ModalScheduling({
           "& .css-1t1j96h-MuiPaper-root-MuiDialog-paper": { maxWidth: "950px" },
         }}
       >
-        <ModalConfirmContent />
+        <ModalConfirmContent
+          providerData={providerData}
+          patientData={patientData}
+          isLoggedIn={isLoggedIn}
+          OnClose={handleClose}
+        />
       </BootstrapDialog>
     </div>
   );
