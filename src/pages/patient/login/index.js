@@ -75,7 +75,6 @@ const loginProps = {
 };
 
 export default function login() {
-  const router = useRouter();
   const api = new Api();
   const cookies = new Cookies();
 

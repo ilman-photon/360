@@ -7,6 +7,7 @@ import { StyledInput } from "../../atoms/Input/input";
 import { Divider, Typography } from "@mui/material";
 import styles from "./Style.module.scss";
 import globalStyles from "../../../styles/Global.module.scss";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { StyledButton } from "../../atoms/Button/button";
 import { useForm, Controller } from "react-hook-form";
