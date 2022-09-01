@@ -15,7 +15,6 @@ export default function ProviderProfile({
   const isAppointment = variant === "appointment";
   const isBio = variant === "bio";
   const isViewSchedule = variant === "viewschedule";
-  const isDayAvailableView = false;
   const isMap = variant === "map";
 
   const router = useRouter();

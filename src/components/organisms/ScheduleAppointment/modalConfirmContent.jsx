@@ -76,19 +76,6 @@ export default function ModalConfirmContent({
     OnClose();
   };
 
-  const getAddress = (address) => {
-    if (!address) return;
-    return (
-      <div>
-        {address.addressLine1}
-        <br />
-        {address.addressLine2}
-        <br />
-        {address.city}, {address.state}, {address.zipcode}
-      </div>
-    );
-  };
-
   return (
     <div>
       <BootstrapDialogTitle

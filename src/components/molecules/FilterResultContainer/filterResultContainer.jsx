@@ -13,6 +13,9 @@ export const FilterResultContainer = ({
   onClickViewAllAvailability = () => {
     // This is intentional
   },
+  OnDayClicked = () => {
+    // This is intentional
+  },
   isDesktop = false,
   filterData = {
     location: "",
@@ -21,9 +24,6 @@ export const FilterResultContainer = ({
     insuranceCarrier: "",
   },
   providerList = [],
-  OnDayClicked = () => {
-    // This is intended
-  },
   googleApiKey = "",
 }) => {
   function TabPanel(props) {
@@ -65,7 +65,9 @@ export const FilterResultContainer = ({
             onClickViewAllAvailability={onClickViewAllAvailability}
             isDesktop={isDesktop}
             providerData={providerList[i]}
-            OnDayClicked={OnDayClicked}
+            OnDayClicked={(payload) => {
+              OnDayClicked(payload, providerList[i]);
+            }}
           />
         </Box>
       );

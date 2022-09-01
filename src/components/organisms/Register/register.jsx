@@ -277,10 +277,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                     return "Incorect Date of Birth is required";
                 },
               },
-              pattern: {
-                value: Regex.specialRegex,
-                message: "Incorrect Date Of Birth format",
-              },
             }}
           />
           <Controller

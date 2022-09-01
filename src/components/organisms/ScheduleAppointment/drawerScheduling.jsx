@@ -1,26 +1,22 @@
 import SwipeableDrawer from "@mui/material/Drawer";
 import * as React from "react";
-import { styled } from "@mui/material/styles";
-import Dialog from "@mui/material/Dialog";
 
 import ModalConfirmContent from "./modalConfirmContent";
+import { useTranslation } from "next-i18next";
 import { Box } from "@mui/material";
-const BootstrapDialog = styled(Dialog)(({ theme }) => ({
-  "& .MuiDialogContent-root": {
-    padding: theme.spacing(2),
-  },
-  "& .MuiDialogActions-root": {
-    padding: theme.spacing(1),
-  },
-}));
 
 export const DrawerScheduling = ({
   isOpen,
-  providerData,
+  providerData = {},
+  patientData = {},
   OnSetIsOpen = () => {
     // This is intended
   },
 }) => {
+  const { t } = useTranslation("translation", {
+    keyPrefix: "scheduleAppoinment",
+  });
+
   return (
     <>
       <SwipeableDrawer anchor="bottom" open={isOpen} sx={{ height: "auto" }}>
@@ -28,7 +24,11 @@ export const DrawerScheduling = ({
           sx={{ width: "100%", padding: { xs: 0, md: 2 } }}
           role="presentation"
         >
-          <ModalConfirmContent OnSetIsOpen={OnSetIsOpen} />
+          <ModalConfirmContent
+            OnSetIsOpen={OnSetIsOpen}
+            providerData={providerData}
+            patientData={patientData}
+          />
         </Box>
       </SwipeableDrawer>
     </>

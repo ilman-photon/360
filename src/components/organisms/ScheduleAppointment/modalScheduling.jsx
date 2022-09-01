@@ -7,8 +7,6 @@ import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 
 import ModalConfirmContent from "./modalConfirmContent";
-import { useTranslation } from "next-i18next";
-import { useMediaQuery } from "@mui/material";
 import { useRouter } from "next/router";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -54,38 +52,11 @@ export default function ModalScheduling({
   isOpen,
   patientData,
   providerData,
-  OnSetIsOpen = () => {
-    // This is intended
-  },
 }) {
-  const { t } = useTranslation("translation", {
-    keyPrefix: "scheduleAppoinment",
-  });
-
-  const isDesktop = useMediaQuery("(min-width: 769px)");
-
-  const handleClickOpen = () => {
-    OnSetIsOpen(true);
-  };
-
   const router = useRouter();
 
   const handleClose = () => {
-    // OnSetIsOpen(false);
     router.push("/patient/appointments");
-  };
-
-  const getAddress = (saddress) => {
-    if (!address) return;
-    return (
-      <div>
-        {address.addressLine1}
-        <br />
-        {address.addressLine2}
-        <br />
-        {address.city}, {address.state}, {address.zipcode}
-      </div>
-    );
   };
 
   return (

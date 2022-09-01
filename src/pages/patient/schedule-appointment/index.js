@@ -29,7 +29,7 @@ import store from "../../../store/store";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { editAppointmentScheduleData } from "../../../store/appointment";
-import { fetchUser, setUserData } from "../../../store/user";
+import { fetchUser } from "../../../store/user";
 
 const MobileTopBar = (data) => {
   return (
@@ -274,6 +274,7 @@ export default function ScheduleAppointmentPage() {
       />
     ) : (
       <DrawerScheduling
+        isLoggedIn={isLoggedIn}
         patientData={appointmentScheduleData.patientInfo}
         providerData={appointmentScheduleData.providerInfo}
         isOpen={isOpen}

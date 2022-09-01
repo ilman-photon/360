@@ -216,7 +216,7 @@ export default function AppointmentForm({
               }) => {
                 return (
                   <StyledInput
-                    disablePast
+                    disableFuture
                     type="dob"
                     id="dob"
                     data-testid={SCHEDULE_GUEST_TEST_ID.dateofbirth}

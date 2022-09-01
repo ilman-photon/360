@@ -7,13 +7,13 @@ import constants from "../../../utils/constants";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
-export function buttonSchedule(
+export const buttonSchedule = (
   label,
   idx,
   OnDayClicked = () => {
     // This is intended
   }
-) {
+) => {
   return (
     <Box key={idx} sx={{ width: "78px" }} className={styles.scheduleBtnWarpper}>
       <StyledButton
@@ -28,7 +28,7 @@ export function buttonSchedule(
       </StyledButton>
     </Box>
   );
-}
+};
 
 export const DayAvailability = ({
   timeInWeek = "Sep 19 - Sep 24",
@@ -129,6 +129,7 @@ export const DayAvailability = ({
 
   function renderTimeSchedule(value) {
     const column = isDesktop ? 5 : 4;
+    console.log("renderTime", { OnDayClicked });
     return (
       <Box
         sx={{

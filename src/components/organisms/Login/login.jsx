@@ -7,7 +7,6 @@ import { StyledInput } from "../../atoms/Input/input";
 import { Divider, Typography } from "@mui/material";
 import styles from "./Style.module.scss";
 import globalStyles from "../../../styles/Global.module.scss";
-import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { StyledButton } from "../../atoms/Button/button";
 import { useForm, Controller } from "react-hook-form";
@@ -59,7 +58,7 @@ export function Login({
       )
     );
   };
-  useEffect(() => {
+  React.useEffect(() => {
     if (router.asPath == "/patient/admin/login") {
       setIsThresholdAdmin(true);
     } else {
@@ -162,16 +161,46 @@ export function Login({
         </form>
         {!isThresholdAdmin && (
           <>
-            <StyledButton
-              theme={constants.PATIENT}
-              mode={constants.SECONDARY}
-              size={constants.SMALL}
-              gradient={false}
-              onClick={OnGuestClicked}
-              data-testid={LOGIN_TEST_ID.guestBtn}
-            >
-              {t("continueAsPasswordButtonLabel")}
-            </StyledButton>
+            {!isThresholdAdmin && (
+              <>
+                <StyledButton
+                  theme={constants.PATIENT}
+                  mode={constants.SECONDARY}
+                  size={constants.SMALL}
+                  gradient={false}
+                  onClick={OnGuestClicked}
+                  data-testid={LOGIN_TEST_ID.guestBtn}
+                >
+                  {t("continueAsPasswordButtonLabel")}
+                </StyledButton>
+              </>
+            )}
+
+            {isThresholdAdmin && (
+              <>
+                <Grid container justifyContent={constants.CENTER}>
+                  <Typography
+                    variant="bodyMedium"
+                    sx={{
+                      color: "#003B4A",
+                      fontWeight: 600,
+                      textAlign: "center",
+                    }}
+                  >
+                    {t("alreadyHaveAnAppointment")}
+                    <br />
+                    <Link
+                      className={styles.link}
+                      data-testid={LOGIN_TEST_ID.syncAppointmentLink}
+                      {...getLinkAria(t("syncYourAppointmentInformation"))}
+                      href={onAppointMentClicked}
+                    >
+                      {t("syncYourAppointmentInformation")}
+                    </Link>
+                  </Typography>
+                </Grid>
+              </>
+            )}
           </>
         )}
 

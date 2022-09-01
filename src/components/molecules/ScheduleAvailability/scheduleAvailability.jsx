@@ -1,6 +1,5 @@
 import Box from "@mui/material/Box";
 import React from "react";
-import { useRouter } from "next/router";
 import { viewAllAvailabilityLinkUI } from "../WeekAvailability/WeekAvailability";
 import { buttonSchedule } from "../DayAvailability/DayAvailability";
 
@@ -10,7 +9,7 @@ export const ScheduleAvailability = ({
     // This is intentional
   },
   OnDayClicked = () => {
-    // This is intended
+    // This is intentional
   },
 }) => {
   return (
