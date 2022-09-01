@@ -26,7 +26,7 @@ Object {
               <div
                 class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
                 data-testid="select-question-id-1"
-                menuprops="[object Object]"
+                tabindex="0"
               >
                 <div
                   aria-expanded="false"
@@ -110,7 +110,7 @@ Object {
               <div
                 class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
                 data-testid="select-question-id-2"
-                menuprops="[object Object]"
+                tabindex="1"
               >
                 <div
                   aria-expanded="false"
@@ -194,7 +194,7 @@ Object {
               <div
                 class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
                 data-testid="select-question-id-3"
-                menuprops="[object Object]"
+                tabindex="2"
               >
                 <div
                   aria-expanded="false"
@@ -278,7 +278,7 @@ Object {
               <div
                 class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
                 data-testid="select-question-id-4"
-                menuprops="[object Object]"
+                tabindex="3"
               >
                 <div
                   aria-expanded="false"
@@ -362,7 +362,7 @@ Object {
               <div
                 class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
                 data-testid="select-question-id-5"
-                menuprops="[object Object]"
+                tabindex="4"
               >
                 <div
                   aria-expanded="false"
@@ -484,7 +484,7 @@ Object {
             <div
               class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
               data-testid="select-question-id-1"
-              menuprops="[object Object]"
+              tabindex="0"
             >
               <div
                 aria-expanded="false"
@@ -568,7 +568,7 @@ Object {
             <div
               class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
               data-testid="select-question-id-2"
-              menuprops="[object Object]"
+              tabindex="1"
             >
               <div
                 aria-expanded="false"
@@ -652,7 +652,7 @@ Object {
             <div
               class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
               data-testid="select-question-id-3"
-              menuprops="[object Object]"
+              tabindex="2"
             >
               <div
                 aria-expanded="false"
@@ -736,7 +736,7 @@ Object {
             <div
               class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
               data-testid="select-question-id-4"
-              menuprops="[object Object]"
+              tabindex="3"
             >
               <div
                 aria-expanded="false"
@@ -820,7 +820,7 @@ Object {
             <div
               class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
               data-testid="select-question-id-5"
-              menuprops="[object Object]"
+              tabindex="4"
             >
               <div
                 aria-expanded="false"
