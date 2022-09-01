@@ -52,6 +52,8 @@ export default function InsuranceInfoPage() {
     (state) => state.user.userInsuranceData
   );
 
+  const [isShowError, setIsShowError] = useState(false);
+  const [isShowErrorNew, setIsShowErrorNew] = useState(false);
   const dispatch = useDispatch();
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
@@ -59,12 +61,25 @@ export default function InsuranceInfoPage() {
   const newInsuraceComp = useRef(null);
 
   const OnCreateInsurance = (payload) => {
-    dispatch(addUserInsuranceData(payload));
-    dispatch(
-      setPageMessage({ isShow: true, content: "Insurance successfully added" })
-    );
-
-    setOpenNewInsuranceForm(false);
+    const { backCard, frontCard } = payload;
+    if (
+      (backCard !== "" && frontCard === "") ||
+      (backCard === "" && frontCard !== "")
+    ) {
+      setIsShowErrorNew(true);
+      setIsShowError(true);
+    } else {
+      dispatch(addUserInsuranceData(payload));
+      dispatch(
+        setPageMessage({
+          isShow: true,
+          content: "Insurance successfully added",
+        })
+      );
+      setIsShowErrorNew(false);
+      setIsShowError(false);
+      setOpenNewInsuranceForm(false);
+    }
   };
 
   const OnRemoveInsurance = (payload) => {
@@ -126,6 +141,13 @@ export default function InsuranceInfoPage() {
     dispatch(fetchInsurance());
   }, [dispatch]);
 
+  const uploadBothError = (style, onClose) => {
+    return (
+      <FormMessage success={false} sx={style} onClick={onClose}>
+        Please upload both sides of your insurance card.
+      </FormMessage>
+    );
+  };
   return (
     <section>
       <FormMessage
@@ -180,6 +202,10 @@ export default function InsuranceInfoPage() {
               )
             }
           >
+            {isShowError &&
+              uploadBothError({ marginBottom: "16px" }, () =>
+                setIsShowError(false)
+              )}
             <Collapse in={isEditing}>
               <Box>
                 <InsuranceForm
@@ -189,6 +215,7 @@ export default function InsuranceInfoPage() {
                   OnCancelClicked={() => {
                     setIsEditing(false);
                   }}
+                  isError={isShowError}
                 />
               </Box>
             </Collapse>
@@ -250,6 +277,7 @@ export default function InsuranceInfoPage() {
                           setOpenNewInsuranceForm(false);
                           setFocusToNewInsurance(false);
                         }}
+                        isError={isShowError}
                       />
                     </AccordionDetails>
                   </Accordion>
@@ -266,6 +294,10 @@ export default function InsuranceInfoPage() {
           <InsuranceInformationNew
             insuranceData={userInsuranceData}
             OnCreateInsurance={OnCreateInsurance}
+            FormMessageEl={uploadBothError(null, () =>
+              setIsShowErrorNew(false)
+            )}
+            isShowError={isShowErrorNew}
           />
         </Box>
       </Fade>
@@ -306,6 +338,18 @@ export default function InsuranceInfoPage() {
               sx={{ fontSize: "14px" }}
             >
               Yes, remove Insurance
+            </StyledButton>
+
+            <StyledButton
+              size="small"
+              mode="error"
+              onClick={() => {
+                setConfirmationDeleteDialog(false);
+                setIsShowError(true);
+              }}
+              sx={{ fontSize: "14px" }}
+            >
+              Show Eroor
             </StyledButton>
           </Stack>
         </DialogActions>
