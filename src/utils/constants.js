@@ -49,6 +49,7 @@ module.exports = {
       loginBtn: "loginbtn",
       guestBtn: "continueasguest",
       createAccountBtn: "createaccount",
+      syncAppointmentLink: "syncAppointmentLink",
     },
     FORGOT_TEST_ID: {
       email: "emailorphonenumber",
@@ -140,6 +141,9 @@ module.exports = {
       cancel: "loc_btnCancelInsuranve",
       uploadFrontImage: "loc_btnUploadFront",
       uploadBackImage: "loc_btnUploadBack",
+    },
+    SEARCH_PROVIDER_TEST_ID: {
+      viewAll: "loc_viewAll",
     },
   },
 };

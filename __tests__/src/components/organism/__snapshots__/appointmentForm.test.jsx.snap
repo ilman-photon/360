@@ -95,6 +95,42 @@ Object {
               </div>
             </div>
             <div
+              class="MuiBox-root css-6gs9hh"
+            >
+              <div
+                class="MuiFormControl-root MuiTextField-root css-1b4zuq3-MuiFormControl-root-MuiTextField-root"
+              >
+                <label
+                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="true"
+                  for=":r2:"
+                  id=":r2:-label"
+                >
+                  Date of Birth
+                </label>
+                <div
+                  class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
+                >
+                  <input
+                    aria-invalid="false"
+                    aria-label="Choose date"
+                    aria-readonly="true"
+                    class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
+                    id=":r2:"
+                    readonly=""
+                    type="text"
+                    value="09/01/2022"
+                  />
+                </div>
+              </div>
+            </div>
+            <label
+              class="MuiFormLabel-root MuiFormLabel-colorPrimary css-yxw8bb-MuiFormLabel-root"
+              id="row-input-disclaimer"
+            >
+              Month, Day, Year
+            </label>
+            <div
               class="MuiFormControl-root MuiTextField-root custom-input css-9oi4yo-MuiFormControl-root-MuiTextField-root"
               data-testid="email"
               withicon="true"
@@ -152,49 +188,12 @@ Object {
               </div>
             </div>
             <div
-              class="MuiBox-root css-6gs9hh"
-            >
-              <div
-                class="MuiFormControl-root MuiTextField-root css-1b4zuq3-MuiFormControl-root-MuiTextField-root"
-              >
-                <label
-                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
-                  data-shrink="false"
-                  for=":r4:"
-                  id=":r4:-label"
-                >
-                  Date of Birth
-                </label>
-                <div
-                  class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
-                >
-                  <input
-                    aria-invalid="false"
-                    aria-label="Choose date"
-                    aria-readonly="true"
-                    class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
-                    id=":r4:"
-                    readonly=""
-                    type="text"
-                    value=""
-                  />
-                </div>
-              </div>
-            </div>
-            <label
-              class="MuiFormLabel-root MuiFormLabel-colorPrimary css-yxw8bb-MuiFormLabel-root"
-              id="row-input-disclaimer"
-            >
-              Month, Day, Year
-            </label>
-            <div
               style="margin-top: 32px; margin-left: 8px; margin-right: 8px;"
             >
               <div
                 class="MuiFormControl-root css-1a1aa7f-MuiFormControl-root"
                 label="Preferred mode of Communication"
                 options="[object Object],[object Object],[object Object]"
-                value="both"
               >
                 <label
                   class="MuiFormLabel-root MuiFormLabel-colorPrimary css-yn0t1o-MuiFormLabel-root"
@@ -310,10 +309,9 @@ Object {
                     class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
                   >
                     <span
-                      class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-81lzf2-MuiButtonBase-root-MuiRadio-root"
+                      class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
                     >
                       <input
-                        checked=""
                         class="PrivateSwitchBase-input css-1m9pwf3"
                         name="row-radio-buttons-group"
                         type="radio"
@@ -335,7 +333,7 @@ Object {
                         </svg>
                         <svg
                           aria-hidden="true"
-                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-11zohuh-MuiSvgIcon-root"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hhw7if-MuiSvgIcon-root"
                           data-testid="RadioButtonCheckedIcon"
                           focusable="false"
                           viewBox="0 0 24 24"
@@ -442,7 +440,7 @@ Object {
               class="MuiDivider-root MuiDivider-fullWidth css-6s38d-MuiDivider-root"
             />
             <div
-              style="padding: 16px; border-radius: 4px; color: rgb(54, 106, 112); background-color: rgba(0, 149, 169, 0.051); margin: 8px; word-break: break-all;"
+              style="padding: 16px; border-radius: 4px; color: rgb(54, 106, 112); background-color: rgb(242, 247, 253); word-break: break-all;"
             >
               <div>
                 Your username will be 
@@ -454,7 +452,7 @@ Object {
             >
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  css-xo91zr-MuiButtonBase-root-MuiButton-root"
-                style="height: 40px; align-self: self-end; border-radius: 46px; text-transform: capitalize; color: rgb(255, 255, 255);"
+                style="height: 40px; align-self: self-end; border-radius: 46px; text-transform: capitalize; color: rgb(255, 255, 255); background-color: rgb(0, 149, 169);"
                 tabindex="0"
                 type="submit"
               >
@@ -560,6 +558,42 @@ Object {
             </div>
           </div>
           <div
+            class="MuiBox-root css-6gs9hh"
+          >
+            <div
+              class="MuiFormControl-root MuiTextField-root css-1b4zuq3-MuiFormControl-root-MuiTextField-root"
+            >
+              <label
+                class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
+                data-shrink="true"
+                for=":r2:"
+                id=":r2:-label"
+              >
+                Date of Birth
+              </label>
+              <div
+                class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
+              >
+                <input
+                  aria-invalid="false"
+                  aria-label="Choose date"
+                  aria-readonly="true"
+                  class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
+                  id=":r2:"
+                  readonly=""
+                  type="text"
+                  value="09/01/2022"
+                />
+              </div>
+            </div>
+          </div>
+          <label
+            class="MuiFormLabel-root MuiFormLabel-colorPrimary css-yxw8bb-MuiFormLabel-root"
+            id="row-input-disclaimer"
+          >
+            Month, Day, Year
+          </label>
+          <div
             class="MuiFormControl-root MuiTextField-root custom-input css-9oi4yo-MuiFormControl-root-MuiTextField-root"
             data-testid="email"
             withicon="true"
@@ -617,49 +651,12 @@ Object {
             </div>
           </div>
           <div
-            class="MuiBox-root css-6gs9hh"
-          >
-            <div
-              class="MuiFormControl-root MuiTextField-root css-1b4zuq3-MuiFormControl-root-MuiTextField-root"
-            >
-              <label
-                class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
-                data-shrink="false"
-                for=":r4:"
-                id=":r4:-label"
-              >
-                Date of Birth
-              </label>
-              <div
-                class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
-              >
-                <input
-                  aria-invalid="false"
-                  aria-label="Choose date"
-                  aria-readonly="true"
-                  class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
-                  id=":r4:"
-                  readonly=""
-                  type="text"
-                  value=""
-                />
-              </div>
-            </div>
-          </div>
-          <label
-            class="MuiFormLabel-root MuiFormLabel-colorPrimary css-yxw8bb-MuiFormLabel-root"
-            id="row-input-disclaimer"
-          >
-            Month, Day, Year
-          </label>
-          <div
             style="margin-top: 32px; margin-left: 8px; margin-right: 8px;"
           >
             <div
               class="MuiFormControl-root css-1a1aa7f-MuiFormControl-root"
               label="Preferred mode of Communication"
               options="[object Object],[object Object],[object Object]"
-              value="both"
             >
               <label
                 class="MuiFormLabel-root MuiFormLabel-colorPrimary css-yn0t1o-MuiFormLabel-root"
@@ -775,10 +772,9 @@ Object {
                   class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
                 >
                   <span
-                    class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-81lzf2-MuiButtonBase-root-MuiRadio-root"
+                    class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
                   >
                     <input
-                      checked=""
                       class="PrivateSwitchBase-input css-1m9pwf3"
                       name="row-radio-buttons-group"
                       type="radio"
@@ -800,7 +796,7 @@ Object {
                       </svg>
                       <svg
                         aria-hidden="true"
-                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-11zohuh-MuiSvgIcon-root"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hhw7if-MuiSvgIcon-root"
                         data-testid="RadioButtonCheckedIcon"
                         focusable="false"
                         viewBox="0 0 24 24"
@@ -907,7 +903,7 @@ Object {
             class="MuiDivider-root MuiDivider-fullWidth css-6s38d-MuiDivider-root"
           />
           <div
-            style="padding: 16px; border-radius: 4px; color: rgb(54, 106, 112); background-color: rgba(0, 149, 169, 0.051); margin: 8px; word-break: break-all;"
+            style="padding: 16px; border-radius: 4px; color: rgb(54, 106, 112); background-color: rgb(242, 247, 253); word-break: break-all;"
           >
             <div>
               Your username will be 
@@ -919,7 +915,7 @@ Object {
           >
             <button
               class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  css-xo91zr-MuiButtonBase-root-MuiButton-root"
-              style="height: 40px; align-self: self-end; border-radius: 46px; text-transform: capitalize; color: rgb(255, 255, 255);"
+              style="height: 40px; align-self: self-end; border-radius: 46px; text-transform: capitalize; color: rgb(255, 255, 255); background-color: rgb(0, 149, 169);"
               tabindex="0"
               type="submit"
             >

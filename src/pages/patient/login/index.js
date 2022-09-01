@@ -6,6 +6,7 @@ import { useEffect } from "react";
 
 function getUserData(username, callback) {
   const api = new Api();
+
   const postBody = {
     username,
   };
@@ -43,7 +44,7 @@ const loginProps = {
           }
           const hostname = window.location.origin;
           window.location.href = isNotNeedMfa
-            ? `${hostname}/patient/account/profile-info`
+            ? `${hostname}/patient/appointment`
             : `${hostname}/patient/mfa`;
           callback({ status: "success" });
         });
@@ -70,6 +71,7 @@ const loginProps = {
   OnForgotPasswordClicked: function (router) {
     router.push("/patient/forgot-password");
   },
+  onAppointMentClicked: "/patient/forgot-password",
 };
 
 export default function login() {

@@ -23,6 +23,7 @@ const FilterBy = ({ isOpen, onClose, onDone, filter, activedFilter = [] }) => {
   React.useEffect(() => {
     setOpenDrawer(isOpen);
     setActiveFilter(activedFilter);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
   const renderCheckbox = (title, items, showDivider) => {

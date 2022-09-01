@@ -35,7 +35,9 @@ export default function AppointmentDetails({
             className={styles.editButton}
             onClick={OnEditClicked}
           >
-            <EditOutlinedIcon sx={{ width: 20, height: 20 }} />
+            <EditOutlinedIcon
+              sx={{ width: 20, height: 20, color: "#008294" }}
+            />
             <div type="link" style={styles.editLink}>
               Edit
             </div>
@@ -74,7 +76,7 @@ export default function AppointmentDetails({
             sxText={{ paddingLeft: "4px", color: colors.darkGreen }}
           >
             <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
-              {appointmentData.appointmentType}
+              {appointmentData.appointmentType || "-"}
             </Typography>
           </LabelWithInfo>
         </Stack>

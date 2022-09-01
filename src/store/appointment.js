@@ -19,10 +19,14 @@ const DEFAULT_PROVIDER_INFO_DATA = {
 
 const DEFAULT_PATIENT_INFO_DATA = {
   name: null,
-  firstName: null,
-  lastName: null,
+  firstName: "",
+  lastName: "",
   dob: null,
   phoneNumber: null,
+
+  email: "",
+  password: "",
+  preferredCommunication: "both",
 };
 
 const DEFAULT_APPOINTMENT_INFO_DATA = {
@@ -58,7 +62,6 @@ const appointmentSlice = createSlice({
       state.appointmentSchedule = DEFAULT_USER_SCHEDULE_APPOINTMENT_DATA;
     },
     editAppointmentScheduleData: (state, { payload }) => {
-      console.log("edit", { payload });
       state.appointmentSchedule[payload.key] = payload.value;
     },
     setDummyAppointmentSchedule: (state) => {

@@ -29,7 +29,11 @@ export default function BaseHeader({
 }) {
   const { HOME_TEST_ID } = constants.TEST_ID;
   const pages = [
-    { page: "Appointments", testId: HOME_TEST_ID.appoinments },
+    {
+      page: "Appointments",
+      testId: HOME_TEST_ID.appoinments,
+      href: "/patient/appointments",
+    },
     { page: "My Health Chart", testId: HOME_TEST_ID.myhealthchart },
     { page: "My Care Team", testId: HOME_TEST_ID.mycareteam },
     { page: "Lab Results", testId: HOME_TEST_ID.labresults },
@@ -52,8 +56,9 @@ export default function BaseHeader({
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = ({ href }) => {
     setAnchorElNav(null);
+    href && router.push(href);
   };
 
   const handleCloseUserMenu = () => {
@@ -75,10 +80,12 @@ export default function BaseHeader({
               ></Image>
               {/* Menu Desktop*/}
               <Box sx={styles.boxStyled}>
-                {pages.map(({ page, testId }) => (
+                {pages.map(({ page, testId, href }) => (
                   <Button
                     key={page}
-                    onClick={handleCloseNavMenu}
+                    onClick={() => {
+                      handleCloseNavMenu({ href });
+                    }}
                     sx={styles.bottonStyledDesktop}
                     data-testid={testId}
                   >

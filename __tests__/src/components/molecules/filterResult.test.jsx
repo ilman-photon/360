@@ -14,4 +14,9 @@ describe("FilterResult Components", () => {
     expect(container).toMatchSnapshot();
   });
 
+  it("FilterHeading render", () => {
+    container = render(<FilterResult isDesktop={true}/>);
+    expect(container).toMatchSnapshot();
+  });
+
 });

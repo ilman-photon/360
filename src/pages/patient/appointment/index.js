@@ -43,7 +43,7 @@ export async function getStaticProps() {
 }
 
 export default function Appointment({ googleApiKey }) {
-  const isDesktop = useMediaQuery("(min-width: 992px)");
+  const isDesktop = useMediaQuery("(min-width: 834px)");
   const [isFilterApplied, setFilterApplied] = useState(false);
   const [open, setOpen] = React.useState(false);
   const [dataFilter, setDataFilter] = React.useState([]);
@@ -69,8 +69,75 @@ export default function Appointment({ googleApiKey }) {
     setOpen(false);
   };
 
-  function onViewAllAvailability() {
-    //TO DO: set data for view days schedule
+  //Remove this when itegration
+  const providerList = [
+    {
+      providerId: 0,
+      name: "Dr. Sonha Nguyen",
+      address: {
+        addressLine1: "673 Herzog Locks",
+        addressLine2: "Suite 300",
+        city: "New York",
+        state: "NY",
+        zipcode: "53891",
+      },
+      rating: 5,
+      phoneNumber: "(123) 123-4567",
+      distance: "10 mi",
+      image: "/doctor.png",
+      from: new Date(),
+      to: new Date(),
+      location: {
+        latitude: 41.481832,
+        longitude: -87.323177,
+      },
+    },
+    {
+      providerId: 1,
+      name: "Paul Wagner, MD",
+      address: {
+        addressLine1: "100 United States",
+        addressLine2: "Hotel 15",
+        city: "Washington",
+        state: "WS",
+        zipcode: "12345",
+      },
+      rating: 5,
+      phoneNumber: "(123) 123-4567",
+      distance: "10 mi",
+      image: "/doctor.png",
+      from: new Date(),
+      to: new Date(),
+      location: {
+        latitude: 41.681832,
+        longitude: -87.123177,
+      },
+    },
+    {
+      providerId: 2,
+      name: "John Doe, MD",
+      address: {
+        addressLine1: "51 West 51st Street",
+        addressLine2: "Floor 3, Suite 320 Midtown",
+        city: "Florida",
+        state: "FR",
+        zipcode: "54231",
+      },
+      rating: 5,
+      phoneNumber: "(123) 123-4567",
+      distance: "10 mi",
+      image: "/doctor.png",
+      from: new Date(),
+      to: new Date(),
+      location: {
+        latitude: 40.681832,
+        longitude: -87.14573177,
+      },
+    },
+  ];
+
+  function onViewAllAvailability(providerData) {
+    //TO DO: set data for view days schedule]
     setOpen(true);
   }
 
@@ -152,11 +219,14 @@ export default function Appointment({ googleApiKey }) {
                 variant={"viewschedule"}
                 isDayAvailableView={true}
                 isShownPhoneAndRating={false}
+                providerData={providerList[0]}
               />
             </Box>
             <DayAvailability
               isDesktop={isDesktop}
-              OnDayClicked={handleDayClicked}
+              OnDayClicked={(e) => {
+                handleDayClicked(e, providerList[0]);
+              }}
             />
           </DialogContent>
         </Dialog>
@@ -193,6 +263,7 @@ export default function Appointment({ googleApiKey }) {
                 onClickViewAllAvailability={onViewAllAvailability}
                 OnDayClicked={handleDayClicked}
                 isDesktop={isDesktop}
+                providerList={providerList}
               />
             ) : (
               <EmptyResult
@@ -226,7 +297,11 @@ export default function Appointment({ googleApiKey }) {
             zIndex: "9",
           }}
         >
-          <FilterResultHeading isDesktop={isDesktop} filterData={dataFilter} />
+          <FilterResultHeading
+            isDesktop={isDesktop}
+            filterData={dataFilter}
+            onSearchProvider={onSearchProvider}
+          />
           <Stack
             direction={"row"}
             alignItems={"center"}
@@ -284,6 +359,9 @@ export default function Appointment({ googleApiKey }) {
             setActiveTabs={setActiveTabs}
             onClickViewAllAvailability={onViewAllAvailability}
             filterData={dataFilter}
+            providerList={providerList}
+            OnDayClicked={handleDayClicked}
+            googleApiKey={googleApiKey}
           />
         </Box>
       </Box>
