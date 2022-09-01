@@ -150,6 +150,10 @@
     "passwordLabel": "Password",
     "scheduleAppoinment": "Schedule Appointment",
     "thisFieldRequired" : "This field is required",
-    "preferredCommunication": "Preferred mode of Communication"
+    "preferredCommunication": "Preferred mode of Communication",
+    "scheduled": "You’re Scheduled!",
+    "isEmergency": "Is this a medical emergency?",
+    "thanksBar" : "Thank you for scheduling your appointment. We will send a confirmation Email/Text shortly.",
+    "patientInformation": "Patient Information"
   }
 }

@@ -28,7 +28,12 @@ export default function UpcomingAppointment() {
           <Typography variant="body2">Eye exam</Typography>
         </Box>
         <Box className={styles.itemContainer}>
-          <ProviderProfile variant={"appointment"} showPosition phoneLink />
+          <ProviderProfile
+            variant={"appointment"}
+            showPosition
+            phoneLink
+            isDayAvailableView={true}
+          />
           <Box className={styles.getDirectionLink}>
             <DirectionsOutlinedIcon></DirectionsOutlinedIcon>
             <Link className={styles.getDirectionLinkText}>Get directions</Link>

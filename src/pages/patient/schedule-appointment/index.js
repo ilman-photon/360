@@ -4,8 +4,12 @@ import ScheduleAppointment from "../../../components/organisms/ScheduleAppointme
 import AppointmentLocation from "../../../components/organisms/ScheduleAppointment/appointmentLocation";
 import AppointmentDetails from "../../../components/organisms/ScheduleAppointment/appointmentDetails";
 import AppointmentForm from "../../../components/organisms/ScheduleAppointment/appointmentForm";
+import ModalScheduling from "../../../components/organisms/ScheduleAppointment/modalScheduling";
+import DrawerScheduling from "../../../components/organisms/ScheduleAppointment/drawerScheduling";
+
 import StepperAppoinment from "../../../components/molecules/StepperAppoinment/stepperAppoinment";
 import AccountTitleHeading from "../../../components/atoms/AccountTitleHeading/accountTitleHeading";
+import styles from "./styles.module.scss";
 
 import BaseHeader from "../../../components/organisms/BaseHeader/baseHeader";
 
@@ -15,7 +19,6 @@ import { LabelWithIcon } from "../../../components/atoms/LabelWithIcon/labelWith
 import { Button, Grid, Box, Divider, useMediaQuery } from "@mui/material";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "../../../store/store";
-import styles from "./styles.module.scss";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { editAppointmentScheduleData } from "../../../store/appointment";
@@ -79,7 +82,6 @@ export const PageContent = ({
       return (
         <>
           <Grid
-            xs={12}
             className={styles.examForComponent}
             p={{ xs: "24px 14px", md: "40px 16px" }}
           >
@@ -182,6 +184,7 @@ export const PageContent = ({
 export default function ScheduleAppointmentPage() {
   const [activeStep, setActiveStep] = React.useState(1);
   const isDesktop = useMediaQuery("(min-width: 769px)");
+  const [isOpen, setIsOpen] = React.useState(true);
 
   const router = useRouter();
 
@@ -230,6 +233,19 @@ export default function ScheduleAppointmentPage() {
       <BaseHeader />
       {isDesktop ? <AccountTitleHeading title={headerText[activeStep]} /> : ""}
       <StepperAppoinment activeStep={activeStep} steps={steps} />
+      {isDesktop ? (
+        <ModalScheduling
+          providerData={appointmentScheduleData.providerInfo}
+          isOpen={isOpen}
+          OnSetIsOpen={(idx) => setIsOpen(idx)}
+        />
+      ) : (
+        <DrawerScheduling
+          providerData={appointmentScheduleData.providerInfo}
+          isOpen={isOpen}
+          OnSetIsOpen={(idx) => setIsOpen(idx)}
+        />
+      )}
       {activeStep === 2 ? (
         <Grid
           className={styles.mobileTopBar}
@@ -243,6 +259,7 @@ export default function ScheduleAppointmentPage() {
       <Grid
         className={isDesktop ? styles.container : ""}
         p={{ xs: "24px 14px 0", md: "30px 40px 0" }}
+        sx={{ justifyContent: "center" }}
       >
         <Box className={styles.pageWrapper}>
           <Button
