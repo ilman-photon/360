@@ -116,7 +116,6 @@ const FilterHeading = ({
               e.target.value &&
               setOpenDialog
             ) {
-              setInsuranceCarrierValue(e.target.value);
               setOpenDialog(false);
               e.preventDefault();
               return false;
@@ -422,7 +421,6 @@ const FilterHeading = ({
                 renderMenuListUI={menuListUI}
                 data-testid={APPOINTMENT_TEST_ID.purposeInput}
                 renderValue={(selected) => {
-                  console.log(selected);
                   return selected;
                 }}
               />
@@ -752,7 +750,7 @@ const FilterHeading = ({
     if (type === "date") {
       child = (
         <Controller
-          name={"location"}
+          name={"date"}
           control={control}
           render={({ field: { onChange, value }, fieldState: { _error } }) => {
             return (
