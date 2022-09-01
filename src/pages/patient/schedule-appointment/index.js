@@ -79,7 +79,7 @@ export const PageContent = ({
             <Box sx={{ p: "16px 0", float: "right" }}>
               <Button
                 variant="contained"
-                className={styles.continueText}
+                className={styles.continueButton}
                 sx={{
                   width: { xs: "100%", md: "222px" },
                   background: "#0095A9",

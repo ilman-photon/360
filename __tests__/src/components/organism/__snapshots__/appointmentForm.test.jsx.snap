@@ -454,7 +454,7 @@ Object {
             >
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  css-xo91zr-MuiButtonBase-root-MuiButton-root"
-                style="height: 40px; align-self: self-end; border-radius: 46px; text-transform: capitalize; color: rgb(255, 255, 255);"
+                style="height: 40px; align-self: self-end; border-radius: 46px; text-transform: capitalize; color: rgb(255, 255, 255); background-color: rgb(0, 149, 169);"
                 tabindex="0"
                 type="submit"
               >
@@ -919,7 +919,7 @@ Object {
           >
             <button
               class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root  css-xo91zr-MuiButtonBase-root-MuiButton-root"
-              style="height: 40px; align-self: self-end; border-radius: 46px; text-transform: capitalize; color: rgb(255, 255, 255);"
+              style="height: 40px; align-self: self-end; border-radius: 46px; text-transform: capitalize; color: rgb(255, 255, 255); background-color: rgb(0, 149, 169);"
               tabindex="0"
               type="submit"
             >

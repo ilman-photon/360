@@ -35,6 +35,7 @@ export default function InsuranceForm({
     // This is intended
   },
   testIds = constants.TEST_ID.INSURANCE_TEST_ID,
+  isError,
 }) {
   const { handleSubmit, control, watch, reset } = useForm({
     defaultValues: DEFAULT_INSURANCE_DATA,
@@ -44,7 +45,9 @@ export default function InsuranceForm({
 
   // Later will be used for edit
   useEffect(() => {
-    if (formData) reset(formData);
+    if (formData && isError !== false) {
+      reset(formData);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
 
@@ -106,7 +109,7 @@ export default function InsuranceForm({
 
   const onSubmit = (data) => {
     OnSaveClicked(data);
-    reset(DEFAULT_INSURANCE_DATA);
+    if (isError !== false) reset(DEFAULT_INSURANCE_DATA);
   };
 
   const DisclaimerText = (data) => {
