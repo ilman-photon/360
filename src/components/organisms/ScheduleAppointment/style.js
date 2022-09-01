@@ -46,6 +46,9 @@ export const styles = {
     fontWeight: "700",
     paddingLeft: "16px",
   },
+  linkText: {
+    color: "#008294",
+  },
   boldLabel: {
     fontWeight: "700",
     fontSize: "1.2rem",

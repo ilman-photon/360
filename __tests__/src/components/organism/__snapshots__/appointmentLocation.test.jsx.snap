@@ -133,6 +133,7 @@ Object {
                   >
                     <a
                       class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
+                      style="color: rgb(0, 130, 148);"
                     />
                   </h4>
                 </div>
@@ -272,6 +273,7 @@ Object {
                 >
                   <a
                     class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
+                    style="color: rgb(0, 130, 148);"
                   />
                 </h4>
               </div>
