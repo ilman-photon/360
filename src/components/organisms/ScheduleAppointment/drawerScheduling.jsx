@@ -51,7 +51,10 @@ export const DrawerScheduling = ({
         // onClose={OnSetIsOpen(false)}
         sx={{ height: "auto" }}
       >
-        <Box sx={{ width: "100%", padding: "16px" }} role="presentation">
+        <Box
+          sx={{ width: "100%", padding: { xs: 0, md: 2 } }}
+          role="presentation"
+        >
           <ModalConfirmContent OnSetIsOpen={OnSetIsOpen} />
         </Box>
       </SwipeableDrawer>

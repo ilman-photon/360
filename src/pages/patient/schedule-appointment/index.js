@@ -10,8 +10,6 @@ import StepperAppoinment from "../../../components/molecules/StepperAppoinment/s
 import AccountTitleHeading from "../../../components/atoms/AccountTitleHeading/accountTitleHeading";
 import styles from "./styles.module.scss";
 
-import Link from "@mui/material/Link";
-
 import BaseHeader from "../../../components/organisms/BaseHeader/baseHeader";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -68,7 +66,6 @@ export const PageContent = ({
       return (
         <>
           <Grid
-            xs={12}
             className={styles.examForComponent}
             p={{ xs: "24px 14px", md: "40px 16px" }}
           >

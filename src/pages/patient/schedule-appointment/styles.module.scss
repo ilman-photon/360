@@ -3,10 +3,11 @@
 .container {
   background-color: #e4e4e4;
   margin: auto;
-
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-content: center;
+  align-items: center;
 
   .pageWrapper {
     display: flex;

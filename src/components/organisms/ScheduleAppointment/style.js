@@ -108,9 +108,10 @@ export const styles = {
     alignItems: "center",
     lineHeight: "24px",
     wordBreak: "break-word",
+    color: "black",
   },
   card: {
-    margin: "8px",
+    margin: "8px 0px",
   },
   dateBold: {
     fontWeight: "700",
@@ -118,13 +119,16 @@ export const styles = {
     fontSize: "16px",
   },
   cardPatient: {
-    margin: "20px 8px",
+    margin: "20px 0px",
   },
   bottomParagraph: {
     color: "#366A70",
     textAlign: "center",
     margin: "24px",
     fontSize: "14px",
+  },
+  okButtonRow: {
+    textAlign: "end",
   },
   patientBoxLabel: {
     fontWeight: "500",

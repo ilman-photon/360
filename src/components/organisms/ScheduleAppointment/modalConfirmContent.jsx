@@ -8,15 +8,19 @@ import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
 import LabelWithInfo from "../../atoms/LabelWithInfo/labelWithInfo";
+
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
-
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
+
+import Cookies from "universal-cookie";
+import { useRouter } from "next/router";
 
 import { colors } from "../../../styles/theme";
 import { styles } from "./style";
 import ProviderProfile from "../../molecules/ProviderProfile/providerProfile";
+
 import Link from "@mui/material/Link";
 import Image from "next/image";
 import constants from "../../../utils/constants";
@@ -45,7 +49,7 @@ const BootstrapDialogTitle = (props) => {
           onClick={onClose}
           sx={{
             position: "absolute",
-            right: 8,
+            right: 10,
             top: 8,
             color: (theme) => theme.palette.grey[500],
           }}
@@ -69,6 +73,15 @@ export default function ModalConfirmContent({
   },
 }) {
   const { REGISTER_TEST_ID } = constants.TEST_ID;
+  const [isUserLoged, setUserLoged] = React.useState(false);
+  const router = useRouter();
+  const logo = "/eyecarelogo.png";
+
+  React.useEffect(() => {
+    const cookies = new Cookies();
+    const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
+    setUserLoged(isLogin);
+  }, []);
 
   const { t } = useTranslation("translation", {
     keyPrefix: "scheduleAppoinment",
@@ -107,8 +120,11 @@ export default function ModalConfirmContent({
       </BootstrapDialogTitle>
       <DialogContent
         sx={{
-          px: { xs: 0, md: 2 },
-          py: { xs: 0, md: 3 },
+          "&.MuiDialogContent-root": {
+            px: { xs: 2, md: 3 },
+            pt: { xs: 0, md: 0 },
+            pb: { xs: 0, md: 3 },
+          },
         }}
       >
         <div
@@ -220,18 +236,35 @@ export default function ModalConfirmContent({
           </CardContent>
         </Card>
 
-        <div style={styles.bottomParagraph}>
-          <Typography variant="caption" sx={{ fontSize: "16px" }}>
-            Already have an account?{" "}
-            <Link
-              href="/patient/login"
-              data-testid={REGISTER_TEST_ID.loginlink}
-              aria-label={`Login link`}
+        {isUserLoged ? (
+          <div style={styles.bottomParagraph}>
+            <Typography variant="caption" sx={{ fontSize: "16px" }}>
+              Already have an account?{" "}
+              <Link
+                href="/patient/login"
+                data-testid={REGISTER_TEST_ID.loginlink}
+                aria-label={`Login link`}
+              >
+                <a style={styles.loginLink}>Login</a>
+              </Link>
+            </Typography>
+          </div>
+        ) : (
+          <div style={styles.okButtonRow}>
+            <Button
+              type="submit"
+              variant="contained"
+              onClick={handleClose}
+              style={styles.continueText}
+              sx={{
+                width: "131px",
+                background: "#007E8F",
+              }}
             >
-              <a style={styles.loginLink}>Login</a>
-            </Link>
-          </Typography>
-        </div>
+              Ok
+            </Button>
+          </div>
+        )}
       </DialogContent>
     </div>
   );
