@@ -226,7 +226,7 @@ export default function Appointment({ googleApiKey }) {
             zIndex: "9",
           }}
         >
-          <FilterResultHeading isDesktop={isDesktop} />
+          <FilterResultHeading isDesktop={isDesktop} filterData={dataFilter} />
           <Stack
             direction={"row"}
             alignItems={"center"}
@@ -283,6 +283,7 @@ export default function Appointment({ googleApiKey }) {
             activeTabs={activeTabs}
             setActiveTabs={setActiveTabs}
             onClickViewAllAvailability={onViewAllAvailability}
+            filterData={dataFilter}
           />
         </Box>
       </Box>

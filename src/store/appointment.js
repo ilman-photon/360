@@ -39,9 +39,9 @@ const DEFAULT_USER_SCHEDULE_APPOINTMENT_DATA = {
 
 const DEFAULT_FILTER_DATA = {
   date: null,
-  location: null,
-  insuranceCarrier: null,
-  purposeOfVisit: null,
+  location: "",
+  insuranceCarrier: "",
+  purposeOfVisit: "",
 };
 
 const appointmentSlice = createSlice({

@@ -1,5 +1,5 @@
 .checkBoxContainer {
-  width: 360px;
+  min-width: 360px;
   margin: 10px 17px;
   padding-bottom: 10px;
 }
@@ -98,7 +98,10 @@
   }
 }
 
-.checkboxGroup {
+.checBoxListContainer {
   overflow: scroll;
   max-height: calc(100vh - 144px);
+  @media (max-width: 992px) {
+    width: 100vw;
+  }
 }

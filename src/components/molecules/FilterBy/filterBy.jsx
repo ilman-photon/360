@@ -102,7 +102,7 @@ const FilterBy = ({ isOpen, onClose, onDone, filter, activedFilter = [] }) => {
           <CloseIcon className={styles.closeImage}></CloseIcon>
         </IconButton>
         <Divider className={styles.topDivider}></Divider>
-        <Box className={styles.checkboxGroup} id="checkboxGroup">
+        <Box className={styles.checBoxListContainer} id="checkboxGroup">
           {filter.map((item, index) => {
             const isLastIndex = index - 1;
             return renderCheckbox(item.title, item.filter, !isLastIndex);

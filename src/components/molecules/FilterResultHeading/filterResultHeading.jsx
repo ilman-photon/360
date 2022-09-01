@@ -27,6 +27,7 @@ export const FilterResultHeading = ({
   },
 }) => {
   const imageSrcState = "/searchInputIcon.png";
+  const imageSrcFilled = "/searchFilledIcon.png";
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
   const weekColumn = [
     "mondaySchedule",
@@ -195,6 +196,17 @@ export const FilterResultHeading = ({
   function renderMobileView() {
     return (
       <Box className={styles.mobileFilterContainer}>
+        <FilterBy
+          activedFilter={[...activeFilter]}
+          filter={mockFilter}
+          isOpen={filterOpen}
+          onClose={() => {
+            setFilterOpen(!filterOpen);
+          }}
+          onDone={(filter) => {
+            onSetFilter(filter);
+          }}
+        ></FilterBy>
         <Stack justifyContent={"center"} height={"100%"} paddingX={"14px"}>
           <Stack className={styles.mobileFilterStyle} direction={"row"}>
             <LocationOnOutlinedIcon
@@ -216,8 +228,18 @@ export const FilterResultHeading = ({
                 className={styles.mobileFilterSubtitle}
               >{`${filterData.purposeOfVisit} * ${filterData.insuranceCarrier}`}</Typography>
             </Box>
-            <Box className={styles.mobileFilterImageContainer}>
-              <Image alt="" src={imageSrcState} width={31} height={31} />
+            <Box
+              className={styles.mobileFilterImageContainer}
+              onClick={() => {
+                setFilterOpen(true);
+              }}
+            >
+              <Image
+                alt=""
+                src={activeFilter.length > 0 ? imageSrcFilled : imageSrcState}
+                width={31}
+                height={31}
+              />
             </Box>
           </Stack>
         </Stack>

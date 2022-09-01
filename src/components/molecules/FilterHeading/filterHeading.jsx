@@ -30,7 +30,9 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 
 const FilterHeading = ({
   isDesktop = true,
-  filterData = {},
+  filterData = {
+    purposeOfVisit: "",
+  },
   onSearchProvider = () => {
     // This is intentional
   },
@@ -166,7 +168,7 @@ const FilterHeading = ({
     return (
       <MenuItem
         key={idx}
-        value={option.subtitle}
+        value={option.title}
         sx={{
           fontSize: "16px",
           ["& li"]: {
@@ -419,6 +421,9 @@ const FilterHeading = ({
                 value={value}
                 renderMenuListUI={menuListUI}
                 data-testid={APPOINTMENT_TEST_ID.purposeInput}
+                renderValue={(selected) => {
+                  return selected;
+                }}
               />
             </Box>
           );
@@ -745,20 +750,28 @@ const FilterHeading = ({
     let child = <></>;
     if (type === "date") {
       child = (
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <StaticDatePicker
-            displayStaticWrapperAs="desktop"
-            minDate={minDate}
-            maxDate={maxDate}
-            openTo="day"
-            value={dateValue}
-            onChange={(newValue) => {
-              setDateValue(newValue);
-              handleCloseDialog();
-            }}
-            renderInput={(props) => <TextField {...props} />}
-          />
-        </LocalizationProvider>
+        <Controller
+          name={"location"}
+          control={control}
+          render={({ field: { onChange, value }, fieldState: { _error } }) => {
+            return (
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <StaticDatePicker
+                  displayStaticWrapperAs="desktop"
+                  minDate={minDate}
+                  maxDate={maxDate}
+                  openTo="day"
+                  value={value}
+                  onChange={(newValue) => {
+                    onChange(newValue);
+                    handleCloseDialog();
+                  }}
+                  renderInput={(props) => <TextField {...props} />}
+                />
+              </LocalizationProvider>
+            );
+          }}
+        />
       );
     } else if (type === "purposeInput") {
       child = (
@@ -766,20 +779,26 @@ const FilterHeading = ({
           <Typography className={styles.dialogSelectMenuTitle}>
             Appointment Type
           </Typography>
-          {purposeOfVisitData.map((option, idx) => {
-            return (
-              <Box
-                key={idx}
-                className={styles.dialogSelectMenu}
-                onClick={() => {
-                  setpurposeOfVisitValue(option.subtitle);
-                  handleCloseDialog();
-                }}
-              >
-                {getMenuList(option.title, option.subtitle)}
-              </Box>
-            );
-          })}
+          <Controller
+            name={"purposeOfVisit"}
+            control={control}
+            render={({ field: { onChange } }) => {
+              return purposeOfVisitData.map((option, idx) => {
+                return (
+                  <Box
+                    key={idx}
+                    className={styles.dialogSelectMenu}
+                    onClick={() => {
+                      onChange(option.title);
+                      handleCloseDialog();
+                    }}
+                  >
+                    {getMenuList(option.title, option.subtitle)}
+                  </Box>
+                );
+              });
+            }}
+          />
         </Box>
       );
     } else if (type === "insuranceCarrier") {
@@ -810,30 +829,42 @@ const FilterHeading = ({
             }}
           >
             {locationIconUI()}
-            <StyledInput
-              autoFocus
-              type="default"
-              variant="filled"
-              label="City, state, or zip code"
-              sx={{
-                width: "100%",
-                [muiInputRoot]: {
-                  border: "0px solid #ffff",
-                  background: "#fff",
-                },
-              }}
-              onKeyDown={(e) => {
-                if (
-                  e.code &&
-                  e.code.toLowerCase() === "enter" &&
-                  e.target.value &&
-                  setOpenDialog
-                ) {
-                  setLocationValue(e.target.value);
-                  setOpenDialog(false);
-                  e.preventDefault();
-                  return false;
-                }
+            <Controller
+              name={"location"}
+              control={control}
+              render={({
+                field: { onChange, value },
+                fieldState: { _error },
+              }) => {
+                return (
+                  <StyledInput
+                    autoFocus
+                    value={value}
+                    onChange={onChange}
+                    type="default"
+                    variant="filled"
+                    label="City, state, or zip code"
+                    sx={{
+                      width: "100%",
+                      [muiInputRoot]: {
+                        border: "0px solid #ffff",
+                        background: "#fff",
+                      },
+                    }}
+                    onKeyDown={(e) => {
+                      if (
+                        e.code &&
+                        e.code.toLowerCase() === "enter" &&
+                        e.target.value &&
+                        setOpenDialog
+                      ) {
+                        setOpenDialog(false);
+                        e.preventDefault();
+                        return false;
+                      }
+                    }}
+                  />
+                );
               }}
             />
           </Box>

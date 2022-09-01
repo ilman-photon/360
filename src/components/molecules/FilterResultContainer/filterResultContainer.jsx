@@ -4,6 +4,7 @@ import { colors } from "../../../styles/theme";
 import PropTypes from "prop-types";
 import ItemResult from "../../organisms/ItemResult/ItemResult";
 import styles from "./styles.module.scss";
+import EmptyResult from "../FilterResult/emptyResult";
 
 export const FilterResultContainer = ({
   activeTabs = 0,
@@ -12,6 +13,12 @@ export const FilterResultContainer = ({
     // This is intentional
   },
   isDesktop = false,
+  filterData = {
+    location: "",
+    date: "",
+    purposeOfVisit: "",
+    insuranceCarrier: "",
+  },
 }) => {
   function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -81,7 +88,12 @@ export const FilterResultContainer = ({
         }}
         textColor="inherit"
         variant="fullWidth"
-        inkBarStyle={{ background: "red" }}
+        TabIndicatorProps={{
+          style: {
+            backgroundColor: colors.teal,
+            height: "5px",
+          },
+        }}
       >
         <Tab
           value={0}
@@ -104,7 +116,24 @@ export const FilterResultContainer = ({
         <Grid item xs={12} md={6}>
           {activeTabs === 0 ? (
             <>
-              <Box className={styles.filterTabsList}>{renderItemResult()}</Box>
+              {/* Handle the empty result after integrate services */}
+              {filterData.location !== "Jakarta" ? (
+                <Box className={styles.filterTabsList}>
+                  {renderItemResult()}
+                </Box>
+              ) : (
+                <Box
+                  sx={{
+                    padding: "16px",
+                  }}
+                >
+                  <EmptyResult
+                    message={
+                      "No results found. Please try again with a different search criteria."
+                    }
+                  />
+                </Box>
+              )}
             </>
           ) : (
             ""
