@@ -18,6 +18,9 @@ export default function ScheduleAppointment({
   setActiveStep = () => {
     // This is intended
   },
+  OnClickSchedule = () => {
+    // This is intentional
+  },
 }) {
   const { t } = useTranslation("translation", {
     keyPrefix: "scheduleAppoinment",
@@ -80,7 +83,12 @@ export default function ScheduleAppointment({
           </Button>
         </Stack>
 
-        {selectedSelf === 2 ? <AppointmentForm isForMyself={false} /> : null}
+        {selectedSelf === 2 ? (
+          <AppointmentForm
+            isForMyself={false}
+            OnClickSchedule={OnClickSchedule}
+          />
+        ) : null}
 
         <Divider />
         {selectedSelf === 1 ? (

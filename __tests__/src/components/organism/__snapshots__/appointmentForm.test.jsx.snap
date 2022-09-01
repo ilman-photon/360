@@ -441,9 +441,7 @@ Object {
             <hr
               class="MuiDivider-root MuiDivider-fullWidth css-6s38d-MuiDivider-root"
             />
-            <div
-              style="padding: 16px; border-radius: 4px; color: rgb(54, 106, 112); background-color: rgb(242, 247, 253); word-break: break-all;"
-            >
+            <div>
               <div>
                 Your username will be 
                 (auto-populated email id/phone number)
@@ -906,9 +904,7 @@ Object {
           <hr
             class="MuiDivider-root MuiDivider-fullWidth css-6s38d-MuiDivider-root"
           />
-          <div
-            style="padding: 16px; border-radius: 4px; color: rgb(54, 106, 112); background-color: rgb(242, 247, 253); word-break: break-all;"
-          >
+          <div>
             <div>
               Your username will be 
               (auto-populated email id/phone number)

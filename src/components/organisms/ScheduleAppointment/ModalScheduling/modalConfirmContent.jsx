@@ -1,13 +1,10 @@
 import * as React from "react";
 import PropTypes from "prop-types";
-import { styled } from "@mui/material/styles";
-import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
-import DialogActions from "@mui/material/DialogActions";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import LabelWithInfo from "../../atoms/LabelWithInfo/labelWithInfo";
+import LabelWithInfo from "../../../atoms/LabelWithInfo/labelWithInfo";
 
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
@@ -15,15 +12,13 @@ import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
 import Cookies from "universal-cookie";
-import { useRouter } from "next/router";
 
-import { colors } from "../../../styles/theme";
-import { styles } from "./style";
-import ProviderProfile from "../../molecules/ProviderProfile/providerProfile";
+import { colors } from "../../../../styles/theme";
+import styles from "./modalScheduling.module.scss";
+import ProviderProfile from "../../../molecules/ProviderProfile/providerProfile";
 
 import Link from "@mui/material/Link";
-import Image from "next/image";
-import constants from "../../../utils/constants";
+import constants from "../../../../utils/constants";
 import { useTranslation } from "next-i18next";
 import {
   Card,
@@ -32,9 +27,7 @@ import {
   Stack,
   Typography,
   Button,
-  Divider,
   Grid,
-  useMediaQuery,
 } from "@mui/material";
 
 const BootstrapDialogTitle = (props) => {
@@ -74,8 +67,6 @@ export default function ModalConfirmContent({
 }) {
   const { REGISTER_TEST_ID } = constants.TEST_ID;
   const [isUserLoged, setUserLoged] = React.useState(false);
-  const router = useRouter();
-  const logo = "/eyecarelogo.png";
 
   React.useEffect(() => {
     const cookies = new Cookies();
@@ -87,34 +78,22 @@ export default function ModalConfirmContent({
     keyPrefix: "scheduleAppoinment",
   });
 
-  const isDesktop = useMediaQuery("(min-width: 769px)");
-
   const handleClose = () => {
     console.log("masuif");
     OnSetIsOpen(false);
   };
 
-  const getAddress = (address) => {
-    if (!address) return;
-    return (
-      <div>
-        {address.addressLine1}
-        <br />
-        {address.addressLine2}
-        <br />
-        {address.city}, {address.state}, {address.zipcode}
-      </div>
-    );
-  };
-
   return (
-    <div>
+    <Box
+      sx={{ width: { xs: "auto", md: "max-content" } }}
+      className={styles.boxModalContents}
+    >
       <BootstrapDialogTitle
         id="customized-dialog-title"
         onClose={handleClose}
         sx={{ textAlign: "center" }}
       >
-        <Typography variant="bodyMedium" sx={styles.scheduledText}>
+        <Typography variant="bodyMedium" className={styles.scheduledText}>
           <CheckCircleRoundedIcon sx={{ mr: 1 }} /> You’re Scheduled!
         </Typography>
       </BootstrapDialogTitle>
@@ -123,19 +102,20 @@ export default function ModalConfirmContent({
           "&.MuiDialogContent-root": {
             px: { xs: 2, md: 3 },
             pt: { xs: 0, md: 0 },
-            pb: { xs: 0, md: 3 },
+            pb: { xs: 2, md: 3 },
           },
         }}
       >
         <div
-          style={styles.registeredUsernameWrapper}
+          className={styles.registeredUsernameWrapper}
           sx={{ m: { xs: 0, md: 2 } }}
         >
           <Box
-            style={styles.thanksBar}
+            className={styles.thanksBar}
             sx={{
               flexDirection: { xs: "column", md: "row" },
               textAlign: { xs: "center", md: "left" },
+              padding: { xs: "8px", md: "12px 100px" },
             }}
           >
             <MailOutlineIcon sx={{ mr: 1, height: "35px", width: "28px" }} />{" "}
@@ -143,16 +123,16 @@ export default function ModalConfirmContent({
           </Box>
         </div>
 
-        <div style={styles.bottomParagraph}>
+        <div className={styles.bottomParagraph}>
           <Link
             data-testid={REGISTER_TEST_ID.loginlink}
             aria-label={`Login link`}
           >
-            <a style={styles.medicLink}>Is this a medical emergency?</a>
+            <a className={styles.medicLink}>Is this a medical emergency?</a>
           </Link>
         </div>
 
-        <Card variant="outlined" sx={styles.cardPatient}>
+        <Card variant="outlined" className={styles.cardPatient}>
           <CardContent
             sx={{
               px: { xs: 3, md: 3 },
@@ -161,7 +141,7 @@ export default function ModalConfirmContent({
             }}
           >
             <Typography
-              style={styles.dateBold}
+              className={styles.dateBold}
               sx={{ pb: 2 }}
               aria-label={"Saturday, Sep 21, 2022, AT 8:30 AM EST"}
             >
@@ -169,7 +149,7 @@ export default function ModalConfirmContent({
             </Typography>
 
             <Button
-              style={styles.addCalendarButton}
+              className={styles.addCalendarButton}
               sx={{
                 backgroundColor: "#EEF5F7",
                 mb: 2,
@@ -187,14 +167,17 @@ export default function ModalConfirmContent({
               </Typography>
             </Button>
 
-            <Typography style={styles.dateBold} aria-label={"Purpose of Visit"}>
+            <Typography
+              className={styles.dateBold}
+              aria-label={"Purpose of Visit"}
+            >
               Purpose of Visit
             </Typography>
             <Typography aria-label={"Eye exam"}>Eye exam</Typography>
           </CardContent>
         </Card>
 
-        <Card variant="outlined" sx={styles.card}>
+        <Card variant="outlined" className={styles.card}>
           <CardContent sx={{ px: { xs: 2, md: 4 }, py: { xs: 2, md: 4 } }}>
             <Stack spacing={2}>
               <Grid container sx={{ placeContent: "center" }}>
@@ -204,9 +187,11 @@ export default function ModalConfirmContent({
                     showPosition
                     isDayAvailableView={true}
                   />
-                  <Box sx={styles.getDirectionLink}>
+                  <Box className={styles.getDirectionLink}>
                     <DirectionsOutlinedIcon></DirectionsOutlinedIcon>
-                    <Link sx={styles.getDirectionLinkText}>Get directions</Link>
+                    <Link className={styles.getDirectionLinkText}>
+                      Get directions
+                    </Link>
                   </Box>
                 </Grid>
               </Grid>
@@ -214,10 +199,10 @@ export default function ModalConfirmContent({
           </CardContent>
         </Card>
 
-        <Card variant="outlined" sx={styles.cardPatient}>
+        <Card variant="outlined" className={styles.cardPatient}>
           <CardContent sx={{ px: { xs: 3, md: 3 }, py: { xs: 3, md: 3 } }}>
             <Typography
-              style={styles.patientBoxLabel}
+              className={styles.patientBoxLabel}
               sx={{ mb: 2 }}
               aria-label={"Patient Information"}
             >
@@ -237,7 +222,7 @@ export default function ModalConfirmContent({
         </Card>
 
         {isUserLoged ? (
-          <div style={styles.bottomParagraph}>
+          <div className={styles.bottomParagraph}>
             <Typography variant="caption" sx={{ fontSize: "16px" }}>
               Already have an account?{" "}
               <Link
@@ -245,17 +230,17 @@ export default function ModalConfirmContent({
                 data-testid={REGISTER_TEST_ID.loginlink}
                 aria-label={`Login link`}
               >
-                <a style={styles.loginLink}>Login</a>
+                <a className={styles.loginLink}>Login</a>
               </Link>
             </Typography>
           </div>
         ) : (
-          <div style={styles.okButtonRow}>
+          <div className={styles.okButtonRow}>
             <Button
               type="submit"
               variant="contained"
               onClick={handleClose}
-              style={styles.continueText}
+              className={styles.continueText}
               sx={{
                 width: "131px",
                 background: "#007E8F",
@@ -266,6 +251,6 @@ export default function ModalConfirmContent({
           </div>
         )}
       </DialogContent>
-    </div>
+    </Box>
   );
 }

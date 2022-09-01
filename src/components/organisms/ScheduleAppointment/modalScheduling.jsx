@@ -71,35 +71,12 @@ export default function ModalScheduling({
     // This is intended
   },
 }) {
-  const { t } = useTranslation("translation", {
-    keyPrefix: "scheduleAppoinment",
-  });
-
-  const isDesktop = useMediaQuery("(min-width: 769px)");
-
-  const handleClickOpen = () => {
-    OnSetIsOpen(true);
-  };
-
   const handleClose = () => {
     OnSetIsOpen(false);
   };
 
-  const getAddress = (saddress) => {
-    if (!address) return;
-    return (
-      <div>
-        {address.addressLine1}
-        <br />
-        {address.addressLine2}
-        <br />
-        {address.city}, {address.state}, {address.zipcode}
-      </div>
-    );
-  };
-
   return (
-    <div>
+    <Box>
       <BootstrapDialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
@@ -110,6 +87,6 @@ export default function ModalScheduling({
       >
         <ModalConfirmContent />
       </BootstrapDialog>
-    </div>
+    </Box>
   );
 }

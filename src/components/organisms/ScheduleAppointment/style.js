@@ -59,16 +59,6 @@ export const styles = {
     marginLeft: "8px",
     marginRight: "8px",
   },
-  loginLink: {
-    color: "#3EAFBD",
-    textDecoration: "underline",
-    fontSize: "16px",
-  },
-  medicLink: {
-    color: "#EF4836",
-    textDecoration: "underline",
-    fontSize: "16px",
-  },
   containedButton: {
     backgroundColor: "#2095a9",
     borderRadius: 46,
@@ -89,13 +79,6 @@ export const styles = {
     textTransform: "capitalize",
     fontSize: "18px",
   },
-  registeredUsernameWrapper: {
-    padding: 16,
-    borderRadius: 4,
-    color: "#366A70",
-    backgroundColor: "#F2F7FD",
-    wordBreak: "break-all",
-  },
   scheduledText: {
     color: colors.darkGreen,
     fontWeight: "700",
@@ -103,53 +86,14 @@ export const styles = {
     alignItems: "center",
     justifyContent: "center",
   },
-  thanksBar: {
-    display: "flex",
-    alignItems: "center",
-    lineHeight: "24px",
-    wordBreak: "break-word",
-    color: "black",
-  },
   card: {
     margin: "8px 0px",
-  },
-  dateBold: {
-    fontWeight: "700",
-    lineHeight: "24px",
-    fontSize: "16px",
-  },
-  cardPatient: {
-    margin: "20px 0px",
   },
   bottomParagraph: {
     color: "#366A70",
     textAlign: "center",
     margin: "24px",
     fontSize: "14px",
-  },
-  okButtonRow: {
-    textAlign: "end",
-  },
-  patientBoxLabel: {
-    fontWeight: "500",
-    fontSize: "26px",
-    lineHeight: "32px",
-    color: "#003B4A",
-  },
-  addCalendarButton: {
-    fontWeight: "700",
-    fontSize: "14px",
-    lineHeight: "18px",
-    display: "flex",
-    alignItems: "center",
-    color: "#007E8F",
-    justifyContent: "center",
-    padding: "8px 16px",
-    gap: "4px",
-    background: "#FFFFFF",
-    border: "1px solid #003B4A",
-    borderRadius: "4px",
-    textTransform: "capitalize",
   },
   itemContainer: {
     border: "1px solid #dfdbdb",
@@ -164,7 +108,6 @@ export const styles = {
     justifyContent: "center",
     alignItems: "center",
     gap: "9px",
-    marginTop: "19px",
   },
 
   getDirectionLinkText: {

@@ -39,7 +39,12 @@ const DisclaimerText = (data) => {
   );
 };
 
-export default function AppointmentForm({ isForMyself }) {
+export default function AppointmentForm({
+  isForMyself,
+  OnClickSchedule = () => {
+    // This is intentional
+  },
+}) {
   const { handleSubmit, control, watch } = useForm({
     defaultValues: {
       firstName: "",
@@ -53,8 +58,9 @@ export default function AppointmentForm({ isForMyself }) {
   });
   const { SCHEDULE_GUEST_TEST_ID } = constants.TEST_ID;
 
-  const onSubmit = (data) => {
+  const onSubmit = () => {
     // this is intentional
+    OnClickSchedule();
   };
 
   const options = [
