@@ -4,7 +4,7 @@ import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
 import { useRef } from "react";
 import constants from "../../../utils/constants";
 
-export default function BiographyDetails({ profileData }) {
+export default function BiographyDetails({ profileData, googleApiKey }) {
   const aboutRef = useRef(null);
   const locationRef = useRef(null);
   const insurancesRef = useRef(null);
@@ -188,8 +188,18 @@ export default function BiographyDetails({ profileData }) {
         <Typography variant="h3" ref={locationRef}>
           Locations
         </Typography>
+
         <Box className={styles.mapContainer}>
-          <Box className={styles.map}></Box>
+          <Box className={styles.map}>
+            <iframe
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              src={`https://www.google.com/maps/embed/v1/place?key=${googleApiKey}&q=51+W+51st+St+Floor+3,+Suite+320,+New+York,+NY+10019,+USA`}
+            ></iframe>
+          </Box>
           <Box className={styles.mapAddressContainer}>
             <Typography variant="body2" className={styles.mapAddress}>
               {`51 West 51st Street,
@@ -202,6 +212,7 @@ export default function BiographyDetails({ profileData }) {
             </Box>
           </Box>
         </Box>
+
         <Typography variant="h3">Languages</Typography>
         <Typography variant="body2">English, Spanish</Typography>
         <Typography variant="h3" ref={insurancesRef}>

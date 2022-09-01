@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="MuiBox-root css-j7qwjs"
+        class="MuiBox-root css-16pyde7"
       >
         <svg
           aria-hidden="true"
@@ -20,14 +20,14 @@ Object {
           />
         </svg>
         <span
-          class="MuiTypography-root MuiTypography-bodyLarge css-1wlrlfi-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-bodyLarge css-1p03h8j-MuiTypography-root"
         />
       </div>
     </div>
   </body>,
   "container": <div>
     <div
-      class="MuiBox-root css-j7qwjs"
+      class="MuiBox-root css-16pyde7"
     >
       <svg
         aria-hidden="true"
@@ -41,7 +41,7 @@ Object {
         />
       </svg>
       <span
-        class="MuiTypography-root MuiTypography-bodyLarge css-1wlrlfi-MuiTypography-root"
+        class="MuiTypography-root MuiTypography-bodyLarge css-1p03h8j-MuiTypography-root"
       />
     </div>
   </div>,

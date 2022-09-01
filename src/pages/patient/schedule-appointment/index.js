@@ -18,10 +18,9 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { LabelWithIcon } from "../../../components/atoms/LabelWithIcon/labelWithIcon";
 
 import { Button, Grid, Box, Divider, useMediaQuery } from "@mui/material";
-import { Provider, useDispatch, useSelector } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import store from "../../../store/store";
 import { useTranslation } from "next-i18next";
-import { setDummyAppointmentSchedule } from "../../../store/appointment";
 import { useRouter } from "next/router";
 
 const MobileTopBar = (data) => {
@@ -188,13 +187,6 @@ export default function ScheduleAppointmentPage() {
     console.log("change schedule data");
     router.push("/patient/appointment");
   };
-
-  // dummy data set, delete later
-  const dispatch = useDispatch();
-  React.useEffect(() => {
-    dispatch(setDummyAppointmentSchedule());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <section style={{ paddingTop: "64px" }}>

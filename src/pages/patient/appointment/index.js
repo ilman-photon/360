@@ -1,16 +1,18 @@
 import AppointmentLayout from "../../../components/templates/appointmentLayout";
-import { Provider } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "../../../store/store";
 import FilterHeading from "../../../components/molecules/FilterHeading/filterHeading";
 import {
+  Box,
   Dialog,
   DialogContent,
   DialogTitle,
   IconButton,
+  CircularProgress,
+  Stack,
+  Typography,
   useMediaQuery,
 } from "@mui/material";
-import Box from "@mui/material/Box";
-const constants = require("../../../utils/constants");
 import React, { useEffect, useState } from "react";
 import FilterResult from "../../../components/molecules/FilterResult/filterResult";
 import CloseIcon from "@mui/icons-material/Close";
@@ -18,13 +20,47 @@ import { DayAvailability } from "../../../components/molecules/DayAvailability/D
 import ProviderProfile from "../../../components/molecules/ProviderProfile/providerProfile";
 import { useGeolocated } from "react-geolocated";
 import EmptyResult from "../../../components/molecules/FilterResult/emptyResult";
-export default function Appointment() {
+import FilterResultHeading from "../../../components/molecules/FilterResultHeading/filterResultHeading";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+import { colors } from "../../../styles/theme";
+import FilterResultContainer from "../../../components/molecules/FilterResultContainer/filterResultContainer";
+import GMaps from "../../../components/organisms/Google/Maps/gMaps";
+import { useLoadScript } from "@react-google-maps/api";
+import {
+  editAppointmentScheduleData,
+  setFilterData,
+} from "../../../store/appointment";
+import { useRouter } from "next/router";
+
+export async function getStaticProps() {
+  return {
+    props: {
+      googleApiKey: process.env.GOOGLE_API_KEY,
+    },
+  };
+}
+
+export default function Appointment({ googleApiKey }) {
   const isDesktop = useMediaQuery("(min-width: 992px)");
   const [isFilterApplied, setFilterApplied] = useState(false);
   const [open, setOpen] = React.useState(false);
   const [dataFilter, setDataFilter] = React.useState([]);
+  const [activeTabs, setActiveTabs] = useState(0);
+
+  const router = useRouter();
+  const dispatch = useDispatch();
+
+  const filterData = useSelector((state) => state.appointment.filterData);
+
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: googleApiKey,
+  });
 
   function onSearchProvider(data) {
+    console.log({ data });
+    dispatch(setFilterData(data));
     setFilterApplied(true);
     setDataFilter(data);
   }
@@ -38,6 +74,37 @@ export default function Appointment() {
     setOpen(true);
   }
 
+  const appointmentInfo = useSelector(
+    (state) => state.appointment.appointmentSchedule.appointmentInfo
+  );
+  const providerInfo = useSelector(
+    (state) => state.appointment.appointmentSchedule.providerInfo
+  );
+
+  const handleDayClicked = (appointmentDate, providerData) => {
+    console.log("day clicked", appointmentDate, providerData);
+    dispatch(
+      editAppointmentScheduleData({
+        key: "appointmentInfo",
+        value: {
+          ...appointmentInfo,
+          date: appointmentDate,
+        },
+      })
+    );
+
+    dispatch(
+      editAppointmentScheduleData({
+        key: "providerInfo",
+        value: {
+          ...providerInfo,
+          ...providerData,
+        },
+      })
+    );
+
+    router.push("/patient/schedule-appointment");
+  };
   const { coords, isGeolocationEnabled } = useGeolocated({
     positionOptions: {
       enableHighAccuracy: false,
@@ -60,6 +127,7 @@ export default function Appointment() {
     return (
       <div>
         <Dialog
+          fullScreen={!isDesktop}
           open={open}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
@@ -83,66 +151,170 @@ export default function Appointment() {
               <ProviderProfile
                 variant={"viewschedule"}
                 isDayAvailableView={true}
+                isShownPhoneAndRating={false}
               />
             </Box>
-            <DayAvailability />
+            <DayAvailability
+              isDesktop={isDesktop}
+              OnDayClicked={handleDayClicked}
+            />
           </DialogContent>
         </Dialog>
       </div>
     );
   }
+  function renderFilterResultDesktopView() {
+    return (
+      <Box
+        display="flex"
+        flex={1}
+        sx={{
+          paddingTop: "135px",
+          // marginLeft: "24px",
+          // width: "1778px",
+        }}
+      >
+        <Stack
+          flexDirection="row"
+          width="100%"
+          sx={
+            {
+              // display: "grid",
+              // gap: "24px",
+              // gridTemplateColumns: "1128px 700px",
+              // gridTemplateRows: "auto",
+              // gridTemplateAreas: `"scheduleSection mapsSection"`,
+            }
+          }
+        >
+          <Box sx={{ width: "1128px", m: 3 }}>
+            {dataFilter.location !== "Jakarta" ? (
+              <FilterResult
+                onClickViewAllAvailability={onViewAllAvailability}
+                OnDayClicked={handleDayClicked}
+                isDesktop={isDesktop}
+              />
+            ) : (
+              <EmptyResult
+                message={
+                  "No results found. Please try again with a different search criteria."
+                }
+              />
+            )}
+          </Box>
+          <Box sx={{ background: "#F4F4F4", flex: 1 }}>
+            {isLoaded ? <GMaps apiKey={googleApiKey} /> : <CircularProgress />}
+          </Box>
+        </Stack>
+      </Box>
+    );
+  }
 
-  return (
-    <Box>
-      {!isFilterApplied || isDesktop ? (
-        <FilterHeading
-          isDesktop={isDesktop}
-          onSearchProvider={onSearchProvider}
-          isGeolocationEnabled={isGeolocationEnabled}
-        />
-      ) : (
-        <></>
-      )}
-      {isDesktop && isFilterApplied ? (
+  function renderFilterResultMobileView() {
+    return (
+      <Box
+        sx={{
+          marginTop: "-25px",
+          height: "calc(100vh - 56px)",
+          display: "flex",
+        }}
+      >
         <Box
           sx={{
-            paddingTop: "151px",
-            marginLeft: "24px",
-            width: "1778px",
+            position: "fixed",
+            width: "100%",
+            zIndex: "9",
           }}
         >
-          <Box
-            sx={{
-              display: "grid",
-              gap: "24px",
-              gridTemplateColumns: "1128px 700px",
-              gridTemplateRows: "auto",
-              gridTemplateAreas: `"scheduleSection mapsSection"`,
-            }}
+          <FilterResultHeading isDesktop={isDesktop} filterData={dataFilter} />
+          <Stack
+            direction={"row"}
+            alignItems={"center"}
+            height={"56px"}
+            sx={{ backgroundColor: "#fff" }}
           >
-            <Box sx={{ gridArea: "scheduleSection", maxWidth: "1128px" }}>
-              {dataFilter.location !== "Jakarta" ? (
-                <FilterResult
-                  onClickViewAllAvailability={onViewAllAvailability}
-                />
-              ) : (
-                <EmptyResult
-                  message={
-                    "No results found. Please try again with a different search criteria."
-                  }
-                />
-              )}
+            <ArrowBackIosIcon
+              sx={{
+                marginLeft: "22px",
+              }}
+            />
+            <Box
+              sx={{
+                margin: "0 auto",
+              }}
+            >
+              <CalendarTodayIcon
+                sx={{
+                  width: "15px",
+                  height: "15px",
+                  color: colors.darkGreen,
+                }}
+              />
+              <Typography
+                variant={"bodyRegular"}
+                sx={{
+                  color: "#303030",
+                  marginLeft: "13px",
+                  ["@media (max-width: 992px)"]: {
+                    fontWeight: "600",
+                  },
+                }}
+              >
+                Wed, Sep 24
+              </Typography>
             </Box>
-            <Box sx={{ gridArea: "mapsSection", background: "#F4F4F4" }}>
-              {/* Map */}
-            </Box>
-          </Box>
+            <ArrowForwardIosIcon
+              sx={{
+                marginRight: "15px",
+              }}
+            />
+          </Stack>
         </Box>
+        <Box
+          sx={{
+            paddingTop: "160px",
+            flex: "1",
+            display: "flex",
+            flexDirection: "column",
+            overflow: "hidden",
+          }}
+        >
+          <FilterResultContainer
+            activeTabs={activeTabs}
+            setActiveTabs={setActiveTabs}
+            onClickViewAllAvailability={onViewAllAvailability}
+            filterData={dataFilter}
+          />
+        </Box>
+      </Box>
+    );
+  }
+
+  function renderFilterResult() {
+    if (isDesktop && isFilterApplied) {
+      return renderFilterResultDesktopView();
+    } else if (!isDesktop && isFilterApplied) {
+      return renderFilterResultMobileView();
+    }
+  }
+
+  return (
+    <Stack sx={{ width: "100%" }}>
+      {!isFilterApplied || isDesktop ? (
+        <>
+          <FilterHeading
+            isDesktop={isDesktop}
+            onSearchProvider={onSearchProvider}
+            isGeolocationEnabled={isGeolocationEnabled}
+            filterData={filterData}
+          />
+        </>
       ) : (
         <></>
       )}
+      {renderFilterResult()}
       {onRenderDialogView()}
-    </Box>
+    </Stack>
   );
 }
 

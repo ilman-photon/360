@@ -28,7 +28,7 @@ const DEFAULT_PATIENT_INFO_DATA = {
 const DEFAULT_APPOINTMENT_INFO_DATA = {
   appointmentType: null,
   date: null,
-  insuranceCarrier: [],
+  insuranceCarrier: null,
 };
 
 const DEFAULT_USER_SCHEDULE_APPOINTMENT_DATA = {
@@ -37,10 +37,18 @@ const DEFAULT_USER_SCHEDULE_APPOINTMENT_DATA = {
   appointmentInfo: DEFAULT_APPOINTMENT_INFO_DATA,
 };
 
+const DEFAULT_FILTER_DATA = {
+  date: null,
+  location: "",
+  insuranceCarrier: "",
+  purposeOfVisit: "",
+};
+
 const appointmentSlice = createSlice({
   name: "appointment",
   initialState: {
     appointmentSchedule: DEFAULT_USER_SCHEDULE_APPOINTMENT_DATA,
+    filterData: DEFAULT_FILTER_DATA,
   },
   reducers: {
     setAppointmentSchedule: (state, { payload }) => {
@@ -48,6 +56,10 @@ const appointmentSlice = createSlice({
     },
     resetAppointmentSchedule: (state) => {
       state.appointmentSchedule = DEFAULT_USER_SCHEDULE_APPOINTMENT_DATA;
+    },
+    editAppointmentScheduleData: (state, { payload }) => {
+      console.log("edit", { payload });
+      state.appointmentSchedule[payload.key] = payload.value;
     },
     setDummyAppointmentSchedule: (state) => {
       state.appointmentSchedule = {
@@ -76,9 +88,20 @@ const appointmentSlice = createSlice({
         appointmentInfo: {
           appointmentType: "Eye Exam",
           date: "2022-08-29T11:12:55.367Z",
-          insuranceCarrier: [],
+          insuranceCarrier: "RSUD",
         },
       };
+    },
+    setFilterData: (state, { payload }) => {
+      state.filterData = payload;
+      state.appointmentSchedule.appointmentInfo = {
+        ...state.appointmentSchedule.appointmentInfo,
+        appointmentType: payload.purposeOfVisit,
+        insuranceCarrier: payload.insuranceCarrier,
+      };
+    },
+    resetFilterData: (state) => {
+      state.filterData = DEFAULT_FILTER_DATA;
     },
   },
 });
@@ -87,7 +110,10 @@ const appointmentSlice = createSlice({
 export const {
   setAppointmentSchedule,
   resetAppointmentSchedule,
+  editAppointmentScheduleData,
   setDummyAppointmentSchedule,
+  setFilterData,
+  resetFilterData,
 } = appointmentSlice.actions;
 
 export default appointmentSlice.reducer;

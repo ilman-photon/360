@@ -132,6 +132,14 @@ export const patientTypography = createTheme({
       fontWeight: 500,
       fontSize: 12,
     },
+    bodyLink: {
+      fontFamily: "Roboto",
+      fontWeight: 500,
+      fontSize: 16,
+      lineHeight: "20px",
+      color: colors.link,
+      textDecoration: "underline",
+    },
     allVariants: {
       color: "#292929",
     },
