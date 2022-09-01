@@ -51,6 +51,10 @@ const nextConfig = {
         ],
         source: "/:host/create-account",
         destination: "/auth/create-account",
+      },
+      {
+        source: "/patient/admin/login",
+        destination: "/patient/login",
       }
     ];
   },
