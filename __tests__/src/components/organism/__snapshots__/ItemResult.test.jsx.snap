@@ -12,7 +12,7 @@ Object {
           class="MuiBox-root css-1b2ixbg"
         >
           <div
-            class="appointment MuiBox-root css-0"
+            class="appointment MuiBox-root css-1qa5ro4"
           >
             <div
               class="displayFlex MuiBox-root css-0"
@@ -45,20 +45,14 @@ Object {
                 </span>
               </div>
               <div
-                class="bioContainer MuiBox-root css-0"
+                class="bioContainer MuiBox-root css-10n7hpz"
               >
                 <h2
                   class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-1qu9n3v-MuiTypography-root"
-                >
-                  Paul Wagner, MD
-                </h2>
+                />
                 <p
                   class="MuiTypography-root MuiTypography-body2 address css-5hrm3t-MuiTypography-root"
-                >
-                  51 West 51st Street, 
-                        Floor 3, Suite 320
-                        Midtown, New York, NY, 10019
-                </p>
+                />
                 <div
                   class="phoneContainer MuiBox-root css-0"
                 >
@@ -346,33 +340,12 @@ Object {
                 <p
                   class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
                 >
-                  11:30am
+                  11:30 AM
                 </p>
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
-            </div>
-            <div
-              class="dividerContainer MuiBox-root css-0"
-            >
-              <hr
-                class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-              />
-            </div>
-            <div
-              class="dividerContainer MuiBox-root css-0"
-            >
-              <hr
-                class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-              />
-            </div>
-            <div
-              class="dividerContainer MuiBox-root css-0"
-            >
-              <hr
-                class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-              />
             </div>
             <div
               class="buttonWrapper MuiBox-root css-1qlelg9"
@@ -385,7 +358,7 @@ Object {
                 <p
                   class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
                 >
-                  08:00am
+                  8:00 AM
                 </p>
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -403,7 +376,7 @@ Object {
                 <p
                   class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
                 >
-                  10:30am
+                  10:30 AM
                 </p>
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -421,7 +394,7 @@ Object {
                 <p
                   class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
                 >
-                  11:00am
+                  11:00 AM
                 </p>
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -468,7 +441,7 @@ Object {
                 <p
                   class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
                 >
-                  08:30am
+                  8:30 AM
                 </p>
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -486,7 +459,7 @@ Object {
                 <p
                   class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
                 >
-                  10:30am
+                  10:30 AM
                 </p>
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -504,7 +477,7 @@ Object {
                 <p
                   class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
                 >
-                  11:30am
+                  11:30 AM
                 </p>
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -551,7 +524,7 @@ Object {
                 <p
                   class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
                 >
-                  09:30am
+                  9:30 AM
                 </p>
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -569,26 +542,12 @@ Object {
                 <p
                   class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
                 >
-                  11:00am
+                  11:00 AM
                 </p>
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
-            </div>
-            <div
-              class="dividerContainer MuiBox-root css-0"
-            >
-              <hr
-                class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-              />
-            </div>
-            <div
-              class="dividerContainer MuiBox-root css-0"
-            >
-              <hr
-                class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-              />
             </div>
             <div
               class="buttonWrapper MuiBox-root css-1t64eod"
@@ -601,33 +560,12 @@ Object {
                 <p
                   class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
                 >
-                  09:30am
+                  9:30 AM
                 </p>
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
-            </div>
-            <div
-              class="dividerContainer MuiBox-root css-0"
-            >
-              <hr
-                class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-              />
-            </div>
-            <div
-              class="dividerContainer MuiBox-root css-0"
-            >
-              <hr
-                class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-              />
-            </div>
-            <div
-              class="dividerContainer MuiBox-root css-0"
-            >
-              <hr
-                class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-              />
             </div>
             <div
               class="buttonWrapper MuiBox-root css-1kizmox"
@@ -640,33 +578,12 @@ Object {
                 <p
                   class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
                 >
-                  09:30am
+                  9:30 AM
                 </p>
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
               </button>
-            </div>
-            <div
-              class="dividerContainer MuiBox-root css-0"
-            >
-              <hr
-                class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-              />
-            </div>
-            <div
-              class="dividerContainer MuiBox-root css-0"
-            >
-              <hr
-                class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-              />
-            </div>
-            <div
-              class="dividerContainer MuiBox-root css-0"
-            >
-              <hr
-                class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-              />
             </div>
             <div
               class="linkWrapper MuiBox-root css-wdc560"
@@ -690,7 +607,7 @@ Object {
         class="MuiBox-root css-1b2ixbg"
       >
         <div
-          class="appointment MuiBox-root css-0"
+          class="appointment MuiBox-root css-1qa5ro4"
         >
           <div
             class="displayFlex MuiBox-root css-0"
@@ -723,20 +640,14 @@ Object {
               </span>
             </div>
             <div
-              class="bioContainer MuiBox-root css-0"
+              class="bioContainer MuiBox-root css-10n7hpz"
             >
               <h2
                 class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-1qu9n3v-MuiTypography-root"
-              >
-                Paul Wagner, MD
-              </h2>
+              />
               <p
                 class="MuiTypography-root MuiTypography-body2 address css-5hrm3t-MuiTypography-root"
-              >
-                51 West 51st Street, 
-                        Floor 3, Suite 320
-                        Midtown, New York, NY, 10019
-              </p>
+              />
               <div
                 class="phoneContainer MuiBox-root css-0"
               >
@@ -1024,33 +935,12 @@ Object {
               <p
                 class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
               >
-                11:30am
+                11:30 AM
               </p>
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
             </button>
-          </div>
-          <div
-            class="dividerContainer MuiBox-root css-0"
-          >
-            <hr
-              class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-            />
-          </div>
-          <div
-            class="dividerContainer MuiBox-root css-0"
-          >
-            <hr
-              class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-            />
-          </div>
-          <div
-            class="dividerContainer MuiBox-root css-0"
-          >
-            <hr
-              class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-            />
           </div>
           <div
             class="buttonWrapper MuiBox-root css-1qlelg9"
@@ -1063,7 +953,7 @@ Object {
               <p
                 class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
               >
-                08:00am
+                8:00 AM
               </p>
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -1081,7 +971,7 @@ Object {
               <p
                 class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
               >
-                10:30am
+                10:30 AM
               </p>
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -1099,7 +989,7 @@ Object {
               <p
                 class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
               >
-                11:00am
+                11:00 AM
               </p>
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -1146,7 +1036,7 @@ Object {
               <p
                 class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
               >
-                08:30am
+                8:30 AM
               </p>
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -1164,7 +1054,7 @@ Object {
               <p
                 class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
               >
-                10:30am
+                10:30 AM
               </p>
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -1182,7 +1072,7 @@ Object {
               <p
                 class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
               >
-                11:30am
+                11:30 AM
               </p>
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -1229,7 +1119,7 @@ Object {
               <p
                 class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
               >
-                09:30am
+                9:30 AM
               </p>
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -1247,26 +1137,12 @@ Object {
               <p
                 class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
               >
-                11:00am
+                11:00 AM
               </p>
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
             </button>
-          </div>
-          <div
-            class="dividerContainer MuiBox-root css-0"
-          >
-            <hr
-              class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-            />
-          </div>
-          <div
-            class="dividerContainer MuiBox-root css-0"
-          >
-            <hr
-              class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-            />
           </div>
           <div
             class="buttonWrapper MuiBox-root css-1t64eod"
@@ -1279,33 +1155,12 @@ Object {
               <p
                 class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
               >
-                09:30am
+                9:30 AM
               </p>
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
             </button>
-          </div>
-          <div
-            class="dividerContainer MuiBox-root css-0"
-          >
-            <hr
-              class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-            />
-          </div>
-          <div
-            class="dividerContainer MuiBox-root css-0"
-          >
-            <hr
-              class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-            />
-          </div>
-          <div
-            class="dividerContainer MuiBox-root css-0"
-          >
-            <hr
-              class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-            />
           </div>
           <div
             class="buttonWrapper MuiBox-root css-1kizmox"
@@ -1318,33 +1173,12 @@ Object {
               <p
                 class="MuiTypography-root MuiTypography-body1 scheduleBtnLabel css-1jvxxc3-MuiTypography-root"
               >
-                09:30am
+                9:30 AM
               </p>
               <span
                 class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
             </button>
-          </div>
-          <div
-            class="dividerContainer MuiBox-root css-0"
-          >
-            <hr
-              class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-            />
-          </div>
-          <div
-            class="dividerContainer MuiBox-root css-0"
-          >
-            <hr
-              class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-            />
-          </div>
-          <div
-            class="dividerContainer MuiBox-root css-0"
-          >
-            <hr
-              class="MuiDivider-root MuiDivider-fullWidth divider css-9mgopn-MuiDivider-root"
-            />
           </div>
           <div
             class="linkWrapper MuiBox-root css-wdc560"

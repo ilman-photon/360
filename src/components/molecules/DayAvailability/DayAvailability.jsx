@@ -3,12 +3,17 @@ import React from "react";
 import { StyledButton } from "../../atoms/Button/button";
 import styles from "./styles.module.scss";
 import { Divider, Typography } from "@mui/material";
-import { useRouter } from "next/router";
 import constants from "../../../utils/constants";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 
-export function buttonSchedule(label, idx, router) {
+export function buttonSchedule(
+  label,
+  idx,
+  OnDayClicked = () => {
+    // This is intended
+  }
+) {
   return (
     <Box key={idx} sx={{ width: "78px" }} className={styles.scheduleBtnWarpper}>
       <StyledButton
@@ -17,10 +22,7 @@ export function buttonSchedule(label, idx, router) {
         size={constants.SMALL}
         gradient={false}
         className={styles.scheduleBtn}
-        onClick={() => {
-          //TO DO: temporary navigate, move to page when start developing functionality
-          router.push("/patient/schedule-appointment");
-        }}
+        onClick={() => OnDayClicked(label)}
       >
         {label}
       </StyledButton>
@@ -92,8 +94,10 @@ export const DayAvailability = ({
     ],
   },
   isDesktop = false,
+  OnDayClicked = () => {
+    // This is intended
+  },
 }) => {
-  const router = useRouter();
   function renderScheduleData() {
     let renderUI = [];
     for (const [key, value] of Object.entries(scheduleData)) {
@@ -138,7 +142,7 @@ export const DayAvailability = ({
         }}
       >
         {value.map((option, idx) => {
-          return buttonSchedule(option, idx, router);
+          return buttonSchedule(option, idx, OnDayClicked);
         })}
       </Box>
     );

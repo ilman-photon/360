@@ -1,18 +1,18 @@
 import AppointmentLayout from "../../../components/templates/appointmentLayout";
-import { Provider } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "../../../store/store";
 import FilterHeading from "../../../components/molecules/FilterHeading/filterHeading";
 import {
+  Box,
   Dialog,
   DialogContent,
   DialogTitle,
   IconButton,
+  CircularProgress,
   Stack,
   Typography,
   useMediaQuery,
 } from "@mui/material";
-import Box from "@mui/material/Box";
-const constants = require("../../../utils/constants");
 import React, { useEffect, useState } from "react";
 import FilterResult from "../../../components/molecules/FilterResult/filterResult";
 import CloseIcon from "@mui/icons-material/Close";
@@ -26,14 +26,41 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import { colors } from "../../../styles/theme";
 import FilterResultContainer from "../../../components/molecules/FilterResultContainer/filterResultContainer";
-export default function Appointment() {
+import GMaps from "../../../components/organisms/Google/Maps/gMaps";
+import { useLoadScript } from "@react-google-maps/api";
+import {
+  editAppointmentScheduleData,
+  setFilterData,
+} from "../../../store/appointment";
+import { useRouter } from "next/router";
+
+export async function getStaticProps() {
+  return {
+    props: {
+      googleApiKey: process.env.GOOGLE_API_KEY,
+    },
+  };
+}
+
+export default function Appointment({ googleApiKey }) {
   const isDesktop = useMediaQuery("(min-width: 992px)");
   const [isFilterApplied, setFilterApplied] = useState(false);
   const [open, setOpen] = React.useState(false);
   const [dataFilter, setDataFilter] = React.useState([]);
   const [activeTabs, setActiveTabs] = useState(0);
 
+  const router = useRouter();
+  const dispatch = useDispatch();
+
+  const filterData = useSelector((state) => state.appointment.filterData);
+
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: googleApiKey,
+  });
+
   function onSearchProvider(data) {
+    console.log({ data });
+    dispatch(setFilterData(data));
     setFilterApplied(true);
     setDataFilter(data);
   }
@@ -47,6 +74,37 @@ export default function Appointment() {
     setOpen(true);
   }
 
+  const appointmentInfo = useSelector(
+    (state) => state.appointment.appointmentSchedule.appointmentInfo
+  );
+  const providerInfo = useSelector(
+    (state) => state.appointment.appointmentSchedule.providerInfo
+  );
+
+  const handleDayClicked = (appointmentDate, providerData) => {
+    console.log("day clicked", appointmentDate, providerData);
+    dispatch(
+      editAppointmentScheduleData({
+        key: "appointmentInfo",
+        value: {
+          ...appointmentInfo,
+          date: appointmentDate,
+        },
+      })
+    );
+
+    dispatch(
+      editAppointmentScheduleData({
+        key: "providerInfo",
+        value: {
+          ...providerInfo,
+          ...providerData,
+        },
+      })
+    );
+
+    router.push("/patient/schedule-appointment");
+  };
   const { coords, isGeolocationEnabled } = useGeolocated({
     positionOptions: {
       enableHighAccuracy: false,
@@ -92,39 +150,48 @@ export default function Appointment() {
             <Box sx={{ width: "265px" }}>
               <ProviderProfile
                 variant={"viewschedule"}
+                isDayAvailableView={true}
                 isShownPhoneAndRating={false}
               />
             </Box>
-            <DayAvailability isDesktop={isDesktop} />
+            <DayAvailability
+              isDesktop={isDesktop}
+              OnDayClicked={handleDayClicked}
+            />
           </DialogContent>
         </Dialog>
       </div>
     );
   }
-
   function renderFilterResultDesktopView() {
     return (
       <Box
+        display="flex"
+        flex={1}
         sx={{
-          paddingTop: "151px",
-          marginLeft: "24px",
-          width: "1778px",
+          paddingTop: "135px",
+          // marginLeft: "24px",
+          // width: "1778px",
         }}
       >
-        <Box
-          sx={{
-            display: "grid",
-            gap: "24px",
-            gridTemplateColumns: "1128px 700px",
-            gridTemplateRows: "auto",
-            gridTemplateAreas: `"scheduleSection mapsSection"`,
-          }}
+        <Stack
+          flexDirection="row"
+          width="100%"
+          sx={
+            {
+              // display: "grid",
+              // gap: "24px",
+              // gridTemplateColumns: "1128px 700px",
+              // gridTemplateRows: "auto",
+              // gridTemplateAreas: `"scheduleSection mapsSection"`,
+            }
+          }
         >
-          <Box sx={{ gridArea: "scheduleSection", maxWidth: "1128px" }}>
-            {/* Handle the empty result after integrate services */}
+          <Box sx={{ width: "1128px", m: 3 }}>
             {dataFilter.location !== "Jakarta" ? (
               <FilterResult
                 onClickViewAllAvailability={onViewAllAvailability}
+                OnDayClicked={handleDayClicked}
                 isDesktop={isDesktop}
               />
             ) : (
@@ -135,10 +202,10 @@ export default function Appointment() {
               />
             )}
           </Box>
-          <Box sx={{ gridArea: "mapsSection", background: "#F4F4F4" }}>
-            {/* Map */}
+          <Box sx={{ background: "#F4F4F4", flex: 1 }}>
+            {isLoaded ? <GMaps apiKey={googleApiKey} /> : <CircularProgress />}
           </Box>
-        </Box>
+        </Stack>
       </Box>
     );
   }
@@ -232,19 +299,22 @@ export default function Appointment() {
   }
 
   return (
-    <Box>
+    <Stack sx={{ width: "100%" }}>
       {!isFilterApplied || isDesktop ? (
-        <FilterHeading
-          isDesktop={isDesktop}
-          onSearchProvider={onSearchProvider}
-          isGeolocationEnabled={isGeolocationEnabled}
-        />
+        <>
+          <FilterHeading
+            isDesktop={isDesktop}
+            onSearchProvider={onSearchProvider}
+            isGeolocationEnabled={isGeolocationEnabled}
+            filterData={filterData}
+          />
+        </>
       ) : (
         <></>
       )}
       {renderFilterResult()}
       {onRenderDialogView()}
-    </Box>
+    </Stack>
   );
 }
 

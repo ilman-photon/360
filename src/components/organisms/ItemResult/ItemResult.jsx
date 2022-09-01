@@ -11,8 +11,12 @@ export default function ItemResult({
   onClickViewAllAvailability = () => {
     // This is intentional
   },
+  OnDayClicked = () => {
+    // This is intentional
+  },
   keyItem = "",
   isDesktop = true,
+  providerData = {},
 }) {
   function renderDekstopView() {
     return (
@@ -29,7 +33,10 @@ export default function ItemResult({
         className={styles.itemContainer}
       >
         <Box sx={{ gridArea: "providerProvile" }}>
-          <ProviderProfile variant={"viewschedule"} />
+          <ProviderProfile
+            variant={"viewschedule"}
+            providerData={providerData}
+          />
         </Box>
         <Box sx={{ gridArea: "locationDistance" }}>
           <LocationDistance />
@@ -38,6 +45,7 @@ export default function ItemResult({
           <WeekAvailability
             onClickViewAllAvailability={onClickViewAllAvailability}
             keyWeek={keyItem}
+            OnDayClicked={OnDayClicked}
           />
         </Box>
       </Box>

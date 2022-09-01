@@ -27,10 +27,12 @@ import Image from "next/image";
 import CustomizedDialogs from "../../atoms/Dialog/dialog";
 import { LocalizationProvider, StaticDatePicker } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { convertToDate } from "../../../utils/dateFormatter";
 
 const FilterHeading = ({
   isDesktop = true,
+  filterData = {
+    purposeOfVisit: "",
+  },
   onSearchProvider = () => {
     // This is intentional
   },
@@ -39,22 +41,17 @@ const FilterHeading = ({
   const imageSrcState = "/bx_insurance_card.png";
   const muiInputRoot = "& .MuiFilledInput-root";
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
-  const { handleSubmit, control } = useForm();
+  const { handleSubmit, control } = useForm({
+    defaultValues: filterData,
+  });
+
   const [isEmptyLocation, setEmptyLocation] = useState(false);
   const [open, setOpen] = React.useState(false);
   const [openDialog, setOpenDialog] = React.useState(false);
   const [contentDialog, setContentDialog] = React.useState(<></>);
-  const [dateValue, setDateValue] = React.useState(new Date());
-  const [purposeOfVisitValue, setpurposeOfVisitValue] = React.useState([]);
-  const [insuranceCarrierValue, setInsuranceCarrierValue] = React.useState("");
-  const [locationValue, setLocationValue] = React.useState("");
   const mapsData = isGeolocationEnabled ? ["Use my current location"] : [];
 
   const onSubmit = (data) => {
-    data["location"] = locationValue;
-    data["date"] = dateValue;
-    data["purposeOfVisit"] = purposeOfVisitValue;
-    console.log(data);
     if (!data.location) {
       setEmptyLocation(true);
     } else {
@@ -65,16 +62,6 @@ const FilterHeading = ({
   const minDate = new Date();
   const maxDate = new Date(); // add arguments as needed
   maxDate.setMonth(maxDate.getMonth() + 3);
-
-  const handlePurposeOfVisitChange = (event) => {
-    const {
-      target: { value },
-    } = event;
-    setpurposeOfVisitValue(
-      // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
-    );
-  };
 
   const purposeOfVisitData = [
     { title: "Eye exam", subtitle: "Test the health of your eye" },
@@ -184,6 +171,9 @@ const FilterHeading = ({
         value={option.title}
         sx={{
           fontSize: "16px",
+          ["& li"]: {
+            display: "block",
+          },
         }}
       >
         {getMenuList(option.title, option.subtitle)}
@@ -255,22 +245,19 @@ const FilterHeading = ({
       <Controller
         name="location"
         control={control}
-        defaultValue=""
-        render={({ field: { onChange, value }, fieldState: { error } }) => {
+        render={({ field: { onChange, value }, fieldState: { _error } }) => {
           return (
             <Autocomplete
               freeSolo
               id="location"
               data-testid={APPOINTMENT_TEST_ID.locationInput}
-              value={locationValue}
+              value={value}
               onChange={(_e, data) => {
                 onHideMandatoryFieldError();
-                setLocationValue(data);
                 onChange(data);
               }}
-              onInputChange={(event, newInputValue) => {
+              onInputChange={(_e, newInputValue) => {
                 onHideMandatoryFieldError();
-                setLocationValue(newInputValue);
                 onChange(newInputValue);
               }}
               disableClearable={true}
@@ -334,9 +321,8 @@ const FilterHeading = ({
       <Controller
         name="date"
         control={control}
-        defaultValue=""
         sx={{ paddingTop: "16px" }}
-        render={({ field: { onChange, value }, fieldState: { error } }) => {
+        render={({ field: { onChange, value }, fieldState: { _error } }) => {
           return (
             <Box
               sx={{
@@ -368,18 +354,15 @@ const FilterHeading = ({
                 id="dob"
                 label="Date"
                 isFilter={true}
-                value={dateValue}
-                onChange={(e) => {
-                  onChange(e);
-                  setDateValue(e);
-                }}
+                value={value}
+                onChange={onChange}
                 sx={{
                   margin: 0,
                   [muiInputRoot]: {
                     border: "0px solid #ffff",
                   },
                 }}
-                onClick={(e) => setOpen(true)}
+                onClick={() => setOpen(true)}
                 components={{
                   OpenPickerIcon: function () {
                     return null;
@@ -399,8 +382,7 @@ const FilterHeading = ({
       <Controller
         name="purposeOfVisit"
         control={control}
-        defaultValue=""
-        render={({ field: { onChange, value }, fieldState: { error } }) => {
+        render={({ field: { onChange, value }, fieldState: { _error } }) => {
           return (
             <Box
               sx={{
@@ -435,15 +417,13 @@ const FilterHeading = ({
                 labelId={`purposes-of-visit`}
                 id={`purposes-of-visit`}
                 options={purposeOfVisitData}
-                value={purposeOfVisitValue}
-                onChange={handlePurposeOfVisitChange}
+                onChange={onChange}
+                value={value}
                 renderMenuListUI={menuListUI}
                 data-testid={APPOINTMENT_TEST_ID.purposeInput}
                 renderValue={(selected) => {
-                  if (Array.isArray(selected)) {
-                    return selected.join(", ");
-                  }
-                  return purposeOfVisitValue;
+                  console.log(selected);
+                  return selected;
                 }}
               />
             </Box>
@@ -458,8 +438,7 @@ const FilterHeading = ({
       <Controller
         name="insuranceCarrier"
         control={control}
-        defaultValue=""
-        render={({ field: { onChange, value }, fieldState: { error } }) => {
+        render={({ field: { onChange, value }, fieldState: { _error } }) => {
           return (
             <Autocomplete
               {...isOpenProps}
@@ -491,11 +470,9 @@ const FilterHeading = ({
               }}
               value={value}
               onChange={(_e, data) => {
-                setInsuranceCarrierValue(data.name);
-                onChange(data);
+                onChange(data.name);
               }}
-              onInputChange={(event, newInputValue) => {
-                setInsuranceCarrierValue(newInputValue);
+              onInputChange={(_e, newInputValue) => {
                 onChange(newInputValue);
               }}
               renderInput={onRenderInputInsurance}
@@ -596,8 +573,7 @@ const FilterHeading = ({
         <Controller
           name={controllerName}
           control={control}
-          defaultValue=""
-          render={({ field: { onChange, value }, fieldState: { error } }) => {
+          render={({ field: { onChange, value }, fieldState: { _error } }) => {
             return (
               <Box
                 sx={{
@@ -639,7 +615,7 @@ const FilterHeading = ({
       return (
         <StyledInput
           type="default"
-          value={locationValue}
+          value={value}
           onChange={onChange}
           variant="filled"
           label="City, state, or zip code"
@@ -676,7 +652,7 @@ const FilterHeading = ({
       return (
         <StyledInput
           type="default"
-          value={convertToDate(dateValue)}
+          value={value}
           onChange={onChange}
           variant="filled"
           label="Date"
@@ -708,7 +684,7 @@ const FilterHeading = ({
       return (
         <StyledInput
           type="default"
-          value={purposeOfVisitValue}
+          value={value}
           onChange={onChange}
           variant="filled"
           label="Purposes of Visit"
@@ -740,7 +716,7 @@ const FilterHeading = ({
       return (
         <StyledInput
           type="default"
-          value={insuranceCarrierValue}
+          value={value}
           onChange={onChange}
           variant="filled"
           label="Insurance Carrier"
@@ -775,20 +751,28 @@ const FilterHeading = ({
     let child = <></>;
     if (type === "date") {
       child = (
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <StaticDatePicker
-            displayStaticWrapperAs="desktop"
-            minDate={minDate}
-            maxDate={maxDate}
-            openTo="day"
-            value={dateValue}
-            onChange={(newValue) => {
-              setDateValue(newValue);
-              handleCloseDialog();
-            }}
-            renderInput={(props) => <TextField {...props} />}
-          />
-        </LocalizationProvider>
+        <Controller
+          name={"location"}
+          control={control}
+          render={({ field: { onChange, value }, fieldState: { _error } }) => {
+            return (
+              <LocalizationProvider dateAdapter={AdapterDateFns}>
+                <StaticDatePicker
+                  displayStaticWrapperAs="desktop"
+                  minDate={minDate}
+                  maxDate={maxDate}
+                  openTo="day"
+                  value={value}
+                  onChange={(newValue) => {
+                    onChange(newValue);
+                    handleCloseDialog();
+                  }}
+                  renderInput={(props) => <TextField {...props} />}
+                />
+              </LocalizationProvider>
+            );
+          }}
+        />
       );
     } else if (type === "purposeInput") {
       child = (
@@ -796,20 +780,26 @@ const FilterHeading = ({
           <Typography className={styles.dialogSelectMenuTitle}>
             Appointment Type
           </Typography>
-          {purposeOfVisitData.map((option, idx) => {
-            return (
-              <Box
-                key={idx}
-                className={styles.dialogSelectMenu}
-                onClick={() => {
-                  setpurposeOfVisitValue(option.subtitle);
-                  handleCloseDialog();
-                }}
-              >
-                {getMenuList(option.title, option.subtitle)}
-              </Box>
-            );
-          })}
+          <Controller
+            name={"purposeOfVisit"}
+            control={control}
+            render={({ field: { onChange } }) => {
+              return purposeOfVisitData.map((option, idx) => {
+                return (
+                  <Box
+                    key={idx}
+                    className={styles.dialogSelectMenu}
+                    onClick={() => {
+                      onChange(option.title);
+                      handleCloseDialog();
+                    }}
+                  >
+                    {getMenuList(option.title, option.subtitle)}
+                  </Box>
+                );
+              });
+            }}
+          />
         </Box>
       );
     } else if (type === "insuranceCarrier") {
@@ -840,31 +830,42 @@ const FilterHeading = ({
             }}
           >
             {locationIconUI()}
-            <StyledInput
-              autoFocus
-              type="default"
-              variant="filled"
-              defaultValue={locationValue}
-              label="City, state, or zip code"
-              sx={{
-                width: "100%",
-                [muiInputRoot]: {
-                  border: "0px solid #ffff",
-                  background: "#fff",
-                },
-              }}
-              onKeyDown={(e) => {
-                if (
-                  e.code &&
-                  e.code.toLowerCase() === "enter" &&
-                  e.target.value &&
-                  setOpenDialog
-                ) {
-                  setLocationValue(e.target.value);
-                  setOpenDialog(false);
-                  e.preventDefault();
-                  return false;
-                }
+            <Controller
+              name={"location"}
+              control={control}
+              render={({
+                field: { onChange, value },
+                fieldState: { _error },
+              }) => {
+                return (
+                  <StyledInput
+                    autoFocus
+                    value={value}
+                    onChange={onChange}
+                    type="default"
+                    variant="filled"
+                    label="City, state, or zip code"
+                    sx={{
+                      width: "100%",
+                      [muiInputRoot]: {
+                        border: "0px solid #ffff",
+                        background: "#fff",
+                      },
+                    }}
+                    onKeyDown={(e) => {
+                      if (
+                        e.code &&
+                        e.code.toLowerCase() === "enter" &&
+                        e.target.value &&
+                        setOpenDialog
+                      ) {
+                        setOpenDialog(false);
+                        e.preventDefault();
+                        return false;
+                      }
+                    }}
+                  />
+                );
               }}
             />
           </Box>

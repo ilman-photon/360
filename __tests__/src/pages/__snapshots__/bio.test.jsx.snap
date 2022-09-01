@@ -12,7 +12,7 @@ Object {
           class="shortBioContainer MuiBox-root css-0"
         >
           <div
-            class="shortBio MuiBox-root css-0"
+            class="shortBio MuiBox-root css-1qa5ro4"
           >
             <div
               class="displayFlex MuiBox-root css-0"
@@ -45,20 +45,14 @@ Object {
                 </span>
               </div>
               <div
-                class="bioContainer MuiBox-root css-0"
+                class="bioContainer MuiBox-root css-10n7hpz"
               >
                 <h2
                   class="MuiTypography-root MuiTypography-h2 css-uggzmc-MuiTypography-root"
-                >
-                  Paul Wagner, MD
-                </h2>
+                />
                 <p
                   class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
-                >
-                  51 West 51st Street, 
-                        Floor 3, Suite 320
-                        Midtown, New York, NY, 10019
-                </p>
+                />
                 <div
                   class="ratingContainer MuiBox-root css-0"
                 >
@@ -569,7 +563,7 @@ Object {
         class="shortBioContainer MuiBox-root css-0"
       >
         <div
-          class="shortBio MuiBox-root css-0"
+          class="shortBio MuiBox-root css-1qa5ro4"
         >
           <div
             class="displayFlex MuiBox-root css-0"
@@ -602,20 +596,14 @@ Object {
               </span>
             </div>
             <div
-              class="bioContainer MuiBox-root css-0"
+              class="bioContainer MuiBox-root css-10n7hpz"
             >
               <h2
                 class="MuiTypography-root MuiTypography-h2 css-uggzmc-MuiTypography-root"
-              >
-                Paul Wagner, MD
-              </h2>
+              />
               <p
                 class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
-              >
-                51 West 51st Street, 
-                        Floor 3, Suite 320
-                        Midtown, New York, NY, 10019
-              </p>
+              />
               <div
                 class="ratingContainer MuiBox-root css-0"
               >

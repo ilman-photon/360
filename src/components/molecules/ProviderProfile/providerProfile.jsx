@@ -10,11 +10,14 @@ export default function ProviderProfile({
   phoneLink,
   isShownPhoneAndRating = true,
   isShownRating = true,
+  providerData = {},
 }) {
   const specialist = ["Opthometry", "Opthalmology", "Catarac", "Glaucoma"];
   const isAppointment = variant === "appointment";
   const isBio = variant === "bio";
   const isViewSchedule = variant === "viewschedule";
+  const isDayAvailableView = false;
+  const isMap = variant === "map";
 
   const router = useRouter();
   const renderSpecialistList = () => {
@@ -41,6 +44,19 @@ export default function ProviderProfile({
     );
   };
 
+  const getAddress = (address) => {
+    if (!address) return;
+    return (
+      <div>
+        {address.addressLine1}
+        <br />
+        {address.addressLine2}
+        <br />
+        {address.city}, {address.state}, {address.zipcode}
+      </div>
+    );
+  };
+
   function getNameFontSize() {
     let size;
     if (isBio) {
@@ -55,18 +71,24 @@ export default function ProviderProfile({
   }
 
   return (
-    <Box className={isBio ? styles.shortBio : styles.appointment}>
+    <Box
+      className={isBio ? styles.shortBio : styles.appointment}
+      sx={{ maxWidth: isMap ? "unset" : "368px" }}
+    >
       <Box className={styles.displayFlex}>
         <Box>
           <Image
-            src="/doctor.png"
+            src={providerData.image || "/transparent.png"}
             width={100}
             height={100}
             className={styles.profilePhoto}
             alt="Doctor Image"
           ></Image>
         </Box>
-        <Box className={styles.bioContainer}>
+        <Box
+          className={styles.bioContainer}
+          sx={{ width: isMap ? "unset" : "20vw" }}
+        >
           <Typography
             variant="h2"
             fontSize={getNameFontSize()}
@@ -79,7 +101,7 @@ export default function ProviderProfile({
                 : ""
             }
           >
-            Paul Wagner, MD
+            {providerData.name}
           </Typography>
           {showPosition && (
             <Typography variant="h3">Scripps Eyecare</Typography>
@@ -89,9 +111,7 @@ export default function ProviderProfile({
             className={styles.address}
             fontSize={isViewSchedule ? "14px" : "16px"}
           >
-            {`51 West 51st Street, 
-                        Floor 3, Suite 320
-                        Midtown, New York, NY, 10019`}
+            {getAddress(providerData.address)}
           </Typography>
           {isShownPhoneAndRating && (
             <Box
