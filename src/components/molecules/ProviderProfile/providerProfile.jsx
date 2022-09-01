@@ -3,6 +3,7 @@ import { Typography, Box, Link } from "@mui/material";
 import styles from "./styles.module.scss";
 import StyledRating from "../../atoms/Rating/styledRating";
 import { useRouter } from "next/router";
+import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 
 export default function ProviderProfile({
   variant,
@@ -123,10 +124,12 @@ export default function ProviderProfile({
               )}
               {!phoneLink ? (
                 <Typography variant="body2" className={styles.phone}>
-                  {phoneNumber}
+                  {formatPhoneNumber(phoneNumber)}
                 </Typography>
               ) : (
-                <Link className={styles.phoneLink}>{phoneNumber}</Link>
+                <Link className={styles.phoneLink}>
+                  {formatPhoneNumber(phoneNumber)}
+                </Link>
               )}
             </Box>
           )}

@@ -272,7 +272,11 @@ export default function InsuranceView({
                                 " "
                               )}
                               sx={{
-                                width: { xs: "100%", md: "fit-content" },
+                                width: {
+                                  xs: "100%",
+                                  md: "fit-content",
+                                  borderRadius: 30,
+                                },
                                 textTransform: "none",
                               }}
                             >
