@@ -64,6 +64,10 @@
   }
 }
 
+.formButton.outlined:hover {
+  background-color: #fafafa;
+}
+
 .backIcon {
   color: #0000008a;
   width: 16px;
@@ -77,6 +81,6 @@
   color: #ffffff;
 }
 
-.continueButton:hover {
+.examForComponent .continueButton:hover {
   background-color: #0095a9;
 }

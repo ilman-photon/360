@@ -43,7 +43,9 @@ export default function AppointmentLocation({
             className={styles.editButton}
             onClick={OnEditClicked}
           >
-            <EditOutlinedIcon sx={{ width: 20, height: 20 }} />
+            <EditOutlinedIcon
+              sx={{ width: 20, height: 20, color: "#008294" }}
+            />
             <div type="link" style={styles.editLink}>
               Edit
             </div>

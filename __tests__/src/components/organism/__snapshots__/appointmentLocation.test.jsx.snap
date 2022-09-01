@@ -55,7 +55,7 @@ Object {
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1xhbeow-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1x727db-MuiSvgIcon-root"
                   data-testid="EditOutlinedIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -194,7 +194,7 @@ Object {
             >
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1xhbeow-MuiSvgIcon-root"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1x727db-MuiSvgIcon-root"
                 data-testid="EditOutlinedIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
