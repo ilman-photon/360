@@ -176,7 +176,8 @@ export class Api {
   }
 
   getSugestion() {
-    const url = "/api/dummy/apppointment/create-appointment/getSugestion";
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/appointment/create-appointment/getSugestion`;
     return this.getResponse(url, {}, "post");
   }
 

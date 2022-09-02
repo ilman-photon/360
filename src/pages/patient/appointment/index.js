@@ -33,6 +33,8 @@ import {
   setFilterData,
 } from "../../../store/appointment";
 import { useRouter } from "next/router";
+import { parseSuggestionData } from "../../../utils/appointment";
+import { Api } from "../../api/api";
 
 export async function getStaticProps() {
   return {
@@ -44,6 +46,7 @@ export async function getStaticProps() {
 
 export default function Appointment({ googleApiKey }) {
   const isDesktop = useMediaQuery("(min-width: 834px)");
+  const [filterSuggestionData, setFilterSuggestionData] = useState({});
   const [isFilterApplied, setFilterApplied] = useState(false);
   const [open, setOpen] = React.useState(false);
   const [dataFilter, setDataFilter] = React.useState([]);
@@ -67,6 +70,28 @@ export default function Appointment({ googleApiKey }) {
 
   const handleClose = () => {
     setOpen(false);
+  };
+
+  //Call API for getSuggestion
+  const onCalledgetSugestionAPI = function () {
+    const postBody = {
+      Coordinate: { lat: coords?.latitude, long: coords?.longitude },
+      LocationName: "",
+    };
+    const api = new Api();
+    api
+      .getSugestion(postBody)
+      .then(function (response) {
+        const filterSuggestion = {
+          ...filterSuggestionData,
+          ...parseSuggestionData(response),
+        };
+        console.log(filterSuggestion);
+        setFilterSuggestionData(filterSuggestion);
+      })
+      .catch(function () {
+        //Handle error getsuggestion
+      });
   };
 
   //Remove this when itegration
@@ -136,24 +161,6 @@ export default function Appointment({ googleApiKey }) {
     },
   ];
 
-  const purposeOfVisitData = [
-    { title: "Eye exam", subtitle: "Test the health of your eye" },
-    { title: "Follow up", subtitle: "See your doctor today" },
-    { title: "Comprehensive", subtitle: "Get a detailed eye exam" },
-    { title: "Contacts only", subtitle: "Get fitted for the right contacts" },
-  ];
-
-  const insuranceCarrierData = [
-    { category: "", name: "I’m paying out of pocket" },
-    { category: "", name: "Skip and choose insurance later" },
-    { category: "", name: "Other Insurance", divider: true },
-    { category: "Popular carriers", name: "Aetna" },
-    { category: "Popular carriers", name: "Blue Cross Blue Shield" },
-    { category: "Popular carriers", name: "Cigna" },
-    { category: "Popular carriers", name: "Kaiser" },
-    { category: "all carriers", name: "Kaiser" },
-  ];
-
   function onViewAllAvailability(providerData) {
     //TO DO: set data for view days schedule]
     setOpen(true);
@@ -208,6 +215,11 @@ export default function Appointment({ googleApiKey }) {
     console.log(dataFilter, "data Filter");
   }, [dataFilter, coords]);
 
+  useEffect(() => {
+    onCalledgetSugestionAPI();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [coords]);
+
   function onRenderDialogView() {
     return (
       <div>
@@ -253,28 +265,8 @@ export default function Appointment({ googleApiKey }) {
   }
   function renderFilterResultDesktopView() {
     return (
-      <Box
-        display="flex"
-        flex={1}
-        sx={{
-          paddingTop: "135px",
-          // marginLeft: "24px",
-          // width: "1778px",
-        }}
-      >
-        <Stack
-          flexDirection="row"
-          width="100%"
-          sx={
-            {
-              // display: "grid",
-              // gap: "24px",
-              // gridTemplateColumns: "1128px 700px",
-              // gridTemplateRows: "auto",
-              // gridTemplateAreas: `"scheduleSection mapsSection"`,
-            }
-          }
-        >
+      <Box display="flex" flex={1}>
+        <Stack flexDirection="row" width="100%">
           <Box sx={{ width: "1128px", m: 3 }}>
             {dataFilter.location !== "Jakarta" ? (
               <FilterResult
@@ -319,8 +311,8 @@ export default function Appointment({ googleApiKey }) {
             isDesktop={isDesktop}
             filterData={dataFilter}
             onSearchProvider={onSearchProvider}
-            purposeOfVisitData={purposeOfVisitData}
-            insuranceCarrierData={insuranceCarrierData}
+            purposeOfVisitData={filterSuggestionData.purposeOfVisit}
+            insuranceCarrierData={filterSuggestionData.insuranceCarrier}
           />
           <Stack
             direction={"row"}
@@ -405,8 +397,8 @@ export default function Appointment({ googleApiKey }) {
             onSearchProvider={onSearchProvider}
             isGeolocationEnabled={isGeolocationEnabled}
             filterData={filterData}
-            purposeOfVisitData={purposeOfVisitData}
-            insuranceCarrierData={insuranceCarrierData}
+            purposeOfVisitData={filterSuggestionData.purposeOfVisit}
+            insuranceCarrierData={filterSuggestionData.insuranceCarrier}
           />
         </>
       ) : (

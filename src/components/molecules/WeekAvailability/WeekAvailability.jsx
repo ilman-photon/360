@@ -25,7 +25,7 @@ export function viewAllAvailabilityLinkUI({
     >
       <Link
         className={styles.linkAvailabelity}
-        data-testId={constants.TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll}
+        data-testid={constants.TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll}
         onClick={onClickViewAllAvailability}
       >
         View all Availability

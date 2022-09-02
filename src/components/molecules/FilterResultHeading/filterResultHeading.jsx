@@ -193,7 +193,10 @@ export const FilterResultHeading = ({
                       {option.slice(0, 3)}
                     </Typography>
                     <Typography
-                      className={[styles.calenderDay, styles.calenderMonth]}
+                      className={[
+                        styles.calenderDay,
+                        styles.calenderMonth,
+                      ].join(", ")}
                     >
                       {dateWeek[idx]}
                     </Typography>
