@@ -451,7 +451,7 @@ const FilterHeading = ({
 }) => {
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
   const { handleSubmit, control } = useForm({
-    defaultValues: filterData,
+    defaultValues: { ...filterData, date: new Date() },
   });
 
   const [isEmptyLocation, setEmptyLocation] = useState(false);
@@ -742,6 +742,7 @@ const FilterHeading = ({
                 height: isEmptyLocation ? "54px" : "52px",
                 background: "#BFE4E8",
                 border: "0px",
+                cursor: "pointer",
               }}
             >
               <SearchIcon sx={{ color: colors.darkGreen, width: 26 }} />
