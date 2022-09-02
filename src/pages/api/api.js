@@ -186,8 +186,9 @@ export class Api {
   }
 
   getAllAppointment() {
-    const url = "/api/dummy/apppointment/my-appointment/getAllAppointment";
-    return this.getResponse(url, {}, "post");
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`;
+    return this.getResponse(url, {}, "get");
   }
 
   updateAppointment(postbody) {
