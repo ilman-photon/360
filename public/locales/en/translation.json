@@ -32,7 +32,10 @@
     "errorInvalidEmailPhone": "Enter a valid Email or Phone Number",
     "resetPasswordText": "Continue",
     "usernamePlaceHolder": "Email or Phone Number",
-    "backButtonLink": "Back to Log in"
+    "backButtonLink": "Back to Log in",
+    "backSignIn": "Back to Sign-In",
+    "syncButton": "Sync",
+    "syncTitle" : "Sync your appointment"
   },
   "SetOption": {
     "title": "Select an option",
