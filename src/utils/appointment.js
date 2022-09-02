@@ -1,7 +1,7 @@
 export function parseSuggestionData(suggestionData) {
   return {
-    purposeOfVisit: parsePurposeOfVisit(suggestionData.AppointmentType),
-    insuranceCarrier: parseInsuranceCarrier(suggestionData.InsuranceCarrier),
+    purposeOfVisit: parsePurposeOfVisit(suggestionData.appointmentType),
+    insuranceCarrier: parseInsuranceCarrier(suggestionData.insuranceCarrier),
   };
 }
 
@@ -22,24 +22,18 @@ function parsePurposeOfVisit(appointmentData) {
 }
 
 function parseInsuranceCarrier(insuranceCarrierData) {
-  if (insuranceCarrierData && insuranceCarrierData.length > 0) {
-    const initialData = [
-      "i'm paying out of my pocket",
-      "skip and choose insurance later",
-      "other insurance",
-    ];
+  if (insuranceCarrierData) {
     const data = [];
-    for (const insuranceCarrier of insuranceCarrierData) {
-      let itemData = {};
-      for (const category of insuranceCarrier.category) {
-        itemData = {
-          id: insuranceCarrier.id,
-          name: insuranceCarrier.name,
-          category:
-            initialData.indexOf(insuranceCarrier.name.toLowerCase()) > -1
-              ? ""
-              : `${category} carriers`,
-          divider: "other insurance" === insuranceCarrier.name.toLowerCase(),
+    for (const [category, insuranceCarrierList] of Object.entries(
+      insuranceCarrierData
+    )) {
+      for (let i = 0; i < insuranceCarrierList.length; i++) {
+        const itemData = {
+          id: insuranceCarrierList[i].id,
+          name: insuranceCarrierList[i].name,
+          category: category !== "general" ? `${category} carriers` : "",
+          divider:
+            category === "general" && i === insuranceCarrierList.length - 1,
         };
         data.push(itemData);
       }

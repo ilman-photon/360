@@ -67,7 +67,7 @@ export default function Appointment({ googleApiKey }) {
     dispatch(setFilterData(data));
     setFilterApplied(true);
     setDataFilter(data);
-    onCalledgetSugestionAPI(data);
+    onCallSubmitFilterAPI(data);
   }
 
   const handleClose = () => {
@@ -75,26 +75,41 @@ export default function Appointment({ googleApiKey }) {
   };
 
   //Call API for getSuggestion
-  function onCalledgetSugestionAPI(requestBody = {}) {
-    const postBody = {
-      Location: {
-        Coordinate: { lat: coords?.latitude, long: coords?.longitude },
-        LocationName: requestBody.location,
-      },
-      Date: requestBody?.date,
-      AppointmentType: requestBody?.purposeOfVisit,
-      InsuranceCarrier: requestBody?.insuranceCarrier,
-    };
+  function onCalledgetSugestionAPI() {
     const api = new Api();
     api
-      .getSugestion(postBody)
+      .getSugestion()
       .then(function (response) {
         const filterSuggestion = {
           ...filterSuggestionData,
           ...parseSuggestionData(response),
         };
         setFilterSuggestionData(filterSuggestion);
-        setProviderListData(response?.ListOfProvider);
+      })
+      .catch(function () {
+        //Handle error getsuggestion
+      });
+  }
+
+  //Call API for getSuggestion
+  function onCallSubmitFilterAPI(requestData) {
+    const postBody = {
+      location: {
+        latitude: coords?.latitude,
+        longitude: coords?.longitude,
+      },
+      locationName: requestData.location,
+      date: requestData.date,
+      appointmentType: requestData.purposeOfVisit,
+      insuranceCarrier: requestData.insuranceCarrier,
+      filterBy: [],
+    };
+    const api = new Api();
+    api
+      .submitFilter(postBody)
+      .then(function (response) {
+        console.log(response);
+        setProviderListData(response?.listOfProvider);
       })
       .catch(function () {
         //Handle error getsuggestion
@@ -156,11 +171,9 @@ export default function Appointment({ googleApiKey }) {
   }, [dataFilter, coords]);
 
   useEffect(() => {
-    if (!isFilterApplied) {
-      onCalledgetSugestionAPI();
-    }
+    onCalledgetSugestionAPI();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isFilterApplied, isGeolocationEnabled]);
+  }, []);
 
   function onRenderDialogView() {
     return (

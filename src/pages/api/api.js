@@ -178,11 +178,12 @@ export class Api {
   getSugestion() {
     const domain = window.location.origin;
     const url = `${domain}/api/dummy/appointment/create-appointment/getSugestion`;
-    return this.getResponse(url, {}, "post");
+    return this.getResponse(url, {}, "get");
   }
 
   submitFilter() {
-    const url = "/api/dummy/apppointment/create-appointment/submitFilter";
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/appointment/create-appointment/submitFilter`;
     return this.getResponse(url, {}, "post");
   }
 
