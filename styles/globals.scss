@@ -46,3 +46,9 @@ input[type="number"] {
     border-radius: 4px;
   }
 }
+
+.MuiDialog-container {
+  .MuiPaper-root {
+    max-width: none;
+  }
+}

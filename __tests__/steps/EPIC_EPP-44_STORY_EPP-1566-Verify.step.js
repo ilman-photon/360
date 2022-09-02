@@ -187,7 +187,7 @@ test('EPIC_EPP-44_STORY_EPP-1566 - Verify whether the user able to see the error
         defaultValidation();
     });
 
-    and(/^user provide patient details with incorrect format (.*)$/, (arg0) => {
+    and(/^user provide patient details with incorrect format (.*)$/, () => {
         defaultValidation();
     });
 
@@ -237,7 +237,7 @@ test('EPIC_EPP-44_STORY_EPP-1566 - Verify whether the user able to see the error
         defaultValidation();
     });
 
-    and(/^user provide patient details with incorrect format (.*)$/, (arg0) => {
+    and(/^user provide patient details with incorrect format (.*)$/, () => {
         defaultValidation();
     });
 
@@ -295,7 +295,7 @@ test('EPIC_EPP-44_STORY_EPP-1566 - Verify whether the user able to see the error
         defaultValidation();
     });
 
-    then(/^user should be able to see the inline error message Invalid (.*)$/, (arg0) => {
+    then(/^user should be able to see the inline error message Invalid (.*)$/, () => {
         defaultValidation();
     });
 });

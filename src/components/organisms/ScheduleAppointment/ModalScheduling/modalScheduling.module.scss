@@ -1,0 +1,119 @@
+.boxModalContents {
+  .scheduledText {
+    color: #003b4a;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .registeredUsernameWrapper {
+    padding: 16;
+    border-radius: 4;
+    color: #366a70;
+    background-color: #f2f7fd;
+    word-break: break-all;
+  }
+
+  .thanksBar {
+    display: flex;
+    align-items: center;
+    line-height: 24px;
+    word-break: break-word;
+    color: black;
+  }
+
+  .bottomParagraph {
+    color: #366a70;
+    text-align: center;
+    margin: 24px;
+    font-size: 14px;
+  }
+
+  .medicLink {
+    color: #ef4836;
+    text-decoration: underline;
+    font-size: 16px;
+  }
+
+  .cardPatient {
+    margin: 20px 0px;
+  }
+
+  .dateBold {
+    font-weight: 700;
+    line-height: 24px;
+    font-size: 16px;
+  }
+
+  .addCalendarButton {
+    font-weight: 700;
+    font-size: 14px;
+    line-height: 18px;
+    display: flex;
+    align-items: center;
+    color: #007e8f;
+    justify-content: center;
+    padding: 8px 16px;
+    gap: 4px;
+    background: #ffffff;
+    border: 1px solid #003b4a;
+    border-radius: 4px;
+    text-transform: capitalize;
+  }
+
+  .card {
+    margin: 8px 0px;
+  }
+  .cardPatient {
+    margin: 20px 0px;
+  }
+
+  .getDirectionLink {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 9px;
+    margin-top: 19px;
+  }
+
+  .getDirectionLinkText {
+    // font-family: Roboto; sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 20px;
+    letter-spacing: 0.0016em;
+    color: #008294 !important;
+    cursor: pointer;
+    text-decoration-color: inherit !important;
+  }
+
+  .okButtonRow {
+    text-align: end;
+  }
+  .patientBoxLabel {
+    font-weight: 500;
+    font-size: 26px !important;
+    line-height: 32px;
+    color: #003b4a;
+  }
+
+  .loginLink {
+    color: #3eafbd;
+    text-decoration: underline;
+    font-size: 16px;
+  }
+
+  .continueText {
+    height: 40px;
+    align-self: self-end;
+    border-radius: 46px;
+    text-transform: capitalize;
+    color: #ffffff;
+  }
+
+  .continueText:hover {
+    background-color: #007e8f;
+  }
+}

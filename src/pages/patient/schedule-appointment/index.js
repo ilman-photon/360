@@ -4,8 +4,8 @@ import ScheduleAppointment from "../../../components/organisms/ScheduleAppointme
 import AppointmentLocation from "../../../components/organisms/ScheduleAppointment/appointmentLocation";
 import AppointmentDetails from "../../../components/organisms/ScheduleAppointment/appointmentDetails";
 import AppointmentForm from "../../../components/organisms/ScheduleAppointment/appointmentForm";
-import ModalScheduling from "../../../components/organisms/ScheduleAppointment/modalScheduling";
-import DrawerScheduling from "../../../components/organisms/ScheduleAppointment/drawerScheduling";
+import ModalScheduling from "../../../components/organisms/ScheduleAppointment/ModalScheduling/modalScheduling";
+import DrawerScheduling from "../../../components/organisms/ScheduleAppointment/ModalScheduling/drawerScheduling";
 
 import StepperAppoinment from "../../../components/molecules/StepperAppoinment/stepperAppoinment";
 import AccountTitleHeading from "../../../components/atoms/AccountTitleHeading/accountTitleHeading";
@@ -67,6 +67,9 @@ export const PageContent = ({
   OnEditClicked = () => {
     // This is intentional
   },
+  OnClickSchedule = () => {
+    // This is intentional
+  },
 }) => {
   const [selectedSelf, setSelectedSelf] = React.useState(1);
   const { t } = useTranslation("translation", {
@@ -90,6 +93,7 @@ export const PageContent = ({
           <Grid
             className={styles.examForComponent}
             p={{ xs: "24px 14px", md: "40px 16px" }}
+            sx={{ width: { xs: "100%", md: "65%" } }}
           >
             <AppointmentLocation
               providerData={appointmentScheduleData.providerInfo}
@@ -137,6 +141,7 @@ export const PageContent = ({
               }}
               OnSetSelectedSelf={(idx) => setSelectedSelf(idx)}
               setActiveStep={(idx) => OnsetActiveStep(idx)}
+              OnClickSchedule={OnClickSchedule}
             />
           </Grid>
           <Grid md={4} pl={2} sx={{ display: { xs: "none", md: "block" } }}>
@@ -164,6 +169,7 @@ export const PageContent = ({
           >
             <AppointmentForm
               isForMyself={true}
+              OnClickSchedule={OnClickSchedule}
               patientData={appointmentScheduleData.patientInfo}
               OnSubmit={(v) => {
                 handleFormSubmit(v);
@@ -190,7 +196,7 @@ export const PageContent = ({
 export default function ScheduleAppointmentPage() {
   const [activeStep, setActiveStep] = React.useState(1);
   const isDesktop = useMediaQuery("(min-width: 769px)");
-  const [isOpen, setIsOpen] = React.useState(true);
+  const [isOpen, setIsOpen] = React.useState(false);
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -218,6 +224,11 @@ export default function ScheduleAppointmentPage() {
   const handleEditSchedule = () => {
     console.log("change schedule data");
     router.push("/patient/appointment");
+  };
+
+  const handleClickSchedule = () => {
+    setActiveStep(4);
+    setIsOpen(true);
   };
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -338,6 +349,7 @@ export default function ScheduleAppointmentPage() {
             OnsetActiveStep={handleSetActiveStep}
             appointmentScheduleData={appointmentScheduleData}
             OnEditClicked={handleEditSchedule}
+            OnClickSchedule={handleClickSchedule}
           />
         </div>
       </Grid>
