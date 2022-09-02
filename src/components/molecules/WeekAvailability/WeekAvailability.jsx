@@ -4,20 +4,69 @@ import Link from "@mui/material/Link";
 import { StyledButton } from "../../atoms/Button/button";
 import styles from "./styles.module.scss";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
-import { Divider } from "@mui/material";
-import { useRouter } from "next/router";
+import { Divider, Typography } from "@mui/material";
+import constants from "../../../utils/constants";
+
+export function viewAllAvailabilityLinkUI({
+  onClickViewAllAvailability = () => {
+    // This is intentional
+  },
+}) {
+  return (
+    <Box
+      sx={{
+        gridArea: "linkAvability",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        p: 3,
+      }}
+      className={styles.linkWrapper}
+    >
+      <Link
+        className={styles.linkAvailabelity}
+        data-testId={constants.TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll}
+        onClick={onClickViewAllAvailability}
+      >
+        View all Availability
+      </Link>
+    </Box>
+  );
+}
 
 export const WeekAvailability = ({
   scheduleData = {
-    monday: ["11:30am", "", "", ""],
-    tuesday: ["08:00am", "10:30am", "11:00am", "3 more"],
-    wednesday: ["08:30am", "10:30am", "11:30am", "5 more"],
-    thursday: ["09:30am", "11:00am", "", ""],
-    friday: ["09:30am", "", "", ""],
-    saturday: ["09:30am", "", "", ""],
+    // monday: ["11:30am", "", "", ""],
+    // tuesday: ["08:00am", "10:30am", "11:00am", "3 more"],
+    // wednesday: ["08:30am", "10:30am", "11:30am", "5 more"],
+    // thursday: ["09:30am", "11:00am", "", ""],
+    // friday: ["09:30am", "", "", ""],
+    // saturday: ["09:30am", "", "", ""],
+    monday: ["2022-08-31T04:30:00.904Z"],
+    tuesday: [
+      "2022-08-31T01:00:00.904Z",
+      "2022-08-31T03:30:00.904Z",
+      "2022-08-31T04:00:00.904Z",
+      "3 more",
+    ],
+    wednesday: [
+      "2022-08-31T01:30:00.904Z",
+      "2022-08-31T03:30:00.904Z",
+      "2022-08-31T04:30:00.904Z",
+      "5 more",
+    ],
+    thursday: ["2022-08-31T02:30:00.904Z", "2022-08-31T04:00:00.904Z"],
+    friday: ["2022-08-31T02:30:00.904Z"],
+    saturday: ["2022-08-31T02:30:00.904Z"],
   },
+  onClickViewAllAvailability = () => {
+    // This is intentional
+  },
+  OnDayClicked = () => {
+    // This is intended
+  },
+  keyWeek = "",
 }) => {
-  const router = useRouter();
   function renderScheduleData() {
     let renderUI = [];
     for (const [key, value] of Object.entries(scheduleData)) {
@@ -28,16 +77,38 @@ export const WeekAvailability = ({
           gridArea = `more${key}Schedule`;
           isTypeMore = true;
         }
-        renderUI.push(buttonSchedule(value[i], gridArea, isTypeMore));
+        renderUI.push(
+          buttonSchedule(
+            value[i],
+            gridArea,
+            isTypeMore,
+            `${keyWeek}-${i}-${key}-schedule-button`
+          )
+        );
       }
     }
     return renderUI;
   }
 
-  function buttonSchedule(label, gridArea, isTypeMore = false) {
+  function buttonSchedule(label, gridArea, isTypeMore = false, index = "") {
     if (label) {
+      function isValidDate(d) {
+        return d instanceof Date && !isNaN(d);
+      }
+      const date = new Date(label);
+      const labelTime = isValidDate(date)
+        ? date.toLocaleString("en-US", {
+            hour: "numeric",
+            minute: "numeric",
+            hour12: true,
+          })
+        : label;
       return (
-        <Box sx={{ gridArea: gridArea, width: "90px" }}>
+        <Box
+          key={index}
+          sx={{ gridArea: gridArea, width: "90px" }}
+          className={styles.buttonWrapper}
+        >
           <StyledButton
             theme={constants.PATIENT}
             mode={constants.PRIMARY}
@@ -46,28 +117,33 @@ export const WeekAvailability = ({
             gradient={false}
             className={styles.scheduleBtn}
             onClick={() => {
-              //TO DO: temporary navigate, move to page when start developing functionality
-              router.push("/patient/appointments");
+              if (labelTime.indexOf("more") > -1) {
+                onClickViewAllAvailability();
+              } else {
+                OnDayClicked(label);
+              }
             }}
           >
-            {label}
-            {isTypeMore && (
-              <KeyboardArrowDownOutlinedIcon sx={{ width: "18px" }} />
-            )}
+            <Typography className={styles.scheduleBtnLabel}>
+              {labelTime}
+              {isTypeMore && (
+                <KeyboardArrowDownOutlinedIcon sx={{ width: "18px" }} />
+              )}
+            </Typography>
           </StyledButton>
         </Box>
       );
     }
     return (
-      <Box className={styles.dividerContainer}>
+      <Box key={index} className={styles.dividerContainer}>
         <Divider className={styles.divider} />
       </Box>
     );
   }
 
-  const constants = require("../../../utils/constants");
   return (
     <Box
+      key={keyWeek}
       sx={{
         display: "grid",
         width: 598,
@@ -84,19 +160,7 @@ export const WeekAvailability = ({
       }}
     >
       {renderScheduleData()}
-      <Box
-        sx={{
-          gridArea: "linkAvability",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          p: 3,
-        }}
-      >
-        <Link href="#" className={styles.linkAvailabelity}>
-          View all Availability
-        </Link>
-      </Box>
+      {viewAllAvailabilityLinkUI({ onClickViewAllAvailability })}
     </Box>
   );
 };

@@ -65,9 +65,7 @@ describe("App", () => {
     act(() => {
       container = render(<App Component={HomePage} />);
     });
-    await waitFor(() =>
-      container.getByLabelText(/Eyecare Provider name with logo/i)
-    );
+    await waitFor(() => container.getByLabelText(/Clarkson Eyecare logo/i));
     await util.sleep(200);
     await waitFor(() =>
       container.getByText(/Your session is about to time-out./i)
@@ -88,9 +86,7 @@ describe("App", () => {
     act(() => {
       container = render(<App Component={HomePage} />);
     });
-    await waitFor(() =>
-      container.getByLabelText(/Eyecare Provider name with logo/i)
-    );
+    await waitFor(() => container.getByLabelText(/Clarkson Eyecare logo/i));
     await util.sleep(200);
     await waitFor(() =>
       container.getByText(/Your session is about to time-out./i)
@@ -112,12 +108,10 @@ describe("App", () => {
     act(() => {
       container = render(<App Component={HomePage} />);
     });
-    await waitFor(() =>
-      container.getByLabelText(/Eyecare Provider name with logo/i)
-    );
+    await waitFor(() => container.getByLabelText(/Clarkson Eyecare logo/i));
     await util.sleep(1000);
     expect(
-      container.getByLabelText(/Eyecare Provider name with logo/i)
+      container.getByLabelText(/Clarkson Eyecare logo/i)
     ).toBeInTheDocument();
     jest.resetAllMocks();
   });

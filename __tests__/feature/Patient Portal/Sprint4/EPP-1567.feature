@@ -2,6 +2,7 @@
 @Appointments
 @P2
 @Patient_Portal
+@excluded
 Feature: Patient Portal : Schedule Appointment from marketing site - Appointment for 'someone else' - View Appointment Confirmation message
   User Story: As a user, I should be able to view the appointment confirmation message when scheduled for some one else.
 
@@ -79,6 +80,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
   @Appointments
   @P1
   @Patient_Portal
+  @included
   @Regression
   @Sprint4
   Scenario: EPIC_EPP-44_STORY_EPP-1567-To verify whether the user is able to choose Appointment for Someone else
@@ -88,6 +90,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
   @Appointments
   @P1
   @Patient_Portal
+  @included
   @Regression
   @Sprint4
   Scenario: Verify whether the user is able to add the appointment to calender and check whether its added in the calender.
@@ -97,6 +100,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
   @Appointments
   @P2
   @Patient_Portal
+@excluded
   @Sprint4
   Scenario: Verify whether the text Is this the medical emergency? is displaying
 
@@ -105,6 +109,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
   @Appointments
   @P2
   @Patient_Portal
+@excluded
   @Sprint4
   Scenario: Verify whether the text If this is a medical emergency, please call 911 is displaying when we mouse hover the text Is this the medical emergency?
 
@@ -113,6 +118,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
   @Appointments
   @P2
   @Patient_Portal
+@excluded
   @Sprint4
   Scenario: Verify whether the user having the option to redirect to Patient portal home page after appointment schedule.
 
@@ -121,6 +127,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
   @Appointments
   @P1
   @Patient_Portal
+@excluded
   @Regression
   @Sprint4
   Scenario: Verify whether the Confirmation Email is receiving to the user after successful appointment schedule. (Preferred mode = Email)
@@ -130,6 +137,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
   @Appointments
   @P1
   @Patient_Portal
+@excluded
   @Regression
   @Sprint4
   Scenario: Verify whether the Confirmation Text Message is receiving to the user after successful appointment schedule. (Preferred mode = Phone number)

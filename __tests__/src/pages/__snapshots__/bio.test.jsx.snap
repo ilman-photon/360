@@ -12,7 +12,7 @@ Object {
           class="shortBioContainer MuiBox-root css-0"
         >
           <div
-            class="shortBio MuiBox-root css-0"
+            class="shortBio MuiBox-root css-1qa5ro4"
           >
             <div
               class="displayFlex MuiBox-root css-0"
@@ -45,25 +45,19 @@ Object {
                 </span>
               </div>
               <div
-                class="bioContainer MuiBox-root css-0"
+                class="bioContainer MuiBox-root css-10n7hpz"
               >
                 <h2
                   class="MuiTypography-root MuiTypography-h2 css-uggzmc-MuiTypography-root"
-                >
-                  Paul Wagner, MD
-                </h2>
+                />
                 <p
                   class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
-                >
-                  51 West 51st Street, 
-                        Floor 3, Suite 320
-                        Midtown, New York, NY, 10019
-                </p>
+                />
                 <div
                   class="ratingContainer MuiBox-root css-0"
                 >
                   <span
-                    aria-label="3.5 Stars"
+                    aria-label="NaN Stars"
                     class="MuiRating-root MuiRating-sizeSmall MuiRating-readyOnly css-x48yct-MuiRating-root"
                     role="img"
                   >
@@ -74,7 +68,7 @@ Object {
                         style="width: 0%; overflow: hidden; position: absolute;"
                       >
                         <span
-                          class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                          class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                         >
                           <svg
                             aria-hidden="true"
@@ -91,7 +85,7 @@ Object {
                       </span>
                       <span>
                         <span
-                          class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                          class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                         >
                           <svg
                             aria-hidden="true"
@@ -114,7 +108,7 @@ Object {
                         style="width: 0%; overflow: hidden; position: absolute;"
                       >
                         <span
-                          class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                          class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                         >
                           <svg
                             aria-hidden="true"
@@ -131,7 +125,7 @@ Object {
                       </span>
                       <span>
                         <span
-                          class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                          class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                         >
                           <svg
                             aria-hidden="true"
@@ -154,7 +148,7 @@ Object {
                         style="width: 0%; overflow: hidden; position: absolute;"
                       >
                         <span
-                          class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                          class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                         >
                           <svg
                             aria-hidden="true"
@@ -171,7 +165,7 @@ Object {
                       </span>
                       <span>
                         <span
-                          class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                          class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                         >
                           <svg
                             aria-hidden="true"
@@ -191,10 +185,10 @@ Object {
                       class="MuiRating-decimal css-34he1w-MuiRating-decimal"
                     >
                       <span
-                        style="width: 50%; overflow: hidden; position: absolute;"
+                        style="width: 0%; overflow: hidden; position: absolute;"
                       >
                         <span
-                          class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                          class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                         >
                           <svg
                             aria-hidden="true"
@@ -270,9 +264,7 @@ Object {
                   </span>
                   <p
                     class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
-                  >
-                    (857) 299-9989
-                  </p>
+                  />
                 </div>
               </div>
             </div>
@@ -290,36 +282,7 @@ Object {
                 </h6>
                 <ul
                   class="specialistList"
-                >
-                  <li>
-                    <p
-                      class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-                    >
-                      Opthometry
-                    </p>
-                  </li>
-                  <li>
-                    <p
-                      class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-                    >
-                      Opthalmology
-                    </p>
-                  </li>
-                  <li>
-                    <p
-                      class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-                    >
-                      Catarac
-                    </p>
-                  </li>
-                  <li>
-                    <p
-                      class="MuiTypography-root MuiTypography-body2 newColumn css-e784if-MuiTypography-root"
-                    >
-                      Glaucoma
-                    </p>
-                  </li>
-                </ul>
+                />
               </div>
             </div>
           </div>
@@ -398,14 +361,10 @@ Object {
           >
             <h3
               class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
-            >
-              About Paul Wagner, MD
-            </h3>
+            />
             <p
               class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-            >
-              Dr. Esfandiari's current areas of emphasis include primary eye care, specialty contact lenses, refractive surgery consultation, surgical co-management. Dr. Esfandiari's knowledge and experience in ophthalmic optics has continually helped patients obtain optimal and healthy vision.show more
-            </p>
+            />
             <h3
               class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
             >
@@ -413,9 +372,7 @@ Object {
             </h3>
             <p
               class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-            >
-              Male
-            </p>
+            />
             <h3
               class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
             >
@@ -426,18 +383,22 @@ Object {
             >
               <div
                 class="map MuiBox-root css-0"
-              />
+              >
+                <iframe
+                  height="100%"
+                  loading="lazy"
+                  referrerpolicy="no-referrer-when-downgrade"
+                  src="https://www.google.com/maps/embed/v1/place?key=undefined&q=undefined"
+                  style="border: 0px;"
+                  width="100%"
+                />
+              </div>
               <div
                 class="mapAddressContainer MuiBox-root css-0"
               >
                 <p
                   class="MuiTypography-root MuiTypography-body2 mapAddress css-e784if-MuiTypography-root"
-                >
-                  51 West 51st Street,
-                            Floor 3, Suite 320
-
-                            Midtown, New York, NY, 10019
-                </p>
+                />
                 <div
                   class="getDirectionLinkContainer MuiBox-root css-0"
                 >
@@ -454,6 +415,9 @@ Object {
                   </svg>
                   <a
                     class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways getDirectionLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                    href="https://www.google.com/maps/search/?api=1&query=undefined"
+                    rel="noopener"
+                    target="_blank"
                   >
                     Get directions
                   </a>
@@ -467,57 +431,12 @@ Object {
             </h3>
             <p
               class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-            >
-              English, Spanish
-            </p>
+            />
             <h3
               class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
             >
               In-network insurances
             </h3>
-            <div
-              class="insurancesContainer MuiBox-root css-0"
-            >
-              <ul
-                class="insurancestList"
-              >
-                <li>
-                  <p
-                    class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-                  >
-                    Blue Cross Blue Shield
-                  </p>
-                </li>
-                <li>
-                  <p
-                    class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-                  >
-                    Cigna
-                  </p>
-                </li>
-                <li>
-                  <p
-                    class="MuiTypography-root MuiTypography-body2 newColumn css-e784if-MuiTypography-root"
-                  >
-                    UnitedHeathcare
-                  </p>
-                </li>
-                <li>
-                  <p
-                    class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-                  >
-                    16+ more in-network insurances
-                     
-                    <a
-                      class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways viewAllLink css-1ps4owl-MuiTypography-root-MuiLink-root"
-                      data-testid="biography-view-all-insurance"
-                    >
-                      View All
-                    </a>
-                  </p>
-                </li>
-              </ul>
-            </div>
             <h3
               class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
             >
@@ -525,18 +444,7 @@ Object {
             </h3>
             <div
               class="educationContainer MuiBox-root css-0"
-            >
-              <p
-                class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-              >
-                New England College of Optometry, Doctor of Optometry
-              </p>
-              <p
-                class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-              >
-                University of California, San Diego (Bachelor's)
-              </p>
-            </div>
+            />
             <h3
               class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
             >
@@ -544,18 +452,7 @@ Object {
             </h3>
             <div
               class="educationContainer MuiBox-root css-0"
-            >
-              <p
-                class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-              >
-                New England College of Optometry, Doctor of Optometry
-              </p>
-              <p
-                class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-              >
-                University of California, San Diego (Bachelor's)
-              </p>
-            </div>
+            />
           </div>
         </div>
       </div>
@@ -569,7 +466,7 @@ Object {
         class="shortBioContainer MuiBox-root css-0"
       >
         <div
-          class="shortBio MuiBox-root css-0"
+          class="shortBio MuiBox-root css-1qa5ro4"
         >
           <div
             class="displayFlex MuiBox-root css-0"
@@ -602,25 +499,19 @@ Object {
               </span>
             </div>
             <div
-              class="bioContainer MuiBox-root css-0"
+              class="bioContainer MuiBox-root css-10n7hpz"
             >
               <h2
                 class="MuiTypography-root MuiTypography-h2 css-uggzmc-MuiTypography-root"
-              >
-                Paul Wagner, MD
-              </h2>
+              />
               <p
                 class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
-              >
-                51 West 51st Street, 
-                        Floor 3, Suite 320
-                        Midtown, New York, NY, 10019
-              </p>
+              />
               <div
                 class="ratingContainer MuiBox-root css-0"
               >
                 <span
-                  aria-label="3.5 Stars"
+                  aria-label="NaN Stars"
                   class="MuiRating-root MuiRating-sizeSmall MuiRating-readyOnly css-x48yct-MuiRating-root"
                   role="img"
                 >
@@ -631,7 +522,7 @@ Object {
                       style="width: 0%; overflow: hidden; position: absolute;"
                     >
                       <span
-                        class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                        class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                       >
                         <svg
                           aria-hidden="true"
@@ -648,7 +539,7 @@ Object {
                     </span>
                     <span>
                       <span
-                        class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                        class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                       >
                         <svg
                           aria-hidden="true"
@@ -671,7 +562,7 @@ Object {
                       style="width: 0%; overflow: hidden; position: absolute;"
                     >
                       <span
-                        class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                        class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                       >
                         <svg
                           aria-hidden="true"
@@ -688,7 +579,7 @@ Object {
                     </span>
                     <span>
                       <span
-                        class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                        class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                       >
                         <svg
                           aria-hidden="true"
@@ -711,7 +602,7 @@ Object {
                       style="width: 0%; overflow: hidden; position: absolute;"
                     >
                       <span
-                        class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                        class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                       >
                         <svg
                           aria-hidden="true"
@@ -728,7 +619,7 @@ Object {
                     </span>
                     <span>
                       <span
-                        class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                        class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                       >
                         <svg
                           aria-hidden="true"
@@ -748,10 +639,10 @@ Object {
                     class="MuiRating-decimal css-34he1w-MuiRating-decimal"
                   >
                     <span
-                      style="width: 50%; overflow: hidden; position: absolute;"
+                      style="width: 0%; overflow: hidden; position: absolute;"
                     >
                       <span
-                        class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                        class="MuiRating-icon MuiRating-iconEmpty css-1c99szj-MuiRating-icon"
                       >
                         <svg
                           aria-hidden="true"
@@ -827,9 +718,7 @@ Object {
                 </span>
                 <p
                   class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
-                >
-                  (857) 299-9989
-                </p>
+                />
               </div>
             </div>
           </div>
@@ -847,36 +736,7 @@ Object {
               </h6>
               <ul
                 class="specialistList"
-              >
-                <li>
-                  <p
-                    class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-                  >
-                    Opthometry
-                  </p>
-                </li>
-                <li>
-                  <p
-                    class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-                  >
-                    Opthalmology
-                  </p>
-                </li>
-                <li>
-                  <p
-                    class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-                  >
-                    Catarac
-                  </p>
-                </li>
-                <li>
-                  <p
-                    class="MuiTypography-root MuiTypography-body2 newColumn css-e784if-MuiTypography-root"
-                  >
-                    Glaucoma
-                  </p>
-                </li>
-              </ul>
+              />
             </div>
           </div>
         </div>
@@ -955,14 +815,10 @@ Object {
         >
           <h3
             class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
-          >
-            About Paul Wagner, MD
-          </h3>
+          />
           <p
             class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-          >
-            Dr. Esfandiari's current areas of emphasis include primary eye care, specialty contact lenses, refractive surgery consultation, surgical co-management. Dr. Esfandiari's knowledge and experience in ophthalmic optics has continually helped patients obtain optimal and healthy vision.show more
-          </p>
+          />
           <h3
             class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
           >
@@ -970,9 +826,7 @@ Object {
           </h3>
           <p
             class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-          >
-            Male
-          </p>
+          />
           <h3
             class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
           >
@@ -983,18 +837,22 @@ Object {
           >
             <div
               class="map MuiBox-root css-0"
-            />
+            >
+              <iframe
+                height="100%"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps/embed/v1/place?key=undefined&q=undefined"
+                style="border: 0px;"
+                width="100%"
+              />
+            </div>
             <div
               class="mapAddressContainer MuiBox-root css-0"
             >
               <p
                 class="MuiTypography-root MuiTypography-body2 mapAddress css-e784if-MuiTypography-root"
-              >
-                51 West 51st Street,
-                            Floor 3, Suite 320
-
-                            Midtown, New York, NY, 10019
-              </p>
+              />
               <div
                 class="getDirectionLinkContainer MuiBox-root css-0"
               >
@@ -1011,6 +869,9 @@ Object {
                 </svg>
                 <a
                   class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways getDirectionLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                  href="https://www.google.com/maps/search/?api=1&query=undefined"
+                  rel="noopener"
+                  target="_blank"
                 >
                   Get directions
                 </a>
@@ -1024,57 +885,12 @@ Object {
           </h3>
           <p
             class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-          >
-            English, Spanish
-          </p>
+          />
           <h3
             class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
           >
             In-network insurances
           </h3>
-          <div
-            class="insurancesContainer MuiBox-root css-0"
-          >
-            <ul
-              class="insurancestList"
-            >
-              <li>
-                <p
-                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-                >
-                  Blue Cross Blue Shield
-                </p>
-              </li>
-              <li>
-                <p
-                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-                >
-                  Cigna
-                </p>
-              </li>
-              <li>
-                <p
-                  class="MuiTypography-root MuiTypography-body2 newColumn css-e784if-MuiTypography-root"
-                >
-                  UnitedHeathcare
-                </p>
-              </li>
-              <li>
-                <p
-                  class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-                >
-                  16+ more in-network insurances
-                   
-                  <a
-                    class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways viewAllLink css-1ps4owl-MuiTypography-root-MuiLink-root"
-                    data-testid="biography-view-all-insurance"
-                  >
-                    View All
-                  </a>
-                </p>
-              </li>
-            </ul>
-          </div>
           <h3
             class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
           >
@@ -1082,18 +898,7 @@ Object {
           </h3>
           <div
             class="educationContainer MuiBox-root css-0"
-          >
-            <p
-              class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-            >
-              New England College of Optometry, Doctor of Optometry
-            </p>
-            <p
-              class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-            >
-              University of California, San Diego (Bachelor's)
-            </p>
-          </div>
+          />
           <h3
             class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
           >
@@ -1101,18 +906,7 @@ Object {
           </h3>
           <div
             class="educationContainer MuiBox-root css-0"
-          >
-            <p
-              class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-            >
-              New England College of Optometry, Doctor of Optometry
-            </p>
-            <p
-              class="MuiTypography-root MuiTypography-body2 css-e784if-MuiTypography-root"
-            >
-              University of California, San Diego (Bachelor's)
-            </p>
-          </div>
+          />
         </div>
       </div>
     </div>

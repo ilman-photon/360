@@ -22,13 +22,14 @@ export function Login({
   OnGuestClicked,
   OnCreateAccountClicked,
   OnForgotPasswordClicked,
+  onAppointMentClicked,
 }) {
   const [postMessage, setPostMessage] = React.useState("");
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "Login" });
   const { LOGIN_TEST_ID } = constants.TEST_ID;
   const { handleSubmit, setError, control } = useForm();
-
+  const [isThresholdAdmin, setIsThresholdAdmin] = React.useState(true);
   const onSubmit = ({ username, password }) => {
     OnLoginClicked({ username, password }, router, checkMessage);
   };
@@ -57,6 +58,14 @@ export function Login({
       )
     );
   };
+  React.useEffect(() => {
+    if (router.asPath == "/patient/admin/login") {
+      setIsThresholdAdmin(true);
+    } else {
+      setIsThresholdAdmin(false);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isThresholdAdmin]);
   return (
     <Box
       className={[styles.overideContainer, globalStyles.container].join(" ")}
@@ -116,23 +125,27 @@ export function Login({
                     value={value}
                     onChange={onChange}
                     error={!!error}
+                    aria
                     helperText={error ? error.message : null}
                   />
                 );
               }}
               rules={{ required: t("thisFieldRequired") }}
             />
+
             <Grid container justifyContent={constants.FLEX_END}>
-              <Link
-                className={styles.link}
-                data-testid={LOGIN_TEST_ID.forgotLink}
-                {...getLinkAria(t("forgotPassword"))}
-                onClick={function () {
-                  OnForgotPasswordClicked(router);
-                }}
-              >
-                {t("forgotPassword")}
-              </Link>
+              <Typography variant="bodyMedium">
+                <Link
+                  className={styles.link}
+                  data-testid={LOGIN_TEST_ID.forgotLink}
+                  {...getLinkAria(t("forgotPassword"))}
+                  onClick={function () {
+                    OnForgotPasswordClicked(router);
+                  }}
+                >
+                  {t("forgotPassword")}
+                </Link>
+              </Typography>
             </Grid>
             <StyledButton
               theme={constants.PATIENT}
@@ -146,16 +159,73 @@ export function Login({
             </StyledButton>
           </Stack>
         </form>
-        <StyledButton
-          theme={constants.PATIENT}
-          mode={constants.SECONDARY}
-          size={constants.SMALL}
-          gradient={false}
-          onClick={OnGuestClicked}
-          data-testid={LOGIN_TEST_ID.guestBtn}
-        >
-          {t("continueAsPasswordButtonLabel")}
-        </StyledButton>
+        {!isThresholdAdmin && (
+          <>
+            {!isThresholdAdmin && (
+              <>
+                <StyledButton
+                  theme={constants.PATIENT}
+                  mode={constants.SECONDARY}
+                  size={constants.SMALL}
+                  gradient={false}
+                  onClick={OnGuestClicked}
+                  data-testid={LOGIN_TEST_ID.guestBtn}
+                >
+                  {t("continueAsPasswordButtonLabel")}
+                </StyledButton>
+              </>
+            )}
+
+            {isThresholdAdmin && (
+              <>
+                <Grid container justifyContent={constants.CENTER}>
+                  <Typography
+                    variant="bodyMedium"
+                    sx={{
+                      color: "#003B4A",
+                      fontWeight: 600,
+                      textAlign: "center",
+                    }}
+                  >
+                    {t("alreadyHaveAnAppointment")}
+                    <br />
+                    <Link
+                      className={styles.link}
+                      data-testid={LOGIN_TEST_ID.syncAppointmentLink}
+                      {...getLinkAria(t("syncYourAppointmentInformation"))}
+                      href={onAppointMentClicked}
+                    >
+                      {t("syncYourAppointmentInformation")}
+                    </Link>
+                  </Typography>
+                </Grid>
+              </>
+            )}
+          </>
+        )}
+
+        {isThresholdAdmin && (
+          <>
+            <Grid container justifyContent={constants.CENTER}>
+              <Typography
+                variant="bodyMedium"
+                sx={{ color: "#003B4A", fontWeight: 600, textAlign: "center" }}
+              >
+                {t("alreadyHaveAnAppointment")}
+                <br />
+                <Link
+                  className={styles.link}
+                  data-testid={LOGIN_TEST_ID.syncAppointmentLink}
+                  {...getLinkAria(t("syncYourAppointmentInformation"))}
+                  href={onAppointMentClicked}
+                >
+                  {t("syncYourAppointmentInformation")}
+                </Link>
+              </Typography>
+            </Grid>
+          </>
+        )}
+
         <Divider variant={constants.MIDDLE} className={styles.divider} />
 
         <Grid container justifyContent={constants.CENTER}>

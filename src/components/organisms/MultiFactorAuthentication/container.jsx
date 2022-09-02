@@ -8,6 +8,7 @@ import { StyledButton } from "../../atoms/Button/button";
 import styles from "./style.module.scss";
 import Stack from "@mui/material/Stack";
 import { useTranslation } from "next-i18next";
+import { getLinkAria } from "../../../utils/viewUtil";
 
 const constants = require("../../../utils/constants");
 
@@ -26,6 +27,7 @@ export default function Container({
   isEndView,
   rememberMe,
   setRememberMe,
+  testIds,
 }) {
   const { t } = useTranslation("translation", { keyPrefix: "mfaPage" });
   const renderFromMessage = () => {
@@ -53,7 +55,11 @@ export default function Container({
       </Box>
       <Stack spacing={2}>
         <Box className={styles.contentContainer}>
-          <Typography variant={constants.H1} className={styles.title}>
+          <Typography
+            variant={constants.H1}
+            className={styles.title}
+            aria-live={"polite"}
+          >
             {title}
           </Typography>
           {renderFromMessage()}
@@ -69,11 +75,18 @@ export default function Container({
                     padding: 0,
                   }}
                   checked={rememberMe}
+                  data-testid={testIds.checkbox}
                   onChange={() => {
                     setRememberMe(event.target.checked);
                   }}
+                  inputProps={{
+                    "aria-label": t("rememberMeLabel"),
+                    role: "checkbox",
+                    "aria-live": "polite",
+                    "aria-checked": rememberMe ? "true" : "false",
+                  }}
                 />
-                <Typography className={styles.checkBoxLabel}>
+                <Typography className={styles.checkBoxLabel} aria-hidden={true}>
                   {t("rememberMeLabel")}
                 </Typography>
               </Box>
@@ -88,7 +101,7 @@ export default function Container({
               mode={constants.PRIMARY}
               type="button"
               size={constants.SMALL}
-              data-testid="primary-button"
+              data-testid={testIds.primary || "primary-button"}
               gradient={false}
               onClick={() => {
                 onClickPrimaryButton();
@@ -102,7 +115,7 @@ export default function Container({
                 mode={constants.SECONDARY}
                 type="button"
                 size={constants.SMALL}
-                data-testid="secondary-button"
+                data-testid={testIds.secondary || "secondary-button"}
                 gradient={false}
                 onClick={() => {
                   onClickSecondaryButton();
@@ -113,6 +126,8 @@ export default function Container({
             )}
             <Link
               className={styles.link}
+              data-testid={testIds.link}
+              {...getLinkAria(linkTitle)}
               onClick={() => {
                 onClickLink();
               }}

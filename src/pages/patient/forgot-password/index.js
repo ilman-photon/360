@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AuthLayout from "../../../components/templates/authLayout";
 import SelectOptionForm from "../../../components/organisms/SelectOptionForm/selectOptionForm";
 import PasswordSecurityQuestion from "../../../components/organisms/PasswordSecurityQuestion/passwordSecurityQuestion";
@@ -12,6 +12,7 @@ import { useTranslation } from "next-i18next";
 import ForgotPassword from "../../../components/organisms/ForgotPassword/forgotPassword";
 import { Box } from "@mui/material";
 import globalStyles from "../../../styles/Global.module.scss";
+import { useRouter } from "next/router";
 
 let confirmationFormProps = {
   title: constants.EMPTY_STRING,
@@ -78,6 +79,8 @@ export default function ForgotPasswordPage() {
     keyPrefix: "ForgotPasswordPage",
   });
 
+  const router = useRouter();
+
   const [patientData, setPatientData] = useState({
     username: constants.EMPTY_STRING,
     email: constants.EMPTY_STRING,
@@ -93,6 +96,13 @@ export default function ForgotPasswordPage() {
     useState(false);
   const [showOneTimeLink, setShowOneTimeLink] = useState(false);
   const [showPasswordReset, setShowPasswordReset] = useState(false);
+  const [isAppointment, setAppointment] = useState(true);
+
+  useEffect(() => {
+    if (router.asPath === "/patient/sync") {
+      setAppointment(true);
+    } else setAppointment(false);
+  }, [router]);
 
   //Call API for userame validation
   const onCalledValidateUsernameAPI = function ({ username }, showForm) {
@@ -222,7 +232,7 @@ export default function ForgotPasswordPage() {
         confirmationFormProps.title = t("titlePasswordReset");
         confirmationFormProps.subtitle = t("subtitlePasswordReset");
         confirmationFormProps.additional = modeOfCommuicationUI;
-        confirmationFormProps.buttonLabel = t("primaryButtonOneTime");
+        confirmationFormProps.buttonLabel = t("primaryButtonResetPassword");
         confirmationFormProps.primaryButtonTestId =
           constants.TEST_ID.FORGOT_TEST_ID.oneTimeLink;
         confirmationFormProps.buttonIcon = (
@@ -280,6 +290,7 @@ export default function ForgotPasswordPage() {
           setShowPostMessage={setShowPostMessage}
           onCalledValidateUsernameAPI={onCalledValidateUsernameAPI}
           title={"Forgot Password Page"}
+          isAppointment={isAppointment}
         />
       ) : (
         <></>

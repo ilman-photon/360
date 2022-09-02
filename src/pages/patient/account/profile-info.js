@@ -9,6 +9,9 @@ import store from "../../../store/store";
 import PropTypes from "prop-types";
 import { useRouter } from "next/router";
 import { Api } from "../../api/api";
+import constants from "../../../utils/constants";
+import { closePageMessage, setPageMessage } from "../../../store";
+import FormMessage from "../../../components/molecules/FormMessage/formMessage";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -46,6 +49,7 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
   const [usStatesList, setUsStatesList] = useState([]);
 
   const userData = useSelector((state) => state.user.userData);
+  const pageMessage = useSelector((state) => state.index.pageMessage);
 
   const dispatch = useDispatch();
   const isDesktop = useMediaQuery("(min-width: 769px)");
@@ -66,14 +70,28 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  const showSuccessMessage = (message) => {
+    dispatch(
+      setPageMessage({
+        isShow: true,
+        content: message || "Your changes were saved",
+      })
+    );
+    setTimeout(() => {
+      dispatch(closePageMessage());
+    }, 5000);
+  };
+
   const onSavePersonalData = (payload) => {
     dispatch(setUserData(payload));
     setPersonalEditing(false);
+    showSuccessMessage("Your changes were saved");
   };
 
   const onSaveContactData = (payload) => {
     dispatch(setUserData(payload));
     setContactEditing(false);
+    showSuccessMessage("Your changes were saved");
   };
 
   useEffect(() => {
@@ -100,9 +118,30 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
       "aria-controls": `full-width-tabpanel-${index}`,
     };
   }
+  const { PERSONAL_INFO_TEST_ID } = constants.TEST_ID;
 
   return (
     <section>
+      <FormMessage
+        onClick={() => {
+          dispatch(closePageMessage());
+        }}
+        role="button"
+        success={pageMessage.error ? false : true}
+        fontTitle={16}
+        sx={{
+          borderRadius: "0px",
+          justifyContent: "center",
+          position: "absolute",
+          top: "-40px",
+          left: 0,
+          width: "100%",
+          transition: "0.3 s ease-in-out",
+          cursor: "pointer",
+        }}
+      >
+        {pageMessage.content}
+      </FormMessage>
       <Tabs
         sx={{
           display: {
@@ -129,6 +168,7 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
                 OnEditClicked={(_) => setPersonalEditing(true)}
                 OnCancelEditClicked={(_) => setPersonalEditing(false)}
                 OnSaveClicked={onSavePersonalData}
+                testIds={PERSONAL_INFO_TEST_ID}
               />
             </>
           ) : (

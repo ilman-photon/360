@@ -24,6 +24,7 @@ export const colors = {
   foundationBlue: "#0E1941",
   foundationGrey: "#6B7789",
   error: "#B93632",
+  errorField: "#f91e18",
   primaryButton: "#007e8f",
   link: "#008294",
 };
@@ -131,6 +132,14 @@ export const patientTypography = createTheme({
       fontWeight: 500,
       fontSize: 12,
     },
+    bodyLink: {
+      fontFamily: "Roboto",
+      fontWeight: 500,
+      fontSize: 16,
+      lineHeight: "20px",
+      color: colors.link,
+      textDecoration: "underline",
+    },
     allVariants: {
       color: "#292929",
     },
@@ -214,7 +223,7 @@ export const patientButtonPrimary = createTheme({
     fontFamily: "Libre Franklin",
   },
   button: {
-    background: colors.teal,
+    background: colors.primaryButton,
     color: "white",
   },
 });
@@ -224,7 +233,7 @@ export const patientButtonSecondary = createTheme({
   },
   button: {
     background: "white",
-    color: colors.teal,
+    color: colors.primaryButton,
     borderColor: "#205A63",
   },
 });

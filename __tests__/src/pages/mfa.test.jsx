@@ -1,6 +1,5 @@
-import { render, fireEvent, act, waitFor } from "@testing-library/react";
+import { render, fireEvent, waitFor } from "@testing-library/react";
 import MfaPage, { getServerSideProps } from '../../../src/pages/patient/mfa';
-import Cookies from "universal-cookie";
 import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";

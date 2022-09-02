@@ -1,4 +1,4 @@
-import { render, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import ProfileInformationPage from "../../../src/pages/patient/account/profile-info";
 import { Provider } from "react-redux";
@@ -44,7 +44,7 @@ describe("ProfileInformationPage Components", () => {
     );
     container = render(
       <Provider store={store}>
-        <ProfileInformationPage />
+        {ProfileInformationPage.getLayout(<ProfileInformationPage />)}
       </Provider>
     );
     await waitFor(() => container.getByText("Profile"));
@@ -54,5 +54,17 @@ describe("ProfileInformationPage Components", () => {
 
   it("ProfileInformationPage render", () => {
     expect(container).toMatchSnapshot();
+  });
+
+  it("InsuranceInformationPage upload back foto", async () => {
+    global.URL.createObjectURL = jest.fn(() => "/details.png");
+    const file = new File(["(⌐□_□)"], "chucknorris.png", { type: "image/png" });
+    const button = container.getAllByTestId("loc_edit")[0];
+    act(() => {
+      fireEvent.click(button);
+    });
+    fireEvent.change(container.getAllByTestId("loc_uploadProfileImage")[0], {
+      target: { files: [file] },
+    });
   });
 });

@@ -49,6 +49,7 @@ module.exports = {
       loginBtn: "loginbtn",
       guestBtn: "continueasguest",
       createAccountBtn: "createaccount",
+      syncAppointmentLink: "syncAppointmentLink",
     },
     FORGOT_TEST_ID: {
       email: "emailorphonenumber",
@@ -72,6 +73,20 @@ module.exports = {
       registerbtn: "registerBtn",
       loginlink: "loginlink",
     },
+    SCHEDULE_GUEST_TEST_ID: {
+      firstname: "firstname",
+      lastname: "lastname",
+      dateofbirth: "dateofbirth",
+      calander: "calander",
+      email: "email",
+      mobilenumber: "mobilenumber",
+      password: "password",
+      emailradio: "emailradio",
+      phoneradio: "phoneradio",
+      bothradio: "bothradio",
+      registerbtn: "registerBtn",
+      signInlink: "signInlink",
+    },
     HOME_TEST_ID: {
       appoinments: "appoinments",
       myhealthchart: "myhealthchart",
@@ -81,6 +96,24 @@ module.exports = {
       username: "username",
       account: "account",
       logout: "logout",
+    },
+    MFA_TEST_ID: {
+      radioEmail: "loc_RadioEmail",
+      radioPhone: "loc_RadioPhone",
+      rememberMe: "loc_chkRemember",
+      btnConfirm: "loc_btnConfirm",
+      btnBack: "loc_btnBack",
+      inputCode: "loc_txtEnterCode",
+      btnSubmit: "loc_btnSubmit",
+      btnResend: "loc_btnResend",
+      btnSubmitSecurity: "loc_btnSubmitSecurity",
+      btnSkip: "loc_btnSkip",
+    },
+    PERSONAL_INFO_TEST_ID: {
+      txtName: "loc_txtName",
+      btnSave: "loc_btnSave",
+      btnCancel: "loc_btnCancel",
+      btnDelete: "loc_btnDelete",
     },
     APPOINTMENT_TEST_ID: {
       location: "location",
@@ -108,6 +141,9 @@ module.exports = {
       cancel: "loc_btnCancelInsuranve",
       uploadFrontImage: "loc_btnUploadFront",
       uploadBackImage: "loc_btnUploadBack",
+    },
+    SEARCH_PROVIDER_TEST_ID: {
+      viewAll: "loc_viewAll",
     },
   },
 };

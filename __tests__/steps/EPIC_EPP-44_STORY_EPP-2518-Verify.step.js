@@ -86,9 +86,7 @@ defineFeature(feature, (test) => {
           })
         );
       });
-      await waitFor(() =>
-        container.getByLabelText(/Eyecare Provider name with logo/i)
-      );
+      await waitFor(() => container.getByLabelText(/Clarkson Eyecare logo/i));
       expect(container).toMatchSnapshot();
       fireEvent.click(
         container.getByTestId(constants.TEST_ID.BIOGRAPHY_TEST_ID.about)

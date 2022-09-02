@@ -1,7 +1,7 @@
 import AccountLayout from "../../../../components/templates/accountLayout";
 import InsuranceInformationNew from "../../../../components/organisms/InsuranceInformation/insuranceInformationNew";
 import InsuranceView from "../../../../components/organisms/InsuranceInformation/insuranceView";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import {
   addUserInsuranceData,
@@ -38,6 +38,7 @@ import constants from "../../../../utils/constants";
 
 export default function InsuranceInfoPage() {
   const [openNewInsuranceForm, setOpenNewInsuranceForm] = useState(false);
+  const [focusToNewInsurance, setFocusToNewInsurance] = useState(false);
   const [confirmationDeleteDialog, setConfirmationDeleteDialog] =
     useState(false);
   const { INSURANCE_TEST_ID } = constants.TEST_ID;
@@ -51,17 +52,34 @@ export default function InsuranceInfoPage() {
     (state) => state.user.userInsuranceData
   );
 
+  const [isShowError, setIsShowError] = useState(false);
+  const [isShowErrorNew, setIsShowErrorNew] = useState(false);
   const dispatch = useDispatch();
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
 
-  const OnCreateInsurance = (payload) => {
-    dispatch(addUserInsuranceData(payload));
-    dispatch(
-      setPageMessage({ isShow: true, content: "Insurance successfully added" })
-    );
+  const newInsuraceComp = useRef(null);
 
-    setOpenNewInsuranceForm(false);
+  const OnCreateInsurance = (payload) => {
+    const { backCard, frontCard } = payload;
+    if (
+      (backCard !== "" && frontCard === "") ||
+      (backCard === "" && frontCard !== "")
+    ) {
+      setIsShowErrorNew(true);
+      setIsShowError(true);
+    } else {
+      dispatch(addUserInsuranceData(payload));
+      dispatch(
+        setPageMessage({
+          isShow: true,
+          content: "Insurance successfully added",
+        })
+      );
+      setIsShowErrorNew(false);
+      setIsShowError(false);
+      setOpenNewInsuranceForm(false);
+    }
   };
 
   const OnRemoveInsurance = (payload) => {
@@ -97,6 +115,7 @@ export default function InsuranceInfoPage() {
   const OnAddNewInsurance = () => {
     if (userInsuranceData.length < 5) {
       setOpenNewInsuranceForm(true);
+      setFocusToNewInsurance(true);
     } else {
       dispatch(
         setPageMessage({
@@ -108,11 +127,27 @@ export default function InsuranceInfoPage() {
       );
     }
   };
+  useEffect(() => {
+    if (newInsuraceComp.current && focusToNewInsurance) {
+      newInsuraceComp.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+        inline: "center",
+      });
+    }
+  }, [openNewInsuranceForm, focusToNewInsurance]);
 
   useEffect(() => {
     dispatch(fetchInsurance());
   }, [dispatch]);
 
+  const uploadBothError = (style, onClose) => {
+    return (
+      <FormMessage success={false} sx={style} onClick={onClose}>
+        Please upload both sides of your insurance card.
+      </FormMessage>
+    );
+  };
   return (
     <section>
       <FormMessage
@@ -167,6 +202,10 @@ export default function InsuranceInfoPage() {
               )
             }
           >
+            {isShowError &&
+              uploadBothError({ marginBottom: "16px" }, () =>
+                setIsShowError(false)
+              )}
             <Collapse in={isEditing}>
               <Box>
                 <InsuranceForm
@@ -176,6 +215,7 @@ export default function InsuranceInfoPage() {
                   OnCancelClicked={() => {
                     setIsEditing(false);
                   }}
+                  isError={isShowError}
                 />
               </Box>
             </Collapse>
@@ -186,6 +226,7 @@ export default function InsuranceInfoPage() {
                     className={styles.addButton}
                     disabled={openNewInsuranceForm}
                     onClick={OnAddNewInsurance}
+                    data-testid={INSURANCE_TEST_ID.addButton}
                   >
                     <Stack
                       direction="row"
@@ -222,6 +263,7 @@ export default function InsuranceInfoPage() {
                       expandIcon={<ExpandMoreIcon />}
                       aria-controls="panel1a-content"
                       sx={{ background: "#FAFAFA" }}
+                      ref={newInsuraceComp}
                     >
                       <Stack spacing={1} direction="row" alignItems="center">
                         <Typography variant="h4">New Insurance</Typography>
@@ -233,7 +275,9 @@ export default function InsuranceInfoPage() {
                         OnSaveClicked={OnCreateInsurance}
                         OnCancelClicked={() => {
                           setOpenNewInsuranceForm(false);
+                          setFocusToNewInsurance(false);
                         }}
+                        isError={isShowError}
                       />
                     </AccordionDetails>
                   </Accordion>
@@ -250,6 +294,10 @@ export default function InsuranceInfoPage() {
           <InsuranceInformationNew
             insuranceData={userInsuranceData}
             OnCreateInsurance={OnCreateInsurance}
+            FormMessageEl={uploadBothError(null, () =>
+              setIsShowErrorNew(false)
+            )}
+            isShowError={isShowErrorNew}
           />
         </Box>
       </Fade>
@@ -290,6 +338,18 @@ export default function InsuranceInfoPage() {
               sx={{ fontSize: "14px" }}
             >
               Yes, remove Insurance
+            </StyledButton>
+
+            <StyledButton
+              size="small"
+              mode="error"
+              onClick={() => {
+                setConfirmationDeleteDialog(false);
+                setIsShowError(true);
+              }}
+              sx={{ fontSize: "14px" }}
+            >
+              Show Eroor
             </StyledButton>
           </Stack>
         </DialogActions>

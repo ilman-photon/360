@@ -28,8 +28,7 @@ exports[`App renders App unchanged 1`] = `
               />
             </span>
             <img
-              alt="Eyecare Provider name with logo"
-              aria-label="Eyecare Provider name with logo"
+              aria-label="Clarkson Eyecare logo"
               data-nimg="intrinsic"
               decoding="async"
               src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
@@ -44,7 +43,7 @@ exports[`App renders App unchanged 1`] = `
       class="defaultContainer"
     >
       <div
-        class="MuiBox-root css-0"
+        class="css-16ml5pn-MuiStack-root"
       >
         <div
           class="mobileFilterContainer MuiBox-root css-0"
@@ -62,11 +61,11 @@ exports[`App renders App unchanged 1`] = `
                 class="MuiBox-root css-0"
               >
                 <div
-                  class="MuiBox-root css-1q1o8f2"
+                  class="MuiBox-root css-1iqw0sw"
                 >
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1axqcvu-MuiSvgIcon-root"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-140nw66-MuiSvgIcon-root"
                     data-testid="LocationOnOutlinedIcon"
                     focusable="false"
                     viewBox="0 0 24 24"
@@ -81,7 +80,7 @@ exports[`App renders App unchanged 1`] = `
                     />
                   </svg>
                   <div
-                    class="MuiFormControl-root MuiTextField-root custom-input css-bmp0qn-MuiFormControl-root-MuiTextField-root"
+                    class="MuiFormControl-root MuiTextField-root custom-input css-1l52np-MuiFormControl-root-MuiTextField-root"
                     withicon="true"
                   >
                     <label
@@ -100,6 +99,7 @@ exports[`App renders App unchanged 1`] = `
                         class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd css-1gctnaj-MuiInputBase-input-MuiFilledInput-input"
                         id=":r0:"
                         placeholder=""
+                        readonly=""
                         type="default"
                         value=""
                       />
@@ -126,11 +126,11 @@ exports[`App renders App unchanged 1`] = `
                 class="MuiBox-root css-0"
               >
                 <div
-                  class="MuiBox-root css-1q1o8f2"
+                  class="MuiBox-root css-1iqw0sw"
                 >
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1jfo3up-MuiSvgIcon-root"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-nes594-MuiSvgIcon-root"
                     data-testid="CalendarTodayIcon"
                     focusable="false"
                     viewBox="0 0 24 24"
@@ -140,7 +140,7 @@ exports[`App renders App unchanged 1`] = `
                     />
                   </svg>
                   <div
-                    class="MuiFormControl-root MuiTextField-root custom-input css-bmp0qn-MuiFormControl-root-MuiTextField-root"
+                    class="MuiFormControl-root MuiTextField-root custom-input css-1l52np-MuiFormControl-root-MuiTextField-root"
                     withicon="true"
                   >
                     <label
@@ -152,13 +152,14 @@ exports[`App renders App unchanged 1`] = `
                       Date
                     </label>
                     <div
-                      class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+                      class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
                     >
                       <input
                         aria-invalid="false"
                         class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                         id=":r1:"
                         placeholder=""
+                        readonly=""
                         type="default"
                         value=""
                       />
@@ -170,11 +171,11 @@ exports[`App renders App unchanged 1`] = `
                 class="MuiBox-root css-0"
               >
                 <div
-                  class="MuiBox-root css-1q1o8f2"
+                  class="MuiBox-root css-1iqw0sw"
                 >
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1noajlf-MuiSvgIcon-root"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-zzcmfp-MuiSvgIcon-root"
                     data-testid="VisibilityOutlinedIcon"
                     focusable="false"
                     viewBox="0 0 24 24"
@@ -184,7 +185,7 @@ exports[`App renders App unchanged 1`] = `
                     />
                   </svg>
                   <div
-                    class="MuiFormControl-root MuiTextField-root custom-input css-bmp0qn-MuiFormControl-root-MuiTextField-root"
+                    class="MuiFormControl-root MuiTextField-root custom-input css-1l52np-MuiFormControl-root-MuiTextField-root"
                     withicon="true"
                   >
                     <label
@@ -196,13 +197,14 @@ exports[`App renders App unchanged 1`] = `
                       Purposes of Visit
                     </label>
                     <div
-                      class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+                      class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
                     >
                       <input
                         aria-invalid="false"
                         class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                         id=":r2:"
                         placeholder=""
+                        readonly=""
                         type="default"
                         value=""
                       />
@@ -219,10 +221,10 @@ exports[`App renders App unchanged 1`] = `
                 class="MuiBox-root css-0"
               >
                 <div
-                  class="MuiBox-root css-1q1o8f2"
+                  class="MuiBox-root css-1iqw0sw"
                 >
                   <div
-                    class="MuiBox-root css-42igfv"
+                    class="MuiBox-root css-132diu7"
                   >
                     <span
                       style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
@@ -248,7 +250,7 @@ exports[`App renders App unchanged 1`] = `
                     </span>
                   </div>
                   <div
-                    class="MuiFormControl-root MuiTextField-root custom-input css-bmp0qn-MuiFormControl-root-MuiTextField-root"
+                    class="MuiFormControl-root MuiTextField-root custom-input css-1l52np-MuiFormControl-root-MuiTextField-root"
                     withicon="true"
                   >
                     <label
@@ -260,13 +262,14 @@ exports[`App renders App unchanged 1`] = `
                       Insurance Carrier
                     </label>
                     <div
-                      class="MuiFilledInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-jq7ton-MuiInputBase-root-MuiFilledInput-root"
+                      class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
                     >
                       <input
                         aria-invalid="false"
                         class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                         id=":r3:"
                         placeholder=""
+                        readonly=""
                         type="default"
                         value=""
                       />
@@ -280,7 +283,7 @@ exports[`App renders App unchanged 1`] = `
                 </span>
               </div>
               <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root searchButton css-mx150s-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root searchButton css-1unuvva-MuiButtonBase-root-MuiButton-root"
                 data-testid="searchbtn"
                 tabindex="0"
                 type="submit"
@@ -292,7 +295,9 @@ exports[`App renders App unchanged 1`] = `
               </button>
             </form>
           </div>
+          <div />
         </div>
+        <div />
       </div>
     </div>
   </div>

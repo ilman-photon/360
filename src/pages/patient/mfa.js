@@ -41,7 +41,7 @@ export default function MfaPage() {
   const [securityQuestionList, setSecurityQuestionList] = React.useState([]);
   const [communicationMethod, setCommunicationMethod] = React.useState({});
   const { t } = useTranslation("translation", { keyPrefix: "mfaPage" });
-
+  const { MFA_TEST_ID } = constants.TEST_ID;
   const onBackButtonEvent = (e) => {
     e.preventDefault();
     onBackToLoginClicked();
@@ -104,7 +104,7 @@ export default function MfaPage() {
 
   function redirectToDashboard() {
     const hostname = window.location.origin;
-    window.location.href = `${hostname}/patient/account/profile-info`;
+    window.location.href = `${hostname}/patient/appointment`;
 
     cookies.set("authorized", true, { path: "/patient" });
     cookies.remove("mfa", { path: "/patient" });
@@ -245,6 +245,7 @@ export default function MfaPage() {
         onBackToLoginClicked={onBackToLoginClicked}
         rememberMe={rememberMe}
         setRememberMe={onSetRememberMe}
+        testIds={MFA_TEST_ID}
       />
     );
   } else if (componentName === constants.SQ_COMPONENT_NAME) {
@@ -288,6 +289,7 @@ export default function MfaPage() {
                 onClickedSubmitButton={onSubmitSecurityQuestionClicked}
                 onClickedSkipButton={redirectToDashboard}
                 securityQuestionList={securityQuestionList}
+                testIds={MFA_TEST_ID}
               />
             </Box>
           </Box>
@@ -313,6 +315,7 @@ export default function MfaPage() {
         rememberMe={rememberMe}
         setRememberMe={onSetRememberMe}
         data={communicationMethod}
+        testIds={MFA_TEST_ID}
       />
     );
   }
