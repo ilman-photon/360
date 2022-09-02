@@ -321,7 +321,12 @@ export function onGetInsuranceCarrierStyle(isDesktop = true) {
   };
 }
 
-export function onRenderInputInsurance(params, handleCloseDialog = () => {}) {
+export function onRenderInputInsurance(
+  params,
+  handleCloseDialog = () => {
+    // This is intentional
+  }
+) {
   return (
     <Box
       sx={{

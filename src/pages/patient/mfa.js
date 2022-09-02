@@ -5,7 +5,7 @@ import SetMultiFactorAuthentication from "../../components/organisms/MultiFactor
 import MultiFactorAuthentication from "../../components/organisms/MultiFactorAuthentication/multiFactorAuthentication";
 import constants from "../../utils/constants";
 import SecurityQuestion from "../../components/organisms/SecurityQuestion/securityQuestion";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Cookies from "universal-cookie";
 import AccountTitleHeading from "../../components/atoms/AccountTitleHeading/accountTitleHeading";
 import FormMessage from "../../components/molecules/FormMessage/formMessage";
@@ -38,6 +38,7 @@ export default function MfaPage() {
   const [componentName, setComponentName] = React.useState("");
   const [rememberMe, setRememberMe] = React.useState(false);
   const [successSubmit, setSuccessSubmit] = React.useState(false);
+  const [otpValidation, setOTPValidation] = React.useState("");
   const [securityQuestionList, setSecurityQuestionList] = React.useState([]);
   const [communicationMethod, setCommunicationMethod] = React.useState({});
   const { t } = useTranslation("translation", { keyPrefix: "mfaPage" });
@@ -69,6 +70,12 @@ export default function MfaPage() {
     };
   });
 
+  const setTempValidation = (response) => {
+    if (process.env.ENV_NAME !== "prod" && response && response.mfaCode) {
+      setOTPValidation(response.mfaCode);
+    }
+  };
+
   function onConfirmClicked(communication, callback) {
     const deviceId = ip.replace(/\./g, "");
     const postBody = {
@@ -78,7 +85,8 @@ export default function MfaPage() {
     };
     api
       .sendMfaCode(postBody)
-      .then(() => {
+      .then((response) => {
+        setTempValidation(response);
         setComponentName(constants.MFA_COMPONENT_NAME);
       })
       .catch((err) => {
@@ -164,7 +172,8 @@ export default function MfaPage() {
     };
     api
       .sendMfaCode(postBody)
-      .then(() => {
+      .then((response) => {
+        setTempValidation(response);
         callback({
           status: "success",
         });
@@ -239,14 +248,25 @@ export default function MfaPage() {
 
   if (componentName === constants.MFA_COMPONENT_NAME) {
     return (
-      <MultiFactorAuthentication
-        onSubmitClicked={onSubmitClicked}
-        onResendCodeClicked={onResendCodeClicked}
-        onBackToLoginClicked={onBackToLoginClicked}
-        rememberMe={rememberMe}
-        setRememberMe={onSetRememberMe}
-        testIds={MFA_TEST_ID}
-      />
+      <>
+        <MultiFactorAuthentication
+          onSubmitClicked={onSubmitClicked}
+          onResendCodeClicked={onResendCodeClicked}
+          onBackToLoginClicked={onBackToLoginClicked}
+          rememberMe={rememberMe}
+          setRememberMe={onSetRememberMe}
+          testIds={MFA_TEST_ID}
+        />
+        {otpValidation ? (
+          <Typography
+            aria-hidden={"true"}
+            style={{ display: "none" }}
+            data-testid={"loc_validationMFA"}
+          >
+            {otpValidation}
+          </Typography>
+        ) : null}
+      </>
     );
   } else if (componentName === constants.SQ_COMPONENT_NAME) {
     return (

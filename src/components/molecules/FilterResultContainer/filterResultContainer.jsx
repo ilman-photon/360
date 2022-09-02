@@ -9,7 +9,9 @@ import GMaps from "../../organisms/Google/Maps/gMaps";
 
 export const FilterResultContainer = ({
   activeTabs = 0,
-  setActiveTabs = () => {},
+  setActiveTabs = () => {
+    // This is intentional
+  },
   onClickViewAllAvailability = () => {
     // This is intentional
   },

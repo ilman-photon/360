@@ -1,4 +1,3 @@
-import { DomainDisabledOutlined } from "@mui/icons-material";
 import axios from "axios";
 export class Api {
   client;
@@ -176,21 +175,18 @@ export class Api {
   }
 
   getSugestion() {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/create-appointment/getSugestion`;
-    return this.getResponse(url, {}, "get");
+    const url = "/api/dummy/apppointment/create-appointment/getSugestion";
+    return this.getResponse(url, {}, "post");
   }
 
   submitFilter() {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/create-appointment/submitFilter`;
+    const url = "/api/dummy/apppointment/create-appointment/submitFilter";
     return this.getResponse(url, {}, "post");
   }
 
   getAllAppointment() {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`;
-    return this.getResponse(url, {}, "get");
+    const url = "/api/dummy/apppointment/my-appointment/getAllAppointment";
+    return this.getResponse(url, {}, "post");
   }
 
   updateAppointment(postbody) {

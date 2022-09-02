@@ -19,9 +19,13 @@ import { convertToDate } from "../../../utils/dateFormatter";
 
 const FilterHeadingFilled = ({
   openDialog,
-  onCloseDialog = () => {},
+  onCloseDialog = () => {
+    // This is intentional
+  },
   filterData,
-  onSearchProvider = () => {},
+  onSearchProvider = () => {
+    // This is intentional
+  },
   purposeOfVisitData = [],
   insuranceCarrierData = [],
 }) => {

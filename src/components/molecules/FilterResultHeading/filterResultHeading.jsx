@@ -16,7 +16,7 @@ import Image from "next/image";
 import FilterHeadingFilled from "../FilterHeading/filterHeadingFilled";
 
 export const FilterResultHeading = ({
-  appliedFilter,
+  _appliedFilter,
   numberFilter = 30,
   dateWeek = ["Sep 19", "Sep 20", "Sep 21", "Sep 22", "Sep 23", "Sep 24"],
   isDesktop = false,
@@ -26,7 +26,9 @@ export const FilterResultHeading = ({
     purposeOfVisit: "Eye exam",
     insuranceCarrier: "Aethna",
   },
-  onSearchProvider = () => {},
+  onSearchProvider = () => {
+    // This is intentional
+  },
   purposeOfVisitData = [],
   insuranceCarrierData = [],
 }) => {
