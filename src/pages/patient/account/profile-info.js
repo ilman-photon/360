@@ -8,6 +8,7 @@ import { fetchUser, setUserData } from "../../../store/user";
 import store from "../../../store/store";
 import PropTypes from "prop-types";
 import { useRouter } from "next/router";
+import { Api } from "../../api/api";
 import constants from "../../../utils/constants";
 import { closePageMessage, setPageMessage } from "../../../store";
 import FormMessage from "../../../components/molecules/FormMessage/formMessage";
@@ -45,6 +46,7 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
   const [contactEditing, setContactEditing] = useState(false);
   const [personalEditing, setPersonalEditing] = useState(false);
   const [activeTabs, setActiveTabs] = useState(0);
+  const [usStatesList, setUsStatesList] = useState([]);
 
   const userData = useSelector((state) => state.user.userData);
   const pageMessage = useSelector((state) => state.index.pageMessage);
@@ -53,6 +55,7 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
   const isDesktop = useMediaQuery("(min-width: 769px)");
 
   const router = useRouter();
+  const api = new Api();
 
   const onBackButtonEvent = (e) => {
     e.preventDefault();
@@ -94,6 +97,15 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
   useEffect(() => {
     dispatch(fetchUser());
   }, [dispatch]);
+
+  useEffect(() => {
+    fetchUSListOfStates();
+  }, []);
+
+  const fetchUSListOfStates = async () => {
+    const stateList = await api.getUSListOfStates();
+    setUsStatesList(stateList);
+  };
 
   useEffect(() => {
     setPersonalEditing(false);
@@ -173,6 +185,7 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
                 OnCancelEditClicked={(_) => setContactEditing(false)}
                 OnSaveClicked={onSaveContactData}
                 autoFillAPIToken={autoFillAPIToken}
+                usStatesList={usStatesList}
               />
             </>
           ) : (

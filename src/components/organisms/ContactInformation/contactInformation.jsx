@@ -20,6 +20,7 @@ import { Regex } from "../../../utils/regex";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import dynamic from "next/dynamic";
+import { StyledSelect } from "../../atoms/Select/select";
 
 let ClientAddressAutofill;
 
@@ -36,6 +37,7 @@ export default function ContactInformation({
   autoFillAPIToken = "",
   userData = {},
   isEditing = true,
+  usStatesList = [],
   OnSaveClicked = () => {
     // This is intended
   },
@@ -324,18 +326,21 @@ export default function ContactInformation({
                     fieldState: { error },
                   }) => {
                     return (
-                      <StyledInput
-                        type="text"
+                      <StyledSelect
                         id="state"
                         label="State"
                         autoComplete="address-level1"
+                        options={usStatesList}
                         value={value}
                         onChange={onChange}
                         error={!!error}
-                        size="small"
-                        variant="filled"
                         helperText={error ? error.message : null}
-                        sx={{ width: "100%" }}
+                        sx={{
+                          width: "100%",
+                          "&.MuiFormControl-root": {
+                            m: 0,
+                          },
+                        }}
                       />
                     );
                   }}
@@ -371,6 +376,14 @@ export default function ContactInformation({
                         size="small"
                         variant="filled"
                         helperText={error ? error.message : null}
+                        sx={{
+                          "&.MuiFormControl-root": {
+                            height: "100%",
+                          },
+                          ".MuiFilledInput-root": {
+                            height: "100%",
+                          },
+                        }}
                       />
                     );
                   }}
