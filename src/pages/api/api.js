@@ -1,3 +1,4 @@
+import { DomainDisabledOutlined } from "@mui/icons-material";
 import axios from "axios";
 export class Api {
   client;
@@ -160,5 +161,42 @@ export class Api {
           reject();
         });
     });
+  }
+
+  getProviderDetails() {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/appointment/biography/getProviderDetails`;
+    return this.getResponse(url, {}, "post");
+  }
+
+  getProviderAvailibility() {
+    const url =
+      "/api/dummy/apppointment/create-appointment/getProviderAvailibility";
+    return this.getResponse(url, {}, "post");
+  }
+
+  getSugestion() {
+    const url = "/api/dummy/apppointment/create-appointment/getSugestion";
+    return this.getResponse(url, {}, "post");
+  }
+
+  submitFilter() {
+    const url = "/api/dummy/apppointment/create-appointment/submitFilter";
+    return this.getResponse(url, {}, "post");
+  }
+
+  getAllAppointment() {
+    const url = "/api/dummy/apppointment/my-appointment/getAllAppointment";
+    return this.getResponse(url, {}, "post");
+  }
+
+  updateAppointment(postbody) {
+    const url = "/api/dummy/apppointment/my-appointment/updateAppointment";
+    return this.getResponse(url, postbody, "post");
+  }
+
+  postForm(postbody, method) {
+    const url = "/api/dummy/apppointment/review-details/postForm";
+    return this.getResponse(url, postbody, method);
   }
 }

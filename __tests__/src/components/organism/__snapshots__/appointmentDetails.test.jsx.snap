@@ -193,7 +193,9 @@ Object {
                   >
                     <span
                       class="MuiTypography-root MuiTypography-bodyMedium css-1oitrp4-MuiTypography-root"
-                    />
+                    >
+                      -
+                    </span>
                   </div>
                 </div>
               </div>
@@ -392,7 +394,9 @@ Object {
                 >
                   <span
                     class="MuiTypography-root MuiTypography-bodyMedium css-1oitrp4-MuiTypography-root"
-                  />
+                  >
+                    -
+                  </span>
                 </div>
               </div>
             </div>

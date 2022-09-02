@@ -12,4 +12,9 @@ describe("DayAvailability Components", () => {
     expect(container).toMatchSnapshot();
   });
 
+  it("FilterHeadingFilled render", () => {
+    container = render(<DayAvailability isDesktop={true}/>);
+    expect(container).toMatchSnapshot();
+  });
+
 });

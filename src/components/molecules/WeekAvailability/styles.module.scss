@@ -1,37 +1,43 @@
-.scheduleBtn {
-  width: 90px;
-  height: 30px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 13px 0px;
-  background: #007e8f;
-  border-radius: 30px;
-  font-family: "Libre Franklin", sans-serif;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 18px;
-  margin-top: 8px;
+.buttonWrapper {
+  .scheduleBtn {
+    width: 90px;
+    height: 30px;
+    padding: 13px 0px;
+    background: #007e8f;
+    border-radius: 30px;
+    margin-top: 8px;
+    .scheduleBtnLabel {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      font-family: "Libre Franklin", sans-serif;
+      font-style: normal;
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 18px;
+    }
+  }
 }
+.linkWrapper {
+  .linkAvailabelity {
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    /* identical to box height, or 129% */
 
-.linkAvailabelity {
-  font-family: "Libre Franklin", sans-serif;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 18px;
-  /* identical to box height, or 129% */
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.0016em;
+    text-decoration-line: underline;
 
-  display: flex;
-  align-items: center;
-  letter-spacing: 0.0016em;
-  text-decoration-line: underline;
+    /* ECP/Controls/Button/Text */
 
-  /* ECP/Controls/Button/Text */
-
-  color: #007e8f;
+    color: #007e8f;
+    cursor: pointer;
+  }
 }
 
 .divider {

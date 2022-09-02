@@ -4,13 +4,18 @@ import { Typography } from "@mui/material";
 
 export const EmptyResult = ({ message = "" }) => {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column" }}>
+    <Box sx={{ display: "flex", flexDirection: "column", paddingTop: "50px" }}>
       <CalendarTodayIcon
         sx={{ alignSelf: "center", width: 38.5, height: 38.5 }}
       />
       <Typography
         variant="bodyLarge"
-        sx={{ fontWeight: 500, color: "#191919", textAlign: "center" }}
+        sx={{
+          fontWeight: 500,
+          color: "#191919",
+          textAlign: "center",
+          marginTop: "8px",
+        }}
       >
         {message}
       </Typography>

@@ -3,11 +3,32 @@ import React from "react";
 import { StyledButton } from "../../atoms/Button/button";
 import styles from "./styles.module.scss";
 import { Divider, Typography } from "@mui/material";
-import { useRouter } from "next/router";
 import constants from "../../../utils/constants";
-import stylesWeek from "../WeekAvailability/styles.module.scss";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+
+export const buttonSchedule = (
+  label,
+  idx,
+  OnDayClicked = () => {
+    // This is intended
+  }
+) => {
+  return (
+    <Box key={idx} sx={{ width: "78px" }} className={styles.scheduleBtnWarpper}>
+      <StyledButton
+        theme={constants.PATIENT}
+        mode={constants.PRIMARY}
+        size={constants.SMALL}
+        gradient={false}
+        className={styles.scheduleBtn}
+        onClick={() => OnDayClicked(label)}
+      >
+        {label}
+      </StyledButton>
+    </Box>
+  );
+};
 
 export const DayAvailability = ({
   timeInWeek = "Sep 19 - Sep 24",
@@ -72,8 +93,11 @@ export const DayAvailability = ({
       "11:30am",
     ],
   },
+  isDesktop = false,
+  OnDayClicked = () => {
+    // This is intended
+  },
 }) => {
-  const router = useRouter();
   function renderScheduleData() {
     let renderUI = [];
     for (const [key, value] of Object.entries(scheduleData)) {
@@ -103,33 +127,15 @@ export const DayAvailability = ({
     return renderUI;
   }
 
-  function buttonSchedule(label, idx) {
-    return (
-      <Box key={idx} sx={{ width: "78px" }}>
-        <StyledButton
-          theme={constants.PATIENT}
-          mode={constants.PRIMARY}
-          size={constants.SMALL}
-          gradient={false}
-          className={[stylesWeek.scheduleBtn, styles.scheduleBtn].join(" ")}
-          onClick={() => {
-            //TO DO: temporary navigate, move to page when start developing functionality
-            router.push("/patient/schedule-appointment");
-          }}
-        >
-          {label}
-        </StyledButton>
-      </Box>
-    );
-  }
-
   function renderTimeSchedule(value) {
+    const column = isDesktop ? 5 : 4;
+    console.log("renderTime", { OnDayClicked });
     return (
       <Box
         sx={{
           display: "grid",
-          width: 410,
-          gridTemplateColumns: "repeat(5, 1fr)",
+          width: isDesktop ? 410 : 330,
+          gridTemplateColumns: `repeat(${column}, 1fr)`,
           gap: "4px",
           justifyContent: "center",
           alignContent: "center",
@@ -137,7 +143,7 @@ export const DayAvailability = ({
         }}
       >
         {value.map((option, idx) => {
-          return buttonSchedule(option, idx);
+          return buttonSchedule(option, idx, OnDayClicked);
         })}
       </Box>
     );

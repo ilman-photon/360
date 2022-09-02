@@ -6,12 +6,15 @@ import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
 import { colors } from "../../../styles/theme";
 import styles from "./styles.module.scss";
 
-export const LocationDistance = () => {
+export const LocationDistance = ({ isDesktop = true }) => {
+  const iconSize = isDesktop ? 18 : 25;
   return (
     <Box
       sx={{
-        display: "grid",
-        gridTemplateColumns: "repeat(2, 1fr)",
+        display: isDesktop ? "grid" : "block",
+        gridTemplateColumns: isDesktop ? "repeat(2, 1fr)" : "none",
+        width: isDesktop ? "auto" : "80px",
+        marginLeft: isDesktop ? "0px" : "15px",
         justifyContent: "center",
         alignContent: "center",
         gridTemplateRows: "auto",
@@ -26,8 +29,11 @@ export const LocationDistance = () => {
           alignItems: "center",
           gridArea: "distanceDoctor",
         }}
+        className={styles.distanceLabelWarpper}
       >
-        <LocationOnOutlinedIcon sx={{ width: 16, color: colors.darkGreen }} />
+        {isDesktop && (
+          <LocationOnOutlinedIcon sx={{ width: 16, color: colors.darkGreen }} />
+        )}
         <Typography
           sx={{ display: "block" }}
           component="span"
@@ -46,11 +52,11 @@ export const LocationDistance = () => {
           m: 1,
           justifyContent: "center",
           alignItems: "center",
-          marginTop: "40px",
+          marginTop: isDesktop ? "40px" : "60px",
         }}
       >
         <DirectionsOutlinedIcon
-          sx={{ width: 18, height: 18, color: colors.darkGreen }}
+          sx={{ width: iconSize, height: iconSize, color: colors.darkGreen }}
         />
       </Box>
     </Box>

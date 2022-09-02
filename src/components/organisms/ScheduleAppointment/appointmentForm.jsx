@@ -39,22 +39,23 @@ const DisclaimerText = (data) => {
   );
 };
 
-export default function AppointmentForm({ isForMyself }) {
+export default function AppointmentForm({
+  isForMyself,
+  patientData = {},
+  OnSubmit = () => {
+    // This is intended
+  },
+}) {
   const { handleSubmit, control, watch } = useForm({
-    defaultValues: {
-      firstName: "",
-      lastName: "",
-      dob: null,
-      email: "",
-      mobile: "",
-      password: "",
-      preferredCommunication: "both",
-    },
+    defaultValues: patientData,
   });
+
   const { SCHEDULE_GUEST_TEST_ID } = constants.TEST_ID;
 
   const onSubmit = (data) => {
     // this is intentional
+    console.log({ data });
+    OnSubmit(data);
   };
 
   const options = [
@@ -91,14 +92,14 @@ export default function AppointmentForm({ isForMyself }) {
   const isOneOfPreferredValid = (name, value) => {
     switch (name) {
       case "email":
-        if (watchedPreferredCommunication === "phone") return true;
-        else if (watchedPreferredCommunication === "email" && !value)
+        if (watchedPreferredCommunication == "phone") return true;
+        else if (watchedPreferredCommunication == "email" && !value)
           return false;
         else if (watchedEmail || watchedMobile) return true;
         break;
       case "phone":
-        if (watchedPreferredCommunication === "email") return true;
-        else if (watchedPreferredCommunication === "phone" && !value)
+        if (watchedPreferredCommunication == "email") return true;
+        else if (watchedPreferredCommunication == "phone" && !value)
           return false;
         else if (watchedEmail || watchedMobile) return true;
         break;
@@ -205,6 +206,37 @@ export default function AppointmentForm({ isForMyself }) {
             }}
           />
 
+          <Box sx={{ width: "70%" }}>
+            <Controller
+              name="dob"
+              control={control}
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => {
+                return (
+                  <StyledInput
+                    disableFuture
+                    type="dob"
+                    id="dob"
+                    data-testid={SCHEDULE_GUEST_TEST_ID.dateofbirth}
+                    label="Date of Birth"
+                    variant="filled"
+                    value={value}
+                    onChange={onChange}
+                    error={!!error}
+                    helperText={error ? error.message : null}
+                    sx={{ m: 1, width: "70%" }}
+                  />
+                );
+              }}
+              rules={{
+                required: t("thisFieldRequired"),
+              }}
+            />
+          </Box>
+          <DisclaimerText label="Month, Day, Year" />
+
           <Controller
             name="email"
             control={control}
@@ -280,82 +312,47 @@ export default function AppointmentForm({ isForMyself }) {
             }}
           />
 
-          <Box sx={{ width: "70%" }}>
-            <Controller
-              name="dob"
-              control={control}
-              render={({
-                field: { onChange, value },
-                fieldState: { error },
-              }) => {
-                return (
-                  <StyledInput
-                    disablePast
-                    type="dob"
-                    id="dob"
-                    data-testid={SCHEDULE_GUEST_TEST_ID.dateofbirth}
-                    label="Date of Birth"
-                    variant="filled"
-                    value={value}
-                    onChange={onChange}
-                    error={!!error}
-                    helperText={error ? error.message : null}
-                    sx={{ m: 1, width: "70%" }}
-                  />
-                );
-              }}
-              rules={{
-                required: t("thisFieldRequired"),
-                pattern: {
-                  value: Regex.specialRegex,
-                  message: "Incorrect date format",
-                },
-              }}
-            />
-          </Box>
-          <DisclaimerText label="Month, Day, Year" />
-
-          <div style={styles.divMargin}>
-            <Controller
-              name="preferredCommunication"
-              control={control}
-              render={({
-                field: { onChange, value },
-                fieldState: { error },
-              }) => {
-                return (
-                  <>
-                    <RowRadioButtonsGroup
-                      error={!!error}
-                      value={value}
-                      onChange={onChange}
-                      label="Preferred mode of Communication"
-                      options={options}
-                      helperText={error ? error.message : null}
-                      textSx={{
-                        justifyContent: "space-between",
-                        color: "black",
-                        fontWeight: "600",
-                      }}
-                      sx={{
-                        width: { xs: "100%", md: "56%" },
-                        m: 1,
-                        justifyContent: "space-between",
-                        fontSize: "16px",
-                        fontWeight: "600",
-                        color: "black",
-                      }}
-                    />
-                  </>
-                );
-              }}
-              rules={{ required: t("thisFieldRequired") }}
-            />
-          </div>
-
-          <Divider sx={{ mx: 1 }} />
           {isForMyself ? (
             <>
+              <div style={styles.divMargin}>
+                <Controller
+                  name="preferredCommunication"
+                  control={control}
+                  render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                  }) => {
+                    return (
+                      <>
+                        <RowRadioButtonsGroup
+                          error={!!error}
+                          value={value}
+                          onChange={onChange}
+                          label="Preferred mode of Communication"
+                          options={options}
+                          helperText={error ? error.message : null}
+                          textSx={{
+                            justifyContent: "space-between",
+                            color: "black",
+                            fontWeight: "600",
+                          }}
+                          sx={{
+                            width: { xs: "100%", md: "56%" },
+                            m: 1,
+                            justifyContent: "space-between",
+                            fontSize: "16px",
+                            fontWeight: "600",
+                            color: "black",
+                          }}
+                        />
+                      </>
+                    );
+                  }}
+                  rules={{ required: t("thisFieldRequired") }}
+                />
+              </div>
+
+              <Divider sx={{ mx: 1 }} />
               <Grid sx={{ m: "24px 8px 16px" }}>
                 <Typography sx={{ ...styles.boldLabel, mb: 1 }}>
                   {t("optional")}

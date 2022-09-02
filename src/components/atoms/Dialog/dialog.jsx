@@ -17,7 +17,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 const BootstrapDialogTitle = (props) => {
-  const { children, onClose, ...other } = props;
+  const { children, onClose, closeLabel, ...other } = props;
 
   return (
     <DialogTitle
@@ -45,7 +45,7 @@ const BootstrapDialogTitle = (props) => {
             color: colors.primaryButton,
           }}
         >
-          Cancel
+          {closeLabel}
         </IconButton>
       ) : null}
     </DialogTitle>
@@ -64,6 +64,7 @@ export default function CustomizedDialogs({
     //This is intended
   },
   fullScreen = true,
+  closeLabel = "Cancel",
 }) {
   return (
     <div>
@@ -75,6 +76,7 @@ export default function CustomizedDialogs({
         <BootstrapDialogTitle
           id="customized-dialog-title"
           onClose={handleClose}
+          closeLabel={closeLabel}
         ></BootstrapDialogTitle>
         <DialogContent
           dividers

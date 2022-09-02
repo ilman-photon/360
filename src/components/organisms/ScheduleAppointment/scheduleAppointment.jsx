@@ -12,7 +12,12 @@ import AppointmentForm from "./appointmentForm";
 
 export default function ScheduleAppointment({
   selectedSelf,
+  isLoggedIn = false,
+  patientData = {},
   OnSetSelectedSelf = () => {
+    // This is intended
+  },
+  OnSubmit = () => {
     // This is intended
   },
   setActiveStep = () => {
@@ -80,7 +85,13 @@ export default function ScheduleAppointment({
           </Button>
         </Stack>
 
-        {selectedSelf === 2 ? <AppointmentForm isForMyself={false} /> : null}
+        {selectedSelf === 2 ? (
+          <AppointmentForm
+            patientData={patientData}
+            isForMyself={false}
+            OnSubmit={OnSubmit}
+          />
+        ) : null}
 
         <Divider />
         {selectedSelf === 1 ? (
@@ -90,8 +101,8 @@ export default function ScheduleAppointment({
               width: { xs: "100%", md: "222px" },
               background: "#0095A9",
             }}
-            style={styles.continueButton}
-            onClick={() => setActiveStep(3)}
+            style={styles.continueText}
+            onClick={() => setActiveStep(isLoggedIn ? 5 : 3)}
           >
             {t("continue")}
           </Button>

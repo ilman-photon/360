@@ -43,7 +43,7 @@ exports[`App renders App unchanged 1`] = `
       class="defaultContainer"
     >
       <div
-        class="MuiBox-root css-0"
+        class="css-16ml5pn-MuiStack-root"
       >
         <div
           class="mobileFilterContainer MuiBox-root css-0"
@@ -65,7 +65,7 @@ exports[`App renders App unchanged 1`] = `
                 >
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1axqcvu-MuiSvgIcon-root"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-140nw66-MuiSvgIcon-root"
                     data-testid="LocationOnOutlinedIcon"
                     focusable="false"
                     viewBox="0 0 24 24"
@@ -80,7 +80,7 @@ exports[`App renders App unchanged 1`] = `
                     />
                   </svg>
                   <div
-                    class="MuiFormControl-root MuiTextField-root custom-input css-bmp0qn-MuiFormControl-root-MuiTextField-root"
+                    class="MuiFormControl-root MuiTextField-root custom-input css-1l52np-MuiFormControl-root-MuiTextField-root"
                     withicon="true"
                   >
                     <label
@@ -130,7 +130,7 @@ exports[`App renders App unchanged 1`] = `
                 >
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1jfo3up-MuiSvgIcon-root"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-nes594-MuiSvgIcon-root"
                     data-testid="CalendarTodayIcon"
                     focusable="false"
                     viewBox="0 0 24 24"
@@ -140,12 +140,12 @@ exports[`App renders App unchanged 1`] = `
                     />
                   </svg>
                   <div
-                    class="MuiFormControl-root MuiTextField-root custom-input css-bmp0qn-MuiFormControl-root-MuiTextField-root"
+                    class="MuiFormControl-root MuiTextField-root custom-input css-1l52np-MuiFormControl-root-MuiTextField-root"
                     withicon="true"
                   >
                     <label
-                      class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
-                      data-shrink="true"
+                      class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
+                      data-shrink="false"
                       for=":r1:"
                       id=":r1:-label"
                     >
@@ -161,7 +161,7 @@ exports[`App renders App unchanged 1`] = `
                         placeholder=""
                         readonly=""
                         type="default"
-                        value="Apr 1, 2022"
+                        value=""
                       />
                     </div>
                   </div>
@@ -175,7 +175,7 @@ exports[`App renders App unchanged 1`] = `
                 >
                   <svg
                     aria-hidden="true"
-                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1noajlf-MuiSvgIcon-root"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-zzcmfp-MuiSvgIcon-root"
                     data-testid="VisibilityOutlinedIcon"
                     focusable="false"
                     viewBox="0 0 24 24"
@@ -185,7 +185,7 @@ exports[`App renders App unchanged 1`] = `
                     />
                   </svg>
                   <div
-                    class="MuiFormControl-root MuiTextField-root custom-input css-bmp0qn-MuiFormControl-root-MuiTextField-root"
+                    class="MuiFormControl-root MuiTextField-root custom-input css-1l52np-MuiFormControl-root-MuiTextField-root"
                     withicon="true"
                   >
                     <label
@@ -224,7 +224,7 @@ exports[`App renders App unchanged 1`] = `
                   class="MuiBox-root css-1iqw0sw"
                 >
                   <div
-                    class="MuiBox-root css-42igfv"
+                    class="MuiBox-root css-132diu7"
                   >
                     <span
                       style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
@@ -250,7 +250,7 @@ exports[`App renders App unchanged 1`] = `
                     </span>
                   </div>
                   <div
-                    class="MuiFormControl-root MuiTextField-root custom-input css-bmp0qn-MuiFormControl-root-MuiTextField-root"
+                    class="MuiFormControl-root MuiTextField-root custom-input css-1l52np-MuiFormControl-root-MuiTextField-root"
                     withicon="true"
                   >
                     <label

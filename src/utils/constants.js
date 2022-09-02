@@ -142,5 +142,8 @@ module.exports = {
       uploadFrontImage: "loc_btnUploadFront",
       uploadBackImage: "loc_btnUploadBack",
     },
+    SEARCH_PROVIDER_TEST_ID: {
+      viewAll: "loc_viewAll",
+    },
   },
 };

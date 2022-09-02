@@ -14,7 +14,7 @@ import { formatDate } from "../../../utils/dateFormatter";
 import { colors } from "../../../styles/theme";
 
 export default function AppointmentDetails({
-  appointmentData = { insuranceCarrier: [] },
+  appointmentData = {},
   OnEditClicked = () => {
     // This is intended
   },
@@ -63,8 +63,8 @@ export default function AppointmentDetails({
             sxText={{ paddingLeft: "4px", color: colors.darkGreen }}
           >
             <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
-              {appointmentData.insuranceCarrier.length > 0
-                ? appointmentData.insuranceCarrier.join(", ")
+              {appointmentData.insuranceCarrier
+                ? appointmentData.insuranceCarrier
                 : "No Insurance provided"}
             </Typography>
           </LabelWithInfo>
@@ -76,7 +76,7 @@ export default function AppointmentDetails({
             sxText={{ paddingLeft: "4px", color: colors.darkGreen }}
           >
             <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
-              {appointmentData.appointmentType}
+              {appointmentData.appointmentType || "-"}
             </Typography>
           </LabelWithInfo>
         </Stack>

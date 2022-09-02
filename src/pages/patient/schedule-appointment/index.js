@@ -1,23 +1,35 @@
 import * as React from "react";
+import Cookies from "universal-cookie";
 import ScheduleAppointment from "../../../components/organisms/ScheduleAppointment/scheduleAppointment";
 import AppointmentLocation from "../../../components/organisms/ScheduleAppointment/appointmentLocation";
 import AppointmentDetails from "../../../components/organisms/ScheduleAppointment/appointmentDetails";
 import AppointmentForm from "../../../components/organisms/ScheduleAppointment/appointmentForm";
+import ModalScheduling from "../../../components/organisms/ScheduleAppointment/modalScheduling";
+import DrawerScheduling from "../../../components/organisms/ScheduleAppointment/drawerScheduling";
+
 import StepperAppoinment from "../../../components/molecules/StepperAppoinment/stepperAppoinment";
 import AccountTitleHeading from "../../../components/atoms/AccountTitleHeading/accountTitleHeading";
+import styles from "./styles.module.scss";
 
 import BaseHeader from "../../../components/organisms/BaseHeader/baseHeader";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { LabelWithIcon } from "../../../components/atoms/LabelWithIcon/labelWithIcon";
 
-import { Button, Grid, Box, Divider, useMediaQuery } from "@mui/material";
+import {
+  Button,
+  Grid,
+  Box,
+  Divider,
+  useMediaQuery,
+  Stack,
+} from "@mui/material";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "../../../store/store";
-import styles from "./styles.module.scss";
 import { useTranslation } from "next-i18next";
-import { setDummyAppointmentSchedule } from "../../../store/appointment";
 import { useRouter } from "next/router";
+import { editAppointmentScheduleData } from "../../../store/appointment";
+import { fetchUser } from "../../../store/user";
 
 const MobileTopBar = (data) => {
   return (
@@ -46,6 +58,8 @@ const MobileTopBar = (data) => {
 
 export const PageContent = ({
   activeStep,
+  isLoggedIn = false,
+  dispatch,
   appointmentScheduleData = {},
   OnsetActiveStep = () => {
     // This is intentional
@@ -59,12 +73,21 @@ export const PageContent = ({
     keyPrefix: "scheduleAppoinment",
   });
 
+  const handleFormSubmit = (payload) => {
+    dispatch(
+      editAppointmentScheduleData({
+        key: "patientInfo",
+        value: payload,
+      })
+    );
+    OnsetActiveStep();
+  };
+
   switch (activeStep) {
     case 1:
       return (
         <>
           <Grid
-            xs={12}
             className={styles.examForComponent}
             p={{ xs: "24px 14px", md: "40px 16px" }}
           >
@@ -77,7 +100,7 @@ export const PageContent = ({
               OnEditClicked={OnEditClicked}
             />
             <Divider sx={{ mt: 2 }} />
-            <Box sx={{ p: "16px 0", float: "right" }}>
+            <Stack sx={{ p: "16px 0", justifyContent: "right" }}>
               <Button
                 variant="contained"
                 className={styles.continueButton}
@@ -88,9 +111,9 @@ export const PageContent = ({
                 }}
                 onClick={() => OnsetActiveStep(2)}
               >
-                {t("continue")}
+                {isLoggedIn ? t("scheduleAppoinment") : t("continue")}
               </Button>
-            </Box>
+            </Stack>
           </Grid>
         </>
       );
@@ -106,7 +129,12 @@ export const PageContent = ({
             p={{ xs: "24px 14px", md: "40px 16px" }}
           >
             <ScheduleAppointment
+              patientData={appointmentScheduleData.patientInfo}
               selectedSelf={selectedSelf}
+              OnSubmit={(v) => {
+                handleFormSubmit(v);
+                OnsetActiveStep(4);
+              }}
               OnSetSelectedSelf={(idx) => setSelectedSelf(idx)}
               setActiveStep={(idx) => OnsetActiveStep(idx)}
             />
@@ -134,7 +162,14 @@ export const PageContent = ({
             className={styles.examForComponent}
             p={{ xs: "24px 14px", md: "40px 16px" }}
           >
-            <AppointmentForm isForMyself={true} />
+            <AppointmentForm
+              isForMyself={true}
+              patientData={appointmentScheduleData.patientInfo}
+              OnSubmit={(v) => {
+                handleFormSubmit(v);
+                OnsetActiveStep(4);
+              }}
+            />
           </Grid>
           <Grid md={4} pl={2} sx={{ display: { xs: "none", md: "block" } }}>
             <AppointmentLocation
@@ -155,8 +190,10 @@ export const PageContent = ({
 export default function ScheduleAppointmentPage() {
   const [activeStep, setActiveStep] = React.useState(1);
   const isDesktop = useMediaQuery("(min-width: 769px)");
+  const [isOpen, setIsOpen] = React.useState(true);
 
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const steps = [
     "Location",
@@ -174,21 +211,77 @@ export default function ScheduleAppointmentPage() {
     "Confirm",
   ];
 
-  const appointmentScheduleData = useSelector(
-    (state) => state.appointment.appointmentSchedule
-  );
+  const appointmentScheduleData = useSelector((state) => {
+    return state.appointment.appointmentSchedule;
+  });
 
   const handleEditSchedule = () => {
     console.log("change schedule data");
     router.push("/patient/appointment");
   };
 
-  // dummy data set, delete later
-  const dispatch = useDispatch();
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   React.useEffect(() => {
-    dispatch(setDummyAppointmentSchedule());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    const cookies = new Cookies();
+    const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
+    setIsLoggedIn(isLogin);
   }, []);
+
+  React.useEffect(() => {
+    dispatch(fetchUser());
+  }, [dispatch]);
+
+  const userData = useSelector((state) => state.user.userData);
+
+  React.useEffect(() => {
+    console.log({ isLoggedIn });
+    if (isLoggedIn) {
+      dispatch(
+        editAppointmentScheduleData({
+          key: "patientInfo",
+          value: {
+            name: userData.name,
+            firstName: userData.firstName,
+            lastName: userData.lastName,
+            dob: userData.dob,
+            phoneNumber: userData.mobile,
+
+            email: userData.email,
+            preferredCommunication: userData.preferredCommunication,
+          },
+        })
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isLoggedIn]);
+
+  const handleSetActiveStep = (idx) => {
+    if (isLoggedIn) {
+      setActiveStep(4);
+    } else {
+      setActiveStep(idx);
+    }
+  };
+
+  const modalConfirmSchedule = () => {
+    return isDesktop ? (
+      <ModalScheduling
+        isLoggedIn={isLoggedIn}
+        patientData={appointmentScheduleData.patientInfo}
+        providerData={appointmentScheduleData.providerInfo}
+        isOpen={isOpen}
+        OnSetIsOpen={(idx) => setIsOpen(idx)}
+      />
+    ) : (
+      <DrawerScheduling
+        isLoggedIn={isLoggedIn}
+        patientData={appointmentScheduleData.patientInfo}
+        providerData={appointmentScheduleData.providerInfo}
+        isOpen={isOpen}
+        OnSetIsOpen={(idx) => setIsOpen(idx)}
+      />
+    );
+  };
 
   return (
     <section style={{ paddingTop: "64px" }}>
@@ -206,8 +299,10 @@ export default function ScheduleAppointmentPage() {
         </Grid>
       ) : null}
       <Grid
+        width="100%"
         className={isDesktop ? styles.container : ""}
         p={{ xs: "24px 14px 0", md: "30px 40px 0" }}
+        sx={{ justifyContent: "center" }}
       >
         <Box className={styles.pageWrapper}>
           <Button
@@ -230,19 +325,24 @@ export default function ScheduleAppointmentPage() {
         </Box>
       </Grid>
       <Grid
+        width="100%"
         container
         className={styles.container}
         sx={isDesktop ? { p: "24px 40px" } : { p: 0 }}
       >
         <div className={styles.pageWrapper}>
           <PageContent
+            dispatch={dispatch}
+            isLoggedIn={isLoggedIn}
             activeStep={activeStep}
-            OnsetActiveStep={(idx) => setActiveStep(idx)}
+            OnsetActiveStep={handleSetActiveStep}
             appointmentScheduleData={appointmentScheduleData}
             OnEditClicked={handleEditSchedule}
           />
         </div>
       </Grid>
+
+      {activeStep === 4 ? modalConfirmSchedule() : null}
     </section>
   );
 }

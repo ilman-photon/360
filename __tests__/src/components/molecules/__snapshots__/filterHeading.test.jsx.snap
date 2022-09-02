@@ -23,7 +23,7 @@ Object {
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-133l51b-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-145921m-MuiSvgIcon-root"
                   data-testid="LocationOnOutlinedIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -118,7 +118,7 @@ Object {
                 >
                   <input
                     aria-invalid="false"
-                    aria-label="Choose date, selected date is Apr 1, 2022"
+                    aria-label="Choose date"
                     aria-readonly="true"
                     class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                     id=":r2:"
@@ -331,7 +331,7 @@ Object {
             >
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-133l51b-MuiSvgIcon-root"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-145921m-MuiSvgIcon-root"
                 data-testid="LocationOnOutlinedIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
@@ -426,7 +426,7 @@ Object {
               >
                 <input
                   aria-invalid="false"
-                  aria-label="Choose date, selected date is Apr 1, 2022"
+                  aria-label="Choose date"
                   aria-readonly="true"
                   class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                   id=":r2:"
@@ -696,7 +696,7 @@ Object {
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-133l51b-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-145921m-MuiSvgIcon-root"
                   data-testid="LocationOnOutlinedIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -791,7 +791,7 @@ Object {
                 >
                   <input
                     aria-invalid="false"
-                    aria-label="Choose date, selected date is Apr 1, 2022"
+                    aria-label="Choose date"
                     aria-readonly="true"
                     class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                     id=":r8:"
@@ -1003,7 +1003,7 @@ Object {
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-133l51b-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-145921m-MuiSvgIcon-root"
                   data-testid="LocationOnOutlinedIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -1098,7 +1098,7 @@ Object {
                 >
                   <input
                     aria-invalid="false"
-                    aria-label="Choose date, selected date is Apr 1, 2022"
+                    aria-label="Choose date"
                     aria-readonly="true"
                     class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                     id=":re:"
@@ -1311,7 +1311,7 @@ Object {
             >
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-133l51b-MuiSvgIcon-root"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-145921m-MuiSvgIcon-root"
                 data-testid="LocationOnOutlinedIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
@@ -1406,7 +1406,7 @@ Object {
               >
                 <input
                   aria-invalid="false"
-                  aria-label="Choose date, selected date is Apr 1, 2022"
+                  aria-label="Choose date"
                   aria-readonly="true"
                   class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                   id=":re:"
