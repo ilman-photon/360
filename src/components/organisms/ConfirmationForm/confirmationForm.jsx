@@ -45,7 +45,7 @@ const ConfirmationForm = ({
   return (
     <>
       <Head>
-        <title>{pageTitle}</title>
+        <title>{`EyeCare Patient Portal - ${pageTitle}`}</title>
       </Head>
       <Card className={globalStyles.container} style={styles.cardStyle}>
         <CardContent style={styles.cardContentStyle}>
