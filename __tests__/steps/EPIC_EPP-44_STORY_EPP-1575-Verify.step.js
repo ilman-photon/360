@@ -12,7 +12,7 @@ defineFeature(feature, (test) => {
     expect(true).toBeTruthy();
   };
 
-  test('EPIC_EPP-44_STORY_EPP-1575 - Verify user able to view the appointment confirmation message after scheduling an appointment as guest.', ({ given, when, then, and }) => {
+  test('EPIC_EPP-44_STORY_EPP-1575 - Verify user able to view the appointment confirmation message after scheduling an appointment as guest.', ({ given, then, and }) => {
     given('user launch the Marketing Site url', () => {
         defaultValidation();
     });
@@ -114,7 +114,7 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1575 - Verify user able to view the appointment confirmation message after scheduling an appointment as guest and user not providing the purpose of visit..', ({ given, when, then, and }) => {
+  test('EPIC_EPP-44_STORY_EPP-1575 - Verify user able to view the appointment confirmation message after scheduling an appointment as guest and user not providing the purpose of visit..', ({ given, then, and }) => {
     given('user launch the Marketing Site url', () => {
         defaultValidation();
     });
@@ -216,7 +216,7 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1575 - Verify user able to view the appointment confirmation message after scheduling an appointment as guest and user not providing the insurance name.', ({ given, when, then, and }) => {
+  test('EPIC_EPP-44_STORY_EPP-1575 - Verify user able to view the appointment confirmation message after scheduling an appointment as guest and user not providing the insurance name.', ({ given, then, and }) => {
     given('user launch the Marketing Site url', () => {
         defaultValidation();
     });
@@ -318,7 +318,7 @@ defineFeature(feature, (test) => {
     });
    });
 
-   test('EPIC_EPP-44_STORY_EPP-1575 - Verify user able to view the appointment confirmation message after scheduling an appointment as guest and user not providing the purpose of visit and insurance name.', ({ given, when, then, and }) => {
+   test('EPIC_EPP-44_STORY_EPP-1575 - Verify user able to view the appointment confirmation message after scheduling an appointment as guest and user not providing the purpose of visit and insurance name.', ({ given, then, and }) => {
     given('user launch the Marketing Site url', () => {
         defaultValidation();
     });

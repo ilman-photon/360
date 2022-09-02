@@ -6,6 +6,7 @@ import { Box } from "@mui/material";
 
 export const DrawerScheduling = ({
   isOpen = false,
+  isLoggedIn,
   OnSetIsOpen = () => {
     // This is intended
   },
@@ -17,7 +18,10 @@ export const DrawerScheduling = ({
           sx={{ width: "100%", padding: { xs: 0, md: 2 } }}
           role="presentation"
         >
-          <ModalConfirmContent OnSetIsOpen={OnSetIsOpen} />
+          <ModalConfirmContent
+            OnSetIsOpen={OnSetIsOpen}
+            isLoggedIn={isLoggedIn}
+          />
         </Box>
       </SwipeableDrawer>
     </>

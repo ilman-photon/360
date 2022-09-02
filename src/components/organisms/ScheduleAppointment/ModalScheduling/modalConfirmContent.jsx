@@ -11,8 +11,6 @@ import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
-import Cookies from "universal-cookie";
-
 import { colors } from "../../../../styles/theme";
 import styles from "./modalScheduling.module.scss";
 import ProviderProfile from "../../../molecules/ProviderProfile/providerProfile";
@@ -62,6 +60,7 @@ BootstrapDialogTitle.propTypes = {
 export default function ModalConfirmContent({
   patientData = {},
   providerData = {},
+  isLoggedIn,
   OnClose = () => {
     // This is intended
   },
@@ -71,20 +70,12 @@ export default function ModalConfirmContent({
 }) {
   console.log({ providerData });
   const { REGISTER_TEST_ID } = constants.TEST_ID;
-  const [isUserLoged, setUserLoged] = React.useState(false);
-
-  React.useEffect(() => {
-    const cookies = new Cookies();
-    const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
-    setUserLoged(isLogin);
-  }, []);
 
   const { t } = useTranslation("translation", {
     keyPrefix: "scheduleAppoinment",
   });
 
   const handleClose = () => {
-    console.log("masuif");
     OnSetIsOpen(false);
     OnClose();
   };
@@ -230,7 +221,7 @@ export default function ModalConfirmContent({
           </CardContent>
         </Card>
 
-        {!isUserLoged ? (
+        {!isLoggedIn ? (
           <div className={styles.bottomParagraph}>
             <Typography variant="caption" sx={{ fontSize: "16px" }}>
               Already have an account?{" "}

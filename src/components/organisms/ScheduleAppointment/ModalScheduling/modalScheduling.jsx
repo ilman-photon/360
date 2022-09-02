@@ -6,6 +6,7 @@ import { Box } from "@mui/material";
 
 export default function ModalScheduling({
   isOpen,
+  isLoggedIn,
   OnSetIsOpen = () => {
     // This is intended
   },
@@ -13,9 +14,9 @@ export default function ModalScheduling({
   return (
     <Box>
       <Dialog
-        onClose={() => OnSetIsOpen(false)}
         aria-labelledby="customized-dialog-title"
         open={isOpen}
+        isLoggedIn={isLoggedIn}
       >
         <ModalConfirmContent OnSetIsOpen={OnSetIsOpen} />
       </Dialog>
