@@ -107,8 +107,8 @@ Object {
                     withicon="true"
                   >
                     <label
-                      class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
-                      data-shrink="false"
+                      class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
+                      data-shrink="true"
                       for=":r1:"
                       id=":r1:-label"
                     >
@@ -124,7 +124,7 @@ Object {
                         placeholder=""
                         readonly=""
                         type="default"
-                        value=""
+                        value="Sep 2, 2022"
                       />
                     </div>
                   </div>
@@ -398,8 +398,8 @@ Object {
                   withicon="true"
                 >
                   <label
-                    class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
-                    data-shrink="false"
+                    class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
+                    data-shrink="true"
                     for=":r1:"
                     id=":r1:-label"
                   >
@@ -415,7 +415,7 @@ Object {
                       placeholder=""
                       readonly=""
                       type="default"
-                      value=""
+                      value="Sep 2, 2022"
                     />
                   </div>
                 </div>

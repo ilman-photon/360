@@ -118,7 +118,7 @@ Object {
                 >
                   <input
                     aria-invalid="false"
-                    aria-label="Choose date"
+                    aria-label="Choose date, selected date is Apr 1, 2022"
                     aria-readonly="true"
                     class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                     id=":r2:"
@@ -268,7 +268,7 @@ Object {
               </div>
             </div>
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-1jf053t-MuiButtonBase-root-MuiButton-root"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-fruob7-MuiButtonBase-root-MuiButton-root"
               data-testid="searchbtn"
               tabindex="0"
               type="submit"
@@ -426,7 +426,7 @@ Object {
               >
                 <input
                   aria-invalid="false"
-                  aria-label="Choose date"
+                  aria-label="Choose date, selected date is Apr 1, 2022"
                   aria-readonly="true"
                   class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                   id=":r2:"
@@ -576,7 +576,7 @@ Object {
             </div>
           </div>
           <button
-            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-1jf053t-MuiButtonBase-root-MuiButton-root"
+            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-fruob7-MuiButtonBase-root-MuiButton-root"
             data-testid="searchbtn"
             tabindex="0"
             type="submit"
@@ -791,7 +791,7 @@ Object {
                 >
                   <input
                     aria-invalid="false"
-                    aria-label="Choose date"
+                    aria-label="Choose date, selected date is Apr 1, 2022"
                     aria-readonly="true"
                     class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                     id=":r8:"
@@ -941,7 +941,7 @@ Object {
               </div>
             </div>
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-1jf053t-MuiButtonBase-root-MuiButton-root"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-fruob7-MuiButtonBase-root-MuiButton-root"
               data-testid="searchbtn"
               tabindex="0"
               type="submit"
@@ -1098,7 +1098,7 @@ Object {
                 >
                   <input
                     aria-invalid="false"
-                    aria-label="Choose date"
+                    aria-label="Choose date, selected date is Apr 1, 2022"
                     aria-readonly="true"
                     class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                     id=":re:"
@@ -1248,7 +1248,7 @@ Object {
               </div>
             </div>
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-1jf053t-MuiButtonBase-root-MuiButton-root"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-fruob7-MuiButtonBase-root-MuiButton-root"
               data-testid="searchbtn"
               tabindex="0"
               type="submit"
@@ -1406,7 +1406,7 @@ Object {
               >
                 <input
                   aria-invalid="false"
-                  aria-label="Choose date"
+                  aria-label="Choose date, selected date is Apr 1, 2022"
                   aria-readonly="true"
                   class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                   id=":re:"
@@ -1556,7 +1556,7 @@ Object {
             </div>
           </div>
           <button
-            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-1jf053t-MuiButtonBase-root-MuiButton-root"
+            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter  css-fruob7-MuiButtonBase-root-MuiButton-root"
             data-testid="searchbtn"
             tabindex="0"
             type="submit"
