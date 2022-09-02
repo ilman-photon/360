@@ -161,4 +161,21 @@ export class Api {
         });
     });
   }
+
+  async getUSListOfStates() {
+    const usStatesApiUrl =
+      "https://public.opendatasoft.com/api/records/1.0/search/?dataset=georef-united-states-of-america-state&q=&sort=ste_name&facet=ste_name&rows=99";
+    try {
+      const response = await this.getResponse(usStatesApiUrl, null, "get");
+      return response.records.map((record) => {
+        return {
+          id: record.datasetid,
+          label: record.fields.ste_name,
+          value: record.fields.ste_name,
+        };
+      });
+    } catch (error) {
+      console.error({ error });
+    }
+  }
 }

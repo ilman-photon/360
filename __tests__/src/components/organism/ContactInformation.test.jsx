@@ -88,10 +88,8 @@ describe("ContactInformation Components", () => {
     fireEvent.change(field4, { target: { value: "Cities" } });
     expect(field4.value).toEqual("Cities");
 
-    const field5 = container.getByLabelText("State");
-    expect(field5.value).toEqual("South Dakota");
-    fireEvent.change(field5, { target: { value: "West Dakota" } });
-    expect(field5.value).toEqual("West Dakota");
+    const field5 = await waitFor(() => container.getByTestId("styled-select-state"));
+    expect(field5).toBeTruthy();
 
     const field6 = container.getByLabelText("Zip");
     expect(field6.value).toEqual("03245");
