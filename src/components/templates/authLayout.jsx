@@ -37,7 +37,7 @@ export default function AuthLayout({
   return (
     <>
       <Head>
-        <title>{titleState}</title>
+        <title>{`EyeCare Patient Portal - ${titleState}`}</title>
       </Head>
       <div className={styles.authLayout}>
         <BaseHeader></BaseHeader>

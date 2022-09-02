@@ -14,7 +14,7 @@ export default function AppointmentLayout({
   return (
     <>
       <Head>
-        <title>Appointment</title>
+        <title>EyeCare Patient Portal - Appointment</title>
       </Head>
       <div className={styles.defaultLayout}>
         <BaseHeader
