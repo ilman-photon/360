@@ -36,7 +36,7 @@ export default function getSugestion(req, res) {
       ListOfProvider: [
         {
           providerId: "1",
-          image: "http//:img-url",
+          image: "/doctor.png",
           name: "Paul Wagner Md",
           rating: "5",
           phoneNumber: "857299998",
@@ -44,8 +44,13 @@ export default function getSugestion(req, res) {
           about:
             "Dr. Esfandiari’s current areas of emphasis include primary eye care, specialty contact lenses, refractive surgery consultation, surgical co-management. Dr. Esfandiari’s knowledge and experience in ophthalmic optics has continually helped patients obtain optimal and healthy vision.show more",
           gender: "Male",
-          address:
-            "51 West 51st Street, Floor 3, Suite 320 Midtown, New York, NY, 10019",
+          address: {
+            addressLine1: "673 Herzog Locks",
+            addressLine2: "Suite 300",
+            city: "New York",
+            state: "NY",
+            zipcode: "53891",
+          },
           distance: "10 mi",
           language: ["English", "Spanish"],
           networkInsurance: [
@@ -59,10 +64,374 @@ export default function getSugestion(req, res) {
             "Cigna",
             "UnitedHeathcare",
           ],
+          location: {
+            latitude: 41.481832,
+            longitude: -87.323177,
+          },
           education:
             "New England College of Optometry, Doctor of Optometry University of California, San Diego (Bachelor’s) ",
           membershipsAffiliation:
             "New England College of Optometry, Doctor of Optometry University of California, San Diego (Bachelor’s)",
+          availability: [
+            {
+              date: "2022-07-18",
+              list: [
+                {
+                  time: "11:30am",
+                  key: 12222,
+                },
+                {
+                  time: "12:30am",
+                  key: 12223,
+                },
+              ],
+            },
+            {
+              date: "2022-07-19",
+              list: [],
+            },
+            {
+              date: "2022-07-20",
+              list: [
+                {
+                  time: "08:30am",
+                  key: 12222,
+                },
+                {
+                  time: "09:30am",
+                  key: 12223,
+                },
+              ],
+            },
+            {
+              date: "2022-07-21",
+              list: [
+                {
+                  time: "11:30am",
+                  key: 12222,
+                },
+                {
+                  time: "12:30am",
+                  key: 12223,
+                },
+              ],
+            },
+            {
+              date: "2022-07-22",
+              list: [
+                {
+                  time: "11:30am",
+                  key: 12222,
+                },
+                {
+                  time: "12:30am",
+                  key: 12223,
+                },
+              ],
+            },
+            {
+              date: "2022-07-23",
+              list: [
+                {
+                  time: "11:30am",
+                  key: 12222,
+                },
+                {
+                  time: "12:30am",
+                  key: 12223,
+                },
+              ],
+            },
+          ],
+        },
+        {
+          providerId: "1",
+          image: "/doctor.png",
+          name: "Paul Wagner Md",
+          rating: "5",
+          phoneNumber: "857299998",
+          specialties: ["Opthometry", "Opthalmology", "Catarac", "Glaucoma"],
+          about:
+            "Dr. Esfandiari’s current areas of emphasis include primary eye care, specialty contact lenses, refractive surgery consultation, surgical co-management. Dr. Esfandiari’s knowledge and experience in ophthalmic optics has continually helped patients obtain optimal and healthy vision.show more",
+          gender: "Male",
+          address: {
+            addressLine1: "673 Herzog Locks",
+            addressLine2: "Suite 300",
+            city: "New York",
+            state: "NY",
+            zipcode: "53891",
+          },
+          distance: "10 mi",
+          language: ["English", "Spanish"],
+          networkInsurance: [
+            "Blue Cross Blue Shield",
+            "Cigna",
+            "UnitedHeathcare",
+            "Blue Cross Blue Shield",
+            "Cigna",
+            "UnitedHeathcare",
+            "Blue Cross Blue Shield",
+            "Cigna",
+            "UnitedHeathcare",
+          ],
+          location: {
+            latitude: 41.481832,
+            longitude: -87.323177,
+          },
+          education:
+            "New England College of Optometry, Doctor of Optometry University of California, San Diego (Bachelor’s) ",
+          membershipsAffiliation:
+            "New England College of Optometry, Doctor of Optometry University of California, San Diego (Bachelor’s)",
+          availability: [
+            {
+              date: "2022-07-18",
+              list: [
+                {
+                  time: "11:30am",
+                  key: 12222,
+                },
+                {
+                  time: "12:30am",
+                  key: 12223,
+                },
+              ],
+            },
+            {
+              date: "2022-07-19",
+              list: [],
+            },
+            {
+              date: "2022-07-20",
+              list: [
+                {
+                  time: "08:30am",
+                  key: 12222,
+                },
+                {
+                  time: "09:30am",
+                  key: 12223,
+                },
+              ],
+            },
+            {
+              date: "2022-07-21",
+              list: [
+                {
+                  time: "11:30am",
+                  key: 12222,
+                },
+                {
+                  time: "12:30am",
+                  key: 12223,
+                },
+              ],
+            },
+            {
+              date: "2022-07-22",
+              list: [
+                {
+                  time: "11:30am",
+                  key: 12222,
+                },
+                {
+                  time: "12:30am",
+                  key: 12223,
+                },
+              ],
+            },
+            {
+              date: "2022-07-23",
+              list: [
+                {
+                  time: "11:30am",
+                  key: 12222,
+                },
+                {
+                  time: "12:30am",
+                  key: 12223,
+                },
+              ],
+            },
+          ],
+        },
+        {
+          providerId: "1",
+          image: "/doctor.png",
+          name: "Paul Wagner Md",
+          rating: "5",
+          phoneNumber: "857299998",
+          specialties: ["Opthometry", "Opthalmology", "Catarac", "Glaucoma"],
+          about:
+            "Dr. Esfandiari’s current areas of emphasis include primary eye care, specialty contact lenses, refractive surgery consultation, surgical co-management. Dr. Esfandiari’s knowledge and experience in ophthalmic optics has continually helped patients obtain optimal and healthy vision.show more",
+          gender: "Male",
+          address: {
+            addressLine1: "673 Herzog Locks",
+            addressLine2: "Suite 300",
+            city: "New York",
+            state: "NY",
+            zipcode: "53891",
+          },
+          distance: "10 mi",
+          language: ["English", "Spanish"],
+          networkInsurance: [
+            "Blue Cross Blue Shield",
+            "Cigna",
+            "UnitedHeathcare",
+            "Blue Cross Blue Shield",
+            "Cigna",
+            "UnitedHeathcare",
+            "Blue Cross Blue Shield",
+            "Cigna",
+            "UnitedHeathcare",
+          ],
+          location: {
+            latitude: 41.481832,
+            longitude: -87.323177,
+          },
+          education:
+            "New England College of Optometry, Doctor of Optometry University of California, San Diego (Bachelor’s) ",
+          membershipsAffiliation:
+            "New England College of Optometry, Doctor of Optometry University of California, San Diego (Bachelor’s)",
+          availability: [
+            {
+              date: "2022-07-18",
+              list: [
+                {
+                  time: "11:30am",
+                  key: 12222,
+                },
+                {
+                  time: "12:30am",
+                  key: 12223,
+                },
+              ],
+            },
+            {
+              date: "2022-07-19",
+              list: [],
+            },
+            {
+              date: "2022-07-20",
+              list: [
+                {
+                  time: "08:30am",
+                  key: 12222,
+                },
+                {
+                  time: "09:30am",
+                  key: 12223,
+                },
+              ],
+            },
+            {
+              date: "2022-07-21",
+              list: [
+                {
+                  time: "11:30am",
+                  key: 12222,
+                },
+                {
+                  time: "12:30am",
+                  key: 12223,
+                },
+              ],
+            },
+            {
+              date: "2022-07-22",
+              list: [
+                {
+                  time: "11:30am",
+                  key: 12222,
+                },
+                {
+                  time: "12:30am",
+                  key: 12223,
+                },
+              ],
+            },
+            {
+              date: "2022-07-23",
+              list: [
+                {
+                  time: "11:30am",
+                  key: 12222,
+                },
+                {
+                  time: "12:30am",
+                  key: 12223,
+                },
+              ],
+            },
+          ],
+        },
+      ],
+      FilterbyData: [
+        {
+          name: "Available Today",
+          checked: false,
+        },
+        {
+          name: "language",
+          checklist: [
+            {
+              name: "Arabic",
+              checked: false,
+            },
+            {
+              name: "Chinese",
+              checked: false,
+            },
+            {
+              name: "English",
+              checked: false,
+            },
+            {
+              name: "Farsi",
+              checked: false,
+            },
+            {
+              name: "French",
+              checked: false,
+            },
+            {
+              name: "Spanish",
+              checked: false,
+            },
+            {
+              name: "Bahasa",
+              checked: false,
+            },
+          ],
+        },
+        {
+          name: "Insurance",
+          checklist: [
+            {
+              name: "In Network",
+              checked: false,
+            },
+            {
+              name: "Out of Network",
+              checked: false,
+            },
+          ],
+        },
+        {
+          name: "Gender",
+          checklist: [
+            {
+              name: "Male",
+              checked: false,
+            },
+            {
+              name: "Female",
+              checked: false,
+            },
+            {
+              name: "Non-Binary",
+              checked: false,
+            },
+          ],
         },
       ],
     });
