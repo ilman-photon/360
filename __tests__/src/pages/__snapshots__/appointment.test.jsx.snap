@@ -80,7 +80,7 @@ exports[`App renders App unchanged 1`] = `
                     />
                   </svg>
                   <div
-                    class="MuiFormControl-root MuiTextField-root custom-input css-1l52np-MuiFormControl-root-MuiTextField-root"
+                    class="MuiFormControl-root MuiTextField-root custom-input css-11mrpan-MuiFormControl-root-MuiTextField-root"
                     withicon="true"
                   >
                     <label
@@ -140,7 +140,7 @@ exports[`App renders App unchanged 1`] = `
                     />
                   </svg>
                   <div
-                    class="MuiFormControl-root MuiTextField-root custom-input css-1l52np-MuiFormControl-root-MuiTextField-root"
+                    class="MuiFormControl-root MuiTextField-root custom-input css-11mrpan-MuiFormControl-root-MuiTextField-root"
                     withicon="true"
                   >
                     <label
@@ -185,7 +185,7 @@ exports[`App renders App unchanged 1`] = `
                     />
                   </svg>
                   <div
-                    class="MuiFormControl-root MuiTextField-root custom-input css-1l52np-MuiFormControl-root-MuiTextField-root"
+                    class="MuiFormControl-root MuiTextField-root custom-input css-11mrpan-MuiFormControl-root-MuiTextField-root"
                     withicon="true"
                   >
                     <label
@@ -250,7 +250,7 @@ exports[`App renders App unchanged 1`] = `
                     </span>
                   </div>
                   <div
-                    class="MuiFormControl-root MuiTextField-root custom-input css-1l52np-MuiFormControl-root-MuiTextField-root"
+                    class="MuiFormControl-root MuiTextField-root custom-input css-11mrpan-MuiFormControl-root-MuiTextField-root"
                     withicon="true"
                   >
                     <label

@@ -21,8 +21,9 @@ const FilterHeadingFilled = ({
   openDialog,
   onCloseDialog = () => {},
   filterData,
-  isGeolocationEnabled,
   onSearchProvider = () => {},
+  purposeOfVisitData = [],
+  insuranceCarrierData = [],
 }) => {
   const { handleSubmit, control } = useForm({
     defaultValues: filterData,
@@ -30,12 +31,12 @@ const FilterHeadingFilled = ({
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
   const [isEmptyLocation, setEmptyLocation] = useState(false);
   const [step, setStep] = useState("filterMenu");
-  const mapsData = isGeolocationEnabled ? ["Use my current location"] : [];
 
   const onSubmit = (data) => {
     if (!data.location) {
       setEmptyLocation(true);
     } else {
+      onCloseDialog();
       onSearchProvider(data);
     }
   };
@@ -60,26 +61,8 @@ const FilterHeadingFilled = ({
     },
   };
 
-  const purposeOfVisitData = [
-    { title: "Eye exam", subtitle: "Test the health of your eye" },
-    { title: "Follow up", subtitle: "See your doctor today" },
-    { title: "Comprehensive", subtitle: "Get a detailed eye exam" },
-    { title: "Contacts only", subtitle: "Get fitted for the right contacts" },
-  ];
-
-  const insuranceCarrierData = [
-    { category: "", name: "I’m paying out of pocket" },
-    { category: "", name: "Skip and choose insurance later" },
-    { category: "", name: "Other Insurance", divider: true },
-    { category: "Popular carriers", name: "Aetna" },
-    { category: "Popular carriers", name: "Blue Cross Blue Shield" },
-    { category: "Popular carriers", name: "Cigna" },
-    { category: "Popular carriers", name: "Kaiser" },
-    { category: "all carriers", name: "Kaiser" },
-  ];
-
   function getContentDialog() {
-    let child = <></>;
+    let child = null;
     if (step === "filterMenu") {
       child = renderFilterMeu();
     } else {
@@ -91,7 +74,6 @@ const FilterHeadingFilled = ({
           minDate,
           maxDate,
           purposeOfVisitData,
-          openDialog: true,
           insuranceCarrierData,
           isDesktop: false,
         },

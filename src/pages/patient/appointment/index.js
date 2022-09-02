@@ -136,6 +136,24 @@ export default function Appointment({ googleApiKey }) {
     },
   ];
 
+  const purposeOfVisitData = [
+    { title: "Eye exam", subtitle: "Test the health of your eye" },
+    { title: "Follow up", subtitle: "See your doctor today" },
+    { title: "Comprehensive", subtitle: "Get a detailed eye exam" },
+    { title: "Contacts only", subtitle: "Get fitted for the right contacts" },
+  ];
+
+  const insuranceCarrierData = [
+    { category: "", name: "I’m paying out of pocket" },
+    { category: "", name: "Skip and choose insurance later" },
+    { category: "", name: "Other Insurance", divider: true },
+    { category: "Popular carriers", name: "Aetna" },
+    { category: "Popular carriers", name: "Blue Cross Blue Shield" },
+    { category: "Popular carriers", name: "Cigna" },
+    { category: "Popular carriers", name: "Kaiser" },
+    { category: "all carriers", name: "Kaiser" },
+  ];
+
   function onViewAllAvailability(providerData) {
     //TO DO: set data for view days schedule]
     setOpen(true);
@@ -301,6 +319,8 @@ export default function Appointment({ googleApiKey }) {
             isDesktop={isDesktop}
             filterData={dataFilter}
             onSearchProvider={onSearchProvider}
+            purposeOfVisitData={purposeOfVisitData}
+            insuranceCarrierData={insuranceCarrierData}
           />
           <Stack
             direction={"row"}
@@ -385,6 +405,8 @@ export default function Appointment({ googleApiKey }) {
             onSearchProvider={onSearchProvider}
             isGeolocationEnabled={isGeolocationEnabled}
             filterData={filterData}
+            purposeOfVisitData={purposeOfVisitData}
+            insuranceCarrierData={insuranceCarrierData}
           />
         </>
       ) : (

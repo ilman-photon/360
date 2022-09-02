@@ -30,6 +30,26 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { convertToDate } from "../../../utils/dateFormatter";
 
 export const imageSrcState = "/bx_insurance_card.png";
+export const muiInputRoot = "& .MuiFilledInput-root";
+export function keyDownPress(e, handleCloseDialog) {
+  if (e.code && e.code.toLowerCase() === "enter" && e.target.value) {
+    handleCloseDialog();
+    e.preventDefault();
+  }
+}
+
+export const locationIconUI = function () {
+  return (
+    <LocationOnOutlinedIcon
+      sx={{
+        margin: "auto 0",
+        width: "20px",
+        height: "20px",
+        color: colors.darkGreen,
+      }}
+    />
+  );
+};
 
 export function getDialogContents(
   {
@@ -40,7 +60,6 @@ export function getDialogContents(
     minDate,
     maxDate,
     purposeOfVisitData,
-    openDialog,
     insuranceCarrierData,
     isDesktop,
   },
@@ -120,7 +139,6 @@ export function getDialogContents(
             insuranceCarrierData,
             testid: "insuranceInput",
             isDesktop,
-            openDialog,
           },
           handleCloseDialog
         )}
@@ -157,21 +175,13 @@ export function getDialogContents(
                   label="City, state, or zip code"
                   sx={{
                     width: "100%",
-                    ["& .MuiFilledInput-root"]: {
-                      border: "0px solid #ffff",
+                    [muiInputRoot]: {
+                      border: "0px",
                       background: "#fff",
                     },
                   }}
                   onKeyDown={(e) => {
-                    if (
-                      e.code &&
-                      e.code.toLowerCase() === "enter" &&
-                      e.target.value
-                    ) {
-                      handleCloseDialog();
-                      e.preventDefault();
-                      return false;
-                    }
+                    keyDownPress(e, handleCloseDialog);
                   }}
                 />
               );
@@ -204,19 +214,6 @@ export function getDialogContents(
   }
   return child;
 }
-
-export const locationIconUI = function () {
-  return (
-    <LocationOnOutlinedIcon
-      sx={{
-        margin: "auto 0",
-        width: "20px",
-        height: "20px",
-        color: colors.darkGreen,
-      }}
-    />
-  );
-};
 
 export const dateIcon = (
   <CalendarTodayIcon
@@ -297,10 +294,16 @@ export const CustomPopper = function (props) {
           height: "349px",
           color: colors.darkGreen,
           "& .MuiListSubheader-root": {
-            textTransform: "capitalize",
+            fontSize: "14px",
+          },
+          "& .MuiListSubheader-root:first-letter": {
+            textTransform: "uppercase",
           },
           "& .MuiAutocomplete-option": {
             paddingLeft: "16px",
+            minHeight: "auto",
+            paddingTop: "3px",
+            paddingBottom: "12px",
           },
         },
       }}
@@ -318,11 +321,7 @@ export function onGetInsuranceCarrierStyle(isDesktop = true) {
   };
 }
 
-export function onRenderInputInsurance(
-  params,
-  handleCloseDialog = () => {},
-  openDialog = false
-) {
+export function onRenderInputInsurance(params, handleCloseDialog = () => {}) {
   return (
     <Box
       sx={{
@@ -346,16 +345,12 @@ export function onRenderInputInsurance(
           ...params.InputProps,
         }}
         sx={{
-          ["& .MuiFilledInput-root"]: {
-            border: "0px solid #ffff",
+          [muiInputRoot]: {
+            border: "0px",
           },
         }}
         onKeyDown={(e) => {
-          if (e.code && e.code.toLowerCase() === "enter" && e.target.value) {
-            handleCloseDialog();
-            e.preventDefault();
-            return false;
-          }
+          keyDownPress(e, handleCloseDialog);
         }}
       />
     </Box>
@@ -369,7 +364,6 @@ export function renderInsuranceCarrier(
     insuranceCarrierData = [],
     testid = "",
     isDesktop = true,
-    openDialog,
   },
   handleCloseDialog
 ) {
@@ -415,7 +409,7 @@ export function renderInsuranceCarrier(
               onChange(newInputValue);
             }}
             renderInput={(params) =>
-              onRenderInputInsurance(params, handleCloseDialog, openDialog)
+              onRenderInputInsurance(params, handleCloseDialog)
             }
             PaperComponent={(props) => {
               return (
@@ -452,8 +446,9 @@ const FilterHeading = ({
     // This is intentional
   },
   isGeolocationEnabled,
+  purposeOfVisitData = [],
+  insuranceCarrierData = [],
 }) => {
-  const muiInputRoot = "& .MuiFilledInput-root";
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
   const { handleSubmit, control } = useForm({
     defaultValues: filterData,
@@ -477,30 +472,12 @@ const FilterHeading = ({
   const maxDate = new Date(); // add arguments as needed
   maxDate.setMonth(maxDate.getMonth() + 3);
 
-  const purposeOfVisitData = [
-    { title: "Eye exam", subtitle: "Test the health of your eye" },
-    { title: "Follow up", subtitle: "See your doctor today" },
-    { title: "Comprehensive", subtitle: "Get a detailed eye exam" },
-    { title: "Contacts only", subtitle: "Get fitted for the right contacts" },
-  ];
-
-  const insuranceCarrierData = [
-    { category: "", name: "I’m paying out of pocket" },
-    { category: "", name: "Skip and choose insurance later" },
-    { category: "", name: "Other Insurance", divider: true },
-    { category: "Popular carriers", name: "Aetna" },
-    { category: "Popular carriers", name: "Blue Cross Blue Shield" },
-    { category: "Popular carriers", name: "Cigna" },
-    { category: "Popular carriers", name: "Kaiser" },
-    { category: "all carriers", name: "Kaiser" },
-  ];
-
   const sxTextField = {
     width: "100%",
     borderTopRightRadius: "50px",
     borderBottomRightRadius: "50px",
     [muiInputRoot]: {
-      border: "0px solid #ffff",
+      border: "0px",
       borderTopRightRadius: "50px",
       borderBottomRightRadius: "50px",
       backgroundColor: "#fff",
@@ -527,6 +504,11 @@ const FilterHeading = ({
       setEmptyLocation(false);
     }
   }
+
+  const handleCloseDialog = () => {
+    //Reset data when cancel the dialog
+    setOpenDialog(false);
+  };
 
   function renderLocationFilter() {
     return (
@@ -591,7 +573,7 @@ const FilterHeading = ({
                       borderTopLeftRadius: "50px",
                       borderTopRightRadius: "50px",
                       [muiInputRoot]: {
-                        border: "0px solid #ffff",
+                        border: "0px",
                       },
                     }}
                   />
@@ -647,7 +629,7 @@ const FilterHeading = ({
                 sx={{
                   margin: 0,
                   [muiInputRoot]: {
-                    border: "0px solid #ffff",
+                    border: "0px",
                   },
                 }}
                 onClick={() => setOpen(true)}
@@ -746,7 +728,6 @@ const FilterHeading = ({
                 insuranceCarrierData,
                 testid: APPOINTMENT_TEST_ID.insuranceInput,
                 isDesktop,
-                openDialog,
               },
               handleCloseDialog
             )}
@@ -953,7 +934,6 @@ const FilterHeading = ({
         minDate,
         maxDate,
         purposeOfVisitData,
-        openDialog,
         insuranceCarrierData,
         isDesktop,
       },
@@ -962,11 +942,6 @@ const FilterHeading = ({
     setContentDialog(child);
     setOpenDialog(true);
   }
-
-  const handleCloseDialog = () => {
-    //Reset data when cancel the dialog
-    setOpenDialog(false);
-  };
 
   function renderDialogFilter() {
     return (

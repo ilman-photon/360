@@ -27,6 +27,8 @@ export const FilterResultHeading = ({
     insuranceCarrier: "Aethna",
   },
   onSearchProvider = () => {},
+  purposeOfVisitData = [],
+  insuranceCarrierData = [],
 }) => {
   const imageSrcState = "/searchInputIcon.png";
   const imageSrcFilled = "/searchFilledIcon.png";
@@ -190,7 +192,9 @@ export const FilterResultHeading = ({
                     <Typography className={styles.calenderDay}>
                       {option.slice(0, 3)}
                     </Typography>
-                    <Typography className={styles.calenderDay}>
+                    <Typography
+                      className={[styles.calenderDay, styles.calenderMonth]}
+                    >
                       {dateWeek[idx]}
                     </Typography>
                   </Box>
@@ -265,6 +269,8 @@ export const FilterResultHeading = ({
             onCloseDialog={handleCloseDialog}
             filterData={filterData}
             onSearchProvider={onSearchProvider}
+            purposeOfVisitData={purposeOfVisitData}
+            insuranceCarrierData={insuranceCarrierData}
           />
         }
       </Box>
