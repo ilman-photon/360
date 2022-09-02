@@ -12,7 +12,6 @@ import AppointmentForm from "./appointmentForm";
 
 export default function ScheduleAppointment({
   selectedSelf,
-  isLoggedIn = false,
   patientData = {},
   OnSetSelectedSelf = () => {
     // This is intended

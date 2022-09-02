@@ -60,7 +60,6 @@ BootstrapDialogTitle.propTypes = {
 };
 
 export default function ModalConfirmContent({
-  isLoggedIn = false,
   patientData = {},
   providerData = {},
   OnClose = () => {
@@ -226,7 +225,7 @@ export default function ModalConfirmContent({
           </CardContent>
         </Card>
 
-        {!isLoggedIn ? (
+        {!isUserLoged ? (
           <div style={styles.bottomParagraph}>
             <Typography variant="caption" sx={{ fontSize: "16px" }}>
               Already have an account?{" "}
