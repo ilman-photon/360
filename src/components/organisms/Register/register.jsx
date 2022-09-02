@@ -15,7 +15,6 @@ import { Regex } from "../../../utils/regex";
 import { useRouter } from "next/router";
 import constants from "../../../utils/constants";
 import { HeadingTitle } from "../../atoms/Heading";
-
 export default function Register({ OnRegisterClicked, formMessage = null }) {
   const router = useRouter();
   const { handleSubmit, control, watch } = useForm({
@@ -127,7 +126,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
         if (err.validate) errors2.push(err.validate);
       }
     });
-
     if (validatePassword(errors1, errors2)) {
       OnRegisterClicked(data, router);
     }
@@ -142,7 +140,19 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
         inline: "nearest",
       });
   }, [formMessage]);
-
+  const isDOB = (value) => {
+    let date = new Date().getFullYear();
+    if (value.getFullYear() <= date) {
+      return true;
+    }
+    if (value.getMonth() <= 12) {
+      return true;
+    }
+    if (value.getMonth() <= 12) {
+      return true;
+    }
+    return false;
+  };
   const isOneOfPreferredValid = (name, value) => {
     switch (name) {
       case "email":
@@ -161,7 +171,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
         return false;
     }
   };
-
   return (
     <Box className={globalStyles.container}>
       <Stack spacing={3}>
@@ -211,6 +220,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               },
             }}
           />
+
           <Controller
             name="lastName"
             control={control}
@@ -261,9 +271,11 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             }}
             rules={{
               required: "This field is required",
-              pattern: {
-                value: Regex.specialRegex,
-                message: "Incorrect email format",
+              validate: {
+                required: (value) => {
+                  if (!isDOB(value))
+                    return "Incorect Date of Birth is required";
+                },
               },
             }}
           />
@@ -369,6 +381,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               },
             }}
           />
+
           <PasswordValidator
             validator={passwordValidator}
             isShowValidation={isPasswordError}

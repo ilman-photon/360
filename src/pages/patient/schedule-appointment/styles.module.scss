@@ -4,14 +4,11 @@
   background-color: #e4e4e4;
   margin: auto;
   display: flex;
-  flex-direction: column;
   justify-content: center;
-  align-content: center;
   align-items: center;
 
   .pageWrapper {
     display: flex;
-    flex-direction: row;
     max-width: calc(464px + 962px + 24px);
     width: 100%;
   }
@@ -45,6 +42,7 @@
   background: white;
   border-radius: "4px";
   height: fit-content;
+  flex: 1;
 }
 
 .formButton {
@@ -66,12 +64,16 @@
   }
 }
 
+.formButton.outlined:hover {
+  background-color: #fafafa;
+}
+
 .backIcon {
   color: #0000008a;
   width: 16px;
 }
 
-.continueText {
+.continueButton {
   height: 40px;
   align-self: self-end;
   border-radius: 46px;
@@ -79,23 +81,21 @@
   color: #ffffff;
 }
 
+.examForComponent .continueButton:hover {
+  background-color: #0095a9;
+}
+
 .modal {
-  position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 400;
-  background-color: "background.paper";
   border: 2px solid #000;
-  box-shadow: 24;
-  padding: 4;
 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
 
-  position: absolute;
   width: 70%;
 
   background: #ffffff;

@@ -4,7 +4,7 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
-import LabelWithInfo from "../../../atoms/LabelWithInfo/labelWithInfo";
+import LabelWithInfo from "../../atoms/LabelWithInfo/labelWithInfo";
 
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
@@ -13,12 +13,12 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
 import Cookies from "universal-cookie";
 
-import { colors } from "../../../../styles/theme";
-import styles from "./modalScheduling.module.scss";
-import ProviderProfile from "../../../molecules/ProviderProfile/providerProfile";
+import { colors } from "../../../styles/theme";
+import styles from "./style";
+import ProviderProfile from "../../molecules/ProviderProfile/providerProfile";
 
 import Link from "@mui/material/Link";
-import constants from "../../../../utils/constants";
+import constants from "../../../utils/constants";
 import { useTranslation } from "next-i18next";
 import {
   Card,
@@ -64,9 +64,6 @@ export default function ModalConfirmContent({
   patientData = {},
   providerData = {},
   OnClose = () => {
-    // This is intended
-  },
-  OnSetIsOpen = () => {
     // This is intended
   },
 }) {
@@ -135,9 +132,7 @@ export default function ModalConfirmContent({
             data-testid={REGISTER_TEST_ID.loginlink}
             aria-label={`Login link`}
           >
-            <span className={styles.medicLink}>
-              Is this a medical emergency?
-            </span>
+            <span style={styles.medicLink}>Is this a medical emergency?</span>
           </Link>
         </div>
 
@@ -232,7 +227,7 @@ export default function ModalConfirmContent({
         </Card>
 
         {!isLoggedIn ? (
-          <div className={styles.bottomParagraph}>
+          <div style={styles.bottomParagraph}>
             <Typography variant="caption" sx={{ fontSize: "16px" }}>
               Already have an account?{" "}
               <Link

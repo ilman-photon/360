@@ -1,4 +1,8 @@
 export function convertToDate(date) {
+  if (!date) {
+    return date;
+  }
+
   const monthNames = [
     "Jan",
     "Feb",

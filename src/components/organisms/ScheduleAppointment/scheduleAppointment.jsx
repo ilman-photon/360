@@ -12,7 +12,12 @@ import AppointmentForm from "./appointmentForm";
 
 export default function ScheduleAppointment({
   selectedSelf,
+  isLoggedIn = false,
+  patientData = {},
   OnSetSelectedSelf = () => {
+    // This is intended
+  },
+  OnSubmit = () => {
     // This is intended
   },
   setActiveStep = () => {
@@ -87,22 +92,39 @@ export default function ScheduleAppointment({
           <AppointmentForm
             isForMyself={false}
             OnClickSchedule={OnClickSchedule}
+            patientData={patientData}
+            OnSubmit={OnSubmit}
           />
         ) : null}
 
         <Divider />
         {selectedSelf === 1 ? (
-          <Button
-            variant="contained"
-            sx={{
-              width: { xs: "100%", md: "222px" },
-              background: "#0095A9",
-            }}
-            style={styles.continueText}
-            onClick={() => setActiveStep(3)}
-          >
-            {t("continue")}
-          </Button>
+          // <Button
+          //   variant="contained"
+          //   sx={{
+          //     width: { xs: "100%", md: "222px" },
+          //     background: "#0095A9",
+          //   }}
+          //   style={styles.continueText}
+          //   onClick={() => setActiveStep(isLoggedIn ? 5 : 3)}
+          // >
+          //   {t("continue")}
+          // </Button>
+          <div style={styles.divRight}>
+            <Button
+              type="submit"
+              variant="contained"
+              sx={{
+                width: { xs: "100%", md: "222px" },
+                background: "#0095A9",
+                mt: 2,
+              }}
+              style={styles.continueButton}
+              onClick={() => setActiveStep(3)}
+            >
+              {t("continue")}
+            </Button>
+          </div>
         ) : null}
       </Stack>
     </Stack>

@@ -5,26 +5,10 @@ import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import IconButton from "@mui/material/IconButton";
 import CloseIcon from "@mui/icons-material/Close";
+import { Box } from "@mui/material";
 
 import ModalConfirmContent from "./modalConfirmContent";
-import { colors } from "../../../styles/theme";
-import { styles } from "./style";
-import ProviderProfile from "../../molecules/ProviderProfile/providerProfile";
-import Link from "@mui/material/Link";
-import Image from "next/image";
-import constants from "../../../utils/constants";
-import { useTranslation } from "next-i18next";
-import {
-  Card,
-  CardContent,
-  Box,
-  Stack,
-  Typography,
-  Button,
-  Divider,
-  Grid,
-  useMediaQuery,
-} from "@mui/material";
+import { useRouter } from "next/router";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   "& .MuiDialogContent-root": {
@@ -65,13 +49,16 @@ BootstrapDialogTitle.propTypes = {
 };
 
 export default function ModalScheduling({
+  isLoggedIn,
   isOpen,
+  patientData,
   providerData,
-  OnSetIsOpen = () => {
-    // This is intended
-  },
 }) {
+  OnSetIsOpen(false);
+  const router = useRouter();
+
   const handleClose = () => {
+    router.push("/patient/appointments");
     OnSetIsOpen(false);
   };
 
@@ -85,7 +72,12 @@ export default function ModalScheduling({
           "& .css-1t1j96h-MuiPaper-root-MuiDialog-paper": { maxWidth: "950px" },
         }}
       >
-        <ModalConfirmContent />
+        <ModalConfirmContent
+          providerData={providerData}
+          patientData={patientData}
+          isLoggedIn={isLoggedIn}
+          OnClose={handleClose}
+        />
       </BootstrapDialog>
     </Box>
   );

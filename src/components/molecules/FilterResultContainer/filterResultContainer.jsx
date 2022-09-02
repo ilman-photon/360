@@ -5,11 +5,15 @@ import PropTypes from "prop-types";
 import ItemResult from "../../organisms/ItemResult/ItemResult";
 import styles from "./styles.module.scss";
 import EmptyResult from "../FilterResult/emptyResult";
+import GMaps from "../../organisms/Google/Maps/gMaps";
 
 export const FilterResultContainer = ({
   activeTabs = 0,
   setActiveTabs = () => {},
   onClickViewAllAvailability = () => {
+    // This is intentional
+  },
+  OnDayClicked = () => {
     // This is intentional
   },
   isDesktop = false,
@@ -19,6 +23,8 @@ export const FilterResultContainer = ({
     purposeOfVisit: "",
     insuranceCarrier: "",
   },
+  providerList = [],
+  googleApiKey = "",
 }) => {
   function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -58,6 +64,10 @@ export const FilterResultContainer = ({
             keyItem={`${i}-item-filter`}
             onClickViewAllAvailability={onClickViewAllAvailability}
             isDesktop={isDesktop}
+            providerData={providerList[i]}
+            OnDayClicked={(payload) => {
+              OnDayClicked(payload, providerList[i]);
+            }}
           />
         </Box>
       );
@@ -113,8 +123,8 @@ export const FilterResultContainer = ({
         spacing={0}
         sx={{ backgroundColor: "#fff", flex: 1, overflow: "auto" }}
       >
-        <Grid item xs={12} md={6}>
-          {activeTabs === 0 ? (
+        {activeTabs === 0 ? (
+          <Grid item xs={12} md={6} paddingTop={"16px"}>
             <>
               {/* Handle the empty result after integrate services */}
               {filterData.location !== "Jakarta" ? (
@@ -135,13 +145,12 @@ export const FilterResultContainer = ({
                 </Box>
               )}
             </>
-          ) : (
-            ""
-          )}
-        </Grid>
-        <Grid item xs={12} md={6}>
-          {activeTabs === 1 ? <>{/* Map Component*/}</> : ""}
-        </Grid>
+          </Grid>
+        ) : (
+          <Grid item xs={12} md={6} paddingTop={"16px"}>
+            <GMaps apiKey={googleApiKey} />
+          </Grid>
+        )}
       </Grid>
     </>
   );

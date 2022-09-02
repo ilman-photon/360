@@ -21,12 +21,13 @@ export const styles = {
     fontWeight: "700",
     fontSize: "18px",
   },
-  continueText: {
+  continueButton: {
     height: "40px",
     alignSelf: "self-end",
     borderRadius: "46px",
     textTransform: "capitalize",
     color: "#FFFFFF",
+    backgroundColor: "#0095A9",
   },
   form: {
     display: "grid",
@@ -44,6 +45,9 @@ export const styles = {
     fontSize: "1.2rem",
     fontWeight: "700",
     paddingLeft: "16px",
+  },
+  linkText: {
+    color: "#008294",
   },
   boldLabel: {
     fontWeight: "700",
@@ -120,5 +124,13 @@ export const styles = {
     color: "#008294 !important",
     cursor: "pointer",
     textDecorationColor: "inherit !important",
+  },
+
+  registeredUsernameWrapper: {
+    padding: 16,
+    borderRadius: 4,
+    color: "#366a70",
+    backgroundColor: "#f2f7fd",
+    wordBreak: "break-all",
   },
 };
