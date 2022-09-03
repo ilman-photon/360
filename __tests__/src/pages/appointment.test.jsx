@@ -1,4 +1,4 @@
-import { render } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Appointment from "../../../src/pages/patient/appointment";
 import { Provider } from "react-redux";
@@ -93,6 +93,14 @@ describe("App", () => {
 
   it("renders App unchanged", () => {
     expect(container).toMatchSnapshot();
+  });
+
+  it("on render mobile view", async () => {
+    window = Object.assign(window, { innerWidth: 500 });
+    await waitFor(() => {
+      container.getByText(/Schedule an eye/i);
+    });
+    expect(container.getByText(/Schedule an eye/i)).toBeInTheDocument();
   });
 
 });

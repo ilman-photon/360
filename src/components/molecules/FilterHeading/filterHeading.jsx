@@ -409,6 +409,9 @@ export function renderInsuranceCarrier(
             value={value}
             onChange={(_e, data) => {
               onChange(data.name);
+              if (!isDesktop) {
+                handleCloseDialog();
+              }
             }}
             onInputChange={(_e, newInputValue) => {
               onChange(newInputValue);
