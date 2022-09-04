@@ -1,6 +1,12 @@
 import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import axios from "axios";
+import "@testing-library/jest-dom";
+import MockAdapter from "axios-mock-adapter";
 import { defineFeature, loadFeature } from "jest-cucumber";
-import Bio from "../../src/pages/patient/bio";
+import { Provider } from "react-redux";
+import Bio, { getStaticProps } from "../../src/pages/patient/bio";
+import store from "../../src/store/store";
+const useRouter = jest.spyOn(require("next/router"), "useRouter");
 import constants from "../../src/utils/constants";
 
 const feature = loadFeature(
@@ -13,6 +19,47 @@ const feature = loadFeature(
 defineFeature(feature, (test) => {
   let container;
   const element = document.createElement("div");
+  const mock = new MockAdapter(axios);
+  const TEST_ID = constants.TEST_ID.BIOGRAPHY_TEST_ID;
+  const userData = {
+    providerId: "1",
+    image: "/doctor.png",
+    name: "Paul Wagner Md",
+    rating: "5",
+    phoneNumber: "8572999989",
+    specialties: ["Opthometry", "Opthalmology", "Catarac", "Glaucoma"],
+    about:
+      "Dr. Esfandiari’s current areas of emphasis include primary eye care, specialty contact lenses, refractive surgery consultation, surgical co-management. Dr. Esfandiari’s knowledge and experience in ophthalmic optics has continually helped patients obtain optimal and healthy vision.show more",
+    gender: "Male",
+    address: {
+      addressLine1: "51 West 51st Street",
+      addressLine2: "Floor 3, Suite 320 Midtown",
+      city: "Florida",
+      state: "FR",
+      zipcode: "54231",
+    },
+    distance: "10 mi",
+    language: ["English", "Spanish"],
+    networkInsurance: [
+      "Blue Cross Blue Shield",
+      "Cigna",
+      "UnitedHeathcare",
+      "Blue Cross Blue Shield 2",
+      "Cigna 2",
+      "UnitedHeathcare 2",
+      "Blue Cross Blue Shield 3",
+      "Cigna 3",
+      "UnitedHeathcare 3",
+    ],
+    education: [
+      "New England College of Optometry, Doctor of Optometry",
+      "University of California, San Diego (Bachelor’s)",
+    ],
+    membershipsAffiliation: [
+      "New England College of Optometry, Doctor of Optometry",
+      "University of California, San Diego (Bachelor’s)",
+    ],
+  };
   const defaultValidation = () => {
     expect(true).toBeTruthy();
   };
@@ -78,28 +125,30 @@ defineFeature(feature, (test) => {
     });
 
     then("User should see the short bio of Provider", async () => {
+      useRouter.mockReturnValue({
+        back: jest.fn(),
+      });
+      window.scrollTo = jest.fn();
+      mock
+        .onPost(
+          `${window.location.origin}/api/dummy/appointment/biography/getProviderDetails`
+        )
+        .reply(200, userData);
+      const props = await getStaticProps();
       act(() => {
         container = render(
-          Bio.getLayout(<Bio />, {
-            container: document.body.appendChild(element),
-            legacyRoot: true,
-          })
+          <Provider store={store}>{Bio.getLayout(<Bio {...props} />)}</Provider>
         );
       });
-      await waitFor(() => container.getByLabelText(/Clarkson Eyecare logo/i));
-      expect(container).toMatchSnapshot();
-      fireEvent.click(
-        container.getByTestId(constants.TEST_ID.BIOGRAPHY_TEST_ID.about)
-      );
-      fireEvent.click(
-        container.getByTestId(constants.TEST_ID.BIOGRAPHY_TEST_ID.insurance)
-      );
-      fireEvent.click(
-        container.getByTestId(constants.TEST_ID.BIOGRAPHY_TEST_ID.location)
-      );
-      fireEvent.click(
-        container.getByTestId(constants.TEST_ID.BIOGRAPHY_TEST_ID.education)
-      );
+
+      await waitFor(() => {
+        container.getByTestId(TEST_ID.viewAll);
+      });
+      expect(container.getByTestId(TEST_ID.viewAll)).toBeInTheDocument();
+      act(() => {
+        fireEvent.click(container.getByTestId(TEST_ID.viewAll));
+      });
+      expect(container.getByText(/Cigna 3/i)).toBeInTheDocument();
     });
   });
 });
