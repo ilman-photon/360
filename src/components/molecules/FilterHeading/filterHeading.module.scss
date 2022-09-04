@@ -132,3 +132,23 @@
     color: $grey75;
   }
 }
+
+.swapButtonContainer {
+  margin-left: 20px;
+  .swapIcon {
+    color: #dadada;
+  }
+  .swapLabel {
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 13px;
+    /* identical to box height, or 112% */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.0016em;
+    color: #fff;
+  }
+}

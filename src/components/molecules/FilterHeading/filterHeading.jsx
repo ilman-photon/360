@@ -9,6 +9,7 @@ import {
   MenuItem,
   Paper,
   Popper,
+  Stack,
   TextField,
   Typography,
 } from "@mui/material";
@@ -19,6 +20,7 @@ import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import NearMeOutlinedIcon from "@mui/icons-material/NearMeOutlined";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
+import SwapHorizIcon from "@mui/icons-material/SwapHoriz";
 import { colors } from "../../../styles/theme";
 import SelectOptionButton from "../../atoms/SelectOptionButton/selectOptionButton";
 import { StyledButton } from "../../atoms/Button/button";
@@ -450,8 +452,12 @@ export function renderInsuranceCarrier(
 
 const FilterHeading = ({
   isDesktop = true,
+  isTablet = false,
   filterData = {},
   onSearchProvider = () => {
+    // This is intentional
+  },
+  onSwapButtonClicked = () => {
     // This is intentional
   },
   isGeolocationEnabled,
@@ -715,48 +721,60 @@ const FilterHeading = ({
     return (
       <Box className={styles.titleHeadingWrapper}>
         <Box className={styles.centeredElement}>
-          <form
-            onSubmit={handleSubmit(onSubmit)}
-            style={{
-              flexDirection: "row",
-              display: "flex",
-              background: "#fff",
-              borderRadius: "50px",
-            }}
-          >
-            {renderLocationFilter()}
-            <Divider orientation="vertical" flexItem />
-            {renderDateFilter()}
-            <Divider orientation="vertical" flexItem />
-            {renderPurposeOfVisit()}
-            <Divider orientation="vertical" flexItem />
-            {renderInsuranceCarrier(
-              {
-                control,
-                isOpenProps: {},
-                insuranceCarrierData,
-                testid: APPOINTMENT_TEST_ID.insuranceInput,
-                isDesktop,
-              },
-              handleCloseDialog
-            )}
-            <StyledButton
-              type="submit"
-              theme="patient"
-              mode="filter"
-              size="small"
-              gradient={false}
-              data-testid={APPOINTMENT_TEST_ID.searchbtn}
-              sx={{
-                height: isEmptyLocation ? "54px" : "52px",
-                background: "#BFE4E8",
-                border: "0px",
-                cursor: "pointer",
+          <Stack direction={"row"}>
+            <form
+              onSubmit={handleSubmit(onSubmit)}
+              style={{
+                display: "flex",
+                background: "#fff",
+                borderRadius: "50px",
               }}
             >
-              <SearchIcon sx={{ color: colors.darkGreen, width: 26 }} />
-            </StyledButton>
-          </form>
+              {renderLocationFilter()}
+              <Divider orientation="vertical" flexItem />
+              {renderDateFilter()}
+              <Divider orientation="vertical" flexItem />
+              {renderPurposeOfVisit()}
+              <Divider orientation="vertical" flexItem />
+              {renderInsuranceCarrier(
+                {
+                  control,
+                  isOpenProps: {},
+                  insuranceCarrierData,
+                  testid: APPOINTMENT_TEST_ID.insuranceInput,
+                  isDesktop,
+                },
+                handleCloseDialog
+              )}
+              <StyledButton
+                type="submit"
+                theme="patient"
+                mode="filter"
+                size="small"
+                gradient={false}
+                data-testid={APPOINTMENT_TEST_ID.searchbtn}
+                sx={{
+                  height: isEmptyLocation ? "54px" : "52px",
+                  background: "#BFE4E8",
+                  border: "0px",
+                  cursor: "pointer",
+                }}
+              >
+                <SearchIcon sx={{ color: colors.darkGreen, width: 26 }} />
+              </StyledButton>
+            </form>
+            {isTablet && (
+              <Stack
+                alignItems={"center"}
+                justifyContent={"center"}
+                className={styles.swapButtonContainer}
+                onClick={onSwapButtonClicked}
+              >
+                <SwapHorizIcon className={styles.swapIcon} />
+                <Typography className={styles.swapLabel}>Map</Typography>
+              </Stack>
+            )}
+          </Stack>
           <Box className={styles.centeredField}>
             {renderMandatoryFieldError()}
             <Typography
