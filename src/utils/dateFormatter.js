@@ -1,6 +1,6 @@
 export function convertToDate(date) {
   if (!date) {
-    return date;
+    return "";
   }
 
   const monthNames = [

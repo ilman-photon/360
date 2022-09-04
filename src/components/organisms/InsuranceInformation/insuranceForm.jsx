@@ -323,8 +323,10 @@ export default function InsuranceForm({
                         validate: {
                           requiredIfSubscriber,
                           isMin2Max50Length: (v) =>
-                            Regex.isMin2Max50Length.test(v) ||
-                            "First Name does not meet requirements",
+                            watchedSubscriber === "No"
+                              ? Regex.isMin2Max50Length.test(v) ||
+                                "First Name does not meet requirements"
+                              : true,
                         },
                       }}
                     />
@@ -356,8 +358,10 @@ export default function InsuranceForm({
                         validate: {
                           requiredIfSubscriber,
                           isMin2Max50Length: (v) =>
-                            Regex.isMin2Max50Length.test(v) ||
-                            "Last Name does not meet requirements",
+                            watchedSubscriber === "No"
+                              ? Regex.isMin2Max50Length.test(v) ||
+                                "Last Name does not meet requirements"
+                              : true,
                         },
                       }}
                     />

@@ -25,7 +25,7 @@ export function viewAllAvailabilityLinkUI({
     >
       <Link
         className={styles.linkAvailabelity}
-        data-testId={constants.TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll}
+        data-testid={constants.TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll}
         onClick={onClickViewAllAvailability}
       >
         View all Availability
@@ -36,13 +36,7 @@ export function viewAllAvailabilityLinkUI({
 
 export const WeekAvailability = ({
   scheduleData = {
-    // monday: ["11:30am", "", "", ""],
-    // tuesday: ["08:00am", "10:30am", "11:00am", "3 more"],
-    // wednesday: ["08:30am", "10:30am", "11:30am", "5 more"],
-    // thursday: ["09:30am", "11:00am", "", ""],
-    // friday: ["09:30am", "", "", ""],
-    // saturday: ["09:30am", "", "", ""],
-    monday: ["2022-08-31T04:30:00.904Z"],
+    monday: ["2022-08-31T04:30:00.904Z", "", "", ""],
     tuesday: [
       "2022-08-31T01:00:00.904Z",
       "2022-08-31T03:30:00.904Z",
@@ -55,9 +49,9 @@ export const WeekAvailability = ({
       "2022-08-31T04:30:00.904Z",
       "5 more",
     ],
-    thursday: ["2022-08-31T02:30:00.904Z", "2022-08-31T04:00:00.904Z"],
-    friday: ["2022-08-31T02:30:00.904Z"],
-    saturday: ["2022-08-31T02:30:00.904Z"],
+    thursday: ["2022-08-31T02:30:00.904Z", "2022-08-31T04:00:00.904Z", "", ""],
+    friday: ["2022-08-31T02:30:00.904Z", "", "", ""],
+    saturday: ["2022-08-31T02:30:00.904Z", "", "", ""],
   },
   onClickViewAllAvailability = () => {
     // This is intentional

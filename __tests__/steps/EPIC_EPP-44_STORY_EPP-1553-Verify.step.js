@@ -40,6 +40,7 @@ defineFeature(feature, (test) => {
     then('user land to Review Appointnment detail page', () => {
         defaultValidation();
     });
+});
 
     test('EPIC_EPP-44_STORY_EPP-1553-Verify if user able to view the selected provider with an option to change the provider', ({ given, when, then, and }) => {
         given('user launch the Marketing Site url', () => {
@@ -142,9 +143,10 @@ defineFeature(feature, (test) => {
         defaultValidation();
         });
 
-        and(/^user should see option to change the selected "(.*)" to another date and time$/, (arg0) => {
+        and(/^user should see option to change the selected "(.*)" to another date and time$/, () => {
         defaultValidation();
         });
+    });
 
         test('EPIC_EPP-44_STORY_EPP-1553-Verify if user able view the selected purpose of visit with an option to change if provided', ({ given, when, then, and }) => {
             given('user launch the Marketing Site url', () => {
@@ -175,41 +177,7 @@ defineFeature(feature, (test) => {
                 defaultValidation();
             });
     
-            and(/^user should see option to change the selected "(.*)" one to other$/, (arg0) => {
-                defaultValidation();
-            });
-        });
-
-        test('EPIC_EPP-44_STORY_EPP-1553-Verify if user able to selected Insurance Career with an option to change another carrier', ({ given, when, then, and }) => {
-            given('user launch the Marketing Site url', () => {
-                defaultValidation();
-            });
-    
-            when('user clicks on the Schedule your Eye Exam button', () => {
-                defaultValidation();
-            });
-    
-            then('user lands on to the screen', () => {
-                defaultValidation();
-            });
-    
-            when('user click on pin location in Map view', () => {
-                defaultValidation();
-            });
-    
-            then('user should see time slot for provider', () => {
-                defaultValidation();
-            });
-    
-            and('user selected provider with the time slot available', () => {
-                defaultValidation();
-            });
-    
-            then('user lands onto Review Appointnment detail page', () => {
-                defaultValidation();
-            });
-    
-            and(/^user should see option to change the selected "(.*)" one to other$/, (arg0) => {
+            and(/^user should see option to change the selected "(.*)" one to other$/, () => {
                 defaultValidation();
             });
         });
@@ -256,7 +224,4 @@ defineFeature(feature, (test) => {
             });
         });
     });
-});
 
-
-});

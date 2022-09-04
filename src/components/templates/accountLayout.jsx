@@ -34,7 +34,7 @@ function AccountLayout({
   return (
     <Provider store={store}>
       <Head>
-        <title>EyeCare - Account Information</title>
+        <title>EyeCare Patient Portal - Account Information</title>
       </Head>
       <div
         className={[

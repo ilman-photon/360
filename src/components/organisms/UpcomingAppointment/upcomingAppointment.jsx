@@ -5,8 +5,15 @@ import styles from "./styles.module.scss";
 import AppointmentButton from "../../atoms/AppointmentButton/appointmentButton";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
+import moment from "moment";
 
-export default function UpcomingAppointment() {
+export default function UpcomingAppointment({ data }) {
+  const date = data.appointmentInfo.date;
+  const timezone = date.substring(date.length - 3);
+  const momentDate = new moment(date);
+  const formatedDate = momentDate.format("dddd, MMM DD, YYYY");
+  const time = momentDate.format("h:mm A");
+  const fullDate = `${formatedDate}, AT ${time} ${timezone}`;
   return (
     <Box className={styles.upcomingAppointments}>
       <Stack spacing={{ xs: 2, lg: 3.5 }}>
@@ -17,7 +24,7 @@ export default function UpcomingAppointment() {
           className={[styles.itemContainer, styles.calendarContainer].join(" ")}
         >
           <Typography variant="subtitle2" className={styles.date}>
-            Saturday, Sep 21, 2022, AT 8:30 AM EST
+            {fullDate}
           </Typography>
           <AppointmentButton icon={<CalendarTodayIcon />}>
             Add to calendar
@@ -25,7 +32,9 @@ export default function UpcomingAppointment() {
           <Typography variant="subtitle2" className={styles.purpose}>
             Purpose of Visit
           </Typography>
-          <Typography variant="body2">Eye exam</Typography>
+          <Typography variant="body2">
+            {data.appointmentInfo.appointmentType}
+          </Typography>
         </Box>
         <Box className={styles.itemContainer}>
           <ProviderProfile
@@ -33,10 +42,16 @@ export default function UpcomingAppointment() {
             showPosition
             phoneLink
             isDayAvailableView={true}
+            providerData={data.providerInfo}
           />
           <Box className={styles.getDirectionLink}>
             <DirectionsOutlinedIcon></DirectionsOutlinedIcon>
-            <Link className={styles.getDirectionLinkText}>Get directions</Link>
+            <Link
+              className={styles.getDirectionLinkText}
+              href={`https://www.google.com/maps/search/?api=1&query=${data.providerInfo.location.latitude},${data.providerInfo.location.longitude}`}
+            >
+              Get directions
+            </Link>
           </Box>
           <Box className={styles.buttonContainer}>
             <AppointmentButton icon={<CancelOutlinedIcon />}>
@@ -54,7 +69,7 @@ export default function UpcomingAppointment() {
           <Typography variant="subtitle2" className={styles.patientName}>
             Name
           </Typography>
-          <Typography variant="body2">Mary Jane Smith</Typography>
+          <Typography variant="body2">{data.patientInfo.name}</Typography>
         </Box>
       </Stack>
     </Box>

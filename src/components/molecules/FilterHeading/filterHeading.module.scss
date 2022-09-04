@@ -112,10 +112,6 @@
   padding-right: 16px;
 }
 
-.renderDivider {
-  padding-top: 12px;
-}
-
 .linkUseMyLocationStyle {
   font-family: "Libre Franklin", sans-serif;
   font-style: normal;
@@ -134,5 +130,26 @@
     font-size: 12px;
     line-height: 12px;
     color: $grey75;
+  }
+}
+
+.swapButtonContainer {
+  margin-left: 20px;
+  cursor: pointer;
+  .swapIcon {
+    color: #dadada;
+  }
+  .swapLabel {
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 13px;
+    /* identical to box height, or 112% */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.0016em;
+    color: #fff;
   }
 }

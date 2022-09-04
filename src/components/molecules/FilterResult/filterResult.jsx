@@ -11,6 +11,12 @@ export const FilterResult = ({
   OnDayClicked = () => {
     // This is intentional
   },
+  onNextScheduleClicked = () => {
+    // This is intentional
+  },
+  onPrevScheduleClicked = () => {
+    // This is intentional
+  },
   isDesktop = false,
 }) => {
   function renderItemResult() {
@@ -36,7 +42,11 @@ export const FilterResult = ({
     <>
       <Stack>
         <Box>
-          <FilterResultHeading isDesktop={isDesktop} />
+          <FilterResultHeading
+            isDesktop={isDesktop}
+            onNextScheduleClicked={onNextScheduleClicked}
+            onPrevScheduleClicked={onPrevScheduleClicked}
+          />
         </Box>
         <div
           style={{

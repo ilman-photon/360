@@ -16,7 +16,7 @@ import Image from "next/image";
 import FilterHeadingFilled from "../FilterHeading/filterHeadingFilled";
 
 export const FilterResultHeading = ({
-  appliedFilter,
+  _appliedFilter,
   numberFilter = 30,
   dateWeek = ["Sep 19", "Sep 20", "Sep 21", "Sep 22", "Sep 23", "Sep 24"],
   isDesktop = false,
@@ -26,7 +26,17 @@ export const FilterResultHeading = ({
     purposeOfVisit: "Eye exam",
     insuranceCarrier: "Aethna",
   },
-  onSearchProvider = () => {},
+  onSearchProvider = () => {
+    // This is intentional
+  },
+  onNextScheduleClicked = () => {
+    // This is intentional
+  },
+  onPrevScheduleClicked = () => {
+    // This is intentional
+  },
+  purposeOfVisitData = [],
+  insuranceCarrierData = [],
 }) => {
   const imageSrcState = "/searchInputIcon.png";
   const imageSrcFilled = "/searchFilledIcon.png";
@@ -166,7 +176,15 @@ export const FilterResultHeading = ({
             }}
           >
             <ArrowBackIosIcon
-              sx={{ gridArea: "arrowLeft", margin: "auto", width: "22px" }}
+              sx={{
+                gridArea: "arrowLeft",
+                margin: "auto",
+                width: "22px",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                onPrevScheduleClicked("week");
+              }}
             />
             <Box
               sx={{
@@ -190,7 +208,7 @@ export const FilterResultHeading = ({
                     <Typography className={styles.calenderDay}>
                       {option.slice(0, 3)}
                     </Typography>
-                    <Typography className={styles.calenderDay}>
+                    <Typography className={styles.calenderMonth}>
                       {dateWeek[idx]}
                     </Typography>
                   </Box>
@@ -198,7 +216,15 @@ export const FilterResultHeading = ({
               })}
             </Box>
             <ArrowForwardIosIcon
-              sx={{ gridArea: "arrowRight", margin: "auto", width: "22px" }}
+              sx={{
+                gridArea: "arrowRight",
+                margin: "auto",
+                width: "22px",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                onNextScheduleClicked("week");
+              }}
             />
           </Box>
         </Box>
@@ -265,6 +291,8 @@ export const FilterResultHeading = ({
             onCloseDialog={handleCloseDialog}
             filterData={filterData}
             onSearchProvider={onSearchProvider}
+            purposeOfVisitData={purposeOfVisitData}
+            insuranceCarrierData={insuranceCarrierData}
           />
         }
       </Box>

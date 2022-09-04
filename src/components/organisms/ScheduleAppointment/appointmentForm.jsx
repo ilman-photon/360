@@ -41,6 +41,9 @@ const DisclaimerText = (data) => {
 
 export default function AppointmentForm({
   isForMyself,
+  OnClickSchedule = () => {
+    // This is intentional
+  },
   patientData = {},
   OnSubmit = () => {
     // This is intended
@@ -54,7 +57,7 @@ export default function AppointmentForm({
 
   const onSubmit = (data) => {
     // this is intentional
-    console.log({ data });
+    OnClickSchedule();
     OnSubmit(data);
   };
 
@@ -206,37 +209,6 @@ export default function AppointmentForm({
             }}
           />
 
-          <Box sx={{ width: "70%" }}>
-            <Controller
-              name="dob"
-              control={control}
-              render={({
-                field: { onChange, value },
-                fieldState: { error },
-              }) => {
-                return (
-                  <StyledInput
-                    disableFuture
-                    type="dob"
-                    id="dob"
-                    data-testid={SCHEDULE_GUEST_TEST_ID.dateofbirth}
-                    label="Date of Birth"
-                    variant="filled"
-                    value={value}
-                    onChange={onChange}
-                    error={!!error}
-                    helperText={error ? error.message : null}
-                    sx={{ m: 1, width: "70%" }}
-                  />
-                );
-              }}
-              rules={{
-                required: t("thisFieldRequired"),
-              }}
-            />
-          </Box>
-          <DisclaimerText label="Month, Day, Year" />
-
           <Controller
             name="email"
             control={control}
@@ -311,6 +283,37 @@ export default function AppointmentForm({
               },
             }}
           />
+
+          <Box sx={{ width: "70%" }}>
+            <Controller
+              name="dob"
+              control={control}
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => {
+                return (
+                  <StyledInput
+                    disableFuture
+                    type="dob"
+                    id="dob"
+                    data-testid={SCHEDULE_GUEST_TEST_ID.dateofbirth}
+                    label="Date of Birth"
+                    variant="filled"
+                    value={value}
+                    onChange={onChange}
+                    error={!!error}
+                    helperText={error ? error.message : null}
+                    sx={{ m: 1, width: "70%" }}
+                  />
+                );
+              }}
+              rules={{
+                required: t("thisFieldRequired"),
+              }}
+            />
+          </Box>
+          <DisclaimerText label="Month, Day, Year" />
 
           {isForMyself ? (
             <>

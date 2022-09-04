@@ -145,5 +145,6 @@ module.exports = {
     SEARCH_PROVIDER_TEST_ID: {
       viewAll: "loc_viewAll",
     },
+    SUBNAVIGATION: "subNavigation-link",
   },
 };

@@ -1,13 +1,17 @@
 export default function getSugestion(req, res) {
-  if (req.method === "POST") {
+  if (req.method === "GET") {
     res.status(200).json({
-      AppointmentType: [
+      appointmentType: [
         {
           id: "1",
           name: "Eye Exam",
           description: "Test the health of your eye",
         },
-        { id: "2", name: "Follow up", description: "See your doctor today" },
+        {
+          id: "2",
+          name: "Follow up",
+          description: "See your doctor today",
+        },
         {
           id: "3",
           name: "Comprehensive",
@@ -19,50 +23,129 @@ export default function getSugestion(req, res) {
           description: "Get fitted for the right contacts",
         },
       ],
-      InsuranceCarrier: [
-        { id: "1", name: "I'm paying out of my pocket", category: ["general"] },
+      insuranceCarrier: {
+        general: [
+          {
+            id: "1",
+            name: "I'm paying out of my pocket",
+          },
+          {
+            id: "2",
+            name: "skip and choose insurance later",
+          },
+          {
+            id: "3",
+            name: "Other Insurance",
+          },
+        ],
+        popular: [
+          {
+            id: "4",
+            name: "Aetna",
+          },
+          {
+            id: "5",
+            name: "Aetna",
+          },
+          {
+            id: "6",
+            name: "Blue Cross Blue Shield",
+          },
+          {
+            id: "7",
+            name: "Cigna",
+          },
+        ],
+        all: [
+          {
+            id: "8",
+            name: "Kaiser",
+          },
+        ],
+      },
+      filterbyData: [
         {
-          id: "2",
-          name: "skip and choose insurance later",
-          category: ["general"],
+          name: "Available Today",
+          checked: false,
         },
-        { id: "3", name: "Other Insurance", category: ["general"] },
-        { id: "4", name: "Aetna", category: ["popular"] },
-        { id: "5", name: "Aetna", category: ["popular"] },
-        { id: "6", name: "Blue Cross Blue Shield", category: ["popular"] },
-        { id: "7", name: "Cigna", category: ["popular"] },
-        { id: "8", name: "Kaiser", category: ["general"] },
-      ],
-      ListOfProvider: [
         {
-          providerId: "1",
-          image: "http//:img-url",
-          name: "Paul Wagner Md",
-          rating: "5",
-          phoneNumber: "857299998",
-          specialties: ["Opthometry", "Opthalmology", "Catarac", "Glaucoma"],
-          about:
-            "Dr. Esfandiari’s current areas of emphasis include primary eye care, specialty contact lenses, refractive surgery consultation, surgical co-management. Dr. Esfandiari’s knowledge and experience in ophthalmic optics has continually helped patients obtain optimal and healthy vision.show more",
-          gender: "Male",
-          address:
-            "51 West 51st Street, Floor 3, Suite 320 Midtown, New York, NY, 10019",
-          distance: "10 mi",
-          language: ["English", "Spanish"],
-          networkInsurance: [
-            "Blue Cross Blue Shield",
-            "Cigna",
-            "UnitedHeathcare",
-            "Blue Cross Blue Shield",
-            "Cigna",
-            "UnitedHeathcare",
-            "Blue Cross Blue Shield",
-            "Cigna",
-            "UnitedHeathcare",
+          name: "language",
+          checklist: [
+            {
+              name: "Arabic",
+              checked: false,
+            },
+            {
+              name: "Chinese",
+              checked: false,
+            },
+            {
+              name: "English",
+              checked: false,
+            },
+            {
+              name: "Farsi",
+              checked: false,
+            },
+            {
+              name: "French",
+              checked: false,
+            },
+            {
+              name: "Spanish",
+              checked: false,
+            },
+            {
+              name: "Portuguese",
+              checked: false,
+            },
+            {
+              name: "Korean",
+              checked: false,
+            },
+            {
+              name: "German",
+              checked: false,
+            },
+            {
+              name: "Italian",
+              checked: false,
+            },
+            {
+              name: "Indonesian",
+              checked: false,
+            },
           ],
-          education:
-            "New England College of Optometry, Doctor of Optometry University of California, San Diego (Bachelor’s) ",
-          membershipsAffiliation:
-            "New England College of Optometry, Doctor of Optometry University of California, San Diego (Bachelor’s)",
+        },
+        {
+          name: "Insurance",
+          checklist: [
+            {
+              name: "In Network",
+              checked: false,
+            },
+            {
+              name: "Out of Network",
+              checked: false,
+            },
+          ],
+        },
+        {
+          name: "Gender",
+          checklist: [
+            {
+              name: "Male",
+              checked: false,
+            },
+            {
+              name: "Female",
+              checked: false,
+            },
+            {
+              name: "Non-Binary",
+              checked: false,
+            },
+          ],
         },
       ],
     });

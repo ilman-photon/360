@@ -26,7 +26,7 @@ const FilterBy = ({ isOpen, onClose, onDone, filter, activedFilter = [] }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
-  const renderCheckbox = (title, items, showDivider) => {
+  const renderCheckbox = (title, items, idx, showDivider) => {
     const isShowSeeMore = items.length > 6;
     return (
       <Box
@@ -35,6 +35,7 @@ const FilterBy = ({ isOpen, onClose, onDone, filter, activedFilter = [] }) => {
             ? styles.checkBoxContainerDivider
             : styles.checkBoxContainer
         }
+        key={idx}
       >
         <Typography className={styles.checkBoxTitle}>{title}</Typography>
         <FormGroup
@@ -106,7 +107,7 @@ const FilterBy = ({ isOpen, onClose, onDone, filter, activedFilter = [] }) => {
         <Box className={styles.checBoxListContainer} id="checkboxGroup">
           {filter.map((item, index) => {
             const isLastIndex = index - 1;
-            return renderCheckbox(item.title, item.filter, !isLastIndex);
+            return renderCheckbox(item.title, item.filter, index, !isLastIndex);
           })}
         </Box>
       </>

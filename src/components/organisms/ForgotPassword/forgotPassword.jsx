@@ -56,7 +56,7 @@ const ForgotPassword = ({
   return (
     <>
       <Head>
-        <title>{title}</title>
+        <title>{`EyeCare Patient Portal - ${title}`}</title>
       </Head>
       <Card
         className={globalStyles.container}

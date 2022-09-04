@@ -151,7 +151,7 @@ Object {
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1w23uea-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-zxn7dt-MuiSvgIcon-root"
                   data-testid="ArrowBackIosIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -172,7 +172,7 @@ Object {
                       mon
                     </p>
                     <p
-                      class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body1 calenderMonth css-ahj2mt-MuiTypography-root"
                     >
                       Sep 19
                     </p>
@@ -186,7 +186,7 @@ Object {
                       tue
                     </p>
                     <p
-                      class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body1 calenderMonth css-ahj2mt-MuiTypography-root"
                     >
                       Sep 20
                     </p>
@@ -200,7 +200,7 @@ Object {
                       wed
                     </p>
                     <p
-                      class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body1 calenderMonth css-ahj2mt-MuiTypography-root"
                     >
                       Sep 21
                     </p>
@@ -214,7 +214,7 @@ Object {
                       thu
                     </p>
                     <p
-                      class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body1 calenderMonth css-ahj2mt-MuiTypography-root"
                     >
                       Sep 22
                     </p>
@@ -228,7 +228,7 @@ Object {
                       fri
                     </p>
                     <p
-                      class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body1 calenderMonth css-ahj2mt-MuiTypography-root"
                     >
                       Sep 23
                     </p>
@@ -242,7 +242,7 @@ Object {
                       sat
                     </p>
                     <p
-                      class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+                      class="MuiTypography-root MuiTypography-body1 calenderMonth css-ahj2mt-MuiTypography-root"
                     >
                       Sep 24
                     </p>
@@ -250,7 +250,7 @@ Object {
                 </div>
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-x1a2ui-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-43rm0h-MuiSvgIcon-root"
                   data-testid="ArrowForwardIosIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -334,7 +334,7 @@ Object {
             >
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1w23uea-MuiSvgIcon-root"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-zxn7dt-MuiSvgIcon-root"
                 data-testid="ArrowBackIosIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
@@ -355,7 +355,7 @@ Object {
                     mon
                   </p>
                   <p
-                    class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+                    class="MuiTypography-root MuiTypography-body1 calenderMonth css-ahj2mt-MuiTypography-root"
                   >
                     Sep 19
                   </p>
@@ -369,7 +369,7 @@ Object {
                     tue
                   </p>
                   <p
-                    class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+                    class="MuiTypography-root MuiTypography-body1 calenderMonth css-ahj2mt-MuiTypography-root"
                   >
                     Sep 20
                   </p>
@@ -383,7 +383,7 @@ Object {
                     wed
                   </p>
                   <p
-                    class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+                    class="MuiTypography-root MuiTypography-body1 calenderMonth css-ahj2mt-MuiTypography-root"
                   >
                     Sep 21
                   </p>
@@ -397,7 +397,7 @@ Object {
                     thu
                   </p>
                   <p
-                    class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+                    class="MuiTypography-root MuiTypography-body1 calenderMonth css-ahj2mt-MuiTypography-root"
                   >
                     Sep 22
                   </p>
@@ -411,7 +411,7 @@ Object {
                     fri
                   </p>
                   <p
-                    class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+                    class="MuiTypography-root MuiTypography-body1 calenderMonth css-ahj2mt-MuiTypography-root"
                   >
                     Sep 23
                   </p>
@@ -425,7 +425,7 @@ Object {
                     sat
                   </p>
                   <p
-                    class="MuiTypography-root MuiTypography-body1 calenderDay css-ahj2mt-MuiTypography-root"
+                    class="MuiTypography-root MuiTypography-body1 calenderMonth css-ahj2mt-MuiTypography-root"
                   >
                     Sep 24
                   </p>
@@ -433,7 +433,7 @@ Object {
               </div>
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-x1a2ui-MuiSvgIcon-root"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-43rm0h-MuiSvgIcon-root"
                 data-testid="ArrowForwardIosIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
