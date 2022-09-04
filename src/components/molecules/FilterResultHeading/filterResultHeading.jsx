@@ -29,6 +29,12 @@ export const FilterResultHeading = ({
   onSearchProvider = () => {
     // This is intentional
   },
+  onNextScheduleClicked = () => {
+    // This is intentional
+  },
+  onPrevScheduleClicked = () => {
+    // This is intentional
+  },
   purposeOfVisitData = [],
   insuranceCarrierData = [],
 }) => {
@@ -170,7 +176,15 @@ export const FilterResultHeading = ({
             }}
           >
             <ArrowBackIosIcon
-              sx={{ gridArea: "arrowLeft", margin: "auto", width: "22px" }}
+              sx={{
+                gridArea: "arrowLeft",
+                margin: "auto",
+                width: "22px",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                onPrevScheduleClicked("week");
+              }}
             />
             <Box
               sx={{
@@ -202,7 +216,15 @@ export const FilterResultHeading = ({
               })}
             </Box>
             <ArrowForwardIosIcon
-              sx={{ gridArea: "arrowRight", margin: "auto", width: "22px" }}
+              sx={{
+                gridArea: "arrowRight",
+                margin: "auto",
+                width: "22px",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                onNextScheduleClicked("week");
+              }}
             />
           </Box>
         </Box>

@@ -97,7 +97,7 @@ export default function Appointment({ googleApiKey }) {
       });
   }
 
-  //Call API for getSuggestion
+  //Call API for submitFilter
   function onCallSubmitFilterAPI(requestData) {
     const postBody = {
       location: {
@@ -114,13 +114,16 @@ export default function Appointment({ googleApiKey }) {
     api
       .submitFilter(postBody)
       .then(function (response) {
-        console.log(response);
         setProviderListData(response?.listOfProvider);
       })
       .catch(function () {
         //Handle error getsuggestion
       });
   }
+
+  function onNextScheduleClicked(type) {}
+
+  function onPrevScheduleClicked(type) {}
 
   function onViewAllAvailability(providerData) {
     //TO DO: set data for view days schedule]
@@ -235,6 +238,8 @@ export default function Appointment({ googleApiKey }) {
                 OnDayClicked={handleDayClicked}
                 isDesktop={isDesktop}
                 providerList={providerListData}
+                onNextScheduleClicked={onNextScheduleClicked}
+                onPrevScheduleClicked={onPrevScheduleClicked}
               />
             </Box>
           ) : (
@@ -327,6 +332,10 @@ export default function Appointment({ googleApiKey }) {
             <ArrowBackIosIcon
               sx={{
                 marginLeft: "22px",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                onPrevScheduleClicked("day");
               }}
             />
             <Box
@@ -357,6 +366,10 @@ export default function Appointment({ googleApiKey }) {
             <ArrowForwardIosIcon
               sx={{
                 marginRight: "15px",
+                cursor: "pointer",
+              }}
+              onClick={() => {
+                onNextScheduleClicked("day");
               }}
             />
           </Stack>

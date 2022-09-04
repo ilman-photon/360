@@ -5,7 +5,6 @@ import { Provider } from "react-redux";
 import store from "../../../src/store/store";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
-import { userEvent } from "@storybook/testing-library";
 
 const MOCK_SUGGESTION_DATA = {
   appointmentType: [
@@ -168,7 +167,7 @@ describe("App", () => {
     };
 
     mock.onPost(`/api/dummy/appointment/create-appointment/submitFilter`).reply(200, MOCK_SUGGESTION_DATA);
-    
+    window = Object.assign(window, { innerWidth: 1500 });
     global.navigator.geolocation = mockGeolocation;
     container = render(
       <Provider store={store}>
@@ -228,5 +227,16 @@ describe("App", () => {
       container.getByText(/is required/i);
       expect(container.getByText(/is required/i)).toBeInTheDocument();
     });
+  });
+
+  it("on render tablet view", async () => {
+
+    window = Object.assign(window, { innerWidth: 1000 });
+    setTimeout(async () => {
+      await waitFor(() => {
+        container.getByText(/Map/i);
+        expect(container.getByText(/Map/i)).toBeInTheDocument();
+      });
+    }, 1000);
   });
 });

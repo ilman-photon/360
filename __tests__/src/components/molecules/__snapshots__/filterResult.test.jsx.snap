@@ -151,7 +151,7 @@ Object {
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1w23uea-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-zxn7dt-MuiSvgIcon-root"
                   data-testid="ArrowBackIosIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -250,7 +250,7 @@ Object {
                 </div>
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-x1a2ui-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-43rm0h-MuiSvgIcon-root"
                   data-testid="ArrowForwardIosIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -334,7 +334,7 @@ Object {
             >
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1w23uea-MuiSvgIcon-root"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-zxn7dt-MuiSvgIcon-root"
                 data-testid="ArrowBackIosIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
@@ -433,7 +433,7 @@ Object {
               </div>
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-x1a2ui-MuiSvgIcon-root"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-43rm0h-MuiSvgIcon-root"
                 data-testid="ArrowForwardIosIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
