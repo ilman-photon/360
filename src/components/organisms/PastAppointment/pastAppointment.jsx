@@ -91,7 +91,6 @@ export function PastAppointmentCard({ data }) {
 }
 
 export default function PastAppointment({ data }) {
-  console.log(data);
   return (
     <Box className={styles.pastAppointment}>
       <Typography variant="h2" className={styles.title}>

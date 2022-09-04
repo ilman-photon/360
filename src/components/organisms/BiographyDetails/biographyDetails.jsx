@@ -127,8 +127,6 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
       "+"
     );
 
-  console.log(addressQuery);
-
   return (
     <Box className={styles.detailedBio}>
       <Box className={styles.stickyMenu}>
