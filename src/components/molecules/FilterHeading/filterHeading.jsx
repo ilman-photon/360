@@ -173,6 +173,7 @@ export function getDialogContents(
                   type="default"
                   variant="filled"
                   label="City, state, or zip code"
+                  data-testid={"location-field-dialog"}
                   sx={{
                     width: "100%",
                     [muiInputRoot]: {

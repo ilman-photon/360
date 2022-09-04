@@ -1,10 +1,11 @@
-import { render, waitFor } from "@testing-library/react";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import Appointment from "../../../src/pages/patient/appointment";
 import { Provider } from "react-redux";
 import store from "../../../src/store/store";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
+import { userEvent } from "@storybook/testing-library";
 
 const MOCK_SUGGESTION_DATA = {
   appointmentType: [
@@ -68,7 +69,92 @@ const MOCK_SUGGESTION_DATA = {
         name: "Kaiser",
       },
     ],
-  }
+  },
+  filterbyData: [
+    {
+      name: "Available Today",
+      checked: false,
+    },
+    {
+      name: "language",
+      checklist: [
+        {
+          name: "Arabic",
+          checked: false,
+        },
+        {
+          name: "Chinese",
+          checked: false,
+        },
+        {
+          name: "English",
+          checked: false,
+        },
+        {
+          name: "Farsi",
+          checked: false,
+        },
+        {
+          name: "French",
+          checked: false,
+        },
+        {
+          name: "Spanish",
+          checked: false,
+        },
+        {
+          name: "Portuguese",
+          checked: false,
+        },
+        {
+          name: "Korean",
+          checked: false,
+        },
+        {
+          name: "German",
+          checked: false,
+        },
+        {
+          name: "Italian",
+          checked: false,
+        },
+        {
+          name: "Indonesian",
+          checked: false,
+        },
+      ],
+    },
+    {
+      name: "Insurance",
+      checklist: [
+        {
+          name: "In Network",
+          checked: false,
+        },
+        {
+          name: "Out of Network",
+          checked: false,
+        },
+      ],
+    },
+    {
+      name: "Gender",
+      checklist: [
+        {
+          name: "Male",
+          checked: false,
+        },
+        {
+          name: "Female",
+          checked: false,
+        },
+        {
+          name: "Non-Binary",
+          checked: false,
+        },
+      ],
+    },
+  ],
 }
 describe("App", () => {
   let container;
@@ -101,6 +187,46 @@ describe("App", () => {
       container.getByText(/Schedule an eye/i);
     });
     expect(container.getByText(/Schedule an eye/i)).toBeInTheDocument();
-  });
 
+    const locationField = container.getByText(/City, state, or zip/i);
+    fireEvent.change(locationField,{value: "Texas"})
+    fireEvent.click(locationField)
+    await waitFor(() => {
+      const cancelButton = container.getByText(/Cancel/i);
+      expect(container.getByText(/Cancel/i)).toBeInTheDocument();
+      fireEvent.click(cancelButton)
+    });
+    
+    const dateField = container.getByText(/Date/i);
+    fireEvent.click(dateField)
+    await waitFor(() => {
+      const cancelButton = container.getByText(/Cancel/i);
+      expect(container.getByText(/Cancel/i)).toBeInTheDocument();
+      fireEvent.click(cancelButton)
+    });
+
+    const pusposeField = container.getByText(/Purposes of Visit/i);
+    fireEvent.click(pusposeField)
+    await waitFor(() => {
+      const cancelButton = container.getByText(/Cancel/i);
+      expect(container.getByText(/Cancel/i)).toBeInTheDocument();
+      fireEvent.click(cancelButton)
+    });
+
+    const insuranceField = container.getByText(/Insurance Carrier/i);
+    fireEvent.click(insuranceField)
+    await waitFor(() => {
+      const cancelButton = container.getByText(/Cancel/i);
+      expect(container.getByText(/Cancel/i)).toBeInTheDocument();
+      fireEvent.click(cancelButton)
+    });
+
+    const Searchbutton = container.getByText(/Search/i);
+    fireEvent.click(Searchbutton)
+
+    await waitFor(() => {
+      container.getByText(/is required/i);
+      expect(container.getByText(/is required/i)).toBeInTheDocument();
+    });
+  });
 });
