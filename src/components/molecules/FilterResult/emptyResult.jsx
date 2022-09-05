@@ -4,7 +4,14 @@ import { Typography } from "@mui/material";
 
 export const EmptyResult = ({ message = "" }) => {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", paddingTop: "50px" }}>
+    <Box
+      sx={{
+        display: "flex",
+        flexDirection: "column",
+        paddingTop: "50px",
+        width: "100%",
+      }}
+    >
       <CalendarTodayIcon
         sx={{ alignSelf: "center", width: 38.5, height: 38.5 }}
       />

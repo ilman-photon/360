@@ -33,7 +33,10 @@ import {
   setFilterData,
 } from "../../../store/appointment";
 import { useRouter } from "next/router";
-import { parseSuggestionData } from "../../../utils/appointment";
+import {
+  parseSuggestionData,
+  setRangeDateData,
+} from "../../../utils/appointment";
 import { Api } from "../../api/api";
 
 export async function getStaticProps() {
@@ -54,6 +57,8 @@ export default function Appointment({ googleApiKey }) {
   const [dataFilter, setDataFilter] = React.useState([]);
   const [activeTabs, setActiveTabs] = useState(0);
   const [showMaps, setShowMaps] = useState(false);
+  const [rangeDate, setRangeDate] = useState({ startDate: "", endDate: "" });
+  const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -65,7 +70,6 @@ export default function Appointment({ googleApiKey }) {
   });
 
   function onSearchProvider(data) {
-    console.log({ data });
     dispatch(setFilterData(data));
     setFilterApplied(true);
     setDataFilter(data);
@@ -110,21 +114,53 @@ export default function Appointment({ googleApiKey }) {
       insuranceCarrier: requestData.insuranceCarrier,
       filterBy: [],
     };
+    setIsLoading(true);
     const api = new Api();
     api
       .submitFilter(postBody)
       .then(function (response) {
-        console.log("list of prov", { response });
-        setProviderListData(response?.listOfProvider);
+        if (
+          response?.listOfProvider.length > 0 &&
+          postBody.locationName !== "Jakarta"
+        ) {
+          const rangeDateData = setRangeDateData(response);
+          console.log("rangeDateData: ", rangeDateData);
+          setRangeDate(setRangeDateData(response));
+          setProviderListData(response?.listOfProvider);
+        } else {
+          setProviderListData([]);
+        }
       })
       .catch(function () {
-        //Handle error getsuggestion
+        setProviderListData([]);
+      })
+      .finally(function () {
+        setIsLoading(false);
       });
   }
 
-  function onNextScheduleClicked(type) {}
+  function onNextScheduleClicked(type, date) {
+    console.log(type, " + ", date);
+    const postBoday = {
+      locationName: dataFilter.location,
+      date: date,
+      appointmentType: dataFilter.purposeOfVisit,
+      insuranceCarrier: dataFilter.insuranceCarrier,
+    };
+    onCallSubmitFilterAPI(postBoday);
+  }
 
-  function onPrevScheduleClicked(type) {}
+  function onPrevScheduleClicked(type, date) {
+    console.log(type, " + ", date);
+    console.log(type, " + ", date);
+    const postBoday = {
+      locationName: dataFilter.location,
+      date: date,
+      appointmentType: dataFilter.purposeOfVisit,
+      insuranceCarrier: dataFilter.insuranceCarrier,
+    };
+    onCallSubmitFilterAPI(postBoday);
+  }
 
   function onViewAllAvailability(providerData) {
     //TO DO: set data for view days schedule]
@@ -228,10 +264,15 @@ export default function Appointment({ googleApiKey }) {
       </div>
     );
   }
-  function renderFilterResultTabletView() {
-    if (isTablet) {
+
+  function renderFilterResultTabletViewUI() {
+    if (providerListData.length > 0) {
       return (
-        <Stack flexDirection="row" width="100%">
+        <Box
+          sx={{
+            width: "100%",
+          }}
+        >
           {!showMaps ? (
             <Box sx={{ width: "1128px", m: 3 }}>
               <FilterResult
@@ -241,6 +282,7 @@ export default function Appointment({ googleApiKey }) {
                 providerList={providerListData}
                 onNextScheduleClicked={onNextScheduleClicked}
                 onPrevScheduleClicked={onPrevScheduleClicked}
+                rangeDate={rangeDate}
               />
             </Box>
           ) : (
@@ -262,18 +304,39 @@ export default function Appointment({ googleApiKey }) {
               )}
             </Box>
           )}
-        </Stack>
+        </Box>
       );
     } else {
       return (
+        <EmptyResult
+          message={
+            "No results found. Please try again with a different search criteria."
+          }
+        />
+      );
+    }
+  }
+
+  function renderFilterResultTabletView() {
+    if (isTablet) {
+      return !isLoading ? (
+        <Stack flexDirection="row" width="100%">
+          {renderFilterResultTabletViewUI()}
+        </Stack>
+      ) : (
+        <CircularProgress />
+      );
+    } else {
+      return !isLoading ? (
         <Stack flexDirection="row" width="100%">
           <Box sx={{ width: "1128px", m: 3 }}>
-            {dataFilter.location !== "Jakarta" ? (
+            {providerListData.length > 0 ? (
               <FilterResult
                 onClickViewAllAvailability={onViewAllAvailability}
                 OnDayClicked={handleDayClicked}
                 isDesktop={isDesktop}
                 providerList={providerListData}
+                rangeDate={rangeDate}
               />
             ) : (
               <EmptyResult
@@ -295,6 +358,8 @@ export default function Appointment({ googleApiKey }) {
             )}
           </Box>
         </Stack>
+      ) : (
+        <CircularProgress />
       );
     }
   }

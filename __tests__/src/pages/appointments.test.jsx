@@ -90,17 +90,15 @@ describe("Render Appointment", () => {
   };
   beforeEach(async () => {
     mock
-      .onPost(
-        `${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment`
-      )
+      .onGet(`${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment`)
       .reply(200, userData);
     act(() => {
       container = render(
       );
     });
-    // await waitFor(() => {
-    //   container.getAllByText(userData.appointmentList[0].patientInfo.name);
-    // });
+    await waitFor(() => {
+      container.getAllByText(userData.appointmentList[0].patientInfo.name);
+    });
   });
 
   afterAll(() => {
@@ -108,8 +106,8 @@ describe("Render Appointment", () => {
   });
 
   test("is Appointment page render", async () => {
-    // expect(
-    //   container.getAllByText(userData.appointmentList[0].patientInfo.name)[0]
-    // ).toBeInTheDocument();
+    expect(
+      container.getAllByText(userData.appointmentList[0].patientInfo.name)[0]
+    ).toBeInTheDocument();
   });
 });

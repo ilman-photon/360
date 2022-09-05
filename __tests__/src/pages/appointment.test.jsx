@@ -230,7 +230,6 @@ describe("App", () => {
   });
 
   it("on render tablet view", async () => {
-
     window = Object.assign(window, { innerWidth: 1000 });
     setTimeout(async () => {
       await waitFor(() => {

@@ -158,7 +158,7 @@ Object {
                     data-shrink="false"
                     id="demo-simple-select-label"
                   >
-                    Purposes of Visit
+                    Purpose of Visit
                   </label>
                   <div
                     class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
@@ -167,7 +167,7 @@ Object {
                     <div
                       aria-expanded="false"
                       aria-haspopup="listbox"
-                      aria-label="Purposes of Visit. "
+                      aria-label="Purpose of Visit. "
                       aria-labelledby="purposes-of-visit purposes-of-visit"
                       class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                       id="purposes-of-visit"
@@ -470,7 +470,7 @@ Object {
                   data-shrink="false"
                   id="demo-simple-select-label"
                 >
-                  Purposes of Visit
+                  Purpose of Visit
                 </label>
                 <div
                   class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
@@ -479,7 +479,7 @@ Object {
                   <div
                     aria-expanded="false"
                     aria-haspopup="listbox"
-                    aria-label="Purposes of Visit. "
+                    aria-label="Purpose of Visit. "
                     aria-labelledby="purposes-of-visit purposes-of-visit"
                     class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                     id="purposes-of-visit"
@@ -839,7 +839,7 @@ Object {
                     data-shrink="false"
                     id="demo-simple-select-label"
                   >
-                    Purposes of Visit
+                    Purpose of Visit
                   </label>
                   <div
                     class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
@@ -848,7 +848,7 @@ Object {
                     <div
                       aria-expanded="false"
                       aria-haspopup="listbox"
-                      aria-label="Purposes of Visit. "
+                      aria-label="Purpose of Visit. "
                       aria-labelledby="purposes-of-visit purposes-of-visit"
                       class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                       id="purposes-of-visit"
@@ -1150,7 +1150,7 @@ Object {
                     data-shrink="false"
                     id="demo-simple-select-label"
                   >
-                    Purposes of Visit
+                    Purpose of Visit
                   </label>
                   <div
                     class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
@@ -1159,7 +1159,7 @@ Object {
                     <div
                       aria-expanded="false"
                       aria-haspopup="listbox"
-                      aria-label="Purposes of Visit. "
+                      aria-label="Purpose of Visit. "
                       aria-labelledby="purposes-of-visit purposes-of-visit"
                       class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                       id="purposes-of-visit"
@@ -1462,7 +1462,7 @@ Object {
                   data-shrink="false"
                   id="demo-simple-select-label"
                 >
-                  Purposes of Visit
+                  Purpose of Visit
                 </label>
                 <div
                   class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
@@ -1471,7 +1471,7 @@ Object {
                   <div
                     aria-expanded="false"
                     aria-haspopup="listbox"
-                    aria-label="Purposes of Visit. "
+                    aria-label="Purpose of Visit. "
                     aria-labelledby="purposes-of-visit purposes-of-visit"
                     class="MuiSelect-select MuiSelect-filled MuiFilledInput-input MuiInputBase-input css-d9oaum-MuiSelect-select-MuiInputBase-input-MuiFilledInput-input"
                     id="purposes-of-visit"
