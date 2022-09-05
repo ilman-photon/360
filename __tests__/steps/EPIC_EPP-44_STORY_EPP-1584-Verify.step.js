@@ -127,7 +127,7 @@ defineFeature(feature, (test) => {
       });
       window.scrollTo = jest.fn();
       mock
-        .onPost(`${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment`)
+        .onGet(`${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment`)
         .reply(200, userData);
       act(() => {
         container = render(
