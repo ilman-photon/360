@@ -71,7 +71,7 @@ const loginProps = {
   OnForgotPasswordClicked: function (router) {
     router.push("/patient/forgot-password");
   },
-  onAppointMentClicked: "/patient/forgot-password",
+  onAppointMentClicked: "/patient/sync",
 };
 
 export default function login() {
