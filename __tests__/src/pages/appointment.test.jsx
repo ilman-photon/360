@@ -166,7 +166,7 @@ describe("App", () => {
       watchPosition: jest.fn()
     };
 
-    mock.onPost(`/api/dummy/appointment/create-appointment/submitFilter`).reply(200, MOCK_SUGGESTION_DATA);
+    mock.onGet(`/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGGESTION_DATA);
     window = Object.assign(window, { innerWidth: 1500 });
     global.navigator.geolocation = mockGeolocation;
     container = render(
