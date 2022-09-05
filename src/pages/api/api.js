@@ -52,7 +52,7 @@ export class Api {
   }
 
   validateUserNameAnsy(postbody) {
-    const url = "/ecp/patient/validate/async";
+    const url = "/ecp/patient/validate";
     return this.validationAsycEmail(url, postbody, "post");
   }
 
