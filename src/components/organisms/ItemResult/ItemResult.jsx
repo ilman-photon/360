@@ -48,6 +48,7 @@ export default function ItemResult({
             }}
             keyWeek={keyItem}
             OnDayClicked={OnDayClicked}
+            scheduleData={providerData?.availability}
           />
         </Box>
       </Box>

@@ -6,8 +6,9 @@ window.scrollTo = jest.fn()
 
 describe("FilterHeading Components", () => {
   let container;
+  const rangeDate = { startDate: "2022-10-10", endDate: "2022-10-15" }
   beforeEach(() => {
-    container = render(<FilterResultHeading />);
+    container = render(<FilterResultHeading rangeDate={rangeDate}/>);
   });
 
   it("FilterHeading render", () => {

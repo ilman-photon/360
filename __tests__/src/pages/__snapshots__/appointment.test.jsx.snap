@@ -197,7 +197,7 @@ Object {
                           for=":r2:"
                           id=":r2:-label"
                         >
-                          Purposes of Visit
+                          Purpose of Visit
                         </label>
                         <div
                           class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
@@ -499,7 +499,7 @@ Object {
                         for=":r2:"
                         id=":r2:-label"
                       >
-                        Purposes of Visit
+                        Purpose of Visit
                       </label>
                       <div
                         class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"

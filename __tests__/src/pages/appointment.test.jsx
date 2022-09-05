@@ -204,7 +204,7 @@ describe("App", () => {
       fireEvent.click(cancelButton)
     });
 
-    const pusposeField = container.getByText(/Purposes of Visit/i);
+    const pusposeField = container.getByText(/Purpose of Visit/i);
     fireEvent.click(pusposeField)
     await waitFor(() => {
       const cancelButton = container.getByText(/Cancel/i);
@@ -230,7 +230,6 @@ describe("App", () => {
   });
 
   it("on render tablet view", async () => {
-
     window = Object.assign(window, { innerWidth: 1000 });
     setTimeout(async () => {
       await waitFor(() => {

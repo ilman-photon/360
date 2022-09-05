@@ -297,13 +297,16 @@ export const CustomPopper = function (props) {
           height: "349px",
           color: colors.darkGreen,
           "& .MuiListSubheader-root": {
+            paddingLeft: "8px",
+            paddingRight: "8px",
             fontSize: "14px",
           },
           "& .MuiListSubheader-root:first-letter": {
             textTransform: "uppercase",
           },
           "& .MuiAutocomplete-option": {
-            paddingLeft: "16px",
+            paddingLeft: "8px",
+            paddingRight: "8px",
             minHeight: "auto",
             paddingTop: "3px",
             paddingBottom: "12px",
@@ -698,7 +701,7 @@ const FilterHeading = ({
                     },
                   },
                 }}
-                label={"Purposes of Visit"}
+                label={"Purpose of Visit"}
                 labelId={`purposes-of-visit`}
                 id={`purposes-of-visit`}
                 options={purposeOfVisitData}
@@ -912,7 +915,7 @@ const FilterHeading = ({
           value={value}
           onChange={onChange}
           variant="filled"
-          label="Purposes of Visit"
+          label="Purpose of Visit"
           sx={sxTextField}
           onClick={() => {
             handleOpenDialog("purposeInput");
