@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import React from "react";
 import { colors } from "../../../styles/theme";
 import styles from "./sidebarLink.module.scss";
@@ -24,7 +25,14 @@ const SidebarLink = ({ router, href, isLeftSideBar = false, children }) => {
         borderColor: colors.darkGreen,
       }}
     >
-      {children}
+      <Typography
+        variant="allVariants"
+        sx={{
+          color: isCurrentPath ? colors.darkGreen : null,
+        }}
+      >
+        {children}
+      </Typography>
     </a>
   );
 };
