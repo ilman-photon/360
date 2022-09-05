@@ -134,7 +134,7 @@ export default function AppointmentForm({
                 data-testid={SCHEDULE_GUEST_TEST_ID.signInlink}
                 {...getLinkAria(t("signIn"))}
                 onClick={() => {
-                  router.push("/patient/admin/login");
+                  router.push("/patient/login");
                 }}
               >
                 {t("signIn")}
