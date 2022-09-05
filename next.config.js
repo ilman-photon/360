@@ -53,7 +53,7 @@ const nextConfig = {
         destination: "/auth/create-account",
       },
       {
-        source: "/patient/admin/login",
+        source: "/patient/sync/login",
         destination: "/patient/login",
       },
       {
