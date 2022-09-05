@@ -30,6 +30,9 @@ import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import { editAppointmentScheduleData } from "../../../store/appointment";
 import { fetchUser } from "../../../store/user";
+import { Api } from "../../api/api";
+import MESSAGES from "../../../utils/responseCodes";
+import { setFormMessage } from "../../../store";
 
 const MobileTopBar = (data) => {
   return (
@@ -76,6 +79,9 @@ export const PageContent = ({
     keyPrefix: "scheduleAppoinment",
   });
 
+  const api = new Api();
+  const cookies = new Cookies();
+
   const handleFormSubmit = (payload) => {
     dispatch(
       editAppointmentScheduleData({
@@ -84,6 +90,27 @@ export const PageContent = ({
       })
     );
     OnsetActiveStep();
+  };
+
+  const createAccount = async function (postbody) {
+    try {
+      await api.getResponse("/ecp/patient/userregistration", postbody, "post");
+      cookies.set("authorized", true, { path: "/patient" });
+    } catch (err) {
+      console.error({ err });
+      if (err.ResponseCode) {
+        const errorMessage = MESSAGES[err.ResponseCode || 3500];
+
+        dispatch(
+          setFormMessage({
+            success: false,
+            title: errorMessage.title,
+            content: errorMessage.content,
+            isBackToLogin: errorMessage.isBackToLogin,
+          })
+        );
+      }
+    }
   };
 
   switch (activeStep) {
@@ -173,6 +200,7 @@ export const PageContent = ({
               patientData={appointmentScheduleData.patientInfo}
               OnSubmit={(v) => {
                 handleFormSubmit(v);
+                createAccount(v);
                 OnsetActiveStep(4);
               }}
             />
