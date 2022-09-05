@@ -127,6 +127,7 @@ export const styles = {
   },
 
   registeredUsernameWrapper: {
+    margin: "16px 8px 0",
     padding: 16,
     borderRadius: 4,
     color: "#366a70",

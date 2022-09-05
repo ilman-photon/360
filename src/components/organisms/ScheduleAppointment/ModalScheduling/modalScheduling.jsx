@@ -15,6 +15,7 @@ export default function ModalScheduling({
     <Box>
       <Dialog
         aria-labelledby="customized-dialog-title"
+        aria-describedby="alert-dialog-description"
         open={isOpen}
         isLoggedIn={isLoggedIn}
       >

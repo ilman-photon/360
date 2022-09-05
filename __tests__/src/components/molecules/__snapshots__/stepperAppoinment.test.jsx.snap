@@ -9,9 +9,11 @@ Object {
         class="MuiBox-root css-17a7zap"
       >
         <div
+          aria-label="Progress Bar"
           class="MuiStepper-root MuiStepper-horizontal MuiStepper-alternativeLabel css-1fqle5r-MuiStepper-root"
         >
           <div
+            aria-label="Location stage in progress bar"
             class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel Mui-completed css-1ifo3oi-MuiStep-root"
           >
             <span
@@ -38,6 +40,7 @@ Object {
             </span>
           </div>
           <div
+            aria-label="Review stage in progress bar"
             class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel css-1ifo3oi-MuiStep-root"
           >
             <div
@@ -87,6 +90,7 @@ Object {
             </span>
           </div>
           <div
+            aria-label="Appointment Details stage in progress bar"
             class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel css-1ifo3oi-MuiStep-root"
           >
             <div
@@ -130,6 +134,7 @@ Object {
             </span>
           </div>
           <div
+            aria-label="Contact Info stage in progress bar"
             class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel css-1ifo3oi-MuiStep-root"
           >
             <div
@@ -173,6 +178,7 @@ Object {
             </span>
           </div>
           <div
+            aria-label="Confirm stage in progress bar"
             class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel css-1ifo3oi-MuiStep-root"
           >
             <div
@@ -224,9 +230,11 @@ Object {
       class="MuiBox-root css-17a7zap"
     >
       <div
+        aria-label="Progress Bar"
         class="MuiStepper-root MuiStepper-horizontal MuiStepper-alternativeLabel css-1fqle5r-MuiStepper-root"
       >
         <div
+          aria-label="Location stage in progress bar"
           class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel Mui-completed css-1ifo3oi-MuiStep-root"
         >
           <span
@@ -253,6 +261,7 @@ Object {
           </span>
         </div>
         <div
+          aria-label="Review stage in progress bar"
           class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel css-1ifo3oi-MuiStep-root"
         >
           <div
@@ -302,6 +311,7 @@ Object {
           </span>
         </div>
         <div
+          aria-label="Appointment Details stage in progress bar"
           class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel css-1ifo3oi-MuiStep-root"
         >
           <div
@@ -345,6 +355,7 @@ Object {
           </span>
         </div>
         <div
+          aria-label="Contact Info stage in progress bar"
           class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel css-1ifo3oi-MuiStep-root"
         >
           <div
@@ -388,6 +399,7 @@ Object {
           </span>
         </div>
         <div
+          aria-label="Confirm stage in progress bar"
           class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel css-1ifo3oi-MuiStep-root"
         >
           <div
