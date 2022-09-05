@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="MuiBox-root css-16pyde7"
+        class="MuiBox-root css-99f4pt"
       >
         <svg
           aria-hidden="true"
@@ -27,7 +27,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="MuiBox-root css-16pyde7"
+      class="MuiBox-root css-99f4pt"
     >
       <svg
         aria-hidden="true"
