@@ -105,7 +105,6 @@ const DummyComponent = () => {
 };
 
 function GMaps() {
-  const [mapContext, setMapContext] = React.useState(null);
   const [activeMarker, setActiveMarker] = React.useState(null);
 
   const handleActiveMarker = (marker) => {
@@ -121,17 +120,12 @@ function GMaps() {
     map.fitBounds(bounds);
   }, []);
 
-  const onUnmount = React.useCallback(function callback(map) {
-    setMapContext(null);
-  }, []);
-
   return (
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
       zoom={6}
       onLoad={onLoad}
-      onUnmount={onUnmount}
     >
       {/* Child components, such as markers, info windows, etc. */}
       {markers.map(({ id, position }) => (
