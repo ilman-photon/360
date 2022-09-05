@@ -106,7 +106,7 @@ const FilterBy = ({ isOpen, onClose, onDone, filter, activedFilter = [] }) => {
         <Divider className={styles.topDivider}></Divider>
         <Box className={styles.checBoxListContainer} id="checkboxGroup">
           {filter.map((item, index) => {
-            const isLastIndex = index - 1;
+            const isLastIndex = index === filter.length - 1;
             return renderCheckbox(item.title, item.filter, index, !isLastIndex);
           })}
         </Box>
@@ -114,7 +114,7 @@ const FilterBy = ({ isOpen, onClose, onDone, filter, activedFilter = [] }) => {
       <Box className={styles.buttonContainer}>
         <StyledButton
           theme={constants.PATIENT}
-          mode={constants.PRIMARY}
+          mode={constants.SECONDARY}
           size={constants.SMALL}
           gradient={false}
           onClick={() => {
@@ -128,7 +128,7 @@ const FilterBy = ({ isOpen, onClose, onDone, filter, activedFilter = [] }) => {
         </StyledButton>
         <StyledButton
           theme={constants.PATIENT}
-          mode={constants.SECONDARY}
+          mode={constants.PRIMARY}
           size={constants.SMALL}
           gradient={false}
           onClick={() => {
