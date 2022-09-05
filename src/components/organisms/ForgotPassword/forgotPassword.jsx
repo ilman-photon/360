@@ -22,6 +22,7 @@ const ForgotPassword = ({
   showPostMessage,
   setShowPostMessage,
   onCalledValidateUsernameAPI,
+  onCalledValidateUsernameAnsycAPI,
   title = "",
   isAppointment = true,
 }) => {
@@ -35,6 +36,13 @@ const ForgotPassword = ({
         type: "custom",
         message: t("errorEmptyField"),
       });
+    } else if (isAppointment) {
+      onCalledValidateUsernameAnsycAPI(
+        {
+          username: username,
+        },
+        constants.SELECT_OPTION
+      );
     } else if (
       Regex.REGEX_PHONE_NUMBER.test(username) ||
       Regex.isEmailCorrect.test(username)

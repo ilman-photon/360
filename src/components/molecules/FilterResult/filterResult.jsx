@@ -18,6 +18,7 @@ export const FilterResult = ({
     // This is intentional
   },
   isDesktop = false,
+  rangeDate = { startDate: "", endDate: "" },
 }) => {
   function renderItemResult() {
     const indents = [];
@@ -46,6 +47,7 @@ export const FilterResult = ({
             isDesktop={isDesktop}
             onNextScheduleClicked={onNextScheduleClicked}
             onPrevScheduleClicked={onPrevScheduleClicked}
+            rangeDate={rangeDate}
           />
         </Box>
         <div

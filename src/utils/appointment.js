@@ -1,3 +1,5 @@
+import constants from "./constants";
+
 export function parseSuggestionData(suggestionData) {
   return {
     purposeOfVisit: parsePurposeOfVisit(suggestionData.appointmentType),
@@ -41,4 +43,89 @@ function parseInsuranceCarrier(insuranceCarrierData) {
     return data;
   }
   return [];
+}
+
+export function parseScheduleDataWeek(availability) {
+  const dayNames = [
+    "monday",
+    "tuesday",
+    "wednesday",
+    "thursday",
+    "friday",
+    "saturday",
+  ];
+  let scheduleData = {};
+
+  for (let index = 0; index < availability.length; index++) {
+    const day = dayNames[index];
+    const schedule = getScheduleData(availability[index]);
+
+    //Add empty field
+    if (schedule.length < 4) {
+      const limitEmpty = 4 - schedule.length;
+      for (let indexEmpty = 0; indexEmpty < limitEmpty; indexEmpty++) {
+        schedule.push("");
+      }
+    }
+    scheduleData[day] = schedule;
+  }
+
+  return scheduleData;
+}
+
+function getScheduleData(availabilityData) {
+  const schedule = [];
+  let more = 0;
+  for (
+    let indexList = 0;
+    indexList < availabilityData.list.length;
+    indexList++
+  ) {
+    if (indexList >= 3) {
+      more++;
+      if (indexList === availabilityData.list.length - 1) {
+        schedule.push(`${more} more`);
+      }
+    } else {
+      schedule.push(availabilityData.list[indexList].time);
+    }
+  }
+  return schedule;
+}
+
+export function setRangeDateData(response) {
+  return {
+    startDate: response?.listOfProvider[0].from,
+    endDate: response?.listOfProvider[0].to,
+  };
+}
+
+Date.prototype.addDays = function (days) {
+  var date = new Date(this.valueOf());
+  date.setDate(date.getDate() + days);
+  return date;
+};
+
+//This for week dates
+export function getDates(startDate, stopDate) {
+  let dateArray = new Array();
+  let currentDate = startDate;
+  while (currentDate <= stopDate) {
+    dateArray.push(new Date(currentDate));
+    currentDate = currentDate.addDays(1);
+  }
+  return {
+    dateRange: dateArray,
+    dateListName: getDateListName(dateArray),
+  };
+}
+
+function getDateListName(dateArray) {
+  const dateWeek = [];
+  for (let date of dateArray) {
+    const month = constants.MONTH_NAME[date.getMonth()];
+    dateWeek.push(`${month} ${date.getDate()}`);
+  }
+
+  return dateWeek;
 }
