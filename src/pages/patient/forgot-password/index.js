@@ -104,6 +104,29 @@ export default function ForgotPasswordPage() {
     } else setAppointment(false);
   }, [router]);
 
+  const onCalledValidateUsernameAnsycAPI = function ({ username }, showForm) {
+    const postbody = {
+      patient: { userName: username },
+    };
+    const api = new Api();
+    api
+      .validateUserNameAnsy(postbody)
+      .then(function (response) {
+        setPatientData({
+          ...patientData,
+          username: username,
+          securityQuestionsSet:
+            response.SecurityQuestions && response.SecurityQuestions.length > 0,
+          securityQuestions: mappingSecurityData(response.SecurityQuestions[0]),
+          preferredComunication: response.PreferredComunication,
+        });
+        onContinueButtonClicked(showForm);
+      })
+      .catch(function () {
+        setShowPostMessage(true);
+      });
+  };
+
   //Call API for userame validation
   const onCalledValidateUsernameAPI = function ({ username }, showForm) {
     const postbody = {
@@ -289,6 +312,7 @@ export default function ForgotPasswordPage() {
           showPostMessage={showPostMessage}
           setShowPostMessage={setShowPostMessage}
           onCalledValidateUsernameAPI={onCalledValidateUsernameAPI}
+          onCalledValidateUsernameAnsycAPI={onCalledValidateUsernameAnsycAPI}
           title={"Forgot Password Page"}
           isAppointment={isAppointment}
         />
