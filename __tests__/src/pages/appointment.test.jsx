@@ -204,7 +204,7 @@ describe("App", () => {
       fireEvent.click(cancelButton)
     });
 
-    const pusposeField = container.getByText(/Purposes of Visit/i);
+    const pusposeField = container.getByText(/Purpose of Visit/i);
     fireEvent.click(pusposeField)
     await waitFor(() => {
       const cancelButton = container.getByText(/Cancel/i);
