@@ -94,6 +94,9 @@ describe("Render Appointment", () => {
       .reply(200, userData);
     act(() => {
       container = render(
+        <Provider store={store}>
+          {Appointments.getLayout(<Appointments />)}
+        </Provider>
       );
     });
     await waitFor(() => {

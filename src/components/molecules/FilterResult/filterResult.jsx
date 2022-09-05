@@ -52,13 +52,13 @@ export const FilterResult = ({
   const [currentDateIndex, setCurrentDateIndex] = useState(0);
 
   useEffect(() => {
-    const dateList = getDates(
+    const dates = getDates(
       new Date(rangeDate.startDate),
       new Date(rangeDate.endDate),
       true
     );
     if (rangeDate.startDate && rangeDate.endDate) {
-      setDateList(dateList);
+      setDateList(dates);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rangeDate]);

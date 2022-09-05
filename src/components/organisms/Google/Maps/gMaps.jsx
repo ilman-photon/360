@@ -18,7 +18,6 @@ function GMaps({
     // This is intended
   },
 }) {
-  const [mapContext, setMapContext] = React.useState(null);
   const [activeMarker, setActiveMarker] = React.useState(null);
   const markers = [];
   providerListData.forEach((provider) => {
@@ -59,17 +58,12 @@ function GMaps({
     map.fitBounds(bounds);
   }, []);
 
-  const onUnmount = React.useCallback(function callback(map) {
-    setMapContext(null);
-  }, []);
-
   return (
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
       zoom={6}
       onLoad={onLoad}
-      onUnmount={onUnmount}
     >
       {/* Child components, such as markers, info windows, etc. */}
       {markers.map((marker, idx) => (
