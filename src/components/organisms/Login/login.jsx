@@ -59,7 +59,7 @@ export function Login({
     );
   };
   React.useEffect(() => {
-    if (router.asPath == "/patient/admin/login") {
+    if (router.asPath == "/patient/sync/login") {
       setIsThresholdAdmin(true);
     } else {
       setIsThresholdAdmin(false);

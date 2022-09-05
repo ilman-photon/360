@@ -137,7 +137,7 @@ const FilterBy = ({ isOpen, onClose, onDone, filter, activedFilter = [] }) => {
       <Box className={styles.buttonContainer}>
         <StyledButton
           theme={constants.PATIENT}
-          mode={constants.PRIMARY}
+          mode={constants.SECONDARY}
           size={constants.SMALL}
           gradient={false}
           onClick={() => {
@@ -151,7 +151,7 @@ const FilterBy = ({ isOpen, onClose, onDone, filter, activedFilter = [] }) => {
         </StyledButton>
         <StyledButton
           theme={constants.PATIENT}
-          mode={constants.SECONDARY}
+          mode={constants.PRIMARY}
           size={constants.SMALL}
           gradient={false}
           onClick={() => {

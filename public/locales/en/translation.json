@@ -35,7 +35,8 @@
     "backButtonLink": "Back to Log in",
     "backSignIn": "Back to Sign-In",
     "syncButton": "Sync",
-    "syncTitle" : "Sync your appointment"
+    "syncTitle" : "Sync your appointment",
+    "syncError" : "Invalid Email or Phone number"
   },
   "SetOption": {
     "title": "Select an option",
