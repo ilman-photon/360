@@ -84,7 +84,9 @@ describe("Render Appointment", () => {
   };
   beforeEach(async () => {
     mock
-      .onPost(`/api/dummy/apppointment/my-appointment/getAllAppointment`)
+      .onPost(
+        `${window.location.origin}/api/dummy/apppointment/my-appointment/getAllAppointment`
+      )
       .reply(200, userData);
     act(() => {
       container = render(
