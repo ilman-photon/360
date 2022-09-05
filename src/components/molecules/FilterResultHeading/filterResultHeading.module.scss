@@ -124,3 +124,20 @@
   margin-right: 14px;
   display: flex;
 }
+
+.dateListContainer {
+  .prevArrowActive {
+    grid-area: arrowLeft;
+    margin: auto;
+    width: 22px;
+    cursor: pointer;
+    opacity: 1;
+  }
+  .prevArrowDisable {
+    grid-area: arrowLeft;
+    margin: auto;
+    width: 22px;
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+}

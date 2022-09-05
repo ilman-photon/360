@@ -14,9 +14,14 @@ export default function Appointments() {
   const getAppointments = () => {
     const api = new Api();
     !appointments &&
-      api.getAllAppointment().then((response) => {
-        setAppointments(response);
-      });
+      api
+        .getAllAppointment()
+        .then((response) => {
+          setAppointments(response);
+        })
+        .catch(function () {
+          //Handle error getAppointments
+        });
   };
 
   useEffect(() => {

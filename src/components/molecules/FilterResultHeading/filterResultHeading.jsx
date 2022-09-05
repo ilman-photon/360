@@ -8,17 +8,17 @@ import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import styles from "./filterResultHeading.module.scss";
 import CloseIcon from "@mui/icons-material/Close";
 import FilterBy from "../FilterBy/filterBy";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Stack, Typography } from "@mui/material";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import { colors } from "../../../styles/theme";
 import Image from "next/image";
 import FilterHeadingFilled from "../FilterHeading/filterHeadingFilled";
+import { getDates } from "../../../utils/appointment";
 
 export const FilterResultHeading = ({
   _appliedFilter,
   numberFilter = 30,
-  dateWeek = ["Sep 19", "Sep 20", "Sep 21", "Sep 22", "Sep 23", "Sep 24"],
   isDesktop = false,
   filterData = {
     location: "New York, NY",
@@ -37,6 +37,7 @@ export const FilterResultHeading = ({
   },
   purposeOfVisitData = [],
   insuranceCarrierData = [],
+  rangeDate = { startDate: "", endDate: "" },
 }) => {
   const imageSrcState = "/searchInputIcon.png";
   const imageSrcFilled = "/searchFilledIcon.png";
@@ -79,6 +80,19 @@ export const FilterResultHeading = ({
   const [filterOpen, setFilterOpen] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState([]);
+  const [dateList, setDateList] = useState({
+    dateRange: [],
+    dateListName: [],
+  });
+
+  useEffect(() => {
+    const dateList = getDates(
+      new Date(rangeDate.startDate),
+      new Date(rangeDate.endDate)
+    );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    setDateList(dateList);
+  }, [rangeDate]);
 
   function renderAppliedFilter() {
     return activeFilter.map((option, idx) => {
@@ -114,6 +128,13 @@ export const FilterResultHeading = ({
   function handleOpenDialog() {
     //Reset data when cancel the dialog
     setDialogOpen(true);
+  }
+
+  function isPrevArrowDisable() {
+    return (
+      new Date() >
+      (dateList?.dateRange?.length > 0 ? dateList.dateRange[0] : null)
+    );
   }
 
   function renderDesktopView() {
@@ -174,6 +195,7 @@ export const FilterResultHeading = ({
               gridTemplateRows: "auto",
               gridTemplateAreas: `"arrowLeft caledar arrowRight"`,
             }}
+            className={styles.dateListContainer}
           >
             <ArrowBackIosIcon
               sx={{
@@ -182,8 +204,15 @@ export const FilterResultHeading = ({
                 width: "22px",
                 cursor: "pointer",
               }}
+              className={
+                isPrevArrowDisable()
+                  ? styles.prevArrowDisable
+                  : styles.prevArrowActive
+              }
               onClick={() => {
-                onPrevScheduleClicked("week");
+                const date = new Date(dateList.dateRange[0]);
+                date.setDate(date.getDate() - 7);
+                onPrevScheduleClicked("week", date);
               }}
             />
             <Box
@@ -209,7 +238,7 @@ export const FilterResultHeading = ({
                       {option.slice(0, 3)}
                     </Typography>
                     <Typography className={styles.calenderMonth}>
-                      {dateWeek[idx]}
+                      {dateList.dateListName[idx]}
                     </Typography>
                   </Box>
                 );
@@ -223,7 +252,9 @@ export const FilterResultHeading = ({
                 cursor: "pointer",
               }}
               onClick={() => {
-                onNextScheduleClicked("week");
+                const date = new Date(dateList.dateRange[5]);
+                date.setDate(date.getDate() + 7);
+                onNextScheduleClicked("week", date);
               }}
             />
           </Box>

@@ -151,4 +151,482 @@ defineFeature(feature, (test) => {
       expect(container.getByText(/Cigna 3/i)).toBeInTheDocument();
     });
   });
+
+  test('EPIC_EPP-44_STORY_EPP-2518-Verify User should see the following sections of Provider', ({ given, when, then, and }) => {
+    given(/^User launch the "(.*)" url$/, (arg0) => {
+      defaultValidation();
+    });
+
+    when(/^User clicks on the "(.*)" button$/, (arg0) => {
+      defaultValidation();
+    });
+
+    then('User should navigated to the search screen', () => {
+      defaultValidation();
+    });
+
+    and('User should fill the location', () => {
+      defaultValidation();
+    });
+
+    and('User should select the date of appointment', () => {
+      defaultValidation();
+    });
+
+    and('User should select the purpose of the visit', () => {
+      defaultValidation();
+    });
+
+    and('User should fill the insurance name', () => {
+      defaultValidation();
+    });
+
+    when('User clicks on the Search button', () => {
+      defaultValidation();
+    });
+
+    then('User should see the results on the Schedule Appointments screen', () => {
+      defaultValidation();
+    });
+
+    and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+      defaultValidation();
+    });
+
+    and('User should see the doctor’s name', () => {
+      defaultValidation();
+    });
+
+    when('User clicks on the doctor’s name', () => {
+      defaultValidation();
+    });
+
+    then('User should see the short bio of Provider as below:', async (table) => {
+      useRouter.mockReturnValue({
+        back: jest.fn(),
+      });
+      window.scrollTo = jest.fn();
+      mock
+        .onPost(
+          `${window.location.origin}/api/dummy/appointment/biography/getProviderDetails`
+        )
+        .reply(200, userData);
+      const props = await getStaticProps();
+      act(() => {
+        container = render(
+          <Provider store={store}>{Bio.getLayout(<Bio {...props} />)}</Provider>
+        );
+      });
+
+      await waitFor(() => {
+        container.getByTestId(TEST_ID.viewAll);
+      });
+      expect(container.getByTestId(TEST_ID.about)).toBeInTheDocument();
+      expect(container.getByTestId(TEST_ID.location)).toBeInTheDocument();
+      expect(container.getByTestId(TEST_ID.insurance)).toBeInTheDocument();
+      expect(container.getByTestId(TEST_ID.education)).toBeInTheDocument();
+      act(() => {
+        fireEvent.click(container.getByTestId(TEST_ID.about));
+      });
+      const providerName = await container.getByText(/About Paul Wagner Md/i);
+      expect(providerName.textContent).toEqual("About Paul Wagner Md")
+
+      act(() => {
+        fireEvent.click(container.getByTestId(TEST_ID.location));
+      });
+      const providerLocation = await container.getAllByText(/Locations/i);
+      expect(providerLocation[2].textContent).toEqual("Locations")
+
+      act(() => {
+        fireEvent.click(container.getByTestId(TEST_ID.insurance));
+      });
+      const providerInsurance = await container.getAllByText(/In-network insurances/i);
+      expect(providerInsurance[0].tagName).toEqual("H3")
+      expect(providerInsurance[0].textContent).toEqual("In-network insurances")
+
+      act(() => {
+        fireEvent.click(container.getByTestId(TEST_ID.education));
+      });
+      const providerEducation = await container.getAllByText(/Education/i);
+      expect(providerEducation[2].tagName).toEqual("H3")
+      expect(providerEducation[2].textContent).toEqual("Education")
+    });
+  });
+
+  test('EPIC_EPP-44_STORY_EPP-2518-Verify User should see <About> sections of Provider as "Short Bio of the provider with Name and Image" description', ({ given, when, then, and }) => {
+    given(/^User launch the "(.*)" url$/, (arg0) => {
+      defaultValidation();
+    });
+
+    when(/^User clicks on the "(.*)" button$/, (arg0) => {
+      defaultValidation();
+    });
+
+    then('User should navigated to the search screen', () => {
+      defaultValidation();
+    });
+
+    and('User should fill the location', () => {
+      defaultValidation();
+    });
+
+    and('User should select the date of appointment', () => {
+      defaultValidation();
+    });
+
+    and('User should select the purpose of the visit', () => {
+      defaultValidation();
+    });
+
+    and('User should fill the insurance name', () => {
+      defaultValidation();
+    });
+
+    when('User clicks on the Search button', () => {
+      defaultValidation();
+    });
+
+    then('User should see the results on the Schedule Appointments screen', () => {
+      defaultValidation();
+    });
+
+    and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+      defaultValidation();
+    });
+
+    and('User should see the doctor’s name', () => {
+      defaultValidation();
+    });
+
+    when('User clicks on the doctor’s name', () => {
+      defaultValidation();
+    });
+
+    then(/^User should see (.*) sections of Provider as "(.*)" description$/, async (arg0, arg1) => {
+      useRouter.mockReturnValue({
+        back: jest.fn(),
+      });
+      window.scrollTo = jest.fn();
+      mock
+        .onPost(
+          `${window.location.origin}/api/dummy/appointment/biography/getProviderDetails`
+        )
+        .reply(200, userData);
+      const props = await getStaticProps();
+      act(() => {
+        container = render(
+          <Provider store={store}>{Bio.getLayout(<Bio {...props} />)}</Provider>
+        );
+      });
+
+      await waitFor(() => {
+        container.getByTestId(TEST_ID.viewAll);
+      });
+
+      const providerName = await container.getByText(/About Paul Wagner Md/i);
+      expect(providerName.textContent).toEqual("About Paul Wagner Md")
+    });
+  });
+
+  test('EPIC_EPP-44_STORY_EPP-2518-Verify User should see <Sub-specialities> sections of Provider as "Sub-specialities of the provider (Cataract, Glaucoma etc..)" description', ({ given, when, then, and }) => {
+    given(/^User launch the "(.*)" url$/, (arg0) => {
+      defaultValidation();
+    });
+
+    when(/^User clicks on the "(.*)" button$/, (arg0) => {
+      defaultValidation();
+    });
+
+    then('User should navigated to the search screen', () => {
+      defaultValidation();
+    });
+
+    and('User should fill the location', () => {
+      defaultValidation();
+    });
+
+    and('User should select the date of appointment', () => {
+      defaultValidation();
+    });
+
+    and('User should select the purpose of the visit', () => {
+      defaultValidation();
+    });
+
+    and('User should fill the insurance name', () => {
+      defaultValidation();
+    });
+
+    when('User clicks on the Search button', () => {
+      defaultValidation();
+    });
+
+    then('User should see the results on the Schedule Appointments screen', () => {
+      defaultValidation();
+    });
+
+    and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+      defaultValidation();
+    });
+
+    and('User should see the doctor’s name', () => {
+      defaultValidation();
+    });
+
+    when('User clicks on the doctor’s name', () => {
+      defaultValidation();
+    });
+
+    then(/^User should see (.*) sections of Provider as "(.*)" description$/, async (arg0, arg1) => {
+      useRouter.mockReturnValue({
+        back: jest.fn(),
+      });
+      window.scrollTo = jest.fn();
+      mock
+        .onPost(
+          `${window.location.origin}/api/dummy/appointment/biography/getProviderDetails`
+        )
+        .reply(200, userData);
+      const props = await getStaticProps();
+      act(() => {
+        container = render(
+          <Provider store={store}>{Bio.getLayout(<Bio {...props} />)}</Provider>
+        );
+      });
+
+      await waitFor(() => {
+        container.getByTestId(TEST_ID.viewAll);
+      });
+
+      const data = await container.getByText(/Specialties/i);
+      expect(data.textContent).toEqual("Specialties and Sub-specialties: ")
+    });
+  });
+
+  test('EPIC_EPP-44_STORY_EPP-2518-Verify User should see <Gender> sections of Provider as "Gender of the provider" description', ({ given, when, then, and }) => {
+    given(/^User launch the "(.*)" url$/, (arg0) => {
+      defaultValidation();
+    });
+
+    when(/^User clicks on the "(.*)" button$/, (arg0) => {
+      defaultValidation();
+    });
+
+    then('User should navigated to the search screen', () => {
+      defaultValidation();
+    });
+
+    and('User should fill the location', () => {
+      defaultValidation();
+    });
+
+    and('User should select the date of appointment', () => {
+      defaultValidation();
+    });
+
+    and('User should select the purpose of the visit', () => {
+      defaultValidation();
+    });
+
+    and('User should fill the insurance name', () => {
+      defaultValidation();
+    });
+
+    when('User clicks on the Search button', () => {
+      defaultValidation();
+    });
+
+    then('User should see the results on the Schedule Appointments screen', () => {
+      defaultValidation();
+    });
+
+    and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+      defaultValidation();
+    });
+
+    and('User should see the doctor’s name', () => {
+      defaultValidation();
+    });
+
+    when('User clicks on the doctor’s name', () => {
+      defaultValidation();
+    });
+
+    then(/^User should see (.*) sections of Provider as "(.*)" description$/, async (arg0, arg1) => {
+      useRouter.mockReturnValue({
+        back: jest.fn(),
+      });
+      window.scrollTo = jest.fn();
+      mock
+        .onPost(
+          `${window.location.origin}/api/dummy/appointment/biography/getProviderDetails`
+        )
+        .reply(200, userData);
+      const props = await getStaticProps();
+      act(() => {
+        container = render(
+          <Provider store={store}>{Bio.getLayout(<Bio {...props} />)}</Provider>
+        );
+      });
+
+      await waitFor(() => {
+        container.getByTestId(TEST_ID.viewAll);
+      });
+
+      const data = await container.getByText(/Gender/i);
+      expect(data.textContent).toEqual("Gender")
+    });
+  });
+
+  test('EPIC_EPP-44_STORY_EPP-2518-Verify User should see <Languages> sections of Provider as "Languages the provider speaks" description', ({ given, when, then, and }) => {
+    given(/^User launch the "(.*)" url$/, (arg0) => {
+      defaultValidation();
+    });
+
+    when(/^User clicks on the "(.*)" button$/, (arg0) => {
+      defaultValidation();
+    });
+
+    then('User should navigated to the search screen', () => {
+      defaultValidation();
+    });
+
+    and('User should fill the location', () => {
+      defaultValidation();
+    });
+
+    and('User should select the date of appointment', () => {
+      defaultValidation();
+    });
+
+    and('User should select the purpose of the visit', () => {
+      defaultValidation();
+    });
+
+    and('User should fill the insurance name', () => {
+      defaultValidation();
+    });
+
+    when('User clicks on the Search button', () => {
+      defaultValidation();
+    });
+
+    then('User should see the results on the Schedule Appointments screen', () => {
+      defaultValidation();
+    });
+
+    and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+      defaultValidation();
+    });
+
+    and('User should see the doctor’s name', () => {
+      defaultValidation();
+    });
+
+    when('User clicks on the doctor’s name', () => {
+      defaultValidation();
+    });
+
+    then(/^User should see (.*) sections of Provider as "(.*)" description$/, async (arg0, arg1) => {
+      useRouter.mockReturnValue({
+        back: jest.fn(),
+      });
+      window.scrollTo = jest.fn();
+      mock
+        .onPost(
+          `${window.location.origin}/api/dummy/appointment/biography/getProviderDetails`
+        )
+        .reply(200, userData);
+      const props = await getStaticProps();
+      act(() => {
+        container = render(
+          <Provider store={store}>{Bio.getLayout(<Bio {...props} />)}</Provider>
+        );
+      });
+
+      await waitFor(() => {
+        container.getByTestId(TEST_ID.viewAll);
+      });
+
+      const data = await container.getByText(/Languages/i);
+      expect(data.textContent).toEqual("Languages")
+    });
+  });
+
+  test('EPIC_EPP-44_STORY_EPP-2518-Verify User should see <In-network Insurances> sections of Provider as "Insurances that are in their network" description', ({ given, when, then, and }) => {
+    given(/^User launch the "(.*)" url$/, (arg0) => {
+      defaultValidation();
+    });
+
+    when(/^User clicks on the "(.*)" button$/, (arg0) => {
+      defaultValidation();
+    });
+
+    then('User should navigated to the search screen', () => {
+      defaultValidation();
+    });
+
+    and('User should fill the location', () => {
+      defaultValidation();
+    });
+
+    and('User should select the date of appointment', () => {
+      defaultValidation();
+    });
+
+    and('User should select the purpose of the visit', () => {
+      defaultValidation();
+    });
+
+    and('User should fill the insurance name', () => {
+      defaultValidation();
+    });
+
+    when('User clicks on the Search button', () => {
+      defaultValidation();
+    });
+
+    then('User should see the results on the Schedule Appointments screen', () => {
+      defaultValidation();
+    });
+
+    and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+      defaultValidation();
+    });
+
+    and('User should see the doctor’s name', () => {
+      defaultValidation();
+    });
+
+    when('User clicks on the doctor’s name', () => {
+      defaultValidation();
+    });
+
+    then(/^User should see (.*) sections of Provider as "(.*)" description$/, async (arg0, arg1) => {
+      useRouter.mockReturnValue({
+        back: jest.fn(),
+      });
+      window.scrollTo = jest.fn();
+      mock
+        .onPost(
+          `${window.location.origin}/api/dummy/appointment/biography/getProviderDetails`
+        )
+        .reply(200, userData);
+      const props = await getStaticProps();
+      act(() => {
+        container = render(
+          <Provider store={store}>{Bio.getLayout(<Bio {...props} />)}</Provider>
+        );
+      });
+
+      await waitFor(() => {
+        container.getByTestId(TEST_ID.viewAll);
+      });
+
+      const providerInsurance = await container.getAllByText(/In-network insurances/i);
+      expect(providerInsurance[0].tagName).toEqual("H3")
+      expect(providerInsurance[0].textContent).toEqual("In-network insurances")
+    });
+  });
+
 });
