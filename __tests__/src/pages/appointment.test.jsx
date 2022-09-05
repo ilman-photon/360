@@ -166,7 +166,7 @@ describe("App", () => {
       watchPosition: jest.fn()
     };
 
-    mock.onPost(`/api/dummy/appointment/create-appointment/submitFilter`).reply(200, MOCK_SUGGESTION_DATA);
+    mock.onGet(`/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGGESTION_DATA);
     window = Object.assign(window, { innerWidth: 1500 });
     global.navigator.geolocation = mockGeolocation;
     container = render(
@@ -204,7 +204,7 @@ describe("App", () => {
       fireEvent.click(cancelButton)
     });
 
-    const pusposeField = container.getByText(/Purposes of Visit/i);
+    const pusposeField = container.getByText(/Purpose of Visit/i);
     fireEvent.click(pusposeField)
     await waitFor(() => {
       const cancelButton = container.getByText(/Cancel/i);
@@ -230,7 +230,6 @@ describe("App", () => {
   });
 
   it("on render tablet view", async () => {
-
     window = Object.assign(window, { innerWidth: 1000 });
     setTimeout(async () => {
       await waitFor(() => {
