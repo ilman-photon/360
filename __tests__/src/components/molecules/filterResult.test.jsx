@@ -400,7 +400,7 @@ describe("FilterResult Components", () => {
   let container;
   const rangeDate = { startDate: "2022-10-10", endDate: "2022-10-15" }
   beforeEach(() => {
-    container = render(<FilterResult providerList={providerList} rangeDate={rangeDate}/>);
+    container = render(<FilterResult isDesktop={true} providerList={providerList} rangeDate={rangeDate}/>);
   });
 
   it("FilterResult render", () => {
@@ -409,7 +409,19 @@ describe("FilterResult Components", () => {
 
   it("FilterHeading render", () => {
     const rangeDate = { startDate: "2022-10-10", endDate: "2022-10-15" }
-    container = render(<FilterResult isDesktop={true} providerList={providerList} rangeDate={rangeDate}/>);
+    container = render(<FilterResult isDesktop={false} 
+      providerList={providerList} 
+      rangeDate={rangeDate} 
+      purposeOfVisitData={[]}
+      insuranceCarrierData={[]}
+      googleApiKey={"Test"}
+      filterData = {{
+        location: "",
+        date: "",
+        purposeOfVisit: "",
+        insuranceCarrier: "",
+      }}
+      />);
     expect(container).toMatchSnapshot();
   });
 

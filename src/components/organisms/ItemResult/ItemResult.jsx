@@ -17,6 +17,7 @@ export default function ItemResult({
   keyItem = "",
   isDesktop = true,
   providerData = {},
+  currentDateIndex = 0,
 }) {
   function renderDekstopView() {
     return (
@@ -75,6 +76,8 @@ export default function ItemResult({
             onClickViewAllAvailability(providerData);
           }}
           OnDayClicked={OnDayClicked}
+          currentDateIndex={currentDateIndex}
+          scheduleData={providerData?.availability}
         />
       </Stack>
     );

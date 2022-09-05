@@ -151,12 +151,7 @@ export default function submitFilter(req, res) {
           availability: [
             {
               date: "2022-09-19",
-              list: [
-                {
-                  time: "11:30am",
-                  key: 12222,
-                },
-              ],
+              list: [],
             },
             {
               date: "2022-09-20",
@@ -240,12 +235,7 @@ export default function submitFilter(req, res) {
             },
             {
               date: "2022-09-23",
-              list: [
-                {
-                  time: "09:30am",
-                  key: 12239,
-                },
-              ],
+              list: [],
             },
             {
               date: "2022-09-24",
@@ -379,12 +369,7 @@ export default function submitFilter(req, res) {
             },
             {
               date: "2022-09-24",
-              list: [
-                {
-                  time: "09:30am",
-                  key: 12240,
-                },
-              ],
+              list: [],
             },
           ],
           coordinate: {
@@ -399,7 +384,7 @@ export default function submitFilter(req, res) {
           checked: false,
         },
         {
-          name: "language",
+          name: "Language",
           checklist: [
             {
               name: "Arabic",
