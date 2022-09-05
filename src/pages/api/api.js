@@ -51,6 +51,11 @@ export class Api {
     return this.forgotFeatureValidation(url, postbody, "post", 2000);
   }
 
+  validateUserNameAnsy(postbody) {
+    const url = "/ecp/patient/validate";
+    return this.validationAsycEmail(url, postbody, "post");
+  }
+
   validateUserName(postbody) {
     const url = "/ecp/patient/validate";
     return this.forgotFeatureValidation(url, postbody, "post");
@@ -84,6 +89,27 @@ export class Api {
   submitMfaCode(postbody) {
     const url = "/ecp/patient/mfa/verifyotp";
     return this.forgotFeatureValidation(url, postbody, "post", 4000);
+  }
+
+  validationAsycEmail(url, postbody, method, expectedCode) {
+    if (!expectedCode) {
+      expectedCode = 1000;
+    }
+    return new Promise((resolve, reject) => {
+      this.getResponse(url, postbody, method)
+        .then(function (data) {
+          const responseCode = data.ResponseCode;
+          const responseType = data.ResponseType;
+          if (responseCode === expectedCode && responseType === "success") {
+            resolve(data);
+          } else {
+            reject(data);
+          }
+        })
+        .catch(function (err) {
+          reject(err);
+        });
+    });
   }
 
   forgotFeatureValidation(url, postbody, method, expectedCode) {
@@ -187,37 +213,37 @@ export class Api {
 
   getProviderAvailibility() {
     const domain = window.location.origin;
-    const url = `${domain}/api/dummy/apppointment/create-appointment/getProviderAvailibility`;
+    const url = `${domain}/api/dummy/appointment/create-appointment/getProviderAvailibility`;
     return this.getResponse(url, {}, "post");
   }
 
   getSugestion() {
     const domain = window.location.origin;
-    const url = `${domain}/api/dummy/apppointment/create-appointment/getSugestion`;
-    return this.getResponse(url, {}, "post");
+    const url = `${domain}/api/dummy/appointment/create-appointment/getSugestion`;
+    return this.getResponse(url, {}, "get");
   }
 
   submitFilter() {
     const domain = window.location.origin;
-    const url = `${domain}/api/dummy/apppointment/create-appointment/submitFilter`;
+    const url = `${domain}/api/dummy/appointment/create-appointment/submitFilter`;
     return this.getResponse(url, {}, "post");
   }
 
   getAllAppointment() {
     const domain = window.location.origin;
-    const url = `${domain}/api/dummy/apppointment/my-appointment/getAllAppointment`;
-    return this.getResponse(url, {}, "post");
+    const url = `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`;
+    return this.getResponse(url, {}, "get");
   }
 
   updateAppointment(postbody) {
     const domain = window.location.origin;
-    const url = `${domain}/api/dummy/apppointment/my-appointment/updateAppointment`;
+    const url = `${domain}/api/dummy/appointment/my-appointment/updateAppointment`;
     return this.getResponse(url, postbody, "post");
   }
 
   postForm(postbody, method) {
     const domain = window.location.origin;
-    const url = `${domain}/api/dummy/apppointment/review-details/postForm`;
+    const url = `${domain}/api/dummy/appointment/review-details/postForm`;
     return this.getResponse(url, postbody, method);
   }
 }

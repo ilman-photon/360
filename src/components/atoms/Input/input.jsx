@@ -100,6 +100,11 @@ export const CustomPasswordInput = styled((props) => (
       },
     },
   },
+  "& .MuiFormHelperText-root": {
+    "&.Mui-error": {
+      color: "#B00020",
+    },
+  },
 }));
 
 export const RedditTextField = styled((props) => (

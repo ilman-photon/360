@@ -1,11 +1,12 @@
 import Box from "@mui/material/Box";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "@mui/material/Link";
 import { StyledButton } from "../../atoms/Button/button";
 import styles from "./styles.module.scss";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import { Divider, Typography } from "@mui/material";
 import constants from "../../../utils/constants";
+import { parseScheduleDataWeek } from "../../../utils/appointment";
 
 export function viewAllAvailabilityLinkUI({
   onClickViewAllAvailability = () => {
@@ -35,35 +36,27 @@ export function viewAllAvailabilityLinkUI({
 }
 
 export const WeekAvailability = ({
-  scheduleData = {
-    monday: ["2022-08-31T04:30:00.904Z", "", "", ""],
-    tuesday: [
-      "2022-08-31T01:00:00.904Z",
-      "2022-08-31T03:30:00.904Z",
-      "2022-08-31T04:00:00.904Z",
-      "3 more",
-    ],
-    wednesday: [
-      "2022-08-31T01:30:00.904Z",
-      "2022-08-31T03:30:00.904Z",
-      "2022-08-31T04:30:00.904Z",
-      "5 more",
-    ],
-    thursday: ["2022-08-31T02:30:00.904Z", "2022-08-31T04:00:00.904Z", "", ""],
-    friday: ["2022-08-31T02:30:00.904Z", "", "", ""],
-    saturday: ["2022-08-31T02:30:00.904Z", "", "", ""],
-  },
+  scheduleData = {},
   onClickViewAllAvailability = () => {
     // This is intentional
   },
   OnDayClicked = () => {
     // This is intended
   },
+
   keyWeek = "",
 }) => {
+  const [schedule, setSchedule] = useState({});
+
+  useEffect(() => {
+    const scheduleParse = parseScheduleDataWeek(scheduleData);
+    setSchedule(scheduleParse);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scheduleData]);
+
   function renderScheduleData() {
     let renderUI = [];
-    for (const [key, value] of Object.entries(scheduleData)) {
+    for (const [key, value] of Object.entries(schedule)) {
       for (let i = 0; i < value.length; i++) {
         let gridArea = `${key}Schedule${i}`;
         let isTypeMore = false;

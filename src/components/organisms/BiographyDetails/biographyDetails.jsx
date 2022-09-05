@@ -185,7 +185,7 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
       </Box>
       <Stack spacing={3} className={styles.detailedBioContainer}>
         <Typography variant="h3" ref={aboutRef}>
-          {providerData.name}
+          {`About ${providerData.name}`}
         </Typography>
         <Typography variant="body2">{providerData.about}</Typography>
         <Typography variant="h3">Gender</Typography>

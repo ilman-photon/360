@@ -129,7 +129,7 @@ export const FilterResultContainer = ({
           <Grid item xs={12} md={6} paddingTop={"16px"}>
             <>
               {/* Handle the empty result after integrate services */}
-              {filterData.location !== "Jakarta" ? (
+              {providerList.length > 0 ? (
                 <Box className={styles.filterTabsList}>
                   {renderItemResult()}
                 </Box>
