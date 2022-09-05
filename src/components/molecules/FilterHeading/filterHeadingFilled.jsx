@@ -173,7 +173,7 @@ const FilterHeadingFilled = ({
           value={value}
           onChange={onChange}
           variant="filled"
-          label="Purposes of Visit"
+          label="Purpose of Visit"
           sx={sxButton}
           onClick={() => {
             setStep("purposeInput");
