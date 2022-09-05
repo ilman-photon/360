@@ -105,7 +105,6 @@ const DummyComponent = () => {
 };
 
 function GMaps() {
-  const [mapContext, setMapContext] = React.useState(null);
   const [activeMarker, setActiveMarker] = React.useState(null);
 
   const handleActiveMarker = (marker) => {
@@ -121,9 +120,7 @@ function GMaps() {
     map.fitBounds(bounds);
   }, []);
 
-  const onUnmount = React.useCallback(function callback(map) {
-    setMapContext(null);
-  }, []);
+  const onUnmount = React.useCallback(function callback(_map) {}, []);
 
   return (
     <GoogleMap

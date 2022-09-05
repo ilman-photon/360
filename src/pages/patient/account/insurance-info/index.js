@@ -129,11 +129,12 @@ export default function InsuranceInfoPage() {
   };
   useEffect(() => {
     if (newInsuraceComp.current && focusToNewInsurance) {
-      newInsuraceComp.current.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-        inline: "center",
-      });
+      setTimeout(() => {
+        newInsuraceComp.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 300);
     }
   }, [openNewInsuranceForm, focusToNewInsurance]);
 
