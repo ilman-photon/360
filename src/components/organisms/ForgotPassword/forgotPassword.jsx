@@ -77,8 +77,12 @@ const ForgotPassword = ({
             sx={{ fontSize: "32px" }}
           />
           {showPostMessage ? (
-            <FormMessage success={false} sx={styles.postMessage}>
-              {isAppointment ? t("syncError") : t("errorUsernameNotFound")}
+            <FormMessage
+              success={false}
+              sx={styles.postMessage}
+              title={t("exisistingUser")}
+            >
+              {isAppointment ? t("errorAysncUser") : t("errorUsernameNotFound")}
             </FormMessage>
           ) : (
             <></>
