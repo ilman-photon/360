@@ -26,8 +26,27 @@ const FilterBy = ({ isOpen, onClose, onDone, filter, activedFilter = [] }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
-  const renderCheckbox = (title, items, idx, showDivider) => {
-    const isShowSeeMore = items.length > 6;
+  const onFilterChecked = (target) => {
+    const value = target.value;
+    if (target.checked) {
+      const data = activeFilter;
+      data.push({
+        name: value,
+        checked: true,
+      });
+      setActiveFilter(data);
+    } else {
+      const dataIndex = activeFilter.findIndex((x) => x.name === value);
+      if (dataIndex > -1) {
+        const data = activeFilter;
+        data.splice(dataIndex, 1);
+        setActiveFilter(data);
+      }
+    }
+  };
+
+  const renderCheckbox = (category, idx, isMultiple, showDivider) => {
+    const isShowSeeMore = category.length > 6;
     return (
       <Box
         className={
@@ -37,39 +56,42 @@ const FilterBy = ({ isOpen, onClose, onDone, filter, activedFilter = [] }) => {
         }
         key={idx}
       >
-        <Typography className={styles.checkBoxTitle}>{title}</Typography>
+        <Typography className={styles.checkBoxTitle}>
+          {isMultiple ? category.name : "Filter By"}
+        </Typography>
         <FormGroup
           className={
             !expand ? styles.checkBoxGroup : styles.checkBoxGroupExpand
           }
         >
-          {items.map((item, index) => {
-            if (index > 5 && !expand) return false;
-            return (
-              <CustomCheckbox
-                label={item}
-                key={index}
-                onChange={(target) => {
-                  const value = target.value;
-                  if (target.checked) {
-                    const data = activeFilter;
-                    data.push(value);
-                    setActiveFilter(data);
-                  } else {
-                    const id = activeFilter.indexOf(value);
-                    if (id > -1) {
-                      const data = activeFilter;
-                      data.splice(id, 1);
-                      setActiveFilter(data);
-                    }
-                  }
-                }}
-                checked={() => {
-                  return activeFilter.indexOf(item) > -1;
-                }}
-              />
-            );
-          })}
+          {isMultiple ? (
+            category.checklist.map((item, index) => {
+              if (index > 5 && !expand) return false;
+              return (
+                <CustomCheckbox
+                  label={item.name}
+                  key={index}
+                  onChange={onFilterChecked}
+                  checked={() => {
+                    console.log(activeFilter);
+                    return (
+                      activeFilter.findIndex((x) => x.name === item.name) > -1
+                    );
+                  }}
+                />
+              );
+            })
+          ) : (
+            <CustomCheckbox
+              label={category.name}
+              onChange={onFilterChecked}
+              checked={() => {
+                return (
+                  activeFilter.findIndex((x) => x.name === category.name) > -1
+                );
+              }}
+            />
+          )}
         </FormGroup>
         {isShowSeeMore && (
           <Box marginTop={"10px"}>
@@ -106,8 +128,9 @@ const FilterBy = ({ isOpen, onClose, onDone, filter, activedFilter = [] }) => {
         <Divider className={styles.topDivider}></Divider>
         <Box className={styles.checBoxListContainer} id="checkboxGroup">
           {filter.map((item, index) => {
-            const isLastIndex = index - 1;
-            return renderCheckbox(item.title, item.filter, index, !isLastIndex);
+            const isLastIndex = index === filter.length - 1;
+            const isMultiple = item.checklist !== undefined;
+            return renderCheckbox(item, index, isMultiple, !isLastIndex);
           })}
         </Box>
       </>

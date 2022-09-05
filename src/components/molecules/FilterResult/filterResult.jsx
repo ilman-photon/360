@@ -42,6 +42,8 @@ export const FilterResult = ({
   onSearchProvider = () => {
     // This is intentional
   },
+  filter = [],
+  activedFilter = [],
 }) => {
   const [dateList, setDateList] = useState({
     dateRange: [],
@@ -89,6 +91,7 @@ export const FilterResult = ({
             onNextScheduleClicked={onNextScheduleClicked}
             onPrevScheduleClicked={onPrevScheduleClicked}
             rangeDate={rangeDate}
+            filter={filter}
           />
         </Box>
         <div
@@ -127,6 +130,7 @@ export const FilterResult = ({
             onSearchProvider={onSearchProvider}
             purposeOfVisitData={purposeOfVisitData}
             insuranceCarrierData={insuranceCarrierData}
+            filter={filter}
           />
           <Stack
             direction={"row"}

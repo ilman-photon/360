@@ -384,7 +384,7 @@ export default function submitFilter(req, res) {
           checked: false,
         },
         {
-          name: "language",
+          name: "Language",
           checklist: [
             {
               name: "Arabic",

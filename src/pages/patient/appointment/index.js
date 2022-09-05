@@ -53,6 +53,7 @@ export default function Appointment({ googleApiKey }) {
   const [showMaps, setShowMaps] = useState(false);
   const [rangeDate, setRangeDate] = useState({ startDate: "", endDate: "" });
   const [isLoading, setIsLoading] = useState(false);
+  const [filterBy, setFilterBy] = useState([]);
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -124,6 +125,7 @@ export default function Appointment({ googleApiKey }) {
         } else {
           setProviderListData([]);
         }
+        setFilterBy(response.filterbyData);
       })
       .catch(function () {
         setProviderListData([]);
@@ -276,6 +278,7 @@ export default function Appointment({ googleApiKey }) {
                 onNextScheduleClicked={onNextScheduleClicked}
                 onPrevScheduleClicked={onPrevScheduleClicked}
                 rangeDate={rangeDate}
+                filter={filterBy}
               />
             </Box>
           ) : (
@@ -328,6 +331,7 @@ export default function Appointment({ googleApiKey }) {
                 isDesktop={isDesktop}
                 providerList={providerListData}
                 rangeDate={rangeDate}
+                filter={filterBy}
               />
             ) : (
               <EmptyResult
@@ -378,6 +382,7 @@ export default function Appointment({ googleApiKey }) {
         googleApiKey={googleApiKey}
         onNextScheduleClicked={onNextScheduleClicked}
         onPrevScheduleClicked={onPrevScheduleClicked}
+        filter={filterBy}
       />
     );
   }
