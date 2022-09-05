@@ -12,16 +12,23 @@ export const buttonSchedule = (
   idx,
   OnDayClicked = () => {
     // This is intended
-  }
+  },
+  isScheduleAvailability = false
 ) => {
   return (
-    <Box key={idx} sx={{ width: "78px" }} className={styles.scheduleBtnWarpper}>
+    <Box
+      key={idx}
+      sx={{ width: !isScheduleAvailability ? "78px" : "100%" }}
+      className={styles.scheduleBtnWarpper}
+    >
       <StyledButton
         theme={constants.PATIENT}
         mode={constants.PRIMARY}
         size={constants.SMALL}
         gradient={false}
-        className={styles.scheduleBtn}
+        className={
+          !isScheduleAvailability ? styles.scheduleBtn : styles.scheduleAvailBtn
+        }
         onClick={() => OnDayClicked(label)}
       >
         {label}

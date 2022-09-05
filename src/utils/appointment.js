@@ -94,25 +94,40 @@ function getScheduleData(availabilityData) {
 }
 
 export function parseScheduleDataDay(availability, currentDateIndex) {
+  console.log("availability: ", availability);
   let scheduleData = [];
-  if (availability[currentDateIndex].list > 0) {
-    scheduleData = availability[currentDateIndex].list;
+  if (availability[currentDateIndex].list.length > 0) {
+    const maxLength =
+      availability[currentDateIndex].list.length <= 4
+        ? availability[currentDateIndex].list.length
+        : 4;
+    for (let indexList = 0; indexList < maxLength; indexList++) {
+      scheduleData.push(availability[currentDateIndex].list[indexList].time);
+    }
   } else {
     for (let index = currentDateIndex; index < availability.length; index++) {
-      if (availability[index].list > 0) {
-        scheduleData.push();
+      if (availability[index].list.length > 0) {
+        scheduleData.push(
+          `Next availability is ${getNextAvailabilityLabel(
+            availability[index].date
+          )}`
+        );
+        break;
       }
     }
 
-    if (scheduleData.length > 0) {
+    if (scheduleData.length <= 0) {
       scheduleData.push("Next availability is next week");
     }
   }
-
   return scheduleData;
 }
 
-function getNextAvailabilityLabel(date) {}
+function getNextAvailabilityLabel(date) {
+  const tempDate = new Date(date);
+  const month = constants.MONTH_NAME[tempDate.getMonth()];
+  return `${month} ${tempDate.getDate()}`;
+}
 
 export function setRangeDateData(response) {
   return {

@@ -216,6 +216,7 @@ export const FilterResult = ({
             providerList={providerList}
             OnDayClicked={OnDayClicked}
             googleApiKey={googleApiKey}
+            currentDateIndex={currentDateIndex}
           />
         </Box>
       </Box>
