@@ -208,7 +208,7 @@ exports[`App renders App unchanged 1`] = `
                   class="MuiFormControl-root css-1c2vtuz-MuiFormControl-root"
                 >
                   <div
-                    class="MuiFormControl-root MuiTextField-root css-59czre-MuiFormControl-root-MuiTextField-root"
+                    class="MuiFormControl-root MuiTextField-root css-1g84wd3-MuiFormControl-root-MuiTextField-root"
                     customevent="[object Object]"
                   >
                     <label
