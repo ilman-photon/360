@@ -90,8 +90,10 @@ export const FilterResultHeading = ({
       new Date(rangeDate.startDate),
       new Date(rangeDate.endDate)
     );
+    if (rangeDate.startDate && rangeDate.endDate) {
+      setDateList(dateList);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    setDateList(dateList);
   }, [rangeDate]);
 
   function renderAppliedFilter() {

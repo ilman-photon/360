@@ -27,6 +27,7 @@ export const FilterResultContainer = ({
   },
   providerList = [],
   googleApiKey = "",
+  currentDateIndex = 0,
 }) => {
   function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -70,6 +71,7 @@ export const FilterResultContainer = ({
             OnDayClicked={(payload) => {
               OnDayClicked(payload, providerList[i]);
             }}
+            currentDateIndex={currentDateIndex}
           />
         </Box>
       );
