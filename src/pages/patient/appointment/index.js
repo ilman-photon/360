@@ -114,6 +114,7 @@ export default function Appointment({ googleApiKey }) {
     api
       .submitFilter(postBody)
       .then(function (response) {
+        console.log("list of prov", { response });
         setProviderListData(response?.listOfProvider);
       })
       .catch(function () {
@@ -251,7 +252,11 @@ export default function Appointment({ googleApiKey }) {
               }}
             >
               {isLoaded ? (
-                <GMaps apiKey={googleApiKey} />
+                <GMaps
+                  apiKey={googleApiKey}
+                  providerListData={providerListData}
+                  OnTimeClicked={handleDayClicked}
+                />
               ) : (
                 <CircularProgress />
               )}
@@ -279,7 +284,15 @@ export default function Appointment({ googleApiKey }) {
             )}
           </Box>
           <Box sx={{ background: "#F4F4F4", flex: 1 }}>
-            {isLoaded ? <GMaps apiKey={googleApiKey} /> : <CircularProgress />}
+            {isLoaded ? (
+              <GMaps
+                apiKey={googleApiKey}
+                providerListData={providerListData}
+                OnTimeClicked={handleDayClicked}
+              />
+            ) : (
+              <CircularProgress />
+            )}
           </Box>
         </Stack>
       );
