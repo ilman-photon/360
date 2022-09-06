@@ -64,6 +64,13 @@ export default function Appointment({ googleApiKey }) {
     (state) => state.appointment.providerListData
   );
 
+  useEffect(() => {
+    if (providerListData) {
+      setRangeDate(setRangeDateData(providerListData));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [providerListData]);
+
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: googleApiKey,
   });
@@ -126,9 +133,6 @@ export default function Appointment({ googleApiKey }) {
           response?.listOfProvider.length > 0 &&
           postBody.locationName !== "Jakarta"
         ) {
-          const rangeDateData = setRangeDateData(response);
-          console.log("rangeDateData: ", rangeDateData);
-          setRangeDate(setRangeDateData(response));
           dispatch(setProviderListData(response?.listOfProvider));
         } else {
           dispatch(setProviderListData([]));
@@ -261,6 +265,8 @@ export default function Appointment({ googleApiKey }) {
               OnDayClicked={(e) => {
                 handleDayClicked(e, providerDataOverview);
               }}
+              scheduleData={providerDataOverview?.availability}
+              rangeDate={rangeDate}
             />
           </DialogContent>
         </Dialog>

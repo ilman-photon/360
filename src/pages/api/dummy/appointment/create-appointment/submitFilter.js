@@ -142,7 +142,7 @@ export default function submitFilter(req, res) {
             zipcode: "54231",
           },
           rating: "5",
-          name: "Paul Wagner Md",
+          name: "Paul Wagner Nd",
           phoneNumber: "(123) 123-4567",
           distance: "10 mi",
           image: "/doctor.png",
