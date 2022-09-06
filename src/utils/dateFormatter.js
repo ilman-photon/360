@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export function convertToDate(date) {
   if (!date) {
     return "";
@@ -38,4 +40,10 @@ export function formatDate(payload) {
     minute: "numeric", // numeric, 2-digit
     second: "numeric", // numeric, 2-digit
   });
+}
+
+export function formatAppointmentDate(date) {
+  const momentDate = new moment(date);
+  const formatedDate = momentDate.format("dddd, MMM DD - h:mm a");
+  return formatedDate;
 }

@@ -7,6 +7,7 @@ import constants from "../../../utils/constants";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import {
+  getDates,
   parseDateWeekList,
   parseScheduleDataWeekOverlay,
   timeInWeekLabel,
@@ -22,11 +23,11 @@ export const buttonSchedule = (
   isScheduleAvailability = false
 ) => {
   const isNextAvailabilityLabel =
-    !isScheduleAvailability ||
-    (isScheduleAvailability && label.indexOf("Next availability is") < 0);
-  const dateTime = !isNextAvailabilityLabel
-    ? new Date(`${date} ${label.toUpperCase().replace(/(AM|PM)/, " $1")}`)
-    : "";
+    isScheduleAvailability && label.indexOf("Next availability is") > -1;
+  const dateTime =
+    !isScheduleAvailability || !isNextAvailabilityLabel
+      ? new Date(`${date} ${label.toUpperCase().replace(/(AM|PM)/, " $1")}`)
+      : "";
   return (
     <Box
       key={idx}
@@ -42,7 +43,7 @@ export const buttonSchedule = (
           !isScheduleAvailability ? styles.scheduleBtn : styles.scheduleAvailBtn
         }
         onClick={() => {
-          if (isNextAvailabilityLabel) {
+          if (!isScheduleAvailability || !isNextAvailabilityLabel) {
             OnDayClicked(dateTime);
           }
         }}
@@ -63,16 +64,35 @@ export const DayAvailability = ({
   OnDayClicked = () => {
     // This is intended
   },
+  onNextScheduleClicked = () => {
+    // This is intentional
+  },
+  onPrevScheduleClicked = () => {
+    // This is intentional
+  },
 }) => {
   const [schedule, setSchedule] = useState({});
   const [timeInWeek, setTimeInWeek] = useState("");
   const [dateWeekList, setDateWeekList] = useState([]);
+  const [dateList, setDateList] = useState({
+    dateRange: [],
+    dateListName: [],
+  });
 
   useEffect(() => {
     const scheduleParse = parseScheduleDataWeekOverlay(scheduleData);
     if (scheduleParse) {
       setSchedule(scheduleParse);
       setDateWeekList(parseDateWeekList(scheduleData));
+    }
+
+    const dates = getDates(
+      new Date(rangeDate.startDate),
+      new Date(rangeDate.endDate),
+      true
+    );
+    if (rangeDate.startDate && rangeDate.endDate) {
+      setDateList(dates);
     }
 
     setTimeInWeek(timeInWeekLabel(rangeDate.startDate, rangeDate.endDate));
@@ -139,8 +159,23 @@ export const DayAvailability = ({
           {timeInWeek}
         </Typography>
         <Box className={styles.iconTimeContainer}>
-          <ArrowBackIosIcon className={styles.iconSchedule} />
-          <ArrowForwardIosIcon className={styles.iconSchedule} />
+          <ArrowBackIosIcon
+            className={styles.iconSchedule}
+            onClick={() => {
+              const date = new Date(dateList.dateRange[0]);
+              date.setDate(date.getDate() - 7);
+              onPrevScheduleClicked("overlay", date);
+            }}
+          />
+          <ArrowForwardIosIcon
+            className={styles.iconSchedule}
+            sx={{ marginLeft: "10px" }}
+            onClick={() => {
+              const date = new Date(dateList.dateRange[5]);
+              date.setDate(date.getDate() + 7);
+              onNextScheduleClicked("overlay", date);
+            }}
+          />
         </Box>
       </Box>
       <Divider className={styles.dividerSchedule} />

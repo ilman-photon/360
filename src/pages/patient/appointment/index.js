@@ -32,11 +32,13 @@ import { useRouter } from "next/router";
 import {
   parseSuggestionData,
   setRangeDateData,
+  getProvideOverlay,
 } from "../../../utils/appointment";
 import { Api } from "../../api/api";
 import ModalScheduling from "../../../components/organisms/ScheduleAppointment/ModalScheduling/modalScheduling";
 import DrawerScheduling from "../../../components/organisms/ScheduleAppointment/ModalScheduling/drawerScheduling";
 import Cookies from "universal-cookie";
+import { formatAppointmentDate } from "../../../utils/dateFormatter";
 
 export async function getStaticProps() {
   return {
@@ -102,6 +104,7 @@ export default function Appointment({ googleApiKey }) {
 
   const handleClose = () => {
     setOpen(false);
+    setProviderDataOverview({});
   };
 
   //Call API for getSuggestion
@@ -122,7 +125,11 @@ export default function Appointment({ googleApiKey }) {
   }
 
   //Call API for submitFilter
-  function onCallSubmitFilterAPI(requestData, activeFilterBy = []) {
+  function onCallSubmitFilterAPI(
+    requestData,
+    activeFilterBy = [],
+    isOverlay = false
+  ) {
     const postBody = {
       location: {
         latitude: coords?.latitude,
@@ -134,53 +141,66 @@ export default function Appointment({ googleApiKey }) {
       insuranceCarrier: requestData.insuranceCarrier,
       filterBy: activeFilterBy,
     };
-    setIsLoading(true);
+    console.log(postBody);
+    if (!isOverlay) {
+      setIsLoading(true);
+    }
     const api = new Api();
     api
       .submitFilter(postBody)
       .then(function (response) {
-        if (
-          response?.listOfProvider.length > 0 &&
-          postBody.locationName !== "Jakarta"
-        ) {
-          dispatch(setProviderListData(response?.listOfProvider));
+        if (isOverlay) {
+          const providerOverview = getProvideOverlay(
+            providerDataOverview.providerId,
+            response.listOfProvider
+          );
+          setProviderDataOverview(providerOverview);
         } else {
-          dispatch(setProviderListData([]));
+          if (
+            response?.listOfProvider.length > 0 &&
+            postBody.locationName !== "Jakarta"
+          ) {
+            dispatch(setProviderListData(response?.listOfProvider));
+          } else {
+            dispatch(setProviderListData([]));
+          }
+          setFilterBy(response.filterbyData);
         }
-        setFilterBy(response.filterbyData);
       })
       .catch(function () {
-        dispatch(setProviderListData([]));
+        if (!isOverlay) {
+          dispatch(setProviderListData([]));
+        }
       })
       .finally(function () {
-        setIsLoading(false);
+        if (!isOverlay) {
+          setIsLoading(false);
+        }
       });
+  }
+
+  function getPostbodyForSubmit(date) {
+    return {
+      locationName: dataFilter.location,
+      date: date,
+      appointmentType: dataFilter.purposeOfVisit,
+      insuranceCarrier: dataFilter.insuranceCarrier,
+    };
   }
 
   function onNextScheduleClicked(type, date) {
     console.log(type, " + ", date);
-    const postBoday = {
-      locationName: dataFilter.location,
-      date: date,
-      appointmentType: dataFilter.purposeOfVisit,
-      insuranceCarrier: dataFilter.insuranceCarrier,
-    };
-    onCallSubmitFilterAPI(postBoday);
+    const postBody = getPostbodyForSubmit(date);
+    onCallSubmitFilterAPI(postBody, activeFilterBy, type === "overlay");
   }
 
   function onPrevScheduleClicked(type, date) {
     console.log(type, " + ", date);
-    const postBoday = {
-      locationName: dataFilter.location,
-      date: date,
-      appointmentType: dataFilter.purposeOfVisit,
-      insuranceCarrier: dataFilter.insuranceCarrier,
-    };
-    onCallSubmitFilterAPI(postBoday);
+    const postBody = getPostbodyForSubmit(date);
+    onCallSubmitFilterAPI(postBody, activeFilterBy, type === "overlay");
   }
 
   function onViewAllAvailability(providerData) {
-    //TO DO: set data for view days schedule]
     setProviderDataOverview(providerData);
     setOpen(true);
   }
@@ -213,7 +233,6 @@ export default function Appointment({ googleApiKey }) {
         },
       })
     );
-
     router.push("/patient/schedule-appointment");
   };
   const { coords, isGeolocationEnabled } = useGeolocated({
@@ -262,12 +281,13 @@ export default function Appointment({ googleApiKey }) {
             </IconButton>
           </DialogTitle>
           <DialogContent>
-            <Box sx={{ width: "265px" }}>
+            <Box sx={{ width: "290px" }}>
               <ProviderProfile
                 variant={"viewschedule"}
                 isDayAvailableView={true}
                 isShownPhoneAndRating={false}
                 providerData={providerDataOverview}
+                imageSize={!isDesktop ? "small" : "large"}
               />
             </Box>
             <DayAvailability
@@ -277,6 +297,8 @@ export default function Appointment({ googleApiKey }) {
               }}
               scheduleData={providerDataOverview?.availability}
               rangeDate={rangeDate}
+              onNextScheduleClicked={onNextScheduleClicked}
+              onPrevScheduleClicked={onPrevScheduleClicked}
             />
           </DialogContent>
         </Dialog>

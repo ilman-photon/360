@@ -221,3 +221,13 @@ function getDayName(date) {
   const dayName = constants.DAY_NAME[date.getDay() - 1];
   return `${dayName}, ${month} ${date.getDate()}`;
 }
+
+export function getProvideOverlay(providerId, listOfProvider) {
+  let providerOverlay = {};
+  for (let index = 0; index < listOfProvider.length; index++) {
+    if (providerId === listOfProvider[index].providerId) {
+      providerOverlay = listOfProvider[index];
+    }
+  }
+  return providerOverlay;
+}

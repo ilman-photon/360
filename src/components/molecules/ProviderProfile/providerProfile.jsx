@@ -90,7 +90,7 @@ export default function ProviderProfile({
         </Box>
         <Box
           className={styles.bioContainer}
-          sx={{ width: isMap || isViewSchedule ? "unset" : "20vw" }}
+          sx={{ width: isMap || imageSize === "small" ? "unset" : "20vw" }}
         >
           <Typography
             variant="h2"

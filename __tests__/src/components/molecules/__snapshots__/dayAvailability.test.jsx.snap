@@ -30,7 +30,7 @@ Object {
             </svg>
             <svg
               aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-i4bv87-MuiSvgIcon-root"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-1xlme1g-MuiSvgIcon-root"
               data-testid="ArrowForwardIosIcon"
               focusable="false"
               viewBox="0 0 24 24"
@@ -73,7 +73,7 @@ Object {
           </svg>
           <svg
             aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-i4bv87-MuiSvgIcon-root"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-1xlme1g-MuiSvgIcon-root"
             data-testid="ArrowForwardIosIcon"
             focusable="false"
             viewBox="0 0 24 24"
@@ -173,7 +173,7 @@ Object {
             </svg>
             <svg
               aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-i4bv87-MuiSvgIcon-root"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-1xlme1g-MuiSvgIcon-root"
               data-testid="ArrowForwardIosIcon"
               focusable="false"
               viewBox="0 0 24 24"
@@ -215,7 +215,7 @@ Object {
             </svg>
             <svg
               aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-i4bv87-MuiSvgIcon-root"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-1xlme1g-MuiSvgIcon-root"
               data-testid="ArrowForwardIosIcon"
               focusable="false"
               viewBox="0 0 24 24"
@@ -258,7 +258,7 @@ Object {
           </svg>
           <svg
             aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-i4bv87-MuiSvgIcon-root"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-1xlme1g-MuiSvgIcon-root"
             data-testid="ArrowForwardIosIcon"
             focusable="false"
             viewBox="0 0 24 24"

@@ -42,7 +42,7 @@ export default function ItemResult({
           />
         </Box>
         <Box sx={{ gridArea: "locationDistance" }}>
-          <LocationDistance />
+          <LocationDistance distance={providerData.distance} />
         </Box>
         <Box sx={{ gridArea: "weekAvailability" }}>
           <WeekAvailability

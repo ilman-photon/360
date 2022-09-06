@@ -10,7 +10,10 @@ import ContactMailIcon from "@mui/icons-material/ContactMail";
 import BusinessIcon from "@mui/icons-material/Business";
 
 import { styles } from "./style";
-import { formatDate } from "../../../utils/dateFormatter";
+import {
+  formatAppointmentDate,
+  formatDate,
+} from "../../../utils/dateFormatter";
 import { colors } from "../../../styles/theme";
 
 export default function AppointmentDetails({
@@ -59,7 +62,7 @@ export default function AppointmentDetails({
             sxText={{ paddingLeft: "4px", color: colors.darkGreen }}
           >
             <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
-              {formatDate(appointmentData.date)}
+              {formatAppointmentDate(appointmentData.date)}
             </Typography>
           </LabelWithInfo>
 
