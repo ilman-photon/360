@@ -120,15 +120,12 @@ function GMaps() {
     map.fitBounds(bounds);
   }, []);
 
-  const onUnmount = React.useCallback(function callback(_map) {}, []);
-
   return (
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
       zoom={6}
       onLoad={onLoad}
-      onUnmount={onUnmount}
     >
       {/* Child components, such as markers, info windows, etc. */}
       {markers.map(({ id, position }) => (

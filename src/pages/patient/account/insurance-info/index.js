@@ -187,6 +187,7 @@ export default function InsuranceInfoPage() {
                   disabled={openNewInsuranceForm}
                   data-testid={INSURANCE_TEST_ID.addButton}
                   onClick={OnAddNewInsurance}
+                  aria-label={"Add Insurance button"}
                 >
                   <Stack
                     direction="row"
@@ -228,6 +229,7 @@ export default function InsuranceInfoPage() {
                     disabled={openNewInsuranceForm}
                     onClick={OnAddNewInsurance}
                     data-testid={INSURANCE_TEST_ID.addButton}
+                    aria-label={"Add Insurance button"}
                   >
                     <Stack
                       direction="row"

@@ -49,6 +49,9 @@ export default function AppointmentForm({
   OnSubmit = () => {
     // This is intended
   },
+  OnClickSignIn = () => {
+    // This is intended
+  },
 }) {
   const { handleSubmit, control, watch } = useForm({
     defaultValues: patientData,
@@ -62,6 +65,11 @@ export default function AppointmentForm({
     // this is intentional
     OnClickSchedule();
     OnSubmit(data);
+  };
+
+  const onSignIn = () => {
+    OnClickSignIn();
+    router.push("/patient/login");
   };
 
   const options = [
@@ -133,9 +141,7 @@ export default function AppointmentForm({
                 sx={styles.link}
                 data-testid={SCHEDULE_GUEST_TEST_ID.signInlink}
                 {...getLinkAria(t("signIn"))}
-                onClick={() => {
-                  router.push("/patient/login");
-                }}
+                onClick={onSignIn}
               >
                 {t("signIn")}
               </Link>

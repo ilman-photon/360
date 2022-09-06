@@ -59,56 +59,84 @@ Object {
             class="sidebarContainer"
           >
             <div
-              class="sidebarWrapper css-1v482q1-MuiStack-root"
+              class="sidebarWrapper css-137a1xe-MuiStack-root"
             >
               <a
                 class="sidebarLink"
                 href="/patient/account/profile-info"
                 style="border-color: #003b4a;"
               >
-                Profile Information
+                <span
+                  class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                >
+                  Profile Information
+                </span>
               </a>
               <a
                 class="sidebarLink"
                 href="#"
                 style="border-color: #003b4a;"
               >
-                Financial Information
+                <span
+                  class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                >
+                  Financial Information
+                </span>
               </a>
               <a
                 class="sidebarLink"
                 href="#"
                 style="border-color: #003b4a;"
               >
-                Toggle accounts
+                <span
+                  class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                >
+                  Toggle accounts
+                </span>
               </a>
               <a
                 class="sidebarLink"
                 href="#"
                 style="border-color: #003b4a;"
               >
-                Merge accounts
+                <span
+                  class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                >
+                  Merge accounts
+                </span>
               </a>
               <a
                 class="sidebarLink"
                 href="#"
                 style="border-color: #003b4a;"
               >
-                Prescriptions
+                <span
+                  class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                >
+                  Prescriptions
+                </span>
               </a>
               <a
                 class="sidebarLink"
                 href="/patient/account/insurance-info"
                 style="border-color: #003b4a;"
               >
-                Insurance documents
+                <span
+                  class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                >
+                  Insurance documents
+                </span>
               </a>
               <a
                 class="sidebarLink"
                 href="#"
                 style="border-color: #003b4a;"
               >
-                Multi factor authentication
+                <span
+                  class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                >
+                  Multi factor authentication
+                </span>
               </a>
             </div>
           </div>
@@ -1212,56 +1240,84 @@ Object {
           class="sidebarContainer"
         >
           <div
-            class="sidebarWrapper css-1v482q1-MuiStack-root"
+            class="sidebarWrapper css-137a1xe-MuiStack-root"
           >
             <a
               class="sidebarLink"
               href="/patient/account/profile-info"
               style="border-color: #003b4a;"
             >
-              Profile Information
+              <span
+                class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+              >
+                Profile Information
+              </span>
             </a>
             <a
               class="sidebarLink"
               href="#"
               style="border-color: #003b4a;"
             >
-              Financial Information
+              <span
+                class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+              >
+                Financial Information
+              </span>
             </a>
             <a
               class="sidebarLink"
               href="#"
               style="border-color: #003b4a;"
             >
-              Toggle accounts
+              <span
+                class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+              >
+                Toggle accounts
+              </span>
             </a>
             <a
               class="sidebarLink"
               href="#"
               style="border-color: #003b4a;"
             >
-              Merge accounts
+              <span
+                class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+              >
+                Merge accounts
+              </span>
             </a>
             <a
               class="sidebarLink"
               href="#"
               style="border-color: #003b4a;"
             >
-              Prescriptions
+              <span
+                class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+              >
+                Prescriptions
+              </span>
             </a>
             <a
               class="sidebarLink"
               href="/patient/account/insurance-info"
               style="border-color: #003b4a;"
             >
-              Insurance documents
+              <span
+                class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+              >
+                Insurance documents
+              </span>
             </a>
             <a
               class="sidebarLink"
               href="#"
               style="border-color: #003b4a;"
             >
-              Multi factor authentication
+              <span
+                class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+              >
+                Multi factor authentication
+              </span>
             </a>
           </div>
         </div>

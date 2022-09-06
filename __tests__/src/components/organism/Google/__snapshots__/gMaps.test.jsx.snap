@@ -15,7 +15,6 @@ exports[`GMaps GMaps render 1`] = `
     }
   }
   onLoad={[Function]}
-  onUnmount={[Function]}
   zoom={6}
 >
   <UNDEFINED
