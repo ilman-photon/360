@@ -20,6 +20,7 @@ export const FilterResultHeading = ({
   _appliedFilter,
   numberFilter = 30,
   isDesktop = false,
+  isTablet = false,
   filterData = {
     location: "New York, NY",
     date: "",
@@ -116,7 +117,12 @@ export const FilterResultHeading = ({
 
   function renderDesktopView() {
     return (
-      <Box className={styles.filterContainer}>
+      <Box
+        className={[
+          styles.filterContainer,
+          isTablet ? styles.isTablet : null,
+        ].join(" ")}
+      >
         <Box className={styles.filterButtonContainer}>
           <FilterBy
             activedFilter={[...activeFilter]}
@@ -150,8 +156,8 @@ export const FilterResultHeading = ({
             marginTop: "16px",
             display: "grid",
             gridTemplateColumns: "490px 638px",
-            justifyContent: "center",
-            alignContent: "center",
+            justifyContent: "space-between",
+            alignContent: "space-between",
             gridTemplateRows: "auto",
             gridTemplateAreas: `"filterDetails calenderDetails"`,
           }}

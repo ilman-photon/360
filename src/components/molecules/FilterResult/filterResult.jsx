@@ -25,6 +25,7 @@ export const FilterResult = ({
     // This is intentional
   },
   isDesktop = false,
+  isTablet = false,
   rangeDate = { startDate: "", endDate: "" },
   activeTabs = 0,
   setActiveTabs = () => {
@@ -72,6 +73,7 @@ export const FilterResult = ({
             keyItem={`${i}-item-filter`}
             onClickViewAllAvailability={onClickViewAllAvailability}
             providerData={providerList[i]}
+            isTablet={isTablet}
             OnDayClicked={(payload) => {
               OnDayClicked(payload, providerList[i]);
             }}
@@ -88,6 +90,7 @@ export const FilterResult = ({
         <Box>
           <FilterResultHeading
             isDesktop={isDesktop}
+            isTablet={isTablet}
             onNextScheduleClicked={onNextScheduleClicked}
             onPrevScheduleClicked={onPrevScheduleClicked}
             rangeDate={rangeDate}
@@ -126,6 +129,7 @@ export const FilterResult = ({
         >
           <FilterResultHeading
             isDesktop={isDesktop}
+            isTablet={isTablet}
             filterData={filterData}
             onSearchProvider={onSearchProvider}
             purposeOfVisitData={purposeOfVisitData}

@@ -269,11 +269,12 @@ export default function Appointment({ googleApiKey }) {
           }}
         >
           {!showMaps ? (
-            <Box sx={{ width: "1128px", m: 3 }}>
+            <Box sx={{ width: !isTablet ? "1128px" : "unset", m: 3 }}>
               <FilterResult
                 onClickViewAllAvailability={onViewAllAvailability}
                 OnDayClicked={handleDayClicked}
                 isDesktop={isDesktop}
+                isTablet={isTablet}
                 providerList={providerListData}
                 onNextScheduleClicked={onNextScheduleClicked}
                 onPrevScheduleClicked={onPrevScheduleClicked}
@@ -325,7 +326,7 @@ export default function Appointment({ googleApiKey }) {
     } else {
       return !isLoading ? (
         <Stack flexDirection="row" width="100%">
-          <Box sx={{ width: "1128px", m: 3 }}>
+          <Box sx={{ width: !isTablet ? "1128px" : "unset", m: 3 }}>
             {providerListData.length > 0 ? (
               <FilterResult
                 onNextScheduleClicked={onNextScheduleClicked}
@@ -333,6 +334,7 @@ export default function Appointment({ googleApiKey }) {
                 onClickViewAllAvailability={onViewAllAvailability}
                 OnDayClicked={handleDayClicked}
                 isDesktop={isDesktop}
+                isTablet={isTablet}
                 providerList={providerListData}
                 rangeDate={rangeDate}
                 filter={filterBy}
@@ -383,6 +385,7 @@ export default function Appointment({ googleApiKey }) {
         onClickViewAllAvailability={onViewAllAvailability}
         OnDayClicked={handleDayClicked}
         isDesktop={isDesktop}
+        isTablet={isTablet}
         providerList={providerListData}
         rangeDate={rangeDate}
         onSearchProvider={onSearchProvider}

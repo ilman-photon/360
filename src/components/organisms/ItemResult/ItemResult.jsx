@@ -16,6 +16,7 @@ export default function ItemResult({
   },
   keyItem = "",
   isDesktop = true,
+  isTablet = false,
   providerData = {},
   currentDateIndex = 0,
 }) {
@@ -27,7 +28,7 @@ export default function ItemResult({
           marginTop: "16px",
           display: "grid",
           gap: "6px",
-          gridTemplateColumns: "388px 100px 598px",
+          gridTemplateColumns: `${isTablet ? "auto" : "388px"} 100px 598px`,
           gridTemplateRows: "auto",
           gridTemplateAreas: `"providerProvile locationDistance weekAvailability"`,
         }}

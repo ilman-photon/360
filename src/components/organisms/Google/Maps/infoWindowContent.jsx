@@ -115,12 +115,6 @@ const InfoWindowContent = ({
                             gradient={false}
                             onClick={() => {
                               if (!item) return;
-                              console.log(
-                                `${v.date} ${item.time.substring(
-                                  0,
-                                  item.time.length - 2
-                                )}`
-                              );
                               OnTimeClicked(
                                 new Date(
                                   `${v.date} ${item.time.substring(
