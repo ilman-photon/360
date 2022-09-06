@@ -32,6 +32,9 @@ import {
   setRangeDateData,
 } from "../../../utils/appointment";
 import { Api } from "../../api/api";
+import ModalScheduling from "../../../components/organisms/ScheduleAppointment/ModalScheduling/modalScheduling";
+import DrawerScheduling from "../../../components/organisms/ScheduleAppointment/ModalScheduling/drawerScheduling";
+import Cookies from "universal-cookie";
 
 export async function getStaticProps() {
   return {
@@ -54,11 +57,15 @@ export default function Appointment({ googleApiKey }) {
   const [rangeDate, setRangeDate] = useState({ startDate: "", endDate: "" });
   const [isLoading, setIsLoading] = useState(false);
   const [filterBy, setFilterBy] = useState([]);
+  const [isOpen, setIsOpen] = useState(true);
 
   const router = useRouter();
   const dispatch = useDispatch();
+  const cookies = new Cookies();
 
   const filterData = useSelector((state) => state.appointment.filterData);
+  const pendingAppointment =
+    cookies.get("dashboardState", { path: "/patient" }) === "true";
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: googleApiKey,
@@ -395,6 +402,38 @@ export default function Appointment({ googleApiKey }) {
     }
   }
 
+  const appointmentScheduleData = useSelector((state) => {
+    return state.appointment.appointmentSchedule;
+  });
+
+  console.log(appointmentScheduleData, "appointmentScheduleData");
+
+  const scheduleConfirmPopup = () => {
+    return isDesktop ? (
+      <ModalScheduling
+        isLoggedIn={true}
+        patientData={appointmentScheduleData.patientInfo}
+        providerData={appointmentScheduleData.providerInfo}
+        isOpen={isOpen}
+        OnSetIsOpen={(idx) => {
+          setIsOpen(idx);
+          cookies.remove("dashboardState", { path: "/patient" });
+        }}
+      />
+    ) : (
+      <DrawerScheduling
+        isLoggedIn={true}
+        patientData={appointmentScheduleData.patientInfo}
+        providerData={appointmentScheduleData.providerInfo}
+        isOpen={isOpen}
+        OnSetIsOpen={(idx) => {
+          setIsOpen(idx);
+          cookies.remove("dashboardState", { path: "/patient" });
+        }}
+      />
+    );
+  };
+
   return (
     <Stack sx={{ width: "100%" }}>
       {!isFilterApplied || isDesktop ? (
@@ -415,6 +454,7 @@ export default function Appointment({ googleApiKey }) {
       )}
       {renderFilterResult()}
       {onRenderDialogView()}
+      {pendingAppointment && scheduleConfirmPopup()}
     </Stack>
   );
 }
