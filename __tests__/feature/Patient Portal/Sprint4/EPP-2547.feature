@@ -59,7 +59,7 @@ Feature: Patient Portal : Schedule appointment from Patient Portal  - Short bio 
   @P1
   @Patient_Portal
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2547 - Verify user able to view the screen with list of providers for the searched location and available time-slots for the selected date of appointment.
+  Scenario: EPIC_EPP-44_STORY_EPP-2547 - Verify user able to view the screen with list of providers for the searched location and available time-slots for the selected date of appointment.
     Given user launch the Patient Portal url	
     When user provides valid Email or Phone Number and password and click on Login button
     Then user navigates to the Patient Portal application	
@@ -77,7 +77,7 @@ Feature: Patient Portal : Schedule appointment from Patient Portal  - Short bio 
   @P1
   @Patient_Portal
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2547 - Verify user able to search for location and select the date of appointment as well as purpose of visit and insurance and user view the location using City with the selected location
+  Scenario: EPIC_EPP-44_STORY_EPP-2547 - Verify user able to search for location and select the date of appointment as well as purpose of visit and insurance and user view the location using City with the selected location
     Given user launch the Patient Portal url	
     When user provides valid Email or Phone Number and password and click on Login button
     Then user navigates to the Patient Portal application	
@@ -96,7 +96,7 @@ Feature: Patient Portal : Schedule appointment from Patient Portal  - Short bio 
   @P1
   @Patient_Portal
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2547 - Verify user able to search for location and select the date of appointment as well as purpose of visit and insurance and user view the location using State with the selected location
+  Scenario: EPIC_EPP-44_STORY_EPP-2547 - Verify user able to search for location and select the date of appointment as well as purpose of visit and insurance and user view the location using State with the selected location
     Given user launch the Patient Portal url	
     When user provides valid Email or Phone Number and password and click on Login button
     Then user navigates to the Patient Portal application	
@@ -115,7 +115,7 @@ Feature: Patient Portal : Schedule appointment from Patient Portal  - Short bio 
   @P1
   @Patient_Portal
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2547 - Verify user able to search for location and select the date of appointment as well as purpose of visit and insurance and user view the location using  Zipcode with the selected location
+  Scenario: EPIC_EPP-44_STORY_EPP-2547 - Verify user able to search for location and select the date of appointment as well as purpose of visit and insurance and user view the location using  Zipcode with the selected location
     Given user launch the Patient Portal url	
     When user provides valid Email or Phone Number and password and click on Login button
     Then user navigates to the Patient Portal application	
@@ -134,7 +134,7 @@ Feature: Patient Portal : Schedule appointment from Patient Portal  - Short bio 
   @P1
   @Patient_Portal
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2547 - Verify user able to search for the location and select the date of appointment as well as the purpose of visit and insurance and user view the location using the system to detect their location
+  Scenario: EPIC_EPP-44_STORY_EPP-2547 - Verify user able to search for the location and select the date of appointment as well as the purpose of visit and insurance and user view the location using the system to detect their location
     Given user launch the Patient Portal url	
     When user provides valid Email or Phone Number and password and click on Login button
     Then user navigates to the Patient Portal application	
@@ -162,7 +162,7 @@ Feature: Patient Portal : Schedule appointment from Patient Portal  - Short bio 
   @P1
   @Patient_Portal
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2547 - Verify user able to search for the location and select the date of appointment as well as the purpose of visit and insurance and the user view options to change the appointment date
+  Scenario: EPIC_EPP-44_STORY_EPP-2547 - Verify user able to search for the location and select the date of appointment as well as the purpose of visit and insurance and the user view options to change the appointment date
     Given user launch the Patient Portal url	
     When user provides valid Email or Phone Number and password and click on Login button
     Then user navigates to the Patient Portal application	
@@ -184,7 +184,7 @@ Feature: Patient Portal : Schedule appointment from Patient Portal  - Short bio 
   @P1
   @Patient_Portal
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2547 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and user view options to change the Purpose of the Visit
+  Scenario: EPIC_EPP-44_STORY_EPP-2547 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and user view options to change the Purpose of the Visit
     Given user launch the Patient Portal url	
     When user provides valid Email or Phone Number and password and click on Login button
     Then user navigates to the Patient Portal application	
@@ -208,7 +208,7 @@ Feature: Patient Portal : Schedule appointment from Patient Portal  - Short bio 
   @Patient_Portal
   @Regression
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-2547 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and user view options to change the insurance.
+  Scenario: EPIC_EPP-44_STORY_EPP-2547 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and user view options to change the insurance.
     Given user launch the Patient Portal url	
     When user provides valid Email or Phone Number and password and click on Login button
     Then user navigates to the Patient Portal application	
