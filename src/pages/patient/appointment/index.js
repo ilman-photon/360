@@ -57,26 +57,12 @@ export default function Appointment({ googleApiKey }) {
   const [rangeDate, setRangeDate] = useState({ startDate: "", endDate: "" });
   const [isLoading, setIsLoading] = useState(false);
   const [filterBy, setFilterBy] = useState([]);
-  const [providerDataOverview, setProviderDataOverview] = useState({});
-  const [isOpen, setIsOpen] = useState(true);
 
   const router = useRouter();
   const dispatch = useDispatch();
   const cookies = new Cookies();
 
   const filterData = useSelector((state) => state.appointment.filterData);
-  const providerListData = useSelector(
-    (state) => state.appointment.providerListData
-  );
-
-  useEffect(() => {
-    if (providerListData) {
-      setRangeDate(setRangeDateData(providerListData));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [providerListData]);
-  const pendingAppointment =
-    cookies.get("dashboardState", { path: "/patient" }) === "true";
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: googleApiKey,
