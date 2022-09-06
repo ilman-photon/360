@@ -9,7 +9,7 @@ describe("FilterHeading Components", () => {
   beforeEach(() => {
     jest.useFakeTimers("modern");
     jest.setSystemTime(new Date(2022, 3, 1));
-    container = render(<FilterHeading />);
+    container = render(<FilterHeading  isDesktop={true} />);
   });
 
   it("FilterHeading render", () => {
@@ -17,7 +17,7 @@ describe("FilterHeading Components", () => {
   });
 
   it("FilterHeading render", () => {
-    container = render(<FilterHeading isDesktop={true}/>);
+    container = render(<FilterHeading isDesktop={false}/>);
     expect(container).toMatchSnapshot();
   });
 });
