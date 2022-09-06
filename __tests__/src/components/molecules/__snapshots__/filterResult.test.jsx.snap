@@ -12,7 +12,7 @@ Object {
           class="MuiBox-root css-0"
         >
           <div
-            class="filterContainer MuiBox-root css-0"
+            class="filterContainer  MuiBox-root css-0"
           >
             <div
               class="filterButtonContainer MuiBox-root css-0"
@@ -52,7 +52,7 @@ Object {
               </button>
             </div>
             <div
-              class="MuiBox-root css-sesgiw"
+              class="MuiBox-root css-1fwi90t"
             >
               <div
                 class="filterFoundWarpper MuiBox-root css-jy5pi"
@@ -3528,7 +3528,7 @@ Object {
           class="MuiBox-root css-0"
         >
           <div
-            class="filterContainer MuiBox-root css-0"
+            class="filterContainer  MuiBox-root css-0"
           >
             <div
               class="filterButtonContainer MuiBox-root css-0"
@@ -3568,7 +3568,7 @@ Object {
               </button>
             </div>
             <div
-              class="MuiBox-root css-sesgiw"
+              class="MuiBox-root css-1fwi90t"
             >
               <div
                 class="filterFoundWarpper MuiBox-root css-jy5pi"
@@ -5770,7 +5770,7 @@ Object {
         class="MuiBox-root css-0"
       >
         <div
-          class="filterContainer MuiBox-root css-0"
+          class="filterContainer  MuiBox-root css-0"
         >
           <div
             class="filterButtonContainer MuiBox-root css-0"
@@ -5810,7 +5810,7 @@ Object {
             </button>
           </div>
           <div
-            class="MuiBox-root css-sesgiw"
+            class="MuiBox-root css-1fwi90t"
           >
             <div
               class="filterFoundWarpper MuiBox-root css-jy5pi"

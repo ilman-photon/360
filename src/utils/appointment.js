@@ -54,7 +54,7 @@ export function parseScheduleDataWeek(availability) {
     "friday",
     "saturday",
   ];
-  let scheduleData = {};
+  const scheduleData = {};
 
   for (let index = 0; index < availability.length; index++) {
     const day = dayNames[index];
@@ -94,8 +94,7 @@ function getScheduleData(availabilityData) {
 }
 
 export function parseScheduleDataDay(availability, currentDateIndex) {
-  console.log("availability: ", availability);
-  let scheduleData = [];
+  const scheduleData = [];
   if (availability[currentDateIndex].list.length > 0) {
     const maxLength =
       availability[currentDateIndex].list.length <= 4
@@ -123,6 +122,26 @@ export function parseScheduleDataDay(availability, currentDateIndex) {
   return scheduleData;
 }
 
+export function parseScheduleDataWeekOverlay(availability) {
+  const scheduleData = {};
+
+  for (let index = 0; index < availability.length; index++) {
+    const schedule = [];
+    for (
+      let indexList = 0;
+      indexList < availability[index].list.length;
+      indexList++
+    ) {
+      if (availability[index].list[indexList]) {
+        schedule.push(availability[index].list[indexList].time);
+      }
+    }
+    scheduleData[getDayName(new Date(availability[index].date))] = schedule;
+  }
+
+  return scheduleData;
+}
+
 function getNextAvailabilityLabel(date) {
   const tempDate = new Date(date);
   const month = constants.MONTH_NAME[tempDate.getMonth()];
@@ -131,9 +150,15 @@ function getNextAvailabilityLabel(date) {
 
 export function setRangeDateData(response) {
   return {
-    startDate: response?.listOfProvider[0].from,
-    endDate: response?.listOfProvider[0].to,
+    startDate: response[0] ? response[0].from : "",
+    endDate: response[0] ? response[0].to : "",
   };
+}
+
+export function timeInWeekLabel(startDate, endDate) {
+  return startDate && endDate
+    ? `${getDateName(new Date(startDate))} - ${getDateName(new Date(endDate))}`
+    : "";
 }
 
 Date.prototype.addDays = function (days) {
@@ -144,7 +169,7 @@ Date.prototype.addDays = function (days) {
 
 //This for week dates
 export function getDates(startDate, stopDate, isDayView = false) {
-  let dateArray = new Array();
+  const dateArray = [];
   let currentDate = startDate;
   while (currentDate <= stopDate) {
     dateArray.push(new Date(currentDate));
@@ -160,21 +185,27 @@ export function getDates(startDate, stopDate, isDayView = false) {
 
 function getDateListName(dateArray) {
   const dateWeek = [];
-  for (let date of dateArray) {
-    const month = constants.MONTH_NAME[date.getMonth()];
-    dateWeek.push(`${month} ${date.getDate()}`);
+  for (const date of dateArray) {
+    dateWeek.push(getDateName(date));
   }
-
   return dateWeek;
+}
+
+function getDateName(date) {
+  const month = constants.MONTH_NAME[date.getMonth()];
+  return `${month} ${date.getDate()}`;
 }
 
 function getDayListName(dateArray) {
   const dateDay = [];
-  for (let date of dateArray) {
-    const month = constants.MONTH_NAME[date.getMonth()];
-    const dayName = constants.DAY_NAME[date.getDay() - 1];
-    dateDay.push(`${dayName}, ${month} ${date.getDate()}`);
+  for (const date of dateArray) {
+    dateDay.push(getDayName(date));
   }
-
   return dateDay;
+}
+
+function getDayName(date) {
+  const month = constants.MONTH_NAME[date.getMonth()];
+  const dayName = constants.DAY_NAME[date.getDay() - 1];
+  return `${dayName}, ${month} ${date.getDate()}`;
 }
