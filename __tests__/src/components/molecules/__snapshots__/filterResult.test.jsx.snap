@@ -7,6 +7,7 @@ Object {
     <div>
       <div
         class="css-nen11g-MuiStack-root"
+        data-testid="appointment_filter_result_container"
       >
         <div
           class="MuiBox-root css-0"
@@ -3523,6 +3524,7 @@ Object {
     <div>
       <div
         class="css-nen11g-MuiStack-root"
+        data-testid="appointment_filter_result_container"
       >
         <div
           class="MuiBox-root css-0"
@@ -5765,6 +5767,7 @@ Object {
   "container": <div>
     <div
       class="css-nen11g-MuiStack-root"
+      data-testid="appointment_filter_result_container"
     >
       <div
         class="MuiBox-root css-0"

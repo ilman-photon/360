@@ -51,6 +51,7 @@ Object {
             >
               <button
                 class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+                data-testid="schedule_appointment_location_edit_button"
                 tabindex="0"
                 type="button"
               >
@@ -192,6 +193,7 @@ Object {
           >
             <button
               class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1e6y48t-MuiButtonBase-root-MuiButton-root"
+              data-testid="schedule_appointment_location_edit_button"
               tabindex="0"
               type="button"
             >

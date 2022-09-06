@@ -12,6 +12,7 @@ import * as styles from "./styles.module.scss";
 import CloseIcon from "@mui/icons-material/Close";
 import { StyledButton } from "../../atoms/Button/button";
 import CustomCheckbox from "./customCheckbox";
+import { TEST_ID } from "../../../utils/constants";
 
 const constants = require("../../../utils/constants");
 
@@ -111,6 +112,7 @@ const FilterBy = ({ isOpen, onClose, onDone, filter, activedFilter = [] }) => {
 
   return (
     <Drawer
+      data-testid={TEST_ID.APPOINTMENT_TEST_ID.FILTER_COMPONENT.drawer}
       anchor="right"
       open={openDrawer}
       onClose={onClose}

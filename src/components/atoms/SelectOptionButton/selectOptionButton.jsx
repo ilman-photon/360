@@ -76,7 +76,6 @@ export default function SelectOptionButton({
       <Select
         labelId={labelId ? labelId : null}
         id={id ? id : null}
-        data-testid={`select-${id}`}
         value={value}
         label={label}
         onChange={onChange}
@@ -89,6 +88,7 @@ export default function SelectOptionButton({
         inputProps={{
           "aria-label": `${label}. ${value}`,
           "aria-live": "polite",
+          "data-testid": `select-${id}`,
         }}
         {...props.menuProps}
         renderValue={props.renderValue}

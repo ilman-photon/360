@@ -124,6 +124,12 @@ module.exports = {
       dateInput: "dateInput",
       purposeInput: "purposeInput",
       insuranceInput: "insuranceInput",
+      FILTER_RESULT: {
+        container: "appointment_filter_result_container",
+      },
+      FILTER_COMPONENT: {
+        drawer: "appointment_filter_component_drawer",
+      },
     },
     BIOGRAPHY_TEST_ID: {
       about: "biography-about",
@@ -147,5 +153,14 @@ module.exports = {
       viewAll: "loc_viewAll",
     },
     SUBNAVIGATION: "subNavigation-link",
+    SCHEDULE_APPOINTMENT_TEST_ID: {
+      APPOINTMENT_LOCATION: {
+        editButton: "schedule_appointment_location_edit_button",
+      },
+      APPOINTMENT_DETAILS: {
+        editButton: "schedule_appointment_details_edit_button",
+      },
+      step2Button: "schedule_appointment_step2_button",
+    },
   },
 };

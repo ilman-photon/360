@@ -9,6 +9,7 @@ import FilterResultContainer from "../FilterResultContainer/filterResultContaine
 import { colors } from "../../../styles/theme";
 import { useEffect, useState } from "react";
 import { getDates } from "../../../utils/appointment";
+import { TEST_ID } from "../../../utils/constants";
 
 export const FilterResult = ({
   providerList = [],
@@ -84,7 +85,7 @@ export const FilterResult = ({
 
   function renderDesktopView() {
     return (
-      <Stack>
+      <Stack data-testid={TEST_ID.APPOINTMENT_TEST_ID.FILTER_RESULT.container}>
         <Box>
           <FilterResultHeading
             isDesktop={isDesktop}
