@@ -5,7 +5,7 @@ import { buttonSchedule } from "../DayAvailability/DayAvailability";
 import { parseScheduleDataDay } from "../../../utils/appointment";
 
 export const ScheduleAvailability = ({
-  scheduleData = ["08:30am", "09:00am", "09:30am", "09:4am"],
+  scheduleData = [],
   onClickViewAllAvailability = () => {
     // This is intentional
   },
@@ -13,21 +13,15 @@ export const ScheduleAvailability = ({
     // This is intentional
   },
   currentDateIndex = 0,
+  currentDate = "",
 }) => {
-  const [schedule, setSchedule] = useState([
-    "08:30am",
-    "09:00am",
-    "09:30am",
-    "09:4am",
-  ]);
+  const [schedule, setSchedule] = useState([]);
 
   useEffect(() => {
     const scheduleParse = parseScheduleDataDay(scheduleData, currentDateIndex);
-
     if (scheduleParse) {
       setSchedule(scheduleParse);
     }
-    console.log("scheduleData: ", scheduleParse);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentDateIndex]);
 
@@ -37,8 +31,14 @@ export const ScheduleAvailability = ({
     );
   }
 
+  function isValidDate(d) {
+    return d instanceof Date && !isNaN(d);
+  }
+  const stringCurrentDate = isValidDate(currentDate)
+    ? currentDate.toLocaleDateString()
+    : "";
   return (
-    <Box>
+    <Box sx={{ marginTop: "16px" }}>
       <Box
         sx={{
           display: "grid",
@@ -53,7 +53,13 @@ export const ScheduleAvailability = ({
         }}
       >
         {schedule.map((option, idx) => {
-          return buttonSchedule(option, idx, OnDayClicked, true);
+          return buttonSchedule(
+            option,
+            idx,
+            OnDayClicked,
+            stringCurrentDate,
+            true
+          );
         })}
       </Box>
       {viewAllAvailabilityLinkUI({ onClickViewAllAvailability })}

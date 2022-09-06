@@ -100,7 +100,6 @@ describe("App", () => {
     fireEvent.click(saveButton);
 
     await waitFor(() => container.getAllByText("thisFieldRequired"));
-
     expect(container.getAllByText("thisFieldRequired")[0]).toBeInTheDocument();
 
     expect(

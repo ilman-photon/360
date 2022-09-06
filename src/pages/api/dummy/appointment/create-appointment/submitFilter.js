@@ -48,11 +48,11 @@ export default function submitFilter(req, res) {
                   key: 12226,
                 },
                 {
-                  time: "13:00pm",
+                  time: "01:00pm",
                   key: 12227,
                 },
                 {
-                  time: "14:00pm",
+                  time: "02:00pm",
                   key: 12228,
                 },
               ],
@@ -77,19 +77,19 @@ export default function submitFilter(req, res) {
                   key: 12232,
                 },
                 {
-                  time: "13:30pm",
+                  time: "01:30pm",
                   key: 12233,
                 },
                 {
-                  time: "14:30pm",
+                  time: "02:30pm",
                   key: 12234,
                 },
                 {
-                  time: "15:30pm",
+                  time: "03:30pm",
                   key: 12235,
                 },
                 {
-                  time: "16:30pm",
+                  time: "04:30pm",
                   key: 12236,
                 },
                 ,
@@ -142,7 +142,7 @@ export default function submitFilter(req, res) {
             zipcode: "54231",
           },
           rating: "5",
-          name: "Paul Wagner Md",
+          name: "Paul Wagner Nd",
           phoneNumber: "(123) 123-4567",
           distance: "10 mi",
           image: "/doctor.png",
@@ -173,11 +173,11 @@ export default function submitFilter(req, res) {
                   key: 12226,
                 },
                 {
-                  time: "13:00pm",
+                  time: "01:00pm",
                   key: 12227,
                 },
                 {
-                  time: "14:00pm",
+                  time: "02:00pm",
                   key: 12228,
                 },
               ],
@@ -202,19 +202,19 @@ export default function submitFilter(req, res) {
                   key: 12232,
                 },
                 {
-                  time: "13:30pm",
+                  time: "01:30pm",
                   key: 12233,
                 },
                 {
-                  time: "14:30pm",
+                  time: "02:30pm",
                   key: 12234,
                 },
                 {
-                  time: "15:30pm",
+                  time: "03:30pm",
                   key: 12235,
                 },
                 {
-                  time: "16:30pm",
+                  time: "04:30pm",
                   key: 12236,
                 },
                 ,
@@ -298,11 +298,11 @@ export default function submitFilter(req, res) {
                   key: 12226,
                 },
                 {
-                  time: "13:00pm",
+                  time: "01:00pm",
                   key: 12227,
                 },
                 {
-                  time: "14:00pm",
+                  time: "02:00pm",
                   key: 12228,
                 },
               ],
@@ -327,19 +327,19 @@ export default function submitFilter(req, res) {
                   key: 12232,
                 },
                 {
-                  time: "13:30pm",
+                  time: "01:30pm",
                   key: 12233,
                 },
                 {
-                  time: "14:30pm",
+                  time: "02:30pm",
                   key: 12234,
                 },
                 {
-                  time: "15:30pm",
+                  time: "03:30pm",
                   key: 12235,
                 },
                 {
-                  time: "16:30pm",
+                  time: "04:30pm",
                   key: 12236,
                 },
                 ,

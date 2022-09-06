@@ -24,9 +24,11 @@ export default function StepperAppoinment({ ...props }) {
         activeStep={props.activeStep}
         alternativeLabel
         sx={{ width: "800px" }}
+        aria-label={`Progress Bar`}
       >
         {steps?.map((label, idx) => (
           <Step
+            aria-label={`${label} stage in progress bar`}
             sx={{
               "& .MuiStepLabel-root .Mui-completed": {
                 color: "#D5F1D4", // circle color (COMPLETED)

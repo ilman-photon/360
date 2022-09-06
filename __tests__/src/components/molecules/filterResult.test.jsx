@@ -2,7 +2,7 @@ import { render } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import FilterResult from "../../../../src/components/molecules/FilterResult/filterResult";
 
-window.scrollTo = jest.fn()
+window.scrollTo = jest.fn();
 const providerList = [
   {
     providerId: "1",
@@ -394,35 +394,43 @@ const providerList = [
       longitude: -117.1641166,
     },
   },
-]
+];
 
 describe("FilterResult Components", () => {
   let container;
-  const rangeDate = { startDate: "2022-10-10", endDate: "2022-10-15" }
+  const rangeDate = { startDate: "2022-10-10", endDate: "2022-10-15" };
   beforeEach(() => {
-    container = render(<FilterResult isDesktop={true} providerList={providerList} rangeDate={rangeDate}/>);
+    container = render(
+      <FilterResult
+        isDesktop={true}
+        providerList={providerList}
+        rangeDate={rangeDate}
+      />
+    );
   });
 
   it("FilterResult render", () => {
-    expect(container).toMatchSnapshot();
+    expect(container.getByText("30 In-network providers")).toBeInTheDocument();
   });
 
   it("FilterHeading render", () => {
-    const rangeDate = { startDate: "2022-10-10", endDate: "2022-10-15" }
-    container = render(<FilterResult isDesktop={false} 
-      providerList={providerList} 
-      rangeDate={rangeDate} 
-      purposeOfVisitData={[]}
-      insuranceCarrierData={[]}
-      googleApiKey={"Test"}
-      filterData = {{
-        location: "",
-        date: "",
-        purposeOfVisit: "",
-        insuranceCarrier: "",
-      }}
-      />);
-    expect(container).toMatchSnapshot();
+    const rangeDate = { startDate: "2022-10-10", endDate: "2022-10-15" };
+    container = render(
+      <FilterResult
+        isDesktop={false}
+        providerList={providerList}
+        rangeDate={rangeDate}
+        purposeOfVisitData={[]}
+        insuranceCarrierData={[]}
+        googleApiKey={"Test"}
+        filterData={{
+          location: "",
+          date: "",
+          purposeOfVisit: "",
+          insuranceCarrier: "",
+        }}
+      />
+    );
+    expect(container.getByText("30 In-network providers")).toBeInTheDocument();
   });
-
 });

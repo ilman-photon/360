@@ -14,6 +14,7 @@ import MailOutlineIcon from "@mui/icons-material/MailOutline";
 import { colors } from "../../../../styles/theme";
 import styles from "./modalScheduling.module.scss";
 import ProviderProfile from "../../../molecules/ProviderProfile/providerProfile";
+import { getLinkAria } from "../../../../utils/viewUtil";
 
 import Link from "@mui/material/Link";
 import constants from "../../../../utils/constants";
@@ -123,11 +124,9 @@ export default function ModalConfirmContent({
         <div className={styles.bottomParagraph}>
           <Link
             data-testid={REGISTER_TEST_ID.loginlink}
-            aria-label={`Login link`}
+            {...getLinkAria(t("isEmergency"))}
           >
-            <span className={styles.medicLink}>
-              Is this a medical emergency?
-            </span>
+            <span className={styles.medicLink}>{t("isEmergency")}</span>
           </Link>
         </div>
 
@@ -160,7 +159,7 @@ export default function ModalConfirmContent({
                   display: "contents",
                   fontWeight: "700",
                 }}
-                aria-label={"Myself"}
+                aria-label={"Add to calendar"}
               >
                 <CalendarTodayIcon /> Add to calendar
               </Typography>
@@ -189,7 +188,10 @@ export default function ModalConfirmContent({
                   />
                   <Box className={styles.getDirectionLink}>
                     <DirectionsOutlinedIcon></DirectionsOutlinedIcon>
-                    <Link className={styles.getDirectionLinkText}>
+                    <Link
+                      className={styles.getDirectionLinkText}
+                      {...getLinkAria("Get directions")}
+                    >
                       Get directions
                     </Link>
                   </Box>
@@ -205,6 +207,7 @@ export default function ModalConfirmContent({
               className={styles.patientBoxLabel}
               sx={{ mb: 2 }}
               aria-label={"Patient Information"}
+              aria-roledescription="Heading"
             >
               {t("patientInformation")}
             </Typography>
@@ -228,7 +231,6 @@ export default function ModalConfirmContent({
               <Link
                 href="/patient/login"
                 data-testid={REGISTER_TEST_ID.loginlink}
-                aria-label={`Login link`}
               >
                 <a className={styles.loginLink}>Login</a>
               </Link>

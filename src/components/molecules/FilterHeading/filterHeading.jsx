@@ -439,7 +439,12 @@ export function renderInsuranceCarrier(
                 <Box key={props["data-option-index"]}>
                   <li {...props}>{option.name}</li>
                   {option.divider ? (
-                    <Divider className={styles.renderDivider} />
+                    <Divider
+                      sx={{
+                        marginRight: "12px",
+                        marginLeft: "8px",
+                      }}
+                    />
                   ) : (
                     <></>
                   )}

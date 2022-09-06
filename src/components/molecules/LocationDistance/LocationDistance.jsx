@@ -6,8 +6,8 @@ import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
 import { colors } from "../../../styles/theme";
 import styles from "./styles.module.scss";
 
-export const LocationDistance = ({ isDesktop = true }) => {
-  const iconSize = isDesktop ? 18 : 25;
+export const LocationDistance = ({ isDesktop = true, distance = "" }) => {
+  const iconSize = isDesktop ? 23 : 25;
   return (
     <Box
       sx={{
@@ -41,7 +41,7 @@ export const LocationDistance = ({ isDesktop = true }) => {
           color="text.primary"
           className={styles.distanceLabel}
         >
-          10 mi
+          {distance}
         </Typography>
       </Box>
       <Box

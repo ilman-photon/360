@@ -147,5 +147,9 @@ module.exports = {
       viewAll: "loc_viewAll",
     },
     SUBNAVIGATION: "subNavigation-link",
+    MAP_INFO_WINDOW: {
+      previousProvider: "provider_btnPrevious",
+      nextProvider: "provider_btnNext",
+    },
   },
 };

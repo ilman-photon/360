@@ -26,66 +26,12 @@ exports[`GMaps GMaps render 1`] = `
     onClick={[Function]}
     position={
       Object {
-        "lat": 41.881832,
-        "lng": -87.623177,
+        "lat": 32.751204,
+        "lng": -117.1641166,
       }
     }
-  />
-  <UNDEFINED
-    icon={
-      Object {
-        "url": "/provider-pin.svg",
-      }
-    }
-    onClick={[Function]}
-    position={
-      Object {
-        "lat": 39.739235,
-        "lng": -104.99025,
-      }
-    }
-  />
-  <UNDEFINED
-    icon={
-      Object {
-        "url": "/provider-pin.svg",
-      }
-    }
-    onClick={[Function]}
-    position={
-      Object {
-        "lat": 34.052235,
-        "lng": -118.243683,
-      }
-    }
-  />
-  <UNDEFINED
-    icon={
-      Object {
-        "url": "/provider-pin.svg",
-      }
-    }
-    onClick={[Function]}
-    position={
-      Object {
-        "lat": 40.712776,
-        "lng": -74.005974,
-      }
-    }
-  />
-  <UNDEFINED
-    icon={
-      Object {
-        "url": "/provider-pin.svg",
-      }
-    }
-    onClick={[Function]}
-    position={
-      Object {
-        "lat": 41.712776,
-        "lng": -74.505974,
-      }
-    }
-  />
+  >
+    
+  </UNDEFINED>
 </GoogleMap>
 `;

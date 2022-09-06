@@ -25,16 +25,20 @@ import { useLoadScript } from "@react-google-maps/api";
 import {
   editAppointmentScheduleData,
   setFilterData,
+  setIsFilterApplied,
+  setProviderListData,
 } from "../../../store/appointment";
 import { useRouter } from "next/router";
 import {
   parseSuggestionData,
   setRangeDateData,
+  getProvideOverlay,
 } from "../../../utils/appointment";
 import { Api } from "../../api/api";
 import ModalScheduling from "../../../components/organisms/ScheduleAppointment/ModalScheduling/modalScheduling";
 import DrawerScheduling from "../../../components/organisms/ScheduleAppointment/ModalScheduling/drawerScheduling";
 import Cookies from "universal-cookie";
+import { formatAppointmentDate } from "../../../utils/dateFormatter";
 
 export async function getStaticProps() {
   return {
@@ -48,8 +52,6 @@ export default function Appointment({ googleApiKey }) {
   const isDesktop = useMediaQuery("(min-width: 834px)");
   const isTablet = useMediaQuery("(max-width: 1440px)");
   const [filterSuggestionData, setFilterSuggestionData] = useState({});
-  const [providerListData, setProviderListData] = useState([]);
-  const [isFilterApplied, setFilterApplied] = useState(false);
   const [open, setOpen] = React.useState(false);
   const [dataFilter, setDataFilter] = React.useState([]);
   const [activeTabs, setActiveTabs] = useState(0);
@@ -57,6 +59,8 @@ export default function Appointment({ googleApiKey }) {
   const [rangeDate, setRangeDate] = useState({ startDate: "", endDate: "" });
   const [isLoading, setIsLoading] = useState(false);
   const [filterBy, setFilterBy] = useState([]);
+  const [providerDataOverview, setProviderDataOverview] = useState({});
+  const [activeFilterBy, setActiveFilterBy] = useState([]);
   const [isOpen, setIsOpen] = useState(true);
 
   const router = useRouter();
@@ -64,6 +68,18 @@ export default function Appointment({ googleApiKey }) {
   const cookies = new Cookies();
 
   const filterData = useSelector((state) => state.appointment.filterData);
+
+  const providerListData = useSelector(
+    (state) => state.appointment.providerListData
+  );
+
+  useEffect(() => {
+    if (providerListData) {
+      setRangeDate(setRangeDateData(providerListData));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [providerListData]);
+
   const pendingAppointment =
     cookies.get("dashboardState", { path: "/patient" }) === "true";
 
@@ -71,11 +87,15 @@ export default function Appointment({ googleApiKey }) {
     googleMapsApiKey: googleApiKey,
   });
 
+  const isFilterApplied = useSelector(
+    (state) => state.appointment.isFilterApplied
+  );
+
   function onSearchProvider(data) {
     dispatch(setFilterData(data));
-    setFilterApplied(true);
     setDataFilter(data);
     onCallSubmitFilterAPI(data);
+    dispatch(setIsFilterApplied(true));
   }
 
   function onSwapButtonClicked() {
@@ -84,6 +104,7 @@ export default function Appointment({ googleApiKey }) {
 
   const handleClose = () => {
     setOpen(false);
+    setProviderDataOverview({});
   };
 
   //Call API for getSuggestion
@@ -104,7 +125,11 @@ export default function Appointment({ googleApiKey }) {
   }
 
   //Call API for submitFilter
-  function onCallSubmitFilterAPI(requestData) {
+  function onCallSubmitFilterAPI(
+    requestData,
+    activeFilterBy = [],
+    isOverlay = false
+  ) {
     const postBody = {
       location: {
         latitude: coords?.latitude,
@@ -114,58 +139,69 @@ export default function Appointment({ googleApiKey }) {
       date: requestData.date,
       appointmentType: requestData.purposeOfVisit,
       insuranceCarrier: requestData.insuranceCarrier,
-      filterBy: [],
+      filterBy: activeFilterBy,
     };
-    setIsLoading(true);
+    console.log(postBody);
+    if (!isOverlay) {
+      setIsLoading(true);
+    }
     const api = new Api();
     api
       .submitFilter(postBody)
       .then(function (response) {
-        if (
-          response?.listOfProvider.length > 0 &&
-          postBody.locationName !== "Jakarta"
-        ) {
-          const rangeDateData = setRangeDateData(response);
-          console.log("rangeDateData: ", rangeDateData);
-          setRangeDate(setRangeDateData(response));
-          setProviderListData(response?.listOfProvider);
+        if (isOverlay) {
+          const providerOverview = getProvideOverlay(
+            providerDataOverview.providerId,
+            response.listOfProvider
+          );
+          setProviderDataOverview(providerOverview);
         } else {
-          setProviderListData([]);
+          if (
+            response?.listOfProvider.length > 0 &&
+            postBody.locationName !== "Jakarta"
+          ) {
+            dispatch(setProviderListData(response?.listOfProvider));
+          } else {
+            dispatch(setProviderListData([]));
+          }
+          setFilterBy(response.filterbyData);
         }
-        setFilterBy(response.filterbyData);
       })
       .catch(function () {
-        setProviderListData([]);
+        if (!isOverlay) {
+          dispatch(setProviderListData([]));
+        }
       })
       .finally(function () {
-        setIsLoading(false);
+        if (!isOverlay) {
+          setIsLoading(false);
+        }
       });
+  }
+
+  function getPostbodyForSubmit(date) {
+    return {
+      locationName: dataFilter.location,
+      date: date,
+      appointmentType: dataFilter.purposeOfVisit,
+      insuranceCarrier: dataFilter.insuranceCarrier,
+    };
   }
 
   function onNextScheduleClicked(type, date) {
     console.log(type, " + ", date);
-    const postBoday = {
-      locationName: dataFilter.location,
-      date: date,
-      appointmentType: dataFilter.purposeOfVisit,
-      insuranceCarrier: dataFilter.insuranceCarrier,
-    };
-    onCallSubmitFilterAPI(postBoday);
+    const postBody = getPostbodyForSubmit(date);
+    onCallSubmitFilterAPI(postBody, activeFilterBy, type === "overlay");
   }
 
   function onPrevScheduleClicked(type, date) {
     console.log(type, " + ", date);
-    const postBoday = {
-      locationName: dataFilter.location,
-      date: date,
-      appointmentType: dataFilter.purposeOfVisit,
-      insuranceCarrier: dataFilter.insuranceCarrier,
-    };
-    onCallSubmitFilterAPI(postBoday);
+    const postBody = getPostbodyForSubmit(date);
+    onCallSubmitFilterAPI(postBody, activeFilterBy, type === "overlay");
   }
 
   function onViewAllAvailability(providerData) {
-    //TO DO: set data for view days schedule]
+    setProviderDataOverview(providerData);
     setOpen(true);
   }
 
@@ -197,7 +233,6 @@ export default function Appointment({ googleApiKey }) {
         },
       })
     );
-
     router.push("/patient/schedule-appointment");
   };
   const { coords, isGeolocationEnabled } = useGeolocated({
@@ -215,7 +250,6 @@ export default function Appointment({ googleApiKey }) {
         coords: { lat: coords?.latitude, long: coords?.longitude },
       });
     }
-    console.log(dataFilter, "data Filter");
   }, [dataFilter, coords]);
 
   useEffect(() => {
@@ -247,19 +281,24 @@ export default function Appointment({ googleApiKey }) {
             </IconButton>
           </DialogTitle>
           <DialogContent>
-            <Box sx={{ width: "265px" }}>
+            <Box sx={{ width: "290px" }}>
               <ProviderProfile
                 variant={"viewschedule"}
                 isDayAvailableView={true}
                 isShownPhoneAndRating={false}
-                providerData={providerListData[0]}
+                providerData={providerDataOverview}
+                imageSize={!isDesktop ? "small" : "large"}
               />
             </Box>
             <DayAvailability
               isDesktop={isDesktop}
               OnDayClicked={(e) => {
-                handleDayClicked(e, providerListData[0]);
+                handleDayClicked(e, providerDataOverview);
               }}
+              scheduleData={providerDataOverview?.availability}
+              rangeDate={rangeDate}
+              onNextScheduleClicked={onNextScheduleClicked}
+              onPrevScheduleClicked={onPrevScheduleClicked}
             />
           </DialogContent>
         </Dialog>
@@ -276,16 +315,22 @@ export default function Appointment({ googleApiKey }) {
           }}
         >
           {!showMaps ? (
-            <Box sx={{ width: "1128px", m: 3 }}>
+            <Box sx={{ width: !isTablet ? "1128px" : "unset", m: 3 }}>
               <FilterResult
                 onClickViewAllAvailability={onViewAllAvailability}
                 OnDayClicked={handleDayClicked}
                 isDesktop={isDesktop}
+                isTablet={isTablet}
                 providerList={providerListData}
                 onNextScheduleClicked={onNextScheduleClicked}
                 onPrevScheduleClicked={onPrevScheduleClicked}
                 rangeDate={rangeDate}
                 filter={filterBy}
+                onActivFilter={(filter) => {
+                  setActiveFilterBy([...filter]);
+                  onCallSubmitFilterAPI(dataFilter, filter);
+                }}
+                appliedFilter={activeFilterBy}
               />
             </Box>
           ) : (
@@ -297,7 +342,11 @@ export default function Appointment({ googleApiKey }) {
               }}
             >
               {isLoaded ? (
-                <GMaps apiKey={googleApiKey} />
+                <GMaps
+                  apiKey={googleApiKey}
+                  providerListData={providerListData}
+                  OnTimeClicked={handleDayClicked}
+                />
               ) : (
                 <CircularProgress />
               )}
@@ -328,7 +377,7 @@ export default function Appointment({ googleApiKey }) {
     } else {
       return !isLoading ? (
         <Stack flexDirection="row" width="100%">
-          <Box sx={{ width: "1128px", m: 3 }}>
+          <Box sx={{ width: !isTablet ? "1128px" : "unset", m: 3 }}>
             {providerListData.length > 0 ? (
               <FilterResult
                 onNextScheduleClicked={onNextScheduleClicked}
@@ -336,9 +385,15 @@ export default function Appointment({ googleApiKey }) {
                 onClickViewAllAvailability={onViewAllAvailability}
                 OnDayClicked={handleDayClicked}
                 isDesktop={isDesktop}
+                isTablet={isTablet}
                 providerList={providerListData}
                 rangeDate={rangeDate}
                 filter={filterBy}
+                onActivFilter={(filter) => {
+                  setActiveFilterBy([...filter]);
+                  onCallSubmitFilterAPI(dataFilter, filter);
+                }}
+                appliedFilter={activeFilterBy}
               />
             ) : (
               <EmptyResult
@@ -349,7 +404,15 @@ export default function Appointment({ googleApiKey }) {
             )}
           </Box>
           <Box sx={{ background: "#F4F4F4", flex: 1 }}>
-            {isLoaded ? <GMaps apiKey={googleApiKey} /> : <CircularProgress />}
+            {isLoaded ? (
+              <GMaps
+                apiKey={googleApiKey}
+                providerListData={providerListData}
+                OnTimeClicked={handleDayClicked}
+              />
+            ) : (
+              <CircularProgress />
+            )}
           </Box>
         </Stack>
       ) : (
@@ -378,6 +441,7 @@ export default function Appointment({ googleApiKey }) {
         onClickViewAllAvailability={onViewAllAvailability}
         OnDayClicked={handleDayClicked}
         isDesktop={isDesktop}
+        isTablet={isTablet}
         providerList={providerListData}
         rangeDate={rangeDate}
         onSearchProvider={onSearchProvider}
@@ -390,6 +454,11 @@ export default function Appointment({ googleApiKey }) {
         onNextScheduleClicked={onNextScheduleClicked}
         onPrevScheduleClicked={onPrevScheduleClicked}
         filter={filterBy}
+        onActivFilter={(filter) => {
+          setActiveFilterBy([...filter]);
+          onCallSubmitFilterAPI(dataFilter, filter);
+        }}
+        appliedFilter={activeFilterBy}
       />
     );
   }

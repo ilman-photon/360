@@ -1,20 +1,33 @@
 import Box from "@mui/material/Box";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyledButton } from "../../atoms/Button/button";
 import styles from "./styles.module.scss";
 import { Divider, Typography } from "@mui/material";
 import constants from "../../../utils/constants";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import {
+  getDates,
+  parseDateWeekList,
+  parseScheduleDataWeekOverlay,
+  timeInWeekLabel,
+} from "../../../utils/appointment";
 
 export const buttonSchedule = (
-  label,
+  label = "",
   idx,
   OnDayClicked = () => {
     // This is intended
   },
+  date = "",
   isScheduleAvailability = false
 ) => {
+  const isNextAvailabilityLabel =
+    isScheduleAvailability && label.indexOf("Next availability is") > -1;
+  const dateTime =
+    !isScheduleAvailability || !isNextAvailabilityLabel
+      ? new Date(`${date} ${label.toUpperCase().replace(/(AM|PM)/, " $1")}`)
+      : "";
   return (
     <Box
       key={idx}
@@ -29,7 +42,11 @@ export const buttonSchedule = (
         className={
           !isScheduleAvailability ? styles.scheduleBtn : styles.scheduleAvailBtn
         }
-        onClick={() => OnDayClicked(label)}
+        onClick={() => {
+          if (!isScheduleAvailability || !isNextAvailabilityLabel) {
+            OnDayClicked(dateTime);
+          }
+        }}
       >
         {label}
       </StyledButton>
@@ -38,86 +55,66 @@ export const buttonSchedule = (
 };
 
 export const DayAvailability = ({
-  timeInWeek = "Sep 19 - Sep 24",
-  scheduleData = {
-    "Mon, Sep 19": [
-      "08:30am",
-      "09:30am",
-      "09:45am",
-      "10:00am",
-      "10:30am",
-      "11:00am",
-      "11:30am",
-      "11:45am",
-      "12:00pm",
-      "12:30pm",
-      "1:30pm",
-      "2:00pm",
-      "2:30pm",
-      "3:00pm",
-    ],
-    "Tue, Sep 20": [],
-    "Wed, Sep 21": [],
-    "Thu, Sep 22": [
-      "08:30am",
-      "09:30am",
-      "09:45am",
-      "10:00am",
-      "10:30am",
-      "11:00am",
-      "11:30am",
-      "11:45am",
-      "12:00pm",
-      "12:30pm",
-      "1:30pm",
-      "2:00pm",
-      "2:30pm",
-      "3:00pm",
-    ],
-    "Fri, Sep 23": [
-      "08:30am",
-      "09:30am",
-      "09:45am",
-      "10:00am",
-      "10:30am",
-      "11:00am",
-      "11:30am",
-      "11:45am",
-      "12:00pm",
-      "12:30pm",
-      "1:30pm",
-      "2:00pm",
-      "2:30pm",
-      "3:00pm",
-    ],
-    "Sat, Sep 24": [
-      "08:30am",
-      "09:30am",
-      "09:45am",
-      "10:00am",
-      "10:30am",
-      "11:00am",
-      "11:30am",
-    ],
+  rangeDate = {
+    startDate: "",
+    endDate: "",
   },
+  scheduleData = {},
   isDesktop = false,
   OnDayClicked = () => {
     // This is intended
   },
+  onNextScheduleClicked = () => {
+    // This is intentional
+  },
+  onPrevScheduleClicked = () => {
+    // This is intentional
+  },
 }) => {
+  const [schedule, setSchedule] = useState({});
+  const [timeInWeek, setTimeInWeek] = useState("");
+  const [dateWeekList, setDateWeekList] = useState([]);
+  const [dateList, setDateList] = useState({
+    dateRange: [],
+    dateListName: [],
+  });
+
+  useEffect(() => {
+    const scheduleParse = parseScheduleDataWeekOverlay(scheduleData);
+    if (scheduleParse) {
+      setSchedule(scheduleParse);
+      setDateWeekList(parseDateWeekList(scheduleData));
+    }
+
+    const dates = getDates(
+      new Date(rangeDate.startDate),
+      new Date(rangeDate.endDate),
+      true
+    );
+    if (rangeDate.startDate && rangeDate.endDate) {
+      setDateList(dates);
+    }
+
+    setTimeInWeek(timeInWeekLabel(rangeDate.startDate, rangeDate.endDate));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scheduleData]);
+
   function renderScheduleData() {
     let renderUI = [];
-    for (const [key, value] of Object.entries(scheduleData)) {
+    for (const [index, [key, value]] of Object.entries(
+      Object.entries(schedule)
+    )) {
       if (value && value.length > 0) {
         renderUI.push(
-          <Box className={styles.scheduleContainer}>
+          <Box className={styles.scheduleContainer} key={index}>
             <Typography className={styles.scheduleTitle}>{key}</Typography>
-            {renderTimeSchedule(value)}
+            {renderTimeSchedule(value, index)}
           </Box>
         );
       } else {
         renderUI.push(
           <Box
+            key={index}
             className={[
               styles.scheduleContainer,
               styles.noScheduleContainer,
@@ -134,9 +131,8 @@ export const DayAvailability = ({
     return renderUI;
   }
 
-  function renderTimeSchedule(value) {
+  function renderTimeSchedule(value, index) {
     const column = isDesktop ? 5 : 4;
-    console.log("renderTime", { OnDayClicked });
     return (
       <Box
         sx={{
@@ -150,7 +146,7 @@ export const DayAvailability = ({
         }}
       >
         {value.map((option, idx) => {
-          return buttonSchedule(option, idx, OnDayClicked);
+          return buttonSchedule(option, idx, OnDayClicked, dateWeekList[index]);
         })}
       </Box>
     );
@@ -163,8 +159,23 @@ export const DayAvailability = ({
           {timeInWeek}
         </Typography>
         <Box className={styles.iconTimeContainer}>
-          <ArrowBackIosIcon className={styles.iconSchedule} />
-          <ArrowForwardIosIcon className={styles.iconSchedule} />
+          <ArrowBackIosIcon
+            className={styles.iconSchedule}
+            onClick={() => {
+              const date = new Date(dateList.dateRange[0]);
+              date.setDate(date.getDate() - 7);
+              onPrevScheduleClicked("overlay", date);
+            }}
+          />
+          <ArrowForwardIosIcon
+            className={styles.iconSchedule}
+            sx={{ marginLeft: "10px" }}
+            onClick={() => {
+              const date = new Date(dateList.dateRange[5]);
+              date.setDate(date.getDate() + 7);
+              onNextScheduleClicked("overlay", date);
+            }}
+          />
         </Box>
       </Box>
       <Divider className={styles.dividerSchedule} />

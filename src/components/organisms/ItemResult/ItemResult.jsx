@@ -16,8 +16,10 @@ export default function ItemResult({
   },
   keyItem = "",
   isDesktop = true,
+  isTablet = false,
   providerData = {},
   currentDateIndex = 0,
+  currentDate = "",
 }) {
   function renderDekstopView() {
     return (
@@ -27,7 +29,7 @@ export default function ItemResult({
           marginTop: "16px",
           display: "grid",
           gap: "6px",
-          gridTemplateColumns: "388px 100px 598px",
+          gridTemplateColumns: `${isTablet ? "auto" : "388px"} 100px 598px`,
           gridTemplateRows: "auto",
           gridTemplateAreas: `"providerProvile locationDistance weekAvailability"`,
         }}
@@ -40,7 +42,7 @@ export default function ItemResult({
           />
         </Box>
         <Box sx={{ gridArea: "locationDistance" }}>
-          <LocationDistance />
+          <LocationDistance distance={providerData.distance} />
         </Box>
         <Box sx={{ gridArea: "weekAvailability" }}>
           <WeekAvailability
@@ -63,12 +65,15 @@ export default function ItemResult({
         marginBottom={"8px"}
         className={styles.stackContainer}
       >
-        <Stack direction={"row"}>
-          <ProviderProfile
-            variant={"viewschedule"}
-            isShownRating={false}
-            providerData={providerData}
-          />
+        <Stack direction={"row"} sx={{ width: "100%" }}>
+          <div style={{ flex: 1 }}>
+            <ProviderProfile
+              variant={"viewschedule"}
+              isShownRating={false}
+              providerData={providerData}
+              imageSize={"small"}
+            />
+          </div>
           <LocationDistance isDesktop={isDesktop} />
         </Stack>
         <ScheduleAvailability
@@ -78,6 +83,7 @@ export default function ItemResult({
           OnDayClicked={OnDayClicked}
           currentDateIndex={currentDateIndex}
           scheduleData={providerData?.availability}
+          currentDate={currentDate}
         />
       </Stack>
     );
