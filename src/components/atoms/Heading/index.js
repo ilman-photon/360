@@ -5,6 +5,7 @@ export const HeadingTitle = ({ title, ...props }) => {
     <Typography
       aria-label={`${title} heading`}
       aria-roledescription=""
+      role="heading"
       {...props}
     >
       {title}
