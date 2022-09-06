@@ -55,7 +55,7 @@ exports[`App renders App unchanged 1`] = `
               class="css-1lwbda4-MuiStack-root"
             >
               <h1
-                aria-label="User Registration heading"
+                aria-label="User Registration"
                 aria-roledescription=""
                 class="MuiTypography-root MuiTypography-h1 css-1j9i2ku-MuiTypography-root"
                 role="heading"
