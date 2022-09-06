@@ -16,5 +16,22 @@ exports[`GMaps GMaps render 1`] = `
   }
   onLoad={[Function]}
   zoom={6}
-/>
+>
+  <UNDEFINED
+    icon={
+      Object {
+        "url": "/provider-pin.svg",
+      }
+    }
+    onClick={[Function]}
+    position={
+      Object {
+        "lat": 32.751204,
+        "lng": -117.1641166,
+      }
+    }
+  >
+    
+  </UNDEFINED>
+</GoogleMap>
 `;

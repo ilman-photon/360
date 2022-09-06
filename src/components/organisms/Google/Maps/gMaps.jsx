@@ -21,11 +21,13 @@ function GMaps({
   const [activeMarker, setActiveMarker] = React.useState(null);
   const markers = [];
   providerListData.forEach((provider) => {
-    const foundIndex = markers.findIndex(
-      (v) =>
+    const foundIndex = markers.findIndex((v) => {
+      console.log(v.coordinate.latitude, provider.coordinate.latitude);
+      return (
         v.coordinate.latitude === provider.coordinate.latitude &&
         v.coordinate.longitude === provider.coordinate.longitude
-    );
+      );
+    });
     const latlngObj = {
       lat: provider.coordinate.latitude,
       lng: provider.coordinate.longitude,
@@ -82,7 +84,9 @@ function GMaps({
                 OnTimeClicked={OnTimeClicked}
               />
             </InfoWindowF>
-          ) : null}
+          ) : (
+            ""
+          )}
         </MarkerF>
       ))}
     </GoogleMap>
