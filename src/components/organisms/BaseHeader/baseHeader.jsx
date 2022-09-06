@@ -19,10 +19,12 @@ import Image from "next/image";
 import constants from "../../../utils/constants";
 import AccountDrawer from "../../molecules/AccountDrawer/accountDrawer";
 import SubNavigation from "../../molecules/SubNavigation/subNavigation";
+import { logoutProps } from "../../../utils/authetication";
 
 export default function BaseHeader({
-  OnLogoutClicked = () => {
+  OnLogoutClicked = (router) => {
     // This is intended
+    logoutProps.OnLogoutClicked(router);
   },
   backTitle,
   onBackClicked,
