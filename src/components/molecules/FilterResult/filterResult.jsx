@@ -26,6 +26,7 @@ export const FilterResult = ({
     // This is intentional
   },
   isDesktop = false,
+  isTablet = false,
   rangeDate = { startDate: "", endDate: "" },
   activeTabs = 0,
   setActiveTabs = () => {
@@ -44,7 +45,8 @@ export const FilterResult = ({
     // This is intentional
   },
   filter = [],
-  activedFilter = [],
+  onActivFilter,
+  appliedFilter,
 }) => {
   const [dateList, setDateList] = useState({
     dateRange: [],
@@ -53,13 +55,13 @@ export const FilterResult = ({
   const [currentDateIndex, setCurrentDateIndex] = useState(0);
 
   useEffect(() => {
-    const dateList = getDates(
+    const dates = getDates(
       new Date(rangeDate.startDate),
       new Date(rangeDate.endDate),
       true
     );
     if (rangeDate.startDate && rangeDate.endDate) {
-      setDateList(dateList);
+      setDateList(dates);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rangeDate]);
@@ -73,6 +75,7 @@ export const FilterResult = ({
             keyItem={`${i}-item-filter`}
             onClickViewAllAvailability={onClickViewAllAvailability}
             providerData={providerList[i]}
+            isTablet={isTablet}
             OnDayClicked={(payload) => {
               OnDayClicked(payload, providerList[i]);
             }}
@@ -89,10 +92,13 @@ export const FilterResult = ({
         <Box>
           <FilterResultHeading
             isDesktop={isDesktop}
+            isTablet={isTablet}
             onNextScheduleClicked={onNextScheduleClicked}
             onPrevScheduleClicked={onPrevScheduleClicked}
             rangeDate={rangeDate}
             filter={filter}
+            onActivFilter={onActivFilter}
+            appliedFilter={appliedFilter}
           />
         </Box>
         <div
@@ -127,11 +133,14 @@ export const FilterResult = ({
         >
           <FilterResultHeading
             isDesktop={isDesktop}
+            isTablet={isTablet}
             filterData={filterData}
             onSearchProvider={onSearchProvider}
             purposeOfVisitData={purposeOfVisitData}
             insuranceCarrierData={insuranceCarrierData}
             filter={filter}
+            onActivFilter={onActivFilter}
+            appliedFilter={appliedFilter}
           />
           <Stack
             direction={"row"}
@@ -218,6 +227,7 @@ export const FilterResult = ({
             OnDayClicked={OnDayClicked}
             googleApiKey={googleApiKey}
             currentDateIndex={currentDateIndex}
+            currentDate={dateList.dateRange[currentDateIndex]}
           />
         </Box>
       </Box>

@@ -17,9 +17,10 @@ import FilterHeadingFilled from "../FilterHeading/filterHeadingFilled";
 import { getDates } from "../../../utils/appointment";
 
 export const FilterResultHeading = ({
-  _appliedFilter,
+  appliedFilter = [],
   numberFilter = 30,
   isDesktop = false,
+  isTablet = false,
   filterData = {
     location: "New York, NY",
     date: "",
@@ -39,7 +40,7 @@ export const FilterResultHeading = ({
   insuranceCarrierData = [],
   rangeDate = { startDate: "", endDate: "" },
   filter = [],
-  activedFilter = [],
+  onActivFilter,
 }) => {
   const imageSrcState = "/searchInputIcon.png";
   const imageSrcFilled = "/searchFilledIcon.png";
@@ -72,18 +73,19 @@ export const FilterResultHeading = ({
   }, [rangeDate]);
 
   function renderAppliedFilter() {
-    return activeFilter.map((option, idx) => {
+    return appliedFilter.map((option, idx) => {
       return (
         <Box className={styles.filterChildButton} key={idx}>
           {option.name}
           <CloseIcon
             className={styles.closeIcon}
             onClick={() => {
-              const id = activeFilter.findIndex((x) => x.name === option.name);
+              const id = appliedFilter.findIndex((x) => x.name === option.name);
               if (id > -1) {
-                const data = activeFilter;
+                const data = appliedFilter;
                 data.splice(id, 1);
                 setActiveFilter([...data]);
+                onActivFilter([...data]);
               }
             }}
           />
@@ -95,6 +97,7 @@ export const FilterResultHeading = ({
   const onSetFilter = (filter) => {
     setFilterOpen(!filterOpen);
     setActiveFilter(filter);
+    onActivFilter(filter);
   };
 
   function handleCloseDialog() {
@@ -116,10 +119,15 @@ export const FilterResultHeading = ({
 
   function renderDesktopView() {
     return (
-      <Box className={styles.filterContainer}>
+      <Box
+        className={[
+          styles.filterContainer,
+          isTablet ? styles.isTablet : null,
+        ].join(" ")}
+      >
         <Box className={styles.filterButtonContainer}>
           <FilterBy
-            activedFilter={[...activeFilter]}
+            activedFilter={[...appliedFilter]}
             filter={filter}
             isOpen={filterOpen}
             onClose={() => {
@@ -150,8 +158,8 @@ export const FilterResultHeading = ({
             marginTop: "16px",
             display: "grid",
             gridTemplateColumns: "490px 638px",
-            justifyContent: "center",
-            alignContent: "center",
+            justifyContent: "space-between",
+            alignContent: "space-between",
             gridTemplateRows: "auto",
             gridTemplateAreas: `"filterDetails calenderDetails"`,
           }}

@@ -6,7 +6,10 @@ import styles from "./styles.module.scss";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import { Divider, Typography } from "@mui/material";
 import constants from "../../../utils/constants";
-import { parseScheduleDataWeek } from "../../../utils/appointment";
+import {
+  parseDateWeekList,
+  parseScheduleDataWeek,
+} from "../../../utils/appointment";
 
 export function viewAllAvailabilityLinkUI({
   onClickViewAllAvailability = () => {
@@ -43,14 +46,17 @@ export const WeekAvailability = ({
   OnDayClicked = () => {
     // This is intended
   },
-
   keyWeek = "",
 }) => {
   const [schedule, setSchedule] = useState({});
+  const [dateWeekList, setDateWeekList] = useState([]);
 
   useEffect(() => {
     const scheduleParse = parseScheduleDataWeek(scheduleData);
-    setSchedule(scheduleParse);
+    if (scheduleData) {
+      setSchedule(scheduleParse);
+      setDateWeekList(parseDateWeekList(scheduleData));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scheduleData]);
 
@@ -69,7 +75,8 @@ export const WeekAvailability = ({
             value[i],
             gridArea,
             isTypeMore,
-            `${keyWeek}-${i}-${key}-schedule-button`
+            `${keyWeek}-${i}-${key}-schedule-button`,
+            dateWeekList[i]
           )
         );
       }
@@ -77,19 +84,18 @@ export const WeekAvailability = ({
     return renderUI;
   }
 
-  function buttonSchedule(label, gridArea, isTypeMore = false, index = "") {
+  function buttonSchedule(
+    label = "",
+    gridArea,
+    isTypeMore = false,
+    index = "",
+    date = ""
+  ) {
     if (label) {
-      function isValidDate(d) {
-        return d instanceof Date && !isNaN(d);
-      }
-      const date = new Date(label);
-      const labelTime = isValidDate(date)
-        ? date.toLocaleString("en-US", {
-            hour: "numeric",
-            minute: "numeric",
-            hour12: true,
-          })
-        : label;
+      const isLabelMore = label.indexOf("more") > -1;
+      const dateTime = !isLabelMore
+        ? new Date(`${date} ${label.toUpperCase().replace(/(AM|PM)/, " $1")}`)
+        : "";
       return (
         <Box
           key={index}
@@ -104,15 +110,15 @@ export const WeekAvailability = ({
             gradient={false}
             className={styles.scheduleBtn}
             onClick={() => {
-              if (labelTime.indexOf("more") > -1) {
+              if (isLabelMore) {
                 onClickViewAllAvailability();
               } else {
-                OnDayClicked(label);
+                OnDayClicked(dateTime);
               }
             }}
           >
             <Typography className={styles.scheduleBtnLabel}>
-              {labelTime}
+              {label}
               {isTypeMore && (
                 <KeyboardArrowDownOutlinedIcon sx={{ width: "18px" }} />
               )}

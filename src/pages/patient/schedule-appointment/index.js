@@ -141,6 +141,7 @@ export const PageContent = ({
                   width: { xs: "100%", md: "222px" },
                   background: "#0095A9",
                   borderRadius: "46px",
+                  backgroundColor: "#007E8F",
                 }}
                 onClick={() => OnsetActiveStep(2)}
               >
@@ -314,7 +315,7 @@ export default function ScheduleAppointmentPage() {
         isLoggedIn={isLoggedIn}
         patientData={appointmentScheduleData.patientInfo}
         providerData={appointmentScheduleData.providerInfo}
-        isOpen={isOpen}
+        isOpen={true}
         OnSetIsOpen={(idx) => setIsOpen(idx)}
       />
     ) : (
@@ -363,8 +364,14 @@ export default function ScheduleAppointmentPage() {
                 setActiveStep(activeStep - 1);
               }
             }}
+            aria-label={"Back icon"}
+            aria-hidden={"false"}
           >
-            <ArrowBackIcon className={styles.backIcon} />
+            <ArrowBackIcon
+              className={styles.backIcon}
+              aria-label={"Back icon"}
+              aria-hidden={"false"}
+            />
             &nbsp;Back
           </Button>
         </Box>

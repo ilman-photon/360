@@ -34,7 +34,9 @@ export default function AppointmentLocation({
   return (
     <Box mb={2}>
       <AccountCard
-        titleIcon={<LocationOnIcon />}
+        titleIcon={
+          <LocationOnIcon aria-label={"calendar icon"} aria-hidden={"false"} />
+        }
         title={t("location")}
         textStyle={{ fontWeight: "700" }}
         isAppoinment={true}
@@ -50,6 +52,8 @@ export default function AppointmentLocation({
           >
             <EditOutlinedIcon
               sx={{ width: 20, height: 20, color: "#008294" }}
+              aria-label={"Edit icon"}
+              aria-hidden={"false"}
             />
             <div type="link" style={styles.editLink}>
               Edit

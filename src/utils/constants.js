@@ -162,5 +162,9 @@ module.exports = {
       },
       step2Button: "schedule_appointment_step2_button",
     },
+    MAP_INFO_WINDOW: {
+      previousProvider: "provider_btnPrevious",
+      nextProvider: "provider_btnNext",
+    },
   },
 };

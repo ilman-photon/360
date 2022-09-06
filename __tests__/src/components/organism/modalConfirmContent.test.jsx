@@ -12,5 +12,5 @@ describe("App", () => {
         expect(container).toMatchSnapshot();
     });
     
-  });
+});
   

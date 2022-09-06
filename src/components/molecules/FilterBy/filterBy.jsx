@@ -74,7 +74,6 @@ const FilterBy = ({ isOpen, onClose, onDone, filter, activedFilter = [] }) => {
                   key={index}
                   onChange={onFilterChecked}
                   checked={() => {
-                    console.log(activeFilter);
                     return (
                       activeFilter.findIndex((x) => x.name === item.name) > -1
                     );

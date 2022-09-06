@@ -52,3 +52,10 @@ input[type="number"] {
     max-width: none;
   }
 }
+
+// google-maps info-window css
+.gm-style-iw {
+  .gm-style-iw-d {
+    max-height: 300px !important;
+  }
+}

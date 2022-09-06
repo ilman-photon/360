@@ -27,7 +27,7 @@ Object {
               type="button"
             >
               <h4
-                aria-label="Myself"
+                aria-label="Myself option"
                 class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
                 style="color: rgb(0, 59, 74); font-size: 18px; font-weight: 700;"
               >
@@ -44,7 +44,7 @@ Object {
               type="button"
             >
               <h4
-                aria-label="SomeoneElse"
+                aria-label="Someone else option"
                 class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
                 style="color: rgb(0, 59, 74); font-size: 18px; font-weight: 700;"
               >
@@ -85,7 +85,7 @@ Object {
             type="button"
           >
             <h4
-              aria-label="Myself"
+              aria-label="Myself option"
               class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
               style="color: rgb(0, 59, 74); font-size: 18px; font-weight: 700;"
             >
@@ -102,7 +102,7 @@ Object {
             type="button"
           >
             <h4
-              aria-label="SomeoneElse"
+              aria-label="Someone else option"
               class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
               style="color: rgb(0, 59, 74); font-size: 18px; font-weight: 700;"
             >

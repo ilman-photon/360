@@ -37,8 +37,8 @@
     "backSignIn": "Back to Sign-In",
     "syncButton": "Sync",
     "syncTitle" : "Sync your appointment",
-    "exisistingUser" : "<h1> Exisisting User</h1>",
-    "errorAysncUser" : "You are already a registered user. Please login to the application usering your username and password. Login"
+    "syncErrorTitle" : "Existing User",
+    "syncError" : "You are already a registered user. Please login to the application using your username and password.  Login"
   },
   "SetOption": {
     "title": "Select an option",

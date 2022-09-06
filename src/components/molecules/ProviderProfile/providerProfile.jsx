@@ -12,6 +12,7 @@ export default function ProviderProfile({
   isShownPhoneAndRating = true,
   isShownRating = true,
   providerData = {},
+  imageSize = "large",
 }) {
   const isAppointment = variant === "appointment";
   const isBio = variant === "bio";
@@ -81,15 +82,15 @@ export default function ProviderProfile({
         <Box>
           <Image
             src={providerData.image || "/transparent.png"}
-            width={100}
-            height={100}
+            width={imageSize === "small" ? 50 : 100}
+            height={imageSize === "small" ? 50 : 100}
             className={styles.profilePhoto}
             alt="Doctor Image"
           ></Image>
         </Box>
         <Box
           className={styles.bioContainer}
-          sx={{ width: isMap ? "unset" : "20vw" }}
+          sx={{ width: isMap || imageSize === "small" ? "unset" : "20vw" }}
         >
           <Typography
             variant="h2"
