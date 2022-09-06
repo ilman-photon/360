@@ -1,28 +1,47 @@
 import Box from "@mui/material/Box";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { StyledButton } from "../../atoms/Button/button";
 import styles from "./styles.module.scss";
 import { Divider, Typography } from "@mui/material";
 import constants from "../../../utils/constants";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import {
+  parseScheduleDataWeekOverlay,
+  timeInWeekLabel,
+} from "../../../utils/appointment";
 
 export const buttonSchedule = (
   label,
   idx,
   OnDayClicked = () => {
     // This is intended
-  }
+  },
+  isScheduleAvailability = false
 ) => {
   return (
-    <Box key={idx} sx={{ width: "78px" }} className={styles.scheduleBtnWarpper}>
+    <Box
+      key={idx}
+      sx={{ width: !isScheduleAvailability ? "78px" : "100%" }}
+      className={styles.scheduleBtnWarpper}
+    >
       <StyledButton
         theme={constants.PATIENT}
         mode={constants.PRIMARY}
         size={constants.SMALL}
         gradient={false}
-        className={styles.scheduleBtn}
-        onClick={() => OnDayClicked(label)}
+        className={
+          !isScheduleAvailability ? styles.scheduleBtn : styles.scheduleAvailBtn
+        }
+        onClick={() => {
+          if (
+            !isScheduleAvailability ||
+            (isScheduleAvailability &&
+              label.indexOf("Next availability is") < 0)
+          ) {
+            OnDayClicked(label);
+          }
+        }}
       >
         {label}
       </StyledButton>
@@ -31,8 +50,17 @@ export const buttonSchedule = (
 };
 
 export const DayAvailability = ({
-  timeInWeek = "Sep 19 - Sep 24",
-  scheduleData = {
+  rangeDate = {
+    startDate: "",
+    endDate: "",
+  },
+  scheduleData = {},
+  isDesktop = false,
+  OnDayClicked = () => {
+    // This is intended
+  },
+}) => {
+  const [schedule, setSchedule] = useState({
     "Mon, Sep 19": [
       "08:30am",
       "09:30am",
@@ -92,15 +120,21 @@ export const DayAvailability = ({
       "11:00am",
       "11:30am",
     ],
-  },
-  isDesktop = false,
-  OnDayClicked = () => {
-    // This is intended
-  },
-}) => {
+  });
+
+  const [timeInWeek, setTimeInWeek] = useState("");
+
+  useEffect(() => {
+    const scheduleParse = parseScheduleDataWeekOverlay(scheduleData);
+    setSchedule(scheduleParse);
+
+    setTimeInWeek(timeInWeekLabel(rangeDate.startDate, rangeDate.endDate));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   function renderScheduleData() {
     let renderUI = [];
-    for (const [key, value] of Object.entries(scheduleData)) {
+    for (const [key, value] of Object.entries(schedule)) {
       if (value && value.length > 0) {
         renderUI.push(
           <Box className={styles.scheduleContainer}>
@@ -129,7 +163,6 @@ export const DayAvailability = ({
 
   function renderTimeSchedule(value) {
     const column = isDesktop ? 5 : 4;
-    console.log("renderTime", { OnDayClicked });
     return (
       <Box
         sx={{

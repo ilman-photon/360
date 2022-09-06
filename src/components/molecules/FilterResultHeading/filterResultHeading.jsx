@@ -20,6 +20,7 @@ export const FilterResultHeading = ({
   _appliedFilter,
   numberFilter = 30,
   isDesktop = false,
+  isTablet = false,
   filterData = {
     location: "New York, NY",
     date: "",
@@ -38,6 +39,8 @@ export const FilterResultHeading = ({
   purposeOfVisitData = [],
   insuranceCarrierData = [],
   rangeDate = { startDate: "", endDate: "" },
+  filter = [],
+  activedFilter = [],
 }) => {
   const imageSrcState = "/searchInputIcon.png";
   const imageSrcFilled = "/searchFilledIcon.png";
@@ -50,33 +53,6 @@ export const FilterResultHeading = ({
     "fridaySchedule",
     "saturdaySchedule",
   ];
-  const mockFilter = [
-    {
-      title: "Filter by:",
-      filter: ["Available today"],
-    },
-    {
-      title: "Languages spoken",
-      filter: [
-        "Arabic",
-        "Chinese",
-        "English",
-        "Farsi",
-        "French",
-        "Spanish",
-        "Bahasa",
-      ],
-    },
-    {
-      title: "Insurance",
-      filter: ["In Network", "Out of Network"],
-    },
-    {
-      title: "Gender",
-      filter: ["Male", "Female", "Non-Binary"],
-    },
-  ];
-
   const [filterOpen, setFilterOpen] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [activeFilter, setActiveFilter] = useState([]);
@@ -90,19 +66,21 @@ export const FilterResultHeading = ({
       new Date(rangeDate.startDate),
       new Date(rangeDate.endDate)
     );
+    if (rangeDate.startDate && rangeDate.endDate) {
+      setDateList(dateList);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    setDateList(dateList);
   }, [rangeDate]);
 
   function renderAppliedFilter() {
     return activeFilter.map((option, idx) => {
       return (
         <Box className={styles.filterChildButton} key={idx}>
-          {option}
+          {option.name}
           <CloseIcon
             className={styles.closeIcon}
             onClick={() => {
-              const id = activeFilter.indexOf(option);
+              const id = activeFilter.findIndex((x) => x.name === option.name);
               if (id > -1) {
                 const data = activeFilter;
                 data.splice(id, 1);
@@ -139,11 +117,16 @@ export const FilterResultHeading = ({
 
   function renderDesktopView() {
     return (
-      <Box className={styles.filterContainer}>
+      <Box
+        className={[
+          styles.filterContainer,
+          isTablet ? styles.isTablet : null,
+        ].join(" ")}
+      >
         <Box className={styles.filterButtonContainer}>
           <FilterBy
             activedFilter={[...activeFilter]}
-            filter={mockFilter}
+            filter={filter}
             isOpen={filterOpen}
             onClose={() => {
               setFilterOpen(!filterOpen);
@@ -173,8 +156,8 @@ export const FilterResultHeading = ({
             marginTop: "16px",
             display: "grid",
             gridTemplateColumns: "490px 638px",
-            justifyContent: "center",
-            alignContent: "center",
+            justifyContent: "space-between",
+            alignContent: "space-between",
             gridTemplateRows: "auto",
             gridTemplateAreas: `"filterDetails calenderDetails"`,
           }}
@@ -268,7 +251,7 @@ export const FilterResultHeading = ({
       <Box className={styles.mobileFilterContainer}>
         <FilterBy
           activedFilter={[...activeFilter]}
-          filter={mockFilter}
+          filter={filter}
           isOpen={filterOpen}
           onClose={() => {
             setFilterOpen(!filterOpen);

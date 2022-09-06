@@ -2,6 +2,10 @@
 
 .filterContainer {
   width: 1128px;
+
+  &.isTablet {
+    width: 100%;
+  }
 }
 
 .filterButtonContainer {

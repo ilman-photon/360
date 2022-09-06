@@ -20,17 +20,13 @@ import { DayAvailability } from "../../../components/molecules/DayAvailability/D
 import ProviderProfile from "../../../components/molecules/ProviderProfile/providerProfile";
 import { useGeolocated } from "react-geolocated";
 import EmptyResult from "../../../components/molecules/FilterResult/emptyResult";
-import FilterResultHeading from "../../../components/molecules/FilterResultHeading/filterResultHeading";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import { colors } from "../../../styles/theme";
-import FilterResultContainer from "../../../components/molecules/FilterResultContainer/filterResultContainer";
 import GMaps from "../../../components/organisms/Google/Maps/gMaps";
 import { useLoadScript } from "@react-google-maps/api";
 import {
   editAppointmentScheduleData,
   setFilterData,
+  setIsFilterApplied,
+  setProviderListData,
 } from "../../../store/appointment";
 import { useRouter } from "next/router";
 import {
@@ -51,29 +47,43 @@ export default function Appointment({ googleApiKey }) {
   const isDesktop = useMediaQuery("(min-width: 834px)");
   const isTablet = useMediaQuery("(max-width: 1440px)");
   const [filterSuggestionData, setFilterSuggestionData] = useState({});
-  const [providerListData, setProviderListData] = useState([]);
-  const [isFilterApplied, setFilterApplied] = useState(false);
   const [open, setOpen] = React.useState(false);
   const [dataFilter, setDataFilter] = React.useState([]);
   const [activeTabs, setActiveTabs] = useState(0);
   const [showMaps, setShowMaps] = useState(false);
   const [rangeDate, setRangeDate] = useState({ startDate: "", endDate: "" });
   const [isLoading, setIsLoading] = useState(false);
+  const [filterBy, setFilterBy] = useState([]);
+  const [providerDataOverview, setProviderDataOverview] = useState({});
 
   const router = useRouter();
   const dispatch = useDispatch();
 
   const filterData = useSelector((state) => state.appointment.filterData);
+  const providerListData = useSelector(
+    (state) => state.appointment.providerListData
+  );
+
+  useEffect(() => {
+    if (providerListData) {
+      setRangeDate(setRangeDateData(providerListData));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [providerListData]);
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: googleApiKey,
   });
 
+  const isFilterApplied = useSelector(
+    (state) => state.appointment.isFilterApplied
+  );
+
   function onSearchProvider(data) {
     dispatch(setFilterData(data));
-    setFilterApplied(true);
     setDataFilter(data);
     onCallSubmitFilterAPI(data);
+    dispatch(setIsFilterApplied(true));
   }
 
   function onSwapButtonClicked() {
@@ -123,16 +133,14 @@ export default function Appointment({ googleApiKey }) {
           response?.listOfProvider.length > 0 &&
           postBody.locationName !== "Jakarta"
         ) {
-          const rangeDateData = setRangeDateData(response);
-          console.log("rangeDateData: ", rangeDateData);
-          setRangeDate(setRangeDateData(response));
-          setProviderListData(response?.listOfProvider);
+          dispatch(setProviderListData(response?.listOfProvider));
         } else {
-          setProviderListData([]);
+          dispatch(setProviderListData([]));
         }
+        setFilterBy(response.filterbyData);
       })
       .catch(function () {
-        setProviderListData([]);
+        dispatch(setProviderListData([]));
       })
       .finally(function () {
         setIsLoading(false);
@@ -152,7 +160,6 @@ export default function Appointment({ googleApiKey }) {
 
   function onPrevScheduleClicked(type, date) {
     console.log(type, " + ", date);
-    console.log(type, " + ", date);
     const postBoday = {
       locationName: dataFilter.location,
       date: date,
@@ -164,6 +171,7 @@ export default function Appointment({ googleApiKey }) {
 
   function onViewAllAvailability(providerData) {
     //TO DO: set data for view days schedule]
+    setProviderDataOverview(providerData);
     setOpen(true);
   }
 
@@ -213,7 +221,6 @@ export default function Appointment({ googleApiKey }) {
         coords: { lat: coords?.latitude, long: coords?.longitude },
       });
     }
-    console.log(dataFilter, "data Filter");
   }, [dataFilter, coords]);
 
   useEffect(() => {
@@ -250,14 +257,16 @@ export default function Appointment({ googleApiKey }) {
                 variant={"viewschedule"}
                 isDayAvailableView={true}
                 isShownPhoneAndRating={false}
-                providerData={providerListData[0]}
+                providerData={providerDataOverview}
               />
             </Box>
             <DayAvailability
               isDesktop={isDesktop}
               OnDayClicked={(e) => {
-                handleDayClicked(e, providerListData[0]);
+                handleDayClicked(e, providerDataOverview);
               }}
+              scheduleData={providerDataOverview?.availability}
+              rangeDate={rangeDate}
             />
           </DialogContent>
         </Dialog>
@@ -274,15 +283,17 @@ export default function Appointment({ googleApiKey }) {
           }}
         >
           {!showMaps ? (
-            <Box sx={{ width: "1128px", m: 3 }}>
+            <Box sx={{ width: !isTablet ? "1128px" : "unset", m: 3 }}>
               <FilterResult
                 onClickViewAllAvailability={onViewAllAvailability}
                 OnDayClicked={handleDayClicked}
                 isDesktop={isDesktop}
+                isTablet={isTablet}
                 providerList={providerListData}
                 onNextScheduleClicked={onNextScheduleClicked}
                 onPrevScheduleClicked={onPrevScheduleClicked}
                 rangeDate={rangeDate}
+                filter={filterBy}
               />
             </Box>
           ) : (
@@ -294,7 +305,11 @@ export default function Appointment({ googleApiKey }) {
               }}
             >
               {isLoaded ? (
-                <GMaps apiKey={googleApiKey} />
+                <GMaps
+                  apiKey={googleApiKey}
+                  providerListData={providerListData}
+                  OnTimeClicked={handleDayClicked}
+                />
               ) : (
                 <CircularProgress />
               )}
@@ -325,14 +340,18 @@ export default function Appointment({ googleApiKey }) {
     } else {
       return !isLoading ? (
         <Stack flexDirection="row" width="100%">
-          <Box sx={{ width: "1128px", m: 3 }}>
+          <Box sx={{ width: !isTablet ? "1128px" : "unset", m: 3 }}>
             {providerListData.length > 0 ? (
               <FilterResult
+                onNextScheduleClicked={onNextScheduleClicked}
+                onPrevScheduleClicked={onPrevScheduleClicked}
                 onClickViewAllAvailability={onViewAllAvailability}
                 OnDayClicked={handleDayClicked}
                 isDesktop={isDesktop}
+                isTablet={isTablet}
                 providerList={providerListData}
                 rangeDate={rangeDate}
+                filter={filterBy}
               />
             ) : (
               <EmptyResult
@@ -343,7 +362,15 @@ export default function Appointment({ googleApiKey }) {
             )}
           </Box>
           <Box sx={{ background: "#F4F4F4", flex: 1 }}>
-            {isLoaded ? <GMaps apiKey={googleApiKey} /> : <CircularProgress />}
+            {isLoaded ? (
+              <GMaps
+                apiKey={googleApiKey}
+                providerListData={providerListData}
+                OnTimeClicked={handleDayClicked}
+              />
+            ) : (
+              <CircularProgress />
+            )}
           </Box>
         </Stack>
       ) : (
@@ -368,98 +395,24 @@ export default function Appointment({ googleApiKey }) {
 
   function renderFilterResultMobileView() {
     return (
-      <Box
-        sx={{
-          marginTop: "-25px",
-          height: "calc(100vh - 56px)",
-          display: "flex",
-        }}
-      >
-        <Box
-          sx={{
-            position: "fixed",
-            width: "100%",
-            zIndex: "9",
-          }}
-        >
-          <FilterResultHeading
-            isDesktop={isDesktop}
-            filterData={dataFilter}
-            onSearchProvider={onSearchProvider}
-            purposeOfVisitData={filterSuggestionData.purposeOfVisit}
-            insuranceCarrierData={filterSuggestionData.insuranceCarrier}
-          />
-          <Stack
-            direction={"row"}
-            alignItems={"center"}
-            height={"56px"}
-            sx={{ backgroundColor: "#fff" }}
-          >
-            <ArrowBackIosIcon
-              sx={{
-                marginLeft: "22px",
-                cursor: "pointer",
-              }}
-              onClick={() => {
-                onPrevScheduleClicked("day");
-              }}
-            />
-            <Box
-              sx={{
-                margin: "0 auto",
-              }}
-            >
-              <CalendarTodayIcon
-                sx={{
-                  width: "15px",
-                  height: "15px",
-                  color: colors.darkGreen,
-                }}
-              />
-              <Typography
-                variant={"bodyRegular"}
-                sx={{
-                  color: "#303030",
-                  marginLeft: "13px",
-                  ["@media (max-width: 992px)"]: {
-                    fontWeight: "600",
-                  },
-                }}
-              >
-                Wed, Sep 24
-              </Typography>
-            </Box>
-            <ArrowForwardIosIcon
-              sx={{
-                marginRight: "15px",
-                cursor: "pointer",
-              }}
-              onClick={() => {
-                onNextScheduleClicked("day");
-              }}
-            />
-          </Stack>
-        </Box>
-        <Box
-          sx={{
-            paddingTop: "160px",
-            flex: "1",
-            display: "flex",
-            flexDirection: "column",
-            overflow: "hidden",
-          }}
-        >
-          <FilterResultContainer
-            activeTabs={activeTabs}
-            setActiveTabs={setActiveTabs}
-            onClickViewAllAvailability={onViewAllAvailability}
-            filterData={dataFilter}
-            providerList={providerListData}
-            OnDayClicked={handleDayClicked}
-            googleApiKey={googleApiKey}
-          />
-        </Box>
-      </Box>
+      <FilterResult
+        onClickViewAllAvailability={onViewAllAvailability}
+        OnDayClicked={handleDayClicked}
+        isDesktop={isDesktop}
+        isTablet={isTablet}
+        providerList={providerListData}
+        rangeDate={rangeDate}
+        onSearchProvider={onSearchProvider}
+        filterData={filterData}
+        purposeOfVisitData={filterSuggestionData.purposeOfVisit}
+        insuranceCarrierData={filterSuggestionData.insuranceCarrier}
+        activeTabs={activeTabs}
+        setActiveTabs={setActiveTabs}
+        googleApiKey={googleApiKey}
+        onNextScheduleClicked={onNextScheduleClicked}
+        onPrevScheduleClicked={onPrevScheduleClicked}
+        filter={filterBy}
+      />
     );
   }
 

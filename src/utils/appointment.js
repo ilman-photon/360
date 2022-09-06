@@ -54,7 +54,7 @@ export function parseScheduleDataWeek(availability) {
     "friday",
     "saturday",
   ];
-  let scheduleData = {};
+  const scheduleData = {};
 
   for (let index = 0; index < availability.length; index++) {
     const day = dayNames[index];
@@ -93,11 +93,72 @@ function getScheduleData(availabilityData) {
   return schedule;
 }
 
+export function parseScheduleDataDay(availability, currentDateIndex) {
+  const scheduleData = [];
+  if (availability[currentDateIndex].list.length > 0) {
+    const maxLength =
+      availability[currentDateIndex].list.length <= 4
+        ? availability[currentDateIndex].list.length
+        : 4;
+    for (let indexList = 0; indexList < maxLength; indexList++) {
+      scheduleData.push(availability[currentDateIndex].list[indexList].time);
+    }
+  } else {
+    for (let index = currentDateIndex; index < availability.length; index++) {
+      if (availability[index].list.length > 0) {
+        scheduleData.push(
+          `Next availability is ${getNextAvailabilityLabel(
+            availability[index].date
+          )}`
+        );
+        break;
+      }
+    }
+
+    if (scheduleData.length <= 0) {
+      scheduleData.push("Next availability is next week");
+    }
+  }
+  return scheduleData;
+}
+
+export function parseScheduleDataWeekOverlay(availability) {
+  const scheduleData = {};
+
+  for (let index = 0; index < availability.length; index++) {
+    const schedule = [];
+    for (
+      let indexList = 0;
+      indexList < availability[index].list.length;
+      indexList++
+    ) {
+      if (availability[index].list[indexList]) {
+        schedule.push(availability[index].list[indexList].time);
+      }
+    }
+    scheduleData[getDayName(new Date(availability[index].date))] = schedule;
+  }
+
+  return scheduleData;
+}
+
+function getNextAvailabilityLabel(date) {
+  const tempDate = new Date(date);
+  const month = constants.MONTH_NAME[tempDate.getMonth()];
+  return `${month} ${tempDate.getDate()}`;
+}
+
 export function setRangeDateData(response) {
   return {
-    startDate: response?.listOfProvider[0].from,
-    endDate: response?.listOfProvider[0].to,
+    startDate: response[0] ? response[0].from : "",
+    endDate: response[0] ? response[0].to : "",
   };
+}
+
+export function timeInWeekLabel(startDate, endDate) {
+  return startDate && endDate
+    ? `${getDateName(new Date(startDate))} - ${getDateName(new Date(endDate))}`
+    : "";
 }
 
 Date.prototype.addDays = function (days) {
@@ -107,8 +168,8 @@ Date.prototype.addDays = function (days) {
 };
 
 //This for week dates
-export function getDates(startDate, stopDate) {
-  let dateArray = new Array();
+export function getDates(startDate, stopDate, isDayView = false) {
+  const dateArray = [];
   let currentDate = startDate;
   while (currentDate <= stopDate) {
     dateArray.push(new Date(currentDate));
@@ -116,16 +177,35 @@ export function getDates(startDate, stopDate) {
   }
   return {
     dateRange: dateArray,
-    dateListName: getDateListName(dateArray),
+    dateListName: !isDayView
+      ? getDateListName(dateArray)
+      : getDayListName(dateArray),
   };
 }
 
 function getDateListName(dateArray) {
   const dateWeek = [];
-  for (let date of dateArray) {
-    const month = constants.MONTH_NAME[date.getMonth()];
-    dateWeek.push(`${month} ${date.getDate()}`);
+  for (const date of dateArray) {
+    dateWeek.push(getDateName(date));
   }
-
   return dateWeek;
+}
+
+function getDateName(date) {
+  const month = constants.MONTH_NAME[date.getMonth()];
+  return `${month} ${date.getDate()}`;
+}
+
+function getDayListName(dateArray) {
+  const dateDay = [];
+  for (const date of dateArray) {
+    dateDay.push(getDayName(date));
+  }
+  return dateDay;
+}
+
+function getDayName(date) {
+  const month = constants.MONTH_NAME[date.getMonth()];
+  const dayName = constants.DAY_NAME[date.getDay() - 1];
+  return `${dayName}, ${month} ${date.getDate()}`;
 }

@@ -41,6 +41,7 @@ module.exports = {
     "Nov",
     "Dec",
   ],
+  DAY_NAME: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
   TEST_ID: {
     LOGIN_TEST_ID: {
       email: "emailorphonenumber",

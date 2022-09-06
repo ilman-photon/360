@@ -1,9 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { GoogleMap, MarkerF, InfoWindowF } from "@react-google-maps/api";
-import { Divider, Grid, Stack, Typography } from "@mui/material";
-import ProviderProfile from "../../../molecules/ProviderProfile/providerProfile";
-import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import InfoWindowContent from "./infoWindowContent";
 
 const containerStyle = {
   width: "100%",
@@ -15,98 +12,38 @@ const center = {
   lng: -87.623177,
 };
 
-const markers = [
-  {
-    id: 1,
-    name: "Chicago, Illinois",
-    position: { lat: 41.881832, lng: -87.623177 },
+function GMaps({
+  providerListData = [],
+  OnTimeClicked = () => {
+    // This is intended
   },
-  {
-    id: 2,
-    name: "Denver, Colorado",
-    position: { lat: 39.739235, lng: -104.99025 },
-  },
-  {
-    id: 3,
-    name: "Los Angeles, California",
-    position: { lat: 34.052235, lng: -118.243683 },
-  },
-  {
-    id: 4,
-    name: "New York, New York",
-    position: { lat: 40.712776, lng: -74.005974 },
-  },
-  {
-    id: 5,
-    name: "New York, New York #2",
-    position: { lat: 41.712776, lng: -74.505974 },
-  },
-];
-
-const DummyComponent = () => {
-  const [counter, setCounter] = useState(1);
-
-  const prev = () => {
-    if (counter > 1) setCounter(counter - 1);
-    else setCounter(3);
-  };
-  const next = () => {
-    if (counter < 3) setCounter(counter + 1);
-    else setCounter(1);
-  };
-
-  return (
-    <Stack spacing={2} p={1}>
-      <Grid container spacing={1}>
-        <Grid item xs={10}>
-          <Stack spacing={2} divider={<Divider />}>
-            <Typography variant="bodySmallMedium" sx={{ color: "#757575" }}>
-              {counter} of 3 doctors at this location
-            </Typography>
-            <ProviderProfile variant={"map"} />
-          </Stack>
-        </Grid>
-        <Grid item xs={2}>
-          <Stack spacing={2}>
-            <Stack
-              flexDirection="row"
-              alignItems="center"
-              justifyContent="space-between"
-            >
-              <ArrowBackIosIcon
-                role="button"
-                sx={{ width: "22px", cursor: "pointer" }}
-                onClick={prev}
-              />
-              <ArrowForwardIosIcon
-                role="button"
-                sx={{ width: "22px", cursor: "pointer" }}
-                onClick={next}
-              />
-            </Stack>
-            <Typography
-              variant="bodySmallMedium"
-              sx={{ textAlign: "right", pt: 2 }}
-            >
-              10 mi
-            </Typography>
-          </Stack>
-        </Grid>
-      </Grid>
-
-      <Stack alignItems="center" spacing={1}>
-        <Typography>Mon, Jul 18</Typography>
-        <Typography variant="bodyLink">
-          Next Available Tuesday, Aug 28
-        </Typography>
-      </Stack>
-    </Stack>
-  );
-};
-
-function GMaps() {
-  const [mapContext, setMapContext] = React.useState(null);
+}) {
   const [activeMarker, setActiveMarker] = React.useState(null);
+  const markers = [];
+  providerListData.forEach((provider) => {
+    const foundIndex = markers.findIndex(
+      (v) =>
+        v.coordinate.latitude === provider.coordinate.latitude &&
+        v.coordinate.longitude === provider.coordinate.longitude
+    );
+    const latlngObj = {
+      lat: provider.coordinate.latitude,
+      lng: provider.coordinate.longitude,
+    };
+    const obj = {
+      ...provider,
+      position: latlngObj,
+    };
+    if (foundIndex > -1) {
+      markers[foundIndex].providerData.push(obj);
+    } else {
+      markers.push({
+        coordinate: provider.coordinate,
+        position: latlngObj,
+        providerData: [obj],
+      });
+    }
+  });
 
   const handleActiveMarker = (marker) => {
     if (marker === activeMarker) {
@@ -121,31 +58,29 @@ function GMaps() {
     map.fitBounds(bounds);
   }, []);
 
-  const onUnmount = React.useCallback(function callback(map) {
-    setMapContext(null);
-  }, []);
-
   return (
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
       zoom={6}
       onLoad={onLoad}
-      onUnmount={onUnmount}
     >
       {/* Child components, such as markers, info windows, etc. */}
-      {markers.map(({ id, position }) => (
+      {markers.map((marker, idx) => (
         <MarkerF
-          key={id}
-          position={position}
-          onClick={() => handleActiveMarker(id)}
+          key={idx}
+          position={marker.position}
+          onClick={() => handleActiveMarker(idx)}
           icon={{
             url: "/provider-pin.svg",
           }}
         >
-          {activeMarker === id ? (
+          {activeMarker === idx ? (
             <InfoWindowF onCloseClick={() => setActiveMarker(null)}>
-              <DummyComponent />
+              <InfoWindowContent
+                data={marker.providerData}
+                OnTimeClicked={OnTimeClicked}
+              />
             </InfoWindowF>
           ) : null}
         </MarkerF>

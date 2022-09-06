@@ -18,6 +18,7 @@ import constants from "../../../utils/constants";
 import Link from "@mui/material/Link";
 import { getLinkAria } from "../../../utils/viewUtil";
 import FormLabel from "@mui/material/FormLabel";
+import { useRouter } from "next/router";
 
 const DisclaimerText = (data) => {
   return (
@@ -52,6 +53,8 @@ export default function AppointmentForm({
   const { handleSubmit, control, watch } = useForm({
     defaultValues: patientData,
   });
+
+  const router = useRouter();
 
   const { SCHEDULE_GUEST_TEST_ID } = constants.TEST_ID;
 
@@ -135,6 +138,9 @@ export default function AppointmentForm({
                 sx={styles.link}
                 data-testid={SCHEDULE_GUEST_TEST_ID.signInlink}
                 {...getLinkAria(t("signIn"))}
+                onClick={() => {
+                  router.push("/patient/login");
+                }}
               >
                 {t("signIn")}
               </Link>

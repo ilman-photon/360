@@ -16,7 +16,9 @@ export default function ItemResult({
   },
   keyItem = "",
   isDesktop = true,
+  isTablet = false,
   providerData = {},
+  currentDateIndex = 0,
 }) {
   function renderDekstopView() {
     return (
@@ -26,7 +28,7 @@ export default function ItemResult({
           marginTop: "16px",
           display: "grid",
           gap: "6px",
-          gridTemplateColumns: "388px 100px 598px",
+          gridTemplateColumns: `${isTablet ? "auto" : "388px"} 100px 598px`,
           gridTemplateRows: "auto",
           gridTemplateAreas: `"providerProvile locationDistance weekAvailability"`,
         }}
@@ -75,6 +77,8 @@ export default function ItemResult({
             onClickViewAllAvailability(providerData);
           }}
           OnDayClicked={OnDayClicked}
+          currentDateIndex={currentDateIndex}
+          scheduleData={providerData?.availability}
         />
       </Stack>
     );
