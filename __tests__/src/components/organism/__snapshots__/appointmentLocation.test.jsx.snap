@@ -38,6 +38,7 @@ Object {
                     </svg>
                   </span>
                   <div
+                    aria-label="location heading"
                     class="title"
                     style="font-weight: 700;"
                   >
@@ -180,6 +181,7 @@ Object {
                   </svg>
                 </span>
                 <div
+                  aria-label="location heading"
                   class="title"
                   style="font-weight: 700;"
                 >

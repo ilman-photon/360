@@ -33,7 +33,11 @@ export const AccountCard = ({
                 >
                   {titleIcon}
                 </span>
-                <div className={styles.title} style={textStyle}>
+                <div
+                  className={styles.title}
+                  style={textStyle}
+                  aria-label={`${title} heading`}
+                >
                   {title}
                 </div>
               </div>

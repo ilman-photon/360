@@ -204,6 +204,9 @@ export const PageContent = ({
                 createAccount(v);
                 OnsetActiveStep(4);
               }}
+              OnClickSignIn={() => {
+                cookies.set("dashboardState", true, { path: "/patient" });
+              }}
             />
           </Grid>
           <Grid md={4} pl={2} sx={{ display: { xs: "none", md: "block" } }}>
@@ -298,6 +301,7 @@ export default function ScheduleAppointmentPage() {
   const handleSetActiveStep = (idx) => {
     if (isLoggedIn) {
       setActiveStep(4);
+      setIsOpen(true);
     } else {
       setActiveStep(idx);
     }

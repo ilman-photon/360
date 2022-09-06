@@ -25,6 +25,7 @@ Object {
                     style="margin-right: 8px; display: flex; align-items: center;"
                   />
                   <div
+                    aria-label="appointmentDetails heading"
                     class="title"
                     style="font-weight: 700;"
                   >
@@ -230,6 +231,7 @@ Object {
                   style="margin-right: 8px; display: flex; align-items: center;"
                 />
                 <div
+                  aria-label="appointmentDetails heading"
                   class="title"
                   style="font-weight: 700;"
                 >
