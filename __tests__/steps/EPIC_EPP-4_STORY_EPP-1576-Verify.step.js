@@ -112,12 +112,8 @@ defineFeature(feature, (test) => {
     });
 
     and("user views the Continue as a guest button", () => {
-      const continueAsGuestButton = container.getByText(
-        "continueAsPasswordButtonLabel"
-      );
-      expect("continueAsPasswordButtonLabel").toEqual(
-        continueAsGuestButton.textContent
-      );
+      /**Button removed on sprint 4 */
+      expect(true).toBeTruthy();
     });
 
     and("user views the Create Account button", () => {
@@ -172,12 +168,8 @@ defineFeature(feature, (test) => {
     });
 
     and("admin views the Continue as a guest button", () => {
-      const continueAsGuestButton = container.getByText(
-        "continueAsPasswordButtonLabel"
-      );
-      expect("continueAsPasswordButtonLabel").toEqual(
-        continueAsGuestButton.textContent
-      );
+      /**Button removed on sprint 4 */
+      expect(true).toBeTruthy();
     });
 
     and("admin views the Create Account button", () => {
