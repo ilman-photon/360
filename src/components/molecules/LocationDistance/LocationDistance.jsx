@@ -7,7 +7,7 @@ import { colors } from "../../../styles/theme";
 import styles from "./styles.module.scss";
 
 export const LocationDistance = ({ isDesktop = true }) => {
-  const iconSize = isDesktop ? 18 : 25;
+  const iconSize = isDesktop ? 23 : 25;
   return (
     <Box
       sx={{

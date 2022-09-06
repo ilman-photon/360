@@ -226,6 +226,7 @@ export const FilterResult = ({
             OnDayClicked={OnDayClicked}
             googleApiKey={googleApiKey}
             currentDateIndex={currentDateIndex}
+            currentDate={dateList.dateRange[currentDateIndex]}
           />
         </Box>
       </Box>

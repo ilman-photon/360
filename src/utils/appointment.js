@@ -73,6 +73,18 @@ export function parseScheduleDataWeek(availability) {
   return scheduleData;
 }
 
+export function parseDateWeekList(availability) {
+  const dateList = [];
+  for (let index = 0; index < availability.length; index++) {
+    dateList.push(
+      availability[index] && availability[index].date
+        ? availability[index].date
+        : ""
+    );
+  }
+  return dateList;
+}
+
 function getScheduleData(availabilityData) {
   const schedule = [];
   let more = 0;
