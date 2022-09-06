@@ -25,6 +25,8 @@ import { useLoadScript } from "@react-google-maps/api";
 import {
   editAppointmentScheduleData,
   setFilterData,
+  setIsFilterApplied,
+  setProviderListData,
 } from "../../../store/appointment";
 import { useRouter } from "next/router";
 import {
@@ -45,8 +47,6 @@ export default function Appointment({ googleApiKey }) {
   const isDesktop = useMediaQuery("(min-width: 834px)");
   const isTablet = useMediaQuery("(max-width: 1440px)");
   const [filterSuggestionData, setFilterSuggestionData] = useState({});
-  const [providerListData, setProviderListData] = useState([]);
-  const [isFilterApplied, setFilterApplied] = useState(false);
   const [open, setOpen] = React.useState(false);
   const [dataFilter, setDataFilter] = React.useState([]);
   const [activeTabs, setActiveTabs] = useState(0);
@@ -54,21 +54,36 @@ export default function Appointment({ googleApiKey }) {
   const [rangeDate, setRangeDate] = useState({ startDate: "", endDate: "" });
   const [isLoading, setIsLoading] = useState(false);
   const [filterBy, setFilterBy] = useState([]);
+  const [providerDataOverview, setProviderDataOverview] = useState({});
 
   const router = useRouter();
   const dispatch = useDispatch();
 
   const filterData = useSelector((state) => state.appointment.filterData);
+  const providerListData = useSelector(
+    (state) => state.appointment.providerListData
+  );
+
+  useEffect(() => {
+    if (providerListData) {
+      setRangeDate(setRangeDateData(providerListData));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [providerListData]);
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: googleApiKey,
   });
 
+  const isFilterApplied = useSelector(
+    (state) => state.appointment.isFilterApplied
+  );
+
   function onSearchProvider(data) {
     dispatch(setFilterData(data));
-    setFilterApplied(true);
     setDataFilter(data);
     onCallSubmitFilterAPI(data);
+    dispatch(setIsFilterApplied(true));
   }
 
   function onSwapButtonClicked() {
@@ -118,17 +133,14 @@ export default function Appointment({ googleApiKey }) {
           response?.listOfProvider.length > 0 &&
           postBody.locationName !== "Jakarta"
         ) {
-          const rangeDateData = setRangeDateData(response);
-          console.log("rangeDateData: ", rangeDateData);
-          setRangeDate(setRangeDateData(response));
-          setProviderListData(response?.listOfProvider);
+          dispatch(setProviderListData(response?.listOfProvider));
         } else {
-          setProviderListData([]);
+          dispatch(setProviderListData([]));
         }
         setFilterBy(response.filterbyData);
       })
       .catch(function () {
-        setProviderListData([]);
+        dispatch(setProviderListData([]));
       })
       .finally(function () {
         setIsLoading(false);
@@ -159,6 +171,7 @@ export default function Appointment({ googleApiKey }) {
 
   function onViewAllAvailability(providerData) {
     //TO DO: set data for view days schedule]
+    setProviderDataOverview(providerData);
     setOpen(true);
   }
 
@@ -208,7 +221,6 @@ export default function Appointment({ googleApiKey }) {
         coords: { lat: coords?.latitude, long: coords?.longitude },
       });
     }
-    console.log(dataFilter, "data Filter");
   }, [dataFilter, coords]);
 
   useEffect(() => {
@@ -245,14 +257,16 @@ export default function Appointment({ googleApiKey }) {
                 variant={"viewschedule"}
                 isDayAvailableView={true}
                 isShownPhoneAndRating={false}
-                providerData={providerListData[0]}
+                providerData={providerDataOverview}
               />
             </Box>
             <DayAvailability
               isDesktop={isDesktop}
               OnDayClicked={(e) => {
-                handleDayClicked(e, providerListData[0]);
+                handleDayClicked(e, providerDataOverview);
               }}
+              scheduleData={providerDataOverview?.availability}
+              rangeDate={rangeDate}
             />
           </DialogContent>
         </Dialog>
