@@ -19,7 +19,7 @@ export const AccountSidebar = ({ ...props }, ref) => {
     <>
       <Stack
         className={styles.sidebarWrapper}
-        spacing={4}
+        spacing={2}
         sx={{
           backgroundColor: "#f4f4f4",
         }}

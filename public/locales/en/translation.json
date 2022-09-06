@@ -17,7 +17,8 @@
     "createAccountButtonLabel" : "Create Account",
     "dontHaveAccountLabel" : "Don't have an account?",
     "syncYourAppointmentInformation" : "Sync your appointment information",
-    "alreadyHaveAnAppointment" : "Already have an appointment?"
+    "alreadyHaveAnAppointment" : "Already have an appointment?",
+    "errorAysncUser": "Login"
   },
   "Input": {
     "usernameLable": "Patient Login",
@@ -36,7 +37,8 @@
     "backSignIn": "Back to Sign-In",
     "syncButton": "Sync",
     "syncTitle" : "Sync your appointment",
-    "syncError" : "Invalid Email or Phone number"
+    "exisistingUser" : "<h1> Exisisting User</h1>",
+    "errorAysncUser" : "You are already a registered user. Please login to the application usering your username and password. Login"
   },
   "SetOption": {
     "title": "Select an option",
