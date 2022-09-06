@@ -27,7 +27,7 @@ export const styles = {
     borderRadius: "46px",
     textTransform: "capitalize",
     color: "#FFFFFF",
-    backgroundColor: "#0095A9",
+    backgroundColor: "#007E8F",
   },
   form: {
     display: "grid",
@@ -127,6 +127,7 @@ export const styles = {
   },
 
   registeredUsernameWrapper: {
+    margin: "16px 8px 0",
     padding: 16,
     borderRadius: 4,
     color: "#366a70",

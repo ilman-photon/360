@@ -120,7 +120,12 @@ export default function AppointmentForm({
         <Box sx={{ m: 1 }}>
           <Typography
             sx={isDesktop ? { fontSize: "26px" } : { md: "32px" }}
-            aria-label={"Who is this exam for?"}
+            aria-label={
+              isForMyself
+                ? `${t("selfTitle")} title`
+                : `${t("someoneElseTitle")} title`
+            }
+            aria-roledescription=""
           >
             {isForMyself ? t("selfTitle") : t("someoneElseTitle")}
           </Typography>
@@ -398,11 +403,11 @@ export default function AppointmentForm({
               />
               <DisclaimerText label="(Optional)" />
 
-              <Divider sx={{ mt: 2, mx: 1 }} />
-
               <div style={styles.registeredUsernameWrapper}>
                 <div>Your username will be {getRegisteredUsername()}</div>
               </div>
+
+              <Divider sx={{ mt: 2, mx: 1 }} />
             </>
           ) : null}
 

@@ -5,8 +5,10 @@ import ModalConfirmContent from "./modalConfirmContent";
 import { Box } from "@mui/material";
 
 export const DrawerScheduling = ({
-  isOpen = false,
+  isOpen,
   isLoggedIn,
+  patientData,
+  providerData,
   OnSetIsOpen = () => {
     // This is intended
   },
@@ -21,6 +23,8 @@ export const DrawerScheduling = ({
           <ModalConfirmContent
             OnSetIsOpen={OnSetIsOpen}
             isLoggedIn={isLoggedIn}
+            patientData={patientData}
+            providerData={providerData}
           />
         </Box>
       </SwipeableDrawer>

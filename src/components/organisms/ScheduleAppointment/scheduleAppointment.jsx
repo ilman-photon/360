@@ -61,7 +61,7 @@ export default function ScheduleAppointment({
             <Typography
               variant="h4"
               style={styles.primaryText}
-              aria-label={"Myself"}
+              aria-label={"Myself option"}
             >
               {t("myself")}
             </Typography>
@@ -79,7 +79,7 @@ export default function ScheduleAppointment({
           >
             <Typography
               variant="h4"
-              aria-label={"SomeoneElse"}
+              aria-label={"Someone else option"}
               style={styles.primaryText}
             >
               {t("someoneElse")}

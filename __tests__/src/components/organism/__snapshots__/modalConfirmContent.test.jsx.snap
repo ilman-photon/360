@@ -79,14 +79,16 @@ Object {
             class="bottomParagraph"
           >
             <a
-              aria-label="Login link"
+              aria-label="isEmergency"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
               data-testid="loginlink"
+              role="link"
+              tabindex="0"
             >
               <span
                 class="medicLink"
               >
-                Is this a medical emergency?
+                isEmergency
               </span>
             </a>
           </div>
@@ -108,7 +110,7 @@ Object {
                 type="button"
               >
                 <p
-                  aria-label="Myself"
+                  aria-label="Add to calendar"
                   class="MuiTypography-root MuiTypography-body1 css-o5ux9j-MuiTypography-root"
                 >
                   <svg
@@ -232,7 +234,10 @@ Object {
                         />
                       </svg>
                       <a
+                        aria-label="Get directions"
                         class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways getDirectionLinkText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                        role="link"
+                        tabindex="0"
                       >
                         Get directions
                       </a>
@@ -250,6 +255,7 @@ Object {
             >
               <p
                 aria-label="Patient Information"
+                aria-roledescription="Heading"
                 class="MuiTypography-root MuiTypography-body1 patientBoxLabel css-z2eky3-MuiTypography-root"
               >
                 patientInformation
@@ -293,7 +299,6 @@ Object {
               Already have an account?
                
               <a
-                aria-label="Login link"
                 class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
                 data-testid="loginlink"
                 href="/patient/login"
@@ -385,14 +390,16 @@ Object {
           class="bottomParagraph"
         >
           <a
-            aria-label="Login link"
+            aria-label="isEmergency"
             class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
             data-testid="loginlink"
+            role="link"
+            tabindex="0"
           >
             <span
               class="medicLink"
             >
-              Is this a medical emergency?
+              isEmergency
             </span>
           </a>
         </div>
@@ -414,7 +421,7 @@ Object {
               type="button"
             >
               <p
-                aria-label="Myself"
+                aria-label="Add to calendar"
                 class="MuiTypography-root MuiTypography-body1 css-o5ux9j-MuiTypography-root"
               >
                 <svg
@@ -538,7 +545,10 @@ Object {
                       />
                     </svg>
                     <a
+                      aria-label="Get directions"
                       class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways getDirectionLinkText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                      role="link"
+                      tabindex="0"
                     >
                       Get directions
                     </a>
@@ -556,6 +566,7 @@ Object {
           >
             <p
               aria-label="Patient Information"
+              aria-roledescription="Heading"
               class="MuiTypography-root MuiTypography-body1 patientBoxLabel css-z2eky3-MuiTypography-root"
             >
               patientInformation
@@ -599,7 +610,6 @@ Object {
             Already have an account?
              
             <a
-              aria-label="Login link"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
               data-testid="loginlink"
               href="/patient/login"
