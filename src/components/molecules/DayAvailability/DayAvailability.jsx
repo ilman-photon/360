@@ -29,7 +29,15 @@ export const buttonSchedule = (
         className={
           !isScheduleAvailability ? styles.scheduleBtn : styles.scheduleAvailBtn
         }
-        onClick={() => OnDayClicked(label)}
+        onClick={() => {
+          if (
+            !isScheduleAvailability ||
+            (isScheduleAvailability &&
+              label.indexOf("Next availability is") < 0)
+          ) {
+            OnDayClicked(label);
+          }
+        }}
       >
         {label}
       </StyledButton>
