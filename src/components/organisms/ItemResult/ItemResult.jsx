@@ -19,6 +19,7 @@ export default function ItemResult({
   isTablet = false,
   providerData = {},
   currentDateIndex = 0,
+  currentDate = "",
 }) {
   function renderDekstopView() {
     return (
@@ -64,12 +65,15 @@ export default function ItemResult({
         marginBottom={"8px"}
         className={styles.stackContainer}
       >
-        <Stack direction={"row"}>
-          <ProviderProfile
-            variant={"viewschedule"}
-            isShownRating={false}
-            providerData={providerData}
-          />
+        <Stack direction={"row"} sx={{ width: "100%" }}>
+          <div style={{ flex: 1 }}>
+            <ProviderProfile
+              variant={"viewschedule"}
+              isShownRating={false}
+              providerData={providerData}
+              imageSize={"small"}
+            />
+          </div>
           <LocationDistance isDesktop={isDesktop} />
         </Stack>
         <ScheduleAvailability
@@ -79,6 +83,7 @@ export default function ItemResult({
           OnDayClicked={OnDayClicked}
           currentDateIndex={currentDateIndex}
           scheduleData={providerData?.availability}
+          currentDate={currentDate}
         />
       </Stack>
     );

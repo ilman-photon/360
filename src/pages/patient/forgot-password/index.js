@@ -13,6 +13,7 @@ import ForgotPassword from "../../../components/organisms/ForgotPassword/forgotP
 import { Box } from "@mui/material";
 import globalStyles from "../../../styles/Global.module.scss";
 import { useRouter } from "next/router";
+import { Regex } from "../../../utils/regex";
 
 let confirmationFormProps = {
   title: constants.EMPTY_STRING,
@@ -104,25 +105,17 @@ export default function ForgotPasswordPage() {
     } else setAppointment(false);
   }, [router]);
 
-  const onCalledValidateUsernameAnsycAPI = function ({ username }, showForm) {
+  const onCalledValidateAppointment = function ({ username }) {
     const postbody = {
       patient: { userName: username },
     };
     const api = new Api();
     api
-      .validateUserNameAnsy(postbody)
-      .then(function (response) {
-        setPatientData({
-          ...patientData,
-          username: username,
-          securityQuestionsSet:
-            response.SecurityQuestions && response.SecurityQuestions.length > 0,
-          securityQuestions: mappingSecurityData(response.SecurityQuestions[0]),
-          preferredComunication: response.PreferredComunication,
-        });
-        onContinueButtonClicked(showForm);
+      .validateGuestUser(postbody)
+      .then(() => {
+        onCalledOneTimeLinkSync(username);
       })
-      .catch(function () {
+      .catch(() => {
         setShowPostMessage(true);
       });
   };
@@ -232,6 +225,49 @@ export default function ForgotPasswordPage() {
       });
   };
 
+  const onCalledOneTimeLinkSync = (username) => {
+    setShowPostMessage(false);
+    const postbody = {
+      patient: { userName: username },
+      oneTimeLinkEnable: true,
+    };
+
+    const isEmail = username.match(Regex.isEmailCorrect);
+    const subtitle = isEmail
+      ? `Check ${username}  for an email to set up your password.`
+      : `Check ${username} for a link to set up your password.`;
+    const postMessage = isEmail
+      ? `Link sent to your email`
+      : `Link sent to your phone number`;
+
+    const api = new Api();
+    api
+      .oneTimeLink(postbody)
+      .then(function () {
+        confirmationFormProps = {
+          pageTitle: "Schedule Your Appointment",
+          title: "Schedule Your Appointment",
+          subtitle,
+          postMessage,
+          postMessageTitle: "",
+          successPostMessage: true,
+          buttonLabel: "Login with one-time link",
+          additional: null,
+          butttonMode: constants.PRIMARY,
+          onCTAButtonClicked: () => onCalledOneTimeLinkSync(username),
+        };
+        setShowForgotPassword(false);
+        setShowSelectOption(false);
+        setShowPasswordSecurityQuestion(false);
+        setShowPasswordReset(false);
+        setShowPostMessage(true);
+        setShowOneTimeLink(true);
+      })
+      .catch(function () {
+        console.error("Something went wrong");
+      });
+  };
+
   //Handle show/hide form in forgot password
   const onContinueButtonClicked = function (form, router) {
     setShowPostMessage(false);
@@ -312,7 +348,7 @@ export default function ForgotPasswordPage() {
           showPostMessage={showPostMessage}
           setShowPostMessage={setShowPostMessage}
           onCalledValidateUsernameAPI={onCalledValidateUsernameAPI}
-          onCalledValidateUsernameAnsycAPI={onCalledValidateUsernameAnsycAPI}
+          onCalledValidateAppointment={onCalledValidateAppointment}
           title={"Forgot Password Page"}
           isAppointment={isAppointment}
         />

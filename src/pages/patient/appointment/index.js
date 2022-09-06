@@ -57,12 +57,29 @@ export default function Appointment({ googleApiKey }) {
   const [rangeDate, setRangeDate] = useState({ startDate: "", endDate: "" });
   const [isLoading, setIsLoading] = useState(false);
   const [filterBy, setFilterBy] = useState([]);
+  const [providerDataOverview, setProviderDataOverview] = useState({});
+  const [activeFilterBy, setActiveFilterBy] = useState([]);
+  const [isOpen, setIsOpen] = useState(true);
 
   const router = useRouter();
   const dispatch = useDispatch();
   const cookies = new Cookies();
 
   const filterData = useSelector((state) => state.appointment.filterData);
+
+  const providerListData = useSelector(
+    (state) => state.appointment.providerListData
+  );
+
+  useEffect(() => {
+    if (providerListData) {
+      setRangeDate(setRangeDateData(providerListData));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [providerListData]);
+
+  const pendingAppointment =
+    cookies.get("dashboardState", { path: "/patient" }) === "true";
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: googleApiKey,
@@ -105,7 +122,7 @@ export default function Appointment({ googleApiKey }) {
   }
 
   //Call API for submitFilter
-  function onCallSubmitFilterAPI(requestData) {
+  function onCallSubmitFilterAPI(requestData, activeFilterBy = []) {
     const postBody = {
       location: {
         latitude: coords?.latitude,
@@ -115,7 +132,7 @@ export default function Appointment({ googleApiKey }) {
       date: requestData.date,
       appointmentType: requestData.purposeOfVisit,
       insuranceCarrier: requestData.insuranceCarrier,
-      filterBy: [],
+      filterBy: activeFilterBy,
     };
     setIsLoading(true);
     const api = new Api();
@@ -287,6 +304,11 @@ export default function Appointment({ googleApiKey }) {
                 onPrevScheduleClicked={onPrevScheduleClicked}
                 rangeDate={rangeDate}
                 filter={filterBy}
+                onActivFilter={(filter) => {
+                  setActiveFilterBy([...filter]);
+                  onCallSubmitFilterAPI(dataFilter, filter);
+                }}
+                appliedFilter={activeFilterBy}
               />
             </Box>
           ) : (
@@ -345,6 +367,11 @@ export default function Appointment({ googleApiKey }) {
                 providerList={providerListData}
                 rangeDate={rangeDate}
                 filter={filterBy}
+                onActivFilter={(filter) => {
+                  setActiveFilterBy([...filter]);
+                  onCallSubmitFilterAPI(dataFilter, filter);
+                }}
+                appliedFilter={activeFilterBy}
               />
             ) : (
               <EmptyResult
@@ -405,6 +432,11 @@ export default function Appointment({ googleApiKey }) {
         onNextScheduleClicked={onNextScheduleClicked}
         onPrevScheduleClicked={onPrevScheduleClicked}
         filter={filterBy}
+        onActivFilter={(filter) => {
+          setActiveFilterBy([...filter]);
+          onCallSubmitFilterAPI(dataFilter, filter);
+        }}
+        appliedFilter={activeFilterBy}
       />
     );
   }

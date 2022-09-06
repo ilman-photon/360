@@ -37,6 +37,8 @@ export default function AppointmentDetails({
           >
             <EditOutlinedIcon
               sx={{ width: 20, height: 20, color: "#008294" }}
+              aria-label={"Edit icon"}
+              aria-hidden={"false"}
             />
             <div type="link" style={styles.editLink}>
               Edit
@@ -47,7 +49,12 @@ export default function AppointmentDetails({
         <Stack spacing={2}>
           <LabelWithInfo
             label="Date and time"
-            titleIcon={<CalendarTodayIcon />}
+            titleIcon={
+              <CalendarTodayIcon
+                aria-label={"Calendar icon"}
+                aria-hidden={"false"}
+              />
+            }
             sxRow={{ justifyContent: "unset" }}
             sxText={{ paddingLeft: "4px", color: colors.darkGreen }}
           >
@@ -58,7 +65,9 @@ export default function AppointmentDetails({
 
           <LabelWithInfo
             label="Insurance"
-            titleIcon={<ContactMailIcon />}
+            titleIcon={
+              <ContactMailIcon aria-label={"Mail icon"} aria-hidden={"false"} />
+            }
             sxRow={{ justifyContent: "unset" }}
             sxText={{ paddingLeft: "4px", color: colors.darkGreen }}
           >
@@ -71,7 +80,12 @@ export default function AppointmentDetails({
 
           <LabelWithInfo
             label="Purpose of visit"
-            titleIcon={<BusinessIcon />}
+            titleIcon={
+              <BusinessIcon
+                aria-label={"Business icon"}
+                aria-hidden={"false"}
+              />
+            }
             sxRow={{ justifyContent: "unset" }}
             sxText={{ paddingLeft: "4px", color: colors.darkGreen }}
           >

@@ -43,7 +43,8 @@ Object {
                 type="button"
               >
                 <svg
-                  aria-hidden="true"
+                  aria-hidden="false"
+                  aria-label="Edit icon"
                   class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1x727db-MuiSvgIcon-root"
                   data-testid="EditOutlinedIcon"
                   focusable="false"
@@ -82,7 +83,8 @@ Object {
                     style="margin-right: 8px; display: flex; align-items: center; width: 18px;"
                   >
                     <svg
-                      aria-hidden="true"
+                      aria-hidden="false"
+                      aria-label="Calendar icon"
                       class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                       data-testid="CalendarTodayIcon"
                       focusable="false"
@@ -125,7 +127,8 @@ Object {
                     style="margin-right: 8px; display: flex; align-items: center; width: 18px;"
                   >
                     <svg
-                      aria-hidden="true"
+                      aria-hidden="false"
+                      aria-label="Mail icon"
                       class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                       data-testid="ContactMailIcon"
                       focusable="false"
@@ -168,7 +171,8 @@ Object {
                     style="margin-right: 8px; display: flex; align-items: center; width: 18px;"
                   >
                     <svg
-                      aria-hidden="true"
+                      aria-hidden="false"
+                      aria-label="Business icon"
                       class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                       data-testid="BusinessIcon"
                       focusable="false"
@@ -245,7 +249,8 @@ Object {
               type="button"
             >
               <svg
-                aria-hidden="true"
+                aria-hidden="false"
+                aria-label="Edit icon"
                 class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1x727db-MuiSvgIcon-root"
                 data-testid="EditOutlinedIcon"
                 focusable="false"
@@ -284,7 +289,8 @@ Object {
                   style="margin-right: 8px; display: flex; align-items: center; width: 18px;"
                 >
                   <svg
-                    aria-hidden="true"
+                    aria-hidden="false"
+                    aria-label="Calendar icon"
                     class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                     data-testid="CalendarTodayIcon"
                     focusable="false"
@@ -327,7 +333,8 @@ Object {
                   style="margin-right: 8px; display: flex; align-items: center; width: 18px;"
                 >
                   <svg
-                    aria-hidden="true"
+                    aria-hidden="false"
+                    aria-label="Mail icon"
                     class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                     data-testid="ContactMailIcon"
                     focusable="false"
@@ -370,7 +377,8 @@ Object {
                   style="margin-right: 8px; display: flex; align-items: center; width: 18px;"
                 >
                   <svg
-                    aria-hidden="true"
+                    aria-hidden="false"
+                    aria-label="Business icon"
                     class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                     data-testid="BusinessIcon"
                     focusable="false"

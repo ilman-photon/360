@@ -5,21 +5,26 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { StyledButton } from "../../../atoms/Button/button";
 import constants from "../../../../utils/constants";
+import { useEffect } from "react";
 
 const InfoWindowContent = ({
-  data,
+  data = [],
   OnTimeClicked = () => {
     // This is intended
   },
 }) => {
   const [counter, setCounter] = useState(1);
 
+  useEffect(() => {
+    console.log({ counter });
+  }, [counter]);
+
   const prev = () => {
     if (counter > 1) setCounter(counter - 1);
     else setCounter(data.length);
   };
   const next = () => {
-    if (counter < 3) setCounter(counter + 1);
+    if (counter < data.length) setCounter(counter + 1);
     else setCounter(1);
   };
 
@@ -39,7 +44,8 @@ const InfoWindowContent = ({
   };
 
   const getNextAvailable = () => {
-    if (!data[counter - 1].availability) return "-";
+    if (!data[counter - 1]) return "-";
+    if (!data[counter - 1].availability.length == 0) return "-";
     return `Next Available ${getLabelTime(
       data[counter - 1].availability[0].date
     )}`;
@@ -65,11 +71,13 @@ const InfoWindowContent = ({
             >
               <ArrowBackIosIcon
                 role="button"
+                data-testid={constants.TEST_ID.MAP_INFO_WINDOW.previousProvider}
                 sx={{ width: "22px", cursor: "pointer" }}
                 onClick={prev}
               />
               <ArrowForwardIosIcon
                 role="button"
+                data-testid={constants.TEST_ID.MAP_INFO_WINDOW.nextProvider}
                 sx={{ width: "22px", cursor: "pointer" }}
                 onClick={next}
               />

@@ -3,14 +3,360 @@
 exports[`App ModalScheduling render 1`] = `
 Object {
   "asFragment": [Function],
-  "baseElement": <body>
-    <div>
+  "baseElement": <body
+    style="padding-right: 1024px; overflow: hidden;"
+  >
+    <div
+      aria-hidden="true"
+    >
       <div
         class="MuiBox-root css-0"
       />
     </div>
+    <div
+      class="MuiDialog-root MuiModal-root css-zw3mfo-MuiModal-root-MuiDialog-root"
+      role="presentation"
+    >
+      <div
+        aria-hidden="true"
+        class="MuiBackdrop-root css-yiavyu-MuiBackdrop-root-MuiDialog-backdrop"
+        style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+      />
+      <div
+        data-test="sentinelStart"
+        tabindex="0"
+      />
+      <div
+        class="MuiDialog-container MuiDialog-scrollPaper css-hz1bth-MuiDialog-container"
+        role="presentation"
+        style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
+        tabindex="-1"
+      >
+        <div
+          aria-describedby="alert-dialog-description"
+          aria-labelledby="customized-dialog-title"
+          class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation24 MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm css-1t1j96h-MuiPaper-root-MuiDialog-paper"
+          role="dialog"
+        >
+          <div
+            class="boxModalContents MuiBox-root css-17wkslb"
+          >
+            <h2
+              class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-aw0cy1-MuiTypography-root-MuiDialogTitle-root"
+              id="customized-dialog-title"
+            >
+              <span
+                class="MuiTypography-root MuiTypography-bodyMedium scheduledText css-37jdci-MuiTypography-root"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-elhp89-MuiSvgIcon-root"
+                  data-testid="CheckCircleRoundedIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM9.29 16.29 5.7 12.7a.9959.9959 0 0 1 0-1.41c.39-.39 1.02-.39 1.41 0L10 14.17l6.88-6.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-7.59 7.59c-.38.39-1.02.39-1.41 0z"
+                  />
+                </svg>
+                 You’re Scheduled!
+              </span>
+              <button
+                aria-label="close"
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1ehv1gf-MuiButtonBase-root-MuiIconButton-root"
+                tabindex="0"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                  data-testid="CloseIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
+                  />
+                </svg>
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </h2>
+            <div
+              class="MuiDialogContent-root css-1phsj2c-MuiDialogContent-root"
+            >
+              <div
+                class="registeredUsernameWrapper"
+                sx="[object Object]"
+              >
+                <div
+                  class="thanksBar MuiBox-root css-1bwq3er"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1qquyr5-MuiSvgIcon-root"
+                    data-testid="MailOutlineIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V8l8 5 8-5v10zm-8-7L4 6h16l-8 5z"
+                    />
+                  </svg>
+                   
+                  thanksBar
+                </div>
+              </div>
+              <div
+                class="bottomParagraph"
+              >
+                <a
+                  aria-label="isEmergency"
+                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
+                  data-testid="loginlink"
+                  role="link"
+                  tabindex="0"
+                >
+                  <span
+                    class="medicLink"
+                  >
+                    isEmergency
+                  </span>
+                </a>
+              </div>
+              <div
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root cardPatient css-1v5z4dq-MuiPaper-root-MuiCard-root"
+              >
+                <div
+                  class="MuiCardContent-root css-1ba2ddx-MuiCardContent-root"
+                >
+                  <p
+                    aria-label="Saturday, Sep 21, 2022, AT 8:30 AM EST"
+                    class="MuiTypography-root MuiTypography-body1 dateBold css-eyz4cw-MuiTypography-root"
+                  >
+                    Saturday, Sep 21, 2022, AT 8:30 AM EST
+                  </p>
+                  <button
+                    class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root addCalendarButton css-vij0pv-MuiButtonBase-root-MuiButton-root"
+                    tabindex="0"
+                    type="button"
+                  >
+                    <p
+                      aria-label="Add to calendar"
+                      class="MuiTypography-root MuiTypography-body1 css-o5ux9j-MuiTypography-root"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                        data-testid="CalendarTodayIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"
+                        />
+                      </svg>
+                       Add to calendar
+                    </p>
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </button>
+                  <p
+                    aria-label="Purpose of Visit"
+                    class="MuiTypography-root MuiTypography-body1 dateBold css-ahj2mt-MuiTypography-root"
+                  >
+                    Purpose of Visit
+                  </p>
+                  <p
+                    aria-label="Eye exam"
+                    class="MuiTypography-root MuiTypography-body1 css-ahj2mt-MuiTypography-root"
+                  >
+                    Eye exam
+                  </p>
+                </div>
+              </div>
+              <div
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
+              >
+                <div
+                  class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
+                >
+                  <div
+                    class="css-1p5q5e5-MuiStack-root"
+                  >
+                    <div
+                      class="MuiGrid-root MuiGrid-container css-zmgw4q-MuiGrid-root"
+                    >
+                      <div
+                        class="MuiGrid-root css-1dhf0bi-MuiGrid-root"
+                      >
+                        <div
+                          class="appointment MuiBox-root css-1qa5ro4"
+                        >
+                          <div
+                            class="displayFlex MuiBox-root css-0"
+                          >
+                            <div
+                              class="MuiBox-root css-0"
+                            >
+                              <span
+                                style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                              >
+                                <span
+                                  style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                                >
+                                  <img
+                                    alt=""
+                                    aria-hidden="true"
+                                    src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27100%27%20height=%27100%27/%3e"
+                                    style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                                  />
+                                </span>
+                                <img
+                                  alt="Doctor Image"
+                                  class="profilePhoto"
+                                  data-nimg="intrinsic"
+                                  decoding="async"
+                                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                                />
+                                <noscript />
+                              </span>
+                            </div>
+                            <div
+                              class="bioContainer MuiBox-root css-10n7hpz"
+                            >
+                              <h2
+                                class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-1i5ehwd-MuiTypography-root"
+                              />
+                              <h3
+                                class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
+                              >
+                                Scripps Eyecare
+                              </h3>
+                              <p
+                                class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
+                              />
+                              <div
+                                class="phoneContainer MuiBox-root css-0"
+                              >
+                                <p
+                                  class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            class="MuiBox-root css-0"
+                          />
+                        </div>
+                        <div
+                          class="getDirectionLink MuiBox-root css-0"
+                        >
+                          <svg
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                            data-testid="DirectionsOutlinedIcon"
+                            focusable="false"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="m22.43 10.59-9.01-9.01c-.75-.75-2.07-.76-2.83 0l-9 9c-.78.78-.78 2.04 0 2.82l9 9c.39.39.9.58 1.41.58.51 0 1.02-.19 1.41-.58l8.99-8.99c.79-.76.8-2.02.03-2.82zm-10.42 10.4-9-9 9-9 9 9-9 9zM8 11v4h2v-3h4v2.5l3.5-3.5L14 7.5V10H9c-.55 0-1 .45-1 1z"
+                            />
+                          </svg>
+                          <a
+                            aria-label="Get directions"
+                            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways getDirectionLinkText css-1ps4owl-MuiTypography-root-MuiLink-root"
+                            role="link"
+                            tabindex="0"
+                          >
+                            Get directions
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root cardPatient css-1v5z4dq-MuiPaper-root-MuiCard-root"
+              >
+                <div
+                  class="MuiCardContent-root css-1qboppe-MuiCardContent-root"
+                >
+                  <p
+                    aria-label="Patient Information"
+                    aria-roledescription="Heading"
+                    class="MuiTypography-root MuiTypography-body1 patientBoxLabel css-z2eky3-MuiTypography-root"
+                  >
+                    patientInformation
+                  </p>
+                  <div
+                    class="css-nen11g-MuiStack-root"
+                  >
+                    <div
+                      class="labelContainer"
+                      style="justify-content: unset;"
+                    >
+                      <div
+                        class="label"
+                        style="color: rgb(0, 59, 74);"
+                      >
+                        Name
+                      </div>
+                    </div>
+                    <div
+                      class="css-1okj3ks-MuiStack-root"
+                    >
+                      <div
+                        style="margin-top: 10px;"
+                      >
+                        <span
+                          class="MuiTypography-root MuiTypography-bodyMedium css-1oitrp4-MuiTypography-root"
+                        >
+                          -
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bottomParagraph"
+              >
+                <span
+                  class="MuiTypography-root MuiTypography-caption css-r63hbo-MuiTypography-root"
+                >
+                  Already have an account?
+                   
+                  <a
+                    class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
+                    data-testid="loginlink"
+                    href="/patient/login"
+                  >
+                    <a
+                      class="loginLink"
+                    >
+                      Login
+                    </a>
+                  </a>
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        data-test="sentinelEnd"
+        tabindex="0"
+      />
+    </div>
   </body>,
-  "container": <div>
+  "container": <div
+    aria-hidden="true"
+  >
     <div
       class="MuiBox-root css-0"
     />

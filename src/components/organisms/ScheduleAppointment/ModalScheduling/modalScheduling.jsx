@@ -5,8 +5,10 @@ import ModalConfirmContent from "./modalConfirmContent";
 import { Box } from "@mui/material";
 
 export default function ModalScheduling({
-  isOpen,
+  isOpen = true,
   isLoggedIn,
+  patientData,
+  providerData,
   OnSetIsOpen = () => {
     // This is intended
   },
@@ -15,10 +17,15 @@ export default function ModalScheduling({
     <Box>
       <Dialog
         aria-labelledby="customized-dialog-title"
+        aria-describedby="alert-dialog-description"
         open={isOpen}
         isLoggedIn={isLoggedIn}
       >
-        <ModalConfirmContent OnSetIsOpen={OnSetIsOpen} />
+        <ModalConfirmContent
+          OnSetIsOpen={OnSetIsOpen}
+          patientData={patientData}
+          providerData={providerData}
+        />
       </Dialog>
     </Box>
   );

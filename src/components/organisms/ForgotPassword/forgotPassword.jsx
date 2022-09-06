@@ -22,7 +22,7 @@ const ForgotPassword = ({
   showPostMessage,
   setShowPostMessage,
   onCalledValidateUsernameAPI,
-  onCalledValidateUsernameAnsycAPI,
+  onCalledValidateAppointment,
   title = "",
   isAppointment = true,
 }) => {
@@ -37,7 +37,7 @@ const ForgotPassword = ({
         message: t("errorEmptyField"),
       });
     } else if (isAppointment) {
-      onCalledValidateUsernameAnsycAPI(
+      onCalledValidateAppointment(
         {
           username: username,
         },
@@ -80,9 +80,9 @@ const ForgotPassword = ({
             <FormMessage
               success={false}
               sx={styles.postMessage}
-              title={t("exisistingUser")}
+              title={isAppointment && t("syncErrorTitle")}
             >
-              {isAppointment ? t("errorAysncUser") : t("errorUsernameNotFound")}
+              {isAppointment ? t("syncError") : t("errorUsernameNotFound")}
             </FormMessage>
           ) : (
             <></>
