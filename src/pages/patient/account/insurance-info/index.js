@@ -340,18 +340,6 @@ export default function InsuranceInfoPage() {
             >
               Yes, remove Insurance
             </StyledButton>
-
-            <StyledButton
-              size="small"
-              mode="error"
-              onClick={() => {
-                setConfirmationDeleteDialog(false);
-                setIsShowError(true);
-              }}
-              sx={{ fontSize: "14px" }}
-            >
-              Show Eroor
-            </StyledButton>
           </Stack>
         </DialogActions>
       </Dialog>
