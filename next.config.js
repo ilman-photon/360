@@ -59,6 +59,14 @@ const nextConfig = {
       {
         source: "/patient/sync",
         destination: "/patient/forgot-password",
+      },
+      {
+        source: "/patient/sync",
+        destination: "/patient/forgot-password",
+      },
+      {
+        source: "/patient/sync/set-password",
+        destination: "/patient/set-password",
       }
     ];
   },
