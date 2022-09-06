@@ -55,6 +55,7 @@ export default function Appointment({ googleApiKey }) {
   const [isLoading, setIsLoading] = useState(false);
   const [filterBy, setFilterBy] = useState([]);
   const [providerDataOverview, setProviderDataOverview] = useState({});
+  const [activeFilterBy, setActiveFilterBy] = useState([]);
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -112,7 +113,7 @@ export default function Appointment({ googleApiKey }) {
   }
 
   //Call API for submitFilter
-  function onCallSubmitFilterAPI(requestData) {
+  function onCallSubmitFilterAPI(requestData, activeFilterBy = []) {
     const postBody = {
       location: {
         latitude: coords?.latitude,
@@ -122,7 +123,7 @@ export default function Appointment({ googleApiKey }) {
       date: requestData.date,
       appointmentType: requestData.purposeOfVisit,
       insuranceCarrier: requestData.insuranceCarrier,
-      filterBy: [],
+      filterBy: activeFilterBy,
     };
     setIsLoading(true);
     const api = new Api();
@@ -294,6 +295,11 @@ export default function Appointment({ googleApiKey }) {
                 onPrevScheduleClicked={onPrevScheduleClicked}
                 rangeDate={rangeDate}
                 filter={filterBy}
+                onActivFilter={(filter) => {
+                  setActiveFilterBy([...filter]);
+                  onCallSubmitFilterAPI(dataFilter, filter);
+                }}
+                appliedFilter={activeFilterBy}
               />
             </Box>
           ) : (
@@ -352,6 +358,11 @@ export default function Appointment({ googleApiKey }) {
                 providerList={providerListData}
                 rangeDate={rangeDate}
                 filter={filterBy}
+                onActivFilter={(filter) => {
+                  setActiveFilterBy([...filter]);
+                  onCallSubmitFilterAPI(dataFilter, filter);
+                }}
+                appliedFilter={activeFilterBy}
               />
             ) : (
               <EmptyResult
@@ -412,6 +423,11 @@ export default function Appointment({ googleApiKey }) {
         onNextScheduleClicked={onNextScheduleClicked}
         onPrevScheduleClicked={onPrevScheduleClicked}
         filter={filterBy}
+        onActivFilter={(filter) => {
+          setActiveFilterBy([...filter]);
+          onCallSubmitFilterAPI(dataFilter, filter);
+        }}
+        appliedFilter={activeFilterBy}
       />
     );
   }

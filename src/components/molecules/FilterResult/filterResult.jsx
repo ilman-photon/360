@@ -44,7 +44,8 @@ export const FilterResult = ({
     // This is intentional
   },
   filter = [],
-  activedFilter = [],
+  onActivFilter,
+  appliedFilter,
 }) => {
   const [dateList, setDateList] = useState({
     dateRange: [],
@@ -95,6 +96,8 @@ export const FilterResult = ({
             onPrevScheduleClicked={onPrevScheduleClicked}
             rangeDate={rangeDate}
             filter={filter}
+            onActivFilter={onActivFilter}
+            appliedFilter={appliedFilter}
           />
         </Box>
         <div
@@ -135,6 +138,8 @@ export const FilterResult = ({
             purposeOfVisitData={purposeOfVisitData}
             insuranceCarrierData={insuranceCarrierData}
             filter={filter}
+            onActivFilter={onActivFilter}
+            appliedFilter={appliedFilter}
           />
           <Stack
             direction={"row"}
