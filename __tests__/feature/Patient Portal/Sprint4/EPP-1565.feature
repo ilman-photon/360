@@ -1,51 +1,5 @@
-@BDDSTORY-EPP-1565
-@Appointments
-@P2
-@Patient_Portal
 Feature: Patient Portal : Schedule Appointment from marketing site - Appointment for 'someone else' - Provide Basic Information
   User Story: As a user, I should be able to provide valid patient details to schedule the appointment for someone else.
-
-  Acceptance Criteria:
-
-  GIVEN
-
-  User clicks 'Schedule your Eye Exam' CTA from Marketing site
-
-  And
-
-  User provides location, select the date of appointment as well as purpose of visit and insurance & searches
-
-  And
-
-  User lands on “Schedule Appointment” screen with the selected location, date, purpose of visit (if provided) and insurance carrier (if provided) along with relevant results already present there as in  
-
-  And
-
-  User has selected a time slot
-
-  And
-
-  User lands on the screen to review the appointment details as in  
-
-  And
-
-  User selects that the appointment is for Someone Else
-
-  And
-
-  User provides valid patient details in  
-
-  WHEN
-
-  User confirms the patient details
-
-  THEN
-
-  System should schedule the appointment
-
-  And 
-
-  User should be able to view the appointment confirmation message as in  
 
   @BDDTEST-EPP-3012
   @Appointments
@@ -62,8 +16,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     And user chooses the purpose of the visit
     And user enters the insurance name
     And user clicks on the Search button
-
-    Examples:
 
   @BDDTEST-EPP-3013
   @Appointments
@@ -83,8 +35,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     And user views the results in the Schedule Appointments screen
     And user views the selected location.
 
-    Examples:
-
   @BDDTEST-EPP-3014
   @Appointments
   @P1
@@ -102,8 +52,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     And user clicks on the Search button
     And user views the results in the Schedule Appointments screen
     And user views the date of appointment.
-
-    Examples:
 
   @BDDTEST-EPP-3015
   @Appointments
@@ -123,8 +71,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     And user views the results in the Schedule Appointments screen
     And user views the purpose of the visit.
 
-    Examples:
-
   @BDDTEST-EPP-3016
   @Appointments
   @P1
@@ -143,8 +89,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     And user views the results in the Schedule Appointments screen
     And user views the insurance carrier.
 
-    Examples:
-
   @BDDTEST-EPP-3017
   @Appointments
   @P2
@@ -162,8 +106,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     And user clicks on the Search button
     And user lands on Schedule Appointment screen with the selected location, date, purpose of visit (if provided) and insurance carrier (if provided)
 
-    Examples:
-
   @BDDTEST-EPP-3018
   @Appointments
   @P2
@@ -176,8 +118,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     And user provided location,date of appointment,purpose of visit,insurance and provider
     Then user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier
     And user views the timeslot
-
-    Examples:
 
   @BDDTEST-EPP-3019
   @Appointments
@@ -193,8 +133,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     Then user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier
     And user select the timeslot 
 
-    Examples:
-
   @BDDTEST-EPP-3020
   @Appointments
   @P1
@@ -209,8 +147,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     Then user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier
     And user select the timeslot
     Then user lands on the screen to review the appointment details
-
-    Examples:
 
   @BDDTEST-EPP-3021
   @Appointments
@@ -228,8 +164,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     Then user lands on the screen to review the appointment details
     And user selects the option proceeds to schedule it
 
-    Examples:
-
   @BDDTEST-EPP-3022
   @Appointments
   @P2
@@ -246,8 +180,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     Then user lands on the screen to review the appointment details
     And user selects the option proceeds to schedule it
     Then user lands on the screen to select who the appointment is for
-
-    Examples:
 
   @BDDTEST-EPP-3023
   @Appointments
@@ -267,8 +199,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     Then user lands on the screen to select who the appointment is for
     And user able to view Myself and Someone else buttons
 
-    Examples:
-
   @BDDTEST-EPP-3024
   @Appointments
   @P3
@@ -285,8 +215,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     And user selects the option proceeds to schedule it
     Then user lands on the screen to select who the appointment is for
     And user able to select Someone else option
-
-    Examples:
 
   @BDDTEST-EPP-3025
   @Appointments
@@ -307,8 +235,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     And user select Someone else option
     Then user able to see Provide patient's baic information page
 
-    Examples:
-
   @BDDTEST-EPP-3026
   @Appointments
   @P2
@@ -326,8 +252,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     And user selects the option proceeds to schedule it
     And user able to select Someone else option
     Then user should see fields First Name, Last Name, Date Of Birth,Email,Mobile Number, Preferred mode(s) of communication
-
-    Examples:
 
   @BDDTEST-EPP-3027
   @Appointments
