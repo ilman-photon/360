@@ -20,7 +20,7 @@ export default function InsuranceInformationNew({
       }}
     >
       <AccountCard
-        titleIcon={<AccountCircleOutlinedIcon />}
+        titleIcon={<AccountCircleOutlinedIcon aria-hidden="false" />}
         title="Insurance Documents"
       >
         <Stack spacing={2}>
