@@ -161,6 +161,7 @@ export const DayAvailability = ({
         <Box className={styles.iconTimeContainer}>
           <ArrowBackIosIcon
             className={styles.iconSchedule}
+            sx={{ cursor: "pointer" }}
             onClick={() => {
               const date = new Date(dateList.dateRange[0]);
               date.setDate(date.getDate() - 7);
@@ -169,7 +170,7 @@ export const DayAvailability = ({
           />
           <ArrowForwardIosIcon
             className={styles.iconSchedule}
-            sx={{ marginLeft: "10px" }}
+            sx={{ marginLeft: "10px", cursor: "pointer" }}
             onClick={() => {
               const date = new Date(dateList.dateRange[5]);
               date.setDate(date.getDate() + 7);

@@ -102,6 +102,14 @@ export default function Appointment({ googleApiKey }) {
     setShowMaps(!showMaps);
   }
 
+  function getDirection(providerCordinate) {
+    window.open(
+      `https://maps.google.com?q=${providerCordinate.latitude},${providerCordinate.longitude}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
+  }
+
   const handleClose = () => {
     setOpen(false);
     setProviderDataOverview({});
@@ -154,6 +162,7 @@ export default function Appointment({ googleApiKey }) {
             providerDataOverview.providerId,
             response.listOfProvider
           );
+          setRangeDate(setRangeDateData(response?.listOfProvider));
           setProviderDataOverview(providerOverview);
         } else {
           if (
@@ -331,6 +340,7 @@ export default function Appointment({ googleApiKey }) {
                   onCallSubmitFilterAPI(dataFilter, filter);
                 }}
                 appliedFilter={activeFilterBy}
+                onGetDirection={getDirection}
               />
             </Box>
           ) : (
@@ -474,8 +484,6 @@ export default function Appointment({ googleApiKey }) {
   const appointmentScheduleData = useSelector((state) => {
     return state.appointment.appointmentSchedule;
   });
-
-  console.log(appointmentScheduleData, "appointmentScheduleData");
 
   const scheduleConfirmPopup = () => {
     return isDesktop ? (

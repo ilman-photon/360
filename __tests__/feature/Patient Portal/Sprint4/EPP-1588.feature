@@ -1,33 +1,11 @@
-@BDDSTORY-EPP-1588
-@Appointments
-@P1
-@Patient_Portal
 Feature: Patient Portal : Schedule appointment from Patient Portal - Error messages displayed when search criteria is not valid
-  User Story: As a user, I should be able to view error messages when the search criteria provided is not valid while scheduling appointment from patient portal.
-
-  Acceptance Criteria:
-
-  GIVEN
-
-  User clicks on “Schedule Appointment” CTA from patient portal
-
-  And 
-
-  User lands on to the screen to search for location, select the date of appointment as well as purpose of visit and insurance as in 
-
-  WHEN
-
-  User provides an incorrect State/ City/ Zipcode 
-
-  THEN
-
-  User should be prompted with an error message “No results found. Please try again with a different search criteria.” 
 
   @BDDTEST-EPP-3133
   @Appointments
   @P1
   @Patient_Portal
   @Regression
+  @included
   @Sprint4
   Scenario: EPIC_EPP-44_STORY_EPP-1588- Verify if the user sees an error message "No results found. Please try again with a different search criteria" when user enters an incorrect city name
     Given user launch the Patient Portal URL	
@@ -45,6 +23,7 @@ Feature: Patient Portal : Schedule appointment from Patient Portal - Error messa
   @P1
   @Patient_Portal
   @Regression
+  @included
   @Sprint4
   Scenario: EPIC_EPP-44_STORY_EPP-1588- Verify if the user sees an error message "No results found. Please try again with a different search criteria" when user enters an incorrect zip code
     Given user launch the Patient Portal URL	
@@ -62,6 +41,7 @@ Feature: Patient Portal : Schedule appointment from Patient Portal - Error messa
   @P1
   @Patient_Portal
   @Regression
+  @included
   @Sprint4
   Scenario: EPIC_EPP-44_STORY_EPP-1588- Verify if the user sees an error message "No results found. Please try again with a different search criteria" when user enters an incorrect state name
     Given user launch the Patient Portal URL	
