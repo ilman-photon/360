@@ -62,7 +62,12 @@ export const LocationDistance = ({
         }}
       >
         <DirectionsOutlinedIcon
-          sx={{ width: iconSize, height: iconSize, color: colors.darkGreen, cursor:"pointer" }}
+          sx={{
+            width: iconSize,
+            height: iconSize,
+            color: colors.darkGreen,
+            cursor: "pointer",
+          }}
           onClick={onGetDirection}
         />
       </Box>

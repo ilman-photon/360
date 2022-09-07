@@ -154,8 +154,7 @@ export const FilterResultContainer = ({
           </Grid>
         ) : (
           <Grid item xs={12} md={6} paddingTop={"16px"}>
-            <GMaps apiKey={googleApiKey} providerListData={providerList}/>
-            
+            <GMaps apiKey={googleApiKey} providerListData={providerList} />
           </Grid>
         )}
       </Grid>
