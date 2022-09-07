@@ -38,6 +38,7 @@ import { Api } from "../../api/api";
 import ModalConfirmation from "../../../components/organisms/ScheduleAppointment/ModalScheduling/modalConfirmation";
 import Cookies from "universal-cookie";
 import { formatAppointmentDate } from "../../../utils/dateFormatter";
+import { TEST_ID } from "../../../utils/constants";
 
 export async function getStaticProps() {
   return {
@@ -262,6 +263,7 @@ export default function Appointment({ googleApiKey }) {
         <Dialog
           fullScreen={!isDesktop}
           open={open}
+          data-testid={TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.container}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >

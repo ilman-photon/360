@@ -2,8 +2,8 @@ import Box from "@mui/material/Box";
 import React, { useEffect, useState } from "react";
 import { StyledButton } from "../../atoms/Button/button";
 import styles from "./styles.module.scss";
-import { Divider, Typography } from "@mui/material";
-import constants from "../../../utils/constants";
+import { Divider, Stack, Typography } from "@mui/material";
+import constants, { TEST_ID } from "../../../utils/constants";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import {
@@ -35,6 +35,7 @@ export const buttonSchedule = (
       className={styles.scheduleBtnWarpper}
     >
       <StyledButton
+        data-testid={TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.timeslotButton}
         theme={constants.PATIENT}
         mode={constants.PRIMARY}
         size={constants.SMALL}
@@ -161,6 +162,9 @@ export const DayAvailability = ({
         <Box className={styles.iconTimeContainer}>
           <ArrowBackIosIcon
             className={styles.iconSchedule}
+            data-testid={
+              TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.previousWeekButton
+            }
             onClick={() => {
               const date = new Date(dateList.dateRange[0]);
               date.setDate(date.getDate() - 7);
@@ -169,6 +173,9 @@ export const DayAvailability = ({
           />
           <ArrowForwardIosIcon
             className={styles.iconSchedule}
+            data-testid={
+              TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.nextWeekButton
+            }
             sx={{ marginLeft: "10px" }}
             onClick={() => {
               const date = new Date(dateList.dateRange[5]);
@@ -179,7 +186,14 @@ export const DayAvailability = ({
         </Box>
       </Box>
       <Divider className={styles.dividerSchedule} />
-      {renderScheduleData()}
+      <Stack
+        spacing={3}
+        data-testid={
+          TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.scheduleContainer
+        }
+      >
+        {renderScheduleData()}
+      </Stack>
     </Box>
   );
 };
