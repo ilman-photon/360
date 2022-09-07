@@ -16,11 +16,8 @@ const feature = loadFeature(
 
 defineFeature(feature, (test) => {
 	let container;
-	let container2;
 	const element = document.createElement("div");
 	const mock = new MockAdapter(axios);
-	jest.useFakeTimers("modern");
-	jest.setSystemTime(new Date(2022, 3, 1));
 	const mockSuggestion = {
 		appointmentType: [
 			{
@@ -647,9 +644,6 @@ defineFeature(feature, (test) => {
 			removeListener: () => { },
 		});
 	}
-	beforeAll(() => {
-		window.matchMedia = createMatchMedia('1920px');
-	});
 	test('EPIC_EPP-44_STORY_EPP-2506-Verify User should be able to view the following filters', ({ given, when, then, and }) => {
 		given(/^User launch the "(.*)" url$/, (arg0) => {
 
@@ -670,6 +664,7 @@ defineFeature(feature, (test) => {
 			mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(200, mockSubmitFilter);
 			//window = Object.assign(window, { innerWidth: 1500 });
 			global.navigator.geolocation = mockGeolocation;
+			window.matchMedia = createMatchMedia('1920px');
 			act(() => {
 				container = render(
 					<Provider store={store}>
@@ -683,9 +678,9 @@ defineFeature(feature, (test) => {
 			});
 		});
 
-		and('User should fill the location', async () => {
+		and('User should fill the location', () => {
 			const locationField = container.container.querySelector('#location');
-			fireEvent.change(locationField, { value: "Texas" })
+			fireEvent.change(locationField, {target: { value: "Texas" }})
 			// fireEvent.click(locationField)
 			// await waitFor(() => {
 			// 	const cancelButton = container.getByText(/Cancel/i);
@@ -694,7 +689,7 @@ defineFeature(feature, (test) => {
 			// });
 		});
 
-		and('User should select the date of appointment', async () => {
+		and('User should select the date of appointment', () => {
 			const dateField = container.getByText(/Date/i);
 			//fireEvent.click(dateField)
 			// await waitFor(() => {
@@ -704,7 +699,7 @@ defineFeature(feature, (test) => {
 			// });
 		});
 
-		and('User should select the purpose of the visit', async () => {
+		and('User should select the purpose of the visit', () => {
 			const pusposeField = container.getByText(/Purpose of Visit/i);
 			//fireEvent.click(pusposeField)
 			// await waitFor(() => {
@@ -714,7 +709,7 @@ defineFeature(feature, (test) => {
 			// });
 		});
 
-		and('User should fill the insurance name', async () => {
+		and('User should fill the insurance name', () => {
 			const insuranceField = container.getByText(/Insurance Carrier/i);
 			// fireEvent.click(insuranceField)
 			// await waitFor(() => {
@@ -725,10 +720,7 @@ defineFeature(feature, (test) => {
 		});
 
 		when('User clicks on the Search button', async () => {
-			const locationField = container.container.querySelector('#location');
-			fireEvent.change(locationField, { target: { value: "Texas" }})
 			const searchBtn = container.getByTestId("searchbtn")
-			console.log(locationField.value)
 			fireEvent.click(searchBtn)
 
 			await waitFor(() => {
@@ -749,7 +741,7 @@ defineFeature(feature, (test) => {
 			// });
 		});
 
-		then('User should see the results on the Schedule Appointments screen', async () => {
+		then('User should see the results on the Schedule Appointments screen', () => {
 
 		});
 
