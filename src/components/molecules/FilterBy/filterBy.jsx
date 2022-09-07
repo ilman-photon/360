@@ -46,7 +46,7 @@ const FilterBy = ({ isOpen, onClose, onDone, filter, activedFilter = [] }) => {
   };
 
   const renderCheckbox = (category, idx, isMultiple, showDivider) => {
-    const isShowSeeMore = category.length > 6;
+    const isShowSeeMore = category.checklist && category.checklist.length > 6;
     return (
       <Box
         className={

@@ -662,7 +662,6 @@ defineFeature(feature, (test) => {
 			const domain = window.location.origin;
 			mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, mockSuggestion);
 			mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(200, mockSubmitFilter);
-			//window = Object.assign(window, { innerWidth: 1500 });
 			global.navigator.geolocation = mockGeolocation;
 			window.matchMedia = createMatchMedia('1920px');
 			act(() => {
@@ -681,42 +680,18 @@ defineFeature(feature, (test) => {
 		and('User should fill the location', () => {
 			const locationField = container.container.querySelector('#location');
 			fireEvent.change(locationField, {target: { value: "Texas" }})
-			// fireEvent.click(locationField)
-			// await waitFor(() => {
-			// 	const cancelButton = container.getByText(/Cancel/i);
-			// 	expect(container.getByText(/Cancel/i)).toBeInTheDocument();
-			// 	fireEvent.click(cancelButton)
-			// });
 		});
 
 		and('User should select the date of appointment', () => {
 			const dateField = container.getByText(/Date/i);
-			//fireEvent.click(dateField)
-			// await waitFor(() => {
-			// 	const cancelButton = container.getByText(/Cancel/i);
-			// 	expect(container.getByText(/Cancel/i)).toBeInTheDocument();
-			// 	fireEvent.click(cancelButton)
-			// });
 		});
 
 		and('User should select the purpose of the visit', () => {
 			const pusposeField = container.getByText(/Purpose of Visit/i);
-			//fireEvent.click(pusposeField)
-			// await waitFor(() => {
-			// 	const cancelButton = container.getByText(/Cancel/i);
-			// 	expect(container.getByText(/Cancel/i)).toBeInTheDocument();
-			// 	fireEvent.click(cancelButton)
-			// });
 		});
 
 		and('User should fill the insurance name', () => {
 			const insuranceField = container.getByText(/Insurance Carrier/i);
-			// fireEvent.click(insuranceField)
-			// await waitFor(() => {
-			// 	const cancelButton = container.getByText(/Cancel/i);
-			// 	expect(container.getByText(/Cancel/i)).toBeInTheDocument();
-			// 	fireEvent.click(cancelButton)
-			// });
 		});
 
 		when('User clicks on the Search button', async () => {
@@ -725,20 +700,7 @@ defineFeature(feature, (test) => {
 
 			await waitFor(() => {
 				container.getByText(/Filter/i);
-				// expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
 			});
-
-			// await waitFor(() => {
-			// 	container.getByTestId(/filterButtonMobile/i);
-			// 	console.log(container.getByTestId(/filterButtonMobile/i));
-			// });
-			// const Searchbutton = container.getByText(/Search/i);
-			// fireEvent.click(Searchbutton)
-
-			// await waitFor(() => {
-			// 	container.getByText(/is required/i);
-			// 	expect(container.getByText(/is required/i)).toBeInTheDocument();
-			// });
 		});
 
 		then('User should see the results on the Schedule Appointments screen', () => {
@@ -749,8 +711,13 @@ defineFeature(feature, (test) => {
 
 		});
 
-		and('User should be able to view the following filters as below:', (table) => {
+		and('User should be able to view the following filters as below:', async (table) => {
+			const filterBtn = container.getByTestId("filterbtn")
+			fireEvent.click(filterBtn)
 
+			await waitFor(() => {
+				container.getByText(/Filter By/i);
+			});
 		});
 	});
 
@@ -763,12 +730,34 @@ defineFeature(feature, (test) => {
 
 		});
 
-		then('User should navigated to the search screen', () => {
+		then('User should navigated to the search screen', async () => {
+			const mockGeolocation = {
+				getCurrentPosition: jest.fn(),
+				watchPosition: jest.fn()
+			};
 
+			const domain = window.location.origin;
+			mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, mockSuggestion);
+			mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(200, mockSubmitFilter);
+			
+			global.navigator.geolocation = mockGeolocation;
+			window.matchMedia = createMatchMedia('1920px');
+			act(() => {
+				container = render(
+					<Provider store={store}>
+						{Appointment.getLayout(<Appointment />)}
+					</Provider>
+				);
+			})
+			await waitFor(() => {
+				container.getByText(/City, state, or zip/i);
+				expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
+			});
 		});
 
 		and('User should fill the location', () => {
-
+			const locationField = container.container.querySelector('#location');
+			fireEvent.change(locationField, {target: { value: "Texas" }})
 		});
 
 		and('User should select the date of appointment', () => {
@@ -783,8 +772,13 @@ defineFeature(feature, (test) => {
 
 		});
 
-		when('User clicks on the Search button', () => {
+		when('User clicks on the Search button', async () => {
+			const searchBtn = container.getByTestId("searchbtn")
+			fireEvent.click(searchBtn)
 
+			await waitFor(() => {
+				container.getByText(/Filter/i);
+			});
 		});
 
 		then('User should see the results on the Schedule Appointments screen', () => {
@@ -795,12 +789,23 @@ defineFeature(feature, (test) => {
 
 		});
 
-		when('User selects Language filter', () => {
+		when('User selects Language filter', async() => {
+			const filterBtn = container.getByTestId("filterbtn")
+			fireEvent.click(filterBtn)
 
+			await waitFor(() => {
+				container.getByText(/Filter By/i);
+			});
+			const expand = container.getByText(/See more/i)
+			fireEvent.click(expand)
+
+			const language = container.getByText("Arabic");
+			fireEvent.click(language)
 		});
 
 		then('User should see Filtered Language', () => {
-
+			const done = container.getByRole('button', {name: "Done"});
+			fireEvent.click(done)
 		});
 	});
 
@@ -813,12 +818,33 @@ defineFeature(feature, (test) => {
 
 		});
 
-		then('User should navigated to the search screen', () => {
+		then('User should navigated to the search screen', async () => {
+			const mockGeolocation = {
+				getCurrentPosition: jest.fn(),
+				watchPosition: jest.fn()
+			};
 
+			const domain = window.location.origin;
+			mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, mockSuggestion);
+			mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(200, mockSubmitFilter);
+			global.navigator.geolocation = mockGeolocation;
+			window.matchMedia = createMatchMedia('1920px');
+			act(() => {
+				container = render(
+					<Provider store={store}>
+						{Appointment.getLayout(<Appointment />)}
+					</Provider>
+				);
+			})
+			await waitFor(() => {
+				container.getByText(/City, state, or zip/i);
+				expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
+			});
 		});
 
 		and('User should fill the location', () => {
-
+			const locationField = container.container.querySelector('#location');
+			fireEvent.change(locationField, {target: { value: "Texas" }})
 		});
 
 		and('User should select the date of appointment', () => {
@@ -833,8 +859,13 @@ defineFeature(feature, (test) => {
 
 		});
 
-		when('User clicks on the Search button', () => {
+		when('User clicks on the Search button', async () => {
+			const searchBtn = container.getByTestId("searchbtn")
+			fireEvent.click(searchBtn)
 
+			await waitFor(() => {
+				container.getByText(/Filter/i);
+			});
 		});
 
 		then('User should see the results on the Schedule Appointments screen', () => {
@@ -845,12 +876,26 @@ defineFeature(feature, (test) => {
 
 		});
 
-		when('User selects Gender filter', () => {
+		when('User selects Gender filter', async () => {
+			const filterBtn = container.getByTestId("filterbtn")
+			fireEvent.click(filterBtn)
 
+			await waitFor(() => {
+				container.getByText(/Filter By/i);
+				
+			});
+			
+			const language = container.getByText("Arabic");
+			fireEvent.click(language)
+			fireEvent.click(language)
+
+			const gender = container.getByText("Male");
+			fireEvent.click(gender)
 		});
 
 		then('User should see Filtered Gender', () => {
-
+			const done = container.getByRole('button', {name: "Done"});
+			fireEvent.click(done)
 		});
 	});
 
@@ -1017,12 +1062,34 @@ defineFeature(feature, (test) => {
 
 		});
 
-		then('User should navigated to the search screen', () => {
+		then('User should navigated to the search screen', async () => {
+			const mockGeolocation = {
+				getCurrentPosition: jest.fn(),
+				watchPosition: jest.fn()
+			};
 
+			const domain = window.location.origin;
+			mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, mockSuggestion);
+			mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(200, mockSubmitFilter);
+			
+			global.navigator.geolocation = mockGeolocation;
+			window.matchMedia = createMatchMedia('1920px');
+			act(() => {
+				container = render(
+					<Provider store={store}>
+						{Appointment.getLayout(<Appointment />)}
+					</Provider>
+				);
+			})
+			await waitFor(() => {
+				container.getByText(/City, state, or zip/i);
+				expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
+			});
 		});
 
 		and('User should fill the location', () => {
-
+			const locationField = container.container.querySelector('#location');
+			fireEvent.change(locationField, {target: { value: "Texas" }})
 		});
 
 		and('User should select the date of appointment', () => {
@@ -1037,8 +1104,14 @@ defineFeature(feature, (test) => {
 
 		});
 
-		when('User clicks on the Search button', () => {
+		when('User clicks on the Search button', async () => {
+			const searchBtn = container.getByTestId("searchbtn")
+			fireEvent.click(searchBtn)
 
+			await waitFor(() => {
+				container.getByText(/Filter/i);
+				
+			});
 		});
 
 		then('User should see the results on the Schedule Appointments screen', () => {
@@ -1049,8 +1122,17 @@ defineFeature(feature, (test) => {
 
 		});
 
-		when('User selects Insurance Available Today (Provider) filter', () => {
+		when('User selects Insurance Available Today (Provider) filter', async () => {
+			const filterBtn = container.getByTestId("filterbtn")
+			fireEvent.click(filterBtn)
 
+			await waitFor(() => {
+				container.getByText(/Filter By/i);
+				
+			});
+			
+			const available = container.getByText("Available Today");
+			fireEvent.click(available)
 		});
 
 		then('User should see Filtered Available Today (Provider)', () => {
@@ -1058,11 +1140,13 @@ defineFeature(feature, (test) => {
 		});
 
 		and('User should see an option to clear the applied filter', () => {
-
+			const reset = container.getByRole('button', {name: "Reset"});
+			fireEvent.click(reset)
 		});
 
 		and('User should see the filter was removed when user clicks on Clear option', () => {
-
+			const done = container.getByRole('button', {name: "Done"});
+			fireEvent.click(done)
 		});
 	});
 
