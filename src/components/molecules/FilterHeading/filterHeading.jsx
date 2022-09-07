@@ -79,6 +79,7 @@ export function getDialogContents(
           return (
             <LocalizationProvider dateAdapter={AdapterDateFns}>
               <StaticDatePicker
+                data-testid={"dateFilter"}
                 displayStaticWrapperAs="desktop"
                 minDate={minDate}
                 maxDate={maxDate}

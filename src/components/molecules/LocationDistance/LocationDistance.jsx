@@ -6,7 +6,13 @@ import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
 import { colors } from "../../../styles/theme";
 import styles from "./styles.module.scss";
 
-export const LocationDistance = ({ isDesktop = true, distance = "" }) => {
+export const LocationDistance = ({
+  isDesktop = true,
+  distance = "",
+  onGetDirection = () => {
+    // This is intentional
+  },
+}) => {
   const iconSize = isDesktop ? 23 : 25;
   return (
     <Box
@@ -56,7 +62,13 @@ export const LocationDistance = ({ isDesktop = true, distance = "" }) => {
         }}
       >
         <DirectionsOutlinedIcon
-          sx={{ width: iconSize, height: iconSize, color: colors.darkGreen }}
+          sx={{
+            width: iconSize,
+            height: iconSize,
+            color: colors.darkGreen,
+            cursor: "pointer",
+          }}
+          onClick={onGetDirection}
         />
       </Box>
     </Box>
