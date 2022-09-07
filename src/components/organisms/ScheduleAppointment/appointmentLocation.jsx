@@ -6,6 +6,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import Image from "next/image";
 import { styles } from "./style";
+import { TEST_ID } from "../../../utils/constants";
 
 export default function AppointmentLocation({
   providerData = {},
@@ -41,6 +42,10 @@ export default function AppointmentLocation({
         isAppoinment={true}
         actionContent={
           <Button
+            data-testid={
+              TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_LOCATION
+                .editButton
+            }
             variant="text"
             className={styles.editButton}
             onClick={OnEditClicked}

@@ -33,6 +33,7 @@ import { fetchUser } from "../../../store/user";
 import { Api } from "../../api/api";
 import MESSAGES from "../../../utils/responseCodes";
 import { setFormMessage } from "../../../store";
+import { TEST_ID } from "../../../utils/constants";
 
 const MobileTopBar = (data) => {
   return (
@@ -133,6 +134,7 @@ export const PageContent = ({
             <Divider sx={{ mt: 2 }} />
             <Stack sx={{ p: "16px 0", justifyContent: "right" }}>
               <Button
+                data-testid={TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.step2Button}
                 variant="contained"
                 className={styles.continueButton}
                 sx={{

@@ -53,14 +53,6 @@ const nextConfig = {
         destination: "/auth/create-account",
       },
       {
-        source: "/patient/sync/login",
-        destination: "/patient/login",
-      },
-      {
-        source: "/patient/sync",
-        destination: "/patient/forgot-password",
-      },
-      {
         source: "/patient/sync",
         destination: "/patient/forgot-password",
       },

@@ -210,8 +210,7 @@ defineFeature(feature, (test) => {
 
     when(/^user select the security "(.*)" field$/, (arg0) => {
       const mySelectComponent = container.getByTestId("select-question-id-1");
-      const selectNode = mySelectComponent.childNodes[1];
-      fireEvent.change(selectNode, {
+      fireEvent.change(mySelectComponent, {
         target: { value: "What was the first concert you attended?" },
       });
       expect(
@@ -341,8 +340,7 @@ defineFeature(feature, (test) => {
 
     when(/^user select the security "(.*)" field$/, (arg0) => {
       const mySelectComponent = container.getByTestId("select-question-id-2");
-      const selectNode = mySelectComponent.childNodes[1];
-      fireEvent.change(selectNode, {
+      fireEvent.change(mySelectComponent, {
         target: { value: "What was the first concert you attended?" },
       });
       expect(
@@ -479,8 +477,7 @@ defineFeature(feature, (test) => {
 
     when(/^user select the security "(.*)" field$/, (arg0) => {
       const mySelectComponent = container.getByTestId("select-question-id-3");
-      const selectNode = mySelectComponent.childNodes[1];
-      fireEvent.change(selectNode, {
+      fireEvent.change(mySelectComponent, {
         target: { value: "What was the first concert you attended?" },
       });
       expect(
@@ -627,26 +624,22 @@ defineFeature(feature, (test) => {
 
     when(/^user enter answer in field "(.*)"$/, (arg0) => {
       const mySelectComponent1 = container.getByTestId("select-question-id-1");
-      const selectNode1 = mySelectComponent1.childNodes[1];
-      fireEvent.change(selectNode1, {
+      fireEvent.change(mySelectComponent1, {
         target: { value: "What was the first concert you attended?" },
       });
 
       const mySelectComponent2 = container.getByTestId("select-question-id-2");
-      const selectNode2 = mySelectComponent2.childNodes[1];
-      fireEvent.change(selectNode2, {
+      fireEvent.change(mySelectComponent2, {
         target: { value: "What was the first film you saw in a theater?" },
       });
 
       const mySelectComponent3 = container.getByTestId("select-question-id-3");
-      const selectNode3 = mySelectComponent3.childNodes[1];
-      fireEvent.change(selectNode3, {
+      fireEvent.change(mySelectComponent3, {
         target: { value: "What was the make and model of your first car?" },
       });
 
       const mySelectComponent4 = container.getByTestId("select-question-id-4");
-      const selectNode4 = mySelectComponent4.childNodes[1];
-      fireEvent.change(selectNode4, {
+      fireEvent.change(mySelectComponent4, {
         target: {
           value:
             "What was your favorite cartoon character during your childhood?",
@@ -654,8 +647,7 @@ defineFeature(feature, (test) => {
       });
 
       const mySelectComponent5 = container.getByTestId("select-question-id-5");
-      const selectNode5 = mySelectComponent5.childNodes[1];
-      fireEvent.change(selectNode3, {
+      fireEvent.change(mySelectComponent5, {
         target: { value: "What was the first thing you learned to cook?" },
       });
 
@@ -820,26 +812,22 @@ defineFeature(feature, (test) => {
 
     when(/^user enter answer in textfield "(.*)"$/, (arg0) => {
       const mySelectComponent1 = container.getByTestId("select-question-id-1");
-      const selectNode1 = mySelectComponent1.childNodes[1];
-      fireEvent.change(selectNode1, {
+      fireEvent.change(mySelectComponent1, {
         target: { value: "What was the first concert you attended?" },
       });
 
       const mySelectComponent2 = container.getByTestId("select-question-id-2");
-      const selectNode2 = mySelectComponent2.childNodes[1];
-      fireEvent.change(selectNode2, {
+      fireEvent.change(mySelectComponent2, {
         target: { value: "What was the first film you saw in a theater?" },
       });
 
       const mySelectComponent3 = container.getByTestId("select-question-id-3");
-      const selectNode3 = mySelectComponent3.childNodes[1];
-      fireEvent.change(selectNode3, {
+      fireEvent.change(mySelectComponent3, {
         target: { value: "What was the make and model of your first car?" },
       });
 
       const mySelectComponent4 = container.getByTestId("select-question-id-4");
-      const selectNode4 = mySelectComponent4.childNodes[1];
-      fireEvent.change(selectNode4, {
+      fireEvent.change(mySelectComponent4, {
         target: {
           value:
             "What was your favorite cartoon character during your childhood?",
@@ -847,8 +835,7 @@ defineFeature(feature, (test) => {
       });
 
       const mySelectComponent5 = container.getByTestId("select-question-id-5");
-      const selectNode5 = mySelectComponent5.childNodes[1];
-      fireEvent.change(selectNode5, {
+      fireEvent.change(mySelectComponent5, {
         target: { value: "What was the first thing you learned to cook?" },
       });
 

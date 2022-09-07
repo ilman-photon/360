@@ -15,6 +15,7 @@ import {
   formatDate,
 } from "../../../utils/dateFormatter";
 import { colors } from "../../../styles/theme";
+import { TEST_ID } from "../../../utils/constants";
 
 export default function AppointmentDetails({
   appointmentData = {},
@@ -34,6 +35,10 @@ export default function AppointmentDetails({
         isAppoinment={true}
         actionContent={
           <Button
+            data-testid={
+              TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_DETAILS
+                .editButton
+            }
             variant="text"
             className={styles.editButton}
             onClick={OnEditClicked}
