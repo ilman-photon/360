@@ -111,12 +111,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
   const isPasswordError = watchedPassword.length > 0; // && passwordValidator.filter(v => v.validate).length > 0
 
   const onSubmit = (data) => {
-    // dummy error validation
-    // setError("firstName", { type: 'custom', message: 'An error occured' })
-    // setError("lastName", { type: 'custom', message: 'An error occured' })
-    // setError("mobile", { type: 'custom', message: 'An error occured' })
-    // setError("password", { type: 'custom', message: 'An error occured' })
-
     const errors1 = [];
     const errors2 = [];
     passwordValidator.forEach((err) => {
