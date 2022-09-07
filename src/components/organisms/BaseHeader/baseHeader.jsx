@@ -23,7 +23,6 @@ import { logoutProps } from "../../../utils/authetication";
 
 export default function BaseHeader({
   OnLogoutClicked = (router) => {
-    // This is intended
     logoutProps.OnLogoutClicked(router);
   },
   backTitle,
