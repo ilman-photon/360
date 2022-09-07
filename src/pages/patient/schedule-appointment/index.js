@@ -4,8 +4,7 @@ import ScheduleAppointment from "../../../components/organisms/ScheduleAppointme
 import AppointmentLocation from "../../../components/organisms/ScheduleAppointment/appointmentLocation";
 import AppointmentDetails from "../../../components/organisms/ScheduleAppointment/appointmentDetails";
 import AppointmentForm from "../../../components/organisms/ScheduleAppointment/appointmentForm";
-import ModalScheduling from "../../../components/organisms/ScheduleAppointment/ModalScheduling/modalScheduling";
-import DrawerScheduling from "../../../components/organisms/ScheduleAppointment/ModalScheduling/drawerScheduling";
+import ModalConfirmation from "../../../components/organisms/ScheduleAppointment/ModalScheduling/modalConfirmation";
 
 import StepperAppoinment from "../../../components/molecules/StepperAppoinment/stepperAppoinment";
 import AccountTitleHeading from "../../../components/atoms/AccountTitleHeading/accountTitleHeading";
@@ -261,6 +260,7 @@ export default function ScheduleAppointmentPage() {
   };
 
   const handleClickSchedule = () => {
+    console.log("handleClickSchedule");
     setActiveStep(4);
     setIsOpen(true);
   };
@@ -309,22 +309,15 @@ export default function ScheduleAppointmentPage() {
     }
   };
 
-  const modalConfirmSchedule = () => {
-    return isDesktop ? (
-      <ModalScheduling
-        isLoggedIn={isLoggedIn}
-        patientData={appointmentScheduleData.patientInfo}
-        providerData={appointmentScheduleData.providerInfo}
-        isOpen={true}
-        OnSetIsOpen={(idx) => setIsOpen(idx)}
-      />
-    ) : (
-      <DrawerScheduling
+  const ModalConfirmSchedule = () => {
+    return (
+      <ModalConfirmation
         isLoggedIn={isLoggedIn}
         patientData={appointmentScheduleData.patientInfo}
         providerData={appointmentScheduleData.providerInfo}
         isOpen={isOpen}
         OnSetIsOpen={(idx) => setIsOpen(idx)}
+        isDesktop={isDesktop}
       />
     );
   };
@@ -395,7 +388,7 @@ export default function ScheduleAppointmentPage() {
         </div>
       </Grid>
 
-      {activeStep === 4 ? modalConfirmSchedule() : null}
+      {activeStep === 4 ? <ModalConfirmSchedule /> : null}
     </section>
   );
 }

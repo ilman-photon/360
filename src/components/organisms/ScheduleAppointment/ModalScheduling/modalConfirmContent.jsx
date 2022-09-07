@@ -62,9 +62,6 @@ export default function ModalConfirmContent({
   patientData = {},
   providerData = {},
   isLoggedIn,
-  OnClose = () => {
-    // This is intended
-  },
   OnSetIsOpen = () => {
     // This is intended
   },
