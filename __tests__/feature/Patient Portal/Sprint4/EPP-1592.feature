@@ -66,7 +66,7 @@ Feature: Patient Portal : Schedule appointment from Patient Portal - Review appo
   @Patient_Portal
   @Regression
   @Sprint4
-  Scenario Outline: EPIC_EPP-44_STORY_EPP-1592 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and user view options to change the insurance.
+  Scenario: EPIC_EPP-44_STORY_EPP-1592 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and user view options to change the insurance.
     Given user launch the Patient Portal url	
     When user provides valid Email or Phone Number and password and click on Login button
     Then user navigates to the Patient Portal application	
@@ -85,5 +85,3 @@ Feature: Patient Portal : Schedule appointment from Patient Portal - Review appo
     And user view options to change selected provider
     And user view options to change selected location
     And user view an option to schedule the appointment
-
-    Examples:

@@ -35,8 +35,7 @@ import {
   getProvideOverlay,
 } from "../../../utils/appointment";
 import { Api } from "../../api/api";
-import ModalScheduling from "../../../components/organisms/ScheduleAppointment/ModalScheduling/modalScheduling";
-import DrawerScheduling from "../../../components/organisms/ScheduleAppointment/ModalScheduling/drawerScheduling";
+import ModalConfirmation from "../../../components/organisms/ScheduleAppointment/ModalScheduling/modalConfirmation";
 import Cookies from "universal-cookie";
 import { formatAppointmentDate } from "../../../utils/dateFormatter";
 
@@ -478,9 +477,9 @@ export default function Appointment({ googleApiKey }) {
   console.log(appointmentScheduleData, "appointmentScheduleData");
 
   const scheduleConfirmPopup = () => {
-    return isDesktop ? (
-      <ModalScheduling
-        isLoggedIn={true}
+    return (
+      <ModalConfirmation
+        isLoggedIn={isLoggedIn}
         patientData={appointmentScheduleData.patientInfo}
         providerData={appointmentScheduleData.providerInfo}
         isOpen={isOpen}
@@ -488,17 +487,7 @@ export default function Appointment({ googleApiKey }) {
           setIsOpen(idx);
           cookies.remove("dashboardState", { path: "/patient" });
         }}
-      />
-    ) : (
-      <DrawerScheduling
-        isLoggedIn={true}
-        patientData={appointmentScheduleData.patientInfo}
-        providerData={appointmentScheduleData.providerInfo}
-        isOpen={isOpen}
-        OnSetIsOpen={(idx) => {
-          setIsOpen(idx);
-          cookies.remove("dashboardState", { path: "/patient" });
-        }}
+        isDesktop={isDesktop}
       />
     );
   };

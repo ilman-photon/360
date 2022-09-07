@@ -62,16 +62,13 @@ const loginProps = {
         });
       });
   },
-  OnGuestClicked: function () {
-    // This is intentional
-  },
   OnCreateAccountClicked: function (router) {
     router.push("/patient/auth/create-account");
   },
   OnForgotPasswordClicked: function (router) {
     router.push("/patient/forgot-password");
   },
-  onAppointMentClicked: "/patient/sync",
+  onAppointmentClicked: "/patient/sync",
 };
 
 export default function login() {

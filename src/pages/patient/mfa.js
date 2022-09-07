@@ -11,6 +11,7 @@ import AccountTitleHeading from "../../components/atoms/AccountTitleHeading/acco
 import FormMessage from "../../components/molecules/FormMessage/formMessage";
 import { Api } from "../api/api";
 import { useTranslation } from "next-i18next";
+import { formatPhoneNumber } from "../../utils/phoneFormatter";
 
 export async function getServerSideProps(context) {
   const cookies = new Cookies(context.req.headers.cookie);
@@ -57,6 +58,9 @@ export default function MfaPage() {
         .getUserData(postBody)
         .then((response) => {
           const method = response.communicationMethod;
+          if (method.phone) {
+            method.phone = formatPhoneNumber(method.phone, true);
+          }
           setCommunicationMethod(method);
         })
         .catch(() => {

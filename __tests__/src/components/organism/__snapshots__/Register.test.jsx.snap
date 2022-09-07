@@ -12,9 +12,10 @@ Object {
           class="css-1lwbda4-MuiStack-root"
         >
           <h1
-            aria-label="User Registration heading"
+            aria-label="User Registration"
             aria-roledescription=""
             class="MuiTypography-root MuiTypography-h1 css-ltzsrn-MuiTypography-root"
+            role="heading"
           >
             User Registration
           </h1>
@@ -567,9 +568,10 @@ Object {
         class="css-1lwbda4-MuiStack-root"
       >
         <h1
-          aria-label="User Registration heading"
+          aria-label="User Registration"
           aria-roledescription=""
           class="MuiTypography-root MuiTypography-h1 css-ltzsrn-MuiTypography-root"
+          role="heading"
         >
           User Registration
         </h1>

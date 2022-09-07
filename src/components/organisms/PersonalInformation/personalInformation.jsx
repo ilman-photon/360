@@ -409,7 +409,7 @@ export default function PersonalInformation({
                     type="text"
                     id="ssn"
                     label="SSN"
-                    value={value}
+                    value={formatSocialSecurity(String(value))}
                     onChange={onChange}
                     error={!!error}
                     size="small"

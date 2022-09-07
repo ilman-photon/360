@@ -531,7 +531,6 @@ Object {
                           </label>
                           <div
                             class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
-                            data-testid="select-undefined"
                           >
                             <div
                               aria-expanded="false"
@@ -551,6 +550,7 @@ Object {
                               aria-hidden="true"
                               aria-live="polite"
                               class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+                              data-testid="select-undefined"
                               tabindex="-1"
                               value=""
                             />
@@ -1516,7 +1516,6 @@ Object {
                         </label>
                         <div
                           class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-baqyug-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
-                          data-testid="select-undefined"
                         >
                           <div
                             aria-expanded="false"
@@ -1536,6 +1535,7 @@ Object {
                             aria-hidden="true"
                             aria-live="polite"
                             class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+                            data-testid="select-undefined"
                             tabindex="-1"
                             value=""
                           />
