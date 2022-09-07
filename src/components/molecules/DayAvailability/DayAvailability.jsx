@@ -165,6 +165,7 @@ export const DayAvailability = ({
             data-testid={
               TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.previousWeekButton
             }
+            sx={{ cursor: "pointer" }}
             onClick={() => {
               const date = new Date(dateList.dateRange[0]);
               date.setDate(date.getDate() - 7);
@@ -176,7 +177,7 @@ export const DayAvailability = ({
             data-testid={
               TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.nextWeekButton
             }
-            sx={{ marginLeft: "10px" }}
+            sx={{ marginLeft: "10px", cursor: "pointer" }}
             onClick={() => {
               const date = new Date(dateList.dateRange[5]);
               date.setDate(date.getDate() + 7);

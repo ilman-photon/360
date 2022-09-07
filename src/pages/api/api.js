@@ -202,10 +202,10 @@ export class Api {
     return this.getResponse(url, {}, "get");
   }
 
-  submitFilter() {
+  submitFilter(postBody) {
     const domain = window.location.origin;
     const url = `${domain}/api/dummy/appointment/create-appointment/submitFilter`;
-    return this.getResponse(url, {}, "post");
+    return this.getResponse(url, postBody, "post");
   }
 
   getAllAppointment() {
