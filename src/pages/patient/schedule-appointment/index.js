@@ -15,6 +15,7 @@ import BaseHeader from "../../../components/organisms/BaseHeader/baseHeader";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { LabelWithIcon } from "../../../components/atoms/LabelWithIcon/labelWithIcon";
+import { logoutProps } from "../../../utils/authetication";
 
 import {
   Button,
