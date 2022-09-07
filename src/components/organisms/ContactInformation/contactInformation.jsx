@@ -238,7 +238,7 @@ export default function ContactInformation({
                   },
                 },
                 pattern: {
-                  value: Regex.isEmailCorrect,
+                  value: Regex.emailValidation,
                   message: "Incorrect format",
                 },
               }}
