@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useRef } from "react";
 import { Box } from "@mui/material";
 import { styles } from "./style";
 import { StyledButton } from "../../atoms/Button/button";
@@ -7,6 +7,7 @@ import SelectOptionButton from "../../atoms/SelectOptionButton/selectOptionButto
 import StyledInput from "../../atoms/Input/input";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import globalStyles from "../../../styles/Global.module.scss";
+
 
 const SecurityQuestion = ({
   securityQuestionList = [],
@@ -21,11 +22,28 @@ const SecurityQuestion = ({
   },
   testIds,
 }) => {
+  const [questionVals,setQuestionVals] = useState([null, null, null])
+  const [questionValsDua,setQuestionValsDua] = useState(securityQuestionList)
+
+
+      const  handleQuestionValChange = (option, index) => {
+        const newQuestionVals = questionVals;
+        newQuestionVals[index] = option;
+        setQuestionVals([...questionVals, newQuestionVals])
+      };
+    
+     const  getAvailableOptions = () => {
+        const availableOptionsLeft = questionValsDua;
+        return availableOptionsLeft.filter(questionOption => {
+          return questionVals.indexOf(questionOption) === -1;
+        });
+      };
+
   const [showPostMessage, setShowPostMessage] = useState(propsShowPostMessage);
   const [postMessage, setPostMessage] = React.useState(
     "You must answer all security questions"
   );
-  const { handleSubmit, control } = useForm();
+  const { handleSubmit, control } = useForm()
   const hasDuplicates = (data) => {
     const isDuplicateAnswer = containsDuplicates(data.answer);
     const isDuplicateQuestion = containsDuplicates(data.question);
@@ -81,6 +99,7 @@ const SecurityQuestion = ({
     window.scrollTo(0, 0);
   };
 
+
   const securityQuestionUI = function () {
     const indents = [];
     let tabindex = 0;
@@ -114,16 +133,20 @@ const SecurityQuestion = ({
                   label={`Question ${index}`}
                   labelId={`question-label-${index}`}
                   id={`question-id-${index}`}
-                  options={securityQuestionList}
+                  options={getAvailableOptions()}
                   value={value}
                   onChange={(event) => {
                     onChange(event);
+                    handleQuestionValChange(event.target.value,index)
                     if (showPostMessage) {
                       setShowPostMessage(false);
                     }
                   }}
                   menuProps={{
                     tabIndex: tabindex,
+                  }}
+                  renderValue={(select)=>{
+                    return select
                   }}
                 />
               );
@@ -171,9 +194,12 @@ const SecurityQuestion = ({
     }
     return indents;
   };
+  
 
   return (
     <Box className={globalStyles.componentContainer}>
+      <h3>Ini punya saya</h3>
+
       {showPostMessage ? (
         <FormMessage success={false} sx={styles.postMessage}>
           {postMessage}
