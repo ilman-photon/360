@@ -24,6 +24,9 @@ export const FilterResult = ({
   onPrevScheduleClicked = () => {
     // This is intentional
   },
+  onGetDirection = () => {
+    // This is intentional
+  },
   isDesktop = false,
   isTablet = false,
   rangeDate = { startDate: "", endDate: "" },
@@ -78,6 +81,7 @@ export const FilterResult = ({
             OnDayClicked={(payload) => {
               OnDayClicked(payload, providerList[i]);
             }}
+            onGetDirection={onGetDirection}
           />
         </Box>
       );
