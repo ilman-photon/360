@@ -194,8 +194,6 @@ const SecurityQuestion = ({
 
   return (
     <Box className={globalStyles.componentContainer}>
-      <h3>Ini punya saya</h3>
-
       {showPostMessage ? (
         <FormMessage success={false} sx={styles.postMessage}>
           {postMessage}
