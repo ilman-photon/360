@@ -684,14 +684,17 @@ defineFeature(feature, (test) => {
 
 		and('User should select the date of appointment', () => {
 			const dateField = container.getByText(/Date/i);
+			expect(dateField).toBeInTheDocument()
 		});
 
 		and('User should select the purpose of the visit', () => {
 			const pusposeField = container.getByText(/Purpose of Visit/i);
+			expect(pusposeField).toBeInTheDocument()
 		});
 
 		and('User should fill the insurance name', () => {
 			const insuranceField = container.getByText(/Insurance Carrier/i);
+			expect(insuranceField).toBeInTheDocument()
 		});
 
 		when('User clicks on the Search button', async () => {
@@ -704,11 +707,14 @@ defineFeature(feature, (test) => {
 		});
 
 		then('User should see the results on the Schedule Appointments screen', () => {
-
+			expect(container.getByText(/Filter/i)).toBeInTheDocument()
 		});
 
 		and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
-
+			expect(container.container.querySelector('#location')).toBeInTheDocument()
+			expect(container.getByText(/Date/i)).toBeInTheDocument()
+			expect(container.getByText(/Purpose of Visit/i)).toBeInTheDocument()
+			expect(container.getByText(/Insurance Carrier/i)).toBeInTheDocument()
 		});
 
 		and('User should be able to view the following filters as below:', async (table) => {
@@ -717,6 +723,7 @@ defineFeature(feature, (test) => {
 
 			await waitFor(() => {
 				container.getByText(/Filter By/i);
+				expect(container.getByText(/Filter By/i)).toBeInTheDocument()
 			});
 		});
 	});
@@ -803,9 +810,13 @@ defineFeature(feature, (test) => {
 			fireEvent.click(language)
 		});
 
-		then('User should see Filtered Language', () => {
+		then('User should see Filtered Language', async () => {
 			const done = container.getByRole('button', {name: "Done"});
 			fireEvent.click(done)
+			await waitFor(() => {
+				container.getByText("Arabic");
+				expect(container.getByText("Arabic")).toBeInTheDocument()
+			});
 		});
 	});
 
@@ -893,9 +904,13 @@ defineFeature(feature, (test) => {
 			fireEvent.click(gender)
 		});
 
-		then('User should see Filtered Gender', () => {
+		then('User should see Filtered Gender', async () => {
 			const done = container.getByRole('button', {name: "Done"});
 			fireEvent.click(done)
+			await waitFor(() => {
+				container.getByText("Male");
+				expect(container.getByText("Male")).toBeInTheDocument()
+			});
 		});
 	});
 
@@ -1141,12 +1156,15 @@ defineFeature(feature, (test) => {
 
 		and('User should see an option to clear the applied filter', () => {
 			const reset = container.getByRole('button', {name: "Reset"});
+			expect(reset).toBeInTheDocument()
 			fireEvent.click(reset)
 		});
 
 		and('User should see the filter was removed when user clicks on Clear option', () => {
 			const done = container.getByRole('button', {name: "Done"});
 			fireEvent.click(done)
+
+			expect(container.queryByTestId('CloseIcon')).not.toBeInTheDocument()
 		});
 	});
 
