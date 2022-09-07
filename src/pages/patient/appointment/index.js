@@ -162,6 +162,7 @@ export default function Appointment({ googleApiKey }) {
             providerDataOverview.providerId,
             response.listOfProvider
           );
+          setRangeDate(setRangeDateData(response?.listOfProvider));
           setProviderDataOverview(providerOverview);
         } else {
           if (
