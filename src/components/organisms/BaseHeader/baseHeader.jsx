@@ -78,6 +78,7 @@ export default function BaseHeader({
                 height="36px"
                 style={styles.logoStyled}
                 aria-label={"Clarkson Eyecare logo"}
+                title="Your Account"
               ></Image>
               {/* Menu Desktop*/}
               <Box sx={styles.boxStyled}>
