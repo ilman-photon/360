@@ -354,6 +354,7 @@ Object {
                 value="both"
               >
                 <label
+                  aria-label="Email, Phone, Both - radio buttons"
                   class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1upt16w-MuiFormLabel-root"
                   id="row-radio-buttons-group-label"
                 >
@@ -910,6 +911,7 @@ Object {
               value="both"
             >
               <label
+                aria-label="Email, Phone, Both - radio buttons"
                 class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1upt16w-MuiFormLabel-root"
                 id="row-radio-buttons-group-label"
               >

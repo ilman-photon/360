@@ -258,6 +258,7 @@ Object {
             value="Yes"
           >
             <label
+              aria-label="Yes, No - radio buttons"
               class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1upt16w-MuiFormLabel-root"
               id="row-radio-buttons-group-label"
             >
@@ -780,6 +781,7 @@ Object {
             value="Primary"
           >
             <label
+              aria-label="Primary, Secondary, Tertiary - radio buttons"
               class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1upt16w-MuiFormLabel-root"
               id="row-radio-buttons-group-label"
             >
@@ -1243,6 +1245,7 @@ Object {
           value="Yes"
         >
           <label
+            aria-label="Yes, No - radio buttons"
             class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1upt16w-MuiFormLabel-root"
             id="row-radio-buttons-group-label"
           >
@@ -1765,6 +1768,7 @@ Object {
           value="Primary"
         >
           <label
+            aria-label="Primary, Secondary, Tertiary - radio buttons"
             class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1upt16w-MuiFormLabel-root"
             id="row-radio-buttons-group-label"
           >
