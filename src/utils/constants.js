@@ -151,6 +151,7 @@ module.exports = {
     },
     SEARCH_PROVIDER_TEST_ID: {
       viewAll: "loc_viewAll",
+      hourButton: "loc_hourButton",
     },
     SUBNAVIGATION: "subNavigation-link",
     SCHEDULE_APPOINTMENT_TEST_ID: {

@@ -4,17 +4,14 @@ import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import { Provider } from "react-redux";
-import Appointments from "../../src/pages/patient/appointments";
 import store from "../../src/store/store";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 import constants from "../../src/utils/constants";
-import { Login } from "../../src/components/organisms/Login/login";
 import FilterHeading from "../../src/components/molecules/FilterHeading/filterHeading";
 import FilterResult from "../../src/components/molecules/FilterResult/filterResult";
-import FilterBy from "../../src/components/molecules/FilterBy/filterBy";
-import AppointmentDetails from "../../src/components/organisms/ScheduleAppointment/appointmentDetails";
-import AppointmentLocation from "../../src/components/organisms/ScheduleAppointment/appointmentLocation";
-import { PageContent } from "../../src/pages/patient/schedule-appointment";
+import ScheduleAppointmentPage from "../../src/pages/patient/schedule-appointment";
+import mediaQuery from 'css-mediaquery';
+
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-1561.feature"
@@ -22,161 +19,8 @@ const feature = loadFeature(
 
 defineFeature(feature, (test) => {
   let container;
-  const element = document.createElement("div");
-  const mock = new MockAdapter(axios);
-  const { APPOINTMENT_TEST_ID, SCHEDULE_APPOINTMENT_TEST_ID } = constants.TEST_ID
-  const mockAppointmentScheduleData = {
-    providerInfo: {
-      providerId: '1',
-      name: 'Paul Wagner Md',
-      address: {
-        addressLine1: '51 West 51st Street',
-        addressLine2: 'Floor 3, Suite 320 Midtown',
-        city: 'Florida',
-        state: 'FR',
-        zipcode: '54231'
-      },
-      rating: '5',
-      phoneNumber: '(123) 123-4567',
-      distance: '10 mi',
-      image: '/doctor.png',
-      from: '2022-09-19',
-      to: '2022-09-24',
-      location: {
-        latitude: 0,
-        longitude: 0
-      },
-      availability: [
-        {
-          date: '2022-09-19',
-          list: [
-            {
-              time: '11:30am',
-              key: 12222
-            }
-          ]
-        },
-        {
-          date: '2022-09-20',
-          list: [
-            {
-              time: '08:00am',
-              key: 12223
-            },
-            {
-              time: '10:30am',
-              key: 12224
-            },
-            {
-              time: '11:00am',
-              key: 12225
-            },
-            {
-              time: '12:00pm',
-              key: 12226
-            },
-            {
-              time: '13:00pm',
-              key: 12227
-            },
-            {
-              time: '14:00pm',
-              key: 12228
-            }
-          ]
-        },
-        {
-          date: '2022-09-21',
-          list: [
-            {
-              time: '08:30am',
-              key: 12229
-            },
-            {
-              time: '10:30am',
-              key: 12230
-            },
-            {
-              time: '11:30am',
-              key: 12231
-            },
-            {
-              time: '12:00pm',
-              key: 12232
-            },
-            {
-              time: '13:30pm',
-              key: 12233
-            },
-            {
-              time: '14:30pm',
-              key: 12234
-            },
-            {
-              time: '15:30pm',
-              key: 12235
-            },
-            {
-              time: '16:30pm',
-              key: 12236
-            },
-            null
-          ]
-        },
-        {
-          date: '2022-09-22',
-          list: [
-            {
-              time: '09:30am',
-              key: 12237
-            },
-            {
-              time: '11:00am',
-              key: 12238
-            }
-          ]
-        },
-        {
-          date: '2022-09-23',
-          list: [
-            {
-              time: '09:30am',
-              key: 12239
-            }
-          ]
-        },
-        {
-          date: '2022-09-24',
-          list: [
-            {
-              time: '09:30am',
-              key: 12240
-            }
-          ]
-        }
-      ],
-      coordinate: {
-        latitude: 32.751204,
-        longitude: -117.1641166
-      }
-    },
-    patientInfo: {
-      name: null,
-      firstName: '',
-      lastName: '',
-      dob: null,
-      phoneNumber: null,
-      email: '',
-      password: '',
-      preferredCommunication: 'both'
-    },
-    appointmentInfo: {
-      appointmentType: 'Eye Exam',
-      date: '08:00am',
-      insuranceCarrier: 'Aetna'
-    }
-  }
-
+  const { APPOINTMENT_TEST_ID, SEARCH_PROVIDER_TEST_ID } = constants.TEST_ID
+  
   const providerList = [
     {
       providerId: "1",
@@ -495,6 +339,101 @@ defineFeature(feature, (test) => {
     expect(true).toBeTruthy();
   };
 
+  function createMatchMedia(width) {
+    return query => ({
+        matches: mediaQuery.match(query, { width }),
+        addListener: () => { },
+        removeListener: () => { },
+    });
+  }
+
+  const searchScreen = () => {
+    window.matchMedia = createMatchMedia('1920px');
+    const mockFilterData = {
+        date: null,
+        location: "",
+        insuranceCarrier: "",
+        purposeOfVisit: "",
+      }
+        container = render(<FilterHeading 
+        isDesktop={true}
+        isTablet={false}
+        onSearchProvider={() => {
+          jest.fn();
+        }}
+        onSwapButtonClicked={() => {
+          jest.fn();
+        }}
+        isGeolocationEnabled={false}
+        filterData={mockFilterData}
+        purposeOfVisitData={[]}
+        insuranceCarrierData={[]} />);
+  }
+
+  const inputLocation = async () => {
+    const locationInput = await waitFor(() => container.getByLabelText("City, state, or zip code"))
+    act(() => {
+      fireEvent.change(locationInput, { target: { value: "Texas" } });
+    });
+  }
+
+  const inputDate = async () => {
+    const dateInput = await waitFor(() => container.getByLabelText("Date"))
+    act(() => {
+      fireEvent.change(dateInput, { target: { value: "22-09-2022" } });
+    });
+  }
+
+  const inputPurpose = async () => {
+    const purposeInput = await waitFor(() => container.getByTestId("select-purposes-of-visit"))
+    act(() => {
+      fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
+    });
+  }
+
+  const inputInsurance = async () => {
+    const insuranceInput = await waitFor(() => container.getByLabelText("Insurance Carrier"))
+    act(() => {
+      fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
+    });
+  }
+
+  const clickSearch = async () => {
+    const searchBtn = await waitFor(() => container.getByTestId(APPOINTMENT_TEST_ID.searchbtn))
+    fireEvent.click(searchBtn)
+  }
+
+  const resultsScreen = async () => {
+    const rangeDate = { startDate: "2022-10-10", endDate: "2022-10-15" }
+    container.rerender(
+      <FilterResult isDesktop={true} 
+        providerList={providerList} 
+        rangeDate={rangeDate} 
+        purposeOfVisitData={[]}
+        insuranceCarrierData={[]}
+        googleApiKey={"Test"}
+        filterData = {{
+          location: "",
+          date: "",
+          purposeOfVisit: "",
+          insuranceCarrier: "",
+        }}
+      />
+    );
+    expect(await waitFor(() => container.getByTestId(APPOINTMENT_TEST_ID.FILTER_RESULT.container))).toBeInTheDocument()
+  }
+
+  const reviewAppPage = async () => {
+    container.rerender(<Provider store={store}>{ScheduleAppointmentPage.getLayout(<ScheduleAppointmentPage />)}</Provider>);
+    await waitFor(() => container.getByText("Review appointment details"))
+  }
+
+  const clickHour = async () => {
+    expect(container.getByText("30 In-network providers")).toBeInTheDocument();
+    const hourButton = await waitFor(() => container.getByTestId(SEARCH_PROVIDER_TEST_ID.hourButton))
+    fireEvent.click(hourButton)
+  }
+
   test('EPIC_EPP-44_STORY_EPP-1561 - Verify user able to search for location and select the date of appointment as well as purpose of visit and insurance.', ({ given, then, and }) => {
     defaultValidation();
   });
@@ -505,82 +444,35 @@ defineFeature(feature, (test) => {
     });
 
     and('user clicks on the Schedule your Eye Exam button', () => {
-        defaultValidation();
+        clickSearch();
     });
 
     then('user navigates to the search screen', () => {
-        const mockFilterData = {
-            date: null,
-            location: "",
-            insuranceCarrier: "",
-            purposeOfVisit: "",
-          }
-            container = render(<FilterHeading 
-            isDesktop={true}
-            isTablet={false}
-            onSearchProvider={() => {
-              jest.fn();
-            }}
-            onSwapButtonClicked={() => {
-              jest.fn();
-            }}
-            isGeolocationEnabled={false}
-            filterData={mockFilterData}
-            purposeOfVisitData={[]}
-            insuranceCarrierData={[]} />);
+        searchScreen();
     });
 
     and('user enters the location', async () => {
-        const locationInput = await waitFor(() => container.getByLabelText("City, state, or zip code"))
-        act(() => {
-            fireEvent.change(locationInput, { target: { value: "Texas" } });
-          });
+        inputLocation();
     });
 
     and('user selects the date of appointment', async () => {
-        const dateInput = await waitFor(() => container.getByLabelText("Date"))
-        act(() => {
-            fireEvent.change(dateInput, { target: { value: "22-09-2022" } });
-          })
+        inputDate();
     });
 
     and('user chooses the purpose of the visit', async () => {
-        const purposeInput = await waitFor(() => container.getByTestId("select-purposes-of-visit"))
-        act(() => {
-            fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
-        })
+        inputPurpose();
     });
 
     and('user enters the insurance name', async () => {
-        const insuranceInput = await waitFor(() => container.getByLabelText("Insurance Carrier"))
-        act(() => {
-            fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
-        })
+        inputInsurance();
     });
 
     and('user clicks on the Search button', async () => {
-        const searchBtn = await waitFor(() => container.getByTestId(APPOINTMENT_TEST_ID.searchbtn))
-      fireEvent.click(searchBtn)
+        clickSearch();
     });
 
     and('user views the results in the Schedule Appointments screen', async () => {
-        const rangeDate = { startDate: "2022-10-10", endDate: "2022-10-15" }
-      container.rerender(
-        <FilterResult isDesktop={true} 
-          providerList={providerList} 
-          rangeDate={rangeDate} 
-          purposeOfVisitData={[]}
-          insuranceCarrierData={[]}
-          googleApiKey={"Test"}
-          filterData = {{
-            location: "",
-            date: "",
-            purposeOfVisit: "",
-            insuranceCarrier: "",
-          }}
-        />
-      );
-      expect(await waitFor(() => container.getByTestId(APPOINTMENT_TEST_ID.FILTER_RESULT.container))).toBeInTheDocument()
+        resultsScreen();
     });
 
     and('user views the selected location.', () => {
@@ -594,35 +486,35 @@ defineFeature(feature, (test) => {
     });
 
     and('user clicks on the Schedule your Eye Exam button', () => {
-        defaultValidation();
+        clickSearch();
     });
 
     then('user navigates to the search screen', () => {
-        defaultValidation();
+        searchScreen();
     });
 
     and('user enters the location', () => {
-        defaultValidation();
+        inputLocation();
     });
 
     and('user selects the date of appointment', () => {
-        defaultValidation();
+        inputDate();
     });
 
     and('user chooses the purpose of the visit', () => {
-        defaultValidation();
+        inputPurpose();
     });
 
     and('user enters the insurance name', () => {
-        defaultValidation();
+        inputInsurance();
     });
 
     and('user clicks on the Search button', () => {
-        defaultValidation();
+        clickSearch();
     });
 
     and('user views the results in the Schedule Appointments screen', () => {
-        defaultValidation();
+        resultsScreen();
     });
 
     and('user views the date of appointment.', () => {
@@ -636,35 +528,35 @@ defineFeature(feature, (test) => {
     });
 
     and('user clicks on the Schedule your Eye Exam button', () => {
-        defaultValidation();
+      defaultValidation();
     });
 
     then('user navigates to the search screen', () => {
-        defaultValidation();
+        searchScreen();
     });
 
     and('user enters the location', () => {
-        defaultValidation();
+        inputLocation();
     });
 
     and('user selects the date of appointment', () => {
-        defaultValidation();
+        inputDate();
     });
 
     and('user chooses the purpose of the visit', () => {
-        defaultValidation();
+        inputPurpose();
     });
 
     and('user enters the insurance name', () => {
-        defaultValidation();
+        inputInsurance();
     });
 
     and('user clicks on the Search button', () => {
-        defaultValidation();
+        clickSearch();
     });
 
     and('user views the results in the Schedule Appointments screen', () => {
-        defaultValidation();
+        resultsScreen();
     });
 
     and('user views the purpose of the visit.', () => {
@@ -678,35 +570,35 @@ defineFeature(feature, (test) => {
     });
 
     and('user clicks on the Schedule your Eye Exam button', () => {
-        defaultValidation();
+        clickSearch();
     });
 
     then('user navigates to the search screen', () => {
-        defaultValidation();
+        searchScreen();
     });
 
     and('user enters the location', () => {
-        defaultValidation();
+        inputLocation();
     });
 
     and('user selects the date of appointment', () => {
-        defaultValidation();
+        inputDate();
     });
 
     and('user chooses the purpose of the visit', () => {
-        defaultValidation();
+        inputPurpose();
     });
 
     and('user enters the insurance name', () => {
-        defaultValidation();
+        inputInsurance();
     });
 
     and('user clicks on the Search button', () => {
-        defaultValidation();
+        clickSearch();
     });
 
     and('user views the results in the Schedule Appointments screen', () => {
-        defaultValidation();
+        resultsScreen();
     });
 
     and('user views the insurance carrier.', () => {
@@ -720,31 +612,31 @@ defineFeature(feature, (test) => {
     });
 
     and('user clicks on the Schedule your Eye Exam button', () => {
-        defaultValidation();
+        clickSearch();
     });
 
     then('user navigates to the search screen', () => {
-        defaultValidation();
+        searchScreen();
     });
 
     and('user enters the location', () => {
-        defaultValidation();
+        inputLocation();
     });
 
     and('user selects the date of appointment', () => {
-        defaultValidation();
+        inputDate();
     });
 
     and('user chooses the purpose of the visit', () => {
-        defaultValidation();
+        inputPurpose();
     });
 
     and('user enters the insurance name', () => {
-        defaultValidation();
+        inputInsurance();
     });
 
     and('user clicks on the Search button', () => {
-        defaultValidation();
+        clickSearch();
     });
 
     and('user lands on Schedule Appointment screen with the selected location, date, purpose of visit (if provided) and insurance carrier (if provided)', () => {
@@ -758,39 +650,39 @@ defineFeature(feature, (test) => {
     });
 
     and('user clicks on the Schedule your Eye Exam button', () => {
-        defaultValidation();
+        clickSearch();
     });
 
     then('user navigates to the search screen', () => {
-        defaultValidation();
+        searchScreen();
     });
 
     and('user enters the location', () => {
-        defaultValidation();
+        inputLocation();
     });
 
     and('user selects the date of appointment', () => {
-        defaultValidation();
+        inputDate();
     });
 
     and('user chooses the purpose of the visit', () => {
-        defaultValidation();
+        inputPurpose();
     });
 
     and('user enters the insurance name', () => {
-        defaultValidation();
+        inputInsurance();
     });
 
     and('user clicks on the Search button', () => {
-        defaultValidation();
+        clickSearch();
     });
 
     and('user views the results in the Schedule Appointments screen', () => {
-        defaultValidation();
+        resultsScreen();
     });
 
     and('user views the timeslot', () => {
-        defaultValidation();
+      clickHour();
     });
 });
 
@@ -800,39 +692,40 @@ defineFeature(feature, (test) => {
     });
 
     and('user clicks on the Schedule your Eye Exam button', () => {
-        defaultValidation();
+        clickSearch();
     });
 
     then('user navigates to the search screen', () => {
-        defaultValidation();
+        searchScreen();
     });
 
     and('user enters the location', () => {
-        defaultValidation();
+        inputLocation();
     });
 
     and('user selects the date of appointment', () => {
-        defaultValidation();
+        inputDate();
     });
 
     and('user chooses the purpose of the visit', () => {
-        defaultValidation();
+        inputPurpose();
     });
 
     and('user enters the insurance name', () => {
-        defaultValidation();
+        inputInsurance();
     });
 
     and('user clicks on the Search button', () => {
-        defaultValidation();
+        clickSearch();
     });
 
     and('user views the results in the Schedule Appointments screen', () => {
-        defaultValidation();
+        resultsScreen();
     });
 
     and('user select the timeslot', () => {
-        defaultValidation();
+      expect(container.getByText("30 In-network providers")).toBeInTheDocument();
+      clickHour();
     });
 });
 
@@ -842,43 +735,44 @@ defineFeature(feature, (test) => {
     });
 
     and('user clicks on the Schedule your Eye Exam button', () => {
-        defaultValidation();
+        clickSearch();
     });
 
     then('user navigates to the search screen', () => {
-        defaultValidation();
+        searchScreen();
     });
 
     and('user enters the location', () => {
-        defaultValidation();
+        inputLocation();
     });
 
     and('user selects the date of appointment', () => {
-        defaultValidation();
+        inputDate();
     });
 
     and('user chooses the purpose of the visit', () => {
-        defaultValidation();
+        inputPurpose();
     });
 
     and('user enters the insurance name', () => {
-        defaultValidation();
+        inputInsurance();
     });
 
     and('user clicks on the Search button', () => {
-        defaultValidation();
+        clickSearch();
     });
 
     and('user views the results in the Schedule Appointments screen', () => {
-        defaultValidation();
+        resultsScreen();
     });
 
     and('user select the timeslot', () => {
-        defaultValidation();
+      expect(container.getByText("30 In-network providers")).toBeInTheDocument();
+      clickHour();
     });
 
     then('user lands on the screen to review the appointment details', () => {
-        defaultValidation();
+      reviewAppPage();
     });
 });
 
@@ -888,47 +782,49 @@ defineFeature(feature, (test) => {
     });
 
     and('user clicks on the Schedule your Eye Exam button', () => {
-        defaultValidation();
+        clickSearch();
     });
 
     then('user navigates to the search screen', () => {
-        defaultValidation();
+        searchScreen();
     });
 
     and('user enters the location', () => {
-        defaultValidation();
+        inputLocation();
     });
 
     and('user selects the date of appointment', () => {
-        defaultValidation();
+        inputDate();
     });
 
     and('user chooses the purpose of the visit', () => {
-        defaultValidation();
+        inputPurpose();
     });
 
     and('user enters the insurance name', () => {
-        defaultValidation();
+        inputInsurance();
     });
 
     and('user clicks on the Search button', () => {
-        defaultValidation();
+        clickSearch();
     });
 
     and('user views the results in the Schedule Appointments screen', () => {
-        defaultValidation();
+        resultsScreen();
     });
 
     and('user select the timeslot', () => {
-        defaultValidation();
+      expect(container.getByText("30 In-network providers")).toBeInTheDocument();
+      clickHour();
     });
 
     then('user lands on the screen to review the appointment details', () => {
-        defaultValidation();
+      reviewAppPage();
     });
 
     and('user selects the option proceeds to schedule it', () => {
-        defaultValidation();
+      const continueButton = container.getByText("continue");
+      fireEvent.click(continueButton);
     });
 });
 
@@ -938,51 +834,54 @@ defineFeature(feature, (test) => {
     });
 
     and('user clicks on the Schedule your Eye Exam button', () => {
-        defaultValidation();
+        clickSearch();
     });
 
     then('user navigates to the search screen', () => {
-        defaultValidation();
+        searchScreen();
     });
 
     and('user enters the location', () => {
-        defaultValidation();
+        inputLocation();
     });
 
     and('user selects the date of appointment', () => {
-        defaultValidation();
+        inputDate();
     });
 
     and('user chooses the purpose of the visit', () => {
-        defaultValidation();
+        inputPurpose();
     });
 
     and('user enters the insurance name', () => {
-        defaultValidation();
+        inputInsurance();
     });
 
     and('user clicks on the Search button', () => {
-        defaultValidation();
+        clickSearch();
     });
 
     and('user views the results in the Schedule Appointments screen', () => {
-        defaultValidation();
+        resultsScreen();
     });
 
     and('user select the timeslot', () => {
-        defaultValidation();
+      expect(container.getByText("30 In-network providers")).toBeInTheDocument();
+      clickHour();
     });
 
     then('user lands on the screen to review the appointment details', () => {
-        defaultValidation();
+      reviewAppPage();
     });
 
     and('user selects the option proceeds to schedule it', () => {
-        defaultValidation();
+      const continueButton = container.getByText("continue");
+      fireEvent.click(continueButton);
     });
 
     then('user lands on the screen to select who the appointment is for', () => {
-        defaultValidation();
+      expect(container.getAllByText("myself")).toBeTruthy();
+      expect(container.getAllByText("someoneElse")).toBeTruthy();
     });
 });
 
@@ -992,55 +891,59 @@ defineFeature(feature, (test) => {
     });
 
     and('user clicks on the Schedule your Eye Exam button', () => {
-        defaultValidation();
+        clickSearch();
     });
 
     then('user navigates to the search screen', () => {
-        defaultValidation();
+        searchScreen();
     });
 
     and('user enters the location', () => {
-        defaultValidation();
+        inputLocation();
     });
 
     and('user selects the date of appointment', () => {
-        defaultValidation();
+        inputDate();
     });
 
     and('user chooses the purpose of the visit', () => {
-        defaultValidation();
+        inputPurpose();
     });
 
     and('user enters the insurance name', () => {
-        defaultValidation();
+        inputInsurance();
     });
 
     and('user clicks on the Search button', () => {
-        defaultValidation();
+        clickSearch();
     });
 
     and('user views the results in the Schedule Appointments screen', () => {
-        defaultValidation();
+        resultsScreen();
     });
 
     and('user select the timeslot', () => {
-        defaultValidation();
+      expect(container.getByText("30 In-network providers")).toBeInTheDocument();
+      clickHour();
     });
 
     then('user lands on the screen to review the appointment details', () => {
-        defaultValidation();
+      reviewAppPage();
     });
 
     and('user selects the option proceeds to schedule it', () => {
-        defaultValidation();
+      const continueButton = container.getByText("continue");
+      fireEvent.click(continueButton);
     });
 
     then('user lands on the screen to select who the appointment is for', () => {
-        defaultValidation();
+      expect(container.getAllByText("myself")).toBeTruthy();
+      expect(container.getAllByText("someoneElse")).toBeTruthy();
     });
 
     and('user able to see Myself option in who the appointment is for screen', () => {
-        defaultValidation();
+      const myselfButton = container.getByText("myself");
+      fireEvent.click(myselfButton);
     });
 });
 
@@ -1050,55 +953,59 @@ defineFeature(feature, (test) => {
     });
 
     and('user clicks on the Schedule your Eye Exam button', () => {
-        defaultValidation();
+        clickSearch();
     });
 
     then('user navigates to the search screen', () => {
-        defaultValidation();
+        searchScreen();
     });
 
     and('user enters the location', () => {
-        defaultValidation();
+        inputLocation();
     });
 
     and('user selects the date of appointment', () => {
-        defaultValidation();
+        inputDate();
     });
 
     and('user chooses the purpose of the visit', () => {
-        defaultValidation();
+        inputPurpose();
     });
 
     and('user enters the insurance name', () => {
-        defaultValidation();
+        inputInsurance();
     });
 
     and('user clicks on the Search button', () => {
-        defaultValidation();
+        clickSearch();
     });
 
     and('user views the results in the Schedule Appointments screen', () => {
-        defaultValidation();
+        resultsScreen();
     });
 
     and('user select the timeslot', () => {
-        defaultValidation();
+        expect(container.getByText("30 In-network providers")).toBeInTheDocument();
+        clickHour();
     });
 
-    then('user lands on the screen to review the appointment details', () => {
-        defaultValidation();
+    then('user lands on the screen to review the appointment details', async () => {
+      reviewAppPage();
     });
 
     and('user selects the option proceeds to schedule it', () => {
-        defaultValidation();
+      const continueButton = container.getByText("continue");
+      fireEvent.click(continueButton);
     });
 
     then('user lands on the screen to select who the appointment is for', () => {
-        defaultValidation();
+      expect(container.getAllByText("myself")).toBeTruthy();
+      expect(container.getAllByText("someoneElse")).toBeTruthy();
     });
 
     and('user able to see Someone else option in who the appointment is for screen', () => {
-        defaultValidation();
+      const someoneElseButton = container.getByText("someoneElse");
+      fireEvent.click(someoneElseButton);
     });
 });
 
