@@ -18,6 +18,7 @@ export class Regex {
   static REGEX_PHONE_NUMBER_ONLY = /^\d{10,10}$/;
   static noWhitespaceRegex = /[^\s-]/;
   static isTenDigitPhone = /^(\d{3})(\d{3})(\d{4})$/;
-  static isImageFile = /(image\/(png|jpg|jpeg))/gi;
+  static isImageFile = /(image\/(png|jpg|jpeg))/;
   static minTwoDigitRegex = /^[^\s]{2,}$/;
+  static isMin2Max50Length = /^\w{2,50}$/;
 }
