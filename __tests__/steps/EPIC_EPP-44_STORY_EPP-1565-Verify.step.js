@@ -847,7 +847,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user lands on the screen t
 
   and('user selects the option proceeds to schedule it', () => {
       const continueButton = container.getByText("continue");
-    fireEvent.click(continueButton);
+      fireEvent.click(continueButton);
   });
 
   then('user lands on the screen to select who the appointment is for', () => {
