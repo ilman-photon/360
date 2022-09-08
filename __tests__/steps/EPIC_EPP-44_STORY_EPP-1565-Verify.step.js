@@ -687,7 +687,11 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user is able to see the ti
   });
 
   and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-      defaultValidation();
+      inputLocation();
+      inputDate();
+      inputPurpose();
+      inputInsurance();
+      clickSearch();
   });
 
   then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
@@ -695,7 +699,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user is able to see the ti
   });
 
   and('user views the timeslot', () => {
-      defaultValidation();
+      clickHour();
   });
 });
 
@@ -714,10 +718,10 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user is able to select the
 
   and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
     inputLocation();
-    inputDate();
-    inputPurpose();
-    inputInsurance();
-    clickSearch();
+      inputDate();
+      inputPurpose();
+      inputInsurance();
+      clickSearch();
   });
 
   then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
@@ -743,7 +747,11 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user lands on the screen t
   });
 
   and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-      defaultValidation();
+      inputLocation();
+      inputDate();
+      inputPurpose();
+      inputInsurance();
+      clickSearch();
   });
 
   then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
@@ -751,7 +759,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user lands on the screen t
   });
 
   and('user select the timeslot', () => {
-      defaultValidation();
+      clickHour();
   });
 
   then('user lands on the screen to review the appointment details', () => {
@@ -773,7 +781,11 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user lands on the screen t
   });
 
   and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-      defaultValidation();
+      inputLocation();
+      inputDate();
+      inputPurpose();
+      inputInsurance();
+      clickSearch();
   });
 
   then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
@@ -781,7 +793,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user lands on the screen t
   });
 
   and('user select the timeslot', () => {
-      defaultValidation();
+      clickHour();
   });
 
   then('user lands on the screen to review the appointment details', () => {
@@ -807,7 +819,11 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user lands on the screen t
   });
 
   and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-      defaultValidation();
+      inputLocation();
+      inputDate();
+      inputPurpose();
+      inputInsurance();
+      clickSearch();
   });
 
   then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
@@ -815,7 +831,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user lands on the screen t
   });
 
   and('user select the timeslot', () => {
-      defaultValidation();
+      clickHour();
   });
 
   then('user lands on the screen to review the appointment details', () => {
@@ -845,7 +861,11 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to see the field
   });
 
   and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-      defaultValidation();
+      inputLocation();
+      inputDate();
+      inputPurpose();
+      inputInsurance();
+      clickSearch();
   });
 
   then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
@@ -853,7 +873,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to see the field
   });
 
   and('user select the timeslot', () => {
-      defaultValidation();
+      clickHour();
   });
 
   then('user lands on the screen to review the appointment details', () => {
@@ -887,7 +907,11 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to select Someon
   });
 
   and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-      defaultValidation();
+      inputLocation();
+      inputDate();
+      inputPurpose();
+      inputInsurance();
+      clickSearch();
   });
 
   then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
@@ -895,7 +919,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to select Someon
   });
 
   and('user select the timeslot', () => {
-      defaultValidation();
+      clickHour();
   });
 
   then('user lands on the screen to review the appointment details', () => {
@@ -929,7 +953,11 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to see provide p
   });
 
   and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-      defaultValidation();
+      inputLocation();
+      inputDate();
+      inputPurpose();
+      inputInsurance();
+      clickSearch();
   });
 
   then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
@@ -937,7 +965,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to see provide p
   });
 
   and('user select the timeslot', () => {
-      defaultValidation();
+      clickHour();
   });
 
   then('user lands on the screen to review the appointment details', () => {
@@ -975,7 +1003,11 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to view the fiel
   });
 
   and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-      defaultValidation();
+      inputLocation();
+      inputDate();
+      inputPurpose();
+      inputInsurance();
+      clickSearch();
   });
 
   then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
@@ -983,7 +1015,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to view the fiel
   });
 
   and('user select the timeslot', () => {
-      defaultValidation();
+      clickHour();
   });
 
   then('user lands on the screen to review the appointment details', () => {
@@ -1017,7 +1049,11 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to view the fiel
     });
 
     and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-      defaultValidation();
+      inputLocation();
+      inputDate();
+      inputPurpose();
+      inputInsurance();
+      clickSearch();
     });
 
     then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
@@ -1025,7 +1061,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to view the fiel
     });
 
     and('user select the timeslot', () => {
-      defaultValidation();
+      clickHour();
     });
 
     then('user lands on the screen to review the appointment details', () => {
@@ -1067,7 +1103,11 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to view the appo
     });
 
     and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-      defaultValidation();
+      inputLocation();
+      inputDate();
+      inputPurpose();
+      inputInsurance();
+      clickSearch();
     });
 
     then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
@@ -1075,7 +1115,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to view the appo
     });
 
     and('user select the timeslot', () => {
-      defaultValidation();
+      clickHour();
     });
 
     then('user lands on the screen to review the appointment details', () => {
