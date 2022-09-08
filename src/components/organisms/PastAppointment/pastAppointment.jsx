@@ -83,7 +83,12 @@ export function PastAppointmentCard({ data }) {
           </Box>
         </Box>
         <Box className={styles.viewDetails}>
-          <Link className={styles.link}>View appointment details</Link>
+          <Link
+            href="/patient/appointments/detail-appoiments"
+            className={styles.link}
+          >
+            View appointment details
+          </Link>
         </Box>
       </Box>
     </Box>
