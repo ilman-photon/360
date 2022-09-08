@@ -123,8 +123,8 @@ exports[`App renders App unchanged 1`] = `
                   <label
                     class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
                     data-shrink="false"
-                    for=":r2:"
-                    id=":r2:-label"
+                    for=":r3:"
+                    id=":r3:-label"
                   >
                     Date of Birth
                   </label>
@@ -136,7 +136,7 @@ exports[`App renders App unchanged 1`] = `
                       aria-label="Choose date"
                       aria-readonly="true"
                       class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
-                      id=":r2:"
+                      id=":r3:"
                       readonly=""
                       type="text"
                       value=""
