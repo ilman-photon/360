@@ -94,7 +94,7 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        when(/^User fills valid (.*) and (.*)$/, (, arg1) => {
+        when(/^User fills valid (.*) and (.*)$/, () => {
             defaultValidation();
         });
 
@@ -147,7 +147,7 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        when(/^User fills valid (.*) and (.*)$/, (, arg1) => {
+        when(/^User fills valid (.*) and (.*)$/, () => {
             defaultValidation();
         });
 
@@ -212,7 +212,7 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        and(/^User fills valid (.*) and (.*)$/, (, arg1) => {
+        and(/^User fills valid (.*) and (.*)$/, () => {
             defaultValidation();
         });
 
@@ -277,7 +277,7 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        when(/^User fills valid (.*) and (.*)$/, (, arg1) => {
+        when(/^User fills valid (.*) and (.*)$/, () => {
             defaultValidation();
         });
 
@@ -346,7 +346,7 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        when(/^User fills valid (.*) and (.*)$/, (, arg1) => {
+        when(/^User fills valid (.*) and (.*)$/, () => {
             defaultValidation();
         });
 
@@ -415,7 +415,7 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        when(/^User fills valid (.*) and (.*)$/, (, arg1) => {
+        when(/^User fills valid (.*) and (.*)$/, () => {
             defaultValidation();
         });
 
@@ -480,7 +480,7 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        when(/^User fills valid (.*) and (.*)$/, (, arg1) => {
+        when(/^User fills valid (.*) and (.*)$/, () => {
             defaultValidation();
         });
 
@@ -557,7 +557,7 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        when(/^User fills valid (.*) and (.*)$/, (, arg1) => {
+        when(/^User fills valid (.*) and (.*)$/, () => {
             defaultValidation();
         });
 
@@ -622,7 +622,7 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        when(/^User fills valid (.*) and (.*)$/, (, arg1) => {
+        when(/^User fills valid (.*) and (.*)$/, () => {
             defaultValidation();
         });
 
