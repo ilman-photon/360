@@ -80,7 +80,12 @@ export default function InsuranceView({
                           <Grid container spacing={{ xs: 4 }}>
                             <Grid item xs={12} md={4}>
                               <LabelWithInfo label="Insurance Provider">
-                                {item.provider ? item.provider.label : "-"}
+                                {item.provider
+                                  ? item.provider.label.replace(
+                                      /(Add \")|(")/g,
+                                      ""
+                                    )
+                                  : "-"}
                               </LabelWithInfo>
                             </Grid>
 
