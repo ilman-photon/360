@@ -107,7 +107,7 @@ defineFeature(feature, (test) => {
 			defaultValidation()
 		});
 
-		and('user click on submit', () => {
+		and('user click on submit', async () => {
 			const expectedResult = {
 				ResponseCode: 1000,
 				ResponseType: "success",
@@ -129,10 +129,13 @@ defineFeature(feature, (test) => {
 			mock.onPost(`/ecp/patient/onetimelink`).reply(200, oneTimeLinkVal);
 			const button = container.getByTestId("continuebtn");
 			fireEvent.click(button);
+			await waitFor(() => {
+                expect(container.getByText(/Link sent to your phone number/i)).toBeInTheDocument()
+            })
 		});
 
 		then('user recieves link to email or phone number', () => {
-			defaultValidation()
+			expect(container.getByText(/Link sent to your phone number/i)).toBeInTheDocument()
 		});
 	});
 
@@ -172,7 +175,7 @@ defineFeature(feature, (test) => {
 			defaultValidation()
 		});
 
-		and('user click on submit', () => {
+		and('user click on submit', async () => {
 			const expectedResult = {
 				ResponseCode: 1000,
 				ResponseType: "success",
@@ -194,10 +197,13 @@ defineFeature(feature, (test) => {
 			mock.onPost(`/ecp/patient/onetimelink`).reply(200, oneTimeLinkVal);
 			const button = container.getByTestId("continuebtn");
 			fireEvent.click(button);
+			await waitFor (() => {
+				expect(container.getByText(/Link sent to your email/i)).toBeInTheDocument()
+			})
 		});
 
 		then('user recieves link to email or phone number', () => {
-			defaultValidation()
+			expect(container.getByText(/Link sent to your email/i)).toBeInTheDocument()
 		});
 
 		then('user should be able to click the link', async () => {
@@ -403,13 +409,17 @@ defineFeature(feature, (test) => {
 			expect(submitbutton).toBeInTheDocument()
 		});
 
-		when('User should click on Create Account button', () => {
+		when('User should click on Create Account button', async () => {
+			mock.onPost('/ecp/patient/registrationsetpassword').reply(200, {responseCode: 1000})
 			const submitbutton = container2.getByRole("button", { name: /Create Account/i })
 			fireEvent.click(submitbutton)
+			await waitFor(() => {
+				container2.getByText(/Set Password/i)
+			})
 		});
 
 		then('user should see the message Password has been set', () => {
-			defaultValidation()
+			expect(container2.getByText(/Set Password/i)).toBeInTheDocument()
 		});
 
 		then('user should get below notification message in either Email or mobile number based on preferred mode', (table) => {
