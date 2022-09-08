@@ -37,6 +37,8 @@ export const styles = {
     color: "#366A70",
     textAlign: "center",
     fontSize: "14px",
+    maxWidth: "85%",
+    alignSelf: "center",
   },
   loginLink: {
     color: colors.link,
