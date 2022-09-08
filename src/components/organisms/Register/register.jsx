@@ -427,6 +427,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           style={styles.bottomParagraph}
           aria-label="By registering, you accept to our Terms & Conditions and Privacy
           Policy"
+          role={"span"}
         >
           By registering, you accept to our Terms &<br /> Conditions and Privacy
           Policy

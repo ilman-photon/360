@@ -57,6 +57,6 @@ export const styles = {
     color: "#366A70",
     backgroundColor: `${colors.teal}0d`,
     margin: 8,
-    wordBreak: "break-all",
+    wordBreak: "break-word",
   },
 };
