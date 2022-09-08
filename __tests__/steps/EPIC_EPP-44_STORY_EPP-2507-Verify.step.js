@@ -11,7 +11,7 @@ import constants from "../../src/utils/constants";
 import mediaQuery from 'css-mediaquery';
 
 const feature = loadFeature(
-	"./__tests__/feature/Patient Portal/Sprint4/EPP-2506.feature"
+	"./__tests__/feature/Patient Portal/Sprint4/EPP-2507.feature"
 );
 
 defineFeature(feature, (test) => {
@@ -645,593 +645,1394 @@ defineFeature(feature, (test) => {
 		});
 	}
 
-    test('EPIC_EPP-44_STORY_EPP-2506-Verify User should be able to view the following filters', ({ given, when, then, and }) => {
-    	given(/^User launch the "(.*)" url$/, (arg0) => {
+	test('EPIC_EPP-44_STORY_EPP-2507 - Verify user able to search for location and select the date of appointment as well as purpose of visit and insurance.', ({ given, and, then }) => {
+		given('user launch the Marketing Site url', () => {
 
-    	});
+		});
 
-    	when(/^User clicks on the "(.*)" button$/, (arg0) => {
+		and('user clicks on the Schedule your Eye Exam button', () => {
 
-    	});
+		});
 
-    	then('User should navigated to the search screen', () => {
+		then('user navigates to the search screen', () => {
 
-    	});
+		});
 
-    	and('User should fill the location', () => {
+		and('user enters the location', () => {
 
-    	});
+		});
 
-    	and('User should select the date of appointment', () => {
+		and('user selects the date of appointment', () => {
 
-    	});
+		});
 
-    	and('User should select the purpose of the visit', () => {
+		and('user chooses the purpose of the visit', () => {
 
-    	});
+		});
 
-    	and('User should fill the insurance name', () => {
+		and('user enters the insurance name', () => {
 
-    	});
+		});
 
-    	when('User clicks on the Search button', () => {
+		and('user clicks on the Search button', () => {
 
-    	});
+		});
 
-    	then('User should see the results on the Schedule Appointments screen', () => {
+		and('user views the results on the Schedule Appointments screen', () => {
 
-    	});
+		});
 
-    	and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+		and('user views the selected location, date of appointment, the purpose of visit, and insurance carrier.', () => {
 
-    	});
+		});
+	});
 
-    	and('User should be able to view the following filters as below:', (table) => {
+	test('EPIC_EPP-44_STORY_EPP-2507 - Verify user able to search for location and select the date of appointment as well as purpose of visit and insurance and user view the location', ({ given, and, then }) => {
+		given('user launch the Marketing Site url', () => {
 
-    	});
-    });
+		});
 
-    test('EPIC_EPP-44_STORY_EPP-2506-Verify User should be able to apply the Language filter', ({ given, when, then, and }) => {
-    	given(/^User launch the "(.*)" url$/, (arg0) => {
+		and('user clicks on the Schedule your Eye Exam button', () => {
 
-    	});
+		});
 
-    	when(/^User clicks on the "(.*)" button$/, (arg0) => {
+		then('user navigates to the search screen', () => {
 
-    	});
+		});
 
-    	then('User should navigated to the search screen', () => {
+		and('user enters the location', () => {
 
-    	});
+		});
 
-    	and('User should fill the location', () => {
+		and('user selects the date of appointment', () => {
 
-    	});
+		});
 
-    	and('User should select the date of appointment', () => {
+		and('user chooses the purpose of the visit', () => {
 
-    	});
+		});
 
-    	and('User should select the purpose of the visit', () => {
+		and('user enters the insurance name', () => {
 
-    	});
+		});
 
-    	and('User should fill the insurance name', () => {
+		and('user clicks on the Search button', () => {
 
-    	});
+		});
 
-    	when('User clicks on the Search button', () => {
+		and('user views the results in the Schedule Appointments screen', () => {
 
-    	});
+		});
 
-    	then('User should see the results on the Schedule Appointments screen', () => {
+		and('user views the selected location.', () => {
 
-    	});
+		});
+	});
 
-    	and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+	test('EPIC_EPP-44_STORY_EPP-2507 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and the user view the date of appointment', ({ given, and, then }) => {
+		given('user launch the Marketing Site url', () => {
 
-    	});
+		});
 
-    	when('User selects Language filter', () => {
+		and('user clicks on the Schedule your Eye Exam button', () => {
 
-    	});
+		});
 
-    	then('User should see Filtered Language', () => {
+		then('user navigates to the search screen', () => {
 
-    	});
-    });
+		});
 
-    test('EPIC_EPP-44_STORY_EPP-2506-Verify User should be able to apply the Gender filter', ({ given, when, then, and }) => {
-    	given(/^User launch the "(.*)" url$/, (arg0) => {
+		and('user enters the location', () => {
 
-    	});
+		});
 
-    	when(/^User clicks on the "(.*)" button$/, (arg0) => {
+		and('user selects the date of appointment', () => {
 
-    	});
+		});
 
-    	then('User should navigated to the search screen', () => {
+		and('user chooses the purpose of the visit', () => {
 
-    	});
+		});
 
-    	and('User should fill the location', () => {
+		and('user enters the insurance name', () => {
 
-    	});
+		});
 
-    	and('User should select the date of appointment', () => {
+		and('user clicks on the Search button', () => {
 
-    	});
+		});
 
-    	and('User should select the purpose of the visit', () => {
+		and('user views the results in the Schedule Appointments screen', () => {
 
-    	});
+		});
 
-    	and('User should fill the insurance name', () => {
+		and('user views the date of appointment.', () => {
 
-    	});
+		});
+	});
 
-    	when('User clicks on the Search button', () => {
+	test('EPIC_EPP-44_STORY_EPP-2507 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and the user views the purpose of visit', ({ given, and, then }) => {
+		given('user launch the Marketing Site URL', () => {
 
-    	});
+		});
 
-    	then('User should see the results on the Schedule Appointments screen', () => {
+		and('user clicks on the Schedule your Eye Exam button', () => {
 
-    	});
+		});
 
-    	and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+		then('user navigates to the search screen', () => {
 
-    	});
+		});
 
-    	when('User selects Gender filter', () => {
+		and('user enters the location', () => {
 
-    	});
+		});
 
-    	then('User should see Filtered Gender', () => {
+		and('user selects the date of appointment', () => {
 
-    	});
-    });
+		});
 
-    test('EPIC_EPP-44_STORY_EPP-2506-Verify User should be able to apply the Insurance In/Out of Network filter', ({ given, when, then, and }) => {
-    	given(/^User launch the "(.*)" url$/, (arg0) => {
+		and('user chooses the purpose of the visit', () => {
 
-    	});
+		});
 
-    	when(/^User clicks on the "(.*)" button$/, (arg0) => {
+		and('user enters the insurance name', () => {
 
-    	});
+		});
 
-    	then('User should navigated to the search screen', () => {
+		and('user clicks on the Search button', () => {
 
-    	});
+		});
 
-    	and('User should fill the location', () => {
+		and('user views the results in the Schedule Appointments screen', () => {
 
-    	});
+		});
 
-    	and('User should select the date of appointment', () => {
+		and('user views the purpose of the visit.', () => {
 
-    	});
+		});
+	});
 
-    	and('User should select the purpose of the visit', () => {
+	test('EPIC_EPP-44_STORY_EPP-2507 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and the user view the insurance carrier.', ({ given, and, then }) => {
+		given('user launch the Marketing Site url', () => {
 
-    	});
+		});
 
-    	and('User should fill the insurance name', () => {
+		and('user clicks on the Schedule your Eye Exam button', () => {
 
-    	});
+		});
 
-    	when('User clicks on the Search button', () => {
+		then('user navigates to the search screen', () => {
 
-    	});
+		});
 
-    	then('User should see the results on the Schedule Appointments screen', () => {
+		and('user enters the location', () => {
 
-    	});
+		});
 
-    	and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+		and('user selects the date of appointment', () => {
 
-    	});
+		});
 
-    	when('User selects Insurance In/Out of Network filter', () => {
+		and('user chooses the purpose of the visit', () => {
 
-    	});
+		});
 
-    	then('User should see Filtered Insurance In/Out of Network', () => {
+		and('user enters the insurance name', () => {
 
-    	});
-    });
+		});
 
-    test('EPIC_EPP-44_STORY_EPP-2506-Verify User should be able to apply the Available Today (Provider) filter', ({ given, when, then, and }) => {
-    	given(/^User launch the "(.*)" url$/, (arg0) => {
+		and('user clicks on the Search button', () => {
 
-    	});
+		});
 
-    	when(/^User clicks on the "(.*)" button$/, (arg0) => {
+		and('user views the results in the Schedule Appointments screen', () => {
 
-    	});
+		});
 
-    	then('User should navigated to the search screen', () => {
+		and('user views the insurance carrier.', () => {
 
-    	});
+		});
+	});
 
-    	and('User should fill the location', () => {
+	test('EPIC_EPP-44_STORY_EPP-2507 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and the user views the purpose of visit as blank when the user not entered', ({ given, and, then, when }) => {
+		given('user launch the Marketing Site URL', () => {
 
-    	});
+		});
 
-    	and('User should select the date of appointment', () => {
+		and('user clicks on the Schedule your Eye Exam button', () => {
 
-    	});
+		});
 
-    	and('User should select the purpose of the visit', () => {
+		then('user navigates to the search screen', () => {
 
-    	});
+		});
 
-    	and('User should fill the insurance name', () => {
+		and('user enters the location', () => {
 
-    	});
+		});
 
-    	when('User clicks on the Search button', () => {
+		and('user selects the date of appointment', () => {
 
-    	});
+		});
 
-    	then('User should see the results on the Schedule Appointments screen', () => {
+		and('user chooses the purpose of the visit', () => {
 
-    	});
+		});
 
-    	and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+		and('user enters the insurance name', () => {
 
-    	});
+		});
 
-    	when('User selects Insurance Available Today (Provider) filter', () => {
+		and('user clicks on the Search button', () => {
 
-    	});
+		});
 
-    	then('User should see Filtered Available Today (Provider)', () => {
+		and('user views the results in the Schedule Appointments screen', () => {
 
-    	});
-    });
+		});
 
-    test('EPIC_EPP-44_STORY_EPP-2506-Verify User should see an option to clear those filters when applied', ({ given, when, then, and }) => {
-    	given(/^User launch the "(.*)" url$/, (arg0) => {
+		and('user views the purpose of the visit as blank', () => {
 
-    	});
+		});
 
-    	when(/^User clicks on the "(.*)" button$/, (arg0) => {
+		when('the user not entered the purpose of the visit', () => {
 
-    	});
+		});
+	});
 
-    	then('User should navigated to the search screen', () => {
+	test('EPIC_EPP-44_STORY_EPP-2507 - Verify user able to search for location and select the date of appointment as well as purpose of visit and insurance and user view the location using City with the selected location', ({ given, and, then }) => {
+		given('user launch the Marketing Site url', () => {
 
-    	});
+		});
 
-    	and('User should fill the location', () => {
+		and('user clicks on the Schedule your Eye Exam button', () => {
 
-    	});
+		});
 
-    	and('User should select the date of appointment', () => {
+		then('user navigates to the search screen', () => {
 
-    	});
+		});
 
-    	and('User should select the purpose of the visit', () => {
+		and('user enters the location', () => {
 
-    	});
+		});
 
-    	and('User should fill the insurance name', () => {
+		and('user selects the date of appointment', () => {
 
-    	});
+		});
 
-    	when('User clicks on the Search button', () => {
+		and('user chooses the purpose of the visit', () => {
 
-    	});
+		});
 
-    	then('User should see the results on the Schedule Appointments screen', () => {
+		and('user enters the insurance name', () => {
 
-    	});
+		});
 
-    	and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+		and('user clicks on the Search button', () => {
 
-    	});
+		});
 
-    	when('User selects Insurance Available Today (Provider) filter', () => {
+		and('user views the results in the Schedule Appointments screen', () => {
 
-    	});
+		});
 
-    	then('User should see Filtered Available Today (Provider)', () => {
+		and('user views the selected location.', () => {
 
-    	});
+		});
 
-    	and('User should see an option to clear the applied filter', () => {
+		and('user views an option to search locations using City with the selected location', () => {
 
-    	});
-    });
+		});
+	});
 
-    test('EPIC_EPP-44_STORY_EPP-2506-Verify User should see the filter was removed when user clicks on Clear option', ({ given, when, then, and }) => {
-    	given(/^User launch the "(.*)" url$/, (arg0) => {
+	test('EPIC_EPP-44_STORY_EPP-2507 - Verify user able to search for location and select the date of appointment as well as purpose of visit and insurance and user view the location using State with the selected location', ({ given, and, then }) => {
+		given('user launch the Marketing Site url', () => {
 
-    	});
+		});
 
-    	when(/^User clicks on the "(.*)" button$/, (arg0) => {
+		and('user clicks on the Schedule your Eye Exam button', () => {
 
-    	});
+		});
 
-    	then('User should navigated to the search screen', () => {
+		then('user navigates to the search screen', () => {
 
-    	});
+		});
 
-    	and('User should fill the location', () => {
+		and('user enters the location', () => {
 
-    	});
+		});
 
-    	and('User should select the date of appointment', () => {
+		and('user selects the date of appointment', () => {
 
-    	});
+		});
 
-    	and('User should select the purpose of the visit', () => {
+		and('user chooses the purpose of the visit', () => {
 
-    	});
+		});
 
-    	and('User should fill the insurance name', () => {
+		and('user enters the insurance name', () => {
 
-    	});
+		});
 
-    	when('User clicks on the Search button', () => {
+		and('user clicks on the Search button', () => {
 
-    	});
+		});
 
-    	then('User should see the results on the Schedule Appointments screen', () => {
+		and('user views the results in the Schedule Appointments screen', () => {
 
-    	});
+		});
 
-    	and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+		and('user views the selected location.', () => {
 
-    	});
+		});
 
-    	when('User selects Insurance Available Today (Provider) filter', () => {
+		and('user views an option to search locations using State with the selected location', () => {
 
-    	});
+		});
+	});
 
-    	then('User should see Filtered Available Today (Provider)', () => {
+	test('EPIC_EPP-44_STORY_EPP-2507 - Verify user able to search for location and select the date of appointment as well as purpose of visit and insurance and user view the location using  Zipcode with the selected location', ({ given, and, then }) => {
+		given('user launch the Marketing Site url', () => {
 
-    	});
+		});
 
-    	and('User should see an option to clear the applied filter', () => {
+		and('user clicks on the Schedule your Eye Exam button', () => {
 
-    	});
+		});
 
-    	and('User should see the filter was removed when user clicks on Clear option', () => {
+		then('user navigates to the search screen', () => {
 
-    	});
-    });
+		});
 
-    test('EPIC_EPP-44_STORY_EPP-2506-Verify User should be able to view the following filters within 3 seconds', ({ given, when, then, and }) => {
-    	given(/^User launch the "(.*)" url$/, (arg0) => {
+		and('user enters the location', () => {
 
-    	});
+		});
 
-    	when(/^User clicks on the "(.*)" button$/, (arg0) => {
+		and('user selects the date of appointment', () => {
 
-    	});
+		});
 
-    	then('User should navigated to the search screen', () => {
+		and('user chooses the purpose of the visit', () => {
 
-    	});
+		});
 
-    	and('User should fill the location', () => {
+		and('user enters the insurance name', () => {
 
-    	});
+		});
 
-    	and('User should select the date of appointment', () => {
+		and('user clicks on the Search button', () => {
 
-    	});
+		});
 
-    	and('User should select the purpose of the visit', () => {
+		and('user views the results in the Schedule Appointments screen', () => {
 
-    	});
+		});
 
-    	and('User should fill the insurance name', () => {
+		and('user views the selected location.', () => {
 
-    	});
+		});
 
-    	when('User clicks on the Search button', () => {
+		and('user views an option to search locations using Zipcode with the selected location', () => {
 
-    	});
+		});
+	});
 
-    	then('User should see the results on the Schedule Appointments screen', () => {
+	test('EPIC_EPP-44_STORY_EPP-2507 - Verify user able to search for the location and select the date of appointment as well as the purpose of visit and insurance and user view the location using the system to detect their location', ({ given, and, then }) => {
+		given('user launch the Marketing Site url', () => {
 
-    	});
+		});
 
-    	and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+		and('user clicks on the Schedule your Eye Exam button', () => {
 
-    	});
+		});
 
-    	and('User should be able to view the following filters as below:', (table) => {
+		then('user navigates to the search screen', () => {
 
-    	});
+		});
 
-    	when('User filter based on selected filter', () => {
+		and('user enters the location', () => {
 
-    	});
+		});
 
-    	then(/^User should see page load within "(.*)"$/, (arg0) => {
+		and('user selects the date of appointment', () => {
 
-    	});
-    });
+		});
 
-    test('EPIC_EPP-44_STORY_EPP-2506-Verify User should not see the any errors script when user clicks F12 on the console', ({ given, when, then, and }) => {
-    	given(/^User launch the "(.*)" url$/, (arg0) => {
+		and('user chooses the purpose of the visit', () => {
 
-    	});
+		});
 
-    	when(/^User clicks on the "(.*)" button$/, (arg0) => {
+		and('user enters the insurance name', () => {
 
-    	});
+		});
 
-    	then('User should navigated to the search screen', () => {
+		and('user clicks on the Search button', () => {
 
-    	});
+		});
 
-    	and('User should fill the location', () => {
+		and('user views the results in the Schedule Appointments screen', () => {
 
-    	});
+		});
 
-    	and('User should select the date of appointment', () => {
+		and('user views the selected location.', () => {
 
-    	});
+		});
 
-    	and('User should select the purpose of the visit', () => {
+		and('user views an option to search locations using City or State or Zipcode with the selected location', () => {
 
-    	});
+		});
 
-    	and('User should fill the insurance name', () => {
+		and('user has the option to allow the system to detect their location', () => {
 
-    	});
+		});
+	});
 
-    	when('User clicks on the Search button', () => {
+	test('EPIC_EPP-44_STORY_EPP-2507 - Verify user able to search for the location and select the date of appointment as well as the purpose of visit and insurance and the user views the filter options', ({ given, and, then }) => {
+		given('user launch the Marketing Site url', () => {
 
-    	});
+		});
 
-    	then('User should see the results on the Schedule Appointments screen', () => {
+		and('user clicks on the Schedule your Eye Exam button', () => {
 
-    	});
+		});
 
-    	and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+		then('user navigates to the search screen', () => {
 
-    	});
+		});
 
-    	and('User should be able to view the following filters as below:', (table) => {
+		and('user enters the location', () => {
 
-    	});
+		});
 
-    	when('User filter based on selected filter', () => {
+		and('user selects the date of appointment', () => {
 
-    	});
+		});
 
-    	then(/^User should see page load within "(.*)"$/, (arg0) => {
+		and('user chooses the purpose of the visit', () => {
 
-    	});
+		});
 
-    	when(/^User clicks on F(\d+) on the console$/, (arg0) => {
+		and('user enters the insurance name', () => {
 
-    	});
+		});
 
-    	then('User should not to see any errors script', () => {
+		and('user clicks on the Search button', () => {
 
-    	});
-    });
+		});
 
-    test('EPIC_EPP-44_STORY_EPP-2506-Negative Test Cases-Verify user should see the error message when the internet service is unavailable', ({ given, when, then, and }) => {
-    	given(/^User launch the "(.*)" url$/, (arg0) => {
+		and('user views the results in the Schedule Appointments screen', () => {
 
-    	});
+		});
 
-    	when(/^User clicks on the "(.*)" button$/, (arg0) => {
+		and('user views the selected location.', () => {
 
-    	});
+		});
 
-    	then('User should navigated to the search screen', () => {
+		and('user views an option to search locations using City or State or Zipcode with the selected location', () => {
 
-    	});
+		});
 
-    	and('User should fill the location', () => {
+		and('user has the option to allow the system to detect their location', () => {
 
-    	});
+		});
 
-    	and('User should select the date of appointment', () => {
+		and('user views the filter options', () => {
 
-    	});
+		});
+	});
 
-    	and('User should select the purpose of the visit', () => {
+	test('EPIC_EPP-44_STORY_EPP-2507 - Verify user able to search for the location and select the date of appointment as well as the purpose of visit and insurance and the user view options to change the appointment date', ({ given, and, then }) => {
+		given('user launch the Marketing Site url', () => {
 
-    	});
+		});
 
-    	and('User should fill the insurance name', () => {
+		and('user clicks on the Schedule your Eye Exam button', () => {
 
-    	});
+		});
 
-    	when('User clicks on the Search button', () => {
+		then('user navigates to the search screen', () => {
 
-    	});
+		});
 
-    	then('User should see the results on the Schedule Appointments screen', () => {
+		and('user enters the location', () => {
 
-    	});
+		});
 
-    	and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+		and('user selects the date of appointment', () => {
 
-    	});
+		});
 
-    	and('User should be able to view the following filters as below:', (table) => {
+		and('user chooses the purpose of the visit', () => {
 
-    	});
+		});
 
-    	when('User filter based on selected filter', () => {
+		and('user enters the insurance name', () => {
 
-    	});
+		});
 
-    	then('The Internet service is unavailable', () => {
+		and('user clicks on the Search button', () => {
 
-    	});
+		});
 
-    	and('User should see the appropriate error message', () => {
+		and('user views the results in the Schedule Appointments screen', () => {
 
-    	});
-    });
+		});
 
-    test('EPIC_EPP-44_STORY_EPP-2506-Negative Test Cases-Verify user should see the error message when the service is unavailable', ({ given, when, then, and }) => {
-    	given(/^User launch the "(.*)" url$/, (arg0) => {
+		and('user views the selected location.', () => {
 
-    	});
+		});
 
-    	when(/^User clicks on the "(.*)" button$/, (arg0) => {
+		and('user views an option to search locations using City or State or Zipcode with the selected location', () => {
 
-    	});
+		});
 
-    	then('User should navigated to the search screen', () => {
+		and('user has the option to allow the system to detect their location', () => {
 
-    	});
+		});
 
-    	and('User should fill the location', () => {
+		and('user views the filter options', () => {
 
-    	});
+		});
 
-    	and('User should select the date of appointment', () => {
+		and('user view options to change the appointment date', () => {
 
-    	});
+		});
+	});
 
-    	and('User should select the purpose of the visit', () => {
+	test('EPIC_EPP-44_STORY_EPP-2507 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and user view options to change the Purpose of the Visit', ({ given, and, then }) => {
+		given('user launch the Marketing Site url', () => {
 
-    	});
+		});
 
-    	and('User should fill the insurance name', () => {
+		and('user clicks on the Schedule your Eye Exam button', () => {
 
-    	});
+		});
 
-    	when('User clicks on the Search button', () => {
+		then('user navigates to the search screen', () => {
 
-    	});
+		});
 
-    	then('User should see the results on the Schedule Appointments screen', () => {
+		and('user enters the location', () => {
 
-    	});
+		});
 
-    	and('User should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+		and('user selects the date of appointment', () => {
 
-    	});
+		});
 
-    	and('User should be able to view the following filters as below:', (table) => {
+		and('user chooses the purpose of the visit', () => {
 
-    	});
+		});
 
-    	when('User filter based on selected filter', () => {
+		and('user enters the insurance name', () => {
 
-    	});
+		});
 
-    	then('The service is unavailable', () => {
+		and('user clicks on the Search button', () => {
 
-    	});
+		});
 
-    	and('User should see the appropriate error message', () => {
+		and('user views the results in the Schedule Appointments screen', () => {
 
-    	});
-    });
+		});
+
+		and('user views the selected location.', () => {
+
+		});
+
+		and('user views an option to search locations using City or State or Zipcode with the selected location', () => {
+
+		});
+
+		and('user has the option to allow the system to detect their location', () => {
+
+		});
+
+		and('user views the filter options', () => {
+
+		});
+
+		and('user view options to change the appointment date', () => {
+
+		});
+
+		and('user view options to change the Purpose of the Visit', () => {
+
+		});
+	});
+
+	test('EPIC_EPP-44_STORY_EPP-2507 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and user view options to change the insurance.', ({ given, and, then }) => {
+		given('user launch the Marketing Site url', () => {
+
+		});
+
+		and('user clicks on the Schedule your Eye Exam button', () => {
+
+		});
+
+		then('user navigates to the search screen', () => {
+
+		});
+
+		and('user enters the location', () => {
+
+		});
+
+		and('user selects the date of appointment', () => {
+
+		});
+
+		and('user chooses the purpose of the visit', () => {
+
+		});
+
+		and('user enters the insurance name', () => {
+
+		});
+
+		and('user clicks on the Search button', () => {
+
+		});
+
+		and('user views the results in the Schedule Appointments screen', () => {
+
+		});
+
+		and('user views the selected location.', () => {
+
+		});
+
+		and('user views an option to search locations using City or State or Zipcode with the selected location', () => {
+
+		});
+
+		and('user has the option to allow the system to detect their location', () => {
+
+		});
+
+		and('user views the filter options', () => {
+
+		});
+
+		and('user view options to change the appointment date', () => {
+
+		});
+
+		and('user view options to change the Purpose of the Visit', () => {
+
+		});
+
+		and('user view options to change the insurance.', () => {
+
+		});
+	});
+
+	test('EPIC_EPP-44_STORY_EPP-2507 - Verify the user is able to search for location and select the date of appointment as well as the purpose of visit and insurance and the user views the insurance carrier as blank when the user not entered', ({ given, and, then, when }) => {
+		given('user launch the Marketing Site URL', () => {
+
+		});
+
+		and('user clicks on the Schedule your Eye Exam button', () => {
+
+		});
+
+		then('user navigates to the search screen', () => {
+
+		});
+
+		and('user enters the location', () => {
+
+		});
+
+		and('user selects the date of appointment', () => {
+
+		});
+
+		and('user chooses the purpose of the visit', () => {
+
+		});
+
+		and('user enters the insurance name', () => {
+
+		});
+
+		and('user clicks on the Search button', () => {
+
+		});
+
+		and('user views the results in the Schedule Appointments screen', () => {
+
+		});
+
+		and('user views the purpose of the visit as blank', () => {
+
+		});
+
+		when('the user not entered the purpose of the visit', () => {
+
+		});
+	});
+
+	test('EPIC_EPP-44_STORY_EPP-2507-Verify User should be able to view the following filters', ({ given, when, then, and }) => {
+		given('user launch the Marketing Site url', () => {
+
+		});
+
+		when('user clicks on the Schedule your Eye Exam button', () => {
+
+		});
+
+		then('user should navigated to the search screen', async () => {
+			const mockGeolocation = {
+				getCurrentPosition: jest.fn(),
+				watchPosition: jest.fn()
+			};
+
+			const domain = window.location.origin;
+			mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, mockSuggestion);
+			mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(200, mockSubmitFilter);
+			
+			global.navigator.geolocation = mockGeolocation;
+			window.matchMedia = createMatchMedia('1920px');
+			act(() => {
+				container = render(
+					<Provider store={store}>
+						{Appointment.getLayout(<Appointment />)}
+					</Provider>
+				);
+			})
+			await waitFor(() => {
+				container.getByText(/City, state, or zip/i);
+				expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
+			});
+		});
+
+		and('user should fill the location', () => {
+			const locationField = container.container.querySelector('#location');
+			fireEvent.change(locationField, {target: { value: "Texas" }})
+		});
+
+		and('user should select the date of appointment', () => {
+
+		});
+
+		and('user should select the purpose of the visit', () => {
+
+		});
+
+		and('user should fill the insurance name', () => {
+
+		});
+
+		when('user clicks on the Search button', async () => {
+			const searchBtn = container.getByTestId("searchbtn")
+			fireEvent.click(searchBtn)
+
+			await waitFor(() => {
+				container.getByText(/Filter/i);
+				
+			});
+		});
+
+		then('user should see the results on the Schedule Appointments screen', () => {
+
+		});
+
+		and('user should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+
+		});
+
+		and('user should be able to view the following filters as below', async (table) => {
+			const filterBtn = container.getByTestId("filterbtn")
+			fireEvent.click(filterBtn)
+
+			await waitFor(() => {
+				container.getByText(/Filter By/i);
+				
+			});
+		});
+	});
+
+	test('EPIC_EPP-44_STORY_EPP-2507-Verify User should be able to apply the Language filter', ({ given, when, then, and }) => {
+		given('user launch the Marketing Site url', () => {
+
+		});
+
+		when('user clicks on the Schedule your Eye Exam button', () => {
+
+		});
+
+		then('user should navigated to the search screen', async () => {
+			const mockGeolocation = {
+				getCurrentPosition: jest.fn(),
+				watchPosition: jest.fn()
+			};
+
+			const domain = window.location.origin;
+			mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, mockSuggestion);
+			mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(200, mockSubmitFilter);
+			
+			global.navigator.geolocation = mockGeolocation;
+			window.matchMedia = createMatchMedia('1920px');
+			act(() => {
+				container = render(
+					<Provider store={store}>
+						{Appointment.getLayout(<Appointment />)}
+					</Provider>
+				);
+			})
+			await waitFor(() => {
+				container.getByText(/City, state, or zip/i);
+				expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
+			});
+		});
+
+		and('user should fill the location', () => {
+			const locationField = container.container.querySelector('#location');
+			fireEvent.change(locationField, {target: { value: "Texas" }})
+		});
+
+		and('user should select the date of appointment', () => {
+
+		});
+
+		and('user should select the purpose of the visit', () => {
+
+		});
+
+		and('user should fill the insurance name', () => {
+
+		});
+
+		when('user clicks on the Search button', async () => {
+			const searchBtn = container.getByTestId("searchbtn")
+			fireEvent.click(searchBtn)
+
+			await waitFor(() => {
+				container.getByText(/Filter/i);
+				
+			});
+		});
+
+		then('user should see the results on the Schedule Appointments screen', () => {
+			expect(container.getByText(/Filter/i)).toBeInTheDocument()
+		});
+
+		and('user should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+			expect(container.getByText(/Filter/i)).toBeInTheDocument()
+		});
+
+		when('user selects Language filter', async () => {
+			const filterBtn = container.getByTestId("filterbtn")
+			fireEvent.click(filterBtn)
+
+			await waitFor(() => {
+				container.getByText(/Filter By/i);
+			});
+
+			const language = container.getByText("English");
+			fireEvent.click(language)
+
+			const done = container.getByRole('button', {name: "Done"});
+			fireEvent.click(done)
+			await waitFor(() => {
+				container.getByText("English");
+				expect(container.getByText("English")).toBeInTheDocument()
+			});
+		});
+
+		then('user should see Filtered Language', () => {
+			expect(container.getByText("English")).toBeInTheDocument()
+		});
+	});
+
+	test('EPIC_EPP-44_STORY_EPP-2507-Verify User should be able to apply the Gender filter', ({ given, when, then, and }) => {
+		given('user launch the Marketing Site url', () => {
+
+		});
+
+		when('user clicks on the Schedule your Eye Exam button', () => {
+
+		});
+
+		then('user should navigated to the search screen', async () => {
+			const mockGeolocation = {
+				getCurrentPosition: jest.fn(),
+				watchPosition: jest.fn()
+			};
+
+			const domain = window.location.origin;
+			mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, mockSuggestion);
+			mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(200, mockSubmitFilter);
+			
+			global.navigator.geolocation = mockGeolocation;
+			window.matchMedia = createMatchMedia('1920px');
+			act(() => {
+				container = render(
+					<Provider store={store}>
+						{Appointment.getLayout(<Appointment />)}
+					</Provider>
+				);
+			})
+			await waitFor(() => {
+				container.getByText(/City, state, or zip/i);
+				expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
+			});
+		});
+
+		and('user should fill the location', () => {
+			const locationField = container.container.querySelector('#location');
+			fireEvent.change(locationField, {target: { value: "Texas" }})
+		});
+
+		and('user should select the date of appointment', () => {
+
+		});
+
+		and('user should select the purpose of the visit', () => {
+
+		});
+
+		and('user should fill the insurance name', () => {
+
+		});
+
+		when('user clicks on the Search button', async () => {
+			const searchBtn = container.getByTestId("searchbtn")
+			fireEvent.click(searchBtn)
+
+			await waitFor(() => {
+				container.getByText(/Filter/i);
+			});
+		});
+
+		then('user should see the results on the Schedule Appointments screen', () => {
+
+		});
+
+		and('user should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+
+		});
+
+		when('user selects Gender filter', async () => {
+			const filterBtn = container.getByTestId("filterbtn")
+			fireEvent.click(filterBtn)
+
+			await waitFor(() => {
+				container.getByText(/Filter By/i);
+			});
+
+			const language = container.getByText("Male");
+			fireEvent.click(language)
+
+			const done = container.getByRole('button', {name: "Done"});
+			fireEvent.click(done)
+			await waitFor(() => {
+				container.getByText("Male");
+				expect(container.getByText("Male")).toBeInTheDocument()
+			});
+		});
+
+		then('user should see Filtered Gender', () => {
+			expect(container.getByText("Male")).toBeInTheDocument()
+		});
+	});
+
+	test('EPIC_EPP-44_STORY_EPP-2507-Verify User should be able to apply the Insurance In/Out of Network filter', ({ given, when, then, and }) => {
+		given('user launch the Marketing Site url', () => {
+
+		});
+
+		when('user clicks on the Schedule your Eye Exam button', () => {
+
+		});
+
+		then('user should navigated to the search screen', async () => {
+			const mockGeolocation = {
+				getCurrentPosition: jest.fn(),
+				watchPosition: jest.fn()
+			};
+
+			const domain = window.location.origin;
+			mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, mockSuggestion);
+			mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(200, mockSubmitFilter);
+			
+			global.navigator.geolocation = mockGeolocation;
+			window.matchMedia = createMatchMedia('1920px');
+			act(() => {
+				container = render(
+					<Provider store={store}>
+						{Appointment.getLayout(<Appointment />)}
+					</Provider>
+				);
+			})
+			await waitFor(() => {
+				container.getByText(/City, state, or zip/i);
+				expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
+			});
+		});
+
+		and('user should fill the location', () => {
+			const locationField = container.container.querySelector('#location');
+			fireEvent.change(locationField, {target: { value: "Texas" }})
+		});
+
+		and('user should select the date of appointment', () => {
+
+		});
+
+		and('user should select the purpose of the visit', () => {
+
+		});
+
+		and('user should fill the insurance name', () => {
+
+		});
+
+		when('user clicks on the Search button', async () => {
+			const searchBtn = container.getByTestId("searchbtn")
+			fireEvent.click(searchBtn)
+
+			await waitFor(() => {
+				container.getByText(/Filter/i);
+				
+			});
+		});
+
+		then('user should see the results on the Schedule Appointments screen', () => {
+
+		});
+
+		and('user should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+
+		});
+
+		when('user selects Insurance In/Out of Network filter', async () => {
+			const filterBtn = container.getByTestId("filterbtn")
+			fireEvent.click(filterBtn)
+
+			await waitFor(() => {
+				container.getByText(/Filter By/i);
+			});
+
+			const insurance = container.getByText("In Network");
+			fireEvent.click(insurance)
+
+			const done = container.getByRole('button', {name: "Done"});
+			fireEvent.click(done)
+			await waitFor(() => {
+				container.getByText("In Network");
+				expect(container.getByText("In Network")).toBeInTheDocument()
+			});
+		});
+
+		then('user should see Filtered Insurance In/Out of Network"', () => {
+			expect(container.getByText("In Network")).toBeInTheDocument()
+		});
+	});
+
+	test('EPIC_EPP-44_STORY_EPP-2507-Verify User should be able to apply the Available Today (Provider) filter', ({ given, when, then, and }) => {
+		given('user launch the Marketing Site url', () => {
+
+		});
+
+		when('user clicks on the Schedule your Eye Exam button', () => {
+
+		});
+
+		then('user should navigated to the search screen', async () => {
+			const mockGeolocation = {
+				getCurrentPosition: jest.fn(),
+				watchPosition: jest.fn()
+			};
+
+			const domain = window.location.origin;
+			mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, mockSuggestion);
+			mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(200, mockSubmitFilter);
+			
+			global.navigator.geolocation = mockGeolocation;
+			window.matchMedia = createMatchMedia('1920px');
+			act(() => {
+				container = render(
+					<Provider store={store}>
+						{Appointment.getLayout(<Appointment />)}
+					</Provider>
+				);
+			})
+			await waitFor(() => {
+				container.getByText(/City, state, or zip/i);
+				expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
+			});
+		});
+
+		and('user should fill the location', () => {
+			const locationField = container.container.querySelector('#location');
+			fireEvent.change(locationField, {target: { value: "Texas" }})
+		});
+
+		and('user should select the date of appointment', () => {
+
+		});
+
+		and('user should select the purpose of the visit', () => {
+
+		});
+
+		and('user should fill the insurance name', () => {
+
+		});
+
+		when('user clicks on the Search button', async () => {
+			const searchBtn = container.getByTestId("searchbtn")
+			fireEvent.click(searchBtn)
+
+			await waitFor(() => {
+				container.getByText(/Filter/i);
+			});
+		});
+
+		then('user should see the results on the Schedule Appointments screen', () => {
+
+		});
+
+		and('user should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+
+		});
+
+		when('user selects Insurance Available Today (Provider) filter', async () => {
+			const filterBtn = container.getByTestId("filterbtn")
+			fireEvent.click(filterBtn)
+
+			await waitFor(() => {
+				container.getByText(/Filter By/i);
+			});
+
+			const filter = container.getByText("Available Today");
+			fireEvent.click(filter)
+
+			const done = container.getByRole('button', {name: "Done"});
+			fireEvent.click(done)
+			await waitFor(() => {
+				container.getByText("Available Today");
+				expect(container.getByText("Available Today")).toBeInTheDocument()
+			});
+		});
+
+		then('user should see Filtered Available Today (Provider)', () => {
+			expect(container.getByText("Available Today")).toBeInTheDocument()
+		});
+	});
+
+	test('EPIC_EPP-44_STORY_EPP-2507-Verify User should see an option to clear those filters when applied', ({ given, when, then, and }) => {
+		given('user launch the Marketing Site url', () => {
+
+		});
+
+		when('user clicks on the Schedule your Eye Exam button', () => {
+
+		});
+
+		then('user should navigated to the search screen', async () => {
+			const mockGeolocation = {
+				getCurrentPosition: jest.fn(),
+				watchPosition: jest.fn()
+			};
+
+			const domain = window.location.origin;
+			mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, mockSuggestion);
+			mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(200, mockSubmitFilter);
+			
+			global.navigator.geolocation = mockGeolocation;
+			window.matchMedia = createMatchMedia('1920px');
+			act(() => {
+				container = render(
+					<Provider store={store}>
+						{Appointment.getLayout(<Appointment />)}
+					</Provider>
+				);
+			})
+			await waitFor(() => {
+				container.getByText(/City, state, or zip/i);
+				expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
+			});
+		});
+
+		and('user should fill the location', () => {
+			const locationField = container.container.querySelector('#location');
+			fireEvent.change(locationField, {target: { value: "Texas" }})
+		});
+
+		and('user should select the date of appointment', () => {
+
+		});
+
+		and('user should select the purpose of the visit', () => {
+
+		});
+
+		and('user should fill the insurance name', () => {
+
+		});
+
+		when('user clicks on the Search button', async () => {
+			const searchBtn = container.getByTestId("searchbtn")
+			fireEvent.click(searchBtn)
+
+			await waitFor(() => {
+				container.getByText(/Filter/i);
+			});
+		});
+
+		then('user should see the results on the Schedule Appointments screen', () => {
+
+		});
+
+		and('user should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+
+		});
+
+		when('user selects Insurance Available Today (Provider) filter', async () => {
+			const filterBtn = container.getByTestId("filterbtn")
+			fireEvent.click(filterBtn)
+
+			await waitFor(() => {
+				container.getByText(/Filter By/i);
+			});
+
+			const filter = container.getByText("Available Today");
+			fireEvent.click(filter)
+
+			const done = container.getByRole('button', {name: "Done"});
+			fireEvent.click(done)
+			await waitFor(() => {
+				container.getByText("Available Today");
+				expect(container.getByText("Available Today")).toBeInTheDocument()
+			});
+		});
+
+		then('user should see Filtered Available Today (Provider)', () => {
+			expect(container.getByText("Available Today")).toBeInTheDocument()
+		});
+
+		and('user should see an option to clear the applied filter', () => {
+			expect(container.queryByTestId('CloseIcon')).toBeInTheDocument()
+		});
+	});
+
+	test('EPIC_EPP-44_STORY_EPP-2507-Verify User should see the filter was removed when user clicks on Clear option', ({ given, when, then, and }) => {
+		given('user launch the Marketing Site url', () => {
+
+		});
+
+		when('user clicks on the Schedule your Eye Exam button', () => {
+
+		});
+
+		then('user should navigated to the search screen', async () => {
+			const mockGeolocation = {
+				getCurrentPosition: jest.fn(),
+				watchPosition: jest.fn()
+			};
+
+			const domain = window.location.origin;
+			mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, mockSuggestion);
+			mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(200, mockSubmitFilter);
+			
+			global.navigator.geolocation = mockGeolocation;
+			window.matchMedia = createMatchMedia('1920px');
+			act(() => {
+				container = render(
+					<Provider store={store}>
+						{Appointment.getLayout(<Appointment />)}
+					</Provider>
+				);
+			})
+			await waitFor(() => {
+				container.getByText(/City, state, or zip/i);
+				expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
+			});
+		});
+
+		and('user should fill the location', () => {
+			const locationField = container.container.querySelector('#location');
+			fireEvent.change(locationField, {target: { value: "Texas" }})
+		});
+
+		and('user should select the date of appointment', () => {
+
+		});
+
+		and('user should select the purpose of the visit', () => {
+
+		});
+
+		and('user should fill the insurance name', () => {
+
+		});
+
+		when('user clicks on the Search button', async () => {
+			const searchBtn = container.getByTestId("searchbtn")
+			fireEvent.click(searchBtn)
+
+			await waitFor(() => {
+				container.getByText(/Filter/i);
+			});
+		});
+
+		then('user should see the results on the Schedule Appointments screen', () => {
+
+		});
+
+		and('user should see the selected location, date of appointment, the purpose of visit, and insurance carrier', () => {
+
+		});
+
+		when('user selects Insurance Available Today (Provider) filter', async () => {
+			const filterBtn = container.getByTestId("filterbtn")
+			fireEvent.click(filterBtn)
+
+			await waitFor(() => {
+				container.getByText(/Filter By/i);
+			});
+
+			const filter = container.getByText("Available Today");
+			fireEvent.click(filter)
+
+			const done = container.getByRole('button', {name: "Done"});
+			fireEvent.click(done)
+			await waitFor(() => {
+				container.getByText("Available Today");
+				expect(container.getByText("Available Today")).toBeInTheDocument()
+			});
+		});
+
+		then('user should see Filtered Available Today (Provider)', () => {
+			expect(container.getByText("Available Today")).toBeInTheDocument()
+		});
+
+		and('user should see an option to clear the applied filter', () => {
+			expect(container.queryByTestId('CloseIcon')).toBeInTheDocument()
+		});
+
+		and('user should see the filter was removed when user clicks on Clear option', async () => {
+			const filterBtn = container.getByTestId("filterbtn")
+			fireEvent.click(filterBtn)
+
+			await waitFor(() => {
+				container.getByText(/Filter By/i);
+				
+			});
+
+			const reset = container.getByRole('button', {name: "Reset"});
+			expect(reset).toBeInTheDocument()
+			fireEvent.click(reset)
+
+			const done = container.getByRole('button', {name: "Done"});
+			fireEvent.click(done)
+
+			expect(container.queryByTestId('CloseIcon')).not.toBeInTheDocument()
+		});
+	});
 })

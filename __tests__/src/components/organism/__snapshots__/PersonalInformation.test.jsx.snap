@@ -47,7 +47,7 @@ Object {
                       />
                     </span>
                     <img
-                      alt="profile"
+                      alt="image"
                       data-nimg="intrinsic"
                       decoding="async"
                       src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
@@ -72,19 +72,28 @@ Object {
                 >
                   Name
                 </div>
-                <svg
-                  aria-hidden="true"
-                  aria-label="If you wish to change this information, please contact Customer Support"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ffn8hz-MuiSvgIcon-root"
+                <button
+                  aria-label="Information Icon - If you wish to change this information, please contact Customer Support"
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
                   data-mui-internal-clone-element="true"
-                  data-testid="ErrorOutlineOutlinedIcon"
-                  focusable="false"
-                  viewBox="0 0 24 24"
+                  tabindex="0"
+                  type="button"
                 >
-                  <path
-                    d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ffn8hz-MuiSvgIcon-root"
+                    data-testid="ErrorOutlineOutlinedIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                    />
+                  </svg>
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                   />
-                </svg>
+                </button>
               </div>
               <div
                 class="css-1okj3ks-MuiStack-root"
@@ -160,19 +169,28 @@ Object {
                 >
                   Date of Birth
                 </div>
-                <svg
-                  aria-hidden="true"
-                  aria-label="If you wish to change this information, please contact Customer Support"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ffn8hz-MuiSvgIcon-root"
+                <button
+                  aria-label="Information Icon - If you wish to change this information, please contact Customer Support"
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
                   data-mui-internal-clone-element="true"
-                  data-testid="ErrorOutlineOutlinedIcon"
-                  focusable="false"
-                  viewBox="0 0 24 24"
+                  tabindex="0"
+                  type="button"
                 >
-                  <path
-                    d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ffn8hz-MuiSvgIcon-root"
+                    data-testid="ErrorOutlineOutlinedIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                    />
+                  </svg>
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                   />
-                </svg>
+                </button>
               </div>
               <div
                 class="css-1okj3ks-MuiStack-root"
@@ -198,19 +216,28 @@ Object {
                 >
                   Age
                 </div>
-                <svg
-                  aria-hidden="true"
-                  aria-label="If you wish to change this information, please contact Customer Support"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ffn8hz-MuiSvgIcon-root"
+                <button
+                  aria-label="Information Icon - If you wish to change this information, please contact Customer Support"
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
                   data-mui-internal-clone-element="true"
-                  data-testid="ErrorOutlineOutlinedIcon"
-                  focusable="false"
-                  viewBox="0 0 24 24"
+                  tabindex="0"
+                  type="button"
                 >
-                  <path
-                    d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ffn8hz-MuiSvgIcon-root"
+                    data-testid="ErrorOutlineOutlinedIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                    />
+                  </svg>
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                   />
-                </svg>
+                </button>
               </div>
               <div
                 class="css-1okj3ks-MuiStack-root"
@@ -261,19 +288,28 @@ Object {
                 >
                   SSN
                 </div>
-                <svg
-                  aria-hidden="true"
-                  aria-label="If you wish to change this information, please contact Customer Support"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ffn8hz-MuiSvgIcon-root"
+                <button
+                  aria-label="Information Icon - If you wish to change this information, please contact Customer Support"
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
                   data-mui-internal-clone-element="true"
-                  data-testid="ErrorOutlineOutlinedIcon"
-                  focusable="false"
-                  viewBox="0 0 24 24"
+                  tabindex="0"
+                  type="button"
                 >
-                  <path
-                    d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ffn8hz-MuiSvgIcon-root"
+                    data-testid="ErrorOutlineOutlinedIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                    />
+                  </svg>
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                   />
-                </svg>
+                </button>
               </div>
               <div
                 class="css-1okj3ks-MuiStack-root"
@@ -337,7 +373,7 @@ Object {
                             />
                           </span>
                           <img
-                            alt="front-id"
+                            alt="Front image"
                             data-nimg="intrinsic"
                             decoding="async"
                             src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
@@ -389,7 +425,7 @@ Object {
                             />
                           </span>
                           <img
-                            alt="back-id"
+                            alt="Back image"
                             data-nimg="intrinsic"
                             decoding="async"
                             src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
@@ -471,7 +507,7 @@ Object {
                     />
                   </span>
                   <img
-                    alt="profile"
+                    alt="image"
                     data-nimg="intrinsic"
                     decoding="async"
                     src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
@@ -496,19 +532,28 @@ Object {
               >
                 Name
               </div>
-              <svg
-                aria-hidden="true"
-                aria-label="If you wish to change this information, please contact Customer Support"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ffn8hz-MuiSvgIcon-root"
+              <button
+                aria-label="Information Icon - If you wish to change this information, please contact Customer Support"
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
                 data-mui-internal-clone-element="true"
-                data-testid="ErrorOutlineOutlinedIcon"
-                focusable="false"
-                viewBox="0 0 24 24"
+                tabindex="0"
+                type="button"
               >
-                <path
-                  d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ffn8hz-MuiSvgIcon-root"
+                  data-testid="ErrorOutlineOutlinedIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                  />
+                </svg>
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
-              </svg>
+              </button>
             </div>
             <div
               class="css-1okj3ks-MuiStack-root"
@@ -584,19 +629,28 @@ Object {
               >
                 Date of Birth
               </div>
-              <svg
-                aria-hidden="true"
-                aria-label="If you wish to change this information, please contact Customer Support"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ffn8hz-MuiSvgIcon-root"
+              <button
+                aria-label="Information Icon - If you wish to change this information, please contact Customer Support"
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
                 data-mui-internal-clone-element="true"
-                data-testid="ErrorOutlineOutlinedIcon"
-                focusable="false"
-                viewBox="0 0 24 24"
+                tabindex="0"
+                type="button"
               >
-                <path
-                  d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ffn8hz-MuiSvgIcon-root"
+                  data-testid="ErrorOutlineOutlinedIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                  />
+                </svg>
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
-              </svg>
+              </button>
             </div>
             <div
               class="css-1okj3ks-MuiStack-root"
@@ -622,19 +676,28 @@ Object {
               >
                 Age
               </div>
-              <svg
-                aria-hidden="true"
-                aria-label="If you wish to change this information, please contact Customer Support"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ffn8hz-MuiSvgIcon-root"
+              <button
+                aria-label="Information Icon - If you wish to change this information, please contact Customer Support"
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
                 data-mui-internal-clone-element="true"
-                data-testid="ErrorOutlineOutlinedIcon"
-                focusable="false"
-                viewBox="0 0 24 24"
+                tabindex="0"
+                type="button"
               >
-                <path
-                  d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ffn8hz-MuiSvgIcon-root"
+                  data-testid="ErrorOutlineOutlinedIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                  />
+                </svg>
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
-              </svg>
+              </button>
             </div>
             <div
               class="css-1okj3ks-MuiStack-root"
@@ -685,19 +748,28 @@ Object {
               >
                 SSN
               </div>
-              <svg
-                aria-hidden="true"
-                aria-label="If you wish to change this information, please contact Customer Support"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ffn8hz-MuiSvgIcon-root"
+              <button
+                aria-label="Information Icon - If you wish to change this information, please contact Customer Support"
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-78trlr-MuiButtonBase-root-MuiIconButton-root"
                 data-mui-internal-clone-element="true"
-                data-testid="ErrorOutlineOutlinedIcon"
-                focusable="false"
-                viewBox="0 0 24 24"
+                tabindex="0"
+                type="button"
               >
-                <path
-                  d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ffn8hz-MuiSvgIcon-root"
+                  data-testid="ErrorOutlineOutlinedIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                  />
+                </svg>
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
-              </svg>
+              </button>
             </div>
             <div
               class="css-1okj3ks-MuiStack-root"
@@ -761,7 +833,7 @@ Object {
                           />
                         </span>
                         <img
-                          alt="front-id"
+                          alt="Front image"
                           data-nimg="intrinsic"
                           decoding="async"
                           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
@@ -813,7 +885,7 @@ Object {
                           />
                         </span>
                         <img
-                          alt="back-id"
+                          alt="Back image"
                           data-nimg="intrinsic"
                           decoding="async"
                           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"

@@ -1,7 +1,5 @@
 import { act, fireEvent, render, waitFor } from "@testing-library/react";
-import axios from "axios";
 import "@testing-library/jest-dom";
-import MockAdapter from "axios-mock-adapter";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
@@ -10,7 +8,6 @@ import constants from "../../src/utils/constants";
 import FilterHeading from "../../src/components/molecules/FilterHeading/filterHeading";
 import FilterResult from "../../src/components/molecules/FilterResult/filterResult";
 import ScheduleAppointmentPage from "../../src/pages/patient/schedule-appointment";
-import ModalConfirmation from "../../src/components/organisms/ScheduleAppointment/ModalScheduling/modalConfirmation";
 import mediaQuery from 'css-mediaquery';
 
 const feature = loadFeature(
@@ -19,7 +16,7 @@ const feature = loadFeature(
 
 defineFeature(feature, (test) => {
     let container;
-    const { APPOINTMENT_TEST_ID, SEARCH_PROVIDER_TEST_ID } = constants.TEST_ID
+    const { APPOINTMENT_TEST_ID } = constants.TEST_ID
     
     const providerList = [
       {
@@ -348,8 +345,12 @@ defineFeature(feature, (test) => {
   function createMatchMedia(width) {
     return query => ({
         matches: mediaQuery.match(query, { width }),
-        addListener: () => { },
-        removeListener: () => { },
+        addListener: () => {
+          // intentional
+        },
+        removeListener: () => {
+          // intentional
+        },
     });
   }
 
@@ -374,6 +375,14 @@ defineFeature(feature, (test) => {
         filterData={mockFilterData}
         purposeOfVisitData={[]}
         insuranceCarrierData={[]} />);
+  }
+
+  const provideFilters = () => {
+    inputLocation();
+    inputDate();
+    inputPurpose();
+    inputInsurance();
+    clickSearch();
   }
 
   const inputLocation = async () => {
@@ -491,11 +500,7 @@ defineFeature(feature, (test) => {
     });
 
     and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-        inputLocation();
-      inputDate();
-      inputPurpose();
-      inputInsurance();
-      clickSearch();
+        provideFilters();
     });
 
     then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
@@ -537,11 +542,7 @@ test('EPIC_EPP-44_STORY_EPP-1566 - Verify whether the user confirms the patient 
     });
 
     and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-        inputLocation();
-      inputDate();
-      inputPurpose();
-      inputInsurance();
-      clickSearch();
+        provideFilters();
     });
 
     then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
@@ -588,11 +589,7 @@ test('EPIC_EPP-44_STORY_EPP-1566 - Verify whether the user able to see the error
     });
 
     and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-        inputLocation();
-      inputDate();
-      inputPurpose();
-      inputInsurance();
-      clickSearch();
+        provideFilters();
     });
 
     then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
@@ -647,15 +644,11 @@ test('EPIC_EPP-44_STORY_EPP-1566 - Verify whether the user able to see the error
     });
 
     and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-        inputLocation();
-      inputDate();
-      inputPurpose();
-      inputInsurance();
-      clickSearch();
+      provideFilters();
     });
 
     then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
-        resultsScreen();
+      resultsScreen();
     });
 
     and('user select the timeslot', () => {
@@ -703,11 +696,7 @@ test('EPIC_EPP-44_STORY_EPP-1566 - Verify whether the user able to see the error
     });
 
     and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-        inputLocation();
-        inputDate();
-        inputPurpose();
-        inputInsurance();
-        clickSearch();
+        provideFilters();
     });
 
     then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
@@ -758,11 +747,7 @@ test('EPIC_EPP-44_STORY_EPP-1566 - Verify whether the user able to see the error
     });
 
     and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-        inputLocation();
-      inputDate();
-      inputPurpose();
-      inputInsurance();
-      clickSearch();
+        provideFilters();
     });
 
     then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
@@ -814,11 +799,7 @@ test('EPIC_EPP-44_STORY_EPP-1566 - Verify whether the user able to see the error
     });
 
     and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-        inputLocation();
-      inputDate();
-      inputPurpose();
-      inputInsurance();
-      clickSearch();
+        provideFilters();
     });
 
     then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {

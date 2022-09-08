@@ -10,10 +10,7 @@ import ContactMailIcon from "@mui/icons-material/ContactMail";
 import BusinessIcon from "@mui/icons-material/Business";
 
 import { styles } from "./style";
-import {
-  formatAppointmentDate,
-  formatDate,
-} from "../../../utils/dateFormatter";
+import { formatAppointmentDate } from "../../../utils/dateFormatter";
 import { colors } from "../../../styles/theme";
 import { TEST_ID } from "../../../utils/constants";
 

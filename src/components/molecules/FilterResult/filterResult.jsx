@@ -165,7 +165,7 @@ export const FilterResult = ({
                   onPrevScheduleClicked("day", date);
                   setCurrentDateIndex(5);
                 } else {
-                  setCurrentDateIndex(--currentDateIndex);
+                  setCurrentDateIndex(currentDateIndex - 1);
                 }
               }}
             />
@@ -207,7 +207,7 @@ export const FilterResult = ({
                   onNextScheduleClicked("day", date);
                   setCurrentDateIndex(0);
                 } else {
-                  setCurrentDateIndex(++currentDateIndex);
+                  setCurrentDateIndex(currentDateIndex + 1);
                 }
               }}
             />

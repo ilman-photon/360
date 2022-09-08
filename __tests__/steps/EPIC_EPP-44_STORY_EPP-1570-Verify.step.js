@@ -17,11 +17,11 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        and(/^User launch the "(.*)" url$/, (arg0) => {
+        and(/^User launch the "(.*)" url$/, () => {
             defaultValidation();
         });
 
-        when(/^User clicks on the "(.*)" button$/, (arg0) => {
+        when(/^User clicks on the "(.*)" button$/, () => {
             defaultValidation();
         });
 
@@ -58,11 +58,11 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        and(/^User launch the "(.*)" url$/, (arg0) => {
+        and(/^User launch the "(.*)" url$/, () => {
             defaultValidation();
         });
 
-        when(/^User clicks on the "(.*)" button$/, (arg0) => {
+        when(/^User clicks on the "(.*)" button$/, () => {
             defaultValidation();
         });
 
@@ -94,11 +94,11 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        when(/^User fills valid (.*) and (.*)$/, (arg0, arg1) => {
+        when(/^User fills valid (.*) and (.*)$/, (, arg1) => {
             defaultValidation();
         });
 
-        and(/^User clicks on "(.*)" button$/, (arg0) => {
+        and(/^User clicks on "(.*)" button$/, () => {
             defaultValidation();
         });
 
@@ -111,11 +111,11 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        and(/^User launch the "(.*)" url$/, (arg0) => {
+        and(/^User launch the "(.*)" url$/, () => {
             defaultValidation();
         });
 
-        when(/^User clicks on the "(.*)" button$/, (arg0) => {
+        when(/^User clicks on the "(.*)" button$/, () => {
             defaultValidation();
         });
 
@@ -147,11 +147,11 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        when(/^User fills valid (.*) and (.*)$/, (arg0, arg1) => {
+        when(/^User fills valid (.*) and (.*)$/, (, arg1) => {
             defaultValidation();
         });
 
-        and(/^User clicks on "(.*)" button$/, (arg0) => {
+        and(/^User clicks on "(.*)" button$/, () => {
             defaultValidation();
         });
 
@@ -167,7 +167,7 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        and(/^User should see following details in the Appointment confirmation message "(.*)"$/, (arg0) => {
+        and(/^User should see following details in the Appointment confirmation message "(.*)"$/, () => {
             defaultValidation();
         });
     });
@@ -176,11 +176,11 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        and(/^User launch the "(.*)" url$/, (arg0) => {
+        and(/^User launch the "(.*)" url$/, () => {
             defaultValidation();
         });
 
-        when(/^User clicks on the "(.*)" button$/, (arg0) => {
+        when(/^User clicks on the "(.*)" button$/, () => {
             defaultValidation();
         });
 
@@ -212,11 +212,11 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        and(/^User fills valid (.*) and (.*)$/, (arg0, arg1) => {
+        and(/^User fills valid (.*) and (.*)$/, (, arg1) => {
             defaultValidation();
         });
 
-        then(/^User clicks on "(.*)" button$/, (arg0) => {
+        then(/^User clicks on "(.*)" button$/, () => {
             defaultValidation();
         });
 
@@ -228,7 +228,7 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        then(/^User navigates to "(.*)" screen$/, (arg0) => {
+        then(/^User navigates to "(.*)" screen$/, () => {
             defaultValidation();
         });
 
@@ -241,11 +241,11 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        and(/^User launch the "(.*)" url$/, (arg0) => {
+        and(/^User launch the "(.*)" url$/, () => {
             defaultValidation();
         });
 
-        when(/^User clicks on the "(.*)" button$/, (arg0) => {
+        when(/^User clicks on the "(.*)" button$/, () => {
             defaultValidation();
         });
 
@@ -277,11 +277,11 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        when(/^User fills valid (.*) and (.*)$/, (arg0, arg1) => {
+        when(/^User fills valid (.*) and (.*)$/, (, arg1) => {
             defaultValidation();
         });
 
-        and(/^User clicks on "(.*)" button$/, (arg0) => {
+        and(/^User clicks on "(.*)" button$/, () => {
             defaultValidation();
         });
 
@@ -297,7 +297,7 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        and(/^User should see following details in the Appointment confirmation message "(.*)"$/, (arg0) => {
+        and(/^User should see following details in the Appointment confirmation message "(.*)"$/, () => {
             defaultValidation();
         });
 
@@ -310,11 +310,11 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        and(/^User launch the "(.*)" url$/, (arg0) => {
+        and(/^User launch the "(.*)" url$/, () => {
             defaultValidation();
         });
 
-        when(/^User clicks on the "(.*)" button$/, (arg0) => {
+        when(/^User clicks on the "(.*)" button$/, () => {
             defaultValidation();
         });
 
@@ -346,11 +346,11 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        when(/^User fills valid (.*) and (.*)$/, (arg0, arg1) => {
+        when(/^User fills valid (.*) and (.*)$/, (, arg1) => {
             defaultValidation();
         });
 
-        and(/^User clicks on "(.*)" button$/, (arg0) => {
+        and(/^User clicks on "(.*)" button$/, () => {
             defaultValidation();
         });
 
@@ -366,7 +366,7 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        and(/^User should see following details in the Appointment confirmation message "(.*)"$/, (arg0) => {
+        and(/^User should see following details in the Appointment confirmation message "(.*)"$/, () => {
             defaultValidation();
         });
 
@@ -379,11 +379,11 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        and(/^User launch the "(.*)" url$/, (arg0) => {
+        and(/^User launch the "(.*)" url$/, () => {
             defaultValidation();
         });
 
-        when(/^User clicks on the "(.*)" button$/, (arg0) => {
+        when(/^User clicks on the "(.*)" button$/, () => {
             defaultValidation();
         });
 
@@ -415,11 +415,11 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        when(/^User fills valid (.*) and (.*)$/, (arg0, arg1) => {
+        when(/^User fills valid (.*) and (.*)$/, (, arg1) => {
             defaultValidation();
         });
 
-        and(/^User clicks on "(.*)" button$/, (arg0) => {
+        and(/^User clicks on "(.*)" button$/, () => {
             defaultValidation();
         });
 
@@ -435,7 +435,7 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        and(/^User should see page load within (\d+) seconds$/, (arg0) => {
+        and(/^User should see page load within (\d+) seconds$/, () => {
             defaultValidation();
         });
     });
@@ -444,11 +444,11 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        and(/^User launch the "(.*)" url$/, (arg0) => {
+        and(/^User launch the "(.*)" url$/, () => {
             defaultValidation();
         });
 
-        when(/^User clicks on the "(.*)" button$/, (arg0) => {
+        when(/^User clicks on the "(.*)" button$/, () => {
             defaultValidation();
         });
 
@@ -480,11 +480,11 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        when(/^User fills valid (.*) and (.*)$/, (arg0, arg1) => {
+        when(/^User fills valid (.*) and (.*)$/, (, arg1) => {
             defaultValidation();
         });
 
-        and(/^User clicks on "(.*)" button$/, (arg0) => {
+        and(/^User clicks on "(.*)" button$/, () => {
             defaultValidation();
         });
 
@@ -500,15 +500,15 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        and(/^User should see page load within "(.*)"$/, (arg0) => {
+        and(/^User should see page load within "(.*)"$/, () => {
             defaultValidation();
         });
 
-        then(/^User should see following details in the Appointment confirmation message "(.*)"$/, (arg0) => {
+        then(/^User should see following details in the Appointment confirmation message "(.*)"$/, () => {
             defaultValidation();
         });
 
-        when(/^user clicks on F(\d+) on the console$/, (arg0) => {
+        when(/^user clicks on F(\d+) on the console$/, () => {
             defaultValidation();
         });
 
@@ -521,11 +521,11 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        and(/^User launch the "(.*)" url$/, (arg0) => {
+        and(/^User launch the "(.*)" url$/, () => {
             defaultValidation();
         });
 
-        when(/^User clicks on the "(.*)" button$/, (arg0) => {
+        when(/^User clicks on the "(.*)" button$/, () => {
             defaultValidation();
         });
 
@@ -557,11 +557,11 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        when(/^User fills valid (.*) and (.*)$/, (arg0, arg1) => {
+        when(/^User fills valid (.*) and (.*)$/, (, arg1) => {
             defaultValidation();
         });
 
-        and(/^User clicks on "(.*)" button$/, (arg0) => {
+        and(/^User clicks on "(.*)" button$/, () => {
             defaultValidation();
         });
 
@@ -586,11 +586,11 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        and(/^User launch the "(.*)" url$/, (arg0) => {
+        and(/^User launch the "(.*)" url$/, () => {
             defaultValidation();
         });
 
-        when(/^User clicks on the "(.*)" button$/, (arg0) => {
+        when(/^User clicks on the "(.*)" button$/, () => {
             defaultValidation();
         });
 
@@ -622,11 +622,11 @@ defineFeature(feature, (test) => {
             defaultValidation();
         });
 
-        when(/^User fills valid (.*) and (.*)$/, (arg0, arg1) => {
+        when(/^User fills valid (.*) and (.*)$/, (, arg1) => {
             defaultValidation();
         });
 
-        and(/^User clicks on "(.*)" button$/, (arg0) => {
+        and(/^User clicks on "(.*)" button$/, () => {
             defaultValidation();
         });
 

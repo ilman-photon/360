@@ -15,10 +15,6 @@ export default function AppointmentLayout({
     <>
       <Head>
         <title>EyeCare Patient Portal - Appointment</title>
-        <meta
-          httpEquiv="Content-Security-Policy"
-          content="upgrade-insecure-requests"
-        />
       </Head>
       <div className={styles.defaultLayout}>
         <BaseHeader
