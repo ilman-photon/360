@@ -60,6 +60,10 @@ export default function Appointment({ googleApiKey }) {
   const [isLoading, setIsLoading] = useState(false);
   const [filterBy, setFilterBy] = useState([]);
   const [providerDataOverview, setProviderDataOverview] = useState({});
+  const [rangeDateOverview, setRangeDateOverview] = useState({
+    startDate: "",
+    endDate: "",
+  });
   const [activeFilterBy, setActiveFilterBy] = useState([]);
   const [isOpen, setIsOpen] = useState(true);
 
@@ -76,6 +80,7 @@ export default function Appointment({ googleApiKey }) {
   useEffect(() => {
     if (providerListData) {
       setRangeDate(setRangeDateData(providerListData));
+      setRangeDateOverview(setRangeDateData(providerListData));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [providerListData]);
@@ -162,7 +167,7 @@ export default function Appointment({ googleApiKey }) {
             providerDataOverview.providerId,
             response.listOfProvider
           );
-          setRangeDate(setRangeDateData(response?.listOfProvider));
+          setRangeDateOverview(setRangeDateData(response?.listOfProvider));
           setProviderDataOverview(providerOverview);
         } else {
           if (
@@ -306,7 +311,7 @@ export default function Appointment({ googleApiKey }) {
                 handleDayClicked(e, providerDataOverview);
               }}
               scheduleData={providerDataOverview?.availability}
-              rangeDate={rangeDate}
+              rangeDate={rangeDateOverview}
               onNextScheduleClicked={onNextScheduleClicked}
               onPrevScheduleClicked={onPrevScheduleClicked}
             />
