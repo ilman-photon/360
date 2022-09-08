@@ -11,6 +11,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import InputMask from "react-input-mask";
+import Tooltip from "@mui/material/Tooltip";
 
 import { primaryTheme } from "../../../styles/theme";
 
@@ -41,21 +42,27 @@ export const CustomPasswordInput = styled((props) => (
       disableUnderline: true,
       endAdornment: (
         <InputAdornment position="end">
-          <IconButton
-            aria-label={`${
-              props.type !== "password"
-                ? "Password hide icon"
-                : "Password unhide icon"
+          <Tooltip
+            title={`${
+              props.type !== "password" ? "Hide Password" : "Show Password"
             }`}
-            {...props.customevent}
-            edge="end"
           >
-            {props.type !== "password" ? (
-              <VisibilityOutlinedIcon />
-            ) : (
-              <VisibilityOffOutlinedIcon sx={{ transform: "scaleX(-1)" }} />
-            )}
-          </IconButton>
+            <IconButton
+              aria-label={`${
+                props.type !== "password"
+                  ? "Password hide icon"
+                  : "Password unhide icon"
+              }`}
+              {...props.customevent}
+              edge="end"
+            >
+              {props.type !== "password" ? (
+                <VisibilityOutlinedIcon />
+              ) : (
+                <VisibilityOffOutlinedIcon sx={{ transform: "scaleX(-1)" }} />
+              )}
+            </IconButton>
+          </Tooltip>
         </InputAdornment>
       ),
     }}
