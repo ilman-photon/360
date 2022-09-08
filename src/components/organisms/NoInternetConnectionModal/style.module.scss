@@ -1,0 +1,35 @@
+.textContainer {
+  align-self: center;
+  .titleModal {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 44px;
+    /* or 138% */
+    display: flex;
+    align-items: center;
+    /* ECP/Primary/DarkGreen */
+    color: #003b4a;
+  }
+  .subtitleModal {
+    margin-top: 16px;
+    font-family: "Libre Franklin";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 24px;
+    /* or 150% */
+    letter-spacing: 0.0016em;
+    color: #242526;
+  }
+}
+
+.imageContainer {
+  border-right: 1px solid #bdbdbd;
+  justify-content: center;
+  padding-right: 40px;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+}
