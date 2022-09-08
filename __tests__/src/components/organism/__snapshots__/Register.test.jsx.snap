@@ -532,14 +532,10 @@ Object {
             </button>
           </form>
           <span
-            aria-label="By registering, you accept to our Terms & Conditions and Privacy Policy"
             class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
-            role="span"
-            style="color: rgb(54, 106, 112); text-align: center; font-size: 14px;"
+            style="color: rgb(54, 106, 112); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
           >
-            By registering, you accept to our Terms &
-            <br />
-             Conditions and Privacy Policy
+            By registering, you accept to our Terms & Conditions and Privacy Policy
           </span>
           <hr
             class="MuiDivider-root MuiDivider-fullWidth css-12l2dc7-MuiDivider-root"
@@ -547,7 +543,7 @@ Object {
           />
           <span
             class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
-            style="color: rgb(54, 106, 112); text-align: center; font-size: 14px;"
+            style="color: rgb(54, 106, 112); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
           >
             Already have an account?
              
@@ -1090,14 +1086,10 @@ Object {
           </button>
         </form>
         <span
-          aria-label="By registering, you accept to our Terms & Conditions and Privacy Policy"
           class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
-          role="span"
-          style="color: rgb(54, 106, 112); text-align: center; font-size: 14px;"
+          style="color: rgb(54, 106, 112); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
         >
-          By registering, you accept to our Terms &
-          <br />
-           Conditions and Privacy Policy
+          By registering, you accept to our Terms & Conditions and Privacy Policy
         </span>
         <hr
           class="MuiDivider-root MuiDivider-fullWidth css-12l2dc7-MuiDivider-root"
@@ -1105,7 +1097,7 @@ Object {
         />
         <span
           class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
-          style="color: rgb(54, 106, 112); text-align: center; font-size: 14px;"
+          style="color: rgb(54, 106, 112); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
         >
           Already have an account?
            
