@@ -101,8 +101,9 @@ export default function ContactInformation({
 
   return (
     <AccountCard
-      titleIcon={<PermContactCalendarOutlinedIcon />}
+      tabIndex={0}
       title="Contact Information"
+      titleIcon={<PermContactCalendarOutlinedIcon />}
       isEditing={isEditing}
       // OnEditClicked={OnEditClicked}
       actionContent={
@@ -111,6 +112,7 @@ export default function ContactInformation({
             onClick={OnEditClicked}
             variant="text"
             className={styles.editButton}
+            tabIndex={0}
             aria-label="Edit option"
           >
             <EditOutlinedIcon
@@ -119,6 +121,8 @@ export default function ContactInformation({
             <div
               className={styles.actionText}
               style={{ marginLeft: 4, color: "#008294" }}
+              tabIndex={0}
+              ariaLabel="Edit option"
             >
               Edit
             </div>
@@ -129,45 +133,87 @@ export default function ContactInformation({
             size="small"
             onClick={OnEditClicked}
             sx={{ my: 4 }}
+            tabIndex={0}
+            ariaLabel="Edit option"
           >
             Edit
           </StyledButton>
         )
       }
+      label={"Contact Information heading"}
+      ariaLabel={"Contact Information heading"}
     >
       <Fade in={!isEditing} unmountOnExit>
         <Stack spacing={3} divider={<Divider />}>
-          <LabelWithInfo label="Phone Number">
-            {userData.mobile ? formatPhoneNumber(userData.mobile) : ""}
+          <LabelWithInfo
+            tabIndex={0}
+            ariaLabel="Phone Number"
+            label="Phone Number"
+          >
+            <div
+              tabIndex={0}
+              ariaLabel={
+                userData.mobile ? formatPhoneNumber(userData.mobile) : ""
+              }
+            >
+              {userData.mobile ? formatPhoneNumber(userData.mobile) : ""}
+            </div>
           </LabelWithInfo>
 
-          <LabelWithInfo label="Email ID">
-            {userData.email || "-"}
+          <LabelWithInfo tabIndex={0} ariaLabel="Email ID" label="Email ID">
+            <div tabIndex={0} ariaLabel={userData.email || "-"}>
+              {userData.email || "-"}
+            </div>
           </LabelWithInfo>
 
-          <LabelWithInfo label="Address">
-            {userData.address || "-"}
+          <LabelWithInfo tabIndex={0} ariaLabel="Address" label="Address">
+            <div tabIndex={0} ariaLabel={userData.address || "-"}>
+              {userData.address || "-"}
+            </div>
           </LabelWithInfo>
 
-          <LabelWithInfo label="City">{userData.city || "-"}</LabelWithInfo>
+          <LabelWithInfo tabIndex={0} ariaLabel="City" label="City">
+            <div tabIndex={0} ariaLabel={userData.city || "-"}>
+              {userData.city || "-"}
+            </div>
+          </LabelWithInfo>
 
           <Grid container>
             <Grid item xs={6} p={0}>
-              <LabelWithInfo label="State">
-                {userData.state || "-"}
+              <LabelWithInfo tabIndex={0} ariaLabel="State" label="State">
+                <div tabIndex={0} ariaLabel={userData.state || "-"}>
+                  {userData.state || "-"}
+                </div>
               </LabelWithInfo>
             </Grid>
 
             <Grid item xs={6} p={0}>
-              <LabelWithInfo label="Zip">{userData.zip || "-"}</LabelWithInfo>
+              <LabelWithInfo label="Zip" tabIndex={0} ariaLabel="Zip">
+                <div tabIndex={0} ariaLabel={userData.zip || "-"}>
+                  {userData.zip || "-"}
+                </div>
+              </LabelWithInfo>
             </Grid>
           </Grid>
 
-          <LabelWithInfo label="Prefered Mode(s) of communication">
+          <LabelWithInfo
+            tabIndex={0}
+            ariaLabel={"Prefered Mode(s) of communication"}
+            label="Prefered Mode(s) of communication"
+          >
             <span style={{ textTransform: "capitalize" }}>
-              {userData.preferredCommunication === "both"
-                ? "Mobile,Email"
-                : userData.preferredCommunication || "-"}
+              <div
+                tabIndex={0}
+                ariaLabel={
+                  userData.preferredCommunication === "both"
+                    ? "Mobile,Email"
+                    : userData.preferredCommunication || "-"
+                }
+              >
+                {userData.preferredCommunication === "both"
+                  ? "Mobile,Email"
+                  : userData.preferredCommunication || "-"}
+              </div>
             </span>
           </LabelWithInfo>
         </Stack>

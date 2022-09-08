@@ -6,6 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
+        arialabel="Personal Information heading"
         class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
       >
         <div
@@ -23,6 +24,8 @@ Object {
               >
                 <div
                   class="label"
+                  role="text"
+                  tabindex="0"
                 >
                   Photo
                 </div>
@@ -48,6 +51,7 @@ Object {
                     </span>
                     <img
                       alt="image"
+                      aria-label="Image"
                       data-nimg="intrinsic"
                       decoding="async"
                       src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
@@ -68,7 +72,11 @@ Object {
                 class="labelContainer"
               >
                 <div
+                  aria-label="Name"
+                  aria-live="Name"
                   class="label"
+                  role="text"
+                  tabindex="0"
                 >
                   Name
                 </div>
@@ -101,7 +109,12 @@ Object {
                 <div
                   style="margin-top: 10px;"
                 >
-                  Rupert Jerde
+                  <div
+                    arialabel="Rupert Jerde"
+                    tabindex="0"
+                  >
+                    Rupert Jerde
+                  </div>
                 </div>
               </div>
             </div>
@@ -115,7 +128,11 @@ Object {
                 class="labelContainer"
               >
                 <div
+                  aria-label="Preferred Name"
+                  aria-live="Preferred Name"
                   class="label"
+                  role="text"
+                  tabindex="0"
                 >
                   Preferred Name
                 </div>
@@ -126,7 +143,12 @@ Object {
                 <div
                   style="margin-top: 10px;"
                 >
-                  ---
+                  <div
+                    arialabel="---"
+                    tabindex="0"
+                  >
+                    ---
+                  </div>
                 </div>
               </div>
             </div>
@@ -140,7 +162,11 @@ Object {
                 class="labelContainer"
               >
                 <div
+                  aria-label="Title"
+                  aria-live="Title"
                   class="label"
+                  role="text"
+                  tabindex="0"
                 >
                   Title
                 </div>
@@ -151,7 +177,12 @@ Object {
                 <div
                   style="margin-top: 10px;"
                 >
-                  Mrs.
+                  <div
+                    arialabel="---"
+                    tabindex="0"
+                  >
+                    Mrs.
+                  </div>
                 </div>
               </div>
             </div>
@@ -165,7 +196,11 @@ Object {
                 class="labelContainer"
               >
                 <div
+                  aria-label="Date of Birth"
+                  aria-live="Date of Birth"
                   class="label"
+                  role="text"
+                  tabindex="0"
                 >
                   Date of Birth
                 </div>
@@ -198,7 +233,12 @@ Object {
                 <div
                   style="margin-top: 10px;"
                 >
-                  8/18/2022
+                  <div
+                    arialabel="8/18/2022"
+                    tabindex="0"
+                  >
+                    8/18/2022
+                  </div>
                 </div>
               </div>
             </div>
@@ -212,7 +252,11 @@ Object {
                 class="labelContainer"
               >
                 <div
+                  aria-label="Age"
+                  aria-live="Age"
                   class="label"
+                  role="text"
+                  tabindex="0"
                 >
                   Age
                 </div>
@@ -245,7 +289,12 @@ Object {
                 <div
                   style="margin-top: 10px;"
                 >
-                  63
+                  <div
+                    arialabel="63"
+                    tabindex="0"
+                  >
+                    63
+                  </div>
                 </div>
               </div>
             </div>
@@ -259,7 +308,11 @@ Object {
                 class="labelContainer"
               >
                 <div
+                  aria-label="Gender"
+                  aria-live="Gender"
                   class="label"
+                  role="text"
+                  tabindex="0"
                 >
                   Gender
                 </div>
@@ -270,7 +323,12 @@ Object {
                 <div
                   style="margin-top: 10px;"
                 >
-                  Transgender
+                  <div
+                    arialabel="Transgender"
+                    tabindex="0"
+                  >
+                    Transgender
+                  </div>
                 </div>
               </div>
             </div>
@@ -284,7 +342,11 @@ Object {
                 class="labelContainer"
               >
                 <div
+                  aria-label="SSN"
+                  aria-live="SSN"
                   class="label"
+                  role="text"
+                  tabindex="0"
                 >
                   SSN
                 </div>
@@ -317,7 +379,12 @@ Object {
                 <div
                   style="margin-top: 10px;"
                 >
-                  ***-***-6119
+                  <div
+                    arialabel="***-***-6119"
+                    tabindex="0"
+                  >
+                    ***-***-6119
+                  </div>
                 </div>
               </div>
             </div>
@@ -331,7 +398,9 @@ Object {
                 State Issued ID
               </h3>
               <div
+                arialabel="Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID."
                 class="MuiTypography-root MuiTypography-bodyRegular css-15atyh3-MuiTypography-root"
+                tabindex="0"
               >
                 Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID.
               </div>
@@ -345,7 +414,11 @@ Object {
                     class="labelContainer"
                   >
                     <div
+                      aria-label="Front Card"
+                      aria-live="Front Card"
                       class="label"
+                      role="text"
+                      tabindex="0"
                     >
                       Front Card
                     </div>
@@ -374,10 +447,12 @@ Object {
                           </span>
                           <img
                             alt="Front image"
+                            aria-label="Front image"
                             data-nimg="intrinsic"
                             decoding="async"
                             src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                             style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                            tabindex="0"
                           />
                           <noscript />
                         </span>
@@ -397,7 +472,11 @@ Object {
                     class="labelContainer"
                   >
                     <div
+                      aria-label="Back Card"
+                      aria-live="Back Card"
                       class="label"
+                      role="text"
+                      tabindex="0"
                     >
                       Back Card
                     </div>
@@ -426,10 +505,12 @@ Object {
                           </span>
                           <img
                             alt="Back image"
+                            aria-label="Back Image"
                             data-nimg="intrinsic"
                             decoding="async"
                             src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                             style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                            tabindex="0"
                           />
                           <noscript />
                         </span>
@@ -451,6 +532,7 @@ Object {
         style="position: fixed; bottom: 16px; right: 16px;"
       >
         <button
+          arialabel="Edit option"
           class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-5kb46n-MuiButtonBase-root-MuiButton-root"
           data-testid="loc_edit"
           tabindex="0"
@@ -466,6 +548,7 @@ Object {
   </body>,
   "container": <div>
     <div
+      arialabel="Personal Information heading"
       class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
     >
       <div
@@ -483,6 +566,8 @@ Object {
             >
               <div
                 class="label"
+                role="text"
+                tabindex="0"
               >
                 Photo
               </div>
@@ -508,6 +593,7 @@ Object {
                   </span>
                   <img
                     alt="image"
+                    aria-label="Image"
                     data-nimg="intrinsic"
                     decoding="async"
                     src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
@@ -528,7 +614,11 @@ Object {
               class="labelContainer"
             >
               <div
+                aria-label="Name"
+                aria-live="Name"
                 class="label"
+                role="text"
+                tabindex="0"
               >
                 Name
               </div>
@@ -561,7 +651,12 @@ Object {
               <div
                 style="margin-top: 10px;"
               >
-                Rupert Jerde
+                <div
+                  arialabel="Rupert Jerde"
+                  tabindex="0"
+                >
+                  Rupert Jerde
+                </div>
               </div>
             </div>
           </div>
@@ -575,7 +670,11 @@ Object {
               class="labelContainer"
             >
               <div
+                aria-label="Preferred Name"
+                aria-live="Preferred Name"
                 class="label"
+                role="text"
+                tabindex="0"
               >
                 Preferred Name
               </div>
@@ -586,7 +685,12 @@ Object {
               <div
                 style="margin-top: 10px;"
               >
-                ---
+                <div
+                  arialabel="---"
+                  tabindex="0"
+                >
+                  ---
+                </div>
               </div>
             </div>
           </div>
@@ -600,7 +704,11 @@ Object {
               class="labelContainer"
             >
               <div
+                aria-label="Title"
+                aria-live="Title"
                 class="label"
+                role="text"
+                tabindex="0"
               >
                 Title
               </div>
@@ -611,7 +719,12 @@ Object {
               <div
                 style="margin-top: 10px;"
               >
-                Mrs.
+                <div
+                  arialabel="---"
+                  tabindex="0"
+                >
+                  Mrs.
+                </div>
               </div>
             </div>
           </div>
@@ -625,7 +738,11 @@ Object {
               class="labelContainer"
             >
               <div
+                aria-label="Date of Birth"
+                aria-live="Date of Birth"
                 class="label"
+                role="text"
+                tabindex="0"
               >
                 Date of Birth
               </div>
@@ -658,7 +775,12 @@ Object {
               <div
                 style="margin-top: 10px;"
               >
-                8/18/2022
+                <div
+                  arialabel="8/18/2022"
+                  tabindex="0"
+                >
+                  8/18/2022
+                </div>
               </div>
             </div>
           </div>
@@ -672,7 +794,11 @@ Object {
               class="labelContainer"
             >
               <div
+                aria-label="Age"
+                aria-live="Age"
                 class="label"
+                role="text"
+                tabindex="0"
               >
                 Age
               </div>
@@ -705,7 +831,12 @@ Object {
               <div
                 style="margin-top: 10px;"
               >
-                63
+                <div
+                  arialabel="63"
+                  tabindex="0"
+                >
+                  63
+                </div>
               </div>
             </div>
           </div>
@@ -719,7 +850,11 @@ Object {
               class="labelContainer"
             >
               <div
+                aria-label="Gender"
+                aria-live="Gender"
                 class="label"
+                role="text"
+                tabindex="0"
               >
                 Gender
               </div>
@@ -730,7 +865,12 @@ Object {
               <div
                 style="margin-top: 10px;"
               >
-                Transgender
+                <div
+                  arialabel="Transgender"
+                  tabindex="0"
+                >
+                  Transgender
+                </div>
               </div>
             </div>
           </div>
@@ -744,7 +884,11 @@ Object {
               class="labelContainer"
             >
               <div
+                aria-label="SSN"
+                aria-live="SSN"
                 class="label"
+                role="text"
+                tabindex="0"
               >
                 SSN
               </div>
@@ -777,7 +921,12 @@ Object {
               <div
                 style="margin-top: 10px;"
               >
-                ***-***-6119
+                <div
+                  arialabel="***-***-6119"
+                  tabindex="0"
+                >
+                  ***-***-6119
+                </div>
               </div>
             </div>
           </div>
@@ -791,7 +940,9 @@ Object {
               State Issued ID
             </h3>
             <div
+              arialabel="Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID."
               class="MuiTypography-root MuiTypography-bodyRegular css-15atyh3-MuiTypography-root"
+              tabindex="0"
             >
               Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID.
             </div>
@@ -805,7 +956,11 @@ Object {
                   class="labelContainer"
                 >
                   <div
+                    aria-label="Front Card"
+                    aria-live="Front Card"
                     class="label"
+                    role="text"
+                    tabindex="0"
                   >
                     Front Card
                   </div>
@@ -834,10 +989,12 @@ Object {
                         </span>
                         <img
                           alt="Front image"
+                          aria-label="Front image"
                           data-nimg="intrinsic"
                           decoding="async"
                           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                           style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                          tabindex="0"
                         />
                         <noscript />
                       </span>
@@ -857,7 +1014,11 @@ Object {
                   class="labelContainer"
                 >
                   <div
+                    aria-label="Back Card"
+                    aria-live="Back Card"
                     class="label"
+                    role="text"
+                    tabindex="0"
                   >
                     Back Card
                   </div>
@@ -886,10 +1047,12 @@ Object {
                         </span>
                         <img
                           alt="Back image"
+                          aria-label="Back Image"
                           data-nimg="intrinsic"
                           decoding="async"
                           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                           style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                          tabindex="0"
                         />
                         <noscript />
                       </span>
@@ -911,6 +1074,7 @@ Object {
       style="position: fixed; bottom: 16px; right: 16px;"
     >
       <button
+        arialabel="Edit option"
         class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-5kb46n-MuiButtonBase-root-MuiButton-root"
         data-testid="loc_edit"
         tabindex="0"

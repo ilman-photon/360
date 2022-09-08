@@ -8,12 +8,13 @@ export const AccountCard = ({
   isEditing,
   actionContent,
   isAppoinment,
+  ariaLabel,
   textStyle = {},
 }) => {
   const isDesktop = useMediaQuery("(min-width: 769px)");
   return (
     <>
-      <Card variant="outlined" className={styles.card}>
+      <Card variant="outlined" className={styles.card} ariaLabel={ariaLabel}>
         {(isDesktop || isAppoinment) && (
           <CardHeader
             className={styles.cardHeader}

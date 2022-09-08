@@ -271,7 +271,9 @@ Object {
                 >
                   <div
                     class="label"
+                    role="text"
                     style="color: rgb(0, 59, 74);"
+                    tabindex="0"
                   >
                     Name
                   </div>
@@ -584,7 +586,9 @@ Object {
               >
                 <div
                   class="label"
+                  role="text"
                   style="color: rgb(0, 59, 74);"
+                  tabindex="0"
                 >
                   Name
                 </div>
