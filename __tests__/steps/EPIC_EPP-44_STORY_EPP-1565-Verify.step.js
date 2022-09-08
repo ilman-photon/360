@@ -10,6 +10,8 @@ import constants from "../../src/utils/constants";
 import FilterHeading from "../../src/components/molecules/FilterHeading/filterHeading";
 import FilterResult from "../../src/components/molecules/FilterResult/filterResult";
 import ScheduleAppointmentPage from "../../src/pages/patient/schedule-appointment";
+import ModalConfirmation from "../../src/components/organisms/ScheduleAppointment/ModalScheduling/modalConfirmation";
+
 import mediaQuery from 'css-mediaquery';
 
 const feature = loadFeature(
@@ -428,9 +430,13 @@ defineFeature(feature, (test) => {
   }
 
   const clickHour = async () => {
-    expect(container.getByText("30 In-network providers")).toBeInTheDocument();
     const hourButton = await waitFor(() => container.getByTestId(SEARCH_PROVIDER_TEST_ID.hourButton))
     fireEvent.click(hourButton)
+  }
+
+  const whosForButtons = () => {
+    expect(container.getAllByText("myself")).toBeTruthy();
+    expect(container.getAllByText("someoneElse")).toBeTruthy();
   }
 
   test('EPIC_EPP-44_STORY_EPP-1565 - Verify user able to search for location and select the date of appointment as well as purpose of visit and insurance.', ({ given, and, then }) => {
@@ -695,7 +701,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user is able to see the ti
   });
 
   then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
-      defaultValidation();
+      resultsScreen();
   });
 
   and('user views the timeslot', () => {
@@ -755,7 +761,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user lands on the screen t
   });
 
   then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
-      defaultValidation();
+      resultsScreen();
   });
 
   and('user select the timeslot', () => {
@@ -763,7 +769,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user lands on the screen t
   });
 
   then('user lands on the screen to review the appointment details', () => {
-      defaultValidation();
+      reviewAppPage();
   });
 });
 
@@ -789,7 +795,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user lands on the screen t
   });
 
   then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
-      defaultValidation();
+      resultsScreen();
   });
 
   and('user select the timeslot', () => {
@@ -797,11 +803,12 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user lands on the screen t
   });
 
   then('user lands on the screen to review the appointment details', () => {
-      defaultValidation();
+      reviewAppPage();
   });
 
   and('user selects the option proceeds to schedule it', () => {
-      defaultValidation();
+      const continueButton = container.getByText("continue");
+    fireEvent.click(continueButton);
   });
 });
 
@@ -827,7 +834,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user lands on the screen t
   });
 
   then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
-      defaultValidation();
+      resultsScreen();
   });
 
   and('user select the timeslot', () => {
@@ -835,11 +842,12 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user lands on the screen t
   });
 
   then('user lands on the screen to review the appointment details', () => {
-      defaultValidation();
+      reviewAppPage();
   });
 
   and('user selects the option proceeds to schedule it', () => {
-      defaultValidation();
+      const continueButton = container.getByText("continue");
+    fireEvent.click(continueButton);
   });
 
   then('user lands on the screen to select who the appointment is for', () => {
@@ -869,7 +877,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to see the field
   });
 
   then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
-      defaultValidation();
+      resultsScreen();
   });
 
   and('user select the timeslot', () => {
@@ -877,11 +885,12 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to see the field
   });
 
   then('user lands on the screen to review the appointment details', () => {
-      defaultValidation();
+      reviewAppPage();
   });
 
   and('user selects the option proceeds to schedule it', () => {
-      defaultValidation();
+    const continueButton = container.getByText("continue");
+    fireEvent.click(continueButton);
   });
 
   then('user lands on the screen to select who the appointment is for', () => {
@@ -889,7 +898,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to see the field
   });
 
   and('user able to view Myself and Someone else buttons', () => {
-      defaultValidation();
+    whosForButtons();
   });
 });
 
@@ -915,7 +924,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to select Someon
   });
 
   then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
-      defaultValidation();
+      resultsScreen();
   });
 
   and('user select the timeslot', () => {
@@ -923,19 +932,21 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to select Someon
   });
 
   then('user lands on the screen to review the appointment details', () => {
-      defaultValidation();
+      reviewAppPage();
   });
 
   and('user selects the option proceeds to schedule it', () => {
-      defaultValidation();
+    const continueButton = container.getByText("continue");
+    fireEvent.click(continueButton);
   });
 
   then('user lands on the screen to select who the appointment is for', () => {
-      defaultValidation();
+    whosForButtons();
   });
 
   and('user able to select Someone else option', () => {
-      defaultValidation();
+      const someoneElseButton = container.getByText("someoneElse");
+      fireEvent.click(someoneElseButton);
   });
 });
 
@@ -961,7 +972,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to see provide p
   });
 
   then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
-      defaultValidation();
+      resultsScreen();
   });
 
   and('user select the timeslot', () => {
@@ -969,23 +980,35 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to see provide p
   });
 
   then('user lands on the screen to review the appointment details', () => {
-      defaultValidation();
+      reviewAppPage();
   });
 
   and('user selects the option proceeds to schedule it', () => {
-      defaultValidation();
+    const continueButton = container.getByText("continue");
+    fireEvent.click(continueButton);
   });
 
   then('user lands on the screen to select who the appointment is for', () => {
-      defaultValidation();
+    whosForButtons();
   });
 
   and('user select Someone else option', () => {
-      defaultValidation();
+      const someoneElseButton = container.getByText("someoneElse");
+      fireEvent.click(someoneElseButton);
   });
 
   then('user able to see Provide patient\'s baic information page', () => {
-      defaultValidation();
+    const field1 = container.getByLabelText("First Name");
+    fireEvent.change(field1, { target: { value: "" } });
+
+    const field2 = container.getByLabelText("Last Name");
+    fireEvent.change(field2, { target: { value: "" } });
+
+    const field3 = container.getByLabelText("Mobile Number");
+    fireEvent.change(field3, { target: { value: "" } });
+
+    const field4 = container.getByRole("textbox", { name: "Email" });
+    fireEvent.change(field4, { target: { value: "" } });
   });
 });
 
@@ -1011,7 +1034,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to view the fiel
   });
 
   then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
-      defaultValidation();
+      resultsScreen();
   });
 
   and('user select the timeslot', () => {
@@ -1019,19 +1042,32 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to view the fiel
   });
 
   then('user lands on the screen to review the appointment details', () => {
-      defaultValidation();
+      reviewAppPage();
   });
 
   and('user selects the option proceeds to schedule it', () => {
-      defaultValidation();
+      const continueButton = container.getByText("continue");
+      fireEvent.click(continueButton);
   });
 
   and('user able to select Someone else option', () => {
-      defaultValidation();
+    whosForButtons();
+    const someoneElseButton = container.getByText("someoneElse");
+    fireEvent.click(someoneElseButton);
   });
 
   then('user should see fields First Name, Last Name, Date Of Birth,Email,Mobile Number, Preferred mode(s) of communication', () => {
-      defaultValidation();
+    const field1 = container.getByLabelText("First Name");
+    fireEvent.change(field1, { target: { value: "" } });
+
+    const field2 = container.getByLabelText("Last Name");
+    fireEvent.change(field2, { target: { value: "" } });
+
+    const field3 = container.getByLabelText("Mobile Number");
+    fireEvent.change(field3, { target: { value: "" } });
+
+    const field4 = container.getByRole("textbox", { name: "Email" });
+    fireEvent.change(field4, { target: { value: "" } });
   });
 });
 
@@ -1057,7 +1093,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to view the fiel
     });
 
     then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
-      defaultValidation();
+      resultsScreen();
     });
 
     and('user select the timeslot', () => {
@@ -1065,15 +1101,17 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to view the fiel
     });
 
     then('user lands on the screen to review the appointment details', () => {
-      defaultValidation();
+      reviewAppPage();
     });
 
     and('user selects the option proceeds to schedule it', () => {
-      defaultValidation();
+      const continueButton = container.getByText("continue");
+      fireEvent.click(continueButton);
     });
 
     and('user select Someone else option', () => {
-      defaultValidation();
+      const someoneElseButton = container.getByText("someoneElse");
+      fireEvent.click(someoneElseButton);
     });
 
     then('user should see fields First Name, Last Name, Date Of Birth,Email,Mobile Number and Preferred mode(s) of communication', () => {
@@ -1111,7 +1149,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to view the appo
     });
 
     then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
-      defaultValidation();
+      resultsScreen();
     });
 
     and('user select the timeslot', () => {
@@ -1119,31 +1157,68 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to view the appo
     });
 
     then('user lands on the screen to review the appointment details', () => {
-      defaultValidation();
+      reviewAppPage();
     });
 
     and('user selects the option proceeds to schedule it', () => {
-      defaultValidation();
+      const continueButton = container.getByText("continue");
+      fireEvent.click(continueButton);
     });
 
     and('user select Someone else option', () => {
-      defaultValidation();
+      const someoneElseButton = container.getByText("someoneElse");
+      fireEvent.click(someoneElseButton);
     });
 
     then('user should see fields First Name, Last Name, Date Of Birth,Email,Mobile Number and Preferred mode(s) of communication', () => {
-      defaultValidation();
+      const field1 = container.getByLabelText("First Name");
+      fireEvent.change(field1, { target: { value: "" } });
+
+      const field2 = container.getByLabelText("Last Name");
+      fireEvent.change(field2, { target: { value: "" } });
+
+      const field3 = container.getByLabelText("Mobile Number");
+      fireEvent.change(field3, { target: { value: "" } });
+
+      const field4 = container.getByRole("textbox", { name: "Email" });
+      fireEvent.change(field4, { target: { value: "" } });
     });
 
     and('user provides valid patient details', () => {
-      defaultValidation();
+      const field1 = container.getByLabelText("First Name");
+      fireEvent.change(field1, { target: { value: "first" } });
+
+      const field2 = container.getByLabelText("Last Name");
+      fireEvent.change(field2, { target: { value: "last" } });
+
+      const field3 = container.getByLabelText("Mobile Number");
+      fireEvent.change(field3, { target: { value: "1234567890" } });
+
+      const field4 = container.getByRole("textbox", { name: "Email" });
+      fireEvent.change(field4, { target: { value: "email@valid.com" } });
     });
 
     and('user select the submit button', () => {
-      defaultValidation();
+      const submitButton = container.getByRole("button", {
+        name: "scheduleAppoinment",
+      });
+      expect(submitButton).toBeTruthy();
+      fireEvent.click(submitButton);
     });
 
-    and('user should be able to view the appointment confirmation message', () => {
-      defaultValidation();
+    and('user should be able to view the appointment confirmation message', async () => {
+      const mockCallBack = jest.fn();
+      container.rerender(
+        <ModalConfirmation
+        isLoggedIn={true}
+        isOpen={true}
+        OnSetIsOpen={mockCallBack}
+        isDesktop={false}
+      />
+      );
+      await waitFor(() => {
+        expect(container.getByText("You’re Scheduled!")).toBeInTheDocument();
+      });
     });
 });
 
