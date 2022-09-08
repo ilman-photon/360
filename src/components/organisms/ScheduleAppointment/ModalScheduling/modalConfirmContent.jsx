@@ -75,7 +75,6 @@ export default function ModalConfirmContent({
 
   const handleClose = () => {
     OnSetIsOpen(false);
-    OnClose();
   };
 
   return (

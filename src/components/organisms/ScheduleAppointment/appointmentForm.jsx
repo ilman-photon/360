@@ -405,7 +405,6 @@ export default function AppointmentForm({
                     />
                   );
                 }}
-                rules={{ required: t("thisFieldRequired") }}
               />
               <DisclaimerText label="(Optional)" />
 

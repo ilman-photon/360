@@ -432,10 +432,7 @@ Object {
   >
     <div
       aria-hidden="true"
-    >
-      (
-      )
-    </div>
+    />
     <div
       class="MuiDrawer-root MuiDrawer-modal MuiModal-root css-vvtvtn-MuiModal-root-MuiDrawer-root"
       role="presentation"
@@ -784,10 +781,7 @@ Object {
   </body>,
   "container": <div
     aria-hidden="true"
-  >
-    (
-    )
-  </div>,
+  />,
   "debug": [Function],
   "findAllByAltText": [Function],
   "findAllByDisplayValue": [Function],
