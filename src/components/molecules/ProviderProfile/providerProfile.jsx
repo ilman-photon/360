@@ -4,6 +4,7 @@ import styles from "./styles.module.scss";
 import StyledRating from "../../atoms/Rating/styledRating";
 import { useRouter } from "next/router";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
+import { TEST_ID } from "../../../utils/constants";
 
 export default function ProviderProfile({
   variant,
@@ -82,6 +83,7 @@ export default function ProviderProfile({
         <Box>
           <Image
             src={providerData.image || "/transparent.png"}
+            data-testid={TEST_ID.APPOINTMENT_TEST_ID.PROVIDER_PROFILE.image}
             width={imageSize === "small" ? 50 : 100}
             height={imageSize === "small" ? 50 : 100}
             className={styles.profilePhoto}
@@ -95,6 +97,7 @@ export default function ProviderProfile({
           <Typography
             variant="h2"
             fontSize={getNameFontSize()}
+            data-testid={TEST_ID.APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name}
             onClick={() => {
               router.push("/patient/bio");
             }}

@@ -35,10 +35,10 @@ import {
   getProvideOverlay,
 } from "../../../utils/appointment";
 import { Api } from "../../api/api";
-import ModalScheduling from "../../../components/organisms/ScheduleAppointment/ModalScheduling/modalScheduling";
-import DrawerScheduling from "../../../components/organisms/ScheduleAppointment/ModalScheduling/drawerScheduling";
+import ModalConfirmation from "../../../components/organisms/ScheduleAppointment/ModalScheduling/modalConfirmation";
 import Cookies from "universal-cookie";
 import { formatAppointmentDate } from "../../../utils/dateFormatter";
+import { TEST_ID } from "../../../utils/constants";
 
 export async function getStaticProps() {
   return {
@@ -277,6 +277,7 @@ export default function Appointment({ googleApiKey }) {
         <Dialog
           fullScreen={!isDesktop}
           open={open}
+          data-testid={TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.container}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
@@ -491,9 +492,9 @@ export default function Appointment({ googleApiKey }) {
   });
 
   const scheduleConfirmPopup = () => {
-    return isDesktop ? (
-      <ModalScheduling
-        isLoggedIn={true}
+    return (
+      <ModalConfirmation
+        isLoggedIn={isLoggedIn}
         patientData={appointmentScheduleData.patientInfo}
         providerData={appointmentScheduleData.providerInfo}
         isOpen={isOpen}
@@ -501,17 +502,7 @@ export default function Appointment({ googleApiKey }) {
           setIsOpen(idx);
           cookies.remove("dashboardState", { path: "/patient" });
         }}
-      />
-    ) : (
-      <DrawerScheduling
-        isLoggedIn={true}
-        patientData={appointmentScheduleData.patientInfo}
-        providerData={appointmentScheduleData.providerInfo}
-        isOpen={isOpen}
-        OnSetIsOpen={(idx) => {
-          setIsOpen(idx);
-          cookies.remove("dashboardState", { path: "/patient" });
-        }}
+        isDesktop={isDesktop}
       />
     );
   };

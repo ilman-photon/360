@@ -124,6 +124,23 @@ module.exports = {
       dateInput: "dateInput",
       purposeInput: "purposeInput",
       insuranceInput: "insuranceInput",
+      DIALOG_VIEW_ALL: {
+        container: "dialogViewAll",
+        scheduleContainer: "appointment_all_availability_schedule_ontainer",
+        previousWeekButton: "appointment_all_availability_previous_week_button",
+        nextWeekButton: "appointment_all_availability_next_week_button",
+        timeslotButton: "appointment_all_availability_timeslot_button",
+      },
+      PROVIDER_PROFILE: {
+        image: "appointment_provider_profile_image",
+        name: "appointment_provider_profile_name",
+      },
+      FILTER_RESULT: {
+        container: "appointment_filter_result_container",
+      },
+      FILTER_COMPONENT: {
+        drawer: "appointment_filter_component_drawer",
+      },
     },
     BIOGRAPHY_TEST_ID: {
       about: "biography-about",
@@ -147,6 +164,15 @@ module.exports = {
       viewAll: "loc_viewAll",
     },
     SUBNAVIGATION: "subNavigation-link",
+    SCHEDULE_APPOINTMENT_TEST_ID: {
+      APPOINTMENT_LOCATION: {
+        editButton: "schedule_appointment_location_edit_button",
+      },
+      APPOINTMENT_DETAILS: {
+        editButton: "schedule_appointment_details_edit_button",
+      },
+      step2Button: "schedule_appointment_step2_button",
+    },
     MAP_INFO_WINDOW: {
       previousProvider: "provider_btnPrevious",
       nextProvider: "provider_btnNext",

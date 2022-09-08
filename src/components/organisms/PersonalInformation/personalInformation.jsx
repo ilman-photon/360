@@ -107,6 +107,7 @@ export default function PersonalInformation({
             onClick={OnEditClicked}
             variant="text"
             className={styles.editButton}
+            aria-label="Edit option"
           >
             <EditOutlinedIcon
               sx={{ width: 20, height: 20, color: colors.link }}
@@ -140,7 +141,7 @@ export default function PersonalInformation({
                 width={122}
                 height={122}
                 style={{ borderRadius: "50%" }}
-                alt="profile"
+                alt="image"
               ></Image>
             ) : (
               <Avatar
@@ -195,8 +196,8 @@ export default function PersonalInformation({
                   <Image
                     width={267}
                     height={175}
-                    src={userData.issuedCardFront}
-                    alt="front-id"
+                    src={userData.issuedCardFront || "/transparent.png"}
+                    alt="Front image"
                   />
                 </div>
               </LabelWithInfo>
@@ -208,8 +209,8 @@ export default function PersonalInformation({
                   <Image
                     width={267}
                     height={175}
-                    src={userData.issuedCardBack}
-                    alt="back-id"
+                    src={userData.issuedCardBack || "/transparent.png"}
+                    alt="Back image"
                   />
                 </div>
               </LabelWithInfo>
@@ -292,6 +293,9 @@ export default function PersonalInformation({
                     type="text"
                     id="preferredName"
                     label="Preferred Name"
+                    inputProps={{
+                      "aria-label": "Prefered Name field",
+                    }}
                     value={value}
                     onChange={onChange}
                     error={!!error}
@@ -314,6 +318,9 @@ export default function PersonalInformation({
                   <StyledSelect
                     id="title"
                     label="Title"
+                    inputProps={{
+                      "aria-label": "Title dropdown menu",
+                    }}
                     options={userTitleOptions}
                     value={value}
                     onChange={onChange}
@@ -386,6 +393,9 @@ export default function PersonalInformation({
                   <StyledSelect
                     id="gender"
                     label="Gender"
+                    inputProps={{
+                      "aria-label": "Gender dropdown menu",
+                    }}
                     options={genderOptions}
                     value={value}
                     onChange={onChange}
@@ -406,10 +416,9 @@ export default function PersonalInformation({
                 return (
                   <StyledInput
                     disabled
-                    type="text"
                     id="ssn"
                     label="SSN"
-                    value={value}
+                    value={formatSocialSecurity(String(value))}
                     onChange={onChange}
                     error={!!error}
                     size="small"

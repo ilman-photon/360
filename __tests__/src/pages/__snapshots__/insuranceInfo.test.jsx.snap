@@ -442,6 +442,7 @@ Object {
                               value="Yes"
                             >
                               <label
+                                aria-label="Yes, No - radio buttons"
                                 class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1qtos26-MuiFormLabel-root"
                                 id="row-radio-buttons-group-label"
                               >
@@ -715,7 +716,6 @@ Object {
                                             </label>
                                             <div
                                               class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-1wtub61-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
-                                              data-testid="select-undefined"
                                             >
                                               <div
                                                 aria-expanded="false"
@@ -735,6 +735,7 @@ Object {
                                                 aria-hidden="true"
                                                 aria-live="polite"
                                                 class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+                                                data-testid="select-undefined"
                                                 tabindex="-1"
                                                 value=""
                                               />
@@ -964,6 +965,7 @@ Object {
                               value="Primary"
                             >
                               <label
+                                aria-label="Primary, Secondary, Tertiary - radio buttons"
                                 class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1qtos26-MuiFormLabel-root"
                                 id="row-radio-buttons-group-label"
                               >
@@ -1623,6 +1625,7 @@ Object {
                             value="Yes"
                           >
                             <label
+                              aria-label="Yes, No - radio buttons"
                               class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1qtos26-MuiFormLabel-root"
                               id="row-radio-buttons-group-label"
                             >
@@ -1896,7 +1899,6 @@ Object {
                                           </label>
                                           <div
                                             class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl  css-1wtub61-MuiInputBase-root-MuiFilledInput-root-MuiSelect-root"
-                                            data-testid="select-undefined"
                                           >
                                             <div
                                               aria-expanded="false"
@@ -1916,6 +1918,7 @@ Object {
                                               aria-hidden="true"
                                               aria-live="polite"
                                               class="MuiSelect-nativeInput css-yf8vq0-MuiSelect-nativeInput"
+                                              data-testid="select-undefined"
                                               tabindex="-1"
                                               value=""
                                             />
@@ -2145,6 +2148,7 @@ Object {
                             value="Primary"
                           >
                             <label
+                              aria-label="Primary, Secondary, Tertiary - radio buttons"
                               class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1qtos26-MuiFormLabel-root"
                               id="row-radio-buttons-group-label"
                             >

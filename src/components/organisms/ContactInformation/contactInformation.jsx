@@ -111,6 +111,7 @@ export default function ContactInformation({
             onClick={OnEditClicked}
             variant="text"
             className={styles.editButton}
+            aria-label="Edit option"
           >
             <EditOutlinedIcon
               sx={{ width: 20, height: 20, color: colors.link }}
@@ -186,6 +187,9 @@ export default function ContactInformation({
                     type="phone"
                     id="mobile"
                     label="Phone Number"
+                    inputProps={{
+                      "aria-label": "Phone Number field",
+                    }}
                     value={value}
                     onChange={onChange}
                     error={!!error}
@@ -221,6 +225,9 @@ export default function ContactInformation({
                     type="text"
                     id="email"
                     label="Email ID"
+                    inputProps={{
+                      "aria-label": "Email ID field",
+                    }}
                     value={value}
                     onChange={onChange}
                     error={!!error}
@@ -238,7 +245,7 @@ export default function ContactInformation({
                   },
                 },
                 pattern: {
-                  value: Regex.isEmailCorrect,
+                  value: Regex.emailValidation,
                   message: "Incorrect format",
                 },
               }}
@@ -270,15 +277,6 @@ export default function ContactInformation({
                       />
                     );
                   }}
-                  rules={
-                    {
-                      // required: "This field is required",
-                      // pattern: {
-                      //   value: Regex.isValidPhoneFormat,
-                      //   message: "Incorrect format",
-                      // },
-                    }
-                  }
                 />
               </ClientAddressAutofill>
             </Suspense>
@@ -295,6 +293,9 @@ export default function ContactInformation({
                     type="text"
                     id="city"
                     label="City"
+                    inputProps={{
+                      "aria-label": "City field",
+                    }}
                     autoComplete="address-level2"
                     value={value}
                     onChange={onChange}
@@ -305,15 +306,6 @@ export default function ContactInformation({
                   />
                 );
               }}
-              rules={
-                {
-                  // required: "This field is required",
-                  // pattern: {
-                  //   value: Regex.isValidPhoneFormat,
-                  //   message: "Incorrect format",
-                  // },
-                }
-              }
             />
 
             <Grid container columnSpacing={2}>
@@ -329,6 +321,9 @@ export default function ContactInformation({
                       <StyledSelect
                         id="state"
                         label="State"
+                        inputProps={{
+                          "aria-label": "State drop down menu",
+                        }}
                         autoComplete="address-level1"
                         options={usStatesList}
                         value={value}
@@ -344,15 +339,6 @@ export default function ContactInformation({
                       />
                     );
                   }}
-                  rules={
-                    {
-                      // required: "This field is required",
-                      // pattern: {
-                      //   value: Regex.isValidPhoneFormat,
-                      //   message: "Incorrect format",
-                      // },
-                    }
-                  }
                 />
               </Grid>
 
@@ -369,6 +355,9 @@ export default function ContactInformation({
                         type="text"
                         id="zip"
                         label="Zip"
+                        inputProps={{
+                          "aria-label": "Zip field",
+                        }}
                         autoComplete="postal-code"
                         value={value}
                         onChange={onChange}
@@ -388,7 +377,6 @@ export default function ContactInformation({
                     );
                   }}
                   rules={{
-                    // required: "This field is required",
                     pattern: {
                       value: /^\s?\d{5}\s?$/,
                       message: "Incorrect format",
