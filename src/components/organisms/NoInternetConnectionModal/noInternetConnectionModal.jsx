@@ -1,7 +1,7 @@
 import React from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import { Box, Divider, IconButton, Stack, Typography } from "@mui/material";
+import { Box, IconButton, Stack, Typography } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Image from "next/image";
 import styles from "../NoInternetConnectionModal/style.module.scss";

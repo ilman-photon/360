@@ -73,10 +73,10 @@ function App({ Component, pageProps }) {
   }, [getRemainingTime, isPrompted]);
 
   useEffect(() => {
-    window.addEventListener("offline", (e) => {
+    window.addEventListener("offline", () => {
       setOnline(false);
     });
-    window.addEventListener("online", (e) => {
+    window.addEventListener("online", () => {
       setOnline(true);
     });
   }, []);
