@@ -442,28 +442,6 @@ defineFeature(feature, (test) => {
     await waitFor(() => container.getByText("Review appointment details"))
   }
 
-  const clickSomeoneElseButton = () => {
-    const continueButton = container.getAllByText("continue")[0];
-    fireEvent.click(continueButton);
-
-    const someoneElseButton = container.getByText("someoneElse");
-    fireEvent.click(someoneElseButton);
-  };
-
-  const provideDetailsEmpty = () => {
-    const field1 = container.getByLabelText("First Name");
-    fireEvent.change(field1, { target: { value: "" } });
-
-    const field2 = container.getByLabelText("Last Name");
-    fireEvent.change(field2, { target: { value: "" } });
-
-    const field3 = container.getByLabelText("Mobile Number");
-    fireEvent.change(field3, { target: { value: "" } });
-
-    const field4 = container.getByRole("textbox", { name: "Email" });
-    fireEvent.change(field4, { target: { value: "" } });
-  }
-
   const provideDetailsValid = () => {
     const field1 = container.getByLabelText("First Name");
     fireEvent.change(field1, { target: { value: "1" } });
@@ -493,6 +471,17 @@ defineFeature(feature, (test) => {
   const whosForButtons = () => {
     expect(container.getAllByText("myself")).toBeTruthy();
     expect(container.getAllByText("someoneElse")).toBeTruthy();
+  }
+
+  const confirmationPage = async () => {
+    const mockCallBack = jest.fn();
+    container.rerender(
+    <ModalConfirmation
+      isLoggedIn={true}
+      isOpen={true}
+      OnSetIsOpen={mockCallBack}
+      isDesktop={false}/>);
+    await waitFor(() => container.getByText("You’re Scheduled!"))
   }
 
   test('EPIC_EPP-44_STORY_EPP-1567-To verify whether the user is able to choose Appointment for Someone else', ({ given, and, when, then }) => {
@@ -667,7 +656,8 @@ test('Verify whether the text If this is a medical emergency, please call 911 is
   });
 
   and('mouse hover the text  Is this the medical emergency?', async () => {
-    defaultValidation();
+    confirmationPage();
+    await waitFor(() => container.getByText(/isEmergency/i))
   });
 
   then(/^user should see the text If this is a medical emergency, please call (\d+).$/, () => {
