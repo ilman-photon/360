@@ -76,6 +76,7 @@ export const CustomPasswordInput = styled((props) => (
     },
     "&.Mui-error": {
       color: "#B00020",
+      fontWeight: "unset",
     },
   },
   "& .MuiFilledInput-root": {
@@ -136,6 +137,7 @@ export const RedditTextField = styled((props) => (
     },
     "&.Mui-error": {
       color: "#B00020",
+      fontWeight: "unset",
     },
   },
   "& .MuiFilledInput-root": {
