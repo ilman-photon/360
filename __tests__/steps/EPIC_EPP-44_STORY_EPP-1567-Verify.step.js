@@ -376,6 +376,14 @@ defineFeature(feature, (test) => {
         insuranceCarrierData={[]} />);
   }
 
+  const provideFilters = () => {
+    inputLocation();
+    inputDate();
+    inputPurpose();
+    inputInsurance();
+    clickSearch();
+  }
+
   const inputLocation = async () => {
     const locationInput = await waitFor(() => container.getByLabelText("City, state, or zip code"))
     act(() => {
@@ -477,6 +485,16 @@ defineFeature(feature, (test) => {
     fireEvent.click(saveButton);
   }
 
+  const clickHour = async () => {
+    const hourButton = await waitFor(() => container.getByTestId(SEARCH_PROVIDER_TEST_ID.hourButton))
+    fireEvent.click(hourButton)
+  }
+
+  const whosForButtons = () => {
+    expect(container.getAllByText("myself")).toBeTruthy();
+    expect(container.getAllByText("someoneElse")).toBeTruthy();
+  }
+
   test('EPIC_EPP-44_STORY_EPP-1567-To verify whether the user is able to choose Appointment for Someone else', ({ given, and, when, then }) => {
     given('user launch the Marketing Site url', () => {
       defaultValidation();
@@ -487,35 +505,38 @@ defineFeature(feature, (test) => {
     });
 
     and('user navigates to the schedule appointment screen', () => {
-      defaultValidation();
+      searchScreen();
     });
 
     and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', () => {
-      defaultValidation();
+      provideFilters();
     });
 
     and('click on Search button', () => {
-      defaultValidation();
+      clickSearch();
     });
 
     and('user should lands on Schedule Appointment view screen with selected location, date, Purpose of visit and insurance carrier data.', () => {
-      defaultValidation();
+      resultsScreen();
     });
 
     and('select any available Time slot', () => {
-      defaultValidation();
+      clickHour();
     });
 
     and('user should see the Review Appointment details page', () => {
-      defaultValidation();
+      reviewAppPage();
     });
 
     and('user clicks on Continue, it should display the option Myself and Someone else.', () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
     });
 
     then('user should able to choose Someone else', () => {
-      defaultValidation();
+      whosForButtons();
+      const someoneElseButton = container.getByText("someoneElse");
+      fireEvent.click(someoneElseButton);
     });
   });
 
@@ -529,11 +550,11 @@ defineFeature(feature, (test) => {
     });
 
     and('user navigates to the schedule appointment screen', () => {
-      defaultValidation();
+      searchScreen();
     });
 
     and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', () => {
-      defaultValidation();
+      provideFilters();
     });
 
     and('click on Search button', () => {
@@ -541,23 +562,26 @@ defineFeature(feature, (test) => {
     });
 
     and('user should lands on Schedule Appointment view screen with selected location, date, Purpose of visit and insurance carrier data.', () => {
-      defaultValidation();
+      resultsScreen();
     });
 
     and('select any available Time slot', () => {
-      defaultValidation();
+      clickHour();
     });
 
     and('user should see the Review Appointment details page', () => {
-      defaultValidation();
+      reviewAppPage();
     });
 
     and('user clicks on Continue, it should display the option Myself and Someone else.', () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
+      whosForButtons();
     });
 
     then('user should able to choose Someone else', () => {
-      defaultValidation();
+      const someoneElseButton = container.getByText("someoneElse");
+      fireEvent.click(someoneElseButton);
     });
 
     then('mentioned fields should get displayed.', () => {
@@ -579,35 +603,40 @@ defineFeature(feature, (test) => {
     });
 
     and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', () => {
-      defaultValidation();
+      provideFilters();
     });
 
     and('click on Search button', () => {
-      defaultValidation();
+      clickSearch();
     });
 
     and('user should lands on Schedule Appointment view screen with selected location, date, Purpose of visit and insurance carrier data.', () => {
-      defaultValidation();
+      resultsScreen();
     });
 
     and('select any available Time slot', () => {
-      defaultValidation();
+      clickHour();
     });
 
     and('user should see the Review Appointment details page', () => {
-      defaultValidation();
+      reviewAppPage();
     });
 
     and('user clicks on Continue, it should display the option Myself and Someone else.', () => {
-      defaultValidation();
+      const continueButton = container.getAllByText("continue")[0];
+      fireEvent.click(continueButton);
+      whosForButtons();
+      expect(container.getAllByText("myself")).toBeTruthy();
+      expect(container.getAllByText("someoneElse")).toBeTruthy();
     });
 
     and('user should click Someone else', () => {
-      defaultValidation();
+      const someoneElseButton = container.getByText("someoneElse");
+      fireEvent.click(someoneElseButton);
     });
 
     and('user should provide all those basic details of patient and click Schedule Appointment.', () => {
-      defaultValidation();
+      provideDetailsValid();
     });
 
     then('user should see the text Is this the medical emergency?', () => {
@@ -625,14 +654,23 @@ test('Verify whether the text If this is a medical emergency, please call 911 is
   });
 
   and('schedule the appointment.', () => {
-      defaultValidation();
+    reviewAppPage();
+    const continueButton = container.getAllByText("continue")[0];
+    fireEvent.click(continueButton);
+    const someoneElseButton = container.getByText("someoneElse");
+    fireEvent.click(someoneElseButton);
+    provideDetailsValid();
+    const submitButton = container.getByRole("button", {
+      name: "scheduleAppoinment",
+    });
+    fireEvent.click(submitButton);
   });
 
-  and('mouse hover the text  Is this the medical emergency?', () => {
-      defaultValidation();
+  and('mouse hover the text  Is this the medical emergency?', async () => {
+    defaultValidation();
   });
 
-  then(/^user should see the text If this is a medical emergency, please call (\d+).$/, (arg0) => {
+  then(/^user should see the text If this is a medical emergency, please call (\d+).$/, () => {
       defaultValidation();
   });
 });

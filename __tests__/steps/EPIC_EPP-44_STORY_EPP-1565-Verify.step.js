@@ -371,6 +371,14 @@ defineFeature(feature, (test) => {
         insuranceCarrierData={[]} />);
   }
 
+  const provideFilters = () => {
+    inputLocation();
+    inputDate();
+    inputPurpose();
+    inputInsurance();
+    clickSearch();
+  }
+
   const inputLocation = async () => {
     const locationInput = await waitFor(() => container.getByLabelText("City, state, or zip code"))
     act(() => {
@@ -693,11 +701,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user is able to see the ti
   });
 
   and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-      inputLocation();
-      inputDate();
-      inputPurpose();
-      inputInsurance();
-      clickSearch();
+      provideFilters();
   });
 
   then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
@@ -723,11 +727,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user is able to select the
   });
 
   and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-    inputLocation();
-      inputDate();
-      inputPurpose();
-      inputInsurance();
-      clickSearch();
+    provideFilters();
   });
 
   then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
@@ -753,11 +753,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user lands on the screen t
   });
 
   and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-      inputLocation();
-      inputDate();
-      inputPurpose();
-      inputInsurance();
-      clickSearch();
+      provideFilters();
   });
 
   then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
@@ -787,11 +783,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user lands on the screen t
   });
 
   and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-      inputLocation();
-      inputDate();
-      inputPurpose();
-      inputInsurance();
-      clickSearch();
+      provideFilters();
   });
 
   then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
@@ -808,7 +800,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user lands on the screen t
 
   and('user selects the option proceeds to schedule it', () => {
       const continueButton = container.getByText("continue");
-    fireEvent.click(continueButton);
+      fireEvent.click(continueButton);
   });
 });
 
@@ -826,11 +818,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user lands on the screen t
   });
 
   and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-      inputLocation();
-      inputDate();
-      inputPurpose();
-      inputInsurance();
-      clickSearch();
+      provideFilters();
   });
 
   then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
@@ -851,7 +839,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user lands on the screen t
   });
 
   then('user lands on the screen to select who the appointment is for', () => {
-      defaultValidation();
+    whosForButtons();
   });
 });
 
@@ -869,11 +857,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to see the field
   });
 
   and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-      inputLocation();
-      inputDate();
-      inputPurpose();
-      inputInsurance();
-      clickSearch();
+      provideFilters();
   });
 
   then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
@@ -916,11 +900,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to select Someon
   });
 
   and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-      inputLocation();
-      inputDate();
-      inputPurpose();
-      inputInsurance();
-      clickSearch();
+      provideFilters();
   });
 
   then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
@@ -964,11 +944,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to see provide p
   });
 
   and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-      inputLocation();
-      inputDate();
-      inputPurpose();
-      inputInsurance();
-      clickSearch();
+      provideFilters();
   });
 
   then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
@@ -1026,11 +1002,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to view the fiel
   });
 
   and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-      inputLocation();
-      inputDate();
-      inputPurpose();
-      inputInsurance();
-      clickSearch();
+      provideFilters();
   });
 
   then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
@@ -1085,11 +1057,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to view the fiel
     });
 
     and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-      inputLocation();
-      inputDate();
-      inputPurpose();
-      inputInsurance();
-      clickSearch();
+      provideFilters();
     });
 
     then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
@@ -1110,20 +1078,44 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to view the fiel
     });
 
     and('user select Someone else option', () => {
+      whosForButtons();
       const someoneElseButton = container.getByText("someoneElse");
       fireEvent.click(someoneElseButton);
     });
 
     then('user should see fields First Name, Last Name, Date Of Birth,Email,Mobile Number and Preferred mode(s) of communication', () => {
-      defaultValidation();
+      const field1 = container.getByLabelText("First Name");
+      fireEvent.change(field1, { target: { value: "" } });
+
+      const field2 = container.getByLabelText("Last Name");
+      fireEvent.change(field2, { target: { value: "" } });
+
+      const field3 = container.getByLabelText("Mobile Number");
+      fireEvent.change(field3, { target: { value: "" } });
+
+      const field4 = container.getByRole("textbox", { name: "Email" });
+      fireEvent.change(field4, { target: { value: "" } });
     });
 
     and('user provides valid patient details', () => {
-      defaultValidation();
+      const field1 = container.getByLabelText("First Name");
+      fireEvent.change(field1, { target: { value: "first" } });
+
+      const field2 = container.getByLabelText("Last Name");
+      fireEvent.change(field2, { target: { value: "last" } });
+
+      const field3 = container.getByLabelText("Mobile Number");
+      fireEvent.change(field3, { target: { value: "1234567890" } });
+
+      const field4 = container.getByRole("textbox", { name: "Email" });
+      fireEvent.change(field4, { target: { value: "email@valid.com" } });
     });
 
     and('user should see submit', () => {
-      defaultValidation();
+      const submitButton = container.getByRole("button", {
+        name: "scheduleAppoinment",
+      });
+      expect(submitButton).toBeTruthy();
     });
 });
 
@@ -1141,11 +1133,7 @@ test('EPIC_EPP-44_STORY_EPP-1565 - Verify whether the user able to view the appo
     });
 
     and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
-      inputLocation();
-      inputDate();
-      inputPurpose();
-      inputInsurance();
-      clickSearch();
+      provideFilters();
     });
 
     then('user should see Schedule Appointment screen with the selected location, date, purpose of visit and insurance carrier', () => {
