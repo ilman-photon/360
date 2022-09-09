@@ -200,7 +200,7 @@ defineFeature(feature, (test) => {
             defaultValidation()
         });
 
-        then('User lands on the Schedule Appointment screen', () => {
+        then('User lands on the Schedule Appointment screen', async () => {
             const mock = new MockAdapter(axios);
             const mockGeolocation = {
               getCurrentPosition: jest.fn(),
@@ -212,12 +212,14 @@ defineFeature(feature, (test) => {
             mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(400, {});
             window = Object.assign(window, { innerWidth: 1500 });
             global.navigator.geolocation = mockGeolocation;
-            container = render(
-            <Provider store={store}>
-                {Appointment.getLayout(<Appointment />)}
-            </Provider>
-            );
-            waitFor(() => {
+            act(()=>{
+              container = render(
+                <Provider store={store}>
+                  {Appointment.getLayout(<Appointment />)}
+                </Provider>
+              );
+            })
+            await waitFor(() => {
                 container.getByLabelText(/Date/i);
             })
         });
@@ -257,7 +259,7 @@ defineFeature(feature, (test) => {
             defaultValidation()
         });
 
-        then('User lands on the Schedule Appointment screen', () => {
+        then('User lands on the Schedule Appointment screen', async () => {
             const mock = new MockAdapter(axios);
             const mockGeolocation = {
               getCurrentPosition: jest.fn(),
@@ -269,13 +271,15 @@ defineFeature(feature, (test) => {
             mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(400, {});
             window = Object.assign(window, { innerWidth: 700 });
             global.navigator.geolocation = mockGeolocation;
-            container = render(
-            <Provider store={store}>
-                {Appointment.getLayout(<Appointment />)}
-            </Provider>
-            );
-            waitFor(() => {
-                container.getByLabelText(/Schedule an eye exam/i);
+            act(()=>{
+              container = render(
+                <Provider store={store}>
+                  {Appointment.getLayout(<Appointment />)}
+                </Provider>
+              );
+            })
+            await waitFor(() => {
+                container.getByText(/Schedule an eye/i);
             })
         });
 
