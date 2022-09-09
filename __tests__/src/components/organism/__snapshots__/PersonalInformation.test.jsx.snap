@@ -6,7 +6,6 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        arialabel="Personal Information heading"
         class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
       >
         <div
@@ -548,7 +547,6 @@ Object {
   </body>,
   "container": <div>
     <div
-      arialabel="Personal Information heading"
       class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
     >
       <div

@@ -100,7 +100,6 @@ export default function PersonalInformation({
     <AccountCard
       titleIcon={<AccountCircleOutlinedIcon />}
       title="Personal Information"
-      ariaLabel={"Personal Information heading"}
       isEditing={isEditing}
       // OnEditClicked={OnEditClicked}
       actionContent={

@@ -221,7 +221,6 @@ Object {
                   class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
                 >
                   <div
-                    arialabel="Personal Information heading"
                     class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
                   >
                     <div
@@ -969,7 +968,6 @@ Object {
                 class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
               >
                 <div
-                  arialabel="Personal Information heading"
                   class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
                 >
                   <div
