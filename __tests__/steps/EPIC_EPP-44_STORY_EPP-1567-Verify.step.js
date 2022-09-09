@@ -1,7 +1,5 @@
 import { act, fireEvent, render, waitFor } from "@testing-library/react";
-import axios from "axios";
 import "@testing-library/jest-dom";
-import MockAdapter from "axios-mock-adapter";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
@@ -456,13 +454,6 @@ defineFeature(feature, (test) => {
     fireEvent.change(field4, { target: { value: "4" } });
   }
 
-  const clickSaveAction = () => {
-    const saveButton = container.getByRole("button", {
-        name: "scheduleAppoinment",
-      });
-    fireEvent.click(saveButton);
-  }
-
   const clickHour = async () => {
     const hourButton = await waitFor(() => container.getByTestId(SEARCH_PROVIDER_TEST_ID.hourButton))
     fireEvent.click(hourButton)
@@ -482,6 +473,19 @@ defineFeature(feature, (test) => {
       OnSetIsOpen={mockCallBack}
       isDesktop={false}/>);
     await waitFor(() => container.getByText("You’re Scheduled!"))
+  }
+
+  const scheduleAppontment = () => {
+    reviewAppPage();
+    const continueButton = container.getAllByText("continue")[0];
+    fireEvent.click(continueButton);
+    const someoneElseButton = container.getByText("someoneElse");
+    fireEvent.click(someoneElseButton);
+    provideDetailsValid();
+    const submitButton = container.getByRole("button", {
+      name: "scheduleAppoinment",
+    });
+    fireEvent.click(submitButton);
   }
 
   test('EPIC_EPP-44_STORY_EPP-1567-To verify whether the user is able to choose Appointment for Someone else', ({ given, and, when, then }) => {
@@ -643,16 +647,7 @@ test('Verify whether the text If this is a medical emergency, please call 911 is
   });
 
   and('schedule the appointment.', () => {
-    reviewAppPage();
-    const continueButton = container.getAllByText("continue")[0];
-    fireEvent.click(continueButton);
-    const someoneElseButton = container.getByText("someoneElse");
-    fireEvent.click(someoneElseButton);
-    provideDetailsValid();
-    const submitButton = container.getByRole("button", {
-      name: "scheduleAppoinment",
-    });
-    fireEvent.click(submitButton);
+    scheduleAppontment();
   });
 
   and('mouse hover the text  Is this the medical emergency?', async () => {
@@ -675,7 +670,7 @@ test('Verify whether the user having the option to redirect to Patient portal ho
   });
 
   and('schedule the appointment.', () => {
-      defaultValidation();
+      scheduleAppontment();
   });
 
   then('user should see the option to redirect to Patient portal home page.', () => {
@@ -693,7 +688,7 @@ test('Verify whether the Confirmation Email is receiving to the user after succe
   });
 
   and('schedule the appointment.', () => {
-      defaultValidation();
+      scheduleAppontment();
   });
 
   then('the user should receive the Confirmation Email for successful Appointment schedule.', () => {
@@ -711,7 +706,7 @@ test('Verify whether the Confirmation Text Message is receiving to the user afte
   });
 
   and('schedule the appointment.', () => {
-      defaultValidation();
+      scheduleAppontment();
   });
 
   then('the user should receive the Confirmation Text message for successful Appointment schedule.', () => {

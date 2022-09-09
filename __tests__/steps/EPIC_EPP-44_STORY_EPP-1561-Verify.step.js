@@ -1,7 +1,5 @@
 import { act, fireEvent, render, waitFor } from "@testing-library/react";
-import axios from "axios";
 import "@testing-library/jest-dom";
-import MockAdapter from "axios-mock-adapter";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
