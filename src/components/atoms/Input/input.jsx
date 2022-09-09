@@ -101,11 +101,6 @@ export const CustomPasswordInput = styled((props) => (
       backgroundColor: "transparent",
       color: "#193138",
     },
-    "&.MuiFilledInput-input": {
-      "&.::-ms-reveal": {
-        display: "none",
-      },
-    },
   },
   "& .MuiFormHelperText-root": {
     "&.Mui-error": {
