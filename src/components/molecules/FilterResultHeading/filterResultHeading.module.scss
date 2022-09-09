@@ -39,6 +39,11 @@
   font-size: 14px;
   line-height: 17px;
   color: #6d6f73;
+  .closeIcon {
+    width: 15px;
+    height: 15px;
+    margin-left: 5px;
+  }
 }
 
 .tuneIcon {
@@ -51,10 +56,6 @@
   color: rgba(0, 0, 0, 0.54);
 }
 
-.closeIcon {
-  width: 14px;
-  margin-left: 5px;
-}
 .filterFoundWarpper {
   .filterFound {
     font-family: "Roboto", sans-serif;
