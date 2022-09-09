@@ -178,7 +178,7 @@ export default function InsuranceForm({
                   fieldState: { error },
                 }) => {
                   return (
-                    <AutoCompleteInput
+                    <AutoCompleteCreatable
                       onFetch={(e) => {
                         console.log(e);
                       }}
