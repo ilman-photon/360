@@ -1,8 +1,5 @@
 import * as React from "react";
 import { styled } from "@mui/material/styles";
-import Tabs from "@mui/material/Tabs";
-import Tab from "@mui/material/Tab";
-import Box from "@mui/material/Box";
 import { colors, patientTypography } from "../../../styles/theme";
 import {
   Grid,
@@ -16,6 +13,10 @@ import {
   Paper,
   tableCellClasses,
   Link,
+  useMediaQuery,
+  Tabs,
+  Tab,
+  Box,
 } from "@mui/material";
 import AccountCard from "../AccountCard/accountCard";
 import Image from "next/image";
@@ -26,6 +27,8 @@ import { ThemeProvider } from "@emotion/react";
 import MenuList from "./menuList";
 
 export default function Prescriptions() {
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
   const iconPrescription = "/icon-prescription.png";
   const iconContacts = "/icon-contacts.png";
   const iconGlasses = "/icon-glasses.png";
@@ -65,27 +68,36 @@ export default function Prescriptions() {
               className={[
                 styles.flexDisplay,
                 styles.spaceBetween,
-                styles.marginVertical,
+                styles.margin,
               ]}
             >
               <Typography variant="titleCard">Glasses Prescriptions</Typography>
               <MenuList />
             </Box>
-            <Box className={[styles.flexDisplay, styles.marginVertical]}>
-              <Typography variant="bodyRegular">
+            <Box className={[styles.flexDisplay, styles.margin]}>
+              <Typography variant="customBodyRegular">
                 Prescribed by: &nbsp;
               </Typography>
               <Typography variant="bodyMedium">Dr. Sonha Nguyen</Typography>
             </Box>
-            <Box className={[styles.flexDisplay, styles.marginVertical]}>
-              <Box className={[styles.flexDisplay, styles.halfBox]}>
-                <Typography variant="bodyRegular">
+            <Box
+              className={[isMobile ? "" : styles.flexDisplay, styles.margin]}
+            >
+              <Box
+                className={[styles.flexDisplay, isMobile ? "" : styles.halfBox]}
+              >
+                <Typography variant="customBodyRegular">
                   Prescribed on: &nbsp;
                 </Typography>
                 <Typography variant="bodyMedium">01/10/2021</Typography>
               </Box>
-              <Box className={[styles.flexDisplay]}>
-                <Typography variant="bodyRegular">
+              <Box
+                className={[
+                  styles.flexDisplay,
+                  isMobile ? styles.marginVertical : "",
+                ]}
+              >
+                <Typography variant="customBodyRegular">
                   Expires on: &nbsp;
                 </Typography>
                 <Typography variant="bodyMedium">01/10/2022</Typography>
@@ -99,7 +111,23 @@ export default function Prescriptions() {
               }}
             >
               <TableContainer component={Paper} sx={{ borderRadius: 0 }}>
-                <Table sx={{ minWidth: "90%" }} aria-label="simple table">
+                <Table
+                  sx={{
+                    minWidth: "90%",
+                    fontSize: "14px",
+                    ".MuiTableCell-body": {
+                      fontFamily: "Roboto",
+                      fontSize: "14px",
+                      fontWeight: "400",
+                    },
+                    ".MuiTableCell-head": {
+                      fontFamily: "Roboto",
+                      fontSize: "14px",
+                      fontWeight: "500",
+                    },
+                  }}
+                  aria-label="simple table"
+                >
                   <TableHead>
                     <TableRow>
                       <StyledTableCell>Eye</StyledTableCell>
@@ -133,7 +161,7 @@ export default function Prescriptions() {
             <Box className={[styles.flexDisplay, styles.viewPrescription]}>
               <Link
                 className={styles.viewPrescriptionText}
-                sx={{ color: "#008294" }}
+                sx={{ color: "#008294", fontFamily: "Inter" }}
               >
                 View prescriptions
               </Link>
@@ -148,7 +176,7 @@ export default function Prescriptions() {
               className={[
                 styles.flexDisplay,
                 styles.spaceBetween,
-                styles.marginVertical,
+                styles.margin,
               ]}
             >
               <Typography variant="titleCard">
@@ -169,7 +197,7 @@ export default function Prescriptions() {
             >
               <Link
                 className={styles.viewPrescriptionText}
-                sx={{ color: "#008294" }}
+                sx={{ color: "#008294", fontFamily: "Inter" }}
               >
                 View prescriptions
               </Link>
@@ -184,25 +212,25 @@ export default function Prescriptions() {
               className={[
                 styles.flexDisplay,
                 styles.spaceBetween,
-                styles.marginVertical,
+                styles.margin,
               ]}
             >
               <Typography variant="titleCard">Medications(3)</Typography>
             </Box>
             <Box
               sx={{
-                borderTop: 1,
+                borderBottom: 1,
                 borderColor: "divider",
-                paddingTop: "20px",
+                paddingTop: "5px",
               }}
             >
-              <Box className={[styles.flexDisplay, styles.marginVertical]}>
-                <Typography variant="bodyRegular" sx={{ color: "#007E8F" }}>
-                  Ativan 0.1% Ointmanet
+              <Box className={[styles.flexDisplay, styles.margin]}>
+                <Typography variant="medication">
+                  Aspirin 0.1% Ointmanet
                 </Typography>
               </Box>
-              <Box className={[styles.flexDisplay, styles.marginVertical]}>
-                <Typography variant="bodyRegular">
+              <Box className={[styles.flexDisplay, styles.margin]}>
+                <Typography variant="customBodyRegular">
                   Prescribed on: &nbsp;
                 </Typography>
                 <Typography variant="bodyMedium">01/10/2021</Typography>
@@ -210,18 +238,18 @@ export default function Prescriptions() {
             </Box>
             <Box
               sx={{
-                borderTop: 1,
+                borderBottom: 1,
                 borderColor: "divider",
-                paddingTop: "20px",
+                paddingTop: "5px",
               }}
             >
-              <Box className={[styles.flexDisplay, styles.marginVertical]}>
-                <Typography variant="bodyRegular" sx={{ color: "#007E8F" }}>
+              <Box className={[styles.flexDisplay, styles.margin]}>
+                <Typography variant="medication">
                   Ativan 0.1% Ointmanet
                 </Typography>
               </Box>
-              <Box className={[styles.flexDisplay, styles.marginVertical]}>
-                <Typography variant="bodyRegular">
+              <Box className={[styles.flexDisplay, styles.margin]}>
+                <Typography variant="customBodyRegular">
                   Prescribed on: &nbsp;
                 </Typography>
                 <Typography variant="bodyMedium">01/10/2021</Typography>
@@ -230,14 +258,12 @@ export default function Prescriptions() {
             <Box
               className={[styles.flexDisplay, styles.viewPrescription]}
               sx={{
-                borderTop: 1,
-                borderColor: "divider",
                 paddingTop: "20px",
               }}
             >
               <Link
                 className={styles.viewPrescriptionText}
-                sx={{ color: "#008294" }}
+                sx={{ color: "#008294", fontFamily: "Inter" }}
               >
                 View prescriptions
               </Link>
@@ -248,9 +274,89 @@ export default function Prescriptions() {
     }
   };
 
+  const tabPrescription = () => {
+    return (
+      <Tabs
+        sx={{
+          height: "55px",
+          justifyContent: "space-between",
+          color: colors.darkGreen,
+        }}
+        value={value}
+        onChange={handleChange}
+        variant="scrollable"
+        scrollButtons={false}
+        aria-label="scrollable prevent tabs example"
+        textColor="inherit"
+        TabIndicatorProps={{
+          style: {
+            backgroundColor: colors.teal,
+            height: "4px",
+          },
+        }}
+      >
+        <Tab
+          label="Glasses"
+          icon={
+            <Box className={styles.tabImageContainer}>
+              <Image alt="" src={iconGlasses} width={14} height={14} />
+            </Box>
+          }
+          iconPosition="start"
+          value={0}
+          sx={{
+            textTransform: "capitalize",
+            width: "30%",
+            fontSize: isMobile ? "14px" : "16px",
+            "&.MuiButtonBase-root": {
+              padding: "0",
+            },
+          }}
+        />
+        <Tab
+          label="Contacts"
+          icon={
+            <Box className={styles.tabImageContainer}>
+              <Image alt="" src={iconContacts} width={14} height={14} />
+            </Box>
+          }
+          iconPosition="start"
+          value={1}
+          sx={{
+            textTransform: "capitalize",
+            width: "32%",
+            fontSize: isMobile ? "14px" : "16px",
+            "&.MuiButtonBase-root": {
+              padding: "0",
+            },
+          }}
+        />
+        <Tab
+          label="Medications"
+          icon={
+            <Box className={styles.tabImageContainer}>
+              <Image alt="" src={iconMedication} width={14} height={14} />
+            </Box>
+          }
+          iconPosition="start"
+          value={2}
+          sx={{
+            textTransform: "capitalize",
+            width: "38%",
+            fontSize: isMobile ? "14px" : "16px",
+            "&.MuiButtonBase-root": {
+              padding: "0",
+            },
+          }}
+        />
+      </Tabs>
+    );
+  };
+
   return (
     <ThemeProvider theme={patientTypography}>
       <AccountCard
+        isAppoinment={true}
         titleIcon={
           <Image alt="" src={iconPrescription} width={32} height={32} />
         }
@@ -261,64 +367,12 @@ export default function Prescriptions() {
           },
         }}
       >
+        {/* Tab section */}
         <Box sx={{ borderBottom: 1, borderColor: "divider", padding: 0 }}>
-          <Tabs
-            sx={{
-              height: "55px",
-              justifyContent: "space-between",
-              color: colors.darkGreen,
-            }}
-            value={value}
-            onChange={handleChange}
-            variant="scrollable"
-            scrollButtons={false}
-            aria-label="scrollable prevent tabs example"
-            textColor="inherit"
-            TabIndicatorProps={{
-              style: {
-                backgroundColor: colors.teal,
-                height: "4px",
-              },
-            }}
-          >
-            <Tab
-              label="Glasses"
-              icon={
-                <Box className={styles.tabImageContainer}>
-                  <Image alt="" src={iconGlasses} width={14} height={14} />
-                </Box>
-              }
-              iconPosition="start"
-              value={0}
-              sx={{
-                textTransform: "capitalize",
-                width: "33%",
-              }}
-            />
-            <Tab
-              label="Contacts"
-              icon={
-                <Box className={styles.tabImageContainer}>
-                  <Image alt="" src={iconContacts} width={14} height={14} />
-                </Box>
-              }
-              iconPosition="start"
-              value={1}
-              sx={{ textTransform: "capitalize", width: "33%" }}
-            />
-            <Tab
-              label="Medications"
-              icon={
-                <Box className={styles.tabImageContainer}>
-                  <Image alt="" src={iconMedication} width={14} height={14} />
-                </Box>
-              }
-              iconPosition="start"
-              value={2}
-              sx={{ textTransform: "capitalize", width: "34%" }}
-            />
-          </Tabs>
+          {tabPrescription()}
         </Box>
+
+        {/* Conten Tab Section */}
         <Grid>
           <Box>{contentPrescription()}</Box>
         </Grid>

@@ -9,10 +9,10 @@ import AppointmentLayout from "../../../components/templates/appointmentLayout";
 export default function Dashboard() {
   return (
     <Grid container columns={5} spacing={3} p={3}>
-      <Grid item xs={2}>
+      <Grid item xs={5} sm={5} md={2}>
         <Prescriptions />
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={5} sm={5} md={3}>
         <AppointmentCard />
       </Grid>
     </Grid>

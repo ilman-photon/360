@@ -146,6 +146,31 @@ export const patientTypography = createTheme({
       fontSize: 24,
       lineHeight: "32px",
       color: "#003B4A",
+      ["@media (max-width: 768px)"]: {
+        fontSize: 22,
+      },
+    },
+    customBodyRegular: {
+      fontFamily: "Libre Franklin",
+      fontWeight: "bold",
+      fontSize: 16,
+      lineHeight: "24px",
+    },
+    medication: {
+      fontFamily: "Libre Franklin",
+      fontWeight: 700,
+      fontSize: 18,
+      lineHeight: "26px",
+      color: "#007E8F",
+      textDecoration: "underline",
+    },
+    bodyLinkRegular: {
+      fontFamily: "Libre Franklin",
+      fontWeight: 500,
+      fontSize: 16,
+      lineHeight: "20px",
+      color: "#008294",
+      textDecoration: "underline",
     },
     allVariants: {
       color: "#292929",
