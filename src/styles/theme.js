@@ -140,6 +140,13 @@ export const patientTypography = createTheme({
       color: colors.link,
       textDecoration: "underline",
     },
+    titleCard: {
+      fontFamily: "Bw Nista Geometric DEMO",
+      fontWeight: 400,
+      fontSize: 24,
+      lineHeight: "32px",
+      color: "#003B4A",
+    },
     allVariants: {
       color: "#292929",
     },
