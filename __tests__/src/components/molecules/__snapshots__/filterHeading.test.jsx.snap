@@ -6,10 +6,10 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="titleHeadingWrapper MuiBox-root css-0"
+        class="titleHeadingWrapper MuiBox-root css-hkzat1"
       >
         <div
-          class="centeredElement MuiBox-root css-0"
+          class="centeredElement MuiBox-root css-4z08j"
         >
           <div
             class="css-m69qwo-MuiStack-root"
@@ -302,12 +302,12 @@ Object {
               This field is required
             </span>
             <span
-              class="MuiTypography-root MuiTypography-bodyTinyRegular optionalPurposeText css-37jdci-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-bodyTinyRegular optionalPurposeText css-kh7gje-MuiTypography-root"
             >
               (Optional)
             </span>
             <span
-              class="MuiTypography-root MuiTypography-bodyTinyRegular optionalInsuranceText css-37jdci-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-bodyTinyRegular optionalInsuranceText css-kh7gje-MuiTypography-root"
             >
               (Optional)
             </span>
@@ -318,10 +318,10 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="titleHeadingWrapper MuiBox-root css-0"
+      class="titleHeadingWrapper MuiBox-root css-hkzat1"
     >
       <div
-        class="centeredElement MuiBox-root css-0"
+        class="centeredElement MuiBox-root css-4z08j"
       >
         <div
           class="css-m69qwo-MuiStack-root"
@@ -614,12 +614,12 @@ Object {
             This field is required
           </span>
           <span
-            class="MuiTypography-root MuiTypography-bodyTinyRegular optionalPurposeText css-37jdci-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-bodyTinyRegular optionalPurposeText css-kh7gje-MuiTypography-root"
           >
             (Optional)
           </span>
           <span
-            class="MuiTypography-root MuiTypography-bodyTinyRegular optionalInsuranceText css-37jdci-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-bodyTinyRegular optionalInsuranceText css-kh7gje-MuiTypography-root"
           >
             (Optional)
           </span>
@@ -687,10 +687,10 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="titleHeadingWrapper MuiBox-root css-0"
+        class="titleHeadingWrapper MuiBox-root css-hkzat1"
       >
         <div
-          class="centeredElement MuiBox-root css-0"
+          class="centeredElement MuiBox-root css-4z08j"
         >
           <div
             class="css-m69qwo-MuiStack-root"
@@ -983,12 +983,12 @@ Object {
               This field is required
             </span>
             <span
-              class="MuiTypography-root MuiTypography-bodyTinyRegular optionalPurposeText css-37jdci-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-bodyTinyRegular optionalPurposeText css-kh7gje-MuiTypography-root"
             >
               (Optional)
             </span>
             <span
-              class="MuiTypography-root MuiTypography-bodyTinyRegular optionalInsuranceText css-37jdci-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-bodyTinyRegular optionalInsuranceText css-kh7gje-MuiTypography-root"
             >
               (Optional)
             </span>
