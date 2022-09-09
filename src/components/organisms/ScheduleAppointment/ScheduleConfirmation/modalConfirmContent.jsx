@@ -214,7 +214,7 @@ export default function ModalConfirmContent({
               sxText={{ color: colors.darkGreen }}
             >
               <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
-                {patientData.name || "-"}
+                {patientData.firstName || "-"}
               </Typography>
             </LabelWithInfo>
           </CardContent>
