@@ -475,7 +475,7 @@ const FilterHeading = ({
 }) => {
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
   const { handleSubmit, control } = useForm({
-    defaultValues: { ...filterData, date: new Date() },
+    defaultValues: { ...filterData },
   });
 
   const [isEmptyLocation, setEmptyLocation] = useState(false);
