@@ -65,8 +65,7 @@ export default function DetailAppointment({ data }) {
                     justifyContent: "center",
                   }}
                 >
-                  
-                  <DownloadIcon sx={{ color : blueGrey[200]}} />
+                  <DownloadIcon sx={{ color: blueGrey[200] }} />
                   <Typography variant="body2" className={styles.date}>
                     Download
                   </Typography>
