@@ -1,4 +1,4 @@
-import { Box, Stack, Typography, Link } from "@mui/material";
+import { Box, Stack, Typography, Link, Button } from "@mui/material";
 import ProviderProfile from "../../molecules/ProviderProfile/providerProfile";
 import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
 import styles from "./styles.module.scss";
@@ -15,6 +15,7 @@ import PastAppointment from "../PastAppointment/pastAppointment";
 import Divider from "@mui/material/Divider";
 import StyledInput from "../../atoms/Input/input";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import Collapse from '@mui/material/Collapse';
 
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -22,7 +23,7 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-
+import React from 'react'
 export default function DetailAppointment({ data }) {
   const date = data.appointmentInfo.date;
   const timezone = date.substring(date.length - 3);
@@ -30,6 +31,22 @@ export default function DetailAppointment({ data }) {
   const formatedDate = momentDate.format("dddd, MMM DD, YYYY");
   const time = momentDate.format("h:mm A");
   const fullDate = `${formatedDate}, AT ${time} ${timezone}`;
+  const [open, setOpen] = React.useState(true);
+  const [openAllergies, setOpenAllergies] = React.useState(true);
+  const [openResults, setOpenResults] = React.useState(true);
+  const [openVital, setOpenVitals] = React.useState(true);
+  const handleClickResult = () => {
+    setOpenResults(!openResults);
+  };
+  const handleVital = () =>{
+    setOpenVitals(!openVital)
+  }
+  const handleClickAllergies = () => {
+    setOpenAllergies(!openAllergies);
+  };
+  const handleClick = () => {
+    setOpen(!open);
+  };
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
     ...theme.typography.body2,
@@ -218,9 +235,12 @@ export default function DetailAppointment({ data }) {
             sx={{ display: "flex", justifyContent: "center", p: 2 }}
           >
             <AppointmentButton>
-              Collapse All <ExpandMoreIcon />
+              Collapse All <ExpandMoreIcon  onClick={handleClick}/>
             </AppointmentButton>
+           
           </Box>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+              
           <Box
             className={styles.pastAppointmentsContainer}
             sx={{
@@ -250,9 +270,12 @@ export default function DetailAppointment({ data }) {
                 alignItems: "center",
               }}
             >
-              <ExpandMoreIcon />
+              <Button onClick={()=>handleClickAllergies()} >
+                <ExpandMoreIcon />
+              </Button>
             </Box>
           </Box>
+          <Collapse in={openAllergies} timeout="auto" unmountOnExit>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
@@ -283,7 +306,78 @@ export default function DetailAppointment({ data }) {
               </TableBody>
             </Table>
           </TableContainer>
+          <Box
+          className={styles.dateContainer}
+          sx={{ p: 2, backgroundColor: "white" }}
+        >
+          <Box
+            className={styles.pastAppointmentsContainer}
+            sx={{
+              display: "flex",
+              backgroundColor: "#f4f4f4",
+              height: "55px",
+              border: "2px solid #f3f3f3 ",
+              justifyContent: "space-between",
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-start",
+                justifyContent: "center",
+                paddingLeft: "16px",
+              }}
+            >
+              <Typography variant="h4">Vital Signs</Typography>
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <ExpandMoreIcon onClick={handleVital}/>
+
+            </Box>
+          </Box>
+          <Collapse in={openVital} timeout="auto" unmountOnExit>
+          <TableContainer component={Paper}>
+            <Table sx={{ minWidth: 650 }} aria-label="simple table">
+              <TableHead>
+                <TableRow>
+                  <TableCell component="th" scope="row">
+                    lorem Ipsum
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    lorem Ipsum
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    lorem Ipsum
+                  </TableCell>
+                  <TableCell component="th" scope="row">
+                    lorem Ipsum
+                  </TableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                <TableRow
+                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                >
+                  <TableCell>lorem</TableCell>
+                  <TableCell>lorem</TableCell>
+                  <TableCell>lorem</TableCell>
+                  <TableCell>lorem</TableCell>
+                </TableRow>
+              </TableBody>
+            </Table>
+            </TableContainer>
+           </Collapse>
         </Box>
+          </Collapse>
+
         <Box
           className={styles.dateContainer}
           sx={{ p: 2, backgroundColor: "white" }}
@@ -317,9 +411,10 @@ export default function DetailAppointment({ data }) {
                 alignItems: "center",
               }}
             >
-              <ExpandMoreIcon />
+              <ExpandMoreIcon onClick={handleClickResult}/>
             </Box>
           </Box>
+          <Collapse in={openResults} timeout="auto" unmountOnExit>
           <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
               <TableHead>
@@ -350,74 +445,12 @@ export default function DetailAppointment({ data }) {
               </TableBody>
             </Table>
           </TableContainer>
+          </Collapse>
         </Box>
-        <Box
-          className={styles.dateContainer}
-          sx={{ p: 2, backgroundColor: "white" }}
-        >
-          <Box
-            className={styles.pastAppointmentsContainer}
-            sx={{
-              display: "flex",
-              backgroundColor: "#f4f4f4",
-              height: "55px",
-              border: "2px solid #f3f3f3 ",
-              justifyContent: "space-between",
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "flex-start",
-                justifyContent: "center",
-                paddingLeft: "16px",
-              }}
-            >
-              <Typography variant="h4">Vital Signs</Typography>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignContent: "center",
-                alignItems: "center",
-              }}
-            >
-              <ExpandMoreIcon />
-            </Box>
-          </Box>
-          <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="simple table">
-              <TableHead>
-                <TableRow>
-                  <TableCell component="th" scope="row">
-                    lorem Ipsum
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    lorem Ipsum
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    lorem Ipsum
-                  </TableCell>
-                  <TableCell component="th" scope="row">
-                    lorem Ipsum
-                  </TableCell>
-                </TableRow>
-              </TableHead>
-              <TableBody>
-                <TableRow
-                  sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
-                >
-                  <TableCell>lorem</TableCell>
-                  <TableCell>lorem</TableCell>
-                  <TableCell>lorem</TableCell>
-                  <TableCell>lorem</TableCell>
-                </TableRow>
-              </TableBody>
-            </Table>
-          </TableContainer>
+        </Collapse>
+          
         </Box>
+        
       </Stack>
     </Box>
   );
