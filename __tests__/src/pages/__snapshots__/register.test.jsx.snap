@@ -240,6 +240,7 @@ Object {
                             <button
                               aria-label="Password unhide icon"
                               class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root"
+                              data-mui-internal-clone-element="true"
                               tabindex="0"
                               type="button"
                             >
@@ -864,6 +865,7 @@ Object {
                           <button
                             aria-label="Password unhide icon"
                             class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root"
+                            data-mui-internal-clone-element="true"
                             tabindex="0"
                             type="button"
                           >
