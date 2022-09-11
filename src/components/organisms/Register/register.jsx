@@ -422,14 +422,8 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           </Button>
         </form>
 
-        <Typography
-          variant="caption"
-          style={styles.bottomParagraph}
-          aria-label="By registering, you accept to our Terms & Conditions and Privacy
-          Policy"
-        >
-          By registering, you accept to our Terms &<br /> Conditions and Privacy
-          Policy
+        <Typography variant="caption" style={styles.bottomParagraph}>
+          {`By registering, you accept to our Terms & Conditions and Privacy Policy`}
         </Typography>
         <Divider margin={3} sx={{ width: "288px", alignSelf: "center" }} />
         <Typography variant="caption" style={styles.bottomParagraph}>

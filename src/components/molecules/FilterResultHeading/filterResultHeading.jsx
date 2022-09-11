@@ -148,7 +148,7 @@ export const FilterResultHeading = ({
             }}
           >
             <TuneIcon className={styles.tuneIcon} />
-            Filter
+            Filters
             <KeyboardArrowDownIcon className={styles.keydownIcon} />
           </StyledButton>
           {renderAppliedFilter()}

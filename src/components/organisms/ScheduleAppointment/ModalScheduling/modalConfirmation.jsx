@@ -37,7 +37,6 @@ export default function ModalConfirmation({
     </Box>
   ) : (
     <>
-      (
       <SwipeableDrawer anchor="bottom" open={isOpen} sx={{ height: "auto" }}>
         <Box
           sx={{ width: "100%", padding: { xs: 0, md: 2 } }}
@@ -51,7 +50,6 @@ export default function ModalConfirmation({
           />
         </Box>
       </SwipeableDrawer>
-      )
     </>
   );
 }

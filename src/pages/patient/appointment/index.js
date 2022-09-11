@@ -66,6 +66,7 @@ export default function Appointment({ googleApiKey }) {
   });
   const [activeFilterBy, setActiveFilterBy] = useState([]);
   const [isOpen, setIsOpen] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -269,6 +270,11 @@ export default function Appointment({ googleApiKey }) {
   useEffect(() => {
     onCalledgetSugestionAPI();
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  React.useEffect(() => {
+    const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
+    setIsLoggedIn(isLogin);
   }, []);
 
   function onRenderDialogView() {
