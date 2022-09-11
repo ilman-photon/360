@@ -37,6 +37,7 @@ export async function getServerSideProps({ req }) {
 
 export default function HomePage() {
   const [filterSuggestionData, setFilterSuggestionData] = React.useState({});
+  const [prescriptionData, setPrescriptionData] = React.useState({});
   const filterData = useSelector((state) => state.appointment.filterData);
   const isDesktop = useMediaQuery("(min-width: 834px)");
   const { coords, isGeolocationEnabled } = useGeolocated({
@@ -98,8 +99,22 @@ export default function HomePage() {
       });
   }
 
+  //Call API for getSuggestion
+  function onCalledGetAllPrescriptionsAPI() {
+    const api = new Api();
+    api
+      .getAllPrescriptions()
+      .then(function (response) {
+        setPrescriptionData(response.prescriptions);
+      })
+      .catch(function () {
+        //Handle error getsuggestion
+      });
+  }
+
   useEffect(() => {
     onCalledgetSugestionAPI();
+    onCalledGetAllPrescriptionsAPI();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -126,7 +141,6 @@ export default function HomePage() {
         <Box
           sx={{
             marginTop: "-25px",
-            height: "calc(100vh - 56px)",
             display: "flex",
             position: "fixed",
             width: "100%",
@@ -157,10 +171,10 @@ export default function HomePage() {
           paddingTop: isDesktop ? "220px" : "185px",
         }}
       >
-        <Grid item xs={2}>
-          <Prescriptions />
+        <Grid item xs={5} sm={5} md={2}>
+          <Prescriptions prescriptionData={prescriptionData} />
         </Grid>
-        <Grid item xs={3}>
+        <Grid item xs={5} sm={5} md={3}>
           <AppointmentCard />
         </Grid>
       </Grid>

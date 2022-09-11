@@ -25,8 +25,10 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { ThemeProvider } from "@emotion/react";
 import MenuList from "./menuList";
+import { useEffect } from "react";
+import { parsePrescriptionData } from "../../../utils/appointment";
 
-export default function Prescriptions() {
+export default function Prescriptions({ prescriptionData = {} }) {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   const iconPrescription = "/icon-prescription.png";
@@ -34,19 +36,20 @@ export default function Prescriptions() {
   const iconGlasses = "/icon-glasses.png";
   const iconMedication = "/icon-medication.png";
   const [value, setValue] = React.useState(0);
+  const [prescription, setPrescriptione] = React.useState({
+    contacts: {},
+    glasses: {},
+    medications: [],
+  });
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  function createData(eye, sph, cyl, axis, add) {
-    return { eye, sph, cyl, axis, add };
-  }
-
-  const rows = [
-    createData("OD", "+20.00", "-5.00", "70", "x180"),
-    createData("OS", "+19.75", "-4.75", "38", "x090"),
-  ];
+  useEffect(() => {
+    setPrescriptione(parsePrescriptionData(prescriptionData));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [prescriptionData]);
 
   const StyledTableCell = styled(TableCell)(() => ({
     [`&.${tableCellClasses.head}`]: {
@@ -58,6 +61,151 @@ export default function Prescriptions() {
       fontSize: 14,
     },
   }));
+
+  function renderPrescriptionTable(data, type) {
+    if (data && data.prescriptionDetails) {
+      let tableHeader = ["Eye", "Sph", "Cyl", "Axis", "Add"];
+      if (type === "contact") {
+        tableHeader = ["Eye", "Sph", "BC", "CYL", "AXIS"];
+      }
+      return (
+        <Box>
+          <Box className={[styles.flexDisplay, styles.margin]}>
+            <Typography variant="customBodyRegular">
+              Prescribed by: &nbsp;
+            </Typography>
+            <Typography variant="bodyMedium">{data.prescribedBy}</Typography>
+          </Box>
+          <Box className={[isMobile ? "" : styles.flexDisplay, styles.margin]}>
+            <Box
+              className={[styles.flexDisplay, isMobile ? "" : styles.halfBox]}
+            >
+              <Typography variant="customBodyRegular">
+                Prescribed on: &nbsp;
+              </Typography>
+              <Typography variant="bodyMedium">{data.date}</Typography>
+            </Box>
+            <Box
+              className={[
+                styles.flexDisplay,
+                isMobile ? styles.marginVertical : "",
+              ]}
+            >
+              <Typography variant="customBodyRegular">
+                Expires on: &nbsp;
+              </Typography>
+              <Typography variant="bodyMedium">
+                {data.expirationDate}
+              </Typography>
+            </Box>
+          </Box>
+          <Box
+            sx={{
+              borderBottom: 1,
+              borderColor: "divider",
+              padding: "20px 10px",
+            }}
+          >
+            <TableContainer component={Paper} sx={{ borderRadius: 0 }}>
+              <Table
+                sx={{
+                  minWidth: "90%",
+                  fontSize: "14px",
+                  ".MuiTableCell-body": {
+                    fontFamily: "Roboto",
+                    fontSize: "14px",
+                    fontWeight: "400",
+                  },
+                  ".MuiTableCell-head": {
+                    fontFamily: "Roboto",
+                    fontSize: "14px",
+                    fontWeight: "500",
+                  },
+                }}
+                aria-label="simple table"
+              >
+                <TableHead>
+                  <TableRow>
+                    {tableHeader.map((header, idx) => (
+                      <StyledTableCell key={idx}>{header}</StyledTableCell>
+                    ))}
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {data?.prescriptionDetails.map((row, idx) => (
+                    <TableRow
+                      key={idx}
+                      sx={{
+                        "&:last-child td, &:last-child th": { border: 0 },
+                      }}
+                    >
+                      <TableCell component="th" scope="row">
+                        {row.eye}
+                      </TableCell>
+                      <TableCell>{row.sph}</TableCell>
+                      <TableCell>
+                        {type === "contact" ? row.bc : row.cyl}
+                      </TableCell>
+                      <TableCell>
+                        {type === "contact" ? row.cyl : row.axis}
+                      </TableCell>
+                      <TableCell>
+                        {type === "contact" ? row.axis : row.add}
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Box>
+        </Box>
+      );
+    } else {
+      return (
+        <Box className={styles.noPrescription}>
+          <Typography>{`There are no active ${type} prescriptions`}</Typography>
+        </Box>
+      );
+    }
+  }
+
+  function renderMedicationUI(data) {
+    if (data && data.length > 0) {
+      return data.map((row, idx) => (
+        <Box
+          key={idx}
+          sx={{
+            borderBottom: 1,
+            borderColor: "divider",
+            paddingTop: "5px",
+          }}
+        >
+          <Box className={[styles.flexDisplay, styles.margin]}>
+            <Typography variant="medication">{row.prescription}</Typography>
+          </Box>
+          <Box
+            className={[styles.flexDisplay]}
+            sx={{
+              margin: "10px",
+              marginBottom: data.length == idx + 1 ? "26px" : "16px",
+            }}
+          >
+            {console.log(idx + 1)}
+            <Typography variant="customBodyRegular">
+              Prescribed on: &nbsp;
+            </Typography>
+            <Typography variant="bodyMedium">{row.date}</Typography>
+          </Box>
+        </Box>
+      ));
+    } else {
+      return (
+        <Box className={styles.noPrescription}>
+          <Typography>{`There are no active medications`}</Typography>
+        </Box>
+      );
+    }
+  }
 
   const contentPrescription = () => {
     switch (value) {
@@ -74,90 +222,7 @@ export default function Prescriptions() {
               <Typography variant="titleCard">Glasses Prescriptions</Typography>
               <MenuList />
             </Box>
-            <Box className={[styles.flexDisplay, styles.margin]}>
-              <Typography variant="customBodyRegular">
-                Prescribed by: &nbsp;
-              </Typography>
-              <Typography variant="bodyMedium">Dr. Sonha Nguyen</Typography>
-            </Box>
-            <Box
-              className={[isMobile ? "" : styles.flexDisplay, styles.margin]}
-            >
-              <Box
-                className={[styles.flexDisplay, isMobile ? "" : styles.halfBox]}
-              >
-                <Typography variant="customBodyRegular">
-                  Prescribed on: &nbsp;
-                </Typography>
-                <Typography variant="bodyMedium">01/10/2021</Typography>
-              </Box>
-              <Box
-                className={[
-                  styles.flexDisplay,
-                  isMobile ? styles.marginVertical : "",
-                ]}
-              >
-                <Typography variant="customBodyRegular">
-                  Expires on: &nbsp;
-                </Typography>
-                <Typography variant="bodyMedium">01/10/2022</Typography>
-              </Box>
-            </Box>
-            <Box
-              sx={{
-                borderBottom: 1,
-                borderColor: "divider",
-                padding: "20px 10px",
-              }}
-            >
-              <TableContainer component={Paper} sx={{ borderRadius: 0 }}>
-                <Table
-                  sx={{
-                    minWidth: "90%",
-                    fontSize: "14px",
-                    ".MuiTableCell-body": {
-                      fontFamily: "Roboto",
-                      fontSize: "14px",
-                      fontWeight: "400",
-                    },
-                    ".MuiTableCell-head": {
-                      fontFamily: "Roboto",
-                      fontSize: "14px",
-                      fontWeight: "500",
-                    },
-                  }}
-                  aria-label="simple table"
-                >
-                  <TableHead>
-                    <TableRow>
-                      <StyledTableCell>Eye</StyledTableCell>
-                      <StyledTableCell>Sph</StyledTableCell>
-                      <StyledTableCell>Cyl</StyledTableCell>
-                      <StyledTableCell>Axis</StyledTableCell>
-                      <StyledTableCell>Add</StyledTableCell>
-                    </TableRow>
-                  </TableHead>
-                  <TableBody>
-                    {rows.map((row) => (
-                      <TableRow
-                        key={row.eye}
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell component="th" scope="row">
-                          {row.eye}
-                        </TableCell>
-                        <TableCell>{row.sph}</TableCell>
-                        <TableCell>{row.cyl}</TableCell>
-                        <TableCell>{row.axis}</TableCell>
-                        <TableCell>{row.add}</TableCell>
-                      </TableRow>
-                    ))}
-                  </TableBody>
-                </Table>
-              </TableContainer>
-            </Box>
+            {renderPrescriptionTable(prescription.glasses, "glasses")}
             <Box className={[styles.flexDisplay, styles.viewPrescription]}>
               <Link
                 className={styles.viewPrescriptionText}
@@ -184,17 +249,8 @@ export default function Prescriptions() {
               </Typography>
               <MoreHorizIcon />
             </Box>
-            <Box className={styles.noPrescription}>
-              <Typography>There are no active contact prescriptions</Typography>
-            </Box>
-            <Box
-              className={[styles.flexDisplay, styles.viewPrescription]}
-              sx={{
-                borderTop: 1,
-                borderColor: "divider",
-                paddingTop: "20px",
-              }}
-            >
+            {renderPrescriptionTable(prescription.contacts, "contact")}
+            <Box className={[styles.flexDisplay, styles.viewPrescription]}>
               <Link
                 className={styles.viewPrescriptionText}
                 sx={{ color: "#008294", fontFamily: "Inter" }}
@@ -217,50 +273,8 @@ export default function Prescriptions() {
             >
               <Typography variant="titleCard">Medications(3)</Typography>
             </Box>
-            <Box
-              sx={{
-                borderBottom: 1,
-                borderColor: "divider",
-                paddingTop: "5px",
-              }}
-            >
-              <Box className={[styles.flexDisplay, styles.margin]}>
-                <Typography variant="medication">
-                  Aspirin 0.1% Ointmanet
-                </Typography>
-              </Box>
-              <Box className={[styles.flexDisplay, styles.margin]}>
-                <Typography variant="customBodyRegular">
-                  Prescribed on: &nbsp;
-                </Typography>
-                <Typography variant="bodyMedium">01/10/2021</Typography>
-              </Box>
-            </Box>
-            <Box
-              sx={{
-                borderBottom: 1,
-                borderColor: "divider",
-                paddingTop: "5px",
-              }}
-            >
-              <Box className={[styles.flexDisplay, styles.margin]}>
-                <Typography variant="medication">
-                  Ativan 0.1% Ointmanet
-                </Typography>
-              </Box>
-              <Box className={[styles.flexDisplay, styles.margin]}>
-                <Typography variant="customBodyRegular">
-                  Prescribed on: &nbsp;
-                </Typography>
-                <Typography variant="bodyMedium">01/10/2021</Typography>
-              </Box>
-            </Box>
-            <Box
-              className={[styles.flexDisplay, styles.viewPrescription]}
-              sx={{
-                paddingTop: "20px",
-              }}
-            >
+            {renderMedicationUI(prescription.medications)}
+            <Box className={[styles.flexDisplay, styles.viewPrescription]}>
               <Link
                 className={styles.viewPrescriptionText}
                 sx={{ color: "#008294", fontFamily: "Inter" }}
@@ -360,7 +374,7 @@ export default function Prescriptions() {
         titleIcon={
           <Image alt="" src={iconPrescription} width={32} height={32} />
         }
-        title="Prescriptions (3)"
+        title={`Prescriptions (3)`}
         sx={{
           ".MuiCardContent-root": {
             p: 0,

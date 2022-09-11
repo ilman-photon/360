@@ -46,7 +46,7 @@ exports[`App renders App unchanged 1`] = `
         class="css-16ml5pn-MuiStack-root"
       >
         <div
-          class="MuiBox-root css-1rgph8k"
+          class="MuiBox-root css-1n325gh"
         >
           <div
             class="mobileFilterContainer MuiBox-root css-1b6qwgl"
@@ -131,11 +131,57 @@ exports[`App renders App unchanged 1`] = `
           class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3 css-1masfhk-MuiGrid-root"
         >
           <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2 css-anulyp-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-5 MuiGrid-grid-sm-5 MuiGrid-grid-md-2 css-120m39a-MuiGrid-root"
           >
             <div
               class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1psqxpj-MuiPaper-root-MuiCard-root"
             >
+              <div
+                class="MuiCardHeader-root cardHeader css-1ele1k2-MuiCardHeader-root"
+              >
+                <div
+                  class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+                >
+                  <span
+                    class="MuiTypography-root MuiTypography-h5 MuiCardHeader-title css-1qmkcy9-MuiTypography-root"
+                  >
+                    <div>
+                      <span
+                        style="margin-right: 8px; display: flex; align-items: center;"
+                      >
+                        <span
+                          style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                        >
+                          <span
+                            style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                          >
+                            <img
+                              alt=""
+                              aria-hidden="true"
+                              src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2732%27%20height=%2732%27/%3e"
+                              style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                            />
+                          </span>
+                          <img
+                            alt=""
+                            data-nimg="intrinsic"
+                            decoding="async"
+                            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                            style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                          />
+                          <noscript />
+                        </span>
+                      </span>
+                      <div
+                        aria-label="Prescriptions (3) heading"
+                        class="title"
+                      >
+                        Prescriptions (3)
+                      </div>
+                    </div>
+                  </span>
+                </div>
+              </div>
               <div
                 class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
               >
@@ -160,7 +206,7 @@ exports[`App renders App unchanged 1`] = `
                       >
                         <button
                           aria-selected="true"
-                          class="MuiButtonBase-root MuiTab-root MuiTab-labelIcon MuiTab-textColorInherit Mui-selected css-1xd9nid-MuiButtonBase-root-MuiTab-root"
+                          class="MuiButtonBase-root MuiTab-root MuiTab-labelIcon MuiTab-textColorInherit Mui-selected css-p8tmio-MuiButtonBase-root-MuiTab-root"
                           role="tab"
                           tabindex="0"
                           type="button"
@@ -198,7 +244,7 @@ exports[`App renders App unchanged 1`] = `
                         </button>
                         <button
                           aria-selected="false"
-                          class="MuiButtonBase-root MuiTab-root MuiTab-labelIcon MuiTab-textColorInherit css-1xd9nid-MuiButtonBase-root-MuiTab-root"
+                          class="MuiButtonBase-root MuiTab-root MuiTab-labelIcon MuiTab-textColorInherit css-1cb8j8o-MuiButtonBase-root-MuiTab-root"
                           role="tab"
                           tabindex="-1"
                           type="button"
@@ -236,7 +282,7 @@ exports[`App renders App unchanged 1`] = `
                         </button>
                         <button
                           aria-selected="false"
-                          class="MuiButtonBase-root MuiTab-root MuiTab-labelIcon MuiTab-textColorInherit css-1ulp6x-MuiButtonBase-root-MuiTab-root"
+                          class="MuiButtonBase-root MuiTab-root MuiTab-labelIcon MuiTab-textColorInherit css-1gy6i31-MuiButtonBase-root-MuiTab-root"
                           role="tab"
                           tabindex="-1"
                           type="button"
@@ -290,10 +336,10 @@ exports[`App renders App unchanged 1`] = `
                       class="MuiBox-root css-0"
                     >
                       <div
-                        class="flexDisplay spaceBetween marginVertical MuiBox-root css-0"
+                        class="flexDisplay spaceBetween margin MuiBox-root css-0"
                       >
                         <span
-                          class="MuiTypography-root MuiTypography-titleCard css-17zjuue-MuiTypography-root"
+                          class="MuiTypography-root MuiTypography-titleCard css-64d7ay-MuiTypography-root"
                         >
                           Glasses Prescriptions
                         </span>
@@ -316,171 +362,19 @@ exports[`App renders App unchanged 1`] = `
                         </div>
                       </div>
                       <div
-                        class="flexDisplay marginVertical MuiBox-root css-0"
+                        class="noPrescription MuiBox-root css-0"
                       >
-                        <span
-                          class="MuiTypography-root MuiTypography-bodyRegular css-kwfea0-MuiTypography-root"
+                        <p
+                          class="MuiTypography-root MuiTypography-body1 css-6h2hyl-MuiTypography-root"
                         >
-                          Prescribed by:  
-                        </span>
-                        <span
-                          class="MuiTypography-root MuiTypography-bodyMedium css-kwoz5u-MuiTypography-root"
-                        >
-                          Dr. Sonha Nguyen
-                        </span>
-                      </div>
-                      <div
-                        class="flexDisplay marginVertical MuiBox-root css-0"
-                      >
-                        <div
-                          class="flexDisplay halfBox MuiBox-root css-0"
-                        >
-                          <span
-                            class="MuiTypography-root MuiTypography-bodyRegular css-kwfea0-MuiTypography-root"
-                          >
-                            Prescribed on:  
-                          </span>
-                          <span
-                            class="MuiTypography-root MuiTypography-bodyMedium css-kwoz5u-MuiTypography-root"
-                          >
-                            01/10/2021
-                          </span>
-                        </div>
-                        <div
-                          class="flexDisplay MuiBox-root css-0"
-                        >
-                          <span
-                            class="MuiTypography-root MuiTypography-bodyRegular css-kwfea0-MuiTypography-root"
-                          >
-                            Expires on:  
-                          </span>
-                          <span
-                            class="MuiTypography-root MuiTypography-bodyMedium css-kwoz5u-MuiTypography-root"
-                          >
-                            01/10/2022
-                          </span>
-                        </div>
-                      </div>
-                      <div
-                        class="MuiBox-root css-na5s6t"
-                      >
-                        <div
-                          class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiTableContainer-root css-1j13sq7-MuiPaper-root-MuiTableContainer-root"
-                        >
-                          <table
-                            aria-label="simple table"
-                            class="MuiTable-root css-1xi5ldf-MuiTable-root"
-                          >
-                            <thead
-                              class="MuiTableHead-root css-15wwp11-MuiTableHead-root"
-                            >
-                              <tr
-                                class="MuiTableRow-root MuiTableRow-head css-1q1u3t4-MuiTableRow-root"
-                              >
-                                <th
-                                  class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-rse14i-MuiTableCell-root"
-                                  scope="col"
-                                >
-                                  Eye
-                                </th>
-                                <th
-                                  class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-rse14i-MuiTableCell-root"
-                                  scope="col"
-                                >
-                                  Sph
-                                </th>
-                                <th
-                                  class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-rse14i-MuiTableCell-root"
-                                  scope="col"
-                                >
-                                  Cyl
-                                </th>
-                                <th
-                                  class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-rse14i-MuiTableCell-root"
-                                  scope="col"
-                                >
-                                  Axis
-                                </th>
-                                <th
-                                  class="MuiTableCell-root MuiTableCell-head MuiTableCell-sizeMedium css-rse14i-MuiTableCell-root"
-                                  scope="col"
-                                >
-                                  Add
-                                </th>
-                              </tr>
-                            </thead>
-                            <tbody
-                              class="MuiTableBody-root css-apqrd9-MuiTableBody-root"
-                            >
-                              <tr
-                                class="MuiTableRow-root css-34nofg-MuiTableRow-root"
-                              >
-                                <th
-                                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1qt45n3-MuiTableCell-root"
-                                  scope="row"
-                                >
-                                  OD
-                                </th>
-                                <td
-                                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1qt45n3-MuiTableCell-root"
-                                >
-                                  +20.00
-                                </td>
-                                <td
-                                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1qt45n3-MuiTableCell-root"
-                                >
-                                  -5.00
-                                </td>
-                                <td
-                                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1qt45n3-MuiTableCell-root"
-                                >
-                                  70
-                                </td>
-                                <td
-                                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1qt45n3-MuiTableCell-root"
-                                >
-                                  x180
-                                </td>
-                              </tr>
-                              <tr
-                                class="MuiTableRow-root css-34nofg-MuiTableRow-root"
-                              >
-                                <th
-                                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1qt45n3-MuiTableCell-root"
-                                  scope="row"
-                                >
-                                  OS
-                                </th>
-                                <td
-                                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1qt45n3-MuiTableCell-root"
-                                >
-                                  +19.75
-                                </td>
-                                <td
-                                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1qt45n3-MuiTableCell-root"
-                                >
-                                  -4.75
-                                </td>
-                                <td
-                                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1qt45n3-MuiTableCell-root"
-                                >
-                                  38
-                                </td>
-                                <td
-                                  class="MuiTableCell-root MuiTableCell-body MuiTableCell-sizeMedium css-1qt45n3-MuiTableCell-root"
-                                >
-                                  x090
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-                        </div>
+                          There are no active glasses prescriptions
+                        </p>
                       </div>
                       <div
                         class="flexDisplay viewPrescription MuiBox-root css-0"
                       >
                         <a
-                          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways viewPrescriptionText css-14ok6q9-MuiTypography-root-MuiLink-root"
+                          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways viewPrescriptionText css-16dn9qn-MuiTypography-root-MuiLink-root"
                         >
                           View prescriptions
                         </a>
@@ -501,16 +395,48 @@ exports[`App renders App unchanged 1`] = `
                 </div>
               </div>
             </div>
-            <div
-              style="position: fixed; bottom: 16px; right: 16px;"
-            />
           </div>
           <div
-            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-3 css-1wedcwh-MuiGrid-root"
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-5 MuiGrid-grid-sm-5 MuiGrid-grid-md-3 css-9f74e3-MuiGrid-root"
           >
             <div
               class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1psqxpj-MuiPaper-root-MuiCard-root"
             >
+              <div
+                class="MuiCardHeader-root cardHeader css-1ele1k2-MuiCardHeader-root"
+              >
+                <div
+                  class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+                >
+                  <span
+                    class="MuiTypography-root MuiTypography-h5 MuiCardHeader-title css-1qmkcy9-MuiTypography-root"
+                  >
+                    <div>
+                      <span
+                        style="margin-right: 8px; display: flex; align-items: center;"
+                      >
+                        <svg
+                          aria-hidden="false"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1dustu2-MuiSvgIcon-root"
+                          data-testid="CalendarTodayOutlinedIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V10h16v11zm0-13H4V5h16v3z"
+                          />
+                        </svg>
+                      </span>
+                      <div
+                        aria-label="Appointments (2) heading"
+                        class="title"
+                      >
+                        Appointments (2)
+                      </div>
+                    </div>
+                  </span>
+                </div>
+              </div>
               <div
                 class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
               >
@@ -518,7 +444,7 @@ exports[`App renders App unchanged 1`] = `
                   class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-1ic19cg-MuiGrid-root"
                 >
                   <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-3 css-1wedcwh-MuiGrid-root"
+                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-5 MuiGrid-grid-sm-5 MuiGrid-grid-md-3 css-9f74e3-MuiGrid-root"
                   >
                     <div
                       class="flexDisplay MuiBox-root css-0"
@@ -581,21 +507,29 @@ exports[`App renders App unchanged 1`] = `
                       >
                         Scripps Eyecare
                       </span>
-                      <p
-                        class="MuiTypography-root MuiTypography-body1 css-6h2hyl-MuiTypography-root"
+                      <div
+                        class="MuiBox-root css-0"
                       >
-                        5775 Burke Centre Parkway
-                      </p>
-                      <p
-                        class="MuiTypography-root MuiTypography-body1 css-6h2hyl-MuiTypography-root"
+                        <span
+                          class="MuiTypography-root MuiTypography-bodyMedium css-kwoz5u-MuiTypography-root"
+                        >
+                          5775 Burke Centre Parkway
+                        </span>
+                      </div>
+                      <div
+                        class="MuiBox-root css-0"
                       >
-                        Burke, VA 22015-2264
-                      </p>
-                      <p
-                        class="MuiTypography-root MuiTypography-body1 css-vu3u64-MuiTypography-root"
+                        <span
+                          class="MuiTypography-root MuiTypography-bodyMedium css-kwoz5u-MuiTypography-root"
+                        >
+                          Burke, VA 22015-2264
+                        </span>
+                      </div>
+                      <span
+                        class="MuiTypography-root MuiTypography-bodyLinkRegular css-1v167f8-MuiTypography-root"
                       >
                         (703) 250-9000
-                      </p>
+                      </span>
                       <div
                         class="flexDisplay MuiBox-root css-19n8dai"
                       >
@@ -614,16 +548,16 @@ exports[`App renders App unchanged 1`] = `
                             />
                           </svg>
                         </div>
-                        <p
-                          class="MuiTypography-root MuiTypography-body1 css-vu3u64-MuiTypography-root"
+                        <span
+                          class="MuiTypography-root MuiTypography-bodyLinkRegular css-1v167f8-MuiTypography-root"
                         >
                           Get Direction
-                        </p>
+                        </span>
                       </div>
                     </div>
                   </div>
                   <div
-                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-2 css-anulyp-MuiGrid-root"
+                    class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-5 MuiGrid-grid-sm-5 MuiGrid-grid-md-2 css-120m39a-MuiGrid-root"
                   >
                     <div
                       class="flexDisplay MuiBox-root css-0"
@@ -652,14 +586,14 @@ exports[`App renders App unchanged 1`] = `
                     <div
                       class="MuiBox-root css-1e9vyfu"
                     >
-                      <p
-                        class="MuiTypography-root MuiTypography-body1 css-6h2hyl-MuiTypography-root"
+                      <span
+                        class="MuiTypography-root MuiTypography-bodyMedium css-kwoz5u-MuiTypography-root"
                       >
                         Eye exam
-                      </p>
+                      </span>
                     </div>
                     <div
-                      class="flexDisplay MuiBox-root css-0"
+                      class="flexDisplay MuiBox-root css-19n8dai"
                     >
                       <div
                         class="MuiBox-root css-111wug5"
@@ -685,19 +619,19 @@ exports[`App renders App unchanged 1`] = `
                     <div
                       class="MuiBox-root css-1e9vyfu"
                     >
-                      <p
-                        class="MuiTypography-root MuiTypography-body1 css-6h2hyl-MuiTypography-root"
+                      <span
+                        class="MuiTypography-root MuiTypography-bodyMedium css-kwoz5u-MuiTypography-root"
                       >
                         John Smith
-                      </p>
+                      </span>
                     </div>
                   </div>
                 </div>
                 <div
-                  class="flexDisplay MuiBox-root css-jw5gij"
+                  class="flexDisplay MuiBox-root css-1wcaknn"
                 >
                   <button
-                    class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-yg476w-MuiButtonBase-root-MuiButton-root"
+                    class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-xxzmwl-MuiButtonBase-root-MuiButton-root"
                     tabindex="0"
                     type="button"
                   >
@@ -726,7 +660,7 @@ exports[`App renders App unchanged 1`] = `
                     />
                   </button>
                   <button
-                    class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-tgrub0-MuiButtonBase-root-MuiButton-root"
+                    class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-edhhto-MuiButtonBase-root-MuiButton-root"
                     tabindex="0"
                     type="button"
                   >
@@ -768,7 +702,7 @@ exports[`App renders App unchanged 1`] = `
                   class="flexDisplay viewPrescription MuiBox-root css-1qyf761"
                 >
                   <a
-                    class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways viewPrescriptionText css-14ok6q9-MuiTypography-root-MuiLink-root"
+                    class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways viewPrescriptionText css-16dn9qn-MuiTypography-root-MuiLink-root"
                   >
                     View Appointments
                   </a>
@@ -786,9 +720,6 @@ exports[`App renders App unchanged 1`] = `
                 </div>
               </div>
             </div>
-            <div
-              style="position: fixed; bottom: 16px; right: 16px;"
-            />
           </div>
         </div>
       </div>
