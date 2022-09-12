@@ -96,17 +96,25 @@ export function PastAppointmentCard({ data }) {
 }
 
 export default function PastAppointment({ data }) {
+  const isData =
+    data.length == 0 ? (
+      <Box className={styles.subTitleWrapper}>
+        <Typography variant="body2">You Have no Past Appointment</Typography>
+      </Box>
+    ) : (
+      data.map((item, index) => {
+        if (index > 0) {
+          return <PastAppointmentCard data={item} key={index} />;
+        }
+      })
+    );
   return (
     <Box className={styles.pastAppointment}>
       <Typography variant="h2" className={styles.title}>
         Past Appointments
       </Typography>
 
-      {data.map((item, index) => {
-        if (index > 0) {
-          return <PastAppointmentCard data={item} key={index} />;
-        }
-      })}
+      {isData}
     </Box>
   );
 }
