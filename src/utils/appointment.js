@@ -1,4 +1,5 @@
 import constants from "./constants";
+import { ddmmyyDateFormat } from "./dateFormatter";
 
 export function parseSuggestionData(suggestionData) {
   return {
@@ -230,4 +231,84 @@ export function getProvideOverlay(providerId, listOfProvider) {
     }
   }
   return providerOverlay;
+}
+
+export function parsePrescriptionData(prescriptions) {
+  const parsePrescriptions = {};
+  if (prescriptions.glasses && prescriptions.glasses.length > 0) {
+    const glasses = prescriptions.glasses[0];
+    glasses.prescriptionDetails = parsePrescriptionDetailsData(
+      [...glasses.prescriptionDetails],
+      "glasses"
+    );
+
+    glasses.date = ddmmyyDateFormat(glasses.date);
+    glasses.expirationDate = ddmmyyDateFormat(glasses.expirationDate);
+    parsePrescriptions["glasses"] = glasses;
+  }
+
+  if (prescriptions.contacts && prescriptions.contacts.length > 0) {
+    const contacts = prescriptions.contacts[0];
+    contacts.prescriptionDetails = parsePrescriptionDetailsData(
+      [...contacts.prescriptionDetails],
+      "contacts"
+    );
+    contacts.date = ddmmyyDateFormat(contacts.date);
+    contacts.expirationDate = ddmmyyDateFormat(contacts.expirationDate);
+    parsePrescriptions["contacts"] = contacts;
+  }
+
+  if (prescriptions.medications && prescriptions.medications.length > 0) {
+    const medications = prescriptions.medications;
+
+    for (let index = 0; index < medications.length; index++) {
+      medications[index].date = ddmmyyDateFormat(medications[index].date);
+    }
+    parsePrescriptions["medications"] = medications;
+  }
+  return parsePrescriptions;
+}
+
+function parsePrescriptionDetailsData(prescriptionDetails, type) {
+  const data = [];
+  for (const prescription of prescriptionDetails) {
+    if (type === "glasses") {
+      data.push(
+        createGlassesDataTable({
+          eye: prescription.Eye,
+          sph: prescription.Sph,
+          cyl: prescription.Cyl,
+          axis: prescription.Axis,
+          add: prescription.Add,
+        })
+      );
+    } else {
+      data.push(
+        createContactDataTable({
+          eye: prescription.Eye,
+          sph: prescription.Sph,
+          bc: prescription.Bc,
+          cyl: prescription.Cyl,
+          axis: prescription.Axis,
+        })
+      );
+    }
+  }
+  return data;
+}
+
+function createGlassesDataTable({ eye, sph, cyl, axis, add }) {
+  return { eye, sph, cyl, axis, add };
+}
+
+function createContactDataTable({ eye, sph, bc, cyl, axis }) {
+  return { eye, sph, bc, cyl, axis };
+}
+
+export function parseAppointmentCardData(appointmentData) {
+  let data = {};
+  if (appointmentData && appointmentData.length > 0) {
+    data = appointmentData[0];
+  }
+  return data;
 }

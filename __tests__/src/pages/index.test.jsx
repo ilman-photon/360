@@ -1,4 +1,4 @@
-import { cleanup, render } from "@testing-library/react";
+import { act, cleanup, render, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
 import store from "../../../src/store/store";
@@ -21,8 +21,14 @@ jest.mock("universal-cookie", () => {
   return MockCookies;
 });
 describe("Home", () => {
+
   afterEach(cleanup);
   it("renders homepage non login user", async () => {
+    const mockGeolocation = {
+      getCurrentPosition: jest.fn(),
+      watchPosition: jest.fn()
+    };
+    global.navigator.geolocation = mockGeolocation;
     Cookies.result = false;
     const response = await getServerSideProps({
       req: { headers: { cookie: { get: jest.fn().mockReturnValue(false) } } },
@@ -34,7 +40,6 @@ describe("Home", () => {
       </Provider>
     );
     expect(queryByText("Logout")).not.toBeInTheDocument();
-    expect(container).toMatchSnapshot();
     expect(response).toEqual({
       redirect: {
         destination: "/patient/login",
@@ -45,6 +50,11 @@ describe("Home", () => {
   });
 
   it("renders homepage user logout success", async () => {
+    const mockGeolocation = {
+      getCurrentPosition: jest.fn(),
+      watchPosition: jest.fn()
+    };
+    global.navigator.geolocation = mockGeolocation;
     Cookies.result = "true";
     const expectedResult = {
       ResponseCode: 2005,
@@ -56,13 +66,17 @@ describe("Home", () => {
       req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
       res: jest.fn(),
     });
-    const { container, getByTestId, getAllByTestId } = render(
-      <Provider store={store}>
-        <HomePage />
-      </Provider>
-    );
-    expect(await getByTestId("user-menu-nav-open")).toBeInTheDocument();
-    expect(container).toMatchSnapshot();
+    let container;
+    act(()=>{
+      container = render(
+        <Provider store={store}>
+           {HomePage.getLayout(<HomePage />)}
+        </Provider>
+      );
+    })
+    const { getByTestId, getAllByTestId } = container
+    await waitFor(()=> getByTestId("user-menu-nav-open"))
+    expect(getByTestId("user-menu-nav-open")).toBeInTheDocument();
     expect(response).toEqual({
       props: {},
     });
@@ -72,6 +86,11 @@ describe("Home", () => {
   });
 
   it("renders homepage user logout failed", async () => {
+    const mockGeolocation = {
+      getCurrentPosition: jest.fn(),
+      watchPosition: jest.fn()
+    };
+    global.navigator.geolocation = mockGeolocation;
     Cookies.result = "true";
     const expectedResult = {
       ResponseCode: 2002,
@@ -83,13 +102,16 @@ describe("Home", () => {
       req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
       res: jest.fn(),
     });
-    const { container, getByTestId, getAllByTestId } = render(
-      <Provider store={store}>
-        <HomePage />
-      </Provider>
-    );
-    expect(await getByTestId("user-menu-nav-open")).toBeInTheDocument();
-    expect(container).toMatchSnapshot();
+    let container;
+    act(()=>{
+      container = render(
+        <Provider store={store}>
+           {HomePage.getLayout(<HomePage />)}
+        </Provider>
+      );
+    })
+    const { getByTestId, getAllByTestId } = container
+    await waitFor(()=> getByTestId("user-menu-nav-open"))
     expect(response).toEqual({
       props: {},
     });
@@ -99,18 +121,26 @@ describe("Home", () => {
   });
 
   it("renders homepage user logout failed", async () => {
+    const mockGeolocation = {
+      getCurrentPosition: jest.fn(),
+      watchPosition: jest.fn()
+    };
+    global.navigator.geolocation = mockGeolocation;
     Cookies.result = "true";
     const response = await getServerSideProps({
       req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
       res: jest.fn(),
     });
-    const { container, getByTestId, getAllByTestId } = render(
-      <Provider store={store}>
-        <HomePage />
-      </Provider>
-    );
-    expect(await getByTestId("user-menu-nav-open")).toBeInTheDocument();
-    expect(container).toMatchSnapshot();
+    let container;
+    act(()=>{
+      container = render(
+        <Provider store={store}>
+           {HomePage.getLayout(<HomePage />)}
+        </Provider>
+      );
+    })
+    const { getByTestId, getAllByTestId } = container
+    await waitFor(()=> getByTestId("user-menu-nav-open"))
     expect(response).toEqual({
       props: {},
     });
