@@ -1,7 +1,7 @@
 @import "../../../../styles/colors.scss";
 
-.scheduleContainer {
-  margin-top: 24px;
+.scheduleContainer,
+.noScheduleContainer {
   .scheduleTitle {
     font-family: "Libre Franklin", sans-serif;
     font-style: normal;
@@ -69,6 +69,8 @@
 
 .scheduleTimeContainer {
   display: flex;
+  margin-bottom: 12px;
+  position: relative;
   .scheduleTimeTitle {
     margin-top: 6px;
     font-family: "Libre Franklin", sans-serif;
@@ -80,15 +82,21 @@
     align-items: center;
     letter-spacing: 0.0016em;
     color: $darkGreen;
+    width: 135px;
   }
   .iconTimeContainer {
     margin-left: 18px;
     display: flex;
     align-items: center;
+    position: absolute;
+    left: 34%;
+    top: 16%;
+    .iconSchedule {
+      width: 25px;
+      color: $darkGreen;
+    }
   }
-  .iconSchedule {
-    width: 19px;
-  }
+
   .dividerSchedule {
     margin-top: 12px;
   }
