@@ -28,7 +28,7 @@ export default function RescheduleAppointments() {
       <div className={styles.backButtonWrapper}>
         <Button
           sx={{
-            mb: 7,
+            mb: { xs: 1, md: 7 },
           }}
           onClick={OnBackToAppointments}
           aria-label={"Back"}
