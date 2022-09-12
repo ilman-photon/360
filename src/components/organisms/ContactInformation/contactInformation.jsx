@@ -309,7 +309,7 @@ export default function ContactInformation({
             />
 
             <Grid container columnSpacing={2}>
-              <Grid item xs={8} style={{ paddingLeft: 0 }}>
+              <Grid item xs={7} style={{ paddingLeft: 0 }}>
                 <Controller
                   name="state"
                   control={control}
@@ -342,7 +342,7 @@ export default function ContactInformation({
                 />
               </Grid>
 
-              <Grid item xs={4} p={0}>
+              <Grid item xs={4.5} p={0}>
                 <Controller
                   name="zip"
                   control={control}
