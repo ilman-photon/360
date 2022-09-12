@@ -304,3 +304,12 @@ function createGlassesDataTable({ eye, sph, cyl, axis, add }) {
 function createContactDataTable({ eye, sph, bc, cyl, axis }) {
   return { eye, sph, bc, cyl, axis };
 }
+
+export function parseAppointmentCardData(appointmentData) {
+  let data = {};
+  if (appointmentData && appointmentData.length > 0) {
+    data = appointmentData[0];
+  }
+  console.log(data);
+  return data;
+}

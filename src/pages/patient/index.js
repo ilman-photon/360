@@ -38,9 +38,9 @@ export async function getServerSideProps({ req }) {
 export default function HomePage() {
   const [filterSuggestionData, setFilterSuggestionData] = React.useState({});
   const [prescriptionData, setPrescriptionData] = React.useState({});
+  const [appointmentData, setAppointmentData] = React.useState({});
   const filterData = useSelector((state) => state.appointment.filterData);
   const isDesktop = useMediaQuery("(min-width: 834px)");
-  const isMobile = useMediaQuery("(max-width: 899px)");
   const { coords, isGeolocationEnabled } = useGeolocated({
     positionOptions: {
       enableHighAccuracy: false,
@@ -100,7 +100,7 @@ export default function HomePage() {
       });
   }
 
-  //Call API for getSuggestion
+  //Call API for getAllPrescriptions
   function onCalledGetAllPrescriptionsAPI() {
     const api = new Api();
     api
@@ -109,13 +109,27 @@ export default function HomePage() {
         setPrescriptionData(response.prescriptions);
       })
       .catch(function () {
-        //Handle error getsuggestion
+        //Handle error getAllPrescriptions
+      });
+  }
+
+  //Call API for getAllAppointment
+  function onCalledGetAllAppointment() {
+    const api = new Api();
+    api
+      .getAllAppointment()
+      .then(function (response) {
+        setAppointmentData(response.appointmentList);
+      })
+      .catch(function () {
+        //Handle error getAllAppointment
       });
   }
 
   useEffect(() => {
     onCalledgetSugestionAPI();
     onCalledGetAllPrescriptionsAPI();
+    onCalledGetAllAppointment();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -170,14 +184,14 @@ export default function HomePage() {
         p={3}
         sx={{
           paddingTop: isDesktop ? "220px" : "185px",
-          flexDirection: isMobile ? "column-reverse" : "unset",
+          flexDirection: !isDesktop ? "column-reverse" : "unset",
         }}
       >
         <Grid item xs={5} sm={5} md={2}>
           <Prescriptions prescriptionData={prescriptionData} />
         </Grid>
         <Grid item xs={5} sm={5} md={3}>
-          <AppointmentCard />
+          <AppointmentCard appointmentData={appointmentData} />
         </Grid>
       </Grid>
     </Stack>

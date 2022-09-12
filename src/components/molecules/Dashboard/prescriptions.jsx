@@ -247,7 +247,7 @@ export default function Prescriptions({ prescriptionData = {} }) {
               <Typography variant="titleCard">
                 Contacts Prescriptions
               </Typography>
-              <MoreHorizIcon />
+              <MenuList />
             </Box>
             {renderPrescriptionTable(prescription.contacts, "contact")}
             <Box className={[styles.flexDisplay, styles.viewPrescription]}>
