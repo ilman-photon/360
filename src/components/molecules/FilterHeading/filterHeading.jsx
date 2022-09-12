@@ -473,6 +473,8 @@ const FilterHeading = ({
   isGeolocationEnabled,
   purposeOfVisitData = [],
   insuranceCarrierData = [],
+  title = "",
+  subtitle = "",
 }) => {
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
   const { handleSubmit, control } = useForm({
@@ -730,8 +732,22 @@ const FilterHeading = ({
 
   function renderDekstopView() {
     return (
-      <Box className={styles.titleHeadingWrapper}>
-        <Box className={styles.centeredElement}>
+      <Box
+        className={styles.titleHeadingWrapper}
+        sx={{ height: title && subtitle ? "200px" : "151px" }}
+      >
+        <Box
+          className={styles.centeredElement}
+          sx={{ top: title && subtitle ? "50%" : "58%" }}
+        >
+          {title && subtitle && (
+            <Stack>
+              <Typography className={styles.titleElement}>{title}</Typography>
+              <Typography className={styles.subtitleElement}>
+                {subtitle}
+              </Typography>
+            </Stack>
+          )}
           <Stack direction={"row"}>
             <form
               onSubmit={handleSubmit(onSubmit)}
@@ -791,12 +807,14 @@ const FilterHeading = ({
             <Typography
               className={styles.optionalPurposeText}
               variant={"bodyTinyRegular"}
+              sx={{ top: title && subtitle ? "89%" : "77%" }}
             >
               (Optional)
             </Typography>
             <Typography
               className={styles.optionalInsuranceText}
               variant={"bodyTinyRegular"}
+              sx={{ top: title && subtitle ? "89%" : "77%" }}
             >
               (Optional)
             </Typography>

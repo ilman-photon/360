@@ -48,3 +48,9 @@ export function formatAppointmentDate(date) {
   const formatedDate = momentDate.format("dddd, MMM DD - h:mm a");
   return formatedDate;
 }
+
+export function ddmmyyDateFormat(date) {
+  const momentDate = new moment(date);
+  const formatedDate = momentDate.format("DD/MM/YYYY");
+  return formatedDate;
+}
