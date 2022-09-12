@@ -127,7 +127,7 @@ export default function PersonalInformation({
             onClick={OnEditClicked}
             data-testid={"loc_edit"}
             sx={{ my: 4 }}
-            ariaLabel={"Edit option"}
+            aria-label={"Edit option"}
           >
             Edit
           </StyledButton>
@@ -158,19 +158,19 @@ export default function PersonalInformation({
             ariaLabel="Name"
             tooltipContent={tooltipContentDefault}
           >
-            <div tabIndex={0} ariaLabel={userData.name}>
+            <div tabIndex={0} aria-label={userData.name}>
               {userData.name}
             </div>
           </LabelWithInfo>
 
           <LabelWithInfo label="Preferred Name" ariaLabel={"Preferred Name"}>
-            <div tabIndex={0} ariaLabel={userData.preferredName}>
+            <div tabIndex={0} aria-label={userData.preferredName}>
               {userData.preferredName || "---"}
             </div>
           </LabelWithInfo>
 
           <LabelWithInfo label="Title" ariaLabel={"Title"}>
-            <div tabIndex={0} ariaLabel={userData.preferredName}>
+            <div tabIndex={0} aria-label={userData.preferredName}>
               {userData.title}
             </div>
           </LabelWithInfo>
@@ -182,7 +182,7 @@ export default function PersonalInformation({
           >
             <div
               tabIndex={0}
-              ariaLabel={new Date(userData.dob).toLocaleDateString()}
+              aria-label={new Date(userData.dob).toLocaleDateString()}
             >
               {new Date(userData.dob).toLocaleDateString()}
             </div>
@@ -193,13 +193,13 @@ export default function PersonalInformation({
             ariaLabel={"Age"}
             tooltipContent={tooltipContentDefault}
           >
-            <div tabIndex={0} ariaLabel={userData.age}>
+            <div tabIndex={0} aria-label={userData.age}>
               {userData.age}
             </div>
           </LabelWithInfo>
 
           <LabelWithInfo label="Gender" ariaLabel={"Gender"}>
-            <div tabIndex={0} ariaLabel={userData.gender}>
+            <div tabIndex={0} aria-label={userData.gender}>
               {userData.gender}
             </div>
           </LabelWithInfo>
@@ -211,7 +211,7 @@ export default function PersonalInformation({
           >
             <div
               tabIndex={0}
-              ariaLabel={formatSocialSecurity(String(userData.ssn))}
+              aria-label={formatSocialSecurity(String(userData.ssn))}
             >
               {formatSocialSecurity(String(userData.ssn))}
             </div>
@@ -225,7 +225,7 @@ export default function PersonalInformation({
               variant="bodyRegular"
               sx={{ pb: 3 }}
               tabIndex={0}
-              ariaLabel={`Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID.`}
+              aria-label={`Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID.`}
               component="div"
             >
               Please upload a photo of government-issued ID, such as Driver’s

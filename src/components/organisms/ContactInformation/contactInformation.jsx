@@ -122,7 +122,7 @@ export default function ContactInformation({
               className={styles.actionText}
               style={{ marginLeft: 4, color: "#008294" }}
               tabIndex={0}
-              ariaLabel="Edit option"
+              aria-label="Edit option"
             >
               Edit
             </div>
@@ -134,7 +134,7 @@ export default function ContactInformation({
             onClick={OnEditClicked}
             sx={{ my: 4 }}
             tabIndex={0}
-            ariaLabel="Edit option"
+            aria-label="Edit option"
           >
             Edit
           </StyledButton>
@@ -152,7 +152,7 @@ export default function ContactInformation({
           >
             <div
               tabIndex={0}
-              ariaLabel={
+              aria-label={
                 userData.mobile ? formatPhoneNumber(userData.mobile) : ""
               }
             >
@@ -161,19 +161,19 @@ export default function ContactInformation({
           </LabelWithInfo>
 
           <LabelWithInfo tabIndex={0} ariaLabel="Email ID" label="Email ID">
-            <div tabIndex={0} ariaLabel={userData.email || "-"}>
+            <div tabIndex={0} aria-label={userData.email || "-"}>
               {userData.email || "-"}
             </div>
           </LabelWithInfo>
 
           <LabelWithInfo tabIndex={0} ariaLabel="Address" label="Address">
-            <div tabIndex={0} ariaLabel={userData.address || "-"}>
+            <div tabIndex={0} aria-label={userData.address || "-"}>
               {userData.address || "-"}
             </div>
           </LabelWithInfo>
 
           <LabelWithInfo tabIndex={0} ariaLabel="City" label="City">
-            <div tabIndex={0} ariaLabel={userData.city || "-"}>
+            <div tabIndex={0} aria-label={userData.city || "-"}>
               {userData.city || "-"}
             </div>
           </LabelWithInfo>
@@ -181,7 +181,7 @@ export default function ContactInformation({
           <Grid container>
             <Grid item xs={6} p={0}>
               <LabelWithInfo tabIndex={0} ariaLabel="State" label="State">
-                <div tabIndex={0} ariaLabel={userData.state || "-"}>
+                <div tabIndex={0} aria-label={userData.state || "-"}>
                   {userData.state || "-"}
                 </div>
               </LabelWithInfo>
@@ -189,7 +189,7 @@ export default function ContactInformation({
 
             <Grid item xs={6} p={0}>
               <LabelWithInfo label="Zip" tabIndex={0} ariaLabel="Zip">
-                <div tabIndex={0} ariaLabel={userData.zip || "-"}>
+                <div tabIndex={0} aria-label={userData.zip || "-"}>
                   {userData.zip || "-"}
                 </div>
               </LabelWithInfo>
@@ -204,7 +204,7 @@ export default function ContactInformation({
             <span style={{ textTransform: "capitalize" }}>
               <div
                 tabIndex={0}
-                ariaLabel={
+                aria-label={
                   userData.preferredCommunication === "both"
                     ? "Mobile,Email"
                     : userData.preferredCommunication || "-"
