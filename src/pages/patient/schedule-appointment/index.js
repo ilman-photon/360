@@ -327,7 +327,11 @@ export default function ScheduleAppointmentPage() {
     <section style={{ paddingTop: "64px" }}>
       <BaseHeader />
       {isDesktop ? <AccountTitleHeading title={headerText[activeStep]} /> : ""}
-      <StepperAppoinment activeStep={activeStep} steps={steps} />
+      <StepperAppoinment
+        activeStep={activeStep}
+        steps={steps}
+        ariaLabelText="Review stage in progress bar"
+      />
       {activeStep === 2 ? (
         <Grid
           className={styles.mobileTopBar}
@@ -358,14 +362,10 @@ export default function ScheduleAppointmentPage() {
                 setActiveStep(activeStep - 1);
               }
             }}
-            aria-label={"Back icon"}
+            aria-label={"Back"}
             aria-hidden={"false"}
           >
-            <ArrowBackIcon
-              className={styles.backIcon}
-              aria-label={"Back icon"}
-              aria-hidden={"false"}
-            />
+            <ArrowBackIcon className={styles.backIcon} aria-hidden={"false"} />
             &nbsp;Back
           </Button>
         </Box>

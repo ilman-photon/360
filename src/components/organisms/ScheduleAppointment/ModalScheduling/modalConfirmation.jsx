@@ -22,11 +22,7 @@ export default function ModalConfirmation({
 
   return isDesktop ? (
     <Box>
-      <Dialog
-        aria-labelledby="customized-dialog-title"
-        aria-describedby="alert-dialog-description"
-        open={isOpen}
-      >
+      <Dialog open={isOpen}>
         <ModalConfirmContent
           OnSetIsOpen={OnSetIsOpen}
           patientData={patientData}

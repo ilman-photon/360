@@ -46,6 +46,7 @@ Object {
           class="titleHeadingWrapper"
         >
           <div
+            aria-label="Your Account heading"
             aria-live="polite"
             class="title"
           >
@@ -1229,6 +1230,7 @@ Object {
         class="titleHeadingWrapper"
       >
         <div
+          aria-label="Your Account heading"
           aria-live="polite"
           class="title"
         >

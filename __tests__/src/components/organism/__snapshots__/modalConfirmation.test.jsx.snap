@@ -9,6 +9,7 @@ Object {
         class="boxModalContents MuiBox-root css-17wkslb"
       >
         <h2
+          aria-label="Appointment confirmation page"
           class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-aw0cy1-MuiTypography-root-MuiDialogTitle-root"
           id="customized-dialog-title"
         >
@@ -29,7 +30,7 @@ Object {
              You’re Scheduled!
           </span>
           <button
-            aria-label="close"
+            aria-label="close option"
             class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1ehv1gf-MuiButtonBase-root-MuiIconButton-root"
             tabindex="0"
             type="button"
@@ -81,6 +82,7 @@ Object {
             <a
               aria-label="isEmergency"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
+              data-mui-internal-clone-element="true"
               data-testid="loginlink"
               role="link"
               tabindex="0"
@@ -256,7 +258,7 @@ Object {
               class="MuiCardContent-root css-1qboppe-MuiCardContent-root"
             >
               <p
-                aria-label="Patient Information"
+                aria-label="Patient Information heading"
                 aria-roledescription="Heading"
                 class="MuiTypography-root MuiTypography-body1 patientBoxLabel css-z2eky3-MuiTypography-root"
               >
@@ -322,6 +324,7 @@ Object {
       class="boxModalContents MuiBox-root css-17wkslb"
     >
       <h2
+        aria-label="Appointment confirmation page"
         class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-aw0cy1-MuiTypography-root-MuiDialogTitle-root"
         id="customized-dialog-title"
       >
@@ -342,7 +345,7 @@ Object {
            You’re Scheduled!
         </span>
         <button
-          aria-label="close"
+          aria-label="close option"
           class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1ehv1gf-MuiButtonBase-root-MuiIconButton-root"
           tabindex="0"
           type="button"
@@ -394,6 +397,7 @@ Object {
           <a
             aria-label="isEmergency"
             class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
+            data-mui-internal-clone-element="true"
             data-testid="loginlink"
             role="link"
             tabindex="0"
@@ -569,7 +573,7 @@ Object {
             class="MuiCardContent-root css-1qboppe-MuiCardContent-root"
           >
             <p
-              aria-label="Patient Information"
+              aria-label="Patient Information heading"
               aria-roledescription="Heading"
               class="MuiTypography-root MuiTypography-body1 patientBoxLabel css-z2eky3-MuiTypography-root"
             >

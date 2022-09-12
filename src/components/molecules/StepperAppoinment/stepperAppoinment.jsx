@@ -24,7 +24,7 @@ export default function StepperAppoinment({ ...props }) {
         activeStep={props.activeStep}
         alternativeLabel
         sx={{ width: "800px" }}
-        aria-label={`Progress Bar`}
+        aria-label={props.ariaLabelText || `Progress Bar`}
       >
         {steps?.map((label, idx) => (
           <Step

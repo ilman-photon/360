@@ -51,6 +51,7 @@ Object {
               class="MuiCardHeader-action css-sgoict-MuiCardHeader-action"
             >
               <button
+                aria-label="Edit"
                 class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1e6y48t-MuiButtonBase-root-MuiButton-root"
                 data-testid="schedule_appointment_location_edit_button"
                 tabindex="0"
@@ -58,7 +59,6 @@ Object {
               >
                 <svg
                   aria-hidden="false"
-                  aria-label="Edit icon"
                   class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1x727db-MuiSvgIcon-root"
                   data-testid="EditOutlinedIcon"
                   focusable="false"
@@ -106,7 +106,7 @@ Object {
                       />
                     </span>
                     <img
-                      alt="profile"
+                      alt="Doctors image"
                       data-nimg="intrinsic"
                       decoding="async"
                       src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
@@ -119,7 +119,6 @@ Object {
                   class="MuiGrid-root css-1dhf0bi-MuiGrid-root"
                 >
                   <h4
-                    aria-label="Myself"
                     class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
                     style="color: rgb(0, 59, 74); font-size: 18px; font-weight: 700;"
                   />
@@ -195,6 +194,7 @@ Object {
             class="MuiCardHeader-action css-sgoict-MuiCardHeader-action"
           >
             <button
+              aria-label="Edit"
               class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1e6y48t-MuiButtonBase-root-MuiButton-root"
               data-testid="schedule_appointment_location_edit_button"
               tabindex="0"
@@ -202,7 +202,6 @@ Object {
             >
               <svg
                 aria-hidden="false"
-                aria-label="Edit icon"
                 class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1x727db-MuiSvgIcon-root"
                 data-testid="EditOutlinedIcon"
                 focusable="false"
@@ -250,7 +249,7 @@ Object {
                     />
                   </span>
                   <img
-                    alt="profile"
+                    alt="Doctors image"
                     data-nimg="intrinsic"
                     decoding="async"
                     src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
@@ -263,7 +262,6 @@ Object {
                 class="MuiGrid-root css-1dhf0bi-MuiGrid-root"
               >
                 <h4
-                  aria-label="Myself"
                   class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
                   style="color: rgb(0, 59, 74); font-size: 18px; font-weight: 700;"
                 />
