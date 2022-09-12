@@ -26,32 +26,6 @@ export default function RescheduleAppointments() {
   return (
     <div className={styles.reschedulePageContainer}>
       <div className={styles.backButtonWrapper}>
-        <Button
-          sx={{
-            mb: { xs: 1, md: 7 },
-          }}
-          onClick={OnBackToAppointments}
-          aria-label={"Back"}
-          aria-hidden={"false"}
-        >
-          <ArrowBackIosNewIcon
-            sx={{
-              width: 16,
-              height: 16,
-              p: "2px",
-              fill: "black",
-              opacity: 0.54,
-              mr: "4px",
-            }}
-          />
-          <Typography
-            variant="bodyRegularSemiBold"
-            sx={{ color: colors.teal, textTransform: "none" }}
-          >
-            Back to appointments
-          </Typography>
-        </Button>
-
         <Box maxWidth={952} px={3} py={5} m="auto" backgroundColor="white">
           <Stack spacing={2}>
             <div className={styles.sectionTitle}>Reschedule Appointment</div>
@@ -72,7 +46,10 @@ export default function RescheduleAppointments() {
 
 RescheduleAppointments.getLayout = function getLayout(page) {
   return (
-    <AppointmentLayout currentActivePage={"Reschedule appointments"}>
+    <AppointmentLayout
+      currentActivePage={"Reschedule appointments"}
+      backTitle="Back to appointments"
+    >
       {page}
     </AppointmentLayout>
   );
