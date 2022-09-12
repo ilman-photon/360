@@ -16,6 +16,8 @@ import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { LabelWithIcon } from "../../../components/atoms/LabelWithIcon/labelWithIcon";
 import { logoutProps } from "../../../utils/authetication";
 
+import ModalCancelScheduling from "../../../components/organisms/ScheduleAppointment/ModalCancelScheduling/modalCancelScheduling";
+
 import {
   Button,
   Grid,
@@ -390,6 +392,7 @@ export default function ScheduleAppointmentPage() {
       </Grid>
 
       {activeStep === 4 ? <ModalConfirmSchedule /> : null}
+      <ModalCancelScheduling />
     </section>
   );
 }
