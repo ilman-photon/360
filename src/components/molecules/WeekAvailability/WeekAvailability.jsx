@@ -86,7 +86,7 @@ export const WeekAvailability = ({
 
   function buttonSchedule(
     label = "",
-    gridArea,
+    gridArea = "",
     isTypeMore = false,
     index = "",
     date = ""

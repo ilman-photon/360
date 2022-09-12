@@ -15,7 +15,7 @@ import {
 
 export const buttonSchedule = (
   label = "",
-  idx,
+  idx = 0,
   OnDayClicked = () => {
     // This is intended
   },

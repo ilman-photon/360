@@ -10,6 +10,7 @@ import constants from "../../src/utils/constants";
 import { Provider } from "react-redux";
 import HomePage from "../../src/pages/patient";
 import store from "../../src/store/store";
+import mediaQuery from 'css-mediaquery';
 
 const MOCK_APPOINTMENT = {
     appointmentList: [
@@ -301,6 +302,479 @@ const MOCK_SUGESTION = {
     ],
 }
 
+const MOCK_SUBMIT = {
+  listOfProvider: [
+    {
+      providerId: "1",
+      address: {
+        addressLine1: "51 West 51st Street",
+        addressLine2: "Floor 3, Suite 320 Midtown",
+        city: "Florida",
+        state: "FR",
+        zipcode: "54231",
+      },
+      rating: "5",
+      name: "Paul Wagner Md",
+      phoneNumber: "(123) 123-4567",
+      distance: "10 mi",
+      image: "/doctor.png",
+      from: "2022-09-19",
+      to: "2022-09-24",
+      availability: [
+        {
+          date: "2022-09-19",
+          list: [
+            {
+              time: "11:30am",
+              key: 12222,
+            },
+          ],
+        },
+        {
+          date: "2022-09-20",
+          list: [
+            {
+              time: "08:00am",
+              key: 12223,
+            },
+            {
+              time: "10:30am",
+              key: 12224,
+            },
+            {
+              time: "11:00am",
+              key: 12225,
+            },
+            {
+              time: "12:00pm",
+              key: 12226,
+            },
+            {
+              time: "01:00pm",
+              key: 12227,
+            },
+            {
+              time: "02:00pm",
+              key: 12228,
+            },
+          ],
+        },
+        {
+          date: "2022-09-21",
+          list: [
+            {
+              time: "08:30am",
+              key: 12229,
+            },
+            {
+              time: "10:30am",
+              key: 12230,
+            },
+            {
+              time: "11:30am",
+              key: 12231,
+            },
+            {
+              time: "12:00pm",
+              key: 12232,
+            },
+            {
+              time: "01:30pm",
+              key: 12233,
+            },
+            {
+              time: "02:30pm",
+              key: 12234,
+            },
+            {
+              time: "03:30pm",
+              key: 12235,
+            },
+            {
+              time: "04:30pm",
+              key: 12236,
+            },
+            ,
+          ],
+        },
+        {
+          date: "2022-09-22",
+          list: [
+            {
+              time: "09:30am",
+              key: 12237,
+            },
+            {
+              time: "11:00am",
+              key: 12238,
+            },
+          ],
+        },
+        {
+          date: "2022-09-23",
+          list: [
+            {
+              time: "09:30am",
+              key: 12239,
+            },
+          ],
+        },
+        {
+          date: "2022-09-24",
+          list: [
+            {
+              time: "09:30am",
+              key: 12240,
+            },
+          ],
+        },
+      ],
+      coordinate: {
+        latitude: 32.751204,
+        longitude: -117.1641166,
+      },
+    },
+    {
+      providerId: "2",
+      address: {
+        addressLine1: "51 West 51st Street",
+        addressLine2: "Floor 3, Suite 320 Midtown",
+        city: "Florida",
+        state: "FR",
+        zipcode: "54231",
+      },
+      rating: "5",
+      name: "Paul Wagner Nd",
+      phoneNumber: "(123) 123-4567",
+      distance: "10 mi",
+      image: "/doctor.png",
+      from: "2022-09-19",
+      to: "2022-09-24",
+      availability: [
+        {
+          date: "2022-09-19",
+          list: [],
+        },
+        {
+          date: "2022-09-20",
+          list: [
+            {
+              time: "08:00am",
+              key: 12223,
+            },
+            {
+              time: "10:30am",
+              key: 12224,
+            },
+            {
+              time: "11:00am",
+              key: 12225,
+            },
+            {
+              time: "12:00pm",
+              key: 12226,
+            },
+            {
+              time: "01:00pm",
+              key: 12227,
+            },
+            {
+              time: "02:00pm",
+              key: 12228,
+            },
+          ],
+        },
+        {
+          date: "2022-09-21",
+          list: [
+            {
+              time: "08:30am",
+              key: 12229,
+            },
+            {
+              time: "10:30am",
+              key: 12230,
+            },
+            {
+              time: "11:30am",
+              key: 12231,
+            },
+            {
+              time: "12:00pm",
+              key: 12232,
+            },
+            {
+              time: "01:30pm",
+              key: 12233,
+            },
+            {
+              time: "02:30pm",
+              key: 12234,
+            },
+            {
+              time: "03:30pm",
+              key: 12235,
+            },
+            {
+              time: "04:30pm",
+              key: 12236,
+            },
+            ,
+          ],
+        },
+        {
+          date: "2022-09-22",
+          list: [
+            {
+              time: "09:30am",
+              key: 12237,
+            },
+            {
+              time: "11:00am",
+              key: 12238,
+            },
+          ],
+        },
+        {
+          date: "2022-09-23",
+          list: [],
+        },
+        {
+          date: "2022-09-24",
+          list: [
+            {
+              time: "09:30am",
+              key: 12240,
+            },
+          ],
+        },
+      ],
+      coordinate: {
+        latitude: 32.751204,
+        longitude: -117.1641166,
+      },
+    },
+    {
+      providerId: "3",
+      name: "Paul Wagner Md",
+      address: {
+        addressLine1: "51 West 51st Street",
+        addressLine2: "Floor 3, Suite 320 Midtown",
+        city: "Florida",
+        state: "FR",
+        zipcode: "54231",
+      },
+      rating: "5",
+      phoneNumber: "(123) 123-4567",
+      distance: "10 mi",
+      image: "/doctor.png",
+      from: "2022-09-19",
+      to: "2022-09-24",
+      availability: [
+        {
+          date: "2022-09-19",
+          list: [
+            {
+              time: "11:30am",
+              key: 12222,
+            },
+          ],
+        },
+        {
+          date: "2022-09-20",
+          list: [
+            {
+              time: "08:00am",
+              key: 12223,
+            },
+            {
+              time: "10:30am",
+              key: 12224,
+            },
+            {
+              time: "11:00am",
+              key: 12225,
+            },
+            {
+              time: "12:00pm",
+              key: 12226,
+            },
+            {
+              time: "01:00pm",
+              key: 12227,
+            },
+            {
+              time: "02:00pm",
+              key: 12228,
+            },
+          ],
+        },
+        {
+          date: "2022-09-21",
+          list: [
+            {
+              time: "08:30am",
+              key: 12229,
+            },
+            {
+              time: "10:30am",
+              key: 12230,
+            },
+            {
+              time: "11:30am",
+              key: 12231,
+            },
+            {
+              time: "12:00pm",
+              key: 12232,
+            },
+            {
+              time: "01:30pm",
+              key: 12233,
+            },
+            {
+              time: "02:30pm",
+              key: 12234,
+            },
+            {
+              time: "03:30pm",
+              key: 12235,
+            },
+            {
+              time: "04:30pm",
+              key: 12236,
+            },
+            ,
+          ],
+        },
+        {
+          date: "2022-09-22",
+          list: [
+            {
+              time: "09:30am",
+              key: 12237,
+            },
+            {
+              time: "11:00am",
+              key: 12238,
+            },
+          ],
+        },
+        {
+          date: "2022-09-23",
+          list: [
+            {
+              time: "09:30am",
+              key: 12239,
+            },
+          ],
+        },
+        {
+          date: "2022-09-24",
+          list: [],
+        },
+      ],
+      coordinate: {
+        latitude: 32.751204,
+        longitude: -117.1641166,
+      },
+    },
+  ],
+  filterbyData: [
+    {
+      name: "Available Today",
+      checked: false,
+    },
+    {
+      name: "Language",
+      checklist: [
+        {
+          name: "Arabic",
+          checked: false,
+        },
+        {
+          name: "Chinese",
+          checked: false,
+        },
+        {
+          name: "English",
+          checked: false,
+        },
+        {
+          name: "Farsi",
+          checked: false,
+        },
+        {
+          name: "French",
+          checked: false,
+        },
+        {
+          name: "Spanish",
+          checked: false,
+        },
+        {
+          name: "Portuguese",
+          checked: false,
+        },
+        {
+          name: "Korean",
+          checked: false,
+        },
+        {
+          name: "German",
+          checked: false,
+        },
+        {
+          name: "Italian",
+          checked: false,
+        },
+        {
+          name: "Indonesian",
+          checked: false,
+        },
+      ],
+    },
+    {
+      name: "Insurance",
+      checklist: [
+        {
+          name: "In Network",
+          checked: false,
+        },
+        {
+          name: "Out of Network",
+          checked: false,
+        },
+      ],
+    },
+    {
+      name: "Gender",
+      checklist: [
+        {
+          name: "Male",
+          checked: false,
+        },
+        {
+          name: "Female",
+          checked: false,
+        },
+        {
+          name: "Non-Binary",
+          checked: false,
+        },
+      ],
+    },
+  ],
+}
+
+function createMatchMedia(width) {
+  return query => ({
+    matches: mediaQuery.match(query, { width }),
+    addListener: () => { },
+    removeListener: () => { },
+  });
+}
+
 jest.mock("universal-cookie", () => {
   class MockCookies {
     static result = {};
@@ -375,6 +849,8 @@ defineFeature(feature, (test) => {
             mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGESTION);
             mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllAppointment`).reply(200, MOCK_APPOINTMENT);
             mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`).reply(200, MOCK_PRESCRIPTION);
+            mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(400, {});
+            window.matchMedia = createMatchMedia('1920px');
             const response = await getServerSideProps({
                 req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
                 res: jest.fn(),
@@ -401,11 +877,17 @@ defineFeature(feature, (test) => {
         and('User should see the widget with prescriptions', () => {
             const prescriptions = container.getByLabelText(/Prescriptions/i)
             expect(prescriptions).toBeInTheDocument()
+            
+            const locationField = container.container.querySelector('#location');
+			      fireEvent.change(locationField, {target: { value: "Texas" }})
         });
 
         when('User clicks on the widget with prescriptions', () => {
             const prescriptionsView = container.getByTestId("view-prescription-glasses")
             fireEvent.click(prescriptionsView)
+
+            const searchBtn = container.getByTestId("searchbtn")
+            fireEvent.click(searchBtn)
         });
 
         then(/^User should navigated to "(.*)" screen$/, (arg0) => {
@@ -462,6 +944,7 @@ defineFeature(feature, (test) => {
             mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGESTION);
             mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllAppointment`).reply(200, MOCK_APPOINTMENT);
             mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`).reply(200, MOCK_PRESCRIPTION);
+            window.matchMedia = createMatchMedia('700px');
             const response = await getServerSideProps({
                 req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
                 res: jest.fn(),
@@ -549,6 +1032,7 @@ defineFeature(feature, (test) => {
             mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGESTION);
             mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllAppointment`).reply(200, MOCK_APPOINTMENT);
             mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`).reply(200, MOCK_PRESCRIPTION);
+            window.matchMedia = createMatchMedia('700px');
             const response = await getServerSideProps({
                 req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
                 res: jest.fn(),
@@ -644,6 +1128,8 @@ defineFeature(feature, (test) => {
             mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGESTION);
             mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllAppointment`).reply(200, MOCK_APPOINTMENT);
             mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`).reply(200, MOCK_PRESCRIPTION);
+            mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(200, MOCK_SUBMIT);
+            window.matchMedia = createMatchMedia('1920px');
             const response = await getServerSideProps({
                 req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
                 res: jest.fn(),
@@ -679,6 +1165,12 @@ defineFeature(feature, (test) => {
         when('User clicks on the widget with prescriptions', () => {
             const prescriptionsView = container.getByTestId("view-prescription-medication")
             fireEvent.click(prescriptionsView)
+
+            const locationField = container.container.querySelector('#location');
+			      fireEvent.change(locationField, {target: { value: "Texas" }})
+            
+            const searchBtn = container.getByTestId("searchbtn")
+            fireEvent.click(searchBtn)
         });
 
         then(/^User should navigated to "(.*)" screen$/, (arg0) => {
