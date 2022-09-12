@@ -4,7 +4,7 @@ import ScheduleAppointment from "../../../components/organisms/ScheduleAppointme
 import AppointmentLocation from "../../../components/organisms/ScheduleAppointment/appointmentLocation";
 import AppointmentDetails from "../../../components/organisms/ScheduleAppointment/appointmentDetails";
 import AppointmentForm from "../../../components/organisms/ScheduleAppointment/appointmentForm";
-import ModalConfirmation from "../../../components/organisms/ScheduleAppointment/ModalScheduling/modalConfirmation";
+import ModalConfirmation from "../../../components/organisms/ScheduleAppointment/ScheduleConfirmation/modalConfirmation";
 
 import StepperAppoinment from "../../../components/molecules/StepperAppoinment/stepperAppoinment";
 import AccountTitleHeading from "../../../components/atoms/AccountTitleHeading/accountTitleHeading";
@@ -97,7 +97,7 @@ export const PageContent = ({
         value: payload,
       })
     );
-    OnsetActiveStep();
+    // OnsetActiveStep();
   };
 
   const createAccount = async function (postbody) {
@@ -174,7 +174,7 @@ export const PageContent = ({
               selectedSelf={selectedSelf}
               OnSubmit={(v) => {
                 handleFormSubmit(v);
-                OnsetActiveStep(4);
+                // OnsetActiveStep(4);
               }}
               OnSetSelectedSelf={(idx) => setSelectedSelf(idx)}
               setActiveStep={(idx) => OnsetActiveStep(idx)}
@@ -211,7 +211,8 @@ export const PageContent = ({
               OnSubmit={(v) => {
                 handleFormSubmit(v);
                 createAccount(v);
-                OnsetActiveStep(4);
+                OnClickSchedule(v);
+                // OnsetActiveStep(4);
               }}
               OnClickSignIn={() => {
                 cookies.set("dashboardState", true, { path: "/patient" });
@@ -277,10 +278,14 @@ export default function ScheduleAppointmentPage() {
     router.push("/patient/appointment");
   };
 
-  const handleClickSchedule = () => {
-    console.log("handleClickSchedule");
-    setActiveStep(4);
-    setIsOpen(true);
+  const handleClickSchedule = (data) => {
+    console.log("handleClickSchedule", data);
+    if (activeStep === 2 && !data?.password) {
+      router.push("/patient/schedule-appointment-confirmation");
+    } else {
+      setActiveStep(4);
+      setIsOpen(true);
+    }
   };
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -400,7 +405,7 @@ export default function ScheduleAppointmentPage() {
               borderRadius: "46px",
             }}
             onClick={() => {
-              if (activeStep - 1 < 1) {
+              if (activeStep - 1 < 1 || activeStep > 3) {
                 handleEditSchedule();
               } else {
                 setActiveStep(activeStep - 1);

@@ -34,7 +34,7 @@ import {
   getProvideOverlay,
 } from "../../../utils/appointment";
 import { Api } from "../../api/api";
-import ModalConfirmation from "../../../components/organisms/ScheduleAppointment/ModalScheduling/modalConfirmation";
+import ModalConfirmation from "../../../components/organisms/ScheduleAppointment/ScheduleConfirmation/modalConfirmation";
 import Cookies from "universal-cookie";
 import { TEST_ID } from "../../../utils/constants";
 
