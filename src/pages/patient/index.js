@@ -16,6 +16,7 @@ import {
   setIsFilterApplied,
   setProviderListData,
 } from "../../store/appointment";
+import { parseSuggestionData } from "../../utils/appointment";
 import FilterResultHeading from "../../components/molecules/FilterResultHeading/filterResultHeading";
 import { Box } from "@mui/system";
 

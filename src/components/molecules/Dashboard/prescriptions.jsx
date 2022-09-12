@@ -195,7 +195,6 @@ export default function Prescriptions({
               marginBottom: data.length == idx + 1 ? "26px" : "16px",
             }}
           >
-            {console.log(idx + 1)}
             <Typography variant="customBodyRegular">
               Prescribed on: &nbsp;
             </Typography>
