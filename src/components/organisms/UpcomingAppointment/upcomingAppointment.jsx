@@ -7,6 +7,7 @@ import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import moment from "moment";
 import "moment-timezone";
+import { TEST_ID } from "../../../utils/constants";
 
 export default function UpcomingAppointment({
   data = {
@@ -35,7 +36,8 @@ export default function UpcomingAppointment({
   return (
     <Box className={styles.upcomingAppointments}>
       <Stack spacing={{ xs: 2, lg: 3.5 }}>
-        <Typography variant="h2" className={styles.title}>
+        <Typography variant="h2" className={styles.title}
+          data-testid={TEST_ID.APPOINTMENTS_TEST_ID.upcomingAppointmentsHeader}>
           Upcoming appointments
         </Typography>
         <Box
@@ -73,12 +75,15 @@ export default function UpcomingAppointment({
             </Link>
           </Box>
           <Box className={styles.buttonContainer}>
-            <AppointmentButton icon={<CancelOutlinedIcon />}>
+            <AppointmentButton
+              testId={TEST_ID.APPOINTMENTS_TEST_ID.cancelAppointmentButton}
+              icon={<CancelOutlinedIcon />}>
               Cancel
             </AppointmentButton>
             <AppointmentButton
-              icon={<CalendarTodayIcon />}
               onClick={() => onRescheduleClicked(data)}
+              testId={TEST_ID.APPOINTMENTS_TEST_ID.rescheduleAppointmentButton}
+              icon={<CalendarTodayIcon />}
             >
               Reschedule
             </AppointmentButton>

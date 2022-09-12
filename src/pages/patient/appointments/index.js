@@ -20,6 +20,7 @@ import { resetFilterData, setFilterData } from "../../../store/appointment";
 import { StyledButton } from "../../../components/atoms/Button/button";
 import { colors } from "../../../styles/theme";
 import { setUserAppointmentData } from "../../../store/user";
+import { TEST_ID } from "../../../utils/constants";
 export default function Appointments() {
   // const [appointments, setAppointments] = useState();
   const [modalConfirmReschedule, setModalConfirmReschedule] = useState(false);
@@ -61,7 +62,7 @@ export default function Appointments() {
       insuranceCarrier: Array.isArray(appointmentInfo.insuranceCarrier)
         ? appointmentInfo.insuranceCarrier[0]
         : appointmentInfo.insuranceCarrier,
-      location: providerInfo.address.city,
+      location: providerInfo.address ? providerInfo.address.city : '-',
     };
     dispatch(setFilterData(payload));
     setModalConfirmReschedule(true);
@@ -124,6 +125,7 @@ export default function Appointments() {
             <StyledButton
               size="small"
               mode="primary"
+              data-testid={TEST_ID.APPOINTMENTS_TEST_ID.confirmRescheduleButton}
               onClick={OnConfirmRescheduleAppointment}
               sx={{ fontSize: "14px", px: "20px", py: "11px" }}
             >

@@ -173,6 +173,12 @@ module.exports = {
       },
       step2Button: "schedule_appointment_step2_button",
     },
+    APPOINTMENTS_TEST_ID: {
+      upcomingAppointmentsHeader: "appointments_upcoming_appointments_header",
+      cancelAppointmentButton: "appointments_upcoming_appointments_cancel_button",
+      rescheduleAppointmentButton: "appointments_upcoming_appointments_reschedule_button",
+      confirmRescheduleButton: "appointments_upcoming_appointments_confirm_reschedule_button"
+    },
     MAP_INFO_WINDOW: {
       previousProvider: "provider_btnPrevious",
       nextProvider: "provider_btnNext",
