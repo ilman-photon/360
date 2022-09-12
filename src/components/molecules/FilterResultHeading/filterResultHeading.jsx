@@ -41,6 +41,8 @@ export const FilterResultHeading = ({
   rangeDate = { startDate: "", endDate: "" },
   filter = [],
   onActivFilter,
+  title = "",
+  subtitle = "",
 }) => {
   const imageSrcState = "/searchInputIcon.png";
   const imageSrcFilled = "/searchFilledIcon.png";
@@ -250,7 +252,13 @@ export const FilterResultHeading = ({
 
   function renderMobileView() {
     return (
-      <Box className={styles.mobileFilterContainer}>
+      <Box
+        className={styles.mobileFilterContainer}
+        sx={{
+          backgroundColor: title && subtitle ? "transparent" : colors.darkGreen,
+          height: title && subtitle ? "165px" : "105px",
+        }}
+      >
         <FilterBy
           activedFilter={[...activeFilter]}
           filter={filter}
@@ -262,8 +270,28 @@ export const FilterResultHeading = ({
             onSetFilter(filter);
           }}
         ></FilterBy>
-        <Stack justifyContent={"center"} height={"100%"} paddingX={"14px"}>
-          <Stack className={styles.mobileFilterStyle} direction={"row"}>
+        <Stack
+          justifyContent={"center"}
+          height={"100%"}
+          paddingX={"14px"}
+          className={title && subtitle ? styles.titleContainer : {}}
+        >
+          {title && subtitle && (
+            <Stack className={styles.subtitleContainer}>
+              <Typography className={styles.titleElement}>{title}</Typography>
+              <Typography className={styles.subtitleElement}>
+                {subtitle}
+              </Typography>
+            </Stack>
+          )}
+          <Stack
+            className={
+              title && subtitle
+                ? styles.stackFilterContainer
+                : styles.mobileFilterStyle
+            }
+            direction={"row"}
+          >
             <LocationOnOutlinedIcon
               sx={{
                 margin: "auto 14px",
@@ -280,11 +308,14 @@ export const FilterResultHeading = ({
                 variant={"bodyMedium"}
                 className={styles.mobileFilterTitle}
               >
-                {filterData.location}
+                {filterData.location || "City, state, or zip code"}
               </Typography>
-              <Typography
-                className={styles.mobileFilterSubtitle}
-              >{`${filterData.purposeOfVisit} * ${filterData.insuranceCarrier}`}</Typography>
+              {filterData.purposeOfVisit ||
+                (filterData.insuranceCarrier && (
+                  <Typography
+                    className={styles.mobileFilterSubtitle}
+                  >{`${filterData.purposeOfVisit} * ${filterData.insuranceCarrier}`}</Typography>
+                ))}
             </Box>
             <Box
               className={styles.mobileFilterImageContainer}

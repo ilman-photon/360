@@ -116,7 +116,7 @@ export default function MfaPage() {
 
   function redirectToDashboard() {
     const hostname = window.location.origin;
-    window.location.href = `${hostname}/patient/appointment`;
+    window.location.href = `${hostname}/patient`;
 
     cookies.set("authorized", true, { path: "/patient" });
     cookies.remove("mfa", { path: "/patient" });
