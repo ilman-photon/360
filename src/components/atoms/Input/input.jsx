@@ -76,6 +76,7 @@ export const CustomPasswordInput = styled((props) => (
     },
     "&.Mui-error": {
       color: "#B00020",
+      fontWeight: "unset",
     },
   },
   "& .MuiFilledInput-root": {
@@ -100,11 +101,6 @@ export const CustomPasswordInput = styled((props) => (
     "&.Mui-focused": {
       backgroundColor: "transparent",
       color: "#193138",
-    },
-    "&.MuiFilledInput-input": {
-      "&.::-ms-reveal": {
-        display: "none",
-      },
     },
   },
   "& .MuiFormHelperText-root": {
@@ -136,6 +132,7 @@ export const RedditTextField = styled((props) => (
     },
     "&.Mui-error": {
       color: "#B00020",
+      fontWeight: "unset",
     },
   },
   "& .MuiFilledInput-root": {
@@ -253,6 +250,9 @@ export const CustomInput = styled(({ ...props }) => {
                       border: props.isFilter
                         ? "0px solid #ffff"
                         : "1px solid #e2e2e1",
+                      ["& .MuiInputBase-input"]: {
+                        cursor: props.isFilter ? "pointer" : "inherit",
+                      },
                     },
                   }}
                   {...params}

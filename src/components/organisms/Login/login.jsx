@@ -50,9 +50,11 @@ export function Login({
   const renderFromMessage = () => {
     return (
       postMessage.status === "failed" && (
-        <FormMessage error title={postMessage.message.title}>
-          {postMessage.message.description}
-        </FormMessage>
+        <Box marginBottom={"16px"}>
+          <FormMessage error title={postMessage.message.title}>
+            {postMessage.message.description}
+          </FormMessage>
+        </Box>
       )
     );
   };
