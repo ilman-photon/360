@@ -164,7 +164,7 @@ Object {
                             placeholder=""
                             readonly=""
                             type="default"
-                            value="Apr 1, 2022"
+                            value="Sep 9, 2022"
                           />
                         </div>
                       </div>
@@ -466,7 +466,7 @@ Object {
                           placeholder=""
                           readonly=""
                           type="default"
-                          value="Apr 1, 2022"
+                          value="Sep 9, 2022"
                         />
                       </div>
                     </div>

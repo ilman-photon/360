@@ -121,7 +121,7 @@ Object {
                   >
                     <input
                       aria-invalid="false"
-                      aria-label="Choose date, selected date is Apr 1, 2022"
+                      aria-label="Choose date"
                       aria-readonly="true"
                       class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                       id=":r2:"
@@ -433,7 +433,7 @@ Object {
                 >
                   <input
                     aria-invalid="false"
-                    aria-label="Choose date, selected date is Apr 1, 2022"
+                    aria-label="Choose date"
                     aria-readonly="true"
                     class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                     id=":r2:"
@@ -802,7 +802,7 @@ Object {
                   >
                     <input
                       aria-invalid="false"
-                      aria-label="Choose date, selected date is Apr 1, 2022"
+                      aria-label="Choose date"
                       aria-readonly="true"
                       class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                       id=":r8:"
@@ -1096,8 +1096,8 @@ Object {
                   withicon="true"
                 >
                   <label
-                    class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
-                    data-shrink="true"
+                    class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
+                    data-shrink="false"
                     for=":rd:"
                     id=":rd:-label"
                   >
@@ -1113,7 +1113,7 @@ Object {
                       placeholder=""
                       readonly=""
                       type="default"
-                      value="Apr 1, 2022"
+                      value=""
                     />
                   </div>
                 </div>
@@ -1351,8 +1351,8 @@ Object {
                 withicon="true"
               >
                 <label
-                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
-                  data-shrink="true"
+                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
+                  data-shrink="false"
                   for=":rd:"
                   id=":rd:-label"
                 >
@@ -1368,7 +1368,7 @@ Object {
                     placeholder=""
                     readonly=""
                     type="default"
-                    value="Apr 1, 2022"
+                    value=""
                   />
                 </div>
               </div>

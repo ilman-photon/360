@@ -42,7 +42,7 @@ const DEFAULT_USER_SCHEDULE_APPOINTMENT_DATA = {
 };
 
 const DEFAULT_FILTER_DATA = {
-  date: null,
+  date: new Date(),
   location: "",
   insuranceCarrier: "",
   purposeOfVisit: "",
