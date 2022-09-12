@@ -40,6 +40,7 @@ export default function HomePage() {
   const [prescriptionData, setPrescriptionData] = React.useState({});
   const filterData = useSelector((state) => state.appointment.filterData);
   const isDesktop = useMediaQuery("(min-width: 834px)");
+  const isMobile = useMediaQuery("(max-width: 899px)");
   const { coords, isGeolocationEnabled } = useGeolocated({
     positionOptions: {
       enableHighAccuracy: false,
@@ -169,6 +170,7 @@ export default function HomePage() {
         p={3}
         sx={{
           paddingTop: isDesktop ? "220px" : "185px",
+          flexDirection: isMobile ? "column-reverse" : "unset",
         }}
       >
         <Grid item xs={5} sm={5} md={2}>
