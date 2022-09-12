@@ -57,11 +57,50 @@ export const DEFAULT_INSURANCE_DATA = {
   backCard: "",
 };
 
+const DEFAULT_USER_APPOINTMENT_DATA = {
+  appointmentId: "",
+  providerInfo: {
+    providerId: "",
+    name: "",
+    position: "",
+    address: {
+      addressLine1: "",
+      addressLine2: "",
+      city: "",
+      state: "",
+      zipcode: "",
+    },
+    rating: "",
+    phoneNumber: "",
+    distance: "",
+    image: "",
+    from: "",
+    to: "",
+    location: {
+      latitude: 0,
+      longitude: 0,
+    },
+  },
+  patientInfo: {
+    name: "",
+    firstname: "",
+    lastname: "",
+    dob: "",
+    phoneNumber: "",
+  },
+  appointmentInfo: {
+    appointmentType: "",
+    date: "",
+    insuranceCarrier: [],
+  },
+};
+
 const userSlice = createSlice({
   name: "user",
   initialState: {
     userData: DEFAULT_USER_DATA,
     userInsuranceData: [],
+    userAppointmentData: [],
     status: null,
   },
   reducers: {
@@ -91,6 +130,26 @@ const userSlice = createSlice({
     removeUserInsuranceData: (state, { payload }) => {
       state.userInsuranceData.splice(payload, 1);
     },
+    resetUserAppointmentData: (state) => {
+      state.userAppointmentData = [];
+    },
+    setUserAppointmentData: (state, { payload }) => {
+      state.userAppointmentData = payload;
+    },
+    setUserAppointmentDataByIndex: (state, { payload }) => {
+      console.log({ payload });
+      state.userAppointmentData = state.userAppointmentData.map((item, idx) => {
+        if (payload.appointmentId === idx) {
+          const obj = {
+            ...item,
+            appointmentInfo: payload.appointmentInfo,
+            providerInfo: payload.providerInfo,
+          };
+          item = obj;
+        }
+        return item;
+      });
+    },
   },
   extraReducers: {
     [fetchUser.pending]: (state) => {
@@ -113,6 +172,9 @@ export const {
   addUserInsuranceData,
   removeUserInsuranceData,
   setUserInsuranceDataByIndex,
+  resetUserAppointmentData,
+  setUserAppointmentData,
+  setUserAppointmentDataByIndex,
 } = userSlice.actions;
 
 export default userSlice.reducer;

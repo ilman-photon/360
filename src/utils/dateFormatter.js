@@ -26,7 +26,7 @@ export function convertToDate(date) {
   return `${monthNames[monthIndex]} ${day}, ${year}`;
 }
 
-export function formatDate(payload) {
+export function formatDate(payload, withTimezone) {
   if (!payload) {
     return "-";
   }
@@ -39,6 +39,7 @@ export function formatDate(payload) {
     hour: "numeric", // numeric, 2-digit
     minute: "numeric", // numeric, 2-digit
     second: "numeric", // numeric, 2-digit
+    timeZone: withTimezone ? "UTC" : null,
   });
 }
 
