@@ -36,7 +36,7 @@ export const LabelWithInfo = ({
             placement="top"
             aria-label={`Information Icon - ${tooltipContent}`}
           >
-            <IconButton>
+            <IconButton sx={{ p: 0 }}>
               <ErrorOutlineOutlinedIcon
                 sx={{ width: 20, height: 20, color: "#00000080" }}
               />
@@ -47,8 +47,8 @@ export const LabelWithInfo = ({
         ""
       )}
     </div>
-    <Stack spacing={1}>
-      <div style={{ marginTop: 10 }}>{children}</div>
+    <Stack spacing={1} sx={{ mt: "10px" }}>
+      <div>{children}</div>
       {helperText ? (
         <Typography variant="bodySmallRegular" sx={{ mt: 1, fontWeight: 500 }}>
           {helperText}

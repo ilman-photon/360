@@ -220,7 +220,7 @@ export default function PersonalInformation({
       </Fade>
       <Fade in={isEditing} unmountOnExit>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Stack spacing={3}>
+          <Stack spacing={2}>
             <div className={styles.labelForm}>Photo</div>
             {formProfilePhotoState.content ? (
               <FormMessage

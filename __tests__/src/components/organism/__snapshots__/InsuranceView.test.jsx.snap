@@ -96,11 +96,9 @@ Object {
                                 </div>
                               </div>
                               <div
-                                class="css-1okj3ks-MuiStack-root"
+                                class="css-qkek6c-MuiStack-root"
                               >
-                                <div
-                                  style="margin-top: 10px;"
-                                >
+                                <div>
                                   Provider 1
                                 </div>
                               </div>
@@ -122,11 +120,9 @@ Object {
                                 </div>
                               </div>
                               <div
-                                class="css-1okj3ks-MuiStack-root"
+                                class="css-qkek6c-MuiStack-root"
                               >
-                                <div
-                                  style="margin-top: 10px;"
-                                >
+                                <div>
                                   Plan 1
                                 </div>
                               </div>
@@ -148,11 +144,9 @@ Object {
                                 </div>
                               </div>
                               <div
-                                class="css-1okj3ks-MuiStack-root"
+                                class="css-qkek6c-MuiStack-root"
                               >
-                                <div
-                                  style="margin-top: 10px;"
-                                >
+                                <div>
                                   123
                                 </div>
                               </div>
@@ -175,11 +169,9 @@ Object {
                             </div>
                           </div>
                           <div
-                            class="css-1okj3ks-MuiStack-root"
+                            class="css-qkek6c-MuiStack-root"
                           >
-                            <div
-                              style="margin-top: 10px;"
-                            >
+                            <div>
                               321
                             </div>
                           </div>
@@ -206,11 +198,9 @@ Object {
                               </div>
                             </div>
                             <div
-                              class="css-1okj3ks-MuiStack-root"
+                              class="css-qkek6c-MuiStack-root"
                             >
-                              <div
-                                style="margin-top: 10px;"
-                              >
+                              <div>
                                 No
                               </div>
                             </div>
@@ -243,11 +233,9 @@ Object {
                                 </div>
                               </div>
                               <div
-                                class="css-1okj3ks-MuiStack-root"
+                                class="css-qkek6c-MuiStack-root"
                               >
-                                <div
-                                  style="margin-top: 10px;"
-                                >
+                                <div>
                                   first
                                 </div>
                               </div>
@@ -269,11 +257,9 @@ Object {
                                 </div>
                               </div>
                               <div
-                                class="css-1okj3ks-MuiStack-root"
+                                class="css-qkek6c-MuiStack-root"
                               >
-                                <div
-                                  style="margin-top: 10px;"
-                                >
+                                <div>
                                   last
                                 </div>
                               </div>
@@ -295,11 +281,9 @@ Object {
                                 </div>
                               </div>
                               <div
-                                class="css-1okj3ks-MuiStack-root"
+                                class="css-qkek6c-MuiStack-root"
                               >
-                                <div
-                                  style="margin-top: 10px;"
-                                />
+                                <div />
                               </div>
                             </div>
                           </div>
@@ -319,11 +303,9 @@ Object {
                                 </div>
                               </div>
                               <div
-                                class="css-1okj3ks-MuiStack-root"
+                                class="css-qkek6c-MuiStack-root"
                               >
-                                <div
-                                  style="margin-top: 10px;"
-                                >
+                                <div>
                                   1/1/1970
                                 </div>
                               </div>
@@ -346,11 +328,9 @@ Object {
                             </div>
                           </div>
                           <div
-                            class="css-1okj3ks-MuiStack-root"
+                            class="css-qkek6c-MuiStack-root"
                           >
-                            <div
-                              style="margin-top: 10px;"
-                            />
+                            <div />
                           </div>
                         </div>
                         <hr
@@ -454,11 +434,9 @@ Object {
                             </div>
                           </div>
                           <div
-                            class="css-1okj3ks-MuiStack-root"
+                            class="css-qkek6c-MuiStack-root"
                           >
-                            <div
-                              style="margin-top: 10px;"
-                            >
+                            <div>
                               Primary
                             </div>
                           </div>
@@ -612,11 +590,9 @@ Object {
                               </div>
                             </div>
                             <div
-                              class="css-1okj3ks-MuiStack-root"
+                              class="css-qkek6c-MuiStack-root"
                             >
-                              <div
-                                style="margin-top: 10px;"
-                              >
+                              <div>
                                 Provider 1
                               </div>
                             </div>
@@ -638,11 +614,9 @@ Object {
                               </div>
                             </div>
                             <div
-                              class="css-1okj3ks-MuiStack-root"
+                              class="css-qkek6c-MuiStack-root"
                             >
-                              <div
-                                style="margin-top: 10px;"
-                              >
+                              <div>
                                 Plan 1
                               </div>
                             </div>
@@ -664,11 +638,9 @@ Object {
                               </div>
                             </div>
                             <div
-                              class="css-1okj3ks-MuiStack-root"
+                              class="css-qkek6c-MuiStack-root"
                             >
-                              <div
-                                style="margin-top: 10px;"
-                              >
+                              <div>
                                 123
                               </div>
                             </div>
@@ -691,11 +663,9 @@ Object {
                           </div>
                         </div>
                         <div
-                          class="css-1okj3ks-MuiStack-root"
+                          class="css-qkek6c-MuiStack-root"
                         >
-                          <div
-                            style="margin-top: 10px;"
-                          >
+                          <div>
                             321
                           </div>
                         </div>
@@ -722,11 +692,9 @@ Object {
                             </div>
                           </div>
                           <div
-                            class="css-1okj3ks-MuiStack-root"
+                            class="css-qkek6c-MuiStack-root"
                           >
-                            <div
-                              style="margin-top: 10px;"
-                            >
+                            <div>
                               No
                             </div>
                           </div>
@@ -759,11 +727,9 @@ Object {
                               </div>
                             </div>
                             <div
-                              class="css-1okj3ks-MuiStack-root"
+                              class="css-qkek6c-MuiStack-root"
                             >
-                              <div
-                                style="margin-top: 10px;"
-                              >
+                              <div>
                                 first
                               </div>
                             </div>
@@ -785,11 +751,9 @@ Object {
                               </div>
                             </div>
                             <div
-                              class="css-1okj3ks-MuiStack-root"
+                              class="css-qkek6c-MuiStack-root"
                             >
-                              <div
-                                style="margin-top: 10px;"
-                              >
+                              <div>
                                 last
                               </div>
                             </div>
@@ -811,11 +775,9 @@ Object {
                               </div>
                             </div>
                             <div
-                              class="css-1okj3ks-MuiStack-root"
+                              class="css-qkek6c-MuiStack-root"
                             >
-                              <div
-                                style="margin-top: 10px;"
-                              />
+                              <div />
                             </div>
                           </div>
                         </div>
@@ -835,11 +797,9 @@ Object {
                               </div>
                             </div>
                             <div
-                              class="css-1okj3ks-MuiStack-root"
+                              class="css-qkek6c-MuiStack-root"
                             >
-                              <div
-                                style="margin-top: 10px;"
-                              >
+                              <div>
                                 1/1/1970
                               </div>
                             </div>
@@ -862,11 +822,9 @@ Object {
                           </div>
                         </div>
                         <div
-                          class="css-1okj3ks-MuiStack-root"
+                          class="css-qkek6c-MuiStack-root"
                         >
-                          <div
-                            style="margin-top: 10px;"
-                          />
+                          <div />
                         </div>
                       </div>
                       <hr
@@ -970,11 +928,9 @@ Object {
                           </div>
                         </div>
                         <div
-                          class="css-1okj3ks-MuiStack-root"
+                          class="css-qkek6c-MuiStack-root"
                         >
-                          <div
-                            style="margin-top: 10px;"
-                          >
+                          <div>
                             Primary
                           </div>
                         </div>
