@@ -22,17 +22,19 @@ import { patientTypography } from "../../../styles/theme";
 import { parseAppointmentCardData } from "../../../utils/appointment";
 import { useEffect } from "react";
 
-export default function AppointmentCard({ appointmentData = {}, on }) {
+export default function AppointmentCard({ appointmentData = [] }) {
   const [appointment, setAppointment] = React.useState({
     appointmentId: "",
     providerInfo: {},
     patientInfo: {},
     appointmentInfo: {},
   });
+  const [appointmentCount, setAppointmentCount] = React.useState(0);
 
   useEffect(() => {
     setAppointment(parseAppointmentCardData(appointmentData));
-  }, [appointmentData]);
+    setAppointmentCount(appointmentData.length);
+  }, [appointmentData, appointmentCount]);
 
   function getDirection(providerCordinate) {
     window.open(
@@ -48,14 +50,12 @@ export default function AppointmentCard({ appointmentData = {}, on }) {
       <Box>
         {address.addressLine1 && (
           <Box>
-            <Typography variant="bodyMedium">
-              5775 Burke Centre Parkway
-            </Typography>
+            <Typography variant="bodyMedium">{address.addressLine1}</Typography>
           </Box>
         )}
         {address.addressLine2 && (
           <Box>
-            <Typography variant="bodyMedium">Burke, VA 22015-2264</Typography>
+            <Typography variant="bodyMedium">{address.addressLine2}</Typography>
           </Box>
         )}
         {address.city && address.state && address.zipcode ? (
@@ -251,8 +251,8 @@ export default function AppointmentCard({ appointmentData = {}, on }) {
           />
         }
         title={
-          appointmentData.lenght > 0
-            ? `Appointments (${appointmentData.lenght})`
+          appointmentCount > 0
+            ? `Appointments (${appointmentCount})`
             : `Appointment`
         }
         sx={{

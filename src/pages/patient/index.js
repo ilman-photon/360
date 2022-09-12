@@ -96,7 +96,7 @@ export default function HomePage() {
         dispatch(setProviderListData([]));
       })
       .finally(function () {
-        router.push("/patient/appointment");
+        router.push("/patient");
       });
   }
 

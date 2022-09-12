@@ -44,7 +44,7 @@ const loginProps = {
           }
           const hostname = window.location.origin;
           window.location.href = isNotNeedMfa
-            ? `${hostname}/patient/appointment`
+            ? `${hostname}/patient/`
             : `${hostname}/patient/mfa`;
           callback({ status: "success" });
         });

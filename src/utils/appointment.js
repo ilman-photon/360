@@ -310,6 +310,5 @@ export function parseAppointmentCardData(appointmentData) {
   if (appointmentData && appointmentData.length > 0) {
     data = appointmentData[0];
   }
-  console.log(data);
   return data;
 }
