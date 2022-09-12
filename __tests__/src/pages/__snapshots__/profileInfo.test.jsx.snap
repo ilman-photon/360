@@ -306,7 +306,7 @@ Object {
                               style="margin-top: 10px;"
                             >
                               <div
-                                arialabel="Eyecare User"
+                                aria-label="Eyecare User"
                                 tabindex="0"
                               >
                                 Eyecare User
@@ -340,7 +340,7 @@ Object {
                               style="margin-top: 10px;"
                             >
                               <div
-                                arialabel="---"
+                                aria-label="---"
                                 tabindex="0"
                               >
                                 ---
@@ -374,7 +374,7 @@ Object {
                               style="margin-top: 10px;"
                             >
                               <div
-                                arialabel="---"
+                                aria-label="---"
                                 tabindex="0"
                               >
                                 Mr
@@ -430,7 +430,7 @@ Object {
                               style="margin-top: 10px;"
                             >
                               <div
-                                arialabel="9/3/1992"
+                                aria-label="9/3/1992"
                                 tabindex="0"
                               >
                                 9/3/1992
@@ -486,7 +486,7 @@ Object {
                               style="margin-top: 10px;"
                             >
                               <div
-                                arialabel="49"
+                                aria-label="49"
                                 tabindex="0"
                               >
                                 49
@@ -520,7 +520,7 @@ Object {
                               style="margin-top: 10px;"
                             >
                               <div
-                                arialabel="Male"
+                                aria-label="Male"
                                 tabindex="0"
                               >
                                 Male
@@ -576,7 +576,7 @@ Object {
                               style="margin-top: 10px;"
                             >
                               <div
-                                arialabel="***-***-7"
+                                aria-label="***-***-7"
                                 tabindex="0"
                               >
                                 ***-***-7
@@ -594,7 +594,7 @@ Object {
                             State Issued ID
                           </h3>
                           <div
-                            arialabel="Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID."
+                            aria-label="Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID."
                             class="MuiTypography-root MuiTypography-bodyRegular css-vzi1f0-MuiTypography-root"
                             tabindex="0"
                           >
@@ -728,7 +728,7 @@ Object {
                     style="position: fixed; bottom: 16px; right: 16px;"
                   >
                     <button
-                      arialabel="Edit option"
+                      aria-label="Edit option"
                       class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-5kb46n-MuiButtonBase-root-MuiButton-root"
                       data-testid="loc_edit"
                       tabindex="0"
@@ -1053,7 +1053,7 @@ Object {
                             style="margin-top: 10px;"
                           >
                             <div
-                              arialabel="Eyecare User"
+                              aria-label="Eyecare User"
                               tabindex="0"
                             >
                               Eyecare User
@@ -1087,7 +1087,7 @@ Object {
                             style="margin-top: 10px;"
                           >
                             <div
-                              arialabel="---"
+                              aria-label="---"
                               tabindex="0"
                             >
                               ---
@@ -1121,7 +1121,7 @@ Object {
                             style="margin-top: 10px;"
                           >
                             <div
-                              arialabel="---"
+                              aria-label="---"
                               tabindex="0"
                             >
                               Mr
@@ -1177,7 +1177,7 @@ Object {
                             style="margin-top: 10px;"
                           >
                             <div
-                              arialabel="9/3/1992"
+                              aria-label="9/3/1992"
                               tabindex="0"
                             >
                               9/3/1992
@@ -1233,7 +1233,7 @@ Object {
                             style="margin-top: 10px;"
                           >
                             <div
-                              arialabel="49"
+                              aria-label="49"
                               tabindex="0"
                             >
                               49
@@ -1267,7 +1267,7 @@ Object {
                             style="margin-top: 10px;"
                           >
                             <div
-                              arialabel="Male"
+                              aria-label="Male"
                               tabindex="0"
                             >
                               Male
@@ -1323,7 +1323,7 @@ Object {
                             style="margin-top: 10px;"
                           >
                             <div
-                              arialabel="***-***-7"
+                              aria-label="***-***-7"
                               tabindex="0"
                             >
                               ***-***-7
@@ -1341,7 +1341,7 @@ Object {
                           State Issued ID
                         </h3>
                         <div
-                          arialabel="Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID."
+                          aria-label="Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID."
                           class="MuiTypography-root MuiTypography-bodyRegular css-vzi1f0-MuiTypography-root"
                           tabindex="0"
                         >
@@ -1475,7 +1475,7 @@ Object {
                   style="position: fixed; bottom: 16px; right: 16px;"
                 >
                   <button
-                    arialabel="Edit option"
+                    aria-label="Edit option"
                     class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-5kb46n-MuiButtonBase-root-MuiButton-root"
                     data-testid="loc_edit"
                     tabindex="0"

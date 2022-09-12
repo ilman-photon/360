@@ -38,7 +38,7 @@ Object {
                   style="margin-top: 10px;"
                 >
                   <div
-                    arialabel="(706) 509-6731"
+                    aria-label="(706) 509-6731"
                     tabindex="0"
                   >
                     (706) 509-6731
@@ -72,7 +72,7 @@ Object {
                   style="margin-top: 10px;"
                 >
                   <div
-                    arialabel="Justus4@gmail.com"
+                    aria-label="Justus4@gmail.com"
                     tabindex="0"
                   >
                     Justus4@gmail.com
@@ -106,7 +106,7 @@ Object {
                   style="margin-top: 10px;"
                 >
                   <div
-                    arialabel="645 Benedict Cliff"
+                    aria-label="645 Benedict Cliff"
                     tabindex="0"
                   >
                     645 Benedict Cliff
@@ -140,7 +140,7 @@ Object {
                   style="margin-top: 10px;"
                 >
                   <div
-                    arialabel="Daphneeshire"
+                    aria-label="Daphneeshire"
                     tabindex="0"
                   >
                     Daphneeshire
@@ -180,7 +180,7 @@ Object {
                       style="margin-top: 10px;"
                     >
                       <div
-                        arialabel="South Dakota"
+                        aria-label="South Dakota"
                         tabindex="0"
                       >
                         South Dakota
@@ -215,7 +215,7 @@ Object {
                       style="margin-top: 10px;"
                     >
                       <div
-                        arialabel="03245"
+                        aria-label="03245"
                         tabindex="0"
                       >
                         03245
@@ -254,7 +254,7 @@ Object {
                     style="text-transform: capitalize;"
                   >
                     <div
-                      arialabel="email"
+                      aria-label="email"
                       tabindex="0"
                     >
                       email
@@ -270,7 +270,7 @@ Object {
         style="position: fixed; bottom: 16px; right: 16px;"
       >
         <button
-          arialabel="Edit option"
+          aria-label="Edit option"
           class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-5kb46n-MuiButtonBase-root-MuiButton-root"
           tabindex="0"
           type="button"
@@ -317,7 +317,7 @@ Object {
                 style="margin-top: 10px;"
               >
                 <div
-                  arialabel="(706) 509-6731"
+                  aria-label="(706) 509-6731"
                   tabindex="0"
                 >
                   (706) 509-6731
@@ -351,7 +351,7 @@ Object {
                 style="margin-top: 10px;"
               >
                 <div
-                  arialabel="Justus4@gmail.com"
+                  aria-label="Justus4@gmail.com"
                   tabindex="0"
                 >
                   Justus4@gmail.com
@@ -385,7 +385,7 @@ Object {
                 style="margin-top: 10px;"
               >
                 <div
-                  arialabel="645 Benedict Cliff"
+                  aria-label="645 Benedict Cliff"
                   tabindex="0"
                 >
                   645 Benedict Cliff
@@ -419,7 +419,7 @@ Object {
                 style="margin-top: 10px;"
               >
                 <div
-                  arialabel="Daphneeshire"
+                  aria-label="Daphneeshire"
                   tabindex="0"
                 >
                   Daphneeshire
@@ -459,7 +459,7 @@ Object {
                     style="margin-top: 10px;"
                   >
                     <div
-                      arialabel="South Dakota"
+                      aria-label="South Dakota"
                       tabindex="0"
                     >
                       South Dakota
@@ -494,7 +494,7 @@ Object {
                     style="margin-top: 10px;"
                   >
                     <div
-                      arialabel="03245"
+                      aria-label="03245"
                       tabindex="0"
                     >
                       03245
@@ -533,7 +533,7 @@ Object {
                   style="text-transform: capitalize;"
                 >
                   <div
-                    arialabel="email"
+                    aria-label="email"
                     tabindex="0"
                   >
                     email
@@ -549,7 +549,7 @@ Object {
       style="position: fixed; bottom: 16px; right: 16px;"
     >
       <button
-        arialabel="Edit option"
+        aria-label="Edit option"
         class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-5kb46n-MuiButtonBase-root-MuiButton-root"
         tabindex="0"
         type="button"

@@ -109,7 +109,7 @@ Object {
                   style="margin-top: 10px;"
                 >
                   <div
-                    arialabel="Rupert Jerde"
+                    aria-label="Rupert Jerde"
                     tabindex="0"
                   >
                     Rupert Jerde
@@ -143,7 +143,7 @@ Object {
                   style="margin-top: 10px;"
                 >
                   <div
-                    arialabel="---"
+                    aria-label="---"
                     tabindex="0"
                   >
                     ---
@@ -177,7 +177,7 @@ Object {
                   style="margin-top: 10px;"
                 >
                   <div
-                    arialabel="---"
+                    aria-label="---"
                     tabindex="0"
                   >
                     Mrs.
@@ -233,7 +233,7 @@ Object {
                   style="margin-top: 10px;"
                 >
                   <div
-                    arialabel="8/18/2022"
+                    aria-label="8/18/2022"
                     tabindex="0"
                   >
                     8/18/2022
@@ -289,7 +289,7 @@ Object {
                   style="margin-top: 10px;"
                 >
                   <div
-                    arialabel="63"
+                    aria-label="63"
                     tabindex="0"
                   >
                     63
@@ -323,7 +323,7 @@ Object {
                   style="margin-top: 10px;"
                 >
                   <div
-                    arialabel="Transgender"
+                    aria-label="Transgender"
                     tabindex="0"
                   >
                     Transgender
@@ -379,7 +379,7 @@ Object {
                   style="margin-top: 10px;"
                 >
                   <div
-                    arialabel="***-***-6119"
+                    aria-label="***-***-6119"
                     tabindex="0"
                   >
                     ***-***-6119
@@ -397,7 +397,7 @@ Object {
                 State Issued ID
               </h3>
               <div
-                arialabel="Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID."
+                aria-label="Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID."
                 class="MuiTypography-root MuiTypography-bodyRegular css-15atyh3-MuiTypography-root"
                 tabindex="0"
               >
@@ -531,7 +531,7 @@ Object {
         style="position: fixed; bottom: 16px; right: 16px;"
       >
         <button
-          arialabel="Edit option"
+          aria-label="Edit option"
           class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-5kb46n-MuiButtonBase-root-MuiButton-root"
           data-testid="loc_edit"
           tabindex="0"
@@ -650,7 +650,7 @@ Object {
                 style="margin-top: 10px;"
               >
                 <div
-                  arialabel="Rupert Jerde"
+                  aria-label="Rupert Jerde"
                   tabindex="0"
                 >
                   Rupert Jerde
@@ -684,7 +684,7 @@ Object {
                 style="margin-top: 10px;"
               >
                 <div
-                  arialabel="---"
+                  aria-label="---"
                   tabindex="0"
                 >
                   ---
@@ -718,7 +718,7 @@ Object {
                 style="margin-top: 10px;"
               >
                 <div
-                  arialabel="---"
+                  aria-label="---"
                   tabindex="0"
                 >
                   Mrs.
@@ -774,7 +774,7 @@ Object {
                 style="margin-top: 10px;"
               >
                 <div
-                  arialabel="8/18/2022"
+                  aria-label="8/18/2022"
                   tabindex="0"
                 >
                   8/18/2022
@@ -830,7 +830,7 @@ Object {
                 style="margin-top: 10px;"
               >
                 <div
-                  arialabel="63"
+                  aria-label="63"
                   tabindex="0"
                 >
                   63
@@ -864,7 +864,7 @@ Object {
                 style="margin-top: 10px;"
               >
                 <div
-                  arialabel="Transgender"
+                  aria-label="Transgender"
                   tabindex="0"
                 >
                   Transgender
@@ -920,7 +920,7 @@ Object {
                 style="margin-top: 10px;"
               >
                 <div
-                  arialabel="***-***-6119"
+                  aria-label="***-***-6119"
                   tabindex="0"
                 >
                   ***-***-6119
@@ -938,7 +938,7 @@ Object {
               State Issued ID
             </h3>
             <div
-              arialabel="Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID."
+              aria-label="Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID."
               class="MuiTypography-root MuiTypography-bodyRegular css-15atyh3-MuiTypography-root"
               tabindex="0"
             >
@@ -1072,7 +1072,7 @@ Object {
       style="position: fixed; bottom: 16px; right: 16px;"
     >
       <button
-        arialabel="Edit option"
+        aria-label="Edit option"
         class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-5kb46n-MuiButtonBase-root-MuiButton-root"
         data-testid="loc_edit"
         tabindex="0"
