@@ -102,11 +102,15 @@ export default function PastAppointment({ data }) {
         <Typography variant="body2">You Have no Past Appointment</Typography>
       </Box>
     ) : (
-      data.map((item, index) => {
-        if (index > 0) {
-          return <PastAppointmentCard data={item} key={index} />;
-        }
-      })
+      data
+        .map((item, index) => {
+          if (index > 0) {
+            return index < 11 ? (
+              <PastAppointmentCard data={item} key={index} />
+            ) : null;
+          }
+        })
+        .filter((temp) => temp)
     );
   return (
     <Box className={styles.pastAppointment}>
