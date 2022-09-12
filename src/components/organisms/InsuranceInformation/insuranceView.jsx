@@ -91,7 +91,9 @@ export default function InsuranceView({
 
                             <Grid item xs={12} md={4}>
                               <LabelWithInfo label="Plan Name">
-                                {item.plan ? item.plan.label : "-"}
+                                {item.plan
+                                  ? item.plan.label.replace(/(Add \")|(")/g, "")
+                                  : "-"}
                               </LabelWithInfo>
                             </Grid>
 

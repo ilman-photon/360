@@ -46,6 +46,7 @@ export const FormMessage = (
               marginRight: "12.92px",
               width: "22.15px",
               height: "22.15px",
+              transform: "scaleX(-1)",
             }}
           />
         )}
