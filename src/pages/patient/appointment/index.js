@@ -39,6 +39,7 @@ import ModalConfirmation from "../../../components/organisms/ScheduleAppointment
 import Cookies from "universal-cookie";
 import { formatAppointmentDate } from "../../../utils/dateFormatter";
 import { TEST_ID } from "../../../utils/constants";
+import { setUserAppointmentDataByIndex } from "../../../store/user";
 
 export async function getStaticProps() {
   return {
@@ -66,6 +67,8 @@ export default function Appointment({ googleApiKey }) {
   });
   const [activeFilterBy, setActiveFilterBy] = useState([]);
   const [isOpen, setIsOpen] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [isReschedule, setIsReschedule] = useState(false);
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -96,7 +99,17 @@ export default function Appointment({ googleApiKey }) {
     (state) => state.appointment.isFilterApplied
   );
 
+  useEffect(() => {
+    if (router.query.reschedule) {
+      setIsReschedule(true);
+      onCallSubmitFilterAPI(filterData);
+      dispatch(setIsFilterApplied(true));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router]);
+
   function onSearchProvider(data) {
+    console.log({ data });
     dispatch(setFilterData(data));
     setDataFilter(data);
     onCallSubmitFilterAPI(data);
@@ -227,27 +240,48 @@ export default function Appointment({ googleApiKey }) {
   );
 
   const handleDayClicked = (appointmentDate, providerData) => {
-    console.log("day clicked", appointmentDate, providerData);
-    dispatch(
-      editAppointmentScheduleData({
-        key: "appointmentInfo",
-        value: {
-          ...appointmentInfo,
-          date: appointmentDate,
-        },
-      })
-    );
+    console.log("day clicked", isReschedule, {
+      appointmentId: 0,
+      appointmentDate,
+      providerData,
+    });
+    const appointmentInfoObj = {
+      ...appointmentInfo,
+      date: appointmentDate,
+    };
+    const providerInfoObj = {
+      ...providerInfo,
+      ...providerData,
+    };
 
-    dispatch(
-      editAppointmentScheduleData({
-        key: "providerInfo",
-        value: {
-          ...providerInfo,
-          ...providerData,
-        },
-      })
-    );
-    router.push("/patient/schedule-appointment");
+    if (isReschedule) {
+      // This is for simulation reschedule of user appointment index 0 only, change the logic later
+      dispatch(
+        setUserAppointmentDataByIndex({
+          appointmentId: 0,
+          appointmentInfo: appointmentInfoObj,
+          providerInfo: providerInfoObj,
+        })
+      );
+
+      router.push("/patient/appointments");
+    } else {
+      dispatch(
+        editAppointmentScheduleData({
+          key: "appointmentInfo",
+          value: appointmentInfoObj,
+        })
+      );
+
+      dispatch(
+        editAppointmentScheduleData({
+          key: "providerInfo",
+          value: providerInfoObj,
+        })
+      );
+
+      router.push("/patient/schedule-appointment");
+    }
   };
   const { coords, isGeolocationEnabled } = useGeolocated({
     positionOptions: {
@@ -269,6 +303,11 @@ export default function Appointment({ googleApiKey }) {
   useEffect(() => {
     onCalledgetSugestionAPI();
     // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  React.useEffect(() => {
+    const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
+    setIsLoggedIn(isLogin);
   }, []);
 
   function onRenderDialogView() {

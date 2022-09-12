@@ -154,7 +154,7 @@ const MOCK_SUGGESTION_DATA = {
       ],
     },
   ],
-}
+};
 describe("App", () => {
   let container;
   beforeEach(() => {
@@ -163,10 +163,12 @@ describe("App", () => {
     jest.setSystemTime(new Date(2022, 3, 1));
     const mockGeolocation = {
       getCurrentPosition: jest.fn(),
-      watchPosition: jest.fn()
+      watchPosition: jest.fn(),
     };
 
-    mock.onGet(`/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGGESTION_DATA);
+    mock
+      .onGet(`/api/dummy/appointment/create-appointment/getSugestion`)
+      .reply(200, MOCK_SUGGESTION_DATA);
     window = Object.assign(window, { innerWidth: 1500 });
     global.navigator.geolocation = mockGeolocation;
     container = render(
@@ -176,8 +178,11 @@ describe("App", () => {
     );
   });
 
-  it("renders App unchanged", () => {
-    expect(container).toMatchSnapshot();
+  it("renders App unchanged", async () => {
+    await waitFor(() => {
+      container.getByText(/Schedule an eye/i);
+    });
+    expect(container.getByText(/Schedule an eye/i)).toBeInTheDocument();
   });
 
   it("on render mobile view", async () => {
@@ -188,40 +193,40 @@ describe("App", () => {
     expect(container.getByText(/Schedule an eye/i)).toBeInTheDocument();
 
     const locationField = container.getByText(/City, state, or zip/i);
-    fireEvent.change(locationField,{value: "Texas"})
-    fireEvent.click(locationField)
+    fireEvent.change(locationField, { value: "Texas" });
+    fireEvent.click(locationField);
     await waitFor(() => {
       const cancelButton = container.getByText(/Cancel/i);
       expect(container.getByText(/Cancel/i)).toBeInTheDocument();
-      fireEvent.click(cancelButton)
+      fireEvent.click(cancelButton);
     });
-    
+
     const dateField = container.getByText(/Date/i);
-    fireEvent.click(dateField)
+    fireEvent.click(dateField);
     await waitFor(() => {
       const cancelButton = container.getByText(/Cancel/i);
       expect(container.getByText(/Cancel/i)).toBeInTheDocument();
-      fireEvent.click(cancelButton)
+      fireEvent.click(cancelButton);
     });
 
     const pusposeField = container.getByText(/Purpose of Visit/i);
-    fireEvent.click(pusposeField)
+    fireEvent.click(pusposeField);
     await waitFor(() => {
       const cancelButton = container.getByText(/Cancel/i);
       expect(container.getByText(/Cancel/i)).toBeInTheDocument();
-      fireEvent.click(cancelButton)
+      fireEvent.click(cancelButton);
     });
 
     const insuranceField = container.getByText(/Insurance Carrier/i);
-    fireEvent.click(insuranceField)
+    fireEvent.click(insuranceField);
     await waitFor(() => {
       const cancelButton = container.getByText(/Cancel/i);
       expect(container.getByText(/Cancel/i)).toBeInTheDocument();
-      fireEvent.click(cancelButton)
+      fireEvent.click(cancelButton);
     });
 
     const Searchbutton = container.getByText(/Search/i);
-    fireEvent.click(Searchbutton)
+    fireEvent.click(Searchbutton);
 
     await waitFor(() => {
       container.getByText(/is required/i);

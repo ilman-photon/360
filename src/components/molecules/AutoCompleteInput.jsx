@@ -61,7 +61,6 @@ export const AutoCompleteInput = ({
       }}
       defaultValue={props.defaultValue}
       isOptionEqualToValue={(option, value) => {
-        console.log({ option, value });
         if (value.label) {
           return option.label === value.label;
         } else if (value) {
@@ -108,7 +107,9 @@ export const AutoCompleteInput = ({
           />
         );
       }}
-      onChange={props.onChange}
+      onChange={(_e, newValue) => {
+        props.onChange(newValue);
+      }}
       value={props.value}
     />
   );

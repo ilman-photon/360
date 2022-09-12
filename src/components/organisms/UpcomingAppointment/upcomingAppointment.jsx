@@ -6,14 +6,32 @@ import AppointmentButton from "../../atoms/AppointmentButton/appointmentButton";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import moment from "moment";
+import "moment-timezone";
 
-export default function UpcomingAppointment({ data }) {
-  const date = data.appointmentInfo.date;
-  const timezone = date.substring(date.length - 3);
-  const momentDate = new moment(date);
-  const formatedDate = momentDate.format("dddd, MMM DD, YYYY");
-  const time = momentDate.format("h:mm A");
-  const fullDate = `${formatedDate}, AT ${time} ${timezone}`;
+export default function UpcomingAppointment({
+  data = {
+    appointmentInfo: {},
+    providerInfo: {},
+    patientInfo: {},
+  },
+  onRescheduleClicked = () => {
+    // This is intentional
+  },
+}) {
+  const fullDate = () => {
+    const date = new Date(data.appointmentInfo.date);
+    if (!date) return "-";
+    const momentDate = new moment(date);
+    const formatedDate = momentDate
+      .tz("America/New_York")
+      .format("dddd, MMM DD, YYYY [at] h:mm z");
+    return formatedDate;
+  };
+
+  const getProviderLocation = () => {
+    if (!data.providerInfo.location) return "#";
+    return `https://www.google.com/maps/search/?api=1&query=${data.providerInfo.location.latitude},${data.providerInfo.location.longitude}`;
+  };
   return (
     <Box className={styles.upcomingAppointments}>
       <Stack spacing={{ xs: 2, lg: 3.5 }}>
@@ -24,7 +42,7 @@ export default function UpcomingAppointment({ data }) {
           className={[styles.itemContainer, styles.calendarContainer].join(" ")}
         >
           <Typography variant="subtitle2" className={styles.date}>
-            {fullDate}
+            {fullDate()}
           </Typography>
           <AppointmentButton icon={<CalendarTodayIcon />}>
             Add to calendar
@@ -48,7 +66,8 @@ export default function UpcomingAppointment({ data }) {
             <DirectionsOutlinedIcon></DirectionsOutlinedIcon>
             <Link
               className={styles.getDirectionLinkText}
-              href={`https://www.google.com/maps/search/?api=1&query=${data.providerInfo.location.latitude},${data.providerInfo.location.longitude}`}
+              href={getProviderLocation()}
+              target="_blank"
             >
               Get directions
             </Link>
@@ -57,7 +76,10 @@ export default function UpcomingAppointment({ data }) {
             <AppointmentButton icon={<CancelOutlinedIcon />}>
               Cancel
             </AppointmentButton>
-            <AppointmentButton icon={<CalendarTodayIcon />}>
+            <AppointmentButton
+              icon={<CalendarTodayIcon />}
+              onClick={() => onRescheduleClicked(data)}
+            >
               Reschedule
             </AppointmentButton>
           </Box>

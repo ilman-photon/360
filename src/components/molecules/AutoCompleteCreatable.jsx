@@ -15,8 +15,6 @@ export const AutoCompleteCreatable = ({
   },
   ...props
 }) => {
-  const [value, setValue] = React.useState(null);
-
   const [open, setOpen] = React.useState(false);
   const loading = open && options.length === 0;
 
@@ -46,35 +44,42 @@ export const AutoCompleteCreatable = ({
     }
   }, [open, onInputEmpty]);
 
-  React.useEffect(() => {
-    props.onChange(value);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [value]);
-
   return (
     <Autocomplete
       data-testid={props.testId}
+      open={open}
       onOpen={() => {
         setOpen(true);
       }}
       onClose={() => {
         setOpen(false);
       }}
-      value={value}
+      value={props.value}
       //   onChange={props.onChange}
       onChange={(_e, newValue) => {
+        console.log({ newValue });
         if (typeof newValue === "string") {
-          setValue({
+          props.onChange({
             label: newValue,
           });
         } else if (newValue && newValue.value) {
           // Create a new value from the user input
-          setValue({
-            label: newValue.value,
+          props.onChange({
+            id: newValue.id,
+            label: newValue.label,
             value: newValue.value,
           });
         } else {
-          setValue(newValue);
+          props.onChange(newValue);
+        }
+      }}
+      isOptionEqualToValue={(option, value) => {
+        if (value.label) {
+          return option.label === value.label;
+        } else if (value) {
+          return option.label === value;
+        } else {
+          return false;
         }
       }}
       filterOptions={(optionsContext, params) => {
@@ -86,7 +91,7 @@ export const AutoCompleteCreatable = ({
         );
         if (inputValue !== "" && !isExisting) {
           filtered.push({
-            id: Math.random(),
+            id: Math.floor(Math.random() * 100000),
             label: `Add "${inputValue}"`,
             value: inputValue,
           });

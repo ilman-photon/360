@@ -2,39 +2,479 @@
 
 exports[`App renders App unchanged 1`] = `
 <div>
-  <header
-    class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-1nft05v-MuiPaper-root-MuiAppBar-root"
+  <div
+    class="defaultLayout"
   >
-    <div
-      class="MuiContainer-root MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root"
+    <header
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-1nft05v-MuiPaper-root-MuiAppBar-root"
     >
       <div
-        class="MuiToolbar-root MuiToolbar-regular css-r6ewbb-MuiToolbar-root"
+        class="MuiContainer-root MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root"
       >
-        <span
-          style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+        <div
+          class="MuiToolbar-root MuiToolbar-regular css-r6ewbb-MuiToolbar-root"
         >
           <span
-            style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+            style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
           >
+            <span
+              style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+            >
+              <img
+                alt=""
+                aria-hidden="true"
+                src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27124%27%20height=%2736%27/%3e"
+                style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+              />
+            </span>
             <img
-              alt=""
-              aria-hidden="true"
-              src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27124%27%20height=%2736%27/%3e"
-              style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+              aria-label="Clarkson Eyecare logo"
+              data-nimg="intrinsic"
+              decoding="async"
+              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+              style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
             />
+            <noscript />
           </span>
-          <img
-            aria-label="Clarkson Eyecare logo"
-            data-nimg="intrinsic"
-            decoding="async"
-            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-            style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-          />
-          <noscript />
-        </span>
+        </div>
+      </div>
+    </header>
+    <div
+      class="defaultContainer"
+    >
+      <div
+        class="css-16ml5pn-MuiStack-root"
+      >
+        <div
+          class="MuiBox-root css-1n325gh"
+        >
+          <div
+            class="mobileFilterContainer MuiBox-root css-1b6qwgl"
+          >
+            <div
+              class="titleContainer css-19ki0tq-MuiStack-root"
+            >
+              <div
+                class="subtitleContainer css-nen11g-MuiStack-root"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body1 titleElement css-6h2hyl-MuiTypography-root"
+                >
+                  John, Welcome to your dashboard
+                </p>
+                <p
+                  class="MuiTypography-root MuiTypography-body1 subtitleElement css-6h2hyl-MuiTypography-root"
+                >
+                  Search for a doctor
+                </p>
+              </div>
+              <div
+                class="stackFilterContainer css-m69qwo-MuiStack-root"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1b7h4om-MuiSvgIcon-root"
+                  data-testid="LocationOnOutlinedIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 2.88-2.88 7.19-5 9.88C9.92 16.21 7 11.85 7 9z"
+                  />
+                  <circle
+                    cx="12"
+                    cy="9"
+                    r="2.5"
+                  />
+                </svg>
+                <div
+                  class="mobileFilterTitleContainer MuiBox-root css-0"
+                >
+                  <span
+                    class="MuiTypography-root MuiTypography-bodyMedium mobileFilterTitle css-kwoz5u-MuiTypography-root"
+                  >
+                    City, state, or zip code
+                  </span>
+                </div>
+                <div
+                  class="mobileFilterImageContainer MuiBox-root css-0"
+                >
+                  <span
+                    style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                  >
+                    <span
+                      style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                    >
+                      <img
+                        alt=""
+                        aria-hidden="true"
+                        src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2731%27%20height=%2731%27/%3e"
+                        style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                      />
+                    </span>
+                    <img
+                      alt=""
+                      data-nimg="intrinsic"
+                      decoding="async"
+                      src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                      style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                    />
+                    <noscript />
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div />
+          </div>
+        </div>
+        <div
+          class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3 css-1jsk28z-MuiGrid-root"
+        >
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-5 MuiGrid-grid-sm-5 MuiGrid-grid-md-2 css-120m39a-MuiGrid-root"
+          >
+            <div
+              class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1psqxpj-MuiPaper-root-MuiCard-root"
+            >
+              <div
+                class="MuiCardHeader-root cardHeader css-1ele1k2-MuiCardHeader-root"
+              >
+                <div
+                  class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+                >
+                  <span
+                    class="MuiTypography-root MuiTypography-h5 MuiCardHeader-title css-1qmkcy9-MuiTypography-root"
+                  >
+                    <div>
+                      <span
+                        style="margin-right: 8px; display: flex; align-items: center;"
+                      >
+                        <span
+                          style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                        >
+                          <span
+                            style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                          >
+                            <img
+                              alt=""
+                              aria-hidden="true"
+                              src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2732%27%20height=%2732%27/%3e"
+                              style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                            />
+                          </span>
+                          <img
+                            alt=""
+                            data-nimg="intrinsic"
+                            decoding="async"
+                            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                            style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                          />
+                          <noscript />
+                        </span>
+                      </span>
+                      <div
+                        aria-label="Prescriptions (3) heading"
+                        class="title"
+                      >
+                        Prescriptions (3)
+                      </div>
+                    </div>
+                  </span>
+                </div>
+              </div>
+              <div
+                class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
+              >
+                <div
+                  class="MuiBox-root css-1bqdyes"
+                >
+                  <div
+                    class="MuiTabs-root css-1jfx2o6-MuiTabs-root"
+                  >
+                    <div
+                      class="MuiTabs-scrollableX MuiTabs-hideScrollbar css-agdkjh-MuiTabs-scrollbarSize"
+                      style="width: 99px; height: 99px; position: absolute; top: -9999px; overflow: scroll;"
+                    />
+                    <div
+                      class="MuiTabs-scroller MuiTabs-hideScrollbar MuiTabs-scrollableX css-69z67c-MuiTabs-scroller"
+                      style="margin-bottom: 0px;"
+                    >
+                      <div
+                        aria-label="scrollable prevent tabs example"
+                        class="MuiTabs-flexContainer css-heg063-MuiTabs-flexContainer"
+                        role="tablist"
+                      >
+                        <button
+                          aria-selected="true"
+                          class="MuiButtonBase-root MuiTab-root MuiTab-labelIcon MuiTab-textColorInherit Mui-selected css-p8tmio-MuiButtonBase-root-MuiTab-root"
+                          role="tab"
+                          tabindex="0"
+                          type="button"
+                        >
+                          <div
+                            class="MuiTab-iconWrapper tabImageContainer MuiBox-root css-0"
+                          >
+                            <span
+                              style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                            >
+                              <span
+                                style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                              >
+                                <img
+                                  alt=""
+                                  aria-hidden="true"
+                                  src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2714%27%20height=%2714%27/%3e"
+                                  style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                                />
+                              </span>
+                              <img
+                                alt=""
+                                data-nimg="intrinsic"
+                                decoding="async"
+                                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                                style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                              />
+                              <noscript />
+                            </span>
+                          </div>
+                          Glasses
+                          <span
+                            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                          />
+                        </button>
+                        <button
+                          aria-selected="false"
+                          class="MuiButtonBase-root MuiTab-root MuiTab-labelIcon MuiTab-textColorInherit css-1cb8j8o-MuiButtonBase-root-MuiTab-root"
+                          role="tab"
+                          tabindex="-1"
+                          type="button"
+                        >
+                          <div
+                            class="MuiTab-iconWrapper tabImageContainer MuiBox-root css-0"
+                          >
+                            <span
+                              style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                            >
+                              <span
+                                style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                              >
+                                <img
+                                  alt=""
+                                  aria-hidden="true"
+                                  src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2714%27%20height=%2714%27/%3e"
+                                  style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                                />
+                              </span>
+                              <img
+                                alt=""
+                                data-nimg="intrinsic"
+                                decoding="async"
+                                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                                style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                              />
+                              <noscript />
+                            </span>
+                          </div>
+                          Contacts
+                          <span
+                            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                          />
+                        </button>
+                        <button
+                          aria-selected="false"
+                          class="MuiButtonBase-root MuiTab-root MuiTab-labelIcon MuiTab-textColorInherit css-1gy6i31-MuiButtonBase-root-MuiTab-root"
+                          role="tab"
+                          tabindex="-1"
+                          type="button"
+                        >
+                          <div
+                            class="MuiTab-iconWrapper tabImageContainer MuiBox-root css-0"
+                          >
+                            <span
+                              style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                            >
+                              <span
+                                style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                              >
+                                <img
+                                  alt=""
+                                  aria-hidden="true"
+                                  src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2714%27%20height=%2714%27/%3e"
+                                  style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                                />
+                              </span>
+                              <img
+                                alt=""
+                                data-nimg="intrinsic"
+                                decoding="async"
+                                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                                style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                              />
+                              <noscript />
+                            </span>
+                          </div>
+                          Medications
+                          <span
+                            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                          />
+                        </button>
+                      </div>
+                      <span
+                        class="MuiTabs-indicator css-1aquho2-MuiTabs-indicator"
+                        style="left: 0px; width: 0px; background-color: rgb(0, 149, 169); height: 4px;"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="MuiGrid-root css-vj1n65-MuiGrid-root"
+                >
+                  <div
+                    class="MuiBox-root css-0"
+                  >
+                    <div
+                      class="MuiBox-root css-0"
+                    >
+                      <div
+                        class="flexDisplay spaceBetween margin MuiBox-root css-0"
+                      >
+                        <span
+                          class="MuiTypography-root MuiTypography-titleCard css-64d7ay-MuiTypography-root"
+                        >
+                          Glasses Prescriptions
+                        </span>
+                        <div>
+                          <svg
+                            aria-haspopup="true"
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1jxdcj3-MuiSvgIcon-root"
+                            data-testid="MoreHorizIcon"
+                            endicon="[object Object]"
+                            focusable="false"
+                            id="demo-customized-button"
+                            variant="contained"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                      <div
+                        class="noPrescription MuiBox-root css-0"
+                      >
+                        <p
+                          class="MuiTypography-root MuiTypography-body1 css-6h2hyl-MuiTypography-root"
+                        >
+                          There are no active glasses prescriptions
+                        </p>
+                      </div>
+                      <div
+                        class="flexDisplay viewPrescription MuiBox-root css-0"
+                      >
+                        <a
+                          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways viewPrescriptionText css-16dn9qn-MuiTypography-root-MuiLink-root"
+                        >
+                          View prescriptions
+                        </a>
+                        <svg
+                          aria-hidden="true"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1jxdcj3-MuiSvgIcon-root"
+                          data-testid="KeyboardArrowRightIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"
+                          />
+                        </svg>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-5 MuiGrid-grid-sm-5 MuiGrid-grid-md-3 css-9f74e3-MuiGrid-root"
+          >
+            <div
+              class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1psqxpj-MuiPaper-root-MuiCard-root"
+            >
+              <div
+                class="MuiCardHeader-root cardHeader css-1ele1k2-MuiCardHeader-root"
+              >
+                <div
+                  class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
+                >
+                  <span
+                    class="MuiTypography-root MuiTypography-h5 MuiCardHeader-title css-1qmkcy9-MuiTypography-root"
+                  >
+                    <div>
+                      <span
+                        style="margin-right: 8px; display: flex; align-items: center;"
+                      >
+                        <svg
+                          aria-hidden="false"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1dustu2-MuiSvgIcon-root"
+                          data-testid="CalendarTodayOutlinedIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V10h16v11zm0-13H4V5h16v3z"
+                          />
+                        </svg>
+                      </span>
+                      <div
+                        aria-label="Appointment heading"
+                        class="title"
+                      >
+                        Appointment
+                      </div>
+                    </div>
+                  </span>
+                </div>
+              </div>
+              <div
+                class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
+              >
+                <div
+                  class="noPrescription MuiBox-root css-h5fkc8"
+                >
+                  <p
+                    class="MuiTypography-root MuiTypography-body1 css-6h2hyl-MuiTypography-root"
+                  >
+                    There are no upcoming appointments
+                  </p>
+                </div>
+                <div
+                  class="flexDisplay viewPrescription MuiBox-root css-1qyf761"
+                >
+                  <a
+                    class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways viewPrescriptionText css-16dn9qn-MuiTypography-root-MuiLink-root"
+                  >
+                    View Appointments
+                  </a>
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1jxdcj3-MuiSvgIcon-root"
+                    data-testid="KeyboardArrowRightIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"
+                    />
+                  </svg>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </header>
+  </div>
 </div>
 `;
