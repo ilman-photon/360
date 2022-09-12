@@ -54,13 +54,29 @@
   min-height: 58px;
   background: #f2f7f7;
   text-align: center;
+
+  .normalText {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    color: #003b4a;
+  }
+
+  .boldText {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+    color: #003b4a;
+  }
 }
 
 .containerImage {
   width: 90px;
   height: 90px;
   position: absolute;
-  top: -7%;
+  top: -5.5%;
   right: 2%;
   border: 1px solid #003b4a;
   border-radius: 100%;

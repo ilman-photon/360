@@ -19,6 +19,7 @@ export const colors = {
   grey: "#191919",
   grey75: "#080707",
   black: "#242526",
+  darkBlue: "#1C1F37",
   foundationGreen: "#04844B",
   foundationRed: "#C23934",
   foundationBlue: "#0E1941",
