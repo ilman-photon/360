@@ -126,6 +126,10 @@ export default function HomePage() {
       });
   }
 
+  function onViewPrescriptions() {
+    //TO DO: will navigate to prescription view page
+  }
+
   useEffect(() => {
     onCalledgetSugestionAPI();
     onCalledGetAllPrescriptionsAPI();
@@ -188,7 +192,10 @@ export default function HomePage() {
         }}
       >
         <Grid item xs={5} sm={5} md={2}>
-          <Prescriptions prescriptionData={prescriptionData} />
+          <Prescriptions
+            prescriptionData={prescriptionData}
+            onViewPrescriptions={onViewPrescriptions}
+          />
         </Grid>
         <Grid item xs={5} sm={5} md={3}>
           <AppointmentCard appointmentData={appointmentData} />

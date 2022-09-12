@@ -207,6 +207,7 @@ exports[`App renders App unchanged 1`] = `
                         <button
                           aria-selected="true"
                           class="MuiButtonBase-root MuiTab-root MuiTab-labelIcon MuiTab-textColorInherit Mui-selected css-p8tmio-MuiButtonBase-root-MuiTab-root"
+                          data-testid="menu-glasses"
                           role="tab"
                           tabindex="0"
                           type="button"
@@ -245,6 +246,7 @@ exports[`App renders App unchanged 1`] = `
                         <button
                           aria-selected="false"
                           class="MuiButtonBase-root MuiTab-root MuiTab-labelIcon MuiTab-textColorInherit css-1cb8j8o-MuiButtonBase-root-MuiTab-root"
+                          data-testid="menu-contact"
                           role="tab"
                           tabindex="-1"
                           type="button"
@@ -283,6 +285,7 @@ exports[`App renders App unchanged 1`] = `
                         <button
                           aria-selected="false"
                           class="MuiButtonBase-root MuiTab-root MuiTab-labelIcon MuiTab-textColorInherit css-1gy6i31-MuiButtonBase-root-MuiTab-root"
+                          data-testid="menu-medication"
                           role="tab"
                           tabindex="-1"
                           type="button"
@@ -372,6 +375,7 @@ exports[`App renders App unchanged 1`] = `
                       </div>
                       <div
                         class="flexDisplay viewPrescription MuiBox-root css-0"
+                        data-testid="view-prescription-glasses"
                       >
                         <a
                           class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways viewPrescriptionText css-16dn9qn-MuiTypography-root-MuiLink-root"
