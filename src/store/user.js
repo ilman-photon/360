@@ -137,7 +137,6 @@ const userSlice = createSlice({
       state.userAppointmentData = payload;
     },
     setUserAppointmentDataByIndex: (state, { payload }) => {
-      console.log({ payload });
       state.userAppointmentData = state.userAppointmentData.map((item, idx) => {
         if (payload.appointmentId === idx) {
           const obj = {

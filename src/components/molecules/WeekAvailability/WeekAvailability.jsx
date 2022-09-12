@@ -86,7 +86,7 @@ export const WeekAvailability = ({
 
   function buttonSchedule(
     label = "",
-    gridArea,
+    gridArea = "",
     isTypeMore = false,
     index = "",
     date = ""
@@ -109,6 +109,7 @@ export const WeekAvailability = ({
             size={constants.SMALL}
             gradient={false}
             className={styles.scheduleBtn}
+            data-testid={constants.TEST_ID.SEARCH_PROVIDER_TEST_ID.hourButton}
             onClick={() => {
               if (isLabelMore) {
                 onClickViewAllAvailability();

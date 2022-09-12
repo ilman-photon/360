@@ -81,16 +81,16 @@ Object {
             </div>
           </div>
           <div
-            class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
+            class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
           >
             <div
               class="css-1p5q5e5-MuiStack-root"
             >
               <div
-                class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+                class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
               >
                 <div
-                  class="MuiGrid-root css-1wgc5ak-MuiGrid-root"
+                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 MuiGrid-grid-md-6 css-1uh9cy0-MuiGrid-root"
                 >
                   <span
                     style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
@@ -116,7 +116,7 @@ Object {
                   </span>
                 </div>
                 <div
-                  class="MuiGrid-root css-1dhf0bi-MuiGrid-root"
+                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-8 MuiGrid-grid-md-6 css-1dz3nth-MuiGrid-root"
                 >
                   <h4
                     class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
@@ -224,16 +224,16 @@ Object {
           </div>
         </div>
         <div
-          class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
+          class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
         >
           <div
             class="css-1p5q5e5-MuiStack-root"
           >
             <div
-              class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+              class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
             >
               <div
-                class="MuiGrid-root css-1wgc5ak-MuiGrid-root"
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 MuiGrid-grid-md-6 css-1uh9cy0-MuiGrid-root"
               >
                 <span
                   style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
@@ -259,7 +259,7 @@ Object {
                 </span>
               </div>
               <div
-                class="MuiGrid-root css-1dhf0bi-MuiGrid-root"
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-8 MuiGrid-grid-md-6 css-1dz3nth-MuiGrid-root"
               >
                 <h4
                   class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"

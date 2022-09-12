@@ -62,8 +62,8 @@ export default function AppointmentLocation({
         }
       >
         <Stack spacing={2}>
-          <Grid container>
-            <Grid p={0}>
+          <Grid container spacing={2}>
+            <Grid item xs={4} md={6} p={0}>
               <Image
                 src={providerData.image || "/transparent.png"}
                 width={105}
@@ -72,7 +72,7 @@ export default function AppointmentLocation({
                 alt="Doctors image"
               />
             </Grid>
-            <Grid pl={2}>
+            <Grid item xs={8} md={6} pl={{ md: 2 }}>
               <Typography
                 variant="h4"
                 style={{ ...styles.detailText, ...styles.boldText }}

@@ -94,7 +94,7 @@ defineFeature(feature, (test) => {
 
         });
 
-        and('user click on submit', () => {
+        and('user click on submit', async () => {
             const expectedResult = {
                 ResponseCode: 1000,
                 ResponseType: "success",
@@ -116,10 +116,13 @@ defineFeature(feature, (test) => {
             mock.onPost(`/ecp/patient/onetimelink`).reply(200, oneTimeLinkVal);
             const button = container.getByTestId("continuebtn");
             fireEvent.click(button);
+            await waitFor(() => {
+                expect(container.getByText(/Link sent to your phone number/i)).toBeInTheDocument()
+            })
         });
 
         then('user recieves link to phone number', () => {
-
+            expect(container.getByText(/Link sent to your phone number/i)).toBeInTheDocument()
         });
     });
 
@@ -167,7 +170,7 @@ defineFeature(feature, (test) => {
 
         });
 
-        and('user click on submit', () => {
+        and('user click on submit', async () => {
             const expectedResult = {
                 ResponseCode: 1000,
                 ResponseType: "success",
@@ -189,10 +192,14 @@ defineFeature(feature, (test) => {
             mock.onPost(`/ecp/patient/onetimelink`).reply(200, oneTimeLinkVal);
             const button = container.getByTestId("continuebtn");
             fireEvent.click(button);
+
+            await waitFor(() => {
+                expect(container.getByText(/Link sent to your email/i)).toBeInTheDocument()
+            })
         });
 
         then('user recieves link to email', () => {
-
+            expect(container.getByText(/Link sent to your email/i)).toBeInTheDocument()
         });
     });
 
