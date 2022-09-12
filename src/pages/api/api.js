@@ -225,4 +225,10 @@ export class Api {
     const url = `${domain}/api/dummy/appointment/review-details/postForm`;
     return this.getResponse(url, postbody, method);
   }
+
+  getAllPrescriptions() {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`;
+    return this.getResponse(url, {}, "get");
+  }
 }

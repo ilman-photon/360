@@ -201,39 +201,56 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    when("a user  clicks on the Schedule Appointment link", () => {
+    when('a user  clicks on the Schedule Appointment link', () => {
       defaultValidation();
     });
 
-    then("User lands on the Schedule Appointment screen", () => {
-      const mock = new MockAdapter(axios);
-      const mockGeolocation = {
-        getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn(),
-      };
+        then('User lands on the Schedule Appointment screen', async () => {
+            const mock = new MockAdapter(axios);
+            const mockGeolocation = {
+              getCurrentPosition: jest.fn(),
+              watchPosition: jest.fn()
+            };
 
-      const domain = window.location.origin;
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-        )
-        .reply(200, MOCK_SUGGESTION_DATA);
-      mock
-        .onPost(
-          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
-        )
-        .reply(400, {});
-      window = Object.assign(window, { innerWidth: 1500 });
-      global.navigator.geolocation = mockGeolocation;
-      container = render(
-        <Provider store={store}>
-          {Appointment.getLayout(<Appointment />)}
-        </Provider>
-      );
-      waitFor(() => {
-        container.getByLabelText(/Date/i);
-      });
-    });
+            const domain = window.location.origin;
+            mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGGESTION_DATA);
+            mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(400, {});
+            window = Object.assign(window, { innerWidth: 1500 });
+            global.navigator.geolocation = mockGeolocation;
+            act(()=>{
+              container = render(
+                <Provider store={store}>
+                  {Appointment.getLayout(<Appointment />)}
+                </Provider>
+              );
+            })
+            await waitFor(() => {
+                container.getByLabelText(/Date/i);
+            })
+        });
+
+    //   const domain = window.location.origin;
+    //   mock
+    //     .onGet(
+    //       `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+    //     )
+    //     .reply(200, MOCK_SUGGESTION_DATA);
+    //   mock
+    //     .onPost(
+    //       `${domain}/api/dummy/appointment/create-appointment/submitFilter`
+    //     )
+    //     .reply(400, {});
+    //   window = Object.assign(window, { innerWidth: 1500 });
+    //   global.navigator.geolocation = mockGeolocation;
+    //   container = render(
+    //     <Provider store={store}>
+    //       {Appointment.getLayout(<Appointment />)}
+    //     </Provider>
+    //   );
+    //   waitFor(() => {
+    //     container.getByLabelText(/Date/i);
+    //   });
+    // });
 
     when(/^user navigate to "(.*)" calender field$/, (arg0) => {
       const dateField = container.getByLabelText(/Date/i);
@@ -274,39 +291,56 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    when("a user  clicks on the Schedule Appointment link", () => {
+    when('a user  clicks on the Schedule Appointment link', () => {
       defaultValidation();
     });
 
-    then("User lands on the Schedule Appointment screen", () => {
-      const mock = new MockAdapter(axios);
-      const mockGeolocation = {
-        getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn(),
-      };
+        then('User lands on the Schedule Appointment screen', async () => {
+            const mock = new MockAdapter(axios);
+            const mockGeolocation = {
+              getCurrentPosition: jest.fn(),
+              watchPosition: jest.fn()
+            };
 
-      const domain = window.location.origin;
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-        )
-        .reply(200, MOCK_SUGGESTION_DATA);
-      mock
-        .onPost(
-          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
-        )
-        .reply(400, {});
-      window = Object.assign(window, { innerWidth: 700 });
-      global.navigator.geolocation = mockGeolocation;
-      container = render(
-        <Provider store={store}>
-          {Appointment.getLayout(<Appointment />)}
-        </Provider>
-      );
-      waitFor(() => {
-        container.getByText(/Schedule an eye exam/i);
-      });
-    });
+            const domain = window.location.origin;
+            mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGGESTION_DATA);
+            mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(400, {});
+            window = Object.assign(window, { innerWidth: 700 });
+            global.navigator.geolocation = mockGeolocation;
+            act(()=>{
+              container = render(
+                <Provider store={store}>
+                  {Appointment.getLayout(<Appointment />)}
+                </Provider>
+              );
+            })
+            await waitFor(() => {
+                container.getByText(/Schedule an eye/i);
+            })
+        });
+
+      // const domain = window.location.origin;
+      // mock
+      //   .onGet(
+      //     `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+      //   )
+      //   .reply(200, MOCK_SUGGESTION_DATA);
+      // mock
+      //   .onPost(
+      //     `${domain}/api/dummy/appointment/create-appointment/submitFilter`
+      //   )
+      //   .reply(400, {});
+      // window = Object.assign(window, { innerWidth: 700 });
+      // global.navigator.geolocation = mockGeolocation;
+      // container = render(
+      //   <Provider store={store}>
+      //     {Appointment.getLayout(<Appointment />)}
+      //   </Provider>
+      // );
+      // waitFor(() => {
+      //   container.getByText(/Schedule an eye exam/i);
+      // });
+    // });
 
     when("the user navigates to the date calendar field", async () => {
       const startDateInput = container.getByLabelText(/Date/i);
