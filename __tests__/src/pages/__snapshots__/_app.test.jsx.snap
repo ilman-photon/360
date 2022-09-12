@@ -183,7 +183,7 @@ exports[`App renders App unchanged 1`] = `
                 </div>
               </div>
               <div
-                class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
+                class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
               >
                 <div
                   class="MuiBox-root css-1bqdyes"
@@ -442,7 +442,7 @@ exports[`App renders App unchanged 1`] = `
                 </div>
               </div>
               <div
-                class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
+                class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
               >
                 <div
                   class="noPrescription MuiBox-root css-h5fkc8"

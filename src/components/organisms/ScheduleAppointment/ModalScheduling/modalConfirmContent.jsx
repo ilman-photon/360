@@ -62,7 +62,8 @@ export default function ModalConfirmContent({
   patientData = {},
   providerData = {},
   isLoggedIn,
-  OnSetIsOpen = () => {
+  isReschedule,
+  OnOkClicked = () => {
     // This is intended
   },
 }) {
@@ -74,7 +75,7 @@ export default function ModalConfirmContent({
   });
 
   const handleClose = () => {
-    OnSetIsOpen(false);
+    OnOkClicked();
   };
 
   return (
@@ -88,7 +89,10 @@ export default function ModalConfirmContent({
         sx={{ textAlign: "center" }}
       >
         <Typography variant="bodyMedium" className={styles.scheduledText}>
-          <CheckCircleRoundedIcon sx={{ mr: 1 }} /> You’re Scheduled!
+          <CheckCircleRoundedIcon sx={{ mr: 1 }} />{" "}
+          {isReschedule
+            ? "Reschedule Appointment Successful"
+            : "You’re Scheduled!"}
         </Typography>
       </BootstrapDialogTitle>
       <DialogContent
