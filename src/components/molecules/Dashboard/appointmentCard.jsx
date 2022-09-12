@@ -21,6 +21,7 @@ import { StyledButton } from "../../atoms/Button/button";
 import { patientTypography } from "../../../styles/theme";
 import { parseAppointmentCardData } from "../../../utils/appointment";
 import { useEffect } from "react";
+import Image from "next/image";
 
 export default function AppointmentCard({ appointmentData = [] }) {
   const [appointment, setAppointment] = React.useState({
@@ -137,6 +138,15 @@ export default function AppointmentCard({ appointmentData = [] }) {
               </Box>
             </Grid>
             <Grid item xs={5} sm={5} md={2}>
+              <Box className={styles.containerImage}>
+                <Image
+                  src={appointment.providerInfo.image}
+                  style={{ borderRadius: "50%" }}
+                  alt="Doctor Image"
+                  width="90px"
+                  height="90px"
+                />
+              </Box>
               <Box className={styles.flexDisplay}>
                 <Box pr={1}>
                   <RemoveRedEyeOutlinedIcon />
@@ -258,6 +268,7 @@ export default function AppointmentCard({ appointmentData = [] }) {
         sx={{
           ".MuiCardContent-root": {
             p: 0,
+            position: "relative",
           },
         }}
       >

@@ -55,3 +55,18 @@
   background: #f2f7f7;
   text-align: center;
 }
+
+.containerImage {
+  width: 90px;
+  height: 90px;
+  position: absolute;
+  top: -7%;
+  right: 2%;
+  border: 1px solid #003b4a;
+  border-radius: 100%;
+  @media (max-width: 767px) {
+    width: 52px;
+    height: 52px;
+    top: -4.5%;
+  }
+}

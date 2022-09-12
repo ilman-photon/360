@@ -40,7 +40,7 @@ export default function HomePage() {
   const [prescriptionData, setPrescriptionData] = React.useState({});
   const [appointmentData, setAppointmentData] = React.useState({});
   const filterData = useSelector((state) => state.appointment.filterData);
-  const isDesktop = useMediaQuery("(min-width: 834px)");
+  const isDesktop = useMediaQuery("(min-width: 900px)");
   const { coords, isGeolocationEnabled } = useGeolocated({
     positionOptions: {
       enableHighAccuracy: false,

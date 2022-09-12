@@ -404,7 +404,7 @@ exports[`App renders App unchanged 1`] = `
             class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-5 MuiGrid-grid-sm-5 MuiGrid-grid-md-3 css-9f74e3-MuiGrid-root"
           >
             <div
-              class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1psqxpj-MuiPaper-root-MuiCard-root"
+              class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-jbta4g-MuiPaper-root-MuiCard-root"
             >
               <div
                 class="MuiCardHeader-root cardHeader css-1ele1k2-MuiCardHeader-root"
