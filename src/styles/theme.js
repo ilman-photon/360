@@ -111,6 +111,14 @@ export const patientTypography = createTheme({
         fontWeight: 400,
       },
     },
+    bodyRegularSemiBold: {
+      fontFamily: "Libre Franklin",
+      fontStyle: "normal",
+      fontWeight: 600,
+      fontSize: "16px",
+      lineHeight: "24px",
+      letterSpacing: "0.0016em",
+    },
     bodySmallRegular: {
       fontFamily: "Libre Franklin",
       fontWeight: "bold",
