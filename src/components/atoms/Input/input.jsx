@@ -112,6 +112,7 @@ export const CustomPasswordInput = styled((props) => (
 
 export const RedditTextField = styled((props) => (
   <TextField
+    onKeyDown={props.onKeyDown}
     InputProps={{
       disableUnderline: true,
       endAdornment: props.adorment ? (

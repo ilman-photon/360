@@ -12,6 +12,8 @@ import FormMessage from "../../components/molecules/FormMessage/formMessage";
 import { Api } from "../api/api";
 import { useTranslation } from "next-i18next";
 import { formatPhoneNumber } from "../../utils/phoneFormatter";
+import { Provider } from "react-redux";
+import store from "../../store/store";
 
 export async function getServerSideProps(context) {
   const cookies = new Cookies(context.req.headers.cookie);
@@ -346,5 +348,9 @@ export default function MfaPage() {
 }
 
 MfaPage.getLayout = function getLayout(page) {
-  return <MfaLayout>{page}</MfaLayout>;
+  return (
+    <Provider store={store}>
+      <MfaLayout>{page}</MfaLayout>
+    </Provider>
+  );
 };
