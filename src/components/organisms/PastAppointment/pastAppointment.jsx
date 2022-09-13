@@ -5,38 +5,24 @@ import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import moment from "moment";
 import { useState } from "react";
 import Collapse from "@mui/material/Collapse";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
-import AppointmentButton from "../../atoms/AppointmentButton/appointmentButton";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import ListSubheader from "@mui/material/ListSubheader";
-import List from "@mui/material/List";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemIcon from "@mui/material/ListItemIcon";
-import ListItemText from "@mui/material/ListItemText";
-import InboxIcon from "@mui/icons-material/MoveToInbox";
-import DraftsIcon from "@mui/icons-material/Drafts";
-import SendIcon from "@mui/icons-material/Send";
-import StarBorder from "@mui/icons-material/StarBorder";
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableCell from "@mui/material/TableCell";
-import TableContainer from "@mui/material/TableContainer";
-import TableHead from "@mui/material/TableHead";
-import TableRow from "@mui/material/TableRow";
 import Button from "@mui/material/Button";
-import Paper from "@mui/material/Paper";
-
-export function PastAppointmentCard({ data }) {
+import { Yard } from "@mui/icons-material";
+import React from "react";
+export function PastAppointmentCard({ data, threshold }) {
   const date = data.appointmentInfo.date;
   const timezone = date.substring(date.length - 3);
   const momentDate = new moment(date);
   const year = momentDate.format("YYYY");
   const formatedDate = momentDate.format("dddd, MMM DD - h:mmA");
   const fullDate = `${formatedDate} ${timezone}`;
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
+  const [openAlt, setOpenAlt] = useState(true);
   const handleClick = () => {
     setOpen(!open);
+  };
+  const handleClickAlt = () => {
+    setOpenAlt(!openAlt);
   };
   return (
     <Box className={styles.pastAppointmentsContainer}>
@@ -69,12 +55,18 @@ export function PastAppointmentCard({ data }) {
             alignItems: "center",
           }}
         >
-          <Button onClick={() => handleClick()}>
+          <Button
+            onClick={() => (threshold == 1 ? handleClickAlt() : handleClick())}
+          >
             <ExpandMoreIcon />
           </Button>
         </Box>
       </Box>
-      <Collapse in={open} timeout="auto" unmountOnExit>
+      <Collapse
+        in={threshold == 1 ? openAlt : open}
+        timeout="auto"
+        unmountOnExit
+      >
         <Box className={styles.pastAppointmentDetail}>
           <Box className={styles.imageContainer}>
             <Image
@@ -141,12 +133,7 @@ export function PastAppointmentCard({ data }) {
             </Box>
           </Box>
           <Box className={styles.viewDetails}>
-            <Link
-              href="/patient/appointments/detail-appoiments"
-              className={styles.link}
-            >
-              View appointment details
-            </Link>
+            <Link className={styles.link}>View appointment details</Link>
           </Box>
         </Box>
         <Box
@@ -169,7 +156,7 @@ export default function PastAppointment({ data }) {
         .map((item, index) => {
           if (index > 0) {
             return index < 11 ? (
-              <PastAppointmentCard data={item} key={index} />
+              <PastAppointmentCard data={item} threshold={index} key={index} />
             ) : null;
           }
         })
@@ -180,7 +167,6 @@ export default function PastAppointment({ data }) {
       <Typography variant="h2" className={styles.title}>
         Past Appointments
       </Typography>
-
       {isData}
     </Box>
   );
