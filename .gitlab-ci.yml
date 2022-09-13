@@ -103,7 +103,6 @@ sonar:
     - docker tag photon-ecp-ppp-dev:latest 056640875000.dkr.ecr.us-east-1.amazonaws.com/photon-ecp-ppp-dev:ecp-patient-$CI_PIPELINE_IID
     - docker push 056640875000.dkr.ecr.us-east-1.amazonaws.com/photon-ecp-ppp-dev:ecp-patient-$CI_PIPELINE_IID
     
-
 deploy_to:
   stage: deploy
   tags:
@@ -116,11 +115,11 @@ deploy_to:
   #   - apk update  && apk add --no-cache curl
   #   - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
   #   - chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
-    - aws eks --region us-east-1 update-kubeconfig --name $APP_NAME
+    # - aws eks --region us-east-1 update-kubeconfig --name $APP_NAME
     # - mkdir -p $HOME/.kube
     # - echo -n $KUBE_CONFIG | base64 -d > $HOME/.kube/config
   script:
-    # - aws eks --region us-east-1  update-kubeconfig --name $APP_NAME
+    - aws eks --region us-east-1 update-kubeconfig --name $APP_NAME
     - sed -i 's/TAG/'"$CI_PIPELINE_IID"'/g' ./deployment/deploy.yaml
     # - kubectl config view
     - kubectl apply -f `pwd`/deployment/deploy.yaml
