@@ -469,7 +469,7 @@ export default function ScheduleAppointmentPage() {
               onClick={handleCancelReschedule}
               sx={{ fontSize: "14px", px: "20px", py: "11px", height: "40px" }}
             >
-              Cancel
+              Deny
             </StyledButton>
             <StyledButton
               isModalButton
