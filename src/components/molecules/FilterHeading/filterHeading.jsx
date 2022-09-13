@@ -320,11 +320,12 @@ export const CustomPopper = function (props) {
 
 export function onGetInsuranceCarrierStyle(isDesktop = true) {
   return {
-    width: isDesktop ? "320px" : "auto",
+    width: isDesktop ? "100%" : "auto",
     background: "#FFF",
     marginTop: "0px",
     border: !isDesktop ? "1px solid #BDBDBD" : "none",
     borderRadius: !isDesktop ? "4px" : "auto",
+    backgroundColor: "#fff"
   };
 }
 
@@ -360,6 +361,13 @@ export function onRenderInputInsurance(
         sx={{
           [muiInputRoot]: {
             border: "0px",
+          },
+          ".MuiInputLabel-filled":{
+            fontStyle: "normal",
+            fontWeight: "400",
+            color:"#303030",
+            fontSize: "16px",
+            lineHeight: "24px",
           },
         }}
         onKeyDown={(e) => {
@@ -560,7 +568,7 @@ const FilterHeading = ({
               disableClearable={true}
               options={mapsData}
               sx={{
-                width: "347px",
+                width:"100%",
                 background: "#FFF",
                 borderRadius: "100%",
               }}
@@ -601,6 +609,14 @@ const FilterHeading = ({
                       borderTopRightRadius: "50px",
                       [muiInputRoot]: {
                         border: "0px",
+                        backgroundColor: "#fff"
+                      },
+                      ".MuiInputLabel-filled":{
+                        fontStyle: "normal",
+                        fontWeight: "400",
+                        fontSize: "16px",
+                        lineHeight: "24px",
+                        color:"#303030"
                       },
                     }}
                   />
@@ -626,7 +642,7 @@ const FilterHeading = ({
                 display: "flex",
                 alignItems: "flex-end",
                 background: "#fff",
-                width: "210px",
+                width:"80%",
                 paddingLeft: "15px",
                 borderRadius: 0,
                 marginTop: "0px",
@@ -634,7 +650,7 @@ const FilterHeading = ({
             >
               <CalendarTodayIcon
                 sx={{
-                  margin: "auto",
+                  margin: "auto 0",
                   width: "18px",
                   height: "18px",
                   color: colors.darkGreen,
@@ -658,7 +674,15 @@ const FilterHeading = ({
                   [muiInputRoot]: {
                     border: "0px",
                     cursor: "pointer",
+                    backgroundColor: "#fff"
                   },
+                  ".MuiInputLabel-filled":{
+                    fontWeight: "400",
+                    fontSize: "16px",
+                    color:"#303030",
+                    lineHeight: "24px",
+                    fontStyle: "normal",
+                  }
                 }}
                 onClick={() => setOpen(true)}
                 components={{
@@ -667,6 +691,10 @@ const FilterHeading = ({
                   },
                 }}
                 inputFormat={"MMM dd, yyyy"}
+                InputProps={{
+                  readOnly: true,
+                }}
+                disableMaskedInput
               />
             </Box>
           );
@@ -687,7 +715,7 @@ const FilterHeading = ({
                 display: "flex",
                 alignItems: "flex-end",
                 background: "#fff",
-                width: isDesktop ? "312px" : "auto",
+                width: isDesktop ? "100%" : "auto",
                 paddingLeft: "15px",
                 marginTop: isDesktop ? "0px" : "16px",
               }}
@@ -710,6 +738,13 @@ const FilterHeading = ({
                       boxShadow: "none",
                     },
                   },
+                  ".MuiInputLabel-filled":{
+                    fontWeight: "400",
+                    fontSize: "16px",
+                    color:"#303030",
+                    lineHeight: "24px",
+                    fontStyle: "normal",
+                  }
                 }}
                 label={"Purpose of Visit"}
                 labelId={`purposes-of-visit`}
@@ -755,6 +790,7 @@ const FilterHeading = ({
                 display: "flex",
                 background: "#fff",
                 borderRadius: "50px",
+                width: "80vw"
               }}
             >
               {renderLocationFilter()}
