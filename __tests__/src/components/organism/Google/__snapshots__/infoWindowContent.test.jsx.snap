@@ -35,7 +35,7 @@ Object {
                   class="displayFlex MuiBox-root css-0"
                 >
                   <div
-                    class="MuiBox-root css-1oovyp6"
+                    class="imageContainer MuiBox-root css-0"
                   >
                     <span
                       style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
@@ -71,33 +71,38 @@ Object {
                     >
                       Paul Wagner Md
                     </h2>
-                    <p
-                      class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
-                    >
-                      51 West 51st Street
-                      <br />
-                      Floor 3, Suite 320 Midtown
-                      <br />
-                      Florida
-                      , 
-                      FR
-                      , 
-                      54231
-                    </p>
                     <div
-                      class="phoneContainer MuiBox-root css-0"
+                      class="detailContainer MuiBox-root css-0"
                     >
-                      <p
-                        class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
+                      <div
+                        class="MuiBox-root css-0"
                       >
-                        (123) 123-4567
-                      </p>
+                        <p
+                          class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
+                        >
+                          51 West 51st Street
+                          <br />
+                          Floor 3, Suite 320 Midtown
+                          <br />
+                          Florida
+                          , 
+                          FR
+                          , 
+                          54231
+                        </p>
+                        <div
+                          class="phoneContainer MuiBox-root css-0"
+                        >
+                          <p
+                            class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
+                          >
+                            (123) 123-4567
+                          </p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-                <div
-                  class="MuiBox-root css-0"
-                />
               </div>
             </div>
           </div>
@@ -477,7 +482,7 @@ Object {
                 class="displayFlex MuiBox-root css-0"
               >
                 <div
-                  class="MuiBox-root css-1oovyp6"
+                  class="imageContainer MuiBox-root css-0"
                 >
                   <span
                     style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
@@ -513,33 +518,38 @@ Object {
                   >
                     Paul Wagner Md
                   </h2>
-                  <p
-                    class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
-                  >
-                    51 West 51st Street
-                    <br />
-                    Floor 3, Suite 320 Midtown
-                    <br />
-                    Florida
-                    , 
-                    FR
-                    , 
-                    54231
-                  </p>
                   <div
-                    class="phoneContainer MuiBox-root css-0"
+                    class="detailContainer MuiBox-root css-0"
                   >
-                    <p
-                      class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
+                    <div
+                      class="MuiBox-root css-0"
                     >
-                      (123) 123-4567
-                    </p>
+                      <p
+                        class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
+                      >
+                        51 West 51st Street
+                        <br />
+                        Floor 3, Suite 320 Midtown
+                        <br />
+                        Florida
+                        , 
+                        FR
+                        , 
+                        54231
+                      </p>
+                      <div
+                        class="phoneContainer MuiBox-root css-0"
+                      >
+                        <p
+                          class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
+                        >
+                          (123) 123-4567
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-              <div
-                class="MuiBox-root css-0"
-              />
             </div>
           </div>
         </div>
