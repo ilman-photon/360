@@ -9,7 +9,7 @@ Object {
         class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1v5z4dq-MuiPaper-root-MuiCard-root"
       >
         <div
-          class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
+          class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
         >
           <div
             class="css-1lwbda4-MuiStack-root"
@@ -22,7 +22,11 @@ Object {
                 class="labelContainer"
               >
                 <div
+                  aria-label="Phone Number"
+                  aria-live="Phone Number"
                   class="label"
+                  role="text"
+                  tabindex="0"
                 >
                   Phone Number
                 </div>
@@ -33,7 +37,12 @@ Object {
                 <div
                   style="margin-top: 10px;"
                 >
-                  (706) 509-6731
+                  <div
+                    aria-label="(706) 509-6731"
+                    tabindex="0"
+                  >
+                    (706) 509-6731
+                  </div>
                 </div>
               </div>
             </div>
@@ -47,7 +56,11 @@ Object {
                 class="labelContainer"
               >
                 <div
+                  aria-label="Email ID"
+                  aria-live="Email ID"
                   class="label"
+                  role="text"
+                  tabindex="0"
                 >
                   Email ID
                 </div>
@@ -58,7 +71,12 @@ Object {
                 <div
                   style="margin-top: 10px;"
                 >
-                  Justus4@gmail.com
+                  <div
+                    aria-label="Justus4@gmail.com"
+                    tabindex="0"
+                  >
+                    Justus4@gmail.com
+                  </div>
                 </div>
               </div>
             </div>
@@ -72,7 +90,11 @@ Object {
                 class="labelContainer"
               >
                 <div
+                  aria-label="Address"
+                  aria-live="Address"
                   class="label"
+                  role="text"
+                  tabindex="0"
                 >
                   Address
                 </div>
@@ -83,7 +105,12 @@ Object {
                 <div
                   style="margin-top: 10px;"
                 >
-                  645 Benedict Cliff
+                  <div
+                    aria-label="645 Benedict Cliff"
+                    tabindex="0"
+                  >
+                    645 Benedict Cliff
+                  </div>
                 </div>
               </div>
             </div>
@@ -97,7 +124,11 @@ Object {
                 class="labelContainer"
               >
                 <div
+                  aria-label="City"
+                  aria-live="City"
                   class="label"
+                  role="text"
+                  tabindex="0"
                 >
                   City
                 </div>
@@ -108,7 +139,12 @@ Object {
                 <div
                   style="margin-top: 10px;"
                 >
-                  Daphneeshire
+                  <div
+                    aria-label="Daphneeshire"
+                    tabindex="0"
+                  >
+                    Daphneeshire
+                  </div>
                 </div>
               </div>
             </div>
@@ -128,7 +164,11 @@ Object {
                     class="labelContainer"
                   >
                     <div
+                      aria-label="State"
+                      aria-live="State"
                       class="label"
+                      role="text"
+                      tabindex="0"
                     >
                       State
                     </div>
@@ -139,7 +179,12 @@ Object {
                     <div
                       style="margin-top: 10px;"
                     >
-                      South Dakota
+                      <div
+                        aria-label="South Dakota"
+                        tabindex="0"
+                      >
+                        South Dakota
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -154,7 +199,11 @@ Object {
                     class="labelContainer"
                   >
                     <div
+                      aria-label="Zip"
+                      aria-live="Zip"
                       class="label"
+                      role="text"
+                      tabindex="0"
                     >
                       Zip
                     </div>
@@ -165,7 +214,12 @@ Object {
                     <div
                       style="margin-top: 10px;"
                     >
-                      03245
+                      <div
+                        aria-label="03245"
+                        tabindex="0"
+                      >
+                        03245
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -181,7 +235,11 @@ Object {
                 class="labelContainer"
               >
                 <div
+                  aria-label="Prefered Mode(s) of communication"
+                  aria-live="Prefered Mode(s) of communication"
                   class="label"
+                  role="text"
+                  tabindex="0"
                 >
                   Prefered Mode(s) of communication
                 </div>
@@ -195,7 +253,12 @@ Object {
                   <span
                     style="text-transform: capitalize;"
                   >
-                    email
+                    <div
+                      aria-label="email"
+                      tabindex="0"
+                    >
+                      email
+                    </div>
                   </span>
                 </div>
               </div>
@@ -207,6 +270,7 @@ Object {
         style="position: fixed; bottom: 16px; right: 16px;"
       >
         <button
+          aria-label="Edit option"
           class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-5kb46n-MuiButtonBase-root-MuiButton-root"
           tabindex="0"
           type="button"
@@ -224,7 +288,7 @@ Object {
       class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1v5z4dq-MuiPaper-root-MuiCard-root"
     >
       <div
-        class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
+        class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
       >
         <div
           class="css-1lwbda4-MuiStack-root"
@@ -237,7 +301,11 @@ Object {
               class="labelContainer"
             >
               <div
+                aria-label="Phone Number"
+                aria-live="Phone Number"
                 class="label"
+                role="text"
+                tabindex="0"
               >
                 Phone Number
               </div>
@@ -248,7 +316,12 @@ Object {
               <div
                 style="margin-top: 10px;"
               >
-                (706) 509-6731
+                <div
+                  aria-label="(706) 509-6731"
+                  tabindex="0"
+                >
+                  (706) 509-6731
+                </div>
               </div>
             </div>
           </div>
@@ -262,7 +335,11 @@ Object {
               class="labelContainer"
             >
               <div
+                aria-label="Email ID"
+                aria-live="Email ID"
                 class="label"
+                role="text"
+                tabindex="0"
               >
                 Email ID
               </div>
@@ -273,7 +350,12 @@ Object {
               <div
                 style="margin-top: 10px;"
               >
-                Justus4@gmail.com
+                <div
+                  aria-label="Justus4@gmail.com"
+                  tabindex="0"
+                >
+                  Justus4@gmail.com
+                </div>
               </div>
             </div>
           </div>
@@ -287,7 +369,11 @@ Object {
               class="labelContainer"
             >
               <div
+                aria-label="Address"
+                aria-live="Address"
                 class="label"
+                role="text"
+                tabindex="0"
               >
                 Address
               </div>
@@ -298,7 +384,12 @@ Object {
               <div
                 style="margin-top: 10px;"
               >
-                645 Benedict Cliff
+                <div
+                  aria-label="645 Benedict Cliff"
+                  tabindex="0"
+                >
+                  645 Benedict Cliff
+                </div>
               </div>
             </div>
           </div>
@@ -312,7 +403,11 @@ Object {
               class="labelContainer"
             >
               <div
+                aria-label="City"
+                aria-live="City"
                 class="label"
+                role="text"
+                tabindex="0"
               >
                 City
               </div>
@@ -323,7 +418,12 @@ Object {
               <div
                 style="margin-top: 10px;"
               >
-                Daphneeshire
+                <div
+                  aria-label="Daphneeshire"
+                  tabindex="0"
+                >
+                  Daphneeshire
+                </div>
               </div>
             </div>
           </div>
@@ -343,7 +443,11 @@ Object {
                   class="labelContainer"
                 >
                   <div
+                    aria-label="State"
+                    aria-live="State"
                     class="label"
+                    role="text"
+                    tabindex="0"
                   >
                     State
                   </div>
@@ -354,7 +458,12 @@ Object {
                   <div
                     style="margin-top: 10px;"
                   >
-                    South Dakota
+                    <div
+                      aria-label="South Dakota"
+                      tabindex="0"
+                    >
+                      South Dakota
+                    </div>
                   </div>
                 </div>
               </div>
@@ -369,7 +478,11 @@ Object {
                   class="labelContainer"
                 >
                   <div
+                    aria-label="Zip"
+                    aria-live="Zip"
                     class="label"
+                    role="text"
+                    tabindex="0"
                   >
                     Zip
                   </div>
@@ -380,7 +493,12 @@ Object {
                   <div
                     style="margin-top: 10px;"
                   >
-                    03245
+                    <div
+                      aria-label="03245"
+                      tabindex="0"
+                    >
+                      03245
+                    </div>
                   </div>
                 </div>
               </div>
@@ -396,7 +514,11 @@ Object {
               class="labelContainer"
             >
               <div
+                aria-label="Prefered Mode(s) of communication"
+                aria-live="Prefered Mode(s) of communication"
                 class="label"
+                role="text"
+                tabindex="0"
               >
                 Prefered Mode(s) of communication
               </div>
@@ -410,7 +532,12 @@ Object {
                 <span
                   style="text-transform: capitalize;"
                 >
-                  email
+                  <div
+                    aria-label="email"
+                    tabindex="0"
+                  >
+                    email
+                  </div>
                 </span>
               </div>
             </div>
@@ -422,6 +549,7 @@ Object {
       style="position: fixed; bottom: 16px; right: 16px;"
     >
       <button
+        aria-label="Edit option"
         class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-5kb46n-MuiButtonBase-root-MuiButton-root"
         tabindex="0"
         type="button"

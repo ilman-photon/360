@@ -58,6 +58,7 @@ function GMaps({
     const bounds = new google.maps.LatLngBounds();
     markers.forEach(({ position }) => bounds.extend(position));
     map.fitBounds(bounds);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
