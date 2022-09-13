@@ -472,20 +472,22 @@ export default function ScheduleAppointmentPage() {
           Are you sure you want to reschedule?
         </DialogTitle>
         <DialogActions>
-          <Stack direction="row" alignItems="center" spacing={2}>
+          <Stack direction="row" alignItems="center" spacing={"10px"}>
             <StyledButton
+              isModalButton
               size="small"
               mode="secondary"
               onClick={handleCancelReschedule}
-              sx={{ fontSize: "14px", px: "20px", py: "11px" }}
+              sx={{ fontSize: "14px", px: "20px", py: "11px", height: "40px" }}
             >
-              Cancel
+              Deny
             </StyledButton>
             <StyledButton
+              isModalButton
               size="small"
               mode="primary"
               onClick={OnConfirmRescheduleAppointment}
-              sx={{ fontSize: "14px", px: "20px", py: "11px" }}
+              sx={{ fontSize: "14px", px: "20px", py: "11px", height: "40px" }}
             >
               Reschedule
             </StyledButton>
