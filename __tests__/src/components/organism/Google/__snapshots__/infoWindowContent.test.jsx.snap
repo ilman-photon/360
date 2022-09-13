@@ -35,7 +35,7 @@ Object {
                   class="displayFlex MuiBox-root css-0"
                 >
                   <div
-                    class="imageContainer MuiBox-root css-0"
+                    class="imageContainerMedium MuiBox-root css-0"
                   >
                     <span
                       style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
@@ -482,7 +482,7 @@ Object {
                 class="displayFlex MuiBox-root css-0"
               >
                 <div
-                  class="imageContainer MuiBox-root css-0"
+                  class="imageContainerMedium MuiBox-root css-0"
                 >
                   <span
                     style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"

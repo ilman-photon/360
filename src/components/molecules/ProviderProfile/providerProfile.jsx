@@ -76,13 +76,23 @@ export default function ProviderProfile({
     return size;
   }
 
+  function getImageContainerStyle() {
+    if (imageSize === "medium") {
+      return styles.imageContainerMedium;
+    } else if (imageSize === "small") {
+      return styles.imageContainerSmall;
+    } else {
+      return styles.imageContainer;
+    }
+  }
+
   return (
     <Box
       className={isBio ? styles.shortBio : styles.appointment}
       sx={{ maxWidth: isMap ? "unset" : "368px" }}
     >
       <Box className={styles.displayFlex}>
-        <Box className={styles.imageContainer}>
+        <Box className={getImageContainerStyle()}>
           <Image
             src={providerData.image || "/transparent.png"}
             data-testid={TEST_ID.APPOINTMENT_TEST_ID.PROVIDER_PROFILE.image}
