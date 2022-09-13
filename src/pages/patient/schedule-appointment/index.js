@@ -31,6 +31,7 @@ import store from "../../../store/store";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import {
+  DEFAULT_PATIENT_INFO_DATA,
   editAppointmentScheduleData,
   resetFilterData,
 } from "../../../store/appointment";
@@ -246,6 +247,17 @@ export default function ScheduleAppointmentPage() {
   const router = useRouter();
   const dispatch = useDispatch();
 
+  React.useEffect(() => {
+    if (activeStep === 2 || activeStep === 3) {
+      dispatch(
+        editAppointmentScheduleData({
+          key: "patientInfo",
+          value: DEFAULT_PATIENT_INFO_DATA,
+        })
+      );
+    }
+  },[activeStep])
+
   const steps = [
     "Location",
     "Review",
@@ -302,7 +314,6 @@ export default function ScheduleAppointmentPage() {
   const userData = useSelector((state) => state.user.userData);
 
   React.useEffect(() => {
-    console.log({ isLoggedIn });
     if (isLoggedIn) {
       dispatch(
         editAppointmentScheduleData({
