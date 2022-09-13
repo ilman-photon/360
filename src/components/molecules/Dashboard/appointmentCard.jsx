@@ -277,6 +277,7 @@ export default function AppointmentCard({
   return (
     <ThemeProvider theme={patientTypography}>
       <AccountCard
+        className={styles.appointmentContainer}
         isAppoinment={true}
         titleIcon={
           <CalendarTodayOutlinedIcon

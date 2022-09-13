@@ -1,11 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Divider, Grid, Stack, Typography } from "@mui/material";
 import ProviderProfile from "../../../molecules/ProviderProfile/providerProfile";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { StyledButton } from "../../../atoms/Button/button";
 import constants from "../../../../utils/constants";
-import { useEffect } from "react";
 
 const InfoWindowContent = ({
   data = [],

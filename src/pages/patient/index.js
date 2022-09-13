@@ -213,6 +213,9 @@ export default function HomePage() {
         sx={{
           paddingTop: isDesktop ? "220px" : "185px",
           flexDirection: !isDesktop ? "column-reverse" : "unset",
+          "@media print": {
+            paddingTop: "30px !important",
+          },
         }}
       >
         <Grid item xs={5} sm={5} md={2}>

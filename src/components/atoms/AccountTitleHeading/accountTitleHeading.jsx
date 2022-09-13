@@ -10,6 +10,7 @@ const AccountTitleHeading = ({ title, sx = {} }) => {
           ...sx,
         }}
         aria-live={"polite"}
+        aria-label={`${title} heading`}
       >
         {title}
       </div>

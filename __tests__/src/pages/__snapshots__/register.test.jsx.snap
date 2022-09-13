@@ -9,7 +9,7 @@ Object {
         class="authLayout"
       >
         <header
-          class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-1nft05v-MuiPaper-root-MuiAppBar-root"
+          class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-rxbk4x-MuiPaper-root-MuiAppBar-root"
         >
           <div
             class="MuiContainer-root MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root"
@@ -384,12 +384,14 @@ Object {
                       </div>
                     </div>
                     <div
-                      style="padding: 16px; border-radius: 4px; color: rgb(54, 106, 112); background-color: rgba(0, 149, 169, 0.051); margin: 8px; word-break: break-word;"
+                      style="padding: 16px; border-radius: 4px; color: rgb(54, 106, 112); background-color: rgb(237, 245, 254); margin: 8px; word-break: break-word;"
                     >
-                      <div>
+                      <span
+                        class="MuiTypography-root MuiTypography-bodyMedium css-1unqizc-MuiTypography-root"
+                      >
                         Your username will be 
                         (auto-populated email id/phone number)
-                      </div>
+                      </span>
                     </div>
                     <div
                       style="padding-bottom: 6px; margin: 8px 8px 16px 8px;"
@@ -634,7 +636,7 @@ Object {
       class="authLayout"
     >
       <header
-        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-1nft05v-MuiPaper-root-MuiAppBar-root"
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-rxbk4x-MuiPaper-root-MuiAppBar-root"
       >
         <div
           class="MuiContainer-root MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root"
@@ -1009,12 +1011,14 @@ Object {
                     </div>
                   </div>
                   <div
-                    style="padding: 16px; border-radius: 4px; color: rgb(54, 106, 112); background-color: rgba(0, 149, 169, 0.051); margin: 8px; word-break: break-word;"
+                    style="padding: 16px; border-radius: 4px; color: rgb(54, 106, 112); background-color: rgb(237, 245, 254); margin: 8px; word-break: break-word;"
                   >
-                    <div>
+                    <span
+                      class="MuiTypography-root MuiTypography-bodyMedium css-1unqizc-MuiTypography-root"
+                    >
                       Your username will be 
                       (auto-populated email id/phone number)
-                    </div>
+                    </span>
                   </div>
                   <div
                     style="padding-bottom: 6px; margin: 8px 8px 16px 8px;"
