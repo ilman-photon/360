@@ -23,10 +23,9 @@ export default function UpcomingAppointment({
     const date = new Date(data.appointmentInfo.date);
     if (!date) return "-";
     const momentDate = new moment(date);
-    const formatedDate = momentDate
+    return momentDate
       .tz("America/New_York")
       .format("dddd, MMM DD, YYYY [at] h:mm z");
-    return formatedDate;
   };
 
   const getProviderLocation = () => {
@@ -36,8 +35,11 @@ export default function UpcomingAppointment({
   return (
     <Box className={styles.upcomingAppointments}>
       <Stack spacing={{ xs: 2, lg: 3.5 }}>
-        <Typography variant="h2" className={styles.title}
-          data-testid={TEST_ID.APPOINTMENTS_TEST_ID.upcomingAppointmentsHeader}>
+        <Typography
+          variant="h2"
+          className={styles.title}
+          data-testid={TEST_ID.APPOINTMENTS_TEST_ID.upcomingAppointmentsHeader}
+        >
           Upcoming appointments
         </Typography>
         <Box
@@ -77,7 +79,8 @@ export default function UpcomingAppointment({
           <Box className={styles.buttonContainer}>
             <AppointmentButton
               testId={TEST_ID.APPOINTMENTS_TEST_ID.cancelAppointmentButton}
-              icon={<CancelOutlinedIcon />}>
+              icon={<CancelOutlinedIcon />}
+            >
               Cancel
             </AppointmentButton>
             <AppointmentButton

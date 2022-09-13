@@ -131,7 +131,7 @@ Feature: Patient Portal : Appointments - Reschedule Appointments
   @Regression
   @Sprint4
   @Sprint5
-  @excluded
+  @included
   Scenario: EPIC_EPP-45_STORY_EPP-1602 - Verify user should receive an email based on their registered phone number when user reshedulle upcoming appointment list
     
     Given user launch Patient Portal url		
@@ -161,7 +161,7 @@ Feature: Patient Portal : Appointments - Reschedule Appointments
   @Regression
   @Sprint4
   @Sprint5
-  @excluded
+  @included
     Scenario: EPIC_EPP-45_STORY_EPP-1602 - Verify user should receive an text message based on their registered phone number when user reshedulle upcoming appointment list
     
     Given user launch Patient Portal url		
@@ -191,7 +191,7 @@ Feature: Patient Portal : Appointments - Reschedule Appointments
   @Regression
   @Sprint4
   @Sprint5
-  @excluded
+  @included
   Scenario: EPIC_EPP-45_STORY_EPP-1602 - Verify user able to see “Are you sure you want to reschedule?” as a confirmation message
     
     Given user launch Patient Portal url		
@@ -221,7 +221,7 @@ Feature: Patient Portal : Appointments - Reschedule Appointments
   @Patient_Portal
   @Sprint4
   @Sprint5
-  @excluded
+  @included
   Scenario: EPIC_EPP-45_STORY_EPP-1602 - Verify the user is able to see the "confirm and deny" option
     
     Given user launch Patient Portal url		
@@ -249,7 +249,7 @@ Feature: Patient Portal : Appointments - Reschedule Appointments
   @Regression
   @Sprint4
   @Sprint5
-  @excluded
+  @included
   Scenario: EPIC_EPP-45_STORY_EPP-1602 - Verify user should be able to deny and gets redirected back to the “Appointments” screen when the user reschedules the upcoming appointment list
     
     Given user launch Patient Portal url		

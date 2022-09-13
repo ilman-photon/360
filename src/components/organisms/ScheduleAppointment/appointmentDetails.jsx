@@ -39,10 +39,10 @@ export default function AppointmentDetails({
             variant="text"
             className={styles.editButton}
             onClick={OnEditClicked}
+            aria-label="Edit"
           >
             <EditOutlinedIcon
               sx={{ width: 20, height: 20, color: "#008294" }}
-              aria-label={"Edit icon"}
               aria-hidden={"false"}
             />
             <div type="link" style={styles.editLink}>
@@ -63,7 +63,13 @@ export default function AppointmentDetails({
             sxRow={{ justifyContent: "unset" }}
             sxText={{ paddingLeft: "4px", color: colors.darkGreen }}
           >
-            <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
+            <Typography
+              variant="bodyMedium"
+              sx={{ color: colors.darkGreen }}
+              data-testid={
+                TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_DETAILS.date
+              }
+            >
               {formatAppointmentDate(appointmentData.date)}
             </Typography>
           </LabelWithInfo>

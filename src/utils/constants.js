@@ -162,22 +162,32 @@ module.exports = {
     },
     SEARCH_PROVIDER_TEST_ID: {
       viewAll: "loc_viewAll",
+      hourButton: "loc_hourButton",
     },
     SUBNAVIGATION: "subNavigation-link",
     SCHEDULE_APPOINTMENT_TEST_ID: {
       APPOINTMENT_LOCATION: {
         editButton: "schedule_appointment_location_edit_button",
+        address: "schedule_appointment_location_address",
       },
       APPOINTMENT_DETAILS: {
         editButton: "schedule_appointment_details_edit_button",
+        date: "schedule_appointment_location_date",
       },
       step2Button: "schedule_appointment_step2_button",
+      DIALOG_CONFIRMATION_RESCHEDULE: {
+        confirmBtn: "schedule_appointment_dialog_reschedule_confirm_button",
+        denyBtn: "schedule_appointment_dialog_reschedule_deny_button",
+      },
     },
     APPOINTMENTS_TEST_ID: {
       upcomingAppointmentsHeader: "appointments_upcoming_appointments_header",
-      cancelAppointmentButton: "appointments_upcoming_appointments_cancel_button",
-      rescheduleAppointmentButton: "appointments_upcoming_appointments_reschedule_button",
-      confirmRescheduleButton: "appointments_upcoming_appointments_confirm_reschedule_button"
+      cancelAppointmentButton:
+        "appointments_upcoming_appointments_cancel_button",
+      rescheduleAppointmentButton:
+        "appointments_upcoming_appointments_reschedule_button",
+      confirmRescheduleButton:
+        "appointments_upcoming_appointments_confirm_reschedule_button",
     },
     MAP_INFO_WINDOW: {
       previousProvider: "provider_btnPrevious",

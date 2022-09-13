@@ -16,6 +16,7 @@ import {
   setIsFilterApplied,
   setProviderListData,
 } from "../../store/appointment";
+import { parseSuggestionData } from "../../utils/appointment";
 import FilterResultHeading from "../../components/molecules/FilterResultHeading/filterResultHeading";
 import { Box } from "@mui/system";
 
@@ -40,7 +41,7 @@ export default function HomePage() {
   const [prescriptionData, setPrescriptionData] = React.useState({});
   const [appointmentData, setAppointmentData] = React.useState({});
   const filterData = useSelector((state) => state.appointment.filterData);
-  const isDesktop = useMediaQuery("(min-width: 834px)");
+  const isDesktop = useMediaQuery("(min-width: 900px)");
   const { coords, isGeolocationEnabled } = useGeolocated({
     positionOptions: {
       enableHighAccuracy: false,
@@ -96,7 +97,7 @@ export default function HomePage() {
         dispatch(setProviderListData([]));
       })
       .finally(function () {
-        router.push("/patient");
+        router.push("/patient/appointment");
       });
   }
 
@@ -124,6 +125,10 @@ export default function HomePage() {
       .catch(function () {
         //Handle error getAllAppointment
       });
+  }
+
+  function onViewPrescriptions() {
+    //TO DO: will navigate to prescription view page
   }
 
   useEffect(() => {
@@ -188,7 +193,10 @@ export default function HomePage() {
         }}
       >
         <Grid item xs={5} sm={5} md={2}>
-          <Prescriptions prescriptionData={prescriptionData} />
+          <Prescriptions
+            prescriptionData={prescriptionData}
+            onViewPrescriptions={onViewPrescriptions}
+          />
         </Grid>
         <Grid item xs={5} sm={5} md={3}>
           <AppointmentCard appointmentData={appointmentData} />

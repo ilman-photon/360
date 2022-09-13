@@ -10,6 +10,9 @@ import constants, { TEST_ID } from "../../src/utils/constants";
 import mediaQuery from 'css-mediaquery';
 import { Login } from "../../src/components/organisms/Login/login";
 import Appointments from "../../src/pages/patient/appointments";
+import RescheduleAppointments from "../../src/pages/patient/appointments/[appointmentId]/reschedule";
+import FilterResult from "../../src/components/molecules/FilterResult/filterResult";
+import ScheduleAppointmentPage from "../../src/pages/patient/schedule-appointment";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
 const feature = loadFeature(
@@ -27,6 +30,320 @@ useRouter.mockReturnValue({
   }
 });
 window.scrollTo = jest.fn();
+
+const providerList = [
+  {
+    providerId: "1",
+    address: {
+      addressLine1: "51 West 51st Street",
+      addressLine2: "Floor 3, Suite 320 Midtown",
+      city: "Florida",
+      state: "FR",
+      zipcode: "54231",
+    },
+    rating: "5",
+    name: "Paul Wagner Md",
+    phoneNumber: "(123) 123-4567",
+    distance: "10 mi",
+    image: "/doctor.png",
+    from: "2022-09-19",
+    to: "2022-09-24",
+    availability: [
+      {
+        date: "2022-09-19",
+        list: [
+          {
+            time: "11:30am",
+            key: 12222,
+          },
+        ],
+      },
+      {
+        date: "2022-09-20",
+        list: [
+          {
+            time: "08:00am",
+            key: 12223,
+          },
+          {
+            time: "10:30am",
+            key: 12224,
+          },
+          {
+            time: "11:00am",
+            key: 12225,
+          },
+          {
+            time: "12:00pm",
+            key: 12226,
+          },
+          {
+            time: "13:00pm",
+            key: 12227,
+          },
+          {
+            time: "14:00pm",
+            key: 12228,
+          },
+        ],
+      },
+      {
+        date: "2022-09-21",
+        list: [
+          {
+            time: "08:30am",
+            key: 12229,
+          },
+          {
+            time: "10:30am",
+            key: 12230,
+          },
+        ],
+      },
+      {
+        date: "2022-09-22",
+        list: [
+          {
+            time: "09:30am",
+            key: 12237,
+          },
+          {
+            time: "11:00am",
+            key: 12238,
+          },
+        ],
+      },
+      {
+        date: "2022-09-23",
+        list: [
+          {
+            time: "09:30am",
+            key: 12239,
+          },
+        ],
+      },
+      {
+        date: "2022-09-24",
+        list: [
+          {
+            time: "09:30am",
+            key: 12240,
+          },
+        ],
+      },
+    ],
+    coordinate: {
+      latitude: 32.751204,
+      longitude: -117.1641166,
+    },
+  },
+  {
+    providerId: "2",
+    address: {
+      addressLine1: "51 West 51st Street",
+      addressLine2: "Floor 3, Suite 320 Midtown",
+      city: "Florida",
+      state: "FR",
+      zipcode: "54231",
+    },
+    rating: "5",
+    name: "Paul Wagner Md",
+    phoneNumber: "(123) 123-4567",
+    distance: "10 mi",
+    image: "/doctor.png",
+    from: "2022-09-19",
+    to: "2022-09-24",
+    availability: [
+      {
+        date: "2022-09-19",
+        list: [
+          {
+            time: "11:30am",
+            key: 12222,
+          },
+        ],
+      },
+      {
+        date: "2022-09-20",
+        list: [
+          {
+            time: "08:00am",
+            key: 12223,
+          },
+          {
+            time: "10:30am",
+            key: 12224,
+          },
+          {
+            time: "11:00am",
+            key: 12225,
+          },
+          {
+            time: "12:00pm",
+            key: 12226,
+          },
+          {
+            time: "13:00pm",
+            key: 12227,
+          },
+          {
+            time: "14:00pm",
+            key: 12228,
+          },
+        ],
+      },
+      {
+        date: "2022-09-21",
+        list: [
+          {
+            time: "08:30am",
+            key: 12229,
+          },
+        ],
+      },
+      {
+        date: "2022-09-22",
+        list: [
+          {
+            time: "09:30am",
+            key: 12237,
+          },
+          {
+            time: "11:00am",
+            key: 12238,
+          },
+        ],
+      },
+      {
+        date: "2022-09-23",
+        list: [
+          {
+            time: "09:30am",
+            key: 12239,
+          },
+        ],
+      },
+      {
+        date: "2022-09-24",
+        list: [
+          {
+            time: "09:30am",
+            key: 12240,
+          },
+        ],
+      },
+    ],
+    coordinate: {
+      latitude: 32.751204,
+      longitude: -117.1641166,
+    },
+  },
+  {
+    providerId: "3",
+    name: "Paul Wagner Md",
+    address: {
+      addressLine1: "51 West 51st Street",
+      addressLine2: "Floor 3, Suite 320 Midtown",
+      city: "Florida",
+      state: "FR",
+      zipcode: "54231",
+    },
+    rating: "5",
+    phoneNumber: "(123) 123-4567",
+    distance: "10 mi",
+    image: "/doctor.png",
+    from: "2022-09-19",
+    to: "2022-09-24",
+    availability: [
+      {
+        date: "2022-09-19",
+        list: [
+          {
+            time: "11:30am",
+            key: 12222,
+          },
+        ],
+      },
+      {
+        date: "2022-09-20",
+        list: [
+          {
+            time: "08:00am",
+            key: 12223,
+          },
+          {
+            time: "10:30am",
+            key: 12224,
+          },
+          {
+            time: "11:00am",
+            key: 12225,
+          },
+          {
+            time: "12:00pm",
+            key: 12226,
+          },
+          {
+            time: "13:00pm",
+            key: 12227,
+          },
+          {
+            time: "14:00pm",
+            key: 12228,
+          },
+        ],
+      },
+      {
+        date: "2022-09-21",
+        list: [
+          {
+            time: "08:30am",
+            key: 12229,
+          },
+          {
+            time: "10:30am",
+            key: 12230,
+          },
+        ],
+      },
+      {
+        date: "2022-09-22",
+        list: [
+          {
+            time: "09:30am",
+            key: 12237,
+          },
+          {
+            time: "11:00am",
+            key: 12238,
+          },
+        ],
+      },
+      {
+        date: "2022-09-23",
+        list: [
+          {
+            time: "09:30am",
+            key: 12239,
+          },
+        ],
+      },
+      {
+        date: "2022-09-24",
+        list: [
+          {
+            time: "09:30am",
+            key: 12240,
+          },
+        ],
+      },
+    ],
+    coordinate: {
+      latitude: 32.751204,
+      longitude: -117.1641166,
+    },
+  },
+];
 
 const userData = {
   appointmentList: [
@@ -739,38 +1056,216 @@ defineFeature(feature, (test) => {
 		});
 	}
 
+  async function isLoggedIn () {
+    const mockOnLoginClicked = jest.fn((data, route, callback) => {
+      callback({
+        status: "success",
+      });
+    });
+    act(() => {
+      container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+    })
+    const usernameField = container.getByLabelText("emailUserLabel")
+    const passwordField = container.getByLabelText("passwordLabel");
+    act(() => {
+      fireEvent.change(usernameField, { target: { value: "wrongUserName" } });
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+    })
+    expect(usernameField.value).not.toEqual("validUsername");
+    expect(passwordField.value).toEqual("validPassword");
+    const login = container.getByRole("button", { name: /Login/i });
+    fireEvent.click(login);
+
+    const mock = new MockAdapter(axios);
+    const expectedResult = {
+      ResponseCode: 2001,
+      ResponseType: "failure",
+      userType: "patient",
+    };
+    mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
+  }
+
+  async function userInAppointmentsPage () {
+    mock
+      .onGet(`${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment`)
+      .reply(200, userData);
+    act(() => {
+      container.rerender(
+        <Provider store={store}>
+          {Appointments.getLayout(<Appointments />)}
+        </Provider>
+      );
+    });
+    await waitFor(() => {
+      container.getByText(/Upcoming appointments/i)
+    })
+
+    expect(container.getByText(/Upcoming appointments/i).textContent).toEqual("Upcoming appointments")
+  }
+
+  async function userSeeListAppointment () {
+    await waitFor(() => {
+      container.getByText(/Upcoming appointments/i)
+    })
+
+    expect(container.getByText(/Upcoming appointments/i).textContent).toEqual("Upcoming appointments")
+  }
+
+  async function userSeeRescheduleAndCancel () {
+    const cancelBtn = await waitFor(() => container.getAllByTestId(TEST_ID.APPOINTMENTS_TEST_ID.cancelAppointmentButton)[0])
+    const rescheduleBtn = await waitFor(() => container.getAllByTestId(TEST_ID.APPOINTMENTS_TEST_ID.rescheduleAppointmentButton)[0])
+    expect(cancelBtn).toBeInTheDocument()
+    expect(rescheduleBtn).toBeInTheDocument()
+  }
+
+  async function userClickReschedule () {
+    const rescheduleButtons =await waitFor(() => container.getAllByTestId(TEST_ID.APPOINTMENTS_TEST_ID.rescheduleAppointmentButton))
+    act(() => {
+      fireEvent.click(rescheduleButtons[0]);
+      
+      container.rerender(
+        <Provider store={store}>
+          {RescheduleAppointments.getLayout(<RescheduleAppointments />)}
+        </Provider>
+      );
+    })
+    await waitFor(() => {
+      container.getByText(/Reschedule Appointment/i);
+      expect(container.getByText(/Reschedule Appointment/i)).toBeInTheDocument();
+    });
+  }
+
+  async function userViewLocationWithEdit () {
+    await waitFor(() => container.getByTestId(TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_LOCATION.address))
+    const editButton = await waitFor(() => container.getByTestId(TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_LOCATION.editButton))
+
+    act(() => {
+      fireEvent.click(editButton);
+    })
+  }
+
+  async function userViewDateWithEdit () {
+    await waitFor(() => container.getByTestId(TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_DETAILS.date))
+    const editButton = await waitFor(() => container.getByTestId(TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_DETAILS.editButton))
+
+    act(() => {
+      fireEvent.click(editButton);
+    })
+  }
+
+  async function userViewTimeSlotResult () {
+    const mockGeolocation = {
+      getCurrentPosition: jest.fn(),
+      watchPosition: jest.fn()
+    };
+    const domain = window.location.origin;
+    mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGGESTION_DATA);
+    mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(200, mockSubmitFilter);
+    global.navigator.geolocation = mockGeolocation;
+    window.matchMedia = createMatchMedia('1920px');
+    act(() => {
+      container.rerender(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment />)}
+        </Provider>
+      );
+    })
+    await waitFor(() => {
+      container.getByText(/City, state, or zip/i);
+      expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
+    });
+  }
+
+  async function userViewPurposeWithEdit () {
+    const purposeInput = await waitFor(() => container.getByTestId("select-purposes-of-visit"))
+    act(() => {
+      fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
+    });
+  }
+
+  async function userViewInsuranceWithEdit () {
+    const insuranceInput = await waitFor(() => container.getByLabelText("Insurance Carrier"))
+    act(() => {
+      fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
+    });
+
+    const searchBtn = await waitFor(() => container.getByTestId(APPOINTMENT_TEST_ID.searchbtn))
+    fireEvent.click(searchBtn)
+
+    const rangeDate = { startDate: "2022-10-10", endDate: "2022-10-15" };
+    container.rerender(
+      <FilterResult
+        isDesktop={true}
+        providerList={providerList}
+        rangeDate={rangeDate}
+        purposeOfVisitData={[]}
+        insuranceCarrierData={[]}
+        googleApiKey={"Test"}
+        filterData={{
+          location: "",
+          date: "",
+          purposeOfVisit: "",
+          insuranceCarrier: "",
+        }}
+      />
+    );
+    expect(
+      await waitFor(() =>
+        container.getByTestId(APPOINTMENT_TEST_ID.FILTER_RESULT.container)
+      )
+    ).toBeInTheDocument();
+
+    const timeslotButton = await waitFor(() => container.getAllByTestId(SEARCH_PROVIDER_TEST_ID.hourButton))
+    act(() => {
+      fireEvent.click(timeslotButton[0])
+    })
+  }
+
+  async function userNavigatesToSchedulePage () {
+    act(() => {
+      container.rerender(
+        <Provider store={store}>
+          {ScheduleAppointmentPage.getLayout(<ScheduleAppointmentPage />)}
+        </Provider>
+      );
+    })
+  }
+
+  async function userViewScheduleButton () {
+    await waitFor(() => container.getByText("Review appointment details"));
+
+      const scheduleBtn = await waitFor(() => container.getByText(/Schedule Appointment/i))
+      act(() => {
+        fireEvent.click(scheduleBtn)
+      })
+  }
+
+  async function userPromptedWithConfirmationDialog () {
+    const dialogConfirmation = await waitFor(() => container.getByText("Are you sure you want to reschedule?"))
+    expect(dialogConfirmation).toBeInTheDocument()
+  }
+
+  async function userClickConfirmReschedule () {
+    const confirmBtn = await waitFor(() => container.getByTestId(TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.DIALOG_CONFIRMATION_RESCHEDULE.confirmBtn))
+    act(() => {
+      fireEvent.click(confirmBtn)
+    })
+  }
+
+  async function userClickDenyReschedule () {
+    const denyBtn = await waitFor(() => container.getByTestId(TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.CONFIRMATION_RESCHEDULE.denyBtn))
+    act(() => {
+      fireEvent.click(denyBtn)
+    })
+  }
+
   test('EPIC_EPP-45_STORY_EPP-1602 - Verify user should receive an email based on their registered mail-id when user reschedule upcoming appointment list', ({ given, when, and, then }) => {
     given('user launch Patient Portal url', () => {
       defaultValidation()
     });
 
     when('user is logged in to the application', () => {
-      const mockOnLoginClicked = jest.fn((data, route, callback) => {
-        callback({
-          status: "success",
-        });
-      });
-      act(() => {
-        container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-      })
-      const usernameField = container.getByLabelText("emailUserLabel")
-      const passwordField = container.getByLabelText("passwordLabel");
-      act(() => {
-        fireEvent.change(usernameField, { target: { value: "wrongUserName" } });
-        fireEvent.change(passwordField, { target: { value: "validPassword" } });
-      })
-      expect(usernameField.value).not.toEqual("validUsername");
-      expect(passwordField.value).toEqual("validPassword");
-      const login = container.getByRole("button", { name: /Login/i });
-      fireEvent.click(login);
-
-      const mock = new MockAdapter(axios);
-      const expectedResult = {
-        ResponseCode: 2001,
-        ResponseType: "failure",
-        userType: "patient",
-      };
-      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
+      isLoggedIn()
     });
 
     and('user clicks to “Appointments” menu', async () => {
@@ -782,362 +1277,359 @@ defineFeature(feature, (test) => {
     });
 
     and('user lands on \'Appointments\' screen', async () => {
-      mock
-        .onGet(`${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment`)
-        .reply(200, userData);
-      act(() => {
-        container.rerender(
-          <Provider store={store}>
-            {Appointments.getLayout(<Appointments />)}
-          </Provider>
-        );
-      });
-      await waitFor(() => {
-        container.getByText(/Upcoming appointments/i)
-      })
-
-      expect(container.getByText(/Upcoming appointments/i).textContent).toEqual("Upcoming appointments")
+      userInAppointmentsPage()
     });
 
     and('user should see list of upcoming appointment', async () => {
-      await waitFor(() => {
-        container.getByText(/Upcoming appointments/i)
-      })
-
-      expect(container.getByText(/Upcoming appointments/i).textContent).toEqual("Upcoming appointments")
+      userSeeListAppointment()
     });
 
     and('user should see reschedule and cancel each of them', async () => {
-      const cancelBtn = await waitFor(() => container.getAllByTestId(TEST_ID.APPOINTMENTS_TEST_ID.cancelAppointmentButton)[0])
-      const rescheduleBtn = await waitFor(() => container.getAllByTestId(TEST_ID.APPOINTMENTS_TEST_ID.rescheduleAppointmentButton)[0])
-      expect(cancelBtn).toBeInTheDocument()
-      expect(rescheduleBtn).toBeInTheDocument()
+      userSeeRescheduleAndCancel()
     });
 
     and('user clicks on the reschedule an appointment', async () => {
-      const rescheduleButtons =await waitFor(() => container.getAllByTestId(TEST_ID.APPOINTMENTS_TEST_ID.rescheduleAppointmentButton))
-      act(() => {
-        fireEvent.click(rescheduleButtons[0]);
-      })
-      
-      const confirmButton = await waitFor(() => container.getByTestId(TEST_ID.APPOINTMENTS_TEST_ID.confirmRescheduleButton))
-      act(() => {
-        fireEvent.click(confirmButton);
-      })
-      
-      const mockGeolocation = {
-				getCurrentPosition: jest.fn(),
-				watchPosition: jest.fn()
-			};
-			const domain = window.location.origin;
-			mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGGESTION_DATA);
-			mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(200, mockSubmitFilter);
-			global.navigator.geolocation = mockGeolocation;
-			window.matchMedia = createMatchMedia('1920px');
-			act(() => {
-				container = render(
-					<Provider store={store}>
-						{Appointment.getLayout(<Appointment />)}
-					</Provider>
-				);
-			})
-			await waitFor(() => {
-				container.getByText(/City, state, or zip/i);
-				expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
-			});
+      userClickReschedule()
     });
 
     and('user view the selected location and able to change', async () => {
-      const locationInput = await waitFor(() => container.getByLabelText("City, state, or zip code"))
-      act(() => {
-        fireEvent.change(locationInput, { target: { value: "Texas" } });
-      });
+      userViewLocationWithEdit()
     });
 
     and('user view the selected Date of the appointment and able to change', async () => {
-      const dateInput = await waitFor(() => container.getByLabelText("Date"))
-      act(() => {
-        fireEvent.change(dateInput, { target: { value: "22-09-2022" } });
-      });
+      userViewDateWithEdit()
     });
 
-    and('user view the selected time-slot and able to change', () => {
-      defaultValidation()
+    and('user view the selected time-slot and able to change', async () => {
+      userViewTimeSlotResult()
     });
 
     and('user view the selected purpose of visit and able to change', async () => {    
-      const purposeInput = await waitFor(() => container.getByTestId("select-purposes-of-visit"))
-      act(() => {
-        fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
-      });
+      userViewPurposeWithEdit()
     });
 
     and('user view the selected Insurance Career and able to change', async () => {    
-      const insuranceInput = await waitFor(() => container.getByLabelText("Insurance Carrier"))
-      act(() => {
-        fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
-      });
-
-      const timeslotButton = await waitFor(() => container.getAllByTestId(APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.timeslotButton))
-      act(() => {
-        fireEvent.click(timeslotButton[0])
-      })
+      userViewInsuranceWithEdit()
     });
 
     then('user navigates to review the updated details', async () => {
-      mock
-        .onGet(`${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment`)
-        .reply(200, userData);
-      act(() => {
-        container.rerender(
-          <Provider store={store}>
-            {Appointments.getLayout(<Appointments />)}
-          </Provider>
-        );
-      });
-      await waitFor(() => {
-        container.getByText(/Upcoming appointments/i)
-      })
-
-      expect(container.getByText(/Upcoming appointments/i).textContent).toEqual("Upcoming appointments")
+      userNavigatesToSchedulePage()
     });
 
-    and('user view an option to reschedule the appointment', () => {
-
+    and('user view an option to reschedule the appointment', async () => {
+      userViewScheduleButton()
     });
 
     and('user prompted with a confirmation message “Are you sure you want to reschedule?” with option to confirm and deny', () => {
-
+      userPromptedWithConfirmationDialog()
     });
 
     and('user clicks on the confirm botton', () => {
-
+      userClickConfirmReschedule()
     });
 
     and('user receive an email regarding the reschedule', () => {
-
+      defaultValidation()
     });
 
-    and('user navigated to \'Appointments\' screen to see the updated details under upcoming appointments', () => {
+    and('user navigated to \'Appointments\' screen to see the updated details under upcoming appointments', async () => {
+      userInAppointmentsPage()
+    });
+  });
 
+  test('EPIC_EPP-45_STORY_EPP-1602 - Verify user should receive an email based on their registered phone number when user reshedulle upcoming appointment list', ({ given, when, and, then }) => {
+    given('user launch Patient Portal url', () => {
+      defaultValidation()
+    });
+
+    when('user is logged in to the application', () => {
+      isLoggedIn()
+    });
+
+    and('user clicks to “Appointments” menu', async () => {
+      defaultValidation()
+    });
+
+    then('user navigates to “Appointments” screen', () => {
+      defaultValidation()
+    });
+
+    and('user lands on \'Appointments\' screen', async () => {
+      userInAppointmentsPage()
+    });
+
+    and('user should see list of upcoming appointment', async () => {
+      userSeeListAppointment()
+    });
+
+    and('user should see reschedule and cancel each of them', async () => {
+      userSeeRescheduleAndCancel()
+    });
+
+    and('user clicks on the reschedule an appointment', async () => {
+      userClickReschedule()
+    });
+
+    and('user view the selected location and able to change', async () => {
+      userViewLocationWithEdit()
+    });
+
+    and('user view the selected Date of the appointment and able to change', async () => {
+      userViewDateWithEdit()
+    });
+
+    and('user view the selected time-slot and able to change', async () => {
+      userViewTimeSlotResult()
+    });
+
+    and('user view the selected purpose of visit and able to change', async () => {    
+      userViewPurposeWithEdit()
+    });
+
+    and('user view the selected Insurance Career and able to change', async () => {    
+      userViewInsuranceWithEdit()
+    });
+
+    then('user navigates to review the updated details', async () => {
+      userNavigatesToSchedulePage()
+    });
+
+    and('user view an option to reschedule the appointment', async () => {
+      userViewScheduleButton()
+    });
+
+    and('user prompted with a confirmation message “Are you sure you want to reschedule?” with option to confirm and deny', () => {
+      userPromptedWithConfirmationDialog()
+    });
+
+    and('user clicks on the confirm botton', () => {
+      userClickConfirmReschedule()
+    });
+
+    and('user receive an email regarding the reschedule', () => {
+      defaultValidation()
+    });
+
+    and('user navigated to \'Appointments\' screen to see the updated details under upcoming appointments', async () => {
+      userInAppointmentsPage()
     });
   });
 
   test('EPIC_EPP-45_STORY_EPP-1602 - Verify user should receive an text message based on their registered phone number when user reshedulle upcoming appointment list', ({ given, when, and, then }) => {
     given('user launch Patient Portal url', () => {
-
+      defaultValidation()
     });
 
     when('user is logged in to the application', () => {
-
+      isLoggedIn()
     });
 
-    and('user clicks to “Appointments” menu', () => {
-
+    and('user clicks to “Appointments” menu', async () => {
+      defaultValidation()
     });
 
     then('user navigates to “Appointments” screen', () => {
-
+      defaultValidation()
     });
 
-    and('user lands on \'Appointments\' screen', () => {
-
+    and('user lands on \'Appointments\' screen', async () => {
+      userInAppointmentsPage()
     });
 
-    and('user should see list of upcoming appointment', () => {
-
+    and('user should see list of upcoming appointment', async () => {
+      userSeeListAppointment()
     });
 
-    and('user should see reschedule and cancel each of them', () => {
-
+    and('user should see reschedule and cancel each of them', async () => {
+      userSeeRescheduleAndCancel()
     });
 
-    and('user clicks on the reschedule an appointment', () => {
-
+    and('user clicks on the reschedule an appointment', async () => {
+      userClickReschedule()
     });
 
-    and('user view the selected location and able to change', () => {
-
+    and('user view the selected location and able to change', async () => {
+      userViewLocationWithEdit()
     });
 
-    and('user view the selected Date of the appointment and able to change', () => {
-
+    and('user view the selected Date of the appointment and able to change', async () => {
+      userViewDateWithEdit()
     });
 
-    and('user view the selected time-slot and able to change', () => {
-
+    and('user view the selected time-slot and able to change', async () => {
+      userViewTimeSlotResult()
     });
 
-    and('user view the selected purpose of visit and able to change', () => {    
-
+    and('user view the selected purpose of visit and able to change', async () => {    
+      userViewPurposeWithEdit()
     });
 
-    and('user view the selected Insurance Career and able to change', () => {    
-
+    and('user view the selected Insurance Career and able to change', async () => {    
+      userViewInsuranceWithEdit()
     });
 
-    then('user navigates to review the updated details', () => {
-
+    then('user navigates to review the updated details', async () => {
+      userNavigatesToSchedulePage()
     });
 
-    and('user view an option to reschedule the appointment', () => {
-
+    and('user view an option to reschedule the appointment', async () => {
+      userViewScheduleButton()
     });
 
     and('user prompted with a confirmation message “Are you sure you want to reschedule?” with option to confirm and deny', () => {
-
+      userPromptedWithConfirmationDialog()
     });
 
     and('user clicks on the confirm botton', () => {
-
+      userClickConfirmReschedule()
     });
 
     and('user receive the text message regarding the rescheduled Appointment', () => {
-
+      defaultValidation()
     });
 
-    and('user navigated to \'Appointments\' screen to see the updated details under upcoming appointments', () => {
-
+    and('user navigated to \'Appointments\' screen to see the updated details under upcoming appointments', async () => {
+      userInAppointmentsPage()
     });
   });
 
   test('EPIC_EPP-45_STORY_EPP-1602 - Verify the user is able to see the "confirm and deny" option', ({ given, when, and, then }) => {
     given('user launch Patient Portal url', () => {
-
+      defaultValidation()
     });
 
     when('user is logged in to the application', () => {
-
+      isLoggedIn()
     });
 
-    and('user clicks to “Appointments” menu', () => {
-
+    and('user clicks to “Appointments” menu', async () => {
+      defaultValidation()
     });
 
     then('user navigates to “Appointments” screen', () => {
-
+      defaultValidation()
     });
 
-    and('user lands on \'Appointments\' screen', () => {
-
+    and('user lands on \'Appointments\' screen', async () => {
+      userInAppointmentsPage()
     });
 
-    and('user should see list of upcoming appointment', () => {
-
+    and('user should see list of upcoming appointment', async () => {
+      userSeeListAppointment()
     });
 
-    and('user should see reschedule and cancel each of them', () => {
-
+    and('user should see reschedule and cancel each of them', async () => {
+      userSeeRescheduleAndCancel()
     });
 
-    and('user clicks on the reschedule an appointment', () => {
-
+    and('user clicks on the reschedule an appointment', async () => {
+      userClickReschedule()
     });
 
-    and('user view the selected location and able to change', () => {
-
+    and('user view the selected location and able to change', async () => {
+      userViewLocationWithEdit()
     });
 
-    and('user view the selected Date of the appointment and able to change', () => {
-
+    and('user view the selected Date of the appointment and able to change', async () => {
+      userViewDateWithEdit()
     });
 
-    and('user view the selected time-slot and able to change', () => {
-
+    and('user view the selected time-slot and able to change', async () => {
+      userViewTimeSlotResult()
     });
 
-    and('user view the selected purpose of visit and able to change', () => {    
-
+    and('user view the selected purpose of visit and able to change', async () => {    
+      userViewPurposeWithEdit()
     });
 
-    and('user view the selected Insurance Career and able to change', () => {    
-
+    and('user view the selected Insurance Career and able to change', async () => {    
+      userViewInsuranceWithEdit()
     });
 
-    then('user navigates to review the updated details', () => {
-
+    then('user navigates to review the updated details', async () => {
+      userNavigatesToSchedulePage()
     });
 
-    and('user view an option to reschedule the appointment', () => {
-
+    and('user view an option to reschedule the appointment', async () => {
+      userViewScheduleButton()
     });
 
     and('user prompted with a confirmation message “Are you sure you want to reschedule?” with an option to confirm and deny', () => {
-
+      userPromptedWithConfirmationDialog()
     });
   });
 
   test('EPIC_EPP-45_STORY_EPP-1602 - Verify user should be able to deny and gets redirected back to the “Appointments” screen when the user reschedules the upcoming appointment list', ({ given, when, and, then }) => {
     given('user launch Patient Portal url', () => {
-
+      defaultValidation()
     });
 
     when('user is logged in to the application', () => {
-
+      isLoggedIn()
     });
 
-    and('user clicks to “Appointments” menu', () => {
-
+    and('user clicks to “Appointments” menu', async () => {
+      defaultValidation()
     });
 
     then('user navigates to “Appointments” screen', () => {
-
+      defaultValidation()
     });
 
-    and('user lands on \'Appointments\' screen', () => {
-
+    and('user lands on \'Appointments\' screen', async () => {
+      userInAppointmentsPage()
     });
 
-    and('user should see list of upcoming appointment', () => {
-
+    and('user should see list of upcoming appointment', async () => {
+      userSeeListAppointment()
     });
 
-    and('user should see reschedule and cancel each of them', () => {
-
+    and('user should see reschedule and cancel each of them', async () => {
+      userSeeRescheduleAndCancel()
     });
 
-    and('user clicks on the reschedule an appointment', () => {
-
+    and('user clicks on the reschedule an appointment', async () => {
+      userClickReschedule()
     });
 
-    and('user view the selected location and able to change', () => {
-
+    and('user view the selected location and able to change', async () => {
+      userViewLocationWithEdit()
     });
 
-    and('user view the selected Date of the appointment and able to change', () => {
-
+    and('user view the selected Date of the appointment and able to change', async () => {
+      userViewDateWithEdit()
     });
 
-    and('user view the selected time-slot and able to change', () => {
-
+    and('user view the selected time-slot and able to change', async () => {
+      userViewTimeSlotResult()
     });
 
-    and('user view the selected purpose of visit and able to change', () => {    
-
+    and('user view the selected purpose of visit and able to change', async () => {    
+      userViewPurposeWithEdit()
     });
 
-    and('user view the selected Insurance Career and able to change', () => {    
-
+    and('user view the selected Insurance Career and able to change', async () => {    
+      userViewInsuranceWithEdit()
     });
 
-    then('user navigates to review the updated details', () => {
-
+    then('user navigates to review the updated details', async () => {
+      userNavigatesToSchedulePage()
     });
 
-    and('user view an option to reschedule the appointment', () => {
-
+    and('user view an option to reschedule the appointment', async () => {
+      userViewScheduleButton()
     });
 
     and('user prompted with a confirmation message “Are you sure you want to reschedule?” with option to confirm and deny', () => {
-
+      userPromptedWithConfirmationDialog()
     });
 
     and('user clicks on the Deny button', () => {
-
+      userClickDenyReschedule()
     });
 
     and('user navigated to the \'Appointments\' screen to see the updated details under upcoming appointments', () => {
-
+      userInAppointmentsPage()
     });
   });
 
@@ -1305,146 +1797,6 @@ defineFeature(feature, (test) => {
     });
 
     and('user navigated to \'Appointments\' screen to see the updated details under upcoming appointments', () => {
-
-    });
-  });
-
-  test('EPIC_EPP-45_STORY_EPP-1602 - Verify the user is able to see the "confirm and deny" option', ({ given, when, and, then }) => {
-    given('user launch Patient Portal url', () => {
-
-    });
-
-    when('user is logged in to the application', () => {
-
-    });
-
-    and('user clicks to “Appointments” menu', () => {
-
-    });
-
-    then('user navigates to “Appointments” screen', () => {
-
-    });
-
-    and('user lands on \'Appointments\' screen', () => {
-
-    });
-
-    and('user should see list of upcoming appointment', () => {
-
-    });
-
-    and('user should see reschedule and cancel each of them', () => {
-
-    });
-
-    and('user clicks on the reschedule an appointment', () => {
-
-    });
-
-    and('user view the selected location and able to change', () => {
-
-    });
-
-    and('user view the selected Date of the appointment and able to change', () => {
-
-    });
-
-    and('user view the selected time-slot and able to change', () => {
-
-    });
-
-    and('user view the selected purpose of visit and able to change', () => {    
-
-    });
-
-    and('user view the selected Insurance Career and able to change', () => {    
-
-    });
-
-    then('user navigates to review the updated details', () => {
-
-    });
-
-    and('user view an option to reschedule the appointment', () => {
-
-    });
-
-    and('user prompted with a confirmation message “Are you sure you want to reschedule?” with an option to confirm and deny', () => {
-
-    });
-  });
-
-  test('EPIC_EPP-45_STORY_EPP-1602 - Verify user should be able to deny and gets redirected back to the “Appointments” screen when the user reschedules the upcoming appointment list', ({ given, when, and, then }) => {
-    given('user launch Patient Portal url', () => {
-
-    });
-
-    when('user is logged in to the application', () => {
-
-    });
-
-    and('user clicks to “Appointments” menu', () => {
-
-    });
-
-    then('user navigates to “Appointments” screen', () => {
-
-    });
-
-    and('user lands on \'Appointments\' screen', () => {
-
-    });
-
-    and('user should see list of upcoming appointment', () => {
-
-    });
-
-    and('user should see reschedule and cancel each of them', () => {
-
-    });
-
-    and('user clicks on the reschedule an appointment', () => {
-
-    });
-
-    and('user view the selected location and able to change', () => {
-
-    });
-
-    and('user view the selected Date of the appointment and able to change', () => {
-
-    });
-
-    and('user view the selected time-slot and able to change', () => {
-
-    });
-
-    and('user view the selected purpose of visit and able to change', () => {    
-
-    });
-
-    and('user view the selected Insurance Career and able to change', () => {    
-
-    });
-
-    then('user navigates to review the updated details', () => {
-
-    });
-
-    and('user view an option to reschedule the appointment', () => {
-
-    });
-
-    and('user prompted with a confirmation message “Are you sure you want to reschedule?” with option to confirm and deny', () => {
-
-    });
-
-    and('user clicks on the Deny button', () => {
-
-    });
-
-    and('user navigated to the \'Appointments\' screen to see the updated details under upcoming appointments', () => {
 
     });
   });

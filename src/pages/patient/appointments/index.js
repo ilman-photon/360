@@ -2,30 +2,22 @@ import AppointmentLayout from "../../../components/templates/appointmentLayout";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "../../../store/store";
 import UpcomingAppointment from "../../../components/organisms/UpcomingAppointment/upcomingAppointment";
-import {
-  Box,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogTitle,
-  Stack,
-} from "@mui/material";
+import { Box } from "@mui/material";
 import PastAppointment from "../../../components/organisms/PastAppointment/pastAppointment";
 import styles from "./styles.module.scss";
 import AccountTitleHeading from "../../../components/atoms/AccountTitleHeading/accountTitleHeading";
 import { Api } from "../../api/api";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useRouter } from "next/router";
-import { resetFilterData, setFilterData } from "../../../store/appointment";
-import { StyledButton } from "../../../components/atoms/Button/button";
-import { colors } from "../../../styles/theme";
+import {
+  setAppointmentSchedule,
+  setFilterData,
+} from "../../../store/appointment";
 import { setUserAppointmentData } from "../../../store/user";
 import { TEST_ID } from "../../../utils/constants";
 export default function Appointments() {
-  // const [appointments, setAppointments] = useState();
-  const [modalConfirmReschedule, setModalConfirmReschedule] = useState(false);
-
   const appointments = useSelector((state) => state.user.userAppointmentData);
+  const userData = useSelector((state) => state.user.userData);
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -52,29 +44,28 @@ export default function Appointments() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appointments]);
 
-  const handleConfirmReschedule = ({
+  const onRescheduleClicked = ({
     appointmentInfo,
     providerInfo = { address: {} },
   }) => {
-    const payload = {
+    const filterData = {
       purposeOfVisit: appointmentInfo.appointmentType,
       date: new Date(appointmentInfo.date),
       insuranceCarrier: Array.isArray(appointmentInfo.insuranceCarrier)
         ? appointmentInfo.insuranceCarrier[0]
         : appointmentInfo.insuranceCarrier,
-      location: providerInfo.address ? providerInfo.address.city : '-',
+      location: providerInfo.address ? providerInfo.address.city : "-",
     };
-    dispatch(setFilterData(payload));
-    setModalConfirmReschedule(true);
-  };
 
-  const handleCancelReschedule = () => {
-    dispatch(resetFilterData());
-    setModalConfirmReschedule(false);
-  };
+    const appointmentSchedule = {
+      providerInfo: providerInfo,
+      patientInfo: userData,
+      appointmentInfo: appointmentInfo,
+    };
+    dispatch(setFilterData(filterData));
+    dispatch(setAppointmentSchedule(appointmentSchedule));
 
-  const OnConfirmRescheduleAppointment = () => {
-    router.push("/patient/appointment?reschedule=true");
+    router.push("/patient/appointments/1/reschedule");
   };
 
   return (
@@ -90,50 +81,11 @@ export default function Appointments() {
         {appointments && (
           <UpcomingAppointment
             data={appointments[0]}
-            onRescheduleClicked={handleConfirmReschedule}
+            onRescheduleClicked={onRescheduleClicked}
           />
         )}
         {appointments && <PastAppointment data={appointments} />}
       </Box>
-
-      {/* confirmation dialog */}
-      <Dialog
-        onClose={handleCancelReschedule}
-        open={modalConfirmReschedule}
-        sx={{
-          ".MuiPaper-root": {
-            minWidth: "500px",
-          },
-          ".MuiDialogActions-root": {
-            padding: 2,
-          },
-        }}
-      >
-        <DialogTitle sx={{ color: colors.darkGreen, fontSize: "22px" }}>
-          Are you sure you want to reschedule?
-        </DialogTitle>
-        <DialogActions>
-          <Stack direction="row" alignItems="center" spacing={2}>
-            <StyledButton
-              size="small"
-              mode="secondary"
-              onClick={handleCancelReschedule}
-              sx={{ fontSize: "14px", px: "20px", py: "11px" }}
-            >
-              Cancel
-            </StyledButton>
-            <StyledButton
-              size="small"
-              mode="primary"
-              data-testid={TEST_ID.APPOINTMENTS_TEST_ID.confirmRescheduleButton}
-              onClick={OnConfirmRescheduleAppointment}
-              sx={{ fontSize: "14px", px: "20px", py: "11px" }}
-            >
-              Reschedule
-            </StyledButton>
-          </Stack>
-        </DialogActions>
-      </Dialog>
     </>
   );
 }

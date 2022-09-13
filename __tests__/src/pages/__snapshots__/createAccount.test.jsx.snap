@@ -381,12 +381,14 @@ exports[`App renders App unchanged 1`] = `
                   </div>
                 </div>
                 <div
-                  style="padding: 16px; border-radius: 4px; color: rgb(54, 106, 112); background-color: rgba(0, 149, 169, 0.051); margin: 8px; word-break: break-word;"
+                  style="padding: 16px; border-radius: 4px; color: rgb(54, 106, 112); background-color: rgb(237, 245, 254); margin: 8px; word-break: break-word;"
                 >
-                  <div>
+                  <span
+                    class="MuiTypography-root MuiTypography-bodyMedium css-1unqizc-MuiTypography-root"
+                  >
                     Your username will be 
                     (auto-populated email id/phone number)
-                  </div>
+                  </span>
                 </div>
                 <div
                   style="padding-bottom: 6px; margin: 8px 8px 16px 8px;"

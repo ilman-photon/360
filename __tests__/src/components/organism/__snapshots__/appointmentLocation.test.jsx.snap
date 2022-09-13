@@ -51,6 +51,7 @@ Object {
               class="MuiCardHeader-action css-sgoict-MuiCardHeader-action"
             >
               <button
+                aria-label="Edit"
                 class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1e6y48t-MuiButtonBase-root-MuiButton-root"
                 data-testid="schedule_appointment_location_edit_button"
                 tabindex="0"
@@ -58,7 +59,6 @@ Object {
               >
                 <svg
                   aria-hidden="false"
-                  aria-label="Edit icon"
                   class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1x727db-MuiSvgIcon-root"
                   data-testid="EditOutlinedIcon"
                   focusable="false"
@@ -81,16 +81,16 @@ Object {
             </div>
           </div>
           <div
-            class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
+            class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
           >
             <div
               class="css-1p5q5e5-MuiStack-root"
             >
               <div
-                class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+                class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
               >
                 <div
-                  class="MuiGrid-root css-1wgc5ak-MuiGrid-root"
+                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 MuiGrid-grid-md-6 css-1uh9cy0-MuiGrid-root"
                 >
                   <span
                     style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
@@ -106,7 +106,7 @@ Object {
                       />
                     </span>
                     <img
-                      alt="profile"
+                      alt="Doctors image"
                       data-nimg="intrinsic"
                       decoding="async"
                       src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
@@ -116,10 +116,9 @@ Object {
                   </span>
                 </div>
                 <div
-                  class="MuiGrid-root css-1dhf0bi-MuiGrid-root"
+                  class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-8 MuiGrid-grid-md-6 css-1dz3nth-MuiGrid-root"
                 >
                   <h4
-                    aria-label="Myself"
                     class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
                     style="color: rgb(0, 59, 74); font-size: 18px; font-weight: 700;"
                   />
@@ -195,6 +194,7 @@ Object {
             class="MuiCardHeader-action css-sgoict-MuiCardHeader-action"
           >
             <button
+              aria-label="Edit"
               class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1e6y48t-MuiButtonBase-root-MuiButton-root"
               data-testid="schedule_appointment_location_edit_button"
               tabindex="0"
@@ -202,7 +202,6 @@ Object {
             >
               <svg
                 aria-hidden="false"
-                aria-label="Edit icon"
                 class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1x727db-MuiSvgIcon-root"
                 data-testid="EditOutlinedIcon"
                 focusable="false"
@@ -225,16 +224,16 @@ Object {
           </div>
         </div>
         <div
-          class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
+          class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
         >
           <div
             class="css-1p5q5e5-MuiStack-root"
           >
             <div
-              class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
+              class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-2 css-mhc70k-MuiGrid-root"
             >
               <div
-                class="MuiGrid-root css-1wgc5ak-MuiGrid-root"
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-4 MuiGrid-grid-md-6 css-1uh9cy0-MuiGrid-root"
               >
                 <span
                   style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
@@ -250,7 +249,7 @@ Object {
                     />
                   </span>
                   <img
-                    alt="profile"
+                    alt="Doctors image"
                     data-nimg="intrinsic"
                     decoding="async"
                     src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
@@ -260,10 +259,9 @@ Object {
                 </span>
               </div>
               <div
-                class="MuiGrid-root css-1dhf0bi-MuiGrid-root"
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-8 MuiGrid-grid-md-6 css-1dz3nth-MuiGrid-root"
               >
                 <h4
-                  aria-label="Myself"
                   class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
                   style="color: rgb(0, 59, 74); font-size: 18px; font-weight: 700;"
                 />

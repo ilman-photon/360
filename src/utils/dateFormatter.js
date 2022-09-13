@@ -45,12 +45,18 @@ export function formatDate(payload, withTimezone) {
 
 export function formatAppointmentDate(date) {
   const momentDate = new moment(date);
-  const formatedDate = momentDate.format("dddd, MMM DD - h:mm a");
-  return formatedDate;
+  return momentDate.format("dddd, MMM DD - h:mm a");
 }
 
 export function ddmmyyDateFormat(date) {
   const momentDate = new moment(date);
-  const formatedDate = momentDate.format("DD/MM/YYYY");
-  return formatedDate;
+  return momentDate.format("DD/MM/YYYY");
+}
+
+export function fullDateFormat(date) {
+  const timezone = date.substring(date.length - 3);
+  const momentDate = new moment(date);
+  const time = momentDate.format("h:mm a");
+  const formatedDateTime = momentDate.format("ddd, MMM DD, YYYY");
+  return `${time} ${timezone}, ${formatedDateTime}`;
 }
