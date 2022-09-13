@@ -5,8 +5,9 @@ import AppointmentLayout from "../../../../../components/templates/appointmentLa
 import styles from "./styles.module.scss";
 import AppointmentLocation from "../../../../../components/organisms/ScheduleAppointment/appointmentLocation";
 import AppointmentDetails from "../../../../../components/organisms/ScheduleAppointment/appointmentDetails";
-import { useSelector } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import { useRouter } from "next/router";
+import store from "../../../../../store/store";
 
 export default function RescheduleAppointments() {
   const router = useRouter();
@@ -46,11 +47,13 @@ export default function RescheduleAppointments() {
 
 RescheduleAppointments.getLayout = function getLayout(page) {
   return (
-    <AppointmentLayout
-      currentActivePage={"Reschedule appointments"}
-      backTitle="Back to appointments"
-    >
-      {page}
-    </AppointmentLayout>
+    <Provider store={store}>
+      <AppointmentLayout
+        currentActivePage={"Reschedule appointments"}
+        backTitle="Back to appointments"
+      >
+        {page}
+      </AppointmentLayout>
+    </Provider>
   );
 };
