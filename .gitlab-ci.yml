@@ -120,7 +120,7 @@ deploy_to:
     # - mkdir -p $HOME/.kube
     # - echo -n $KUBE_CONFIG | base64 -d > $HOME/.kube/config
   script:
-    - aws eks --region us-east-1 update-kubeconfig --name $APP_NAME
+    - aws eks --region update-kubeconfig --name $APP_NAME
     - sed -i 's/TAG/'"$CI_PIPELINE_IID"'/g' ./deployment/deploy.yaml
     # - kubectl config view
     - kubectl apply -f `pwd`/deployment/deploy.yaml
