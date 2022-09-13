@@ -1,6 +1,17 @@
+.modalDialog {
+  width: auto;
+  @media (max-width: 556px) {
+    width: 100% !important;
+    margin: 0;
+  }
+}
+
 .boxModalContents {
   margin: 16px;
   width: 500px;
+  @media (max-width: 556px) {
+    width: auto;
+  }
 
   .scheduledText {
     font-weight: 500;

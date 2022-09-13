@@ -56,7 +56,7 @@ export default function ModalCancelContent({}) {
       </Typography>
       <DialogContent className={styles.checkBoxContainer}>
         <Box>
-          <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
+          <form onSubmit={handleSubmit(onSubmit)} style={{ display: "grid" }}>
             <Controller
               name="cancelSchedule"
               control={control}
@@ -82,6 +82,7 @@ export default function ModalCancelContent({}) {
                         flexDirection: "column",
                         padding: "0px",
                         margin: "0px",
+                        fontFamily: "Libre Franklin",
                       }}
                       sx={{
                         flexDirection: "column",
@@ -107,7 +108,7 @@ export default function ModalCancelContent({}) {
                         }) => {
                           return (
                             <StyledInput
-                              id="password"
+                              id="other"
                               data-testid={CANCEL_SCHEDULE_TEST_ID.other}
                               label={t("cancelOther")}
                               type="text"
@@ -132,10 +133,13 @@ export default function ModalCancelContent({}) {
 
             <Stack
               direction="row-reverse"
-              justifyContent="flex-end"
               spacing={2}
               sx={{
                 width: "auto",
+                flexDirection: {
+                  xs: "column",
+                  md: "row-reverse",
+                },
               }}
             >
               <Button
@@ -147,9 +151,13 @@ export default function ModalCancelContent({}) {
                   width: {
                     xs: "100%",
                     md: "fit-content",
-                    textTransform: "none",
-                    borderRadius: 30,
                   },
+                  mb: {
+                    xs: "8px",
+                    md: "0",
+                  },
+                  textTransform: "none",
+                  borderRadius: 30,
                 }}
               >
                 {t("btnCancel")}
@@ -163,9 +171,9 @@ export default function ModalCancelContent({}) {
                   width: {
                     xs: "100%",
                     md: "fit-content",
-                    textTransform: "none",
-                    borderRadius: 30,
                   },
+                  textTransform: "none",
+                  borderRadius: 30,
                 }}
               >
                 {t("btnKeep")}
