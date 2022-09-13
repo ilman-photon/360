@@ -1,77 +1,98 @@
-import { Box, Stack, Typography, Link } from "@mui/material";
-import ProviderProfile from "../../molecules/ProviderProfile/providerProfile";
-import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
+import { Box, Typography, Link } from "@mui/material";
 import styles from "./styles.module.scss";
+import Image from "next/image";
+import { formatPhoneNumber } from "../../../utils/phoneFormatter";
+import moment from "moment";
 import AppointmentButton from "../../atoms/AppointmentButton/appointmentButton";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
-import moment from "moment";
-import "moment-timezone";
+import { StyledButton } from "../../atoms/Button/button";
 
-export default function UpcomingAppointment({
-  data = {
-    appointmentInfo: {},
-    providerInfo: {},
-    patientInfo: {},
-  },
-  onRescheduleClicked = () => {
-    // This is intentional
-  },
-}) {
-  const fullDate = () => {
-    const date = new Date(data.appointmentInfo.date);
-    if (!date) return "-";
-    const momentDate = new moment(date);
-    const formatedDate = momentDate
-      .tz("America/New_York")
-      .format("dddd, MMM DD, YYYY [at] h:mm z");
-    return formatedDate;
-  };
+const constants = require("../../../utils/constants");
 
-  const getProviderLocation = () => {
-    if (!data.providerInfo.location) return "#";
-    return `https://www.google.com/maps/search/?api=1&query=${data.providerInfo.location.latitude},${data.providerInfo.location.longitude}`;
-  };
+export function UpcomingAppointmentCard({ data }) {
+  const date = data.appointmentInfo.date;
+  const timezone = date.substring(date.length - 3);
+  const momentDate = new moment(date);
+  const formatedDate = momentDate.format("dddd, MMM DD - h:mmA");
+  const renderedDate = `${formatedDate} ${timezone}`;
+
   return (
-    <Box className={styles.upcomingAppointments}>
-      <Stack spacing={{ xs: 2, lg: 3.5 }}>
-        <Typography variant="h2" className={styles.title}>
-          Upcoming appointments
+    <Box className={styles.upcomingAppointmentsContainer}>
+      <Box className={styles.upcomingAppointmentDetail}>
+        <Typography className={styles.appointmentTitle} variant="h3">
+          Eye Exam
         </Typography>
-        <Box
-          className={[styles.itemContainer, styles.calendarContainer].join(" ")}
-        >
-          <Typography variant="subtitle2" className={styles.date}>
-            {fullDate()}
+        <Box className={styles.imageContainer}>
+          <Image
+            src={data.providerInfo.image}
+            className={styles.profilePhoto}
+            layout="fill"
+            alt="Doctor Image"
+          ></Image>
+        </Box>
+        <Box className={styles.dateContainer}>
+          <Typography className={styles.date} variant="subtitle1">
+            {renderedDate}
           </Typography>
+          <Box className={styles.subTitleWrapper}>
+            <Typography variant="subtitle1">Visit Purpose: </Typography>
+            <Typography variant="body2">
+              {data.appointmentInfo.appointmentType}
+            </Typography>
+          </Box>
+        </Box>
+        <Box className={styles.addToCalendarContainer}>
           <AppointmentButton icon={<CalendarTodayIcon />}>
             Add to calendar
           </AppointmentButton>
-          <Typography variant="subtitle2" className={styles.purpose}>
-            Purpose of Visit
-          </Typography>
-          <Typography variant="body2">
-            {data.appointmentInfo.appointmentType}
-          </Typography>
         </Box>
-        <Box className={styles.itemContainer}>
-          <ProviderProfile
-            variant={"appointment"}
-            showPosition
-            phoneLink
-            isDayAvailableView={true}
-            providerData={data.providerInfo}
-          />
-          <Box className={styles.getDirectionLink}>
-            <DirectionsOutlinedIcon></DirectionsOutlinedIcon>
-            <Link
-              className={styles.getDirectionLinkText}
-              href={getProviderLocation()}
-              target="_blank"
-            >
-              Get directions
+        <Box className={styles.nameContainer}>
+          <Typography className={styles.doctorName} variant="subtitle1">
+            {data.providerInfo.name}
+          </Typography>
+          <Box className={styles.subTitleWrapper}>
+            <Typography variant="subtitle1">Patient: </Typography>
+            <Typography variant="body2">{data.patientInfo.name}</Typography>
+          </Box>
+        </Box>
+        <Box className={styles.locationContainer}>
+          <Box className={styles.locationWrapper}>
+            <Typography className={styles.titleLocation} variant="subtitle2">
+              Location
+            </Typography>
+            <Typography className={styles.bodyTitle} variant="body1">
+              {data.providerInfo.position}
+            </Typography>
+            <Typography variant="body2">
+              <>
+                {data.providerInfo.address.addressLine1}
+                <br />
+                {data.providerInfo.address.addressLine2}
+                <br />
+                {data.providerInfo.address.city},{" "}
+                {data.providerInfo.address.state},{" "}
+                {data.providerInfo.address.zipcode}
+              </>
+            </Typography>
+            <Link className={styles.link}>
+              {formatPhoneNumber(data.providerInfo.phoneNumber)}
             </Link>
           </Box>
+          <Box className={styles.insuranceWrapper}>
+            <Typography className={styles.titleLocation} variant="subtitle2">
+              Insurance
+            </Typography>
+            {data.appointmentInfo.insuranceCarrier.map((item, index) => {
+              return (
+                <Typography key={index} variant="body2">
+                  {item}
+                </Typography>
+              );
+            })}
+          </Box>
+        </Box>
+        <Box className={styles.viewDetails}>
           <Box className={styles.buttonContainer}>
             <AppointmentButton icon={<CancelOutlinedIcon />}>
               Cancel
@@ -84,16 +105,49 @@ export default function UpcomingAppointment({
             </AppointmentButton>
           </Box>
         </Box>
-        <Box className={styles.patientContainer}>
-          <Typography variant="h3" className={styles.patientTitle}>
-            Patient Information
-          </Typography>
-          <Typography variant="subtitle2" className={styles.patientName}>
-            Name
-          </Typography>
-          <Typography variant="body2">{data.patientInfo.name}</Typography>
-        </Box>
-      </Stack>
+      </Box>
+    </Box>
+  );
+}
+
+export function NoAppointment() {
+  return (
+    <Box>
+      <Box className={styles.noAppointmentTitle}>
+        <Typography variant="body2" className={styles.noAppointmentTitleText}>
+          You have no upcoming appointments
+        </Typography>
+      </Box>
+      <Box className={styles.noAppointmentButtonContainer}>
+        <StyledButton
+          theme={constants.PATIENT}
+          mode={constants.PRIMARY}
+          type="button"
+          size={constants.SMALL}
+          gradient={false}
+        >
+          Schedule Appointment Now
+        </StyledButton>
+      </Box>
+    </Box>
+  );
+}
+
+export default function UpcomingAppointment({ data }) {
+  const isHasValue = data.length !== 0;
+  return (
+    <Box className={styles.upcomingAppointment}>
+      <Typography variant="h2" className={styles.title}>
+        Upcoming Appointments
+      </Typography>
+
+      {isHasValue ? (
+        data.map((item, index) => {
+          return <UpcomingAppointmentCard data={item} key={index} />;
+        })
+      ) : (
+        <NoAppointment></NoAppointment>
+      )}
     </Box>
   );
 }

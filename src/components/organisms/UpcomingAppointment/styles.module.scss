@@ -1,4 +1,4 @@
-.upcomingAppointments {
+.upcomingAppointment {
   width: 1026px;
   margin: 0 auto;
   background-color: white;
@@ -6,101 +6,225 @@
   margin-top: 115px;
 
   @media (max-width: 992px) {
+    margin-top: 86px;
     width: 100vw;
-    margin-top: 60px;
     padding: 16px;
   }
 }
 
 .title {
-  font-family: "Inter", sans-serif !important;
+  font-family: "Bw Nista Geometric DEMO";
   font-style: normal;
-  font-weight: 500 !important;
-  font-size: 32px !important;
-  line-height: 44px !important;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 44px;
+  color: #003b4a;
 
   @media (max-width: 992px) {
-    font-size: 26px !important;
+    font-size: 26px;
   }
 }
 
-.itemContainer {
-  border: 1px solid #dfdbdb;
+.appointmentTitle {
+  font-family: "Bw Nista Geometric DEMO";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 26px;
+  line-height: 32px;
   display: flex;
   align-items: center;
+  color: #003b4a;
+  margin-bottom: 24px;
+
+  @media (max-width: 992px) {
+    font-size: 24px;
+  }
+}
+
+.upcomingAppointmentsContainer {
+  margin-top: 23px;
+}
+
+.upcomingAppointmentDetail {
   padding: 24px;
-  flex-direction: column;
+  border: 2px solid #f3f3f3;
   @media (max-width: 992px) {
-    padding: 22px;
+    padding: 16px;
   }
 }
 
-.getDirectionLink {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  margin-top: 19px;
+.imageContainer {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  border-radius: 100%;
+  margin-top: calc(70px + 48px + 24px);
+
+  @media (max-width: 992px) {
+    width: 66px;
+    height: 66px;
+  }
 }
 
-.getDirectionLinkText {
+.profilePhoto {
+  border-radius: 100%;
+}
+
+.dateContainer {
+  display: flex;
+  margin-bottom: 24px;
+
+  @media (max-width: 992px) {
+    flex-direction: column;
+    margin-bottom: 24px;
+  }
+}
+
+.addToCalendarContainer {
+  margin-bottom: 48px;
+}
+
+.date {
+  font-weight: 500 !important;
+  font-size: 18px !important;
+  margin-right: 81px !important;
+  @media (max-width: 992px) {
+    margin-right: unset !important;
+  }
+}
+
+.nameContainer {
+  width: 645px;
+  display: flex;
+  margin-left: 120px;
+  border-bottom: 2px solid #d4d4d4;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+
+  @media (max-width: 992px) {
+    flex-direction: column;
+    margin-left: unset;
+    width: auto;
+    padding-left: 85px;
+  }
+}
+
+.doctorName {
+  width: 211px;
+  margin-right: 90px;
+}
+
+.locationContainer {
+  display: flex;
+  margin-left: 120px;
+
+  @media (max-width: 992px) {
+    flex-direction: column;
+    margin-left: unset;
+  }
+}
+
+.locationWrapper {
+  width: 211px;
+  margin-right: 90px;
+  gap: 6px;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 992px) {
+    margin-bottom: 24px;
+  }
+}
+
+.upcomingAppointmentDetail h6 {
+  font-family: "Libre Franklin";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.0016em;
+  color: #003b4a;
+}
+
+.locationContainer h6 {
+  font-size: 16px;
+  line-height: 19px;
+  font-family: "Libre Franklin", sans-serif;
+}
+
+.bodyTitle {
+  font-weight: 500 !important;
+}
+
+.upcomingAppointmentDetail p {
+  font-style: normal;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 19px !important;
+}
+
+.upcomingAppointmentDetail .dateContainer p {
+  font-size: 18px !important;
+}
+
+.subTitleWrapper {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.titleLocation {
+  margin-bottom: 8px !important;
+}
+
+.insuranceWrapper {
+  margin-right: unset;
+  @extend .locationWrapper;
+}
+
+.viewDetails {
+  display: flex;
+  margin-top: 27px;
+  padding-top: 24px;
+  border-top: 2px solid #d4d4d4;
+
+  div {
+    display: flex;
+    gap: 16px;
+  }
+
+  @media (max-width: 992px) {
+    width: auto;
+    margin-left: unset;
+    margin-top: 24px;
+  }
+}
+
+.link {
   font-family: "Roboto", sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
   line-height: 20px;
-  letter-spacing: 0.0016em;
   color: #008294 !important;
-  cursor: pointer;
   text-decoration-color: inherit !important;
+  cursor: pointer;
 }
 
-.buttonContainer {
+.noAppointmentTitle {
+  background: #f2f7f7;
+  margin-top: 23px;
+  margin-bottom: 28px;
+  padding: 10px;
+}
+
+.noAppointmentButtonContainer {
   display: flex;
-  gap: 16px;
-  margin-top: 19px;
-
-  @media (max-width: 992px) {
-    flex-direction: column;
-    width: 100%;
-  }
+  justify-content: flex-end;
 }
 
-.calendarContainer h6 {
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0.0016em;
-  color: #000000;
-}
-
-.date {
-  margin-bottom: 16px !important;
-}
-
-.purpose {
-  margin-top: 24px !important;
-  margin-bottom: 8px !important;
-}
-
-.patientTitle {
-  font-size: 26px !important;
-  line-height: 32px !important;
-  @extend .title;
-}
-
-.patientName {
-  margin-top: 24px !important;
-  margin-bottom: 10px !important;
-  font-style: normal;
-  font-weight: 700 !important;
-  font-size: 16px !important;
-  line-height: 24px !important;
-  letter-spacing: 0.0016em;
-  color: #000000 !important;
-}
-
-.patientContainer {
-  align-items: flex-start;
-  @extend .itemContainer;
+.noAppointmentTitleText {
+  font-weight: 600 !important;
+  font-size: 18px !important;
+  color: #003b4a !important;
 }

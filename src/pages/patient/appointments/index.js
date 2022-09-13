@@ -20,6 +20,7 @@ import { resetFilterData, setFilterData } from "../../../store/appointment";
 import { StyledButton } from "../../../components/atoms/Button/button";
 import { colors } from "../../../styles/theme";
 import { setUserAppointmentData } from "../../../store/user";
+import useMediaQuery from "@mui/material/useMediaQuery";
 export default function Appointments() {
   // const [appointments, setAppointments] = useState();
   const [modalConfirmReschedule, setModalConfirmReschedule] = useState(false);
@@ -28,6 +29,7 @@ export default function Appointments() {
 
   const router = useRouter();
   const dispatch = useDispatch();
+  const isMobile = useMediaQuery("(max-width: 992px)");
 
   const getAppointments = () => {
     const api = new Api();
@@ -83,12 +85,14 @@ export default function Appointments() {
           title={"Appointments"}
           sx={{
             textAlign: "left",
-            paddingLeft: "15vw",
+            width: isMobile ? "100%" : "auto",
+            display: "flex",
+            padding: isMobile && "14px 10px",
           }}
         />
         {appointments && (
           <UpcomingAppointment
-            data={appointments[0]}
+            data={appointments}
             onRescheduleClicked={handleConfirmReschedule}
           />
         )}
