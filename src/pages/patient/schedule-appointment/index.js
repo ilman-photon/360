@@ -125,10 +125,10 @@ export const PageContent = ({
     case 1:
       return (
         <>
-          <Grid
+          <Box
             className={styles.examForComponent}
             p={{ xs: "24px 14px", md: "40px 16px" }}
-            sx={{ width: { xs: "100%", md: "65%" } }}
+            sx={{ width: { xs: "100%", md: "952px" } }}
           >
             <AppointmentLocation
               providerData={appointmentScheduleData.providerInfo}
@@ -155,7 +155,7 @@ export const PageContent = ({
                 {isLoggedIn ? t("scheduleAppoinment") : t("continue")}
               </Button>
             </Stack>
-          </Grid>
+          </Box>
         </>
       );
     case 2:
