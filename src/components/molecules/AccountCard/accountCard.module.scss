@@ -7,10 +7,11 @@
     flex: 1;
     display: flex;
     // justify-content: space-between;
-    background: #fafafa;
+    background: #fff;
     // align-items: center;
     // padding: 16px;
     color: $darkGreen;
+    border-bottom: 1px solid #dadada;
 
     div {
       display: flex;
@@ -20,9 +21,11 @@
     }
 
     .title {
+      font-family: "Bw Nista Geometric DEMO";
+      font-style: normal;
+      font-weight: 500;
       font-size: 24px;
-      line-height: 44px;
-      font-weight: 700;
+      line-height: 32px;
     }
   }
 }

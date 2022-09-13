@@ -15,7 +15,7 @@ import {
 
 export const buttonSchedule = (
   label = "",
-  idx,
+  idx = 0,
   OnDayClicked = () => {
     // This is intended
   },
@@ -107,7 +107,13 @@ export const DayAvailability = ({
     )) {
       if (value && value.length > 0) {
         renderUI.push(
-          <Box className={styles.scheduleContainer} key={index}>
+          <Box
+            key={index}
+            className={styles.scheduleContainer}
+            sx={{
+              marginTop: index == 0 ? "12px" : "24px",
+            }}
+          >
             <Typography className={styles.scheduleTitle}>{key}</Typography>
             {renderTimeSchedule(value, index)}
           </Box>
@@ -116,10 +122,10 @@ export const DayAvailability = ({
         renderUI.push(
           <Box
             key={index}
-            className={[
-              styles.scheduleContainer,
-              styles.noScheduleContainer,
-            ].join(" ")}
+            className={[styles.noScheduleContainer].join(" ")}
+            sx={{
+              marginTop: index == 0 ? "12px" : "24px",
+            }}
           >
             <Typography className={styles.scheduleTitle}>{key}</Typography>
             <Typography className={styles.noSchedule}>
@@ -144,6 +150,7 @@ export const DayAvailability = ({
           justifyContent: "center",
           alignContent: "center",
           gridTemplateRows: "auto",
+          marginTop: "10px",
         }}
       >
         {value.map((option, idx) => {
