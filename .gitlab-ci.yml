@@ -26,8 +26,8 @@ stages:
 
 install:
   stage: install
-  tags:
-    - Frontend-runner
+  # tags:
+  #   - Frontend-runner
   script:
     - npm install
   artifacts:
@@ -42,8 +42,8 @@ install:
 
 test:
   stage: test
-  tags:
-    - Frontend-runner
+  # tags:
+  #   - Frontend-runner
   script:
     - npm run test
   dependencies:
@@ -68,8 +68,8 @@ test:
 #       expire_in: 30 mins
 sonar:
   stage: sonar
-  tags:
-    - Frontend-runner
+  # tags:
+  #   - Frontend-runner
   image: sonarsource/sonar-scanner-cli
   script:
     - /usr/bin/entrypoint.sh sonar-scanner -Dsonar.host.url=https://dev.eyecare360plus.eyecare-partners.com/pipeline/sonarqube -Dsonar.projectKey=E360-Frontend-Patient-and-Provider-Portal -Dsonar.login=$SONAR_TOKEN_PHOTON -Dsonar.sources=src -Dsonar.exclusions=coverage/**/*,**/*.stories.*sx,**/dummy/** -Dsonar.typescript.lcov.reportPaths=./coverage/lcov.info
@@ -82,8 +82,8 @@ sonar:
 
 imagebuild:
   stage: imagebuild
-  tags:
-    - Frontend-runner
+  # tags:
+  #   - Frontend-runner
   image:
     name: gcr.io/kaniko-project/executor:debug
     entrypoint: [""]
@@ -93,8 +93,8 @@ imagebuild:
 
 deploy_to:
   stage: deploy
-  tags:
-    - Frontend-runner
+  # tags:
+  #   - Frontend-runner
   image: alpine:latest
   # when: manual
   before_script:
