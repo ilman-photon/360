@@ -26,8 +26,8 @@ stages:
 
 install:
   stage: install
-  tags:
-    - Frontend-runner
+  # tags:
+  #   - Frontend-runner
   script:
     - npm install
   artifacts:
