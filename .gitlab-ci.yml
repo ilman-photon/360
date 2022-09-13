@@ -1,8 +1,6 @@
-
 # image: node:16.10.0
 
 stages:
-  # - lint
   - install
   - test
   # - build
