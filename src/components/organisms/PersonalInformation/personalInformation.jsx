@@ -25,7 +25,6 @@ import { GENDER_LIST, TITLE_LIST } from "../../../utils/constantData";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import Image from "next/image";
 import FormMessage from "../../molecules/FormMessage/formMessage";
-import { Box } from "@mui/system";
 
 export default function PersonalInformation({
   userData = {},

@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Box } from "@mui/material";
 import { styles } from "./style";
 import { StyledButton } from "../../atoms/Button/button";

@@ -1,6 +1,4 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
-import { colors } from "../../../../../styles/theme";
-import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import { Box, Stack } from "@mui/material";
 import AppointmentLayout from "../../../../../components/templates/appointmentLayout";
 import styles from "./styles.module.scss";
 import AppointmentLocation from "../../../../../components/organisms/ScheduleAppointment/appointmentLocation";
@@ -15,10 +13,6 @@ export default function RescheduleAppointments() {
   const appointmentScheduleData = useSelector((state) => {
     return state.appointment.appointmentSchedule;
   });
-
-  const OnBackToAppointments = () => {
-    router.push("/patient/appointments");
-  };
 
   const OnEditClicked = () => {
     router.push("/patient/appointment?reschedule=true");
@@ -51,6 +45,7 @@ RescheduleAppointments.getLayout = function getLayout(page) {
       <AppointmentLayout
         currentActivePage={"Reschedule appointments"}
         backTitle="Back to appointments"
+        onBackClicked={"/patient/appointments"}
       >
         {page}
       </AppointmentLayout>

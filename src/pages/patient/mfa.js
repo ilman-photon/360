@@ -246,7 +246,7 @@ export default function MfaPage() {
     securityQuestionList = securityQuestionList[0]
       ? securityQuestionList[0]
       : {};
-    for (const [key, value] of Object.entries(securityQuestionList)) {
+    for (const [key] of Object.entries(securityQuestionList)) {
       questionList.push(key);
     }
     return questionList;
