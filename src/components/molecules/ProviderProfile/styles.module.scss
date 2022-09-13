@@ -40,8 +40,10 @@
 .specialistTitle {
   font-weight: 700 !important;
   font-size: 16px !important;
+  margin-top: 40px;
   @media (max-width: 992px) {
     margin-bottom: 12px;
+    margin-top: 8px;
   }
 }
 
