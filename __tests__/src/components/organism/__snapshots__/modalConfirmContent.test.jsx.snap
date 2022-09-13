@@ -9,6 +9,7 @@ Object {
         class="boxModalContents MuiBox-root css-17wkslb"
       >
         <h2
+          aria-label="Appointment confirmation page"
           class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-aw0cy1-MuiTypography-root-MuiDialogTitle-root"
           id="customized-dialog-title"
         >
@@ -26,10 +27,11 @@ Object {
                 d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM9.29 16.29 5.7 12.7a.9959.9959 0 0 1 0-1.41c.39-.39 1.02-.39 1.41 0L10 14.17l6.88-6.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-7.59 7.59c-.38.39-1.02.39-1.41 0z"
               />
             </svg>
-             You’re Scheduled!
+             
+            You’re Scheduled!
           </span>
           <button
-            aria-label="close"
+            aria-label="close option"
             class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1ehv1gf-MuiButtonBase-root-MuiIconButton-root"
             tabindex="0"
             type="button"
@@ -81,6 +83,7 @@ Object {
             <a
               aria-label="isEmergency"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
+              data-mui-internal-clone-element="true"
               data-testid="loginlink"
               role="link"
               tabindex="0"
@@ -185,6 +188,7 @@ Object {
                               alt="Doctor Image"
                               class="profilePhoto"
                               data-nimg="intrinsic"
+                              data-testid="appointment_provider_profile_image"
                               decoding="async"
                               src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                               style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
@@ -197,6 +201,7 @@ Object {
                         >
                           <h2
                             class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-1i5ehwd-MuiTypography-root"
+                            data-testid="appointment_provider_profile_name"
                           />
                           <h3
                             class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
@@ -254,7 +259,7 @@ Object {
               class="MuiCardContent-root css-1qboppe-MuiCardContent-root"
             >
               <p
-                aria-label="Patient Information"
+                aria-label="Patient Information heading"
                 aria-roledescription="Heading"
                 class="MuiTypography-root MuiTypography-body1 patientBoxLabel css-z2eky3-MuiTypography-root"
               >
@@ -269,7 +274,9 @@ Object {
                 >
                   <div
                     class="label"
+                    role="text"
                     style="color: rgb(0, 59, 74);"
+                    tabindex="0"
                   >
                     Name
                   </div>
@@ -320,6 +327,7 @@ Object {
       class="boxModalContents MuiBox-root css-17wkslb"
     >
       <h2
+        aria-label="Appointment confirmation page"
         class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-aw0cy1-MuiTypography-root-MuiDialogTitle-root"
         id="customized-dialog-title"
       >
@@ -337,10 +345,11 @@ Object {
               d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM9.29 16.29 5.7 12.7a.9959.9959 0 0 1 0-1.41c.39-.39 1.02-.39 1.41 0L10 14.17l6.88-6.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-7.59 7.59c-.38.39-1.02.39-1.41 0z"
             />
           </svg>
-           You’re Scheduled!
+           
+          You’re Scheduled!
         </span>
         <button
-          aria-label="close"
+          aria-label="close option"
           class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1ehv1gf-MuiButtonBase-root-MuiIconButton-root"
           tabindex="0"
           type="button"
@@ -392,6 +401,7 @@ Object {
           <a
             aria-label="isEmergency"
             class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
+            data-mui-internal-clone-element="true"
             data-testid="loginlink"
             role="link"
             tabindex="0"
@@ -496,6 +506,7 @@ Object {
                             alt="Doctor Image"
                             class="profilePhoto"
                             data-nimg="intrinsic"
+                            data-testid="appointment_provider_profile_image"
                             decoding="async"
                             src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                             style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
@@ -508,6 +519,7 @@ Object {
                       >
                         <h2
                           class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-1i5ehwd-MuiTypography-root"
+                          data-testid="appointment_provider_profile_name"
                         />
                         <h3
                           class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
@@ -565,7 +577,7 @@ Object {
             class="MuiCardContent-root css-1qboppe-MuiCardContent-root"
           >
             <p
-              aria-label="Patient Information"
+              aria-label="Patient Information heading"
               aria-roledescription="Heading"
               class="MuiTypography-root MuiTypography-body1 patientBoxLabel css-z2eky3-MuiTypography-root"
             >
@@ -580,7 +592,9 @@ Object {
               >
                 <div
                   class="label"
+                  role="text"
                   style="color: rgb(0, 59, 74);"
+                  tabindex="0"
                 >
                   Name
                 </div>

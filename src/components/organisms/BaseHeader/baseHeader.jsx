@@ -19,10 +19,11 @@ import Image from "next/image";
 import constants from "../../../utils/constants";
 import AccountDrawer from "../../molecules/AccountDrawer/accountDrawer";
 import SubNavigation from "../../molecules/SubNavigation/subNavigation";
+import { logoutProps } from "../../../utils/authetication";
 
 export default function BaseHeader({
-  OnLogoutClicked = () => {
-    // This is intended
+  OnLogoutClicked = (router) => {
+    logoutProps.OnLogoutClicked(router);
   },
   backTitle,
   onBackClicked,
@@ -77,6 +78,7 @@ export default function BaseHeader({
                 height="36px"
                 style={styles.logoStyled}
                 aria-label={"Clarkson Eyecare logo"}
+                title="Your Account"
               ></Image>
               {/* Menu Desktop*/}
               <Box sx={styles.boxStyled}>

@@ -16,6 +16,28 @@
     max-width: 390px;
     padding: 16px;
   }
+
+  .radioLabel {
+    font-style: normal;
+    font-weight: 600 !important;
+    letter-spacing: 0.0016em;
+    color: #242526;
+  }
+
+  .link {
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+    text-decoration-line: underline;
+    padding-top: 15px;
+    color: #007e8f;
+    cursor: pointer;
+  }
 }
 
 .imageContainer {
@@ -98,32 +120,6 @@
   line-height: 18px;
   letter-spacing: 0.0016em;
   color: #292929;
-}
-
-.container {
-  .radioLabel {
-    font-style: normal;
-    font-weight: 600 !important;
-    letter-spacing: 0.0016em;
-    color: #242526;
-  }
-}
-
-.container {
-  .link {
-    font-family: "Libre Franklin", sans-serif;
-    font-style: normal;
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 20px;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-    text-decoration-line: underline;
-    padding-top: 15px;
-    color: #007e8f;
-    cursor: pointer;
-  }
 }
 
 .FormMessageContainer {

@@ -46,6 +46,7 @@ Object {
           class="titleHeadingWrapper"
         >
           <div
+            aria-label="Your Account heading"
             aria-live="polite"
             class="title"
           >
@@ -145,7 +146,7 @@ Object {
           >
             <section>
               <div
-                class="MuiBox-root css-1kexx3j"
+                class="MuiBox-root css-9oc806"
               >
                 <svg
                   aria-hidden="true"
@@ -224,7 +225,7 @@ Object {
                     class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
                   >
                     <div
-                      class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
+                      class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
                     >
                       <div
                         class="css-1lwbda4-MuiStack-root"
@@ -238,6 +239,8 @@ Object {
                           >
                             <div
                               class="label"
+                              role="text"
+                              tabindex="0"
                             >
                               Photo
                             </div>
@@ -266,23 +269,36 @@ Object {
                             class="labelContainer"
                           >
                             <div
+                              aria-label="Name"
+                              aria-live="Name"
                               class="label"
+                              role="text"
+                              tabindex="0"
                             >
                               Name
                             </div>
-                            <svg
-                              aria-hidden="true"
-                              aria-label="If you wish to change this information, please contact Customer Support"
-                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                            <button
+                              aria-label="Information Icon - If you wish to change this information, please contact Customer Support"
+                              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1ifbsno-MuiButtonBase-root-MuiIconButton-root"
                               data-mui-internal-clone-element="true"
-                              data-testid="ErrorOutlineOutlinedIcon"
-                              focusable="false"
-                              viewBox="0 0 24 24"
+                              tabindex="0"
+                              type="button"
                             >
-                              <path
-                                d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                              <svg
+                                aria-hidden="true"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                                data-testid="ErrorOutlineOutlinedIcon"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                                />
+                              </svg>
+                              <span
+                                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                               />
-                            </svg>
+                            </button>
                           </div>
                           <div
                             class="css-1okj3ks-MuiStack-root"
@@ -290,7 +306,12 @@ Object {
                             <div
                               style="margin-top: 10px;"
                             >
-                              Eyecare User
+                              <div
+                                aria-label="Eyecare User"
+                                tabindex="0"
+                              >
+                                Eyecare User
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -304,7 +325,11 @@ Object {
                             class="labelContainer"
                           >
                             <div
+                              aria-label="Preferred Name"
+                              aria-live="Preferred Name"
                               class="label"
+                              role="text"
+                              tabindex="0"
                             >
                               Preferred Name
                             </div>
@@ -315,7 +340,12 @@ Object {
                             <div
                               style="margin-top: 10px;"
                             >
-                              ---
+                              <div
+                                aria-label="---"
+                                tabindex="0"
+                              >
+                                ---
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -329,7 +359,11 @@ Object {
                             class="labelContainer"
                           >
                             <div
+                              aria-label="Title"
+                              aria-live="Title"
                               class="label"
+                              role="text"
+                              tabindex="0"
                             >
                               Title
                             </div>
@@ -340,7 +374,12 @@ Object {
                             <div
                               style="margin-top: 10px;"
                             >
-                              Mr
+                              <div
+                                aria-label="---"
+                                tabindex="0"
+                              >
+                                Mr
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -354,23 +393,36 @@ Object {
                             class="labelContainer"
                           >
                             <div
+                              aria-label="Date of Birth"
+                              aria-live="Date of Birth"
                               class="label"
+                              role="text"
+                              tabindex="0"
                             >
                               Date of Birth
                             </div>
-                            <svg
-                              aria-hidden="true"
-                              aria-label="If you wish to change this information, please contact Customer Support"
-                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                            <button
+                              aria-label="Information Icon - If you wish to change this information, please contact Customer Support"
+                              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1ifbsno-MuiButtonBase-root-MuiIconButton-root"
                               data-mui-internal-clone-element="true"
-                              data-testid="ErrorOutlineOutlinedIcon"
-                              focusable="false"
-                              viewBox="0 0 24 24"
+                              tabindex="0"
+                              type="button"
                             >
-                              <path
-                                d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                              <svg
+                                aria-hidden="true"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                                data-testid="ErrorOutlineOutlinedIcon"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                                />
+                              </svg>
+                              <span
+                                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                               />
-                            </svg>
+                            </button>
                           </div>
                           <div
                             class="css-1okj3ks-MuiStack-root"
@@ -378,7 +430,12 @@ Object {
                             <div
                               style="margin-top: 10px;"
                             >
-                              9/3/1992
+                              <div
+                                aria-label="9/3/1992"
+                                tabindex="0"
+                              >
+                                9/3/1992
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -392,23 +449,36 @@ Object {
                             class="labelContainer"
                           >
                             <div
+                              aria-label="Age"
+                              aria-live="Age"
                               class="label"
+                              role="text"
+                              tabindex="0"
                             >
                               Age
                             </div>
-                            <svg
-                              aria-hidden="true"
-                              aria-label="If you wish to change this information, please contact Customer Support"
-                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                            <button
+                              aria-label="Information Icon - If you wish to change this information, please contact Customer Support"
+                              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1ifbsno-MuiButtonBase-root-MuiIconButton-root"
                               data-mui-internal-clone-element="true"
-                              data-testid="ErrorOutlineOutlinedIcon"
-                              focusable="false"
-                              viewBox="0 0 24 24"
+                              tabindex="0"
+                              type="button"
                             >
-                              <path
-                                d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                              <svg
+                                aria-hidden="true"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                                data-testid="ErrorOutlineOutlinedIcon"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                                />
+                              </svg>
+                              <span
+                                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                               />
-                            </svg>
+                            </button>
                           </div>
                           <div
                             class="css-1okj3ks-MuiStack-root"
@@ -416,7 +486,12 @@ Object {
                             <div
                               style="margin-top: 10px;"
                             >
-                              49
+                              <div
+                                aria-label="49"
+                                tabindex="0"
+                              >
+                                49
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -430,7 +505,11 @@ Object {
                             class="labelContainer"
                           >
                             <div
+                              aria-label="Gender"
+                              aria-live="Gender"
                               class="label"
+                              role="text"
+                              tabindex="0"
                             >
                               Gender
                             </div>
@@ -441,7 +520,12 @@ Object {
                             <div
                               style="margin-top: 10px;"
                             >
-                              Male
+                              <div
+                                aria-label="Male"
+                                tabindex="0"
+                              >
+                                Male
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -455,23 +539,36 @@ Object {
                             class="labelContainer"
                           >
                             <div
+                              aria-label="SSN"
+                              aria-live="SSN"
                               class="label"
+                              role="text"
+                              tabindex="0"
                             >
                               SSN
                             </div>
-                            <svg
-                              aria-hidden="true"
-                              aria-label="If you wish to change this information, please contact Customer Support"
-                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                            <button
+                              aria-label="Information Icon - If you wish to change this information, please contact Customer Support"
+                              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1ifbsno-MuiButtonBase-root-MuiIconButton-root"
                               data-mui-internal-clone-element="true"
-                              data-testid="ErrorOutlineOutlinedIcon"
-                              focusable="false"
-                              viewBox="0 0 24 24"
+                              tabindex="0"
+                              type="button"
                             >
-                              <path
-                                d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                              <svg
+                                aria-hidden="true"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                                data-testid="ErrorOutlineOutlinedIcon"
+                                focusable="false"
+                                viewBox="0 0 24 24"
+                              >
+                                <path
+                                  d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                                />
+                              </svg>
+                              <span
+                                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                               />
-                            </svg>
+                            </button>
                           </div>
                           <div
                             class="css-1okj3ks-MuiStack-root"
@@ -479,7 +576,12 @@ Object {
                             <div
                               style="margin-top: 10px;"
                             >
-                              ***-***-7
+                              <div
+                                aria-label="***-***-7"
+                                tabindex="0"
+                              >
+                                ***-***-7
+                              </div>
                             </div>
                           </div>
                         </div>
@@ -493,7 +595,9 @@ Object {
                             State Issued ID
                           </h3>
                           <div
+                            aria-label="Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID."
                             class="MuiTypography-root MuiTypography-bodyRegular css-vzi1f0-MuiTypography-root"
+                            tabindex="0"
                           >
                             Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID.
                           </div>
@@ -507,7 +611,11 @@ Object {
                                 class="labelContainer"
                               >
                                 <div
+                                  aria-label="Front Card"
+                                  aria-live="Front Card"
                                   class="label"
+                                  role="text"
+                                  tabindex="0"
                                 >
                                   Front Card
                                 </div>
@@ -535,11 +643,13 @@ Object {
                                         />
                                       </span>
                                       <img
-                                        alt="front-id"
+                                        alt="Front image"
+                                        aria-label="Front image"
                                         data-nimg="intrinsic"
                                         decoding="async"
                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                                         style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                                        tabindex="0"
                                       />
                                       <noscript />
                                     </span>
@@ -559,7 +669,11 @@ Object {
                                 class="labelContainer"
                               >
                                 <div
+                                  aria-label="Back Card"
+                                  aria-live="Back Card"
                                   class="label"
+                                  role="text"
+                                  tabindex="0"
                                 >
                                   Back Card
                                 </div>
@@ -587,11 +701,13 @@ Object {
                                         />
                                       </span>
                                       <img
-                                        alt="back-id"
+                                        alt="Back image"
+                                        aria-label="Back Image"
                                         data-nimg="intrinsic"
                                         decoding="async"
                                         src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                                         style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                                        tabindex="0"
                                       />
                                       <noscript />
                                     </span>
@@ -613,6 +729,7 @@ Object {
                     style="position: fixed; bottom: 16px; right: 16px;"
                   >
                     <button
+                      aria-label="Edit option"
                       class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-5kb46n-MuiButtonBase-root-MuiButton-root"
                       data-testid="loc_edit"
                       tabindex="0"
@@ -677,6 +794,7 @@ Object {
         class="titleHeadingWrapper"
       >
         <div
+          aria-label="Your Account heading"
           aria-live="polite"
           class="title"
         >
@@ -776,7 +894,7 @@ Object {
         >
           <section>
             <div
-              class="MuiBox-root css-1kexx3j"
+              class="MuiBox-root css-9oc806"
             >
               <svg
                 aria-hidden="true"
@@ -855,7 +973,7 @@ Object {
                   class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
                 >
                   <div
-                    class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
+                    class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
                   >
                     <div
                       class="css-1lwbda4-MuiStack-root"
@@ -869,6 +987,8 @@ Object {
                         >
                           <div
                             class="label"
+                            role="text"
+                            tabindex="0"
                           >
                             Photo
                           </div>
@@ -897,23 +1017,36 @@ Object {
                           class="labelContainer"
                         >
                           <div
+                            aria-label="Name"
+                            aria-live="Name"
                             class="label"
+                            role="text"
+                            tabindex="0"
                           >
                             Name
                           </div>
-                          <svg
-                            aria-hidden="true"
-                            aria-label="If you wish to change this information, please contact Customer Support"
-                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                          <button
+                            aria-label="Information Icon - If you wish to change this information, please contact Customer Support"
+                            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1ifbsno-MuiButtonBase-root-MuiIconButton-root"
                             data-mui-internal-clone-element="true"
-                            data-testid="ErrorOutlineOutlinedIcon"
-                            focusable="false"
-                            viewBox="0 0 24 24"
+                            tabindex="0"
+                            type="button"
                           >
-                            <path
-                              d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                            <svg
+                              aria-hidden="true"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                              data-testid="ErrorOutlineOutlinedIcon"
+                              focusable="false"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                              />
+                            </svg>
+                            <span
+                              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                             />
-                          </svg>
+                          </button>
                         </div>
                         <div
                           class="css-1okj3ks-MuiStack-root"
@@ -921,7 +1054,12 @@ Object {
                           <div
                             style="margin-top: 10px;"
                           >
-                            Eyecare User
+                            <div
+                              aria-label="Eyecare User"
+                              tabindex="0"
+                            >
+                              Eyecare User
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -935,7 +1073,11 @@ Object {
                           class="labelContainer"
                         >
                           <div
+                            aria-label="Preferred Name"
+                            aria-live="Preferred Name"
                             class="label"
+                            role="text"
+                            tabindex="0"
                           >
                             Preferred Name
                           </div>
@@ -946,7 +1088,12 @@ Object {
                           <div
                             style="margin-top: 10px;"
                           >
-                            ---
+                            <div
+                              aria-label="---"
+                              tabindex="0"
+                            >
+                              ---
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -960,7 +1107,11 @@ Object {
                           class="labelContainer"
                         >
                           <div
+                            aria-label="Title"
+                            aria-live="Title"
                             class="label"
+                            role="text"
+                            tabindex="0"
                           >
                             Title
                           </div>
@@ -971,7 +1122,12 @@ Object {
                           <div
                             style="margin-top: 10px;"
                           >
-                            Mr
+                            <div
+                              aria-label="---"
+                              tabindex="0"
+                            >
+                              Mr
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -985,23 +1141,36 @@ Object {
                           class="labelContainer"
                         >
                           <div
+                            aria-label="Date of Birth"
+                            aria-live="Date of Birth"
                             class="label"
+                            role="text"
+                            tabindex="0"
                           >
                             Date of Birth
                           </div>
-                          <svg
-                            aria-hidden="true"
-                            aria-label="If you wish to change this information, please contact Customer Support"
-                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                          <button
+                            aria-label="Information Icon - If you wish to change this information, please contact Customer Support"
+                            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1ifbsno-MuiButtonBase-root-MuiIconButton-root"
                             data-mui-internal-clone-element="true"
-                            data-testid="ErrorOutlineOutlinedIcon"
-                            focusable="false"
-                            viewBox="0 0 24 24"
+                            tabindex="0"
+                            type="button"
                           >
-                            <path
-                              d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                            <svg
+                              aria-hidden="true"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                              data-testid="ErrorOutlineOutlinedIcon"
+                              focusable="false"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                              />
+                            </svg>
+                            <span
+                              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                             />
-                          </svg>
+                          </button>
                         </div>
                         <div
                           class="css-1okj3ks-MuiStack-root"
@@ -1009,7 +1178,12 @@ Object {
                           <div
                             style="margin-top: 10px;"
                           >
-                            9/3/1992
+                            <div
+                              aria-label="9/3/1992"
+                              tabindex="0"
+                            >
+                              9/3/1992
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1023,23 +1197,36 @@ Object {
                           class="labelContainer"
                         >
                           <div
+                            aria-label="Age"
+                            aria-live="Age"
                             class="label"
+                            role="text"
+                            tabindex="0"
                           >
                             Age
                           </div>
-                          <svg
-                            aria-hidden="true"
-                            aria-label="If you wish to change this information, please contact Customer Support"
-                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                          <button
+                            aria-label="Information Icon - If you wish to change this information, please contact Customer Support"
+                            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1ifbsno-MuiButtonBase-root-MuiIconButton-root"
                             data-mui-internal-clone-element="true"
-                            data-testid="ErrorOutlineOutlinedIcon"
-                            focusable="false"
-                            viewBox="0 0 24 24"
+                            tabindex="0"
+                            type="button"
                           >
-                            <path
-                              d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                            <svg
+                              aria-hidden="true"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                              data-testid="ErrorOutlineOutlinedIcon"
+                              focusable="false"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                              />
+                            </svg>
+                            <span
+                              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                             />
-                          </svg>
+                          </button>
                         </div>
                         <div
                           class="css-1okj3ks-MuiStack-root"
@@ -1047,7 +1234,12 @@ Object {
                           <div
                             style="margin-top: 10px;"
                           >
-                            49
+                            <div
+                              aria-label="49"
+                              tabindex="0"
+                            >
+                              49
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1061,7 +1253,11 @@ Object {
                           class="labelContainer"
                         >
                           <div
+                            aria-label="Gender"
+                            aria-live="Gender"
                             class="label"
+                            role="text"
+                            tabindex="0"
                           >
                             Gender
                           </div>
@@ -1072,7 +1268,12 @@ Object {
                           <div
                             style="margin-top: 10px;"
                           >
-                            Male
+                            <div
+                              aria-label="Male"
+                              tabindex="0"
+                            >
+                              Male
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1086,23 +1287,36 @@ Object {
                           class="labelContainer"
                         >
                           <div
+                            aria-label="SSN"
+                            aria-live="SSN"
                             class="label"
+                            role="text"
+                            tabindex="0"
                           >
                             SSN
                           </div>
-                          <svg
-                            aria-hidden="true"
-                            aria-label="If you wish to change this information, please contact Customer Support"
-                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                          <button
+                            aria-label="Information Icon - If you wish to change this information, please contact Customer Support"
+                            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1ifbsno-MuiButtonBase-root-MuiIconButton-root"
                             data-mui-internal-clone-element="true"
-                            data-testid="ErrorOutlineOutlinedIcon"
-                            focusable="false"
-                            viewBox="0 0 24 24"
+                            tabindex="0"
+                            type="button"
                           >
-                            <path
-                              d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                            <svg
+                              aria-hidden="true"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                              data-testid="ErrorOutlineOutlinedIcon"
+                              focusable="false"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                d="M11 15h2v2h-2v-2zm0-8h2v6h-2V7zm.99-5C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z"
+                              />
+                            </svg>
+                            <span
+                              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                             />
-                          </svg>
+                          </button>
                         </div>
                         <div
                           class="css-1okj3ks-MuiStack-root"
@@ -1110,7 +1324,12 @@ Object {
                           <div
                             style="margin-top: 10px;"
                           >
-                            ***-***-7
+                            <div
+                              aria-label="***-***-7"
+                              tabindex="0"
+                            >
+                              ***-***-7
+                            </div>
                           </div>
                         </div>
                       </div>
@@ -1124,7 +1343,9 @@ Object {
                           State Issued ID
                         </h3>
                         <div
+                          aria-label="Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID."
                           class="MuiTypography-root MuiTypography-bodyRegular css-vzi1f0-MuiTypography-root"
+                          tabindex="0"
                         >
                           Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID.
                         </div>
@@ -1138,7 +1359,11 @@ Object {
                               class="labelContainer"
                             >
                               <div
+                                aria-label="Front Card"
+                                aria-live="Front Card"
                                 class="label"
+                                role="text"
+                                tabindex="0"
                               >
                                 Front Card
                               </div>
@@ -1166,11 +1391,13 @@ Object {
                                       />
                                     </span>
                                     <img
-                                      alt="front-id"
+                                      alt="Front image"
+                                      aria-label="Front image"
                                       data-nimg="intrinsic"
                                       decoding="async"
                                       src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                                       style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                                      tabindex="0"
                                     />
                                     <noscript />
                                   </span>
@@ -1190,7 +1417,11 @@ Object {
                               class="labelContainer"
                             >
                               <div
+                                aria-label="Back Card"
+                                aria-live="Back Card"
                                 class="label"
+                                role="text"
+                                tabindex="0"
                               >
                                 Back Card
                               </div>
@@ -1218,11 +1449,13 @@ Object {
                                       />
                                     </span>
                                     <img
-                                      alt="back-id"
+                                      alt="Back image"
+                                      aria-label="Back Image"
                                       data-nimg="intrinsic"
                                       decoding="async"
                                       src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                                       style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                                      tabindex="0"
                                     />
                                     <noscript />
                                   </span>
@@ -1244,6 +1477,7 @@ Object {
                   style="position: fixed; bottom: 16px; right: 16px;"
                 >
                   <button
+                    aria-label="Edit option"
                     class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-5kb46n-MuiButtonBase-root-MuiButton-root"
                     data-testid="loc_edit"
                     tabindex="0"

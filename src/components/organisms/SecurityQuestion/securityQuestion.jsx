@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { Box } from "@mui/material";
 import { styles } from "./style";
 import { StyledButton } from "../../atoms/Button/button";
@@ -21,6 +21,22 @@ const SecurityQuestion = ({
   },
   testIds,
 }) => {
+  const [questionVals, setQuestionVals] = useState([null, null, null]);
+  const [questionValsDua, setQuestionValsDua] = useState(securityQuestionList);
+
+  const handleQuestionValChange = (option, index) => {
+    const newQuestionVals = questionVals;
+    newQuestionVals[index] = option;
+    setQuestionVals([...questionVals, newQuestionVals]);
+  };
+
+  const getAvailableOptions = () => {
+    const availableOptionsLeft = questionValsDua;
+    return availableOptionsLeft.filter((questionOption) => {
+      return questionVals.indexOf(questionOption) === -1;
+    });
+  };
+
   const [showPostMessage, setShowPostMessage] = useState(propsShowPostMessage);
   const [postMessage, setPostMessage] = React.useState(
     "You must answer all security questions"
@@ -114,16 +130,20 @@ const SecurityQuestion = ({
                   label={`Question ${index}`}
                   labelId={`question-label-${index}`}
                   id={`question-id-${index}`}
-                  options={securityQuestionList}
+                  options={getAvailableOptions()}
                   value={value}
                   onChange={(event) => {
                     onChange(event);
+                    handleQuestionValChange(event.target.value, index);
                     if (showPostMessage) {
                       setShowPostMessage(false);
                     }
                   }}
                   menuProps={{
                     tabIndex: tabindex,
+                  }}
+                  renderValue={(select) => {
+                    return select;
                   }}
                 />
               );

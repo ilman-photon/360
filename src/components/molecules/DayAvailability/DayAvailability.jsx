@@ -2,8 +2,8 @@ import Box from "@mui/material/Box";
 import React, { useEffect, useState } from "react";
 import { StyledButton } from "../../atoms/Button/button";
 import styles from "./styles.module.scss";
-import { Divider, Typography } from "@mui/material";
-import constants from "../../../utils/constants";
+import { Divider, Stack, Typography } from "@mui/material";
+import constants, { TEST_ID } from "../../../utils/constants";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import {
@@ -15,7 +15,7 @@ import {
 
 export const buttonSchedule = (
   label = "",
-  idx,
+  idx = 0,
   OnDayClicked = () => {
     // This is intended
   },
@@ -35,6 +35,7 @@ export const buttonSchedule = (
       className={styles.scheduleBtnWarpper}
     >
       <StyledButton
+        data-testid={TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.timeslotButton}
         theme={constants.PATIENT}
         mode={constants.PRIMARY}
         size={constants.SMALL}
@@ -106,7 +107,13 @@ export const DayAvailability = ({
     )) {
       if (value && value.length > 0) {
         renderUI.push(
-          <Box className={styles.scheduleContainer} key={index}>
+          <Box
+            key={index}
+            className={styles.scheduleContainer}
+            sx={{
+              marginTop: index == 0 ? "12px" : "24px",
+            }}
+          >
             <Typography className={styles.scheduleTitle}>{key}</Typography>
             {renderTimeSchedule(value, index)}
           </Box>
@@ -115,10 +122,10 @@ export const DayAvailability = ({
         renderUI.push(
           <Box
             key={index}
-            className={[
-              styles.scheduleContainer,
-              styles.noScheduleContainer,
-            ].join(" ")}
+            className={[styles.noScheduleContainer].join(" ")}
+            sx={{
+              marginTop: index == 0 ? "12px" : "24px",
+            }}
           >
             <Typography className={styles.scheduleTitle}>{key}</Typography>
             <Typography className={styles.noSchedule}>
@@ -143,6 +150,7 @@ export const DayAvailability = ({
           justifyContent: "center",
           alignContent: "center",
           gridTemplateRows: "auto",
+          marginTop: "10px",
         }}
       >
         {value.map((option, idx) => {
@@ -161,6 +169,10 @@ export const DayAvailability = ({
         <Box className={styles.iconTimeContainer}>
           <ArrowBackIosIcon
             className={styles.iconSchedule}
+            data-testid={
+              TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.previousWeekButton
+            }
+            sx={{ cursor: "pointer" }}
             onClick={() => {
               const date = new Date(dateList.dateRange[0]);
               date.setDate(date.getDate() - 7);
@@ -169,7 +181,10 @@ export const DayAvailability = ({
           />
           <ArrowForwardIosIcon
             className={styles.iconSchedule}
-            sx={{ marginLeft: "10px" }}
+            data-testid={
+              TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.nextWeekButton
+            }
+            sx={{ marginLeft: "10px", cursor: "pointer" }}
             onClick={() => {
               const date = new Date(dateList.dateRange[5]);
               date.setDate(date.getDate() + 7);
@@ -179,7 +194,14 @@ export const DayAvailability = ({
         </Box>
       </Box>
       <Divider className={styles.dividerSchedule} />
-      {renderScheduleData()}
+      <Stack
+        spacing={3}
+        data-testid={
+          TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.scheduleContainer
+        }
+      >
+        {renderScheduleData()}
+      </Stack>
     </Box>
   );
 };
