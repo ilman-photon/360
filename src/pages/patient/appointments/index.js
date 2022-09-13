@@ -8,6 +8,8 @@ import styles from "./styles.module.scss";
 import AccountTitleHeading from "../../../components/atoms/AccountTitleHeading/accountTitleHeading";
 import { Api } from "../../api/api";
 import { useEffect, useState } from "react";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+
 export default function Appointments() {
   const [appointments, setAppointments] = useState();
 
