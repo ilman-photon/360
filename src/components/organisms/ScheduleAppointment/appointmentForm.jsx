@@ -175,7 +175,11 @@ export default function AppointmentForm({
                     size="small"
                     variant="filled"
                     helperText={error ? error.message : null}
-                    sx={isDesktop ? { m: 1 } : { m: 1, pr: 1, width: "100%" }}
+                    sx={
+                      isDesktop
+                        ? { m: 1, width: "70%" }
+                        : { m: 1, pr: 1, width: "100%" }
+                    }
                   />
                 );
               }}
@@ -183,10 +187,10 @@ export default function AppointmentForm({
                 required: t("thisFieldRequired"),
                 validate: {
                   isFormat: (v) =>
-                    Regex.nameValidation.test(v) ||
+                    Regex.alphabethOnly.test(v) ||
                     "Incorrect First Name format",
                   isLength: (v) =>
-                    Regex.minTwoDigitRegex.test(v) ||
+                    Regex.minThreeDigitRegex.test(v) ||
                     "First Name should be greater than 2 characters",
                 },
               }}
@@ -210,7 +214,11 @@ export default function AppointmentForm({
                     size="small"
                     variant="filled"
                     helperText={error ? error.message : null}
-                    sx={isDesktop ? { m: 1 } : { m: 1, pr: 1, width: "100%" }}
+                    sx={
+                      isDesktop
+                        ? { m: 1, width: "70%" }
+                        : { m: 1, pr: 1, width: "100%" }
+                    }
                   />
                 );
               }}
@@ -218,14 +226,14 @@ export default function AppointmentForm({
                 required: t("thisFieldRequired"),
                 validate: {
                   isFormat: (v) =>
-                    Regex.nameValidation.test(v) ||
-                    "Incorrect Last Name format",
+                    Regex.alphabethOnly.test(v) || "Incorrect Last Name format",
                   isLength: (v) =>
-                    Regex.minTwoDigitRegex.test(v) ||
+                    Regex.minThreeDigitRegex.test(v) ||
                     "Last Name should be greater than 2 characters",
                 },
               }}
             />
+
             <Controller
               name="email"
               control={control}
@@ -245,7 +253,11 @@ export default function AppointmentForm({
                     size="small"
                     variant="filled"
                     helperText={error ? error.message : null}
-                    sx={isDesktop ? { m: 1 } : { m: 1, pr: 1, width: "100%" }}
+                    sx={
+                      isDesktop
+                        ? { m: 1, width: "70%" }
+                        : { m: 1, pr: 1, width: "100%" }
+                    }
                   />
                 );
               }}
@@ -281,7 +293,11 @@ export default function AppointmentForm({
                     size="small"
                     variant="filled"
                     helperText={error ? error.message : null}
-                    sx={isDesktop ? { m: 1 } : { m: 1, pr: 1, width: "100%" }}
+                    sx={
+                      isDesktop
+                        ? { m: 1, width: "70%" }
+                        : { m: 1, pr: 1, width: "100%" }
+                    }
                   />
                 );
               }}
@@ -299,6 +315,7 @@ export default function AppointmentForm({
               }}
             />
           </Stack>
+
           <Box sx={{ width: "70%" }}>
             <Controller
               name="dob"
