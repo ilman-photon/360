@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="MuiBox-root css-1yuhvjn"
+        class="MuiBox-root css-0"
       >
         <div
           class="MuiBox-root css-8rfnb2"
@@ -42,7 +42,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="MuiBox-root css-1yuhvjn"
+      class="MuiBox-root css-0"
     >
       <div
         class="MuiBox-root css-8rfnb2"

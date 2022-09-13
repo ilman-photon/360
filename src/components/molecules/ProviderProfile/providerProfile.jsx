@@ -80,12 +80,16 @@ export default function ProviderProfile({
       sx={{ maxWidth: isMap ? "unset" : "368px" }}
     >
       <Box className={styles.displayFlex}>
-        <Box>
+        <Box
+          sx={{
+            width: imageSize === "small" ? "48px" : "unset",
+          }}
+        >
           <Image
             src={providerData.image || "/transparent.png"}
             data-testid={TEST_ID.APPOINTMENT_TEST_ID.PROVIDER_PROFILE.image}
-            width={imageSize === "small" ? 50 : 100}
-            height={imageSize === "small" ? 50 : 100}
+            width={100}
+            height={100}
             className={styles.profilePhoto}
             alt="Doctor Image"
           ></Image>
