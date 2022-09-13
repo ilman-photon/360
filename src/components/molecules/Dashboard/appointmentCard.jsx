@@ -29,6 +29,9 @@ export default function AppointmentCard({
   OnClickCancel = () => {
     // This is intentional
   },
+  onViewAppointment = () => {
+    // This is intentional
+  },
 }) {
   const [appointment, setAppointment] = React.useState({
     appointmentId: "",
@@ -305,6 +308,9 @@ export default function AppointmentCard({
           <Link
             className={styles.viewPrescriptionText}
             sx={{ color: "#008294", fontFamily: "Inter" }}
+            onClick={() => {
+              onViewAppointment();
+            }}
           >
             View Appointments
           </Link>

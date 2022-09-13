@@ -162,6 +162,10 @@ export default function HomePage() {
     setIsOpenCancel(false);
   };
 
+  const onViewAppointment = () => {
+    router.push("/patient/appointments");
+  };
+
   return (
     <Stack sx={{ width: "100%" }}>
       {isDesktop ? (
@@ -221,6 +225,7 @@ export default function HomePage() {
           <AppointmentCard
             appointmentData={appointmentData}
             OnClickCancel={handleClickCancel}
+            onViewAppointment={onViewAppointment}
           />
         </Grid>
       </Grid>
