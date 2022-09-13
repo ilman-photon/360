@@ -1,6 +1,15 @@
+variables:
+  DOCKER_REGISTRY: "056640875000.dkr.ecr.us-east-1.amazonaws.com"
+  AWS_DEFAULT_REGION: us-east-1
+  APP_NAME: "photon-ecp-ppp-dev"
+  DOCKER_HOST: tcp://docker:2375
+  DOCKER_DRIVER: overlay2
+  DOCKER_TLS_CERTDIR: ""
+
 # image: node:16.10.0
 
 stages:
+  # - lint
   - install
   - test
   # - build
@@ -73,44 +82,33 @@ sonar:
     paths:
       - coverage
 
-# imagebuild:
-#   stage: imagebuild
-#   tags:
-#     - Frontend-runner
-#   image:
-#     name: gcr.io/kaniko-project/executor:debug
-#     entrypoint: [""]
-#   script:
-#     - echo "{\"credsStore\":\"ecr-login\",\"credHelpers\":{\"$AWS_ACCOUNT_ID.dkr.ecr.region.amazonaws.com\":\"ecr-login\"}}" > /kaniko/.docker/config.json
-#     - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $DOCKER_REGISTRY/$APP_NAME:ecp-patient-$CI_PIPELINE_IID
- 
- imagebuild:
+imagebuild:
   stage: imagebuild
   tags:
     - Frontend-runner
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [""]
   script:
-    - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 056640875000.dkr.ecr.us-east-1.amazonaws.com
-    - docker build -t photon-ecp-ppp-dev .
-    - docker tag photon-ecp-ppp-dev:latest 056640875000.dkr.ecr.us-east-1.amazonaws.com/photon-ecp-ppp-dev:ecp-patient-$CI_PIPELINE_IID
-    - docker push 056640875000.dkr.ecr.us-east-1.amazonaws.com/photon-ecp-ppp-dev:ecp-patient-$CI_PIPELINE_IID
-    
+    - echo "{\"credsStore\":\"ecr-login\",\"credHelpers\":{\"$AWS_ACCOUNT_ID.dkr.ecr.region.amazonaws.com\":\"ecr-login\"}}" > /kaniko/.docker/config.json
+    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $DOCKER_REGISTRY/$APP_NAME:ecp-patient-$CI_PIPELINE_IID
+
 deploy_to:
   stage: deploy
   tags:
     - Frontend-runner
-  # image: alpine:latest
+  image: alpine:latest
   # when: manual
-  # before_script:
-  #   - apk add --no-cache curl jq python3 py3-pip
-  #   - pip install awscli
-  #   - apk update  && apk add --no-cache curl
-  #   - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-  #   - chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
-    # - aws eks --region us-east-1 update-kubeconfig --name $APP_NAME
+  before_script:
+    - apk add --no-cache curl jq python3 py3-pip
+    - pip install awscli
+    - apk update  && apk add --no-cache curl
+    - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+    - chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
+    - aws eks update-kubeconfig --name $APP_NAME
     # - mkdir -p $HOME/.kube
     # - echo -n $KUBE_CONFIG | base64 -d > $HOME/.kube/config
   script:
-    - aws eks --region update-kubeconfig --name $APP_NAME
     - sed -i 's/TAG/'"$CI_PIPELINE_IID"'/g' ./deployment/deploy.yaml
     # - kubectl config view
     - kubectl apply -f `pwd`/deployment/deploy.yaml
