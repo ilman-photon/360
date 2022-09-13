@@ -99,6 +99,8 @@ export default function ContactInformation({
     OnSaveClicked(data);
   };
 
+  const invalidChars = ["e", "-", "+"];
+
   return (
     <AccountCard
       titleIcon={<PermContactCalendarOutlinedIcon />}
@@ -352,7 +354,10 @@ export default function ContactInformation({
                   }) => {
                     return (
                       <StyledInput
-                        type="text"
+                        type="number"
+                        onKeyDown={(e) => {
+                          if (invalidChars.includes(e.key)) e.preventDefault();
+                        }}
                         id="zip"
                         label="Zip"
                         inputProps={{
