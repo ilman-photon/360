@@ -238,7 +238,6 @@ export default function ModalCancelScheduling({
           </Box>
         </DialogContent>
       </Box>
-      {/* <ModalCancelContent /> */}
     </Dialog>
   );
 }
