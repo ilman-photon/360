@@ -24,7 +24,12 @@ import { fullDateFormat } from "../../../utils/dateFormatter";
 import { useEffect } from "react";
 import Image from "next/image";
 
-export default function AppointmentCard({ appointmentData = [] }) {
+export default function AppointmentCard({
+  appointmentData = [],
+  onViewAppointment = () => {
+    // This is intentional
+  },
+}) {
   const [appointment, setAppointment] = React.useState({
     appointmentId: "",
     providerInfo: {},
@@ -302,6 +307,9 @@ export default function AppointmentCard({ appointmentData = [] }) {
           <Link
             className={styles.viewPrescriptionText}
             sx={{ color: "#008294", fontFamily: "Inter" }}
+            onClick={() => {
+              onViewAppointment();
+            }}
           >
             View Appointments
           </Link>

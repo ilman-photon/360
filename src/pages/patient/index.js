@@ -143,6 +143,11 @@ export default function HomePage() {
     dispatch(setIsFilterApplied(true));
     onCallSubmitFilterAPI(data);
   }
+
+  const onViewAppointment = () => {
+    router.push("/patient/appointments");
+  };
+
   return (
     <Stack sx={{ width: "100%" }}>
       {isDesktop ? (
@@ -199,7 +204,10 @@ export default function HomePage() {
           />
         </Grid>
         <Grid item xs={5} sm={5} md={3}>
-          <AppointmentCard appointmentData={appointmentData} />
+          <AppointmentCard
+            appointmentData={appointmentData}
+            onViewAppointment={onViewAppointment}
+          />
         </Grid>
       </Grid>
     </Stack>
