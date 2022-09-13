@@ -10,7 +10,11 @@ import { StyledButton } from "../../atoms/Button/button";
 
 const constants = require("../../../utils/constants");
 
-export function UpcomingAppointmentCard({ data }) {
+export function UpcomingAppointmentCard({
+  data,
+  onRescheduleClicked,
+  onCancelClicked,
+}) {
   const date = data.appointmentInfo.date;
   const timezone = date.substring(date.length - 3);
   const momentDate = new moment(date);
@@ -94,7 +98,10 @@ export function UpcomingAppointmentCard({ data }) {
         </Box>
         <Box className={styles.viewDetails}>
           <Box className={styles.buttonContainer}>
-            <AppointmentButton icon={<CancelOutlinedIcon />}>
+            <AppointmentButton
+              icon={<CancelOutlinedIcon />}
+              onClick={() => onCancelClicked(data)}
+            >
               Cancel
             </AppointmentButton>
             <AppointmentButton
@@ -133,7 +140,11 @@ export function NoAppointment() {
   );
 }
 
-export default function UpcomingAppointment({ data }) {
+export default function UpcomingAppointment({
+  data,
+  onRescheduleClicked,
+  onCancelClicked,
+}) {
   const isHasValue = data.length !== 0;
   return (
     <Box className={styles.upcomingAppointment}>
@@ -143,7 +154,14 @@ export default function UpcomingAppointment({ data }) {
 
       {isHasValue ? (
         data.map((item, index) => {
-          return <UpcomingAppointmentCard data={item} key={index} />;
+          return (
+            <UpcomingAppointmentCard
+              data={item}
+              key={index}
+              onRescheduleClicked={onRescheduleClicked}
+              onCancelClicked={onCancelClicked}
+            />
+          );
         })
       ) : (
         <NoAppointment></NoAppointment>

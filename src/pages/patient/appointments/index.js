@@ -9,6 +9,7 @@ import {
   DialogContent,
   DialogTitle,
   Stack,
+  Typography,
 } from "@mui/material";
 import PastAppointment from "../../../components/organisms/PastAppointment/pastAppointment";
 import styles from "./styles.module.scss";
@@ -21,9 +22,15 @@ import { StyledButton } from "../../../components/atoms/Button/button";
 import { colors } from "../../../styles/theme";
 import { setUserAppointmentData } from "../../../store/user";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import CustomModal from "../../../components/molecules/CustomModal/customModal";
+import FormMessage from "../../../components/molecules/FormMessage/formMessage";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { width } from "@mui/system";
 export default function Appointments() {
   // const [appointments, setAppointments] = useState();
   const [modalConfirmReschedule, setModalConfirmReschedule] = useState(false);
+  const [modalErrorRequest, setModalErrorRequest] = useState(true);
+  const [modalSuccessCancel, setModalSuccessCancel] = useState(false);
 
   const appointments = useSelector((state) => state.user.userAppointmentData);
 
@@ -41,6 +48,7 @@ export default function Appointments() {
           // setAppointments(response);
         })
         .catch(function () {
+          setModalErrorRequest(true);
           //Handle error getAppointments
         });
   };
@@ -94,6 +102,9 @@ export default function Appointments() {
           <UpcomingAppointment
             data={appointments}
             onRescheduleClicked={handleConfirmReschedule}
+            onCancelClicked={() => {
+              setModalSuccessCancel(true);
+            }}
           />
         )}
         {appointments && <PastAppointment data={appointments} />}
@@ -136,6 +147,57 @@ export default function Appointments() {
           </Stack>
         </DialogActions>
       </Dialog>
+
+      <CustomModal
+        buttonText={"OK"}
+        onClickButton={() => {
+          setModalErrorRequest(false);
+        }}
+        open={modalErrorRequest}
+        sx={{
+          "& .MuiPaper-root": {
+            top: "166px",
+            position: "absolute",
+          },
+        }}
+      >
+        <Box marginBottom={"16px"}>
+          <Typography
+            sx={{
+              color: colors.darkGreen,
+              fontSize: "22px",
+              marginBottom: "19px",
+            }}
+          >
+            Something Went Wrong
+          </Typography>
+          <FormMessage>
+            There was a problem trying to perform your request. Please try
+            again.
+          </FormMessage>
+        </Box>
+      </CustomModal>
+
+      <CustomModal
+        buttonText={"OK"}
+        onClickButton={() => {
+          setModalSuccessCancel(false);
+        }}
+        open={modalSuccessCancel}
+        sx={{
+          "& .MuiPaper-root": {
+            top: "87px",
+            position: "absolute",
+          },
+        }}
+      >
+        <Box display={"flex"} gap={"12px"}>
+          <CheckCircleIcon sx={{ color: colors.green }}></CheckCircleIcon>
+          <Typography sx={{ color: colors.darkGreen, fontSize: "22px" }}>
+            You’ve successfully cancelled this appointment
+          </Typography>
+        </Box>
+      </CustomModal>
     </>
   );
 }
