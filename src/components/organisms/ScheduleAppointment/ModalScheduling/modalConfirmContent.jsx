@@ -157,7 +157,7 @@ export default function ModalConfirmContent({
                 }}
                 aria-label={"Add to calendar"}
               >
-                <CalendarTodayIcon /> Add to calendar
+                <CalendarTodayIcon aria-hidden={"false"} /> Add to calendar
               </Typography>
             </Button>
 

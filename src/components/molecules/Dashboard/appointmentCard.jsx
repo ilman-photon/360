@@ -24,7 +24,12 @@ import { fullDateFormat } from "../../../utils/dateFormatter";
 import { useEffect } from "react";
 import Image from "next/image";
 
-export default function AppointmentCard({ appointmentData = [] }) {
+export default function AppointmentCard({
+  appointmentData = [],
+  OnClickCancel = () => {
+    // This is intentional
+  },
+}) {
   const [appointment, setAppointment] = React.useState({
     appointmentId: "",
     providerInfo: {},
@@ -192,9 +197,7 @@ export default function AppointmentCard({ appointmentData = [] }) {
             <StyledButton
               mode="secondary"
               size="small"
-              onClick={() => {
-                // on click
-              }}
+              onClick={OnClickCancel}
               sx={{
                 width: { xs: "100%", md: "fit-content" },
                 minWidth: "107px",
@@ -221,7 +224,7 @@ export default function AppointmentCard({ appointmentData = [] }) {
               mode="secondary"
               size="small"
               onClick={() => {
-                // on click
+                //
               }}
               sx={{
                 width: { xs: "100%", md: "fit-content" },

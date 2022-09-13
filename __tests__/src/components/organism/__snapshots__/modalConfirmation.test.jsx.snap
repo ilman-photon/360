@@ -114,7 +114,7 @@ Object {
                   class="MuiTypography-root MuiTypography-body1 css-o5ux9j-MuiTypography-root"
                 >
                   <svg
-                    aria-hidden="true"
+                    aria-hidden="false"
                     class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                     data-testid="CalendarTodayIcon"
                     focusable="false"
@@ -427,7 +427,7 @@ Object {
                 class="MuiTypography-root MuiTypography-body1 css-o5ux9j-MuiTypography-root"
               >
                 <svg
-                  aria-hidden="true"
+                  aria-hidden="false"
                   class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                   data-testid="CalendarTodayIcon"
                   focusable="false"
