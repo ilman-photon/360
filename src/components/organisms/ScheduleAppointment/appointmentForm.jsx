@@ -197,9 +197,9 @@ export default function AppointmentForm({
               required: t("thisFieldRequired"),
               validate: {
                 isFormat: (v) =>
-                  Regex.nameValidation.test(v) || "Incorrect First Name format",
+                  Regex.alphabethOnly.test(v) || "Incorrect First Name format",
                 isLength: (v) =>
-                  Regex.minTwoDigitRegex.test(v) ||
+                  Regex.minThreeDigitRegex.test(v) ||
                   "First Name should be greater than 2 characters",
               },
             }}
@@ -232,9 +232,9 @@ export default function AppointmentForm({
               required: t("thisFieldRequired"),
               validate: {
                 isFormat: (v) =>
-                  Regex.nameValidation.test(v) || "Incorrect Last Name format",
+                  Regex.alphabethOnly.test(v) || "Incorrect Last Name format",
                 isLength: (v) =>
-                  Regex.minTwoDigitRegex.test(v) ||
+                  Regex.minThreeDigitRegex.test(v) ||
                   "Last Name should be greater than 2 characters",
               },
             }}
