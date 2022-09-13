@@ -36,7 +36,13 @@ Object {
               </span>
               <span
                 class="MuiStepLabel-labelContainer css-16ubnlw-MuiStepLabel-labelContainer"
-              />
+              >
+                <span
+                  class="MuiStepLabel-label Mui-completed MuiStepLabel-alternativeLabel css-qivjh0-MuiStepLabel-label"
+                >
+                  Location
+                </span>
+              </span>
             </span>
           </div>
           <div
@@ -130,7 +136,13 @@ Object {
               </span>
               <span
                 class="MuiStepLabel-labelContainer css-16ubnlw-MuiStepLabel-labelContainer"
-              />
+              >
+                <span
+                  class="MuiStepLabel-label Mui-disabled MuiStepLabel-alternativeLabel css-qivjh0-MuiStepLabel-label"
+                >
+                  Appointment Details
+                </span>
+              </span>
             </span>
           </div>
           <div
@@ -174,7 +186,13 @@ Object {
               </span>
               <span
                 class="MuiStepLabel-labelContainer css-16ubnlw-MuiStepLabel-labelContainer"
-              />
+              >
+                <span
+                  class="MuiStepLabel-label Mui-disabled MuiStepLabel-alternativeLabel css-qivjh0-MuiStepLabel-label"
+                >
+                  Contact Info
+                </span>
+              </span>
             </span>
           </div>
           <div
@@ -218,7 +236,13 @@ Object {
               </span>
               <span
                 class="MuiStepLabel-labelContainer css-16ubnlw-MuiStepLabel-labelContainer"
-              />
+              >
+                <span
+                  class="MuiStepLabel-label Mui-disabled MuiStepLabel-alternativeLabel css-qivjh0-MuiStepLabel-label"
+                >
+                  Confirm
+                </span>
+              </span>
             </span>
           </div>
         </div>
@@ -257,7 +281,13 @@ Object {
             </span>
             <span
               class="MuiStepLabel-labelContainer css-16ubnlw-MuiStepLabel-labelContainer"
-            />
+            >
+              <span
+                class="MuiStepLabel-label Mui-completed MuiStepLabel-alternativeLabel css-qivjh0-MuiStepLabel-label"
+              >
+                Location
+              </span>
+            </span>
           </span>
         </div>
         <div
@@ -351,7 +381,13 @@ Object {
             </span>
             <span
               class="MuiStepLabel-labelContainer css-16ubnlw-MuiStepLabel-labelContainer"
-            />
+            >
+              <span
+                class="MuiStepLabel-label Mui-disabled MuiStepLabel-alternativeLabel css-qivjh0-MuiStepLabel-label"
+              >
+                Appointment Details
+              </span>
+            </span>
           </span>
         </div>
         <div
@@ -395,7 +431,13 @@ Object {
             </span>
             <span
               class="MuiStepLabel-labelContainer css-16ubnlw-MuiStepLabel-labelContainer"
-            />
+            >
+              <span
+                class="MuiStepLabel-label Mui-disabled MuiStepLabel-alternativeLabel css-qivjh0-MuiStepLabel-label"
+              >
+                Contact Info
+              </span>
+            </span>
           </span>
         </div>
         <div
@@ -439,7 +481,13 @@ Object {
             </span>
             <span
               class="MuiStepLabel-labelContainer css-16ubnlw-MuiStepLabel-labelContainer"
-            />
+            >
+              <span
+                class="MuiStepLabel-label Mui-disabled MuiStepLabel-alternativeLabel css-qivjh0-MuiStepLabel-label"
+              >
+                Confirm
+              </span>
+            </span>
           </span>
         </div>
       </div>

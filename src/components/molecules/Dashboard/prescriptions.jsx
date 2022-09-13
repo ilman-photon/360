@@ -28,7 +28,12 @@ import MenuList from "./menuList";
 import { useEffect } from "react";
 import { parsePrescriptionData } from "../../../utils/appointment";
 
-export default function Prescriptions({ prescriptionData = {} }) {
+export default function Prescriptions({
+  prescriptionData = {},
+  onViewPrescriptions = () => {
+    //this is intentional
+  },
+}) {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
   const iconPrescription = "/icon-prescription.png";
@@ -190,7 +195,6 @@ export default function Prescriptions({ prescriptionData = {} }) {
               marginBottom: data.length == idx + 1 ? "26px" : "16px",
             }}
           >
-            {console.log(idx + 1)}
             <Typography variant="customBodyRegular">
               Prescribed on: &nbsp;
             </Typography>
@@ -223,7 +227,13 @@ export default function Prescriptions({ prescriptionData = {} }) {
               <MenuList />
             </Box>
             {renderPrescriptionTable(prescription.glasses, "glasses")}
-            <Box className={[styles.flexDisplay, styles.viewPrescription]}>
+            <Box
+              className={[styles.flexDisplay, styles.viewPrescription]}
+              onClick={() => {
+                onViewPrescriptions("glasses");
+              }}
+              data-testid={"view-prescription-glasses"}
+            >
               <Link
                 className={styles.viewPrescriptionText}
                 sx={{ color: "#008294", fontFamily: "Inter" }}
@@ -250,7 +260,13 @@ export default function Prescriptions({ prescriptionData = {} }) {
               <MenuList />
             </Box>
             {renderPrescriptionTable(prescription.contacts, "contact")}
-            <Box className={[styles.flexDisplay, styles.viewPrescription]}>
+            <Box
+              className={[styles.flexDisplay, styles.viewPrescription]}
+              onClick={() => {
+                onViewPrescriptions("contact");
+              }}
+              data-testid={"view-prescription-contact"}
+            >
               <Link
                 className={styles.viewPrescriptionText}
                 sx={{ color: "#008294", fontFamily: "Inter" }}
@@ -271,10 +287,18 @@ export default function Prescriptions({ prescriptionData = {} }) {
                 styles.margin,
               ]}
             >
-              <Typography variant="titleCard">Medications(3)</Typography>
+              <Typography variant="titleCard">
+                Medications Prescriptions
+              </Typography>
             </Box>
             {renderMedicationUI(prescription.medications)}
-            <Box className={[styles.flexDisplay, styles.viewPrescription]}>
+            <Box
+              className={[styles.flexDisplay, styles.viewPrescription]}
+              onClick={() => {
+                onViewPrescriptions("medications");
+              }}
+              data-testid={"view-prescription-medication"}
+            >
               <Link
                 className={styles.viewPrescriptionText}
                 sx={{ color: "#008294", fontFamily: "Inter" }}
@@ -311,6 +335,7 @@ export default function Prescriptions({ prescriptionData = {} }) {
       >
         <Tab
           label="Glasses"
+          data-testid={"menu-glasses"}
           icon={
             <Box className={styles.tabImageContainer}>
               <Image alt="" src={iconGlasses} width={14} height={14} />
@@ -329,6 +354,7 @@ export default function Prescriptions({ prescriptionData = {} }) {
         />
         <Tab
           label="Contacts"
+          data-testid={"menu-contact"}
           icon={
             <Box className={styles.tabImageContainer}>
               <Image alt="" src={iconContacts} width={14} height={14} />
@@ -347,6 +373,7 @@ export default function Prescriptions({ prescriptionData = {} }) {
         />
         <Tab
           label="Medications"
+          data-testid={"menu-medication"}
           icon={
             <Box className={styles.tabImageContainer}>
               <Image alt="" src={iconMedication} width={14} height={14} />

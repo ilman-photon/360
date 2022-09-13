@@ -10,7 +10,6 @@ import {
   IconButton,
   CircularProgress,
   Stack,
-  Typography,
   useMediaQuery,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
@@ -35,11 +34,9 @@ import {
   getProvideOverlay,
 } from "../../../utils/appointment";
 import { Api } from "../../api/api";
-import ModalConfirmation from "../../../components/organisms/ScheduleAppointment/ModalScheduling/modalConfirmation";
+import ModalConfirmation from "../../../components/organisms/ScheduleAppointment/ScheduleConfirmation/modalConfirmation";
 import Cookies from "universal-cookie";
-import { formatAppointmentDate } from "../../../utils/dateFormatter";
 import { TEST_ID } from "../../../utils/constants";
-import { setUserAppointmentDataByIndex } from "../../../store/user";
 
 export async function getStaticProps() {
   return {
@@ -254,35 +251,25 @@ export default function Appointment({ googleApiKey }) {
       ...providerData,
     };
 
-    if (isReschedule) {
-      // This is for simulation reschedule of user appointment index 0 only, change the logic later
-      dispatch(
-        setUserAppointmentDataByIndex({
-          appointmentId: 0,
-          appointmentInfo: appointmentInfoObj,
-          providerInfo: providerInfoObj,
-        })
-      );
+    dispatch(
+      editAppointmentScheduleData({
+        key: "appointmentInfo",
+        value: appointmentInfoObj,
+      })
+    );
 
-      router.push("/patient/appointments");
-    } else {
-      dispatch(
-        editAppointmentScheduleData({
-          key: "appointmentInfo",
-          value: appointmentInfoObj,
-        })
-      );
+    dispatch(
+      editAppointmentScheduleData({
+        key: "providerInfo",
+        value: providerInfoObj,
+      })
+    );
 
-      dispatch(
-        editAppointmentScheduleData({
-          key: "providerInfo",
-          value: providerInfoObj,
-        })
-      );
-
-      router.push("/patient/schedule-appointment");
-    }
+    router.push(
+      `/patient/schedule-appointment${isReschedule ? "?reschedule=true" : ""}`
+    );
   };
+
   const { coords, isGeolocationEnabled } = useGeolocated({
     positionOptions: {
       enableHighAccuracy: false,
@@ -308,6 +295,7 @@ export default function Appointment({ googleApiKey }) {
   React.useEffect(() => {
     const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
     setIsLoggedIn(isLogin);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function onRenderDialogView() {

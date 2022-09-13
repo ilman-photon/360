@@ -12,7 +12,7 @@ Object {
           class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
         >
           <div
-            class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
+            class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
           >
             <div
               class="css-1p5q5e5-MuiStack-root"
@@ -626,7 +626,7 @@ Object {
                               class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
                             >
                               <div
-                                class="MuiBox-root css-8whbkc"
+                                class="MuiBox-root css-pupy0r"
                               >
                                 <svg
                                   aria-hidden="true"
@@ -715,7 +715,7 @@ Object {
                               class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
                             >
                               <div
-                                class="MuiBox-root css-8whbkc"
+                                class="MuiBox-root css-pupy0r"
                               >
                                 <svg
                                   aria-hidden="true"
@@ -1023,7 +1023,7 @@ Object {
         class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
       >
         <div
-          class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
+          class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
         >
           <div
             class="css-1p5q5e5-MuiStack-root"
@@ -1637,7 +1637,7 @@ Object {
                             class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
                           >
                             <div
-                              class="MuiBox-root css-8whbkc"
+                              class="MuiBox-root css-pupy0r"
                             >
                               <svg
                                 aria-hidden="true"
@@ -1726,7 +1726,7 @@ Object {
                             class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
                           >
                             <div
-                              class="MuiBox-root css-8whbkc"
+                              class="MuiBox-root css-pupy0r"
                             >
                               <svg
                                 aria-hidden="true"

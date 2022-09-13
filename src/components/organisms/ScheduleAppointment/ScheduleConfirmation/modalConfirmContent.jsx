@@ -27,17 +27,22 @@ import {
   Typography,
   Button,
   Grid,
+  Tooltip,
 } from "@mui/material";
 
 const BootstrapDialogTitle = (props) => {
   const { children, onClose, ...other } = props;
 
   return (
-    <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
+    <DialogTitle
+      sx={{ m: 0, p: 2 }}
+      {...other}
+      aria-label="Appointment confirmation page"
+    >
       {children}
       {onClose ? (
         <IconButton
-          aria-label="close"
+          aria-label="close option"
           onClick={onClose}
           sx={{
             position: "absolute",
@@ -62,7 +67,8 @@ export default function ModalConfirmContent({
   patientData = {},
   providerData = {},
   isLoggedIn,
-  OnSetIsOpen = () => {
+  isReschedule,
+  OnOkClicked = () => {
     // This is intended
   },
 }) {
@@ -74,7 +80,7 @@ export default function ModalConfirmContent({
   });
 
   const handleClose = () => {
-    OnSetIsOpen(false);
+    OnOkClicked();
   };
 
   return (
@@ -88,7 +94,10 @@ export default function ModalConfirmContent({
         sx={{ textAlign: "center" }}
       >
         <Typography variant="bodyMedium" className={styles.scheduledText}>
-          <CheckCircleRoundedIcon sx={{ mr: 1 }} /> You’re Scheduled!
+          <CheckCircleRoundedIcon sx={{ mr: 1 }} />{" "}
+          {isReschedule
+            ? "Reschedule Appointment Successful"
+            : "You’re Scheduled!"}
         </Typography>
       </BootstrapDialogTitle>
       <DialogContent
@@ -118,12 +127,14 @@ export default function ModalConfirmContent({
         </div>
 
         <div className={styles.bottomParagraph}>
-          <Link
-            data-testid={REGISTER_TEST_ID.loginlink}
-            {...getLinkAria(t("isEmergency"))}
-          >
-            <span className={styles.medicLink}>{t("isEmergency")}</span>
-          </Link>
+          <Tooltip title="If this is a medical emergency, please call 911">
+            <Link
+              data-testid={REGISTER_TEST_ID.loginlink}
+              {...getLinkAria(t("isEmergency"))}
+            >
+              <span className={styles.medicLink}>{t("isEmergency")}</span>
+            </Link>
+          </Tooltip>
         </div>
 
         <Card variant="outlined" className={styles.cardPatient}>
@@ -202,7 +213,7 @@ export default function ModalConfirmContent({
             <Typography
               className={styles.patientBoxLabel}
               sx={{ mb: 2 }}
-              aria-label={"Patient Information"}
+              aria-label={"Patient Information heading"}
               aria-roledescription="Heading"
             >
               {t("patientInformation")}
@@ -214,7 +225,7 @@ export default function ModalConfirmContent({
               sxText={{ color: colors.darkGreen }}
             >
               <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
-                {patientData.name || "-"}
+                {patientData.firstName || "-"}
               </Typography>
             </LabelWithInfo>
           </CardContent>
