@@ -86,13 +86,12 @@ imagebuild:
   stage: imagebuild
   tags:
     - Frontend-runner
-  image:
-    name: gcr.io/kaniko-project/executor:debug
-    entrypoint: [""]
   script:
-    - echo "{\"credsStore\":\"ecr-login\",\"credHelpers\":{\"$AWS_ACCOUNT_ID.dkr.ecr.region.amazonaws.com\":\"ecr-login\"}}" > /kaniko/.docker/config.json
-    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $DOCKER_REGISTRY/$APP_NAME:ecp-patient-$CI_PIPELINE_IID
-
+    - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 056640875000.dkr.ecr.us-east-1.amazonaws.com
+    - docker build -t photon-ecp-ppp-dev .
+    - docker tag photon-ecp-ppp-dev:latest 056640875000.dkr.ecr.us-east-1.amazonaws.com/photon-ecp-ppp-dev:ecp-patient-$CI_PIPELINE_IID
+    - docker push 056640875000.dkr.ecr.us-east-1.amazonaws.com/photon-ecp-ppp-dev:ecp-patient-$CI_PIPELINE_IID
+    
 deploy_to:
   stage: deploy
   tags:
