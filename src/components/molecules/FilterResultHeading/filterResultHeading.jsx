@@ -64,12 +64,12 @@ export const FilterResultHeading = ({
   });
 
   useEffect(() => {
-    const dateList = getDates(
+    const newDateList = getDates(
       new Date(rangeDate.startDate),
       new Date(rangeDate.endDate)
     );
     if (rangeDate.startDate && rangeDate.endDate) {
-      setDateList(dateList);
+      setDateList(newDateList);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rangeDate]);
@@ -96,10 +96,10 @@ export const FilterResultHeading = ({
     });
   }
 
-  const onSetFilter = (filter) => {
+  const onSetFilter = (newFilterData) => {
     setFilterOpen(!filterOpen);
-    setActiveFilter(filter);
-    onActivFilter(filter);
+    setActiveFilter(newFilterData);
+    onActivFilter(newFilterData);
   };
 
   function handleCloseDialog() {
@@ -135,8 +135,8 @@ export const FilterResultHeading = ({
             onClose={() => {
               setFilterOpen(!filterOpen);
             }}
-            onDone={(filter) => {
-              onSetFilter(filter);
+            onDone={(selectedFilterData) => {
+              onSetFilter(selectedFilterData);
             }}
           ></FilterBy>
           <StyledButton
@@ -266,8 +266,8 @@ export const FilterResultHeading = ({
           onClose={() => {
             setFilterOpen(!filterOpen);
           }}
-          onDone={(filter) => {
-            onSetFilter(filter);
+          onDone={(selectedFilterData) => {
+            onSetFilter(selectedFilterData);
           }}
         ></FilterBy>
         <Stack

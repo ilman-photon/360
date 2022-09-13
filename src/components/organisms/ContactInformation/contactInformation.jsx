@@ -99,6 +99,8 @@ export default function ContactInformation({
     OnSaveClicked(data);
   };
 
+  const invalidChars = ["e", "-", "+"];
+
   return (
     <AccountCard
       tabIndex={0}
@@ -355,7 +357,7 @@ export default function ContactInformation({
             />
 
             <Grid container columnSpacing={2}>
-              <Grid item xs={8} style={{ paddingLeft: 0 }}>
+              <Grid item xs={7} style={{ paddingLeft: 0 }}>
                 <Controller
                   name="state"
                   control={control}
@@ -388,7 +390,7 @@ export default function ContactInformation({
                 />
               </Grid>
 
-              <Grid item xs={4} p={0}>
+              <Grid item xs={4.5} p={0}>
                 <Controller
                   name="zip"
                   control={control}
@@ -398,7 +400,10 @@ export default function ContactInformation({
                   }) => {
                     return (
                       <StyledInput
-                        type="text"
+                        type="number"
+                        onKeyDown={(e) => {
+                          if (invalidChars.includes(e.key)) e.preventDefault();
+                        }}
                         id="zip"
                         label="Zip"
                         inputProps={{

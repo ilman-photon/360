@@ -7,7 +7,6 @@ import BaseHeader from "../../../components/organisms/BaseHeader/baseHeader";
 import { Grid, useMediaQuery } from "@mui/material";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "../../../store/store";
-import { useRouter } from "next/router";
 import { editAppointmentScheduleData } from "../../../store/appointment";
 import { fetchUser } from "../../../store/user";
 
@@ -24,8 +23,6 @@ export const ModalConfirmSchedule = () => {
 
 export default function ScheduleAppointmentConfirmationPage() {
   const isDesktop = useMediaQuery("(min-width: 769px)");
-
-  const router = useRouter();
   const dispatch = useDispatch();
 
   const appointmentScheduleData = useSelector((state) => {

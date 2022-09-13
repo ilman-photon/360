@@ -66,7 +66,7 @@ export function getDialogContents(
     isDesktop,
   },
   handleCloseDialog = () => {
-    /* TODO document why this arrow function is empty */
+    //This is intentional
   }
 ) {
   let child = <></>;
