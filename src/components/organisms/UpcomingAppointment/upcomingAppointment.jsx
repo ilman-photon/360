@@ -22,10 +22,9 @@ export default function UpcomingAppointment({
     const date = new Date(data.appointmentInfo.date);
     if (!date) return "-";
     const momentDate = new moment(date);
-    const formatedDate = momentDate
+    return momentDate
       .tz("America/New_York")
       .format("dddd, MMM DD, YYYY [at] h:mm z");
-    return formatedDate;
   };
 
   const getProviderLocation = () => {

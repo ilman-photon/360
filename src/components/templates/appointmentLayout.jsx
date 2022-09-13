@@ -20,8 +20,10 @@ export default function AppointmentLayout({
         <BaseHeader
           backTitle={backTitle}
           onBackClicked={() => {
-            if (onBackClicked) {
+            if (typeof onBackClicked == "function") {
               onBackClicked();
+            } else if (typeof onBackClicked == "string") {
+              router.push(onBackClicked);
             } else {
               router.back();
             }
