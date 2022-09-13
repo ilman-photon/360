@@ -97,7 +97,7 @@ sonar:
   stage: imagebuild
   tags:
     - Frontend-runner
-  script:
+   script:
     - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 056640875000.dkr.ecr.us-east-1.amazonaws.com
     - docker build -t photon-ecp-ppp-dev .
     - docker tag photon-ecp-ppp-dev:latest 056640875000.dkr.ecr.us-east-1.amazonaws.com/photon-ecp-ppp-dev:ecp-patient-$CI_PIPELINE_IID
@@ -118,7 +118,7 @@ deploy_to:
     # - aws eks --region us-east-1 update-kubeconfig --name $APP_NAME
     # - mkdir -p $HOME/.kube
     # - echo -n $KUBE_CONFIG | base64 -d > $HOME/.kube/config
-  script:
+   script:
     - aws eks --region us-east-1 update-kubeconfig --name $APP_NAME
     - sed -i 's/TAG/'"$CI_PIPELINE_IID"'/g' ./deployment/deploy.yaml
     # - kubectl config view
