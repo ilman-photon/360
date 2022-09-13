@@ -463,6 +463,7 @@ export default function ScheduleAppointmentPage() {
         <DialogActions>
           <Stack direction="row" alignItems="center" spacing={"10px"}>
             <StyledButton
+              isModalButton
               size="small"
               mode="secondary"
               onClick={handleCancelReschedule}
@@ -471,6 +472,7 @@ export default function ScheduleAppointmentPage() {
               Cancel
             </StyledButton>
             <StyledButton
+              isModalButton
               size="small"
               mode="primary"
               onClick={OnConfirmRescheduleAppointment}
