@@ -21,7 +21,6 @@ import {
 import AccountCard from "../AccountCard/accountCard";
 import Image from "next/image";
 import styles from "./styles.module.scss";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { ThemeProvider } from "@emotion/react";
 import MenuList from "./menuList";
