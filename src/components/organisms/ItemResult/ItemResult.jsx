@@ -40,6 +40,7 @@ export default function ItemResult({
       >
         <Box sx={{ gridArea: "providerProvile" }}>
           <ProviderProfile
+            imageSize={"medium"}
             variant={"viewschedule"}
             providerData={providerData}
           />
