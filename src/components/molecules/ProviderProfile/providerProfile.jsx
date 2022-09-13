@@ -1,10 +1,35 @@
 import Image from "next/image";
-import { Typography, Box, Link } from "@mui/material";
+import { Typography, Box, Link, useMediaQuery } from "@mui/material";
 import styles from "./styles.module.scss";
 import StyledRating from "../../atoms/Rating/styledRating";
 import { useRouter } from "next/router";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import { TEST_ID } from "../../../utils/constants";
+
+const renderSpecialistList = (providerData) => {
+  return (
+    <Box>
+      <Typography variant="subtitle1" className={styles.specialistTitle}>
+        Specialties and Sub-specialties:{" "}
+      </Typography>
+      <ul className={styles.specialistList}>
+        {providerData.specialties &&
+          providerData.specialties.map((item, index) => {
+            return (
+              <li key={index}>
+                <Typography
+                  variant="body2"
+                  className={index === 3 ? styles.newColumn : ""}
+                >
+                  {item}
+                </Typography>
+              </li>
+            );
+          })}
+      </ul>
+    </Box>
+  );
+};
 
 export default function ProviderProfile({
   variant,
@@ -19,34 +44,11 @@ export default function ProviderProfile({
   const isBio = variant === "bio";
   const isViewSchedule = variant === "viewschedule";
   const isMap = variant === "map";
+  const isMobile = useMediaQuery("(max-width: 992px)");
 
   const router = useRouter();
 
   const phoneNumber = providerData.phoneNumber;
-  const renderSpecialistList = () => {
-    return (
-      <Box>
-        <Typography variant="subtitle1" className={styles.specialistTitle}>
-          Specialties and Sub-specialties:{" "}
-        </Typography>
-        <ul className={styles.specialistList}>
-          {providerData.specialties &&
-            providerData.specialties.map((item, index) => {
-              return (
-                <li key={index}>
-                  <Typography
-                    variant="body2"
-                    className={index === 3 ? styles.newColumn : ""}
-                  >
-                    {item}
-                  </Typography>
-                </li>
-              );
-            })}
-        </ul>
-      </Box>
-    );
-  };
 
   const getAddress = (address) => {
     if (!address) return;
@@ -80,7 +82,7 @@ export default function ProviderProfile({
       sx={{ maxWidth: isMap ? "unset" : "368px" }}
     >
       <Box className={styles.displayFlex}>
-        <Box>
+        <Box className={styles.imageContainer}>
           <Image
             src={providerData.image || "/transparent.png"}
             data-testid={TEST_ID.APPOINTMENT_TEST_ID.PROVIDER_PROFILE.image}
@@ -112,34 +114,41 @@ export default function ProviderProfile({
           {showPosition && (
             <Typography variant="h3">Scripps Eyecare</Typography>
           )}
-          <Typography
-            variant="body2"
-            className={styles.address}
-            fontSize={isViewSchedule ? "14px" : "16px"}
-          >
-            {getAddress(providerData.address)}
-          </Typography>
-          {isShownPhoneAndRating && (
-            <Box
-              className={isBio ? styles.ratingContainer : styles.phoneContainer}
-            >
-              {(isBio || (isViewSchedule && isShownRating)) && (
-                <StyledRating value={parseInt(providerData.rating)} />
-              )}
-              {!phoneLink ? (
-                <Typography variant="body2" className={styles.phone}>
-                  {formatPhoneNumber(phoneNumber)}
-                </Typography>
-              ) : (
-                <Link className={styles.phoneLink}>
-                  {formatPhoneNumber(phoneNumber)}
-                </Link>
+          <Box className={styles.detailContainer}>
+            <Box>
+              <Typography
+                variant="body2"
+                className={styles.address}
+                fontSize={isViewSchedule ? "14px" : "16px"}
+              >
+                {getAddress(providerData.address)}
+              </Typography>
+              {isShownPhoneAndRating && (
+                <Box
+                  className={
+                    isBio ? styles.ratingContainer : styles.phoneContainer
+                  }
+                >
+                  {(isBio || (isViewSchedule && isShownRating)) && (
+                    <StyledRating value={parseInt(providerData.rating)} />
+                  )}
+                  {!phoneLink ? (
+                    <Typography variant="body2" className={styles.phone}>
+                      {formatPhoneNumber(phoneNumber)}
+                    </Typography>
+                  ) : (
+                    <Link className={styles.phoneLink}>
+                      {formatPhoneNumber(phoneNumber)}
+                    </Link>
+                  )}
+                </Box>
               )}
             </Box>
-          )}
+            {isBio && !isMobile && renderSpecialistList(providerData)}
+          </Box>
         </Box>
       </Box>
-      <Box>{isBio && renderSpecialistList()}</Box>
+      {isBio && isMobile && renderSpecialistList(providerData)}
     </Box>
   );
 }
