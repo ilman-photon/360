@@ -9,7 +9,7 @@ Object {
         class="MuiBox-root css-1qm1lh"
       >
         <div
-          class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
+          class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1v5z4dq-MuiPaper-root-MuiCard-root"
         >
           <div
             class="MuiCardHeader-root cardHeader css-1ele1k2-MuiCardHeader-root"
@@ -153,7 +153,7 @@ Object {
       class="MuiBox-root css-1qm1lh"
     >
       <div
-        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
+        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1v5z4dq-MuiPaper-root-MuiCard-root"
       >
         <div
           class="MuiCardHeader-root cardHeader css-1ele1k2-MuiCardHeader-root"

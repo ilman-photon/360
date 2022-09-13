@@ -10,6 +10,10 @@
   display: flex;
   z-index: 2;
   justify-content: center;
+
+  @media print {
+    display: none !important;
+  }
 }
 
 .centeredElement {
