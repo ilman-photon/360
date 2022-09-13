@@ -101,6 +101,9 @@ export default function PersonalInformation({
       titleIcon={<AccountCircleOutlinedIcon />}
       title="Personal Information"
       isEditing={isEditing}
+      textStyle={{
+        fontWeight: "bold",
+      }}
       // OnEditClicked={OnEditClicked}
       actionContent={
         isDesktop ? (
