@@ -155,152 +155,150 @@ export default function AppointmentForm({
         </Box>
 
         <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
-          <Controller
-            name="firstName"
-            control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
-              return (
-                <StyledInput
-                  type="text"
-                  id="firstName"
-                  label="First Name"
-                  value={value}
-                  data-testid={SCHEDULE_GUEST_TEST_ID.firstname}
-                  onChange={onChange}
-                  error={!!error}
-                  size="small"
-                  variant="filled"
-                  helperText={error ? error.message : null}
-                  sx={
-                    isDesktop
-                      ? { m: 1, width: "70%" }
-                      : { m: 1, pr: 1, width: "100%" }
-                  }
-                />
-              );
-            }}
-            rules={{
-              required: t("thisFieldRequired"),
-              validate: {
-                isFormat: (v) =>
-                  Regex.nameValidation.test(v) || "Incorrect First Name format",
-                isLength: (v) =>
-                  Regex.minTwoDigitRegex.test(v) ||
-                  "First Name should be greater than 2 characters",
-              },
-            }}
-          />
-          <Controller
-            name="lastName"
-            control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
-              return (
-                <StyledInput
-                  type="text"
-                  id="lastName"
-                  label="Last Name"
-                  data-testid={SCHEDULE_GUEST_TEST_ID.lastname}
-                  value={value}
-                  onChange={onChange}
-                  error={!!error}
-                  size="small"
-                  variant="filled"
-                  helperText={error ? error.message : null}
-                  sx={
-                    isDesktop
-                      ? { m: 1, width: "70%" }
-                      : { m: 1, pr: 1, width: "100%" }
-                  }
-                />
-              );
-            }}
-            rules={{
-              required: t("thisFieldRequired"),
-              validate: {
-                isFormat: (v) =>
-                  Regex.nameValidation.test(v) || "Incorrect Last Name format",
-                isLength: (v) =>
-                  Regex.minTwoDigitRegex.test(v) ||
-                  "Last Name should be greater than 2 characters",
-              },
-            }}
-          />
-
-          <Controller
-            name="email"
-            control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
-              return (
-                <StyledInput
-                  type="text"
-                  id="email"
-                  label="Email"
-                  value={value}
-                  data-testid={SCHEDULE_GUEST_TEST_ID.email}
-                  onChange={onChange}
-                  error={!!error}
-                  size="small"
-                  variant="filled"
-                  helperText={error ? error.message : null}
-                  sx={
-                    isDesktop
-                      ? { m: 1, width: "70%" }
-                      : { m: 1, pr: 1, width: "100%" }
-                  }
-                />
-              );
-            }}
-            rules={{
-              validate: {
-                required: (value) => {
-                  if (!isOneOfPreferredValid("email", value))
-                    return "Email ID or Mobile Number is required";
+          <Stack sx={{ width: { xs: "100%", md: "70%" } }}>
+            <Controller
+              name="firstName"
+              control={control}
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => {
+                return (
+                  <StyledInput
+                    type="text"
+                    id="firstName"
+                    label="First Name"
+                    value={value}
+                    data-testid={SCHEDULE_GUEST_TEST_ID.firstname}
+                    onChange={onChange}
+                    error={!!error}
+                    size="small"
+                    variant="filled"
+                    helperText={error ? error.message : null}
+                    sx={isDesktop ? { m: 1 } : { m: 1, pr: 1, width: "100%" }}
+                  />
+                );
+              }}
+              rules={{
+                required: t("thisFieldRequired"),
+                validate: {
+                  isFormat: (v) =>
+                    Regex.nameValidation.test(v) ||
+                    "Incorrect First Name format",
+                  isLength: (v) =>
+                    Regex.minTwoDigitRegex.test(v) ||
+                    "First Name should be greater than 2 characters",
                 },
-              },
-              pattern: {
-                value: Regex.isEmailCorrect,
-                message: "Incorrect email format",
-              },
-            }}
-          />
-          <Controller
-            name="mobile"
-            control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
-              return (
-                <StyledInput
-                  type="phone"
-                  id="mobile"
-                  data-testid={SCHEDULE_GUEST_TEST_ID.mobilenumber}
-                  label="Mobile Number"
-                  value={value}
-                  onChange={onChange}
-                  error={!!error}
-                  size="small"
-                  variant="filled"
-                  helperText={error ? error.message : null}
-                  sx={
-                    isDesktop
-                      ? { m: 1, width: "70%" }
-                      : { m: 1, pr: 1, width: "100%" }
-                  }
-                />
-              );
-            }}
-            rules={{
-              validate: {
-                required: (value) => {
-                  if (!isOneOfPreferredValid("phone", value))
-                    return "Email ID or Mobile Number is required";
+              }}
+            />
+            <Controller
+              name="lastName"
+              control={control}
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => {
+                return (
+                  <StyledInput
+                    type="text"
+                    id="lastName"
+                    label="Last Name"
+                    data-testid={SCHEDULE_GUEST_TEST_ID.lastname}
+                    value={value}
+                    onChange={onChange}
+                    error={!!error}
+                    size="small"
+                    variant="filled"
+                    helperText={error ? error.message : null}
+                    sx={isDesktop ? { m: 1 } : { m: 1, pr: 1, width: "100%" }}
+                  />
+                );
+              }}
+              rules={{
+                required: t("thisFieldRequired"),
+                validate: {
+                  isFormat: (v) =>
+                    Regex.nameValidation.test(v) ||
+                    "Incorrect Last Name format",
+                  isLength: (v) =>
+                    Regex.minTwoDigitRegex.test(v) ||
+                    "Last Name should be greater than 2 characters",
                 },
-              },
-              pattern: {
-                value: Regex.isValidPhoneFormat,
-                message: "Incorrect mobile number format",
-              },
-            }}
-          />
-
+              }}
+            />
+            <Controller
+              name="email"
+              control={control}
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => {
+                return (
+                  <StyledInput
+                    type="text"
+                    id="email"
+                    label="Email"
+                    value={value}
+                    data-testid={SCHEDULE_GUEST_TEST_ID.email}
+                    onChange={onChange}
+                    error={!!error}
+                    size="small"
+                    variant="filled"
+                    helperText={error ? error.message : null}
+                    sx={isDesktop ? { m: 1 } : { m: 1, pr: 1, width: "100%" }}
+                  />
+                );
+              }}
+              rules={{
+                validate: {
+                  required: (value) => {
+                    if (!isOneOfPreferredValid("email", value))
+                      return "Email ID or Mobile Number is required";
+                  },
+                },
+                pattern: {
+                  value: Regex.isEmailCorrect,
+                  message: "Incorrect email format",
+                },
+              }}
+            />
+            <Controller
+              name="mobile"
+              control={control}
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => {
+                return (
+                  <StyledInput
+                    type="phone"
+                    id="mobile"
+                    data-testid={SCHEDULE_GUEST_TEST_ID.mobilenumber}
+                    label="Mobile Number"
+                    value={value}
+                    onChange={onChange}
+                    error={!!error}
+                    size="small"
+                    variant="filled"
+                    helperText={error ? error.message : null}
+                    sx={isDesktop ? { m: 1 } : { m: 1, pr: 1, width: "100%" }}
+                  />
+                );
+              }}
+              rules={{
+                validate: {
+                  required: (value) => {
+                    if (!isOneOfPreferredValid("phone", value))
+                      return "Email ID or Mobile Number is required";
+                  },
+                },
+                pattern: {
+                  value: Regex.isValidPhoneFormat,
+                  message: "Incorrect mobile number format",
+                },
+              }}
+            />
+          </Stack>
           <Box sx={{ width: "70%" }}>
             <Controller
               name="dob"
@@ -321,7 +319,7 @@ export default function AppointmentForm({
                     onChange={onChange}
                     error={!!error}
                     helperText={error ? error.message : null}
-                    sx={{ m: 1, width: "70%" }}
+                    sx={{ m: 1 }}
                   />
                 );
               }}
@@ -372,7 +370,7 @@ export default function AppointmentForm({
                 />
               </div>
 
-              <Divider sx={{ mx: 1 }} />
+              <Divider sx={{ mx: 1, width: { xs: "100%", md: "70%" } }} />
               <Grid sx={{ m: "24px 8px 16px" }}>
                 <Typography sx={{ ...styles.boldLabel, mb: 1 }}>
                   {t("optional")}
@@ -382,35 +380,37 @@ export default function AppointmentForm({
                 </Typography>
               </Grid>
 
-              <Controller
-                name="password"
-                control={control}
-                defaultValue=""
-                render={({
-                  field: { onChange, value },
-                  fieldState: { error },
-                }) => {
-                  return (
-                    <StyledInput
-                      id="password"
-                      data-testid={SCHEDULE_GUEST_TEST_ID.password}
-                      label={t("passwordLabel")}
-                      type={constants.INPUT_PASSWORD}
-                      size={constants.SMALL}
-                      variant={constants.FILLED}
-                      value={value}
-                      onChange={onChange}
-                      error={!!error}
-                      helperText={error ? error.message : null}
-                    />
-                  );
-                }}
-              />
-              <DisclaimerText label="(Optional)" />
+              <Stack sx={{ width: { xs: "100%", md: "70%" } }}>
+                <Controller
+                  name="password"
+                  control={control}
+                  defaultValue=""
+                  render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                  }) => {
+                    return (
+                      <StyledInput
+                        id="password"
+                        data-testid={SCHEDULE_GUEST_TEST_ID.password}
+                        label={t("passwordLabel")}
+                        type={constants.INPUT_PASSWORD}
+                        size={constants.SMALL}
+                        variant={constants.FILLED}
+                        value={value}
+                        onChange={onChange}
+                        error={!!error}
+                        helperText={error ? error.message : null}
+                      />
+                    );
+                  }}
+                />
+                <DisclaimerText label="(Optional)" />
 
-              <div style={styles.registeredUsernameWrapper}>
-                <div>Your username will be {getRegisteredUsername()}</div>
-              </div>
+                <div style={styles.registeredUsernameWrapper}>
+                  <div>Your username will be {getRegisteredUsername()}</div>
+                </div>
+              </Stack>
 
               <Divider sx={{ mt: 2, mx: 1 }} />
             </>
