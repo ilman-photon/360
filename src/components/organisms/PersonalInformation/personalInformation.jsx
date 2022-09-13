@@ -379,6 +379,11 @@ export default function PersonalInformation({
                     onChange={onChange}
                     error={!!error}
                     helperText={error ? error.message : null}
+                    sx={{
+                      ".MuiInputBase-root": {
+                        color: "#A5A5AC",
+                      },
+                    }}
                   />
                 );
               }}
@@ -454,6 +459,13 @@ export default function PersonalInformation({
                     onChange={onChange}
                     error={!!error}
                     helperText={error ? error.message : null}
+                    sx={{
+                      ".MuiInputBase-root": {
+                        color: "#A5A5AC",
+                        fontWeight: "700",
+                        fontFamily: "Roboto",
+                      },
+                    }}
                   />
                 );
               }}

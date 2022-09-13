@@ -99,6 +99,8 @@ export default function ContactInformation({
     OnSaveClicked(data);
   };
 
+  const invalidChars = ["e", "-", "+"];
+
   return (
     <AccountCard
       tabIndex={0}
@@ -398,7 +400,10 @@ export default function ContactInformation({
                   }) => {
                     return (
                       <StyledInput
-                        type="text"
+                        type="number"
+                        onKeyDown={(e) => {
+                          if (invalidChars.includes(e.key)) e.preventDefault();
+                        }}
                         id="zip"
                         label="Zip"
                         inputProps={{
