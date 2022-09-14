@@ -173,7 +173,7 @@ export const {
   setUserInsuranceDataByIndex,
   resetUserAppointmentData,
   setUserAppointmentData,
-  setUserAppointmentDataByIndex,
+  setUserAppointmentDataByIndex
 } = userSlice.actions;
 
 export default userSlice.reducer;
