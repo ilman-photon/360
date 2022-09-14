@@ -192,6 +192,7 @@ export default function AppointmentForm({
                   size="small"
                   variant="filled"
                   helperText={error ? error.message : null}
+                  maxLength={50}
                   sx={
                     isDesktop
                       ? { m: 1, width: "70%" }
@@ -227,6 +228,7 @@ export default function AppointmentForm({
                   size="small"
                   variant="filled"
                   helperText={error ? error.message : null}
+                  maxLength={50}
                   sx={
                     isDesktop
                       ? { m: 1, width: "70%" }
