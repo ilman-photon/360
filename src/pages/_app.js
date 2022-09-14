@@ -9,6 +9,10 @@ import { appWithTranslation } from "next-i18next";
 import nextI18nConfig from "../../next-i18next.config";
 import SessionExpiredModal from "../components/organisms/SessionExpiredModal/sessionExpiredModal";
 import NoInternetConnectionModal from "../components/organisms/NoInternetConnectionModal/noInternetConnectionModal";
+import GenericErrorModal from "../components/molecules/GenericErrorModal/genericErrorModal";
+import { injectStore } from "./api/api";
+import Image from "next/image";
+import { Box } from "@mui/material";
 
 function App({ Component, pageProps }) {
   // Use the layout defined at the page level, if available
@@ -25,6 +29,9 @@ function App({ Component, pageProps }) {
   const [open, setOpen] = useState(false);
 
   const [isOnline, setOnline] = useState(true);
+
+  // inject api.js with redux
+  injectStore(store);
 
   const onPrompt = () => {
     // onPrompt will be called after the timeout value is reached
@@ -93,6 +100,16 @@ function App({ Component, pageProps }) {
   return getLayout(
     <Provider store={store}>
       <NoInternetConnectionModal isOnline={isOnline} setOnline={setOnline} />
+      <Box sx={{ display: "none" }}>
+        {/* Load Immage for internet connection */}
+        <Image
+          alt=""
+          src={"/Vector.png"}
+          width={244.89}
+          height={211}
+          loading={"eager"}
+        />
+      </Box>
       {isLogin ? (
         <SessionExpiredModal
           showModal={open}
@@ -104,6 +121,7 @@ function App({ Component, pageProps }) {
       ) : (
         <></>
       )}
+      <GenericErrorModal storeContext={store} />
       <Component {...pageProps} />
     </Provider>,
     store

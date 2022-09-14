@@ -46,6 +46,32 @@ exports[`App renders App unchanged 1`] = `
         class="authComponentContainer MuiBox-root css-1h4hxqr"
       >
         <div
+          class="MuiBox-root css-1hyfx7x"
+        >
+          <span
+            style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+          >
+            <span
+              style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+            >
+              <img
+                alt=""
+                aria-hidden="true"
+                src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27244.89%27%20height=%27211%27/%3e"
+                style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+              />
+            </span>
+            <img
+              alt=""
+              data-nimg="intrinsic"
+              decoding="async"
+              src="/_next/image?url=%2FVector.png&w=640&q=75"
+              srcset="/_next/image?url=%2FVector.png&w=256&q=75 1x, /_next/image?url=%2FVector.png&w=640&q=75 2x"
+              style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+            />
+          </span>
+        </div>
+        <div
           class="contanierPage MuiBox-root css-0"
         >
           <div
@@ -123,8 +149,8 @@ exports[`App renders App unchanged 1`] = `
                   <label
                     class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
                     data-shrink="false"
-                    for=":r3:"
-                    id=":r3:-label"
+                    for=":r4:"
+                    id=":r4:-label"
                   >
                     Date of Birth
                   </label>
@@ -136,7 +162,7 @@ exports[`App renders App unchanged 1`] = `
                       aria-label="Choose date"
                       aria-readonly="true"
                       class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
-                      id=":r3:"
+                      id=":r4:"
                       readonly=""
                       type="text"
                       value=""
@@ -361,17 +387,17 @@ exports[`App renders App unchanged 1`] = `
                         >
                           <svg
                             aria-hidden="true"
-                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1xdnwdx-MuiSvgIcon-root"
-                            data-testid="CancelIcon"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-yh3mte-MuiSvgIcon-root"
+                            data-testid="CheckCircleRoundedIcon"
                             focusable="false"
                             viewBox="0 0 24 24"
                           >
                             <path
-                              d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"
+                              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM9.29 16.29 5.7 12.7a.9959.9959 0 0 1 0-1.41c.39-.39 1.02-.39 1.41 0L10 14.17l6.88-6.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-7.59 7.59c-.38.39-1.02.39-1.41 0z"
                             />
                           </svg>
                           <span
-                            style="margin-left: 10px; color: rgb(8, 7, 7); font-family: Libre Franklin; font-style: normal; font-weight: 400; font-size: 14px; line-height: 18px;"
+                            style="margin-left: 10px; color: rgb(22, 136, 69); font-family: Libre Franklin; font-style: normal; font-weight: 500; font-size: 14px; line-height: 18px;"
                           >
                             Password should not contain your username
                           </span>
