@@ -106,7 +106,6 @@ export default function Appointment({ googleApiKey }) {
   }, [router]);
 
   function onSearchProvider(data) {
-    console.log({ data });
     dispatch(setFilterData(data));
     setDataFilter(data);
     onCallSubmitFilterAPI(data);
@@ -164,7 +163,6 @@ export default function Appointment({ googleApiKey }) {
       insuranceCarrier: requestData.insuranceCarrier,
       filterBy: activeFilterBy,
     };
-    console.log(postBody);
     if (!isOverlay) {
       setIsLoading(true);
     }
@@ -329,7 +327,7 @@ export default function Appointment({ googleApiKey }) {
                 isDayAvailableView={true}
                 isShownPhoneAndRating={false}
                 providerData={providerDataOverview}
-                imageSize={!isDesktop ? "small" : "large"}
+                imageSize={"small"}
               />
             </Box>
             <DayAvailability
@@ -408,6 +406,19 @@ export default function Appointment({ googleApiKey }) {
     }
   }
 
+  function renderCircularProgress() {
+    return (
+      <Stack
+        flexDirection="row"
+        width="100%"
+        marginTop={"60px"}
+        sx={{ alignSelf: "center" }}
+      >
+        <CircularProgress />
+      </Stack>
+    );
+  }
+
   function renderFilterResultTabletView() {
     if (isTablet) {
       return !isLoading ? (
@@ -415,7 +426,7 @@ export default function Appointment({ googleApiKey }) {
           {renderFilterResultTabletViewUI()}
         </Stack>
       ) : (
-        <CircularProgress />
+        renderCircularProgress()
       );
     } else {
       return !isLoading ? (
@@ -459,7 +470,7 @@ export default function Appointment({ googleApiKey }) {
           </Box>
         </Stack>
       ) : (
-        <CircularProgress />
+        renderCircularProgress()
       );
     }
   }
@@ -471,6 +482,7 @@ export default function Appointment({ googleApiKey }) {
         flex={1}
         sx={{
           paddingTop: "135px",
+          alignSelf: !isLoading ? "none" : "center",
         }}
       >
         {renderFilterResultTabletView()}

@@ -31,6 +31,7 @@ import store from "../../../store/store";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import {
+  DEFAULT_PATIENT_INFO_DATA,
   editAppointmentScheduleData,
   resetFilterData,
 } from "../../../store/appointment";
@@ -246,6 +247,17 @@ export default function ScheduleAppointmentPage() {
   const router = useRouter();
   const dispatch = useDispatch();
 
+  React.useEffect(() => {
+    if (activeStep === 2 || activeStep === 3) {
+      dispatch(
+        editAppointmentScheduleData({
+          key: "patientInfo",
+          value: DEFAULT_PATIENT_INFO_DATA,
+        })
+      );
+    }
+  }, [activeStep]);
+
   const steps = [
     "Location",
     "Review",
@@ -302,7 +314,6 @@ export default function ScheduleAppointmentPage() {
   const userData = useSelector((state) => state.user.userData);
 
   React.useEffect(() => {
-    console.log({ isLoggedIn });
     if (isLoggedIn) {
       dispatch(
         editAppointmentScheduleData({
@@ -461,20 +472,22 @@ export default function ScheduleAppointmentPage() {
           Are you sure you want to reschedule?
         </DialogTitle>
         <DialogActions>
-          <Stack direction="row" alignItems="center" spacing={2}>
+          <Stack direction="row" alignItems="center" spacing={"10px"}>
             <StyledButton
+              isModalButton
               size="small"
               mode="secondary"
               onClick={handleCancelReschedule}
-              sx={{ fontSize: "14px", px: "20px", py: "11px" }}
+              sx={{ fontSize: "14px", px: "20px", py: "11px", height: "40px" }}
             >
-              Cancel
+              Deny
             </StyledButton>
             <StyledButton
+              isModalButton
               size="small"
               mode="primary"
               onClick={OnConfirmRescheduleAppointment}
-              sx={{ fontSize: "14px", px: "20px", py: "11px" }}
+              sx={{ fontSize: "14px", px: "20px", py: "11px", height: "40px" }}
             >
               Reschedule
             </StyledButton>

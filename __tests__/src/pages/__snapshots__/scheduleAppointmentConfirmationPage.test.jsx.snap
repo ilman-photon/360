@@ -61,7 +61,7 @@ exports[`App renders App unchanged 1`] = `
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-elhp89-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yziclw-MuiSvgIcon-root"
                   data-testid="CheckCircleRoundedIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -212,7 +212,7 @@ exports[`App renders App unchanged 1`] = `
                             class="displayFlex MuiBox-root css-0"
                           >
                             <div
-                              class="MuiBox-root css-0"
+                              class="imageContainer MuiBox-root css-0"
                             >
                               <span
                                 style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
@@ -251,21 +251,26 @@ exports[`App renders App unchanged 1`] = `
                               >
                                 Scripps Eyecare
                               </h3>
-                              <p
-                                class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
-                              />
                               <div
-                                class="phoneContainer MuiBox-root css-0"
+                                class="detailContainer MuiBox-root css-0"
                               >
-                                <a
-                                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways phoneLink css-1ps4owl-MuiTypography-root-MuiLink-root"
-                                />
+                                <div
+                                  class="MuiBox-root css-0"
+                                >
+                                  <p
+                                    class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
+                                  />
+                                  <div
+                                    class="phoneContainer MuiBox-root css-0"
+                                  >
+                                    <a
+                                      class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways phoneLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                                    />
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
-                          <div
-                            class="MuiBox-root css-0"
-                          />
                         </div>
                         <div
                           class="getDirectionLink MuiBox-root css-0"
