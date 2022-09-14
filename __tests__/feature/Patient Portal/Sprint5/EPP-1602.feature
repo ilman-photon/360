@@ -277,7 +277,7 @@ Feature: Patient Portal : Appointments - Reschedule Appointments
   @Patient_Portal
   @Sprint4
   @Sprint5
-  @excluded
+  @included
   Scenario: EPIC_EPP-45_STORY_EPP-1602 - Verify user should be able to deny and gets redirected back to “Appointments” screen when user reschedule upcoming appointment list within 3 seconds
     
     Given user launch Patient Portal url		
@@ -307,7 +307,7 @@ Feature: Patient Portal : Appointments - Reschedule Appointments
   @Patient_Portal
   @Sprint4
   @Sprint5
-  @excluded
+  @included
   Scenario: EPIC_EPP-45_STORY_EPP-1602 - Negative Test Cases-Verify user should see the error message when the internet service is unavailable
     
     Given user launch Patient Portal url		
@@ -338,7 +338,7 @@ Feature: Patient Portal : Appointments - Reschedule Appointments
   @Patient_Portal
   @Sprint4
   @Sprint5
-  @excluded
+  @included
   Scenario: EPIC_EPP-45_STORY_EPP-1602 - Negative Test Cases-Verify  when the service is unavailable
     
     Given user launch Patient Portal url		
@@ -369,7 +369,7 @@ Feature: Patient Portal : Appointments - Reschedule Appointments
   @Patient_Portal
   @Sprint4
   @Sprint5
-  @excluded
+  @included
   Scenario: EPIC_EPP-45_STORY_EPP-1602 - Negative Test Cases-Verify User navigates to “Appointments” screen when user refresh the page
     
     Given user launch Patient Portal url		
@@ -400,7 +400,7 @@ Feature: Patient Portal : Appointments - Reschedule Appointments
   @Patient_Portal
   @Sprint4
   @Sprint5
-  @excluded
+  @included
   Scenario: EPIC_EPP-45_STORY_EPP-1602 - Verify User should not see the any errors script when user clicks F12 on the console
     
     Given user launch Patient Portal url		
