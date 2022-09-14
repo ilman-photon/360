@@ -17,6 +17,7 @@ import store from "../../store/store";
 
 export async function getServerSideProps(context) {
   const cookies = new Cookies(context.req.headers.cookie);
+  const isStepTwo = cookies.get("isStay") == "stay";
 
   if (!cookies.get("mfa")) {
     return {
@@ -28,11 +29,13 @@ export async function getServerSideProps(context) {
   }
 
   return {
-    props: {},
+    props: {
+      isStepTwo,
+    },
   };
 }
 
-export default function MfaPage() {
+export default function MfaPage({ isStepTwo }) {
   const api = new Api();
   const cookies = new Cookies();
   const router = useRouter();
@@ -76,6 +79,12 @@ export default function MfaPage() {
     };
   });
 
+  React.useEffect(() => {
+    return () => {
+      cookies.remove("isStay");
+    };
+  }, []);
+
   const setTempValidation = (response) => {
     if (process.env.ENV_NAME !== "prod" && response && response.mfaCode) {
       setOTPValidation(response.mfaCode);
@@ -94,6 +103,7 @@ export default function MfaPage() {
       .then((response) => {
         setTempValidation(response);
         setComponentName(constants.MFA_COMPONENT_NAME);
+        cookies.set("isStay", "stay", { path: "/patient" });
       })
       .catch((err) => {
         if (err.ResponseCode === 4004) {
@@ -258,7 +268,7 @@ export default function MfaPage() {
     return questionList;
   }
 
-  if (componentName === constants.MFA_COMPONENT_NAME) {
+  if (componentName === constants.MFA_COMPONENT_NAME || isStepTwo) {
     return (
       <>
         <MultiFactorAuthentication
