@@ -256,7 +256,7 @@ export default function ScheduleAppointmentPage() {
         })
       );
     }
-  },[activeStep])
+  }, [activeStep]);
 
   const steps = [
     "Location",

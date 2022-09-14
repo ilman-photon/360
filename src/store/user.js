@@ -174,6 +174,7 @@ export const {
   resetUserAppointmentData,
   setUserAppointmentData,
   setUserAppointmentDataByIndex,
+  setGenericErrorMessage,
 } = userSlice.actions;
 
 export default userSlice.reducer;

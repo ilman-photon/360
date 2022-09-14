@@ -1,5 +1,13 @@
 import axios from "axios";
+import { setGenericErrorMessage } from "../../store";
 import constants from "../../utils/constants";
+
+let store;
+
+export const injectStore = (_store) => {
+  store = _store;
+};
+
 export class Api {
   client;
   constructor() {
@@ -24,14 +32,21 @@ export class Api {
         }
       };
       const rejecter = function (err) {
-        if (err && err.response && err.response.data) {
-          reject(err.response.data);
-        } else if (err && err.code === constants.ERROR_CODE.NETWORK_ERR) {
+        if (
+          err &&
+          (err.code === constants.ERROR_CODE.BAD_REQUEST ||
+            err.code === constants.ERROR_CODE.NETWORK_ERR)
+        ) {
+          store.dispatch(
+            setGenericErrorMessage("Please try again after sometime.")
+          );
           reject({
             description:
               "Something went wrong. Please try again after sometime.",
             ResponseCode: err.code,
           });
+        } else if (err && err.response && err.response.data) {
+          reject(err.response.data);
         } else {
           reject(err);
         }
