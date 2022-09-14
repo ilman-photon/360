@@ -23,6 +23,16 @@
   min-width: 112px !important;
 }
 
+.customButtonFilter {
+  min-width: 52px;
+  height: 52px;
+  border-radius: 0 50px 50px 0 !important;
+}
+
 .customButtonLarge {
   min-width: 322px !important;
+}
+
+.modalButton {
+  height: 40px;
 }

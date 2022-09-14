@@ -5,15 +5,19 @@ import SetMultiFactorAuthentication from "../../components/organisms/MultiFactor
 import MultiFactorAuthentication from "../../components/organisms/MultiFactorAuthentication/multiFactorAuthentication";
 import constants from "../../utils/constants";
 import SecurityQuestion from "../../components/organisms/SecurityQuestion/securityQuestion";
-import { Box } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Cookies from "universal-cookie";
 import AccountTitleHeading from "../../components/atoms/AccountTitleHeading/accountTitleHeading";
 import FormMessage from "../../components/molecules/FormMessage/formMessage";
 import { Api } from "../api/api";
 import { useTranslation } from "next-i18next";
+import { formatPhoneNumber } from "../../utils/phoneFormatter";
+import { Provider } from "react-redux";
+import store from "../../store/store";
 
 export async function getServerSideProps(context) {
   const cookies = new Cookies(context.req.headers.cookie);
+  const isStepTwo = cookies.get("isStay") == "stay";
 
   if (!cookies.get("mfa")) {
     return {
@@ -25,11 +29,13 @@ export async function getServerSideProps(context) {
   }
 
   return {
-    props: {},
+    props: {
+      isStepTwo,
+    },
   };
 }
 
-export default function MfaPage() {
+export default function MfaPage({ isStepTwo }) {
   const api = new Api();
   const cookies = new Cookies();
   const router = useRouter();
@@ -38,10 +44,11 @@ export default function MfaPage() {
   const [componentName, setComponentName] = React.useState("");
   const [rememberMe, setRememberMe] = React.useState(false);
   const [successSubmit, setSuccessSubmit] = React.useState(false);
+  const [otpValidation, setOTPValidation] = React.useState("");
   const [securityQuestionList, setSecurityQuestionList] = React.useState([]);
   const [communicationMethod, setCommunicationMethod] = React.useState({});
   const { t } = useTranslation("translation", { keyPrefix: "mfaPage" });
-
+  const { MFA_TEST_ID } = constants.TEST_ID;
   const onBackButtonEvent = (e) => {
     e.preventDefault();
     onBackToLoginClicked();
@@ -56,6 +63,9 @@ export default function MfaPage() {
         .getUserData(postBody)
         .then((response) => {
           const method = response.communicationMethod;
+          if (method.phone) {
+            method.phone = formatPhoneNumber(method.phone, true);
+          }
           setCommunicationMethod(method);
         })
         .catch(() => {
@@ -69,6 +79,18 @@ export default function MfaPage() {
     };
   });
 
+  React.useEffect(() => {
+    return () => {
+      cookies.remove("isStay");
+    };
+  }, []);
+
+  const setTempValidation = (response) => {
+    if (process.env.ENV_NAME !== "prod" && response && response.mfaCode) {
+      setOTPValidation(response.mfaCode);
+    }
+  };
+
   function onConfirmClicked(communication, callback) {
     const deviceId = ip.replace(/\./g, "");
     const postBody = {
@@ -78,8 +100,10 @@ export default function MfaPage() {
     };
     api
       .sendMfaCode(postBody)
-      .then(() => {
+      .then((response) => {
+        setTempValidation(response);
         setComponentName(constants.MFA_COMPONENT_NAME);
+        cookies.set("isStay", "stay", { path: "/patient" });
       })
       .catch((err) => {
         if (err.ResponseCode === 4004) {
@@ -104,7 +128,7 @@ export default function MfaPage() {
 
   function redirectToDashboard() {
     const hostname = window.location.origin;
-    window.location.href = `${hostname}/patient/account/profile-info`;
+    window.location.href = `${hostname}/patient`;
 
     cookies.set("authorized", true, { path: "/patient" });
     cookies.remove("mfa", { path: "/patient" });
@@ -134,23 +158,25 @@ export default function MfaPage() {
         }
       })
       .catch((err) => {
-        if (err.ResponseCode === 4003) {
-          callback({
-            status: "failed",
-            isEndView: true,
-            message: {
-              title: t("mfaLockTitle"),
-              description: t("mfaLockDescription"),
-            },
-          });
-        } else {
-          callback({
-            status: "failed",
-            message: {
-              title: t("mfaFailedTitle"),
-              description: t("mfaFailedDescription"),
-            },
-          });
+        if (err.ResponseCode !== constants.ERROR_CODE.NETWORK_ERR) {
+          if (err.ResponseCode === 4003) {
+            callback({
+              status: "failed",
+              isEndView: true,
+              message: {
+                title: t("mfaLockTitle"),
+                description: t("mfaLockDescription"),
+              },
+            });
+          } else {
+            callback({
+              status: "failed",
+              message: {
+                title: t("mfaFailedTitle"),
+                description: t("mfaFailedDescription"),
+              },
+            });
+          }
         }
       });
   }
@@ -164,20 +190,23 @@ export default function MfaPage() {
     };
     api
       .sendMfaCode(postBody)
-      .then(() => {
+      .then((response) => {
+        setTempValidation(response);
         callback({
           status: "success",
         });
       })
       .catch((err) => {
-        if (err.ResponseCode === 4001) {
-          callback({
-            status: "failed",
-            isEndView: true,
-            message: {
-              description: err.ResponseType,
-            },
-          });
+        if (err.ResponseCode !== constants.ERROR_CODE.NETWORK_ERR) {
+          if (err.ResponseCode === 4001) {
+            callback({
+              status: "failed",
+              isEndView: true,
+              message: {
+                description: err.ResponseType,
+              },
+            });
+          }
         }
       });
   }
@@ -218,11 +247,13 @@ export default function MfaPage() {
           redirectToDashboard();
         }, 3000);
       })
-      .catch(function () {
-        callback({
-          status: "failed",
-          message: "Failed to sumbit the security question.",
-        });
+      .catch(function (err) {
+        if (err.ResponseCode !== constants.ERROR_CODE.NETWORK_ERR) {
+          callback({
+            status: "failed",
+            message: "Failed to sumbit the security question.",
+          });
+        }
       });
   }
 
@@ -231,21 +262,33 @@ export default function MfaPage() {
     securityQuestionList = securityQuestionList[0]
       ? securityQuestionList[0]
       : {};
-    for (const [key, value] of Object.entries(securityQuestionList)) {
+    for (const [key] of Object.entries(securityQuestionList)) {
       questionList.push(key);
     }
     return questionList;
   }
 
-  if (componentName === constants.MFA_COMPONENT_NAME) {
+  if (componentName === constants.MFA_COMPONENT_NAME || isStepTwo) {
     return (
-      <MultiFactorAuthentication
-        onSubmitClicked={onSubmitClicked}
-        onResendCodeClicked={onResendCodeClicked}
-        onBackToLoginClicked={onBackToLoginClicked}
-        rememberMe={rememberMe}
-        setRememberMe={onSetRememberMe}
-      />
+      <>
+        <MultiFactorAuthentication
+          onSubmitClicked={onSubmitClicked}
+          onResendCodeClicked={onResendCodeClicked}
+          onBackToLoginClicked={onBackToLoginClicked}
+          rememberMe={rememberMe}
+          setRememberMe={onSetRememberMe}
+          testIds={MFA_TEST_ID}
+        />
+        {otpValidation ? (
+          <Typography
+            aria-hidden={"true"}
+            style={{ display: "none" }}
+            data-testid={"loc_validationMFA"}
+          >
+            {otpValidation}
+          </Typography>
+        ) : null}
+      </>
     );
   } else if (componentName === constants.SQ_COMPONENT_NAME) {
     return (
@@ -288,6 +331,7 @@ export default function MfaPage() {
                 onClickedSubmitButton={onSubmitSecurityQuestionClicked}
                 onClickedSkipButton={redirectToDashboard}
                 securityQuestionList={securityQuestionList}
+                testIds={MFA_TEST_ID}
               />
             </Box>
           </Box>
@@ -313,11 +357,16 @@ export default function MfaPage() {
         rememberMe={rememberMe}
         setRememberMe={onSetRememberMe}
         data={communicationMethod}
+        testIds={MFA_TEST_ID}
       />
     );
   }
 }
 
 MfaPage.getLayout = function getLayout(page) {
-  return <MfaLayout>{page}</MfaLayout>;
+  return (
+    <Provider store={store}>
+      <MfaLayout>{page}</MfaLayout>
+    </Provider>
+  );
 };

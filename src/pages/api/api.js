@@ -1,4 +1,13 @@
 import axios from "axios";
+import { setGenericErrorMessage } from "../../store";
+import constants from "../../utils/constants";
+
+let store;
+
+export const injectStore = (_store) => {
+  store = _store;
+};
+
 export class Api {
   client;
   constructor() {
@@ -56,7 +65,21 @@ export class Api {
         }
       };
       const rejecter = function (err) {
-        if (err && err.response && err.response.data) {
+        if (
+          err &&
+          ((err.code === constants.ERROR_CODE.BAD_REQUEST &&
+            err?.response?.data?.ResponseCode === undefined) ||
+            err.code === constants.ERROR_CODE.NETWORK_ERR)
+        ) {
+          store.dispatch(
+            setGenericErrorMessage("Please try again after sometime.")
+          );
+          reject({
+            description:
+              "Something went wrong. Please try again after sometime.",
+            ResponseCode: err.code,
+          });
+        } else if (err && err.response && err.response.data) {
           reject(err.response.data);
         } else {
           reject(err);
@@ -82,6 +105,11 @@ export class Api {
   login(postbody) {
     const url = "/ecp/patient/login";
     return this.forgotFeatureValidation(url, postbody, "post", 2000);
+  }
+
+  validateGuestUser(postbody) {
+    const url = "/ecp/patient/validate";
+    return this.forgotFeatureValidation(url, postbody, "post");
   }
 
   validateUserName(postbody) {
@@ -193,5 +221,70 @@ export class Api {
           reject();
         });
     });
+  }
+
+  async getUSListOfStates() {
+    const usStatesApiUrl =
+      "https://public.opendatasoft.com/api/records/1.0/search/?dataset=georef-united-states-of-america-state&q=&sort=ste_name&facet=ste_name&rows=99";
+    try {
+      const response = await this.getResponse(usStatesApiUrl, null, "get");
+      return response.records.map((record) => {
+        return {
+          id: record.datasetid,
+          label: record.fields.ste_name,
+          value: record.fields.ste_name,
+        };
+      });
+    } catch (error) {
+      console.error({ error });
+    }
+  }
+
+  getProviderDetails() {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/appointment/biography/getProviderDetails`;
+    return this.getResponse(url, {}, "post");
+  }
+
+  getProviderAvailibility() {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/appointment/create-appointment/getProviderAvailibility`;
+    return this.getResponse(url, {}, "post");
+  }
+
+  getSugestion() {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/appointment/create-appointment/getSugestion`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  submitFilter(postBody) {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/appointment/create-appointment/submitFilter`;
+    return this.getResponse(url, postBody, "post");
+  }
+
+  getAllAppointment() {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  updateAppointment(postbody) {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/appointment/my-appointment/updateAppointment`;
+    return this.getResponse(url, postbody, "post");
+  }
+
+  postForm(postbody, method) {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/appointment/review-details/postForm`;
+    return this.getResponse(url, postbody, method);
+  }
+
+  getAllPrescriptions() {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`;
+    return this.getResponse(url, {}, "get");
   }
 }

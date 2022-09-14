@@ -15,7 +15,7 @@ import { Regex } from "../../../utils/regex";
 import { useRouter } from "next/router";
 import constants from "../../../utils/constants";
 import { HeadingTitle } from "../../atoms/Heading";
-
+import { colors } from "../../../styles/theme";
 export default function Register({ OnRegisterClicked, formMessage = null }) {
   const router = useRouter();
   const { handleSubmit, control, watch } = useForm({
@@ -112,12 +112,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
   const isPasswordError = watchedPassword.length > 0; // && passwordValidator.filter(v => v.validate).length > 0
 
   const onSubmit = (data) => {
-    // dummy error validation
-    // setError("firstName", { type: 'custom', message: 'An error occured' })
-    // setError("lastName", { type: 'custom', message: 'An error occured' })
-    // setError("mobile", { type: 'custom', message: 'An error occured' })
-    // setError("password", { type: 'custom', message: 'An error occured' })
-
     const errors1 = [];
     const errors2 = [];
     passwordValidator.forEach((err) => {
@@ -127,7 +121,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
         if (err.validate) errors2.push(err.validate);
       }
     });
-
     if (validatePassword(errors1, errors2)) {
       OnRegisterClicked(data, router);
     }
@@ -142,7 +135,19 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
         inline: "nearest",
       });
   }, [formMessage]);
-
+  const isDOB = (value) => {
+    let date = new Date().getFullYear();
+    if (value.getFullYear() <= date) {
+      return true;
+    }
+    if (value.getMonth() <= 12) {
+      return true;
+    }
+    if (value.getMonth() <= 12) {
+      return true;
+    }
+    return false;
+  };
   const isOneOfPreferredValid = (name, value) => {
     switch (name) {
       case "email":
@@ -161,7 +166,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
         return false;
     }
   };
-
   return (
     <Box className={globalStyles.container}>
       <Stack spacing={3}>
@@ -211,6 +215,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               },
             }}
           />
+
           <Controller
             name="lastName"
             control={control}
@@ -261,9 +266,11 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             }}
             rules={{
               required: "This field is required",
-              pattern: {
-                value: Regex.specialRegex,
-                message: "Incorrect email format",
+              validate: {
+                required: (value) => {
+                  if (!isDOB(value))
+                    return "Incorect Date of Birth is required";
+                },
               },
             }}
           />
@@ -369,6 +376,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               },
             }}
           />
+
           <PasswordValidator
             validator={passwordValidator}
             isShowValidation={isPasswordError}
@@ -377,7 +385,12 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           />
 
           <div style={styles.registeredUsernameWrapper}>
-            <div>Your username will be {getRegisteredUsername()}</div>
+            <Typography
+              variant="bodyMedium"
+              sx={{ fontWeight: 500, color: colors.darkGreen }}
+            >
+              Your username will be {getRegisteredUsername()}
+            </Typography>
           </div>
 
           <div style={styles.divMargin}>
@@ -415,19 +428,17 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           </Button>
         </form>
 
-        <Typography
-          variant="caption"
-          style={styles.bottomParagraph}
-          aria-label="By registering, you accept to our Terms & Conditions and Privacy
-          Policy"
-        >
-          By registering, you accept to our Terms &<br /> Conditions and Privacy
-          Policy
+        <Typography variant="caption" style={styles.bottomParagraph}>
+          {`By registering, you accept to our Terms & Conditions and Privacy Policy`}
         </Typography>
         <Divider margin={3} sx={{ width: "288px", alignSelf: "center" }} />
         <Typography variant="caption" style={styles.bottomParagraph}>
           Already have an account?{" "}
-          <Link href="/patient/login" data-testid={REGISTER_TEST_ID.loginlink}>
+          <Link
+            href="/patient/login"
+            data-testid={REGISTER_TEST_ID.loginlink}
+            aria-label={`Login link`}
+          >
             <a style={styles.loginLink}>Login</a>
           </Link>
         </Typography>

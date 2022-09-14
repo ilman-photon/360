@@ -1,26 +1,59 @@
 import { Box, Button, Stack, Typography } from "@mui/material";
 import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { colors } from "../../../styles/theme";
 import Image from "next/image";
+import { Regex } from "../../../utils/regex";
 
 export const ImageUploader = ({
   label,
+  preview,
   helperText = false,
   source = "",
   OnUpload = () => {
     // This is intended
   },
+  OnInputError = () => {
+    // This is intended
+  },
+  testIds,
 }) => {
-  const [previewPhoto, setPreviewPhoto] = useState("");
   const inputImage = useRef(null);
 
   const handleInputChange = (event) => {
+    const max = 4;
+    const maxSize = max * 1024 * 1024; // 4MB
     if (event.target.files && event.target.files[0]) {
-      console.log(event.target.files[0]);
-      const blobFile = URL.createObjectURL(event.target.files[0]);
-      setPreviewPhoto(blobFile);
-      OnUpload(blobFile);
+      const file = event.target.files[0];
+      const fileType = file.type;
+      const fileTypeDotIndexPosition = file.name.lastIndexOf(".") + 1;
+      const slicedFileTypeFromFilePath = file.name.slice(
+        fileTypeDotIndexPosition
+      );
+      let error = {};
+
+      if (file.size > maxSize) {
+        error = {
+          success: false,
+          title: null,
+          content: `File size limit is ${max} MB`,
+        };
+        event.target.value = null;
+      } else if (
+        !Regex.isImageFile.test(fileType) &&
+        !Regex.isImageFile.test(slicedFileTypeFromFilePath)
+      ) {
+        error = {
+          success: false,
+          title: null,
+          content: "Invalid file type",
+        };
+        event.target.value = null;
+      } else {
+        const blobFile = URL.createObjectURL(event.target.files[0]);
+        OnUpload(blobFile);
+      }
+      OnInputError(error);
     }
   };
   return (
@@ -35,10 +68,10 @@ export const ImageUploader = ({
         }}
       >
         <>
-          {previewPhoto || source ? (
+          {preview || source ? (
             <Stack>
               <Image
-                src={previewPhoto || source}
+                src={preview || source}
                 width={275}
                 height={173}
                 style={{ borderRadius: 4 }}
@@ -50,6 +83,7 @@ export const ImageUploader = ({
               onClick={() => {
                 inputImage.current.click();
               }}
+              data-testid={testIds}
               sx={{
                 color: colors.black,
                 textTransform: "none",
@@ -68,6 +102,7 @@ export const ImageUploader = ({
           <input
             ref={inputImage}
             type="file"
+            data-testid={"loc_uploadImage"}
             accept="image/png, image/gif, image/jpeg"
             hidden
             onChange={handleInputChange}
@@ -82,7 +117,7 @@ export const ImageUploader = ({
         ""
       )}
 
-      {source ? (
+      {preview || source ? (
         <Button
           variant="text"
           sx={{
@@ -92,11 +127,12 @@ export const ImageUploader = ({
             width: "fit-content",
             alignSelf: "center",
           }}
+          data-testid={testIds}
           onClick={() => {
             inputImage.current.click();
           }}
         >
-          Change File
+          Change photo
         </Button>
       ) : (
         ""

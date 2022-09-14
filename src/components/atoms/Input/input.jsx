@@ -11,6 +11,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import InputMask from "react-input-mask";
+import Tooltip from "@mui/material/Tooltip";
 
 import { primaryTheme } from "../../../styles/theme";
 
@@ -41,21 +42,27 @@ export const CustomPasswordInput = styled((props) => (
       disableUnderline: true,
       endAdornment: (
         <InputAdornment position="end">
-          <IconButton
-            aria-label={`${
-              props.type !== "password"
-                ? "Password hide icon"
-                : "Password unhide icon"
+          <Tooltip
+            title={`${
+              props.type !== "password" ? "Hide Password" : "Show Password"
             }`}
-            {...props.customevent}
-            edge="end"
           >
-            {props.type !== "password" ? (
-              <VisibilityOutlinedIcon />
-            ) : (
-              <VisibilityOffOutlinedIcon sx={{ transform: "scaleX(-1)" }} />
-            )}
-          </IconButton>
+            <IconButton
+              aria-label={`${
+                props.type !== "password"
+                  ? "Password hide icon"
+                  : "Password unhide icon"
+              }`}
+              {...props.customevent}
+              edge="end"
+            >
+              {props.type !== "password" ? (
+                <VisibilityOutlinedIcon />
+              ) : (
+                <VisibilityOffOutlinedIcon sx={{ transform: "scaleX(-1)" }} />
+              )}
+            </IconButton>
+          </Tooltip>
         </InputAdornment>
       ),
     }}
@@ -69,6 +76,7 @@ export const CustomPasswordInput = styled((props) => (
     },
     "&.Mui-error": {
       color: "#B00020",
+      fontWeight: "unset",
     },
   },
   "& .MuiFilledInput-root": {
@@ -94,16 +102,17 @@ export const CustomPasswordInput = styled((props) => (
       backgroundColor: "transparent",
       color: "#193138",
     },
-    "&.MuiFilledInput-input": {
-      "&.::-ms-reveal": {
-        display: "none",
-      },
+  },
+  "& .MuiFormHelperText-root": {
+    "&.Mui-error": {
+      color: "#B00020",
     },
   },
 }));
 
 export const RedditTextField = styled((props) => (
   <TextField
+    onKeyDown={props.onKeyDown}
     InputProps={{
       disableUnderline: true,
       endAdornment: props.adorment ? (
@@ -124,6 +133,7 @@ export const RedditTextField = styled((props) => (
     },
     "&.Mui-error": {
       color: "#B00020",
+      fontWeight: "unset",
     },
   },
   "& .MuiFilledInput-root": {
@@ -218,7 +228,10 @@ export const CustomInput = styled(({ ...props }) => {
         <>
           <LocalizationProvider dateAdapter={AdapterDateFns}>
             <DatePicker
+              inputFormat="MM/dd/yyyy"
+              disabled={props.disabled}
               disableFuture={props.disableFuture}
+              disablePast={props.disablePast}
               label={props.label}
               onChange={props.onChange}
               value={props.value}
@@ -231,16 +244,25 @@ export const CustomInput = styled(({ ...props }) => {
                 <RedditTextField
                   variant="filled"
                   sx={{
-                    backgroundColor: "white",
                     borderRadius: "4px",
                     borderColor: "#B5B5B5",
-                    margin: "8px",
+                    margin: !props.isFilter ? "8px" : 0,
+                    ["& .MuiFilledInput-root"]: {
+                      border: props.isFilter
+                        ? "0px solid #ffff"
+                        : "1px solid #e2e2e1",
+                      ["& .MuiInputBase-input"]: {
+                        cursor: props.isFilter ? "pointer" : "inherit",
+                      },
+                    },
                   }}
                   {...params}
-                  error={props.error}
+                  onClick={props.onClick}
+                  error={props.error || params.error}
                   helperText={props.helperText}
                 />
               )}
+              {...props}
             />
           </LocalizationProvider>
         </>

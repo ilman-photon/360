@@ -11,6 +11,7 @@ export default function MultiFactorAuthentication({
   onBackToLoginClicked,
   rememberMe,
   setRememberMe,
+  testIds,
 }) {
   const [postMessage, setPostMessage] = React.useState("");
   const [isEndView, setEndView] = React.useState(false);
@@ -22,13 +23,21 @@ export default function MultiFactorAuthentication({
   const content = () => {
     return (
       <StyledInput
+        type="number"
         id="mfaCode"
         label={t("mfaLabel")}
         fullWidth
-        type="number"
+        inputProps={{ minLength: 6, maxLength: 6 }}
         value={mfaCode}
+        data-testid={testIds.inputCode}
         variant={constants.FILLED}
         onChange={(event) => {
+          if (event.target.value.length > event.target.maxLength) {
+            event.target.value = event.target.value.slice(
+              0,
+              event.target.maxLength
+            );
+          }
           setMfaCode(event.target.value);
         }}
       />
@@ -70,6 +79,12 @@ export default function MultiFactorAuthentication({
           postMessage={postMessage}
           rememberMe={rememberMe}
           setRememberMe={setRememberMe}
+          testIds={{
+            primary: testIds.btnSubmit,
+            secondary: testIds.btnResend,
+            checkbox: testIds.rememberMe,
+            link: testIds.btnBack,
+          }}
         />
       ) : (
         <Container
@@ -81,6 +96,9 @@ export default function MultiFactorAuthentication({
           }}
           postMessage={postMessage}
           isEndView
+          testIds={{
+            primary: testIds.btnBack,
+          }}
         />
       )}
     </>

@@ -8,6 +8,8 @@ import BaseHeader from "../organisms/BaseHeader/baseHeader";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { Box } from "@mui/system";
 import { useEffect, useState } from "react";
+import { Provider } from "react-redux";
+import store from "../../store/store";
 
 export default function AuthLayout({
   children,
@@ -36,42 +38,44 @@ export default function AuthLayout({
   }, [title, imageSrc]);
   return (
     <>
-      <Head>
-        <title>{titleState}</title>
-      </Head>
-      <div className={styles.authLayout}>
-        <BaseHeader></BaseHeader>
-        <div className={styles.authContainer}>
-          <ThemeProvider
-            theme={isPatient ? patientTypography : providerTypography}
-          >
-            <Box
-              className={styles.authComponentContainer}
+      <Provider store={store}>
+        <Head>
+          <title>{`EyeCare Patient Portal - ${titleState}`}</title>
+        </Head>
+        <div className={styles.authLayout}>
+          <BaseHeader></BaseHeader>
+          <div className={styles.authContainer}>
+            <ThemeProvider
+              theme={isPatient ? patientTypography : providerTypography}
+            >
+              <Box
+                className={styles.authComponentContainer}
+                sx={{
+                  paddingTop: {
+                    xs: showMobileImage ? "16px!important" : "75px!important",
+                    md: "100px!important",
+                    lg: "146px!important",
+                  },
+                  padding: 0,
+                }}
+              >
+                {children}
+              </Box>
+            </ThemeProvider>
+            <Container
+              className={styles.authImageContainer}
               sx={{
-                paddingTop: {
-                  xs: showMobileImage ? "16px!important" : "75px!important",
-                  md: "100px!important",
-                  lg: "146px!important",
-                },
+                display: { xs: showMobileImage ? "flex" : "none", md: "flex" },
                 padding: 0,
               }}
             >
-              {children}
-            </Box>
-          </ThemeProvider>
-          <Container
-            className={styles.authImageContainer}
-            sx={{
-              display: { xs: showMobileImage ? "flex" : "none", md: "flex" },
-              padding: 0,
-            }}
-          >
-            <div className={styles.imageBannerContainer}>
-              {hasImage && <Image alt="" src={imageSrcState} layout="fill" />}
-            </div>
-          </Container>
+              <div className={styles.imageBannerContainer}>
+                {hasImage && <Image alt="" src={imageSrcState} layout="fill" />}
+              </div>
+            </Container>
+          </div>
         </div>
-      </div>
+      </Provider>
     </>
   );
 }

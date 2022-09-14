@@ -1,0 +1,108 @@
+.checkBoxContainer {
+  min-width: 360px;
+  margin: 10px 17px;
+  padding-bottom: 10px;
+}
+
+.checkBoxContainerDivider {
+  border-bottom: 1px solid #d4d4d4;
+  @extend .checkBoxContainer;
+}
+
+.checkBoxTitle {
+  font-family: "Libre Franklin", sans-serif;
+  font-style: normal;
+  font-weight: 700 !important;
+  font-size: 18px !important;
+  line-height: 26px !important;
+  letter-spacing: 0.0016em;
+  color: #242526 !important;
+  margin-bottom: 16px !important;
+}
+
+.checkBoxGroup {
+  max-height: 145px;
+}
+
+.checkBoxGroupExpand {
+  height: auto;
+}
+
+.closeButton {
+  justify-content: flex-end;
+  margin: 9px 9px 0 0;
+  width: 40px;
+  align-self: flex-end;
+}
+
+.closeImage {
+  font-size: 28px;
+  color: black;
+}
+
+.buttonContainer {
+  display: flex;
+  gap: 10px;
+  border-top: 1px solid #d4d4d4;
+  position: absolute;
+  padding-top: 16px;
+  width: 360px;
+  bottom: 40px;
+  margin: 0px 16px;
+  background-color: white;
+
+  @media (max-width: 992px) {
+    width: 100%;
+    margin: unset;
+    padding: 16px 16px 0 16px;
+  }
+}
+
+.checkBoxGroup > label > span:nth-child(1),
+.checkBoxGroupExpand > label > span:nth-child(1) {
+  margin: 8px;
+  width: 24px;
+  height: 24px;
+  padding: unset;
+}
+
+.checkBoxGroup > label > span:nth-child(2),
+.checkBoxGroupExpand > label > span:nth-child(2) {
+  font-family: "Libre Franklin", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.0016em;
+  color: #242526;
+}
+
+.link {
+  font-family: "Libre Franklin", sans-serif;
+  font-style: normal;
+  font-weight: 500 !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+  letter-spacing: 0.0016em;
+  text-decoration-line: underline;
+  color: #008294 !important;
+  cursor: pointer;
+}
+
+.topDivider {
+  display: none;
+  @media (max-width: 992px) {
+    display: block;
+    border-bottom: 1px solid #d4d4d4;
+    margin-bottom: 6px;
+  }
+}
+
+.checBoxListContainer {
+  overflow: scroll;
+  overflow-x: hidden;
+  max-height: calc(100vh - 144px);
+  @media (max-width: 992px) {
+    width: 100vw;
+  }
+}

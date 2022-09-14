@@ -10,6 +10,8 @@ export default function InsuranceInformationNew({
   OnCancelEditClicked = () => {
     // This is intended
   },
+  FormMessageEl,
+  isShowError = false,
 }) {
   return (
     <Box
@@ -18,16 +20,18 @@ export default function InsuranceInformationNew({
       }}
     >
       <AccountCard
-        titleIcon={<AccountCircleOutlinedIcon />}
+        titleIcon={<AccountCircleOutlinedIcon aria-hidden="false" />}
         title="Insurance Documents"
       >
         <Stack spacing={2}>
+          {isShowError && FormMessageEl}
           <Typography variant="bodyLarge">
             You have no insurance on file
           </Typography>
           <InsuranceForm
             OnCancelEditClicked={(_) => OnCancelEditClicked(false)}
             OnSaveClicked={OnCreateInsurance}
+            isError={isShowError}
           />
         </Stack>
       </AccountCard>

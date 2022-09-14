@@ -10,9 +10,16 @@ import { colors, primaryTheme } from "../../../styles/theme";
 const CustomSelect = (props) => {
   const options = props.options || [];
   return (
-    <FormControl sx={{ m: 1 }} variant="filled">
+    <FormControl sx={{ m: 1, ...props.sx }} variant="filled">
       <InputLabel
         sx={{
+          "&.MuiInputLabel-shrink": {
+            color: "#003B4A",
+            fontWeight: 600,
+          },
+          "&.Mui-error": {
+            color: "#B00020",
+          },
           "&.Mui-focused": {
             color: colors.darkGreen,
           },
@@ -35,10 +42,13 @@ const CustomSelect = (props) => {
           "::after": {
             borderBottom: "none",
           },
+          ...props.sx,
         }}
         onChange={props.onChange}
         value={props.value}
         data-testid={`styled-select-${props.id}`}
+        MenuProps={{ PaperProps: { sx: { maxHeight: 300 } } }}
+        inputProps={props.inputProps}
       >
         {options.map((option, idx) => {
           return (

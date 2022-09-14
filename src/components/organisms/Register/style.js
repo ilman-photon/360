@@ -37,13 +37,15 @@ export const styles = {
     color: "#366A70",
     textAlign: "center",
     fontSize: "14px",
+    maxWidth: "85%",
+    alignSelf: "center",
   },
   loginLink: {
-    color: "#3EAFBD",
+    color: colors.link,
     textDecoration: "underline",
   },
   containedButton: {
-    backgroundColor: "#2095a9",
+    backgroundColor: colors.primaryButton,
     borderRadius: 46,
     color: "white",
     "&:hover": {
@@ -55,8 +57,8 @@ export const styles = {
     padding: 16,
     borderRadius: 4,
     color: "#366A70",
-    backgroundColor: `${colors.teal}0d`,
+    backgroundColor: `#EDF5FE`,
     margin: 8,
-    wordBreak: "break-all",
+    wordBreak: "break-word",
   },
 };

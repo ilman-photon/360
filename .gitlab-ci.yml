@@ -2,19 +2,27 @@ variables:
   DOCKER_REGISTRY: "056640875000.dkr.ecr.us-east-1.amazonaws.com"
   AWS_DEFAULT_REGION: us-east-1
   APP_NAME: "photon-ecp-ppp-dev"
-  DOCKER_HOST: tcp://docker:2375
-  DOCKER_DRIVER: overlay2
-  DOCKER_TLS_CERTDIR: ""
+  #DOCKER_HOST: tcp://docker:2375
+  #DOCKER_DRIVER: overlay2
+  #DOCKER_TLS_CERTDIR: ""
 
-image: node:16.10.0
+# image: node:16.10.0
 
 stages:
+  # - lint
   - install
   - test
   # - build
   - sonar
   - imagebuild
   - deploy
+
+# lint:
+#   stage: lint
+#   tags:
+#     - Frontend-runner
+#   script:
+#     - npm run lint
 
 install:
   stage: install
@@ -30,6 +38,7 @@ install:
       - .npm/
       - node_modules/
       - .next/
+      # - .lint/
 
 test:
   stage: test
@@ -61,9 +70,11 @@ sonar:
   stage: sonar
   tags:
     - Frontend-runner
-  image: sonarsource/sonar-scanner-cli
+  # image: sonarsource/sonar-scanner-cli
+  # script:
+  #   - /usr/bin/entrypoint.sh sonar-scanner -Dsonar.host.url=https://dev.eyecare360plus.eyecare-partners.com/pipeline/sonarqube -Dsonar.projectKey=E360-Frontend-Patient-and-Provider-Portal -Dsonar.login=$SONAR_TOKEN_PHOTON -Dsonar.sources=src -Dsonar.exclusions=coverage/**/*,**/*.stories.*sx,**/dummy/** -Dsonar.typescript.lcov.reportPaths=./coverage/lcov.info
   script:
-    - /usr/bin/entrypoint.sh sonar-scanner -Dsonar.host.url=https://dev.eyecare360plus.eyecare-partners.com/pipeline/sonarqube -Dsonar.projectKey=E360-Frontend-Patient-and-Provider-Portal -Dsonar.login=$SONAR_TOKEN_PHOTON -Dsonar.sources=src -Dsonar.exclusions=coverage/**/*,**/*.stories.*sx -Dsonar.typescript.lcov.reportPaths=./coverage/lcov.info
+    - sonar-scanner -Dsonar.host.url=https://dev.eyecare360plus.eyecare-partners.com/pipeline/sonarqube -Dsonar.projectKey=E360-Frontend-Patient-and-Provider-Portal -Dsonar.login=$SONAR_TOKEN_PHOTON -Dsonar.sources=src -Dsonar.exclusions=coverage/**/*,**/*.stories.*sx,**/dummy/** -Dsonar.typescript.lcov.reportPaths=./coverage/lcov.info
   artifacts:
     name: "artifacts"
     untracked: true
@@ -75,29 +86,29 @@ imagebuild:
   stage: imagebuild
   tags:
     - Frontend-runner
-  image:
-    name: gcr.io/kaniko-project/executor:debug
-    entrypoint: [""]
   script:
-    - echo "{\"credsStore\":\"ecr-login\",\"credHelpers\":{\"$AWS_ACCOUNT_ID.dkr.ecr.region.amazonaws.com\":\"ecr-login\"}}" > /kaniko/.docker/config.json
-    - /kaniko/executor --context $CI_PROJECT_DIR --dockerfile $CI_PROJECT_DIR/Dockerfile --destination $DOCKER_REGISTRY/$APP_NAME:ecp-patient-$CI_PIPELINE_IID
-
+    - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 056640875000.dkr.ecr.us-east-1.amazonaws.com
+    - docker build -t photon-ecp-ppp-dev .
+    - docker tag photon-ecp-ppp-dev:latest 056640875000.dkr.ecr.us-east-1.amazonaws.com/photon-ecp-ppp-dev:ecp-patient-$CI_PIPELINE_IID
+    - docker push 056640875000.dkr.ecr.us-east-1.amazonaws.com/photon-ecp-ppp-dev:ecp-patient-$CI_PIPELINE_IID
+    
 deploy_to:
   stage: deploy
   tags:
     - Frontend-runner
-  image: alpine:latest
-  when: manual
-  before_script:
-    - apk add --no-cache curl jq python3 py3-pip
-    - pip install awscli
-    - apk update  && apk add --no-cache curl
-    - curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
-    - chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
-    - aws eks update-kubeconfig --name $APP_NAME
+  #image: alpine:latest
+  # when: manual
+  #before_script:
+    #- apk add --no-cache curl jq python3 py3-pip
+   # - pip install awscli
+    #- apk update  && apk add --no-cache curl
+    #- curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl
+    #- chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
+   # - aws eks update-kubeconfig --name $APP_NAME
     # - mkdir -p $HOME/.kube
     # - echo -n $KUBE_CONFIG | base64 -d > $HOME/.kube/config
   script:
+    - aws eks --region us-east-1 update-kubeconfig --name $APP_NAME
     - sed -i 's/TAG/'"$CI_PIPELINE_IID"'/g' ./deployment/deploy.yaml
     # - kubectl config view
     - kubectl apply -f `pwd`/deployment/deploy.yaml

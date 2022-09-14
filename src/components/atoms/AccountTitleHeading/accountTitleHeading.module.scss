@@ -1,7 +1,7 @@
 .titleHeadingWrapper {
   position: fixed;
   width: 100%;
-  padding: 24px 10px;
+  padding: 24px 0;
   gap: 10px;
   background: linear-gradient(96.59deg, #003b4a 10.15%, #0389ab 140.82%);
   display: grid;
@@ -27,12 +27,16 @@
     flex-direction: row;
     align-items: center;
     grid-column: span 2 / span 2;
-    text-align: right;
+    // text-align: right;
+    width: calc(324px + 8px);
+    justify-self: flex-end;
 
     @media (max-width: 767px) {
       grid-column: span 7 / span 7;
       text-align: center;
       font-size: 18px;
+      width: unset;
+      justify-self: unset;
     }
   }
 }

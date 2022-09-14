@@ -39,6 +39,7 @@ Object {
           </div>
           <input
             accept="image/png, image/gif, image/jpeg"
+            data-testid="loc_uploadImage"
             hidden=""
             type="file"
           />
@@ -48,7 +49,7 @@ Object {
           tabindex="0"
           type="button"
         >
-          Change File
+          Change photo
           <span
             class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
           />
@@ -91,6 +92,7 @@ Object {
         </div>
         <input
           accept="image/png, image/gif, image/jpeg"
+          data-testid="loc_uploadImage"
           hidden=""
           type="file"
         />
@@ -100,7 +102,7 @@ Object {
         tabindex="0"
         type="button"
       >
-        Change File
+        Change photo
         <span
           class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
         />

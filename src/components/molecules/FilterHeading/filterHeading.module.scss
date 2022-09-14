@@ -1,0 +1,173 @@
+@import "../../../../styles/colors.scss";
+
+.titleHeadingWrapper {
+  margin-top: -15px;
+  position: fixed;
+  width: 100%;
+  padding: 24px 10px;
+  gap: 10px;
+  background: linear-gradient(96.59deg, #003b4a 10.15%, #0389ab 140.82%);
+  display: flex;
+  z-index: 2;
+  justify-content: center;
+}
+
+.centeredElement {
+  margin: 0;
+  position: absolute;
+  transform: translateY(-50%);
+  .titleElement {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 32px;
+    /* identical to box height, or 123% */
+    /* Grayscale/ White */
+    color: #ffffff;
+  }
+  .subtitleElement {
+    margin-top: 10px;
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+    /* identical to box height, or 144% */
+    letter-spacing: 0.0016em;
+    /* Grayscale/ White */
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
+}
+
+.centeredField {
+  flex-direction: row;
+  display: flex;
+  .optionalPurposeText {
+    position: absolute;
+    left: 46%;
+    color: #ffffff;
+    opacity: 0.8;
+  }
+
+  .optionalInsuranceText {
+    position: absolute;
+    left: 71%;
+    color: #ffffff;
+    opacity: 0.8;
+  }
+}
+
+.mobileContainer {
+  background-image: url("../../../../public/filterHeader-bg.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 70vh;
+  padding: 16px;
+}
+
+.mobileFilterContainer {
+  margin-top: -25px;
+  min-height: 100vh;
+  background: $link;
+  .mobileTitle {
+    color: #ffffff;
+    line-height: 36px;
+  }
+}
+
+.searchButton {
+  -webkit-box-align: null;
+  transition: null;
+}
+
+.errorField {
+  border: 1px solid $errorField;
+  border-bottom-left-radius: 50px;
+  border-top-left-radius: 50px;
+}
+
+.errorText {
+  color: $errorTextField;
+  margin-left: 21px;
+}
+
+.hideText {
+  visibility: hidden;
+}
+
+.selectMenuContainer {
+  display: flex;
+  flex-direction: column;
+}
+
+.dialogSelectMenu {
+  margin-top: 16px;
+}
+
+.dialogSelectMenuTitle {
+  font-family: "Libre Franklin", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 26px;
+  letter-spacing: 0.0016em;
+  color: $darkGreen;
+}
+
+.dialogSelectMenuInsurance {
+  font-weight: 600;
+  color: $darkGreen;
+  margin-bottom: 6px;
+}
+
+.renderOptionStyle {
+  padding-left: 16px;
+  padding-top: 12px;
+  padding-right: 16px;
+}
+
+.linkUseMyLocationStyle {
+  font-family: "Libre Franklin", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 24px;
+  color: $link;
+}
+
+.searchButtonWarpper {
+  .searchOptionalLabel {
+    margin-top: 16px;
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 12px;
+    color: $grey75;
+  }
+}
+
+.swapButtonContainer {
+  margin-left: 20px;
+  cursor: pointer;
+  .swapIcon {
+    color: #dadada;
+  }
+  .swapLabel {
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 13px;
+    /* identical to box height, or 112% */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.0016em;
+    color: #fff;
+  }
+}

@@ -36,3 +36,32 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+//Handle Custom Popper for FilterHeading Component Mobile view
+.MuiAutocomplete-popper {
+  &.filter-heading-mobile {
+    inset: 12px auto auto -15px !important;
+    width: 92% !important;
+    border: 1px solid #bdbdbd;
+    border-radius: 4px;
+  }
+}
+
+.MuiDialog-container {
+  .MuiPaper-root {
+    max-width: none;
+  }
+}
+
+// google-maps info-window css
+.gm-style-iw {
+  .gm-style-iw-d {
+    max-height: 300px !important;
+  }
+}
+
+//Hide show password button of Edge browser
+input::-ms-reveal,
+input::-ms-clear {
+  display: none;
+}

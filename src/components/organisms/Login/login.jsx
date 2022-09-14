@@ -14,49 +14,41 @@ import FormMessage from "../../molecules/FormMessage/formMessage";
 import { useTranslation } from "next-i18next";
 import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
+import { Regex } from "../../../utils/regex";
 
 const constants = require("../../../utils/constants");
 
 export function Login({
   OnLoginClicked,
-  OnGuestClicked,
   OnCreateAccountClicked,
   OnForgotPasswordClicked,
+  onAppointmentClicked,
 }) {
   const [postMessage, setPostMessage] = React.useState("");
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "Login" });
   const { LOGIN_TEST_ID } = constants.TEST_ID;
   const { handleSubmit, setError, control } = useForm();
-
   const onSubmit = ({ username, password }) => {
     OnLoginClicked({ username, password }, router, checkMessage);
   };
 
   const checkMessage = (message) => {
-    const messageStatus = message.status === "failed";
-    if (messageStatus) {
-      setError("username", {
-        type: "custom",
-        message: "Enter a valid Email or Phone Number",
-      });
-      setError("password", {
-        type: "custom",
-        message: "This field is required",
-      });
-    }
     setPostMessage(message);
   };
 
   const renderFromMessage = () => {
     return (
       postMessage.status === "failed" && (
-        <FormMessage error title={postMessage.message.title}>
-          {postMessage.message.description}
-        </FormMessage>
+        <Box marginBottom={"16px"}>
+          <FormMessage error title={postMessage.message.title}>
+            {postMessage.message.description}
+          </FormMessage>
+        </Box>
       )
     );
   };
+
   return (
     <Box
       className={[styles.overideContainer, globalStyles.container].join(" ")}
@@ -95,6 +87,10 @@ export function Login({
               }}
               rules={{
                 required: t("thisFieldRequired"),
+                pattern: {
+                  value: Regex.emailValidation,
+                  message: t("emailRequiredLabel"),
+                },
               }}
             />
             <Controller
@@ -116,23 +112,27 @@ export function Login({
                     value={value}
                     onChange={onChange}
                     error={!!error}
+                    aria
                     helperText={error ? error.message : null}
                   />
                 );
               }}
               rules={{ required: t("thisFieldRequired") }}
             />
+
             <Grid container justifyContent={constants.FLEX_END}>
-              <Link
-                className={styles.link}
-                data-testid={LOGIN_TEST_ID.forgotLink}
-                {...getLinkAria(t("forgotPassword"))}
-                onClick={function () {
-                  OnForgotPasswordClicked(router);
-                }}
-              >
-                {t("forgotPassword")}
-              </Link>
+              <Typography variant="bodyMedium">
+                <Link
+                  className={styles.link}
+                  data-testid={LOGIN_TEST_ID.forgotLink}
+                  {...getLinkAria(t("forgotPassword"))}
+                  onClick={function () {
+                    OnForgotPasswordClicked(router);
+                  }}
+                >
+                  {t("forgotPassword")}
+                </Link>
+              </Typography>
             </Grid>
             <StyledButton
               theme={constants.PATIENT}
@@ -146,20 +146,34 @@ export function Login({
             </StyledButton>
           </Stack>
         </form>
-        <StyledButton
-          theme={constants.PATIENT}
-          mode={constants.SECONDARY}
-          size={constants.SMALL}
-          gradient={false}
-          onClick={OnGuestClicked}
-          data-testid={LOGIN_TEST_ID.guestBtn}
-        >
-          {t("continueAsPasswordButtonLabel")}
-        </StyledButton>
+        <>
+          <Grid container justifyContent={constants.CENTER}>
+            <Typography
+              variant="bodyMedium"
+              sx={{ color: "#003B4A", fontWeight: 600, textAlign: "center" }}
+            >
+              {t("alreadyHaveAnAppointment")}
+              <br />
+              <Link
+                className={styles.link}
+                data-testid={LOGIN_TEST_ID.syncAppointmentLink}
+                {...getLinkAria(t("syncYourAppointmentInformation"))}
+                href={onAppointmentClicked}
+              >
+                {t("syncYourAppointmentInformation")}
+              </Link>
+            </Typography>
+          </Grid>
+        </>
+
         <Divider variant={constants.MIDDLE} className={styles.divider} />
 
         <Grid container justifyContent={constants.CENTER}>
-          <Typography variant="bodyMedium" sx={{ color: "#003B4A" }}>
+          <Typography
+            variant="bodyMedium"
+            sx={{ color: "#003B4A" }}
+            aria-label={t("dontHaveAccountLabel")}
+          >
             {t("dontHaveAccountLabel")}
           </Typography>
         </Grid>

@@ -1,0 +1,15 @@
+.distanceLabelWarpper {
+  .distanceLabel {
+    width: 35px;
+    font-family: "Roboto", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 24px;
+    /* identical to box height, or 171% */
+    text-align: right;
+    /* Primary Palette/$ds-black */
+    color: #232325;
+    margin-left: 10px;
+  }
+}

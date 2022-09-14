@@ -1,7 +1,7 @@
 import AccountLayout from "../../../../components/templates/accountLayout";
 import InsuranceInformationNew from "../../../../components/organisms/InsuranceInformation/insuranceInformationNew";
 import InsuranceView from "../../../../components/organisms/InsuranceInformation/insuranceView";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import {
   addUserInsuranceData,
@@ -25,19 +25,23 @@ import {
   Fade,
   Stack,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import AccountCard from "../../../../components/molecules/AccountCard/accountCard";
-import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import AddIcon from "@mui/icons-material/Add";
 import { StyledButton } from "../../../../components/atoms/Button/button";
 import styles from "./styles.module.scss";
 import InsuranceForm from "../../../../components/organisms/InsuranceInformation/insuranceForm";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import AccountCircleOutlined from "@mui/icons-material/AccountCircleOutlined";
+import constants from "../../../../utils/constants";
 
 export default function InsuranceInfoPage() {
   const [openNewInsuranceForm, setOpenNewInsuranceForm] = useState(false);
+  const [focusToNewInsurance, setFocusToNewInsurance] = useState(false);
   const [confirmationDeleteDialog, setConfirmationDeleteDialog] =
     useState(false);
+  const { INSURANCE_TEST_ID } = constants.TEST_ID;
   const [formDeleteInsurance, setFormDeleteInsurance] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [editForm, setEditForm] = useState(null);
@@ -48,15 +52,34 @@ export default function InsuranceInfoPage() {
     (state) => state.user.userInsuranceData
   );
 
+  const [isShowError, setIsShowError] = useState(false);
+  const [isShowErrorNew, setIsShowErrorNew] = useState(false);
   const dispatch = useDispatch();
 
-  const OnCreateInsurance = (payload) => {
-    dispatch(addUserInsuranceData(payload));
-    dispatch(
-      setPageMessage({ isShow: true, content: "Insurance successfully added" })
-    );
+  const isDesktop = useMediaQuery("(min-width: 769px)");
 
-    setOpenNewInsuranceForm(false);
+  const newInsuraceComp = useRef(null);
+
+  const OnCreateInsurance = (payload) => {
+    const { backCard, frontCard } = payload;
+    if (
+      (backCard !== "" && frontCard === "") ||
+      (backCard === "" && frontCard !== "")
+    ) {
+      setIsShowErrorNew(true);
+      setIsShowError(true);
+    } else {
+      dispatch(addUserInsuranceData(payload));
+      dispatch(
+        setPageMessage({
+          isShow: true,
+          content: "Insurance successfully added",
+        })
+      );
+      setIsShowErrorNew(false);
+      setIsShowError(false);
+      setOpenNewInsuranceForm(false);
+    }
   };
 
   const OnRemoveInsurance = (payload) => {
@@ -89,10 +112,43 @@ export default function InsuranceInfoPage() {
     setIsEditing(false);
   };
 
+  const OnAddNewInsurance = () => {
+    if (userInsuranceData.length < 5) {
+      setOpenNewInsuranceForm(true);
+      setFocusToNewInsurance(true);
+    } else {
+      dispatch(
+        setPageMessage({
+          isShow: true,
+          content:
+            "Cannot add any more insurances. Maximum limit has been reached",
+          error: true,
+        })
+      );
+    }
+  };
+  useEffect(() => {
+    if (newInsuraceComp.current && focusToNewInsurance) {
+      setTimeout(() => {
+        newInsuraceComp.current.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }, 300);
+    }
+  }, [openNewInsuranceForm, focusToNewInsurance]);
+
   useEffect(() => {
     dispatch(fetchInsurance());
   }, [dispatch]);
 
+  const uploadBothError = (style, onClose) => {
+    return (
+      <FormMessage success={false} sx={style} onClick={onClose}>
+        Please upload both sides of your insurance card.
+      </FormMessage>
+    );
+  };
   return (
     <section>
       <FormMessage
@@ -100,11 +156,11 @@ export default function InsuranceInfoPage() {
           dispatch(closePageMessage());
         }}
         role="button"
-        success={true}
+        success={pageMessage.error ? false : true}
+        fontTitle={16}
         sx={{
           borderRadius: "0px",
           justifyContent: "center",
-          backgroundColor: "#04844B",
           position: "absolute",
           top: "-40px",
           left: 0,
@@ -118,53 +174,20 @@ export default function InsuranceInfoPage() {
       <Fade in={userInsuranceData.length > 0} unmountOnExit>
         <Stack>
           <AccountCard
-            titleIcon={<PersonOutlinedIcon />}
-            title="Contact Information"
+            titleIcon={<AccountCircleOutlined />}
+            title="Insurance Document"
             // OnEditClicked={OnEditClicked}
             sx={{ px: 3, py: 5 }}
             actionContent={
-              <StyledButton
-                mode="primary"
-                size="small"
-                className={styles.addButton}
-                disabled={openNewInsuranceForm}
-                onClick={() => {
-                  setOpenNewInsuranceForm(true);
-                }}
-                sx={{ display: { xs: "none", md: "flex" } }}
-              >
-                <Stack
-                  direction="row"
-                  alignItems="center"
-                  sx={{ color: "white" }}
-                  component="span"
-                >
-                  <AddIcon />
-                  Add Insurance
-                </Stack>
-              </StyledButton>
-            }
-          >
-            <Collapse in={isEditing}>
-              <Box>
-                <InsuranceForm
-                  formData={editForm}
-                  OnSaveClicked={OnEditInsurance}
-                  OnCancelClicked={() => {
-                    setIsEditing(false);
-                  }}
-                />
-              </Box>
-            </Collapse>
-            <Collapse in={!isEditing}>
-              <Stack spacing={3}>
+              isDesktop ? (
                 <StyledButton
+                  mode="primary"
+                  size="small"
                   className={styles.addButton}
                   disabled={openNewInsuranceForm}
-                  onClick={() => {
-                    setOpenNewInsuranceForm(true);
-                  }}
-                  sx={{ display: { xs: "flex", md: "none" } }}
+                  data-testid={INSURANCE_TEST_ID.addButton}
+                  onClick={OnAddNewInsurance}
+                  aria-label={"Add Insurance button"}
                 >
                   <Stack
                     direction="row"
@@ -176,6 +199,51 @@ export default function InsuranceInfoPage() {
                     Add Insurance
                   </Stack>
                 </StyledButton>
+              ) : (
+                <></>
+              )
+            }
+          >
+            {isShowError &&
+              uploadBothError({ marginBottom: "16px" }, () =>
+                setIsShowError(false)
+              )}
+            <Collapse in={isEditing}>
+              <Box>
+                <InsuranceForm
+                  testIds={INSURANCE_TEST_ID}
+                  formData={editForm}
+                  OnSaveClicked={OnEditInsurance}
+                  OnCancelClicked={() => {
+                    setIsEditing(false);
+                  }}
+                  isError={isShowError}
+                />
+              </Box>
+            </Collapse>
+            <Collapse in={!isEditing}>
+              <Stack spacing={3}>
+                {!isDesktop ? (
+                  <StyledButton
+                    className={styles.addButton}
+                    disabled={openNewInsuranceForm}
+                    onClick={OnAddNewInsurance}
+                    data-testid={INSURANCE_TEST_ID.addButton}
+                    aria-label={"Add Insurance button"}
+                  >
+                    <Stack
+                      direction="row"
+                      alignItems="center"
+                      sx={{ color: "white" }}
+                      component="span"
+                    >
+                      <AddIcon />
+                      Add Insurance
+                    </Stack>
+                  </StyledButton>
+                ) : (
+                  <></>
+                )}
 
                 {/* {view user insurance data} */}
                 <InsuranceView
@@ -198,6 +266,7 @@ export default function InsuranceInfoPage() {
                       expandIcon={<ExpandMoreIcon />}
                       aria-controls="panel1a-content"
                       sx={{ background: "#FAFAFA" }}
+                      ref={newInsuraceComp}
                     >
                       <Stack spacing={1} direction="row" alignItems="center">
                         <Typography variant="h4">New Insurance</Typography>
@@ -205,10 +274,13 @@ export default function InsuranceInfoPage() {
                     </AccordionSummary>
                     <AccordionDetails>
                       <InsuranceForm
+                        testIds={INSURANCE_TEST_ID}
                         OnSaveClicked={OnCreateInsurance}
                         OnCancelClicked={() => {
                           setOpenNewInsuranceForm(false);
+                          setFocusToNewInsurance(false);
                         }}
+                        isError={isShowError}
                       />
                     </AccordionDetails>
                   </Accordion>
@@ -225,6 +297,10 @@ export default function InsuranceInfoPage() {
           <InsuranceInformationNew
             insuranceData={userInsuranceData}
             OnCreateInsurance={OnCreateInsurance}
+            FormMessageEl={uploadBothError(null, () =>
+              setIsShowErrorNew(false)
+            )}
+            isShowError={isShowErrorNew}
           />
         </Box>
       </Fade>
@@ -242,8 +318,10 @@ export default function InsuranceInfoPage() {
           },
         }}
       >
-        <DialogTitle>Remove Insurance</DialogTitle>
-        <DialogContent>
+        <DialogTitle sx={{ color: "#003B4A", fontSize: "22px" }}>
+          Remove Insurance
+        </DialogTitle>
+        <DialogContent sx={{ color: "#6C757D" }}>
           Are you sure you want to remove insurance?
         </DialogContent>
         <DialogActions>
@@ -252,6 +330,7 @@ export default function InsuranceInfoPage() {
               size="small"
               mode="secondary"
               onClick={() => setConfirmationDeleteDialog(false)}
+              sx={{ fontSize: "14px" }}
             >
               No, keep Insurance
             </StyledButton>
@@ -259,6 +338,7 @@ export default function InsuranceInfoPage() {
               size="small"
               mode="error"
               onClick={OnConfirmRemoveInsurance}
+              sx={{ fontSize: "14px" }}
             >
               Yes, remove Insurance
             </StyledButton>

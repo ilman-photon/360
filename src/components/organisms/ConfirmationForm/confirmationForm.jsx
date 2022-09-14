@@ -13,6 +13,7 @@ import constants from "../../../utils/constants";
 import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
 import Head from "next/head";
+import { colors } from "../../../styles/theme";
 
 const ConfirmationForm = ({
   onBackToLoginClicked,
@@ -44,7 +45,7 @@ const ConfirmationForm = ({
   return (
     <>
       <Head>
-        <title>{pageTitle}</title>
+        <title>{`EyeCare Patient Portal - ${pageTitle}`}</title>
       </Head>
       <Card className={globalStyles.container} style={styles.cardStyle}>
         <CardContent style={styles.cardContentStyle}>
@@ -84,7 +85,7 @@ const ConfirmationForm = ({
               data-testid={primaryButtonTestId}
               style={{
                 ...styles.margin,
-                marginTop: additional ? "0px" : "16px",
+                marginTop: additional ? "0px" : description && "16px",
               }}
             >
               {buttonIcon}
@@ -100,7 +101,7 @@ const ConfirmationForm = ({
                 ...styles.link,
               }}
               data-testid={FORGOT_TEST_ID.loginLink}
-              color={"#2095a9"}
+              color={colors.link}
               onClick={function () {
                 onBackToLoginClicked(router);
               }}

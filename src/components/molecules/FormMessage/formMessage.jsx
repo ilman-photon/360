@@ -10,6 +10,7 @@ export const FormMessage = (
     onClick = () => {
       // This is intended
     },
+    accessibility = {},
     ...props
   },
   ref
@@ -20,9 +21,9 @@ export const FormMessage = (
         ref={ref}
         onClick={onClick}
         sx={{
-          backgroundColor: props.success ? colors.foundationGreen : "#C23934",
+          backgroundColor: props.success ? colors.foundationGreen : "#B93632",
           width: "auto",
-          p: 1,
+          padding: "12px 16px",
           borderRadius: "4px",
           display: "flex",
           ...props.sx,
@@ -33,8 +34,9 @@ export const FormMessage = (
             sx={{
               color: "#fff",
               marginRight: "12.92px",
-              width: "22.15px",
-              height: "22.15px",
+              width: "18.33px",
+              height: "18.33px",
+              alignSelf: "center",
             }}
           />
         ) : (
@@ -44,6 +46,7 @@ export const FormMessage = (
               marginRight: "12.92px",
               width: "22.15px",
               height: "22.15px",
+              transform: "scaleX(-1)",
             }}
           />
         )}
@@ -55,13 +58,15 @@ export const FormMessage = (
             letterSpacing: "0.0016em",
           }}
           data-testid="submission-message"
+          aria-live="polite"
+          {...accessibility}
         >
           {props.title ? (
             <div style={{ fontWeight: "bold" }}>{props.title}</div>
           ) : (
             <></>
           )}
-          <div style={{ fontSize: 14 }}>
+          <div style={{ fontSize: props.fontTitle || 14 }}>
             {props.children}
             {props.isBackToLogin ? (
               <Link href="/patient/login">

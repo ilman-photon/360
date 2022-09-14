@@ -17,8 +17,6 @@ npm run check-lint ||
         false; 
 )
 
-# If everything passes... Now we can commit
-
 # Check tsconfig standards
 npm run sonar-lint ||
 (
@@ -33,7 +31,7 @@ npm run test ||
     false;
 )
 
-# If everything passes... Now we can commit
+# Check build error
 
 npm run build ||
 (

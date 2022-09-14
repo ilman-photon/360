@@ -25,11 +25,11 @@ Object {
               <div
                 class="css-1q36rmd-MuiStack-root"
               >
-                <h4
-                  class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
+                <h3
+                  class="MuiTypography-root MuiTypography-h3 css-1xxnx8a-MuiTypography-root"
                 >
                   Primary
-                </h4>
+                </h3>
                 <div
                   class="totalCategoryItemsWrapper"
                 >
@@ -91,6 +91,8 @@ Object {
                               >
                                 <div
                                   class="label"
+                                  role="text"
+                                  tabindex="0"
                                 >
                                   Insurance Provider
                                 </div>
@@ -117,6 +119,8 @@ Object {
                               >
                                 <div
                                   class="label"
+                                  role="text"
+                                  tabindex="0"
                                 >
                                   Plan Name
                                 </div>
@@ -143,6 +147,8 @@ Object {
                               >
                                 <div
                                   class="label"
+                                  role="text"
+                                  tabindex="0"
                                 >
                                   Subscriber ID/Member ID
                                 </div>
@@ -170,6 +176,8 @@ Object {
                           >
                             <div
                               class="label"
+                              role="text"
+                              tabindex="0"
                             >
                               Group #
                             </div>
@@ -201,6 +209,8 @@ Object {
                             >
                               <div
                                 class="label"
+                                role="text"
+                                tabindex="0"
                               >
                                 Are you the Subscriber?
                               </div>
@@ -238,6 +248,8 @@ Object {
                               >
                                 <div
                                   class="label"
+                                  role="text"
+                                  tabindex="0"
                                 >
                                   First Name
                                 </div>
@@ -264,6 +276,8 @@ Object {
                               >
                                 <div
                                   class="label"
+                                  role="text"
+                                  tabindex="0"
                                 >
                                   Last Name
                                 </div>
@@ -290,6 +304,8 @@ Object {
                               >
                                 <div
                                   class="label"
+                                  role="text"
+                                  tabindex="0"
                                 >
                                   Relationship
                                 </div>
@@ -314,6 +330,8 @@ Object {
                               >
                                 <div
                                   class="label"
+                                  role="text"
+                                  tabindex="0"
                                 >
                                   Date of Birth
                                 </div>
@@ -341,6 +359,8 @@ Object {
                           >
                             <div
                               class="label"
+                              role="text"
+                              tabindex="0"
                             >
                               Relationship
                             </div>
@@ -449,6 +469,8 @@ Object {
                           >
                             <div
                               class="label"
+                              role="text"
+                              tabindex="0"
                             >
                               Insurance Priority
                             </div>
@@ -470,7 +492,7 @@ Object {
                           class="css-1mf892b-MuiStack-root"
                         >
                           <button
-                            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-v79u1v-MuiButtonBase-root-MuiButton-root"
+                            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-18y1hnv-MuiButtonBase-root-MuiButton-root"
                             tabindex="0"
                             type="button"
                           >
@@ -479,7 +501,7 @@ Object {
                             >
                               <svg
                                 aria-hidden="true"
-                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-wpnemu-MuiSvgIcon-root"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-bml1kk-MuiSvgIcon-root"
                                 data-testid="DeleteOutlineIcon"
                                 focusable="false"
                                 viewBox="0 0 24 24"
@@ -489,7 +511,7 @@ Object {
                                 />
                               </svg>
                               <span
-                                style="font-size: 14px;"
+                                style="font-size: 14px; color: rgb(0, 126, 143);"
                               >
                                 Remove Insurance
                               </span>
@@ -499,7 +521,7 @@ Object {
                             />
                           </button>
                           <button
-                            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1xx3bwd-MuiButtonBase-root-MuiButton-root"
+                            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-wdkk7j-MuiButtonBase-root-MuiButton-root"
                             tabindex="0"
                             type="submit"
                           >
@@ -541,11 +563,11 @@ Object {
             <div
               class="css-1q36rmd-MuiStack-root"
             >
-              <h4
-                class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
+              <h3
+                class="MuiTypography-root MuiTypography-h3 css-1xxnx8a-MuiTypography-root"
               >
                 Primary
-              </h4>
+              </h3>
               <div
                 class="totalCategoryItemsWrapper"
               >
@@ -607,6 +629,8 @@ Object {
                             >
                               <div
                                 class="label"
+                                role="text"
+                                tabindex="0"
                               >
                                 Insurance Provider
                               </div>
@@ -633,6 +657,8 @@ Object {
                             >
                               <div
                                 class="label"
+                                role="text"
+                                tabindex="0"
                               >
                                 Plan Name
                               </div>
@@ -659,6 +685,8 @@ Object {
                             >
                               <div
                                 class="label"
+                                role="text"
+                                tabindex="0"
                               >
                                 Subscriber ID/Member ID
                               </div>
@@ -686,6 +714,8 @@ Object {
                         >
                           <div
                             class="label"
+                            role="text"
+                            tabindex="0"
                           >
                             Group #
                           </div>
@@ -717,6 +747,8 @@ Object {
                           >
                             <div
                               class="label"
+                              role="text"
+                              tabindex="0"
                             >
                               Are you the Subscriber?
                             </div>
@@ -754,6 +786,8 @@ Object {
                             >
                               <div
                                 class="label"
+                                role="text"
+                                tabindex="0"
                               >
                                 First Name
                               </div>
@@ -780,6 +814,8 @@ Object {
                             >
                               <div
                                 class="label"
+                                role="text"
+                                tabindex="0"
                               >
                                 Last Name
                               </div>
@@ -806,6 +842,8 @@ Object {
                             >
                               <div
                                 class="label"
+                                role="text"
+                                tabindex="0"
                               >
                                 Relationship
                               </div>
@@ -830,6 +868,8 @@ Object {
                             >
                               <div
                                 class="label"
+                                role="text"
+                                tabindex="0"
                               >
                                 Date of Birth
                               </div>
@@ -857,6 +897,8 @@ Object {
                         >
                           <div
                             class="label"
+                            role="text"
+                            tabindex="0"
                           >
                             Relationship
                           </div>
@@ -965,6 +1007,8 @@ Object {
                         >
                           <div
                             class="label"
+                            role="text"
+                            tabindex="0"
                           >
                             Insurance Priority
                           </div>
@@ -986,7 +1030,7 @@ Object {
                         class="css-1mf892b-MuiStack-root"
                       >
                         <button
-                          class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-v79u1v-MuiButtonBase-root-MuiButton-root"
+                          class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-18y1hnv-MuiButtonBase-root-MuiButton-root"
                           tabindex="0"
                           type="button"
                         >
@@ -995,7 +1039,7 @@ Object {
                           >
                             <svg
                               aria-hidden="true"
-                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-wpnemu-MuiSvgIcon-root"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-bml1kk-MuiSvgIcon-root"
                               data-testid="DeleteOutlineIcon"
                               focusable="false"
                               viewBox="0 0 24 24"
@@ -1005,7 +1049,7 @@ Object {
                               />
                             </svg>
                             <span
-                              style="font-size: 14px;"
+                              style="font-size: 14px; color: rgb(0, 126, 143);"
                             >
                               Remove Insurance
                             </span>
@@ -1015,7 +1059,7 @@ Object {
                           />
                         </button>
                         <button
-                          class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1xx3bwd-MuiButtonBase-root-MuiButton-root"
+                          class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-wdkk7j-MuiButtonBase-root-MuiButton-root"
                           tabindex="0"
                           type="submit"
                         >

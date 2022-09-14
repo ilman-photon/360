@@ -7,16 +7,15 @@ export const AccountCard = ({
   children,
   isEditing,
   actionContent,
+  isAppoinment,
+  textStyle = {},
+  ...props
 }) => {
   const isDesktop = useMediaQuery("(min-width: 769px)");
   return (
     <>
-      <Card
-        variant="outlined"
-        className={styles.card}
-        sx={{ borderRadius: "0" }}
-      >
-        {isDesktop && (
+      <Card variant="outlined" className={styles.card} sx={props.sx}>
+        {(isDesktop || isAppoinment) && (
           <CardHeader
             className={styles.cardHeader}
             sx={{
@@ -35,17 +34,23 @@ export const AccountCard = ({
                 >
                   {titleIcon}
                 </span>
-                <div className={styles.title}>{title}</div>
+                <div
+                  className={styles.title}
+                  style={textStyle}
+                  aria-label={`${title} heading`}
+                >
+                  {title}
+                </div>
               </div>
             }
             action={!isEditing ? actionContent : ""}
           />
         )}
-        <CardContent sx={{ px: { xs: 3, md: 4 }, py: { xs: 4, md: 4 } }}>
+        <CardContent sx={{ px: { xs: 2, md: 4 }, py: { xs: 2, md: 4 } }}>
           {children}
         </CardContent>
       </Card>
-      {!isDesktop && !isEditing ? (
+      {!isDesktop && !isEditing && !isAppoinment ? (
         <div style={{ position: "fixed", bottom: 16, right: 16 }}>
           {actionContent}
         </div>

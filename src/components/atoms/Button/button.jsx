@@ -15,7 +15,6 @@ export const CustomButton = styled(Button)(
   background: ${theme.button.background};
   border-color:${theme.button.borderColor};
   color: ${theme.button.color};
-  border-radius: 46px;
   padding: 16px;
 
   font-style: normal;
@@ -23,6 +22,7 @@ export const CustomButton = styled(Button)(
   font-size: 16px;
   line-height: 20px;
   text-transform: none;
+  border-radius: 46px;
 
   :hover {
     background:${theme.button.background};
@@ -41,6 +41,7 @@ export const StyledButton = ({
   theme = "patient",
   mode = "primary" || "secondary",
   size = "large",
+  isModalButton,
   gradient,
   ...props
 }) => {
@@ -51,6 +52,7 @@ export const StyledButton = ({
   let sizeSelector = isLarge
     ? styles.customButtonLarge
     : styles.customButtonSmall;
+  sizeSelector = mode === "filter" ? styles.customButtonFilter : sizeSelector;
   return (
     <ThemeProvider theme={themeSelector}>
       <CustomButton
@@ -58,6 +60,7 @@ export const StyledButton = ({
         className={[
           `${styles.customButton}`,
           `${sizeSelector}`,
+          isModalButton ? styles.modalButton : "",
           gradient ? `${styles.customButtonGradient}` : ``,
         ].join(" ")}
         {...props}

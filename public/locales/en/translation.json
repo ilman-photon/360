@@ -15,7 +15,10 @@
     "continueAsPasswordButtonLabel" : "Continue as a guest",
     "loginButtonLabel" : "Login",
     "createAccountButtonLabel" : "Create Account",
-    "dontHaveAccountLabel" : "Don't have an account?"
+    "dontHaveAccountLabel" : "Don't have an account?",
+    "syncYourAppointmentInformation" : "Sync your appointment information",
+    "alreadyHaveAnAppointment" : "Already have an appointment?",
+    "errorAysncUser": "Login"
   },
   "Input": {
     "usernameLable": "Patient Login",
@@ -30,7 +33,12 @@
     "errorInvalidEmailPhone": "Enter a valid Email or Phone Number",
     "resetPasswordText": "Continue",
     "usernamePlaceHolder": "Email or Phone Number",
-    "backButtonLink": "Back to Log in"
+    "backButtonLink": "Back to Log in",
+    "backSignIn": "Back to Sign-In",
+    "syncButton": "Sync",
+    "syncTitle" : "Sync your appointment",
+    "syncErrorTitle" : "Existing User",
+    "syncError" : "You are already a registered user. Please login to the application using your username and password.  Login"
   },
   "SetOption": {
     "title": "Select an option",
@@ -83,6 +91,7 @@
     "additionalTextOneTime": "Mode of Communication",
     "descriptionOneTime": "Click on the one-time link sent to your email or phone number to access your account",
     "primaryButtonOneTime": "Send one-time link",
+    "primaryButtonResetPassword": "Send link",
     "securityButtonTextOneTime": "Answer security questions",
     "noSecurityButtonTextOneTime": "Receive link to reset password",
     "answerSecurityQuestionsLabel": "Answer security questions",
@@ -110,6 +119,8 @@
   "mfaPage": {
     "setMFATitle": "Set Multi-Factor Authentication",
     "setMFADescription": "Select a delivery method to identify your identity.",
+    "setMFAEmailDescription": "Confirm your email below and we’ll send a code to set-up multi-factor authentication.",
+    "setMFAPhoneDescription": "Confirm your phone below and we’ll send a code to set-up multi-factor authentication.",
     "communicationMethodTitle": "Select a method",
     "confrimBtn": "Confirm",
     "backToLoginBtn": "Back to Login",
@@ -129,5 +140,28 @@
     "mfaLockDescription": "Please try setting up multi factor authentication after 30 minutes.",
     "resendCodeLockDescription": "Code sent multiple times. Please try again after 30 minutes."
 
+  },
+  "scheduleAppoinment": {
+    "formTitle": "Who is this exam for?",
+    "guestForm": "Provide patient’s basic information",
+    "myself": "Myself",
+    "someoneElse": "Someone else",
+    "continue": "Continue",
+    "location": "Location",
+    "appointmentDetails": "Appointment details",
+    "selfTitle": "Tell us more about yourself",
+    "someoneElseTitle": "Provide patient’s basic information",
+    "sigInInfo": "Already have an account?",
+    "signIn": "Sign In",
+    "optional": "Optional",
+    "passwordInfo": "Create a password to have access to your dashboard, manage, and track your appointment details.",
+    "passwordLabel": "Password",
+    "scheduleAppoinment": "Schedule Appointment",
+    "thisFieldRequired" : "This field is required",
+    "preferredCommunication": "Preferred mode of Communication",
+    "scheduled": "You’re Scheduled!",
+    "isEmergency": "Is this a medical emergency?",
+    "thanksBar" : "Thank you for scheduling your appointment. We will send a confirmation Email/Text shortly.",
+    "patientInformation": "Patient Information"
   }
 }

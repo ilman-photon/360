@@ -9,12 +9,13 @@
   margin-bottom: 24px !important;
   margin-left: 40px !important;
   margin-right: 40px !important;
-  border: 0.5px solid #bdbdbd;
+  border: 0.5px solid #bdbdbd !important;
 }
 .link {
-  color: #2095a9 !important;
+  color: #007e8f !important;
   cursor: pointer;
   font-size: 16px;
+  text-decoration-color: inherit !important;
 }
 .inputStyle {
   background-color: white;

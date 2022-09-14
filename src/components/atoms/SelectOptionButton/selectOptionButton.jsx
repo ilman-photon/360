@@ -49,10 +49,15 @@ export default function SelectOptionButton({
   id,
   value = "",
   onChange,
+  renderMenuListUI = null,
   ...props
 }) {
   return (
-    <CustomFormControl variant="filled" {...props} style={{ width: "100%" }}>
+    <CustomFormControl
+      variant="filled"
+      sx={{ ...props.sx }}
+      style={{ width: "100%" }}
+    >
       <InputLabel
         id="demo-simple-select-label"
         sx={{
@@ -63,6 +68,7 @@ export default function SelectOptionButton({
             fontFamily: "Libre Franklin",
             fontSize: "1rem",
           },
+          ...props.inputPropsSx,
         }}
       >
         {label}
@@ -70,7 +76,6 @@ export default function SelectOptionButton({
       <Select
         labelId={labelId ? labelId : null}
         id={id ? id : null}
-        data-testid={`select-${id}`}
         value={value}
         label={label}
         onChange={onChange}
@@ -80,13 +85,24 @@ export default function SelectOptionButton({
             backgroundColor: "#fff",
           },
         }}
+        inputProps={{
+          "aria-label": `${label}. ${value}`,
+          "aria-live": "polite",
+          "data-testid": `select-${id}`,
+        }}
+        {...props.menuProps}
+        renderValue={props.renderValue}
       >
         {options.map((option, idx) => {
-          return (
-            <MenuItem key={idx} value={option} sx={{ fontSize: "16px" }}>
-              {option}
-            </MenuItem>
-          );
+          if (renderMenuListUI) {
+            return renderMenuListUI(option, idx);
+          } else {
+            return (
+              <MenuItem key={idx} value={option} sx={{ fontSize: "16px" }}>
+                {option}
+              </MenuItem>
+            );
+          }
         })}
       </Select>
     </CustomFormControl>

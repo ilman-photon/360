@@ -19,41 +19,41 @@ const SecurityQuestion = ({
   onClickedSkipButton = () => {
     // This is intentional
   },
+  testIds,
 }) => {
-  const handleChangeInput = (event) => {
-    const { value, maxLength } = event.target;
-    const message = value.slice(0, maxLength);
+  const [questionVals, setQuestionVals] = useState([null, null, null]);
+  const [questionValsDua, setQuestionValsDua] = useState(securityQuestionList);
 
-    this.setState({
-      form: {
-        message,
-      },
+  const handleQuestionValChange = (option, index) => {
+    const newQuestionVals = questionVals;
+    newQuestionVals[index] = option;
+    setQuestionVals([...questionVals, newQuestionVals]);
+  };
+
+  const getAvailableOptions = () => {
+    const availableOptionsLeft = questionValsDua;
+    return availableOptionsLeft.filter((questionOption) => {
+      return questionVals.indexOf(questionOption) === -1;
     });
   };
+
   const [showPostMessage, setShowPostMessage] = useState(propsShowPostMessage);
   const [postMessage, setPostMessage] = React.useState(
     "You must answer all security questions"
   );
   const { handleSubmit, control } = useForm();
-  const hasDuplicates = (array) => {
-    var valuesSoFar = Object.create(null);
-    for (var i = 0; i < array.length; ++i) {
-      var value = array[i];
-      if (value in valuesSoFar) {
-        return true;
-      }
-      valuesSoFar[value] = true;
-    }
-    return false;
-  };
-  const onSubmit = (data) => {
-    const listQuestion = [];
-    for (const [key, value] of Object.entries(data)) {
-      if (key.indexOf("question") > -1) {
-        listQuestion.push(value);
-      }
-    }
+  const hasDuplicates = (data) => {
+    const isDuplicateAnswer = containsDuplicates(data.answer);
+    const isDuplicateQuestion = containsDuplicates(data.question);
 
+    return isDuplicateQuestion || isDuplicateAnswer;
+  };
+
+  function containsDuplicates(array) {
+    return array.length !== new Set(array).size;
+  }
+
+  const onSubmit = (data) => {
     let validate = true;
     for (const property in data) {
       if (!data[property]) {
@@ -61,21 +61,23 @@ const SecurityQuestion = ({
         break;
       }
     }
-    if (validate && hasDuplicates(listQuestion)) {
-      onShowPostMessage("Don’t choose the same question!");
-    } else if (validate && !hasDuplicates(listQuestion)) {
-      const questionAnswer = {};
-      const question = [];
-      const answer = [];
-      for (const [key, value] of Object.entries(data)) {
-        if (key.indexOf("answer") > -1) {
-          answer.push(value);
-        } else {
-          question.push(value);
-        }
+
+    const questionAnswer = {};
+    const question = [];
+    const answer = [];
+    for (const [key, value] of Object.entries(data)) {
+      if (key.indexOf("answer") > -1) {
+        answer.push(value);
+      } else {
+        question.push(value);
       }
-      questionAnswer["question"] = question;
-      questionAnswer["answer"] = answer;
+    }
+    questionAnswer["question"] = question;
+    questionAnswer["answer"] = answer;
+
+    if (validate && hasDuplicates(questionAnswer)) {
+      onShowPostMessage("Don’t choose the same question and answer!");
+    } else if (validate && !hasDuplicates(questionAnswer)) {
       onClickedSubmitButton(questionAnswer, checkSubmitMessage);
     } else {
       onShowPostMessage("You must answer all security questions");
@@ -97,6 +99,7 @@ const SecurityQuestion = ({
 
   const securityQuestionUI = function () {
     const indents = [];
+    let tabindex = 0;
     for (let i = 0; i < securityQuestionCount; i++) {
       const index = i + 1;
       indents.push(
@@ -127,13 +130,20 @@ const SecurityQuestion = ({
                   label={`Question ${index}`}
                   labelId={`question-label-${index}`}
                   id={`question-id-${index}`}
-                  options={securityQuestionList}
+                  options={getAvailableOptions()}
                   value={value}
                   onChange={(event) => {
                     onChange(event);
+                    handleQuestionValChange(event.target.value, index);
                     if (showPostMessage) {
                       setShowPostMessage(false);
                     }
+                  }}
+                  menuProps={{
+                    tabIndex: tabindex,
+                  }}
+                  renderValue={(select) => {
+                    return select;
                   }}
                 />
               );
@@ -171,6 +181,7 @@ const SecurityQuestion = ({
                   }}
                   error={!!error}
                   helperText={error ? error.message : null}
+                  tabIndex={tabindex++}
                 />
               );
             }}
@@ -206,7 +217,7 @@ const SecurityQuestion = ({
             theme="patient"
             mode="primary"
             size="small"
-            data-testid="primary-button"
+            data-testid={testIds.btnSubmitSecurity || "primary-button"}
             gradient={false}
             style={styles.buttonStyle}
             sx={{
@@ -221,7 +232,7 @@ const SecurityQuestion = ({
             theme="patient"
             mode="secondary"
             size="small"
-            data-testid="secondary-button"
+            data-testid={testIds.btnSkip || "secondary-button"}
             gradient={false}
             style={styles.buttonStyle}
             onClick={onClickedSkipButton}

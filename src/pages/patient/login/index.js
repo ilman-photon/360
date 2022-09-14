@@ -3,10 +3,11 @@ import Cookies from "universal-cookie";
 import { Api } from "../../api/api";
 import { Login as LoginComponent } from "../../../components/organisms/Login/login";
 import { useEffect } from "react";
-import { useTranslation } from "next-i18next";
+import constants from "../../../utils/constants";
 
 function getUserData(username, callback) {
   const api = new Api();
+
   const postBody = {
     username,
   };
@@ -44,26 +45,25 @@ const loginProps = {
           }
           const hostname = window.location.origin;
           window.location.href = isNotNeedMfa
-            ? `${hostname}/patient/account/profile-info`
+            ? `${hostname}/patient/`
             : `${hostname}/patient/mfa`;
           callback({ status: "success" });
         });
       })
       .catch(function (err) {
-        const isLockedAccount = err.ResponseCode === 2004;
-        const description = isLockedAccount
-          ? "Your account has been locked after too many failed attempts. Please contact Customer Support to unlock your account."
-          : "Invalid Username or Password";
-        callback({
-          status: "failed",
-          message: {
-            description,
-          },
-        });
+        if (err.ResponseCode !== constants.ERROR_CODE.NETWORK_ERR) {
+          const isLockedAccount = err.ResponseCode === 2004;
+          const description = isLockedAccount
+            ? "Your account has been locked after too many failed attempts. Please contact Customer Support to unlock your account."
+            : "Invalid Username or Password";
+          callback({
+            status: "failed",
+            message: {
+              description,
+            },
+          });
+        }
       });
-  },
-  OnGuestClicked: function () {
-    // This is intentional
   },
   OnCreateAccountClicked: function (router) {
     router.push("/patient/auth/create-account");
@@ -71,6 +71,7 @@ const loginProps = {
   OnForgotPasswordClicked: function (router) {
     router.push("/patient/forgot-password");
   },
+  onAppointmentClicked: "/patient/sync",
 };
 
 export default function login() {

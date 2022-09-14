@@ -19,11 +19,15 @@ export const colors = {
   grey: "#191919",
   grey75: "#080707",
   black: "#242526",
+  darkBlue: "#1C1F37",
   foundationGreen: "#04844B",
   foundationRed: "#C23934",
   foundationBlue: "#0E1941",
   foundationGrey: "#6B7789",
   error: "#B93632",
+  errorField: "#f91e18",
+  primaryButton: "#007e8f",
+  link: "#008294",
 };
 
 // declare module '@mui/material/styles' {
@@ -108,6 +112,14 @@ export const patientTypography = createTheme({
         fontWeight: 400,
       },
     },
+    bodyRegularSemiBold: {
+      fontFamily: "Libre Franklin",
+      fontStyle: "normal",
+      fontWeight: 600,
+      fontSize: "16px",
+      lineHeight: "24px",
+      letterSpacing: "0.0016em",
+    },
     bodySmallRegular: {
       fontFamily: "Libre Franklin",
       fontWeight: "bold",
@@ -128,6 +140,46 @@ export const patientTypography = createTheme({
       fontFamily: "Libre Franklin",
       fontWeight: 500,
       fontSize: 12,
+    },
+    bodyLink: {
+      fontFamily: "Roboto",
+      fontWeight: 500,
+      fontSize: 16,
+      lineHeight: "20px",
+      color: colors.link,
+      textDecoration: "underline",
+    },
+    titleCard: {
+      fontFamily: "Bw Nista Geometric DEMO",
+      fontWeight: 400,
+      fontSize: 24,
+      lineHeight: "32px",
+      color: "#003B4A",
+      ["@media (max-width: 768px)"]: {
+        fontSize: 22,
+      },
+    },
+    customBodyRegular: {
+      fontFamily: "Libre Franklin",
+      fontWeight: "bold",
+      fontSize: 16,
+      lineHeight: "24px",
+    },
+    medication: {
+      fontFamily: "Libre Franklin",
+      fontWeight: 700,
+      fontSize: 18,
+      lineHeight: "26px",
+      color: "#007E8F",
+      textDecoration: "underline",
+    },
+    bodyLinkRegular: {
+      fontFamily: "Libre Franklin",
+      fontWeight: 500,
+      fontSize: 16,
+      lineHeight: "20px",
+      color: "#008294",
+      textDecoration: "underline",
     },
     allVariants: {
       color: "#292929",
@@ -212,7 +264,7 @@ export const patientButtonPrimary = createTheme({
     fontFamily: "Libre Franklin",
   },
   button: {
-    background: colors.teal,
+    background: colors.primaryButton,
     color: "white",
   },
 });
@@ -222,7 +274,7 @@ export const patientButtonSecondary = createTheme({
   },
   button: {
     background: "white",
-    color: colors.teal,
+    color: colors.primaryButton,
     borderColor: "#205A63",
   },
 });

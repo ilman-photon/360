@@ -51,6 +51,14 @@ const nextConfig = {
         ],
         source: "/:host/create-account",
         destination: "/auth/create-account",
+      },
+      {
+        source: "/patient/sync",
+        destination: "/patient/forgot-password",
+      },
+      {
+        source: "/patient/sync/set-password",
+        destination: "/patient/set-password",
       }
     ];
   },

@@ -1,0 +1,109 @@
+@import "../../../../styles/colors.scss";
+
+.container {
+  background-color: #e4e4e4;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .pageWrapper {
+    display: flex;
+    max-width: calc(464px + 962px + 24px);
+    width: 100%;
+  }
+}
+
+.mobileTopBar {
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.mobileMenuBar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 8px 16px;
+  overflow: hidden;
+}
+
+.mobileTextBar {
+  margin: 0;
+  align-items: "center";
+  color: "#316A70";
+  max-width: 70%;
+  // overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.examForComponent {
+  background: white;
+  border-radius: "4px";
+  height: fit-content;
+  flex: 1;
+}
+
+.formButton {
+  display: flex;
+  padding: 13px 20px;
+  border-radius: 30px;
+  font-size: 14px;
+  height: 40px;
+  text-transform: none;
+  font-weight: 600;
+
+  &.primary {
+    background-color: $primaryButton;
+  }
+  &.outlined {
+    background-color: #fafafa;
+    border: solid 1px $primaryButton;
+    color: $primaryButton;
+  }
+}
+
+.formButton.outlined:hover {
+  background-color: #fafafa;
+}
+
+.backIcon {
+  color: #0000008a;
+  width: 16px;
+}
+
+.continueButton {
+  height: 40px;
+  align-self: self-end;
+  border-radius: 46px;
+  color: #ffffff;
+}
+
+.examForComponent .continueButton {
+  text-transform: capitalize;
+}
+.examForComponent .continueButton:hover {
+  background-color: #0095a9;
+}
+
+.modal {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border: 2px solid #000;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+
+  width: 70%;
+
+  background: #ffffff;
+  /* ECP/Material/DropShadow */
+
+  box-shadow: 0px 16px 24px rgba(0, 0, 0, 0.14),
+    0px 6px 30px rgba(0, 0, 0, 0.12), 0px 8px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}

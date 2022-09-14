@@ -11,19 +11,28 @@
   text-transform: none;
 
   &.primary {
-    background-color: $primaryButton;
+    background-color: $primaryButton !important;
+    border-radius: 30px;
+    text-transform: none;
   }
   &.outlined {
-    background-color: transparent;
+    background-color: transparent !important;
     border: solid 1px $primaryButton;
     color: $primaryButton;
+    border-radius: 30px;
+    text-transform: none;
   }
 }
 
 .editButton {
   color: $link;
-  text-decoration: underline;
   cursor: pointer;
-  font-size: 18px;
-  text-transform: none;
+
+  .actionText {
+    color: $link;
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: 18px;
+    text-transform: none;
+  }
 }
