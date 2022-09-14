@@ -146,7 +146,7 @@ export default function PersonalInformation({
             ) : (
               <Avatar
                 {...stringAvatar(userData.name)}
-                sx={{ width: 122, height: 122, border: "solid 1px black" }}
+                sx={{ width: 93, height: 93, border: "solid 1px black" }}
               ></Avatar>
             )}
           </LabelWithInfo>
@@ -182,7 +182,7 @@ export default function PersonalInformation({
             <Typography variant="h3" sx={{ pb: 2, color: colors.black }}>
               State Issued ID
             </Typography>
-            <Typography variant="bodyRegular" sx={{ pb: 3 }} component="div">
+            <Typography variant="bodyRegular" sx={{ pb: 3, fontWeight: 500 }} component="div">
               Please upload a photo of government-issued ID, such as Driver’s
               License or State-issued ID.
             </Typography>
