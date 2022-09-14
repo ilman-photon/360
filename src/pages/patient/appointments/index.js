@@ -29,7 +29,7 @@ import { width } from "@mui/system";
 export default function Appointments() {
   // const [appointments, setAppointments] = useState();
   const [modalConfirmReschedule, setModalConfirmReschedule] = useState(false);
-  const [modalErrorRequest, setModalErrorRequest] = useState(true);
+  const [modalErrorRequest, setModalErrorRequest] = useState(false);
   const [modalSuccessCancel, setModalSuccessCancel] = useState(false);
 
   const appointments = useSelector((state) => state.user.userAppointmentData);
@@ -156,8 +156,8 @@ export default function Appointments() {
         open={modalErrorRequest}
         sx={{
           "& .MuiPaper-root": {
-            top: "166px",
-            position: "absolute",
+            top: { xs: "0", md: "166px" },
+            position: { xs: "relative", md: "absolute" },
           },
         }}
       >
@@ -171,10 +171,7 @@ export default function Appointments() {
           >
             Something Went Wrong
           </Typography>
-          <FormMessage>
-            There was a problem trying to perform your request. Please try
-            again.
-          </FormMessage>
+          <FormMessage>Please try again after sometime.</FormMessage>
         </Box>
       </CustomModal>
 

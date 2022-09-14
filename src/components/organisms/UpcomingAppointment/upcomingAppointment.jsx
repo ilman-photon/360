@@ -1,12 +1,12 @@
 import { Box, Typography, Link } from "@mui/material";
 import styles from "./styles.module.scss";
-import Image from "next/image";
-import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import moment from "moment";
 import AppointmentButton from "../../atoms/AppointmentButton/appointmentButton";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import { StyledButton } from "../../atoms/Button/button";
+import AppointmentInformation from "../../molecules/AppointmentInformation/appointmentInformation";
+AppointmentInformation;
 
 const constants = require("../../../utils/constants");
 
@@ -27,14 +27,6 @@ export function UpcomingAppointmentCard({
         <Typography className={styles.appointmentTitle} variant="h3">
           Eye Exam
         </Typography>
-        <Box className={styles.imageContainer}>
-          <Image
-            src={data.providerInfo.image}
-            className={styles.profilePhoto}
-            layout="fill"
-            alt="Doctor Image"
-          ></Image>
-        </Box>
         <Box className={styles.dateContainer}>
           <Typography className={styles.date} variant="subtitle1">
             {renderedDate}
@@ -51,51 +43,9 @@ export function UpcomingAppointmentCard({
             Add to calendar
           </AppointmentButton>
         </Box>
-        <Box className={styles.nameContainer}>
-          <Typography className={styles.doctorName} variant="subtitle1">
-            {data.providerInfo.name}
-          </Typography>
-          <Box className={styles.subTitleWrapper}>
-            <Typography variant="subtitle1">Patient: </Typography>
-            <Typography variant="body2">{data.patientInfo.name}</Typography>
-          </Box>
-        </Box>
-        <Box className={styles.locationContainer}>
-          <Box className={styles.locationWrapper}>
-            <Typography className={styles.titleLocation} variant="subtitle2">
-              Location
-            </Typography>
-            <Typography className={styles.bodyTitle} variant="body1">
-              {data.providerInfo.position}
-            </Typography>
-            <Typography variant="body2">
-              <>
-                {data.providerInfo.address.addressLine1}
-                <br />
-                {data.providerInfo.address.addressLine2}
-                <br />
-                {data.providerInfo.address.city},{" "}
-                {data.providerInfo.address.state},{" "}
-                {data.providerInfo.address.zipcode}
-              </>
-            </Typography>
-            <Link className={styles.link}>
-              {formatPhoneNumber(data.providerInfo.phoneNumber)}
-            </Link>
-          </Box>
-          <Box className={styles.insuranceWrapper}>
-            <Typography className={styles.titleLocation} variant="subtitle2">
-              Insurance
-            </Typography>
-            {data.appointmentInfo.insuranceCarrier.map((item, index) => {
-              return (
-                <Typography key={index} variant="body2">
-                  {item}
-                </Typography>
-              );
-            })}
-          </Box>
-        </Box>
+
+        <AppointmentInformation data={data}></AppointmentInformation>
+
         <Box className={styles.viewDetails}>
           <Box className={styles.buttonContainer}>
             <AppointmentButton

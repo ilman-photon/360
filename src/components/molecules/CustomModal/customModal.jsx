@@ -21,7 +21,7 @@ export default function CustomModal({
       aria-describedby="no-inernet-dialog-description"
       sx={{
         ".MuiPaper-root": {
-          width: "500px",
+          width: { xs: "auto%", md: "500px" },
           borderRadius: "8px",
         },
         ...sx,
