@@ -1,6 +1,7 @@
 export class Regex {
   static lengthRegex = /^[^\s]{8,20}$/;
   static numberRegex = /\d/;
+  static alphabethOnly = /^[a-zA-Z ]*$/;
   static numberOnly = /^\d*$/;
   static alphabethOnly = /^[a-zA-Z ]*$/;
   static upperCaseRegex = /[A-Z]/;

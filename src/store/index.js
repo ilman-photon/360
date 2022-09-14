@@ -14,6 +14,7 @@ const INITIAL_STATE = {
   formMessage: DEFAULT_FORM_MESSAGE,
   pageMessage: DEFAULT_PAGE_MESSAGE,
   isBackToLogin: false,
+  genericErrorMessage: null,
 };
 
 export const indexStore = createSlice({
@@ -41,6 +42,9 @@ export const indexStore = createSlice({
     resetPageMessage: (state) => {
       state.pageMessage = DEFAULT_PAGE_MESSAGE;
     },
+    setGenericErrorMessage: (state, { payload }) => {
+      state.genericErrorMessage = payload;
+    },
   },
 });
 
@@ -53,6 +57,7 @@ export const {
   setPageMessage,
   closePageMessage,
   resetPageMessage,
+  setGenericErrorMessage,
 } = indexStore.actions;
 
 export default indexStore.reducer;

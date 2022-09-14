@@ -20,8 +20,8 @@ export default function CreateAccountPage() {
       await api.getResponse("/ecp/patient/userregistration", postbody, "post");
       cookies.set("authorized", true, { path: "/patient" });
 
-      const hostname = window.location.origin;
-      window.location.href = `${hostname}/patient`;
+      // const hostname = window.location.origin;
+      // window.location.href = `${hostname}/patient`;
     } catch (err) {
       console.error({ err });
       if (err.ResponseCode) {

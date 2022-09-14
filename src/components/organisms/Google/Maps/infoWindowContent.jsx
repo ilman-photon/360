@@ -58,7 +58,11 @@ const InfoWindowContent = ({
             <Typography variant="bodySmallMedium" sx={{ color: "#757575" }}>
               {counter} of {data.length} doctors at this location
             </Typography>
-            <ProviderProfile variant={"map"} providerData={data[counter - 1]} />
+            <ProviderProfile
+              variant={"map"}
+              providerData={data[counter - 1]}
+              imageSize={"medium"}
+            />
           </Stack>
         </Grid>
         <Grid item xs={2}>

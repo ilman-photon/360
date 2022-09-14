@@ -103,6 +103,20 @@ export default function AppointmentForm({
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
 
+  const isDOB = (value) => {
+    let date = new Date().getFullYear();
+    if (value.getFullYear() <= date) {
+      return true;
+    }
+    if (value.getMonth() <= 12) {
+      return true;
+    }
+    if (value.getMonth() <= 12) {
+      return true;
+    }
+    return false;
+  };
+
   const isOneOfPreferredValid = (name, value) => {
     switch (name) {
       case "email":
@@ -138,7 +152,7 @@ export default function AppointmentForm({
             {isForMyself ? t("selfTitle") : t("someoneElseTitle")}
           </Typography>
           {isForMyself ? (
-            <Grid sx={{ mt: 2, display: "flex" }}>
+            <Box sx={{ mt: 2, display: "flex" }}>
               <Typography sx={styles.boldLabel} variant="h1">
                 {t("sigInInfo")}
               </Typography>
@@ -150,7 +164,7 @@ export default function AppointmentForm({
               >
                 {t("signIn")}
               </Link>
-            </Grid>
+            </Box>
           ) : null}
         </Box>
 
@@ -341,7 +355,12 @@ export default function AppointmentForm({
                 );
               }}
               rules={{
-                required: t("thisFieldRequired"),
+                required: "This field is required",
+                validate: {
+                  required: (value) => {
+                    if (!isDOB(value)) return "Invalid Date of Birth";
+                  },
+                },
               }}
             />
           </Box>
@@ -388,14 +407,14 @@ export default function AppointmentForm({
               </div>
 
               <Divider sx={{ mx: 1, width: { xs: "100%", md: "70%" } }} />
-              <Grid sx={{ m: "24px 8px 16px" }}>
+              <Box sx={{ m: "24px 8px 16px" }}>
                 <Typography sx={{ ...styles.boldLabel, mb: 1 }}>
                   {t("optional")}
                 </Typography>
                 <Typography sx={styles.passwordLabel}>
                   {t("passwordInfo")}
                 </Typography>
-              </Grid>
+              </Box>
 
               <Stack sx={{ width: { xs: "100%", md: "70%" } }}>
                 <Controller
@@ -420,6 +439,13 @@ export default function AppointmentForm({
                         helperText={error ? error.message : null}
                       />
                     );
+                  }}
+                  rules={{
+                    validate: {
+                      isLength: (v) =>
+                        Regex.lengthRegex.test(v) ||
+                        "Password does not meet requirements",
+                    },
                   }}
                 />
                 <DisclaimerText label="(Optional)" />
