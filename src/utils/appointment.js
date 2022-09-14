@@ -312,3 +312,11 @@ export function parseAppointmentCardData(appointmentData) {
   }
   return data;
 }
+
+export function getDirection(providerCordinate) {
+  window.open(
+    `https://maps.google.com?q=${providerCordinate.latitude},${providerCordinate.longitude}`,
+    "_blank",
+    "noopener,noreferrer"
+  );
+}
