@@ -401,7 +401,7 @@ exports[`App renders App unchanged 1`] = `
                   >
                     <label
                       aria-label="Email, Phone, Both - radio buttons"
-                      class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1qtos26-MuiFormLabel-root"
+                      class="MuiFormLabel-root MuiFormLabel-colorPrimary css-142xk3x-MuiFormLabel-root"
                       id="row-radio-buttons-group-label"
                     >
                       Preferred mode of Communication
