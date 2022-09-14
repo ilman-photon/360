@@ -144,8 +144,12 @@ export default function AppointmentForm({
       <Stack spacing={2}>
         <Box sx={{ m: 1 }}>
           <Typography
-            sx={isDesktop ? { fontSize: "32px" } : { fontSize: "26px" }}
             className={styles.formTitle}
+            sx={
+              isDesktop
+                ? { fontSize: "32px", fontFamily: "Bw Nista Geometric DEMO" }
+                : { fontSize: "26px", fontFamily: "Bw Nista Geometric DEMO" }
+            }
             aria-label={
               isForMyself
                 ? `${t("selfTitle")} title`
