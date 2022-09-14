@@ -34,7 +34,8 @@ export class Api {
       const rejecter = function (err) {
         if (
           err &&
-          (err.code === constants.ERROR_CODE.BAD_REQUEST ||
+          ((err.code === constants.ERROR_CODE.BAD_REQUEST &&
+            err?.response?.data?.ResponseCode === undefined) ||
             err.code === constants.ERROR_CODE.NETWORK_ERR)
         ) {
           store.dispatch(
