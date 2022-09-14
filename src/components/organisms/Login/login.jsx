@@ -33,17 +33,6 @@ export function Login({
   };
 
   const checkMessage = (message) => {
-    const messageStatus = message.status === "failed";
-    if (messageStatus) {
-      setError("username", {
-        type: "custom",
-        message: "Enter a valid Email or Phone Number",
-      });
-      setError("password", {
-        type: "custom",
-        message: "This field is required",
-      });
-    }
     setPostMessage(message);
   };
 
