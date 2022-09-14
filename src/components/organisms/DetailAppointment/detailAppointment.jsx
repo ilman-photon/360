@@ -1,20 +1,15 @@
 import { Box, Stack, Typography, Link, Button } from "@mui/material";
-import ProviderProfile from "../../molecules/ProviderProfile/providerProfile";
-import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
 import styles from "./styles.module.scss";
 import AppointmentButton from "../../atoms/AppointmentButton/appointmentButton";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import moment from "moment";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import DownloadIcon from "@mui/icons-material/DownloadOutlined";
 import { blueGrey, grey, red } from "@mui/material/colors";
-import PastAppointment from "../PastAppointment/pastAppointment";
 import Divider from "@mui/material/Divider";
-import StyledInput from "../../atoms/Input/input";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import Collapse from "@mui/material/Collapse";
 
 import Table from "@mui/material/Table";
@@ -24,6 +19,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import React from "react";
+
 export default function DetailAppointment({ data }) {
   const date = data.appointmentInfo.date;
   const timezone = date.substring(date.length - 3);
@@ -31,10 +27,11 @@ export default function DetailAppointment({ data }) {
   const formatedDate = momentDate.format("dddd, MMM DD, YYYY");
   const time = momentDate.format("h:mm A");
   const fullDate = `${formatedDate}, AT ${time} ${timezone}`;
-  const [open, setOpen] = React.useState(true);
+
   const [openAllergies, setOpenAllergies] = React.useState(true);
   const [openResults, setOpenResults] = React.useState(true);
   const [openVital, setOpenVitals] = React.useState(true);
+
   const handleClickResult = () => {
     setOpenResults(!openResults);
   };
@@ -45,7 +42,9 @@ export default function DetailAppointment({ data }) {
     setOpenAllergies(!openAllergies);
   };
   const handleClick = () => {
-    setOpen(!open);
+    setOpenAllergies(true);
+    setOpenResults(true);
+    setOpenVitals(true);
   };
   const Item = styled(Paper)(({ theme }) => ({
     backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
@@ -63,9 +62,7 @@ export default function DetailAppointment({ data }) {
         <Box className={styles.dateContainer}>
           <Grid container spacing={2}>
             <Grid item xs={8}>
-              <Typography variant="h4" className={styles.date}>
-                {fullDate}
-              </Typography>
+              <Typography variant="h4">{fullDate}</Typography>
             </Grid>
             <Grid item xs={4}>
               <Box
@@ -83,9 +80,7 @@ export default function DetailAppointment({ data }) {
                   }}
                 >
                   <DownloadIcon sx={{ color: blueGrey[200] }} />
-                  <Typography variant="body2" className={styles.date}>
-                    Download
-                  </Typography>
+                  <Typography variant="body2">Download</Typography>
                 </Link>
               </Box>
             </Grid>
@@ -96,14 +91,12 @@ export default function DetailAppointment({ data }) {
             className={styles.dateContainer}
             sx={{ p: 2, backgroundColor: "white" }}
           >
-            <Typography variant="h4" className={styles.date}>
+            <Typography variant="h4" className={styles.mb36}>
               Visit Purpose: Routine
             </Typography>
             <Grid container spacing={2} sx={{ p: 1 }}>
               <Grid item xs={4}>
-                <Typography variant="h4" className={styles.date}>
-                  Dr Sonha Nguyen
-                </Typography>
+                <Typography variant="h4">Dr Sonha Nguyen</Typography>
               </Grid>
               <Grid item xs={8}>
                 <Box
@@ -112,29 +105,28 @@ export default function DetailAppointment({ data }) {
                   alignItems={"center"}
                   flexDirection={"row"}
                 >
-                  <Link
-                    className={styles.link}
-                    sx={{
-                      display: "flex",
-                      alignContent: "center",
-                      justifyContent: "center",
-                    }}
-                  >
-                    <Typography variant="h4" className={styles.date}>
-                      Patient : Don John
-                    </Typography>
-                  </Link>
+                  <Typography variant="h4">Patient :</Typography>
+                  <Typography variant="regularDarkGreen" sx={{ pl: 0.5 }}>
+                    Don John
+                  </Typography>
                 </Box>
               </Grid>
             </Grid>
             <Divider />
             <Grid container spacing={2} sx={{ p: 1 }}>
               <Grid item xs={4} sx={{ p: 1 }}>
-                <Typography variant="h4" className={styles.date}>
+                <Typography variant="h4" className={styles.mb14}>
                   Location
                 </Typography>
-                <Typography variant="body2" className={styles.date}>
-                  Scripps Eyesore 5755 Burke Centre Parkway Burke, VA 22015-226
+                <Typography variant="mediumDarkGreen" className={styles.mb36}>
+                  Scripps Eyesore
+                </Typography>
+                <Typography
+                  variant="regularDarkGreen"
+                  component={"div"}
+                  sx={{ pt: 1 }}
+                >
+                  5755 Burke Centre Parkway Burke, VA 22015-226
                 </Typography>
                 <Link
                   sx={{
@@ -142,9 +134,13 @@ export default function DetailAppointment({ data }) {
                     display: "flex",
                     alignContent: "center",
                     justifyContent: "flex-start",
+                    pt: 1,
                   }}
                 >
-                  <Typography variant="body2" className={styles.date}>
+                  <Typography
+                    variant="body2"
+                    className={styles.getDirectionLinkText}
+                  >
                     (703) 250 -9000
                   </Typography>
                 </Link>
@@ -156,7 +152,7 @@ export default function DetailAppointment({ data }) {
                   alignItems={"center"}
                   flexDirection={"row"}
                 >
-                  <Typography variant="h4" className={styles.date}>
+                  <Typography variant="h4" className={styles.mb14}>
                     Insurance
                   </Typography>
                 </Box>
@@ -165,10 +161,9 @@ export default function DetailAppointment({ data }) {
                   justifyContent="flex-start"
                   alignItems={"center"}
                   flexDirection={"row"}
+                  sx={{ pb: 1 }}
                 >
-                  <Typography variant="body2" className={styles.date}>
-                    ECP Vision
-                  </Typography>
+                  <Typography variant="regularDarkGreen">ECP Vision</Typography>
                 </Box>
                 <Box
                   display={"flex"}
@@ -176,21 +171,18 @@ export default function DetailAppointment({ data }) {
                   alignItems={"center"}
                   flexDirection={"row"}
                 >
-                  <Typography variant="body2" className={styles.date}>
+                  <Typography variant="regularDarkGreen">
                     BlueCare Vision
                   </Typography>
                 </Box>
               </Grid>
             </Grid>
           </Box>
-          <Box
-            sx={{ p: 2, backgroundColor: grey[50] }}
-            className={styles.dateContainer}
-          >
-            <Typography variant="h4" className={styles.date}>
+          <Box sx={{ p: 2, pb: 0, backgroundColor: grey[50] }}>
+            <Typography variant="h3" className={styles.mb14}>
               Documentation of
             </Typography>
-            <Typography variant="body1" className={styles.date}>
+            <Typography variant="body1" className={styles.mb14}>
               Lorem Ipsum
             </Typography>
           </Box>
@@ -226,28 +218,22 @@ export default function DetailAppointment({ data }) {
             </Box>
           </Box>
         </Box>
-        <Box
-          className={styles.dateContainer}
-          sx={{ p: 2, backgroundColor: "white" }}
-        >
+        <Box sx={{ p: 2, backgroundColor: "white" }}>
           <Box
             className={styles.buttonContainer}
             sx={{ display: "flex", justifyContent: "center", p: 2 }}
+            onClick={handleClick}
           >
             <AppointmentButton>
-              Collapse All <ExpandMoreIcon onClick={handleClick} />
+              Collapse All <ExpandMoreIcon />
             </AppointmentButton>
           </Box>
-          <Collapse in={open} timeout="auto" unmountOnExit>
+
+          {/**Allergies*/}
+          <Box>
             <Box
-              className={styles.pastAppointmentsContainer}
-              sx={{
-                display: "flex",
-                backgroundColor: "#f4f4f4",
-                height: "55px",
-                border: "2px solid #f3f3f3 ",
-                justifyContent: "space-between",
-              }}
+              className={styles.accordionContainer}
+              onClick={() => handleClickAllergies()}
             >
               <Box
                 sx={{
@@ -266,11 +252,10 @@ export default function DetailAppointment({ data }) {
                   justifyContent: "center",
                   alignContent: "center",
                   alignItems: "center",
+                  mr: 3,
                 }}
               >
-                <Button onClick={() => handleClickAllergies()}>
-                  <ExpandMoreIcon />
-                </Button>
+                {openAllergies ? <ExpandMoreIcon /> : <ExpandLessIcon />}
               </Box>
             </Box>
             <Collapse in={openAllergies} timeout="auto" unmountOnExit>
@@ -304,151 +289,131 @@ export default function DetailAppointment({ data }) {
                   </TableBody>
                 </Table>
               </TableContainer>
-              <Box
-                className={styles.dateContainer}
-                sx={{ p: 2, backgroundColor: "white" }}
-              >
-                <Box
-                  className={styles.pastAppointmentsContainer}
-                  sx={{
-                    display: "flex",
-                    backgroundColor: "#f4f4f4",
-                    height: "55px",
-                    border: "2px solid #f3f3f3 ",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <Box
-                    sx={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "flex-start",
-                      justifyContent: "center",
-                      paddingLeft: "16px",
-                    }}
-                  >
-                    <Typography variant="h4">Vital Signs</Typography>
-                  </Box>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "center",
-                      alignContent: "center",
-                      alignItems: "center",
-                    }}
-                  >
-                    <ExpandMoreIcon onClick={handleVital} />
-                  </Box>
-                </Box>
-                <Collapse in={openVital} timeout="auto" unmountOnExit>
-                  <TableContainer component={Paper}>
-                    <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                      <TableHead>
-                        <TableRow>
-                          <TableCell component="th" scope="row">
-                            lorem Ipsum
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            lorem Ipsum
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            lorem Ipsum
-                          </TableCell>
-                          <TableCell component="th" scope="row">
-                            lorem Ipsum
-                          </TableCell>
-                        </TableRow>
-                      </TableHead>
-                      <TableBody>
-                        <TableRow
-                          sx={{
-                            "&:last-child td, &:last-child th": { border: 0 },
-                          }}
-                        >
-                          <TableCell>lorem</TableCell>
-                          <TableCell>lorem</TableCell>
-                          <TableCell>lorem</TableCell>
-                          <TableCell>lorem</TableCell>
-                        </TableRow>
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
-                </Collapse>
-              </Box>
             </Collapse>
+          </Box>
 
+          {/**Results*/}
+          <Box sx={{ pt: 2 }}>
             <Box
-              className={styles.dateContainer}
-              sx={{ p: 2, backgroundColor: "white" }}
+              className={styles.accordionContainer}
+              onClick={() => handleClickResult()}
             >
               <Box
-                className={styles.pastAppointmentsContainer}
                 sx={{
                   display: "flex",
-                  backgroundColor: "#f4f4f4",
-                  height: "55px",
-                  border: "2px solid #f3f3f3 ",
-                  justifyContent: "space-between",
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                  justifyContent: "center",
+                  paddingLeft: "16px",
                 }}
               >
-                <Box
-                  sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "flex-start",
-                    justifyContent: "center",
-                    paddingLeft: "16px",
-                  }}
-                >
-                  <Typography variant="h4">Results</Typography>
-                </Box>
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "center",
-                    alignContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <ExpandMoreIcon onClick={handleClickResult} />
-                </Box>
+                <Typography variant="h4">Results</Typography>
               </Box>
-              <Collapse in={openResults} timeout="auto" unmountOnExit>
-                <TableContainer component={Paper}>
-                  <Table sx={{ minWidth: 650 }} aria-label="simple table">
-                    <TableHead>
-                      <TableRow>
-                        <TableCell component="th" scope="row">
-                          lorem Ipsum
-                        </TableCell>
-                        <TableCell component="th" scope="row">
-                          lorem Ipsum
-                        </TableCell>
-                        <TableCell component="th" scope="row">
-                          lorem Ipsum
-                        </TableCell>
-                        <TableCell component="th" scope="row">
-                          lorem Ipsum
-                        </TableCell>
-                      </TableRow>
-                    </TableHead>
-                    <TableBody>
-                      <TableRow
-                        sx={{
-                          "&:last-child td, &:last-child th": { border: 0 },
-                        }}
-                      >
-                        <TableCell>lorem</TableCell>
-                        <TableCell>lorem</TableCell>
-                        <TableCell>lorem</TableCell>
-                        <TableCell>lorem</TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </Collapse>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignContent: "center",
+                  alignItems: "center",
+                  mr: 3,
+                }}
+              >
+                {openResults ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+              </Box>
             </Box>
-          </Collapse>
+            <Collapse in={openResults} timeout="auto" unmountOnExit>
+              <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell component="th" scope="row">
+                        lorem Ipsum
+                      </TableCell>
+                      <TableCell component="th" scope="row">
+                        lorem Ipsum
+                      </TableCell>
+                      <TableCell component="th" scope="row">
+                        lorem Ipsum
+                      </TableCell>
+                      <TableCell component="th" scope="row">
+                        lorem Ipsum
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    <TableRow
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell>lorem</TableCell>
+                      <TableCell>lorem</TableCell>
+                      <TableCell>lorem</TableCell>
+                      <TableCell>lorem</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Collapse>
+          </Box>
+
+          {/**Vital Sign*/}
+          <Box sx={{ pt: 2 }}>
+            <Box className={styles.accordionContainer} onClick={handleVital}>
+              <Box
+                sx={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                  justifyContent: "center",
+                  paddingLeft: "16px",
+                }}
+              >
+                <Typography variant="h4">Vital Signs</Typography>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignContent: "center",
+                  alignItems: "center",
+                  mr: 3,
+                }}
+              >
+                {openVital ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+              </Box>
+            </Box>
+            <Collapse in={openVital} timeout="auto" unmountOnExit>
+              <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="simple table">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell component="th" scope="row">
+                        lorem Ipsum
+                      </TableCell>
+                      <TableCell component="th" scope="row">
+                        lorem Ipsum
+                      </TableCell>
+                      <TableCell component="th" scope="row">
+                        lorem Ipsum
+                      </TableCell>
+                      <TableCell component="th" scope="row">
+                        lorem Ipsum
+                      </TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    <TableRow
+                      sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                    >
+                      <TableCell>lorem</TableCell>
+                      <TableCell>lorem</TableCell>
+                      <TableCell>lorem</TableCell>
+                      <TableCell>lorem</TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Collapse>
+          </Box>
         </Box>
       </Stack>
     </Box>

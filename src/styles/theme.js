@@ -184,6 +184,20 @@ export const patientTypography = createTheme({
     allVariants: {
       color: "#292929",
     },
+    regularDarkGreen: {
+      fontFamily: "Libre Franklin",
+      color: "#003B4A",
+      fontWeight: "400",
+      fontSize: 16,
+      lineHeight: "20px",
+    },
+    mediumDarkGreen: {
+      fontFamily: "Libre Franklin",
+      color: "#003B4A",
+      fontWeight: "500",
+      fontSize: 16,
+      lineHeight: "20px",
+    },
   },
 });
 
