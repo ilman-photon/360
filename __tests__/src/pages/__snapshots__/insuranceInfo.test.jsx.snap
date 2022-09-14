@@ -415,7 +415,7 @@ Object {
                                       class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
                                       id=":r5:"
                                       placeholder=""
-                                      type="number"
+                                      type="text"
                                       value=""
                                     />
                                   </div>
@@ -444,7 +444,7 @@ Object {
                             >
                               <label
                                 aria-label="Yes, No - radio buttons"
-                                class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1qtos26-MuiFormLabel-root"
+                                class="MuiFormLabel-root MuiFormLabel-colorPrimary css-142xk3x-MuiFormLabel-root"
                                 id="row-radio-buttons-group-label"
                               >
                                 Are you the Subscriber?
@@ -469,7 +469,7 @@ Object {
                               >
                                 <label
                                   aria-label="Yes Radio Button"
-                                  class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                                  class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-c1ifyw-MuiFormControlLabel-root"
                                 >
                                   <span
                                     class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-81lzf2-MuiButtonBase-root-MuiRadio-root"
@@ -519,7 +519,7 @@ Object {
                                 </label>
                                 <label
                                   aria-label="No Radio Button"
-                                  class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                                  class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-c1ifyw-MuiFormControlLabel-root"
                                 >
                                   <span
                                     class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
@@ -585,7 +585,7 @@ Object {
                                     class="css-1lwbda4-MuiStack-root"
                                   >
                                     <span
-                                      class="MuiTypography-root MuiTypography-bodyRegular css-kwfea0-MuiTypography-root"
+                                      class="MuiTypography-root MuiTypography-bodyMedium css-kwoz5u-MuiTypography-root"
                                     >
                                       Enter the subscriber’s details
                                     </span>
@@ -656,7 +656,7 @@ Object {
                                           </div>
                                         </div>
                                         <div
-                                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-fn1ww3-MuiGrid-root"
+                                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-xfwq4j-MuiGrid-root"
                                         />
                                         <div
                                           class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
@@ -696,10 +696,10 @@ Object {
                                           </div>
                                         </div>
                                         <div
-                                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-fn1ww3-MuiGrid-root"
+                                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-xfwq4j-MuiGrid-root"
                                         />
                                         <div
-                                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-fn1ww3-MuiGrid-root"
+                                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-xfwq4j-MuiGrid-root"
                                         />
                                         <div
                                           class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
@@ -967,7 +967,7 @@ Object {
                             >
                               <label
                                 aria-label="Primary, Secondary, Tertiary - radio buttons"
-                                class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1qtos26-MuiFormLabel-root"
+                                class="MuiFormLabel-root MuiFormLabel-colorPrimary css-142xk3x-MuiFormLabel-root"
                                 id="row-radio-buttons-group-label"
                               >
                                 Insurance Priority
@@ -992,7 +992,7 @@ Object {
                               >
                                 <label
                                   aria-label="Primary Radio Button"
-                                  class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                                  class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-c1ifyw-MuiFormControlLabel-root"
                                 >
                                   <span
                                     class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-81lzf2-MuiButtonBase-root-MuiRadio-root"
@@ -1042,7 +1042,7 @@ Object {
                                 </label>
                                 <label
                                   aria-label="Secondary Radio Button"
-                                  class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                                  class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-c1ifyw-MuiFormControlLabel-root"
                                 >
                                   <span
                                     class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
@@ -1091,7 +1091,7 @@ Object {
                                 </label>
                                 <label
                                   aria-label="Tertiary Radio Button"
-                                  class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                                  class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-c1ifyw-MuiFormControlLabel-root"
                                 >
                                   <span
                                     class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
@@ -1599,7 +1599,7 @@ Object {
                                     class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
                                     id=":r5:"
                                     placeholder=""
-                                    type="number"
+                                    type="text"
                                     value=""
                                   />
                                 </div>
@@ -1628,7 +1628,7 @@ Object {
                           >
                             <label
                               aria-label="Yes, No - radio buttons"
-                              class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1qtos26-MuiFormLabel-root"
+                              class="MuiFormLabel-root MuiFormLabel-colorPrimary css-142xk3x-MuiFormLabel-root"
                               id="row-radio-buttons-group-label"
                             >
                               Are you the Subscriber?
@@ -1653,7 +1653,7 @@ Object {
                             >
                               <label
                                 aria-label="Yes Radio Button"
-                                class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                                class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-c1ifyw-MuiFormControlLabel-root"
                               >
                                 <span
                                   class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-81lzf2-MuiButtonBase-root-MuiRadio-root"
@@ -1703,7 +1703,7 @@ Object {
                               </label>
                               <label
                                 aria-label="No Radio Button"
-                                class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                                class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-c1ifyw-MuiFormControlLabel-root"
                               >
                                 <span
                                   class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
@@ -1769,7 +1769,7 @@ Object {
                                   class="css-1lwbda4-MuiStack-root"
                                 >
                                   <span
-                                    class="MuiTypography-root MuiTypography-bodyRegular css-kwfea0-MuiTypography-root"
+                                    class="MuiTypography-root MuiTypography-bodyMedium css-kwoz5u-MuiTypography-root"
                                   >
                                     Enter the subscriber’s details
                                   </span>
@@ -1840,7 +1840,7 @@ Object {
                                         </div>
                                       </div>
                                       <div
-                                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-fn1ww3-MuiGrid-root"
+                                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-xfwq4j-MuiGrid-root"
                                       />
                                       <div
                                         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
@@ -1880,10 +1880,10 @@ Object {
                                         </div>
                                       </div>
                                       <div
-                                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-fn1ww3-MuiGrid-root"
+                                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-xfwq4j-MuiGrid-root"
                                       />
                                       <div
-                                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-fn1ww3-MuiGrid-root"
+                                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-xfwq4j-MuiGrid-root"
                                       />
                                       <div
                                         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
@@ -2151,7 +2151,7 @@ Object {
                           >
                             <label
                               aria-label="Primary, Secondary, Tertiary - radio buttons"
-                              class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1qtos26-MuiFormLabel-root"
+                              class="MuiFormLabel-root MuiFormLabel-colorPrimary css-142xk3x-MuiFormLabel-root"
                               id="row-radio-buttons-group-label"
                             >
                               Insurance Priority
@@ -2176,7 +2176,7 @@ Object {
                             >
                               <label
                                 aria-label="Primary Radio Button"
-                                class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                                class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-c1ifyw-MuiFormControlLabel-root"
                               >
                                 <span
                                   class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-81lzf2-MuiButtonBase-root-MuiRadio-root"
@@ -2226,7 +2226,7 @@ Object {
                               </label>
                               <label
                                 aria-label="Secondary Radio Button"
-                                class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                                class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-c1ifyw-MuiFormControlLabel-root"
                               >
                                 <span
                                   class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
@@ -2275,7 +2275,7 @@ Object {
                               </label>
                               <label
                                 aria-label="Tertiary Radio Button"
-                                class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                                class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-c1ifyw-MuiFormControlLabel-root"
                               >
                                 <span
                                   class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
