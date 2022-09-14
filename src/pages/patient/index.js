@@ -12,6 +12,7 @@ import store from "../../store/store";
 import { useRouter } from "next/router";
 import { Api } from "../api/api";
 import {
+  setAppointmentSchedule,
   setFilterData,
   setIsFilterApplied,
   setProviderListData,
@@ -44,6 +45,7 @@ export default function HomePage() {
   const [appointmentData, setAppointmentData] = React.useState({});
   const [isOpenCancel, setIsOpenCancel] = React.useState(false);
   const filterData = useSelector((state) => state.appointment.filterData);
+  const userData = useSelector((state) => state.user.userData);
   const isDesktop = useMediaQuery("(min-width: 900px)");
   const { coords, isGeolocationEnabled } = useGeolocated({
     positionOptions: {
@@ -166,6 +168,30 @@ export default function HomePage() {
     router.push("/patient/appointments");
   };
 
+  const onClickReschedule = ({
+    appointmentInfo,
+    providerInfo = { address: {} },
+  }) => {
+    const dataFilter = {
+      purposeOfVisit: appointmentInfo.appointmentType,
+      date: new Date(appointmentInfo.date),
+      insuranceCarrier: Array.isArray(appointmentInfo.insuranceCarrier)
+        ? appointmentInfo.insuranceCarrier[0]
+        : appointmentInfo.insuranceCarrier,
+      location: providerInfo.address.city,
+    };
+
+    const appointmentSchedule = {
+      providerInfo: providerInfo,
+      patientInfo: userData,
+      appointmentInfo: appointmentInfo,
+    };
+    dispatch(setFilterData(dataFilter));
+    dispatch(setAppointmentSchedule(appointmentSchedule));
+
+    router.push("/patient/appointments/1/reschedule");
+  };
+
   return (
     <Stack sx={{ width: "100%" }}>
       {isDesktop ? (
@@ -229,6 +255,7 @@ export default function HomePage() {
             appointmentData={appointmentData}
             OnClickCancel={handleClickCancel}
             onViewAppointment={onViewAppointment}
+            onClickReschedule={onClickReschedule}
           />
         </Grid>
       </Grid>
