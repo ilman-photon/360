@@ -125,6 +125,7 @@ Object {
                   <span
                     aria-label="Myself"
                     class="MuiTypography-root MuiTypography-regularBold css-37jdci-MuiTypography-root"
+                    data-testid="schedule_appointment_location_address"
                     style="color: rgb(0, 59, 74); font-size: 16px;"
                   >
                     <br />
@@ -268,6 +269,7 @@ Object {
                 <span
                   aria-label="Myself"
                   class="MuiTypography-root MuiTypography-regularBold css-37jdci-MuiTypography-root"
+                  data-testid="schedule_appointment_location_address"
                   style="color: rgb(0, 59, 74); font-size: 16px;"
                 >
                   <br />

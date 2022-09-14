@@ -256,7 +256,8 @@ export default function ScheduleAppointmentPage() {
         })
       );
     }
-  },[activeStep])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeStep]);
 
   const steps = [
     "Location",
