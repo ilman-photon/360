@@ -201,7 +201,7 @@ Object {
                             class="displayFlex MuiBox-root css-0"
                           >
                             <div
-                              class="MuiBox-root css-0"
+                              class="imageContainer MuiBox-root css-0"
                             >
                               <span
                                 style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
@@ -242,33 +242,38 @@ Object {
                               >
                                 Scripps Eyecare
                               </h3>
-                              <p
-                                class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
-                              >
-                                51 West 51st Street
-                                <br />
-                                Floor 3, Suite 320 Midtown
-                                <br />
-                                Florida
-                                , 
-                                FR
-                                , 
-                                54231
-                              </p>
                               <div
-                                class="phoneContainer MuiBox-root css-0"
+                                class="detailContainer MuiBox-root css-0"
                               >
-                                <a
-                                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways phoneLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                                <div
+                                  class="MuiBox-root css-0"
                                 >
-                                  (123) 123-4567
-                                </a>
+                                  <p
+                                    class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
+                                  >
+                                    51 West 51st Street
+                                    <br />
+                                    Floor 3, Suite 320 Midtown
+                                    <br />
+                                    Florida
+                                    , 
+                                    FR
+                                    , 
+                                    54231
+                                  </p>
+                                  <div
+                                    class="phoneContainer MuiBox-root css-0"
+                                  >
+                                    <a
+                                      class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways phoneLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                                    >
+                                      (123) 123-4567
+                                    </a>
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
-                          <div
-                            class="MuiBox-root css-0"
-                          />
                         </div>
                         <div
                           class="getDirectionLink MuiBox-root css-0"
@@ -622,7 +627,7 @@ Object {
                             class="displayFlex MuiBox-root css-0"
                           >
                             <div
-                              class="MuiBox-root css-0"
+                              class="imageContainer MuiBox-root css-0"
                             >
                               <span
                                 style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
@@ -663,33 +668,38 @@ Object {
                               >
                                 Scripps Eyecare
                               </h3>
-                              <p
-                                class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
-                              >
-                                51 West 51st Street
-                                <br />
-                                Floor 3, Suite 320 Midtown
-                                <br />
-                                Florida
-                                , 
-                                FR
-                                , 
-                                54231
-                              </p>
                               <div
-                                class="phoneContainer MuiBox-root css-0"
+                                class="detailContainer MuiBox-root css-0"
                               >
-                                <a
-                                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways phoneLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                                <div
+                                  class="MuiBox-root css-0"
                                 >
-                                  (123) 123-4567
-                                </a>
+                                  <p
+                                    class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
+                                  >
+                                    51 West 51st Street
+                                    <br />
+                                    Floor 3, Suite 320 Midtown
+                                    <br />
+                                    Florida
+                                    , 
+                                    FR
+                                    , 
+                                    54231
+                                  </p>
+                                  <div
+                                    class="phoneContainer MuiBox-root css-0"
+                                  >
+                                    <a
+                                      class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways phoneLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                                    >
+                                      (123) 123-4567
+                                    </a>
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
-                          <div
-                            class="MuiBox-root css-0"
-                          />
                         </div>
                         <div
                           class="getDirectionLink MuiBox-root css-0"

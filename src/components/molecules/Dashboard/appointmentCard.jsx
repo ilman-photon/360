@@ -32,6 +32,9 @@ export default function AppointmentCard({
   onViewAppointment = () => {
     // This is intentional
   },
+  onClickReschedule = () => {
+    // This is intentional
+  },
 }) {
   const [appointment, setAppointment] = React.useState({
     appointmentId: "",
@@ -238,9 +241,7 @@ export default function AppointmentCard({
               <StyledButton
                 mode="secondary"
                 size="small"
-                onClick={() => {
-                  //
-                }}
+                onClick={() => onClickReschedule(appointmentData[0])}
                 sx={{
                   width: { xs: "100%", md: "fit-content" },
                   minWidth: "107px",
