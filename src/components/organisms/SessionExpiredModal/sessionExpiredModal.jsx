@@ -36,6 +36,10 @@ function SessionExpiredModal({
       <DialogTitle
         id="alert-dialog-title"
         style={styles.containerPadding}
+        tabindex="1"
+        aria-live={
+          !isExpired ? "Session Timeout heading" : "Session Expired heading"
+        }
         aria-label={
           !isExpired ? "Session Timeout heading" : "Session Expired heading"
         }
@@ -44,6 +48,7 @@ function SessionExpiredModal({
       </DialogTitle>
       <DialogContent
         style={{ ...styles.containerPadding, paddingBottom: "16px" }}
+        tabIndex={1}
         sx={{
           width: "500px",
           "@media (max-width: 992px)": {
@@ -55,6 +60,11 @@ function SessionExpiredModal({
           success={false}
           id="alert-dialog-description"
           sx={styles.postMessage}
+          aria-live={
+            !isExpired
+              ? `Your session is about to time-out. You will be logged out in ${remaining} seconds.`
+              : "Your session expired. Please login again."
+          }
           accessibility={{
             "aria-live": "off",
           }}
@@ -74,7 +84,9 @@ function SessionExpiredModal({
               gradient={false}
               style={styles.buttonStyle}
               data-testid="session-logoff-btn"
+              tabindex="1"
               onClick={onLoggedOffClicked}
+              aria-live={"Log off button"}
               aria-label={"Log off button"}
             >
               Log Off
@@ -87,6 +99,8 @@ function SessionExpiredModal({
               style={styles.buttonStyle}
               data-testid="session-stay-btn"
               onClick={onStayLoggedIn}
+              tabindex="1"
+              aria-live={"Stay Logged in button"}
               aria-label={"Stay Logged in button"}
             >
               Stay Logged in
@@ -98,6 +112,8 @@ function SessionExpiredModal({
               theme="patient"
               mode="primary"
               size="small"
+              tabindex="1"
+              aria-live="Ok button"
               gradient={false}
               data-testid="session-ok-btn"
               style={styles.buttonStyle}
