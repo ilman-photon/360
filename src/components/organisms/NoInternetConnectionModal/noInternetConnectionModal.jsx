@@ -1,7 +1,13 @@
 import React from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
-import { Box, IconButton, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  IconButton,
+  Stack,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import Image from "next/image";
 import styles from "../NoInternetConnectionModal/style.module.scss";
@@ -13,6 +19,7 @@ function NoInternetConnectionModal({
   },
 }) {
   const imageSrcState = "/Vector.png";
+  const isDesktop = useMediaQuery("(min-width: 767px)");
   return (
     <Dialog
       open={!isOnline}
@@ -37,16 +44,19 @@ function NoInternetConnectionModal({
         </IconButton>
         <Stack
           sx={{ height: "335px" }}
-          direction={"row"}
+          direction={isDesktop ? "row" : "column"}
           justifyContent={"center"}
         >
           <Box className={styles.imageContainer}>
-            <Image alt="" src={imageSrcState} width={244.89} height={211} />
+            <Image
+              alt=""
+              src={imageSrcState}
+              width={isDesktop ? 244.89 : 124.03}
+              height={isDesktop ? 211 : 108}
+              loading={"eager"}
+            />
           </Box>
-          <Box
-            sx={{ width: "348px", paddingLeft: "24px" }}
-            className={styles.textContainer}
-          >
+          <Box className={styles.textContainer}>
             <Typography className={styles.titleModal}>
               No Internet Connection
             </Typography>
