@@ -355,7 +355,7 @@ defineFeature(feature, (test) => {
         defaultValidation();
     });
 
-    and('User lands on “Appointments” screen', () => {
+    and('User lands on “Appointments” screen', async () => {
       Cookies.result = "true";
       const expectedResult = {
       ResponseCode: 2005,
