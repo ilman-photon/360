@@ -14,9 +14,7 @@ function GenericErrorModal({ storeContext = {} }) {
   const [modalError, setModalError] = useState(null);
 
   storeContext.subscribe(() => {
-    setTimeout(() => {
-      setModalError(storeContext.getState().index.genericErrorMessage);
-    }, 3000);
+    setModalError(storeContext.getState().index.genericErrorMessage);
   });
 
   return (
