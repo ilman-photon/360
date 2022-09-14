@@ -122,12 +122,30 @@ export default function AppointmentForm({
     }
   };
 
+  const is3of4 = (pass) => {
+    let passes = 0;
+    if (Regex.alphabethRegex.test(pass)) {
+      ++passes;
+    }
+    if (Regex.specialRegex.test(pass)) {
+      ++passes;
+    }
+    if (pass.indexOf(watchedEmail || watchedMobile) > -1) {
+      ++passes;
+    }
+    if (!Regex.hasTripleRegex.test(pass)) {
+      ++passes;
+    }
+    return passes >= 3 ? true : false;
+  };
+
   return (
     <Stack spacing={2}>
       <Stack spacing={2}>
         <Box sx={{ m: 1 }}>
           <Typography
-            sx={isDesktop ? { fontSize: "26px" } : { md: "32px" }}
+            sx={isDesktop ? { fontSize: "32px" } : { fontSize: "26px" }}
+            className={styles.formTitle}
             aria-label={
               isForMyself
                 ? `${t("selfTitle")} title`
@@ -185,7 +203,7 @@ export default function AppointmentForm({
                 isFormat: (v) =>
                   Regex.alphabethOnly.test(v) || "Incorrect First Name format",
                 isLength: (v) =>
-                  Regex.minThreeDigitRegex.test(v) ||
+                  Regex.isMin2Max50Length.test(v) ||
                   "First Name should be greater than 2 characters",
               },
             }}
@@ -220,7 +238,7 @@ export default function AppointmentForm({
                 isFormat: (v) =>
                   Regex.alphabethOnly.test(v) || "Incorrect Last Name format",
                 isLength: (v) =>
-                  Regex.minThreeDigitRegex.test(v) ||
+                  Regex.isMin2Max50Length.test(v) ||
                   "Last Name should be greater than 2 characters",
               },
             }}
@@ -404,6 +422,18 @@ export default function AppointmentForm({
                       helperText={error ? error.message : null}
                     />
                   );
+                }}
+                rules={{
+                  validate: {
+                    isLength: (v) =>
+                      Regex.lengthRegex.test(v) ||
+                      "Password does not meet requirements",
+                    isAtLeastOneNumber: (v) =>
+                      Regex.numberRegex.test(v) ||
+                      "Password does not meet requirements",
+                    is3of4: (v) =>
+                      is3of4(v) || "Password does not meet requirements",
+                  },
                 }}
               />
               <DisclaimerText label="(Optional)" />
