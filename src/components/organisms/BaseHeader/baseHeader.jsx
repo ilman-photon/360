@@ -69,7 +69,7 @@ export default function BaseHeader({
 
   return (
     <>
-      <AppBar position="fixed" sx={{ backgroundColor: "white" }}>
+      <AppBar position="fixed" sx={{ backgroundColor: "white", height: 64, overflow: "hidden" }}>
         <Container maxWidth="xl">
           {isUserLoged ? (
             <Toolbar disableGutters>
