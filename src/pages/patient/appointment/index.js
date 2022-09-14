@@ -10,7 +10,6 @@ import {
   IconButton,
   CircularProgress,
   Stack,
-  Typography,
   useMediaQuery,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
@@ -35,11 +34,9 @@ import {
   getProvideOverlay,
 } from "../../../utils/appointment";
 import { Api } from "../../api/api";
-import ModalConfirmation from "../../../components/organisms/ScheduleAppointment/ModalScheduling/modalConfirmation";
+import ModalConfirmation from "../../../components/organisms/ScheduleAppointment/ScheduleConfirmation/modalConfirmation";
 import Cookies from "universal-cookie";
-import { formatAppointmentDate } from "../../../utils/dateFormatter";
 import { TEST_ID } from "../../../utils/constants";
-import { setUserAppointmentDataByIndex } from "../../../store/user";
 
 export async function getStaticProps() {
   return {
@@ -109,7 +106,6 @@ export default function Appointment({ googleApiKey }) {
   }, [router]);
 
   function onSearchProvider(data) {
-    console.log({ data });
     dispatch(setFilterData(data));
     setDataFilter(data);
     onCallSubmitFilterAPI(data);
@@ -167,7 +163,6 @@ export default function Appointment({ googleApiKey }) {
       insuranceCarrier: requestData.insuranceCarrier,
       filterBy: activeFilterBy,
     };
-    console.log(postBody);
     if (!isOverlay) {
       setIsLoading(true);
     }
@@ -254,35 +249,25 @@ export default function Appointment({ googleApiKey }) {
       ...providerData,
     };
 
-    if (isReschedule) {
-      // This is for simulation reschedule of user appointment index 0 only, change the logic later
-      dispatch(
-        setUserAppointmentDataByIndex({
-          appointmentId: 0,
-          appointmentInfo: appointmentInfoObj,
-          providerInfo: providerInfoObj,
-        })
-      );
+    dispatch(
+      editAppointmentScheduleData({
+        key: "appointmentInfo",
+        value: appointmentInfoObj,
+      })
+    );
 
-      router.push("/patient/appointments");
-    } else {
-      dispatch(
-        editAppointmentScheduleData({
-          key: "appointmentInfo",
-          value: appointmentInfoObj,
-        })
-      );
+    dispatch(
+      editAppointmentScheduleData({
+        key: "providerInfo",
+        value: providerInfoObj,
+      })
+    );
 
-      dispatch(
-        editAppointmentScheduleData({
-          key: "providerInfo",
-          value: providerInfoObj,
-        })
-      );
-
-      router.push("/patient/schedule-appointment");
-    }
+    router.push(
+      `/patient/schedule-appointment${isReschedule ? "?reschedule=true" : ""}`
+    );
   };
+
   const { coords, isGeolocationEnabled } = useGeolocated({
     positionOptions: {
       enableHighAccuracy: false,
@@ -308,6 +293,7 @@ export default function Appointment({ googleApiKey }) {
   React.useEffect(() => {
     const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
     setIsLoggedIn(isLogin);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function onRenderDialogView() {
@@ -341,7 +327,7 @@ export default function Appointment({ googleApiKey }) {
                 isDayAvailableView={true}
                 isShownPhoneAndRating={false}
                 providerData={providerDataOverview}
-                imageSize={!isDesktop ? "small" : "large"}
+                imageSize={"small"}
               />
             </Box>
             <DayAvailability
@@ -420,6 +406,19 @@ export default function Appointment({ googleApiKey }) {
     }
   }
 
+  function renderCircularProgress() {
+    return (
+      <Stack
+        flexDirection="row"
+        width="100%"
+        marginTop={"60px"}
+        sx={{ alignSelf: "center" }}
+      >
+        <CircularProgress />
+      </Stack>
+    );
+  }
+
   function renderFilterResultTabletView() {
     if (isTablet) {
       return !isLoading ? (
@@ -427,7 +426,7 @@ export default function Appointment({ googleApiKey }) {
           {renderFilterResultTabletViewUI()}
         </Stack>
       ) : (
-        <CircularProgress />
+        renderCircularProgress()
       );
     } else {
       return !isLoading ? (
@@ -471,7 +470,7 @@ export default function Appointment({ googleApiKey }) {
           </Box>
         </Stack>
       ) : (
-        <CircularProgress />
+        renderCircularProgress()
       );
     }
   }
@@ -483,6 +482,7 @@ export default function Appointment({ googleApiKey }) {
         flex={1}
         sx={{
           paddingTop: "135px",
+          alignSelf: !isLoading ? "none" : "center",
         }}
       >
         {renderFilterResultTabletView()}

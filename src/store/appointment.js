@@ -17,7 +17,7 @@ const DEFAULT_PROVIDER_INFO_DATA = {
   },
 };
 
-const DEFAULT_PATIENT_INFO_DATA = {
+export const DEFAULT_PATIENT_INFO_DATA = {
   name: null,
   firstName: "",
   lastName: "",

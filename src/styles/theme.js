@@ -19,6 +19,7 @@ export const colors = {
   grey: "#191919",
   grey75: "#080707",
   black: "#242526",
+  darkBlue: "#1C1F37",
   foundationGreen: "#04844B",
   foundationRed: "#C23934",
   foundationBlue: "#0E1941",
@@ -110,6 +111,14 @@ export const patientTypography = createTheme({
         lineHeight: "24px",
         fontWeight: 400,
       },
+    },
+    bodyRegularSemiBold: {
+      fontFamily: "Libre Franklin",
+      fontStyle: "normal",
+      fontWeight: 600,
+      fontSize: "16px",
+      lineHeight: "24px",
+      letterSpacing: "0.0016em",
     },
     bodySmallRegular: {
       fontFamily: "Libre Franklin",

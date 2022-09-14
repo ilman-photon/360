@@ -1,14 +1,12 @@
 
 Feature: Patient Portal : Dashboard - View prescriptions widget
-
-
   @BDDTEST-EPP-4632
   @Appointments
   @Patient_Portal
   @Regression
-   @Sprint5
+  @included
+  @Sprint5
   Scenario: EPIC_EPP-1_STORY_EPP-3299 - Verify User should see the following details as part of each prescriptions
-    Scenario: EPIC_EPP-1_STORY_EPP-3299 - Verify User should see the following details as part of each prescriptions
 
     Given User launch Patient Portal url		
     When User is logged in to the application
@@ -29,22 +27,14 @@ Feature: Patient Portal : Dashboard - View prescriptions widget
     |<Prescribed by> field|
     |<Eye - Sph - Cyl - Axis - Add> dropdown|
 
-  @BDDTEST-EPP-4633
-  @Appointments
-  @Patient_Portal
-  @Regression
-  @Sprint5
-  Scenario: EPIC_EPP-1_STORY_EPP-3299 - Verify User should see the latest list of prescriptionss that are scheduled in the widget
-
-
   @BDDTEST-EPP-4634
   @Appointments
   @P1
   @Patient_Portal
   @Regression
+  @included
   @Sprint5
   Scenario: EPIC_EPP-1_STORY_EPP-3299 - Verify User on clicking the widget will get navigated to the screen with upcoming prescriptions
-    Scenario: EPIC_EPP-1_STORY_EPP-3299 - Verify User on clicking the widget will get navigated to the screen with upcoming prescriptions
 
     Given User launch Patient Portal url		
     When User is logged in to the application
@@ -64,9 +54,9 @@ Feature: Patient Portal : Dashboard - View prescriptions widget
   @P1
   @Patient_Portal
   @Regression
+  @included
   @Sprint5
   Scenario: EPIC_EPP-1_STORY_EPP-3299 - Verify User on clicking any particular test/ procedure will get navigated to that particular test/ procedure in the screen with upcoming test sand procedures
-    Scenario: EPIC_EPP-1_STORY_EPP-3299 - Verify User on clicking any particular test/ procedure will get navigated to that particular test/ procedure in the screen with upcoming test sand procedures
 
     Given User launch Patient Portal url		
     When User is logged in to the application
@@ -88,9 +78,9 @@ Feature: Patient Portal : Dashboard - View prescriptions widget
   @P1
   @Patient_Portal
   @Regression
+  @included
   @Sprint5
   Scenario: EPIC_EPP-1_STORY_EPP-3299 - Verify User should be able to swipe through to view other upcoming prescriptionss
-    Scenario: EPIC_EPP-1_STORY_EPP-3299 - Verify User should be able to swipe through to view other upcoming prescriptionss
 
     Given User launch Patient Portal url		
     When User is logged in to the application

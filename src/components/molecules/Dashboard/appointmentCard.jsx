@@ -18,9 +18,11 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import { StyledButton } from "../../atoms/Button/button";
-import { patientTypography } from "../../../styles/theme";
+import { patientTypography, colors } from "../../../styles/theme";
 import { parseAppointmentCardData } from "../../../utils/appointment";
+import { fullDateFormat } from "../../../utils/dateFormatter";
 import { useEffect } from "react";
+import Image from "next/image";
 
 export default function AppointmentCard({ appointmentData = [] }) {
   const [appointment, setAppointment] = React.useState({
@@ -50,17 +52,21 @@ export default function AppointmentCard({ appointmentData = [] }) {
       <Box>
         {address.addressLine1 && (
           <Box>
-            <Typography variant="bodyMedium">{address.addressLine1}</Typography>
+            <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
+              {address.addressLine1}
+            </Typography>
           </Box>
         )}
         {address.addressLine2 && (
           <Box>
-            <Typography variant="bodyMedium">{address.addressLine2}</Typography>
+            <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
+              {address.addressLine2}
+            </Typography>
           </Box>
         )}
         {address.city && address.state && address.zipcode ? (
           <Box>
-            <Typography variant="bodyMedium">
+            <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
               {address.city}, {address.state}, {address.zipcode}
             </Typography>
           </Box>
@@ -88,7 +94,7 @@ export default function AppointmentCard({ appointmentData = [] }) {
           sx={{ cursor: "pointer", alignItems: "center" }}
         >
           <Box pr={1}>
-            <DirectionsOutlinedIcon />
+            <DirectionsOutlinedIcon sx={{ color: colors.darkGreen }} />
           </Box>
           <Typography
             variant="bodyLinkRegular"
@@ -111,22 +117,28 @@ export default function AppointmentCard({ appointmentData = [] }) {
             <Grid item xs={5} sm={5} md={3}>
               <Box className={styles.flexDisplay}>
                 <Box pr={1}>
-                  <CalendarTodayRoundedIcon />
+                  <CalendarTodayRoundedIcon sx={{ color: colors.darkGreen }} />
                 </Box>
-                <Typography variant="bodyLarge">
-                  8:30 am EDT, Thu, Sep 8, 2022
+                <Typography variant="bodyLarge" sx={{ color: colors.darkBlue }}>
+                  {fullDateFormat(appointment.appointmentInfo.date)}
                 </Typography>
               </Box>
               <Box className={styles.flexDisplay} pt={3}>
                 <Box pr={1}>
-                  <LocationOnOutlinedIcon />
+                  <LocationOnOutlinedIcon sx={{ color: colors.darkGreen }} />
                 </Box>
-                <Typography variant="bodyLarge">
+                <Typography
+                  variant="bodyLarge"
+                  sx={{ color: colors.darkGreen }}
+                >
                   {appointment.providerInfo?.name}
                 </Typography>
               </Box>
               <Box pl={4.5}>
-                <Typography variant="bodyLarge">
+                <Typography
+                  variant="bodyLarge"
+                  sx={{ color: colors.darkGreen }}
+                >
                   {appointment.providerInfo?.position}
                 </Typography>
                 {renderAddressUI()}
@@ -137,9 +149,18 @@ export default function AppointmentCard({ appointmentData = [] }) {
               </Box>
             </Grid>
             <Grid item xs={5} sm={5} md={2}>
+              <Box className={styles.containerImage}>
+                <Image
+                  src={appointment.providerInfo.image}
+                  style={{ borderRadius: "50%" }}
+                  alt="Doctor Image"
+                  width="90px"
+                  height="90px"
+                />
+              </Box>
               <Box className={styles.flexDisplay}>
                 <Box pr={1}>
-                  <RemoveRedEyeOutlinedIcon />
+                  <RemoveRedEyeOutlinedIcon sx={{ color: colors.darkGreen }} />
                 </Box>
                 <Typography variant="bodyLarge">Purpose of Visit</Typography>
               </Box>
@@ -150,7 +171,7 @@ export default function AppointmentCard({ appointmentData = [] }) {
               </Box>
               <Box className={styles.flexDisplay} pt={3}>
                 <Box pr={1}>
-                  <PortraitOutlinedIcon />
+                  <PortraitOutlinedIcon sx={{ color: colors.darkGreen }} />
                 </Box>
                 <Typography variant="bodyLarge">Patient Information</Typography>
               </Box>
@@ -227,7 +248,14 @@ export default function AppointmentCard({ appointmentData = [] }) {
             </StyledButton>
           </Box>
           <Box className={styles.noPrescription}>
-            <Typography>Your appointment is 15 days away.</Typography>
+            {/* <Typography>Your appointment is 15 days away.</Typography> */}
+            <Typography component="div" className={styles.normalText}>
+              Your appointment is{" "}
+              <Box className={styles.boldText} display="inline">
+                15 days
+              </Box>{" "}
+              away.
+            </Typography>
           </Box>
         </Box>
       );
@@ -258,6 +286,7 @@ export default function AppointmentCard({ appointmentData = [] }) {
         sx={{
           ".MuiCardContent-root": {
             p: 0,
+            position: "relative",
           },
         }}
       >

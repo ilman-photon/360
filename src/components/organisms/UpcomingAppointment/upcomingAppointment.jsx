@@ -15,11 +15,12 @@ export function UpcomingAppointmentCard({
   onRescheduleClicked,
   onCancelClicked,
 }) {
-  const date = data.appointmentInfo.date;
-  const timezone = date.substring(date.length - 3);
-  const momentDate = new moment(date);
-  const formatedDate = momentDate.format("dddd, MMM DD - h:mmA");
-  const renderedDate = `${formatedDate} ${timezone}`;
+  const renderedDate = () => {
+    const date = new Date(data.appointmentInfo.date);
+    if (!date) return "-";
+    const momentDate = new moment(date);
+    return momentDate.tz("America/New_York").format("dddd, MMM DD - h:mmA z");
+  };
 
   return (
     <Box className={styles.upcomingAppointmentsContainer}>

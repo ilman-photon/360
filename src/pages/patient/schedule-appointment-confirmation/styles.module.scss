@@ -1,0 +1,22 @@
+@import "../../../../styles/colors.scss";
+
+.container {
+  background-color: #e4e4e4;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .pageWrapper {
+    display: flex;
+    max-width: calc(464px + 962px + 24px);
+    width: auto;
+  }
+}
+
+.examForComponent {
+  background: white;
+  border-radius: 4px;
+  height: fit-content;
+  flex: 1;
+}
