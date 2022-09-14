@@ -148,23 +148,25 @@ export default function MfaPage() {
         }
       })
       .catch((err) => {
-        if (err.ResponseCode === 4003) {
-          callback({
-            status: "failed",
-            isEndView: true,
-            message: {
-              title: t("mfaLockTitle"),
-              description: t("mfaLockDescription"),
-            },
-          });
-        } else {
-          callback({
-            status: "failed",
-            message: {
-              title: t("mfaFailedTitle"),
-              description: t("mfaFailedDescription"),
-            },
-          });
+        if (err.ResponseCode !== constants.ERROR_CODE.NETWORK_ERR) {
+          if (err.ResponseCode === 4003) {
+            callback({
+              status: "failed",
+              isEndView: true,
+              message: {
+                title: t("mfaLockTitle"),
+                description: t("mfaLockDescription"),
+              },
+            });
+          } else {
+            callback({
+              status: "failed",
+              message: {
+                title: t("mfaFailedTitle"),
+                description: t("mfaFailedDescription"),
+              },
+            });
+          }
         }
       });
   }
@@ -185,14 +187,16 @@ export default function MfaPage() {
         });
       })
       .catch((err) => {
-        if (err.ResponseCode === 4001) {
-          callback({
-            status: "failed",
-            isEndView: true,
-            message: {
-              description: err.ResponseType,
-            },
-          });
+        if (err.ResponseCode !== constants.ERROR_CODE.NETWORK_ERR) {
+          if (err.ResponseCode === 4001) {
+            callback({
+              status: "failed",
+              isEndView: true,
+              message: {
+                description: err.ResponseType,
+              },
+            });
+          }
         }
       });
   }
@@ -233,11 +237,13 @@ export default function MfaPage() {
           redirectToDashboard();
         }, 3000);
       })
-      .catch(function () {
-        callback({
-          status: "failed",
-          message: "Failed to sumbit the security question.",
-        });
+      .catch(function (err) {
+        if (err.ResponseCode !== constants.ERROR_CODE.NETWORK_ERR) {
+          callback({
+            status: "failed",
+            message: "Failed to sumbit the security question.",
+          });
+        }
       });
   }
 

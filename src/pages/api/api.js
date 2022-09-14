@@ -1,4 +1,5 @@
 import axios from "axios";
+import constants from "../../utils/constants";
 export class Api {
   client;
   constructor() {
@@ -25,6 +26,12 @@ export class Api {
       const rejecter = function (err) {
         if (err && err.response && err.response.data) {
           reject(err.response.data);
+        } else if (err && err.code === constants.ERROR_CODE.NETWORK_ERR) {
+          reject({
+            description:
+              "Something went wrong. Please try again after sometime.",
+            ResponseCode: err.code,
+          });
         } else {
           reject(err);
         }
