@@ -5,7 +5,6 @@ import {
   Typography,
   Button,
   Divider,
-  Grid,
   useMediaQuery,
 } from "@mui/material";
 import { useTranslation } from "next-i18next";

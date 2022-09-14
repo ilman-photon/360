@@ -66,7 +66,7 @@ const appointmentSlice = createSlice({
       state.appointmentSchedule = DEFAULT_USER_SCHEDULE_APPOINTMENT_DATA;
       state.isFilterApplied = false;
       state.providerListData = [];
-      activeFilterBy = [];
+      state.activeFilterBy = [];
     },
     editAppointmentScheduleData: (state, { payload }) => {
       state.appointmentSchedule[payload.key] = payload.value;

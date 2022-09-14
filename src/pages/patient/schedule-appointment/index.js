@@ -256,6 +256,7 @@ export default function ScheduleAppointmentPage() {
         })
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeStep]);
 
   const steps = [
