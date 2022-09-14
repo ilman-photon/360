@@ -116,9 +116,19 @@ export default function AppointmentCard({
       )
     );
   }
+  function minHours(numOfHours, date = new Date()) {
+    date.setTime(date.getTime() - numOfHours * 60 * 60 * 1000);
+
+    return date;
+  }
 
   function renderAppointmentUI() {
     if (appointment && appointment.appointmentId) {
+      const today = new Date();
+      const date = new Date(appointment.appointmentInfo.date);
+      const isHideButtons = date < minHours(4);
+      const daysAway = date.getTime() - today.getTime();
+      const TotalDays = Math.ceil(daysAway / (1000 * 3600 * 24));
       return (
         <Box>
           <Grid container columns={5} spacing={2} p={3}>
@@ -190,75 +200,77 @@ export default function AppointmentCard({
               </Box>
             </Grid>
           </Grid>
-          <Box
-            className={styles.flexDisplay}
-            p={4}
-            sx={{
-              paddingTop: "8px",
-            }}
-          >
-            <StyledButton
-              mode="secondary"
-              size="small"
-              onClick={OnClickCancel}
+          {!isHideButtons ? (
+            <Box
+              className={styles.flexDisplay}
+              p={4}
               sx={{
-                width: { xs: "100%", md: "fit-content" },
-                minWidth: "107px",
-                padding: { xs: 1 },
-                borderColor: "#003B4A",
-                height: "40px !important",
-                borderRadius: "5px",
-                marginRight: "15px",
+                paddingTop: "8px",
               }}
             >
-              <Stack direction="row" alignItems="center">
-                <CancelOutlinedIcon
-                  sx={{
-                    width: 18,
-                    height: 18,
-                    mr: 1,
-                    color: "#003B4A",
-                  }}
-                />
-                <span style={{ fontSize: 14, color: "#007E8F" }}>Cancel</span>
-              </Stack>
-            </StyledButton>
-            <StyledButton
-              mode="secondary"
-              size="small"
-              onClick={() => {
-                //
-              }}
-              sx={{
-                width: { xs: "100%", md: "fit-content" },
-                minWidth: "107px",
-                padding: { xs: 1 },
-                borderColor: "#003B4A",
-                height: "40px !important",
-                borderRadius: "5px",
-              }}
-            >
-              <Stack direction="row" alignItems="center">
-                <CalendarTodayRoundedIcon
-                  sx={{
-                    width: 18,
-                    height: 18,
-                    mr: 1,
-                    color: "#003B4A",
-                  }}
-                />
-                <span style={{ fontSize: 14, color: "#007E8F" }}>
-                  Reschedule
-                </span>
-              </Stack>
-            </StyledButton>
-          </Box>
+              <StyledButton
+                mode="secondary"
+                size="small"
+                onClick={OnClickCancel}
+                sx={{
+                  width: { xs: "100%", md: "fit-content" },
+                  minWidth: "107px",
+                  padding: { xs: 1 },
+                  borderColor: "#003B4A",
+                  height: "40px !important",
+                  borderRadius: "5px",
+                  marginRight: "15px",
+                }}
+              >
+                <Stack direction="row" alignItems="center">
+                  <CancelOutlinedIcon
+                    sx={{
+                      width: 18,
+                      height: 18,
+                      mr: 1,
+                      color: "#003B4A",
+                    }}
+                  />
+                  <span style={{ fontSize: 14, color: "#007E8F" }}>Cancel</span>
+                </Stack>
+              </StyledButton>
+              <StyledButton
+                mode="secondary"
+                size="small"
+                onClick={() => {
+                  //
+                }}
+                sx={{
+                  width: { xs: "100%", md: "fit-content" },
+                  minWidth: "107px",
+                  padding: { xs: 1 },
+                  borderColor: "#003B4A",
+                  height: "40px !important",
+                  borderRadius: "5px",
+                }}
+              >
+                <Stack direction="row" alignItems="center">
+                  <CalendarTodayRoundedIcon
+                    sx={{
+                      width: 18,
+                      height: 18,
+                      mr: 1,
+                      color: "#003B4A",
+                    }}
+                  />
+                  <span style={{ fontSize: 14, color: "#007E8F" }}>
+                    Reschedule
+                  </span>
+                </Stack>
+              </StyledButton>
+            </Box>
+          ) : null}
           <Box className={styles.noPrescription}>
             {/* <Typography>Your appointment is 15 days away.</Typography> */}
             <Typography component="div" className={styles.normalText}>
               Your appointment is{" "}
               <Box className={styles.boldText} display="inline">
-                15 days
+                {TotalDays} days
               </Box>{" "}
               away.
             </Typography>
