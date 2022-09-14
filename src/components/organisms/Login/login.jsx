@@ -41,7 +41,7 @@ export function Login({
       });
       setError("password", {
         type: "custom",
-        message: "This field is required",
+        message: "Enter a valid Password",
       });
     }
     setPostMessage(message);
