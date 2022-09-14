@@ -15,4 +15,12 @@ export const styles = {
   containerPadding: {
     padding: "16px 16px 0px 16px",
   },
+
+  postMessageGenericError: {
+    fontFamily: "Libre Franklin, sans-serif",
+    fontStyle: "normal",
+    fontWeight: "400",
+    fontSize: "14px",
+    lineHeight: "18px",
+  },
 };

@@ -103,6 +103,20 @@ export default function AppointmentForm({
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
 
+  const isDOB = (value) => {
+    let date = new Date().getFullYear();
+    if (value.getFullYear() <= date) {
+      return true;
+    }
+    if (value.getMonth() <= 12) {
+      return true;
+    }
+    if (value.getMonth() <= 12) {
+      return true;
+    }
+    return false;
+  };
+
   const isOneOfPreferredValid = (name, value) => {
     switch (name) {
       case "email":
@@ -326,7 +340,12 @@ export default function AppointmentForm({
                 );
               }}
               rules={{
-                required: t("thisFieldRequired"),
+                required: "This field is required",
+                validate: {
+                  required: (value) => {
+                    if (!isDOB(value)) return "Invalid Date of Birth";
+                  },
+                },
               }}
             />
           </Box>
@@ -404,6 +423,13 @@ export default function AppointmentForm({
                       helperText={error ? error.message : null}
                     />
                   );
+                }}
+                rules={{
+                  validate: {
+                    isLength: (v) =>
+                      Regex.lengthRegex.test(v) ||
+                      "Password does not meet requirements",
+                  },
                 }}
               />
               <DisclaimerText label="(Optional)" />
