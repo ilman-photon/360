@@ -26,7 +26,7 @@ export function convertToDate(date) {
   return `${monthNames[monthIndex]} ${day}, ${year}`;
 }
 
-export function formatDate(payload) {
+export function formatDate(payload, withTimezone) {
   if (!payload) {
     return "-";
   }
@@ -39,11 +39,24 @@ export function formatDate(payload) {
     hour: "numeric", // numeric, 2-digit
     minute: "numeric", // numeric, 2-digit
     second: "numeric", // numeric, 2-digit
+    timeZone: withTimezone ? "UTC" : null,
   });
 }
 
 export function formatAppointmentDate(date) {
   const momentDate = new moment(date);
-  const formatedDate = momentDate.format("dddd, MMM DD - h:mm a");
-  return formatedDate;
+  return momentDate.format("dddd, MMM DD - h:mm a");
+}
+
+export function ddmmyyDateFormat(date) {
+  const momentDate = new moment(date);
+  return momentDate.format("DD/MM/YYYY");
+}
+
+export function fullDateFormat(date) {
+  const timezone = date.substring(date.length - 3);
+  const momentDate = new moment(date);
+  const time = momentDate.format("h:mm a");
+  const formatedDateTime = momentDate.format("ddd, MMM DD, YYYY");
+  return `${time} ${timezone}, ${formatedDateTime}`;
 }

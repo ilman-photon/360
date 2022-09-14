@@ -1,10 +1,11 @@
 import React from "react";
 import styles from "./labelWithInfo.module.scss";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
-import { Stack, Tooltip, Typography } from "@mui/material";
+import { IconButton, Stack, Tooltip, Typography } from "@mui/material";
 
 export const LabelWithInfo = ({
   label,
+  ariaLabel,
   tooltipContent,
   helperText,
   children,
@@ -26,15 +27,28 @@ export const LabelWithInfo = ({
           {titleIcon}
         </span>
       )}
-      <div className={styles.label} style={sxText}>
+      <div
+        className={styles.label}
+        role="text"
+        tabIndex={0}
+        aria-live={ariaLabel}
+        aria-label={ariaLabel}
+        style={sxText}
+      >
         {label}
       </div>
       {tooltipContent ? (
         <>
-          <Tooltip title={tooltipContent} placement="top">
-            <ErrorOutlineOutlinedIcon
-              sx={{ width: 20, height: 20, color: "#00000080" }}
-            />
+          <Tooltip
+            title={tooltipContent}
+            placement="top"
+            aria-label={`Information Icon - ${tooltipContent}`}
+          >
+            <IconButton>
+              <ErrorOutlineOutlinedIcon
+                sx={{ width: 20, height: 20, color: "#00000080" }}
+              />
+            </IconButton>
           </Tooltip>
         </>
       ) : (

@@ -15,6 +15,7 @@ import { Regex } from "../../../utils/regex";
 import { useRouter } from "next/router";
 import constants from "../../../utils/constants";
 import { HeadingTitle } from "../../atoms/Heading";
+import { colors } from "../../../styles/theme";
 export default function Register({ OnRegisterClicked, formMessage = null }) {
   const router = useRouter();
   const { handleSubmit, control, watch } = useForm({
@@ -111,12 +112,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
   const isPasswordError = watchedPassword.length > 0; // && passwordValidator.filter(v => v.validate).length > 0
 
   const onSubmit = (data) => {
-    // dummy error validation
-    // setError("firstName", { type: 'custom', message: 'An error occured' })
-    // setError("lastName", { type: 'custom', message: 'An error occured' })
-    // setError("mobile", { type: 'custom', message: 'An error occured' })
-    // setError("password", { type: 'custom', message: 'An error occured' })
-
     const errors1 = [];
     const errors2 = [];
     passwordValidator.forEach((err) => {
@@ -390,7 +385,12 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           />
 
           <div style={styles.registeredUsernameWrapper}>
-            <div>Your username will be {getRegisteredUsername()}</div>
+            <Typography
+              variant="bodyMedium"
+              sx={{ fontWeight: 500, color: colors.darkGreen }}
+            >
+              Your username will be {getRegisteredUsername()}
+            </Typography>
           </div>
 
           <div style={styles.divMargin}>
@@ -428,14 +428,8 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           </Button>
         </form>
 
-        <Typography
-          variant="caption"
-          style={styles.bottomParagraph}
-          aria-label="By registering, you accept to our Terms & Conditions and Privacy
-          Policy"
-        >
-          By registering, you accept to our Terms &<br /> Conditions and Privacy
-          Policy
+        <Typography variant="caption" style={styles.bottomParagraph}>
+          {`By registering, you accept to our Terms & Conditions and Privacy Policy`}
         </Typography>
         <Divider margin={3} sx={{ width: "288px", alignSelf: "center" }} />
         <Typography variant="caption" style={styles.bottomParagraph}>

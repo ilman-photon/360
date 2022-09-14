@@ -107,6 +107,7 @@ export default function PersonalInformation({
             onClick={OnEditClicked}
             variant="text"
             className={styles.editButton}
+            aria-label="Edit option"
           >
             <EditOutlinedIcon
               sx={{ width: 20, height: 20, color: colors.link }}
@@ -125,6 +126,7 @@ export default function PersonalInformation({
             onClick={OnEditClicked}
             data-testid={"loc_edit"}
             sx={{ my: 4 }}
+            aria-label={"Edit option"}
           >
             Edit
           </StyledButton>
@@ -140,7 +142,8 @@ export default function PersonalInformation({
                 width={122}
                 height={122}
                 style={{ borderRadius: "50%" }}
-                alt="profile"
+                alt="image"
+                aria-label="Image"
               ></Image>
             ) : (
               <Avatar
@@ -149,39 +152,81 @@ export default function PersonalInformation({
               ></Avatar>
             )}
           </LabelWithInfo>
-
-          <LabelWithInfo label="Name" tooltipContent={tooltipContentDefault}>
-            {userData.name}
+          <LabelWithInfo
+            label="Name"
+            ariaLabel="Name"
+            tooltipContent={tooltipContentDefault}
+          >
+            <div tabIndex={0} aria-label={userData.name}>
+              {userData.name}
+            </div>
           </LabelWithInfo>
 
-          <LabelWithInfo label="Preferred Name">
-            {userData.preferredName || "---"}
+          <LabelWithInfo label="Preferred Name" ariaLabel={"Preferred Name"}>
+            <div tabIndex={0} aria-label={userData.preferredName}>
+              {userData.preferredName || "---"}
+            </div>
           </LabelWithInfo>
 
-          <LabelWithInfo label="Title">{userData.title}</LabelWithInfo>
+          <LabelWithInfo label="Title" ariaLabel={"Title"}>
+            <div tabIndex={0} aria-label={userData.preferredName}>
+              {userData.title}
+            </div>
+          </LabelWithInfo>
 
           <LabelWithInfo
             label="Date of Birth"
+            ariaLabel={"Date of Birth"}
             tooltipContent={tooltipContentDefault}
           >
-            {new Date(userData.dob).toLocaleDateString()}
+            <div
+              tabIndex={0}
+              aria-label={new Date(userData.dob).toLocaleDateString()}
+            >
+              {new Date(userData.dob).toLocaleDateString()}
+            </div>
           </LabelWithInfo>
 
-          <LabelWithInfo label="Age" tooltipContent={tooltipContentDefault}>
-            {userData.age}
+          <LabelWithInfo
+            label="Age"
+            ariaLabel={"Age"}
+            tooltipContent={tooltipContentDefault}
+          >
+            <div tabIndex={0} aria-label={userData.age}>
+              {userData.age}
+            </div>
           </LabelWithInfo>
 
-          <LabelWithInfo label="Gender">{userData.gender}</LabelWithInfo>
+          <LabelWithInfo label="Gender" ariaLabel={"Gender"}>
+            <div tabIndex={0} aria-label={userData.gender}>
+              {userData.gender}
+            </div>
+          </LabelWithInfo>
 
-          <LabelWithInfo label="SSN" tooltipContent={tooltipContentDefault}>
-            {formatSocialSecurity(String(userData.ssn))}
+          <LabelWithInfo
+            label="SSN"
+            ariaLabel={"SSN"}
+            tooltipContent={tooltipContentDefault}
+          >
+            <div
+              tabIndex={0}
+              aria-label={formatSocialSecurity(String(userData.ssn))}
+            >
+              {formatSocialSecurity(String(userData.ssn))}
+            </div>
           </LabelWithInfo>
 
           <div>
             <Typography variant="h3" sx={{ pb: 2, color: colors.black }}>
               State Issued ID
             </Typography>
-            <Typography variant="bodyRegular" sx={{ pb: 3 }} component="div">
+            <Typography
+              variant="bodyRegular"
+              sx={{ pb: 3 }}
+              tabIndex={0}
+              aria-label={`Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID.`}
+              component="div"
+            >
               Please upload a photo of government-issued ID, such as Driver’s
               License or State-issued ID.
             </Typography>
@@ -189,27 +234,35 @@ export default function PersonalInformation({
             <Stack spacing={6}>
               <LabelWithInfo
                 label="Front Card"
+                tabIndex={0}
+                ariaLabel="Front Card"
                 helperText="JPG or PNG file formats only. (File size limit is 4 MB)"
               >
                 <div className={styles.issuedCardContainer}>
                   <Image
                     width={267}
                     height={175}
-                    src={userData.issuedCardFront}
-                    alt="front-id"
+                    src={userData.issuedCardFront || "/transparent.png"}
+                    tabIndex={0}
+                    alt="Front image"
+                    aria-label="Front image"
                   />
                 </div>
               </LabelWithInfo>
               <LabelWithInfo
                 label="Back Card"
+                ariaLabel="Back Card"
+                tabIndex={0}
                 helperText="JPG or PNG file formats only. (File size limit is 4 MB)"
               >
                 <div className={styles.issuedCardContainer}>
                   <Image
+                    tabIndex={0}
                     width={267}
                     height={175}
-                    src={userData.issuedCardBack}
-                    alt="back-id"
+                    src={userData.issuedCardBack || "/transparent.png"}
+                    alt="Back image"
+                    aria-label="Back Image"
                   />
                 </div>
               </LabelWithInfo>
@@ -292,6 +345,9 @@ export default function PersonalInformation({
                     type="text"
                     id="preferredName"
                     label="Preferred Name"
+                    inputProps={{
+                      "aria-label": "Prefered Name field",
+                    }}
                     value={value}
                     onChange={onChange}
                     error={!!error}
@@ -314,11 +370,19 @@ export default function PersonalInformation({
                   <StyledSelect
                     id="title"
                     label="Title"
+                    inputProps={{
+                      "aria-label": "Title dropdown menu",
+                    }}
                     options={userTitleOptions}
                     value={value}
                     onChange={onChange}
                     error={!!error}
                     helperText={error ? error.message : null}
+                    sx={{
+                      ".MuiInputBase-root": {
+                        color: "#A5A5AC",
+                      },
+                    }}
                   />
                 );
               }}
@@ -386,11 +450,21 @@ export default function PersonalInformation({
                   <StyledSelect
                     id="gender"
                     label="Gender"
+                    inputProps={{
+                      "aria-label": "Gender dropdown menu",
+                    }}
                     options={genderOptions}
                     value={value}
                     onChange={onChange}
                     error={!!error}
                     helperText={error ? error.message : null}
+                    sx={{
+                      ".MuiInputBase-root": {
+                        color: "#A5A5AC",
+                        fontWeight: "700",
+                        fontFamily: "Roboto",
+                      },
+                    }}
                   />
                 );
               }}
@@ -406,7 +480,6 @@ export default function PersonalInformation({
                 return (
                   <StyledInput
                     disabled
-                    type="text"
                     id="ssn"
                     label="SSN"
                     value={formatSocialSecurity(String(value))}

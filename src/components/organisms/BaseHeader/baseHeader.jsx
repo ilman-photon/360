@@ -19,10 +19,12 @@ import Image from "next/image";
 import constants from "../../../utils/constants";
 import AccountDrawer from "../../molecules/AccountDrawer/accountDrawer";
 import SubNavigation from "../../molecules/SubNavigation/subNavigation";
+import { logoutProps } from "../../../utils/authetication";
+import { useSelector } from "react-redux";
 
 export default function BaseHeader({
-  OnLogoutClicked = () => {
-    // This is intended
+  OnLogoutClicked = (router) => {
+    logoutProps.OnLogoutClicked(router);
   },
   backTitle,
   onBackClicked,
@@ -42,7 +44,7 @@ export default function BaseHeader({
   const [isUserLoged, setUserLoged] = React.useState(false);
   const router = useRouter();
   const logo = "/eyecarelogo.png";
-
+  const userData = useSelector((state) => state.user.userData);
   React.useEffect(() => {
     const cookies = new Cookies();
     const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
@@ -77,6 +79,7 @@ export default function BaseHeader({
                 height="36px"
                 style={styles.logoStyled}
                 aria-label={"Clarkson Eyecare logo"}
+                title="Your Account"
               ></Image>
               {/* Menu Desktop*/}
               <Box sx={styles.boxStyled}>
@@ -129,7 +132,7 @@ export default function BaseHeader({
                     endIcon={<ExpandMoreIcon />}
                     onClick={handleOpenUserMenu}
                   >
-                    User Name
+                    {userData.name}
                   </Button>
                 </Tooltip>
                 <Menu

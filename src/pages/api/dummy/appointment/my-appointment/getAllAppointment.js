@@ -35,7 +35,8 @@ export default function getAllAppointment(req, res) {
           },
           appointmentInfo: {
             appointmentType: "Eye Exam",
-            date: "Thu, 12 Jan 2023 04:30:00 EST",
+            // date: "Thu, 12 Jan 2023 04:30:00 EST",
+            date: "Fri, 14 Oct 2022 04:30:00 EST",
             insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
           },
         },

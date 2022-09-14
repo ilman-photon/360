@@ -19,8 +19,8 @@ Object {
           >
             <svg
               aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-i4bv87-MuiSvgIcon-root"
-              data-testid="ArrowBackIosIcon"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-lw08pq-MuiSvgIcon-root"
+              data-testid="appointment_all_availability_previous_week_button"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -30,8 +30,8 @@ Object {
             </svg>
             <svg
               aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-1xlme1g-MuiSvgIcon-root"
-              data-testid="ArrowForwardIosIcon"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-1c40g22-MuiSvgIcon-root"
+              data-testid="appointment_all_availability_next_week_button"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -43,6 +43,10 @@ Object {
         </div>
         <hr
           class="MuiDivider-root MuiDivider-fullWidth dividerSchedule css-9mgopn-MuiDivider-root"
+        />
+        <div
+          class="css-1lwbda4-MuiStack-root"
+          data-testid="appointment_all_availability_schedule_ontainer"
         />
       </div>
     </div>
@@ -62,8 +66,8 @@ Object {
         >
           <svg
             aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-i4bv87-MuiSvgIcon-root"
-            data-testid="ArrowBackIosIcon"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-lw08pq-MuiSvgIcon-root"
+            data-testid="appointment_all_availability_previous_week_button"
             focusable="false"
             viewBox="0 0 24 24"
           >
@@ -73,8 +77,8 @@ Object {
           </svg>
           <svg
             aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-1xlme1g-MuiSvgIcon-root"
-            data-testid="ArrowForwardIosIcon"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-1c40g22-MuiSvgIcon-root"
+            data-testid="appointment_all_availability_next_week_button"
             focusable="false"
             viewBox="0 0 24 24"
           >
@@ -86,6 +90,10 @@ Object {
       </div>
       <hr
         class="MuiDivider-root MuiDivider-fullWidth dividerSchedule css-9mgopn-MuiDivider-root"
+      />
+      <div
+        class="css-1lwbda4-MuiStack-root"
+        data-testid="appointment_all_availability_schedule_ontainer"
       />
     </div>
   </div>,
@@ -162,8 +170,8 @@ Object {
           >
             <svg
               aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-i4bv87-MuiSvgIcon-root"
-              data-testid="ArrowBackIosIcon"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-lw08pq-MuiSvgIcon-root"
+              data-testid="appointment_all_availability_previous_week_button"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -173,8 +181,8 @@ Object {
             </svg>
             <svg
               aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-1xlme1g-MuiSvgIcon-root"
-              data-testid="ArrowForwardIosIcon"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-1c40g22-MuiSvgIcon-root"
+              data-testid="appointment_all_availability_next_week_button"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -186,6 +194,10 @@ Object {
         </div>
         <hr
           class="MuiDivider-root MuiDivider-fullWidth dividerSchedule css-9mgopn-MuiDivider-root"
+        />
+        <div
+          class="css-1lwbda4-MuiStack-root"
+          data-testid="appointment_all_availability_schedule_ontainer"
         />
       </div>
     </div>
@@ -204,8 +216,8 @@ Object {
           >
             <svg
               aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-i4bv87-MuiSvgIcon-root"
-              data-testid="ArrowBackIosIcon"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-lw08pq-MuiSvgIcon-root"
+              data-testid="appointment_all_availability_previous_week_button"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -215,8 +227,8 @@ Object {
             </svg>
             <svg
               aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-1xlme1g-MuiSvgIcon-root"
-              data-testid="ArrowForwardIosIcon"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-1c40g22-MuiSvgIcon-root"
+              data-testid="appointment_all_availability_next_week_button"
               focusable="false"
               viewBox="0 0 24 24"
             >
@@ -228,6 +240,10 @@ Object {
         </div>
         <hr
           class="MuiDivider-root MuiDivider-fullWidth dividerSchedule css-9mgopn-MuiDivider-root"
+        />
+        <div
+          class="css-1lwbda4-MuiStack-root"
+          data-testid="appointment_all_availability_schedule_ontainer"
         />
       </div>
     </div>
@@ -247,8 +263,8 @@ Object {
         >
           <svg
             aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-i4bv87-MuiSvgIcon-root"
-            data-testid="ArrowBackIosIcon"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-lw08pq-MuiSvgIcon-root"
+            data-testid="appointment_all_availability_previous_week_button"
             focusable="false"
             viewBox="0 0 24 24"
           >
@@ -258,8 +274,8 @@ Object {
           </svg>
           <svg
             aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-1xlme1g-MuiSvgIcon-root"
-            data-testid="ArrowForwardIosIcon"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-1c40g22-MuiSvgIcon-root"
+            data-testid="appointment_all_availability_next_week_button"
             focusable="false"
             viewBox="0 0 24 24"
           >
@@ -271,6 +287,10 @@ Object {
       </div>
       <hr
         class="MuiDivider-root MuiDivider-fullWidth dividerSchedule css-9mgopn-MuiDivider-root"
+      />
+      <div
+        class="css-1lwbda4-MuiStack-root"
+        data-testid="appointment_all_availability_schedule_ontainer"
       />
     </div>
   </div>,

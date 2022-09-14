@@ -10,7 +10,6 @@ import {
   IconButton,
   CircularProgress,
   Stack,
-  Typography,
   useMediaQuery,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
@@ -35,10 +34,9 @@ import {
   getProvideOverlay,
 } from "../../../utils/appointment";
 import { Api } from "../../api/api";
-import ModalScheduling from "../../../components/organisms/ScheduleAppointment/ModalScheduling/modalScheduling";
-import DrawerScheduling from "../../../components/organisms/ScheduleAppointment/ModalScheduling/drawerScheduling";
+import ModalConfirmation from "../../../components/organisms/ScheduleAppointment/ScheduleConfirmation/modalConfirmation";
 import Cookies from "universal-cookie";
-import { formatAppointmentDate } from "../../../utils/dateFormatter";
+import { TEST_ID } from "../../../utils/constants";
 
 export async function getStaticProps() {
   return {
@@ -60,8 +58,14 @@ export default function Appointment({ googleApiKey }) {
   const [isLoading, setIsLoading] = useState(false);
   const [filterBy, setFilterBy] = useState([]);
   const [providerDataOverview, setProviderDataOverview] = useState({});
+  const [rangeDateOverview, setRangeDateOverview] = useState({
+    startDate: "",
+    endDate: "",
+  });
   const [activeFilterBy, setActiveFilterBy] = useState([]);
   const [isOpen, setIsOpen] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [isReschedule, setIsReschedule] = useState(false);
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -76,6 +80,7 @@ export default function Appointment({ googleApiKey }) {
   useEffect(() => {
     if (providerListData) {
       setRangeDate(setRangeDateData(providerListData));
+      setRangeDateOverview(setRangeDateData(providerListData));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [providerListData]);
@@ -91,6 +96,15 @@ export default function Appointment({ googleApiKey }) {
     (state) => state.appointment.isFilterApplied
   );
 
+  useEffect(() => {
+    if (router.query.reschedule) {
+      setIsReschedule(true);
+      onCallSubmitFilterAPI(filterData);
+      dispatch(setIsFilterApplied(true));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router]);
+
   function onSearchProvider(data) {
     dispatch(setFilterData(data));
     setDataFilter(data);
@@ -100,6 +114,14 @@ export default function Appointment({ googleApiKey }) {
 
   function onSwapButtonClicked() {
     setShowMaps(!showMaps);
+  }
+
+  function getDirection(providerCordinate) {
+    window.open(
+      `https://maps.google.com?q=${providerCordinate.latitude},${providerCordinate.longitude}`,
+      "_blank",
+      "noopener,noreferrer"
+    );
   }
 
   const handleClose = () => {
@@ -141,7 +163,6 @@ export default function Appointment({ googleApiKey }) {
       insuranceCarrier: requestData.insuranceCarrier,
       filterBy: activeFilterBy,
     };
-    console.log(postBody);
     if (!isOverlay) {
       setIsLoading(true);
     }
@@ -154,6 +175,7 @@ export default function Appointment({ googleApiKey }) {
             providerDataOverview.providerId,
             response.listOfProvider
           );
+          setRangeDateOverview(setRangeDateData(response?.listOfProvider));
           setProviderDataOverview(providerOverview);
         } else {
           if (
@@ -213,28 +235,39 @@ export default function Appointment({ googleApiKey }) {
   );
 
   const handleDayClicked = (appointmentDate, providerData) => {
-    console.log("day clicked", appointmentDate, providerData);
+    console.log("day clicked", isReschedule, {
+      appointmentId: 0,
+      appointmentDate,
+      providerData,
+    });
+    const appointmentInfoObj = {
+      ...appointmentInfo,
+      date: appointmentDate,
+    };
+    const providerInfoObj = {
+      ...providerInfo,
+      ...providerData,
+    };
+
     dispatch(
       editAppointmentScheduleData({
         key: "appointmentInfo",
-        value: {
-          ...appointmentInfo,
-          date: appointmentDate,
-        },
+        value: appointmentInfoObj,
       })
     );
 
     dispatch(
       editAppointmentScheduleData({
         key: "providerInfo",
-        value: {
-          ...providerInfo,
-          ...providerData,
-        },
+        value: providerInfoObj,
       })
     );
-    router.push("/patient/schedule-appointment");
+
+    router.push(
+      `/patient/schedule-appointment${isReschedule ? "?reschedule=true" : ""}`
+    );
   };
+
   const { coords, isGeolocationEnabled } = useGeolocated({
     positionOptions: {
       enableHighAccuracy: false,
@@ -257,12 +290,19 @@ export default function Appointment({ googleApiKey }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  React.useEffect(() => {
+    const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
+    setIsLoggedIn(isLogin);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   function onRenderDialogView() {
     return (
       <div>
         <Dialog
           fullScreen={!isDesktop}
           open={open}
+          data-testid={TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.container}
           aria-labelledby="alert-dialog-title"
           aria-describedby="alert-dialog-description"
         >
@@ -287,7 +327,7 @@ export default function Appointment({ googleApiKey }) {
                 isDayAvailableView={true}
                 isShownPhoneAndRating={false}
                 providerData={providerDataOverview}
-                imageSize={!isDesktop ? "small" : "large"}
+                imageSize={"small"}
               />
             </Box>
             <DayAvailability
@@ -296,7 +336,7 @@ export default function Appointment({ googleApiKey }) {
                 handleDayClicked(e, providerDataOverview);
               }}
               scheduleData={providerDataOverview?.availability}
-              rangeDate={rangeDate}
+              rangeDate={rangeDateOverview}
               onNextScheduleClicked={onNextScheduleClicked}
               onPrevScheduleClicked={onPrevScheduleClicked}
             />
@@ -331,6 +371,7 @@ export default function Appointment({ googleApiKey }) {
                   onCallSubmitFilterAPI(dataFilter, filter);
                 }}
                 appliedFilter={activeFilterBy}
+                onGetDirection={getDirection}
               />
             </Box>
           ) : (
@@ -365,6 +406,19 @@ export default function Appointment({ googleApiKey }) {
     }
   }
 
+  function renderCircularProgress() {
+    return (
+      <Stack
+        flexDirection="row"
+        width="100%"
+        marginTop={"60px"}
+        sx={{ alignSelf: "center" }}
+      >
+        <CircularProgress />
+      </Stack>
+    );
+  }
+
   function renderFilterResultTabletView() {
     if (isTablet) {
       return !isLoading ? (
@@ -372,7 +426,7 @@ export default function Appointment({ googleApiKey }) {
           {renderFilterResultTabletViewUI()}
         </Stack>
       ) : (
-        <CircularProgress />
+        renderCircularProgress()
       );
     } else {
       return !isLoading ? (
@@ -416,7 +470,7 @@ export default function Appointment({ googleApiKey }) {
           </Box>
         </Stack>
       ) : (
-        <CircularProgress />
+        renderCircularProgress()
       );
     }
   }
@@ -428,6 +482,7 @@ export default function Appointment({ googleApiKey }) {
         flex={1}
         sx={{
           paddingTop: "135px",
+          alignSelf: !isLoading ? "none" : "center",
         }}
       >
         {renderFilterResultTabletView()}
@@ -475,12 +530,10 @@ export default function Appointment({ googleApiKey }) {
     return state.appointment.appointmentSchedule;
   });
 
-  console.log(appointmentScheduleData, "appointmentScheduleData");
-
   const scheduleConfirmPopup = () => {
-    return isDesktop ? (
-      <ModalScheduling
-        isLoggedIn={true}
+    return (
+      <ModalConfirmation
+        isLoggedIn={isLoggedIn}
         patientData={appointmentScheduleData.patientInfo}
         providerData={appointmentScheduleData.providerInfo}
         isOpen={isOpen}
@@ -488,17 +541,7 @@ export default function Appointment({ googleApiKey }) {
           setIsOpen(idx);
           cookies.remove("dashboardState", { path: "/patient" });
         }}
-      />
-    ) : (
-      <DrawerScheduling
-        isLoggedIn={true}
-        patientData={appointmentScheduleData.patientInfo}
-        providerData={appointmentScheduleData.providerInfo}
-        isOpen={isOpen}
-        OnSetIsOpen={(idx) => {
-          setIsOpen(idx);
-          cookies.remove("dashboardState", { path: "/patient" });
-        }}
+        isDesktop={isDesktop}
       />
     );
   };

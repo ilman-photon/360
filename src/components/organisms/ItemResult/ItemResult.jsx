@@ -14,6 +14,9 @@ export default function ItemResult({
   OnDayClicked = () => {
     // This is intentional
   },
+  onGetDirection = () => {
+    // This is intentional
+  },
   keyItem = "",
   isDesktop = true,
   isTablet = false,
@@ -37,12 +40,18 @@ export default function ItemResult({
       >
         <Box sx={{ gridArea: "providerProvile" }}>
           <ProviderProfile
+            imageSize={"medium"}
             variant={"viewschedule"}
             providerData={providerData}
           />
         </Box>
         <Box sx={{ gridArea: "locationDistance" }}>
-          <LocationDistance distance={providerData.distance} />
+          <LocationDistance
+            distance={providerData.distance}
+            onGetDirection={() => {
+              onGetDirection(providerData.coordinate);
+            }}
+          />
         </Box>
         <Box sx={{ gridArea: "weekAvailability" }}>
           <WeekAvailability
@@ -74,7 +83,13 @@ export default function ItemResult({
               imageSize={"small"}
             />
           </div>
-          <LocationDistance isDesktop={isDesktop} />
+          <LocationDistance
+            isDesktop={isDesktop}
+            distance={providerData.distance}
+            onGetDirection={() => {
+              onGetDirection(providerData.coordinate);
+            }}
+          />
         </Stack>
         <ScheduleAvailability
           onClickViewAllAvailability={() => {

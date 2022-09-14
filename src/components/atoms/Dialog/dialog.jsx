@@ -72,6 +72,7 @@ export default function CustomizedDialogs({
         fullScreen={fullScreen}
         aria-labelledby="customized-dialog-title"
         open={open}
+        data-testid={"dialogModal"}
       >
         <BootstrapDialogTitle
           id="customized-dialog-title"

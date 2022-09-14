@@ -66,7 +66,7 @@ exports[`App renders App unchanged 1`] = `
                 style="display: grid; margin-top: 8px;"
               >
                 <div
-                  class="MuiFormControl-root MuiTextField-root custom-input css-1ahaok8-MuiFormControl-root-MuiTextField-root"
+                  class="MuiFormControl-root MuiTextField-root custom-input css-1wu0uay-MuiFormControl-root-MuiTextField-root"
                   data-testid="firstname"
                   withicon="true"
                 >
@@ -92,7 +92,7 @@ exports[`App renders App unchanged 1`] = `
                   </div>
                 </div>
                 <div
-                  class="MuiFormControl-root MuiTextField-root custom-input css-1ahaok8-MuiFormControl-root-MuiTextField-root"
+                  class="MuiFormControl-root MuiTextField-root custom-input css-1wu0uay-MuiFormControl-root-MuiTextField-root"
                   data-testid="lastname"
                   withicon="true"
                 >
@@ -118,13 +118,13 @@ exports[`App renders App unchanged 1`] = `
                   </div>
                 </div>
                 <div
-                  class="MuiFormControl-root MuiTextField-root css-1b4zuq3-MuiFormControl-root-MuiTextField-root"
+                  class="MuiFormControl-root MuiTextField-root css-1bsw3ty-MuiFormControl-root-MuiTextField-root"
                 >
                   <label
                     class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
                     data-shrink="false"
-                    for=":r2:"
-                    id=":r2:-label"
+                    for=":r4:"
+                    id=":r4:-label"
                   >
                     Date of Birth
                   </label>
@@ -136,7 +136,7 @@ exports[`App renders App unchanged 1`] = `
                       aria-label="Choose date"
                       aria-readonly="true"
                       class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
-                      id=":r2:"
+                      id=":r4:"
                       readonly=""
                       type="text"
                       value=""
@@ -144,7 +144,7 @@ exports[`App renders App unchanged 1`] = `
                   </div>
                 </div>
                 <div
-                  class="MuiFormControl-root MuiTextField-root custom-input css-1ahaok8-MuiFormControl-root-MuiTextField-root"
+                  class="MuiFormControl-root MuiTextField-root custom-input css-1wu0uay-MuiFormControl-root-MuiTextField-root"
                   data-testid="email"
                   withicon="true"
                 >
@@ -173,7 +173,7 @@ exports[`App renders App unchanged 1`] = `
                   class="MuiFormControl-root css-1hqe463-MuiFormControl-root"
                 >
                   <div
-                    class="MuiFormControl-root MuiTextField-root custom-input css-1e7291d-MuiFormControl-root-MuiTextField-root"
+                    class="MuiFormControl-root MuiTextField-root custom-input css-1eoibh5-MuiFormControl-root-MuiTextField-root"
                     data-testid="mobilenumber"
                     withicon="true"
                   >
@@ -209,7 +209,7 @@ exports[`App renders App unchanged 1`] = `
                   class="MuiFormControl-root css-1c2vtuz-MuiFormControl-root"
                 >
                   <div
-                    class="MuiFormControl-root MuiTextField-root css-1g84wd3-MuiFormControl-root-MuiTextField-root"
+                    class="MuiFormControl-root MuiTextField-root css-1llzccm-MuiFormControl-root-MuiTextField-root"
                     customevent="[object Object]"
                   >
                     <label
@@ -237,6 +237,7 @@ exports[`App renders App unchanged 1`] = `
                         <button
                           aria-label="Password unhide icon"
                           class="MuiButtonBase-root MuiIconButton-root MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1yq5fb3-MuiButtonBase-root-MuiIconButton-root"
+                          data-mui-internal-clone-element="true"
                           tabindex="0"
                           type="button"
                         >
@@ -380,12 +381,14 @@ exports[`App renders App unchanged 1`] = `
                   </div>
                 </div>
                 <div
-                  style="padding: 16px; border-radius: 4px; color: rgb(54, 106, 112); background-color: rgba(0, 149, 169, 0.051); margin: 8px; word-break: break-all;"
+                  style="padding: 16px; border-radius: 4px; color: rgb(54, 106, 112); background-color: rgb(237, 245, 254); margin: 8px; word-break: break-word;"
                 >
-                  <div>
+                  <span
+                    class="MuiTypography-root MuiTypography-bodyMedium css-1unqizc-MuiTypography-root"
+                  >
                     Your username will be 
                     (auto-populated email id/phone number)
-                  </div>
+                  </span>
                 </div>
                 <div
                   style="padding-bottom: 6px; margin: 8px 8px 16px 8px;"
@@ -397,6 +400,7 @@ exports[`App renders App unchanged 1`] = `
                     value="both"
                   >
                     <label
+                      aria-label="Email, Phone, Both - radio buttons"
                       class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1qtos26-MuiFormLabel-root"
                       id="row-radio-buttons-group-label"
                     >
@@ -574,13 +578,10 @@ exports[`App renders App unchanged 1`] = `
                 </button>
               </form>
               <span
-                aria-label="By registering, you accept to our Terms & Conditions and Privacy Policy"
                 class="MuiTypography-root MuiTypography-caption css-7oh75i-MuiTypography-root"
-                style="color: rgb(54, 106, 112); text-align: center; font-size: 14px;"
+                style="color: rgb(54, 106, 112); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
               >
-                By registering, you accept to our Terms &
-                <br />
-                 Conditions and Privacy Policy
+                By registering, you accept to our Terms & Conditions and Privacy Policy
               </span>
               <hr
                 class="MuiDivider-root MuiDivider-fullWidth css-12l2dc7-MuiDivider-root"
@@ -588,7 +589,7 @@ exports[`App renders App unchanged 1`] = `
               />
               <span
                 class="MuiTypography-root MuiTypography-caption css-7oh75i-MuiTypography-root"
-                style="color: rgb(54, 106, 112); text-align: center; font-size: 14px;"
+                style="color: rgb(54, 106, 112); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
               >
                 Already have an account?
                  

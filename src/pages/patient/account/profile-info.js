@@ -100,6 +100,7 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
 
   useEffect(() => {
     fetchUSListOfStates();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchUSListOfStates = async () => {

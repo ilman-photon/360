@@ -21,6 +21,9 @@ export default function RowRadioButtonsGroup({
     <FormControl {...props}>
       <FormLabel
         id="row-radio-buttons-group-label"
+        aria-label={`${options
+          .map((option) => option.label)
+          .join(", ")} - radio buttons`}
         sx={{
           fontSize: 16,
           "&.Mui-focused": {

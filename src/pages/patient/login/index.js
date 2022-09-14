@@ -3,6 +3,7 @@ import Cookies from "universal-cookie";
 import { Api } from "../../api/api";
 import { Login as LoginComponent } from "../../../components/organisms/Login/login";
 import { useEffect } from "react";
+import constants from "../../../utils/constants";
 
 function getUserData(username, callback) {
   const api = new Api();
@@ -44,22 +45,24 @@ const loginProps = {
           }
           const hostname = window.location.origin;
           window.location.href = isNotNeedMfa
-            ? `${hostname}/patient/appointment`
+            ? `${hostname}/patient/`
             : `${hostname}/patient/mfa`;
           callback({ status: "success" });
         });
       })
       .catch(function (err) {
-        const isLockedAccount = err.ResponseCode === 2004;
-        const description = isLockedAccount
-          ? "Your account has been locked after too many failed attempts. Please contact Customer Support to unlock your account."
-          : "Invalid Username or Password";
-        callback({
-          status: "failed",
-          message: {
-            description,
-          },
-        });
+        if (err.ResponseCode !== constants.ERROR_CODE.NETWORK_ERR) {
+          const isLockedAccount = err.ResponseCode === 2004;
+          const description = isLockedAccount
+            ? "Your account has been locked after too many failed attempts. Please contact Customer Support to unlock your account."
+            : "Invalid Username or Password";
+          callback({
+            status: "failed",
+            message: {
+              description,
+            },
+          });
+        }
       });
   },
   OnCreateAccountClicked: function (router) {

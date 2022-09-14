@@ -17,7 +17,6 @@ import FormLabel from "@mui/material/FormLabel";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import SelectOptionButton from "../../atoms/SelectOptionButton/selectOptionButton";
 import { ImageUploader } from "../../molecules/ImageUploader/imageUploader";
-import AutoCompleteInput from "../../molecules/AutoCompleteInput";
 import { DEFAULT_INSURANCE_DATA } from "../../../store/user";
 import { useEffect, useState } from "react";
 import FormMessage from "../../molecules/FormMessage/formMessage";
@@ -26,7 +25,7 @@ import constants from "../../../utils/constants";
 import { Regex } from "../../../utils/regex";
 
 export default function InsuranceForm({
-  formData = null, // later will be used for edit
+  formData = null,
   isEditing = true,
   OnSaveClicked = () => {
     // This is intended
@@ -45,20 +44,20 @@ export default function InsuranceForm({
 
   // Later will be used for edit
   useEffect(() => {
-    if (formData && isError !== false) {
+    if (formData && !isError) {
       reset(formData);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
 
-  const [providerList] = useState([
-    { id: 0, label: "Provider 1" },
-    { id: 1, label: "Provider 2" },
-  ]);
+  const providerList = [
+    { id: 0, label: "Provider 1", value: "Provider 1" },
+    { id: 1, label: "Provider 2", value: "Provider 2" },
+  ];
 
   const planList = [
-    { id: 0, label: "Plan 1" },
-    { id: 1, label: "Plan 2" },
+    { id: 0, label: "Plan 1", value: "Plan 1" },
+    { id: 1, label: "Plan 2", value: "Plan 2" },
   ];
 
   const isSubscriberOptions = [
@@ -178,7 +177,7 @@ export default function InsuranceForm({
                   fieldState: { error },
                 }) => {
                   return (
-                    <AutoCompleteInput
+                    <AutoCompleteCreatable
                       onFetch={(e) => {
                         console.log(e);
                       }}
@@ -188,9 +187,7 @@ export default function InsuranceForm({
                       options={planList}
                       testId={testIds.planName}
                       inputLabel="Plan Name"
-                      onChange={(_e, data) => {
-                        onChange(data);
-                      }}
+                      onChange={onChange}
                       value={value}
                       error={!!error}
                       helperText={error ? error.message : null}
@@ -402,10 +399,13 @@ export default function InsuranceForm({
                         validate: {
                           requiredIfSubscriber,
                           isValidDate: (v) => {
-                            return (
-                              (v instanceof Date && !isNaN(v)) ||
-                              "Incorrect date format"
-                            );
+                            if (watchedSubscriber === "No") {
+                              return (
+                                (v instanceof Date && !isNaN(v)) ||
+                                "Incorrect date format"
+                              );
+                            }
+                            return true;
                           },
                         },
                       }}

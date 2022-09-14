@@ -77,10 +77,12 @@
   height: 40px;
   align-self: self-end;
   border-radius: 46px;
-  text-transform: capitalize;
   color: #ffffff;
 }
 
+.examForComponent .continueButton {
+  text-transform: capitalize;
+}
 .examForComponent .continueButton:hover {
   background-color: #0095a9;
 }

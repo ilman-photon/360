@@ -75,7 +75,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - View provid
   @Regression
   @Sprint4
   Scenario: EPIC_EPP-44_STORY_EPP-2509-Verify whether the user can able to see the available time slots of the doctors for the whole week in day wise
-    Scenario: Verify whether the user can able to see the available time slots of the doctors for the whole week.
 
     Given user launch the Marketing Site url		
     When user clicks on the Schedule your Eye Exam button

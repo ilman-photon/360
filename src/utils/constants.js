@@ -124,6 +124,17 @@ module.exports = {
       dateInput: "dateInput",
       purposeInput: "purposeInput",
       insuranceInput: "insuranceInput",
+      DIALOG_VIEW_ALL: {
+        container: "dialogViewAll",
+        scheduleContainer: "appointment_all_availability_schedule_ontainer",
+        previousWeekButton: "appointment_all_availability_previous_week_button",
+        nextWeekButton: "appointment_all_availability_next_week_button",
+        timeslotButton: "appointment_all_availability_timeslot_button",
+      },
+      PROVIDER_PROFILE: {
+        image: "appointment_provider_profile_image",
+        name: "appointment_provider_profile_name",
+      },
       FILTER_RESULT: {
         container: "appointment_filter_result_container",
       },
@@ -151,6 +162,7 @@ module.exports = {
     },
     SEARCH_PROVIDER_TEST_ID: {
       viewAll: "loc_viewAll",
+      hourButton: "loc_hourButton",
     },
     SUBNAVIGATION: "subNavigation-link",
     SCHEDULE_APPOINTMENT_TEST_ID: {
@@ -166,5 +178,9 @@ module.exports = {
       previousProvider: "provider_btnPrevious",
       nextProvider: "provider_btnNext",
     },
+  },
+  ERROR_CODE: {
+    NETWORK_ERR: "ERR_NETWORK",
+    BAD_REQUEST: "ERR_BAD_REQUEST",
   },
 };

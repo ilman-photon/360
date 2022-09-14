@@ -1,0 +1,88 @@
+.filterTabsList {
+  background-color: #f4f4f4;
+  flex: 1;
+  overflow: auto;
+}
+
+.tabImageContainer {
+  margin-right: 8px;
+  height: 14px;
+  width: 14px;
+}
+
+.flexDisplay {
+  display: flex;
+}
+
+.spaceBetween {
+  justify-content: space-between;
+}
+
+.halfBox {
+  width: 50%;
+}
+
+.margin {
+  margin: 10px;
+}
+
+.marginVertical {
+  margin-top: 10px;
+}
+
+.viewPrescription {
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.viewPrescriptionText {
+  color: "#008294";
+  text-decoration: none;
+  font-size: 18px;
+  margin: auto 0;
+  cursor: pointer;
+}
+
+.noPrescription {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 10px;
+  gap: 10px;
+  min-height: 58px;
+  background: #f2f7f7;
+  text-align: center;
+
+  .normalText {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    color: #003b4a;
+  }
+
+  .boldText {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+    color: #003b4a;
+  }
+}
+
+.containerImage {
+  width: 90px;
+  height: 90px;
+  position: absolute;
+  top: -5.5%;
+  right: 2%;
+  border: 1px solid #003b4a;
+  border-radius: 100%;
+  @media (max-width: 767px) {
+    width: 52px;
+    height: 52px;
+    top: -4.5%;
+  }
+}

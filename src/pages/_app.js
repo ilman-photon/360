@@ -8,6 +8,9 @@ import { useIdleTimer } from "react-idle-timer";
 import { appWithTranslation } from "next-i18next";
 import nextI18nConfig from "../../next-i18next.config";
 import SessionExpiredModal from "../components/organisms/SessionExpiredModal/sessionExpiredModal";
+import NoInternetConnectionModal from "../components/organisms/NoInternetConnectionModal/noInternetConnectionModal";
+import GenericErrorModal from "../components/molecules/GenericErrorModal/genericErrorModal";
+import { injectStore } from "./api/api";
 
 function App({ Component, pageProps }) {
   // Use the layout defined at the page level, if available
@@ -22,6 +25,11 @@ function App({ Component, pageProps }) {
 
   // Modal open state
   const [open, setOpen] = useState(false);
+
+  const [isOnline, setOnline] = useState(true);
+
+  // inject api.js with redux
+  injectStore(store);
 
   const onPrompt = () => {
     // onPrompt will be called after the timeout value is reached
@@ -69,8 +77,27 @@ function App({ Component, pageProps }) {
     };
   }, [getRemainingTime, isPrompted]);
 
+  useEffect(() => {
+    window.addEventListener("offline", () => {
+      setOnline(false);
+    });
+    window.addEventListener("online", () => {
+      setOnline(true);
+    });
+  }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setOnline(navigator.onLine);
+    }, 2000);
+    return () => {
+      clearInterval(interval);
+    };
+  }, [isOnline]);
+
   return getLayout(
     <Provider store={store}>
+      <NoInternetConnectionModal isOnline={isOnline} setOnline={setOnline} />
       {isLogin ? (
         <SessionExpiredModal
           showModal={open}
@@ -82,6 +109,7 @@ function App({ Component, pageProps }) {
       ) : (
         <></>
       )}
+      <GenericErrorModal storeContext={store} />
       <Component {...pageProps} />
     </Provider>,
     store
