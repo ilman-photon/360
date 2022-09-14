@@ -14,6 +14,7 @@ import FormMessage from "../../molecules/FormMessage/formMessage";
 import { useTranslation } from "next-i18next";
 import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
+import { Regex } from "../../../utils/regex";
 
 const constants = require("../../../utils/constants");
 
@@ -33,17 +34,6 @@ export function Login({
   };
 
   const checkMessage = (message) => {
-    const messageStatus = message.status === "failed";
-    if (messageStatus) {
-      setError("username", {
-        type: "custom",
-        message: "Enter a valid Email or Phone Number",
-      });
-      setError("password", {
-        type: "custom",
-        message: "This field is required",
-      });
-    }
     setPostMessage(message);
   };
 
@@ -97,6 +87,10 @@ export function Login({
               }}
               rules={{
                 required: t("thisFieldRequired"),
+                pattern: {
+                  value: Regex.emailValidation,
+                  message: t("emailRequiredLabel"),
+                },
               }}
             />
             <Controller
