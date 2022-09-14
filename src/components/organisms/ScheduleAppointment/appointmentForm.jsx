@@ -122,6 +122,20 @@ export default function AppointmentForm({
     }
   };
 
+  const isDOB = (value) => {
+    let date = new Date().getFullYear();
+    if (value.getFullYear() <= date) {
+      return true;
+    }
+    if (value.getMonth() <= 12) {
+      return true;
+    }
+    if (value.getMonth() <= 12) {
+      return true;
+    }
+    return false;
+  };
+
   return (
     <Stack spacing={2}>
       <Stack spacing={2}>
@@ -327,6 +341,12 @@ export default function AppointmentForm({
               }}
               rules={{
                 required: t("thisFieldRequired"),
+                validate: {
+                  required: (value) => {
+                    if (!isDOB(value))
+                      return "Incorect Date of Birth is required";
+                  },
+                },
               }}
             />
           </Box>
