@@ -25,7 +25,7 @@ export const styles = {
     height: "40px",
     alignSelf: "self-end",
     borderRadius: "46px",
-    textTransform: "capitalize",
+    textTransform: "none",
     color: "#FFFFFF",
     backgroundColor: "#007E8F",
   },
