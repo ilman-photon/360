@@ -57,7 +57,9 @@ export const ProfilePhotoUploader = ({
   };
   return (
     <Stack spacing={1}>
-      <Box sx={{ border: "1px dashed #DDDBDA", px: 2, py: 3 }}>
+      <Box
+        sx={{ border: "1px dashed #DDDBDA", px: 2, py: 3, borderRadius: "4px" }}
+      >
         <Stack direction="row" spacing={4} alignItems="center">
           {previewPhoto || source ? (
             <Image

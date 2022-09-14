@@ -57,7 +57,7 @@ export const styles = {
     padding: 16,
     borderRadius: 4,
     color: "#366A70",
-    backgroundColor: `${colors.teal}0d`,
+    backgroundColor: `#EDF5FE`,
     margin: 8,
     wordBreak: "break-word",
   },

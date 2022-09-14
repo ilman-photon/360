@@ -15,7 +15,7 @@ import {
 
 export const buttonSchedule = (
   label = "",
-  idx,
+  idx = 0,
   OnDayClicked = () => {
     // This is intended
   },
@@ -81,22 +81,24 @@ export const DayAvailability = ({
   });
 
   useEffect(() => {
-    const scheduleParse = parseScheduleDataWeekOverlay(scheduleData);
-    if (scheduleParse) {
-      setSchedule(scheduleParse);
-      setDateWeekList(parseDateWeekList(scheduleData));
-    }
+    if (scheduleData && Object.keys(scheduleData).length > 0) {
+      const scheduleParse = parseScheduleDataWeekOverlay(scheduleData);
+      if (scheduleParse) {
+        setSchedule(scheduleParse);
+        setDateWeekList(parseDateWeekList(scheduleData));
+      }
 
-    const dates = getDates(
-      new Date(rangeDate.startDate),
-      new Date(rangeDate.endDate),
-      true
-    );
-    if (rangeDate.startDate && rangeDate.endDate) {
-      setDateList(dates);
-    }
+      const dates = getDates(
+        new Date(rangeDate.startDate),
+        new Date(rangeDate.endDate),
+        true
+      );
+      if (rangeDate.startDate && rangeDate.endDate) {
+        setDateList(dates);
+      }
 
-    setTimeInWeek(timeInWeekLabel(rangeDate.startDate, rangeDate.endDate));
+      setTimeInWeek(timeInWeekLabel(rangeDate.startDate, rangeDate.endDate));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scheduleData]);
 
@@ -107,7 +109,13 @@ export const DayAvailability = ({
     )) {
       if (value && value.length > 0) {
         renderUI.push(
-          <Box className={styles.scheduleContainer} key={index}>
+          <Box
+            key={index}
+            className={styles.scheduleContainer}
+            sx={{
+              marginTop: index == 0 ? "12px" : "24px",
+            }}
+          >
             <Typography className={styles.scheduleTitle}>{key}</Typography>
             {renderTimeSchedule(value, index)}
           </Box>
@@ -116,10 +124,10 @@ export const DayAvailability = ({
         renderUI.push(
           <Box
             key={index}
-            className={[
-              styles.scheduleContainer,
-              styles.noScheduleContainer,
-            ].join(" ")}
+            className={[styles.noScheduleContainer].join(" ")}
+            sx={{
+              marginTop: index == 0 ? "12px" : "24px",
+            }}
           >
             <Typography className={styles.scheduleTitle}>{key}</Typography>
             <Typography className={styles.noSchedule}>
@@ -144,6 +152,7 @@ export const DayAvailability = ({
           justifyContent: "center",
           alignContent: "center",
           gridTemplateRows: "auto",
+          marginTop: "10px",
         }}
       >
         {value.map((option, idx) => {

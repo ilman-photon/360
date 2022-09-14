@@ -10,7 +10,6 @@ import {
   IconButton,
   CircularProgress,
   Stack,
-  Typography,
   useMediaQuery,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
@@ -35,9 +34,8 @@ import {
   getProvideOverlay,
 } from "../../../utils/appointment";
 import { Api } from "../../api/api";
-import ModalConfirmation from "../../../components/organisms/ScheduleAppointment/ModalScheduling/modalConfirmation";
+import ModalConfirmation from "../../../components/organisms/ScheduleAppointment/ScheduleConfirmation/modalConfirmation";
 import Cookies from "universal-cookie";
-import { formatAppointmentDate } from "../../../utils/dateFormatter";
 import { TEST_ID } from "../../../utils/constants";
 
 export async function getStaticProps() {
@@ -67,6 +65,7 @@ export default function Appointment({ googleApiKey }) {
   const [activeFilterBy, setActiveFilterBy] = useState([]);
   const [isOpen, setIsOpen] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
+  const [isReschedule, setIsReschedule] = useState(false);
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -96,6 +95,15 @@ export default function Appointment({ googleApiKey }) {
   const isFilterApplied = useSelector(
     (state) => state.appointment.isFilterApplied
   );
+
+  useEffect(() => {
+    if (router.query.reschedule) {
+      setIsReschedule(true);
+      onCallSubmitFilterAPI(filterData);
+      dispatch(setIsFilterApplied(true));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router]);
 
   function onSearchProvider(data) {
     dispatch(setFilterData(data));
@@ -155,7 +163,6 @@ export default function Appointment({ googleApiKey }) {
       insuranceCarrier: requestData.insuranceCarrier,
       filterBy: activeFilterBy,
     };
-    console.log(postBody);
     if (!isOverlay) {
       setIsLoading(true);
     }
@@ -228,28 +235,39 @@ export default function Appointment({ googleApiKey }) {
   );
 
   const handleDayClicked = (appointmentDate, providerData) => {
-    console.log("day clicked", appointmentDate, providerData);
+    console.log("day clicked", isReschedule, {
+      appointmentId: 0,
+      appointmentDate,
+      providerData,
+    });
+    const appointmentInfoObj = {
+      ...appointmentInfo,
+      date: appointmentDate,
+    };
+    const providerInfoObj = {
+      ...providerInfo,
+      ...providerData,
+    };
+
     dispatch(
       editAppointmentScheduleData({
         key: "appointmentInfo",
-        value: {
-          ...appointmentInfo,
-          date: appointmentDate,
-        },
+        value: appointmentInfoObj,
       })
     );
 
     dispatch(
       editAppointmentScheduleData({
         key: "providerInfo",
-        value: {
-          ...providerInfo,
-          ...providerData,
-        },
+        value: providerInfoObj,
       })
     );
-    router.push("/patient/schedule-appointment");
+
+    router.push(
+      `/patient/schedule-appointment${isReschedule ? "?reschedule=true" : ""}`
+    );
   };
+
   const { coords, isGeolocationEnabled } = useGeolocated({
     positionOptions: {
       enableHighAccuracy: false,
@@ -275,6 +293,7 @@ export default function Appointment({ googleApiKey }) {
   React.useEffect(() => {
     const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
     setIsLoggedIn(isLogin);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   function onRenderDialogView() {
@@ -308,7 +327,7 @@ export default function Appointment({ googleApiKey }) {
                 isDayAvailableView={true}
                 isShownPhoneAndRating={false}
                 providerData={providerDataOverview}
-                imageSize={!isDesktop ? "small" : "large"}
+                imageSize={"small"}
               />
             </Box>
             <DayAvailability
@@ -387,6 +406,19 @@ export default function Appointment({ googleApiKey }) {
     }
   }
 
+  function renderCircularProgress() {
+    return (
+      <Stack
+        flexDirection="row"
+        width="100%"
+        marginTop={"60px"}
+        sx={{ alignSelf: "center" }}
+      >
+        <CircularProgress />
+      </Stack>
+    );
+  }
+
   function renderFilterResultTabletView() {
     if (isTablet) {
       return !isLoading ? (
@@ -394,7 +426,7 @@ export default function Appointment({ googleApiKey }) {
           {renderFilterResultTabletViewUI()}
         </Stack>
       ) : (
-        <CircularProgress />
+        renderCircularProgress()
       );
     } else {
       return !isLoading ? (
@@ -438,7 +470,7 @@ export default function Appointment({ googleApiKey }) {
           </Box>
         </Stack>
       ) : (
-        <CircularProgress />
+        renderCircularProgress()
       );
     }
   }
@@ -450,6 +482,7 @@ export default function Appointment({ googleApiKey }) {
         flex={1}
         sx={{
           paddingTop: "135px",
+          alignSelf: !isLoading ? "none" : "center",
         }}
       >
         {renderFilterResultTabletView()}

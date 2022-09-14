@@ -47,12 +47,12 @@ export default function AppointmentLocation({
                 .editButton
             }
             variant="text"
+            aria-label="Edit"
             className={styles.editButton}
             onClick={OnEditClicked}
           >
             <EditOutlinedIcon
               sx={{ width: 20, height: 20, color: "#008294" }}
-              aria-label={"Edit icon"}
               aria-hidden={"false"}
             />
             <div type="link" style={styles.editLink}>
@@ -62,21 +62,20 @@ export default function AppointmentLocation({
         }
       >
         <Stack spacing={2}>
-          <Grid container>
-            <Grid p={0}>
+          <Grid container spacing={2}>
+            <Grid item xs={4} md={6} p={0}>
               <Image
                 src={providerData.image || "/transparent.png"}
                 width={105}
                 height={105}
                 style={{ borderRadius: "50%" }}
-                alt="profile"
+                alt="Doctors image"
               />
             </Grid>
-            <Grid pl={2}>
+            <Grid item xs={8} md={6} pl={{ md: 2 }}>
               <Typography
                 variant="h4"
                 style={{ ...styles.detailText, ...styles.boldText }}
-                aria-label={"Myself"}
               >
                 {providerData.name}
               </Typography>

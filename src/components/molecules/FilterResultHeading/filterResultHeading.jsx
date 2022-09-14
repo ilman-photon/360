@@ -41,6 +41,8 @@ export const FilterResultHeading = ({
   rangeDate = { startDate: "", endDate: "" },
   filter = [],
   onActivFilter,
+  title = "",
+  subtitle = "",
 }) => {
   const imageSrcState = "/searchInputIcon.png";
   const imageSrcFilled = "/searchFilledIcon.png";
@@ -62,12 +64,12 @@ export const FilterResultHeading = ({
   });
 
   useEffect(() => {
-    const dateList = getDates(
+    const newDateList = getDates(
       new Date(rangeDate.startDate),
       new Date(rangeDate.endDate)
     );
     if (rangeDate.startDate && rangeDate.endDate) {
-      setDateList(dateList);
+      setDateList(newDateList);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [rangeDate]);
@@ -94,10 +96,10 @@ export const FilterResultHeading = ({
     });
   }
 
-  const onSetFilter = (filter) => {
+  const onSetFilter = (newFilterData) => {
     setFilterOpen(!filterOpen);
-    setActiveFilter(filter);
-    onActivFilter(filter);
+    setActiveFilter(newFilterData);
+    onActivFilter(newFilterData);
   };
 
   function handleCloseDialog() {
@@ -133,8 +135,8 @@ export const FilterResultHeading = ({
             onClose={() => {
               setFilterOpen(!filterOpen);
             }}
-            onDone={(filter) => {
-              onSetFilter(filter);
+            onDone={(selectedFilterData) => {
+              onSetFilter(selectedFilterData);
             }}
           ></FilterBy>
           <StyledButton
@@ -148,7 +150,7 @@ export const FilterResultHeading = ({
             }}
           >
             <TuneIcon className={styles.tuneIcon} />
-            Filter
+            Filters
             <KeyboardArrowDownIcon className={styles.keydownIcon} />
           </StyledButton>
           {renderAppliedFilter()}
@@ -250,7 +252,13 @@ export const FilterResultHeading = ({
 
   function renderMobileView() {
     return (
-      <Box className={styles.mobileFilterContainer}>
+      <Box
+        className={styles.mobileFilterContainer}
+        sx={{
+          backgroundColor: title && subtitle ? "transparent" : colors.darkGreen,
+          height: title && subtitle ? "165px" : "105px",
+        }}
+      >
         <FilterBy
           activedFilter={[...activeFilter]}
           filter={filter}
@@ -258,12 +266,32 @@ export const FilterResultHeading = ({
           onClose={() => {
             setFilterOpen(!filterOpen);
           }}
-          onDone={(filter) => {
-            onSetFilter(filter);
+          onDone={(selectedFilterData) => {
+            onSetFilter(selectedFilterData);
           }}
         ></FilterBy>
-        <Stack justifyContent={"center"} height={"100%"} paddingX={"14px"}>
-          <Stack className={styles.mobileFilterStyle} direction={"row"}>
+        <Stack
+          justifyContent={"center"}
+          height={"100%"}
+          paddingX={"14px"}
+          className={title && subtitle ? styles.titleContainer : {}}
+        >
+          {title && subtitle && (
+            <Stack className={styles.subtitleContainer}>
+              <Typography className={styles.titleElement}>{title}</Typography>
+              <Typography className={styles.subtitleElement}>
+                {subtitle}
+              </Typography>
+            </Stack>
+          )}
+          <Stack
+            className={
+              title && subtitle
+                ? styles.stackFilterContainer
+                : styles.mobileFilterStyle
+            }
+            direction={"row"}
+          >
             <LocationOnOutlinedIcon
               sx={{
                 margin: "auto 14px",
@@ -280,11 +308,14 @@ export const FilterResultHeading = ({
                 variant={"bodyMedium"}
                 className={styles.mobileFilterTitle}
               >
-                {filterData.location}
+                {filterData.location || "City, state, or zip code"}
               </Typography>
-              <Typography
-                className={styles.mobileFilterSubtitle}
-              >{`${filterData.purposeOfVisit} * ${filterData.insuranceCarrier}`}</Typography>
+              {filterData.purposeOfVisit ||
+                (filterData.insuranceCarrier && (
+                  <Typography
+                    className={styles.mobileFilterSubtitle}
+                  >{`${filterData.purposeOfVisit} * ${filterData.insuranceCarrier}`}</Typography>
+                ))}
             </Box>
             <Box
               className={styles.mobileFilterImageContainer}

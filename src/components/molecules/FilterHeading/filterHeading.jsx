@@ -40,13 +40,13 @@ export function keyDownPress(e, handleCloseDialog) {
   }
 }
 
-export const locationIconUI = function () {
+export const locationIconUI = function (isDesktop) {
   return (
     <LocationOnOutlinedIcon
       sx={{
         margin: "auto 0",
-        width: "20px",
-        height: "20px",
+        width: isDesktop ? "24px" : "20px",
+        height: isDesktop ? "24px" : "20px",
         color: colors.darkGreen,
       }}
     />
@@ -66,7 +66,7 @@ export function getDialogContents(
     isDesktop,
   },
   handleCloseDialog = () => {
-    /* TODO document why this arrow function is empty */
+    //This is intentional
   }
 ) {
   let child = <></>;
@@ -345,9 +345,10 @@ export function onRenderInputInsurance(
       <Box
         sx={{
           margin: "auto",
+          height: "22px",
         }}
       >
-        <Image alt="" src={imageSrcState} width={20} height={20} />
+        <Image alt="" src={imageSrcState} width={24} height={24} />
       </Box>
       <StyledInput
         variant="filled"
@@ -472,10 +473,12 @@ const FilterHeading = ({
   isGeolocationEnabled,
   purposeOfVisitData = [],
   insuranceCarrierData = [],
+  title = "",
+  subtitle = "",
 }) => {
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
   const { handleSubmit, control } = useForm({
-    defaultValues: { ...filterData, date: new Date() },
+    defaultValues: { ...filterData },
   });
 
   const [isEmptyLocation, setEmptyLocation] = useState(false);
@@ -570,7 +573,7 @@ const FilterHeading = ({
                     paddingLeft: "15px",
                   }}
                 >
-                  {locationIconUI()}
+                  {locationIconUI(isDesktop)}
                   <StyledInput
                     type="default"
                     variant="filled"
@@ -632,8 +635,8 @@ const FilterHeading = ({
               <CalendarTodayIcon
                 sx={{
                   margin: "auto",
-                  width: "15px",
-                  height: "15px",
+                  width: "18px",
+                  height: "18px",
                   color: colors.darkGreen,
                 }}
               />
@@ -654,6 +657,7 @@ const FilterHeading = ({
                   margin: 0,
                   [muiInputRoot]: {
                     border: "0px",
+                    cursor: "pointer",
                   },
                 }}
                 onClick={() => setOpen(true)}
@@ -691,8 +695,8 @@ const FilterHeading = ({
               <VisibilityOutlinedIcon
                 sx={{
                   margin: "auto",
-                  width: "18px",
-                  height: "18px",
+                  width: "24px",
+                  height: "24px",
                   color: colors.darkGreen,
                 }}
               />
@@ -728,8 +732,22 @@ const FilterHeading = ({
 
   function renderDekstopView() {
     return (
-      <Box className={styles.titleHeadingWrapper}>
-        <Box className={styles.centeredElement}>
+      <Box
+        className={styles.titleHeadingWrapper}
+        sx={{ height: title && subtitle ? "200px" : "151px" }}
+      >
+        <Box
+          className={styles.centeredElement}
+          sx={{ top: title && subtitle ? "50%" : "58%" }}
+        >
+          {title && subtitle && (
+            <Stack>
+              <Typography className={styles.titleElement}>{title}</Typography>
+              <Typography className={styles.subtitleElement}>
+                {subtitle}
+              </Typography>
+            </Stack>
+          )}
           <Stack direction={"row"}>
             <form
               onSubmit={handleSubmit(onSubmit)}
@@ -789,12 +807,14 @@ const FilterHeading = ({
             <Typography
               className={styles.optionalPurposeText}
               variant={"bodyTinyRegular"}
+              sx={{ top: title && subtitle ? "89%" : "77%" }}
             >
               (Optional)
             </Typography>
             <Typography
               className={styles.optionalInsuranceText}
               variant={"bodyTinyRegular"}
+              sx={{ top: title && subtitle ? "89%" : "77%" }}
             >
               (Optional)
             </Typography>

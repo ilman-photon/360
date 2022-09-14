@@ -46,6 +46,7 @@ Object {
           class="titleHeadingWrapper"
         >
           <div
+            aria-label="Your Account heading"
             aria-live="polite"
             class="title"
           >
@@ -145,7 +146,7 @@ Object {
           >
             <section>
               <div
-                class="MuiBox-root css-1kexx3j"
+                class="MuiBox-root css-9oc806"
               >
                 <svg
                   aria-hidden="true"
@@ -179,7 +180,7 @@ Object {
                     class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
                   >
                     <div
-                      class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
+                      class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
                     >
                       <div
                         class="css-1p5q5e5-MuiStack-root"
@@ -206,7 +207,7 @@ Object {
                                   data-testid="loc_inputProvider"
                                 >
                                   <div
-                                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1krnp8b-MuiFormControl-root-MuiTextField-root"
+                                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-oc861o-MuiFormControl-root-MuiTextField-root"
                                     withicon="true"
                                   >
                                     <label
@@ -284,7 +285,7 @@ Object {
                                   data-testid="loc_inputPlan"
                                 >
                                   <div
-                                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1krnp8b-MuiFormControl-root-MuiTextField-root"
+                                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-oc861o-MuiFormControl-root-MuiTextField-root"
                                     withicon="true"
                                   >
                                     <label
@@ -364,7 +365,7 @@ Object {
                                 class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
                               >
                                 <div
-                                  class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
+                                  class="MuiFormControl-root MuiTextField-root custom-input css-93ck4a-MuiFormControl-root-MuiTextField-root"
                                   data-testid="loc_inputSubsId"
                                   withicon="true"
                                 >
@@ -394,7 +395,7 @@ Object {
                                 class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
                               >
                                 <div
-                                  class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
+                                  class="MuiFormControl-root MuiTextField-root custom-input css-93ck4a-MuiFormControl-root-MuiTextField-root"
                                   data-testid="loc_inputGroup"
                                   withicon="true"
                                 >
@@ -598,7 +599,7 @@ Object {
                                           class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
                                         >
                                           <div
-                                            class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
+                                            class="MuiFormControl-root MuiTextField-root custom-input css-93ck4a-MuiFormControl-root-MuiTextField-root"
                                             maxlength="50"
                                             minlength="2"
                                             withicon="true"
@@ -629,7 +630,7 @@ Object {
                                           class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
                                         >
                                           <div
-                                            class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
+                                            class="MuiFormControl-root MuiTextField-root custom-input css-93ck4a-MuiFormControl-root-MuiTextField-root"
                                             withicon="true"
                                           >
                                             <label
@@ -661,7 +662,7 @@ Object {
                                           class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
                                         >
                                           <div
-                                            class="MuiFormControl-root MuiTextField-root css-1b4zuq3-MuiFormControl-root-MuiTextField-root"
+                                            class="MuiFormControl-root MuiTextField-root css-1bsw3ty-MuiFormControl-root-MuiTextField-root"
                                           >
                                             <label
                                               class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
@@ -793,11 +794,11 @@ Object {
                                         class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
                                       >
                                         <div
-                                          class="MuiBox-root css-8whbkc"
+                                          class="MuiBox-root css-1y4mj6z"
                                         >
                                           <svg
                                             aria-hidden="true"
-                                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1avpnvm-MuiSvgIcon-root"
+                                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-bsxrpm-MuiSvgIcon-root"
                                             data-testid="BlockIcon"
                                             focusable="false"
                                             viewBox="0 0 24 24"
@@ -882,11 +883,11 @@ Object {
                                         class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
                                       >
                                         <div
-                                          class="MuiBox-root css-8whbkc"
+                                          class="MuiBox-root css-1y4mj6z"
                                         >
                                           <svg
                                             aria-hidden="true"
-                                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1avpnvm-MuiSvgIcon-root"
+                                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-bsxrpm-MuiSvgIcon-root"
                                             data-testid="BlockIcon"
                                             focusable="false"
                                             viewBox="0 0 24 24"
@@ -1229,6 +1230,7 @@ Object {
         class="titleHeadingWrapper"
       >
         <div
+          aria-label="Your Account heading"
           aria-live="polite"
           class="title"
         >
@@ -1328,7 +1330,7 @@ Object {
         >
           <section>
             <div
-              class="MuiBox-root css-1kexx3j"
+              class="MuiBox-root css-9oc806"
             >
               <svg
                 aria-hidden="true"
@@ -1362,7 +1364,7 @@ Object {
                   class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
                 >
                   <div
-                    class="MuiCardContent-root css-vp7ejv-MuiCardContent-root"
+                    class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
                   >
                     <div
                       class="css-1p5q5e5-MuiStack-root"
@@ -1389,7 +1391,7 @@ Object {
                                 data-testid="loc_inputProvider"
                               >
                                 <div
-                                  class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1krnp8b-MuiFormControl-root-MuiTextField-root"
+                                  class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-oc861o-MuiFormControl-root-MuiTextField-root"
                                   withicon="true"
                                 >
                                   <label
@@ -1467,7 +1469,7 @@ Object {
                                 data-testid="loc_inputPlan"
                               >
                                 <div
-                                  class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1krnp8b-MuiFormControl-root-MuiTextField-root"
+                                  class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-oc861o-MuiFormControl-root-MuiTextField-root"
                                   withicon="true"
                                 >
                                   <label
@@ -1547,7 +1549,7 @@ Object {
                               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
                             >
                               <div
-                                class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
+                                class="MuiFormControl-root MuiTextField-root custom-input css-93ck4a-MuiFormControl-root-MuiTextField-root"
                                 data-testid="loc_inputSubsId"
                                 withicon="true"
                               >
@@ -1577,7 +1579,7 @@ Object {
                               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
                             >
                               <div
-                                class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
+                                class="MuiFormControl-root MuiTextField-root custom-input css-93ck4a-MuiFormControl-root-MuiTextField-root"
                                 data-testid="loc_inputGroup"
                                 withicon="true"
                               >
@@ -1781,7 +1783,7 @@ Object {
                                         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
                                       >
                                         <div
-                                          class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
+                                          class="MuiFormControl-root MuiTextField-root custom-input css-93ck4a-MuiFormControl-root-MuiTextField-root"
                                           maxlength="50"
                                           minlength="2"
                                           withicon="true"
@@ -1812,7 +1814,7 @@ Object {
                                         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
                                       >
                                         <div
-                                          class="MuiFormControl-root MuiTextField-root custom-input css-1tb8vaf-MuiFormControl-root-MuiTextField-root"
+                                          class="MuiFormControl-root MuiTextField-root custom-input css-93ck4a-MuiFormControl-root-MuiTextField-root"
                                           withicon="true"
                                         >
                                           <label
@@ -1844,7 +1846,7 @@ Object {
                                         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
                                       >
                                         <div
-                                          class="MuiFormControl-root MuiTextField-root css-1b4zuq3-MuiFormControl-root-MuiTextField-root"
+                                          class="MuiFormControl-root MuiTextField-root css-1bsw3ty-MuiFormControl-root-MuiTextField-root"
                                         >
                                           <label
                                             class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
@@ -1976,11 +1978,11 @@ Object {
                                       class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
                                     >
                                       <div
-                                        class="MuiBox-root css-8whbkc"
+                                        class="MuiBox-root css-1y4mj6z"
                                       >
                                         <svg
                                           aria-hidden="true"
-                                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1avpnvm-MuiSvgIcon-root"
+                                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-bsxrpm-MuiSvgIcon-root"
                                           data-testid="BlockIcon"
                                           focusable="false"
                                           viewBox="0 0 24 24"
@@ -2065,11 +2067,11 @@ Object {
                                       class="MuiCollapse-wrapperInner MuiCollapse-vertical css-9l5vo-MuiCollapse-wrapperInner"
                                     >
                                       <div
-                                        class="MuiBox-root css-8whbkc"
+                                        class="MuiBox-root css-1y4mj6z"
                                       >
                                         <svg
                                           aria-hidden="true"
-                                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1avpnvm-MuiSvgIcon-root"
+                                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-bsxrpm-MuiSvgIcon-root"
                                           data-testid="BlockIcon"
                                           focusable="false"
                                           viewBox="0 0 24 24"

@@ -91,6 +91,8 @@ Object {
                               >
                                 <div
                                   class="label"
+                                  role="text"
+                                  tabindex="0"
                                 >
                                   Insurance Provider
                                 </div>
@@ -117,6 +119,8 @@ Object {
                               >
                                 <div
                                   class="label"
+                                  role="text"
+                                  tabindex="0"
                                 >
                                   Plan Name
                                 </div>
@@ -143,6 +147,8 @@ Object {
                               >
                                 <div
                                   class="label"
+                                  role="text"
+                                  tabindex="0"
                                 >
                                   Subscriber ID/Member ID
                                 </div>
@@ -170,6 +176,8 @@ Object {
                           >
                             <div
                               class="label"
+                              role="text"
+                              tabindex="0"
                             >
                               Group #
                             </div>
@@ -201,6 +209,8 @@ Object {
                             >
                               <div
                                 class="label"
+                                role="text"
+                                tabindex="0"
                               >
                                 Are you the Subscriber?
                               </div>
@@ -238,6 +248,8 @@ Object {
                               >
                                 <div
                                   class="label"
+                                  role="text"
+                                  tabindex="0"
                                 >
                                   First Name
                                 </div>
@@ -264,6 +276,8 @@ Object {
                               >
                                 <div
                                   class="label"
+                                  role="text"
+                                  tabindex="0"
                                 >
                                   Last Name
                                 </div>
@@ -290,6 +304,8 @@ Object {
                               >
                                 <div
                                   class="label"
+                                  role="text"
+                                  tabindex="0"
                                 >
                                   Relationship
                                 </div>
@@ -314,6 +330,8 @@ Object {
                               >
                                 <div
                                   class="label"
+                                  role="text"
+                                  tabindex="0"
                                 >
                                   Date of Birth
                                 </div>
@@ -341,6 +359,8 @@ Object {
                           >
                             <div
                               class="label"
+                              role="text"
+                              tabindex="0"
                             >
                               Relationship
                             </div>
@@ -449,6 +469,8 @@ Object {
                           >
                             <div
                               class="label"
+                              role="text"
+                              tabindex="0"
                             >
                               Insurance Priority
                             </div>
@@ -470,7 +492,7 @@ Object {
                           class="css-1mf892b-MuiStack-root"
                         >
                           <button
-                            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18y1hnv-MuiButtonBase-root-MuiButton-root"
+                            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-18y1hnv-MuiButtonBase-root-MuiButton-root"
                             tabindex="0"
                             type="button"
                           >
@@ -607,6 +629,8 @@ Object {
                             >
                               <div
                                 class="label"
+                                role="text"
+                                tabindex="0"
                               >
                                 Insurance Provider
                               </div>
@@ -633,6 +657,8 @@ Object {
                             >
                               <div
                                 class="label"
+                                role="text"
+                                tabindex="0"
                               >
                                 Plan Name
                               </div>
@@ -659,6 +685,8 @@ Object {
                             >
                               <div
                                 class="label"
+                                role="text"
+                                tabindex="0"
                               >
                                 Subscriber ID/Member ID
                               </div>
@@ -686,6 +714,8 @@ Object {
                         >
                           <div
                             class="label"
+                            role="text"
+                            tabindex="0"
                           >
                             Group #
                           </div>
@@ -717,6 +747,8 @@ Object {
                           >
                             <div
                               class="label"
+                              role="text"
+                              tabindex="0"
                             >
                               Are you the Subscriber?
                             </div>
@@ -754,6 +786,8 @@ Object {
                             >
                               <div
                                 class="label"
+                                role="text"
+                                tabindex="0"
                               >
                                 First Name
                               </div>
@@ -780,6 +814,8 @@ Object {
                             >
                               <div
                                 class="label"
+                                role="text"
+                                tabindex="0"
                               >
                                 Last Name
                               </div>
@@ -806,6 +842,8 @@ Object {
                             >
                               <div
                                 class="label"
+                                role="text"
+                                tabindex="0"
                               >
                                 Relationship
                               </div>
@@ -830,6 +868,8 @@ Object {
                             >
                               <div
                                 class="label"
+                                role="text"
+                                tabindex="0"
                               >
                                 Date of Birth
                               </div>
@@ -857,6 +897,8 @@ Object {
                         >
                           <div
                             class="label"
+                            role="text"
+                            tabindex="0"
                           >
                             Relationship
                           </div>
@@ -965,6 +1007,8 @@ Object {
                         >
                           <div
                             class="label"
+                            role="text"
+                            tabindex="0"
                           >
                             Insurance Priority
                           </div>
@@ -986,7 +1030,7 @@ Object {
                         class="css-1mf892b-MuiStack-root"
                       >
                         <button
-                          class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-18y1hnv-MuiButtonBase-root-MuiButton-root"
+                          class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-18y1hnv-MuiButtonBase-root-MuiButton-root"
                           tabindex="0"
                           type="button"
                         >

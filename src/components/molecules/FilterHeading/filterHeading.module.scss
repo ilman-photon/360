@@ -4,7 +4,6 @@
   margin-top: -15px;
   position: fixed;
   width: 100%;
-  height: 151px;
   padding: 24px 10px;
   gap: 10px;
   background: linear-gradient(96.59deg, #003b4a 10.15%, #0389ab 140.82%);
@@ -16,13 +15,48 @@
 .centeredElement {
   margin: 0;
   position: absolute;
-  top: 58%;
   transform: translateY(-50%);
+  .titleElement {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 32px;
+    /* identical to box height, or 123% */
+    /* Grayscale/ White */
+    color: #ffffff;
+  }
+  .subtitleElement {
+    margin-top: 10px;
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 26px;
+    /* identical to box height, or 144% */
+    letter-spacing: 0.0016em;
+    /* Grayscale/ White */
+    color: #ffffff;
+    margin-bottom: 10px;
+  }
 }
 
 .centeredField {
   flex-direction: row;
   display: flex;
+  .optionalPurposeText {
+    position: absolute;
+    left: 46%;
+    color: #ffffff;
+    opacity: 0.8;
+  }
+
+  .optionalInsuranceText {
+    position: absolute;
+    left: 71%;
+    color: #ffffff;
+    opacity: 0.8;
+  }
 }
 
 .mobileContainer {
@@ -59,22 +93,6 @@
 .errorText {
   color: $errorTextField;
   margin-left: 21px;
-}
-
-.optionalPurposeText {
-  position: absolute;
-  left: 46%;
-  top: 77%;
-  color: #ffffff;
-  opacity: 0.8;
-}
-
-.optionalInsuranceText {
-  position: absolute;
-  left: 71%;
-  top: 77%;
-  color: #ffffff;
-  opacity: 0.8;
 }
 
 .hideText {

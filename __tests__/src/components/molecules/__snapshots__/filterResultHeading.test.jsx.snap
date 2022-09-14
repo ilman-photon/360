@@ -6,10 +6,10 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="mobileFilterContainer MuiBox-root css-0"
+        class="mobileFilterContainer MuiBox-root css-144pffl"
       >
         <div
-          class="css-19ki0tq-MuiStack-root"
+          class="[object Object] css-19ki0tq-MuiStack-root"
         >
           <div
             class="mobileFilterStyle css-m69qwo-MuiStack-root"
@@ -38,11 +38,7 @@ Object {
               >
                 New York, NY
               </span>
-              <p
-                class="MuiTypography-root MuiTypography-body1 mobileFilterSubtitle css-ahj2mt-MuiTypography-root"
-              >
-                Eye exam * Aethna
-              </p>
+              Eye exam
             </div>
             <div
               class="mobileFilterImageContainer MuiBox-root css-0"
@@ -78,10 +74,10 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="mobileFilterContainer MuiBox-root css-0"
+      class="mobileFilterContainer MuiBox-root css-144pffl"
     >
       <div
-        class="css-19ki0tq-MuiStack-root"
+        class="[object Object] css-19ki0tq-MuiStack-root"
       >
         <div
           class="mobileFilterStyle css-m69qwo-MuiStack-root"
@@ -110,11 +106,7 @@ Object {
             >
               New York, NY
             </span>
-            <p
-              class="MuiTypography-root MuiTypography-body1 mobileFilterSubtitle css-ahj2mt-MuiTypography-root"
-            >
-              Eye exam * Aethna
-            </p>
+            Eye exam
           </div>
           <div
             class="mobileFilterImageContainer MuiBox-root css-0"

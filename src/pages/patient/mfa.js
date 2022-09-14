@@ -12,6 +12,8 @@ import FormMessage from "../../components/molecules/FormMessage/formMessage";
 import { Api } from "../api/api";
 import { useTranslation } from "next-i18next";
 import { formatPhoneNumber } from "../../utils/phoneFormatter";
+import { Provider } from "react-redux";
+import store from "../../store/store";
 
 export async function getServerSideProps(context) {
   const cookies = new Cookies(context.req.headers.cookie);
@@ -116,7 +118,7 @@ export default function MfaPage() {
 
   function redirectToDashboard() {
     const hostname = window.location.origin;
-    window.location.href = `${hostname}/patient/appointment`;
+    window.location.href = `${hostname}/patient`;
 
     cookies.set("authorized", true, { path: "/patient" });
     cookies.remove("mfa", { path: "/patient" });
@@ -244,7 +246,7 @@ export default function MfaPage() {
     securityQuestionList = securityQuestionList[0]
       ? securityQuestionList[0]
       : {};
-    for (const [key, value] of Object.entries(securityQuestionList)) {
+    for (const [key] of Object.entries(securityQuestionList)) {
       questionList.push(key);
     }
     return questionList;
@@ -346,5 +348,9 @@ export default function MfaPage() {
 }
 
 MfaPage.getLayout = function getLayout(page) {
-  return <MfaLayout>{page}</MfaLayout>;
+  return (
+    <Provider store={store}>
+      <MfaLayout>{page}</MfaLayout>
+    </Provider>
+  );
 };
