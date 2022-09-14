@@ -94,7 +94,7 @@ export default function ModalConfirmContent({
         sx={{ textAlign: "center" }}
       >
         <Typography variant="bodyMedium" className={styles.scheduledText}>
-          <CheckCircleRoundedIcon sx={{ mr: 1 }} />{" "}
+          <CheckCircleRoundedIcon sx={{ mr: 1, color: "#168845" }} />{" "}
           {isReschedule
             ? "Reschedule Appointment Successful"
             : "You’re Scheduled!"}
