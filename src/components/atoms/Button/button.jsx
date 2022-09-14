@@ -41,6 +41,7 @@ export const StyledButton = ({
   theme = "patient",
   mode = "primary" || "secondary",
   size = "large",
+  isModalButton,
   gradient,
   ...props
 }) => {
@@ -59,6 +60,7 @@ export const StyledButton = ({
         className={[
           `${styles.customButton}`,
           `${sizeSelector}`,
+          isModalButton ? styles.modalButton : "",
           gradient ? `${styles.customButtonGradient}` : ``,
         ].join(" ")}
         {...props}

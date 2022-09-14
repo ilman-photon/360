@@ -81,22 +81,24 @@ export const DayAvailability = ({
   });
 
   useEffect(() => {
-    const scheduleParse = parseScheduleDataWeekOverlay(scheduleData);
-    if (scheduleParse) {
-      setSchedule(scheduleParse);
-      setDateWeekList(parseDateWeekList(scheduleData));
-    }
+    if (scheduleData && Object.keys(scheduleData).length > 0) {
+      const scheduleParse = parseScheduleDataWeekOverlay(scheduleData);
+      if (scheduleParse) {
+        setSchedule(scheduleParse);
+        setDateWeekList(parseDateWeekList(scheduleData));
+      }
 
-    const dates = getDates(
-      new Date(rangeDate.startDate),
-      new Date(rangeDate.endDate),
-      true
-    );
-    if (rangeDate.startDate && rangeDate.endDate) {
-      setDateList(dates);
-    }
+      const dates = getDates(
+        new Date(rangeDate.startDate),
+        new Date(rangeDate.endDate),
+        true
+      );
+      if (rangeDate.startDate && rangeDate.endDate) {
+        setDateList(dates);
+      }
 
-    setTimeInWeek(timeInWeekLabel(rangeDate.startDate, rangeDate.endDate));
+      setTimeInWeek(timeInWeekLabel(rangeDate.startDate, rangeDate.endDate));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scheduleData]);
 

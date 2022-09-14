@@ -100,6 +100,7 @@
 
 .checBoxListContainer {
   overflow: scroll;
+  overflow-x: hidden;
   max-height: calc(100vh - 144px);
   @media (max-width: 992px) {
     width: 100vw;
