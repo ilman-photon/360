@@ -1,19 +1,15 @@
 import { defineFeature, loadFeature } from "jest-cucumber";
-import { act, cleanup, fireEvent, render, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import axios from "axios";
 import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
 import Cookies from "universal-cookie";
-import constants from "../../src/utils/constants";
 import mediaQuery from 'css-mediaquery';
 import HomePage from "../../src/pages/patient";
-import ModalCancelScheduling from "../../src/components/organisms/ScheduleAppointment/ModalCancelScheduling/modalCancelScheduling";
 
 import { getServerSideProps } from "../../src/pages/patient/mfa";
-
-
 
 const MOCK_APPOINTMENT = {
     appointmentList: [

@@ -125,10 +125,11 @@ export default function AppointmentCard({
   function renderAppointmentUI() {
     if (appointment && appointment.appointmentId) {
       const today = new Date();
-      const date = new Date(appointment.appointmentInfo.date);
-      const isHideButtons = date < minHours(4);
-      const daysAway = date.getTime() - today.getTime();
+      const visitDate = new Date(appointment.appointmentInfo.date);
+      const isHideButtons = visitDate < minHours(4);
+      const daysAway = visitDate.getTime() - today.getTime();
       const TotalDays = Math.ceil(daysAway / (1000 * 3600 * 24));
+
       return (
         <Box>
           <Grid container columns={5} spacing={2} p={3}>
