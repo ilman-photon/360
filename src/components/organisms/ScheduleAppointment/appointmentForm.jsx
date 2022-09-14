@@ -184,7 +184,7 @@ export default function AppointmentForm({
                 isFormat: (v) =>
                   Regex.alphabethOnly.test(v) || "Incorrect First Name format",
                 isLength: (v) =>
-                  Regex.minThreeDigitRegex.test(v) ||
+                  Regex.isMin2Max50Length.test(v) ||
                   "First Name should be greater than 2 characters",
               },
             }}
@@ -219,7 +219,7 @@ export default function AppointmentForm({
                 isFormat: (v) =>
                   Regex.alphabethOnly.test(v) || "Incorrect Last Name format",
                 isLength: (v) =>
-                  Regex.minThreeDigitRegex.test(v) ||
+                  Regex.isMin2Max50Length.test(v) ||
                   "Last Name should be greater than 2 characters",
               },
             }}
