@@ -242,6 +242,7 @@ export const CustomInput = styled(({ ...props }) => {
               }}
               renderInput={(params) => (
                 <RedditTextField
+                  tabindex={0}
                   variant="filled"
                   sx={{
                     borderRadius: "4px",
@@ -319,6 +320,7 @@ export const StyledInput = ({
         placeholder={placeholder}
         helperText={helperText}
         withicon={withIcon}
+        tabindex={0}
         {...props}
         className={["custom-input"].join(" ")}
         adorment={adorment}

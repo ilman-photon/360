@@ -580,6 +580,7 @@ const FilterHeading = ({
                     {...params}
                     label="City, state, or zip code"
                     InputProps={{
+                      "aria-label": "City, state, or zip code field",
                       ...params.InputProps,
                       endAdornment: (
                         <InputAdornment position="end">
@@ -653,6 +654,9 @@ const FilterHeading = ({
                 isFilter={true}
                 value={value}
                 onChange={onChange}
+                inputProps={{
+                  "aria-label": "Date field",
+                }}
                 sx={{
                   margin: 0,
                   [muiInputRoot]: {
@@ -712,6 +716,7 @@ const FilterHeading = ({
                   },
                 }}
                 label={"Purpose of Visit"}
+                ariaLabel={"Purpose of Visit field"}
                 labelId={`purposes-of-visit`}
                 id={`purposes-of-visit`}
                 options={purposeOfVisitData}
@@ -774,6 +779,7 @@ const FilterHeading = ({
                 handleCloseDialog
               )}
               <StyledButton
+                aria-label={"Search"}
                 type="submit"
                 theme="patient"
                 mode="filter"
