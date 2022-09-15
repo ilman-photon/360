@@ -108,6 +108,9 @@ export default function Prescriptions({
               borderBottom: 1,
               borderColor: "divider",
               padding: "20px 10px",
+              "@media print": {
+                borderBottom: 0,
+              },
             }}
           >
             <TableContainer component={Paper} sx={{ borderRadius: 0 }}>
@@ -223,7 +226,7 @@ export default function Prescriptions({
               ]}
             >
               <Typography variant="titleCard">Glasses Prescriptions</Typography>
-              <MenuList />
+              <MenuList pdfFile="/Prescription_Glasses.pdf" />
             </Box>
             {renderPrescriptionTable(prescription.glasses, "glasses")}
             <Box
@@ -256,7 +259,7 @@ export default function Prescriptions({
               <Typography variant="titleCard">
                 Contacts Prescriptions
               </Typography>
-              <MenuList />
+              <MenuList pdfFile="/Prescription_Contacts.pdf" />
             </Box>
             {renderPrescriptionTable(prescription.contacts, "contact")}
             <Box

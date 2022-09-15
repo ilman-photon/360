@@ -14,7 +14,11 @@ export const AccountCard = ({
   const isDesktop = useMediaQuery("(min-width: 769px)");
   return (
     <>
-      <Card variant="outlined" className={styles.card} sx={props.sx}>
+      <Card
+        variant="outlined"
+        className={[styles.card, props.className].join(" ")}
+        sx={props.sx}
+      >
         {(isDesktop || isAppoinment) && (
           <CardHeader
             className={styles.cardHeader}

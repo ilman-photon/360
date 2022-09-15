@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Stack, Typography, Button, Grid, Link, Box } from "@mui/material";
+import { Stack, Typography, Button, Link, Box } from "@mui/material";
 import { useTranslation } from "next-i18next";
 import AccountCard from "../../molecules/AccountCard/accountCard";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
