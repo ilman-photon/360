@@ -53,6 +53,11 @@ export function ddmmyyDateFormat(date) {
   return momentDate.format("DD/MM/YYYY");
 }
 
+export function mmddyyDateFormat(date) {
+  const momentDate = new moment(date);
+  return momentDate.format("MM/DD/YYYY");
+}
+
 export function fullDateFormat(date) {
   const timezone = date.substring(date.length - 3);
   const momentDate = new moment(date);
