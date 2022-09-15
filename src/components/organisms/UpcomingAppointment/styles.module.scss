@@ -136,15 +136,33 @@
   margin-top: 23px;
   margin-bottom: 28px;
   padding: 10px;
+
+  @media (max-width: 992px) {
+    background: unset;
+    border: 2px solid #f3f3f3;
+    background: unset;
+  }
 }
 
 .noAppointmentButtonContainer {
   display: flex;
   justify-content: flex-end;
+  @media (max-width: 992px) {
+    flex-direction: column;
+  }
 }
 
 .noAppointmentTitleText {
   font-weight: 600 !important;
   font-size: 18px !important;
   color: #003b4a !important;
+
+  @media (max-width: 992px) {
+    font-weight: 500 !important;
+    font-size: 26px !important;
+    line-height: 36px;
+    text-align: center;
+    color: #000000 !important;
+    margin: 24px;
+  }
 }

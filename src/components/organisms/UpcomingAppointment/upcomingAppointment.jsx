@@ -95,7 +95,7 @@ export default function UpcomingAppointment({
   onRescheduleClicked,
   onCancelClicked,
 }) {
-  const isHasValue = data.length !== 0;
+  const isHasValue = data.length === 0;
   return (
     <Box className={styles.upcomingAppointment}>
       <Typography variant="h2" className={styles.title}>
