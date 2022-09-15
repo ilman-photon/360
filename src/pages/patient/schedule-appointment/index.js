@@ -352,7 +352,7 @@ export default function ScheduleAppointmentPage() {
     if (isReschedule) {
       router.push("/patient/appointments");
     } else {
-      setIsOpen(false);
+      router.push("/patient/appointment");
     }
   };
 
