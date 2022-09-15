@@ -1,79 +1,58 @@
-import { Box, Stack, Typography, Link } from "@mui/material";
-import ProviderProfile from "../../molecules/ProviderProfile/providerProfile";
-import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
+import { Box, Typography, Link } from "@mui/material";
 import styles from "./styles.module.scss";
+import moment from "moment";
 import AppointmentButton from "../../atoms/AppointmentButton/appointmentButton";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
-import moment from "moment";
-import "moment-timezone";
+import { StyledButton } from "../../atoms/Button/button";
+import AppointmentInformation from "../../molecules/AppointmentInformation/appointmentInformation";
+AppointmentInformation;
 
-export default function UpcomingAppointment({
-  data = {
-    appointmentInfo: {},
-    providerInfo: {},
-    patientInfo: {},
-  },
-  onRescheduleClicked = () => {
-    // This is intentional
-  },
+const constants = require("../../../utils/constants");
+
+export function UpcomingAppointmentCard({
+  data,
+  onRescheduleClicked,
+  onCancelClicked,
 }) {
-  const fullDate = () => {
+  const renderedDate = () => {
     const date = new Date(data.appointmentInfo.date);
     if (!date) return "-";
     const momentDate = new moment(date);
-    const formatedDate = momentDate
-      .tz("America/New_York")
-      .format("dddd, MMM DD, YYYY [at] h:mm z");
-    return formatedDate;
+    return momentDate.tz("America/New_York").format("dddd, MMM DD - h:mmA z");
   };
 
-  const getProviderLocation = () => {
-    if (!data.providerInfo.location) return "#";
-    return `https://www.google.com/maps/search/?api=1&query=${data.providerInfo.location.latitude},${data.providerInfo.location.longitude}`;
-  };
   return (
-    <Box className={styles.upcomingAppointments}>
-      <Stack spacing={{ xs: 2, lg: 3.5 }}>
-        <Typography variant="h2" className={styles.title}>
-          Upcoming appointments
+    <Box className={styles.upcomingAppointmentsContainer}>
+      <Box className={styles.upcomingAppointmentDetail}>
+        <Typography className={styles.appointmentTitle} variant="h3">
+          Eye Exam
         </Typography>
-        <Box
-          className={[styles.itemContainer, styles.calendarContainer].join(" ")}
-        >
-          <Typography variant="subtitle2" className={styles.date}>
-            {fullDate()}
+        <Box className={styles.dateContainer}>
+          <Typography className={styles.date} variant="subtitle1">
+            {renderedDate}
           </Typography>
+          <Box className={styles.subTitleWrapper}>
+            <Typography variant="subtitle1">Visit Purpose: </Typography>
+            <Typography variant="body2">
+              {data.appointmentInfo.appointmentType}
+            </Typography>
+          </Box>
+        </Box>
+        <Box className={styles.addToCalendarContainer}>
           <AppointmentButton icon={<CalendarTodayIcon />}>
             Add to calendar
           </AppointmentButton>
-          <Typography variant="subtitle2" className={styles.purpose}>
-            Purpose of Visit
-          </Typography>
-          <Typography variant="body2">
-            {data.appointmentInfo.appointmentType}
-          </Typography>
         </Box>
-        <Box className={styles.itemContainer}>
-          <ProviderProfile
-            variant={"appointment"}
-            showPosition
-            phoneLink
-            isDayAvailableView={true}
-            providerData={data.providerInfo}
-          />
-          <Box className={styles.getDirectionLink}>
-            <DirectionsOutlinedIcon></DirectionsOutlinedIcon>
-            <Link
-              className={styles.getDirectionLinkText}
-              href={getProviderLocation()}
-              target="_blank"
-            >
-              Get directions
-            </Link>
-          </Box>
+
+        <AppointmentInformation data={data}></AppointmentInformation>
+
+        <Box className={styles.viewDetails}>
           <Box className={styles.buttonContainer}>
-            <AppointmentButton icon={<CancelOutlinedIcon />}>
+            <AppointmentButton
+              icon={<CancelOutlinedIcon />}
+              onClick={() => onCancelClicked(data)}
+            >
               Cancel
             </AppointmentButton>
             <AppointmentButton
@@ -84,16 +63,60 @@ export default function UpcomingAppointment({
             </AppointmentButton>
           </Box>
         </Box>
-        <Box className={styles.patientContainer}>
-          <Typography variant="h3" className={styles.patientTitle}>
-            Patient Information
-          </Typography>
-          <Typography variant="subtitle2" className={styles.patientName}>
-            Name
-          </Typography>
-          <Typography variant="body2">{data.patientInfo.name}</Typography>
-        </Box>
-      </Stack>
+      </Box>
+    </Box>
+  );
+}
+
+export function NoAppointment() {
+  return (
+    <Box>
+      <Box className={styles.noAppointmentTitle}>
+        <Typography variant="body2" className={styles.noAppointmentTitleText}>
+          You have no upcoming appointments
+        </Typography>
+      </Box>
+      <Box className={styles.noAppointmentButtonContainer}>
+        <StyledButton
+          theme={constants.PATIENT}
+          mode={constants.PRIMARY}
+          type="button"
+          size={constants.SMALL}
+          gradient={false}
+        >
+          Schedule Appointment Now
+        </StyledButton>
+      </Box>
+    </Box>
+  );
+}
+
+export default function UpcomingAppointment({
+  data,
+  onRescheduleClicked,
+  onCancelClicked,
+}) {
+  const isHasValue = data.length !== 0;
+  return (
+    <Box className={styles.upcomingAppointment}>
+      <Typography variant="h2" className={styles.title}>
+        Upcoming Appointments
+      </Typography>
+
+      {isHasValue ? (
+        data.map((item, index) => {
+          return (
+            <UpcomingAppointmentCard
+              data={item}
+              key={index}
+              onRescheduleClicked={onRescheduleClicked}
+              onCancelClicked={onCancelClicked}
+            />
+          );
+        })
+      ) : (
+        <NoAppointment></NoAppointment>
+      )}
     </Box>
   );
 }

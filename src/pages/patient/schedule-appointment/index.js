@@ -31,6 +31,7 @@ import store from "../../../store/store";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import {
+  DEFAULT_PATIENT_INFO_DATA,
   editAppointmentScheduleData,
   resetFilterData,
 } from "../../../store/appointment";
@@ -125,10 +126,10 @@ export const PageContent = ({
     case 1:
       return (
         <>
-          <Grid
+          <Box
             className={styles.examForComponent}
             p={{ xs: "24px 14px", md: "40px 16px" }}
-            sx={{ width: { xs: "100%", md: "65%" } }}
+            sx={{ width: { xs: "100%", md: "952px" } }}
           >
             <AppointmentLocation
               providerData={appointmentScheduleData.providerInfo}
@@ -155,7 +156,7 @@ export const PageContent = ({
                 {isLoggedIn ? t("scheduleAppoinment") : t("continue")}
               </Button>
             </Stack>
-          </Grid>
+          </Box>
         </>
       );
     case 2:
@@ -246,6 +247,18 @@ export default function ScheduleAppointmentPage() {
   const router = useRouter();
   const dispatch = useDispatch();
 
+  React.useEffect(() => {
+    if (activeStep === 2 || activeStep === 3) {
+      dispatch(
+        editAppointmentScheduleData({
+          key: "patientInfo",
+          value: DEFAULT_PATIENT_INFO_DATA,
+        })
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeStep]);
+
   const steps = [
     "Location",
     "Review",
@@ -302,7 +315,6 @@ export default function ScheduleAppointmentPage() {
   const userData = useSelector((state) => state.user.userData);
 
   React.useEffect(() => {
-    console.log({ isLoggedIn });
     if (isLoggedIn) {
       dispatch(
         editAppointmentScheduleData({
@@ -461,20 +473,22 @@ export default function ScheduleAppointmentPage() {
           Are you sure you want to reschedule?
         </DialogTitle>
         <DialogActions>
-          <Stack direction="row" alignItems="center" spacing={2}>
+          <Stack direction="row" alignItems="center" spacing={"10px"}>
             <StyledButton
+              isModalButton
               size="small"
               mode="secondary"
               onClick={handleCancelReschedule}
-              sx={{ fontSize: "14px", px: "20px", py: "11px" }}
+              sx={{ fontSize: "14px", px: "20px", py: "11px", height: "40px" }}
             >
-              Cancel
+              Deny
             </StyledButton>
             <StyledButton
+              isModalButton
               size="small"
               mode="primary"
               onClick={OnConfirmRescheduleAppointment}
-              sx={{ fontSize: "14px", px: "20px", py: "11px" }}
+              sx={{ fontSize: "14px", px: "20px", py: "11px", height: "40px" }}
             >
               Reschedule
             </StyledButton>

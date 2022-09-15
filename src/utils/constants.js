@@ -179,4 +179,8 @@ module.exports = {
       nextProvider: "provider_btnNext",
     },
   },
+  ERROR_CODE: {
+    NETWORK_ERR: "ERR_NETWORK",
+    BAD_REQUEST: "ERR_BAD_REQUEST",
+  },
 };

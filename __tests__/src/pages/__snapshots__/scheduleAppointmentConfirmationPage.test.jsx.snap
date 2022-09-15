@@ -2,6 +2,32 @@
 
 exports[`App renders App unchanged 1`] = `
 <div>
+  <div
+    class="MuiBox-root css-1hyfx7x"
+  >
+    <span
+      style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+    >
+      <span
+        style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+      >
+        <img
+          alt=""
+          aria-hidden="true"
+          src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27244.89%27%20height=%27211%27/%3e"
+          style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+        />
+      </span>
+      <img
+        alt=""
+        data-nimg="intrinsic"
+        decoding="async"
+        src="/_next/image?url=%2FVector.png&w=640&q=75"
+        srcset="/_next/image?url=%2FVector.png&w=256&q=75 1x, /_next/image?url=%2FVector.png&w=640&q=75 2x"
+        style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+      />
+    </span>
+  </div>
   <section
     style="padding-top: 64px;"
   >
@@ -61,7 +87,7 @@ exports[`App renders App unchanged 1`] = `
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-elhp89-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yziclw-MuiSvgIcon-root"
                   data-testid="CheckCircleRoundedIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -212,7 +238,7 @@ exports[`App renders App unchanged 1`] = `
                             class="displayFlex MuiBox-root css-0"
                           >
                             <div
-                              class="MuiBox-root css-0"
+                              class="imageContainer MuiBox-root css-0"
                             >
                               <span
                                 style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
@@ -251,21 +277,26 @@ exports[`App renders App unchanged 1`] = `
                               >
                                 Scripps Eyecare
                               </h3>
-                              <p
-                                class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
-                              />
                               <div
-                                class="phoneContainer MuiBox-root css-0"
+                                class="detailContainer MuiBox-root css-0"
                               >
-                                <p
-                                  class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
-                                />
+                                <div
+                                  class="MuiBox-root css-0"
+                                >
+                                  <p
+                                    class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
+                                  />
+                                  <div
+                                    class="phoneContainer MuiBox-root css-0"
+                                  >
+                                    <a
+                                      class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways phoneLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                                    />
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
-                          <div
-                            class="MuiBox-root css-0"
-                          />
                         </div>
                         <div
                           class="getDirectionLink MuiBox-root css-0"

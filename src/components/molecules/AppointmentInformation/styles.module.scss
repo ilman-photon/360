@@ -1,0 +1,150 @@
+.imageContainer {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  border-radius: 100%;
+
+  @media (max-width: 992px) {
+    width: 66px;
+    height: 66px;
+  }
+}
+
+.profilePhoto {
+  border-radius: 100%;
+}
+
+.nameContainer {
+  width: 645px;
+  display: flex;
+  margin-left: 120px;
+  border-bottom: 1px solid #d4d4d4;
+  margin-bottom: 14px;
+  padding-bottom: 14px;
+
+  h6 {
+    font-family: "Bw Nista Geometric DEMO", sans-serif;
+  }
+
+  @media (max-width: 992px) {
+    flex-direction: column;
+    margin-left: unset;
+    width: auto;
+    padding-left: 85px;
+    padding-bottom: 17px;
+    padding-top: 5px;
+  }
+}
+
+.doctorName {
+  width: 211px;
+  margin-right: 90px;
+}
+
+.locationContainer {
+  display: flex;
+  margin-left: 120px;
+
+  @media (max-width: 992px) {
+    flex-direction: column;
+    margin-left: unset;
+  }
+}
+
+.locationWrapper {
+  width: 211px;
+  margin-right: 90px;
+  gap: 6px;
+  display: flex;
+  flex-direction: column;
+
+  @media (max-width: 992px) {
+    margin-bottom: 24px;
+  }
+}
+
+.appointmentInformation h6 {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 28px;
+  color: #003b4a;
+}
+
+.locationContainer h6 {
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.bodyTitle {
+  font-weight: 500 !important;
+}
+
+.appointmentInformation p {
+  font-style: normal;
+  font-weight: 400 !important;
+  font-size: 16px !important;
+  line-height: 19px !important;
+}
+
+.subTitleWrapper {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.titleLocation {
+  margin-bottom: 8px !important;
+}
+
+.insuranceWrapper {
+  margin-right: unset;
+  @extend .locationWrapper;
+}
+
+.viewDetails {
+  width: 645px;
+  display: flex;
+  margin-left: 120px;
+  justify-content: center;
+  margin-top: 48px;
+  @media (max-width: 992px) {
+    width: auto;
+    margin-left: unset;
+    margin-top: 24px;
+  }
+}
+
+.link {
+  font-family: "Libre Franklin", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  color: #008294 !important;
+  text-decoration-color: inherit !important;
+  cursor: pointer;
+}
+
+.getDirectionLink {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 19px;
+
+  @media (max-width: 992px) {
+    margin-top: 10px;
+  }
+}
+
+.getDirectionLinkText {
+  font-family: "Libre Franklin", sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 0.0016em;
+  color: #008294 !important;
+  cursor: pointer;
+  text-decoration-color: inherit !important;
+}

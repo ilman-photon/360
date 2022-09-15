@@ -20,6 +20,7 @@ import constants from "../../../utils/constants";
 import AccountDrawer from "../../molecules/AccountDrawer/accountDrawer";
 import SubNavigation from "../../molecules/SubNavigation/subNavigation";
 import { logoutProps } from "../../../utils/authetication";
+import { useSelector } from "react-redux";
 
 export default function BaseHeader({
   OnLogoutClicked = (router) => {
@@ -35,15 +36,15 @@ export default function BaseHeader({
       testId: HOME_TEST_ID.appoinments,
       href: "/patient/appointments",
     },
-    { page: "My Health Chart", testId: HOME_TEST_ID.myhealthchart },
-    { page: "My Care Team", testId: HOME_TEST_ID.mycareteam },
-    { page: "Lab Results", testId: HOME_TEST_ID.labresults },
-    { page: "Billing", testId: HOME_TEST_ID.billing },
+    // { page: "My Health Chart", testId: HOME_TEST_ID.myhealthchart },
+    // { page: "My Care Team", testId: HOME_TEST_ID.mycareteam },
+    // { page: "Lab Results", testId: HOME_TEST_ID.labresults },
+    // { page: "Billing", testId: HOME_TEST_ID.billing },
   ];
   const [isUserLoged, setUserLoged] = React.useState(false);
   const router = useRouter();
   const logo = "/eyecarelogo.png";
-
+  const userData = useSelector((state) => state.user.userData);
   React.useEffect(() => {
     const cookies = new Cookies();
     const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
@@ -131,7 +132,7 @@ export default function BaseHeader({
                     endIcon={<ExpandMoreIcon />}
                     onClick={handleOpenUserMenu}
                   >
-                    User Name
+                    {userData.name}
                   </Button>
                 </Tooltip>
                 <Menu

@@ -38,7 +38,7 @@ export const ScheduleAvailability = ({
     ? currentDate.toLocaleDateString()
     : "";
   return (
-    <Box sx={{ marginTop: "16px" }}>
+    <Box>
       <Box
         sx={{
           display: "grid",

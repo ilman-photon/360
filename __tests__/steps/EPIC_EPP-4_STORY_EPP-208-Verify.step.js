@@ -75,9 +75,9 @@ defineFeature(feature, (test) => {
       () => {
         const usernameField = container.getByLabelText("emailUserLabel");
         const passwordField = container.getByLabelText("passwordLabel");
-        fireEvent.change(usernameField, { target: { value: "wrongUserName" } });
+        fireEvent.change(usernameField, { target: { value: "wrongUserName@email.cc" } });
         fireEvent.change(passwordField, { target: { value: "validPassword" } });
-        expect(usernameField.value).not.toEqual("validUsername");
+        expect(usernameField.value).not.toEqual("validUsername@email.cc");
         expect(passwordField.value).toEqual("validPassword");
       }
     );
