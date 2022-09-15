@@ -103,6 +103,20 @@ export default function AppointmentForm({
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
 
+  const isDOB = (value) => {
+    let date = new Date().getFullYear();
+    if (value.getFullYear() <= date) {
+      return true;
+    }
+    if (value.getMonth() <= 12) {
+      return true;
+    }
+    if (value.getMonth() <= 12) {
+      return true;
+    }
+    return false;
+  };
+
   const isOneOfPreferredValid = (name, value) => {
     switch (name) {
       case "email":
@@ -350,51 +364,56 @@ export default function AppointmentForm({
               }}
               rules={{
                 required: t("thisFieldRequired"),
+                validate: {
+                  required: (value) => {
+                    if (!isDOB(value)) return "Incorect Date of Birth";
+                  },
+                },
               }}
             />
           </Box>
           <DisclaimerText label="Month, Day, Year" />
 
+          <div style={styles.divMargin}>
+            <Controller
+              name="preferredCommunication"
+              control={control}
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => {
+                return (
+                  <>
+                    <RowRadioButtonsGroup
+                      error={!!error}
+                      value={value}
+                      onChange={onChange}
+                      label="Preferred mode of Communication"
+                      options={options}
+                      helperText={error ? error.message : null}
+                      textSx={{
+                        justifyContent: "space-between",
+                        color: "black",
+                        fontWeight: "600",
+                      }}
+                      sx={{
+                        width: { xs: "100%", md: "56%" },
+                        m: 1,
+                        justifyContent: "space-between",
+                        fontSize: "16px",
+                        fontWeight: "600",
+                        color: "black",
+                      }}
+                    />
+                  </>
+                );
+              }}
+              rules={{ required: t("thisFieldRequired") }}
+            />
+          </div>
+
           {isForMyself ? (
             <>
-              <div style={styles.divMargin}>
-                <Controller
-                  name="preferredCommunication"
-                  control={control}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => {
-                    return (
-                      <>
-                        <RowRadioButtonsGroup
-                          error={!!error}
-                          value={value}
-                          onChange={onChange}
-                          label="Preferred mode of Communication"
-                          options={options}
-                          helperText={error ? error.message : null}
-                          textSx={{
-                            justifyContent: "space-between",
-                            color: "black",
-                            fontWeight: "600",
-                          }}
-                          sx={{
-                            width: { xs: "100%", md: "56%" },
-                            m: 1,
-                            justifyContent: "space-between",
-                            fontSize: "16px",
-                            fontWeight: "600",
-                            color: "black",
-                          }}
-                        />
-                      </>
-                    );
-                  }}
-                  rules={{ required: t("thisFieldRequired") }}
-                />
-              </div>
-
               <Divider sx={{ mx: 1 }} />
               <Grid sx={{ m: "24px 8px 16px" }}>
                 <Typography sx={{ ...styles.boldLabel, mb: 1 }}>
