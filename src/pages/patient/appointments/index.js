@@ -19,9 +19,11 @@ import CustomModal from "../../../components/molecules/CustomModal/customModal";
 import FormMessage from "../../../components/molecules/FormMessage/formMessage";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { colors } from "../../../styles/theme";
+import ModalCancelScheduling from "../../../components/organisms/ScheduleAppointment/ModalCancelScheduling/modalCancelScheduling";
 export default function Appointments() {
   const [modalErrorRequest, setModalErrorRequest] = useState(false);
   const [modalSuccessCancel, setModalSuccessCancel] = useState(false);
+  const [modalCancel, setModalCancel] = useState(false);
 
   const appointments = useSelector((state) => state.user.userAppointmentData);
   const userData = useSelector((state) => state.user.userData);
@@ -53,6 +55,15 @@ export default function Appointments() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appointments]);
 
+  const handleClose = () => {
+    setModalCancel(false);
+  };
+
+  const handleCancelSchedule = (data) => {
+    setModalCancel(false);
+    setModalSuccessCancel(true);
+  };
+
   return (
     <>
       <Box className={styles.container}>
@@ -70,7 +81,7 @@ export default function Appointments() {
             data={appointments}
             onRescheduleClicked={() => {}}
             onCancelClicked={() => {
-              setModalSuccessCancel(true);
+              setModalCancel(true);
             }}
           />
         )}
@@ -124,6 +135,12 @@ export default function Appointments() {
           </Typography>
         </Box>
       </CustomModal>
+
+      <ModalCancelScheduling
+        isOpen={modalCancel}
+        OnClickCancel={handleClose}
+        OnCancelClicked={handleCancelSchedule}
+      />
     </>
   );
 }
