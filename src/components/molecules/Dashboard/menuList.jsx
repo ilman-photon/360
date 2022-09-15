@@ -7,7 +7,6 @@ import GetAppOutlinedIcon from "@mui/icons-material/GetAppOutlined";
 import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { styles } from "../../organisms/BaseHeader/style";
 
 const StyledMenu = styled((props) => (
   <Menu

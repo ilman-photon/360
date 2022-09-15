@@ -4,7 +4,6 @@ import SwipeableDrawer from "@mui/material/Drawer";
 
 import ModalConfirmContent from "./modalConfirmContent";
 import { Box } from "@mui/material";
-import { useEffect } from "react";
 
 export default function ModalConfirmation({
   isOpen,

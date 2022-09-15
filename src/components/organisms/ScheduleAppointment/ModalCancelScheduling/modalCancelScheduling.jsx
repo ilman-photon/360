@@ -28,7 +28,6 @@ export default function ModalCancelScheduling({
   const onSubmit = (data) => {
     console.log(data, "vw", watchedRadio);
     OnCancelClicked(data);
-    // OnClickCancel();
   };
 
   const { t } = useTranslation("translation", {
@@ -148,7 +147,7 @@ export default function ModalCancelScheduling({
                         rules={{ required: t("thisFieldRequired") }}
                       />
 
-                      {watchedRadio === "other" ? (
+                      {watchedRadio == "other" ? (
                         <Controller
                           name="cancelOther"
                           control={control}

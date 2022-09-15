@@ -224,7 +224,9 @@ export default function HomePage() {
             purposeOfVisitData={filterSuggestionData.purposeOfVisitData}
             insuranceCarrierData={filterSuggestionData.insuranceCarrierData}
             filter={[]}
-            onActivFilter={() => {}}
+            onActivFilter={() => {
+              //this is intentional
+            }}
             appliedFilter={[]}
             title={"John, Welcome to your dashboard"}
             subtitle={"Search for a doctor"}
