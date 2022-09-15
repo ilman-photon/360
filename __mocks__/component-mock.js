@@ -1,10 +1,13 @@
 import { createMocks } from "react-idle-timer";
 import { MessageChannel } from "worker_threads";
 import { cleanup } from "@testing-library/react";
+import { injectStore } from "../src/pages/api/api";
+import store from "../src/store/store";
 
 beforeAll(() => {
   createMocks();
   global.MessageChannel = MessageChannel;
+  injectStore(store);
 });
 
 afterAll(cleanup);
