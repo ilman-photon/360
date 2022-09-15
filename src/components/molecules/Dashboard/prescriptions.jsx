@@ -397,6 +397,7 @@ export default function Prescriptions({
     <ThemeProvider theme={patientTypography}>
       <AccountCard
         isAppoinment={true}
+        isDashboard={true}
         titleIcon={
           <Image alt="" src={iconPrescription} width={32} height={32} />
         }

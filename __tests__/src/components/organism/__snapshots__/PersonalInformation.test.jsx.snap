@@ -12,7 +12,7 @@ Object {
           class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
         >
           <div
-            class="css-1lwbda4-MuiStack-root"
+            class="css-16q27bo-MuiStack-root"
             style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
           >
             <div
@@ -553,7 +553,7 @@ Object {
         class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
       >
         <div
-          class="css-1lwbda4-MuiStack-root"
+          class="css-16q27bo-MuiStack-root"
           style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
         >
           <div

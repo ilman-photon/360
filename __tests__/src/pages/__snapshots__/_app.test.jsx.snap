@@ -163,7 +163,7 @@ exports[`App renders App unchanged 1`] = `
               class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1psqxpj-MuiPaper-root-MuiCard-root"
             >
               <div
-                class="MuiCardHeader-root cardHeader css-1ele1k2-MuiCardHeader-root"
+                class="MuiCardHeader-root dashboardHeader cardHeader css-1ele1k2-MuiCardHeader-root"
               >
                 <div
                   class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
@@ -433,7 +433,7 @@ exports[`App renders App unchanged 1`] = `
               class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-jbta4g-MuiPaper-root-MuiCard-root"
             >
               <div
-                class="MuiCardHeader-root cardHeader css-1ele1k2-MuiCardHeader-root"
+                class="MuiCardHeader-root dashboardHeader cardHeader css-1ele1k2-MuiCardHeader-root"
               >
                 <div
                   class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"

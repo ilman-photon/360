@@ -8,6 +8,7 @@ export const AccountCard = ({
   isEditing,
   actionContent,
   isAppoinment,
+  isDashboard,
   textStyle = {},
   ...props
 }) => {
@@ -17,7 +18,11 @@ export const AccountCard = ({
       <Card variant="outlined" className={styles.card} sx={props.sx}>
         {(isDesktop || isAppoinment) && (
           <CardHeader
-            className={styles.cardHeader}
+            className={
+              isDashboard
+                ? [styles.dashboardHeader, styles.cardHeader]
+                : styles.cardHeader
+            }
             sx={{
               ".MuiCardHeader-action": {
                 margin: 0,

@@ -272,6 +272,7 @@ export default function AppointmentCard({ appointmentData = [] }) {
     <ThemeProvider theme={patientTypography}>
       <AccountCard
         isAppoinment={true}
+        isDashboard={true}
         titleIcon={
           <CalendarTodayOutlinedIcon
             sx={{ color: "#007787" }}

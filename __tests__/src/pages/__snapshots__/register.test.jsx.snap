@@ -60,7 +60,7 @@ Object {
                   <h1
                     aria-label="User Registration"
                     aria-roledescription=""
-                    class="MuiTypography-root MuiTypography-h1 css-1j9i2ku-MuiTypography-root"
+                    class="MuiTypography-root MuiTypography-h1 css-1ho8qlu-MuiTypography-root"
                     role="heading"
                   >
                     User Registration
@@ -582,7 +582,7 @@ Object {
                   </form>
                   <span
                     class="MuiTypography-root MuiTypography-caption css-7oh75i-MuiTypography-root"
-                    style="color: rgb(54, 106, 112); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
+                    style="color: rgb(0, 59, 74); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
                   >
                     By registering, you accept to our Terms & Conditions and Privacy Policy
                   </span>
@@ -592,7 +592,7 @@ Object {
                   />
                   <span
                     class="MuiTypography-root MuiTypography-caption css-7oh75i-MuiTypography-root"
-                    style="color: rgb(54, 106, 112); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
+                    style="color: rgb(0, 59, 74); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
                   >
                     Already have an account?
                      
@@ -687,7 +687,7 @@ Object {
                 <h1
                   aria-label="User Registration"
                   aria-roledescription=""
-                  class="MuiTypography-root MuiTypography-h1 css-1j9i2ku-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-h1 css-1ho8qlu-MuiTypography-root"
                   role="heading"
                 >
                   User Registration
@@ -1209,7 +1209,7 @@ Object {
                 </form>
                 <span
                   class="MuiTypography-root MuiTypography-caption css-7oh75i-MuiTypography-root"
-                  style="color: rgb(54, 106, 112); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
+                  style="color: rgb(0, 59, 74); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
                 >
                   By registering, you accept to our Terms & Conditions and Privacy Policy
                 </span>
@@ -1219,7 +1219,7 @@ Object {
                 />
                 <span
                   class="MuiTypography-root MuiTypography-caption css-7oh75i-MuiTypography-root"
-                  style="color: rgb(54, 106, 112); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
+                  style="color: rgb(0, 59, 74); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
                 >
                   Already have an account?
                    
