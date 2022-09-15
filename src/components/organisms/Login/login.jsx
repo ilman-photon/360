@@ -15,6 +15,7 @@ import { useTranslation } from "next-i18next";
 import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
 import { Regex } from "../../../utils/regex";
+import { colors } from "../../../styles/theme";
 
 const constants = require("../../../utils/constants");
 
@@ -150,7 +151,7 @@ export function Login({
           <Grid container justifyContent={constants.CENTER}>
             <Typography
               variant="bodyMedium"
-              sx={{ color: "#003B4A", fontWeight: 600, textAlign: "center" }}
+              sx={{ color: colors.grey, fontWeight: 400, textAlign: "center" }}
             >
               {t("alreadyHaveAnAppointment")}
               <br />
