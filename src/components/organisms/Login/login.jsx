@@ -29,7 +29,7 @@ export function Login({
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "Login" });
   const { LOGIN_TEST_ID } = constants.TEST_ID;
-  const { handleSubmit, setError, control } = useForm();
+  const { handleSubmit, control } = useForm();
   const onSubmit = ({ username, password }) => {
     OnLoginClicked({ username, password }, router, checkMessage);
   };

@@ -98,7 +98,6 @@ export const PageContent = ({
         value: payload,
       })
     );
-    // OnsetActiveStep();
   };
 
   const createAccount = async function (postbody) {
@@ -175,7 +174,6 @@ export const PageContent = ({
               selectedSelf={selectedSelf}
               OnSubmit={(v) => {
                 handleFormSubmit(v);
-                // OnsetActiveStep(4);
               }}
               OnSetSelectedSelf={(idx) => setSelectedSelf(idx)}
               setActiveStep={(idx) => OnsetActiveStep(idx)}
@@ -213,7 +211,6 @@ export const PageContent = ({
                 handleFormSubmit(v);
                 createAccount(v);
                 OnClickSchedule(v);
-                // OnsetActiveStep(4);
               }}
               OnClickSignIn={() => {
                 cookies.set("dashboardState", true, { path: "/patient" });
