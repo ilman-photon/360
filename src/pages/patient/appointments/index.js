@@ -55,6 +55,30 @@ export default function Appointments() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appointments]);
 
+  const onRescheduleClicked = ({
+    appointmentInfo,
+    providerInfo = { address: {} },
+  }) => {
+    const filterData = {
+      purposeOfVisit: appointmentInfo.appointmentType,
+      date: new Date(appointmentInfo.date),
+      insuranceCarrier: Array.isArray(appointmentInfo.insuranceCarrier)
+        ? appointmentInfo.insuranceCarrier[0]
+        : appointmentInfo.insuranceCarrier,
+      location: providerInfo.address.city,
+    };
+
+    const appointmentSchedule = {
+      providerInfo: providerInfo,
+      patientInfo: userData,
+      appointmentInfo: appointmentInfo,
+    };
+    dispatch(setFilterData(filterData));
+    dispatch(setAppointmentSchedule(appointmentSchedule));
+
+    router.push("/patient/appointments/1/reschedule");
+  };
+
   const handleClose = () => {
     setModalCancel(false);
   };
@@ -79,7 +103,7 @@ export default function Appointments() {
         {appointments && (
           <UpcomingAppointment
             data={appointments}
-            onRescheduleClicked={() => {}}
+            onRescheduleClicked={onRescheduleClicked}
             onCancelClicked={() => {
               setModalCancel(true);
             }}
