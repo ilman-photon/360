@@ -329,6 +329,34 @@ const feature = loadFeature(
 	"./__tests__/feature/Patient Portal/Sprint5/EPP-3297.feature"
 );
 
+const mockApi = () => {
+  Cookies.result = "true";
+  const expectedResult = {
+    ResponseCode: 2005,
+    ResponseType: "success",
+  };
+  const mock = new MockAdapter(axios);
+  const domain = window.location.origin;
+  mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
+  mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGESTION);
+  mock.onGet(
+  `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`
+  ).reply(200, MOCK_APPOINTMENT);
+  mock
+    .onGet(
+      `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+    )
+    .reply(200, MOCK_PRESCRIPTION);
+}
+
+const geolocation = () => {
+  const mockGeolocation = {
+    getCurrentPosition: jest.fn(),
+    watchPosition: jest.fn(),
+  };
+  global.navigator.geolocation = mockGeolocation;
+}
+
 defineFeature(feature, (test) => {
 	let container;
   
@@ -340,263 +368,347 @@ defineFeature(feature, (test) => {
 
 	test('EPIC_EPP-1_STORY_EPP-3297 - Verify User should see the following details as part of each upcoming appointment', ({ given, when, then, and }) => {
         given('User launch Patient Portal url', () => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         when('User is logged in to the application', () => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         then(/^User lands to the "(.*)" screen$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         and(/^User should see the "(.*)" option$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         when(/^User selects the "(.*)" option$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         and(/^User should see on "(.*)" button$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
-        then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-			defaultValidation();
+        then(/^User should navigated to "(.*)" screen$/, async(arg0) => {
+			    mockApi();
+          geolocation();
+          Cookies.result = false;
+          act(() => {
+            container = render(
+              <Provider store={store}>
+                {HomePage.getLayout(<HomePage />)}
+              </Provider>
+            )
+          })
+          await waitFor(() => container.getByLabelText(/Appointments/i))
         });
 
         and('User should see the widget with upcoming appointments', () => {
-			defaultValidation();
+			    const appointments = container.getByLabelText(/Appointments/i);
+          expect(appointments).toBeInTheDocument();
         });
 
         when('User click on the widget with with upcoming appointments', () => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         then(/^User should navigated "(.*)" screen$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         and('User should see the following details as part of each upcoming appointment as below:', (table) => {
-			defaultValidation();
+			    defaultValidation();
         });
     });
 
     test('EPIC_EPP-1_STORY_EPP-3297 - Verify User should see the latest list of appointments that are scheduled in the widget', ({ given, when, then, and }) => {
         given('User launch Patient Portal url', () => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         when('User is logged in to the application', () => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         then(/^User lands to the "(.*)" screen$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         and(/^User should see the "(.*)" option$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         when(/^User selects the "(.*)" option$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         and(/^User should see on "(.*)" button$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
-        then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-			defaultValidation();
+        then(/^User should navigated to "(.*)" screen$/, async(arg0) => {
+			    mockApi();
+          geolocation();
+          Cookies.result = false;
+          act(() => {
+            container = render(
+              <Provider store={store}>
+                {HomePage.getLayout(<HomePage />)}
+              </Provider>
+            )
+          })
+          await waitFor(() => container.getByLabelText(/Appointments/i))
         });
 
         and('User should see the widget with upcoming appointments', () => {
-			defaultValidation();
+			    const purposeOfVisit = container.getByText('Purpose of Visit');
+			    const patientInfo = container.getByText('Patient Information');
+          expect(purposeOfVisit).toBeInTheDocument();
+          expect(patientInfo).toBeInTheDocument();
         });
 
         when('User click on the widget with with upcoming appointments', () => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         then(/^User should navigated "(.*)" screen$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         and('User should see the latest list of appointments that are scheduled in the widget', () => {
-			defaultValidation();
+			    defaultValidation();
         });
     });
 
 	test('EPIC_EPP-1_STORY_EPP-3297 - Verify User on clicking the widget will get navigated to the screen with upcoming appointments', ({ given, when, then, and }) => {
         given('User launch Patient Portal url', () => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         when('User is logged in to the application', () => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         then(/^User lands to the "(.*)" screen$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         and(/^User should see the "(.*)" option$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         when(/^User selects the "(.*)" option$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         and(/^User should see on "(.*)" button$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
-        then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-			defaultValidation();
+        then(/^User should navigated to "(.*)" screen$/, async(arg0) => {
+          mockApi();
+          const response = await getServerSideProps({
+            req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
+            res: jest.fn(),
+          });
+          geolocation();
+          Cookies.result = false;
+          act(() => {
+            container = render(
+              <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
+            );
+          });
+          await waitFor(() => container.getByLabelText(/Appointments/i));
+          expect(response).toEqual({
+            props: {
+              isStepTwo: false,
+            },
+          });
         });
 
         and('User should see the widget with upcoming appointments', () => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         when('User click on the widget with with upcoming appointments', () => {
-			defaultValidation();
+          const rescheduleBtn = container.getByText("Reschedule");
+          act(()=>{
+            fireEvent.click(rescheduleBtn)
+          })
         });
 
         then(/^User should navigated "(.*)" screen$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
     });
 
 	test('EPIC_EPP-1_STORY_EPP-3297 - Verify User on clicking any particular appointment will get navigated to that particular appointment in the screen with upcoming appointments', ({ given, when, then, and }) => {
         given('User launch Patient Portal url', () => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         when('User is logged in to the application', () => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         then(/^User lands to the "(.*)" screen$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         and(/^User should see the "(.*)" option$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         when(/^User selects the "(.*)" option$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
-        then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-			defaultValidation();
+        then(/^User should navigated to "(.*)" screen$/, async(arg0) => {
+          mockApi();
+          const response = await getServerSideProps({
+            req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
+            res: jest.fn(),
+          });
+          geolocation();
+          Cookies.result = false;
+          act(() => {
+            container = render(
+              <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
+            );
+          });
+          await waitFor(() => container.getByLabelText(/Appointments/i));
+          expect(response).toEqual({
+            props: {
+              isStepTwo: false,
+            },
+          });
         });
 
         and(/^User should see on "(.*)" button$/, (arg0) => {
-			defaultValidation();
+			    const purposeVisit = container.getByText(/View Appointments/i);
+          expect(purposeVisit).toBeInTheDocument();
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-			defaultValidation();
+			    const viewAppointment = container.getByText(/View Appointments/i);
+          fireEvent.click(viewAppointment);
         });
 
         then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         and('User should see the widget with upcoming appointments', () => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         when('User on clicking any particular appointment', () => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         then('User should navigated particular appointment in the screen with upcoming appointments', () => {
-			defaultValidation();
+			    defaultValidation();
         });
     });
 
 	test('EPIC_EPP-1_STORY_EPP-3297 - Verify User should be able to swipe through to view other upcoming appointments', ({ given, when, then, and }) => {
         given('User launch Patient Portal url', () => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         when('User is logged in to the application', () => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         then(/^User lands to the "(.*)" screen$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         and(/^User should see the "(.*)" option$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         when(/^User selects the "(.*)" option$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         and(/^User should see on "(.*)" button$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-			defaultValidation();
+			    defaultValidation();
         });
 
-        then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-			defaultValidation();
+        then(/^User should navigated to "(.*)" screen$/, async(arg0) => {
+          mockApi();
+          window.matchMedia = createMatchMedia('700px');
+          const response = await getServerSideProps({
+              req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
+              res: jest.fn(),
+          });
+          geolocation();
+          act(()=>{
+          container = render(
+              <Provider store={store}>
+                  {HomePage.getLayout(<HomePage />)}
+              </Provider>
+              );
+          })
+          await waitFor(()=> container.getByText(/Purpose of Visit/i))
+         
+          expect(response).toEqual({
+            props: { isStepTwo: false },
+          });
         });
 
         and('User should see the widget with upcoming appointments', () => {
-			defaultValidation();
+			    expect(container.getByText(/Purpose of Visit/i)).toBeInTheDocument();
         });
 
         when('User click on the widget with with upcoming appointments', () => {
-			defaultValidation();
+			    const cancelBtn = container.getByText("Cancel");
+          act(()=>{
+            fireEvent.click(cancelBtn)
+          })
         });
 
-        then(/^User should navigated "(.*)" screen$/, (arg0) => {
-			defaultValidation();
+        then(/^User should navigated "(.*)" screen$/, async(arg0) => {
+          defaultValidation();
         });
 
         and('User should be able to swipe through to view other upcoming appointments', () => {
-			defaultValidation();
+			    defaultValidation();
         });
     });
 })
