@@ -5,8 +5,7 @@ import styles from "./styles.module.scss";
 import AppointmentButton from "../../atoms/AppointmentButton/appointmentButton";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
-import moment from "moment";
-import "moment-timezone";
+import { formatAppointmentDate } from "../../../utils/dateFormatter";
 
 export default function UpcomingAppointment({
   data = {
@@ -18,15 +17,6 @@ export default function UpcomingAppointment({
     // This is intentional
   },
 }) {
-  const fullDate = () => {
-    const date = new Date(data.appointmentInfo.date);
-    if (!date) return "-";
-    const momentDate = new moment(date);
-    return momentDate
-      .tz("America/New_York")
-      .format("dddd, MMM DD, YYYY [at] h:mm z");
-  };
-
   const getProviderLocation = () => {
     if (!data.providerInfo.location) return "#";
     return `https://www.google.com/maps/search/?api=1&query=${data.providerInfo.location.latitude},${data.providerInfo.location.longitude}`;
@@ -41,7 +31,7 @@ export default function UpcomingAppointment({
           className={[styles.itemContainer, styles.calendarContainer].join(" ")}
         >
           <Typography variant="subtitle2" className={styles.date}>
-            {fullDate()}
+            {formatAppointmentDate(data.appointmentInfo.date)}
           </Typography>
           <AppointmentButton icon={<CalendarTodayIcon />}>
             Add to calendar

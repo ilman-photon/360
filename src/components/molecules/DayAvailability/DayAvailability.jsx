@@ -22,11 +22,17 @@ export const buttonSchedule = (
   date = "",
   isScheduleAvailability = false
 ) => {
+  const parseDate =
+    typeof date === "string" && date.includes("-")
+      ? date.replace(/-/g, "/")
+      : date;
   const isNextAvailabilityLabel =
     isScheduleAvailability && label.indexOf("Next availability is") > -1;
   const dateTime =
     !isScheduleAvailability || !isNextAvailabilityLabel
-      ? new Date(`${date} ${label.toUpperCase().replace(/(AM|PM)/, " $1")}`)
+      ? new Date(
+          `${parseDate} ${label.toUpperCase().replace(/(AM|PM)/, " $1")}`
+        )
       : "";
   return (
     <Box

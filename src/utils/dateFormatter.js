@@ -1,4 +1,5 @@
 import moment from "moment";
+import "moment-timezone";
 
 export function convertToDate(date) {
   if (!date) {
@@ -44,8 +45,11 @@ export function formatDate(payload, withTimezone) {
 }
 
 export function formatAppointmentDate(date) {
+  if (!date) return "-";
   const momentDate = new moment(date);
-  return momentDate.format("dddd, MMM DD - h:mm a");
+  return momentDate
+    .tz("America/New_York")
+    .format("dddd, MMM DD, YYYY [at] h:mm z");
 }
 
 export function ddmmyyDateFormat(date) {

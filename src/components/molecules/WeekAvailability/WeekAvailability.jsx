@@ -100,9 +100,15 @@ export const WeekAvailability = ({
     date = ""
   ) {
     if (label) {
+      const parseDate =
+        typeof date === "string" && date.includes("-")
+          ? date.replace(/-/g, "/")
+          : date;
       const isLabelMore = label.indexOf("more") > -1;
       const dateTime = !isLabelMore
-        ? new Date(`${date} ${label.toUpperCase().replace(/(AM|PM)/, " $1")}`)
+        ? new Date(
+            `${parseDate} ${label.toUpperCase().replace(/(AM|PM)/, " $1")}`
+          )
         : "";
       return (
         <Box
