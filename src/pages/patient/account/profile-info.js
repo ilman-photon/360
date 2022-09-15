@@ -4,7 +4,7 @@ import ContactInformation from "../../../components/organisms/ContactInformation
 import { Box, Grid, Tab, Tabs, useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
-import { fetchUser, setUserData } from "../../../store/user";
+import { fetchUser, setUserData, updateUser } from "../../../store/user";
 import store from "../../../store/store";
 import PropTypes from "prop-types";
 import { fetchToken, closePageMessage, setPageMessage } from "../../../store";
@@ -83,16 +83,22 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
     }, 5000);
   };
 
-  const onSavePersonalData = (payload) => {
-    dispatch(setUserData(payload));
-    setPersonalEditing(false);
-    showSuccessMessage("Your changes were saved");
+  const onSavePersonalData = async (postBody) => {
+    await dispatch(fetchToken());
+    const {payload} = await dispatch(updateUser({token: accessToken, payload: postBody}));
+    if (payload.success) {
+      showSuccessMessage("Your changes were saved");
+      setPersonalEditing(false);
+    }
   };
 
-  const onSaveContactData = (payload) => {
-    dispatch(setUserData(payload));
-    setContactEditing(false);
-    showSuccessMessage("Your changes were saved");
+  const onSaveContactData = async (postBody) => {
+    await dispatch(fetchToken());
+    const {payload} = await dispatch(updateUser({token: accessToken, payload: postBody}));
+    if (payload.success) {
+      showSuccessMessage("Your changes were saved");
+      setContactEditing(false);
+    }
   };
 
   useEffect(() => {
@@ -104,7 +110,7 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
   useEffect(() => {
     if (accessToken) dispatch(fetchUser(accessToken));
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [accessToken]);
+  }, [accessToken, dispatch, fetchUser]);
 
   useEffect(() => {
     fetchUSListOfStates();

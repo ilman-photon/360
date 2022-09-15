@@ -85,12 +85,15 @@ export class Api {
           reject(err);
         }
       };
+      
 
       switch (method) {
         case "get":
           return this.client.get(url).then(resolver).catch(rejecter);
         case "post":
           return this.client.post(url, postbody).then(resolver).catch(rejecter);
+        case "put":
+          return this.client.put(url, postbody).then(resolver).catch(rejecter);
         default:
           return this.client.get(url, postbody).then(resolver).catch(rejecter);
       }
@@ -228,11 +231,12 @@ export class Api {
       "https://public.opendatasoft.com/api/records/1.0/search/?dataset=georef-united-states-of-america-state&q=&sort=ste_name&facet=ste_name&rows=99";
     try {
       const response = await this.getResponse(usStatesApiUrl, null, "get");
+      console.log()
       return response.records.map((record) => {
         return {
           id: record.datasetid,
-          label: record.fields.ste_name,
-          value: record.fields.ste_name,
+          label: record.fields.ste_stusps_code,
+          value: record.fields.ste_stusps_code,
         };
       });
     } catch (error) {
