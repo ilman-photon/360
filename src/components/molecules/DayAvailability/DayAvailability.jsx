@@ -12,6 +12,8 @@ import {
   parseScheduleDataWeekOverlay,
   timeInWeekLabel,
 } from "../../../utils/appointment";
+import moment from "moment";
+import { convertTime12to24 } from "../../../utils/dateFormatter";
 
 export const buttonSchedule = (
   label = "",
@@ -22,16 +24,16 @@ export const buttonSchedule = (
   date = "",
   isScheduleAvailability = false
 ) => {
-  const parseDate =
-    typeof date === "string" && date.includes("-")
-      ? date.replace(/-/g, "/")
-      : date;
+  const parseDate = new moment(date).format("YYYY-MM-DD");
   const isNextAvailabilityLabel =
     isScheduleAvailability && label.indexOf("Next availability is") > -1;
+  label;
   const dateTime =
     !isScheduleAvailability || !isNextAvailabilityLabel
       ? new Date(
-          `${parseDate} ${label.toUpperCase().replace(/(AM|PM)/, " $1")}`
+          `${parseDate}T${convertTime12to24(
+            label.toUpperCase().replace(/(AM|PM)/, " $1")
+          )}`
         )
       : "";
   return (

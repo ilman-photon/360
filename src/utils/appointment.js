@@ -1,3 +1,4 @@
+import moment from "moment";
 import constants from "./constants";
 import { ddmmyyDateFormat } from "./dateFormatter";
 
@@ -185,7 +186,7 @@ export function getDates(startDate, stopDate, isDayView = false) {
   const dateArray = [];
   let currentDate = startDate;
   while (currentDate <= stopDate) {
-    dateArray.push(new Date(currentDate));
+    dateArray.push(currentDate);
     currentDate = currentDate.addDays(1);
   }
   return {

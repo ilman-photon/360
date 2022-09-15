@@ -10,6 +10,8 @@ import {
   parseDateWeekList,
   parseScheduleDataWeek,
 } from "../../../utils/appointment";
+import moment from "moment";
+import { convertTime12to24 } from "../../../utils/dateFormatter";
 
 export function viewAllAvailabilityLinkUI({
   onClickViewAllAvailability = () => {
@@ -100,14 +102,13 @@ export const WeekAvailability = ({
     date = ""
   ) {
     if (label) {
-      const parseDate =
-        typeof date === "string" && date.includes("-")
-          ? date.replace(/-/g, "/")
-          : date;
+      const parseDate = new moment(date).format("YYYY-MM-DD");
       const isLabelMore = label.indexOf("more") > -1;
       const dateTime = !isLabelMore
         ? new Date(
-            `${parseDate} ${label.toUpperCase().replace(/(AM|PM)/, " $1")}`
+            `${parseDate}T${convertTime12to24(
+              label.toUpperCase().replace(/(AM|PM)/, " $1")
+            )}`
           )
         : "";
       return (
