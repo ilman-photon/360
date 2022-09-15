@@ -59,7 +59,7 @@ Object {
                   >
                     <label
                       aria-label="Family emergency, Patient passed away, Family emergency, Not covered by insurance, Rescheduled appointment, Patient hospitalized, Patient illness, Transportation issues, Weather, Homebound, Other - radio buttons"
-                      class="MuiFormLabel-root MuiFormLabel-colorPrimary css-13e28up-MuiFormLabel-root"
+                      class="MuiFormLabel-root MuiFormLabel-colorPrimary css-p3vhbq-MuiFormLabel-root"
                       id="row-radio-buttons-group-label"
                     >
                       cancelReason
