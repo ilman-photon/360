@@ -83,7 +83,7 @@ export const PageContent = ({
     // This is intentional
   },
 }) => {
-  const [selectedSelf, setSelectedSelf] = React.useState(1);
+  const [selectedSelf, setSelectedSelf] = React.useState(null);
   const { t } = useTranslation("translation", {
     keyPrefix: "scheduleAppoinment",
   });
@@ -352,7 +352,7 @@ export default function ScheduleAppointmentPage() {
     if (isReschedule) {
       router.push("/patient/appointments");
     } else {
-      setIsOpen(false);
+      router.push("/patient/appointment");
     }
   };
 
