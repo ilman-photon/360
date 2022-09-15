@@ -1,14 +1,12 @@
 import { Box, Typography, Link } from "@mui/material";
 import styles from "./styles.module.scss";
-import Image from "next/image";
-import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import moment from "moment";
 import { useState } from "react";
 import Collapse from "@mui/material/Collapse";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Button from "@mui/material/Button";
-import { Yard } from "@mui/icons-material";
 import React from "react";
+import AppointmentInformation from "../../molecules/AppointmentInformation/appointmentInformation";
 export function PastAppointmentCard({ data, threshold }) {
   const date = data.appointmentInfo.date;
   const timezone = date.substring(date.length - 3);
@@ -68,14 +66,6 @@ export function PastAppointmentCard({ data, threshold }) {
         unmountOnExit
       >
         <Box className={styles.pastAppointmentDetail}>
-          <Box className={styles.imageContainer}>
-            <Image
-              src={data.providerInfo.image}
-              layout="fill"
-              className={styles.profilePhoto}
-              alt="Doctor Image"
-            ></Image>
-          </Box>
           <Box className={styles.dateContainer}>
             <Typography variant="subtitle1" className={styles.date}>
               {fullDate}
@@ -87,51 +77,7 @@ export function PastAppointmentCard({ data, threshold }) {
               </Typography>
             </Box>
           </Box>
-          <Box className={styles.nameContainer}>
-            <Typography variant="subtitle1" className={styles.doctorName}>
-              {data.providerInfo.name}
-            </Typography>
-            <Box className={styles.subTitleWrapper}>
-              <Typography variant="subtitle1">Patient: </Typography>
-              <Typography variant="body2">{data.patientInfo.name}</Typography>
-            </Box>
-          </Box>
-          <Box className={styles.locationContainer}>
-            <Box className={styles.locationWrapper}>
-              <Typography variant="subtitle2" className={styles.titleLocation}>
-                Location
-              </Typography>
-              <Typography variant="body1" className={styles.bodyTitle}>
-                {data.providerInfo.position}
-              </Typography>
-              <Typography variant="body2">
-                <>
-                  {data.providerInfo.address.addressLine1}
-                  <br />
-                  {data.providerInfo.address.addressLine2}
-                  <br />
-                  {data.providerInfo.address.city},{" "}
-                  {data.providerInfo.address.state},{" "}
-                  {data.providerInfo.address.zipcode}
-                </>
-              </Typography>
-              <Link className={styles.link}>
-                {formatPhoneNumber(data.providerInfo.phoneNumber)}
-              </Link>
-            </Box>
-            <Box className={styles.insuranceWrapper}>
-              <Typography variant="subtitle2" className={styles.titleLocation}>
-                Insurance
-              </Typography>
-              {data.appointmentInfo.insuranceCarrier.map((item, index) => {
-                return (
-                  <Typography variant="body2" key={index}>
-                    {item}
-                  </Typography>
-                );
-              })}
-            </Box>
-          </Box>
+          <AppointmentInformation data={data}></AppointmentInformation>
           <Box className={styles.viewDetails}>
             <Link className={styles.link}>View appointment details</Link>
           </Box>

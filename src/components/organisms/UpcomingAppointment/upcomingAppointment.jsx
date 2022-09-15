@@ -1,12 +1,11 @@
 import { Box, Typography, Link } from "@mui/material";
 import styles from "./styles.module.scss";
-import moment from "moment";
+import moment from "moment-timezone";
 import AppointmentButton from "../../atoms/AppointmentButton/appointmentButton";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import { StyledButton } from "../../atoms/Button/button";
 import AppointmentInformation from "../../molecules/AppointmentInformation/appointmentInformation";
-AppointmentInformation;
 
 const constants = require("../../../utils/constants");
 
@@ -30,7 +29,7 @@ export function UpcomingAppointmentCard({
         </Typography>
         <Box className={styles.dateContainer}>
           <Typography className={styles.date} variant="subtitle1">
-            {renderedDate}
+            {renderedDate()}
           </Typography>
           <Box className={styles.subTitleWrapper}>
             <Typography variant="subtitle1">Visit Purpose: </Typography>
