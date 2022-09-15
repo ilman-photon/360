@@ -7,8 +7,7 @@ import RESPONSE_MESSAGES from "../../../../utils/responseCodes";
 import { Box } from "@mui/material";
 import globalStyles from "../../../../styles/Global.module.scss";
 import Cookies from "universal-cookie";
-import moment from "moment";
-import { ddmmyyDateFormat } from "../../../../utils/dateFormatter";
+import { mmddyyDateFormat } from "../../../../utils/dateFormatter";
 export default function CreateAccountPage() {
   const dispatch = useDispatch();
   const cookies = new Cookies();
@@ -21,7 +20,7 @@ export default function CreateAccountPage() {
     try {
       await api.getResponse(
         "/ecp/patient/userregistration",
-        { ...postbody, dob: ddmmyyDateFormat(postbody.dob) },
+        { ...postbody, dob: mmddyyDateFormat(postbody.dob) },
         "post"
       );
       cookies.set("authorized", true, { path: "/patient" });
