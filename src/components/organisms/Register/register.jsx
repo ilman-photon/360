@@ -24,7 +24,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
       lastName: "",
       dob: null,
       email: "",
-      mobile: "",
+      mobileNumber: "",
       password: "",
       preferredCommunication: "both",
     },
@@ -308,7 +308,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             }}
           />
           <Controller
-            name="mobile"
+            name="mobileNumber"
             control={control}
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (

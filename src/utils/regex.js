@@ -3,7 +3,6 @@ export class Regex {
   static numberRegex = /\d/;
   static alphabethOnly = /^[a-zA-Z ]*$/;
   static numberOnly = /^\d*$/;
-  static alphabethOnly = /^[a-zA-Z ]*$/;
   static upperCaseRegex = /[A-Z]/;
   static lowerCaseRegex = /[a-z]/;
   static alphabethRegex = /[A-Za-z]/;
