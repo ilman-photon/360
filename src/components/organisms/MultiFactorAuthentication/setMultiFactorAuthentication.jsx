@@ -40,7 +40,11 @@ export default function SetMultiFactorAuthentication({
     } else {
       return (
         <FormControl>
-          <Typography variant="body2" className={styles.radioLabel}>
+          <Typography
+            variant="body2"
+            className={styles.radioLabel}
+            sx={{ color: "#242526" }}
+          >
             {t("communicationMethodTitle")}
           </Typography>
           <RadioGroup
