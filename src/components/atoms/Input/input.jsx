@@ -262,6 +262,7 @@ export const CustomInput = styled(({ ...props }) => {
                   helperText={props.helperText}
                 />
               )}
+              inputProps={props.inputProps}
               {...props}
             />
           </LocalizationProvider>
