@@ -21,6 +21,14 @@ export function UpcomingAppointmentCard({
     return momentDate.tz("America/New_York").format("dddd, MMM DD - h:mmA z");
   };
 
+  function minHours(numOfHours, date = new Date()) {
+    date.setTime(date.getTime() - numOfHours * 60 * 60 * 1000);
+
+    return date;
+  }
+
+  const visitDate = new Date(data.appointmentInfo.date);
+  const isHideButtons = visitDate < minHours(4);
   return (
     <Box className={styles.upcomingAppointmentsContainer}>
       <Box className={styles.upcomingAppointmentDetail}>
@@ -46,22 +54,24 @@ export function UpcomingAppointmentCard({
 
         <AppointmentInformation data={data}></AppointmentInformation>
 
-        <Box className={styles.viewDetails}>
-          <Box className={styles.buttonContainer}>
-            <AppointmentButton
-              icon={<CancelOutlinedIcon />}
-              onClick={() => onCancelClicked(data)}
-            >
-              Cancel
-            </AppointmentButton>
-            <AppointmentButton
-              icon={<CalendarTodayIcon />}
-              onClick={() => onRescheduleClicked(data)}
-            >
-              Reschedule
-            </AppointmentButton>
+        {!isHideButtons && (
+          <Box className={styles.viewDetails}>
+            <Box className={styles.buttonContainer}>
+              <AppointmentButton
+                icon={<CancelOutlinedIcon />}
+                onClick={() => onCancelClicked(data)}
+              >
+                Cancel
+              </AppointmentButton>
+              <AppointmentButton
+                icon={<CalendarTodayIcon />}
+                onClick={() => onRescheduleClicked(data)}
+              >
+                Reschedule
+              </AppointmentButton>
+            </Box>
           </Box>
-        </Box>
+        )}
       </Box>
     </Box>
   );
@@ -95,7 +105,7 @@ export default function UpcomingAppointment({
   onRescheduleClicked,
   onCancelClicked,
 }) {
-  const isHasValue = data.length === 0;
+  const isHasValue = data.length !== 0;
   return (
     <Box className={styles.upcomingAppointment}>
       <Typography variant="h2" className={styles.title}>

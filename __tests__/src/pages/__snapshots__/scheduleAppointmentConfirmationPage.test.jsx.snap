@@ -32,7 +32,7 @@ exports[`App renders App unchanged 1`] = `
     style="padding-top: 64px;"
   >
     <header
-      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-1nft05v-MuiPaper-root-MuiAppBar-root"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-rxbk4x-MuiPaper-root-MuiAppBar-root"
     >
       <div
         class="MuiContainer-root MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root"
@@ -186,7 +186,7 @@ exports[`App renders App unchanged 1`] = `
                       class="MuiTypography-root MuiTypography-body1 css-o5ux9j-MuiTypography-root"
                     >
                       <svg
-                        aria-hidden="true"
+                        aria-hidden="false"
                         class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                         data-testid="CalendarTodayIcon"
                         focusable="false"

@@ -7,7 +7,7 @@ import RESPONSE_MESSAGES from "../../../../utils/responseCodes";
 import { Box } from "@mui/material";
 import globalStyles from "../../../../styles/Global.module.scss";
 import Cookies from "universal-cookie";
-import { mmddyyDateFormat } from "../../../../utils/dateFormatter";
+import { ddmmyyDateFormat } from "../../../../utils/dateFormatter";
 export default function CreateAccountPage() {
   const dispatch = useDispatch();
   const cookies = new Cookies();

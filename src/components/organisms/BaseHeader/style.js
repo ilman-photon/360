@@ -24,6 +24,9 @@ export const styles = {
     flexGrow: 1,
     display: { xs: "flex", md: "none" },
     justifyContent: "flex-end",
+    "@media print": {
+      display: "none !important",
+    },
   },
   menuMobile: {
     display: { xs: "block", md: "none" },
