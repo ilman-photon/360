@@ -40,6 +40,7 @@ Object {
                       >
                         <div
                           class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-oc861o-MuiFormControl-root-MuiTextField-root"
+                          tabindex="0"
                           withicon="true"
                         >
                           <label
@@ -118,6 +119,7 @@ Object {
                       >
                         <div
                           class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-oc861o-MuiFormControl-root-MuiTextField-root"
+                          tabindex="0"
                           withicon="true"
                         >
                           <label
@@ -199,6 +201,7 @@ Object {
                       <div
                         class="MuiFormControl-root MuiTextField-root custom-input css-93ck4a-MuiFormControl-root-MuiTextField-root"
                         data-testid="loc_inputSubsId"
+                        tabindex="0"
                         withicon="true"
                       >
                         <label
@@ -229,6 +232,7 @@ Object {
                       <div
                         class="MuiFormControl-root MuiTextField-root custom-input css-93ck4a-MuiFormControl-root-MuiTextField-root"
                         data-testid="loc_inputGroup"
+                        tabindex="0"
                         withicon="true"
                       >
                         <label
@@ -434,6 +438,7 @@ Object {
                                   class="MuiFormControl-root MuiTextField-root custom-input css-93ck4a-MuiFormControl-root-MuiTextField-root"
                                   maxlength="50"
                                   minlength="2"
+                                  tabindex="0"
                                   withicon="true"
                                 >
                                   <label
@@ -463,6 +468,7 @@ Object {
                               >
                                 <div
                                   class="MuiFormControl-root MuiTextField-root custom-input css-93ck4a-MuiFormControl-root-MuiTextField-root"
+                                  tabindex="0"
                                   withicon="true"
                                 >
                                   <label
@@ -495,6 +501,7 @@ Object {
                               >
                                 <div
                                   class="MuiFormControl-root MuiTextField-root css-1bsw3ty-MuiFormControl-root-MuiTextField-root"
+                                  tabindex="0"
                                 >
                                   <label
                                     class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
@@ -541,9 +548,11 @@ Object {
                                   style="width: 100%;"
                                 >
                                   <label
+                                    aria-label=""
                                     class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
                                     data-shrink="false"
                                     id="demo-simple-select-label"
+                                    tabindex="0"
                                   >
                                     Relationship
                                   </label>
@@ -1051,6 +1060,7 @@ Object {
                     >
                       <div
                         class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-oc861o-MuiFormControl-root-MuiTextField-root"
+                        tabindex="0"
                         withicon="true"
                       >
                         <label
@@ -1129,6 +1139,7 @@ Object {
                     >
                       <div
                         class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-oc861o-MuiFormControl-root-MuiTextField-root"
+                        tabindex="0"
                         withicon="true"
                       >
                         <label
@@ -1210,6 +1221,7 @@ Object {
                     <div
                       class="MuiFormControl-root MuiTextField-root custom-input css-93ck4a-MuiFormControl-root-MuiTextField-root"
                       data-testid="loc_inputSubsId"
+                      tabindex="0"
                       withicon="true"
                     >
                       <label
@@ -1240,6 +1252,7 @@ Object {
                     <div
                       class="MuiFormControl-root MuiTextField-root custom-input css-93ck4a-MuiFormControl-root-MuiTextField-root"
                       data-testid="loc_inputGroup"
+                      tabindex="0"
                       withicon="true"
                     >
                       <label
@@ -1445,6 +1458,7 @@ Object {
                                 class="MuiFormControl-root MuiTextField-root custom-input css-93ck4a-MuiFormControl-root-MuiTextField-root"
                                 maxlength="50"
                                 minlength="2"
+                                tabindex="0"
                                 withicon="true"
                               >
                                 <label
@@ -1474,6 +1488,7 @@ Object {
                             >
                               <div
                                 class="MuiFormControl-root MuiTextField-root custom-input css-93ck4a-MuiFormControl-root-MuiTextField-root"
+                                tabindex="0"
                                 withicon="true"
                               >
                                 <label
@@ -1506,6 +1521,7 @@ Object {
                             >
                               <div
                                 class="MuiFormControl-root MuiTextField-root css-1bsw3ty-MuiFormControl-root-MuiTextField-root"
+                                tabindex="0"
                               >
                                 <label
                                   class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
@@ -1552,9 +1568,11 @@ Object {
                                 style="width: 100%;"
                               >
                                 <label
+                                  aria-label=""
                                   class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
                                   data-shrink="false"
                                   id="demo-simple-select-label"
+                                  tabindex="0"
                                 >
                                   Relationship
                                 </label>

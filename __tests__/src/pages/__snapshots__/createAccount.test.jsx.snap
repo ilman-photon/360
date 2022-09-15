@@ -94,6 +94,7 @@ exports[`App renders App unchanged 1`] = `
                 <div
                   class="MuiFormControl-root MuiTextField-root custom-input css-1wu0uay-MuiFormControl-root-MuiTextField-root"
                   data-testid="firstname"
+                  tabindex="0"
                   withicon="true"
                 >
                   <label
@@ -120,6 +121,7 @@ exports[`App renders App unchanged 1`] = `
                 <div
                   class="MuiFormControl-root MuiTextField-root custom-input css-1wu0uay-MuiFormControl-root-MuiTextField-root"
                   data-testid="lastname"
+                  tabindex="0"
                   withicon="true"
                 >
                   <label
@@ -145,6 +147,7 @@ exports[`App renders App unchanged 1`] = `
                 </div>
                 <div
                   class="MuiFormControl-root MuiTextField-root css-1bsw3ty-MuiFormControl-root-MuiTextField-root"
+                  tabindex="0"
                 >
                   <label
                     class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
@@ -172,6 +175,7 @@ exports[`App renders App unchanged 1`] = `
                 <div
                   class="MuiFormControl-root MuiTextField-root custom-input css-1wu0uay-MuiFormControl-root-MuiTextField-root"
                   data-testid="email"
+                  tabindex="0"
                   withicon="true"
                 >
                   <label
@@ -201,6 +205,7 @@ exports[`App renders App unchanged 1`] = `
                   <div
                     class="MuiFormControl-root MuiTextField-root custom-input css-1eoibh5-MuiFormControl-root-MuiTextField-root"
                     data-testid="mobilenumber"
+                    tabindex="0"
                     withicon="true"
                   >
                     <label

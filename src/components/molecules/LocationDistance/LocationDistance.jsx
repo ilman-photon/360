@@ -5,6 +5,7 @@ import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
 import { colors } from "../../../styles/theme";
 import styles from "./styles.module.scss";
+import { Button } from "@mui/material";
 
 export const LocationDistance = ({
   isDesktop = true,
@@ -61,15 +62,24 @@ export const LocationDistance = ({
           marginTop: isDesktop ? "40px" : "60px",
         }}
       >
-        <DirectionsOutlinedIcon
+        <Button
+          role={"button"}
+          onClick={onGetDirection}
           sx={{
-            width: iconSize,
-            height: iconSize,
-            color: colors.darkGreen,
+            padding: 0,
             cursor: "pointer",
           }}
-          onClick={onGetDirection}
-        />
+          aria-label={"Direction button"}
+        >
+          <DirectionsOutlinedIcon
+            aria-label={"Get Direction"}
+            sx={{
+              width: iconSize,
+              height: iconSize,
+              color: colors.darkGreen,
+            }}
+          />
+        </Button>
       </Box>
     </Box>
   );
