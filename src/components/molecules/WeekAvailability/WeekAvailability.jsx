@@ -48,6 +48,14 @@ export const WeekAvailability = ({
   },
   keyWeek = "",
 }) => {
+  const dayNames = {
+    monday: 0,
+    tuesday: 1,
+    wednesday: 2,
+    thursday: 3,
+    friday: 4,
+    saturday: 5,
+  };
   const [schedule, setSchedule] = useState({});
   const [dateWeekList, setDateWeekList] = useState([]);
 
@@ -76,7 +84,7 @@ export const WeekAvailability = ({
             gridArea,
             isTypeMore,
             `${keyWeek}-${i}-${key}-schedule-button`,
-            dateWeekList[i]
+            dateWeekList[dayNames[key]]
           )
         );
       }

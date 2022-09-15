@@ -1,14 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import Dialog from "@mui/material/Dialog";
 import DialogActions from "@mui/material/DialogActions";
 import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import { StyledButton } from "../../atoms/Button/button";
-import { Box, colors } from "@mui/material";
+import { Box } from "@mui/material";
 import { styles } from "../../organisms/SessionExpiredModal/styles";
 import genericStyles from "./genericErrorModal.module.scss";
-import { useState } from "react";
 
 function GenericErrorModal({ storeContext = {} }) {
   const [modalError, setModalError] = useState(null);
