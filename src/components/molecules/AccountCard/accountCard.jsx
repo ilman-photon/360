@@ -47,7 +47,7 @@ export const AccountCard = ({
                   className={styles.title}
                   style={textStyle}
                   aria-label={`${title} heading`}
-                  tabindex={0}
+                  tabIndex={0}
                 >
                   {title}
                 </div>

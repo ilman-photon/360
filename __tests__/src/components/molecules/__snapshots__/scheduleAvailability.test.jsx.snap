@@ -33,13 +33,9 @@ Object {
           <button
             class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root linkAvailabelity css-1e6y48t-MuiButtonBase-root-MuiButton-root"
             data-testid="loc_viewAll"
-<<<<<<< HEAD
             role="link"
             tabindex="0"
             type="button"
-=======
-            tabindex="0"
->>>>>>> feature-s5/ADA
           >
             <span
               class="MuiTypography-root MuiTypography-link css-37jdci-MuiTypography-root"
@@ -83,13 +79,9 @@ Object {
         <button
           class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root linkAvailabelity css-1e6y48t-MuiButtonBase-root-MuiButton-root"
           data-testid="loc_viewAll"
-<<<<<<< HEAD
           role="link"
           tabindex="0"
           type="button"
-=======
-          tabindex="0"
->>>>>>> feature-s5/ADA
         >
           <span
             class="MuiTypography-root MuiTypography-link css-37jdci-MuiTypography-root"

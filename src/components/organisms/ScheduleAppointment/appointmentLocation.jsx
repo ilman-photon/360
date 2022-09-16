@@ -21,7 +21,7 @@ export default function AppointmentLocation({
   const getAddress = (address) => {
     if (!address) return;
     return (
-      <div tabindex={"0"}>
+      <div tabIndex={"0"}>
         {address.addressLine1}
         <br />
         {address.addressLine2}
