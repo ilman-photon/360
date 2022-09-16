@@ -34,18 +34,28 @@ Object {
             <div
               class="mobileFilterTitleContainer MuiBox-root css-0"
             >
-              <span
-                class="MuiTypography-root MuiTypography-bodyMedium mobileFilterTitle css-37jdci-MuiTypography-root"
+              <button
+                aria-label="New York, NY"
+                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-fz1m2a-MuiButtonBase-root-MuiButton-root"
+                tabindex="0"
+                type="button"
               >
-                New York, NY
-              </span>
-              Eye exam
+                <span
+                  class="MuiTypography-root MuiTypography-bodyMedium mobileFilterTitle css-37jdci-MuiTypography-root"
+                >
+                  New York, NY
+                </span>
+                Eye exam
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
             </div>
             <div
               class="mobileFilterImageContainer MuiBox-root css-0"
             >
               <button
-                aria-label="Filter Button"
+                aria-label="Filter"
                 class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-4ag2t8-MuiButtonBase-root-MuiButton-root"
                 tabindex="0"
                 type="button"
@@ -113,18 +123,28 @@ Object {
           <div
             class="mobileFilterTitleContainer MuiBox-root css-0"
           >
-            <span
-              class="MuiTypography-root MuiTypography-bodyMedium mobileFilterTitle css-37jdci-MuiTypography-root"
+            <button
+              aria-label="New York, NY"
+              class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-fz1m2a-MuiButtonBase-root-MuiButton-root"
+              tabindex="0"
+              type="button"
             >
-              New York, NY
-            </span>
-            Eye exam
+              <span
+                class="MuiTypography-root MuiTypography-bodyMedium mobileFilterTitle css-37jdci-MuiTypography-root"
+              >
+                New York, NY
+              </span>
+              Eye exam
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </button>
           </div>
           <div
             class="mobileFilterImageContainer MuiBox-root css-0"
           >
             <button
-              aria-label="Filter Button"
+              aria-label="Filter"
               class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-4ag2t8-MuiButtonBase-root-MuiButton-root"
               tabindex="0"
               type="button"

@@ -12,7 +12,9 @@ Object {
           class="scheduleTimeContainer MuiBox-root css-0"
         >
           <p
+            aria-label=""
             class="MuiTypography-root MuiTypography-body1 scheduleTimeTitle css-ahj2mt-MuiTypography-root"
+            tabindex="0"
           />
           <div
             class="iconTimeContainer MuiBox-root css-0"
@@ -81,7 +83,9 @@ Object {
         class="scheduleTimeContainer MuiBox-root css-0"
       >
         <p
+          aria-label=""
           class="MuiTypography-root MuiTypography-body1 scheduleTimeTitle css-ahj2mt-MuiTypography-root"
+          tabindex="0"
         />
         <div
           class="iconTimeContainer MuiBox-root css-0"
@@ -207,7 +211,9 @@ Object {
           class="scheduleTimeContainer MuiBox-root css-0"
         >
           <p
+            aria-label=""
             class="MuiTypography-root MuiTypography-body1 scheduleTimeTitle css-ahj2mt-MuiTypography-root"
+            tabindex="0"
           />
           <div
             class="iconTimeContainer MuiBox-root css-0"
@@ -275,7 +281,9 @@ Object {
           class="scheduleTimeContainer MuiBox-root css-0"
         >
           <p
+            aria-label=""
             class="MuiTypography-root MuiTypography-body1 scheduleTimeTitle css-ahj2mt-MuiTypography-root"
+            tabindex="0"
           />
           <div
             class="iconTimeContainer MuiBox-root css-0"
@@ -344,7 +352,9 @@ Object {
         class="scheduleTimeContainer MuiBox-root css-0"
       >
         <p
+          aria-label=""
           class="MuiTypography-root MuiTypography-body1 scheduleTimeTitle css-ahj2mt-MuiTypography-root"
+          tabindex="0"
         />
         <div
           class="iconTimeContainer MuiBox-root css-0"

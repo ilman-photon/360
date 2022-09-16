@@ -235,12 +235,14 @@ export const FilterResultHeading = ({
                     <Typography
                       className={styles.calenderDay}
                       aria-label={`${option.slice(0, -8)}`}
+                      tabindex={"0"}
                     >
                       {option.slice(0, 3)}
                     </Typography>
                     <Typography
                       className={styles.calenderMonth}
                       aria-label={`${dateList.dateListName[idx]}`}
+                      tabindex={"0"}
                     >
                       {dateList.dateListName[idx]}
                     </Typography>
@@ -333,18 +335,28 @@ export const FilterResultHeading = ({
               className={styles.mobileFilterTitleContainer}
               onClick={handleOpenDialog}
             >
-              <Typography
-                variant={"bodyMedium"}
-                className={styles.mobileFilterTitle}
+              <Button
+                aria-label={filterData.location}
+                sx={{
+                  padding: 0,
+                  textTransform: "none",
+                  textAlign: "left",
+                  alignSelf: "flex-start",
+                }}
               >
-                {filterData.location || "City, state, or zip code"}
-              </Typography>
-              {filterData.purposeOfVisit ||
-                (filterData.insuranceCarrier && (
-                  <Typography
-                    className={styles.mobileFilterSubtitle}
-                  >{`${filterData.purposeOfVisit} * ${filterData.insuranceCarrier}`}</Typography>
-                ))}
+                <Typography
+                  variant={"bodyMedium"}
+                  className={styles.mobileFilterTitle}
+                >
+                  {filterData.location || "City, state, or zip code"}
+                </Typography>
+                {filterData.purposeOfVisit ||
+                  (filterData.insuranceCarrier && (
+                    <Typography
+                      className={styles.mobileFilterSubtitle}
+                    >{`${filterData.purposeOfVisit} * ${filterData.insuranceCarrier}`}</Typography>
+                  ))}
+              </Button>
             </Box>
             <Box
               className={styles.mobileFilterImageContainer}
@@ -354,7 +366,7 @@ export const FilterResultHeading = ({
             >
               {!(title && subtitle) && (
                 <Button
-                  aria-label={"Filter Button"}
+                  aria-label={"Filter"}
                   sx={{
                     width: "31px",
                     minWidth: "31px",

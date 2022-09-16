@@ -109,7 +109,6 @@ Object {
                 </svg>
                 <div
                   class="MuiFormControl-root MuiTextField-root css-an390i-MuiFormControl-root-MuiTextField-root"
-                  tabindex="0"
                 >
                   <label
                     class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
@@ -428,7 +427,6 @@ Object {
               </svg>
               <div
                 class="MuiFormControl-root MuiTextField-root css-an390i-MuiFormControl-root-MuiTextField-root"
-                tabindex="0"
               >
                 <label
                   class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
@@ -804,7 +802,6 @@ Object {
                 </svg>
                 <div
                   class="MuiFormControl-root MuiTextField-root css-an390i-MuiFormControl-root-MuiTextField-root"
-                  tabindex="0"
                 >
                   <label
                     class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"

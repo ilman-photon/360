@@ -10,6 +10,7 @@ import {
   getDates,
   parseDateWeekList,
   parseScheduleDataWeekOverlay,
+  timeInWeekACLabel,
   timeInWeekLabel,
 } from "../../../utils/appointment";
 
@@ -116,7 +117,9 @@ export const DayAvailability = ({
               marginTop: index == 0 ? "12px" : "24px",
             }}
           >
-            <Typography className={styles.scheduleTitle}>{key}</Typography>
+            <Typography className={styles.scheduleTitle} tabindex={"0"}>
+              {key}
+            </Typography>
             {renderTimeSchedule(value, index)}
           </Box>
         );
@@ -129,8 +132,10 @@ export const DayAvailability = ({
               marginTop: index == 0 ? "12px" : "24px",
             }}
           >
-            <Typography className={styles.scheduleTitle}>{key}</Typography>
-            <Typography className={styles.noSchedule}>
+            <Typography className={styles.scheduleTitle} tabindex={"0"}>
+              {key}
+            </Typography>
+            <Typography className={styles.noSchedule} tabindex={"0"}>
               No availability
             </Typography>
           </Box>
@@ -165,7 +170,11 @@ export const DayAvailability = ({
   return (
     <Box>
       <Box className={styles.scheduleTimeContainer}>
-        <Typography className={styles.scheduleTimeTitle}>
+        <Typography
+          className={styles.scheduleTimeTitle}
+          tabindex={"0"}
+          aria-label={timeInWeekACLabel(rangeDate.startDate, rangeDate.endDate)}
+        >
           {timeInWeek}
         </Typography>
         <Box className={styles.iconTimeContainer}>

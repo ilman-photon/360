@@ -174,6 +174,14 @@ export function timeInWeekLabel(startDate, endDate) {
     : "";
 }
 
+export function timeInWeekACLabel(startDate, endDate) {
+  return startDate && endDate
+    ? `${getDateName(new Date(startDate))} until ${getDateName(
+        new Date(endDate)
+      )}`
+    : "";
+}
+
 Date.prototype.addDays = function (days) {
   var date = new Date(this.valueOf());
   date.setDate(date.getDate() + days);

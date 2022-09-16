@@ -78,7 +78,6 @@ Object {
             </div>
             <div
               class="MuiFormControl-root MuiTextField-root css-1bsw3ty-MuiFormControl-root-MuiTextField-root"
-              tabindex="0"
             >
               <label
                 class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
@@ -641,7 +640,6 @@ Object {
           </div>
           <div
             class="MuiFormControl-root MuiTextField-root css-1bsw3ty-MuiFormControl-root-MuiTextField-root"
-            tabindex="0"
           >
             <label
               class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"

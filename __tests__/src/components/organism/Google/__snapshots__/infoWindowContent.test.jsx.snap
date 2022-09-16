@@ -164,6 +164,7 @@ Object {
             >
               <p
                 class="MuiTypography-root MuiTypography-body1 css-1qsx3lx-MuiTypography-root"
+                tabindex="0"
               >
                 Mon, Sep 19
               </p>
@@ -188,6 +189,7 @@ Object {
             >
               <p
                 class="MuiTypography-root MuiTypography-body1 css-1qsx3lx-MuiTypography-root"
+                tabindex="0"
               >
                 Tue, Sep 20
               </p>
@@ -267,6 +269,7 @@ Object {
             >
               <p
                 class="MuiTypography-root MuiTypography-body1 css-1qsx3lx-MuiTypography-root"
+                tabindex="0"
               >
                 Wed, Sep 21
               </p>
@@ -368,6 +371,7 @@ Object {
             >
               <p
                 class="MuiTypography-root MuiTypography-body1 css-1qsx3lx-MuiTypography-root"
+                tabindex="0"
               >
                 Thu, Sep 22
               </p>
@@ -403,6 +407,7 @@ Object {
             >
               <p
                 class="MuiTypography-root MuiTypography-body1 css-1qsx3lx-MuiTypography-root"
+                tabindex="0"
               >
                 Fri, Sep 23
               </p>
@@ -427,6 +432,7 @@ Object {
             >
               <p
                 class="MuiTypography-root MuiTypography-body1 css-1qsx3lx-MuiTypography-root"
+                tabindex="0"
               >
                 Sat, Sep 24
               </p>
@@ -616,6 +622,7 @@ Object {
           >
             <p
               class="MuiTypography-root MuiTypography-body1 css-1qsx3lx-MuiTypography-root"
+              tabindex="0"
             >
               Mon, Sep 19
             </p>
@@ -640,6 +647,7 @@ Object {
           >
             <p
               class="MuiTypography-root MuiTypography-body1 css-1qsx3lx-MuiTypography-root"
+              tabindex="0"
             >
               Tue, Sep 20
             </p>
@@ -719,6 +727,7 @@ Object {
           >
             <p
               class="MuiTypography-root MuiTypography-body1 css-1qsx3lx-MuiTypography-root"
+              tabindex="0"
             >
               Wed, Sep 21
             </p>
@@ -820,6 +829,7 @@ Object {
           >
             <p
               class="MuiTypography-root MuiTypography-body1 css-1qsx3lx-MuiTypography-root"
+              tabindex="0"
             >
               Thu, Sep 22
             </p>
@@ -855,6 +865,7 @@ Object {
           >
             <p
               class="MuiTypography-root MuiTypography-body1 css-1qsx3lx-MuiTypography-root"
+              tabindex="0"
             >
               Fri, Sep 23
             </p>
@@ -879,6 +890,7 @@ Object {
           >
             <p
               class="MuiTypography-root MuiTypography-body1 css-1qsx3lx-MuiTypography-root"
+              tabindex="0"
             >
               Sat, Sep 24
             </p>
