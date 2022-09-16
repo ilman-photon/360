@@ -88,7 +88,7 @@ imagebuild:
     - Frontend-runner
   script:
     - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 056640875000.dkr.ecr.us-east-1.amazonaws.com
-    - docker build -t photon-e360-patient-dev .
+    - docker build -t photon-ecp-e360-dev .
     - docker tag photon-e360-patient-dev:latest 056640875000.dkr.ecr.us-east-1.amazonaws.com/photon-e360-patient-dev:ecp-patient-$CI_PIPELINE_IID
     - docker push 056640875000.dkr.ecr.us-east-1.amazonaws.com/photon-e360-patient-dev:ecp-patient-$CI_PIPELINE_IID
     
