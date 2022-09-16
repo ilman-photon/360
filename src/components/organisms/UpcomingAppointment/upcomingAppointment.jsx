@@ -5,8 +5,7 @@ import styles from "./styles.module.scss";
 import AppointmentButton from "../../atoms/AppointmentButton/appointmentButton";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
-import moment from "moment";
-import "moment-timezone";
+import { formatAppointmentDate } from "../../../utils/dateFormatter";
 
 export default function UpcomingAppointment({
   data = {
@@ -51,7 +50,7 @@ export default function UpcomingAppointment({
           className={[styles.itemContainer, styles.calendarContainer].join(" ")}
         >
           <Typography variant="subtitle2" className={styles.date}>
-            {fullDate()}
+            {formatAppointmentDate(data.appointmentInfo.date)}
           </Typography>
           <AppointmentButton icon={<CalendarTodayIcon />}>
             Add to calendar
