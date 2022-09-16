@@ -6,11 +6,12 @@ import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
 import { styled } from "@mui/material/styles";
 import DownloadIcon from "@mui/icons-material/DownloadOutlined";
-import { blueGrey, grey, red } from "@mui/material/colors";
+import { blueGrey, grey } from "@mui/material/colors";
 import Divider from "@mui/material/Divider";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import Collapse from "@mui/material/Collapse";
+import { savePDF } from "@progress/kendo-react-pdf";
 
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -21,6 +22,7 @@ import TableRow from "@mui/material/TableRow";
 import React from "react";
 
 export default function DetailAppointment({ data }) {
+  const container = React.useRef(null);
   const date = data.appointmentInfo.date;
   const timezone = date.substring(date.length - 3);
   const momentDate = new moment(date);
@@ -31,6 +33,7 @@ export default function DetailAppointment({ data }) {
   const [openAllergies, setOpenAllergies] = React.useState(true);
   const [openResults, setOpenResults] = React.useState(true);
   const [openVital, setOpenVitals] = React.useState(true);
+  const [isDownload, setIsDownload] = React.useState(false);
 
   const handleClickResult = () => {
     setOpenResults(!openResults);
@@ -53,8 +56,24 @@ export default function DetailAppointment({ data }) {
     textAlign: "center",
     color: theme.palette.text.secondary,
   }));
+  const downloadPDF = () => {
+    let element = container.current || document.body;
+    console.log(element);
+    savePDF(
+      element,
+      {
+        paperSize: "auto",
+        margin: 40,
+        fileName: `Appointment Detail Don John`,
+      },
+      () => {
+        setIsDownload(false);
+        console.log("............");
+      }
+    );
+  };
   return (
-    <Box className={styles.upcomingAppointments}>
+    <Box className={styles.upcomingAppointments} ref={container}>
       <Stack spacing={{ xs: 2, lg: 3.5 }}>
         <Typography variant="h2" className={styles.title}>
           Appointment Detail
@@ -74,9 +93,17 @@ export default function DetailAppointment({ data }) {
                 <Link
                   className={styles.link}
                   sx={{
-                    display: "flex",
+                    display: isDownload ? "none" : "flex",
                     alignContent: "center",
                     justifyContent: "center",
+                    cursor: "pointer",
+                  }}
+                  onClick={() => {
+                    handleClick();
+                    setIsDownload(true);
+                    setTimeout(() => {
+                      downloadPDF();
+                    }, 200);
                   }}
                 >
                   <DownloadIcon sx={{ color: blueGrey[200] }} />
@@ -218,10 +245,19 @@ export default function DetailAppointment({ data }) {
             </Box>
           </Box>
         </Box>
-        <Box sx={{ p: 2, backgroundColor: "white" }}>
+        <Box
+          sx={{
+            p: 2,
+            backgroundColor: "white",
+          }}
+        >
           <Box
             className={styles.buttonContainer}
-            sx={{ display: "flex", justifyContent: "center", p: 2 }}
+            sx={{
+              display: isDownload ? "none !important" : "flex",
+              justifyContent: "center",
+              p: 2,
+            }}
             onClick={handleClick}
           >
             <AppointmentButton>
