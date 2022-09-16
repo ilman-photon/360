@@ -27,7 +27,6 @@ export const styles = {
     borderRadius: "46px",
     textTransform: "none",
     color: "#FFFFFF",
-    backgroundColor: "#007E8F",
   },
   form: {
     display: "grid",

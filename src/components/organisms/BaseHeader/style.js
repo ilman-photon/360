@@ -17,13 +17,16 @@ export const styles = {
   boxStyled: {
     flexGrow: 1,
     display: { xs: "none", md: "flex" },
-    justifyContent: "end",
+    justifyContent: "flex-end",
   },
   bottonStyledDesktop: { my: 2, color: "black", display: "block" },
   boxStyledMobile: {
     flexGrow: 1,
     display: { xs: "flex", md: "none" },
     justifyContent: "flex-end",
+    "@media print": {
+      display: "none !important",
+    },
   },
   menuMobile: {
     display: { xs: "block", md: "none" },

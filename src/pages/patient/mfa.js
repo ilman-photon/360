@@ -83,6 +83,7 @@ export default function MfaPage({ isStepTwo }) {
     return () => {
       cookies.remove("isStay");
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const setTempValidation = (response) => {
