@@ -70,6 +70,7 @@ Object {
             >
               <h2
                 class="MuiTypography-root MuiTypography-h2 title css-13trq03-MuiTypography-root"
+                data-testid="appointments_upcoming_appointments_header"
               >
                 Upcoming Appointments
               </h2>
@@ -267,6 +268,7 @@ Object {
                     >
                       <button
                         class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root appointmentButton css-1wby7gd-MuiButtonBase-root-MuiButton-root"
+                        data-testid="appointments_upcoming_appointments_cancel_button"
                         tabindex="0"
                         type="button"
                       >
@@ -292,6 +294,7 @@ Object {
                       </button>
                       <button
                         class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root appointmentButton css-1wby7gd-MuiButtonBase-root-MuiButton-root"
+                        data-testid="appointments_upcoming_appointments_reschedule_button"
                         tabindex="0"
                         type="button"
                       >
@@ -1039,6 +1042,7 @@ Object {
           >
             <h2
               class="MuiTypography-root MuiTypography-h2 title css-13trq03-MuiTypography-root"
+              data-testid="appointments_upcoming_appointments_header"
             >
               Upcoming Appointments
             </h2>
@@ -1236,6 +1240,7 @@ Object {
                   >
                     <button
                       class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root appointmentButton css-1wby7gd-MuiButtonBase-root-MuiButton-root"
+                      data-testid="appointments_upcoming_appointments_cancel_button"
                       tabindex="0"
                       type="button"
                     >
@@ -1261,6 +1266,7 @@ Object {
                     </button>
                     <button
                       class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root appointmentButton css-1wby7gd-MuiButtonBase-root-MuiButton-root"
+                      data-testid="appointments_upcoming_appointments_reschedule_button"
                       tabindex="0"
                       type="button"
                     >
@@ -1426,6 +1432,7 @@ Object {
             >
               <h2
                 class="MuiTypography-root MuiTypography-h2 title css-13trq03-MuiTypography-root"
+                data-testid="appointments_upcoming_appointments_header"
               >
                 Upcoming Appointments
               </h2>
@@ -1623,6 +1630,7 @@ Object {
                     >
                       <button
                         class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root appointmentButton css-1wby7gd-MuiButtonBase-root-MuiButton-root"
+                        data-testid="appointments_upcoming_appointments_cancel_button"
                         tabindex="0"
                         type="button"
                       >
@@ -1648,6 +1656,7 @@ Object {
                       </button>
                       <button
                         class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root appointmentButton css-1wby7gd-MuiButtonBase-root-MuiButton-root"
+                        data-testid="appointments_upcoming_appointments_reschedule_button"
                         tabindex="0"
                         type="button"
                       >
@@ -2395,6 +2404,7 @@ Object {
           >
             <h2
               class="MuiTypography-root MuiTypography-h2 title css-13trq03-MuiTypography-root"
+              data-testid="appointments_upcoming_appointments_header"
             >
               Upcoming Appointments
             </h2>
@@ -2592,6 +2602,7 @@ Object {
                   >
                     <button
                       class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root appointmentButton css-1wby7gd-MuiButtonBase-root-MuiButton-root"
+                      data-testid="appointments_upcoming_appointments_cancel_button"
                       tabindex="0"
                       type="button"
                     >
@@ -2617,6 +2628,7 @@ Object {
                     </button>
                     <button
                       class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root appointmentButton css-1wby7gd-MuiButtonBase-root-MuiButton-root"
+                      data-testid="appointments_upcoming_appointments_reschedule_button"
                       tabindex="0"
                       type="button"
                     >

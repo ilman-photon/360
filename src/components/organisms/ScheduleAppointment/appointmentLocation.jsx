@@ -81,6 +81,10 @@ export default function AppointmentLocation({
               variant="regularBold"
               style={styles.detailText}
               aria-label={"Myself"}
+              data-testid={
+                TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_LOCATION
+                  .address
+              }
             >
               {getAddress(providerData.address)}
               <br />

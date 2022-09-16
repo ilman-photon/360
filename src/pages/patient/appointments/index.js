@@ -14,6 +14,7 @@ import {
   setFilterData,
 } from "../../../store/appointment";
 import { setUserAppointmentData } from "../../../store/user";
+import { TEST_ID } from "../../../utils/constants";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CustomModal from "../../../components/molecules/CustomModal/customModal";
 import FormMessage from "../../../components/molecules/FormMessage/formMessage";
@@ -64,7 +65,7 @@ export default function Appointments() {
       insuranceCarrier: Array.isArray(appointmentInfo.insuranceCarrier)
         ? appointmentInfo.insuranceCarrier[0]
         : appointmentInfo.insuranceCarrier,
-      location: providerInfo.address.city,
+      location: providerInfo.address ? providerInfo.address.city : "-",
     };
 
     const appointmentSchedule = {
