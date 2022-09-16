@@ -85,7 +85,9 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
 
   const onSavePersonalData = async (postBody) => {
     await dispatch(fetchToken());
-    const {payload} = await dispatch(updateUser({token: accessToken, payload: postBody}));
+    const { payload } = await dispatch(
+      updateUser({ token: accessToken, payload: postBody })
+    );
     if (payload.success) {
       showSuccessMessage("Your changes were saved");
       setPersonalEditing(false);
@@ -94,7 +96,9 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
 
   const onSaveContactData = async (postBody) => {
     await dispatch(fetchToken());
-    const {payload} = await dispatch(updateUser({token: accessToken, payload: postBody}));
+    const { payload } = await dispatch(
+      updateUser({ token: accessToken, payload: postBody })
+    );
     if (payload.success) {
       showSuccessMessage("Your changes were saved");
       setContactEditing(false);
