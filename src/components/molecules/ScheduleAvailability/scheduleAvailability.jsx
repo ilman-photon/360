@@ -34,9 +34,7 @@ export const ScheduleAvailability = ({
   function isValidDate(d) {
     return d instanceof Date && !isNaN(d);
   }
-  const stringCurrentDate = isValidDate(currentDate)
-    ? currentDate.toLocaleDateString()
-    : "";
+  const stringCurrentDate = isValidDate(currentDate) ? currentDate : "";
   return (
     <Box>
       <Box

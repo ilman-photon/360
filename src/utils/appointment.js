@@ -1,3 +1,4 @@
+import moment from "moment";
 import constants from "./constants";
 import { ddmmyyDateFormat } from "./dateFormatter";
 
@@ -193,7 +194,7 @@ export function getDates(startDate, stopDate, isDayView = false) {
   const dateArray = [];
   let currentDate = startDate;
   while (currentDate <= stopDate) {
-    dateArray.push(new Date(currentDate));
+    dateArray.push(currentDate);
     currentDate = currentDate.addDays(1);
   }
   return {
@@ -319,4 +320,12 @@ export function parseAppointmentCardData(appointmentData) {
     data = appointmentData[0];
   }
   return data;
+}
+
+export function getDirection(providerCordinate) {
+  window.open(
+    `https://maps.google.com?q=${providerCordinate.latitude},${providerCordinate.longitude}`,
+    "_blank",
+    "noopener,noreferrer"
+  );
 }

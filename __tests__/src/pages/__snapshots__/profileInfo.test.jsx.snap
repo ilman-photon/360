@@ -249,13 +249,11 @@ Object {
                             </div>
                           </div>
                           <div
-                            class="css-1okj3ks-MuiStack-root"
+                            class="css-qkek6c-MuiStack-root"
                           >
-                            <div
-                              style="margin-top: 10px;"
-                            >
+                            <div>
                               <div
-                                class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-1bepf7o-MuiAvatar-root"
+                                class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-1jpwtg8-MuiAvatar-root"
                               >
                                 EU
                               </div>
@@ -282,7 +280,7 @@ Object {
                             </div>
                             <button
                               aria-label="Information Icon - If you wish to change this information, please contact Customer Support"
-                              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1ifbsno-MuiButtonBase-root-MuiIconButton-root"
+                              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1philqc-MuiButtonBase-root-MuiIconButton-root"
                               data-mui-internal-clone-element="true"
                               tabindex="0"
                               type="button"
@@ -304,11 +302,9 @@ Object {
                             </button>
                           </div>
                           <div
-                            class="css-1okj3ks-MuiStack-root"
+                            class="css-qkek6c-MuiStack-root"
                           >
-                            <div
-                              style="margin-top: 10px;"
-                            >
+                            <div>
                               <div
                                 aria-label="Eyecare User"
                                 tabindex="0"
@@ -338,11 +334,9 @@ Object {
                             </div>
                           </div>
                           <div
-                            class="css-1okj3ks-MuiStack-root"
+                            class="css-qkek6c-MuiStack-root"
                           >
-                            <div
-                              style="margin-top: 10px;"
-                            >
+                            <div>
                               <div
                                 aria-label="---"
                                 tabindex="0"
@@ -372,11 +366,9 @@ Object {
                             </div>
                           </div>
                           <div
-                            class="css-1okj3ks-MuiStack-root"
+                            class="css-qkek6c-MuiStack-root"
                           >
-                            <div
-                              style="margin-top: 10px;"
-                            >
+                            <div>
                               <div
                                 aria-label="---"
                                 tabindex="0"
@@ -406,7 +398,7 @@ Object {
                             </div>
                             <button
                               aria-label="Information Icon - If you wish to change this information, please contact Customer Support"
-                              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1ifbsno-MuiButtonBase-root-MuiIconButton-root"
+                              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1philqc-MuiButtonBase-root-MuiIconButton-root"
                               data-mui-internal-clone-element="true"
                               tabindex="0"
                               type="button"
@@ -428,11 +420,9 @@ Object {
                             </button>
                           </div>
                           <div
-                            class="css-1okj3ks-MuiStack-root"
+                            class="css-qkek6c-MuiStack-root"
                           >
-                            <div
-                              style="margin-top: 10px;"
-                            >
+                            <div>
                               <div
                                 aria-label="9/3/1992"
                                 tabindex="0"
@@ -462,7 +452,7 @@ Object {
                             </div>
                             <button
                               aria-label="Information Icon - If you wish to change this information, please contact Customer Support"
-                              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1ifbsno-MuiButtonBase-root-MuiIconButton-root"
+                              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1philqc-MuiButtonBase-root-MuiIconButton-root"
                               data-mui-internal-clone-element="true"
                               tabindex="0"
                               type="button"
@@ -484,11 +474,9 @@ Object {
                             </button>
                           </div>
                           <div
-                            class="css-1okj3ks-MuiStack-root"
+                            class="css-qkek6c-MuiStack-root"
                           >
-                            <div
-                              style="margin-top: 10px;"
-                            >
+                            <div>
                               <div
                                 aria-label="49"
                                 tabindex="0"
@@ -518,11 +506,9 @@ Object {
                             </div>
                           </div>
                           <div
-                            class="css-1okj3ks-MuiStack-root"
+                            class="css-qkek6c-MuiStack-root"
                           >
-                            <div
-                              style="margin-top: 10px;"
-                            >
+                            <div>
                               <div
                                 aria-label="Male"
                                 tabindex="0"
@@ -552,7 +538,7 @@ Object {
                             </div>
                             <button
                               aria-label="Information Icon - If you wish to change this information, please contact Customer Support"
-                              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1ifbsno-MuiButtonBase-root-MuiIconButton-root"
+                              class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1philqc-MuiButtonBase-root-MuiIconButton-root"
                               data-mui-internal-clone-element="true"
                               tabindex="0"
                               type="button"
@@ -574,11 +560,9 @@ Object {
                             </button>
                           </div>
                           <div
-                            class="css-1okj3ks-MuiStack-root"
+                            class="css-qkek6c-MuiStack-root"
                           >
-                            <div
-                              style="margin-top: 10px;"
-                            >
+                            <div>
                               <div
                                 aria-label="***-***-7"
                                 tabindex="0"
@@ -599,7 +583,7 @@ Object {
                           </h3>
                           <div
                             aria-label="Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID."
-                            class="MuiTypography-root MuiTypography-bodyRegular css-vzi1f0-MuiTypography-root"
+                            class="MuiTypography-root MuiTypography-bodyRegular css-z7f4jw-MuiTypography-root"
                             tabindex="0"
                           >
                             Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID.
@@ -624,11 +608,9 @@ Object {
                                 </div>
                               </div>
                               <div
-                                class="css-1okj3ks-MuiStack-root"
+                                class="css-qkek6c-MuiStack-root"
                               >
-                                <div
-                                  style="margin-top: 10px;"
-                                >
+                                <div>
                                   <div
                                     class="issuedCardContainer"
                                   >
@@ -682,11 +664,9 @@ Object {
                                 </div>
                               </div>
                               <div
-                                class="css-1okj3ks-MuiStack-root"
+                                class="css-qkek6c-MuiStack-root"
                               >
-                                <div
-                                  style="margin-top: 10px;"
-                                >
+                                <div>
                                   <div
                                     class="issuedCardContainer"
                                   >
@@ -1000,13 +980,11 @@ Object {
                           </div>
                         </div>
                         <div
-                          class="css-1okj3ks-MuiStack-root"
+                          class="css-qkek6c-MuiStack-root"
                         >
-                          <div
-                            style="margin-top: 10px;"
-                          >
+                          <div>
                             <div
-                              class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-1bepf7o-MuiAvatar-root"
+                              class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-1jpwtg8-MuiAvatar-root"
                             >
                               EU
                             </div>
@@ -1033,7 +1011,7 @@ Object {
                           </div>
                           <button
                             aria-label="Information Icon - If you wish to change this information, please contact Customer Support"
-                            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1ifbsno-MuiButtonBase-root-MuiIconButton-root"
+                            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1philqc-MuiButtonBase-root-MuiIconButton-root"
                             data-mui-internal-clone-element="true"
                             tabindex="0"
                             type="button"
@@ -1055,11 +1033,9 @@ Object {
                           </button>
                         </div>
                         <div
-                          class="css-1okj3ks-MuiStack-root"
+                          class="css-qkek6c-MuiStack-root"
                         >
-                          <div
-                            style="margin-top: 10px;"
-                          >
+                          <div>
                             <div
                               aria-label="Eyecare User"
                               tabindex="0"
@@ -1089,11 +1065,9 @@ Object {
                           </div>
                         </div>
                         <div
-                          class="css-1okj3ks-MuiStack-root"
+                          class="css-qkek6c-MuiStack-root"
                         >
-                          <div
-                            style="margin-top: 10px;"
-                          >
+                          <div>
                             <div
                               aria-label="---"
                               tabindex="0"
@@ -1123,11 +1097,9 @@ Object {
                           </div>
                         </div>
                         <div
-                          class="css-1okj3ks-MuiStack-root"
+                          class="css-qkek6c-MuiStack-root"
                         >
-                          <div
-                            style="margin-top: 10px;"
-                          >
+                          <div>
                             <div
                               aria-label="---"
                               tabindex="0"
@@ -1157,7 +1129,7 @@ Object {
                           </div>
                           <button
                             aria-label="Information Icon - If you wish to change this information, please contact Customer Support"
-                            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1ifbsno-MuiButtonBase-root-MuiIconButton-root"
+                            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1philqc-MuiButtonBase-root-MuiIconButton-root"
                             data-mui-internal-clone-element="true"
                             tabindex="0"
                             type="button"
@@ -1179,11 +1151,9 @@ Object {
                           </button>
                         </div>
                         <div
-                          class="css-1okj3ks-MuiStack-root"
+                          class="css-qkek6c-MuiStack-root"
                         >
-                          <div
-                            style="margin-top: 10px;"
-                          >
+                          <div>
                             <div
                               aria-label="9/3/1992"
                               tabindex="0"
@@ -1213,7 +1183,7 @@ Object {
                           </div>
                           <button
                             aria-label="Information Icon - If you wish to change this information, please contact Customer Support"
-                            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1ifbsno-MuiButtonBase-root-MuiIconButton-root"
+                            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1philqc-MuiButtonBase-root-MuiIconButton-root"
                             data-mui-internal-clone-element="true"
                             tabindex="0"
                             type="button"
@@ -1235,11 +1205,9 @@ Object {
                           </button>
                         </div>
                         <div
-                          class="css-1okj3ks-MuiStack-root"
+                          class="css-qkek6c-MuiStack-root"
                         >
-                          <div
-                            style="margin-top: 10px;"
-                          >
+                          <div>
                             <div
                               aria-label="49"
                               tabindex="0"
@@ -1269,11 +1237,9 @@ Object {
                           </div>
                         </div>
                         <div
-                          class="css-1okj3ks-MuiStack-root"
+                          class="css-qkek6c-MuiStack-root"
                         >
-                          <div
-                            style="margin-top: 10px;"
-                          >
+                          <div>
                             <div
                               aria-label="Male"
                               tabindex="0"
@@ -1303,7 +1269,7 @@ Object {
                           </div>
                           <button
                             aria-label="Information Icon - If you wish to change this information, please contact Customer Support"
-                            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1ifbsno-MuiButtonBase-root-MuiIconButton-root"
+                            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium css-1philqc-MuiButtonBase-root-MuiIconButton-root"
                             data-mui-internal-clone-element="true"
                             tabindex="0"
                             type="button"
@@ -1325,11 +1291,9 @@ Object {
                           </button>
                         </div>
                         <div
-                          class="css-1okj3ks-MuiStack-root"
+                          class="css-qkek6c-MuiStack-root"
                         >
-                          <div
-                            style="margin-top: 10px;"
-                          >
+                          <div>
                             <div
                               aria-label="***-***-7"
                               tabindex="0"
@@ -1350,7 +1314,7 @@ Object {
                         </h3>
                         <div
                           aria-label="Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID."
-                          class="MuiTypography-root MuiTypography-bodyRegular css-vzi1f0-MuiTypography-root"
+                          class="MuiTypography-root MuiTypography-bodyRegular css-z7f4jw-MuiTypography-root"
                           tabindex="0"
                         >
                           Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID.
@@ -1375,11 +1339,9 @@ Object {
                               </div>
                             </div>
                             <div
-                              class="css-1okj3ks-MuiStack-root"
+                              class="css-qkek6c-MuiStack-root"
                             >
-                              <div
-                                style="margin-top: 10px;"
-                              >
+                              <div>
                                 <div
                                   class="issuedCardContainer"
                                 >
@@ -1433,11 +1395,9 @@ Object {
                               </div>
                             </div>
                             <div
-                              class="css-1okj3ks-MuiStack-root"
+                              class="css-qkek6c-MuiStack-root"
                             >
-                              <div
-                                style="margin-top: 10px;"
-                              >
+                              <div>
                                 <div
                                   class="issuedCardContainer"
                                 >
