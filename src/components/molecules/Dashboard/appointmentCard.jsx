@@ -293,6 +293,7 @@ export default function AppointmentCard({
       <AccountCard
         className={styles.appointmentContainer}
         isAppoinment={true}
+        isDashboard={true}
         titleIcon={
           <CalendarTodayOutlinedIcon
             sx={{ color: "#007787" }}
