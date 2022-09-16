@@ -63,7 +63,13 @@ export default function AppointmentDetails({
             sxRow={{ justifyContent: "unset" }}
             sxText={{ paddingLeft: "4px", color: colors.darkGreen }}
           >
-            <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
+            <Typography
+              variant="bodyMedium"
+              sx={{ color: colors.darkGreen }}
+              data-testid={
+                TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_DETAILS.date
+              }
+            >
               {formatAppointmentDate(appointmentData.date)}
             </Typography>
           </LabelWithInfo>

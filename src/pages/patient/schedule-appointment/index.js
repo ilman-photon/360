@@ -475,6 +475,10 @@ export default function ScheduleAppointmentPage() {
               isModalButton
               size="small"
               mode="secondary"
+              data-testid={
+                TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID
+                  .DIALOG_CONFIRMATION_RESCHEDULE.confirmBtn
+              }
               onClick={handleCancelReschedule}
               sx={{ fontSize: "14px", px: "20px", py: "11px", height: "40px" }}
             >
@@ -484,6 +488,10 @@ export default function ScheduleAppointmentPage() {
               isModalButton
               size="small"
               mode="primary"
+              data-testid={
+                TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID
+                  .DIALOG_CONFIRMATION_RESCHEDULE.denyBtn
+              }
               onClick={OnConfirmRescheduleAppointment}
               sx={{ fontSize: "14px", px: "20px", py: "11px", height: "40px" }}
             >

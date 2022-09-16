@@ -140,7 +140,7 @@ defineFeature(feature, (test) => {
         container.getByText(/Upcoming appointments/i)
       })
 
-      expect(container.getByText(/Upcoming appointments/i).textContent).toEqual("Upcoming appointments")
+      expect(container.getByText(/Upcoming appointments/i).textContent).toEqual("Upcoming Appointments")
     });
   });
 

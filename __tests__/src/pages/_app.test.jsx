@@ -313,7 +313,6 @@ describe("App", () => {
   });
 
   it("renders App login and session interval", async () => {
-    console.log("TAE: ", store)
     act(() => {
       container = render(
         <Provider store={store}>
