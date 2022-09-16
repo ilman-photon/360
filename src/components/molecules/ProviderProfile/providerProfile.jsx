@@ -131,13 +131,15 @@ export default function ProviderProfile({
           )}
           <Box className={styles.detailContainer}>
             <Box>
-              <Typography
-                variant="body2"
-                className={styles.address}
-                fontSize={isViewSchedule ? "14px" : "16px"}
-              >
-                {getAddress(providerData.address)}
-              </Typography>
+              <Box aria-label="Doctor Address">
+                <Typography
+                  variant="body2"
+                  className={styles.address}
+                  fontSize={isViewSchedule ? "14px" : "16px"}
+                >
+                  {getAddress(providerData.address)}
+                </Typography>
+              </Box>
               {isShownPhoneAndRating && (
                 <Box
                   className={
@@ -148,7 +150,13 @@ export default function ProviderProfile({
                     <StyledRating value={parseInt(providerData.rating)} />
                   )}
                   {!phoneLink ? (
-                    <Typography variant="body2" className={styles.phone}>
+                    <Typography
+                      variant="body2"
+                      className={styles.phone}
+                      aria-label={`Doctor Phone: ${formatPhoneNumber(
+                        phoneNumber
+                      )}`}
+                    >
                       {formatPhoneNumber(phoneNumber)}
                     </Typography>
                   ) : (

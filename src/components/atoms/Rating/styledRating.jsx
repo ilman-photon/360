@@ -7,6 +7,7 @@ export default function StyledRating({ value }) {
       value={value}
       precision={0.5}
       readOnly
+      aria-label={`Doctor Rating: ${value}`}
       size="small"
       emptyIcon={<StarIcon fontSize="inherit" />}
       icon={<StarIcon fontSize="inherit" />}

@@ -59,6 +59,8 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
                 <Link
                   className={styles.viewAllLink}
                   data-testid={BIOGRAPHY_TEST_ID.viewAll}
+                  aria-roledescription="Link"
+                  aria-label="View All link"
                   onClick={() => {
                     setExpand(true);
                   }}
@@ -130,7 +132,7 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
   return (
     <Box className={styles.detailedBio}>
       <Box className={styles.stickyMenu}>
-        <Box className={styles.stickyMenuContainer}>
+        <Box className={styles.stickyMenuContainer} aria-hidden>
           <Link
             ref={aboutMenuRef}
             className={styles.menuText}
@@ -168,16 +170,36 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
       <Box className={styles.menu}>
         <Divider />
         <Box className={styles.menuContainer}>
-          <Link className={styles.menuText} onClick={onClickAbout}>
+          <Link
+            className={styles.menuText}
+            onClick={onClickAbout}
+            aria-label={`About Tab`}
+            aria-roledescription="Link"
+          >
             About
           </Link>
-          <Link className={styles.menuText} onClick={onClickLocation}>
+          <Link
+            className={styles.menuText}
+            onClick={onClickLocation}
+            aria-label={`Locations Tab`}
+            aria-roledescription="Link"
+          >
             Locations
           </Link>
-          <Link className={styles.menuText} onClick={onClickInsurances}>
+          <Link
+            className={styles.menuText}
+            onClick={onClickInsurances}
+            aria-label={`Insurances Tab`}
+            aria-roledescription="Link"
+          >
             Insurances
           </Link>
-          <Link className={styles.menuText} onClick={onClickEducation}>
+          <Link
+            className={styles.menuText}
+            onClick={onClickEducation}
+            aria-label={`Education Tab`}
+            aria-roledescription="Link"
+          >
             Education
           </Link>
         </Box>
@@ -203,9 +225,10 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               src={`https://www.google.com/maps/embed/v1/place?key=${googleApiKey}&q=${addressQuery}`}
+              aria-label="Map"
             ></iframe>
           </Box>
-          <Box className={styles.mapAddressContainer}>
+          <Box className={styles.mapAddressContainer} aria-label="Address">
             <Typography variant="body2" className={styles.mapAddress}>
               {address && (
                 <>
