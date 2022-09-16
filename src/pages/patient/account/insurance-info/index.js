@@ -7,7 +7,7 @@ import {
   addUserInsuranceData,
   fetchInsurance,
   removeUserInsuranceData,
-  setUserInsuranceDataByIndex,
+  updateInsurance,
 } from "../../../../store/user";
 import FormMessage from "../../../../components/molecules/FormMessage/formMessage";
 import {
@@ -40,6 +40,8 @@ import InsuranceForm from "../../../../components/organisms/InsuranceInformation
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AccountCircleOutlined from "@mui/icons-material/AccountCircleOutlined";
 import constants from "../../../../utils/constants";
+import { Api } from "../../../api/api";
+import { fetchAllPayers } from "../../../../store/provider";
 
 export default function InsuranceInfoPage() {
   const [openNewInsuranceForm, setOpenNewInsuranceForm] = useState(false);
@@ -54,6 +56,7 @@ export default function InsuranceInfoPage() {
   const pageMessage = useSelector((state) => state.index.pageMessage);
   const accessToken = useSelector((state) => state.index.accessToken);
   const loadingInsurance = useSelector((state) => state.user.status);
+  const providerList = useSelector((state) => state.provider.list);
 
   const userInsuranceData = useSelector(
     (state) => state.user.userInsuranceData
@@ -66,6 +69,7 @@ export default function InsuranceInfoPage() {
   const isDesktop = useMediaQuery("(min-width: 769px)");
 
   const newInsuraceComp = useRef(null);
+  const api = new Api();
 
   const showSuccessMessage = (message) => {
     dispatch(
@@ -122,21 +126,29 @@ export default function InsuranceInfoPage() {
     setIsEditing(true);
   };
 
-  const OnEditInsurance = (payload) => {
-    if (!payload) {
+  const OnEditInsurance = async (postBody) => {
+    if (!postBody) {
       return;
     }
 
-    dispatch(setUserInsuranceDataByIndex(payload));
+    console.log("onedit postBody: ", { postBody });
+
+    // dispatch(setUserInsuranceDataByIndex(payload));
     // await dispatch(fetchToken());
-    // const { payload } = await dispatch(
-    // updateUser({ token: accessToken, payload: postBody })
-    // )
-    // if (payload.success) {
-    showSuccessMessage("Your changes were saved");
-    setEditForm(null);
-    setIsEditing(false);
-    // }
+    const { payload } = await dispatch(
+      updateInsurance({
+        token: accessToken,
+        patientId: "59f43690-807f-4522-a615-e4b3b9ed8434", // hardcoded patient id
+        coverageId: postBody.id,
+        payload: postBody,
+      })
+    );
+    console.log("dispatch resposne", { payload });
+    // // if (payload.success) {
+    // showSuccessMessage("Your changes were saved");
+    // setEditForm(null);
+    // setIsEditing(false);
+    // // }
   };
 
   const OnAddNewInsurance = () => {
@@ -165,6 +177,11 @@ export default function InsuranceInfoPage() {
     }
   }, [openNewInsuranceForm, focusToNewInsurance]);
 
+  // const fetchAllPayer = async() => {
+  //   const response = await api.getPayers(accessToken)
+  //   console.log("payers", {response})
+  // }
+
   useEffect(() => {
     dispatch(fetchToken());
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -178,6 +195,7 @@ export default function InsuranceInfoPage() {
           patientId: "59f43690-807f-4522-a615-e4b3b9ed8434", // hardcoded patientId
         })
       );
+      dispatch(fetchAllPayers({ token: accessToken }));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accessToken, dispatch, fetchInsurance]);
@@ -202,7 +220,7 @@ export default function InsuranceInfoPage() {
           borderRadius: "0px",
           justifyContent: "center",
           position: "absolute",
-          top: "-40px",
+          top: "-48px",
           left: 0,
           width: "100%",
           transition: "0.3 s ease-in-out",
@@ -257,6 +275,7 @@ export default function InsuranceInfoPage() {
                   <Box>
                     <InsuranceForm
                       testIds={INSURANCE_TEST_ID}
+                      providerList={providerList}
                       formData={editForm}
                       OnSaveClicked={OnEditInsurance}
                       OnCancelClicked={() => {

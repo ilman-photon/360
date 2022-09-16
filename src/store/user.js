@@ -1,10 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import moment from "moment";
 import { Api } from "../pages/api/api";
-import { GENDER_LIST, TITLE_LIST } from "../utils/constantData";
+import {
+  GENDER_LIST,
+  RELATIONSHIP_LIST,
+  TITLE_LIST,
+} from "../utils/constantData";
 
 let url;
 
-const buildPostBody = (postBody, payload) => {
+const buildProfilePostBody = (postBody, payload) => {
   let emailData = postBody.contactInformation.emails;
   emailData[0] = {
     ...emailData[0],
@@ -58,15 +63,48 @@ const buildPostBody = (postBody, payload) => {
   };
 };
 
-export const fetchUser = createAsyncThunk("user/fetchUser", async (token) => {
-  const api = new Api();
-  return api.getResponse(
-    "/ecp/patient-management/v1/patients/cad95dea-3b1a-4c37-9fa0-602023b92099",
-    null,
-    "get",
-    token
-  );
-});
+const buildInsurancePostBody = (postBody, payload) => {
+  console.log({ postBody, payload });
+  const subscriberData = payload.subscriberData;
+  const subscriberDob = new moment(subscriberData.dob).format("MM/DD/YYYY");
+  return {
+    ...postBody,
+    group: payload.groupID,
+    isPatientSubscriber: payload.isSubscriber === "Yes",
+    priority: payload.priority,
+    subscriberRelation: RELATIONSHIP_LIST.findIndex(
+      (v) => v === subscriberData.relationship
+    ),
+    payer: {
+      _id: payload.provider.id,
+    },
+    plan: {
+      _id: payload.plan.id,
+    },
+    subscriber: {
+      ...postBody.subscriber,
+      firstName: subscriberData.firstName,
+      lastName: subscriberData.lastName,
+      dob: subscriberDob, // MM/DD/YYYY
+    },
+    // TODO later when image handler & data are ready
+    // backCard: payload.backCard,
+    // frontCard: payload.backCard,
+  };
+};
+
+export const fetchUser = createAsyncThunk(
+  "user/fetchUser",
+  async ({ token }) => {
+    const api = new Api();
+    return api.getResponse(
+      "/ecp/patient-management/v1/patients/cad95dea-3b1a-4c37-9fa0-602023b92099",
+      null,
+      "get",
+      token
+    );
+  }
+);
 
 export const updateUser = createAsyncThunk(
   "user/updateUser",
@@ -81,7 +119,7 @@ export const updateUser = createAsyncThunk(
         token
       );
       // then apply changes from our side with response body from "res" and do a PUT request
-      const postBody = buildPostBody(res, payload);
+      const postBody = buildProfilePostBody(res, payload);
       const response = await api.getResponse(
         "/ecp/patient-management/v1/patients/cad95dea-3b1a-4c37-9fa0-602023b92099",
         postBody,
@@ -108,6 +146,48 @@ export const fetchInsurance = createAsyncThunk(
     const api = new Api();
     url = `/ecp/insurance/v1/beneficiaries/${patientId}/coverages`;
     return api.getResponse(url, null, "get", token);
+  }
+);
+
+export const updateInsurance = createAsyncThunk(
+  "user/updateInsurance",
+  async ({ token, payload, patientId, coverageId }, { getState }) => {
+    const api = new Api();
+    const state = getState();
+    const foundIndex =
+      state.user.rawUserInsuranceData.findIndex((v) => v._id === coverageId) +
+      1;
+    try {
+      // // get the insuranceData first, just to make sure
+      // const res = await api.getResponse(
+      //   `/ecp/insurance/v1/beneficiaries/${patientId}/coverages/${coverageId}`,
+      //   null,
+      //   "get",
+      //   token
+      // );
+      // then apply changes from our side with response body from "res" and do a PUT request
+      const postBody = buildInsurancePostBody(
+        state.user.rawUserInsuranceData[foundIndex],
+        payload
+      );
+      console.log("Post body to put to API: ", { postBody });
+      const response = await api.getResponse(
+        `/ecp/insurance/v1/beneficiaries/${patientId}/coverages/${coverageId}`,
+        postBody,
+        "put",
+        token
+      );
+      return {
+        success: true,
+        response,
+      };
+    } catch (error) {
+      console.error({ error });
+      return {
+        success: false,
+        response: error,
+      };
+    }
   }
 );
 
@@ -195,29 +275,33 @@ const buildUserInsuranceData = (payload) => {
     const subscriberData = insurance.subscriber;
     const digitalAssets = insurance.digitalAssets;
     return {
-      id: 0,
+      id: insurance._id,
       provider: {
         id: insurance.payer._id,
         label: insurance.payer.name,
-        value: insurance.payer.value,
+        value: insurance.payer.name,
       },
       plan: {
         id: insurance.plan._id,
         label: insurance.plan.name,
-        value: insurance.plan.value,
+        value: insurance.plan.name,
       },
-      memberID: subscriberData._id,
+      // memberID: subscriberData._id,
+      memberID: "",
       groupID: insurance.group,
       isSubscriber: insurance.isPatientSubscriber ? "Yes" : "No",
       subscriberData: {
         firstName: subscriberData.firstName,
         lastName: subscriberData.lastName,
         dob: new Date(subscriberData.dob),
-        relationship: GENDER_LIST[insurance.subscriberRelation - 1],
+        relationship: RELATIONSHIP_LIST[insurance.subscriberRelation - 1],
       },
       priority: insurance.priority,
-      frontCard: digitalAssets.master_front,
-      backCard: digitalAssets.master_backCard,
+      frontCard: "/transparent.png",
+      backCard: "/transparent.png",
+      // TODO later only images
+      // frontCard: digitalAssets.master_front,
+      // backCard: digitalAssets.master_backCard,
     };
   });
 };
@@ -283,6 +367,7 @@ const userSlice = createSlice({
   initialState: {
     userData: DEFAULT_USER_DATA,
     userInsuranceData: [],
+    rawUserInsuranceData: [],
     userAppointmentData: [],
     status: "loading",
   },
@@ -360,6 +445,7 @@ const userSlice = createSlice({
     },
     [fetchInsurance.fulfilled]: (state, { payload }) => {
       if (payload) {
+        state.rawUserInsuranceData = payload.entities;
         state.userInsuranceData = buildUserInsuranceData(payload);
       }
       state.status = "success";

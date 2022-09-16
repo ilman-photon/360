@@ -1,5 +1,5 @@
 import axios from "axios";
-import { fetchToken, setGenericErrorMessage } from "../../store";
+import { setGenericErrorMessage } from "../../store";
 import { fetchUser } from "../../store/user";
 import constants from "../../utils/constants";
 
@@ -55,6 +55,7 @@ export class Api {
     this.client.defaults.headers.common["Authorization"] = payload;
   }
 
+  // Good luck @Dewo xd
   getResponse(url, postbody, method, token) {
     if (token) {
       this.client.defaults.headers.common["Authorization"] = `Bearer ${token}`;
@@ -82,9 +83,17 @@ export class Api {
               this.requestCounter++;
               if (this.requestCounter < this.maxRequestCounter) {
                 const tokenResponse = await this.getToken();
-                await store.dispatch(
-                  fetchUser(tokenResponse?.data?.access_token)
-                );
+                // TODO: call failed function
+                // was this, but realize that this only do fetchUser F.
+                // await store.dispatch(
+                //   fetchUser(tokenResponse?.data?.access_token)
+                // );
+                // reject(tokenResponse)
+
+                // dont delete, maybe insight
+                // await store.dispatch(
+                //   [callbackAction]({...callbackPayload, token: tokenResponse?.data?.access_token})
+                // );
               } else {
                 // TODO: Duplicate with below else
                 this.requestCounter = 0;
@@ -100,6 +109,14 @@ export class Api {
                   ResponseData: err.response.data,
                 });
               }
+            } else {
+              const errorMessagee = errors[0].description;
+              store.dispatch(setGenericErrorMessage(errorMessagee));
+              reject({
+                description: errorMessagee,
+                ResponseCode: err.code,
+                ResponseData: err.response._errors,
+              });
             }
           } else {
             this.requestCounter = 0;
@@ -332,4 +349,22 @@ export class Api {
     const url = `${domain}api/dummy/appointment/my-appointment/cancelAppointment`;
     return this.getResponse(url, postbody, "post");
   }
+
+  // async getPayers(accessToken) {
+  //   const url = '/ecp/appointment/insurance/allpayers'
+  //   try {
+  //     const response = await this.getResponse(url, null, "get", accessToken)
+  //     console.log("getpayer response", response)
+  //     return {
+  //       success: true,
+  //       response
+  //     }
+  //   } catch (error) {
+  //     console.log("getpayer error", error)
+  //     return {
+  //       success: false,
+  //       error
+  //     }
+  //   }
+  // }
 }

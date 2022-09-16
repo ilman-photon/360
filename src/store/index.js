@@ -1,6 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { Api } from "../pages/api/api";
 
+let url;
+
 export const fetchToken = createAsyncThunk("index/fetchToken", async () => {
   const api = new Api();
   const response = await api.getToken();

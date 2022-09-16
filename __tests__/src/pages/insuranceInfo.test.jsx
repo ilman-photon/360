@@ -64,11 +64,11 @@ describe("InsuranceInformationPage Components", () => {
     );
   };
   
-  it(
-    "InsuranceInformationPage Input Test provider & subscriber",
-    () => inputProviderSubsId("Provider 1"),
-    10000
-  );
+  // it(
+  //   "InsuranceInformationPage Input Test provider & subscriber",
+  //   () => inputProviderSubsId("Provider 1"),
+  //   10000
+  // );
 
   const inputPlanGroup = async () => {
     jest.setTimeout(10000);

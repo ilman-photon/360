@@ -112,7 +112,7 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
   console.log({ userData });
 
   useEffect(() => {
-    if (accessToken) dispatch(fetchUser(accessToken));
+    if (accessToken) dispatch(fetchUser({ token: accessToken }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accessToken, dispatch, fetchUser]);
 
@@ -152,7 +152,7 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
           borderRadius: "0px",
           justifyContent: "center",
           position: "absolute",
-          top: "-40px",
+          top: "-48px",
           left: 0,
           width: "100%",
           transition: "0.3 s ease-in-out",

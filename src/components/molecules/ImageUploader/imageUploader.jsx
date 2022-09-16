@@ -2,7 +2,7 @@ import { Box, Button, Stack, Typography } from "@mui/material";
 import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
 import { useRef } from "react";
 import { colors } from "../../../styles/theme";
-import Image from "next/image";
+import Image from "../../atoms/Image/image";
 import { Regex } from "../../../utils/regex";
 
 export const ImageUploader = ({
@@ -76,6 +76,8 @@ export const ImageUploader = ({
                 height={173}
                 style={{ borderRadius: 4 }}
                 alt="photo"
+                placeholder="blur"
+                blurDataURL="/transparent.png"
               />
             </Stack>
           ) : (

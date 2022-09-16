@@ -27,6 +27,7 @@ import { RELATIONSHIP_LIST } from "../../../utils/constantData";
 
 export default function InsuranceForm({
   formData = null,
+  providerList = [],
   isEditing = true,
   OnSaveClicked = () => {
     // This is intended
@@ -51,10 +52,10 @@ export default function InsuranceForm({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
 
-  const providerList = [
-    { id: 0, label: "Provider 1", value: "Provider 1" },
-    { id: 1, label: "Provider 2", value: "Provider 2" },
-  ];
+  // const providerList = [
+  //   { id: 0, label: "Provider 1", value: "Provider 1" },
+  //   { id: 1, label: "Provider 2", value: "Provider 2" },
+  // ];
 
   const planList = [
     { id: 0, label: "Plan 1", value: "Plan 1" },
@@ -146,10 +147,10 @@ export default function InsuranceForm({
                   return (
                     <AutoCompleteCreatable
                       onFetch={(e) => {
-                        console.log(e);
+                        // console.log(e);
                       }}
                       onInputEmpty={(e) => {
-                        console.log(e);
+                        // console.log(e);
                       }}
                       options={providerList}
                       testId={testIds.provider}
@@ -502,7 +503,9 @@ export default function InsuranceForm({
                     <ImageUploader
                       OnUpload={onChange}
                       OnInputError={onFormCardFrontError}
-                      source={formData ? formData.frontCard : null}
+                      source={
+                        formData ? `/${formData.frontCard?.fileName}` : null
+                      }
                       testIds={testIds.uploadFrontImage}
                       preview={value}
                       label="Upload Front"
@@ -547,7 +550,9 @@ export default function InsuranceForm({
                     <ImageUploader
                       OnUpload={onChange}
                       OnInputError={onFormCardBackError}
-                      source={formData ? formData.backCard : null}
+                      source={
+                        formData ? `/${formData.backCard?.fileName}` : null
+                      }
                       testIds={testIds.uploadBackImage}
                       preview={value}
                       label="Upload Back"

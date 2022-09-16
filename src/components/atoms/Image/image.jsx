@@ -2,7 +2,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 
 export default function ImageFallback({
-  src,
+  src = "/transparent.png",
   fallbackSrc = "/transparent.png",
   ...props
 }) {
@@ -11,12 +11,11 @@ export default function ImageFallback({
   useEffect(() => {
     set_imgSrc(src);
   }, [src]);
-
   return (
     <Image
       {...props}
       alt={props.alt}
-      src={imgSrc || "/transparent"}
+      src={imgSrc || "/transparent.png"}
       onLoadingComplete={(result) => {
         if (result.naturalWidth === 0) {
           // Broken image
@@ -24,7 +23,6 @@ export default function ImageFallback({
         }
       }}
       onError={() => {
-        console.log("test");
         set_imgSrc(fallbackSrc);
       }}
     />

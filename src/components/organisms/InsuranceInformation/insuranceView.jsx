@@ -44,8 +44,6 @@ export default function InsuranceView({
     }
   });
 
-  console.log({ transformedData });
-
   return (
     <Fade in={!isEditing} unmountOnExit>
       <Stack spacing={3}>
@@ -78,7 +76,6 @@ export default function InsuranceView({
                     divider={<Divider sx={{ borderBottomWidth: 8 }} />}
                   >
                     {items.map((item, itemIdx) => {
-                      console.log({ item });
                       return (
                         <Stack key={itemIdx} spacing={3} divider={<Divider />}>
                           <Grid container spacing={{ xs: 4 }}>
