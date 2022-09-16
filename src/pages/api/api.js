@@ -1,5 +1,6 @@
 import axios from "axios";
-import { setGenericErrorMessage } from "../../store";
+import { fetchToken, setGenericErrorMessage } from "../../store";
+import { fetchUser } from "../../store/user";
 import constants from "../../utils/constants";
 
 let store;
@@ -19,6 +20,9 @@ export class Api {
       },
       timeout: 10000,
     });
+
+    this.requestCounter = 0;
+    this.maxRequestCounter = 3;
   }
 
   getToken() {
@@ -41,7 +45,7 @@ export class Api {
     try {
       return request.post("/ecp/gettoken", params);
     } catch (err) {
-      csoneol.log(err);
+      console.log("Failed to fetch token", err);
       return err.response.data;
     }
   }
@@ -64,21 +68,53 @@ export class Api {
           reject(response);
         }
       };
-      const rejecter = function (err) {
+      const rejecter = async (err) => {
         if (
           err &&
           ((err.code === constants.ERROR_CODE.BAD_REQUEST &&
             err?.response?.data?.ResponseCode === undefined) ||
             err.code === constants.ERROR_CODE.NETWORK_ERR)
         ) {
-          store.dispatch(
-            setGenericErrorMessage("Please try again after sometime.")
-          );
-          reject({
-            description:
-              "Something went wrong. Please try again after sometime.",
-            ResponseCode: err.code,
-          });
+          const errors = err?.response?.data?._errors; // error from e360+ API
+          if (errors[0]) {
+            // error jwt not found in header / expired
+            if (errors[0].code === "B4988908-5081-48CF-9B95-CA67E3FA87F0") {
+              this.requestCounter++;
+              if (this.requestCounter < this.maxRequestCounter) {
+                const tokenResponse = await this.getToken();
+                await store.dispatch(
+                  fetchUser(tokenResponse?.data?.access_token)
+                );
+              } else {
+                // TODO: Duplicate with below else
+                this.requestCounter = 0;
+
+                store.dispatch(
+                  setGenericErrorMessage("Please try again after sometime.")
+                );
+
+                reject({
+                  description:
+                    "Something went wrong. Please try again after sometime.",
+                  ResponseCode: err.code,
+                  ResponseData: err.response.data,
+                });
+              }
+            }
+          } else {
+            this.requestCounter = 0;
+
+            store.dispatch(
+              setGenericErrorMessage("Please try again after sometime.")
+            );
+
+            reject({
+              description:
+                "Something went wrong. Please try again after sometime.",
+              ResponseCode: err.code,
+              ResponseData: err.response.data,
+            });
+          }
         } else if (err && err.response && err.response.data) {
           reject(err.response.data);
         } else {
@@ -91,6 +127,8 @@ export class Api {
           return this.client.get(url).then(resolver).catch(rejecter);
         case "post":
           return this.client.post(url, postbody).then(resolver).catch(rejecter);
+        case "put":
+          return this.client.put(url, postbody).then(resolver).catch(rejecter);
         default:
           return this.client.get(url, postbody).then(resolver).catch(rejecter);
       }
@@ -228,11 +266,12 @@ export class Api {
       "https://public.opendatasoft.com/api/records/1.0/search/?dataset=georef-united-states-of-america-state&q=&sort=ste_name&facet=ste_name&rows=99";
     try {
       const response = await this.getResponse(usStatesApiUrl, null, "get");
+      console.log();
       return response.records.map((record) => {
         return {
           id: record.datasetid,
-          label: record.fields.ste_name,
-          value: record.fields.ste_name,
+          label: record.fields.ste_stusps_code,
+          value: record.fields.ste_stusps_code,
         };
       });
     } catch (error) {
