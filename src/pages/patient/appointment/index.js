@@ -50,6 +50,7 @@ export async function getStaticProps() {
 
 export default function Appointment({ googleApiKey }) {
   const isDesktop = useMediaQuery("(min-width: 834px)");
+  const isMobile = useMediaQuery("(max-width: 833px)");
   const isTablet = useMediaQuery("(max-width: 1440px)");
   const [filterSuggestionData, setFilterSuggestionData] = useState({});
   const [open, setOpen] = React.useState(false);
@@ -552,7 +553,7 @@ export default function Appointment({ googleApiKey }) {
       {!isFilterApplied || isDesktop ? (
         <>
           <FilterHeading
-            isDesktop={isDesktop}
+            isDesktop={!isMobile}
             isTablet={isTablet}
             onSearchProvider={onSearchProvider}
             onSwapButtonClicked={onSwapButtonClicked}
