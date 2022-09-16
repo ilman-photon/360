@@ -249,16 +249,17 @@ export default function InsuranceView({
                               sx={{
                                 width: { xs: "100%", md: "fit-content" },
                                 padding: { xs: 1 },
-                                borderColor: "#003B4A",
+                                border: `solid 1px ${colors.darkGreen}`,
+                                borderColor: colors.darkGreen,
                                 height: "40px !important",
                               }}
                             >
                               <Stack direction="row" alignItems="center">
                                 <DeleteOutlineIcon
                                   sx={{
-                                    width: 18,
-                                    height: 18,
-                                    mr: 1,
+                                    width: 24,
+                                    height: 24,
+                                    mr: "4px",
                                     color: "#003B4A",
                                   }}
                                 />
@@ -285,6 +286,8 @@ export default function InsuranceView({
                                   borderRadius: 30,
                                 },
                                 textTransform: "none",
+                                fontWeight: 600,
+                                lineHeight: "18px"
                               }}
                             >
                               Edit
