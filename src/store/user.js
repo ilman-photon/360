@@ -2,6 +2,8 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { Api } from "../pages/api/api";
 import { GENDER_LIST, TITLE_LIST } from "../utils/constantData";
 
+let url;
+
 const buildPostBody = (postBody, payload) => {
   let emailData = postBody.contactInformation.emails;
   emailData[0] = {
@@ -102,8 +104,10 @@ export const updateUser = createAsyncThunk(
 
 export const fetchInsurance = createAsyncThunk(
   "user/fetchInsurance",
-  async () => {
-    return fetch("/api/dummy/insurance").then((res) => res.json());
+  async ({ token, patientId }) => {
+    const api = new Api();
+    url = `/ecp/insurance/v1/beneficiaries/${patientId}/coverages`;
+    return api.getResponse(url, null, "get", token);
   }
 );
 
@@ -185,6 +189,39 @@ const DEFAULT_USER_DATA = {
   isSubscriber: "",
 };
 
+const buildUserInsuranceData = (payload) => {
+  const insurances = payload.entities;
+  return insurances.map((insurance) => {
+    const subscriberData = insurance.subscriber;
+    const digitalAssets = insurance.digitalAssets;
+    return {
+      id: 0,
+      provider: {
+        id: insurance.payer._id,
+        label: insurance.payer.name,
+        value: insurance.payer.value,
+      },
+      plan: {
+        id: insurance.plan._id,
+        label: insurance.plan.name,
+        value: insurance.plan.value,
+      },
+      memberID: subscriberData._id,
+      groupID: insurance.group,
+      isSubscriber: insurance.isPatientSubscriber ? "Yes" : "No",
+      subscriberData: {
+        firstName: subscriberData.firstName,
+        lastName: subscriberData.lastName,
+        dob: new Date(subscriberData.dob),
+        relationship: GENDER_LIST[insurance.subscriberRelation - 1],
+      },
+      priority: insurance.priority,
+      frontCard: digitalAssets.master_front,
+      backCard: digitalAssets.master_backCard,
+    };
+  });
+};
+
 export const DEFAULT_INSURANCE_DATA = {
   id: 0,
   provider: null,
@@ -247,17 +284,20 @@ const userSlice = createSlice({
     userData: DEFAULT_USER_DATA,
     userInsuranceData: [],
     userAppointmentData: [],
-    status: null,
+    status: "loading",
   },
   reducers: {
-    resetUserData: (state, action) => {
-      state.loading = action.payload;
+    setStatus: (state, { payload }) => {
+      state.status = payload;
+    },
+    resetUserData: (state, { payload }) => {
+      state.userData = DEFAULT_USER_DATA;
     },
     setUserData: (state, { payload }) => {
       state.userData = payload;
     },
-    resetUserInsuranceData: (state, action) => {
-      state.loading = action.payload;
+    resetUserInsuranceData: (state, { payload }) => {
+      state.userInsuranceData = [];
     },
     setUserInsuranceData: (state, { payload }) => {
       state.userInsuranceData = payload;
@@ -297,6 +337,7 @@ const userSlice = createSlice({
     },
   },
   extraReducers: {
+    // profile
     [fetchUser.pending]: (state) => {
       state.status = "loading";
     },
@@ -304,7 +345,6 @@ const userSlice = createSlice({
       if (payload) {
         state.userData = buildUserData(payload);
       }
-
       state.status = "success";
     },
     [fetchUser.rejected]: (state) => {
@@ -314,14 +354,29 @@ const userSlice = createSlice({
       state.userData = buildUserData(payload.response);
       state.status = "success";
     },
+    // insurance
+    [fetchInsurance.pending]: (state) => {
+      state.status = "loading";
+    },
+    [fetchInsurance.fulfilled]: (state, { payload }) => {
+      if (payload) {
+        state.userInsuranceData = buildUserInsuranceData(payload);
+      }
+      state.status = "success";
+    },
+    [fetchInsurance.rejected]: (state) => {
+      state.status = "failed";
+    },
   },
 });
 
 // Action creators are generated for each case reducer function
 export const {
+  setStatus,
   setUserData,
   setUserInsuranceData,
   addUserInsuranceData,
+  resetUserInsuranceData,
   removeUserInsuranceData,
   setUserInsuranceDataByIndex,
   resetUserAppointmentData,

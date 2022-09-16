@@ -16,7 +16,7 @@ import { StyledButton } from "../../atoms/Button/button";
 import { colors } from "../../../styles/theme";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Image from "next/image";
+import Image from "../../atoms/Image/image";
 import styles from "./insuranceView.module.scss";
 
 export default function InsuranceView({
@@ -30,9 +30,9 @@ export default function InsuranceView({
   },
 }) {
   const transformedData = {
-    Primary: [],
-    Secondary: [],
-    Tertiary: [],
+    PRIMARY: [],
+    SECONDARY: [],
+    TERTIARY: [],
   };
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
@@ -51,6 +51,7 @@ export default function InsuranceView({
       <Stack spacing={3}>
         {Object.keys(transformedData).map((category, idx) => {
           const items = transformedData[category];
+          const categoryName = category.toLowerCase();
           if (items.length > 0) {
             return (
               <Accordion key={idx}>
@@ -60,8 +61,11 @@ export default function InsuranceView({
                   sx={{ background: "#FAFAFA" }}
                 >
                   <Stack spacing={1} direction="row" alignItems="center">
-                    <Typography variant="h3" sx={{ fontSize: "24px" }}>
-                      {category}
+                    <Typography
+                      variant="h3"
+                      sx={{ fontSize: "24px", textTransform: "capitalize" }}
+                    >
+                      {categoryName}
                     </Typography>
                     <div className={styles.totalCategoryItemsWrapper}>
                       {items.length}
@@ -196,7 +200,9 @@ export default function InsuranceView({
                                   <Image
                                     width={263}
                                     height={139}
-                                    src={item.frontCard || "/transparent.png"}
+                                    source={`/${item.frontCard?.fileName}`}
+                                    placeholder="blur"
+                                    blurDataURL="/transparent.png"
                                     alt="front"
                                   />
                                 </div>
@@ -212,15 +218,17 @@ export default function InsuranceView({
                                 >
                                   Insurance Card - Back
                                 </Typography>
-                                <div className={styles.insuranceImageContainer}>
+                                {/* <div className={styles.insuranceImageContainer}>
                                   <Image
                                     width={263}
                                     height={139}
-                                    src={item.backCard || "/transparent.png"}
+                                    src={`/${item.backCard?.fileName}`}
+                                    placeholder="blur"
+                                    blurDataURL="/transparent.png"
                                     alt="back"
                                     className={styles.insuranceImage}
                                   />
-                                </div>
+                                </div> */}
                               </Grid>
                             </Grid>
                           </div>

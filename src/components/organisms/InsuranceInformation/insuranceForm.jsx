@@ -23,6 +23,7 @@ import FormMessage from "../../molecules/FormMessage/formMessage";
 import { AutoCompleteCreatable } from "../../molecules/AutoCompleteCreatable";
 import constants from "../../../utils/constants";
 import { Regex } from "../../../utils/regex";
+import { RELATIONSHIP_LIST } from "../../../utils/constantData";
 
 export default function InsuranceForm({
   formData = null,
@@ -66,12 +67,10 @@ export default function InsuranceForm({
   ];
 
   const priorityOptions = [
-    { label: "Primary", value: "Primary" },
-    { label: "Secondary", value: "Secondary" },
-    { label: "Tertiary", value: "Tertiary" },
+    { label: "Primary", value: "PRIMARY" },
+    { label: "Secondary", value: "SECONDARY" },
+    { label: "Tertiary", value: "TERTIARY" },
   ];
-
-  const relationshipList = ["Spouse", "Father", "Mother", "Self", "Son"];
 
   const DEFAULT_FORM_FIELD_STATE = {
     success: false,
@@ -445,7 +444,7 @@ export default function InsuranceForm({
                               },
                             }}
                             label="Relationship"
-                            options={relationshipList}
+                            options={RELATIONSHIP_LIST}
                             value={value}
                             onChange={(event) => {
                               onChange(event);

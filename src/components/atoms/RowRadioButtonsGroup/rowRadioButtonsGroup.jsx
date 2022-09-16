@@ -14,6 +14,7 @@ export default function RowRadioButtonsGroup({
   tooltipContent,
   textSx = {},
   isCancelSchedule = false,
+  isInsuranceForm = false,
   ...props
 }) {
   const options = props.options || [];

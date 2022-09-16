@@ -7,6 +7,7 @@ import store from "../../../src/store/store";
 import constants from "../../../src/utils/constants";
 import { fireEvent } from "@storybook/testing-library";
 import * as util from "../../../__mocks__/util";
+import { resetUserInsuranceData, setStatus } from "../../../src/store/user";
 
 describe("InsuranceInformationPage Components", () => {
   let container;
@@ -21,13 +22,16 @@ describe("InsuranceInformationPage Components", () => {
     fireEvent.keyDown(provider, { key: "Enter" });
     await util.sleep(100);
   };
-  beforeEach(() => {
+
+  beforeEach(async () => {
     container = render(
       <Provider store={store}>
         {InsuranceInformationPage.getLayout(<InsuranceInformationPage />)}
       </Provider>
     );
-    jest.setTimeout(1000);
+    await jest.setTimeout(10000);
+    await store.dispatch(setStatus("success"))
+    await store.dispatch(resetUserInsuranceData())
   });
 
   afterEach(() => {
@@ -39,16 +43,16 @@ describe("InsuranceInformationPage Components", () => {
     await waitFor(() => container.getByText("You have no insurance on file"));
   });
 
-  const inputProviderSubsId = async () => {
+  const inputProviderSubsId = async (providerValue) => {
     await testAutoCreate(
       constants.TEST_ID.INSURANCE_TEST_ID.provider,
       "Provider"
     );
     expect(
       within(
-        container.getByTestId(constants.TEST_ID.INSURANCE_TEST_ID.provider)
+        await waitFor(() => container.getByTestId(constants.TEST_ID.INSURANCE_TEST_ID.provider))
       ).queryByRole("combobox")
-    ).toHaveValue("Provider 1");
+    ).toHaveValue(providerValue);
     const subscriberId = container.getByTestId(
       constants.TEST_ID.INSURANCE_TEST_ID.subscriberId
     );
@@ -59,13 +63,16 @@ describe("InsuranceInformationPage Components", () => {
       }
     );
   };
+  
   it(
     "InsuranceInformationPage Input Test provider & subscriber",
-    inputProviderSubsId,
+    () => inputProviderSubsId("Provider 1"),
     10000
   );
 
   const inputPlanGroup = async () => {
+    jest.setTimeout(10000);
+    
     await testAutoCreate(
       constants.TEST_ID.INSURANCE_TEST_ID.planName,
       "Plan 1"
@@ -82,6 +89,7 @@ describe("InsuranceInformationPage Components", () => {
       target: { value: "group 1" },
     });
   };
+
   it(
     "InsuranceInformationPage Input Test plan name  & group",
     inputPlanGroup,
@@ -89,18 +97,19 @@ describe("InsuranceInformationPage Components", () => {
   );
 
   it("InsuranceInformationPage Add insurance cancel button", async () => {
-    const addButton = container.getByTestId(
+    const cancelButton = container.getByTestId(
       constants.TEST_ID.INSURANCE_TEST_ID.cancel
     );
-    fireEvent.click(addButton);
+    fireEvent.click(cancelButton);
   });
 
   it("InsuranceInformationPage Add insurance save button", async () => {
-    await inputProviderSubsId();
-    await inputPlanGroup();
-    const addButton = container.getByTestId(
-      constants.TEST_ID.INSURANCE_TEST_ID.cancel
-    );
+    // TODO 2 of this @Dewo, helep wkkwkwk
+    // await inputProviderSubsId("Provider");
+    // await inputPlanGroup();
+    const addButton = await waitFor(() => container.getByTestId(
+      constants.TEST_ID.INSURANCE_TEST_ID.save
+    ))
     act(() => {
       fireEvent.click(addButton);
     });

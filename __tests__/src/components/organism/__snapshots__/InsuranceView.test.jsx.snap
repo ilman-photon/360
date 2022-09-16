@@ -26,9 +26,9 @@ Object {
                 class="css-1q36rmd-MuiStack-root"
               >
                 <h3
-                  class="MuiTypography-root MuiTypography-h3 css-1xxnx8a-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-h3 css-11nxmg8-MuiTypography-root"
                 >
-                  Primary
+                  primary
                 </h3>
                 <div
                   class="totalCategoryItemsWrapper"
@@ -413,8 +413,9 @@ Object {
                                     alt="front"
                                     data-nimg="intrinsic"
                                     decoding="async"
+                                    source="/undefined"
                                     src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                                    style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                                    style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; background-size: cover; background-position: 0% 0%; filter: blur(20px); background-image: url(/transparent.png);"
                                   />
                                   <noscript />
                                 </span>
@@ -428,33 +429,6 @@ Object {
                               >
                                 Insurance Card - Back
                               </h4>
-                              <div
-                                class="insuranceImageContainer"
-                              >
-                                <span
-                                  style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-                                >
-                                  <span
-                                    style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-                                  >
-                                    <img
-                                      alt=""
-                                      aria-hidden="true"
-                                      src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27263%27%20height=%27139%27/%3e"
-                                      style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-                                    />
-                                  </span>
-                                  <img
-                                    alt="back"
-                                    class="insuranceImage"
-                                    data-nimg="intrinsic"
-                                    decoding="async"
-                                    src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                                    style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                                  />
-                                  <noscript />
-                                </span>
-                              </div>
                             </div>
                           </div>
                         </div>
@@ -481,7 +455,7 @@ Object {
                             <div
                               style="margin-top: 10px;"
                             >
-                              Primary
+                              PRIMARY
                             </div>
                           </div>
                         </div>
@@ -564,9 +538,9 @@ Object {
               class="css-1q36rmd-MuiStack-root"
             >
               <h3
-                class="MuiTypography-root MuiTypography-h3 css-1xxnx8a-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-h3 css-11nxmg8-MuiTypography-root"
               >
-                Primary
+                primary
               </h3>
               <div
                 class="totalCategoryItemsWrapper"
@@ -951,8 +925,9 @@ Object {
                                   alt="front"
                                   data-nimg="intrinsic"
                                   decoding="async"
+                                  source="/undefined"
                                   src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; background-size: cover; background-position: 0% 0%; filter: blur(20px); background-image: url(/transparent.png);"
                                 />
                                 <noscript />
                               </span>
@@ -966,33 +941,6 @@ Object {
                             >
                               Insurance Card - Back
                             </h4>
-                            <div
-                              class="insuranceImageContainer"
-                            >
-                              <span
-                                style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
-                              >
-                                <span
-                                  style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-                                >
-                                  <img
-                                    alt=""
-                                    aria-hidden="true"
-                                    src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27263%27%20height=%27139%27/%3e"
-                                    style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-                                  />
-                                </span>
-                                <img
-                                  alt="back"
-                                  class="insuranceImage"
-                                  data-nimg="intrinsic"
-                                  decoding="async"
-                                  src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                                  style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                                />
-                                <noscript />
-                              </span>
-                            </div>
                           </div>
                         </div>
                       </div>
@@ -1019,7 +967,7 @@ Object {
                           <div
                             style="margin-top: 10px;"
                           >
-                            Primary
+                            PRIMARY
                           </div>
                         </div>
                       </div>

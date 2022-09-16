@@ -213,8 +213,8 @@ Object {
                                     <label
                                       class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-1vtu5nf-MuiFormLabel-root-MuiInputLabel-root"
                                       data-shrink="false"
-                                      for=":r0:"
-                                      id=":r0:-label"
+                                      for=":r1:"
+                                      id=":r1:-label"
                                     >
                                       Insurance Provider
                                     </label>
@@ -228,7 +228,7 @@ Object {
                                         autocapitalize="none"
                                         autocomplete="off"
                                         class="MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
-                                        id=":r0:"
+                                        id=":r1:"
                                         placeholder=""
                                         role="combobox"
                                         spellcheck="false"
@@ -256,9 +256,6 @@ Object {
                                               d="M7 10l5 5 5-5z"
                                             />
                                           </svg>
-                                          <span
-                                            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                                          />
                                         </button>
                                       </div>
                                       <fieldset
@@ -291,8 +288,8 @@ Object {
                                     <label
                                       class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-1vtu5nf-MuiFormLabel-root-MuiInputLabel-root"
                                       data-shrink="false"
-                                      for=":r2:"
-                                      id=":r2:-label"
+                                      for=":r3:"
+                                      id=":r3:-label"
                                     >
                                       Plan Name
                                     </label>
@@ -306,7 +303,7 @@ Object {
                                         autocapitalize="none"
                                         autocomplete="off"
                                         class="MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
-                                        id=":r2:"
+                                        id=":r3:"
                                         placeholder=""
                                         role="combobox"
                                         spellcheck="false"
@@ -334,9 +331,6 @@ Object {
                                               d="M7 10l5 5 5-5z"
                                             />
                                           </svg>
-                                          <span
-                                            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                                          />
                                         </button>
                                       </div>
                                       <fieldset
@@ -372,8 +366,8 @@ Object {
                                   <label
                                     class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
                                     data-shrink="false"
-                                    for=":r4:"
-                                    id=":r4:-label"
+                                    for=":r5:"
+                                    id=":r5:-label"
                                   >
                                     Subscriber ID/ Member ID
                                   </label>
@@ -383,7 +377,7 @@ Object {
                                     <input
                                       aria-invalid="false"
                                       class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
-                                      id=":r4:"
+                                      id=":r5:"
                                       placeholder=""
                                       type="text"
                                       value=""
@@ -402,8 +396,8 @@ Object {
                                   <label
                                     class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
                                     data-shrink="false"
-                                    for=":r5:"
-                                    id=":r5:-label"
+                                    for=":r6:"
+                                    id=":r6:-label"
                                   >
                                     Group #
                                   </label>
@@ -413,7 +407,7 @@ Object {
                                     <input
                                       aria-invalid="false"
                                       class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
-                                      id=":r5:"
+                                      id=":r6:"
                                       placeholder=""
                                       type="text"
                                       value=""
@@ -469,7 +463,7 @@ Object {
                               >
                                 <label
                                   aria-label="Yes Radio Button"
-                                  class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-c1ifyw-MuiFormControlLabel-root"
+                                  class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
                                 >
                                   <span
                                     class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-81lzf2-MuiButtonBase-root-MuiRadio-root"
@@ -507,9 +501,6 @@ Object {
                                         />
                                       </svg>
                                     </span>
-                                    <span
-                                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                                    />
                                   </span>
                                   <span
                                     class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-6h2hyl-MuiTypography-root"
@@ -519,7 +510,7 @@ Object {
                                 </label>
                                 <label
                                   aria-label="No Radio Button"
-                                  class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-c1ifyw-MuiFormControlLabel-root"
+                                  class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
                                 >
                                   <span
                                     class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
@@ -556,9 +547,6 @@ Object {
                                         />
                                       </svg>
                                     </span>
-                                    <span
-                                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                                    />
                                   </span>
                                   <span
                                     class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-6h2hyl-MuiTypography-root"
@@ -607,8 +595,8 @@ Object {
                                             <label
                                               class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
                                               data-shrink="false"
-                                              for=":r8:"
-                                              id=":r8:-label"
+                                              for=":r9:"
+                                              id=":r9:-label"
                                             >
                                               Subscriber First Name
                                             </label>
@@ -618,7 +606,7 @@ Object {
                                               <input
                                                 aria-invalid="false"
                                                 class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
-                                                id=":r8:"
+                                                id=":r9:"
                                                 placeholder=""
                                                 type="text"
                                                 value=""
@@ -636,8 +624,8 @@ Object {
                                             <label
                                               class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
                                               data-shrink="false"
-                                              for=":r9:"
-                                              id=":r9:-label"
+                                              for=":ra:"
+                                              id=":ra:-label"
                                             >
                                               Subscriber Last Name
                                             </label>
@@ -647,7 +635,7 @@ Object {
                                               <input
                                                 aria-invalid="false"
                                                 class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
-                                                id=":r9:"
+                                                id=":ra:"
                                                 placeholder=""
                                                 type="text"
                                                 value=""
@@ -667,8 +655,8 @@ Object {
                                             <label
                                               class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
                                               data-shrink="false"
-                                              for=":ra:"
-                                              id=":ra:-label"
+                                              for=":rb:"
+                                              id=":rb:-label"
                                             >
                                               Subscriber Date of Birth
                                             </label>
@@ -676,12 +664,12 @@ Object {
                                               class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
                                             >
                                               <input
-                                                aria-describedby=":ra:-helper-text"
+                                                aria-describedby=":rb:-helper-text"
                                                 aria-invalid="false"
                                                 aria-label="Choose date"
                                                 aria-readonly="true"
                                                 class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
-                                                id=":ra:"
+                                                id=":rb:"
                                                 readonly=""
                                                 type="text"
                                                 value=""
@@ -689,7 +677,7 @@ Object {
                                             </div>
                                             <p
                                               class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained css-s6t1lu-MuiFormHelperText-root"
-                                              id=":ra:-helper-text"
+                                              id=":rb:-helper-text"
                                             >
                                               MM/DD/YYYY
                                             </p>
@@ -853,9 +841,6 @@ Object {
                                           Upload Front
                                         </span>
                                       </div>
-                                      <span
-                                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                                      />
                                     </button>
                                     <input
                                       accept="image/png, image/gif, image/jpeg"
@@ -942,9 +927,6 @@ Object {
                                           Upload Back
                                         </span>
                                       </div>
-                                      <span
-                                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                                      />
                                     </button>
                                     <input
                                       accept="image/png, image/gif, image/jpeg"
@@ -992,17 +974,16 @@ Object {
                               >
                                 <label
                                   aria-label="Primary Radio Button"
-                                  class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-c1ifyw-MuiFormControlLabel-root"
+                                  class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
                                 >
                                   <span
-                                    class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-81lzf2-MuiButtonBase-root-MuiRadio-root"
+                                    class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
                                   >
                                     <input
-                                      checked=""
                                       class="PrivateSwitchBase-input css-1m9pwf3"
                                       name="row-radio-buttons-group"
                                       type="radio"
-                                      value="Primary"
+                                      value="PRIMARY"
                                     />
                                     <span
                                       class="css-hyxlzm"
@@ -1020,7 +1001,7 @@ Object {
                                       </svg>
                                       <svg
                                         aria-hidden="true"
-                                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1m7o2of-MuiSvgIcon-root"
+                                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-6oje6m-MuiSvgIcon-root"
                                         data-testid="RadioButtonCheckedIcon"
                                         focusable="false"
                                         viewBox="0 0 24 24"
@@ -1030,9 +1011,6 @@ Object {
                                         />
                                       </svg>
                                     </span>
-                                    <span
-                                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                                    />
                                   </span>
                                   <span
                                     class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-6h2hyl-MuiTypography-root"
@@ -1042,7 +1020,7 @@ Object {
                                 </label>
                                 <label
                                   aria-label="Secondary Radio Button"
-                                  class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-c1ifyw-MuiFormControlLabel-root"
+                                  class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
                                 >
                                   <span
                                     class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
@@ -1051,7 +1029,7 @@ Object {
                                       class="PrivateSwitchBase-input css-1m9pwf3"
                                       name="row-radio-buttons-group"
                                       type="radio"
-                                      value="Secondary"
+                                      value="SECONDARY"
                                     />
                                     <span
                                       class="css-hyxlzm"
@@ -1079,9 +1057,6 @@ Object {
                                         />
                                       </svg>
                                     </span>
-                                    <span
-                                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                                    />
                                   </span>
                                   <span
                                     class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-6h2hyl-MuiTypography-root"
@@ -1091,7 +1066,7 @@ Object {
                                 </label>
                                 <label
                                   aria-label="Tertiary Radio Button"
-                                  class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-c1ifyw-MuiFormControlLabel-root"
+                                  class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
                                 >
                                   <span
                                     class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
@@ -1100,7 +1075,7 @@ Object {
                                       class="PrivateSwitchBase-input css-1m9pwf3"
                                       name="row-radio-buttons-group"
                                       type="radio"
-                                      value="Tertiary"
+                                      value="TERTIARY"
                                     />
                                     <span
                                       class="css-hyxlzm"
@@ -1128,9 +1103,6 @@ Object {
                                         />
                                       </svg>
                                     </span>
-                                    <span
-                                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                                    />
                                   </span>
                                   <span
                                     class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-6h2hyl-MuiTypography-root"
@@ -1156,9 +1128,6 @@ Object {
                                 type="button"
                               >
                                 Cancel
-                                <span
-                                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                                />
                               </button>
                               <button
                                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-2gx2ap-MuiButtonBase-root-MuiButton-root"
@@ -1167,9 +1136,6 @@ Object {
                                 type="submit"
                               >
                                 Save
-                                <span
-                                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                                />
                               </button>
                             </div>
                           </div>
@@ -1397,8 +1363,8 @@ Object {
                                   <label
                                     class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-1vtu5nf-MuiFormLabel-root-MuiInputLabel-root"
                                     data-shrink="false"
-                                    for=":r0:"
-                                    id=":r0:-label"
+                                    for=":r1:"
+                                    id=":r1:-label"
                                   >
                                     Insurance Provider
                                   </label>
@@ -1412,7 +1378,7 @@ Object {
                                       autocapitalize="none"
                                       autocomplete="off"
                                       class="MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
-                                      id=":r0:"
+                                      id=":r1:"
                                       placeholder=""
                                       role="combobox"
                                       spellcheck="false"
@@ -1440,9 +1406,6 @@ Object {
                                             d="M7 10l5 5 5-5z"
                                           />
                                         </svg>
-                                        <span
-                                          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                                        />
                                       </button>
                                     </div>
                                     <fieldset
@@ -1475,8 +1438,8 @@ Object {
                                   <label
                                     class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-1vtu5nf-MuiFormLabel-root-MuiInputLabel-root"
                                     data-shrink="false"
-                                    for=":r2:"
-                                    id=":r2:-label"
+                                    for=":r3:"
+                                    id=":r3:-label"
                                   >
                                     Plan Name
                                   </label>
@@ -1490,7 +1453,7 @@ Object {
                                       autocapitalize="none"
                                       autocomplete="off"
                                       class="MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
-                                      id=":r2:"
+                                      id=":r3:"
                                       placeholder=""
                                       role="combobox"
                                       spellcheck="false"
@@ -1518,9 +1481,6 @@ Object {
                                             d="M7 10l5 5 5-5z"
                                           />
                                         </svg>
-                                        <span
-                                          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                                        />
                                       </button>
                                     </div>
                                     <fieldset
@@ -1556,8 +1516,8 @@ Object {
                                 <label
                                   class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
                                   data-shrink="false"
-                                  for=":r4:"
-                                  id=":r4:-label"
+                                  for=":r5:"
+                                  id=":r5:-label"
                                 >
                                   Subscriber ID/ Member ID
                                 </label>
@@ -1567,7 +1527,7 @@ Object {
                                   <input
                                     aria-invalid="false"
                                     class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
-                                    id=":r4:"
+                                    id=":r5:"
                                     placeholder=""
                                     type="text"
                                     value=""
@@ -1586,8 +1546,8 @@ Object {
                                 <label
                                   class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
                                   data-shrink="false"
-                                  for=":r5:"
-                                  id=":r5:-label"
+                                  for=":r6:"
+                                  id=":r6:-label"
                                 >
                                   Group #
                                 </label>
@@ -1597,7 +1557,7 @@ Object {
                                   <input
                                     aria-invalid="false"
                                     class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
-                                    id=":r5:"
+                                    id=":r6:"
                                     placeholder=""
                                     type="text"
                                     value=""
@@ -1653,7 +1613,7 @@ Object {
                             >
                               <label
                                 aria-label="Yes Radio Button"
-                                class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-c1ifyw-MuiFormControlLabel-root"
+                                class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
                               >
                                 <span
                                   class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-81lzf2-MuiButtonBase-root-MuiRadio-root"
@@ -1691,9 +1651,6 @@ Object {
                                       />
                                     </svg>
                                   </span>
-                                  <span
-                                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                                  />
                                 </span>
                                 <span
                                   class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-6h2hyl-MuiTypography-root"
@@ -1703,7 +1660,7 @@ Object {
                               </label>
                               <label
                                 aria-label="No Radio Button"
-                                class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-c1ifyw-MuiFormControlLabel-root"
+                                class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
                               >
                                 <span
                                   class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
@@ -1740,9 +1697,6 @@ Object {
                                       />
                                     </svg>
                                   </span>
-                                  <span
-                                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                                  />
                                 </span>
                                 <span
                                   class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-6h2hyl-MuiTypography-root"
@@ -1791,8 +1745,8 @@ Object {
                                           <label
                                             class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
                                             data-shrink="false"
-                                            for=":r8:"
-                                            id=":r8:-label"
+                                            for=":r9:"
+                                            id=":r9:-label"
                                           >
                                             Subscriber First Name
                                           </label>
@@ -1802,7 +1756,7 @@ Object {
                                             <input
                                               aria-invalid="false"
                                               class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
-                                              id=":r8:"
+                                              id=":r9:"
                                               placeholder=""
                                               type="text"
                                               value=""
@@ -1820,8 +1774,8 @@ Object {
                                           <label
                                             class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
                                             data-shrink="false"
-                                            for=":r9:"
-                                            id=":r9:-label"
+                                            for=":ra:"
+                                            id=":ra:-label"
                                           >
                                             Subscriber Last Name
                                           </label>
@@ -1831,7 +1785,7 @@ Object {
                                             <input
                                               aria-invalid="false"
                                               class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
-                                              id=":r9:"
+                                              id=":ra:"
                                               placeholder=""
                                               type="text"
                                               value=""
@@ -1851,8 +1805,8 @@ Object {
                                           <label
                                             class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
                                             data-shrink="false"
-                                            for=":ra:"
-                                            id=":ra:-label"
+                                            for=":rb:"
+                                            id=":rb:-label"
                                           >
                                             Subscriber Date of Birth
                                           </label>
@@ -1860,12 +1814,12 @@ Object {
                                             class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
                                           >
                                             <input
-                                              aria-describedby=":ra:-helper-text"
+                                              aria-describedby=":rb:-helper-text"
                                               aria-invalid="false"
                                               aria-label="Choose date"
                                               aria-readonly="true"
                                               class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
-                                              id=":ra:"
+                                              id=":rb:"
                                               readonly=""
                                               type="text"
                                               value=""
@@ -1873,7 +1827,7 @@ Object {
                                           </div>
                                           <p
                                             class="MuiFormHelperText-root MuiFormHelperText-sizeMedium MuiFormHelperText-contained css-s6t1lu-MuiFormHelperText-root"
-                                            id=":ra:-helper-text"
+                                            id=":rb:-helper-text"
                                           >
                                             MM/DD/YYYY
                                           </p>
@@ -2037,9 +1991,6 @@ Object {
                                         Upload Front
                                       </span>
                                     </div>
-                                    <span
-                                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                                    />
                                   </button>
                                   <input
                                     accept="image/png, image/gif, image/jpeg"
@@ -2126,9 +2077,6 @@ Object {
                                         Upload Back
                                       </span>
                                     </div>
-                                    <span
-                                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                                    />
                                   </button>
                                   <input
                                     accept="image/png, image/gif, image/jpeg"
@@ -2176,17 +2124,16 @@ Object {
                             >
                               <label
                                 aria-label="Primary Radio Button"
-                                class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-c1ifyw-MuiFormControlLabel-root"
+                                class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
                               >
                                 <span
-                                  class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-81lzf2-MuiButtonBase-root-MuiRadio-root"
+                                  class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
                                 >
                                   <input
-                                    checked=""
                                     class="PrivateSwitchBase-input css-1m9pwf3"
                                     name="row-radio-buttons-group"
                                     type="radio"
-                                    value="Primary"
+                                    value="PRIMARY"
                                   />
                                   <span
                                     class="css-hyxlzm"
@@ -2204,7 +2151,7 @@ Object {
                                     </svg>
                                     <svg
                                       aria-hidden="true"
-                                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1m7o2of-MuiSvgIcon-root"
+                                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-6oje6m-MuiSvgIcon-root"
                                       data-testid="RadioButtonCheckedIcon"
                                       focusable="false"
                                       viewBox="0 0 24 24"
@@ -2214,9 +2161,6 @@ Object {
                                       />
                                     </svg>
                                   </span>
-                                  <span
-                                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                                  />
                                 </span>
                                 <span
                                   class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-6h2hyl-MuiTypography-root"
@@ -2226,7 +2170,7 @@ Object {
                               </label>
                               <label
                                 aria-label="Secondary Radio Button"
-                                class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-c1ifyw-MuiFormControlLabel-root"
+                                class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
                               >
                                 <span
                                   class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
@@ -2235,7 +2179,7 @@ Object {
                                     class="PrivateSwitchBase-input css-1m9pwf3"
                                     name="row-radio-buttons-group"
                                     type="radio"
-                                    value="Secondary"
+                                    value="SECONDARY"
                                   />
                                   <span
                                     class="css-hyxlzm"
@@ -2263,9 +2207,6 @@ Object {
                                       />
                                     </svg>
                                   </span>
-                                  <span
-                                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                                  />
                                 </span>
                                 <span
                                   class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-6h2hyl-MuiTypography-root"
@@ -2275,7 +2216,7 @@ Object {
                               </label>
                               <label
                                 aria-label="Tertiary Radio Button"
-                                class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-c1ifyw-MuiFormControlLabel-root"
+                                class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
                               >
                                 <span
                                   class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
@@ -2284,7 +2225,7 @@ Object {
                                     class="PrivateSwitchBase-input css-1m9pwf3"
                                     name="row-radio-buttons-group"
                                     type="radio"
-                                    value="Tertiary"
+                                    value="TERTIARY"
                                   />
                                   <span
                                     class="css-hyxlzm"
@@ -2312,9 +2253,6 @@ Object {
                                       />
                                     </svg>
                                   </span>
-                                  <span
-                                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                                  />
                                 </span>
                                 <span
                                   class="MuiTypography-root MuiTypography-body1 MuiFormControlLabel-label css-6h2hyl-MuiTypography-root"
@@ -2340,9 +2278,6 @@ Object {
                               type="button"
                             >
                               Cancel
-                              <span
-                                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                              />
                             </button>
                             <button
                               class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-2gx2ap-MuiButtonBase-root-MuiButton-root"
@@ -2351,9 +2286,6 @@ Object {
                               type="submit"
                             >
                               Save
-                              <span
-                                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                              />
                             </button>
                           </div>
                         </div>
