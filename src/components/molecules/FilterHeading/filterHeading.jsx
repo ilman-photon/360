@@ -642,7 +642,7 @@ const FilterHeading = ({
                 display: "flex",
                 alignItems: "flex-end",
                 background: "#fff",
-                width: "80%",
+                width: "60%",
                 paddingLeft: "15px",
                 borderRadius: 0,
                 marginTop: "0px",
@@ -715,7 +715,7 @@ const FilterHeading = ({
                 display: "flex",
                 alignItems: "flex-end",
                 background: "#fff",
-                width: isDesktop ? "100%" : "auto",
+                width: isDesktop ? "85%" : "auto",
                 paddingLeft: "15px",
                 marginTop: isDesktop ? "0px" : "16px",
               }}
@@ -790,7 +790,7 @@ const FilterHeading = ({
                 display: "flex",
                 background: "#fff",
                 borderRadius: "50px",
-                width: "80vw",
+                width: isTablet ? "85vw" : "80vw",
               }}
             >
               {renderLocationFilter()}
