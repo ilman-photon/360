@@ -365,11 +365,9 @@ exports[`App renders App unchanged 1`] = `
                       </div>
                     </div>
                     <div
-                      class="css-1okj3ks-MuiStack-root"
+                      class="css-qkek6c-MuiStack-root"
                     >
-                      <div
-                        style="margin-top: 10px;"
-                      >
+                      <div>
                         <span
                           class="MuiTypography-root MuiTypography-bodyMedium css-1oitrp4-MuiTypography-root"
                         >

@@ -183,7 +183,13 @@ export default function InsuranceInfoPage() {
                 <StyledButton
                   mode="primary"
                   size="small"
-                  className={styles.addButton}
+                  sx={{
+                    borderRadius: "30px",
+                    fontSize: "14px",
+                    textTransform: "none",
+                    fontWeight: 600,
+                    padding: "8px 20px",
+                  }}
                   disabled={openNewInsuranceForm}
                   data-testid={INSURANCE_TEST_ID.addButton}
                   onClick={OnAddNewInsurance}
