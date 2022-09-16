@@ -18,7 +18,7 @@ spec:
         app: patient
     spec:
       containers:
-      - image: 056640875000.dkr.ecr.us-east-1.amazonaws.com/photon-ecp-ppp-dev:ecp-patient-TAG
+      - image: 056640875000.dkr.ecr.us-east-1.amazonaws.com/photon-e360-patient-dev:ecp-patient-TAG
         name: patient
         imagePullPolicy: Always
         resources: {}
@@ -31,6 +31,9 @@ metadata:
   labels:
     app: patient
   name: patient
+    annotations:
+    service.beta.kubernetes.io/aws-load-balancer-internal: "true"
+
 spec:
   ports:
   - name: 80-3000
