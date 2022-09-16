@@ -58,7 +58,6 @@ export default function DetailAppointment({ data }) {
   }));
   const downloadPDF = () => {
     let element = container.current || document.body;
-    console.log(element);
     savePDF(
       element,
       {
@@ -68,7 +67,6 @@ export default function DetailAppointment({ data }) {
       },
       () => {
         setIsDownload(false);
-        console.log("............");
       }
     );
   };
