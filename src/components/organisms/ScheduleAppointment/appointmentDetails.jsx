@@ -63,7 +63,11 @@ export default function AppointmentDetails({
             sxRow={{ justifyContent: "unset" }}
             sxText={{ paddingLeft: "4px", color: colors.darkGreen }}
           >
-            <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
+            <Typography
+              variant="bodyMedium"
+              sx={{ color: colors.darkGreen }}
+              tabindex={"0"}
+            >
               {formatAppointmentDate(appointmentData.date)}
             </Typography>
           </LabelWithInfo>
@@ -76,7 +80,11 @@ export default function AppointmentDetails({
             sxRow={{ justifyContent: "unset" }}
             sxText={{ paddingLeft: "4px", color: colors.darkGreen }}
           >
-            <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
+            <Typography
+              variant="bodyMedium"
+              sx={{ color: colors.darkGreen }}
+              tabindex={"0"}
+            >
               {appointmentData.insuranceCarrier
                 ? appointmentData.insuranceCarrier
                 : "No Insurance provided"}
@@ -94,7 +102,15 @@ export default function AppointmentDetails({
             sxRow={{ justifyContent: "unset" }}
             sxText={{ paddingLeft: "4px", color: colors.darkGreen }}
           >
-            <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
+            <Typography
+              variant="bodyMedium"
+              sx={{ color: colors.darkGreen }}
+              tabindex={"0"}
+              aria-label={
+                appointmentData.appointmentType ||
+                "no purpose of visit provided"
+              }
+            >
               {appointmentData.appointmentType || "-"}
             </Typography>
           </LabelWithInfo>

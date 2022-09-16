@@ -275,9 +275,10 @@ Object {
                     value="Yes"
                   >
                     <label
-                      aria-label="Yes, No - radio buttons"
+                      aria-label="Are you the Subscriber?"
                       class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1nupjmb-MuiFormLabel-root"
                       id="row-radio-buttons-group-label"
+                      tabindex="0"
                     >
                       Are you the Subscriber?
                       <svg
@@ -798,9 +799,10 @@ Object {
                     value="Primary"
                   >
                     <label
-                      aria-label="Primary, Secondary, Tertiary - radio buttons"
+                      aria-label="Insurance Priority"
                       class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1nupjmb-MuiFormLabel-root"
                       id="row-radio-buttons-group-label"
+                      tabindex="0"
                     >
                       Insurance Priority
                       <svg
@@ -1286,9 +1288,10 @@ Object {
                   value="Yes"
                 >
                   <label
-                    aria-label="Yes, No - radio buttons"
+                    aria-label="Are you the Subscriber?"
                     class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1nupjmb-MuiFormLabel-root"
                     id="row-radio-buttons-group-label"
+                    tabindex="0"
                   >
                     Are you the Subscriber?
                     <svg
@@ -1809,9 +1812,10 @@ Object {
                   value="Primary"
                 >
                   <label
-                    aria-label="Primary, Secondary, Tertiary - radio buttons"
+                    aria-label="Insurance Priority"
                     class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1nupjmb-MuiFormLabel-root"
                     id="row-radio-buttons-group-label"
+                    tabindex="0"
                   >
                     Insurance Priority
                     <svg

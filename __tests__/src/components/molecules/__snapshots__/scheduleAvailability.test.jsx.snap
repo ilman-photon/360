@@ -33,6 +33,7 @@ Object {
           <a
             class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways linkAvailabelity css-1ps4owl-MuiTypography-root-MuiLink-root"
             data-testid="loc_viewAll"
+            tabindex="0"
           >
             View all availability
           </a>
@@ -69,6 +70,7 @@ Object {
         <a
           class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways linkAvailabelity css-1ps4owl-MuiTypography-root-MuiLink-root"
           data-testid="loc_viewAll"
+          tabindex="0"
         >
           View all availability
         </a>

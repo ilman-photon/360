@@ -58,9 +58,10 @@ Object {
                     rules="[object Object]"
                   >
                     <label
-                      aria-label="Family emergency, Patient passed away, Family emergency, Not covered by insurance, Rescheduled appointment, Patient hospitalized, Patient illness, Transportation issues, Weather, Homebound, Other - radio buttons"
+                      aria-label="cancelReason"
                       class="MuiFormLabel-root MuiFormLabel-colorPrimary css-p3vhbq-MuiFormLabel-root"
                       id="row-radio-buttons-group-label"
+                      tabindex="0"
                     >
                       cancelReason
                     </label>

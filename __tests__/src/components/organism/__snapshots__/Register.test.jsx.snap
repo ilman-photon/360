@@ -357,9 +357,10 @@ Object {
                 value="both"
               >
                 <label
-                  aria-label="Email, Phone, Both - radio buttons"
+                  aria-label="Preferred mode of Communication"
                   class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1nupjmb-MuiFormLabel-root"
                   id="row-radio-buttons-group-label"
+                  tabindex="0"
                 >
                   Preferred mode of Communication
                 </label>
@@ -914,9 +915,10 @@ Object {
               value="both"
             >
               <label
-                aria-label="Email, Phone, Both - radio buttons"
+                aria-label="Preferred mode of Communication"
                 class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1nupjmb-MuiFormLabel-root"
                 id="row-radio-buttons-group-label"
+                tabindex="0"
               >
                 Preferred mode of Communication
               </label>

@@ -89,6 +89,8 @@ export default function BaseHeader({
                 style={styles.logoStyled}
                 aria-label={"Clarkson Eyecare logo"}
                 title="Your Account"
+                tabindex={0}
+                role={"img"}
               ></Image>
               {/* Menu Desktop*/}
               <Box sx={styles.boxStyled}>
@@ -195,9 +197,11 @@ export default function BaseHeader({
                 src={logo}
                 width="124px"
                 height="36px"
+                role={"img"}
                 quality={100}
                 style={styles.logoStyled}
                 aria-label={"Clarkson Eyecare logo"}
+                tabindex={0}
               ></Image>
             </Toolbar>
           )}

@@ -21,7 +21,7 @@ export default function AppointmentLocation({
   const getAddress = (address) => {
     if (!address) return;
     return (
-      <div>
+      <div tabindex={"0"}>
         {address.addressLine1}
         <br />
         {address.addressLine2}
@@ -68,27 +68,26 @@ export default function AppointmentLocation({
             height={105}
             style={{ borderRadius: "50%" }}
             alt="Doctors image"
+            tabindex={"0"}
           />
 
           <Box>
             <Typography
               variant="h4"
               style={{ ...styles.detailText, ...styles.boldText }}
+              tabindex={"0"}
             >
               {providerData.name}
             </Typography>
-            <Typography
-              variant="regularBold"
-              style={styles.detailText}
-              aria-label={"Myself"}
-            >
+            <Typography variant="regularBold" style={styles.detailText}>
               {getAddress(providerData.address)}
               <br />
             </Typography>
             <Typography
               variant="h4"
               style={styles.detailText}
-              aria-label={"Myself"}
+              aria-label={`provider phone number ${providerData.phoneNumber}`}
+              tabindex={"0"}
             >
               <Link style={styles.linkText}>{providerData.phoneNumber}</Link>
             </Typography>

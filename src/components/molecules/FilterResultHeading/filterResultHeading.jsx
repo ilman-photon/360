@@ -170,7 +170,7 @@ export const FilterResultHeading = ({
             sx={{ gridArea: "filterDetails" }}
             className={styles.filterFoundWarpper}
           >
-            <Typography className={styles.filterFound}>
+            <Typography className={styles.filterFound} tabindex={"0"}>
               {`${numberFilter} In-network providers`}
             </Typography>
           </Box>
