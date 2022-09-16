@@ -28,6 +28,8 @@ install:
   stage: install
   tags:
     - Frontend-runner
+  before_script:
+  - export PATH=$PATH:/usr/local/bin
   script:
     - npm install
   artifacts:
@@ -44,6 +46,8 @@ test:
   stage: test
   tags:
     - Frontend-runner
+  before_script:
+  - export PATH=$PATH:/usr/local/bin
   script:
     - npm run test
   dependencies:
