@@ -2,48 +2,60 @@
 @Appointments
 @P1
 @Patient_Portal
+@Include
 Feature: Patient Portal : Schedule appointment from Patient Portal - Select time slot for appointment
   User Story: As a user, I should be able to select a time slot of a provider to schedule appointment from patient portal.
-
   Acceptance Criteria:
-
-  GIVEN
-
-  User clicks on “Schedule Appointment” CTA from patient portal
-
-  And
-
-  User provides location, select the date of appointment as well as purpose of visit and insurance
-
-  And
-
-  User clicks on the option to Search
-
-  And
-
-  User lands on “Schedule Appointment” screen with the selected location, date, purpose of visit (if provided) and insurance carrier (if provided) along with relevant results already present there as in  
-
-  WHEN
-
-  User selects a time slot of the provider
-
-  THEN
-
-  User should be navigated to review the appointment details  
+  GIVEN User clicks on “Schedule Appointment” CTA from patient portal
+  And User provides location, select the date of appointment as well as purpose of visit and insurance
+  And User clicks on the option to Search
+  And User lands on “Schedule Appointment” screen with the selected location, date, purpose of visit (if provided) and insurance carrier (if provided) along with relevant results already present there as in  
+  WHEN User selects a time slot of the provider
+  THEN User should be navigated to review the appointment details  
 
   @BDDTEST-EPP-3211
   @Appointments
   @Patient_Portal
   @Sprint4
   Scenario: EPIC_EPP-44_STORY_EPP-2543-Verify User should be navigated to "Schedule Appointment" screen with the selected data
+  Given User launch the "Marketing Site" url
+When User clicks on the "Schedule your Eye Exam" button
+Then User should navigated to the search screen
+And User should fill the location
+And User should select the date of appointment 
+And User should select the purpose of the visit
+And User should fill the insurance name
+And User should see the option to Search
+When User clicks on the option to Search
+Then User should navigated on "Schedule Appointment" screen 
+And User should see the selected location
+And User should see the selected date
+And User should see the purpose of visit (if provided) 
+And And User should see the insurance carrier (if provided)
 
-
-  @BDDTEST-EPP-3212
+@BDDTEST-EPP-3212
   @Appointments
   @Patient_Portal
   @Sprint4
   Scenario: EPIC_EPP-44_STORY_EPP-2543-Verify User should be able to selects a time slot of the provider
-
+  Given User launch the "Marketing Site" url
+When User clicks on the "Schedule your Eye Exam" button
+Then User should navigated to the search screen
+And User should fill the location
+And User should select the date of appointment 
+And User should select the purpose of the visit
+And User should fill the insurance name
+And User should see the option to Search
+When User clicks on the option to Search
+Then User should navigated on "Schedule Appointment" screen 
+And User should see the selected location
+And User should see the selected date
+And User should see the purpose of visit (if provided) 
+And And User should see the insurance carrier (if provided)
+And User should see a time slot of the provider
+When User selects a time slot of the provider
+Then User should navigated to review the appointment details
+And User should see the selected location along with the provider
 
   @BDDTEST-EPP-3213
   @Appointments
@@ -51,82 +63,127 @@ Feature: Patient Portal : Schedule appointment from Patient Portal - Select time
   @Regression
   @Sprint4
   Scenario: EPIC_EPP-44_STORY_EPP-2543-Verify User should navigated to review the appointment details
-
+  Given User launch the "Marketing Site" url
+When User clicks on the "Schedule your Eye Exam" button
+Then User should navigated to the search screen
+And User should fill the location
+And User should select the date of appointment 
+And User should select the purpose of the visit
+And User should fill the insurance name
+And User should see the option to Search
+When User clicks on the option to Search
+Then User should navigated on "Schedule Appointment" screen 
+And User should see the selected location
+And User should see the selected date
+And User should see the purpose of visit (if provided) 
+And And User should see the insurance carrier (if provided)
+And User should see a time slot of the provider
+When User selects a time slot of the provider
+Then User should navigated to review the appointment details
+And User should see the selected location along with the provider
+And User should see the selected Date and Time of the appointment
+And User should see the selected purpose of visit (if provided)
+And User should see the selected Insurance Career (if provided)
+And User should see a progress bar to identify with scheduling the appointment
+And User should see an option to go back to the previous screen
+And User should see an option to schedule the appointment
 
   @BDDTEST-EPP-3214
   @Appointments
   @Patient_Portal
   @Sprint4
   Scenario: EPIC_EPP-44_STORY_EPP-2543-Verify User should be able to selects a time slot of the provider within 3 seconds
-
+  Given User launch the "Marketing Site" url
+When User clicks on the "Schedule your Eye Exam" button
+Then User should navigated to the search screen
+And User should fill the location
+And User should select the date of appointment 
+And User should select the purpose of the visit
+And User should fill the insurance name
+And User should see the option to Search
+When User clicks on the option to Search
+Then User should navigated on "Schedule Appointment" screen 
+And User should see the selected location
+And User should see the selected date
+And User should see the purpose of visit (if provided) 
+And User should see the insurance carrier (if provided)
+And User should see a time slot of the provider
+When User selects a time slot of the provider
+And User should see page load within "3 seconds"
+Then User should navigated to review the appointment details
+And User should see the selected location along with the provider
 
   @BDDTEST-EPP-3215
   @Appointments
   @Patient_Portal
   @Sprint4
   Scenario: EPIC_EPP-44_STORY_EPP-2543-Verify User should be able to selects a time slot of the provider - Without error script when user clicks on F12 on the console
-
+  Given User launch the "Marketing Site" url
+When User clicks on the "Schedule your Eye Exam" button
+Then User should navigated to the search screen
+And User should fill the location
+And User should select the date of appointment 
+And User should select the purpose of the visit
+And User should fill the insurance name
+And User should see the option to Search
+When User clicks on the option to Search
+Then User should navigated on "Schedule Appointment" screen 
+And User should see the selected location
+And User should see the selected date
+And User should see the purpose of visit (if provided) 
+And User should see the insurance carrier (if provided)
+And User should see a time slot of the provider
+When User selects a time slot of the provider
+And User should see page load within "3 seconds"
+Then User should navigated to review the appointment details
+And User should see the selected location along with the provider
+When user clicks on F12 on the console
+Then user should not to see any errors script
 
   @BDDTEST-EPP-3216
   @Appointments
   @Patient_Portal
   @Sprint4
   Scenario: EPIC_EPP-44_STORY_EPP-2543-Negative Test Cases-Verify User should be able to selects a time slot of the provider - When the internet service is unavailable user should see the following error message
-
+  Given User launch the "Marketing Site" url
+When User clicks on the "Schedule your Eye Exam" button
+Then User should navigated to the search screen
+And User should fill the location
+And User should select the date of appointment 
+And User should select the purpose of the visit
+And User should fill the insurance name
+And User should see the option to Search
+When User clicks on the option to Search
+Then User should navigated on "Schedule Appointment" screen 
+And User should see the selected location
+And User should see the selected date
+And User should see the purpose of visit (if provided) 
+And User should see the insurance carrier (if provided)
+And User should see a time slot of the provider
+When User selects a time slot of the provider
+Then The Internet service is unavailable
+And User should see the appropriate error message
 
   @BDDTEST-EPP-3217
   @Appointments
   @Patient_Portal
   @Sprint4
   Scenario: EPIC_EPP-44_STORY_EPP-2543-Negative Test Cases-Verify User should be able to selects a time slot of the provider - When the service is unavailable user should see the following error message
-
-
-  @BDDTEST-EPP-3260
-  @Appointments
-  @Patient_Portal
-  @Sprint4
-  Scenario: EPIC_EPP-44_STORY_EPP-2543-Verify User should be navigated to "Schedule Appointment" screen with the selected data
-
-
-  @BDDTEST-EPP-3261
-  @Appointments
-  @Patient_Portal
-  @Sprint4
-  Scenario: EPIC_EPP-44_STORY_EPP-2543-Verify User should be able to selects a time slot of the provider
-
-
-  @BDDTEST-EPP-3262
-  @Appointments
-  @Patient_Portal
-  @Regression
-  @Sprint4
-  Scenario: EPIC_EPP-44_STORY_EPP-2543-Verify User should navigated to review the appointment details
-
-
-  @BDDTEST-EPP-3263
-  @Appointments
-  @Patient_Portal
-  @Sprint4
-  Scenario: EPIC_EPP-44_STORY_EPP-2543-Verify User should be able to selects a time slot of the provider within 3 seconds
-
-
-  @BDDTEST-EPP-3264
-  @Appointments
-  @Patient_Portal
-  @Sprint4
-  Scenario: EPIC_EPP-44_STORY_EPP-2543-Verify User should be able to selects a time slot of the provider - Without error script when user clicks on F12 on the console
-
-
-  @BDDTEST-EPP-3265
-  @Appointments
-  @Patient_Portal
-  @Sprint4
-  Scenario: EPIC_EPP-44_STORY_EPP-2543-Negative Test Cases-Verify User should be able to selects a time slot of the provider - When the internet service is unavailable user should see the following error message
-
-
-  @BDDTEST-EPP-3266
-  @Appointments
-  @Patient_Portal
-  @Sprint4
-  Scenario: EPIC_EPP-44_STORY_EPP-2543-Negative Test Cases-Verify User should be able to selects a time slot of the provider - When the service is unavailable user should see the following error message
-
+ Given User launch the "Marketing Site" url
+When User clicks on the "Schedule your Eye Exam" button
+Then User should navigated to the search screen
+And User should fill the location
+And User should select the date of appointment 
+And User should select the purpose of the visit
+And User should fill the insurance name
+And User should see the option to Search
+When User clicks on the option to Search
+Then User should navigated on "Schedule Appointment" screen 
+And User should see the selected location
+And User should see the selected date
+And User should see the purpose of visit (if provided) 
+And And User should see the insurance carrier (if provided)
+And User should see a time slot of the provider
+When User selects a time slot of the provider
+Then The service is unavailable
+And User should see the appropriate error message 
