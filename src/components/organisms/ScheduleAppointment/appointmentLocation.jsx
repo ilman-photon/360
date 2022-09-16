@@ -62,13 +62,15 @@ export default function AppointmentLocation({
         }
       >
         <Stack flexDirection="row" gap={2}>
-          <Image
-            src={providerData.image || "/transparent.png"}
-            width={105}
-            height={105}
-            style={{ borderRadius: "50%" }}
-            alt="Doctors image"
-          />
+          <div>
+            <Image
+              src={providerData.image || "/transparent.png"}
+              width={105}
+              height={105}
+              style={{ borderRadius: "50%" }}
+              alt="Doctors image"
+            />
+          </div>
 
           <Box>
             <Typography
