@@ -12,12 +12,16 @@ import store from "../../store/store";
 import { useRouter } from "next/router";
 import { Api } from "../api/api";
 import {
+  setAppointmentSchedule,
   setFilterData,
   setIsFilterApplied,
   setProviderListData,
 } from "../../store/appointment";
+import { parseSuggestionData } from "../../utils/appointment";
 import FilterResultHeading from "../../components/molecules/FilterResultHeading/filterResultHeading";
 import { Box } from "@mui/system";
+
+import ModalCancelScheduling from "../../components/organisms/ScheduleAppointment/ModalCancelScheduling/modalCancelScheduling";
 
 export async function getServerSideProps({ req }) {
   const cookies = new Cookies(req.headers.cookie);
@@ -39,8 +43,10 @@ export default function HomePage() {
   const [filterSuggestionData, setFilterSuggestionData] = React.useState({});
   const [prescriptionData, setPrescriptionData] = React.useState({});
   const [appointmentData, setAppointmentData] = React.useState({});
+  const [isOpenCancel, setIsOpenCancel] = React.useState(false);
   const filterData = useSelector((state) => state.appointment.filterData);
-  const isDesktop = useMediaQuery("(min-width: 834px)");
+  const userData = useSelector((state) => state.user.userData);
+  const isDesktop = useMediaQuery("(min-width: 900px)");
   const { coords, isGeolocationEnabled } = useGeolocated({
     positionOptions: {
       enableHighAccuracy: false,
@@ -96,7 +102,7 @@ export default function HomePage() {
         dispatch(setProviderListData([]));
       })
       .finally(function () {
-        router.push("/patient");
+        router.push("/patient/appointment");
       });
   }
 
@@ -126,6 +132,10 @@ export default function HomePage() {
       });
   }
 
+  function onViewPrescriptions() {
+    //TO DO: will navigate to prescription view page
+  }
+
   useEffect(() => {
     onCalledgetSugestionAPI();
     onCalledGetAllPrescriptionsAPI();
@@ -138,6 +148,50 @@ export default function HomePage() {
     dispatch(setIsFilterApplied(true));
     onCallSubmitFilterAPI(data);
   }
+
+  const handleClickCancel = () => {
+    console.log(isOpenCancel, "vs");
+    setIsOpenCancel(true);
+  };
+
+  const handleClose = () => {
+    console.log(isOpenCancel, "false");
+    setIsOpenCancel(false);
+  };
+
+  const handleCancelSchedule = (data) => {
+    console.log(data, isOpenCancel, "falsedata");
+    setIsOpenCancel(false);
+  };
+
+  const onViewAppointment = () => {
+    router.push("/patient/appointments");
+  };
+
+  const onClickReschedule = ({
+    appointmentInfo,
+    providerInfo = { address: {} },
+  }) => {
+    const dataFilter = {
+      purposeOfVisit: appointmentInfo.appointmentType,
+      date: new Date(appointmentInfo.date),
+      insuranceCarrier: Array.isArray(appointmentInfo.insuranceCarrier)
+        ? appointmentInfo.insuranceCarrier[0]
+        : appointmentInfo.insuranceCarrier,
+      location: providerInfo.address.city,
+    };
+
+    const appointmentSchedule = {
+      providerInfo: providerInfo,
+      patientInfo: userData,
+      appointmentInfo: appointmentInfo,
+    };
+    dispatch(setFilterData(dataFilter));
+    dispatch(setAppointmentSchedule(appointmentSchedule));
+
+    router.push("/patient/appointments/1/reschedule");
+  };
+
   return (
     <Stack sx={{ width: "100%" }}>
       {isDesktop ? (
@@ -170,7 +224,9 @@ export default function HomePage() {
             purposeOfVisitData={filterSuggestionData.purposeOfVisitData}
             insuranceCarrierData={filterSuggestionData.insuranceCarrierData}
             filter={[]}
-            onActivFilter={() => {}}
+            onActivFilter={() => {
+              //this is intentional
+            }}
             appliedFilter={[]}
             title={"John, Welcome to your dashboard"}
             subtitle={"Search for a doctor"}
@@ -185,15 +241,31 @@ export default function HomePage() {
         sx={{
           paddingTop: isDesktop ? "220px" : "185px",
           flexDirection: !isDesktop ? "column-reverse" : "unset",
+          "@media print": {
+            paddingTop: "30px !important",
+          },
         }}
       >
         <Grid item xs={5} sm={5} md={2}>
-          <Prescriptions prescriptionData={prescriptionData} />
+          <Prescriptions
+            prescriptionData={prescriptionData}
+            onViewPrescriptions={onViewPrescriptions}
+          />
         </Grid>
         <Grid item xs={5} sm={5} md={3}>
-          <AppointmentCard appointmentData={appointmentData} />
+          <AppointmentCard
+            appointmentData={appointmentData}
+            OnClickCancel={handleClickCancel}
+            onViewAppointment={onViewAppointment}
+            onClickReschedule={onClickReschedule}
+          />
         </Grid>
       </Grid>
+      <ModalCancelScheduling
+        isOpen={isOpenCancel}
+        OnClickCancel={handleClose}
+        OnCancelClicked={handleCancelSchedule}
+      />
     </Stack>
   );
 }

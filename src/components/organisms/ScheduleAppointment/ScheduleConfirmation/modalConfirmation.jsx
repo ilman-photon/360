@@ -4,34 +4,27 @@ import SwipeableDrawer from "@mui/material/Drawer";
 
 import ModalConfirmContent from "./modalConfirmContent";
 import { Box } from "@mui/material";
-import { useEffect, useState } from "react";
 
 export default function ModalConfirmation({
   isOpen,
   isDesktop,
   isLoggedIn,
+  isReschedule,
   patientData,
   providerData,
-  OnSetIsOpen = () => {
+  OnOkClicked = () => {
     // This is intended
   },
 }) {
-  useEffect(() => {
-    console.log(isOpen, "isOpen");
-  }, [isOpen]);
-
   return isDesktop ? (
     <Box>
-      <Dialog
-        aria-labelledby="customized-dialog-title"
-        aria-describedby="alert-dialog-description"
-        open={isOpen}
-      >
+      <Dialog open={isOpen}>
         <ModalConfirmContent
-          OnSetIsOpen={OnSetIsOpen}
           patientData={patientData}
           providerData={providerData}
           isLoggedIn={isLoggedIn}
+          isReschedule={isReschedule}
+          OnOkClicked={OnOkClicked}
         />
       </Dialog>
     </Box>
@@ -43,8 +36,9 @@ export default function ModalConfirmation({
           role="presentation"
         >
           <ModalConfirmContent
-            OnSetIsOpen={OnSetIsOpen}
+            OnOkClicked={OnOkClicked}
             isLoggedIn={isLoggedIn}
+            isReschedule={isReschedule}
             patientData={patientData}
             providerData={providerData}
           />

@@ -20,6 +20,7 @@ import constants from "../../../utils/constants";
 import AccountDrawer from "../../molecules/AccountDrawer/accountDrawer";
 import SubNavigation from "../../molecules/SubNavigation/subNavigation";
 import { logoutProps } from "../../../utils/authetication";
+import { useSelector } from "react-redux";
 
 export default function BaseHeader({
   OnLogoutClicked = (router) => {
@@ -35,15 +36,15 @@ export default function BaseHeader({
       testId: HOME_TEST_ID.appoinments,
       href: "/patient/appointments",
     },
-    { page: "My Health Chart", testId: HOME_TEST_ID.myhealthchart },
-    { page: "My Care Team", testId: HOME_TEST_ID.mycareteam },
-    { page: "Lab Results", testId: HOME_TEST_ID.labresults },
-    { page: "Billing", testId: HOME_TEST_ID.billing },
+    // { page: "My Health Chart", testId: HOME_TEST_ID.myhealthchart },
+    // { page: "My Care Team", testId: HOME_TEST_ID.mycareteam },
+    // { page: "Lab Results", testId: HOME_TEST_ID.labresults },
+    // { page: "Billing", testId: HOME_TEST_ID.billing },
   ];
   const [isUserLoged, setUserLoged] = React.useState(false);
   const router = useRouter();
   const logo = "/eyecarelogo.png";
-
+  const userData = useSelector((state) => state.user.userData);
   React.useEffect(() => {
     const cookies = new Cookies();
     const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
@@ -68,7 +69,16 @@ export default function BaseHeader({
 
   return (
     <>
-      <AppBar position="fixed" sx={{ backgroundColor: "white" }}>
+      <AppBar
+        position="fixed"
+        sx={{
+          backgroundColor: "white",
+          "@media print": {
+            boxShadow:
+              "0px 1px 1px 0px rgb(0 0 0 / 20%), 0px 0px 1px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)",
+          },
+        }}
+      >
         <Container maxWidth="xl">
           {isUserLoged ? (
             <Toolbar disableGutters>
@@ -131,7 +141,7 @@ export default function BaseHeader({
                     endIcon={<ExpandMoreIcon />}
                     onClick={handleOpenUserMenu}
                   >
-                    User Name
+                    {userData.name}
                   </Button>
                 </Tooltip>
                 <Menu

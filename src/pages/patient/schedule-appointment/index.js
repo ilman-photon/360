@@ -4,7 +4,7 @@ import ScheduleAppointment from "../../../components/organisms/ScheduleAppointme
 import AppointmentLocation from "../../../components/organisms/ScheduleAppointment/appointmentLocation";
 import AppointmentDetails from "../../../components/organisms/ScheduleAppointment/appointmentDetails";
 import AppointmentForm from "../../../components/organisms/ScheduleAppointment/appointmentForm";
-import ModalConfirmation from "../../../components/organisms/ScheduleAppointment/ModalScheduling/modalConfirmation";
+import ModalConfirmation from "../../../components/organisms/ScheduleAppointment/ScheduleConfirmation/modalConfirmation";
 
 import StepperAppoinment from "../../../components/molecules/StepperAppoinment/stepperAppoinment";
 import AccountTitleHeading from "../../../components/atoms/AccountTitleHeading/accountTitleHeading";
@@ -14,7 +14,6 @@ import BaseHeader from "../../../components/organisms/BaseHeader/baseHeader";
 
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import { LabelWithIcon } from "../../../components/atoms/LabelWithIcon/labelWithIcon";
-import { logoutProps } from "../../../utils/authetication";
 
 import {
   Button,
@@ -23,17 +22,26 @@ import {
   Divider,
   useMediaQuery,
   Stack,
+  Dialog,
+  DialogTitle,
+  DialogActions,
 } from "@mui/material";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "../../../store/store";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
-import { editAppointmentScheduleData } from "../../../store/appointment";
-import { fetchUser } from "../../../store/user";
+import {
+  DEFAULT_PATIENT_INFO_DATA,
+  editAppointmentScheduleData,
+  resetFilterData,
+} from "../../../store/appointment";
+import { fetchUser, setUserAppointmentDataByIndex } from "../../../store/user";
 import { Api } from "../../api/api";
 import MESSAGES from "../../../utils/responseCodes";
 import { setFormMessage } from "../../../store";
 import { TEST_ID } from "../../../utils/constants";
+import { StyledButton } from "../../../components/atoms/Button/button";
+import { colors } from "../../../styles/theme";
 
 const MobileTopBar = (data) => {
   return (
@@ -75,7 +83,7 @@ export const PageContent = ({
     // This is intentional
   },
 }) => {
-  const [selectedSelf, setSelectedSelf] = React.useState(1);
+  const [selectedSelf, setSelectedSelf] = React.useState(null);
   const { t } = useTranslation("translation", {
     keyPrefix: "scheduleAppoinment",
   });
@@ -90,7 +98,6 @@ export const PageContent = ({
         value: payload,
       })
     );
-    OnsetActiveStep();
   };
 
   const createAccount = async function (postbody) {
@@ -118,10 +125,10 @@ export const PageContent = ({
     case 1:
       return (
         <>
-          <Grid
+          <Box
             className={styles.examForComponent}
             p={{ xs: "24px 14px", md: "40px 16px" }}
-            sx={{ width: { xs: "100%", md: "65%" } }}
+            sx={{ width: { xs: "100%", md: "952px" } }}
           >
             <AppointmentLocation
               providerData={appointmentScheduleData.providerInfo}
@@ -148,7 +155,7 @@ export const PageContent = ({
                 {isLoggedIn ? t("scheduleAppoinment") : t("continue")}
               </Button>
             </Stack>
-          </Grid>
+          </Box>
         </>
       );
     case 2:
@@ -167,7 +174,6 @@ export const PageContent = ({
               selectedSelf={selectedSelf}
               OnSubmit={(v) => {
                 handleFormSubmit(v);
-                OnsetActiveStep(4);
               }}
               OnSetSelectedSelf={(idx) => setSelectedSelf(idx)}
               setActiveStep={(idx) => OnsetActiveStep(idx)}
@@ -204,7 +210,7 @@ export const PageContent = ({
               OnSubmit={(v) => {
                 handleFormSubmit(v);
                 createAccount(v);
-                OnsetActiveStep(4);
+                OnClickSchedule(v);
               }}
               OnClickSignIn={() => {
                 cookies.set("dashboardState", true, { path: "/patient" });
@@ -231,9 +237,24 @@ export default function ScheduleAppointmentPage() {
   const [activeStep, setActiveStep] = React.useState(1);
   const isDesktop = useMediaQuery("(min-width: 769px)");
   const [isOpen, setIsOpen] = React.useState(false);
+  const [isReschedule, setIsReschedule] = React.useState(false);
+  const [modalConfirmReschedule, setModalConfirmReschedule] =
+    React.useState(false);
 
   const router = useRouter();
   const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    if (activeStep === 2 || activeStep === 3) {
+      dispatch(
+        editAppointmentScheduleData({
+          key: "patientInfo",
+          value: DEFAULT_PATIENT_INFO_DATA,
+        })
+      );
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [activeStep]);
 
   const steps = [
     "Location",
@@ -255,15 +276,26 @@ export default function ScheduleAppointmentPage() {
     return state.appointment.appointmentSchedule;
   });
 
+  React.useEffect(() => {
+    if (router.query.reschedule) {
+      setIsReschedule(true);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [router]);
+
   const handleEditSchedule = () => {
     console.log("change schedule data");
     router.push("/patient/appointment");
   };
 
-  const handleClickSchedule = () => {
-    console.log("handleClickSchedule");
-    setActiveStep(4);
-    setIsOpen(true);
+  const handleClickSchedule = (data) => {
+    console.log("handleClickSchedule", data);
+    if (activeStep === 2 && !data?.password) {
+      router.push("/patient/schedule-appointment-confirmation");
+    } else {
+      setActiveStep(4);
+      setIsOpen(true);
+    }
   };
 
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
@@ -280,7 +312,6 @@ export default function ScheduleAppointmentPage() {
   const userData = useSelector((state) => state.user.userData);
 
   React.useEffect(() => {
-    console.log({ isLoggedIn });
     if (isLoggedIn) {
       dispatch(
         editAppointmentScheduleData({
@@ -303,21 +334,52 @@ export default function ScheduleAppointmentPage() {
 
   const handleSetActiveStep = (idx) => {
     if (isLoggedIn) {
-      setActiveStep(4);
-      setIsOpen(true);
+      if (isReschedule) {
+        setModalConfirmReschedule(true);
+      } else {
+        setActiveStep(4);
+        setIsOpen(true);
+      }
     } else {
       setActiveStep(idx);
     }
+  };
+
+  const handleOkClicked = () => {
+    if (isReschedule) {
+      router.push("/patient/appointments");
+    } else {
+      router.push("/patient/appointment");
+    }
+  };
+
+  const handleCancelReschedule = () => {
+    dispatch(resetFilterData());
+    setModalConfirmReschedule(false);
+  };
+
+  const OnConfirmRescheduleAppointment = () => {
+    dispatch(
+      setUserAppointmentDataByIndex({
+        appointmentId: 0,
+        appointmentInfo: appointmentScheduleData.appointmentInfo,
+        providerInfo: appointmentScheduleData.providerInfo,
+      })
+    );
+
+    setActiveStep(4);
+    setIsOpen(true);
   };
 
   const ModalConfirmSchedule = () => {
     return (
       <ModalConfirmation
         isLoggedIn={isLoggedIn}
+        isReschedule={isReschedule}
         patientData={appointmentScheduleData.patientInfo}
         providerData={appointmentScheduleData.providerInfo}
         isOpen={isOpen}
-        OnSetIsOpen={(idx) => setIsOpen(idx)}
+        OnOkClicked={handleOkClicked}
         isDesktop={isDesktop}
       />
     );
@@ -327,7 +389,11 @@ export default function ScheduleAppointmentPage() {
     <section style={{ paddingTop: "64px" }}>
       <BaseHeader />
       {isDesktop ? <AccountTitleHeading title={headerText[activeStep]} /> : ""}
-      <StepperAppoinment activeStep={activeStep} steps={steps} />
+      <StepperAppoinment
+        activeStep={activeStep}
+        steps={steps}
+        ariaLabelText="Review stage in progress bar"
+      />
       {activeStep === 2 ? (
         <Grid
           className={styles.mobileTopBar}
@@ -352,20 +418,16 @@ export default function ScheduleAppointmentPage() {
               borderRadius: "46px",
             }}
             onClick={() => {
-              if (activeStep - 1 < 1) {
+              if (activeStep - 1 < 1 || activeStep > 3) {
                 handleEditSchedule();
               } else {
                 setActiveStep(activeStep - 1);
               }
             }}
-            aria-label={"Back icon"}
+            aria-label={"Back"}
             aria-hidden={"false"}
           >
-            <ArrowBackIcon
-              className={styles.backIcon}
-              aria-label={"Back icon"}
-              aria-hidden={"false"}
-            />
+            <ArrowBackIcon className={styles.backIcon} aria-hidden={"false"} />
             &nbsp;Back
           </Button>
         </Box>
@@ -390,6 +452,46 @@ export default function ScheduleAppointmentPage() {
       </Grid>
 
       {activeStep === 4 ? <ModalConfirmSchedule /> : null}
+
+      {/* confirmation dialog */}
+      <Dialog
+        onClose={handleCancelReschedule}
+        open={modalConfirmReschedule}
+        sx={{
+          ".MuiPaper-root": {
+            minWidth: "500px",
+          },
+          ".MuiDialogActions-root": {
+            padding: 2,
+          },
+        }}
+      >
+        <DialogTitle sx={{ color: colors.darkGreen, fontSize: "22px" }}>
+          Are you sure you want to reschedule?
+        </DialogTitle>
+        <DialogActions>
+          <Stack direction="row" alignItems="center" spacing={"10px"}>
+            <StyledButton
+              isModalButton
+              size="small"
+              mode="secondary"
+              onClick={handleCancelReschedule}
+              sx={{ fontSize: "14px", px: "20px", py: "11px", height: "40px" }}
+            >
+              Deny
+            </StyledButton>
+            <StyledButton
+              isModalButton
+              size="small"
+              mode="primary"
+              onClick={OnConfirmRescheduleAppointment}
+              sx={{ fontSize: "14px", px: "20px", py: "11px", height: "40px" }}
+            >
+              Reschedule
+            </StyledButton>
+          </Stack>
+        </DialogActions>
+      </Dialog>
     </section>
   );
 }

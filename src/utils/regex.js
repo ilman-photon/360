@@ -1,6 +1,7 @@
 export class Regex {
   static lengthRegex = /^[^\s]{8,20}$/;
   static numberRegex = /\d/;
+  static alphabethOnly = /^[a-zA-Z ]*$/;
   static numberOnly = /^\d*$/;
   static upperCaseRegex = /[A-Z]/;
   static lowerCaseRegex = /[a-z]/;
@@ -19,6 +20,5 @@ export class Regex {
   static noWhitespaceRegex = /[^\s-]/;
   static isTenDigitPhone = /^(\d{3})(\d{3})(\d{4})$/;
   static isImageFile = /(image\/(png|jpg|jpeg))/;
-  static minTwoDigitRegex = /^[^\s]{2,}$/;
   static isMin2Max50Length = /^\w{2,50}$/;
 }

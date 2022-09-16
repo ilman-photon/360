@@ -32,7 +32,7 @@ export function viewAllAvailabilityLinkUI({
         data-testid={constants.TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll}
         onClick={onClickViewAllAvailability}
       >
-        View all Availability
+        View all availability
       </Link>
     </Box>
   );
@@ -48,6 +48,14 @@ export const WeekAvailability = ({
   },
   keyWeek = "",
 }) => {
+  const dayNames = {
+    monday: 0,
+    tuesday: 1,
+    wednesday: 2,
+    thursday: 3,
+    friday: 4,
+    saturday: 5,
+  };
   const [schedule, setSchedule] = useState({});
   const [dateWeekList, setDateWeekList] = useState([]);
 
@@ -76,7 +84,7 @@ export const WeekAvailability = ({
             gridArea,
             isTypeMore,
             `${keyWeek}-${i}-${key}-schedule-button`,
-            dateWeekList[i]
+            dateWeekList[dayNames[key]]
           )
         );
       }
@@ -86,7 +94,7 @@ export const WeekAvailability = ({
 
   function buttonSchedule(
     label = "",
-    gridArea,
+    gridArea = "",
     isTypeMore = false,
     index = "",
     date = ""
@@ -109,6 +117,7 @@ export const WeekAvailability = ({
             size={constants.SMALL}
             gradient={false}
             className={styles.scheduleBtn}
+            data-testid={constants.TEST_ID.SEARCH_PROVIDER_TEST_ID.hourButton}
             onClick={() => {
               if (isLabelMore) {
                 onClickViewAllAvailability();

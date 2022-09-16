@@ -21,9 +21,9 @@ export const FormMessage = (
         ref={ref}
         onClick={onClick}
         sx={{
-          backgroundColor: props.success ? colors.foundationGreen : "#C23934",
+          backgroundColor: props.success ? colors.foundationGreen : "#B93632",
           width: "auto",
-          p: 1,
+          padding: "12px 16px",
           borderRadius: "4px",
           display: "flex",
           ...props.sx,

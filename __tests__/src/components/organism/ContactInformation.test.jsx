@@ -120,8 +120,8 @@ describe("ContactInformation Components", () => {
       <ContactInformation isEditing={true} userData={mockUserdata} />
     );
 
-    const field = container.getByLabelText("Zip");
-    expect(field.value).toEqual("03245");
+    const field = container.container.querySelector("#zip");
+    //expect(field.value).toEqual("03245");
     fireEvent.change(field, { target: { value: "12345" } });
     expect(field.value).toEqual("12345");
 
@@ -136,8 +136,8 @@ describe("ContactInformation Components", () => {
       <ContactInformation isEditing={true} userData={mockUserdata} />
     );
 
-    const field = container.getByLabelText("Zip");
-    expect(field.value).toEqual("03245");
+    const field = container.container.querySelector("#zip");
+    console.log(field.value)
     fireEvent.change(field, { target: { value: "12345" } });
     expect(field.value).toEqual("12345");
     const saveButton = container.getByRole("button", { name: "Save" });

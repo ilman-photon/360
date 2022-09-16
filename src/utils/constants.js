@@ -88,6 +88,11 @@ module.exports = {
       registerbtn: "registerBtn",
       signInlink: "signInlink",
     },
+    CANCEL_SCHEDULE_TEST_ID: {
+      btnCancel: "loc_btnCancel",
+      btnKeep: "loc_btnKeep",
+      other: "other",
+    },
     HOME_TEST_ID: {
       appoinments: "appoinments",
       myhealthchart: "myhealthchart",
@@ -162,6 +167,7 @@ module.exports = {
     },
     SEARCH_PROVIDER_TEST_ID: {
       viewAll: "loc_viewAll",
+      hourButton: "loc_hourButton",
     },
     SUBNAVIGATION: "subNavigation-link",
     SCHEDULE_APPOINTMENT_TEST_ID: {
@@ -177,5 +183,9 @@ module.exports = {
       previousProvider: "provider_btnPrevious",
       nextProvider: "provider_btnNext",
     },
+  },
+  ERROR_CODE: {
+    NETWORK_ERR: "ERR_NETWORK",
+    BAD_REQUEST: "ERR_BAD_REQUEST",
   },
 };

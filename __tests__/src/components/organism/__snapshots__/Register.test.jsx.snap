@@ -14,7 +14,7 @@ Object {
           <h1
             aria-label="User Registration"
             aria-roledescription=""
-            class="MuiTypography-root MuiTypography-h1 css-ltzsrn-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-h1 css-1b6blxf-MuiTypography-root"
             role="heading"
           >
             User Registration
@@ -318,17 +318,17 @@ Object {
                     >
                       <svg
                         aria-hidden="true"
-                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-k5i2wh-MuiSvgIcon-root"
-                        data-testid="CancelIcon"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ppdlaf-MuiSvgIcon-root"
+                        data-testid="CheckCircleRoundedIcon"
                         focusable="false"
                         viewBox="0 0 24 24"
                       >
                         <path
-                          d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"
+                          d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM9.29 16.29 5.7 12.7a.9959.9959 0 0 1 0-1.41c.39-.39 1.02-.39 1.41 0L10 14.17l6.88-6.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-7.59 7.59c-.38.39-1.02.39-1.41 0z"
                         />
                       </svg>
                       <span
-                        style="margin-left: 10px; color: rgb(8, 7, 7); font-family: Libre Franklin; font-style: normal; font-weight: 400; font-size: 14px; line-height: 18px;"
+                        style="margin-left: 10px; color: rgb(22, 136, 69); font-family: Libre Franklin; font-style: normal; font-weight: 500; font-size: 14px; line-height: 18px;"
                       >
                         Password should not contain your username
                       </span>
@@ -338,12 +338,14 @@ Object {
               </div>
             </div>
             <div
-              style="padding: 16px; border-radius: 4px; color: rgb(54, 106, 112); background-color: rgba(0, 149, 169, 0.051); margin: 8px; word-break: break-word;"
+              style="padding: 16px; border-radius: 4px; color: rgb(54, 106, 112); background-color: rgb(237, 245, 254); margin: 8px; word-break: break-word;"
             >
-              <div>
+              <span
+                class="MuiTypography-root MuiTypography-bodyMedium css-1wqlhp4-MuiTypography-root"
+              >
                 Your username will be 
                 (auto-populated email id/phone number)
-              </div>
+              </span>
             </div>
             <div
               style="padding-bottom: 6px; margin: 8px 8px 16px 8px;"
@@ -356,7 +358,7 @@ Object {
               >
                 <label
                   aria-label="Email, Phone, Both - radio buttons"
-                  class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1upt16w-MuiFormLabel-root"
+                  class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1nupjmb-MuiFormLabel-root"
                   id="row-radio-buttons-group-label"
                 >
                   Preferred mode of Communication
@@ -534,7 +536,7 @@ Object {
           </form>
           <span
             class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
-            style="color: rgb(54, 106, 112); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
+            style="color: rgb(0, 59, 74); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
           >
             By registering, you accept to our Terms & Conditions and Privacy Policy
           </span>
@@ -544,7 +546,7 @@ Object {
           />
           <span
             class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
-            style="color: rgb(54, 106, 112); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
+            style="color: rgb(0, 59, 74); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
           >
             Already have an account?
              
@@ -569,7 +571,7 @@ Object {
         <h1
           aria-label="User Registration"
           aria-roledescription=""
-          class="MuiTypography-root MuiTypography-h1 css-ltzsrn-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-h1 css-1b6blxf-MuiTypography-root"
           role="heading"
         >
           User Registration
@@ -873,17 +875,17 @@ Object {
                   >
                     <svg
                       aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-k5i2wh-MuiSvgIcon-root"
-                      data-testid="CancelIcon"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1ppdlaf-MuiSvgIcon-root"
+                      data-testid="CheckCircleRoundedIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
                     >
                       <path
-                        d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"
+                        d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM9.29 16.29 5.7 12.7a.9959.9959 0 0 1 0-1.41c.39-.39 1.02-.39 1.41 0L10 14.17l6.88-6.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-7.59 7.59c-.38.39-1.02.39-1.41 0z"
                       />
                     </svg>
                     <span
-                      style="margin-left: 10px; color: rgb(8, 7, 7); font-family: Libre Franklin; font-style: normal; font-weight: 400; font-size: 14px; line-height: 18px;"
+                      style="margin-left: 10px; color: rgb(22, 136, 69); font-family: Libre Franklin; font-style: normal; font-weight: 500; font-size: 14px; line-height: 18px;"
                     >
                       Password should not contain your username
                     </span>
@@ -893,12 +895,14 @@ Object {
             </div>
           </div>
           <div
-            style="padding: 16px; border-radius: 4px; color: rgb(54, 106, 112); background-color: rgba(0, 149, 169, 0.051); margin: 8px; word-break: break-word;"
+            style="padding: 16px; border-radius: 4px; color: rgb(54, 106, 112); background-color: rgb(237, 245, 254); margin: 8px; word-break: break-word;"
           >
-            <div>
+            <span
+              class="MuiTypography-root MuiTypography-bodyMedium css-1wqlhp4-MuiTypography-root"
+            >
               Your username will be 
               (auto-populated email id/phone number)
-            </div>
+            </span>
           </div>
           <div
             style="padding-bottom: 6px; margin: 8px 8px 16px 8px;"
@@ -911,7 +915,7 @@ Object {
             >
               <label
                 aria-label="Email, Phone, Both - radio buttons"
-                class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1upt16w-MuiFormLabel-root"
+                class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1nupjmb-MuiFormLabel-root"
                 id="row-radio-buttons-group-label"
               >
                 Preferred mode of Communication
@@ -1089,7 +1093,7 @@ Object {
         </form>
         <span
           class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
-          style="color: rgb(54, 106, 112); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
+          style="color: rgb(0, 59, 74); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
         >
           By registering, you accept to our Terms & Conditions and Privacy Policy
         </span>
@@ -1099,7 +1103,7 @@ Object {
         />
         <span
           class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
-          style="color: rgb(54, 106, 112); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
+          style="color: rgb(0, 59, 74); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
         >
           Already have an account?
            

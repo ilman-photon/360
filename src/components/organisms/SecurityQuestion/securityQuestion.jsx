@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import { Box } from "@mui/material";
 import { styles } from "./style";
 import { StyledButton } from "../../atoms/Button/button";
@@ -22,7 +22,7 @@ const SecurityQuestion = ({
   testIds,
 }) => {
   const [questionVals, setQuestionVals] = useState([null, null, null]);
-  const [questionValsDua, setQuestionValsDua] = useState(securityQuestionList);
+  const [questionValsDua] = useState(securityQuestionList);
 
   const handleQuestionValChange = (option, index) => {
     const newQuestionVals = questionVals;

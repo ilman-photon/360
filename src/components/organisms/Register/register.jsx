@@ -15,6 +15,7 @@ import { Regex } from "../../../utils/regex";
 import { useRouter } from "next/router";
 import constants from "../../../utils/constants";
 import { HeadingTitle } from "../../atoms/Heading";
+import { colors } from "../../../styles/theme";
 export default function Register({ OnRegisterClicked, formMessage = null }) {
   const router = useRouter();
   const { handleSubmit, control, watch } = useForm({
@@ -23,7 +24,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
       lastName: "",
       dob: null,
       email: "",
-      mobile: "",
+      mobileNumber: "",
       password: "",
       preferredCommunication: "both",
     },
@@ -307,7 +308,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
             }}
           />
           <Controller
-            name="mobile"
+            name="mobileNumber"
             control={control}
             render={({ field: { onChange, value }, fieldState: { error } }) => {
               return (
@@ -384,7 +385,12 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           />
 
           <div style={styles.registeredUsernameWrapper}>
-            <div>Your username will be {getRegisteredUsername()}</div>
+            <Typography
+              variant="bodyMedium"
+              sx={{ fontWeight: 500, color: colors.darkGreen }}
+            >
+              Your username will be {getRegisteredUsername()}
+            </Typography>
           </div>
 
           <div style={styles.divMargin}>

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Stack, Typography, Button, Grid, Link, Box } from "@mui/material";
+import { Stack, Typography, Button, Link, Box } from "@mui/material";
 import { useTranslation } from "next-i18next";
 import AccountCard from "../../molecules/AccountCard/accountCard";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -47,12 +47,12 @@ export default function AppointmentLocation({
                 .editButton
             }
             variant="text"
+            aria-label="Edit"
             className={styles.editButton}
             onClick={OnEditClicked}
           >
             <EditOutlinedIcon
               sx={{ width: 20, height: 20, color: "#008294" }}
-              aria-label={"Edit icon"}
               aria-hidden={"false"}
             />
             <div type="link" style={styles.editLink}>
@@ -61,42 +61,38 @@ export default function AppointmentLocation({
           </Button>
         }
       >
-        <Stack spacing={2}>
-          <Grid container>
-            <Grid p={0}>
-              <Image
-                src={providerData.image || "/transparent.png"}
-                width={105}
-                height={105}
-                style={{ borderRadius: "50%" }}
-                alt="profile"
-              />
-            </Grid>
-            <Grid pl={2}>
-              <Typography
-                variant="h4"
-                style={{ ...styles.detailText, ...styles.boldText }}
-                aria-label={"Myself"}
-              >
-                {providerData.name}
-              </Typography>
-              <Typography
-                variant="regularBold"
-                style={styles.detailText}
-                aria-label={"Myself"}
-              >
-                {getAddress(providerData.address)}
-                <br />
-              </Typography>
-              <Typography
-                variant="h4"
-                style={styles.detailText}
-                aria-label={"Myself"}
-              >
-                <Link style={styles.linkText}>{providerData.phoneNumber}</Link>
-              </Typography>
-            </Grid>
-          </Grid>
+        <Stack flexDirection="row" gap={2}>
+          <Image
+            src={providerData.image || "/transparent.png"}
+            width={105}
+            height={105}
+            style={{ borderRadius: "50%" }}
+            alt="Doctors image"
+          />
+
+          <Box>
+            <Typography
+              variant="h4"
+              style={{ ...styles.detailText, ...styles.boldText }}
+            >
+              {providerData.name}
+            </Typography>
+            <Typography
+              variant="regularBold"
+              style={styles.detailText}
+              aria-label={"Myself"}
+            >
+              {getAddress(providerData.address)}
+              <br />
+            </Typography>
+            <Typography
+              variant="h4"
+              style={styles.detailText}
+              aria-label={"Myself"}
+            >
+              <Link style={styles.linkText}>{providerData.phoneNumber}</Link>
+            </Typography>
+          </Box>
         </Stack>
       </AccountCard>
     </Box>

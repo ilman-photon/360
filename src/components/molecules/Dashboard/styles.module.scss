@@ -34,6 +34,9 @@
   justify-content: center;
   margin-top: 20px;
   margin-bottom: 20px;
+  @media print {
+    display: none !important;
+  }
 }
 
 .viewPrescriptionText {
@@ -54,4 +57,46 @@
   min-height: 58px;
   background: #f2f7f7;
   text-align: center;
+
+  .normalText {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    color: #003b4a;
+  }
+
+  .boldText {
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 28px;
+    color: #003b4a;
+  }
+}
+
+.containerImage {
+  width: 90px;
+  height: 90px;
+  position: absolute;
+  top: -5.5%;
+  right: 2%;
+  border: 1px solid #003b4a;
+  border-radius: 100%;
+  @media (max-width: 767px) {
+    width: 52px;
+    height: 52px;
+    top: -4.5%;
+  }
+}
+
+.appointmentContainer {
+  @media print {
+    display: none !important;
+  }
+}
+
+.herfItemMenu {
+  display: flex;
+  align-items: center;
 }

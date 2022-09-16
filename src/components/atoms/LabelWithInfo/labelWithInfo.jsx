@@ -5,6 +5,7 @@ import { IconButton, Stack, Tooltip, Typography } from "@mui/material";
 
 export const LabelWithInfo = ({
   label,
+  ariaLabel,
   tooltipContent,
   helperText,
   children,
@@ -26,7 +27,14 @@ export const LabelWithInfo = ({
           {titleIcon}
         </span>
       )}
-      <div className={styles.label} style={sxText}>
+      <div
+        className={styles.label}
+        role="text"
+        tabIndex={0}
+        aria-live={ariaLabel}
+        aria-label={ariaLabel}
+        style={sxText}
+      >
         {label}
       </div>
       {tooltipContent ? (

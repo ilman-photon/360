@@ -18,11 +18,24 @@ import {
   ThemeProvider,
 } from "@mui/material";
 import { StyledButton } from "../../atoms/Button/button";
-import { patientTypography } from "../../../styles/theme";
+import { patientTypography, colors } from "../../../styles/theme";
 import { parseAppointmentCardData } from "../../../utils/appointment";
+import { fullDateFormat } from "../../../utils/dateFormatter";
 import { useEffect } from "react";
+import Image from "next/image";
 
-export default function AppointmentCard({ appointmentData = [] }) {
+export default function AppointmentCard({
+  appointmentData = [],
+  OnClickCancel = () => {
+    // This is intentional
+  },
+  onViewAppointment = () => {
+    // This is intentional
+  },
+  onClickReschedule = () => {
+    // This is intentional
+  },
+}) {
   const [appointment, setAppointment] = React.useState({
     appointmentId: "",
     providerInfo: {},
@@ -50,17 +63,21 @@ export default function AppointmentCard({ appointmentData = [] }) {
       <Box>
         {address.addressLine1 && (
           <Box>
-            <Typography variant="bodyMedium">{address.addressLine1}</Typography>
+            <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
+              {address.addressLine1}
+            </Typography>
           </Box>
         )}
         {address.addressLine2 && (
           <Box>
-            <Typography variant="bodyMedium">{address.addressLine2}</Typography>
+            <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
+              {address.addressLine2}
+            </Typography>
           </Box>
         )}
         {address.city && address.state && address.zipcode ? (
           <Box>
-            <Typography variant="bodyMedium">
+            <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
               {address.city}, {address.state}, {address.zipcode}
             </Typography>
           </Box>
@@ -88,7 +105,7 @@ export default function AppointmentCard({ appointmentData = [] }) {
           sx={{ cursor: "pointer", alignItems: "center" }}
         >
           <Box pr={1}>
-            <DirectionsOutlinedIcon />
+            <DirectionsOutlinedIcon sx={{ color: colors.darkGreen }} />
           </Box>
           <Typography
             variant="bodyLinkRegular"
@@ -102,31 +119,48 @@ export default function AppointmentCard({ appointmentData = [] }) {
       )
     );
   }
+  function minHours(numOfHours, date = new Date()) {
+    date.setTime(date.getTime() - numOfHours * 60 * 60 * 1000);
+
+    return date;
+  }
 
   function renderAppointmentUI() {
     if (appointment && appointment.appointmentId) {
+      const today = new Date();
+      const visitDate = new Date(appointment.appointmentInfo.date);
+      const isHideButtons = visitDate < minHours(4);
+      const daysAway = visitDate.getTime() - today.getTime();
+      const TotalDays = Math.ceil(daysAway / (1000 * 3600 * 24));
+
       return (
         <Box>
           <Grid container columns={5} spacing={2} p={3}>
             <Grid item xs={5} sm={5} md={3}>
               <Box className={styles.flexDisplay}>
                 <Box pr={1}>
-                  <CalendarTodayRoundedIcon />
+                  <CalendarTodayRoundedIcon sx={{ color: colors.darkGreen }} />
                 </Box>
-                <Typography variant="bodyLarge">
-                  8:30 am EDT, Thu, Sep 8, 2022
+                <Typography variant="bodyLarge" sx={{ color: colors.darkBlue }}>
+                  {fullDateFormat(appointment.appointmentInfo.date)}
                 </Typography>
               </Box>
               <Box className={styles.flexDisplay} pt={3}>
                 <Box pr={1}>
-                  <LocationOnOutlinedIcon />
+                  <LocationOnOutlinedIcon sx={{ color: colors.darkGreen }} />
                 </Box>
-                <Typography variant="bodyLarge">
+                <Typography
+                  variant="bodyLarge"
+                  sx={{ color: colors.darkGreen }}
+                >
                   {appointment.providerInfo?.name}
                 </Typography>
               </Box>
               <Box pl={4.5}>
-                <Typography variant="bodyLarge">
+                <Typography
+                  variant="bodyLarge"
+                  sx={{ color: colors.darkGreen }}
+                >
                   {appointment.providerInfo?.position}
                 </Typography>
                 {renderAddressUI()}
@@ -137,9 +171,18 @@ export default function AppointmentCard({ appointmentData = [] }) {
               </Box>
             </Grid>
             <Grid item xs={5} sm={5} md={2}>
+              <Box className={styles.containerImage}>
+                <Image
+                  src={appointment.providerInfo.image}
+                  style={{ borderRadius: "50%" }}
+                  alt="Doctor Image"
+                  width="90px"
+                  height="90px"
+                />
+              </Box>
               <Box className={styles.flexDisplay}>
                 <Box pr={1}>
-                  <RemoveRedEyeOutlinedIcon />
+                  <RemoveRedEyeOutlinedIcon sx={{ color: colors.darkGreen }} />
                 </Box>
                 <Typography variant="bodyLarge">Purpose of Visit</Typography>
               </Box>
@@ -150,7 +193,7 @@ export default function AppointmentCard({ appointmentData = [] }) {
               </Box>
               <Box className={styles.flexDisplay} pt={3}>
                 <Box pr={1}>
-                  <PortraitOutlinedIcon />
+                  <PortraitOutlinedIcon sx={{ color: colors.darkGreen }} />
                 </Box>
                 <Typography variant="bodyLarge">Patient Information</Typography>
               </Box>
@@ -161,73 +204,78 @@ export default function AppointmentCard({ appointmentData = [] }) {
               </Box>
             </Grid>
           </Grid>
-          <Box
-            className={styles.flexDisplay}
-            p={4}
-            sx={{
-              paddingTop: "8px",
-            }}
-          >
-            <StyledButton
-              mode="secondary"
-              size="small"
-              onClick={() => {
-                // on click
-              }}
+          {!isHideButtons ? (
+            <Box
+              className={styles.flexDisplay}
+              p={4}
               sx={{
-                width: { xs: "100%", md: "fit-content" },
-                minWidth: "107px",
-                padding: { xs: 1 },
-                borderColor: "#003B4A",
-                height: "40px !important",
-                borderRadius: "5px",
-                marginRight: "15px",
+                paddingTop: "8px",
               }}
             >
-              <Stack direction="row" alignItems="center">
-                <CancelOutlinedIcon
-                  sx={{
-                    width: 18,
-                    height: 18,
-                    mr: 1,
-                    color: "#003B4A",
-                  }}
-                />
-                <span style={{ fontSize: 14, color: "#007E8F" }}>Cancel</span>
-              </Stack>
-            </StyledButton>
-            <StyledButton
-              mode="secondary"
-              size="small"
-              onClick={() => {
-                // on click
-              }}
-              sx={{
-                width: { xs: "100%", md: "fit-content" },
-                minWidth: "107px",
-                padding: { xs: 1 },
-                borderColor: "#003B4A",
-                height: "40px !important",
-                borderRadius: "5px",
-              }}
-            >
-              <Stack direction="row" alignItems="center">
-                <CalendarTodayRoundedIcon
-                  sx={{
-                    width: 18,
-                    height: 18,
-                    mr: 1,
-                    color: "#003B4A",
-                  }}
-                />
-                <span style={{ fontSize: 14, color: "#007E8F" }}>
-                  Reschedule
-                </span>
-              </Stack>
-            </StyledButton>
-          </Box>
+              <StyledButton
+                mode="secondary"
+                size="small"
+                onClick={OnClickCancel}
+                sx={{
+                  width: { xs: "100%", md: "fit-content" },
+                  minWidth: "107px",
+                  padding: { xs: 1 },
+                  borderColor: "#003B4A",
+                  height: "40px !important",
+                  borderRadius: "5px",
+                  marginRight: "15px",
+                }}
+              >
+                <Stack direction="row" alignItems="center">
+                  <CancelOutlinedIcon
+                    sx={{
+                      width: 18,
+                      height: 18,
+                      mr: 1,
+                      color: "#003B4A",
+                    }}
+                  />
+                  <span style={{ fontSize: 14, color: "#007E8F" }}>Cancel</span>
+                </Stack>
+              </StyledButton>
+              <StyledButton
+                mode="secondary"
+                size="small"
+                onClick={() => onClickReschedule(appointmentData[0])}
+                sx={{
+                  width: { xs: "100%", md: "fit-content" },
+                  minWidth: "107px",
+                  padding: { xs: 1 },
+                  borderColor: "#003B4A",
+                  height: "40px !important",
+                  borderRadius: "5px",
+                }}
+              >
+                <Stack direction="row" alignItems="center">
+                  <CalendarTodayRoundedIcon
+                    sx={{
+                      width: 18,
+                      height: 18,
+                      mr: 1,
+                      color: "#003B4A",
+                    }}
+                  />
+                  <span style={{ fontSize: 14, color: "#007E8F" }}>
+                    Reschedule
+                  </span>
+                </Stack>
+              </StyledButton>
+            </Box>
+          ) : null}
           <Box className={styles.noPrescription}>
-            <Typography>Your appointment is 15 days away.</Typography>
+            {/* <Typography>Your appointment is 15 days away.</Typography> */}
+            <Typography component="div" className={styles.normalText}>
+              Your appointment is{" "}
+              <Box className={styles.boldText} display="inline">
+                {TotalDays} days
+              </Box>{" "}
+              away.
+            </Typography>
           </Box>
         </Box>
       );
@@ -243,7 +291,9 @@ export default function AppointmentCard({ appointmentData = [] }) {
   return (
     <ThemeProvider theme={patientTypography}>
       <AccountCard
+        className={styles.appointmentContainer}
         isAppoinment={true}
+        isDashboard={true}
         titleIcon={
           <CalendarTodayOutlinedIcon
             sx={{ color: "#007787" }}
@@ -258,6 +308,7 @@ export default function AppointmentCard({ appointmentData = [] }) {
         sx={{
           ".MuiCardContent-root": {
             p: 0,
+            position: "relative",
           },
         }}
       >
@@ -273,6 +324,9 @@ export default function AppointmentCard({ appointmentData = [] }) {
           <Link
             className={styles.viewPrescriptionText}
             sx={{ color: "#008294", fontFamily: "Inter" }}
+            onClick={() => {
+              onViewAppointment();
+            }}
           >
             View Appointments
           </Link>
