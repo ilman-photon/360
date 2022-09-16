@@ -9,7 +9,7 @@ Object {
         class="css-1okj3ks-MuiStack-root"
       >
         <div
-          class="MuiBox-root css-1ezsabp"
+          class="MuiBox-root css-vwycly"
         >
           <div
             class="css-uov3go-MuiStack-root"
@@ -85,7 +85,7 @@ Object {
           </div>
         </div>
         <span
-          class="MuiTypography-root MuiTypography-bodySmallMedium css-19q7ynz-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-bodySmallMedium css-1ldhyvu-MuiTypography-root"
         >
           *JPG or PNG file formats only. (File size limit is 4 MB)
         </span>
@@ -97,7 +97,7 @@ Object {
       class="css-1okj3ks-MuiStack-root"
     >
       <div
-        class="MuiBox-root css-1ezsabp"
+        class="MuiBox-root css-vwycly"
       >
         <div
           class="css-uov3go-MuiStack-root"
@@ -173,7 +173,7 @@ Object {
         </div>
       </div>
       <span
-        class="MuiTypography-root MuiTypography-bodySmallMedium css-19q7ynz-MuiTypography-root"
+        class="MuiTypography-root MuiTypography-bodySmallMedium css-1ldhyvu-MuiTypography-root"
       >
         *JPG or PNG file formats only. (File size limit is 4 MB)
       </span>

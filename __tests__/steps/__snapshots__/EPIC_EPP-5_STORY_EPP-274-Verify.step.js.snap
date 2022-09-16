@@ -47,7 +47,7 @@ Object {
             style="padding: 16px 16px 16px 16px;"
           >
             <div
-              class="MuiBox-root css-pupy0r"
+              class="MuiBox-root css-1y4mj6z"
             >
               <svg
                 aria-hidden="true"
@@ -83,7 +83,7 @@ Object {
             >
               <button
                 aria-label="Log off button"
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-19s7hx2-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-logoff-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
                 tabindex="0"
@@ -96,7 +96,7 @@ Object {
               </button>
               <button
                 aria-label="Stay Logged in button"
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-stay-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
                 tabindex="0"
@@ -221,7 +221,7 @@ Object {
             style="padding: 16px 16px 16px 16px;"
           >
             <div
-              class="MuiBox-root css-pupy0r"
+              class="MuiBox-root css-1y4mj6z"
             >
               <svg
                 aria-hidden="true"
@@ -257,7 +257,7 @@ Object {
             >
               <button
                 aria-label="Log off button"
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-19s7hx2-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-logoff-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
                 tabindex="0"
@@ -270,7 +270,7 @@ Object {
               </button>
               <button
                 aria-label="Stay Logged in button"
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-stay-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
                 tabindex="0"
@@ -396,7 +396,7 @@ Object {
             style="padding: 16px 16px 16px 16px;"
           >
             <div
-              class="MuiBox-root css-pupy0r"
+              class="MuiBox-root css-1y4mj6z"
             >
               <svg
                 aria-hidden="true"
@@ -432,7 +432,7 @@ Object {
             >
               <button
                 aria-label="Log off button"
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-19s7hx2-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-logoff-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
                 tabindex="0"
@@ -445,7 +445,7 @@ Object {
               </button>
               <button
                 aria-label="Stay Logged in button"
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-stay-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
                 tabindex="0"
@@ -506,7 +506,7 @@ Object {
             style="padding: 16px 16px 16px 16px;"
           >
             <div
-              class="MuiBox-root css-pupy0r"
+              class="MuiBox-root css-1y4mj6z"
             >
               <svg
                 aria-hidden="true"
@@ -542,7 +542,7 @@ Object {
             >
               <button
                 aria-label="Ok button"
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-ok-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
                 tabindex="0"
@@ -667,7 +667,7 @@ Object {
             style="padding: 16px 16px 16px 16px;"
           >
             <div
-              class="MuiBox-root css-pupy0r"
+              class="MuiBox-root css-1y4mj6z"
             >
               <svg
                 aria-hidden="true"
@@ -703,7 +703,7 @@ Object {
             >
               <button
                 aria-label="Log off button"
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-19s7hx2-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-logoff-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
                 tabindex="0"
@@ -716,7 +716,7 @@ Object {
               </button>
               <button
                 aria-label="Stay Logged in button"
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-stay-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
                 tabindex="0"
@@ -841,7 +841,7 @@ Object {
             style="padding: 16px 16px 16px 16px;"
           >
             <div
-              class="MuiBox-root css-pupy0r"
+              class="MuiBox-root css-1y4mj6z"
             >
               <svg
                 aria-hidden="true"
@@ -877,7 +877,7 @@ Object {
             >
               <button
                 aria-label="Log off button"
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-19s7hx2-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-logoff-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
                 tabindex="0"
@@ -890,7 +890,7 @@ Object {
               </button>
               <button
                 aria-label="Stay Logged in button"
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-stay-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
                 tabindex="0"
@@ -1016,7 +1016,7 @@ Object {
             style="padding: 16px 16px 16px 16px;"
           >
             <div
-              class="MuiBox-root css-pupy0r"
+              class="MuiBox-root css-1y4mj6z"
             >
               <svg
                 aria-hidden="true"
@@ -1052,7 +1052,7 @@ Object {
             >
               <button
                 aria-label="Log off button"
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-19s7hx2-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-logoff-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
                 tabindex="0"
@@ -1065,7 +1065,7 @@ Object {
               </button>
               <button
                 aria-label="Stay Logged in button"
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-stay-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
                 tabindex="0"
@@ -1126,7 +1126,7 @@ Object {
             style="padding: 16px 16px 16px 16px;"
           >
             <div
-              class="MuiBox-root css-pupy0r"
+              class="MuiBox-root css-1y4mj6z"
             >
               <svg
                 aria-hidden="true"
@@ -1162,7 +1162,7 @@ Object {
             >
               <button
                 aria-label="Ok button"
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-ok-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
                 tabindex="0"
@@ -1287,7 +1287,7 @@ Object {
             style="padding: 16px 16px 16px 16px;"
           >
             <div
-              class="MuiBox-root css-pupy0r"
+              class="MuiBox-root css-1y4mj6z"
             >
               <svg
                 aria-hidden="true"
@@ -1323,7 +1323,7 @@ Object {
             >
               <button
                 aria-label="Log off button"
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-19s7hx2-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-logoff-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
                 tabindex="0"
@@ -1336,7 +1336,7 @@ Object {
               </button>
               <button
                 aria-label="Stay Logged in button"
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-stay-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
                 tabindex="0"
@@ -1462,7 +1462,7 @@ Object {
             style="padding: 16px 16px 16px 16px;"
           >
             <div
-              class="MuiBox-root css-pupy0r"
+              class="MuiBox-root css-1y4mj6z"
             >
               <svg
                 aria-hidden="true"
@@ -1498,7 +1498,7 @@ Object {
             >
               <button
                 aria-label="Log off button"
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-19s7hx2-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-logoff-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
                 tabindex="0"
@@ -1511,7 +1511,7 @@ Object {
               </button>
               <button
                 aria-label="Stay Logged in button"
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-stay-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
                 tabindex="0"
@@ -1572,7 +1572,7 @@ Object {
             style="padding: 16px 16px 16px 16px;"
           >
             <div
-              class="MuiBox-root css-pupy0r"
+              class="MuiBox-root css-1y4mj6z"
             >
               <svg
                 aria-hidden="true"
@@ -1608,7 +1608,7 @@ Object {
             >
               <button
                 aria-label="Ok button"
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall  css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-ok-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
                 tabindex="0"

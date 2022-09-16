@@ -88,7 +88,6 @@ describe("PersonalInformation Components", () => {
         OnSaveClicked={mockCallBack}
       />
     );
-    console.log({ container });
 
     //     const field1 = container.getByLabelText("Name")
     //     expect(field1).toBeDisabled();

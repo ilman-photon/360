@@ -15,7 +15,7 @@ export default function getSugestion(req, res) {
         {
           id: "3",
           name: "Comprehensive",
-          description: "Get detailed eye exam",
+          description: "Get a detailed eye exam",
         },
         {
           id: "4",

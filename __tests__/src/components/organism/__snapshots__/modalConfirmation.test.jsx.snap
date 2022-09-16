@@ -50,7 +50,7 @@ Object {
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-elhp89-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yziclw-MuiSvgIcon-root"
                   data-testid="CheckCircleRoundedIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -149,7 +149,7 @@ Object {
                       class="MuiTypography-root MuiTypography-body1 css-o5ux9j-MuiTypography-root"
                     >
                       <svg
-                        aria-hidden="true"
+                        aria-hidden="false"
                         class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                         data-testid="CalendarTodayIcon"
                         focusable="false"
@@ -201,7 +201,7 @@ Object {
                             class="displayFlex MuiBox-root css-0"
                           >
                             <div
-                              class="MuiBox-root css-0"
+                              class="imageContainer MuiBox-root css-0"
                             >
                               <span
                                 style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
@@ -229,7 +229,7 @@ Object {
                               </span>
                             </div>
                             <div
-                              class="bioContainer MuiBox-root css-10n7hpz"
+                              class="bioContainer MuiBox-root css-1oovyp6"
                             >
                               <h2
                                 class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-1i5ehwd-MuiTypography-root"
@@ -242,33 +242,38 @@ Object {
                               >
                                 Scripps Eyecare
                               </h3>
-                              <p
-                                class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
-                              >
-                                51 West 51st Street
-                                <br />
-                                Floor 3, Suite 320 Midtown
-                                <br />
-                                Florida
-                                , 
-                                FR
-                                , 
-                                54231
-                              </p>
                               <div
-                                class="phoneContainer MuiBox-root css-0"
+                                class="detailContainer MuiBox-root css-0"
                               >
-                                <p
-                                  class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
+                                <div
+                                  class="MuiBox-root css-0"
                                 >
-                                  (123) 123-4567
-                                </p>
+                                  <p
+                                    class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
+                                  >
+                                    51 West 51st Street
+                                    <br />
+                                    Floor 3, Suite 320 Midtown
+                                    <br />
+                                    Florida
+                                    , 
+                                    FR
+                                    , 
+                                    54231
+                                  </p>
+                                  <div
+                                    class="phoneContainer MuiBox-root css-0"
+                                  >
+                                    <a
+                                      class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways phoneLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                                    >
+                                      (123) 123-4567
+                                    </a>
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
-                          <div
-                            class="MuiBox-root css-0"
-                          />
                         </div>
                         <div
                           class="getDirectionLink MuiBox-root css-0"
@@ -471,7 +476,7 @@ Object {
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-elhp89-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yziclw-MuiSvgIcon-root"
                   data-testid="CheckCircleRoundedIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -570,7 +575,7 @@ Object {
                       class="MuiTypography-root MuiTypography-body1 css-o5ux9j-MuiTypography-root"
                     >
                       <svg
-                        aria-hidden="true"
+                        aria-hidden="false"
                         class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                         data-testid="CalendarTodayIcon"
                         focusable="false"
@@ -622,7 +627,7 @@ Object {
                             class="displayFlex MuiBox-root css-0"
                           >
                             <div
-                              class="MuiBox-root css-0"
+                              class="imageContainer MuiBox-root css-0"
                             >
                               <span
                                 style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
@@ -650,7 +655,7 @@ Object {
                               </span>
                             </div>
                             <div
-                              class="bioContainer MuiBox-root css-10n7hpz"
+                              class="bioContainer MuiBox-root css-1oovyp6"
                             >
                               <h2
                                 class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-1i5ehwd-MuiTypography-root"
@@ -663,33 +668,38 @@ Object {
                               >
                                 Scripps Eyecare
                               </h3>
-                              <p
-                                class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
-                              >
-                                51 West 51st Street
-                                <br />
-                                Floor 3, Suite 320 Midtown
-                                <br />
-                                Florida
-                                , 
-                                FR
-                                , 
-                                54231
-                              </p>
                               <div
-                                class="phoneContainer MuiBox-root css-0"
+                                class="detailContainer MuiBox-root css-0"
                               >
-                                <p
-                                  class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
+                                <div
+                                  class="MuiBox-root css-0"
                                 >
-                                  (123) 123-4567
-                                </p>
+                                  <p
+                                    class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
+                                  >
+                                    51 West 51st Street
+                                    <br />
+                                    Floor 3, Suite 320 Midtown
+                                    <br />
+                                    Florida
+                                    , 
+                                    FR
+                                    , 
+                                    54231
+                                  </p>
+                                  <div
+                                    class="phoneContainer MuiBox-root css-0"
+                                  >
+                                    <a
+                                      class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways phoneLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                                    >
+                                      (123) 123-4567
+                                    </a>
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
-                          <div
-                            class="MuiBox-root css-0"
-                          />
                         </div>
                         <div
                           class="getDirectionLink MuiBox-root css-0"

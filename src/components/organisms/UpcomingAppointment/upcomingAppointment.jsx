@@ -22,16 +22,25 @@ export default function UpcomingAppointment({
     const date = new Date(data.appointmentInfo.date);
     if (!date) return "-";
     const momentDate = new moment(date);
-    const formatedDate = momentDate
+    return momentDate
       .tz("America/New_York")
       .format("dddd, MMM DD, YYYY [at] h:mm z");
-    return formatedDate;
   };
+
+  function minHours(numOfHours, date = new Date()) {
+    date.setTime(date.getTime() - numOfHours * 60 * 60 * 1000);
+
+    return date;
+  }
 
   const getProviderLocation = () => {
     if (!data.providerInfo.location) return "#";
     return `https://www.google.com/maps/search/?api=1&query=${data.providerInfo.location.latitude},${data.providerInfo.location.longitude}`;
   };
+
+  const visitDate = new Date(data.appointmentInfo.date);
+  const isHideButtons = visitDate < minHours(4);
+
   return (
     <Box className={styles.upcomingAppointments}>
       <Stack spacing={{ xs: 2, lg: 3.5 }}>
@@ -72,17 +81,19 @@ export default function UpcomingAppointment({
               Get directions
             </Link>
           </Box>
-          <Box className={styles.buttonContainer}>
-            <AppointmentButton icon={<CancelOutlinedIcon />}>
-              Cancel
-            </AppointmentButton>
-            <AppointmentButton
-              icon={<CalendarTodayIcon />}
-              onClick={() => onRescheduleClicked(data)}
-            >
-              Reschedule
-            </AppointmentButton>
-          </Box>
+          {!isHideButtons ? (
+            <Box className={styles.buttonContainer}>
+              <AppointmentButton icon={<CancelOutlinedIcon />}>
+                Cancel
+              </AppointmentButton>
+              <AppointmentButton
+                icon={<CalendarTodayIcon />}
+                onClick={() => onRescheduleClicked(data)}
+              >
+                Reschedule
+              </AppointmentButton>
+            </Box>
+          ) : null}
         </Box>
         <Box className={styles.patientContainer}>
           <Typography variant="h3" className={styles.patientTitle}>

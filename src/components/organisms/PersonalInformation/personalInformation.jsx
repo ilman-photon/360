@@ -25,7 +25,6 @@ import { GENDER_LIST, TITLE_LIST } from "../../../utils/constantData";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import Image from "next/image";
 import FormMessage from "../../molecules/FormMessage/formMessage";
-import { Box } from "@mui/system";
 
 export default function PersonalInformation({
   userData = {},
@@ -134,7 +133,7 @@ export default function PersonalInformation({
         )
       }
     >
-      <Fade in={!isEditing} unmountOnExit>
+      <Fade in={!isEditing} unmountOnExit sx={{ fontFamily: "Libre Franklin" }}>
         <Stack spacing={3} divider={<Divider />}>
           <LabelWithInfo label="Photo">
             {userData.profilePhoto ? (
@@ -379,6 +378,11 @@ export default function PersonalInformation({
                     onChange={onChange}
                     error={!!error}
                     helperText={error ? error.message : null}
+                    sx={{
+                      ".MuiInputBase-root": {
+                        color: "#A5A5AC",
+                      },
+                    }}
                   />
                 );
               }}
@@ -454,6 +458,13 @@ export default function PersonalInformation({
                     onChange={onChange}
                     error={!!error}
                     helperText={error ? error.message : null}
+                    sx={{
+                      ".MuiInputBase-root": {
+                        color: "#A5A5AC",
+                        fontWeight: "700",
+                        fontFamily: "Roboto",
+                      },
+                    }}
                   />
                 );
               }}
