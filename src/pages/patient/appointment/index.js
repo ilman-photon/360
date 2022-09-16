@@ -152,7 +152,7 @@ export default function Appointment({ googleApiKey }) {
   //Call API for submitFilter
   function onCallSubmitFilterAPI(
     requestData,
-    activeFilterBy = [],
+    activeFilterByData = [],
     isOverlay = false
   ) {
     const postBody = {
@@ -164,7 +164,7 @@ export default function Appointment({ googleApiKey }) {
       date: requestData.date,
       appointmentType: requestData.purposeOfVisit,
       insuranceCarrier: requestData.insuranceCarrier,
-      filterBy: activeFilterBy,
+      filterBy: activeFilterByData,
     };
     if (!isOverlay) {
       setIsLoading(true);
@@ -213,15 +213,13 @@ export default function Appointment({ googleApiKey }) {
     };
   }
 
-  function onNextScheduleClicked(type, date) {
-    console.log(type, " + ", date);
-    const postBody = getPostbodyForSubmit(date);
+  function onNextScheduleClicked(type, nextDate) {
+    const postBody = getPostbodyForSubmit(nextDate);
     onCallSubmitFilterAPI(postBody, activeFilterBy, type === "overlay");
   }
 
-  function onPrevScheduleClicked(type, date) {
-    console.log(type, " + ", date);
-    const postBody = getPostbodyForSubmit(date);
+  function onPrevScheduleClicked(type, prevDate) {
+    const postBody = getPostbodyForSubmit(prevDate);
     onCallSubmitFilterAPI(postBody, activeFilterBy, type === "overlay");
   }
 

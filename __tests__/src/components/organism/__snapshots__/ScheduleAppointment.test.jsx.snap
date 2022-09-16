@@ -58,6 +58,19 @@ Object {
           <hr
             class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
           />
+          <div
+            style="text-align: right; width: 100%;"
+          >
+            <button
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root Mui-disabled  css-17u0idc-MuiButtonBase-root-MuiButton-root"
+              disabled=""
+              style="height: 40px; align-self: self-end; border-radius: 46px; text-transform: none; color: rgb(255, 255, 255);"
+              tabindex="-1"
+              type="submit"
+            >
+              continue
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -116,6 +129,19 @@ Object {
         <hr
           class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
         />
+        <div
+          style="text-align: right; width: 100%;"
+        >
+          <button
+            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root Mui-disabled  css-17u0idc-MuiButtonBase-root-MuiButton-root"
+            disabled=""
+            style="height: 40px; align-self: self-end; border-radius: 46px; text-transform: none; color: rgb(255, 255, 255);"
+            tabindex="-1"
+            type="submit"
+          >
+            continue
+          </button>
+        </div>
       </div>
     </div>
   </div>,

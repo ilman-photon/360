@@ -83,7 +83,7 @@ export const PageContent = ({
     // This is intentional
   },
 }) => {
-  const [selectedSelf, setSelectedSelf] = React.useState(1);
+  const [selectedSelf, setSelectedSelf] = React.useState(null);
   const { t } = useTranslation("translation", {
     keyPrefix: "scheduleAppoinment",
   });
@@ -98,7 +98,6 @@ export const PageContent = ({
         value: payload,
       })
     );
-    // OnsetActiveStep();
   };
 
   const createAccount = async function (postbody) {
@@ -175,7 +174,6 @@ export const PageContent = ({
               selectedSelf={selectedSelf}
               OnSubmit={(v) => {
                 handleFormSubmit(v);
-                // OnsetActiveStep(4);
               }}
               OnSetSelectedSelf={(idx) => setSelectedSelf(idx)}
               setActiveStep={(idx) => OnsetActiveStep(idx)}
@@ -213,7 +211,6 @@ export const PageContent = ({
                 handleFormSubmit(v);
                 createAccount(v);
                 OnClickSchedule(v);
-                // OnsetActiveStep(4);
               }}
               OnClickSignIn={() => {
                 cookies.set("dashboardState", true, { path: "/patient" });
@@ -352,7 +349,7 @@ export default function ScheduleAppointmentPage() {
     if (isReschedule) {
       router.push("/patient/appointments");
     } else {
-      setIsOpen(false);
+      router.push("/patient/appointment");
     }
   };
 
