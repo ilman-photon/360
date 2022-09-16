@@ -33,6 +33,7 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
                   <Typography
                     variant="body2"
                     className={index === splitedIndex ? styles.newColumn : ""}
+                    tabIndex={0}
                   >
                     {item}
                   </Typography>
@@ -44,6 +45,7 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
                   <Typography
                     variant="body2"
                     className={index === 2 ? styles.newColumn : ""}
+                    tabIndex={0}
                   >
                     {item}
                   </Typography>
@@ -54,13 +56,14 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
 
           {isRenderViewAll && !expand && (
             <li>
-              <Typography variant="body2">
+              <Typography variant="body2" tabIndex={0}>
                 16+ more in-network insurances{" "}
                 <Link
                   className={styles.viewAllLink}
                   data-testid={BIOGRAPHY_TEST_ID.viewAll}
                   aria-roledescription="Link"
                   aria-label="View All link"
+                  tabIndex={0}
                   onClick={() => {
                     setExpand(true);
                   }}
@@ -206,13 +209,19 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
         <Divider />
       </Box>
       <Stack spacing={3} className={styles.detailedBioContainer}>
-        <Typography variant="h3" ref={aboutRef}>
+        <Typography variant="h3" ref={aboutRef} tabIndex={0}>
           {`About ${providerData.name}`}
         </Typography>
-        <Typography variant="body2">{providerData.about}</Typography>
-        <Typography variant="h3">Gender</Typography>
-        <Typography variant="body2">{providerData.gender}</Typography>
-        <Typography variant="h3" ref={locationRef}>
+        <Typography variant="body2" tabIndex={0}>
+          {providerData.about}
+        </Typography>
+        <Typography variant="h3" tabIndex={0}>
+          Gender
+        </Typography>
+        <Typography variant="body2" tabIndex={0}>
+          {providerData.gender}
+        </Typography>
+        <Typography variant="h3" ref={locationRef} tabIndex={0}>
           Locations
         </Typography>
 
@@ -229,7 +238,11 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
             ></iframe>
           </Box>
           <Box className={styles.mapAddressContainer} aria-label="Address">
-            <Typography variant="body2" className={styles.mapAddress}>
+            <Typography
+              variant="body2"
+              className={styles.mapAddress}
+              tabIndex={0}
+            >
               {address && (
                 <>
                   {address.addressLine1}
@@ -254,8 +267,10 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
           </Box>
         </Box>
 
-        <Typography variant="h3">Languages</Typography>
-        <Typography variant="body2">
+        <Typography variant="h3" tabIndex={0}>
+          Languages
+        </Typography>
+        <Typography variant="body2" tabIndex={0}>
           {providerData.language &&
             providerData.language.map((item, index) => {
               const isLastIndex = providerData.language.length - 1 === index;
@@ -266,31 +281,33 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
               }
             })}
         </Typography>
-        <Typography variant="h3" ref={insurancesRef}>
+        <Typography variant="h3" ref={insurancesRef} tabIndex={0}>
           In-network insurances
         </Typography>
         {providerData.networkInsurance && renderInsurances()}
 
-        <Typography variant="h3" ref={educationRef}>
+        <Typography variant="h3" ref={educationRef} tabIndex={0}>
           Education
         </Typography>
         <Box className={styles.educationContainer}>
           {providerData.education &&
             providerData.education.map((education, index) => {
               return (
-                <Typography variant="body2" key={index}>
+                <Typography variant="body2" key={index} tabIndex={0}>
                   {education}
                 </Typography>
               );
             })}
         </Box>
 
-        <Typography variant="h3">Memberships and Afilliations</Typography>
+        <Typography variant="h3" tabIndex={0}>
+          Memberships and Afilliations
+        </Typography>
         <Box className={styles.educationContainer}>
           {providerData.membershipsAffiliation &&
             providerData.membershipsAffiliation.map((membership, index) => {
               return (
-                <Typography key={index} variant="body2">
+                <Typography key={index} variant="body2" tabIndex={0}>
                   {membership}
                 </Typography>
               );

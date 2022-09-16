@@ -11,6 +11,7 @@ export default function StyledRating({ value }) {
       size="small"
       emptyIcon={<StarIcon fontSize="inherit" />}
       icon={<StarIcon fontSize="inherit" />}
+      tabIndex={0}
       sx={{
         ".MuiRating-iconFilled": {
           color: "#0095A9",

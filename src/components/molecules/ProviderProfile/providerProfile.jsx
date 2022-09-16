@@ -9,7 +9,11 @@ import { TEST_ID } from "../../../utils/constants";
 const renderSpecialistList = (providerData) => {
   return (
     <Box>
-      <Typography variant="subtitle1" className={styles.specialistTitle}>
+      <Typography
+        variant="subtitle1"
+        className={styles.specialistTitle}
+        tabIndex={0}
+      >
         Specialties and Sub-specialties:{" "}
       </Typography>
       <ul className={styles.specialistList}>
@@ -20,6 +24,7 @@ const renderSpecialistList = (providerData) => {
                 <Typography
                   variant="body2"
                   className={index === 3 ? styles.newColumn : ""}
+                  tabIndex={0}
                 >
                   {item}
                 </Typography>
@@ -100,6 +105,7 @@ export default function ProviderProfile({
             height={100}
             className={styles.profilePhoto}
             alt="Doctor Image"
+            tabIndex={0}
           ></Image>
         </Box>
         <Box
@@ -123,11 +129,14 @@ export default function ProviderProfile({
                 ? styles.doctorNameAppointment
                 : ""
             }
+            tabIndex={0}
           >
             {providerData.name}
           </Typography>
           {showPosition && (
-            <Typography variant="h3">Scripps Eyecare</Typography>
+            <Typography variant="h3" tabIndex={0}>
+              Scripps Eyecare
+            </Typography>
           )}
           <Box className={styles.detailContainer}>
             <Box>
@@ -136,6 +145,7 @@ export default function ProviderProfile({
                   variant="body2"
                   className={styles.address}
                   fontSize={isViewSchedule ? "14px" : "16px"}
+                  tabIndex={0}
                 >
                   {getAddress(providerData.address)}
                 </Typography>
@@ -156,6 +166,7 @@ export default function ProviderProfile({
                       aria-label={`Doctor Phone: ${formatPhoneNumber(
                         phoneNumber
                       )}`}
+                      tabIndex={0}
                     >
                       {formatPhoneNumber(phoneNumber)}
                     </Typography>
