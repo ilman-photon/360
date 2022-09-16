@@ -9,3 +9,18 @@
     margin-bottom: unset;
   }
 }
+.title {
+  font-family: "Inter", sans-serif !important;
+  font-style: normal;
+  font-weight: 500 !important;
+  font-size: 32px !important;
+  line-height: 44px !important;
+
+  @media (max-width: 992px) {
+    font-size: 26px !important;
+  }
+}
+.upcomingAppointments {
+  margin: 0 auto;
+  background-color: white;
+}

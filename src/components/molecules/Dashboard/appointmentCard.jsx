@@ -19,7 +19,10 @@ import {
 } from "@mui/material";
 import { StyledButton } from "../../atoms/Button/button";
 import { patientTypography, colors } from "../../../styles/theme";
-import { parseAppointmentCardData } from "../../../utils/appointment";
+import {
+  getDirection,
+  parseAppointmentCardData,
+} from "../../../utils/appointment";
 import { fullDateFormat } from "../../../utils/dateFormatter";
 import { useEffect } from "react";
 import Image from "next/image";
@@ -48,14 +51,6 @@ export default function AppointmentCard({
     setAppointment(parseAppointmentCardData(appointmentData));
     setAppointmentCount(appointmentData.length);
   }, [appointmentData, appointmentCount]);
-
-  function getDirection(providerCordinate) {
-    window.open(
-      `https://maps.google.com?q=${providerCordinate.latitude},${providerCordinate.longitude}`,
-      "_blank",
-      "noopener,noreferrer"
-    );
-  }
 
   function renderAddressUI() {
     const address = appointment.providerInfo?.address || {};
