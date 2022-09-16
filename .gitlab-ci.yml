@@ -29,7 +29,7 @@ install:
   tags:
     - Frontend-runner
   before_script:
-  - export PATH=$PATH:/usr/local/bin
+  - export PATH=$PATH:/usr/lib/node
   script:
     - npm install
   artifacts:
