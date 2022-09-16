@@ -254,14 +254,16 @@ export const insuraceIcon = (
 export function getMenuList(title, subtitle) {
   return (
     <Box className={styles.selectMenuContainer}>
-      <Typography
-        variant="bodySmallRegular"
-        sx={{ display: "block", color: colors.darkGreen }}
-      >
-        {title}
-      </Typography>
-      <Typography variant="bodySmallMedium" sx={{ color: colors.darkGreen }}>
-        {subtitle}
+      <Typography tabindex={0}>
+        <Typography
+          variant="bodySmallRegular"
+          sx={{ display: "block", color: colors.darkGreen }}
+        >
+          {title}
+        </Typography>
+        <Typography variant="bodySmallMedium" sx={{ color: colors.darkGreen }}>
+          {subtitle}
+        </Typography>
       </Typography>
     </Box>
   );
@@ -439,7 +441,9 @@ export function renderInsuranceCarrier(
             renderOption={(props, option) => {
               return (
                 <Box key={props["data-option-index"]}>
-                  <li {...props}>{option.name}</li>
+                  <li {...props} tabIndex={"0"}>
+                    {option.name}
+                  </li>
                   {option.divider ? (
                     <Divider
                       sx={{
