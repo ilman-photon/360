@@ -103,6 +103,9 @@ export default function AppointmentForm({
 
   const isDOB = (value) => {
     let date = new Date().getFullYear();
+    if (value.getYear() < 0) {
+      return false;
+    }
     if (value.getFullYear() <= date) {
       return true;
     }
@@ -293,7 +296,7 @@ export default function AppointmentForm({
               },
             },
             pattern: {
-              value: Regex.isEmailCorrect,
+              value: Regex.emailValidation,
               message: "Incorrect email format",
             },
           }}
@@ -352,7 +355,7 @@ export default function AppointmentForm({
                   value={value}
                   onChange={onChange}
                   error={!!error}
-                  helperText={error ? error.message : null}
+                  helperText={!!error ? error.message : "Month, Day, Year"}
                   sx={{ m: 1 }}
                 />
               );
@@ -367,7 +370,6 @@ export default function AppointmentForm({
             }}
           />
         </Box>
-        <DisclaimerText label="Month, Day, Year" />
 
         <div style={styles.divMargin}>
           <Controller
