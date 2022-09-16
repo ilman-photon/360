@@ -29,6 +29,7 @@ import {
   Grid,
   Tooltip,
 } from "@mui/material";
+import { getDirection } from "../../../../utils/appointment";
 
 const BootstrapDialogTitle = (props) => {
   const { children, onClose, ...other } = props;
@@ -72,7 +73,6 @@ export default function ModalConfirmContent({
     // This is intended
   },
 }) {
-  console.log({ providerData });
   const { REGISTER_TEST_ID } = constants.TEST_ID;
 
   const { t } = useTranslation("translation", {
@@ -82,6 +82,15 @@ export default function ModalConfirmContent({
   const handleClose = () => {
     OnOkClicked();
   };
+
+  function getProviderLocation() {
+    return (
+      providerData.coordinate || {
+        latitude: "",
+        longitude: "",
+      }
+    );
+  }
 
   return (
     <Box
@@ -194,7 +203,12 @@ export default function ModalConfirmContent({
                     providerData={providerData}
                     isDayAvailableView={true}
                   />
-                  <Box className={styles.getDirectionLink}>
+                  <Box
+                    className={styles.getDirectionLink}
+                    onClick={() => {
+                      getDirection(getProviderLocation());
+                    }}
+                  >
                     <DirectionsOutlinedIcon></DirectionsOutlinedIcon>
                     <Link
                       className={styles.getDirectionLinkText}
