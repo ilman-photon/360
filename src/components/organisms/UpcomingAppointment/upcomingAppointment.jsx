@@ -6,6 +6,7 @@ import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
 import { StyledButton } from "../../atoms/Button/button";
 import AppointmentInformation from "../../molecules/AppointmentInformation/appointmentInformation";
+import { upcomingAppointmentDate } from "../../../utils/dateFormatter";
 
 const constants = require("../../../utils/constants");
 
@@ -14,13 +15,6 @@ export function UpcomingAppointmentCard({
   onRescheduleClicked,
   onCancelClicked,
 }) {
-  const renderedDate = () => {
-    const date = new Date(data.appointmentInfo.date);
-    if (!date) return "-";
-    const momentDate = new moment(date);
-    return momentDate.tz("America/New_York").format("dddd, MMM DD - h:mmA z");
-  };
-
   function minHours(numOfHours, date = new Date()) {
     date.setTime(date.getTime() - numOfHours * 60 * 60 * 1000);
 
@@ -37,7 +31,7 @@ export function UpcomingAppointmentCard({
         </Typography>
         <Box className={styles.dateContainer}>
           <Typography className={styles.date} variant="subtitle1">
-            {renderedDate()}
+            {upcomingAppointmentDate(data.appointmentInfo.date)}
           </Typography>
           <Box className={styles.subTitleWrapper}>
             <Typography variant="subtitle1">Visit Purpose: </Typography>
