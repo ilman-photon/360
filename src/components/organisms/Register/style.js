@@ -17,7 +17,7 @@ export const styles = {
     paddingTop: "6px",
     marginLeft: "8px",
     marginRight: "8px",
-    color: "#366A70",
+    color: "#003B4A",
     // fontSize: "1.25rem",
     fontSize: "34px",
   },
@@ -34,7 +34,7 @@ export const styles = {
     marginBottom: "16px",
   },
   bottomParagraph: {
-    color: "#366A70",
+    color: "#003B4A",
     textAlign: "center",
     fontSize: "14px",
     maxWidth: "85%",
