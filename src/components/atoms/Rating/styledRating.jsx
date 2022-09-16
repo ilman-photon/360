@@ -8,6 +8,7 @@ export default function StyledRating({ value }) {
       precision={0.5}
       readOnly
       size="small"
+      tabindex={"0"}
       emptyIcon={<StarIcon fontSize="inherit" />}
       icon={<StarIcon fontSize="inherit" />}
       sx={{

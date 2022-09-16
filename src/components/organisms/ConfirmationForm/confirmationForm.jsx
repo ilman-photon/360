@@ -85,7 +85,7 @@ const ConfirmationForm = ({
               data-testid={primaryButtonTestId}
               style={{
                 ...styles.margin,
-                marginTop: additional ? "0px" : description && "16px",
+                marginTop: "5%",
               }}
             >
               {buttonIcon}

@@ -69,7 +69,16 @@ export default function BaseHeader({
 
   return (
     <>
-      <AppBar position="fixed" sx={{ backgroundColor: "white" }}>
+      <AppBar
+        position="fixed"
+        sx={{
+          backgroundColor: "white",
+          "@media print": {
+            boxShadow:
+              "0px 1px 1px 0px rgb(0 0 0 / 20%), 0px 0px 1px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)",
+          },
+        }}
+      >
         <Container maxWidth="xl">
           {isUserLoged ? (
             <Toolbar disableGutters>
@@ -80,6 +89,8 @@ export default function BaseHeader({
                 style={styles.logoStyled}
                 aria-label={"Clarkson Eyecare logo"}
                 title="Your Account"
+                tabindex={0}
+                role={"img"}
               ></Image>
               {/* Menu Desktop*/}
               <Box sx={styles.boxStyled}>
@@ -186,9 +197,11 @@ export default function BaseHeader({
                 src={logo}
                 width="124px"
                 height="36px"
+                role={"img"}
                 quality={100}
                 style={styles.logoStyled}
                 aria-label={"Clarkson Eyecare logo"}
+                tabindex={0}
               ></Image>
             </Toolbar>
           )}

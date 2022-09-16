@@ -8,16 +8,25 @@ export const AccountCard = ({
   isEditing,
   actionContent,
   isAppoinment,
+  isDashboard,
   textStyle = {},
   ...props
 }) => {
   const isDesktop = useMediaQuery("(min-width: 769px)");
   return (
     <>
-      <Card variant="outlined" className={styles.card} sx={props.sx}>
+      <Card
+        variant="outlined"
+        className={[styles.card, props.className].join(" ")}
+        sx={props.sx}
+      >
         {(isDesktop || isAppoinment) && (
           <CardHeader
-            className={styles.cardHeader}
+            className={
+              isDashboard
+                ? [styles.dashboardHeader, styles.cardHeader]
+                : styles.cardHeader
+            }
             sx={{
               ".MuiCardHeader-action": {
                 margin: 0,
@@ -38,6 +47,7 @@ export const AccountCard = ({
                   className={styles.title}
                   style={textStyle}
                   aria-label={`${title} heading`}
+                  tabindex={0}
                 >
                   {title}
                 </div>

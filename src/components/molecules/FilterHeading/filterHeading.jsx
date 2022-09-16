@@ -802,6 +802,7 @@ const FilterHeading = ({
                 justifyContent={"center"}
                 className={styles.swapButtonContainer}
                 onClick={onSwapButtonClicked}
+                tabindex={0}
               >
                 <SwapHorizIcon className={styles.swapIcon} />
                 <Typography className={styles.swapLabel}>Map</Typography>

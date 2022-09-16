@@ -99,12 +99,18 @@ export default function ProviderProfile({
             width={100}
             height={100}
             className={styles.profilePhoto}
+            tabindex={"0"}
             alt="Doctor Image"
           ></Image>
         </Box>
         <Box
           className={styles.bioContainer}
-          sx={{ width: isMap || imageSize === "small" ? "unset" : "20vw" }}
+          sx={{
+            width:
+              isMap || isAppointment || imageSize === "small"
+                ? "unset"
+                : "20vw",
+          }}
         >
           <Typography
             variant="h2"
@@ -118,6 +124,7 @@ export default function ProviderProfile({
                 ? styles.doctorNameAppointment
                 : ""
             }
+            tabindex={"0"}
           >
             {providerData.name}
           </Typography>
@@ -130,6 +137,7 @@ export default function ProviderProfile({
                 variant="body2"
                 className={styles.address}
                 fontSize={isViewSchedule ? "14px" : "16px"}
+                tabindex={"0"}
               >
                 {getAddress(providerData.address)}
               </Typography>
@@ -143,11 +151,18 @@ export default function ProviderProfile({
                     <StyledRating value={parseInt(providerData.rating)} />
                   )}
                   {!phoneLink ? (
-                    <Typography variant="body2" className={styles.phone}>
+                    <Typography
+                      variant="body2"
+                      className={styles.phone}
+                      tabindex={"0"}
+                      aria-label={`phone number ${formatPhoneNumber(
+                        phoneNumber
+                      )}`}
+                    >
                       {formatPhoneNumber(phoneNumber)}
                     </Typography>
                   ) : (
-                    <Link className={styles.phoneLink}>
+                    <Link className={styles.phoneLink} tabindex={"0"}>
                       {formatPhoneNumber(phoneNumber)}
                     </Link>
                   )}

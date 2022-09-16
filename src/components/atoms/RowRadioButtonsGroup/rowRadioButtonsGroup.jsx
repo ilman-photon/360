@@ -13,17 +13,17 @@ export default function RowRadioButtonsGroup({
   helperText = null,
   tooltipContent,
   textSx = {},
+  isCancelSchedule = false,
   ...props
 }) {
   const options = props.options || [];
+  const iconSize = isCancelSchedule ? "24px" : "0.75em";
 
   return (
     <FormControl {...props}>
       <FormLabel
         id="row-radio-buttons-group-label"
-        aria-label={`${options
-          .map((option) => option.label)
-          .join(", ")} - radio buttons`}
+        aria-label={`${props.label}`}
         sx={{
           fontSize: 16,
           fontWeight: "600",
@@ -34,6 +34,7 @@ export default function RowRadioButtonsGroup({
           alignItems: "center",
           ...textSx,
         }}
+        tabindex={0}
       >
         {props.label}
         {tooltipContent ? (
@@ -70,7 +71,7 @@ export default function RowRadioButtonsGroup({
                   data-testid={props.testId}
                   sx={{
                     ".MuiSvgIcon-root": {
-                      width: "0.75em",
+                      width: iconSize,
                     },
                     "&.Mui-checked": {
                       color: colors.teal,

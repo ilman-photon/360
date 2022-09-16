@@ -170,7 +170,7 @@ export const FilterResultHeading = ({
             sx={{ gridArea: "filterDetails" }}
             className={styles.filterFoundWarpper}
           >
-            <Typography className={styles.filterFound}>
+            <Typography className={styles.filterFound} tabindex={"0"}>
               {`${numberFilter} In-network providers`}
             </Typography>
           </Box>
@@ -352,21 +352,25 @@ export const FilterResultHeading = ({
                 setFilterOpen(true);
               }}
             >
-              <Button
-                aria-label={"Filter Button"}
-                sx={{
-                  width: "31px",
-                  minWidth: "31px",
-                  padding: 0,
-                }}
-              >
-                <Image
-                  alt=""
-                  src={activeFilter.length > 0 ? imageSrcFilled : imageSrcState}
-                  width={31}
-                  height={31}
-                />
-              </Button>
+              {!(title && subtitle) && (
+                <Button
+                  aria-label={"Filter Button"}
+                  sx={{
+                    width: "31px",
+                    minWidth: "31px",
+                    padding: 0,
+                  }}
+                >
+                  <Image
+                    alt=""
+                    src={
+                      activeFilter.length > 0 ? imageSrcFilled : imageSrcState
+                    }
+                    width={31}
+                    height={31}
+                  />
+                </Button>
+              )}
             </Box>
           </Stack>
         </Stack>

@@ -9,7 +9,7 @@ Object {
         class="accountLayout "
       >
         <header
-          class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-1nft05v-MuiPaper-root-MuiAppBar-root"
+          class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-rxbk4x-MuiPaper-root-MuiAppBar-root"
         >
           <div
             class="MuiContainer-root MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root"
@@ -34,8 +34,10 @@ Object {
                   aria-label="Clarkson Eyecare logo"
                   data-nimg="intrinsic"
                   decoding="async"
+                  role="img"
                   src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                   style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                  tabindex="0"
                 />
                 <noscript />
               </span>
@@ -49,6 +51,7 @@ Object {
             aria-label="Your Account heading"
             aria-live="polite"
             class="title"
+            tabindex="0"
           >
             Your Account
           </div>
@@ -222,13 +225,13 @@ Object {
                   class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
                 >
                   <div
-                    class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
+                    class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1v5z4dq-MuiPaper-root-MuiCard-root"
                   >
                     <div
                       class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
                     >
                       <div
-                        class="css-1lwbda4-MuiStack-root"
+                        class="css-16q27bo-MuiStack-root"
                         style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
                       >
                         <div
@@ -757,7 +760,7 @@ Object {
       class="accountLayout "
     >
       <header
-        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-1nft05v-MuiPaper-root-MuiAppBar-root"
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-rxbk4x-MuiPaper-root-MuiAppBar-root"
       >
         <div
           class="MuiContainer-root MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root"
@@ -782,8 +785,10 @@ Object {
                 aria-label="Clarkson Eyecare logo"
                 data-nimg="intrinsic"
                 decoding="async"
+                role="img"
                 src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                 style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                tabindex="0"
               />
               <noscript />
             </span>
@@ -797,6 +802,7 @@ Object {
           aria-label="Your Account heading"
           aria-live="polite"
           class="title"
+          tabindex="0"
         >
           Your Account
         </div>
@@ -970,13 +976,13 @@ Object {
                 class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
               >
                 <div
-                  class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card css-1v5z4dq-MuiPaper-root-MuiCard-root"
+                  class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1v5z4dq-MuiPaper-root-MuiCard-root"
                 >
                   <div
                     class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
                   >
                     <div
-                      class="css-1lwbda4-MuiStack-root"
+                      class="css-16q27bo-MuiStack-root"
                       style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
                     >
                       <div

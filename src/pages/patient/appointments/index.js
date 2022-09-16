@@ -28,7 +28,6 @@ export default function Appointments() {
         .getAllAppointment()
         .then((response) => {
           dispatch(setUserAppointmentData(response.appointmentList));
-          // setAppointments(response);
         })
         .catch(function () {
           //Handle error getAppointments
