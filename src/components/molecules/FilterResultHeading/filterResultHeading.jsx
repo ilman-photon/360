@@ -323,12 +323,14 @@ export const FilterResultHeading = ({
                 setFilterOpen(true);
               }}
             >
-              <Image
-                alt=""
-                src={activeFilter.length > 0 ? imageSrcFilled : imageSrcState}
-                width={31}
-                height={31}
-              />
+              {!(title && subtitle) && (
+                <Image
+                  alt=""
+                  src={activeFilter.length > 0 ? imageSrcFilled : imageSrcState}
+                  width={31}
+                  height={31}
+                />
+              )}
             </Box>
           </Stack>
         </Stack>
