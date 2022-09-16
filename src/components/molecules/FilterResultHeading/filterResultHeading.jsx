@@ -14,7 +14,7 @@ import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import { colors } from "../../../styles/theme";
 import Image from "next/image";
 import FilterHeadingFilled from "../FilterHeading/filterHeadingFilled";
-import { getDates } from "../../../utils/appointment";
+import { getDates, isPrevArrowDisable } from "../../../utils/appointment";
 
 export const FilterResultHeading = ({
   appliedFilter = [],
@@ -112,13 +112,6 @@ export const FilterResultHeading = ({
     setDialogOpen(true);
   }
 
-  function isPrevArrowDisable() {
-    return (
-      new Date() >
-      (dateList?.dateRange?.length > 0 ? dateList.dateRange[0] : null)
-    );
-  }
-
   function renderDesktopView() {
     return (
       <Box
@@ -192,14 +185,16 @@ export const FilterResultHeading = ({
                 cursor: "pointer",
               }}
               className={
-                isPrevArrowDisable()
+                isPrevArrowDisable(dateList)
                   ? styles.prevArrowDisable
                   : styles.prevArrowActive
               }
               onClick={() => {
-                const date = new Date(dateList.dateRange[0]);
-                date.setDate(date.getDate() - 7);
-                onPrevScheduleClicked("week", date);
+                if (!isPrevArrowDisable(dateList)) {
+                  const date = new Date(dateList.dateRange[0]);
+                  date.setDate(date.getDate() - 7);
+                  onPrevScheduleClicked("week", date);
+                }
               }}
             />
             <Box

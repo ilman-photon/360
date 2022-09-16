@@ -8,6 +8,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import {
   getDates,
+  isPrevArrowDisable,
   parseDateWeekList,
   parseScheduleDataWeekOverlay,
   timeInWeekLabel,
@@ -170,15 +171,21 @@ export const DayAvailability = ({
         </Typography>
         <Box className={styles.iconTimeContainer}>
           <ArrowBackIosIcon
-            className={styles.iconSchedule}
+            className={
+              isPrevArrowDisable(dateList)
+                ? styles.iconDisableSchedule
+                : styles.iconSchedule
+            }
             data-testid={
               TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.previousWeekButton
             }
             sx={{ cursor: "pointer" }}
             onClick={() => {
-              const date = new Date(dateList.dateRange[0]);
-              date.setDate(date.getDate() - 7);
-              onPrevScheduleClicked("overlay", date);
+              if (!isPrevArrowDisable(dateList)) {
+                const date = new Date(dateList.dateRange[0]);
+                date.setDate(date.getDate() - 7);
+                onPrevScheduleClicked("overlay", date);
+              }
             }}
           />
           <ArrowForwardIosIcon
