@@ -165,12 +165,12 @@ const MOCK_SUGESTION = {
     },
     {
       id: "3",
-      name: "Comprehensive",
+      name: "optometry",
       description: "Get detailed eye exam",
     },
     {
       id: "4",
-      name: "Contacts Only",
+      name: "ophthalmology",
       description: "Get fitted for the right contacts",
     },
   ],
