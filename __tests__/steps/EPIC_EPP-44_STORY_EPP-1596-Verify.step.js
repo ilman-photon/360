@@ -221,7 +221,7 @@ defineFeature(feature, (test) => {
 	let container
 	test('EPIC_EPP-44_STORY_EPP-1596-To verify whether the user is allowed to change the Date and Time in Appointment Review screen.', ({ when, and, then }) => {
 		when('user clicks on the Schedule Appointment button', () => {
-
+			defaultValidation()
 		});
 
 		and('user navigates to the schedule appointment screen', () => {
@@ -251,17 +251,65 @@ defineFeature(feature, (test) => {
 		});
 
 		and('user should lands on Schedule Appointment Review screen with selected location, Date and Time, Purpose of visit andInsurance carrier data', () => {
-
+			defaultValidation()
 		});
 
 		and('try to update the Date and Time if already provided', () => {
-
+			defaultValidation()
 		});
 
 		then('user should allow to update the Date and Time.', () => {
-
+			defaultValidation()
 		});
 	});
+
+	test('EPIC_EPP-44_STORY_EPP-1596-Verify whether the user is able to select the Date and Time, if not selected in Previous page.', ({ given, when, and, then }) => {
+        given('user launch the Patient portal URL', () => {
+			defaultValidation()
+        });
+
+        when('user clicks on the Schedule Appointment button', () => {
+			defaultValidation()
+        });
+
+        and('user navigates to the schedule appointment screen', () => {
+			const mock = new MockAdapter(axios);
+			const mockGeolocation = {
+				getCurrentPosition: jest.fn(),
+				watchPosition: jest.fn()
+			};
+
+			const domain = window.location.origin;
+			mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGGESTION_DATA);
+			mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(400, {});
+			global.navigator.geolocation = mockGeolocation;
+			container = render(
+				<Provider store={store}>
+					{Appointment.getLayout(<Appointment />)}
+				</Provider>
+			);
+		});
+
+		and('user should select the location, Date of Appointment, Purpose of visit, Insurance carrier.', () => {
+			provideFilters();
+		});
+
+		and('click on Search button', () => {
+			clickSearch();
+		});
+
+        and('user should lands on Schedule Appointment Review screen with selected location, Date and Time, Purpose of visit and Insurance carrier data', () => {
+			defaultValidation()
+        });
+
+        and('try to add the Date and Time', () => {
+			defaultValidation()
+        });
+
+        then('user should allow to add the Date and Time.', () => {
+			defaultValidation()
+        });
+    });
 
 	test('EPIC_EPP-44_STORY_EPP-1596-Verify whether the user is able to review the Appointment details after updating the Date and Time.', ({ given, when, and, then }) => {
 		given('user launch the Patient portal URL', () => {

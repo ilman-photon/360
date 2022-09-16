@@ -649,11 +649,11 @@ defineFeature(feature, (test) => {
 
 	test('EPIC_EPP-44_STORY_EPP-2543-Verify User should be navigated to "Schedule Appointment" screen with the selected data', ({ given, when, then, and }) => {
 		given(/^User launch the "(.*)" url$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		when(/^User clicks on the "(.*)" button$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		then('User should navigated to the search screen', async () => {
@@ -737,11 +737,11 @@ defineFeature(feature, (test) => {
 
 	test('EPIC_EPP-44_STORY_EPP-2543-Verify User should be able to selects a time slot of the provider', ({ given, when, then, and }) => {
 		given(/^User launch the "(.*)" url$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		when(/^User clicks on the "(.*)" button$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		then('User should navigated to the search screen', async () => {
@@ -838,21 +838,21 @@ defineFeature(feature, (test) => {
 		});
 
 		then('User should navigated to review the appointment details', () => {
-
+			defaultValidation()
 		});
 
 		and('User should see the selected location along with the provider', () => {
-
+			defaultValidation()
 		});
 	});
 
 	test('EPIC_EPP-44_STORY_EPP-2543-Verify User should navigated to review the appointment details', ({ given, when, then, and }) => {
 		given(/^User launch the "(.*)" url$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		when(/^User clicks on the "(.*)" button$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		then('User should navigated to the search screen', async () => {
@@ -934,53 +934,53 @@ defineFeature(feature, (test) => {
 		});
 
 		and('User should see a time slot of the provider', () => {
-
+			defaultValidation()
 		});
 
 		when('User selects a time slot of the provider', () => {
-
+			defaultValidation()
 		});
 
 		then('User should navigated to review the appointment details', () => {
-
+			defaultValidation()
 		});
 
 		and('User should see the selected location along with the provider', () => {
-
+			defaultValidation()
 		});
 
 		and('User should see the selected Date and Time of the appointment', () => {
-
+			defaultValidation()
 		});
 
 		and('User should see the selected purpose of visit (if provided)', () => {
-
+			defaultValidation()
 		});
 
 		and('User should see the selected Insurance Career (if provided)', () => {
-
+			defaultValidation()
 		});
 
 		and('User should see a progress bar to identify with scheduling the appointment', () => {
-
+			defaultValidation()
 		});
 
 		and('User should see an option to go back to the previous screen', () => {
-
+			defaultValidation()
 		});
 
 		and('User should see an option to schedule the appointment', () => {
-
+			defaultValidation()
 		});
 	});
 
 	test('EPIC_EPP-44_STORY_EPP-2543-Verify User should be able to selects a time slot of the provider within 3 seconds', ({ given, when, then, and }) => {
 		given(/^User launch the "(.*)" url$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		when(/^User clicks on the "(.*)" button$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		then('User should navigated to the search screen', async () => {
@@ -1062,33 +1062,33 @@ defineFeature(feature, (test) => {
 		});
 
 		and('User should see a time slot of the provider', () => {
-
+			defaultValidation()
 		});
 
 		when('User selects a time slot of the provider', () => {
-
+			defaultValidation()
 		});
 
 		and(/^User should see page load within "(.*)"$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		then('User should navigated to review the appointment details', () => {
-
+			defaultValidation()
 		});
 
 		and('User should see the selected location along with the provider', () => {
-
+			defaultValidation()
 		});
 	});
 
 	test('EPIC_EPP-44_STORY_EPP-2543-Verify User should be able to selects a time slot of the provider - Without error script when user clicks on F12 on the console', ({ given, when, then, and }) => {
 		given(/^User launch the "(.*)" url$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		when(/^User clicks on the "(.*)" button$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		then('User should navigated to the search screen', async () => {
@@ -1170,41 +1170,41 @@ defineFeature(feature, (test) => {
 		});
 
 		and('User should see a time slot of the provider', () => {
-
+			defaultValidation()
 		});
 
 		when('User selects a time slot of the provider', () => {
-
+			defaultValidation()
 		});
 
 		and(/^User should see page load within "(.*)"$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		then('User should navigated to review the appointment details', () => {
-
+			defaultValidation()
 		});
 
 		and('User should see the selected location along with the provider', () => {
-
+			defaultValidation()
 		});
 
 		when(/^user clicks on F(\d+) on the console$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		then('user should not to see any errors script', () => {
-
+			defaultValidation()
 		});
 	});
 
 	test('EPIC_EPP-44_STORY_EPP-2543-Negative Test Cases-Verify User should be able to selects a time slot of the provider - When the internet service is unavailable user should see the following error message', ({ given, when, then, and }) => {
 		given(/^User launch the "(.*)" url$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		when(/^User clicks on the "(.*)" button$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		then('User should navigated to the search screen', async () => {
@@ -1286,29 +1286,29 @@ defineFeature(feature, (test) => {
 		});
 
 		and('User should see a time slot of the provider', () => {
-
+			defaultValidation()
 		});
 
 		when('User selects a time slot of the provider', () => {
-
+			defaultValidation()
 		});
 
 		then('The Internet service is unavailable', () => {
-
+			defaultValidation()
 		});
 
 		and('User should see the appropriate error message', () => {
-
+			defaultValidation()
 		});
 	});
 
 	test('EPIC_EPP-44_STORY_EPP-2543-Negative Test Cases-Verify User should be able to selects a time slot of the provider - When the service is unavailable user should see the following error message', ({ given, when, then, and }) => {
 		given(/^User launch the "(.*)" url$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		when(/^User clicks on the "(.*)" button$/, (arg0) => {
-
+			defaultValidation()
 		});
 
 		then('User should navigated to the search screen', async () => {
@@ -1390,19 +1390,19 @@ defineFeature(feature, (test) => {
 		});
 
 		and('User should see a time slot of the provider', () => {
-
+			defaultValidation()
 		});
 
 		when('User selects a time slot of the provider', () => {
-
+			defaultValidation()
 		});
 
 		then('The service is unavailable', () => {
-
+			defaultValidation()
 		});
 
 		and('User should see the appropriate error message', () => {
-
+			defaultValidation()
 		});
 	});
 })
