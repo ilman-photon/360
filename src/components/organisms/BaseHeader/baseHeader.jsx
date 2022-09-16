@@ -36,10 +36,6 @@ export default function BaseHeader({
       testId: HOME_TEST_ID.appoinments,
       href: "/patient/appointments",
     },
-    // { page: "My Health Chart", testId: HOME_TEST_ID.myhealthchart },
-    // { page: "My Care Team", testId: HOME_TEST_ID.mycareteam },
-    // { page: "Lab Results", testId: HOME_TEST_ID.labresults },
-    // { page: "Billing", testId: HOME_TEST_ID.billing },
   ];
   const [isUserLoged, setUserLoged] = React.useState(false);
   const router = useRouter();

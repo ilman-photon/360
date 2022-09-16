@@ -12,12 +12,8 @@ import { Box, Stack, Typography, Button } from "@mui/material";
 
 export default function ModalCancelScheduling({
   isOpen,
-  OnClickCancel = () => {
-    // This is intentional
-  },
-  OnCancelClicked = () => {
-    // This is intentional
-  },
+  OnClickCancel,
+  OnCancelClicked,
 }) {
   const { handleSubmit, control, watch } = useForm({
     defaultValues: {},

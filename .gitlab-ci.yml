@@ -1,7 +1,7 @@
 variables:
   DOCKER_REGISTRY: "056640875000.dkr.ecr.us-east-1.amazonaws.com"
   AWS_DEFAULT_REGION: us-east-1
-  APP_NAME: "photon-ecp-ppp-dev"
+  APP_NAME: "photon-e360-patient-dev"
   #DOCKER_HOST: tcp://docker:2375
   #DOCKER_DRIVER: overlay2
   #DOCKER_TLS_CERTDIR: ""
@@ -88,9 +88,9 @@ imagebuild:
     - Frontend-runner
   script:
     - aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 056640875000.dkr.ecr.us-east-1.amazonaws.com
-    - docker build -t photon-ecp-ppp-dev .
-    - docker tag photon-ecp-ppp-dev:latest 056640875000.dkr.ecr.us-east-1.amazonaws.com/photon-ecp-ppp-dev:ecp-patient-$CI_PIPELINE_IID
-    - docker push 056640875000.dkr.ecr.us-east-1.amazonaws.com/photon-ecp-ppp-dev:ecp-patient-$CI_PIPELINE_IID
+    - docker build -t photon-e360-patient-dev .
+    - docker tag photon-e360-patient-dev:latest 056640875000.dkr.ecr.us-east-1.amazonaws.com/photon-e360-patient-dev:ecp-patient-$CI_PIPELINE_IID
+    - docker push 056640875000.dkr.ecr.us-east-1.amazonaws.com/photon-e360-patient-dev:ecp-patient-$CI_PIPELINE_IID
     
 deploy_to:
   stage: deploy
