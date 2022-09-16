@@ -29,7 +29,7 @@ install:
   tags:
     - Frontend-runner
   before_script:
-  - export PATH=$PATH:/usr/lib/node
+  - export PATH=$PATH:/home/gitlab-runner/.nvm/versions/node/v16.10.0/bin/npm
   script:
     - npm install
   artifacts:
