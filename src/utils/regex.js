@@ -3,11 +3,10 @@ export class Regex {
   static numberRegex = /\d/;
   static alphabethOnly = /^[a-zA-Z ]*$/;
   static numberOnly = /^\d*$/;
-  static alphabethOnly = /^[a-zA-Z ]*$/;
   static upperCaseRegex = /[A-Z]/;
   static lowerCaseRegex = /[a-z]/;
   static alphabethRegex = /[A-Za-z]/;
-  static specialRegex = /[$&+,:;=?@#|'<>.^*()%!\]\[{}\\\-\~]/;
+  static specialRegex = /[$&+,:;=/?@#|'<>.^*()%!\]\[{}\\\-\~]/;
   static hasTripleRegex = /([a-z\\d])\\1\\1/;
   static hasAlpahabet = /^([A-Za-z ])+$/i;
   static isValidPhoneFormat = /^(\(\d{3}\) |\d{3}-)\d{3}-\d{4}$/i;
@@ -21,6 +20,5 @@ export class Regex {
   static noWhitespaceRegex = /[^\s-]/;
   static isTenDigitPhone = /^(\d{3})(\d{3})(\d{4})$/;
   static isImageFile = /(image\/(png|jpg|jpeg))/;
-  static minThreeDigitRegex = /^[^\s]{3,}$/;
   static isMin2Max50Length = /^\w{2,50}$/;
 }

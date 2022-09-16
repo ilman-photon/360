@@ -83,7 +83,7 @@ export const PageContent = ({
     // This is intentional
   },
 }) => {
-  const [selectedSelf, setSelectedSelf] = React.useState(1);
+  const [selectedSelf, setSelectedSelf] = React.useState(null);
   const { t } = useTranslation("translation", {
     keyPrefix: "scheduleAppoinment",
   });
@@ -98,7 +98,6 @@ export const PageContent = ({
         value: payload,
       })
     );
-    // OnsetActiveStep();
   };
 
   const createAccount = async function (postbody) {
@@ -126,10 +125,10 @@ export const PageContent = ({
     case 1:
       return (
         <>
-          <Grid
+          <Box
             className={styles.examForComponent}
             p={{ xs: "24px 14px", md: "40px 16px" }}
-            sx={{ width: { xs: "100%", md: "65%" } }}
+            sx={{ width: { xs: "100%", md: "952px" } }}
           >
             <AppointmentLocation
               providerData={appointmentScheduleData.providerInfo}
@@ -156,7 +155,7 @@ export const PageContent = ({
                 {isLoggedIn ? t("scheduleAppoinment") : t("continue")}
               </Button>
             </Stack>
-          </Grid>
+          </Box>
         </>
       );
     case 2:
@@ -175,7 +174,6 @@ export const PageContent = ({
               selectedSelf={selectedSelf}
               OnSubmit={(v) => {
                 handleFormSubmit(v);
-                // OnsetActiveStep(4);
               }}
               OnSetSelectedSelf={(idx) => setSelectedSelf(idx)}
               setActiveStep={(idx) => OnsetActiveStep(idx)}
@@ -213,7 +211,6 @@ export const PageContent = ({
                 handleFormSubmit(v);
                 createAccount(v);
                 OnClickSchedule(v);
-                // OnsetActiveStep(4);
               }}
               OnClickSignIn={() => {
                 cookies.set("dashboardState", true, { path: "/patient" });
@@ -256,7 +253,7 @@ export default function ScheduleAppointmentPage() {
         })
       );
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeStep]);
 
   const steps = [
@@ -352,7 +349,7 @@ export default function ScheduleAppointmentPage() {
     if (isReschedule) {
       router.push("/patient/appointments");
     } else {
-      setIsOpen(false);
+      router.push("/patient/appointment");
     }
   };
 

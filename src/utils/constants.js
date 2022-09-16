@@ -88,6 +88,11 @@ module.exports = {
       registerbtn: "registerBtn",
       signInlink: "signInlink",
     },
+    CANCEL_SCHEDULE_TEST_ID: {
+      btnCancel: "loc_btnCancel",
+      btnKeep: "loc_btnKeep",
+      other: "other",
+    },
     HOME_TEST_ID: {
       appoinments: "appoinments",
       myhealthchart: "myhealthchart",

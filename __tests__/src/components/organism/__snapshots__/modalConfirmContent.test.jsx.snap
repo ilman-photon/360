@@ -117,7 +117,7 @@ Object {
                   class="MuiTypography-root MuiTypography-body1 css-o5ux9j-MuiTypography-root"
                 >
                   <svg
-                    aria-hidden="true"
+                    aria-hidden="false"
                     class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                     data-testid="CalendarTodayIcon"
                     focusable="false"
@@ -197,7 +197,7 @@ Object {
                           </span>
                         </div>
                         <div
-                          class="bioContainer MuiBox-root css-10n7hpz"
+                          class="bioContainer MuiBox-root css-1oovyp6"
                         >
                           <h2
                             class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-1i5ehwd-MuiTypography-root"
@@ -287,11 +287,9 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="css-1okj3ks-MuiStack-root"
+                  class="css-qkek6c-MuiStack-root"
                 >
-                  <div
-                    style="margin-top: 10px;"
-                  >
+                  <div>
                     <span
                       class="MuiTypography-root MuiTypography-bodyMedium css-1oitrp4-MuiTypography-root"
                     >
@@ -440,7 +438,7 @@ Object {
                 class="MuiTypography-root MuiTypography-body1 css-o5ux9j-MuiTypography-root"
               >
                 <svg
-                  aria-hidden="true"
+                  aria-hidden="false"
                   class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                   data-testid="CalendarTodayIcon"
                   focusable="false"
@@ -520,7 +518,7 @@ Object {
                         </span>
                       </div>
                       <div
-                        class="bioContainer MuiBox-root css-10n7hpz"
+                        class="bioContainer MuiBox-root css-1oovyp6"
                       >
                         <h2
                           class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-1i5ehwd-MuiTypography-root"
@@ -610,11 +608,9 @@ Object {
                 </div>
               </div>
               <div
-                class="css-1okj3ks-MuiStack-root"
+                class="css-qkek6c-MuiStack-root"
               >
-                <div
-                  style="margin-top: 10px;"
-                >
+                <div>
                   <span
                     class="MuiTypography-root MuiTypography-bodyMedium css-1oitrp4-MuiTypography-root"
                   >
