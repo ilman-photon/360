@@ -15,6 +15,7 @@ import { useTranslation } from "next-i18next";
 import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
 import { Regex } from "../../../utils/regex";
+import { colors } from "../../../styles/theme";
 
 const constants = require("../../../utils/constants");
 
@@ -28,7 +29,7 @@ export function Login({
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "Login" });
   const { LOGIN_TEST_ID } = constants.TEST_ID;
-  const { handleSubmit, setError, control } = useForm();
+  const { handleSubmit, control } = useForm();
   const onSubmit = ({ username, password }) => {
     OnLoginClicked({ username, password }, router, checkMessage);
   };
@@ -150,7 +151,7 @@ export function Login({
           <Grid container justifyContent={constants.CENTER}>
             <Typography
               variant="bodyMedium"
-              sx={{ color: "#003B4A", fontWeight: 600, textAlign: "center" }}
+              sx={{ color: colors.grey, fontWeight: 400, textAlign: "center" }}
             >
               {t("alreadyHaveAnAppointment")}
               <br />

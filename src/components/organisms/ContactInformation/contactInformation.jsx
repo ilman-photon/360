@@ -145,7 +145,7 @@ export default function ContactInformation({
       label={"Contact Information heading"}
       ariaLabel={"Contact Information heading"}
     >
-      <Fade in={!isEditing} unmountOnExit>
+      <Fade in={!isEditing} unmountOnExit sx={{ fontFamily: "Libre Franklin" }}>
         <Stack spacing={3} divider={<Divider />}>
           <LabelWithInfo
             tabIndex={0}

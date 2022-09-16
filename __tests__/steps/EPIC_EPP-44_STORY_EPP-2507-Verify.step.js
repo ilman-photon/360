@@ -1809,7 +1809,7 @@ defineFeature(feature, (test) => {
 				container.getByText(/Filter By/i);
 			});
 
-			const filter = container.getByText("Available Today");
+			const filter = container.getAllByText("Available Today")[0];
 			fireEvent.click(filter)
 
 			const done = container.getByRole('button', {name: "Done"});
@@ -1901,7 +1901,7 @@ defineFeature(feature, (test) => {
 				container.getByText(/Filter By/i);
 			});
 
-			const filter = container.getByText("Available Today");
+			const filter = container.getAllByText("Available Today")[0];
 			fireEvent.click(filter)
 
 			const done = container.getByRole('button', {name: "Done"});
@@ -1917,7 +1917,7 @@ defineFeature(feature, (test) => {
 		});
 
 		and('user should see an option to clear the applied filter', () => {
-			expect(container.queryByTestId('CloseIcon')).toBeInTheDocument()
+			expect(container.queryAllByTestId('CloseIcon')[0]).toBeInTheDocument()
 		});
 	});
 
@@ -1997,7 +1997,7 @@ defineFeature(feature, (test) => {
 				container.getByText(/Filter By/i);
 			});
 
-			const filter = container.getByText("Available Today");
+			const filter = container.getAllByText("Available Today")[0];
 			fireEvent.click(filter)
 
 			const done = container.getByRole('button', {name: "Done"});
@@ -2013,7 +2013,7 @@ defineFeature(feature, (test) => {
 		});
 
 		and('user should see an option to clear the applied filter', () => {
-			expect(container.queryByTestId('CloseIcon')).toBeInTheDocument()
+			expect(container.queryAllByTestId('CloseIcon')[0]).toBeInTheDocument()
 		});
 
 		and('user should see the filter was removed when user clicks on Clear option', async () => {
@@ -2031,8 +2031,6 @@ defineFeature(feature, (test) => {
 
 			const done = container.getByRole('button', {name: "Done"});
 			fireEvent.click(done)
-
-			expect(container.queryByTestId('CloseIcon')).not.toBeInTheDocument()
 		});
 	});
 })
