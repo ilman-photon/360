@@ -75,7 +75,7 @@ export const CustomPasswordInput = styled((props) => (
       fontWeight: 600,
     },
     "&.Mui-error": {
-      color: "#B00020",
+      color: "#B93632",
       fontWeight: "unset",
     },
   },
@@ -94,7 +94,7 @@ export const CustomPasswordInput = styled((props) => (
       backgroundColor: "transparent",
     },
     "&.Mui-error": {
-      borderColor: "#B00020",
+      borderColor: "#B93632",
       backgroundColor: "#FBF4F4",
       color: "#6C6C6C",
     },
@@ -105,7 +105,7 @@ export const CustomPasswordInput = styled((props) => (
   },
   "& .MuiFormHelperText-root": {
     "&.Mui-error": {
-      color: "#B00020",
+      color: "#B93632",
     },
   },
 }));
@@ -137,7 +137,7 @@ export const RedditTextField = styled((props) => (
       fontWeight: 600,
     },
     "&.Mui-error": {
-      color: "#B00020",
+      color: "#B93632",
       fontWeight: "unset",
     },
   },
@@ -162,7 +162,7 @@ export const RedditTextField = styled((props) => (
       borderColor: "transparent !important",
     },
     "&.Mui-error": {
-      borderColor: "#B00020",
+      borderColor: "#B93632",
       backgroundColor: "#FBF4F4",
       color: "#6C6C6C",
     },
@@ -179,7 +179,7 @@ export const RedditTextField = styled((props) => (
   },
   "& .MuiFormHelperText-root": {
     "&.Mui-error": {
-      color: "#B00020",
+      color: "#B93632",
     },
   },
 }));
