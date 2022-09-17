@@ -111,6 +111,7 @@ deploy_to:
     - aws eks --region us-east-1 update-kubeconfig --name $APP_NAME
     - sed -i 's/TAG/'"$CI_PIPELINE_IID"'/g' ./deployment/deploy.yaml
     # - kubectl config view
+    - cat ./deployment/deploy.yaml
     - kubectl apply -f `pwd`/deployment/deploy.yaml
 
 after_script:
