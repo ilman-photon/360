@@ -31,15 +31,16 @@ metadata:
   labels:
     app: patient
   name: patient
-    annotations:
+  annotations:
     service.beta.kubernetes.io/aws-load-balancer-internal: "true"
-
+    # service.beta.kubernetes.io/aws-load-balancer-scheme: internal
+    # service.beta.kubernetes.io/aws-load-balancer-type: elb
 spec:
   ports:
-  - name: 80-3000
+  - name: 80-8080
     port: 80
     protocol: TCP
-    targetPort: 3000
+    targetPort: 8080
   selector:
     app: patient
   type: LoadBalancer
