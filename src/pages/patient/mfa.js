@@ -17,6 +17,7 @@ import store from "../../store/store";
 
 export async function getServerSideProps(context) {
   const cookies = new Cookies(context.req.headers.cookie);
+  const isStepTwo = cookies.get("isStay") == "stay";
 
   if (!cookies.get("mfa")) {
     return {
@@ -28,11 +29,13 @@ export async function getServerSideProps(context) {
   }
 
   return {
-    props: {},
+    props: {
+      isStepTwo,
+    },
   };
 }
 
-export default function MfaPage() {
+export default function MfaPage({ isStepTwo }) {
   const api = new Api();
   const cookies = new Cookies();
   const router = useRouter();
@@ -76,6 +79,13 @@ export default function MfaPage() {
     };
   });
 
+  React.useEffect(() => {
+    return () => {
+      cookies.remove("isStay");
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const setTempValidation = (response) => {
     if (process.env.ENV_NAME !== "prod" && response && response.mfaCode) {
       setOTPValidation(response.mfaCode);
@@ -94,6 +104,7 @@ export default function MfaPage() {
       .then((response) => {
         setTempValidation(response);
         setComponentName(constants.MFA_COMPONENT_NAME);
+        cookies.set("isStay", "stay", { path: "/patient" });
       })
       .catch((err) => {
         if (err.ResponseCode === 4004) {
@@ -148,23 +159,25 @@ export default function MfaPage() {
         }
       })
       .catch((err) => {
-        if (err.ResponseCode === 4003) {
-          callback({
-            status: "failed",
-            isEndView: true,
-            message: {
-              title: t("mfaLockTitle"),
-              description: t("mfaLockDescription"),
-            },
-          });
-        } else {
-          callback({
-            status: "failed",
-            message: {
-              title: t("mfaFailedTitle"),
-              description: t("mfaFailedDescription"),
-            },
-          });
+        if (err.ResponseCode !== constants.ERROR_CODE.NETWORK_ERR) {
+          if (err.ResponseCode === 4003) {
+            callback({
+              status: "failed",
+              isEndView: true,
+              message: {
+                title: t("mfaLockTitle"),
+                description: t("mfaLockDescription"),
+              },
+            });
+          } else {
+            callback({
+              status: "failed",
+              message: {
+                title: t("mfaFailedTitle"),
+                description: t("mfaFailedDescription"),
+              },
+            });
+          }
         }
       });
   }
@@ -185,14 +198,16 @@ export default function MfaPage() {
         });
       })
       .catch((err) => {
-        if (err.ResponseCode === 4001) {
-          callback({
-            status: "failed",
-            isEndView: true,
-            message: {
-              description: err.ResponseType,
-            },
-          });
+        if (err.ResponseCode !== constants.ERROR_CODE.NETWORK_ERR) {
+          if (err.ResponseCode === 4001) {
+            callback({
+              status: "failed",
+              isEndView: true,
+              message: {
+                description: err.ResponseType,
+              },
+            });
+          }
         }
       });
   }
@@ -233,11 +248,13 @@ export default function MfaPage() {
           redirectToDashboard();
         }, 3000);
       })
-      .catch(function () {
-        callback({
-          status: "failed",
-          message: "Failed to sumbit the security question.",
-        });
+      .catch(function (err) {
+        if (err.ResponseCode !== constants.ERROR_CODE.NETWORK_ERR) {
+          callback({
+            status: "failed",
+            message: "Failed to sumbit the security question.",
+          });
+        }
       });
   }
 
@@ -252,7 +269,7 @@ export default function MfaPage() {
     return questionList;
   }
 
-  if (componentName === constants.MFA_COMPONENT_NAME) {
+  if (componentName === constants.MFA_COMPONENT_NAME || isStepTwo) {
     return (
       <>
         <MultiFactorAuthentication

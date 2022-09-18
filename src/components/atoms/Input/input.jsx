@@ -113,6 +113,11 @@ export const CustomPasswordInput = styled((props) => (
 export const RedditTextField = styled((props) => (
   <TextField
     onKeyDown={props.onKeyDown}
+    onInput={(e) => {
+      e.target.value = e.target.value
+        .toString()
+        .slice(0, props.maxLength || 1000);
+    }}
     InputProps={{
       disableUnderline: true,
       endAdornment: props.adorment ? (
@@ -260,8 +265,10 @@ export const CustomInput = styled(({ ...props }) => {
                   onClick={props.onClick}
                   error={props.error || params.error}
                   helperText={props.helperText}
+                  InputProps={props.InputProps || {}}
                 />
               )}
+              inputProps={props.inputProps}
               {...props}
             />
           </LocalizationProvider>

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Stack, Typography, Button, Grid, Link, Box } from "@mui/material";
+import { Stack, Typography, Button, Link, Box } from "@mui/material";
 import { useTranslation } from "next-i18next";
 import AccountCard from "../../molecules/AccountCard/accountCard";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
@@ -61,41 +61,44 @@ export default function AppointmentLocation({
           </Button>
         }
       >
-        <Stack spacing={2}>
-          <Grid container spacing={2}>
-            <Grid item xs={4} md={6} p={0}>
-              <Image
-                src={providerData.image || "/transparent.png"}
-                width={105}
-                height={105}
-                style={{ borderRadius: "50%" }}
-                alt="Doctors image"
-              />
-            </Grid>
-            <Grid item xs={8} md={6} pl={{ md: 2 }}>
-              <Typography
-                variant="h4"
-                style={{ ...styles.detailText, ...styles.boldText }}
-              >
-                {providerData.name}
-              </Typography>
-              <Typography
-                variant="regularBold"
-                style={styles.detailText}
-                aria-label={"Myself"}
-              >
-                {getAddress(providerData.address)}
-                <br />
-              </Typography>
-              <Typography
-                variant="h4"
-                style={styles.detailText}
-                aria-label={"Myself"}
-              >
-                <Link style={styles.linkText}>{providerData.phoneNumber}</Link>
-              </Typography>
-            </Grid>
-          </Grid>
+        <Stack flexDirection="row" gap={2}>
+          <div>
+            <Image
+              src={providerData.image || "/transparent.png"}
+              width={105}
+              height={105}
+              style={{ borderRadius: "50%" }}
+              alt="Doctors image"
+            />
+          </div>
+
+          <Box>
+            <Typography
+              variant="h4"
+              style={{ ...styles.detailText, ...styles.boldText }}
+            >
+              {providerData.name}
+            </Typography>
+            <Typography
+              variant="regularBold"
+              style={styles.detailText}
+              aria-label={"Myself"}
+              data-testid={
+                TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_LOCATION
+                  .address
+              }
+            >
+              {getAddress(providerData.address)}
+              <br />
+            </Typography>
+            <Typography
+              variant="h4"
+              style={styles.detailText}
+              aria-label={"Myself"}
+            >
+              <Link style={styles.linkText}>{providerData.phoneNumber}</Link>
+            </Typography>
+          </Box>
         </Stack>
       </AccountCard>
     </Box>

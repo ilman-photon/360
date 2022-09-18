@@ -14,6 +14,9 @@ import * as util from "../../../__mocks__/util";
 import { fireEvent } from "@storybook/testing-library";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
+import { Provider } from "react-redux";
+import store from "../../../src/store/store";
+import { setGenericErrorMessage } from "../../../src/store";
 
 const MOCK_SUGGESTION_DATA = {
   appointmentType: [
@@ -307,5 +310,20 @@ describe("App", () => {
       container.getByText(/No Internet Connection/i)
     );
     expect(text).not.toBeInTheDocument();
+  });
+
+  it("renders App login and session interval", async () => {
+    act(() => {
+      container = render(
+        <Provider store={store}>
+          <App Component={HomePage} />
+        </Provider>);
+    });
+    store.dispatch(setGenericErrorMessage("Please try again after sometime."))
+    setTimeout(() => {
+      expect(container.getByText("Something Went Wrong")).toBeInTheDocument()
+      const okBtn = container.getByTestId("generic-ok-btn")
+      fireEvent.click(okBtn)
+    }, 1000);
   });
 });

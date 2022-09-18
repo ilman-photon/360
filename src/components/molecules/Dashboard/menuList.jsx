@@ -51,13 +51,13 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function MenuList() {
+export default function MenuList({ pdfFile = "" }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleClose = (callback) => {
     setAnchorEl(null);
   };
 
@@ -71,6 +71,11 @@ export default function MenuList() {
         variant="contained"
         onClick={handleClick}
         endicon={<KeyboardArrowDownIcon />}
+        sx={{
+          "@media print": {
+            display: "none !important",
+          },
+        }}
       />
       <StyledMenu
         id="demo-customized-menu"
@@ -83,26 +88,34 @@ export default function MenuList() {
         sx={{ top: "-15px" }}
       >
         <MenuItem onClick={handleClose} disableRipple>
-          <GetAppOutlinedIcon />
-          Download
+          <a
+            href={pdfFile}
+            style={{
+              display: "flex",
+              alignItems: "center",
+            }}
+            download
+          >
+            <GetAppOutlinedIcon />
+            Download
+          </a>
         </MenuItem>
         <MenuItem onClick={handleClose} disableRipple>
           <ShareOutlinedIcon />
           Share
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem
+          onClick={() => {
+            handleClose();
+            setTimeout(() => {
+              window.print();
+            }, 300);
+          }}
+          disableRipple
+        >
           <LocalPrintshopOutlinedIcon />
           Print
         </MenuItem>
-        {/* <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={handleClose} disableRipple>
-          <ArchiveIcon />
-          Archive
-        </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
-          <MoreHorizIcon />
-          More
-        </MenuItem> */}
       </StyledMenu>
     </div>
   );
