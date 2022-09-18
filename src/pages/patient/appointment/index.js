@@ -348,15 +348,15 @@ export default function Appointment({ googleApiKey }) {
   }
 
   function renderFilterResultTabletViewUI() {
-    if (providerListData.length > 0) {
-      return (
-        <Box
-          sx={{
-            width: "100%",
-          }}
-        >
-          {!showMaps ? (
-            <Box sx={{ width: !isTablet ? "1128px" : "unset", m: 3 }}>
+    return (
+      <Box
+        sx={{
+          width: "100%",
+        }}
+      >
+        {!showMaps ? (
+          <Box sx={{ width: !isTablet ? "1128px" : "unset", m: 3 }}>
+            {providerListData.length > 0 ? (
               <FilterResult
                 onClickViewAllAvailability={onViewAllAvailability}
                 OnDayClicked={handleDayClicked}
@@ -374,37 +374,35 @@ export default function Appointment({ googleApiKey }) {
                 appliedFilter={activeFilterBy}
                 onGetDirection={getDirection}
               />
-            </Box>
-          ) : (
-            <Box
-              sx={{
-                background: "#F4F4F4",
-                width: "100%",
-                height: "calc(100vh - 215px)",
-              }}
-            >
-              {isLoaded ? (
-                <GMaps
-                  apiKey={googleApiKey}
-                  providerListData={providerListData}
-                  OnTimeClicked={handleDayClicked}
-                />
-              ) : (
-                <CircularProgress />
-              )}
-            </Box>
-          )}
-        </Box>
-      );
-    } else {
-      return (
-        <EmptyResult
-          message={
-            "No results found. Please try again with a different search criteria."
-          }
-        />
-      );
-    }
+            ) : (
+              <EmptyResult
+                message={
+                  "No results found. Please try again with a different search criteria."
+                }
+              />
+            )}
+          </Box>
+        ) : (
+          <Box
+            sx={{
+              background: "#F4F4F4",
+              width: "100%",
+              height: "calc(100vh - 215px)",
+            }}
+          >
+            {isLoaded ? (
+              <GMaps
+                apiKey={googleApiKey}
+                providerListData={providerListData}
+                OnTimeClicked={handleDayClicked}
+              />
+            ) : (
+              <CircularProgress />
+            )}
+          </Box>
+        )}
+      </Box>
+    );
   }
 
   function renderCircularProgress() {
@@ -431,7 +429,14 @@ export default function Appointment({ googleApiKey }) {
       );
     } else {
       return !isLoading ? (
-        <Stack flexDirection="row" width="100%">
+        <Stack
+          flexDirection="row"
+          width="100%"
+          data-testid={"container-result"}
+          sx={{
+            height: "calc(100vh - 215px)",
+          }}
+        >
           <Box sx={{ width: !isTablet ? "1128px" : "unset", m: 3 }}>
             {providerListData.length > 0 ? (
               <FilterResult
