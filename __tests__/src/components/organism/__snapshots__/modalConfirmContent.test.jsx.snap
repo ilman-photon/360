@@ -207,6 +207,7 @@ Object {
                           />
                           <h3
                             class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
+                            tabindex="0"
                           >
                             Scripps Eyecare
                           </h3>
@@ -216,10 +217,15 @@ Object {
                             <div
                               class="MuiBox-root css-0"
                             >
-                              <p
-                                class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
-                                tabindex="0"
-                              />
+                              <div
+                                aria-label="Doctor Address"
+                                class="MuiBox-root css-0"
+                              >
+                                <p
+                                  class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
+                                  tabindex="0"
+                                />
+                              </div>
                               <div
                                 class="phoneContainer MuiBox-root css-0"
                               >
@@ -532,6 +538,7 @@ Object {
                         />
                         <h3
                           class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
+                          tabindex="0"
                         >
                           Scripps Eyecare
                         </h3>
@@ -541,10 +548,15 @@ Object {
                           <div
                             class="MuiBox-root css-0"
                           >
-                            <p
-                              class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
-                              tabindex="0"
-                            />
+                            <div
+                              aria-label="Doctor Address"
+                              class="MuiBox-root css-0"
+                            >
+                              <p
+                                class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
+                                tabindex="0"
+                              />
+                            </div>
                             <div
                               class="phoneContainer MuiBox-root css-0"
                             >

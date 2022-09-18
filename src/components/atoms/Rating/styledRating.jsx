@@ -7,10 +7,12 @@ export default function StyledRating({ value }) {
       value={value}
       precision={0.5}
       readOnly
+      aria-label={`Doctor Rating: ${value}`}
       size="small"
       tabindex={"0"}
       emptyIcon={<StarIcon fontSize="inherit" />}
       icon={<StarIcon fontSize="inherit" />}
+      tabIndex={0}
       sx={{
         ".MuiRating-iconFilled": {
           color: "#0095A9",
