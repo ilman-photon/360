@@ -62,14 +62,16 @@ export default function AppointmentLocation({
         }
       >
         <Stack flexDirection="row" gap={2}>
-          <Image
-            src={providerData.image || "/transparent.png"}
-            width={105}
-            height={105}
-            style={{ borderRadius: "50%" }}
-            alt="Doctors image"
-            tabindex={"0"}
-          />
+          <div>
+            <Image
+              src={providerData.image || "/transparent.png"}
+              width={105}
+              height={105}
+              style={{ borderRadius: "50%" }}
+              alt="Doctors image"
+              tabindex={"0"}
+            />
+          </div>
 
           <Box>
             <Typography
@@ -79,7 +81,15 @@ export default function AppointmentLocation({
             >
               {providerData.name}
             </Typography>
-            <Typography variant="regularBold" style={styles.detailText}>
+            <Typography
+              variant="regularBold"
+              style={styles.detailText}
+              aria-label={"Myself"}
+              data-testid={
+                TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_LOCATION
+                  .address
+              }
+            >
               {getAddress(providerData.address)}
               <br />
             </Typography>

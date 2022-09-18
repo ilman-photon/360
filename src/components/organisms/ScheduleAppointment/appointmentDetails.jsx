@@ -67,6 +67,9 @@ export default function AppointmentDetails({
               variant="bodyMedium"
               sx={{ color: colors.darkGreen }}
               tabindex={"0"}
+              data-testid={
+                TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_DETAILS.date
+              }
             >
               {formatAppointmentDate(appointmentData.date)}
             </Typography>

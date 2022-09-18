@@ -15,10 +15,10 @@ Object {
             class="css-m69qwo-MuiStack-root"
           >
             <form
-              style="display: flex; background: rgb(255, 255, 255); border-radius: 50px;"
+              style="display: flex; background: rgb(255, 255, 255); border-radius: 50px; width: 80vw;"
             >
               <div
-                class="MuiAutocomplete-root css-miy64m-MuiAutocomplete-root"
+                class="MuiAutocomplete-root css-1kdu1h0-MuiAutocomplete-root"
                 data-testid="locationInput"
               >
                 <div
@@ -41,7 +41,7 @@ Object {
                     />
                   </svg>
                   <div
-                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-d4aa0p-MuiFormControl-root-MuiTextField-root"
+                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1l757c0-MuiFormControl-root-MuiTextField-root"
                     tabindex="0"
                     withicon="true"
                   >
@@ -94,11 +94,11 @@ Object {
                 class="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
               />
               <div
-                class="MuiBox-root css-1wh8xwh"
+                class="MuiBox-root css-1kwenzd"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-8dr5jy-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-127ftl4-MuiSvgIcon-root"
                   data-testid="CalendarTodayIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -138,7 +138,7 @@ Object {
                 class="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
               />
               <div
-                class="MuiBox-root css-15119fy"
+                class="MuiBox-root css-xoptuj"
               >
                 <svg
                   aria-hidden="true"
@@ -152,7 +152,7 @@ Object {
                   />
                 </svg>
                 <div
-                  class="MuiFormControl-root css-1gvm5em-MuiFormControl-root"
+                  class="MuiFormControl-root css-1mhwaqo-MuiFormControl-root"
                   style="width: 100%;"
                 >
                   <label
@@ -209,7 +209,7 @@ Object {
                 class="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
               />
               <div
-                class="MuiAutocomplete-root css-pbqph1-MuiAutocomplete-root"
+                class="MuiAutocomplete-root css-16gf35f-MuiAutocomplete-root"
                 data-testid="insuranceInput"
               >
                 <div
@@ -242,7 +242,7 @@ Object {
                     </span>
                   </div>
                   <div
-                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1tvjest-MuiFormControl-root-MuiTextField-root"
+                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1lju9mp-MuiFormControl-root-MuiTextField-root"
                     tabindex="0"
                     withicon="true"
                   >
@@ -333,10 +333,10 @@ Object {
           class="css-m69qwo-MuiStack-root"
         >
           <form
-            style="display: flex; background: rgb(255, 255, 255); border-radius: 50px;"
+            style="display: flex; background: rgb(255, 255, 255); border-radius: 50px; width: 80vw;"
           >
             <div
-              class="MuiAutocomplete-root css-miy64m-MuiAutocomplete-root"
+              class="MuiAutocomplete-root css-1kdu1h0-MuiAutocomplete-root"
               data-testid="locationInput"
             >
               <div
@@ -359,7 +359,7 @@ Object {
                   />
                 </svg>
                 <div
-                  class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-d4aa0p-MuiFormControl-root-MuiTextField-root"
+                  class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1l757c0-MuiFormControl-root-MuiTextField-root"
                   tabindex="0"
                   withicon="true"
                 >
@@ -412,11 +412,11 @@ Object {
               class="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
             />
             <div
-              class="MuiBox-root css-1wh8xwh"
+              class="MuiBox-root css-1kwenzd"
             >
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-8dr5jy-MuiSvgIcon-root"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-127ftl4-MuiSvgIcon-root"
                 data-testid="CalendarTodayIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
@@ -456,7 +456,7 @@ Object {
               class="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
             />
             <div
-              class="MuiBox-root css-15119fy"
+              class="MuiBox-root css-xoptuj"
             >
               <svg
                 aria-hidden="true"
@@ -470,7 +470,7 @@ Object {
                 />
               </svg>
               <div
-                class="MuiFormControl-root css-1gvm5em-MuiFormControl-root"
+                class="MuiFormControl-root css-1mhwaqo-MuiFormControl-root"
                 style="width: 100%;"
               >
                 <label
@@ -527,7 +527,7 @@ Object {
               class="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
             />
             <div
-              class="MuiAutocomplete-root css-pbqph1-MuiAutocomplete-root"
+              class="MuiAutocomplete-root css-16gf35f-MuiAutocomplete-root"
               data-testid="insuranceInput"
             >
               <div
@@ -560,7 +560,7 @@ Object {
                   </span>
                 </div>
                 <div
-                  class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1tvjest-MuiFormControl-root-MuiTextField-root"
+                  class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1lju9mp-MuiFormControl-root-MuiTextField-root"
                   tabindex="0"
                   withicon="true"
                 >
@@ -708,10 +708,10 @@ Object {
             class="css-m69qwo-MuiStack-root"
           >
             <form
-              style="display: flex; background: rgb(255, 255, 255); border-radius: 50px;"
+              style="display: flex; background: rgb(255, 255, 255); border-radius: 50px; width: 80vw;"
             >
               <div
-                class="MuiAutocomplete-root css-miy64m-MuiAutocomplete-root"
+                class="MuiAutocomplete-root css-1kdu1h0-MuiAutocomplete-root"
                 data-testid="locationInput"
               >
                 <div
@@ -734,7 +734,7 @@ Object {
                     />
                   </svg>
                   <div
-                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-d4aa0p-MuiFormControl-root-MuiTextField-root"
+                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1l757c0-MuiFormControl-root-MuiTextField-root"
                     tabindex="0"
                     withicon="true"
                   >
@@ -787,11 +787,11 @@ Object {
                 class="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
               />
               <div
-                class="MuiBox-root css-1wh8xwh"
+                class="MuiBox-root css-1kwenzd"
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-8dr5jy-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-127ftl4-MuiSvgIcon-root"
                   data-testid="CalendarTodayIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -831,7 +831,7 @@ Object {
                 class="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
               />
               <div
-                class="MuiBox-root css-15119fy"
+                class="MuiBox-root css-xoptuj"
               >
                 <svg
                   aria-hidden="true"
@@ -845,7 +845,7 @@ Object {
                   />
                 </svg>
                 <div
-                  class="MuiFormControl-root css-1gvm5em-MuiFormControl-root"
+                  class="MuiFormControl-root css-1mhwaqo-MuiFormControl-root"
                   style="width: 100%;"
                 >
                   <label
@@ -902,7 +902,7 @@ Object {
                 class="MuiDivider-root MuiDivider-fullWidth MuiDivider-vertical MuiDivider-flexItem css-1tk1bks-MuiDivider-root"
               />
               <div
-                class="MuiAutocomplete-root css-pbqph1-MuiAutocomplete-root"
+                class="MuiAutocomplete-root css-16gf35f-MuiAutocomplete-root"
                 data-testid="insuranceInput"
               >
                 <div
@@ -935,7 +935,7 @@ Object {
                     </span>
                   </div>
                   <div
-                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1tvjest-MuiFormControl-root-MuiTextField-root"
+                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1lju9mp-MuiFormControl-root-MuiTextField-root"
                     tabindex="0"
                     withicon="true"
                   >

@@ -33,6 +33,7 @@ import { useRouter } from "next/router";
 import {
   DEFAULT_PATIENT_INFO_DATA,
   editAppointmentScheduleData,
+  resetAppointmentSchedule,
   resetFilterData,
 } from "../../../store/appointment";
 import { fetchUser, setUserAppointmentDataByIndex } from "../../../store/user";
@@ -285,7 +286,7 @@ export default function ScheduleAppointmentPage() {
 
   const handleEditSchedule = () => {
     console.log("change schedule data");
-    router.push("/patient/appointment");
+    router.push({ pathname: "/patient/appointment", query: router.query });
   };
 
   const handleClickSchedule = (data) => {
@@ -345,12 +346,13 @@ export default function ScheduleAppointmentPage() {
     }
   };
 
-  const handleOkClicked = () => {
+  const handleOkClicked = async () => {
     if (isReschedule) {
-      router.push("/patient/appointments");
+      await router.push("/patient/appointments");
     } else {
-      router.push("/patient/appointment");
+      await router.push("/patient/appointment");
     }
+    dispatch(resetAppointmentSchedule());
   };
 
   const handleCancelReschedule = () => {
@@ -475,6 +477,10 @@ export default function ScheduleAppointmentPage() {
               isModalButton
               size="small"
               mode="secondary"
+              data-testid={
+                TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID
+                  .DIALOG_CONFIRMATION_RESCHEDULE.confirmBtn
+              }
               onClick={handleCancelReschedule}
               sx={{ fontSize: "14px", px: "20px", py: "11px", height: "40px" }}
             >
@@ -484,6 +490,10 @@ export default function ScheduleAppointmentPage() {
               isModalButton
               size="small"
               mode="primary"
+              data-testid={
+                TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID
+                  .DIALOG_CONFIRMATION_RESCHEDULE.denyBtn
+              }
               onClick={OnConfirmRescheduleAppointment}
               sx={{ fontSize: "14px", px: "20px", py: "11px", height: "40px" }}
             >

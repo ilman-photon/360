@@ -1,9 +1,9 @@
-import { Box, Typography, Link } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import styles from "./styles.module.scss";
-import moment from "moment-timezone";
 import AppointmentButton from "../../atoms/AppointmentButton/appointmentButton";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
+import { TEST_ID } from "../../../utils/constants";
 import { StyledButton } from "../../atoms/Button/button";
 import AppointmentInformation from "../../molecules/AppointmentInformation/appointmentInformation";
 import { upcomingAppointmentDate } from "../../../utils/dateFormatter";
@@ -52,6 +52,7 @@ export function UpcomingAppointmentCard({
           <Box className={styles.viewDetails}>
             <Box className={styles.buttonContainer}>
               <AppointmentButton
+                testId={TEST_ID.APPOINTMENTS_TEST_ID.cancelAppointmentButton}
                 icon={<CancelOutlinedIcon />}
                 onClick={() => onCancelClicked(data)}
               >
@@ -59,6 +60,9 @@ export function UpcomingAppointmentCard({
               </AppointmentButton>
               <AppointmentButton
                 icon={<CalendarTodayIcon />}
+                testId={
+                  TEST_ID.APPOINTMENTS_TEST_ID.rescheduleAppointmentButton
+                }
                 onClick={() => onRescheduleClicked(data)}
               >
                 Reschedule
@@ -102,7 +106,11 @@ export default function UpcomingAppointment({
   const isHasValue = data.length !== 0;
   return (
     <Box className={styles.upcomingAppointment}>
-      <Typography variant="h2" className={styles.title}>
+      <Typography
+        variant="h2"
+        className={styles.title}
+        data-testid={TEST_ID.APPOINTMENTS_TEST_ID.upcomingAppointmentsHeader}
+      >
         Upcoming Appointments
       </Typography>
 
