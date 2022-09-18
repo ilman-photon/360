@@ -232,7 +232,7 @@ describe("App", () => {
       container.getByText(/is required/i);
       expect(container.getByText(/is required/i)).toBeInTheDocument();
     });
-  });
+  }, 30000);
 
   it("on render tablet view", async () => {
     window = Object.assign(window, { innerWidth: 1000 });
