@@ -30,11 +30,14 @@ import CustomizedDialogs from "../../atoms/Dialog/dialog";
 import { LocalizationProvider, StaticDatePicker } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { convertToDate } from "../../../utils/dateFormatter";
+import { Regex } from "../../../utils/regex";
 
 export const imageSrcState = "/bx_insurance_card.png";
 export const muiInputRoot = "& .MuiFilledInput-root";
 export function keyDownPress(e, handleCloseDialog) {
-  if (e.code && e.code.toLowerCase() === "enter" && e.target.value) {
+  if (Regex.specialRegex.test(e.key)) {
+    e.preventDefault();
+  } else if (e.code && e.code.toLowerCase() === "enter" && e.target.value) {
     handleCloseDialog();
     e.preventDefault();
   }
@@ -496,7 +499,7 @@ const FilterHeading = ({
   const mapsData = isGeolocationEnabled ? ["Use my current location"] : [];
 
   const onSubmit = (data) => {
-    if (!data.location) {
+    if (!data.location.trim()) {
       setEmptyLocation(true);
     } else {
       onSearchProvider(data);
@@ -564,6 +567,9 @@ const FilterHeading = ({
               onInputChange={(_e, newInputValue) => {
                 onHideMandatoryFieldError();
                 onChange(newInputValue);
+              }}
+              onKeyDown={(e) => {
+                if (Regex.specialRegex.test(e.key)) e.preventDefault();
               }}
               disableClearable={true}
               options={mapsData}
@@ -689,6 +695,9 @@ const FilterHeading = ({
                   OpenPickerIcon: function () {
                     return null;
                   },
+                }}
+                inputProps={{
+                  readOnly: true,
                 }}
                 inputFormat={"MMM dd, yyyy"}
                 InputProps={{
