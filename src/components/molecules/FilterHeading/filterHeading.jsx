@@ -257,14 +257,16 @@ export const insuraceIcon = (
 export function getMenuList(title, subtitle) {
   return (
     <Box className={styles.selectMenuContainer}>
-      <Typography
-        variant="bodySmallRegular"
-        sx={{ display: "block", color: colors.darkGreen }}
-      >
-        {title}
-      </Typography>
-      <Typography variant="bodySmallMedium" sx={{ color: colors.darkGreen }}>
-        {subtitle}
+      <Typography tabindex={0}>
+        <Typography
+          variant="bodySmallRegular"
+          sx={{ display: "block", color: colors.darkGreen }}
+        >
+          {title}
+        </Typography>
+        <Typography variant="bodySmallMedium" sx={{ color: colors.darkGreen }}>
+          {subtitle}
+        </Typography>
       </Typography>
     </Box>
   );
@@ -450,7 +452,9 @@ export function renderInsuranceCarrier(
             renderOption={(props, option) => {
               return (
                 <Box key={props["data-option-index"]}>
-                  <li {...props}>{option.name}</li>
+                  <li {...props} tabIndex={"0"}>
+                    {option.name}
+                  </li>
                   {option.divider ? (
                     <Divider
                       sx={{
@@ -594,6 +598,7 @@ const FilterHeading = ({
                     {...params}
                     label="City, state, or zip code"
                     InputProps={{
+                      "aria-label": "City, state, or zip code field",
                       ...params.InputProps,
                       endAdornment: (
                         <InputAdornment position="end">
@@ -675,6 +680,9 @@ const FilterHeading = ({
                 isFilter={true}
                 value={value}
                 onChange={onChange}
+                inputProps={{
+                  "aria-label": "Date field",
+                }}
                 sx={{
                   margin: 0,
                   [muiInputRoot]: {
@@ -756,6 +764,7 @@ const FilterHeading = ({
                   },
                 }}
                 label={"Purpose of Visit"}
+                ariaLabel={"Purpose of Visit field"}
                 labelId={`purposes-of-visit`}
                 id={`purposes-of-visit`}
                 options={purposeOfVisitData}
@@ -819,6 +828,7 @@ const FilterHeading = ({
                 handleCloseDialog
               )}
               <StyledButton
+                aria-label={"Search"}
                 type="submit"
                 theme="patient"
                 mode="filter"
@@ -841,6 +851,7 @@ const FilterHeading = ({
                 justifyContent={"center"}
                 className={styles.swapButtonContainer}
                 onClick={onSwapButtonClicked}
+                tabindex={0}
               >
                 <SwapHorizIcon className={styles.swapIcon} />
                 <Typography className={styles.swapLabel}>Map</Typography>

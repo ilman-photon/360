@@ -9,7 +9,7 @@ import styles from "./filterResultHeading.module.scss";
 import CloseIcon from "@mui/icons-material/Close";
 import FilterBy from "../FilterBy/filterBy";
 import { useEffect, useState } from "react";
-import { Stack, Typography } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import { colors } from "../../../styles/theme";
 import Image from "next/image";
@@ -170,7 +170,7 @@ export const FilterResultHeading = ({
             sx={{ gridArea: "filterDetails" }}
             className={styles.filterFoundWarpper}
           >
-            <Typography className={styles.filterFound}>
+            <Typography className={styles.filterFound} tabindex={"0"}>
               {`${numberFilter} In-network providers`}
             </Typography>
           </Box>
@@ -184,24 +184,35 @@ export const FilterResultHeading = ({
             }}
             className={styles.dateListContainer}
           >
-            <ArrowBackIosIcon
+            <Button
+              role={"button"}
+              onClick={() => {
+                const date = new Date(dateList.dateRange[0]);
+                date.setDate(date.getDate() - 7);
+                onPrevScheduleClicked("week", date);
+              }}
               sx={{
                 gridArea: "arrowLeft",
-                margin: "auto",
                 width: "22px",
-                cursor: "pointer",
+                minWidth: "22px",
+                padding: 0,
               }}
               className={
                 isPrevArrowDisable()
                   ? styles.prevArrowDisable
                   : styles.prevArrowActive
               }
-              onClick={() => {
-                const date = new Date(dateList.dateRange[0]);
-                date.setDate(date.getDate() - 7);
-                onPrevScheduleClicked("week", date);
-              }}
-            />
+              aria-label={"Navigate to previous week option"}
+            >
+              <ArrowBackIosIcon
+                sx={{
+                  margin: "auto",
+                  width: "22px",
+                  cursor: "pointer",
+                }}
+              />
+            </Button>
+
             <Box
               sx={{
                 gridArea: "caledar",
@@ -221,29 +232,48 @@ export const FilterResultHeading = ({
                     sx={{ gridArea: option, textAlign: "center" }}
                     className={styles.calenderDayWarpper}
                   >
-                    <Typography className={styles.calenderDay}>
+                    <Typography
+                      className={styles.calenderDay}
+                      aria-label={`${option.slice(0, -8)}`}
+                      tabindex={"0"}
+                    >
                       {option.slice(0, 3)}
                     </Typography>
-                    <Typography className={styles.calenderMonth}>
+                    <Typography
+                      className={styles.calenderMonth}
+                      aria-label={`${dateList.dateListName[idx]}`}
+                      tabindex={"0"}
+                    >
                       {dateList.dateListName[idx]}
                     </Typography>
                   </Box>
                 );
               })}
             </Box>
-            <ArrowForwardIosIcon
-              sx={{
-                gridArea: "arrowRight",
-                margin: "auto",
-                width: "22px",
-                cursor: "pointer",
-              }}
+            <Button
+              role={"button"}
               onClick={() => {
                 const date = new Date(dateList.dateRange[5]);
                 date.setDate(date.getDate() + 7);
                 onNextScheduleClicked("week", date);
               }}
-            />
+              sx={{
+                gridArea: "arrowRight",
+                width: "22px",
+                minWidth: "22px",
+                padding: 0,
+              }}
+              className={styles.prevArrowActive}
+              aria-label={"Navigate to next week option"}
+            >
+              <ArrowForwardIosIcon
+                sx={{
+                  margin: "auto",
+                  width: "22px",
+                  cursor: "pointer",
+                }}
+              />
+            </Button>
           </Box>
         </Box>
       </Box>
@@ -258,6 +288,7 @@ export const FilterResultHeading = ({
           backgroundColor: title && subtitle ? "transparent" : colors.darkGreen,
           height: title && subtitle ? "165px" : "105px",
         }}
+        aria-live="polite"
       >
         <FilterBy
           activedFilter={[...activeFilter]}
@@ -304,18 +335,28 @@ export const FilterResultHeading = ({
               className={styles.mobileFilterTitleContainer}
               onClick={handleOpenDialog}
             >
-              <Typography
-                variant={"bodyMedium"}
-                className={styles.mobileFilterTitle}
+              <Button
+                aria-label={filterData.location}
+                sx={{
+                  padding: 0,
+                  textTransform: "none",
+                  textAlign: "left",
+                  alignSelf: "flex-start",
+                }}
               >
-                {filterData.location || "City, state, or zip code"}
-              </Typography>
-              {filterData.purposeOfVisit ||
-                (filterData.insuranceCarrier && (
-                  <Typography
-                    className={styles.mobileFilterSubtitle}
-                  >{`${filterData.purposeOfVisit} * ${filterData.insuranceCarrier}`}</Typography>
-                ))}
+                <Typography
+                  variant={"bodyMedium"}
+                  className={styles.mobileFilterTitle}
+                >
+                  {filterData.location || "City, state, or zip code"}
+                </Typography>
+                {filterData.purposeOfVisit ||
+                  (filterData.insuranceCarrier && (
+                    <Typography
+                      className={styles.mobileFilterSubtitle}
+                    >{`${filterData.purposeOfVisit} * ${filterData.insuranceCarrier}`}</Typography>
+                  ))}
+              </Button>
             </Box>
             <Box
               className={styles.mobileFilterImageContainer}
@@ -324,12 +365,23 @@ export const FilterResultHeading = ({
               }}
             >
               {!(title && subtitle) && (
-                <Image
-                  alt=""
-                  src={activeFilter.length > 0 ? imageSrcFilled : imageSrcState}
-                  width={31}
-                  height={31}
-                />
+                <Button
+                  aria-label={"Filter"}
+                  sx={{
+                    width: "31px",
+                    minWidth: "31px",
+                    padding: 0,
+                  }}
+                >
+                  <Image
+                    alt=""
+                    src={
+                      activeFilter.length > 0 ? imageSrcFilled : imageSrcState
+                    }
+                    width={31}
+                    height={31}
+                  />
+                </Button>
               )}
             </Box>
           </Stack>
