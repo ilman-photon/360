@@ -704,9 +704,6 @@ const FilterHeading = ({
                     return null;
                   },
                 }}
-                inputProps={{
-                  readOnly: true,
-                }}
                 inputFormat={"MMM dd, yyyy"}
                 InputProps={{
                   readOnly: true,
