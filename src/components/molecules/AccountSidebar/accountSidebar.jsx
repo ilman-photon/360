@@ -1,6 +1,6 @@
-import { Collapse, Fade, Stack, Typography } from "@mui/material";
+import { Collapse, Stack, Typography } from "@mui/material";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SidebarLink from "../../atoms/SidebarLink/sidebarLink";
 import styles from "./accountSidebar.module.scss";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
@@ -10,7 +10,6 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import KeyboardArrowRightOutlinedIcon from "@mui/icons-material/KeyboardArrowRightOutlined";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
 import { colors } from "../../../styles/theme";
-import { useEffect } from "react";
 
 export const AccountSidebar = ({ ...props }, ref) => {
   const [activeSidebarChild, setActiveSidebarChild] = useState(null);
@@ -33,21 +32,25 @@ export const AccountSidebar = ({ ...props }, ref) => {
       href: "#",
       icon: <AssignmentTurnedInOutlinedIcon />,
     },
+    // {
+    //   label: "Documents",
+    //   child: [
+    //     {
+    //       label: "Intake Forms",
+    //       href: "/patient/account/documents/intake-forms",
+    //     },
+    //     {
+    //       label: "Insurance documents",
+    //       href: "/patient/account/insurance-info",
+    //     },
+    //   ],
+    //   icon: <DescriptionOutlinedIcon />,
+    // },
     {
-      label: "Documents",
-      child: [
-        {
-          label: "Intake Forms",
-          href: "/patient/account/documents/intake-forms",
-        },
-        {
-          label: "Insurance documents",
-          href: "/patient/account/insurance-info",
-        },
-      ],
+      label: "Insurance documents",
+      href: "/patient/account/insurance-info",
       icon: <DescriptionOutlinedIcon />,
     },
-    // { label: "Insurance documents", href: "/patient/account/insurance-info" },
     {
       label: "Multi factor authentication",
       href: "#",
@@ -73,22 +76,18 @@ export const AccountSidebar = ({ ...props }, ref) => {
         {sidebarLinks.map((link, idx) => {
           return link.href ? (
             <Stack
+              key={idx}
               flexDirection="row"
               alignItems="center"
               color={colors.iconGrey}
             >
               {link.icon}
-              <SidebarLink
-                router={router}
-                key={idx}
-                href={link.href}
-                child={link.child}
-              >
+              <SidebarLink router={router} href={link.href} child={link.child}>
                 {link.label}
               </SidebarLink>
             </Stack>
           ) : (
-            <Stack>
+            <Stack key={idx}>
               <Stack
                 flexDirection="row"
                 alignItems="center"
