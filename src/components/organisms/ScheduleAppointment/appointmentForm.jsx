@@ -84,10 +84,11 @@ export default function AppointmentForm({
     { label: "Both", value: "both", testId: SCHEDULE_GUEST_TEST_ID.bothradio },
   ];
 
-  const [watchedEmail, watchedMobile, watchedPreferredCommunication] = watch([
+  const [watchedEmail, watchedMobile, watchedPreferredCommunication, watchedPassword] = watch([
     "email",
     "mobile",
     "preferredCommunication",
+    "password",
   ]); // you can also target specific fields by their names
   const getRegisteredUsername = () => {
     return (
@@ -447,16 +448,16 @@ export default function AppointmentForm({
                     />
                   );
                 }}
-                rules={{
+                rules={{ 
                   validate: {
                     isLength: (v) =>
-                      Regex.lengthRegex.test(v) ||
-                      "Password does not meet requirements",
+                      Regex.lengthRegex.test(v) || v.length === 0 ||
+                      "Password does not meet requirements1",
                     isAtLeastOneNumber: (v) =>
-                      Regex.numberRegex.test(v) ||
-                      "Password does not meet requirements",
+                      Regex.numberRegex.test(v) || v.length === 0 ||
+                      "Password does not meet requirements2",
                     is3of4: (v) =>
-                      is3of4(v) || "Password does not meet requirements",
+                      is3of4(v) || v.length === 0 || "Password does not meet requirements3",
                   },
                 }}
               />
