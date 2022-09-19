@@ -6,7 +6,7 @@ export class Regex {
   static upperCaseRegex = /[A-Z]/;
   static lowerCaseRegex = /[a-z]/;
   static alphabethRegex = /[A-Za-z]/;
-  static specialRegex = /[$&+,:;=?@#|'<>.^*()%!\]\[{}\\\-\~]/;
+  static specialRegex = /[$&+,:;=/?@#|'<>.^*()%!\]\[{}\\\-\~]/;
   static hasTripleRegex = /([a-z\\d])\\1\\1/;
   static hasAlpahabet = /^([A-Za-z ])+$/i;
   static isValidPhoneFormat = /^(\(\d{3}\) |\d{3}-)\d{3}-\d{4}$/i;

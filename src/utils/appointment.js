@@ -1,3 +1,4 @@
+import moment from "moment";
 import constants from "./constants";
 import { ddmmyyDateFormat } from "./dateFormatter";
 
@@ -174,6 +175,14 @@ export function timeInWeekLabel(startDate, endDate) {
     : "";
 }
 
+export function timeInWeekACLabel(startDate, endDate) {
+  return startDate && endDate
+    ? `${getDateName(new Date(startDate))} until ${getDateName(
+        new Date(endDate)
+      )}`
+    : "";
+}
+
 Date.prototype.addDays = function (days) {
   var date = new Date(this.valueOf());
   date.setDate(date.getDate() + days);
@@ -185,7 +194,7 @@ export function getDates(startDate, stopDate, isDayView = false) {
   const dateArray = [];
   let currentDate = startDate;
   while (currentDate <= stopDate) {
-    dateArray.push(new Date(currentDate));
+    dateArray.push(currentDate);
     currentDate = currentDate.addDays(1);
   }
   return {
@@ -311,4 +320,12 @@ export function parseAppointmentCardData(appointmentData) {
     data = appointmentData[0];
   }
   return data;
+}
+
+export function getDirection(providerCordinate) {
+  window.open(
+    `https://maps.google.com?q=${providerCordinate.latitude},${providerCordinate.longitude}`,
+    "_blank",
+    "noopener,noreferrer"
+  );
 }

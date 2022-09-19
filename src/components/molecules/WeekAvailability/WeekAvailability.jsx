@@ -4,12 +4,14 @@ import Link from "@mui/material/Link";
 import { StyledButton } from "../../atoms/Button/button";
 import styles from "./styles.module.scss";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
-import { Divider, Typography } from "@mui/material";
+import { Button, Divider, Typography } from "@mui/material";
 import constants from "../../../utils/constants";
 import {
   parseDateWeekList,
   parseScheduleDataWeek,
 } from "../../../utils/appointment";
+import moment from "moment";
+import { convertTime12to24 } from "../../../utils/dateFormatter";
 
 export function viewAllAvailabilityLinkUI({
   onClickViewAllAvailability = () => {
@@ -23,17 +25,19 @@ export function viewAllAvailabilityLinkUI({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        p: 3,
+        padding: "24px",
       }}
       className={styles.linkWrapper}
     >
-      <Link
+      <Button
+        role={"link"}
         className={styles.linkAvailabelity}
         data-testid={constants.TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll}
         onClick={onClickViewAllAvailability}
+        tabindex={"0"}
       >
-        View all availability
-      </Link>
+        <Typography variant="link">View all availability</Typography>
+      </Button>
     </Box>
   );
 }
@@ -100,9 +104,14 @@ export const WeekAvailability = ({
     date = ""
   ) {
     if (label) {
+      const parseDate = new moment(date).format("YYYY-MM-DD");
       const isLabelMore = label.indexOf("more") > -1;
       const dateTime = !isLabelMore
-        ? new Date(`${date} ${label.toUpperCase().replace(/(AM|PM)/, " $1")}`)
+        ? new Date(
+            `${parseDate}T${convertTime12to24(
+              label.toUpperCase().replace(/(AM|PM)/, " $1")
+            )}`
+          )
         : "";
       return (
         <Box

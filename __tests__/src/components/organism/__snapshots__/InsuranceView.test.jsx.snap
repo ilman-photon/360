@@ -98,11 +98,9 @@ Object {
                                 </div>
                               </div>
                               <div
-                                class="css-1okj3ks-MuiStack-root"
+                                class="css-qkek6c-MuiStack-root"
                               >
-                                <div
-                                  style="margin-top: 10px;"
-                                >
+                                <div>
                                   Provider 1
                                 </div>
                               </div>
@@ -126,11 +124,9 @@ Object {
                                 </div>
                               </div>
                               <div
-                                class="css-1okj3ks-MuiStack-root"
+                                class="css-qkek6c-MuiStack-root"
                               >
-                                <div
-                                  style="margin-top: 10px;"
-                                >
+                                <div>
                                   Plan 1
                                 </div>
                               </div>
@@ -154,11 +150,9 @@ Object {
                                 </div>
                               </div>
                               <div
-                                class="css-1okj3ks-MuiStack-root"
+                                class="css-qkek6c-MuiStack-root"
                               >
-                                <div
-                                  style="margin-top: 10px;"
-                                >
+                                <div>
                                   123
                                 </div>
                               </div>
@@ -183,11 +177,9 @@ Object {
                             </div>
                           </div>
                           <div
-                            class="css-1okj3ks-MuiStack-root"
+                            class="css-qkek6c-MuiStack-root"
                           >
-                            <div
-                              style="margin-top: 10px;"
-                            >
+                            <div>
                               321
                             </div>
                           </div>
@@ -216,11 +208,9 @@ Object {
                               </div>
                             </div>
                             <div
-                              class="css-1okj3ks-MuiStack-root"
+                              class="css-qkek6c-MuiStack-root"
                             >
-                              <div
-                                style="margin-top: 10px;"
-                              >
+                              <div>
                                 No
                               </div>
                             </div>
@@ -255,11 +245,9 @@ Object {
                                 </div>
                               </div>
                               <div
-                                class="css-1okj3ks-MuiStack-root"
+                                class="css-qkek6c-MuiStack-root"
                               >
-                                <div
-                                  style="margin-top: 10px;"
-                                >
+                                <div>
                                   first
                                 </div>
                               </div>
@@ -283,11 +271,9 @@ Object {
                                 </div>
                               </div>
                               <div
-                                class="css-1okj3ks-MuiStack-root"
+                                class="css-qkek6c-MuiStack-root"
                               >
-                                <div
-                                  style="margin-top: 10px;"
-                                >
+                                <div>
                                   last
                                 </div>
                               </div>
@@ -311,11 +297,9 @@ Object {
                                 </div>
                               </div>
                               <div
-                                class="css-1okj3ks-MuiStack-root"
+                                class="css-qkek6c-MuiStack-root"
                               >
-                                <div
-                                  style="margin-top: 10px;"
-                                />
+                                <div />
                               </div>
                             </div>
                           </div>
@@ -337,11 +321,9 @@ Object {
                                 </div>
                               </div>
                               <div
-                                class="css-1okj3ks-MuiStack-root"
+                                class="css-qkek6c-MuiStack-root"
                               >
-                                <div
-                                  style="margin-top: 10px;"
-                                >
+                                <div>
                                   1/1/1970
                                 </div>
                               </div>
@@ -366,11 +348,9 @@ Object {
                             </div>
                           </div>
                           <div
-                            class="css-1okj3ks-MuiStack-root"
+                            class="css-qkek6c-MuiStack-root"
                           >
-                            <div
-                              style="margin-top: 10px;"
-                            />
+                            <div />
                           </div>
                         </div>
                         <hr
@@ -450,12 +430,10 @@ Object {
                             </div>
                           </div>
                           <div
-                            class="css-1okj3ks-MuiStack-root"
+                            class="css-qkek6c-MuiStack-root"
                           >
-                            <div
-                              style="margin-top: 10px;"
-                            >
-                              PRIMARY
+                            <div>
+                              Primary
                             </div>
                           </div>
                         </div>
@@ -466,7 +444,7 @@ Object {
                           class="css-1mf892b-MuiStack-root"
                         >
                           <button
-                            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-18y1hnv-MuiButtonBase-root-MuiButton-root"
+                            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-1gx3nc-MuiButtonBase-root-MuiButton-root"
                             tabindex="0"
                             type="button"
                           >
@@ -475,7 +453,7 @@ Object {
                             >
                               <svg
                                 aria-hidden="true"
-                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-bml1kk-MuiSvgIcon-root"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1p7cumf-MuiSvgIcon-root"
                                 data-testid="DeleteOutlineIcon"
                                 focusable="false"
                                 viewBox="0 0 24 24"
@@ -495,7 +473,7 @@ Object {
                             />
                           </button>
                           <button
-                            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-wdkk7j-MuiButtonBase-root-MuiButton-root"
+                            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-172zkbg-MuiButtonBase-root-MuiButton-root"
                             tabindex="0"
                             type="submit"
                           >
@@ -610,11 +588,9 @@ Object {
                               </div>
                             </div>
                             <div
-                              class="css-1okj3ks-MuiStack-root"
+                              class="css-qkek6c-MuiStack-root"
                             >
-                              <div
-                                style="margin-top: 10px;"
-                              >
+                              <div>
                                 Provider 1
                               </div>
                             </div>
@@ -638,11 +614,9 @@ Object {
                               </div>
                             </div>
                             <div
-                              class="css-1okj3ks-MuiStack-root"
+                              class="css-qkek6c-MuiStack-root"
                             >
-                              <div
-                                style="margin-top: 10px;"
-                              >
+                              <div>
                                 Plan 1
                               </div>
                             </div>
@@ -666,11 +640,9 @@ Object {
                               </div>
                             </div>
                             <div
-                              class="css-1okj3ks-MuiStack-root"
+                              class="css-qkek6c-MuiStack-root"
                             >
-                              <div
-                                style="margin-top: 10px;"
-                              >
+                              <div>
                                 123
                               </div>
                             </div>
@@ -695,11 +667,9 @@ Object {
                           </div>
                         </div>
                         <div
-                          class="css-1okj3ks-MuiStack-root"
+                          class="css-qkek6c-MuiStack-root"
                         >
-                          <div
-                            style="margin-top: 10px;"
-                          >
+                          <div>
                             321
                           </div>
                         </div>
@@ -728,11 +698,9 @@ Object {
                             </div>
                           </div>
                           <div
-                            class="css-1okj3ks-MuiStack-root"
+                            class="css-qkek6c-MuiStack-root"
                           >
-                            <div
-                              style="margin-top: 10px;"
-                            >
+                            <div>
                               No
                             </div>
                           </div>
@@ -767,11 +735,9 @@ Object {
                               </div>
                             </div>
                             <div
-                              class="css-1okj3ks-MuiStack-root"
+                              class="css-qkek6c-MuiStack-root"
                             >
-                              <div
-                                style="margin-top: 10px;"
-                              >
+                              <div>
                                 first
                               </div>
                             </div>
@@ -795,11 +761,9 @@ Object {
                               </div>
                             </div>
                             <div
-                              class="css-1okj3ks-MuiStack-root"
+                              class="css-qkek6c-MuiStack-root"
                             >
-                              <div
-                                style="margin-top: 10px;"
-                              >
+                              <div>
                                 last
                               </div>
                             </div>
@@ -823,11 +787,9 @@ Object {
                               </div>
                             </div>
                             <div
-                              class="css-1okj3ks-MuiStack-root"
+                              class="css-qkek6c-MuiStack-root"
                             >
-                              <div
-                                style="margin-top: 10px;"
-                              />
+                              <div />
                             </div>
                           </div>
                         </div>
@@ -849,11 +811,9 @@ Object {
                               </div>
                             </div>
                             <div
-                              class="css-1okj3ks-MuiStack-root"
+                              class="css-qkek6c-MuiStack-root"
                             >
-                              <div
-                                style="margin-top: 10px;"
-                              >
+                              <div>
                                 1/1/1970
                               </div>
                             </div>
@@ -878,11 +838,9 @@ Object {
                           </div>
                         </div>
                         <div
-                          class="css-1okj3ks-MuiStack-root"
+                          class="css-qkek6c-MuiStack-root"
                         >
-                          <div
-                            style="margin-top: 10px;"
-                          />
+                          <div />
                         </div>
                       </div>
                       <hr
@@ -962,12 +920,10 @@ Object {
                           </div>
                         </div>
                         <div
-                          class="css-1okj3ks-MuiStack-root"
+                          class="css-qkek6c-MuiStack-root"
                         >
-                          <div
-                            style="margin-top: 10px;"
-                          >
-                            PRIMARY
+                          <div>
+                            Primary
                           </div>
                         </div>
                       </div>
@@ -978,7 +934,7 @@ Object {
                         class="css-1mf892b-MuiStack-root"
                       >
                         <button
-                          class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-18y1hnv-MuiButtonBase-root-MuiButton-root"
+                          class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-1gx3nc-MuiButtonBase-root-MuiButton-root"
                           tabindex="0"
                           type="button"
                         >
@@ -987,7 +943,7 @@ Object {
                           >
                             <svg
                               aria-hidden="true"
-                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-bml1kk-MuiSvgIcon-root"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1p7cumf-MuiSvgIcon-root"
                               data-testid="DeleteOutlineIcon"
                               focusable="false"
                               viewBox="0 0 24 24"
@@ -1007,7 +963,7 @@ Object {
                           />
                         </button>
                         <button
-                          class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-wdkk7j-MuiButtonBase-root-MuiButton-root"
+                          class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton primary css-172zkbg-MuiButtonBase-root-MuiButton-root"
                           tabindex="0"
                           type="submit"
                         >

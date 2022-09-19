@@ -222,7 +222,7 @@ export default function ContactInformation({
       </Fade>
       <Fade in={isEditing} unmountOnExit>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Stack spacing={3} divider={<Divider />}>
+          <Stack spacing={2} divider={<Divider />}>
             <Controller
               name="mobile"
               control={control}
