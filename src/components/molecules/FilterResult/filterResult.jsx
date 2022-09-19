@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import ItemResult from "../../organisms/ItemResult/ItemResult";
 import FilterResultHeading from "../FilterResultHeading/filterResultHeading";
@@ -152,11 +152,8 @@ export const FilterResult = ({
             height={"56px"}
             sx={{ backgroundColor: "#fff" }}
           >
-            <ArrowBackIosIcon
-              sx={{
-                marginLeft: "22px",
-                cursor: "pointer",
-              }}
+            <Button
+              role={"button"}
               onClick={() => {
                 if (currentDateIndex <= 0) {
                   const date = new Date(dateList.dateRange[0]);
@@ -168,7 +165,21 @@ export const FilterResult = ({
                   setCurrentDateIndex(currentDateIndex - 1);
                 }
               }}
-            />
+              sx={{
+                width: "25px",
+                minWidth: "25px",
+                padding: 0,
+                color: "#003b4a",
+              }}
+              aria-label={"Navigate to previous week option"}
+            >
+              <ArrowBackIosIcon
+                sx={{
+                  marginLeft: "22px",
+                  cursor: "pointer",
+                }}
+              />
+            </Button>
             <Box
               sx={{
                 margin: "0 auto",
@@ -194,11 +205,8 @@ export const FilterResult = ({
                 {dateList.dateListName[currentDateIndex]}
               </Typography>
             </Box>
-            <ArrowForwardIosIcon
-              sx={{
-                marginRight: "15px",
-                cursor: "pointer",
-              }}
+            <Button
+              role={"button"}
               onClick={() => {
                 if (currentDateIndex >= 5) {
                   const date = new Date(dateList.dateRange[5]);
@@ -210,7 +218,21 @@ export const FilterResult = ({
                   setCurrentDateIndex(currentDateIndex + 1);
                 }
               }}
-            />
+              sx={{
+                width: "25px",
+                minWidth: "25px",
+                padding: 0,
+                color: "#003b4a",
+              }}
+              aria-label={"Navigate to next week option"}
+            >
+              <ArrowForwardIosIcon
+                sx={{
+                  marginRight: "15px",
+                  cursor: "pointer",
+                }}
+              />
+            </Button>
           </Stack>
         </Box>
         <Box

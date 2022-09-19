@@ -47,7 +47,11 @@ export default function Bio({ googleApiKey }) {
 Bio.getLayout = function getLayout(page) {
   return (
     <Provider store={store}>
-      <AppointmentLayout currentActivePage={"bio"} backTitle="Back to search">
+      <AppointmentLayout
+        currentActivePage={"bio"}
+        backTitle="Back to search"
+        pageTitle="Doctor Biography"
+      >
         {page}
       </AppointmentLayout>
     </Provider>
