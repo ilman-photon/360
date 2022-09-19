@@ -5,7 +5,14 @@ import { CircularProgress } from "@mui/material";
 
 const filter = createFilterOptions();
 
+function sleep(delay = 0) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, delay);
+  });
+}
+
 export const AutoCompleteCreatable = ({
+  isLoading = false,
   options = [],
   onFetch = () => {
     // This is intended
@@ -16,7 +23,7 @@ export const AutoCompleteCreatable = ({
   ...props
 }) => {
   const [open, setOpen] = React.useState(false);
-  const loading = open && options.length === 0;
+  const loading = open && options.length === 0 && isLoading;
 
   React.useEffect(() => {
     let active = true;

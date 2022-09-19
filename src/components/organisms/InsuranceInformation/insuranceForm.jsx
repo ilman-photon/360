@@ -28,7 +28,12 @@ import { RELATIONSHIP_LIST } from "../../../utils/constantData";
 export default function InsuranceForm({
   formData = null,
   providerList = [],
+  planList = [],
   isEditing = true,
+  isAutocompleteLoading = false,
+  OnProviderChanged = () => {
+    // this is intended
+  },
   OnSaveClicked = () => {
     // This is intended
   },
@@ -38,7 +43,7 @@ export default function InsuranceForm({
   testIds = constants.TEST_ID.INSURANCE_TEST_ID,
   isError,
 }) {
-  const { handleSubmit, control, watch, reset } = useForm({
+  const { handleSubmit, control, watch, reset, setValue } = useForm({
     defaultValues: DEFAULT_INSURANCE_DATA,
   });
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -51,16 +56,6 @@ export default function InsuranceForm({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
-
-  // const providerList = [
-  //   { id: 0, label: "Provider 1", value: "Provider 1" },
-  //   { id: 1, label: "Provider 2", value: "Provider 2" },
-  // ];
-
-  const planList = [
-    { id: 0, label: "Plan 1", value: "Plan 1" },
-    { id: 1, label: "Plan 2", value: "Plan 2" },
-  ];
 
   const isSubscriberOptions = [
     { label: "Yes", value: "Yes" },
@@ -98,6 +93,17 @@ export default function InsuranceForm({
       return "This field is required";
     }
   };
+
+  const watchedProvider = watch("provider", "");
+  useEffect(() => {
+    if (watchedProvider) {
+      OnProviderChanged(watchedProvider.id);
+      if (watchedProvider.id !== formData.provider.id) {
+        setValue("plan", null);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [watchedProvider]);
 
   const handleCancel = () => {
     OnCancelClicked();
@@ -152,6 +158,7 @@ export default function InsuranceForm({
                       onInputEmpty={(e) => {
                         // console.log(e);
                       }}
+                      isLoading={isAutocompleteLoading}
                       options={providerList}
                       testId={testIds.provider}
                       inputLabel="Insurance Provider"
@@ -184,6 +191,7 @@ export default function InsuranceForm({
                       // onInputEmpty={(e) => {
                       //   console.log(e);
                       // }}
+                      isLoading={isAutocompleteLoading}
                       options={planList}
                       testId={testIds.planName}
                       inputLabel="Plan Name"

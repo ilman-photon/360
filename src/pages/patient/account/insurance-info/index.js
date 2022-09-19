@@ -41,7 +41,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AccountCircleOutlined from "@mui/icons-material/AccountCircleOutlined";
 import constants from "../../../../utils/constants";
 import { Api } from "../../../api/api";
-import { fetchAllPayers } from "../../../../store/provider";
+import { fetchAllPayers, fetchPlans } from "../../../../store/provider";
 
 export default function InsuranceInfoPage() {
   const [openNewInsuranceForm, setOpenNewInsuranceForm] = useState(false);
@@ -57,6 +57,10 @@ export default function InsuranceInfoPage() {
   const accessToken = useSelector((state) => state.index.accessToken);
   const loadingInsurance = useSelector((state) => state.user.status);
   const providerList = useSelector((state) => state.provider.list);
+  const planList = useSelector((state) => state.provider.planList);
+  const isAutocompleteLoading = useSelector(
+    (state) => state.provider.status === "loading"
+  );
 
   const userInsuranceData = useSelector(
     (state) => state.user.userInsuranceData
@@ -130,11 +134,6 @@ export default function InsuranceInfoPage() {
     if (!postBody) {
       return;
     }
-
-    console.log("onedit postBody: ", { postBody });
-
-    // dispatch(setUserInsuranceDataByIndex(payload));
-    // await dispatch(fetchToken());
     const { payload } = await dispatch(
       updateInsurance({
         token: accessToken,
@@ -143,12 +142,11 @@ export default function InsuranceInfoPage() {
         payload: postBody,
       })
     );
-    console.log("dispatch resposne", { payload });
-    // // if (payload.success) {
-    // showSuccessMessage("Your changes were saved");
-    // setEditForm(null);
-    // setIsEditing(false);
-    // // }
+    if (payload.success) {
+      showSuccessMessage("Your changes were saved");
+      setEditForm(null);
+      setIsEditing(false);
+    }
   };
 
   const OnAddNewInsurance = () => {
@@ -177,11 +175,6 @@ export default function InsuranceInfoPage() {
     }
   }, [openNewInsuranceForm, focusToNewInsurance]);
 
-  // const fetchAllPayer = async() => {
-  //   const response = await api.getPayers(accessToken)
-  //   console.log("payers", {response})
-  // }
-
   useEffect(() => {
     dispatch(fetchToken());
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -199,6 +192,12 @@ export default function InsuranceInfoPage() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [accessToken, dispatch, fetchInsurance]);
+
+  const handleFetchPlans = (payerId) => {
+    if (payerId) {
+      dispatch(fetchPlans({ token: accessToken, payerId }));
+    }
+  };
 
   const uploadBothError = (style, onClose) => {
     return (
@@ -276,7 +275,10 @@ export default function InsuranceInfoPage() {
                     <InsuranceForm
                       testIds={INSURANCE_TEST_ID}
                       providerList={providerList}
+                      planList={planList}
                       formData={editForm}
+                      isAutocompleteLoading={isAutocompleteLoading}
+                      OnProviderChanged={handleFetchPlans}
                       OnSaveClicked={OnEditInsurance}
                       OnCancelClicked={() => {
                         setIsEditing(false);
@@ -343,6 +345,9 @@ export default function InsuranceInfoPage() {
                         <AccordionDetails>
                           <InsuranceForm
                             testIds={INSURANCE_TEST_ID}
+                            providerList={providerList}
+                            planList={planList}
+                            OnProviderChanged={handleFetchPlans}
                             OnSaveClicked={OnCreateInsurance}
                             OnCancelClicked={() => {
                               setOpenNewInsuranceForm(false);

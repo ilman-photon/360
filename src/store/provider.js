@@ -3,7 +3,7 @@ import { Api } from "../pages/api/api";
 
 let url;
 
-const buildProviderList = (payload) => {
+const buildList = (payload) => {
   const list = payload.entities;
   return list.map((item) => {
     return {
@@ -23,8 +23,18 @@ export const fetchAllPayers = createAsyncThunk(
   }
 );
 
+export const fetchPlans = createAsyncThunk(
+  "user/fetchplans",
+  async ({ token, payerId }) => {
+    const api = new Api();
+    url = `/ecp/appointment/insurance/v1/payers/${payerId}/plans?pageNo=1&pageSize=500`;
+    return api.getResponse(url, null, "get", token);
+  }
+);
+
 const INITIAL_STATE = {
   list: [],
+  planList: [],
   status: "loading",
 };
 
@@ -37,10 +47,20 @@ export const providerStore = createSlice({
       state.status = "loading";
     },
     [fetchAllPayers.fulfilled]: (state, { payload }) => {
-      state.list = buildProviderList(payload);
+      state.list = buildList(payload);
       state.status = "success";
     },
     [fetchAllPayers.rejected]: (state) => {
+      state.status = "failed";
+    },
+    [fetchPlans.pending]: (state) => {
+      state.status = "loading";
+    },
+    [fetchPlans.fulfilled]: (state, { payload }) => {
+      state.planList = buildList(payload);
+      state.status = "success";
+    },
+    [fetchPlans.rejected]: (state) => {
       state.status = "failed";
     },
   },
