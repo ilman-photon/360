@@ -175,7 +175,7 @@ export default function AppointmentForm({
         </Typography>
         {isForMyself ? (
           <Box sx={{ mt: 2, display: "flex" }}>
-            <Typography sx={styles.boldLabel} variant="h1">
+            <Typography sx={styles.sigInInfoLabel} variant="h1">
               {t("sigInInfo")}
             </Typography>
             <Link
@@ -415,7 +415,7 @@ export default function AppointmentForm({
               <Box
                 sx={{ m: "24px 8px 16px", width: { xs: "100%", md: "70%" } }}
               >
-                <Typography sx={{ ...styles.boldLabel, mb: 1 }}>
+                <Typography sx={{ ...styles.sigInInfoLabel, mb: 1 }}>
                   {t("optional")}
                 </Typography>
                 <Typography sx={styles.passwordLabel}>
@@ -485,7 +485,6 @@ export default function AppointmentForm({
           </Button>
         </div>
       </form>
-      {/* </Stack> */}
     </Stack>
   );
 }

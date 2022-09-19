@@ -138,7 +138,6 @@ export const RedditTextField = styled((props) => (
     },
     "&.Mui-error": {
       color: "#B93632",
-      fontWeight: "unset",
     },
   },
   "& .MuiFilledInput-root": {

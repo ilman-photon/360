@@ -38,23 +38,23 @@ export const styles = {
     color: "#366A70",
     fontSize: "34px",
   },
+  sigInInfoLabel: {
+    fontWeight: "500",
+    fontSize: "18px",
+    color: "#191919",
+  },
   link: {
     color: "#008294",
     cursor: "pointer",
-    fontSize: "1.2rem",
-    fontWeight: "700",
-    paddingLeft: "16px",
+    fontWeight: "500",
+    paddingLeft: "8px",
+    fontSize: "16px",
   },
   linkText: {
     color: "#008294",
   },
-  boldLabel: {
-    fontWeight: "700",
-    fontSize: "1.2rem",
-    color: "#191919",
-  },
   passwordLabel: {
-    fontSize: "1rem",
+    fontSize: "16px",
     color: "#191919",
   },
   divMargin: {
