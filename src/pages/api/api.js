@@ -260,4 +260,10 @@ export class Api {
     const url = `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`;
     return this.getResponse(url, {}, "get");
   }
+
+  cancelAppointment() {
+    const domain = window.location.origin;
+    const url = `${domain}api/dummy/appointment/my-appointment/cancelAppointment`;
+    return this.getResponse(url, postbody, "post");
+  }
 }
