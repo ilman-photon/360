@@ -1,0 +1,44 @@
+@import "../../../../styles/colors.scss";
+
+.container {
+  background-color: #e4e4e4;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .pageWrapper {
+    display: flex;
+    max-width: 1450px;
+    width: inherit;
+  }
+}
+
+.testLabBox {
+  background: white;
+  border-radius: "4px";
+  height: fit-content;
+  // flex: 1;
+}
+
+.disclaimerWrapper {
+  padding: 16px;
+  border-radius: 4px;
+  color: #366a70;
+  background: linear-gradient(
+      0deg,
+      rgba(255, 255, 255, 0.9),
+      rgba(255, 255, 255, 0.9)
+    ),
+    #0288d1;
+}
+
+.disclaimerText {
+  word-break: break-all;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  display: inline-flex;
+  align-items: center;
+}
