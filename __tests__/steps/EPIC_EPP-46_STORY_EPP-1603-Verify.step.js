@@ -432,9 +432,11 @@ const MOCK_SUGESTION = {
         defaultValidation();
     });
 
-    and('user should see reschedule and cancel each of them', () => {
-        expect(container.getByText("Cancel")).toBeInTheDocument();
-        expect(container.getByText("Reschedule")).toBeInTheDocument();
+    and('user should see reschedule and cancel each of them', async () => {
+      await waitFor(() => {
+        container.getAllByText("Cancel")[0];
+        container.getAllByText("Reschedule")[0];
+      })
     });
 
     and('user clicks on the reschedule an appointment', async () => {
@@ -582,13 +584,15 @@ test('EPIC_EPP-45_STORY_EPP-1603 - Verify user should receive an email and text 
         })
     });
 
-    and('user should see reschedule and cancel each of them', () => {
-        expect(container.getByText("Cancel")).toBeInTheDocument();
-        expect(container.getByText("Reschedule")).toBeInTheDocument();
+    and('user should see reschedule and cancel each of them', async () => {
+      await waitFor(() => {
+        container.getAllByText("Cancel")[0];
+        container.getAllByText("Reschedule")[0];
+      })
     });
 
     and('user clicks on the reschedule an appointment', async () => {
-        const rescheduleButton = container.getByRole("button", { name: "Reschedule" });
+        const rescheduleButton = container.getAllByRole("button", { name: "Reschedule" })[0];
         fireEvent.click(rescheduleButton);
 
         renderReschedule();
@@ -736,9 +740,11 @@ test('EPIC_EPP-45_STORY_EPP-1603 - Negative Test Cases-Verify  when the service 
         })
     });
 
-    and('user should see reschedule and cancel each of them', () => {
-        expect(container.getByText("Cancel")).toBeInTheDocument();
-        expect(container.getByText("Reschedule")).toBeInTheDocument();
+    and('user should see reschedule and cancel each of them', async () => {
+      await waitFor(() => {
+        container.getAllByText("Cancel")[0];
+        container.getAllByText("Reschedule")[0];
+      })
     });
 
     and('user clicks on the reschedule the appointment', () => {
@@ -834,9 +840,11 @@ test('EPIC_EPP-45_STORY_EPP-1603 - Negative Test Cases-Verify User navigates to 
         })
     });
 
-    and('user should see reschedule and cancel each of them', () => {
-        expect(container.getByText("Cancel")).toBeInTheDocument();
-        expect(container.getByText("Reschedule")).toBeInTheDocument();
+    and('user should see reschedule and cancel each of them', async () => {
+      await waitFor(() => {
+        container.getAllByText("Cancel")[0];
+        container.getAllByText("Reschedule")[0];
+      })
     });
 
     and('user clicks on the reschedule the appointment', () => {
@@ -932,9 +940,11 @@ test('EPIC_EPP-45_STORY_EPP-1603 - Verify the user is not able to reschedule the
         })
     });
 
-    and('user should see reschedule and cancel each of them', () => {
-        expect(container.getByText("Cancel")).toBeInTheDocument();
-        expect(container.getByText("Reschedule")).toBeInTheDocument();
+    and('user should see reschedule and cancel each of them', async () => {
+      await waitFor(() => {
+        container.getAllByText("Cancel")[0];
+        container.getAllByText("Reschedule")[0];
+      })
     });
 
     and('user clicks on the reschedule the appointment', () => {
@@ -1022,9 +1032,11 @@ test('EPIC_EPP-45_STORY_EPP-1603 - Verify the user to reschedule the upcoming ap
         })
     });
 
-    and('user should see reschedule and cancel each of them', () => {
-        expect(container.getByText("Cancel")).toBeInTheDocument();
-        expect(container.getByText("Reschedule")).toBeInTheDocument();
+    and('user should see reschedule and cancel each of them', async () => {
+      await waitFor(() => {
+        container.getAllByText("Cancel")[0];
+        container.getAllByText("Reschedule")[0];
+      })
     });
 
     and('user clicks on the reschedule the appointment', () => {
@@ -1112,13 +1124,15 @@ test('EPIC_EPP-45_STORY_EPP-1603 - Negative Test Cases-Verify user should see th
         })
     });
 
-    and('user should see reschedule and cancel each of them', () => {
-        expect(container.getByText("Cancel")).toBeInTheDocument();
-        expect(container.getByText("Reschedule")).toBeInTheDocument();
+    and('user should see reschedule and cancel each of them', async () => {
+      await waitFor(() => {
+        container.getAllByText("Cancel")[0];
+        container.getAllByText("Reschedule")[0];
+      })
     });
 
     and('user clicks on the reschedule the appointment', async () => {
-        const rescheduleButton = container.getByRole("button", { name: "Reschedule" });
+        const rescheduleButton = container.getAllByRole("button", { name: "Reschedule" })[0];
         fireEvent.click(rescheduleButton);
 
         renderReschedule();
@@ -1215,13 +1229,15 @@ test('EPIC_EPP-45_STORY_EPP-1603 - Negative Test Cases-Verify user should see th
         })
     });
 
-    and('user should see reschedule and cancel each of them', () => {
-        expect(container.getByText("Cancel")).toBeInTheDocument();
-        expect(container.getByText("Reschedule")).toBeInTheDocument();
+    and('user should see reschedule and cancel each of them', async () => {
+      await waitFor(() => {
+        container.getAllByText("Cancel")[0];
+        container.getAllByText("Reschedule")[0];
+      })
     });
 
     and('user clicks on the reschedule the appointment', async () => {
-        const rescheduleButton = container.getByRole("button", { name: "Reschedule" });
+        const rescheduleButton = container.getAllByRole("button", { name: "Reschedule" })[0];
         fireEvent.click(rescheduleButton);
 
         renderReschedule();
