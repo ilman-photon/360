@@ -10,8 +10,22 @@
   width: 14px;
 }
 
+.tabImageContainerViewAll {
+  margin-right: 8px;
+  height: 21px;
+  width: 21px;
+}
+
 .flexDisplay {
   display: flex;
+
+  .paddingTop22 {
+    padding-top: 22px;
+  }
+}
+
+.prescriptionContent {
+  padding-top: 22px;
 }
 
 .spaceBetween {
@@ -22,8 +36,16 @@
   width: 50%;
 }
 
+.quarteBox {
+  width: 30%;
+}
+
 .margin {
   margin: 10px;
+}
+
+.marginBottom {
+  margin-bottom: 0px;
 }
 
 .marginVertical {

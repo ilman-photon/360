@@ -3,6 +3,7 @@ import * as React from "react";
 import { useEffect } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import Cookies from "universal-cookie";
+import AccountTitleHeading from "../../../components/atoms/AccountTitleHeading/accountTitleHeading";
 import Prescriptions from "../../../components/molecules/Dashboard/prescriptions";
 import AppointmentLayout from "../../../components/templates/appointmentLayout";
 import store from "../../../store/store";
@@ -31,7 +32,22 @@ export default function PrescriptionPage() {
 
   return (
     <Stack sx={{ width: "100%" }}>
-      <Prescriptions prescriptionData={prescriptionData} />
+      <AccountTitleHeading
+        title={"Prescriptions"}
+        sxContainer={{ marginTop: "-10px" }}
+      />
+      <Stack
+        sx={{
+          padding: "92px 24px 24px 24px",
+          marginBottom: "32px",
+          maxWidth: "1440px",
+          backgroundColor: "#fff",
+          alignSelf: "center",
+          width: "100%",
+        }}
+      >
+        <Prescriptions prescriptionData={prescriptionData} isViewAll={true} />
+      </Stack>
     </Stack>
   );
 }
