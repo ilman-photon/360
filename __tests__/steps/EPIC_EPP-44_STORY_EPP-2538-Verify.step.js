@@ -694,8 +694,10 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByText(/City, state, or zip/i));
-      expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
+      await waitFor(() => {
+        container.getByText(/City, state, or zip/i);
+        expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
+      });
     });
 
     and("user enters the location", () => {
@@ -801,7 +803,9 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByText(/City, state, or zip/i));
+      await waitFor(() => {
+        container.getByText(/City, state, or zip/i);
+      });
       expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
     });
 
@@ -862,8 +866,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(done);
       await waitFor(() => {
         container.getByText("English");
-        expect(container.getByText("English")).toBeInTheDocument();
       });
+      expect(container.getByText("English")).toBeInTheDocument();
     });
 
     and("user gets the updated result", () => {
@@ -907,7 +911,9 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByText(/City, state, or zip/i));
+      await waitFor(() => {
+        container.getByText(/City, state, or zip/i);
+      });
       expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
     });
 
@@ -968,8 +974,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(done);
       await waitFor(() => {
         container.getByText("English");
-        expect(container.getByText("English")).toBeInTheDocument();
       });
+      expect(container.getByText("English")).toBeInTheDocument();
     });
 
     and("user gets the updated result", () => {
