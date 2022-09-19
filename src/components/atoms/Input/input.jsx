@@ -171,9 +171,11 @@ export const RedditTextField = styled((props) => (
     },
     input: {
       height: "unset",
+      color: "#303030",
     },
     "input::placeholder": {
       fontSize: 12,
+      color: "#303030",
     },
   },
   "& .MuiFormHelperText-root": {

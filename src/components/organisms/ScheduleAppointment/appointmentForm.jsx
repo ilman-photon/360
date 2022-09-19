@@ -366,7 +366,7 @@ export default function AppointmentForm({
               required: t("thisFieldRequired"),
               validate: {
                 required: (value) => {
-                  if (!isDOB(value)) return "Incorect Date of Birth";
+                  if (!isDOB(value)) return "Invalid Date of Birth";
                 },
               },
             }}

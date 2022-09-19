@@ -39,7 +39,8 @@ export const styles = {
     fontSize: "34px",
   },
   sigInInfoLabel: {
-    fontWeight: "500",
+    fontFamily: "Libre Franklin",
+    fontWeight: "600",
     fontSize: "18px",
     color: "#191919",
   },
@@ -54,8 +55,9 @@ export const styles = {
     color: "#008294",
   },
   passwordLabel: {
+    fontFamily: "Libre Franklin",
     fontSize: "16px",
-    color: "#191919",
+    color: "#000000",
   },
   divMargin: {
     marginTop: "32px",
