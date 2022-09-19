@@ -4,8 +4,8 @@ import InsuranceView from "../../../../components/organisms/InsuranceInformation
 import { useEffect, useRef, useState } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import {
-  addUserInsuranceData,
   fetchInsurance,
+  postInsurance,
   removeUserInsuranceData,
   updateInsurance,
 } from "../../../../store/user";
@@ -40,7 +40,6 @@ import InsuranceForm from "../../../../components/organisms/InsuranceInformation
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AccountCircleOutlined from "@mui/icons-material/AccountCircleOutlined";
 import constants from "../../../../utils/constants";
-import { Api } from "../../../api/api";
 import { fetchAllPayers, fetchPlans } from "../../../../store/provider";
 
 export default function InsuranceInfoPage() {
@@ -72,8 +71,7 @@ export default function InsuranceInfoPage() {
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
 
-  const newInsuraceComp = useRef(null);
-  const api = new Api();
+  const newInsuranceComp = useRef(null);
 
   const showSuccessMessage = (message) => {
     dispatch(
@@ -87,8 +85,9 @@ export default function InsuranceInfoPage() {
     }, 5000);
   };
 
-  const OnCreateInsurance = (payload) => {
-    const { backCard, frontCard } = payload;
+  const OnCreateInsurance = async (postBody) => {
+    // console.log({payload})
+    const { backCard, frontCard } = postBody;
     if (
       (backCard !== "" && frontCard === "") ||
       (backCard === "" && frontCard !== "")
@@ -96,16 +95,25 @@ export default function InsuranceInfoPage() {
       setIsShowErrorNew(true);
       setIsShowError(true);
     } else {
-      dispatch(addUserInsuranceData(payload));
-      dispatch(
-        setPageMessage({
-          isShow: true,
-          content: "Insurance successfully added",
+      const { payload } = await dispatch(
+        postInsurance({
+          token: accessToken,
+          payload: postBody,
+          patientId: "59f43690-807f-4522-a615-e4b3b9ed8434", // hardcoded patient id
         })
       );
-      setIsShowErrorNew(false);
-      setIsShowError(false);
-      setOpenNewInsuranceForm(false);
+
+      if (payload.success) {
+        dispatch(
+          setPageMessage({
+            isShow: true,
+            content: "Insurance successfully added",
+          })
+        );
+        // setIsShowErrorNew(false);
+        // setIsShowError(false);
+        setOpenNewInsuranceForm(false);
+      }
     }
   };
 
@@ -150,24 +158,24 @@ export default function InsuranceInfoPage() {
   };
 
   const OnAddNewInsurance = () => {
-    if (userInsuranceData.length < 5) {
-      setOpenNewInsuranceForm(true);
-      setFocusToNewInsurance(true);
-    } else {
-      dispatch(
-        setPageMessage({
-          isShow: true,
-          content:
-            "Cannot add any more insurances. Maximum limit has been reached",
-          error: true,
-        })
-      );
-    }
+    // if (userInsuranceData.length < 5) {
+    setOpenNewInsuranceForm(true);
+    setFocusToNewInsurance(true);
+    // } else {
+    //   dispatch(
+    //     setPageMessage({
+    //       isShow: true,
+    //       content:
+    //         "Cannot add any more insurances. Maximum limit has been reached",
+    //       error: true,
+    //     })
+    //   );
+    // }
   };
   useEffect(() => {
-    if (newInsuraceComp.current && focusToNewInsurance) {
+    if (newInsuranceComp.current && focusToNewInsurance) {
       setTimeout(() => {
-        newInsuraceComp.current.scrollIntoView({
+        newInsuranceComp.current.scrollIntoView({
           behavior: "smooth",
           block: "start",
         });
@@ -332,7 +340,7 @@ export default function InsuranceInfoPage() {
                           expandIcon={<ExpandMoreIcon />}
                           aria-controls="panel1a-content"
                           sx={{ background: "#FAFAFA" }}
-                          ref={newInsuraceComp}
+                          ref={newInsuranceComp}
                         >
                           <Stack
                             spacing={1}
@@ -347,6 +355,7 @@ export default function InsuranceInfoPage() {
                             testIds={INSURANCE_TEST_ID}
                             providerList={providerList}
                             planList={planList}
+                            isAutocompleteLoading={isAutocompleteLoading}
                             OnProviderChanged={handleFetchPlans}
                             OnSaveClicked={OnCreateInsurance}
                             OnCancelClicked={() => {
@@ -368,7 +377,10 @@ export default function InsuranceInfoPage() {
           <Fade in={userInsuranceData.length === 0} unmountOnExit>
             <Box>
               <InsuranceInformationNew
-                insuranceData={userInsuranceData}
+                providerList={providerList}
+                planList={planList}
+                isAutocompleteLoading={isAutocompleteLoading}
+                OnProviderChanged={handleFetchPlans}
                 OnCreateInsurance={OnCreateInsurance}
                 FormMessageEl={uploadBothError(null, () =>
                   setIsShowErrorNew(false)

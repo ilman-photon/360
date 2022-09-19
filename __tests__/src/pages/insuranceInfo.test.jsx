@@ -90,11 +90,11 @@ describe("InsuranceInformationPage Components", () => {
     });
   };
 
-  it(
-    "InsuranceInformationPage Input Test plan name  & group",
-    inputPlanGroup,
-    20000
-  );
+  // it(
+  //   "InsuranceInformationPage Input Test plan name  & group",
+  //   inputPlanGroup,
+  //   20000
+  // );
 
   it("InsuranceInformationPage Add insurance cancel button", async () => {
     const cancelButton = container.getByTestId(

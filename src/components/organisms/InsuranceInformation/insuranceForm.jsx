@@ -26,7 +26,7 @@ import { Regex } from "../../../utils/regex";
 import { RELATIONSHIP_LIST } from "../../../utils/constantData";
 
 export default function InsuranceForm({
-  formData = null,
+  formData = DEFAULT_INSURANCE_DATA,
   providerList = [],
   planList = [],
   isEditing = true,
@@ -98,7 +98,7 @@ export default function InsuranceForm({
   useEffect(() => {
     if (watchedProvider) {
       OnProviderChanged(watchedProvider.id);
-      if (watchedProvider.id !== formData.provider.id) {
+      if (watchedProvider.id !== formData?.provider?.id) {
         setValue("plan", null);
       }
     }
@@ -152,12 +152,6 @@ export default function InsuranceForm({
                 }) => {
                   return (
                     <AutoCompleteCreatable
-                      onFetch={(e) => {
-                        // console.log(e);
-                      }}
-                      onInputEmpty={(e) => {
-                        // console.log(e);
-                      }}
                       isLoading={isAutocompleteLoading}
                       options={providerList}
                       testId={testIds.provider}

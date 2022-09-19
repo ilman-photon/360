@@ -669,36 +669,32 @@ Object {
                         <div
                           class="MuiBox-root css-1no12zb"
                         >
-                          <button
-                            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root  css-1y9skq0-MuiButtonBase-root-MuiButton-root"
-                            data-testid="loc_btnUploadFront"
-                            tabindex="0"
-                            type="button"
+                          <div
+                            class="css-nen11g-MuiStack-root"
                           >
-                            <div
-                              class="css-1q36rmd-MuiStack-root"
-                            >
-                              <svg
-                                aria-hidden="true"
-                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yagxpu-MuiSvgIcon-root"
-                                data-testid="CameraAltOutlinedIcon"
-                                focusable="false"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  d="M20 4h-3.17L15 2H9L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h4.05l1.83-2h4.24l1.83 2H20v12zM12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z"
-                                />
-                              </svg>
-                              <span
-                                class="MuiTypography-root MuiTypography-regularBold css-37jdci-MuiTypography-root"
-                              >
-                                Upload Front
-                              </span>
-                            </div>
                             <span
-                              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                            />
-                          </button>
+                              style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                            >
+                              <span
+                                style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                              >
+                                <img
+                                  alt=""
+                                  aria-hidden="true"
+                                  src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27275%27%20height=%27173%27/%3e"
+                                  style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                                />
+                              </span>
+                              <img
+                                alt="photo"
+                                data-nimg="intrinsic"
+                                decoding="async"
+                                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                                style="border-radius: 4px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; background-size: cover; background-position: 0% 0%; filter: blur(20px); background-image: url(/transparent.png);"
+                              />
+                              <noscript />
+                            </span>
+                          </div>
                           <input
                             accept="image/png, image/gif, image/jpeg"
                             data-testid="loc_uploadImage"
@@ -706,6 +702,17 @@ Object {
                             type="file"
                           />
                         </div>
+                        <button
+                          class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-7wwv5e-MuiButtonBase-root-MuiButton-root"
+                          data-testid="loc_btnUploadFront"
+                          tabindex="0"
+                          type="button"
+                        >
+                          Change photo
+                          <span
+                            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                          />
+                        </button>
                       </div>
                     </div>
                     <div
@@ -759,36 +766,32 @@ Object {
                         <div
                           class="MuiBox-root css-1no12zb"
                         >
-                          <button
-                            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root  css-1y9skq0-MuiButtonBase-root-MuiButton-root"
-                            data-testid="loc_btnUploadBack"
-                            tabindex="0"
-                            type="button"
+                          <div
+                            class="css-nen11g-MuiStack-root"
                           >
-                            <div
-                              class="css-1q36rmd-MuiStack-root"
-                            >
-                              <svg
-                                aria-hidden="true"
-                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yagxpu-MuiSvgIcon-root"
-                                data-testid="CameraAltOutlinedIcon"
-                                focusable="false"
-                                viewBox="0 0 24 24"
-                              >
-                                <path
-                                  d="M20 4h-3.17L15 2H9L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h4.05l1.83-2h4.24l1.83 2H20v12zM12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z"
-                                />
-                              </svg>
-                              <span
-                                class="MuiTypography-root MuiTypography-regularBold css-37jdci-MuiTypography-root"
-                              >
-                                Upload Back
-                              </span>
-                            </div>
                             <span
-                              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                            />
-                          </button>
+                              style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                            >
+                              <span
+                                style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                              >
+                                <img
+                                  alt=""
+                                  aria-hidden="true"
+                                  src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27275%27%20height=%27173%27/%3e"
+                                  style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                                />
+                              </span>
+                              <img
+                                alt="photo"
+                                data-nimg="intrinsic"
+                                decoding="async"
+                                src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                                style="border-radius: 4px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; background-size: cover; background-position: 0% 0%; filter: blur(20px); background-image: url(/transparent.png);"
+                              />
+                              <noscript />
+                            </span>
+                          </div>
                           <input
                             accept="image/png, image/gif, image/jpeg"
                             data-testid="loc_uploadImage"
@@ -796,6 +799,17 @@ Object {
                             type="file"
                           />
                         </div>
+                        <button
+                          class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-7wwv5e-MuiButtonBase-root-MuiButton-root"
+                          data-testid="loc_btnUploadBack"
+                          tabindex="0"
+                          type="button"
+                        >
+                          Change photo
+                          <span
+                            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                          />
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -806,7 +820,7 @@ Object {
                     class="MuiFormControl-root css-1nrlq1o-MuiFormControl-root"
                     label="Insurance Priority"
                     options="[object Object],[object Object],[object Object]"
-                    value="Primary"
+                    value="PRIMARY"
                   >
                     <label
                       aria-label="Insurance Priority"
@@ -839,9 +853,10 @@ Object {
                         class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
                       >
                         <span
-                          class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
+                          class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-81lzf2-MuiButtonBase-root-MuiRadio-root"
                         >
                           <input
+                            checked=""
                             class="PrivateSwitchBase-input css-1m9pwf3"
                             name="row-radio-buttons-group"
                             type="radio"
@@ -863,7 +878,7 @@ Object {
                             </svg>
                             <svg
                               aria-hidden="true"
-                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hhw7if-MuiSvgIcon-root"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-11zohuh-MuiSvgIcon-root"
                               data-testid="RadioButtonCheckedIcon"
                               focusable="false"
                               viewBox="0 0 24 24"
@@ -1691,36 +1706,32 @@ Object {
                       <div
                         class="MuiBox-root css-1no12zb"
                       >
-                        <button
-                          class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root  css-1y9skq0-MuiButtonBase-root-MuiButton-root"
-                          data-testid="loc_btnUploadFront"
-                          tabindex="0"
-                          type="button"
+                        <div
+                          class="css-nen11g-MuiStack-root"
                         >
-                          <div
-                            class="css-1q36rmd-MuiStack-root"
-                          >
-                            <svg
-                              aria-hidden="true"
-                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yagxpu-MuiSvgIcon-root"
-                              data-testid="CameraAltOutlinedIcon"
-                              focusable="false"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                d="M20 4h-3.17L15 2H9L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h4.05l1.83-2h4.24l1.83 2H20v12zM12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z"
-                              />
-                            </svg>
-                            <span
-                              class="MuiTypography-root MuiTypography-regularBold css-37jdci-MuiTypography-root"
-                            >
-                              Upload Front
-                            </span>
-                          </div>
                           <span
-                            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                          />
-                        </button>
+                            style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                          >
+                            <span
+                              style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                            >
+                              <img
+                                alt=""
+                                aria-hidden="true"
+                                src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27275%27%20height=%27173%27/%3e"
+                                style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                              />
+                            </span>
+                            <img
+                              alt="photo"
+                              data-nimg="intrinsic"
+                              decoding="async"
+                              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                              style="border-radius: 4px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; background-size: cover; background-position: 0% 0%; filter: blur(20px); background-image: url(/transparent.png);"
+                            />
+                            <noscript />
+                          </span>
+                        </div>
                         <input
                           accept="image/png, image/gif, image/jpeg"
                           data-testid="loc_uploadImage"
@@ -1728,6 +1739,17 @@ Object {
                           type="file"
                         />
                       </div>
+                      <button
+                        class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-7wwv5e-MuiButtonBase-root-MuiButton-root"
+                        data-testid="loc_btnUploadFront"
+                        tabindex="0"
+                        type="button"
+                      >
+                        Change photo
+                        <span
+                          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                        />
+                      </button>
                     </div>
                   </div>
                   <div
@@ -1781,36 +1803,32 @@ Object {
                       <div
                         class="MuiBox-root css-1no12zb"
                       >
-                        <button
-                          class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root  css-1y9skq0-MuiButtonBase-root-MuiButton-root"
-                          data-testid="loc_btnUploadBack"
-                          tabindex="0"
-                          type="button"
+                        <div
+                          class="css-nen11g-MuiStack-root"
                         >
-                          <div
-                            class="css-1q36rmd-MuiStack-root"
-                          >
-                            <svg
-                              aria-hidden="true"
-                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yagxpu-MuiSvgIcon-root"
-                              data-testid="CameraAltOutlinedIcon"
-                              focusable="false"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                d="M20 4h-3.17L15 2H9L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h4.05l1.83-2h4.24l1.83 2H20v12zM12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z"
-                              />
-                            </svg>
-                            <span
-                              class="MuiTypography-root MuiTypography-regularBold css-37jdci-MuiTypography-root"
-                            >
-                              Upload Back
-                            </span>
-                          </div>
                           <span
-                            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                          />
-                        </button>
+                            style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                          >
+                            <span
+                              style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+                            >
+                              <img
+                                alt=""
+                                aria-hidden="true"
+                                src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27275%27%20height=%27173%27/%3e"
+                                style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+                              />
+                            </span>
+                            <img
+                              alt="photo"
+                              data-nimg="intrinsic"
+                              decoding="async"
+                              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+                              style="border-radius: 4px; position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%; background-size: cover; background-position: 0% 0%; filter: blur(20px); background-image: url(/transparent.png);"
+                            />
+                            <noscript />
+                          </span>
+                        </div>
                         <input
                           accept="image/png, image/gif, image/jpeg"
                           data-testid="loc_uploadImage"
@@ -1818,6 +1836,17 @@ Object {
                           type="file"
                         />
                       </div>
+                      <button
+                        class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-7wwv5e-MuiButtonBase-root-MuiButton-root"
+                        data-testid="loc_btnUploadBack"
+                        tabindex="0"
+                        type="button"
+                      >
+                        Change photo
+                        <span
+                          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                        />
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -1828,7 +1857,7 @@ Object {
                   class="MuiFormControl-root css-1nrlq1o-MuiFormControl-root"
                   label="Insurance Priority"
                   options="[object Object],[object Object],[object Object]"
-                  value="Primary"
+                  value="PRIMARY"
                 >
                   <label
                     aria-label="Insurance Priority"
@@ -1861,9 +1890,10 @@ Object {
                       class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
                     >
                       <span
-                        class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-81lzf2-MuiButtonBase-root-MuiRadio-root"
+                        class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root Mui-checked css-81lzf2-MuiButtonBase-root-MuiRadio-root"
                       >
                         <input
+                          checked=""
                           class="PrivateSwitchBase-input css-1m9pwf3"
                           name="row-radio-buttons-group"
                           type="radio"
@@ -1885,7 +1915,7 @@ Object {
                           </svg>
                           <svg
                             aria-hidden="true"
-                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1hhw7if-MuiSvgIcon-root"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-11zohuh-MuiSvgIcon-root"
                             data-testid="RadioButtonCheckedIcon"
                             focusable="false"
                             viewBox="0 0 24 24"

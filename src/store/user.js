@@ -66,7 +66,9 @@ const buildProfilePostBody = (postBody, payload) => {
 const buildInsurancePostBody = (postBody, payload) => {
   console.log({ postBody, payload });
   const subscriberData = payload.subscriberData;
-  const subscriberDob = new moment(subscriberData.dob).format("MM/DD/YYYY");
+  const subscriberDob = subscriberData.dob
+    ? new moment(subscriberData.dob).format("MM/DD/YYYY")
+    : null;
   return {
     ...postBody,
     group: payload.groupID,
@@ -79,7 +81,7 @@ const buildInsurancePostBody = (postBody, payload) => {
       _id: payload.provider.id,
     },
     plan: {
-      _id: payload.plan.id,
+      _id: "06c596c3-4f7d-4d4e-b514-ec0f008fccd9",
     },
     subscriber: {
       ...postBody.subscriber,
@@ -158,14 +160,6 @@ export const updateInsurance = createAsyncThunk(
       state.user.rawUserInsuranceData.findIndex((v) => v._id === coverageId) +
       1;
     try {
-      // // get the insuranceData first, just to make sure
-      // const res = await api.getResponse(
-      //   `/ecp/insurance/v1/beneficiaries/${patientId}/coverages/${coverageId}`,
-      //   null,
-      //   "get",
-      //   token
-      // );
-      // then apply changes from our side with response body from "res" and do a PUT request
       const postBody = buildInsurancePostBody(
         state.user.rawUserInsuranceData[foundIndex],
         payload
@@ -175,6 +169,39 @@ export const updateInsurance = createAsyncThunk(
         `/ecp/insurance/v1/beneficiaries/${patientId}/coverages/${coverageId}`,
         postBody,
         "put",
+        token
+      );
+      return {
+        success: true,
+        response,
+      };
+    } catch (error) {
+      console.error({ error });
+      return {
+        success: false,
+        response: error,
+      };
+    }
+  }
+);
+
+export const postInsurance = createAsyncThunk(
+  "user/postInsurance",
+  async ({ token, payload, patientId }) => {
+    const api = new Api();
+    console.log("Post insurance", { payload });
+    try {
+      const postBody = buildInsurancePostBody(
+        {
+          insuranceType: "VISION",
+        },
+        payload
+      );
+      console.log("Post body to POST to API: ", { postBody });
+      const response = await api.getResponse(
+        `/ecp/insurance/v1/beneficiaries/${patientId}/coverages/`,
+        postBody,
+        "post",
         token
       );
       return {
@@ -273,7 +300,7 @@ const buildUserInsuranceData = (payload) => {
   const insurances = payload.entities;
   return insurances.map((insurance) => {
     const subscriberData = insurance.subscriber;
-    const digitalAssets = insurance.digitalAssets;
+    // const digitalAssets = insurance.digitalAssets;
     return {
       id: insurance._id,
       provider: {
@@ -319,7 +346,7 @@ export const DEFAULT_INSURANCE_DATA = {
     dob: null,
     relationship: "",
   },
-  priority: "Primary",
+  priority: "PRIMARY",
   frontCard: "",
   backCard: "",
 };

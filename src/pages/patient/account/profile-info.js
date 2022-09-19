@@ -4,7 +4,7 @@ import ContactInformation from "../../../components/organisms/ContactInformation
 import { Box, Grid, Tab, Tabs, useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
-import { fetchUser, setUserData, updateUser } from "../../../store/user";
+import { fetchUser, updateUser } from "../../../store/user";
 import store from "../../../store/store";
 import PropTypes from "prop-types";
 import { fetchToken, closePageMessage, setPageMessage } from "../../../store";
