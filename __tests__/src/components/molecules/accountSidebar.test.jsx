@@ -14,20 +14,18 @@ describe("AccountSidebar Components", () => {
     expect(container).toMatchSnapshot();
 
     expect(container.getByText("Profile Information")).toBeInTheDocument();
-    expect(container.getByText("Financial Information")).toBeInTheDocument();
-    expect(container.getByText("Toggle accounts")).toBeInTheDocument();
-    expect(container.getByText("Merge accounts")).toBeInTheDocument();
+    expect(container.getByText("Care Plan")).toBeInTheDocument();
     expect(container.getByText("Prescriptions")).toBeInTheDocument();
-    expect(container.getByText("Insurance documents")).toBeInTheDocument();
+    expect(container.getByText("Test & Lab Results")).toBeInTheDocument();
+    expect(container.getByText("Documents")).toBeInTheDocument();
     expect(container.getByText("Multi factor authentication")).toBeInTheDocument();
 
     setTimeout(() => {
       expect("Profile Information").toBeVisible() 
-      expect("Financial Information").toBeVisible()
-      expect("Toggle accounts").toBeVisible() 
-      expect("Merge accounts").toBeVisible()
+      expect("Care Plan").toBeVisible() 
       expect("Prescriptions").toBeVisible() 
-      expect("Insurance documents").toBeVisible()
+      expect("Test & Lab Results").toBeVisible() 
+      expect("Documents").toBeVisible()
       expect("Multi factor authentication").toBeVisible()
     }, 500);
   });
