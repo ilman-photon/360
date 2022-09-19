@@ -6,15 +6,16 @@ import styles from "../../styles.module.scss";
 import { Api } from "../../../../api/api";
 import { useEffect, useState } from "react";
 import DetailAppointment from "../../../../../components/organisms/DetailAppointment/detailAppointment";
+import { parseAppointmentDetails } from "../../../../../utils/appointment";
 
 export default function AppointmentDetails() {
   const [appointments, setAppointments] = useState();
 
-  const getAppointments = () => {
+  const getAppointmentDetails = () => {
     const api = new Api();
     !appointments &&
       api
-        .getAllAppointment()
+        .getAppointmentDetails()
         .then((response) => {
           setAppointments(response);
         })
@@ -24,14 +25,14 @@ export default function AppointmentDetails() {
   };
 
   useEffect(() => {
-    getAppointments();
+    getAppointmentDetails();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appointments]);
 
   return (
     <Box className={styles.container}>
       {appointments && (
-        <DetailAppointment data={appointments.appointmentList[0]} />
+        <DetailAppointment data={parseAppointmentDetails(appointments)} />
       )}
     </Box>
   );

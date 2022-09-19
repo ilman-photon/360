@@ -20,10 +20,12 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import React from "react";
+import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 
 export default function DetailAppointment({ data }) {
   const container = React.useRef(null);
-  const date = data.appointmentInfo.date;
+  const { providerInfo, patientInfo, appointmentInfo } = data;
+  const date = appointmentInfo.date;
   const timezone = date.substring(date.length - 3);
   const momentDate = new moment(date);
   const formatedDate = momentDate.format("dddd, MMM DD, YYYY");
@@ -117,11 +119,11 @@ export default function DetailAppointment({ data }) {
             sx={{ p: 2, backgroundColor: "white" }}
           >
             <Typography variant="h4" className={styles.mb36}>
-              Visit Purpose: Routine
+              {`Visit Purpose: ${appointmentInfo.appointmentType}`}
             </Typography>
             <Grid container spacing={2} sx={{ p: 1 }}>
               <Grid item xs={4}>
-                <Typography variant="h4">Dr Sonha Nguyen</Typography>
+                <Typography variant="h4">{providerInfo.name}</Typography>
               </Grid>
               <Grid item xs={8}>
                 <Box
@@ -132,7 +134,7 @@ export default function DetailAppointment({ data }) {
                 >
                   <Typography variant="h4">Patient :</Typography>
                   <Typography variant="regularDarkGreen" sx={{ pl: 0.5 }}>
-                    Don John
+                    {patientInfo.name}
                   </Typography>
                 </Box>
               </Grid>
@@ -144,14 +146,19 @@ export default function DetailAppointment({ data }) {
                   Location
                 </Typography>
                 <Typography variant="mediumDarkGreen" className={styles.mb36}>
-                  Scripps Eyesore
+                  {providerInfo.position}
                 </Typography>
                 <Typography
                   variant="regularDarkGreen"
                   component={"div"}
                   sx={{ pt: 1 }}
                 >
-                  5755 Burke Centre Parkway Burke, VA 22015-226
+                  {providerInfo.address.addressLine1}
+                  <br />
+                  {providerInfo.address.addressLine2}
+                  {providerInfo.address.addressLine2 && <br />}
+                  {providerInfo.address.city}, {providerInfo.address.state},{" "}
+                  {providerInfo.address.zipcode}
                 </Typography>
                 <Link
                   sx={{
@@ -166,7 +173,7 @@ export default function DetailAppointment({ data }) {
                     variant="body2"
                     className={styles.getDirectionLinkText}
                   >
-                    (703) 250 -9000
+                    {formatPhoneNumber(providerInfo.phoneNumber)}
                   </Typography>
                 </Link>
               </Grid>
@@ -181,25 +188,20 @@ export default function DetailAppointment({ data }) {
                     Insurance
                   </Typography>
                 </Box>
-                <Box
-                  display={"flex"}
-                  justifyContent="flex-start"
-                  alignItems={"center"}
-                  flexDirection={"row"}
-                  sx={{ pb: 1 }}
-                >
-                  <Typography variant="regularDarkGreen">ECP Vision</Typography>
-                </Box>
-                <Box
-                  display={"flex"}
-                  justifyContent="flex-start"
-                  alignItems={"center"}
-                  flexDirection={"row"}
-                >
-                  <Typography variant="regularDarkGreen">
-                    BlueCare Vision
-                  </Typography>
-                </Box>
+                {appointmentInfo.insuranceCarrier.map((insurance, index) => (
+                  <Box
+                    key={index.toString()}
+                    display={"flex"}
+                    justifyContent="flex-start"
+                    alignItems={"center"}
+                    flexDirection={"row"}
+                    sx={{ pb: 1 }}
+                  >
+                    <Typography variant="regularDarkGreen">
+                      {insurance}
+                    </Typography>
+                  </Box>
+                ))}
               </Grid>
             </Grid>
           </Box>
@@ -208,7 +210,7 @@ export default function DetailAppointment({ data }) {
               Documentation of
             </Typography>
             <Typography variant="body1" className={styles.mb14}>
-              Lorem Ipsum
+              {appointmentInfo.documentation.name}
             </Typography>
           </Box>
           <Box
@@ -220,27 +222,11 @@ export default function DetailAppointment({ data }) {
               p: 2,
             }}
           >
-            <Box>
-              <strong>Performer</strong> Lorem Ipsum
-            </Box>
-            <Box>
-              <strong>Performer</strong> Lorem Ipsum
-            </Box>
-            <Box>
-              <strong>Performer</strong> Lorem Ipsum
-            </Box>
-            <Box>
-              <strong>Performer</strong> Lorem Ipsum
-            </Box>
-            <Box>
-              <strong>Performer</strong> Lorem Ipsum
-            </Box>
-            <Box>
-              <strong>Performer</strong> Lorem Ipsum
-            </Box>
-            <Box>
-              <strong>Performer</strong> Lorem Ipsum
-            </Box>
+            {appointmentInfo.documentation.list.map((documentation, index) => (
+              <Box key={index.toString()}>
+                <strong>{documentation.name}</strong> {documentation.value}
+              </Box>
+            ))}
           </Box>
         </Box>
         <Box
