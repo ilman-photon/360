@@ -12,33 +12,57 @@ Object {
           class="scheduleTimeContainer MuiBox-root css-0"
         >
           <p
+            aria-label=""
             class="MuiTypography-root MuiTypography-body1 scheduleTimeTitle css-ahj2mt-MuiTypography-root"
+            tabindex="0"
           />
           <div
             class="iconTimeContainer MuiBox-root css-0"
           >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconDisableSchedule css-lw08pq-MuiSvgIcon-root"
-              data-testid="appointment_all_availability_previous_week_button"
-              focusable="false"
-              viewBox="0 0 24 24"
+            <button
+              aria-label="Navigate to previous week option"
+              class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-a4pt68-MuiButtonBase-root-MuiButton-root"
+              role="button"
+              tabindex="0"
+              type="button"
             >
-              <path
-                d="M11.67 3.87 9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconDisableSchedule css-lw08pq-MuiSvgIcon-root"
+                data-testid="appointment_all_availability_previous_week_button"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M11.67 3.87 9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
-            </svg>
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-1c40g22-MuiSvgIcon-root"
-              data-testid="appointment_all_availability_next_week_button"
-              focusable="false"
-              viewBox="0 0 24 24"
+            </button>
+            <button
+              aria-label="Navigate to next week option"
+              class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-a4pt68-MuiButtonBase-root-MuiButton-root"
+              role="button"
+              tabindex="0"
+              type="button"
             >
-              <path
-                d="M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z"
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-1c40g22-MuiSvgIcon-root"
+                data-testid="appointment_all_availability_next_week_button"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
-            </svg>
+            </button>
           </div>
         </div>
         <hr
@@ -59,33 +83,57 @@ Object {
         class="scheduleTimeContainer MuiBox-root css-0"
       >
         <p
+          aria-label=""
           class="MuiTypography-root MuiTypography-body1 scheduleTimeTitle css-ahj2mt-MuiTypography-root"
+          tabindex="0"
         />
         <div
           class="iconTimeContainer MuiBox-root css-0"
         >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconDisableSchedule css-lw08pq-MuiSvgIcon-root"
-            data-testid="appointment_all_availability_previous_week_button"
-            focusable="false"
-            viewBox="0 0 24 24"
+          <button
+            aria-label="Navigate to previous week option"
+            class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-a4pt68-MuiButtonBase-root-MuiButton-root"
+            role="button"
+            tabindex="0"
+            type="button"
           >
-            <path
-              d="M11.67 3.87 9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconDisableSchedule css-lw08pq-MuiSvgIcon-root"
+              data-testid="appointment_all_availability_previous_week_button"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11.67 3.87 9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
             />
-          </svg>
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-1c40g22-MuiSvgIcon-root"
-            data-testid="appointment_all_availability_next_week_button"
-            focusable="false"
-            viewBox="0 0 24 24"
+          </button>
+          <button
+            aria-label="Navigate to next week option"
+            class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-a4pt68-MuiButtonBase-root-MuiButton-root"
+            role="button"
+            tabindex="0"
+            type="button"
           >
-            <path
-              d="M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z"
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-1c40g22-MuiSvgIcon-root"
+              data-testid="appointment_all_availability_next_week_button"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
             />
-          </svg>
+          </button>
         </div>
       </div>
       <hr
@@ -163,33 +211,57 @@ Object {
           class="scheduleTimeContainer MuiBox-root css-0"
         >
           <p
+            aria-label=""
             class="MuiTypography-root MuiTypography-body1 scheduleTimeTitle css-ahj2mt-MuiTypography-root"
+            tabindex="0"
           />
           <div
             class="iconTimeContainer MuiBox-root css-0"
           >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconDisableSchedule css-lw08pq-MuiSvgIcon-root"
-              data-testid="appointment_all_availability_previous_week_button"
-              focusable="false"
-              viewBox="0 0 24 24"
+            <button
+              aria-label="Navigate to previous week option"
+              class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-a4pt68-MuiButtonBase-root-MuiButton-root"
+              role="button"
+              tabindex="0"
+              type="button"
             >
-              <path
-                d="M11.67 3.87 9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconDisableSchedule css-lw08pq-MuiSvgIcon-root"
+                data-testid="appointment_all_availability_previous_week_button"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M11.67 3.87 9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
-            </svg>
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-1c40g22-MuiSvgIcon-root"
-              data-testid="appointment_all_availability_next_week_button"
-              focusable="false"
-              viewBox="0 0 24 24"
+            </button>
+            <button
+              aria-label="Navigate to next week option"
+              class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-a4pt68-MuiButtonBase-root-MuiButton-root"
+              role="button"
+              tabindex="0"
+              type="button"
             >
-              <path
-                d="M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z"
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-1c40g22-MuiSvgIcon-root"
+                data-testid="appointment_all_availability_next_week_button"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
-            </svg>
+            </button>
           </div>
         </div>
         <hr
@@ -209,33 +281,57 @@ Object {
           class="scheduleTimeContainer MuiBox-root css-0"
         >
           <p
+            aria-label=""
             class="MuiTypography-root MuiTypography-body1 scheduleTimeTitle css-ahj2mt-MuiTypography-root"
+            tabindex="0"
           />
           <div
             class="iconTimeContainer MuiBox-root css-0"
           >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconDisableSchedule css-lw08pq-MuiSvgIcon-root"
-              data-testid="appointment_all_availability_previous_week_button"
-              focusable="false"
-              viewBox="0 0 24 24"
+            <button
+              aria-label="Navigate to previous week option"
+              class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-a4pt68-MuiButtonBase-root-MuiButton-root"
+              role="button"
+              tabindex="0"
+              type="button"
             >
-              <path
-                d="M11.67 3.87 9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconDisableSchedule css-lw08pq-MuiSvgIcon-root"
+                data-testid="appointment_all_availability_previous_week_button"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M11.67 3.87 9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
-            </svg>
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-1c40g22-MuiSvgIcon-root"
-              data-testid="appointment_all_availability_next_week_button"
-              focusable="false"
-              viewBox="0 0 24 24"
+            </button>
+            <button
+              aria-label="Navigate to next week option"
+              class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-a4pt68-MuiButtonBase-root-MuiButton-root"
+              role="button"
+              tabindex="0"
+              type="button"
             >
-              <path
-                d="M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z"
+              <svg
+                aria-hidden="true"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-1c40g22-MuiSvgIcon-root"
+                data-testid="appointment_all_availability_next_week_button"
+                focusable="false"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z"
+                />
+              </svg>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
               />
-            </svg>
+            </button>
           </div>
         </div>
         <hr
@@ -256,33 +352,57 @@ Object {
         class="scheduleTimeContainer MuiBox-root css-0"
       >
         <p
+          aria-label=""
           class="MuiTypography-root MuiTypography-body1 scheduleTimeTitle css-ahj2mt-MuiTypography-root"
+          tabindex="0"
         />
         <div
           class="iconTimeContainer MuiBox-root css-0"
         >
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconDisableSchedule css-lw08pq-MuiSvgIcon-root"
-            data-testid="appointment_all_availability_previous_week_button"
-            focusable="false"
-            viewBox="0 0 24 24"
+          <button
+            aria-label="Navigate to previous week option"
+            class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-a4pt68-MuiButtonBase-root-MuiButton-root"
+            role="button"
+            tabindex="0"
+            type="button"
           >
-            <path
-              d="M11.67 3.87 9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconDisableSchedule css-lw08pq-MuiSvgIcon-root"
+              data-testid="appointment_all_availability_previous_week_button"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M11.67 3.87 9.9 2.1 0 12l9.9 9.9 1.77-1.77L3.54 12z"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
             />
-          </svg>
-          <svg
-            aria-hidden="true"
-            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-1c40g22-MuiSvgIcon-root"
-            data-testid="appointment_all_availability_next_week_button"
-            focusable="false"
-            viewBox="0 0 24 24"
+          </button>
+          <button
+            aria-label="Navigate to next week option"
+            class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-a4pt68-MuiButtonBase-root-MuiButton-root"
+            role="button"
+            tabindex="0"
+            type="button"
           >
-            <path
-              d="M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z"
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-1c40g22-MuiSvgIcon-root"
+              data-testid="appointment_all_availability_next_week_button"
+              focusable="false"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M6.23 20.23 8 22l10-10L8 2 6.23 3.77 14.46 12z"
+              />
+            </svg>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
             />
-          </svg>
+          </button>
         </div>
       </div>
       <hr

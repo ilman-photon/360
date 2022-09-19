@@ -33,6 +33,7 @@ import { useRouter } from "next/router";
 import {
   DEFAULT_PATIENT_INFO_DATA,
   editAppointmentScheduleData,
+  resetAppointmentSchedule,
   resetFilterData,
 } from "../../../store/appointment";
 import { fetchUser, setUserAppointmentDataByIndex } from "../../../store/user";
@@ -285,7 +286,7 @@ export default function ScheduleAppointmentPage() {
 
   const handleEditSchedule = () => {
     console.log("change schedule data");
-    router.push("/patient/appointment");
+    router.push({ pathname: "/patient/appointment", query: router.query });
   };
 
   const handleClickSchedule = (data) => {
@@ -345,12 +346,13 @@ export default function ScheduleAppointmentPage() {
     }
   };
 
-  const handleOkClicked = () => {
+  const handleOkClicked = async () => {
     if (isReschedule) {
-      router.push("/patient/appointments");
+      await router.push("/patient/appointments");
     } else {
-      router.push("/patient/appointment");
+      await router.push("/patient/appointment");
     }
+    dispatch(resetAppointmentSchedule());
   };
 
   const handleCancelReschedule = () => {

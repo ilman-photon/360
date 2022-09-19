@@ -21,7 +21,7 @@ export default function AppointmentLocation({
   const getAddress = (address) => {
     if (!address) return;
     return (
-      <div>
+      <div tabIndex={"0"}>
         {address.addressLine1}
         <br />
         {address.addressLine2}
@@ -62,18 +62,22 @@ export default function AppointmentLocation({
         }
       >
         <Stack flexDirection="row" gap={2}>
-          <Image
-            src={providerData.image || "/transparent.png"}
-            width={105}
-            height={105}
-            style={{ borderRadius: "50%" }}
-            alt="Doctors image"
-          />
+          <div>
+            <Image
+              src={providerData.image || "/transparent.png"}
+              width={105}
+              height={105}
+              style={{ borderRadius: "50%" }}
+              alt="Doctors image"
+              tabindex={"0"}
+            />
+          </div>
 
           <Box>
             <Typography
               variant="h4"
               style={{ ...styles.detailText, ...styles.boldText }}
+              tabindex={"0"}
             >
               {providerData.name}
             </Typography>
@@ -92,7 +96,8 @@ export default function AppointmentLocation({
             <Typography
               variant="h4"
               style={styles.detailText}
-              aria-label={"Myself"}
+              aria-label={`provider phone number ${providerData.phoneNumber}`}
+              tabindex={"0"}
             >
               <Link style={styles.linkText}>{providerData.phoneNumber}</Link>
             </Typography>

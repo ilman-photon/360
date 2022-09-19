@@ -2,7 +2,7 @@ import Box from "@mui/material/Box";
 import React, { useEffect, useState } from "react";
 import { StyledButton } from "../../atoms/Button/button";
 import styles from "./styles.module.scss";
-import { Divider, Stack, Typography } from "@mui/material";
+import { Button, Divider, Stack, Typography } from "@mui/material";
 import constants, { TEST_ID } from "../../../utils/constants";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
@@ -11,6 +11,7 @@ import {
   isPrevArrowDisable,
   parseDateWeekList,
   parseScheduleDataWeekOverlay,
+  timeInWeekACLabel,
   timeInWeekLabel,
 } from "../../../utils/appointment";
 import moment from "moment";
@@ -125,7 +126,9 @@ export const DayAvailability = ({
               marginTop: index == 0 ? "12px" : "24px",
             }}
           >
-            <Typography className={styles.scheduleTitle}>{key}</Typography>
+            <Typography className={styles.scheduleTitle} tabindex={"0"}>
+              {key}
+            </Typography>
             {renderTimeSchedule(value, index)}
           </Box>
         );
@@ -138,8 +141,10 @@ export const DayAvailability = ({
               marginTop: index == 0 ? "12px" : "24px",
             }}
           >
-            <Typography className={styles.scheduleTitle}>{key}</Typography>
-            <Typography className={styles.noSchedule}>
+            <Typography className={styles.scheduleTitle} tabindex={"0"}>
+              {key}
+            </Typography>
+            <Typography className={styles.noSchedule} tabindex={"0"}>
               No availability
             </Typography>
           </Box>
@@ -174,20 +179,16 @@ export const DayAvailability = ({
   return (
     <Box>
       <Box className={styles.scheduleTimeContainer}>
-        <Typography className={styles.scheduleTimeTitle}>
+        <Typography
+          className={styles.scheduleTimeTitle}
+          tabindex={"0"}
+          aria-label={timeInWeekACLabel(rangeDate.startDate, rangeDate.endDate)}
+        >
           {timeInWeek}
         </Typography>
         <Box className={styles.iconTimeContainer}>
-          <ArrowBackIosIcon
-            className={
-              isPrevArrowDisable(dateList)
-                ? styles.iconDisableSchedule
-                : styles.iconSchedule
-            }
-            data-testid={
-              TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.previousWeekButton
-            }
-            sx={{ cursor: "pointer" }}
+          <Button
+            role={"button"}
             onClick={() => {
               if (!isPrevArrowDisable(dateList)) {
                 const date = new Date(dateList.dateRange[0]);
@@ -195,19 +196,49 @@ export const DayAvailability = ({
                 onPrevScheduleClicked("overlay", date);
               }
             }}
-          />
-          <ArrowForwardIosIcon
-            className={styles.iconSchedule}
-            data-testid={
-              TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.nextWeekButton
-            }
-            sx={{ marginLeft: "10px", cursor: "pointer" }}
+            sx={{
+              width: "25px",
+              minWidth: "25px",
+              padding: 0,
+              color: "#003b4a",
+            }}
+            aria-label={"Navigate to previous week option"}
+          >
+            <ArrowBackIosIcon
+              className={
+                isPrevArrowDisable(dateList)
+                  ? styles.iconDisableSchedule
+                  : styles.iconSchedule
+              }
+              data-testid={
+                TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.previousWeekButton
+              }
+              sx={{ cursor: "pointer" }}
+            />
+          </Button>
+          <Button
+            role={"button"}
             onClick={() => {
               const date = new Date(dateList.dateRange[5]);
               date.setDate(date.getDate() + 7);
               onNextScheduleClicked("overlay", date);
             }}
-          />
+            sx={{
+              width: "25px",
+              minWidth: "25px",
+              padding: 0,
+              color: "#003b4a",
+            }}
+            aria-label={"Navigate to next week option"}
+          >
+            <ArrowForwardIosIcon
+              className={styles.iconSchedule}
+              data-testid={
+                TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.nextWeekButton
+              }
+              sx={{ marginLeft: "10px", cursor: "pointer" }}
+            />
+          </Button>
         </Box>
       </Box>
       <Divider className={styles.dividerSchedule} />

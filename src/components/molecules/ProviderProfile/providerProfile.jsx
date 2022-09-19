@@ -9,7 +9,11 @@ import { TEST_ID } from "../../../utils/constants";
 const renderSpecialistList = (providerData) => {
   return (
     <Box>
-      <Typography variant="subtitle1" className={styles.specialistTitle}>
+      <Typography
+        variant="subtitle1"
+        className={styles.specialistTitle}
+        tabIndex={0}
+      >
         Specialties and Sub-specialties:{" "}
       </Typography>
       <ul className={styles.specialistList}>
@@ -20,6 +24,7 @@ const renderSpecialistList = (providerData) => {
                 <Typography
                   variant="body2"
                   className={index === 3 ? styles.newColumn : ""}
+                  tabIndex={0}
                 >
                   {item}
                 </Typography>
@@ -99,7 +104,9 @@ export default function ProviderProfile({
             width={100}
             height={100}
             className={styles.profilePhoto}
+            tabindex={"0"}
             alt="Doctor Image"
+            tabIndex={0}
           ></Image>
         </Box>
         <Box
@@ -123,21 +130,27 @@ export default function ProviderProfile({
                 ? styles.doctorNameAppointment
                 : ""
             }
+            tabindex={"0"}
           >
             {providerData.name}
           </Typography>
           {showPosition && (
-            <Typography variant="h3">Scripps Eyecare</Typography>
+            <Typography variant="h3" tabIndex={0}>
+              Scripps Eyecare
+            </Typography>
           )}
           <Box className={styles.detailContainer}>
             <Box>
-              <Typography
-                variant="body2"
-                className={styles.address}
-                fontSize={isViewSchedule ? "14px" : "16px"}
-              >
-                {getAddress(providerData.address)}
-              </Typography>
+              <Box aria-label="Doctor Address">
+                <Typography
+                  variant="body2"
+                  className={styles.address}
+                  fontSize={isViewSchedule ? "14px" : "16px"}
+                  tabindex={"0"}
+                >
+                  {getAddress(providerData.address)}
+                </Typography>
+              </Box>
               {isShownPhoneAndRating && (
                 <Box
                   className={
@@ -148,11 +161,18 @@ export default function ProviderProfile({
                     <StyledRating value={parseInt(providerData.rating)} />
                   )}
                   {!phoneLink ? (
-                    <Typography variant="body2" className={styles.phone}>
+                    <Typography
+                      variant="body2"
+                      className={styles.phone}
+                      tabindex={"0"}
+                      aria-label={`phone number ${formatPhoneNumber(
+                        phoneNumber
+                      )}`}
+                    >
                       {formatPhoneNumber(phoneNumber)}
                     </Typography>
                   ) : (
-                    <Link className={styles.phoneLink}>
+                    <Link className={styles.phoneLink} tabindex={"0"}>
                       {formatPhoneNumber(phoneNumber)}
                     </Link>
                   )}
