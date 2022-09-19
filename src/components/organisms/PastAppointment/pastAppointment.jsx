@@ -43,7 +43,9 @@ export function PastAppointmentCard({ data, threshold }) {
             paddingLeft: "16px",
           }}
         >
-          <Typography variant="h4">{year}</Typography>
+          <Typography tabIndex={0} ariaLabel={year} variant="h4">
+            {year}
+          </Typography>
         </Box>
         <Box
           sx={{
@@ -54,6 +56,7 @@ export function PastAppointmentCard({ data, threshold }) {
           }}
         >
           <Button
+            aria-expanded="true"
             onClick={() => (threshold == 1 ? handleClickAlt() : handleClick())}
           >
             <ExpandMoreIcon />
@@ -67,19 +70,40 @@ export function PastAppointmentCard({ data, threshold }) {
       >
         <Box className={styles.pastAppointmentDetail}>
           <Box className={styles.dateContainer}>
-            <Typography variant="subtitle1" className={styles.date}>
+            <Typography
+              tabIndex={0}
+              ariaLabel={fullDate}
+              variant="subtitle1"
+              className={styles.date}
+            >
               {fullDate}
             </Typography>
             <Box className={styles.subTitleWrapper}>
-              <Typography variant="subtitle1">Visit Purpose: </Typography>
-              <Typography variant="body2">
+              <Typography
+                tabIndex={0}
+                ariaLabel={"Visit Purpose:"}
+                variant="subtitle1"
+              >
+                Visit Purpose:{" "}
+              </Typography>
+              <Typography
+                tabIndex={0}
+                ariaLabel={data.appointmentInfo.appointmentType}
+                variant="body2"
+              >
                 {data.appointmentInfo.appointmentType}
               </Typography>
             </Box>
           </Box>
           <AppointmentInformation data={data}></AppointmentInformation>
           <Box className={styles.viewDetails}>
-            <Link className={styles.link}>View appointment details</Link>
+            <Link
+              tabIndex={0}
+              ariaLabel={"View appointment details"}
+              className={styles.link}
+            >
+              View appointment details
+            </Link>
           </Box>
         </Box>
         <Box
@@ -95,7 +119,13 @@ export default function PastAppointment({ data }) {
   const isData =
     data.length == 0 ? (
       <Box className={styles.subTitleWrapper}>
-        <Typography variant="body2">You Have no Past Appointment</Typography>
+        <Typography
+          tabIndex={0}
+          ariaLabel={"You Have no Past Appointment"}
+          variant="body2"
+        >
+          You Have no Past Appointment
+        </Typography>
       </Box>
     ) : (
       data
@@ -110,7 +140,12 @@ export default function PastAppointment({ data }) {
     );
   return (
     <Box className={styles.pastAppointment}>
-      <Typography variant="h2" className={styles.title}>
+      <Typography
+        tabIndex={0}
+        ariaLabel={"Past Appointments"}
+        variant="h2"
+        className={styles.title}
+      >
         Past Appointments
       </Typography>
       {isData}

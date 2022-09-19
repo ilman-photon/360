@@ -60,7 +60,6 @@ Object {
             >
               <div
                 aria-label="Appointments heading"
-                aria-live="polite"
                 class="title"
                 style="text-align: left; width: auto; display: flex;"
                 tabindex="0"
@@ -74,6 +73,8 @@ Object {
               <h2
                 class="MuiTypography-root MuiTypography-h2 title css-13trq03-MuiTypography-root"
                 data-testid="appointments_upcoming_appointments_header"
+                label="Upcoming appointments heading"
+                tabindex="0"
               >
                 Upcoming Appointments
               </h2>
@@ -84,7 +85,9 @@ Object {
                   class="upcomingAppointmentDetail MuiBox-root css-0"
                 >
                   <h3
+                    arialabel="Eye Exam"
                     class="MuiTypography-root MuiTypography-h3 appointmentTitle css-14r3n6q-MuiTypography-root"
+                    tabindex="0"
                   >
                     Eye Exam
                   </h3>
@@ -92,7 +95,9 @@ Object {
                     class="dateContainer MuiBox-root css-0"
                   >
                     <h6
+                      arialabel="Thursday, Jan 12 - 4:30AM EST"
                       class="MuiTypography-root MuiTypography-subtitle1 date css-8t55lz-MuiTypography-root"
+                      tabindex="0"
                     >
                       Thursday, Jan 12 - 4:30AM EST
                     </h6>
@@ -100,12 +105,17 @@ Object {
                       class="subTitleWrapper MuiBox-root css-0"
                     >
                       <h6
+                        arialabel="Visit Purpose"
                         class="MuiTypography-root MuiTypography-subtitle1 css-8t55lz-MuiTypography-root"
+                        tabindex="0"
                       >
-                        Visit Purpose: 
+                        Visit Purpose:
+                         
                       </h6>
                       <p
+                        arialabel="Eye Exam"
                         class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        tabindex="0"
                       >
                         Eye Exam
                       </p>
@@ -151,11 +161,13 @@ Object {
                       >
                         <img
                           alt="Doctor Image"
+                          aria-label="Doctor Image"
                           class="profilePhoto"
                           data-nimg="fill"
                           decoding="async"
                           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                           style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                          tabindex="0"
                         />
                         <noscript />
                       </span>
@@ -164,7 +176,9 @@ Object {
                       class="nameContainer MuiBox-root css-0"
                     >
                       <h6
+                        arialabel="Paul Wagner Md"
                         class="MuiTypography-root MuiTypography-subtitle1 doctorName css-8t55lz-MuiTypography-root"
+                        tabindex="0"
                       >
                         Paul Wagner Md
                       </h6>
@@ -172,12 +186,17 @@ Object {
                         class="subTitleWrapper MuiBox-root css-0"
                       >
                         <h6
+                          arialabel="Patient"
                           class="MuiTypography-root MuiTypography-subtitle1 css-8t55lz-MuiTypography-root"
+                          tabindex="0"
                         >
-                          Patient: 
+                          Patient:
+                           
                         </h6>
                         <p
+                          arialabel="Rebecca Chan"
                           class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                          tabindex="0"
                         >
                           Rebecca Chan
                         </p>
@@ -190,17 +209,22 @@ Object {
                         class="locationWrapper MuiBox-root css-0"
                       >
                         <h6
+                          arialabel="Location"
                           class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-57coag-MuiTypography-root"
+                          tabindex="0"
                         >
                           Location
                         </h6>
                         <p
+                          arialabel="Scripps Eyecare"
                           class="MuiTypography-root MuiTypography-body1 bodyTitle css-6h2hyl-MuiTypography-root"
+                          tabindex="0"
                         >
                           Scripps Eyecare
                         </p>
                         <p
                           class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                          tabindex="0"
                         >
                           51 West 51st Street
                           <br />
@@ -215,7 +239,9 @@ Object {
                           54231
                         </p>
                         <a
+                          arialabel="(857) 299-9989"
                           class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                          tabindex="0"
                         >
                           (857) 299-9989
                         </a>
@@ -246,17 +272,23 @@ Object {
                         class="insuranceWrapper MuiBox-root css-0"
                       >
                         <h6
+                          arialabel="Insurance"
                           class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-57coag-MuiTypography-root"
+                          tabindex="0"
                         >
                           Insurance
                         </h6>
                         <p
+                          arialabel="ECP Vision"
                           class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                          tabindex="0"
                         >
                           ECP Vision
                         </p>
                         <p
+                          arialabel="BlueCare Vision"
                           class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                          tabindex="0"
                         >
                           BlueCare Vision
                         </p>
@@ -330,7 +362,9 @@ Object {
               class="pastAppointment MuiBox-root css-0"
             >
               <h2
+                arialabel="Past Appointments"
                 class="MuiTypography-root MuiTypography-h2 title css-13trq03-MuiTypography-root"
+                tabindex="0"
               >
                 Past Appointments
               </h2>
@@ -1036,7 +1070,6 @@ Object {
           >
             <div
               aria-label="Appointments heading"
-              aria-live="polite"
               class="title"
               style="text-align: left; width: auto; display: flex;"
               tabindex="0"
@@ -1050,6 +1083,8 @@ Object {
             <h2
               class="MuiTypography-root MuiTypography-h2 title css-13trq03-MuiTypography-root"
               data-testid="appointments_upcoming_appointments_header"
+              label="Upcoming appointments heading"
+              tabindex="0"
             >
               Upcoming Appointments
             </h2>
@@ -1060,7 +1095,9 @@ Object {
                 class="upcomingAppointmentDetail MuiBox-root css-0"
               >
                 <h3
+                  arialabel="Eye Exam"
                   class="MuiTypography-root MuiTypography-h3 appointmentTitle css-14r3n6q-MuiTypography-root"
+                  tabindex="0"
                 >
                   Eye Exam
                 </h3>
@@ -1068,7 +1105,9 @@ Object {
                   class="dateContainer MuiBox-root css-0"
                 >
                   <h6
+                    arialabel="Thursday, Jan 12 - 4:30AM EST"
                     class="MuiTypography-root MuiTypography-subtitle1 date css-8t55lz-MuiTypography-root"
+                    tabindex="0"
                   >
                     Thursday, Jan 12 - 4:30AM EST
                   </h6>
@@ -1076,12 +1115,17 @@ Object {
                     class="subTitleWrapper MuiBox-root css-0"
                   >
                     <h6
+                      arialabel="Visit Purpose"
                       class="MuiTypography-root MuiTypography-subtitle1 css-8t55lz-MuiTypography-root"
+                      tabindex="0"
                     >
-                      Visit Purpose: 
+                      Visit Purpose:
+                       
                     </h6>
                     <p
+                      arialabel="Eye Exam"
                       class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                      tabindex="0"
                     >
                       Eye Exam
                     </p>
@@ -1127,11 +1171,13 @@ Object {
                     >
                       <img
                         alt="Doctor Image"
+                        aria-label="Doctor Image"
                         class="profilePhoto"
                         data-nimg="fill"
                         decoding="async"
                         src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                         style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                        tabindex="0"
                       />
                       <noscript />
                     </span>
@@ -1140,7 +1186,9 @@ Object {
                     class="nameContainer MuiBox-root css-0"
                   >
                     <h6
+                      arialabel="Paul Wagner Md"
                       class="MuiTypography-root MuiTypography-subtitle1 doctorName css-8t55lz-MuiTypography-root"
+                      tabindex="0"
                     >
                       Paul Wagner Md
                     </h6>
@@ -1148,12 +1196,17 @@ Object {
                       class="subTitleWrapper MuiBox-root css-0"
                     >
                       <h6
+                        arialabel="Patient"
                         class="MuiTypography-root MuiTypography-subtitle1 css-8t55lz-MuiTypography-root"
+                        tabindex="0"
                       >
-                        Patient: 
+                        Patient:
+                         
                       </h6>
                       <p
+                        arialabel="Rebecca Chan"
                         class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        tabindex="0"
                       >
                         Rebecca Chan
                       </p>
@@ -1166,17 +1219,22 @@ Object {
                       class="locationWrapper MuiBox-root css-0"
                     >
                       <h6
+                        arialabel="Location"
                         class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-57coag-MuiTypography-root"
+                        tabindex="0"
                       >
                         Location
                       </h6>
                       <p
+                        arialabel="Scripps Eyecare"
                         class="MuiTypography-root MuiTypography-body1 bodyTitle css-6h2hyl-MuiTypography-root"
+                        tabindex="0"
                       >
                         Scripps Eyecare
                       </p>
                       <p
                         class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        tabindex="0"
                       >
                         51 West 51st Street
                         <br />
@@ -1191,7 +1249,9 @@ Object {
                         54231
                       </p>
                       <a
+                        arialabel="(857) 299-9989"
                         class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                        tabindex="0"
                       >
                         (857) 299-9989
                       </a>
@@ -1222,17 +1282,23 @@ Object {
                       class="insuranceWrapper MuiBox-root css-0"
                     >
                       <h6
+                        arialabel="Insurance"
                         class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-57coag-MuiTypography-root"
+                        tabindex="0"
                       >
                         Insurance
                       </h6>
                       <p
+                        arialabel="ECP Vision"
                         class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        tabindex="0"
                       >
                         ECP Vision
                       </p>
                       <p
+                        arialabel="BlueCare Vision"
                         class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        tabindex="0"
                       >
                         BlueCare Vision
                       </p>
@@ -1306,7 +1372,9 @@ Object {
             class="pastAppointment MuiBox-root css-0"
           >
             <h2
+              arialabel="Past Appointments"
               class="MuiTypography-root MuiTypography-h2 title css-13trq03-MuiTypography-root"
+              tabindex="0"
             >
               Past Appointments
             </h2>
@@ -1429,7 +1497,6 @@ Object {
             >
               <div
                 aria-label="Appointments heading"
-                aria-live="polite"
                 class="title"
                 style="text-align: left; width: auto; display: flex;"
                 tabindex="0"
@@ -1443,6 +1510,8 @@ Object {
               <h2
                 class="MuiTypography-root MuiTypography-h2 title css-13trq03-MuiTypography-root"
                 data-testid="appointments_upcoming_appointments_header"
+                label="Upcoming appointments heading"
+                tabindex="0"
               >
                 Upcoming Appointments
               </h2>
@@ -1453,7 +1522,9 @@ Object {
                   class="upcomingAppointmentDetail MuiBox-root css-0"
                 >
                   <h3
+                    arialabel="Eye Exam"
                     class="MuiTypography-root MuiTypography-h3 appointmentTitle css-14r3n6q-MuiTypography-root"
+                    tabindex="0"
                   >
                     Eye Exam
                   </h3>
@@ -1461,7 +1532,9 @@ Object {
                     class="dateContainer MuiBox-root css-0"
                   >
                     <h6
+                      arialabel="Thursday, Jan 12 - 4:30AM EST"
                       class="MuiTypography-root MuiTypography-subtitle1 date css-8t55lz-MuiTypography-root"
+                      tabindex="0"
                     >
                       Thursday, Jan 12 - 4:30AM EST
                     </h6>
@@ -1469,12 +1542,17 @@ Object {
                       class="subTitleWrapper MuiBox-root css-0"
                     >
                       <h6
+                        arialabel="Visit Purpose"
                         class="MuiTypography-root MuiTypography-subtitle1 css-8t55lz-MuiTypography-root"
+                        tabindex="0"
                       >
-                        Visit Purpose: 
+                        Visit Purpose:
+                         
                       </h6>
                       <p
+                        arialabel="Eye Exam"
                         class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        tabindex="0"
                       >
                         Eye Exam
                       </p>
@@ -1520,11 +1598,13 @@ Object {
                       >
                         <img
                           alt="Doctor Image"
+                          aria-label="Doctor Image"
                           class="profilePhoto"
                           data-nimg="fill"
                           decoding="async"
                           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                           style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                          tabindex="0"
                         />
                         <noscript />
                       </span>
@@ -1533,7 +1613,9 @@ Object {
                       class="nameContainer MuiBox-root css-0"
                     >
                       <h6
+                        arialabel="Paul Wagner Md"
                         class="MuiTypography-root MuiTypography-subtitle1 doctorName css-8t55lz-MuiTypography-root"
+                        tabindex="0"
                       >
                         Paul Wagner Md
                       </h6>
@@ -1541,12 +1623,17 @@ Object {
                         class="subTitleWrapper MuiBox-root css-0"
                       >
                         <h6
+                          arialabel="Patient"
                           class="MuiTypography-root MuiTypography-subtitle1 css-8t55lz-MuiTypography-root"
+                          tabindex="0"
                         >
-                          Patient: 
+                          Patient:
+                           
                         </h6>
                         <p
+                          arialabel="Rebecca Chan"
                           class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                          tabindex="0"
                         >
                           Rebecca Chan
                         </p>
@@ -1559,17 +1646,22 @@ Object {
                         class="locationWrapper MuiBox-root css-0"
                       >
                         <h6
+                          arialabel="Location"
                           class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-57coag-MuiTypography-root"
+                          tabindex="0"
                         >
                           Location
                         </h6>
                         <p
+                          arialabel="Scripps Eyecare"
                           class="MuiTypography-root MuiTypography-body1 bodyTitle css-6h2hyl-MuiTypography-root"
+                          tabindex="0"
                         >
                           Scripps Eyecare
                         </p>
                         <p
                           class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                          tabindex="0"
                         >
                           51 West 51st Street
                           <br />
@@ -1584,7 +1676,9 @@ Object {
                           54231
                         </p>
                         <a
+                          arialabel="(857) 299-9989"
                           class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                          tabindex="0"
                         >
                           (857) 299-9989
                         </a>
@@ -1615,17 +1709,23 @@ Object {
                         class="insuranceWrapper MuiBox-root css-0"
                       >
                         <h6
+                          arialabel="Insurance"
                           class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-57coag-MuiTypography-root"
+                          tabindex="0"
                         >
                           Insurance
                         </h6>
                         <p
+                          arialabel="ECP Vision"
                           class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                          tabindex="0"
                         >
                           ECP Vision
                         </p>
                         <p
+                          arialabel="BlueCare Vision"
                           class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                          tabindex="0"
                         >
                           BlueCare Vision
                         </p>
@@ -1699,7 +1799,9 @@ Object {
               class="pastAppointment MuiBox-root css-0"
             >
               <h2
+                arialabel="Past Appointments"
                 class="MuiTypography-root MuiTypography-h2 title css-13trq03-MuiTypography-root"
+                tabindex="0"
               >
                 Past Appointments
               </h2>
@@ -2405,7 +2507,6 @@ Object {
           >
             <div
               aria-label="Appointments heading"
-              aria-live="polite"
               class="title"
               style="text-align: left; width: auto; display: flex;"
               tabindex="0"
@@ -2419,6 +2520,8 @@ Object {
             <h2
               class="MuiTypography-root MuiTypography-h2 title css-13trq03-MuiTypography-root"
               data-testid="appointments_upcoming_appointments_header"
+              label="Upcoming appointments heading"
+              tabindex="0"
             >
               Upcoming Appointments
             </h2>
@@ -2429,7 +2532,9 @@ Object {
                 class="upcomingAppointmentDetail MuiBox-root css-0"
               >
                 <h3
+                  arialabel="Eye Exam"
                   class="MuiTypography-root MuiTypography-h3 appointmentTitle css-14r3n6q-MuiTypography-root"
+                  tabindex="0"
                 >
                   Eye Exam
                 </h3>
@@ -2437,7 +2542,9 @@ Object {
                   class="dateContainer MuiBox-root css-0"
                 >
                   <h6
+                    arialabel="Thursday, Jan 12 - 4:30AM EST"
                     class="MuiTypography-root MuiTypography-subtitle1 date css-8t55lz-MuiTypography-root"
+                    tabindex="0"
                   >
                     Thursday, Jan 12 - 4:30AM EST
                   </h6>
@@ -2445,12 +2552,17 @@ Object {
                     class="subTitleWrapper MuiBox-root css-0"
                   >
                     <h6
+                      arialabel="Visit Purpose"
                       class="MuiTypography-root MuiTypography-subtitle1 css-8t55lz-MuiTypography-root"
+                      tabindex="0"
                     >
-                      Visit Purpose: 
+                      Visit Purpose:
+                       
                     </h6>
                     <p
+                      arialabel="Eye Exam"
                       class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                      tabindex="0"
                     >
                       Eye Exam
                     </p>
@@ -2496,11 +2608,13 @@ Object {
                     >
                       <img
                         alt="Doctor Image"
+                        aria-label="Doctor Image"
                         class="profilePhoto"
                         data-nimg="fill"
                         decoding="async"
                         src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                         style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                        tabindex="0"
                       />
                       <noscript />
                     </span>
@@ -2509,7 +2623,9 @@ Object {
                     class="nameContainer MuiBox-root css-0"
                   >
                     <h6
+                      arialabel="Paul Wagner Md"
                       class="MuiTypography-root MuiTypography-subtitle1 doctorName css-8t55lz-MuiTypography-root"
+                      tabindex="0"
                     >
                       Paul Wagner Md
                     </h6>
@@ -2517,12 +2633,17 @@ Object {
                       class="subTitleWrapper MuiBox-root css-0"
                     >
                       <h6
+                        arialabel="Patient"
                         class="MuiTypography-root MuiTypography-subtitle1 css-8t55lz-MuiTypography-root"
+                        tabindex="0"
                       >
-                        Patient: 
+                        Patient:
+                         
                       </h6>
                       <p
+                        arialabel="Rebecca Chan"
                         class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        tabindex="0"
                       >
                         Rebecca Chan
                       </p>
@@ -2535,17 +2656,22 @@ Object {
                       class="locationWrapper MuiBox-root css-0"
                     >
                       <h6
+                        arialabel="Location"
                         class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-57coag-MuiTypography-root"
+                        tabindex="0"
                       >
                         Location
                       </h6>
                       <p
+                        arialabel="Scripps Eyecare"
                         class="MuiTypography-root MuiTypography-body1 bodyTitle css-6h2hyl-MuiTypography-root"
+                        tabindex="0"
                       >
                         Scripps Eyecare
                       </p>
                       <p
                         class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        tabindex="0"
                       >
                         51 West 51st Street
                         <br />
@@ -2560,7 +2686,9 @@ Object {
                         54231
                       </p>
                       <a
+                        arialabel="(857) 299-9989"
                         class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                        tabindex="0"
                       >
                         (857) 299-9989
                       </a>
@@ -2591,17 +2719,23 @@ Object {
                       class="insuranceWrapper MuiBox-root css-0"
                     >
                       <h6
+                        arialabel="Insurance"
                         class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-57coag-MuiTypography-root"
+                        tabindex="0"
                       >
                         Insurance
                       </h6>
                       <p
+                        arialabel="ECP Vision"
                         class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        tabindex="0"
                       >
                         ECP Vision
                       </p>
                       <p
+                        arialabel="BlueCare Vision"
                         class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        tabindex="0"
                       >
                         BlueCare Vision
                       </p>
@@ -2675,7 +2809,9 @@ Object {
             class="pastAppointment MuiBox-root css-0"
           >
             <h2
+              arialabel="Past Appointments"
               class="MuiTypography-root MuiTypography-h2 title css-13trq03-MuiTypography-root"
+              tabindex="0"
             >
               Past Appointments
             </h2>
