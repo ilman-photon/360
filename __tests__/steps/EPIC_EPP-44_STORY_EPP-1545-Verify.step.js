@@ -208,7 +208,7 @@ test('EPIC_EPP-44_STORY_EPP-1545- Verify whether the error message No results fo
     });
 
     and('enter the incorrect Zipcode', () => {
-        const locationField = container.getByLabelText(/City, state/i);
+        const locationField = container.getAllByLabelText(/City, state/i)[0];
         act(()=>{
             fireEvent.change(locationField, { target: { value: "999999" } });
         })
@@ -262,7 +262,7 @@ test('EPIC_EPP-44_STORY_EPP-1545- Verify whether the error message No results fo
         });
 
         and('enter the incorrect State name', () => {
-            const locationField = container.getByLabelText(/City, state/i);
+            const locationField = container.getAllByLabelText(/City, state/i)[0];
             act(()=>{
                 fireEvent.change(locationField, { target: { value: "Texas" } });
             })

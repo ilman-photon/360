@@ -165,17 +165,12 @@
 
 .dateListContainer {
   .prevArrowActive {
-    grid-area: arrowLeft;
-    margin: auto;
-    width: 22px;
-    cursor: pointer;
+    color: rgba(0, 0, 0, 0.54);
     opacity: 1;
   }
   .prevArrowDisable {
-    grid-area: arrowLeft;
-    margin: auto;
-    width: 22px;
-    opacity: 0.3;
     cursor: not-allowed;
+    color: rgba(0, 0, 0, 0.54);
+    opacity: 0.5;
   }
 }
