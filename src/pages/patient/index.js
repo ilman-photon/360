@@ -133,7 +133,7 @@ export default function HomePage() {
   }
 
   function onViewPrescriptions() {
-    //TO DO: will navigate to prescription view page
+    router.push("/patient/prescription");
   }
 
   useEffect(() => {
