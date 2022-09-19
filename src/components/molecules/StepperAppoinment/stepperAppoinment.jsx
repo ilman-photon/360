@@ -63,6 +63,8 @@ export default function StepperAppoinment({ ...props }) {
                     color: "#000000",
                   },
               }}
+              tabindex={"0"}
+              aria-label={`Stepper ${idx + 1}. ${label} `}
             >
               {isDesktop ? label : idx === props.activeStep ? label : null}
             </StepLabel>

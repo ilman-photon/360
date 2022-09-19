@@ -31,8 +31,10 @@ exports[`App renders App unchanged 1`] = `
               aria-label="Clarkson Eyecare logo"
               data-nimg="intrinsic"
               decoding="async"
+              role="img"
               src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
               style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+              tabindex="0"
             />
             <noscript />
           </span>
@@ -94,6 +96,7 @@ exports[`App renders App unchanged 1`] = `
                 <div
                   class="MuiFormControl-root MuiTextField-root custom-input css-1sau494-MuiFormControl-root-MuiTextField-root"
                   data-testid="firstname"
+                  tabindex="0"
                   withicon="true"
                 >
                   <label
@@ -120,6 +123,7 @@ exports[`App renders App unchanged 1`] = `
                 <div
                   class="MuiFormControl-root MuiTextField-root custom-input css-1sau494-MuiFormControl-root-MuiTextField-root"
                   data-testid="lastname"
+                  tabindex="0"
                   withicon="true"
                 >
                   <label
@@ -172,6 +176,7 @@ exports[`App renders App unchanged 1`] = `
                 <div
                   class="MuiFormControl-root MuiTextField-root custom-input css-1sau494-MuiFormControl-root-MuiTextField-root"
                   data-testid="email"
+                  tabindex="0"
                   withicon="true"
                 >
                   <label
@@ -201,6 +206,7 @@ exports[`App renders App unchanged 1`] = `
                   <div
                     class="MuiFormControl-root MuiTextField-root custom-input css-ob7mu-MuiFormControl-root-MuiTextField-root"
                     data-testid="mobilenumber"
+                    tabindex="0"
                     withicon="true"
                   >
                     <label
@@ -426,9 +432,10 @@ exports[`App renders App unchanged 1`] = `
                     value="both"
                   >
                     <label
-                      aria-label="Email, Phone, Both - radio buttons"
+                      aria-label="Preferred mode of Communication"
                       class="MuiFormLabel-root MuiFormLabel-colorPrimary css-142xk3x-MuiFormLabel-root"
                       id="row-radio-buttons-group-label"
+                      tabindex="0"
                     >
                       Preferred mode of Communication
                     </label>

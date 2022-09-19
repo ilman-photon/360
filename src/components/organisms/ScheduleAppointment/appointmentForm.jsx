@@ -164,6 +164,7 @@ export default function AppointmentForm({
               ? { fontSize: "32px", fontFamily: "Bw Nista Geometric DEMO" }
               : { fontSize: "26px", fontFamily: "Bw Nista Geometric DEMO" }
           }
+          tabindex={0}
           aria-label={
             isForMyself
               ? `${t("selfTitle")} title`

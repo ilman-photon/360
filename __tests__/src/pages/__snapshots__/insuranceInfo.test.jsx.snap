@@ -34,8 +34,10 @@ Object {
                   aria-label="Clarkson Eyecare logo"
                   data-nimg="intrinsic"
                   decoding="async"
+                  role="img"
                   src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                   style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                  tabindex="0"
                 />
                 <noscript />
               </span>
@@ -49,6 +51,7 @@ Object {
             aria-label="Your Account heading"
             aria-live="polite"
             class="title"
+            tabindex="0"
           >
             Your Account
           </div>
@@ -162,6 +165,7 @@ Object {
                 <div
                   aria-live="polite"
                   data-testid="submission-message"
+                  role="alert"
                   style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
                 >
                   <div
@@ -208,6 +212,7 @@ Object {
                                 >
                                   <div
                                     class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-i9ipmb-MuiFormControl-root-MuiTextField-root"
+                                    tabindex="0"
                                     withicon="true"
                                   >
                                     <label
@@ -286,6 +291,7 @@ Object {
                                 >
                                   <div
                                     class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-i9ipmb-MuiFormControl-root-MuiTextField-root"
+                                    tabindex="0"
                                     withicon="true"
                                   >
                                     <label
@@ -367,6 +373,7 @@ Object {
                                 <div
                                   class="MuiFormControl-root MuiTextField-root custom-input css-1lcjq3w-MuiFormControl-root-MuiTextField-root"
                                   data-testid="loc_inputSubsId"
+                                  tabindex="0"
                                   withicon="true"
                                 >
                                   <label
@@ -397,6 +404,7 @@ Object {
                                 <div
                                   class="MuiFormControl-root MuiTextField-root custom-input css-1lcjq3w-MuiFormControl-root-MuiTextField-root"
                                   data-testid="loc_inputGroup"
+                                  tabindex="0"
                                   withicon="true"
                                 >
                                   <label
@@ -443,9 +451,10 @@ Object {
                               value="Yes"
                             >
                               <label
-                                aria-label="Yes, No - radio buttons"
+                                aria-label="Are you the Subscriber?"
                                 class="MuiFormLabel-root MuiFormLabel-colorPrimary css-142xk3x-MuiFormLabel-root"
                                 id="row-radio-buttons-group-label"
+                                tabindex="0"
                               >
                                 Are you the Subscriber?
                                 <svg
@@ -602,6 +611,7 @@ Object {
                                             class="MuiFormControl-root MuiTextField-root custom-input css-1lcjq3w-MuiFormControl-root-MuiTextField-root"
                                             maxlength="50"
                                             minlength="2"
+                                            tabindex="0"
                                             withicon="true"
                                           >
                                             <label
@@ -631,6 +641,7 @@ Object {
                                         >
                                           <div
                                             class="MuiFormControl-root MuiTextField-root custom-input css-1lcjq3w-MuiFormControl-root-MuiTextField-root"
+                                            tabindex="0"
                                             withicon="true"
                                           >
                                             <label
@@ -709,9 +720,11 @@ Object {
                                             style="width: 100%;"
                                           >
                                             <label
+                                              aria-label=""
                                               class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-14mrll6-MuiFormLabel-root-MuiInputLabel-root"
                                               data-shrink="false"
                                               id="demo-simple-select-label"
+                                              tabindex="0"
                                             >
                                               Relationship
                                             </label>
@@ -810,6 +823,7 @@ Object {
                                           <div
                                             aria-live="polite"
                                             data-testid="submission-message"
+                                            role="alert"
                                             style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
                                           >
                                             <div
@@ -899,6 +913,7 @@ Object {
                                           <div
                                             aria-live="polite"
                                             data-testid="submission-message"
+                                            role="alert"
                                             style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
                                           >
                                             <div
@@ -966,9 +981,10 @@ Object {
                               value="Primary"
                             >
                               <label
-                                aria-label="Primary, Secondary, Tertiary - radio buttons"
+                                aria-label="Insurance Priority"
                                 class="MuiFormLabel-root MuiFormLabel-colorPrimary css-142xk3x-MuiFormLabel-root"
                                 id="row-radio-buttons-group-label"
+                                tabindex="0"
                               >
                                 Insurance Priority
                                 <svg
@@ -1218,8 +1234,10 @@ Object {
                 aria-label="Clarkson Eyecare logo"
                 data-nimg="intrinsic"
                 decoding="async"
+                role="img"
                 src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                 style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                tabindex="0"
               />
               <noscript />
             </span>
@@ -1233,6 +1251,7 @@ Object {
           aria-label="Your Account heading"
           aria-live="polite"
           class="title"
+          tabindex="0"
         >
           Your Account
         </div>
@@ -1346,6 +1365,7 @@ Object {
               <div
                 aria-live="polite"
                 data-testid="submission-message"
+                role="alert"
                 style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
               >
                 <div
@@ -1392,6 +1412,7 @@ Object {
                               >
                                 <div
                                   class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-i9ipmb-MuiFormControl-root-MuiTextField-root"
+                                  tabindex="0"
                                   withicon="true"
                                 >
                                   <label
@@ -1470,6 +1491,7 @@ Object {
                               >
                                 <div
                                   class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-i9ipmb-MuiFormControl-root-MuiTextField-root"
+                                  tabindex="0"
                                   withicon="true"
                                 >
                                   <label
@@ -1551,6 +1573,7 @@ Object {
                               <div
                                 class="MuiFormControl-root MuiTextField-root custom-input css-1lcjq3w-MuiFormControl-root-MuiTextField-root"
                                 data-testid="loc_inputSubsId"
+                                tabindex="0"
                                 withicon="true"
                               >
                                 <label
@@ -1581,6 +1604,7 @@ Object {
                               <div
                                 class="MuiFormControl-root MuiTextField-root custom-input css-1lcjq3w-MuiFormControl-root-MuiTextField-root"
                                 data-testid="loc_inputGroup"
+                                tabindex="0"
                                 withicon="true"
                               >
                                 <label
@@ -1627,9 +1651,10 @@ Object {
                             value="Yes"
                           >
                             <label
-                              aria-label="Yes, No - radio buttons"
+                              aria-label="Are you the Subscriber?"
                               class="MuiFormLabel-root MuiFormLabel-colorPrimary css-142xk3x-MuiFormLabel-root"
                               id="row-radio-buttons-group-label"
+                              tabindex="0"
                             >
                               Are you the Subscriber?
                               <svg
@@ -1786,6 +1811,7 @@ Object {
                                           class="MuiFormControl-root MuiTextField-root custom-input css-1lcjq3w-MuiFormControl-root-MuiTextField-root"
                                           maxlength="50"
                                           minlength="2"
+                                          tabindex="0"
                                           withicon="true"
                                         >
                                           <label
@@ -1815,6 +1841,7 @@ Object {
                                       >
                                         <div
                                           class="MuiFormControl-root MuiTextField-root custom-input css-1lcjq3w-MuiFormControl-root-MuiTextField-root"
+                                          tabindex="0"
                                           withicon="true"
                                         >
                                           <label
@@ -1893,9 +1920,11 @@ Object {
                                           style="width: 100%;"
                                         >
                                           <label
+                                            aria-label=""
                                             class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-14mrll6-MuiFormLabel-root-MuiInputLabel-root"
                                             data-shrink="false"
                                             id="demo-simple-select-label"
+                                            tabindex="0"
                                           >
                                             Relationship
                                           </label>
@@ -1994,6 +2023,7 @@ Object {
                                         <div
                                           aria-live="polite"
                                           data-testid="submission-message"
+                                          role="alert"
                                           style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
                                         >
                                           <div
@@ -2083,6 +2113,7 @@ Object {
                                         <div
                                           aria-live="polite"
                                           data-testid="submission-message"
+                                          role="alert"
                                           style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
                                         >
                                           <div
@@ -2150,9 +2181,10 @@ Object {
                             value="Primary"
                           >
                             <label
-                              aria-label="Primary, Secondary, Tertiary - radio buttons"
+                              aria-label="Insurance Priority"
                               class="MuiFormLabel-root MuiFormLabel-colorPrimary css-142xk3x-MuiFormLabel-root"
                               id="row-radio-buttons-group-label"
+                              tabindex="0"
                             >
                               Insurance Priority
                               <svg

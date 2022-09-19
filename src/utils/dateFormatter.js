@@ -88,3 +88,10 @@ export const convertTime12to24 = (time12h) => {
 
   return `${hours}:${minutes}:00`;
 };
+
+export const upcomingAppointmentDate = (data) => {
+  const date = new Date(data);
+  if (!date) return "-";
+  const momentDate = new moment(date);
+  return momentDate.tz("America/New_York").format("dddd, MMM DD - h:mmA z");
+};

@@ -264,6 +264,7 @@ export const CustomInput = styled(({ ...props }) => {
                   onClick={props.onClick}
                   error={props.error || params.error}
                   helperText={props.helperText}
+                  InputProps={props.InputProps || {}}
                 />
               )}
               inputProps={props.inputProps}
@@ -324,6 +325,7 @@ export const StyledInput = ({
         placeholder={placeholder}
         helperText={helperText}
         withicon={withIcon}
+        tabIndex={0}
         {...props}
         className={["custom-input"].join(" ")}
         adorment={adorment}

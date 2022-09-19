@@ -25,6 +25,7 @@ Object {
             <div
               class="MuiFormControl-root MuiTextField-root custom-input css-1sau494-MuiFormControl-root-MuiTextField-root"
               data-testid="firstname"
+              tabindex="0"
               withicon="true"
             >
               <label
@@ -51,6 +52,7 @@ Object {
             <div
               class="MuiFormControl-root MuiTextField-root custom-input css-1sau494-MuiFormControl-root-MuiTextField-root"
               data-testid="lastname"
+              tabindex="0"
               withicon="true"
             >
               <label
@@ -103,6 +105,7 @@ Object {
             <div
               class="MuiFormControl-root MuiTextField-root custom-input css-1sau494-MuiFormControl-root-MuiTextField-root"
               data-testid="email"
+              tabindex="0"
               withicon="true"
             >
               <label
@@ -132,6 +135,7 @@ Object {
               <div
                 class="MuiFormControl-root MuiTextField-root custom-input css-ob7mu-MuiFormControl-root-MuiTextField-root"
                 data-testid="mobilenumber"
+                tabindex="0"
                 withicon="true"
               >
                 <label
@@ -357,9 +361,10 @@ Object {
                 value="both"
               >
                 <label
-                  aria-label="Email, Phone, Both - radio buttons"
+                  aria-label="Preferred mode of Communication"
                   class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1nupjmb-MuiFormLabel-root"
                   id="row-radio-buttons-group-label"
+                  tabindex="0"
                 >
                   Preferred mode of Communication
                 </label>
@@ -582,6 +587,7 @@ Object {
           <div
             class="MuiFormControl-root MuiTextField-root custom-input css-1sau494-MuiFormControl-root-MuiTextField-root"
             data-testid="firstname"
+            tabindex="0"
             withicon="true"
           >
             <label
@@ -608,6 +614,7 @@ Object {
           <div
             class="MuiFormControl-root MuiTextField-root custom-input css-1sau494-MuiFormControl-root-MuiTextField-root"
             data-testid="lastname"
+            tabindex="0"
             withicon="true"
           >
             <label
@@ -660,6 +667,7 @@ Object {
           <div
             class="MuiFormControl-root MuiTextField-root custom-input css-1sau494-MuiFormControl-root-MuiTextField-root"
             data-testid="email"
+            tabindex="0"
             withicon="true"
           >
             <label
@@ -689,6 +697,7 @@ Object {
             <div
               class="MuiFormControl-root MuiTextField-root custom-input css-ob7mu-MuiFormControl-root-MuiTextField-root"
               data-testid="mobilenumber"
+              tabindex="0"
               withicon="true"
             >
               <label
@@ -914,9 +923,10 @@ Object {
               value="both"
             >
               <label
-                aria-label="Email, Phone, Both - radio buttons"
+                aria-label="Preferred mode of Communication"
                 class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1nupjmb-MuiFormLabel-root"
                 id="row-radio-buttons-group-label"
+                tabindex="0"
               >
                 Preferred mode of Communication
               </label>
