@@ -23,9 +23,7 @@ export default function RowRadioButtonsGroup({
     <FormControl {...props}>
       <FormLabel
         id="row-radio-buttons-group-label"
-        aria-label={`${options
-          .map((option) => option.label)
-          .join(", ")} - radio buttons`}
+        aria-label={`${props.label}`}
         sx={{
           fontSize: 16,
           fontWeight: "600",
@@ -36,6 +34,7 @@ export default function RowRadioButtonsGroup({
           alignItems: "center",
           ...textSx,
         }}
+        tabindex={0}
       >
         {props.label}
         {tooltipContent ? (

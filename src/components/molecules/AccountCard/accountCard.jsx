@@ -8,6 +8,7 @@ export const AccountCard = ({
   isEditing,
   actionContent,
   isAppoinment,
+  isDashboard,
   textStyle = {},
   ...props
 }) => {
@@ -21,7 +22,11 @@ export const AccountCard = ({
       >
         {(isDesktop || isAppoinment) && (
           <CardHeader
-            className={styles.cardHeader}
+            className={
+              isDashboard
+                ? [styles.dashboardHeader, styles.cardHeader]
+                : styles.cardHeader
+            }
             sx={{
               ".MuiCardHeader-action": {
                 margin: 0,
@@ -42,6 +47,7 @@ export const AccountCard = ({
                   className={styles.title}
                   style={textStyle}
                   aria-label={`${title} heading`}
+                  tabIndex={0}
                 >
                   {title}
                 </div>

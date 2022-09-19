@@ -37,6 +37,7 @@ export default function ScheduleAppointment({
         <Typography
           sx={isDesktop ? { fontSize: "26px" } : { fontSize: "32px" }}
           aria-label={"Who is this exam for?"}
+          tabindex={0}
         >
           {t("formTitle")}
         </Typography>
@@ -96,34 +97,30 @@ export default function ScheduleAppointment({
           />
         ) : null}
 
-        <Divider />
-        {selectedSelf === 1 ? (
-          // <Button
-          //   variant="contained"
-          //   sx={{
-          //     width: { xs: "100%", md: "222px" },
-          //     background: "#0095A9",
-          //   }}
-          //   style={styles.continueText}
-          //   onClick={() => setActiveStep(isLoggedIn ? 5 : 3)}
-          // >
-          //   {t("continue")}
-          // </Button>
-          <div style={styles.divRight}>
-            <Button
-              type="submit"
-              variant="contained"
-              sx={{
-                width: { xs: "100%", md: "222px" },
-                background: "#0095A9",
-                mt: 2,
-              }}
-              style={styles.continueButton}
-              onClick={() => setActiveStep(3)}
-            >
-              {t("continue")}
-            </Button>
-          </div>
+        {selectedSelf !== 2 ? (
+          <>
+            <Divider />
+            <div style={styles.divRight}>
+              <Button
+                type="submit"
+                variant="contained"
+                style={styles.continueButton}
+                sx={{
+                  width: { xs: "100%", md: "222px" },
+                  background: "#0095A9",
+                  mt: 2,
+                  backgroundColor: `${
+                    !selectedSelf ? "#B1B1B1 !important" : "#007E8F"
+                  }`,
+                }}
+                onClick={() => setActiveStep(3)}
+                tabindex={0}
+                disabled={!selectedSelf}
+              >
+                {t("continue")}
+              </Button>
+            </div>
+          </>
         ) : null}
       </Stack>
     </Stack>

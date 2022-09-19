@@ -36,10 +36,6 @@ export default function BaseHeader({
       testId: HOME_TEST_ID.appoinments,
       href: "/patient/appointments",
     },
-    // { page: "My Health Chart", testId: HOME_TEST_ID.myhealthchart },
-    // { page: "My Care Team", testId: HOME_TEST_ID.mycareteam },
-    // { page: "Lab Results", testId: HOME_TEST_ID.labresults },
-    // { page: "Billing", testId: HOME_TEST_ID.billing },
   ];
   const [isUserLoged, setUserLoged] = React.useState(false);
   const router = useRouter();
@@ -89,6 +85,8 @@ export default function BaseHeader({
                 style={styles.logoStyled}
                 aria-label={"Clarkson Eyecare logo"}
                 title="Your Account"
+                tabindex={0}
+                role={"img"}
               ></Image>
               {/* Menu Desktop*/}
               <Box sx={styles.boxStyled}>
@@ -195,9 +193,11 @@ export default function BaseHeader({
                 src={logo}
                 width="124px"
                 height="36px"
+                role={"img"}
                 quality={100}
                 style={styles.logoStyled}
                 aria-label={"Clarkson Eyecare logo"}
+                tabindex={0}
               ></Image>
             </Toolbar>
           )}

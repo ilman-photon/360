@@ -116,12 +116,14 @@ export const FilterResultContainer = ({
           label="List View"
           {...a11yProps(0)}
           sx={{ textTransform: "capitalize" }}
+          tabIndex={"0"}
         />
         <Tab
           value={1}
           label="Map View"
           {...a11yProps(1)}
           sx={{ textTransform: "capitalize" }}
+          tabIndex={"0"}
         />
       </Tabs>
       <Grid

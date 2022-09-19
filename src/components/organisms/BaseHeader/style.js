@@ -17,7 +17,7 @@ export const styles = {
   boxStyled: {
     flexGrow: 1,
     display: { xs: "none", md: "flex" },
-    justifyContent: "end",
+    justifyContent: "flex-end",
   },
   bottonStyledDesktop: { my: 2, color: "black", display: "block" },
   boxStyledMobile: {

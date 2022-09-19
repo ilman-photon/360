@@ -10,9 +10,11 @@ Object {
         style="width: 100%;"
       >
         <label
+          aria-label=""
           class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
           data-shrink="false"
           id="demo-simple-select-label"
+          tabindex="0"
         >
           Question
         </label>
@@ -64,9 +66,11 @@ Object {
       style="width: 100%;"
     >
       <label
+        aria-label=""
         class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
         data-shrink="false"
         id="demo-simple-select-label"
+        tabindex="0"
       >
         Question
       </label>

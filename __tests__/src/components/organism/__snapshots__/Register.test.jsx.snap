@@ -14,7 +14,7 @@ Object {
           <h1
             aria-label="User Registration"
             aria-roledescription=""
-            class="MuiTypography-root MuiTypography-h1 css-ltzsrn-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-h1 css-1b6blxf-MuiTypography-root"
             role="heading"
           >
             User Registration
@@ -25,6 +25,7 @@ Object {
             <div
               class="MuiFormControl-root MuiTextField-root custom-input css-1wu0uay-MuiFormControl-root-MuiTextField-root"
               data-testid="firstname"
+              tabindex="0"
               withicon="true"
             >
               <label
@@ -51,6 +52,7 @@ Object {
             <div
               class="MuiFormControl-root MuiTextField-root custom-input css-1wu0uay-MuiFormControl-root-MuiTextField-root"
               data-testid="lastname"
+              tabindex="0"
               withicon="true"
             >
               <label
@@ -103,6 +105,7 @@ Object {
             <div
               class="MuiFormControl-root MuiTextField-root custom-input css-1wu0uay-MuiFormControl-root-MuiTextField-root"
               data-testid="email"
+              tabindex="0"
               withicon="true"
             >
               <label
@@ -132,6 +135,7 @@ Object {
               <div
                 class="MuiFormControl-root MuiTextField-root custom-input css-1eoibh5-MuiFormControl-root-MuiTextField-root"
                 data-testid="mobilenumber"
+                tabindex="0"
                 withicon="true"
               >
                 <label
@@ -357,9 +361,10 @@ Object {
                 value="both"
               >
                 <label
-                  aria-label="Email, Phone, Both - radio buttons"
+                  aria-label="Preferred mode of Communication"
                   class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1nupjmb-MuiFormLabel-root"
                   id="row-radio-buttons-group-label"
+                  tabindex="0"
                 >
                   Preferred mode of Communication
                 </label>
@@ -536,7 +541,7 @@ Object {
           </form>
           <span
             class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
-            style="color: rgb(54, 106, 112); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
+            style="color: rgb(0, 59, 74); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
           >
             By registering, you accept to our Terms & Conditions and Privacy Policy
           </span>
@@ -546,7 +551,7 @@ Object {
           />
           <span
             class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
-            style="color: rgb(54, 106, 112); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
+            style="color: rgb(0, 59, 74); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
           >
             Already have an account?
              
@@ -571,7 +576,7 @@ Object {
         <h1
           aria-label="User Registration"
           aria-roledescription=""
-          class="MuiTypography-root MuiTypography-h1 css-ltzsrn-MuiTypography-root"
+          class="MuiTypography-root MuiTypography-h1 css-1b6blxf-MuiTypography-root"
           role="heading"
         >
           User Registration
@@ -582,6 +587,7 @@ Object {
           <div
             class="MuiFormControl-root MuiTextField-root custom-input css-1wu0uay-MuiFormControl-root-MuiTextField-root"
             data-testid="firstname"
+            tabindex="0"
             withicon="true"
           >
             <label
@@ -608,6 +614,7 @@ Object {
           <div
             class="MuiFormControl-root MuiTextField-root custom-input css-1wu0uay-MuiFormControl-root-MuiTextField-root"
             data-testid="lastname"
+            tabindex="0"
             withicon="true"
           >
             <label
@@ -660,6 +667,7 @@ Object {
           <div
             class="MuiFormControl-root MuiTextField-root custom-input css-1wu0uay-MuiFormControl-root-MuiTextField-root"
             data-testid="email"
+            tabindex="0"
             withicon="true"
           >
             <label
@@ -689,6 +697,7 @@ Object {
             <div
               class="MuiFormControl-root MuiTextField-root custom-input css-1eoibh5-MuiFormControl-root-MuiTextField-root"
               data-testid="mobilenumber"
+              tabindex="0"
               withicon="true"
             >
               <label
@@ -914,9 +923,10 @@ Object {
               value="both"
             >
               <label
-                aria-label="Email, Phone, Both - radio buttons"
+                aria-label="Preferred mode of Communication"
                 class="MuiFormLabel-root MuiFormLabel-colorPrimary css-1nupjmb-MuiFormLabel-root"
                 id="row-radio-buttons-group-label"
+                tabindex="0"
               >
                 Preferred mode of Communication
               </label>
@@ -1093,7 +1103,7 @@ Object {
         </form>
         <span
           class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
-          style="color: rgb(54, 106, 112); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
+          style="color: rgb(0, 59, 74); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
         >
           By registering, you accept to our Terms & Conditions and Privacy Policy
         </span>
@@ -1103,7 +1113,7 @@ Object {
         />
         <span
           class="MuiTypography-root MuiTypography-caption css-1sn4lm3-MuiTypography-root"
-          style="color: rgb(54, 106, 112); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
+          style="color: rgb(0, 59, 74); text-align: center; font-size: 14px; max-width: 85%; align-self: center;"
         >
           Already have an account?
            

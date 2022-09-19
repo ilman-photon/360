@@ -31,8 +31,10 @@ exports[`App renders App unchanged 1`] = `
               aria-label="Clarkson Eyecare logo"
               data-nimg="intrinsic"
               decoding="async"
+              role="img"
               src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
               style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+              tabindex="0"
             />
             <noscript />
           </span>
@@ -75,6 +77,7 @@ exports[`App renders App unchanged 1`] = `
           class="MuiBox-root css-1n325gh"
         >
           <div
+            aria-live="polite"
             class="mobileFilterContainer MuiBox-root css-1b6qwgl"
           >
             <div
@@ -116,11 +119,21 @@ exports[`App renders App unchanged 1`] = `
                 <div
                   class="mobileFilterTitleContainer MuiBox-root css-0"
                 >
-                  <span
-                    class="MuiTypography-root MuiTypography-bodyMedium mobileFilterTitle css-kwoz5u-MuiTypography-root"
+                  <button
+                    aria-label=""
+                    class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-ipncxy-MuiButtonBase-root-MuiButton-root"
+                    tabindex="0"
+                    type="button"
                   >
-                    City, state, or zip code
-                  </span>
+                    <span
+                      class="MuiTypography-root MuiTypography-bodyMedium mobileFilterTitle css-kwoz5u-MuiTypography-root"
+                    >
+                      City, state, or zip code
+                    </span>
+                    <span
+                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                    />
+                  </button>
                 </div>
                 <div
                   class="mobileFilterImageContainer MuiBox-root css-0"
@@ -140,7 +153,7 @@ exports[`App renders App unchanged 1`] = `
               class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1psqxpj-MuiPaper-root-MuiCard-root"
             >
               <div
-                class="MuiCardHeader-root cardHeader css-1ele1k2-MuiCardHeader-root"
+                class="MuiCardHeader-root dashboardHeader cardHeader css-1ele1k2-MuiCardHeader-root"
               >
                 <div
                   class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
@@ -178,6 +191,7 @@ exports[`App renders App unchanged 1`] = `
                       <div
                         aria-label="Prescriptions (3) heading"
                         class="title"
+                        tabindex="0"
                       >
                         Prescriptions (3)
                       </div>
@@ -410,7 +424,7 @@ exports[`App renders App unchanged 1`] = `
               class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card appointmentContainer css-jbta4g-MuiPaper-root-MuiCard-root"
             >
               <div
-                class="MuiCardHeader-root cardHeader css-1ele1k2-MuiCardHeader-root"
+                class="MuiCardHeader-root dashboardHeader cardHeader css-1ele1k2-MuiCardHeader-root"
               >
                 <div
                   class="MuiCardHeader-content css-1qbkelo-MuiCardHeader-content"
@@ -437,6 +451,7 @@ exports[`App renders App unchanged 1`] = `
                       <div
                         aria-label="Appointment heading"
                         class="title"
+                        tabindex="0"
                       >
                         Appointment
                       </div>
