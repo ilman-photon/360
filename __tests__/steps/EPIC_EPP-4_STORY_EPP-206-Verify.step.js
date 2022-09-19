@@ -370,7 +370,7 @@ defineFeature(feature, (test) => {
         expect(true).toBeTruthy();
       }
     );
-    and('user click the "Login" Button.', () => {
+    and("user click the 'Login' Button.", () => {
       expect(true).toBeTruthy();
     });
     then("user should view the error message 'This field is required'", () => {
@@ -452,28 +452,83 @@ defineFeature(feature, (test) => {
       }
     );
   });
-  test("EPIC_EPP-4_STORY_EPP-206-Verify whether the error message is displaying when the service is unavailable.", ({
-    given,
-    when,
-    then,
-    and,
-  }) => {});
-  test("EPIC_EPP-4_STORY_EPP-206-Verify whether any error is displaying when we press F12 after navigating to the Patient Login page.", ({
-    given,
-    when,
-    then,
-    and,
-  }) => {});
-  test("EPIC_EPP-4_STORY_EPP-206-Verify whether the page is loading with in 3 seconds", ({
-    given,
-    when,
-    then,
-    and,
-  }) => {});
   test("EPIC_EPP-4_STORY_EPP-206-Verify whether the user is able to see the Patient Login page without Internet connection", ({
     given,
     when,
-    then,
     and,
-  }) => {});
+    then,
+  }) => {
+    given("user launch the 'XXX' url", () => {});
+
+    when("user navigates to the Patient 'Login' page", () => {});
+
+    and("turn off the Data", () => {});
+
+    then("user should view appropriate error message", () => {});
+  });
+  test("EPIC_EPP-4_STORY_EPP-206-Verify whether the page is loading with in 3 seconds", ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given("user user launch the 'XXX' url", () => {});
+
+    and("user navigates to the Patient Portal application", () => {});
+
+    when("user lands onto “Patient Login” screen", () => {});
+
+    then(/^page should load in (\d+) seconds$/, (arg0) => {});
+  });
+  test("EPIC_EPP-4_STORY_EPP-206-Verify whether any error is displaying when we press F12 after navigating to the Patient Login page.", ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given("user user launch the 'XXX' url", () => {});
+
+    and("user navigates to the Patient Portal application", () => {});
+
+    when("user lands onto “Patient Login” screen", () => {});
+
+    and(/^press the F(\d+) button from the keyboard.$/, (arg0) => {});
+
+    then("none of the javascript error should be seen by the user.", () => {});
+  });
+  test("EPIC_EPP-4_STORY_EPP-206-Verify whether the error message is displaying when the service is unavailable.", ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given(/^user user launch the "(.*)" url$/, (arg0) => {});
+
+    and("user navigates to the Patient Portal application", () => {});
+
+    when("the service is unavailable", () => {});
+
+    and("user lands on “Patient Login” screen", () => {});
+
+    then(
+      /^error message '(\d+) - Server is not ready to handle the request' should get display.$/,
+      (arg0) => {}
+    );
+  });
+  test("EPIC_EPP-4_STORY_EPP-206-Verify whether the Password is getting mask when Admin typing the Password.", ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given("Admin launch the 'XXX' url", () => {});
+
+    and("Admin navigates to the Patient Portal application", () => {});
+
+    when("Admin lands onto “Patient Login” screen", () => {});
+
+    and(/^Admin provides (.*) and (.*)$/, (arg0, arg1) => {});
+
+    then("entered password should be masked.", (table) => {});
+  });
 });
