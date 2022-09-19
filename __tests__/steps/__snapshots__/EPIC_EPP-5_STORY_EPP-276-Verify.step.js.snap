@@ -63,6 +63,7 @@ Object {
               <div
                 aria-live="off"
                 data-testid="submission-message"
+                role="alert"
                 style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
               >
                 <div
@@ -237,6 +238,7 @@ Object {
               <div
                 aria-live="off"
                 data-testid="submission-message"
+                role="alert"
                 style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
               >
                 <div
@@ -411,6 +413,7 @@ Object {
               <div
                 aria-live="off"
                 data-testid="submission-message"
+                role="alert"
                 style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
               >
                 <div
