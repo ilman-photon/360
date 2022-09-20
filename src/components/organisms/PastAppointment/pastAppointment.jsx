@@ -79,7 +79,12 @@ export function PastAppointmentCard({ data, threshold }) {
           </Box>
           <AppointmentInformation data={data}></AppointmentInformation>
           <Box className={styles.viewDetails}>
-            <Link className={styles.link}>View appointment details</Link>
+            <Link
+              href={`/patient/appointments/detail-appoiments/${data.appointmentId}`}
+              className={styles.link}
+            >
+              View appointment details
+            </Link>
           </Box>
         </Box>
         <Box
