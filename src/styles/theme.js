@@ -28,6 +28,7 @@ export const colors = {
   errorField: "#f91e18",
   primaryButton: "#007e8f",
   link: "#008294",
+  iconGrey: "#757575",
 };
 
 // declare module '@mui/material/styles' {
