@@ -1,11 +1,10 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Divider, Grid, Stack, Typography } from "@mui/material";
 import ProviderProfile from "../../../molecules/ProviderProfile/providerProfile";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { StyledButton } from "../../../atoms/Button/button";
 import constants from "../../../../utils/constants";
-import { useEffect } from "react";
 
 const InfoWindowContent = ({
   data = [],
@@ -59,7 +58,11 @@ const InfoWindowContent = ({
             <Typography variant="bodySmallMedium" sx={{ color: "#757575" }}>
               {counter} of {data.length} doctors at this location
             </Typography>
-            <ProviderProfile variant={"map"} providerData={data[counter - 1]} />
+            <ProviderProfile
+              variant={"map"}
+              providerData={data[counter - 1]}
+              imageSize={"medium"}
+            />
           </Stack>
         </Grid>
         <Grid item xs={2}>
@@ -104,6 +107,7 @@ const InfoWindowContent = ({
                         lineHeight: "24px",
                         fontWeight: 500,
                       }}
+                      tabindex={"0"}
                     >
                       {getLabelTime(v.date)}
                     </Typography>

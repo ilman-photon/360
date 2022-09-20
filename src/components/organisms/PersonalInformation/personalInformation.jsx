@@ -25,7 +25,6 @@ import { GENDER_LIST, TITLE_LIST } from "../../../utils/constantData";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import Image from "next/image";
 import FormMessage from "../../molecules/FormMessage/formMessage";
-import { Box } from "@mui/system";
 
 export default function PersonalInformation({
   userData = {},
@@ -137,7 +136,7 @@ export default function PersonalInformation({
         )
       }
     >
-      <Fade in={!isEditing} unmountOnExit>
+      <Fade in={!isEditing} unmountOnExit sx={{ fontFamily: "Libre Franklin" }}>
         <Stack spacing={3} divider={<Divider />}>
           <LabelWithInfo label="Photo">
             {userData.profilePhoto ? (
@@ -152,7 +151,7 @@ export default function PersonalInformation({
             ) : (
               <Avatar
                 {...stringAvatar(userData.name)}
-                sx={{ width: 122, height: 122, border: "solid 1px black" }}
+                sx={{ width: 93, height: 93, border: "solid 1px black" }}
               ></Avatar>
             )}
           </LabelWithInfo>
@@ -226,7 +225,7 @@ export default function PersonalInformation({
             </Typography>
             <Typography
               variant="bodyRegular"
-              sx={{ pb: 3 }}
+              sx={{ pb: 3, fontWeight: 500 }}
               tabIndex={0}
               aria-label={`Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID.`}
               component="div"
@@ -276,7 +275,7 @@ export default function PersonalInformation({
       </Fade>
       <Fade in={isEditing} unmountOnExit>
         <form onSubmit={handleSubmit(onSubmit)}>
-          <Stack spacing={3}>
+          <Stack spacing={2}>
             <div className={styles.labelForm}>Photo</div>
             {formProfilePhotoState.content ? (
               <FormMessage
@@ -382,6 +381,11 @@ export default function PersonalInformation({
                     onChange={onChange}
                     error={!!error}
                     helperText={error ? error.message : null}
+                    sx={{
+                      ".MuiInputBase-root": {
+                        color: "#A5A5AC",
+                      },
+                    }}
                   />
                 );
               }}
@@ -457,6 +461,13 @@ export default function PersonalInformation({
                     onChange={onChange}
                     error={!!error}
                     helperText={error ? error.message : null}
+                    sx={{
+                      ".MuiInputBase-root": {
+                        color: "#A5A5AC",
+                        fontWeight: "700",
+                        fontFamily: "Roboto",
+                      },
+                    }}
                   />
                 );
               }}

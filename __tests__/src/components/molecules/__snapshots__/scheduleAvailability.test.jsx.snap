@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="MuiBox-root css-1yuhvjn"
+        class="MuiBox-root css-0"
       >
         <div
           class="MuiBox-root css-8rfnb2"
@@ -30,19 +30,29 @@ Object {
         <div
           class="linkWrapper MuiBox-root css-wdc560"
         >
-          <a
-            class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways linkAvailabelity css-1ps4owl-MuiTypography-root-MuiLink-root"
+          <button
+            class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root linkAvailabelity css-1e6y48t-MuiButtonBase-root-MuiButton-root"
             data-testid="loc_viewAll"
+            role="link"
+            tabindex="0"
+            type="button"
           >
-            View all Availability
-          </a>
+            <span
+              class="MuiTypography-root MuiTypography-link css-37jdci-MuiTypography-root"
+            >
+              View all availability
+            </span>
+            <span
+              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+            />
+          </button>
         </div>
       </div>
     </div>
   </body>,
   "container": <div>
     <div
-      class="MuiBox-root css-1yuhvjn"
+      class="MuiBox-root css-0"
     >
       <div
         class="MuiBox-root css-8rfnb2"
@@ -66,12 +76,22 @@ Object {
       <div
         class="linkWrapper MuiBox-root css-wdc560"
       >
-        <a
-          class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways linkAvailabelity css-1ps4owl-MuiTypography-root-MuiLink-root"
+        <button
+          class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root linkAvailabelity css-1e6y48t-MuiButtonBase-root-MuiButton-root"
           data-testid="loc_viewAll"
+          role="link"
+          tabindex="0"
+          type="button"
         >
-          View all Availability
-        </a>
+          <span
+            class="MuiTypography-root MuiTypography-link css-37jdci-MuiTypography-root"
+          >
+            View all availability
+          </span>
+          <span
+            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+          />
+        </button>
       </div>
     </div>
   </div>,

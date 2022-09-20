@@ -218,12 +218,12 @@ defineFeature(feature, (test) => {
             </Provider>
             );
         await waitFor(() => {
-            container.getByLabelText(/City, state/i);
+            container.queryAllByText(/City, state/i)[0];
         })
     });
 
     and('enter the incorrect city name', () => {
-        const locationField = container.getByLabelText(/City, state/i);
+        const locationField = container.getAllByLabelText(/City, state/i)[0];
             fireEvent.change(locationField, { target: { value: "999999" } });
         expect("999999").toEqual(locationField.value)
     });
@@ -281,12 +281,12 @@ defineFeature(feature, (test) => {
             </Provider>
             );
             await waitFor(() => {
-                container.getByLabelText(/City, state/i);
+                container.queryAllByText(/City, state/i)[0];
             })
         });
 
         and('enter the incorrect Zipcode', () => {
-            const locationField = container.getByLabelText(/City, state/i);
+            const locationField = container.getAllByLabelText(/City, state/i)[0];
             fireEvent.change(locationField, { target: { value: "999999" } });
             expect("999999").toEqual(locationField.value)
         });
@@ -352,13 +352,13 @@ defineFeature(feature, (test) => {
         });
 
         and('enter the incorrect State name', async () => {
-            const locationField = container.getByLabelText(/City, state/i);
+            const locationField = container.queryAllByText(/City, state/i)[0];
             await act(()=>{
                 fireEvent.click(locationField);
             })
             waitFor(function() {
                 container.getByLabelText(/Cancel/i);
-                const locationField = container.getByLabelText(/City, state/i);
+                const locationField = container.queryAllByText(/City, state/i)[0];
                 fireEvent.change(locationField, { target: { value: "Texas" } });
                 fireEvent.submit(input);
             })

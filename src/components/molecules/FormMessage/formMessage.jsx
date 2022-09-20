@@ -21,7 +21,7 @@ export const FormMessage = (
         ref={ref}
         onClick={onClick}
         sx={{
-          backgroundColor: props.success ? colors.foundationGreen : "#C23934",
+          backgroundColor: props.success ? colors.foundationGreen : "#B93632",
           width: "auto",
           padding: "12px 16px",
           borderRadius: "4px",
@@ -59,6 +59,7 @@ export const FormMessage = (
           }}
           data-testid="submission-message"
           aria-live="polite"
+          role="alert"
           {...accessibility}
         >
           {props.title ? (

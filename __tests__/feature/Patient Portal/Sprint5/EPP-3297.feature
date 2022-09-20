@@ -9,8 +9,6 @@ Feature: Patient Portal : Dashboard - View upcoming appointments widget
   @Regression
    @Sprint5
   Scenario: EPIC_EPP-1_STORY_EPP-3297 - Verify User should see the following details as part of each upcoming appointment
-    Scenario: EPIC_EPP-1_STORY_EPP-3297 - Verify User should see the following details as part of each upcoming appointment
-
     Given User launch Patient Portal url		
     When User is logged in to the application
     Then User lands to the "Dashboard" screen
@@ -40,8 +38,6 @@ Feature: Patient Portal : Dashboard - View upcoming appointments widget
   @Regression
   @Sprint5
   Scenario: EPIC_EPP-1_STORY_EPP-3297 - Verify User should see the latest list of appointments that are scheduled in the widget
-    Scenario: EPIC_EPP-1_STORY_EPP-3297 - Verify User should see the latest list of appointments that are scheduled in the widget 
-
     Given User launch Patient Portal url		
     When User is logged in to the application
     Then User lands to the "Dashboard" screen
@@ -63,8 +59,6 @@ Feature: Patient Portal : Dashboard - View upcoming appointments widget
   @Regression
   @Sprint5
   Scenario: EPIC_EPP-1_STORY_EPP-3297 - Verify User on clicking the widget will get navigated to the screen with upcoming appointments
-    Scenario: EPIC_EPP-1_STORY_EPP-3297 - Verify User on clicking the widget will get navigated to the screen with upcoming appointments
-
     Given User launch Patient Portal url		
     When User is logged in to the application
     Then User lands to the "Dashboard" screen
@@ -85,8 +79,6 @@ Feature: Patient Portal : Dashboard - View upcoming appointments widget
   @Regression
   @Sprint5
   Scenario: EPIC_EPP-1_STORY_EPP-3297 - Verify User on clicking any particular appointment will get navigated to that particular appointment in the screen with upcoming appointments
-    Scenario: EPIC_EPP-1_STORY_EPP-3297 - Verify User on clicking any particular appointment will get navigated to that particular appointment in the screen with upcoming appointments
-
     Given User launch Patient Portal url		
     When User is logged in to the application
     Then User lands to the "Dashboard" screen
@@ -107,8 +99,6 @@ Feature: Patient Portal : Dashboard - View upcoming appointments widget
   @Regression
   @Sprint5
   Scenario: EPIC_EPP-1_STORY_EPP-3297 - Verify User should be able to swipe through to view other upcoming appointments
-    Scenario: EPIC_EPP-1_STORY_EPP-3297 - Verify User should be able to swipe through to view other upcoming appointments
-
     Given User launch Patient Portal url		
     When User is logged in to the application
     Then User lands to the "Dashboard" screen

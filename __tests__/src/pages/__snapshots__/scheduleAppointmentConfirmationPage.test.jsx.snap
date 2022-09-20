@@ -2,11 +2,37 @@
 
 exports[`App renders App unchanged 1`] = `
 <div>
+  <div
+    class="MuiBox-root css-1hyfx7x"
+  >
+    <span
+      style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+    >
+      <span
+        style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
+      >
+        <img
+          alt=""
+          aria-hidden="true"
+          src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27244.89%27%20height=%27211%27/%3e"
+          style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
+        />
+      </span>
+      <img
+        alt=""
+        data-nimg="intrinsic"
+        decoding="async"
+        src="/_next/image?url=%2FVector.png&w=640&q=75"
+        srcset="/_next/image?url=%2FVector.png&w=256&q=75 1x, /_next/image?url=%2FVector.png&w=640&q=75 2x"
+        style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+      />
+    </span>
+  </div>
   <section
     style="padding-top: 64px;"
   >
     <header
-      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-1nft05v-MuiPaper-root-MuiAppBar-root"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-rxbk4x-MuiPaper-root-MuiAppBar-root"
     >
       <div
         class="MuiContainer-root MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root"
@@ -31,8 +57,10 @@ exports[`App renders App unchanged 1`] = `
               aria-label="Clarkson Eyecare logo"
               data-nimg="intrinsic"
               decoding="async"
+              role="img"
               src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
               style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+              tabindex="0"
             />
             <noscript />
           </span>
@@ -61,7 +89,7 @@ exports[`App renders App unchanged 1`] = `
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-elhp89-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1yziclw-MuiSvgIcon-root"
                   data-testid="CheckCircleRoundedIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
@@ -160,7 +188,7 @@ exports[`App renders App unchanged 1`] = `
                       class="MuiTypography-root MuiTypography-body1 css-o5ux9j-MuiTypography-root"
                     >
                       <svg
-                        aria-hidden="true"
+                        aria-hidden="false"
                         class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
                         data-testid="CalendarTodayIcon"
                         focusable="false"
@@ -212,7 +240,7 @@ exports[`App renders App unchanged 1`] = `
                             class="displayFlex MuiBox-root css-0"
                           >
                             <div
-                              class="MuiBox-root css-0"
+                              class="imageContainer MuiBox-root css-0"
                             >
                               <span
                                 style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
@@ -235,37 +263,52 @@ exports[`App renders App unchanged 1`] = `
                                   decoding="async"
                                   src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                                   style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                                  tabindex="0"
                                 />
                                 <noscript />
                               </span>
                             </div>
                             <div
-                              class="bioContainer MuiBox-root css-10n7hpz"
+                              class="bioContainer MuiBox-root css-1oovyp6"
                             >
                               <h2
                                 class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-1i5ehwd-MuiTypography-root"
                                 data-testid="appointment_provider_profile_name"
+                                tabindex="0"
                               />
                               <h3
                                 class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
+                                tabindex="0"
                               >
                                 Scripps Eyecare
                               </h3>
-                              <p
-                                class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
-                              />
                               <div
-                                class="phoneContainer MuiBox-root css-0"
+                                class="detailContainer MuiBox-root css-0"
                               >
-                                <p
-                                  class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
-                                />
+                                <div
+                                  class="MuiBox-root css-0"
+                                >
+                                  <div
+                                    aria-label="Doctor Address"
+                                    class="MuiBox-root css-0"
+                                  >
+                                    <p
+                                      class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
+                                      tabindex="0"
+                                    />
+                                  </div>
+                                  <div
+                                    class="phoneContainer MuiBox-root css-0"
+                                  >
+                                    <a
+                                      class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways phoneLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                                      tabindex="0"
+                                    />
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           </div>
-                          <div
-                            class="MuiBox-root css-0"
-                          />
                         </div>
                         <div
                           class="getDirectionLink MuiBox-root css-0"
@@ -325,11 +368,9 @@ exports[`App renders App unchanged 1`] = `
                       </div>
                     </div>
                     <div
-                      class="css-1okj3ks-MuiStack-root"
+                      class="css-qkek6c-MuiStack-root"
                     >
-                      <div
-                        style="margin-top: 10px;"
-                      >
+                      <div>
                         <span
                           class="MuiTypography-root MuiTypography-bodyMedium css-1oitrp4-MuiTypography-root"
                         >

@@ -1,4 +1,13 @@
 import axios from "axios";
+import { setGenericErrorMessage } from "../../store";
+import constants from "../../utils/constants";
+
+let store;
+
+export const injectStore = (_store) => {
+  store = _store;
+};
+
 export class Api {
   client;
   constructor() {
@@ -23,7 +32,21 @@ export class Api {
         }
       };
       const rejecter = function (err) {
-        if (err && err.response && err.response.data) {
+        if (
+          err &&
+          ((err.code === constants.ERROR_CODE.BAD_REQUEST &&
+            err?.response?.data?.ResponseCode === undefined) ||
+            err.code === constants.ERROR_CODE.NETWORK_ERR)
+        ) {
+          store.dispatch(
+            setGenericErrorMessage("Please try again after sometime.")
+          );
+          reject({
+            description:
+              "Something went wrong. Please try again after sometime.",
+            ResponseCode: err.code,
+          });
+        } else if (err && err.response && err.response.data) {
           reject(err.response.data);
         } else {
           reject(err);
@@ -214,6 +237,12 @@ export class Api {
     return this.getResponse(url, {}, "get");
   }
 
+  getAppointmentDetails() {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/appointment/my-appointment/getAppointmentDetails`;
+    return this.getResponse(url, {}, "get");
+  }
+
   updateAppointment(postbody) {
     const domain = window.location.origin;
     const url = `${domain}/api/dummy/appointment/my-appointment/updateAppointment`;
@@ -230,5 +259,11 @@ export class Api {
     const domain = window.location.origin;
     const url = `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`;
     return this.getResponse(url, {}, "get");
+  }
+
+  cancelAppointment() {
+    const domain = window.location.origin;
+    const url = `${domain}api/dummy/appointment/my-appointment/cancelAppointment`;
+    return this.getResponse(url, postbody, "post");
   }
 }

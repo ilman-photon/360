@@ -50,6 +50,7 @@ export default function SelectOptionButton({
   value = "",
   onChange,
   renderMenuListUI = null,
+  ariaLabel = "",
   ...props
 }) {
   return (
@@ -59,6 +60,8 @@ export default function SelectOptionButton({
       style={{ width: "100%" }}
     >
       <InputLabel
+        tabIndex={0}
+        aria-label={ariaLabel}
         id="demo-simple-select-label"
         sx={{
           fontSize: "16px",

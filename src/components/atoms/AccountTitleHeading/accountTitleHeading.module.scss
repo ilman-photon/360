@@ -28,13 +28,15 @@
     align-items: center;
     grid-column: span 2 / span 2;
     // text-align: right;
-    width: calc(324px + 8px);
+    width: 332px;
     justify-self: flex-end;
 
     @media (max-width: 767px) {
       grid-column: span 7 / span 7;
       text-align: center;
       font-size: 18px;
+      width: unset;
+      justify-self: unset;
     }
   }
 }

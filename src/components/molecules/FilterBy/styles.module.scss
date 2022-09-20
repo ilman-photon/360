@@ -20,6 +20,21 @@
   margin-bottom: 16px !important;
 }
 
+.buttonLinkContainer {
+  .link {
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 500 !important;
+    font-size: 16px !important;
+    line-height: 20px !important;
+    letter-spacing: 0.0016em;
+    text-decoration-line: underline;
+    color: #008294 !important;
+    cursor: pointer;
+    text-transform: none;
+  }
+}
+
 .checkBoxGroup {
   max-height: 145px;
 }
@@ -77,18 +92,6 @@
   color: #242526;
 }
 
-.link {
-  font-family: "Libre Franklin", sans-serif;
-  font-style: normal;
-  font-weight: 500 !important;
-  font-size: 16px !important;
-  line-height: 20px !important;
-  letter-spacing: 0.0016em;
-  text-decoration-line: underline;
-  color: #008294 !important;
-  cursor: pointer;
-}
-
 .topDivider {
   display: none;
   @media (max-width: 992px) {
@@ -100,6 +103,7 @@
 
 .checBoxListContainer {
   overflow: scroll;
+  overflow-x: hidden;
   max-height: calc(100vh - 144px);
   @media (max-width: 992px) {
     width: 100vw;

@@ -9,19 +9,22 @@ export default function AppointmentLayout({
   children,
   backTitle,
   onBackClicked,
+  pageTitle = "EyeCare Patient Portal - Appointment",
 }) {
   const router = useRouter();
   return (
     <>
       <Head>
-        <title>EyeCare Patient Portal - Appointment</title>
+        <title>{pageTitle}</title>
       </Head>
       <div className={styles.defaultLayout}>
         <BaseHeader
           backTitle={backTitle}
           onBackClicked={() => {
-            if (onBackClicked) {
+            if (typeof onBackClicked == "function") {
               onBackClicked();
+            } else if (typeof onBackClicked == "string") {
+              router.push(onBackClicked);
             } else {
               router.back();
             }
