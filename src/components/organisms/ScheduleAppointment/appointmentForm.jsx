@@ -389,8 +389,9 @@ export default function AppointmentForm({
                     helperText={error ? error.message : null}
                     textSx={{
                       justifyContent: "space-between",
-                      color: "black",
+                      color: "#242526",
                       fontWeight: "600",
+                      fontFamily: "Libre Franklin",
                     }}
                     sx={{
                       width: { xs: "100%", md: "56%" },

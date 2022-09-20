@@ -258,7 +258,7 @@ export default function ModalConfirmContent({
                 href="/patient/login"
                 data-testid={REGISTER_TEST_ID.loginlink}
               >
-                <a className={styles.loginLink}>Login</a>
+                <a className={styles.loginLink}>Sign in</a>
               </Link>
             </Typography>
           </div>

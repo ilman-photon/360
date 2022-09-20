@@ -2,12 +2,12 @@ import { colors } from "../../../styles/theme";
 
 export const styles = {
   primaryText: {
-    color: "#003B4A",
+    color: "#0095A9",
     fontSize: "18px",
-    fontWeight: "700",
+    fontWeight: "600",
   },
   switchButton: {
-    border: "solid 1px #003B4A",
+    border: "1px solid #205A63",
     padding: "40px",
     borderRadius: "8px",
     textAlign: "center",
@@ -42,7 +42,7 @@ export const styles = {
     fontFamily: "Libre Franklin",
     fontWeight: "600",
     fontSize: "18px",
-    color: "#191919",
+    color: "#000000",
   },
   link: {
     color: "#008294",

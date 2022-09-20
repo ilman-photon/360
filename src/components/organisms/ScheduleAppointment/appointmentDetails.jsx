@@ -28,7 +28,6 @@ export default function AppointmentDetails({
     <Box>
       <AccountCard
         title={t("appointmentDetails")}
-        textStyle={{ fontWeight: "700" }}
         isAppoinment={true}
         actionContent={
           <Button
@@ -61,7 +60,11 @@ export default function AppointmentDetails({
               />
             }
             sxRow={{ justifyContent: "unset" }}
-            sxText={{ paddingLeft: "4px", color: colors.darkGreen }}
+            sxText={{
+              paddingLeft: "4px",
+              color: colors.darkGreen,
+              fontWeight: "500",
+            }}
           >
             <Typography
               variant="bodyMedium"
@@ -81,7 +84,11 @@ export default function AppointmentDetails({
               <ContactMailIcon aria-label={"Mail icon"} aria-hidden={"false"} />
             }
             sxRow={{ justifyContent: "unset" }}
-            sxText={{ paddingLeft: "4px", color: colors.darkGreen }}
+            sxText={{
+              paddingLeft: "4px",
+              color: colors.darkGreen,
+              fontWeight: "500",
+            }}
           >
             <Typography
               variant="bodyMedium"
@@ -103,7 +110,11 @@ export default function AppointmentDetails({
               />
             }
             sxRow={{ justifyContent: "unset" }}
-            sxText={{ paddingLeft: "4px", color: colors.darkGreen }}
+            sxText={{
+              paddingLeft: "4px",
+              color: colors.darkGreen,
+              fontWeight: "500",
+            }}
           >
             <Typography
               variant="bodyMedium"
