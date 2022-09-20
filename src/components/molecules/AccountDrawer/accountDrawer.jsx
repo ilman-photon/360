@@ -1,4 +1,4 @@
-import { Box, Button } from "@mui/material";
+import { Box, Button, IconButton, Slide, Stack } from "@mui/material";
 import SwipeableDrawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -9,6 +9,12 @@ import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import styles from "./accountDrawer.module.scss";
 import { useRouter } from "next/router";
+import { useState, useEffect } from "react";
+import AutoAwesomeMosaicOutlinedIcon from "@mui/icons-material/AutoAwesomeMosaicOutlined";
+import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
+import CreateNewFolderOutlinedIcon from "@mui/icons-material/CreateNewFolderOutlined";
+import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
+import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
 
 export const AccountDrawer = ({
   opened = false,
@@ -18,56 +24,155 @@ export const AccountDrawer = ({
   onLogoutClicked = () => {
     // This is intended
   },
-  sidebarLinks = [
-    { label: "Profile Information", href: "/patient/account/profile-info" },
-    { label: "Financial Information", href: "#" },
-    { label: "Toggle accounts", href: "#" },
-    { label: "Merge accounts", href: "#" },
-    { label: "Prescriptions", href: "#" },
-    { label: "Insurance documents", href: "/patient/account/insurance-info" },
-    { label: "Multi factor authentication", href: "#" },
+  menus = [
+    {
+      label: "Dashboard",
+      value: "dashboard",
+      icon: <AutoAwesomeMosaicOutlinedIcon />,
+    },
+    {
+      label: "Appointments",
+      value: "appointments",
+      icon: <CalendarTodayOutlinedIcon />,
+    },
+    {
+      label: "Medical Record",
+      value: "medical",
+      icon: <CreateNewFolderOutlinedIcon />,
+    },
+    {
+      label: "Documents",
+      value: "documents",
+      icon: <DescriptionOutlinedIcon />,
+    },
   ],
+  linkObject = {
+    dashboard: [],
+    appointments: [],
+    medical: [],
+    documents: [
+      {
+        label: "Intake Forms",
+        href: "/patient/account/documents/intake-forms",
+      },
+      {
+        label: "Insurance Documents",
+        href: "/patient/account/documents/insurance-documents",
+      },
+      {
+        label: "Health Record",
+        href: "/patient/account/documents/health-record",
+      },
+    ],
+  },
 }) => {
   const router = useRouter();
+  const [activeMenu, setActiveMenu] = useState(null);
+  const [sidebarLinks, setSidebarLinks] = useState(null);
+
+  const getMenuTitle = () => {
+    if (activeMenu) {
+      const found = menus.find((v) => v.value === activeMenu);
+      if (found) return found.label;
+    }
+  };
+
+  useEffect(() => {
+    setSidebarLinks(linkObject[activeMenu]);
+  }, [activeMenu]);
 
   const drawerContent = () => (
-    <Box sx={{ width: "100%", padding: "16px" }} role="presentation">
-      <>
-        <List>
+    <Stack
+      sx={{ width: "100vw", padding: "16px", flex: 1 }}
+      role="presentation"
+    >
+      <IconButton sx={{ alignSelf: "end" }} onClick={onClose}>
+        <CloseOutlinedIcon />
+      </IconButton>
+      <List
+        sx={{
+          flex: 1,
+          ".MuiListItem-root": { borderBottomWidth: 1, borderColor: "#F3F3F3" },
+        }}
+      >
+        <Slide direction="left" in={activeMenu} mountOnEnter unmountOnExit>
           <ListItemButton sx={{ background: "#F4F4F4" }}>
             <ListItemIcon sx={{ placeContent: "start" }}>
               <KeyboardArrowLeftIcon />
             </ListItemIcon>
-            <ListItemText primary={"Account"} onClick={onClose} />
+            <ListItemText
+              primary={getMenuTitle()}
+              onClick={() => setActiveMenu(null)}
+            />
           </ListItemButton>
+        </Slide>
 
-          {sidebarLinks.map((link, idx) => (
-            <ListItem key={idx} className={styles.listItemDrawer}>
-              <ListItemButton
-                data-testid="user-menu-nav-close"
-                onClick={() => {
-                  router.push(link.href);
-                  onClose();
-                }}
-              >
-                <>
-                  <ListItemText primary={link.label} />
-                  <ListItemIcon sx={{ placeContent: "end" }}>
-                    <KeyboardArrowRightIcon />
-                  </ListItemIcon>
-                </>
-              </ListItemButton>
-            </ListItem>
-          ))}
+        <Slide direction="left" in={!sidebarLinks} mountOnEnter unmountOnExit>
+          <div>
+            {!sidebarLinks &&
+              menus.map((menu, idx) => (
+                <ListItem
+                  key={idx}
+                  className={styles.listItemDrawer}
+                  sx={{ borderBottomWidth: 1 }}
+                >
+                  <ListItemButton
+                    data-testid="outer-menu-nav-close"
+                    onClick={() => setActiveMenu(menu.value)}
+                  >
+                    <>
+                      {menu.icon}
+                      <ListItemText primary={menu.label} sx={{ ml: 1 }} />
+                    </>
+                  </ListItemButton>
+                </ListItem>
+              ))}
+          </div>
+        </Slide>
 
-          <ListItemButton className={styles.logoutButton}>
-            <Button onClick={onLogoutClicked} variant="contained">
-              LOG OUT
-            </Button>
-          </ListItemButton>
-        </List>
-      </>
-    </Box>
+        <Slide direction="left" in={!!sidebarLinks} mountOnEnter unmountOnExit>
+          <div>
+            {sidebarLinks &&
+              sidebarLinks.map((link, idx) => (
+                <ListItem key={idx} className={styles.listItemDrawer}>
+                  <ListItemButton
+                    data-testid="user-menu-nav-close"
+                    onClick={async () => {
+                      await router.push(link.href);
+                      onClose();
+                    }}
+                  >
+                    <>
+                      <ListItemText primary={link.label} />
+                      <ListItemIcon sx={{ placeContent: "end" }}>
+                        <KeyboardArrowRightIcon />
+                      </ListItemIcon>
+                    </>
+                  </ListItemButton>
+                </ListItem>
+              ))}
+          </div>
+        </Slide>
+      </List>
+
+      <Button
+        sx={{
+          color: "black",
+          display: "flex",
+          flexDirection: "row",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "8px 10px 8px 16px",
+          width: "216px",
+          height: "36px",
+          border: "1px solid #000000",
+          borderRadius: "28px",
+          margin: "auto",
+        }}
+      >
+        LOG OUT
+      </Button>
+    </Stack>
   );
 
   return (

@@ -6,6 +6,8 @@ import { patientTypography } from "../../styles/theme";
 import { useRouter } from "next/router";
 import Navbar from "../molecules/Navbar/Navbar";
 import AccountTitleHeading from "../atoms/AccountTitleHeading/accountTitleHeading";
+import { useMediaQuery } from "@mui/material";
+import { logoutProps } from "../../utils/authetication";
 
 export default function PrescriptionLayout({
   children,
@@ -15,29 +17,18 @@ export default function PrescriptionLayout({
   title = "Prescriptions",
 }) {
   const router = useRouter();
+  const isDesktop = useMediaQuery("(min-width: 769px)");
   return (
     <>
       <Head>
         <title>{pageTitle}</title>
       </Head>
       <div className={styles.defaultLayout}>
-        <BaseHeader
-          isPrescription={true}
-          backTitle={backTitle}
-          onBackClicked={() => {
-            if (typeof onBackClicked == "function") {
-              onBackClicked();
-            } else if (typeof onBackClicked == "string") {
-              router.push(onBackClicked);
-            } else {
-              router.back();
-            }
-          }}
-        />
+        <BaseHeader {...logoutProps} />
         <Navbar />
         <AccountTitleHeading
           title={title}
-          sxContainer={{ marginTop: "107px" }}
+          sxContainer={{ marginTop: isDesktop ? "107px" : "56px" }}
         />
         <ThemeProvider theme={patientTypography}>
           <div className={styles.defaultContainer}>{children}</div>

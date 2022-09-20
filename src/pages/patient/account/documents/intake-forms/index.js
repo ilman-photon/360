@@ -1,4 +1,4 @@
-import AccountLayout from "../../../../../components/templates/accountLayout";
+import PrescriptionLayout from "../../../../../components/templates/prescriptionLayout";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "../../../../../store/store";
 import TableWithSort from "../../../../../components/molecules/TableWithSort/tableWithSort";
@@ -137,7 +137,9 @@ export default function IntakeFormsPage() {
 IntakeFormsPage.getLayout = function getLayout(page) {
   return (
     <Provider store={store}>
-      <AccountLayout currentActivePage={"intake-forms"}>{page}</AccountLayout>
+      <PrescriptionLayout currentActivePage={"intake-forms"}>
+        {page}
+      </PrescriptionLayout>
     </Provider>
   );
 };

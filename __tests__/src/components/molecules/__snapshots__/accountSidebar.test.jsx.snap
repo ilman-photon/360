@@ -140,38 +140,35 @@ Object {
             </div>
           </div>
           <div
-            class="css-nen11g-MuiStack-root"
+            class="css-gbwphf-MuiStack-root"
           >
-            <div
-              class="css-jvph5b-MuiStack-root"
+            <svg
+              aria-hidden="true"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+              data-testid="DescriptionOutlinedIcon"
+              focusable="false"
+              viewBox="0 0 24 24"
             >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-                data-testid="DescriptionOutlinedIcon"
-                focusable="false"
-                viewBox="0 0 24 24"
+              <path
+                d="M8 16h8v2H8zm0-4h8v2H8zm6-10H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"
+              />
+            </svg>
+            <div
+              class="css-vuohop-MuiStack-root"
+            >
+              <hr
+                class="MuiDivider-root MuiDivider-middle MuiDivider-vertical MuiDivider-flexItem css-yhaord-MuiDivider-root"
+              />
+              <a
+                class="sidebarLink"
+                href="/patient/account/insurance-info"
               >
-                <path
-                  d="M8 16h8v2H8zm0-4h8v2H8zm6-10H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"
-                />
-              </svg>
-              <span
-                class="MuiTypography-root MuiTypography-allVariants sidebarLink css-37jdci-MuiTypography-root"
-              >
-                Documents
-              </span>
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1llyc99-MuiSvgIcon-root"
-                data-testid="KeyboardArrowRightOutlinedIcon"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"
-                />
-              </svg>
+                <span
+                  class="MuiTypography-root MuiTypography-allVariants css-37jdci-MuiTypography-root"
+                >
+                  Insurance documents
+                </span>
+              </a>
             </div>
           </div>
           <div
@@ -346,38 +343,35 @@ Object {
           </div>
         </div>
         <div
-          class="css-nen11g-MuiStack-root"
+          class="css-gbwphf-MuiStack-root"
         >
-          <div
-            class="css-jvph5b-MuiStack-root"
+          <svg
+            aria-hidden="true"
+            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+            data-testid="DescriptionOutlinedIcon"
+            focusable="false"
+            viewBox="0 0 24 24"
           >
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-              data-testid="DescriptionOutlinedIcon"
-              focusable="false"
-              viewBox="0 0 24 24"
+            <path
+              d="M8 16h8v2H8zm0-4h8v2H8zm6-10H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"
+            />
+          </svg>
+          <div
+            class="css-vuohop-MuiStack-root"
+          >
+            <hr
+              class="MuiDivider-root MuiDivider-middle MuiDivider-vertical MuiDivider-flexItem css-yhaord-MuiDivider-root"
+            />
+            <a
+              class="sidebarLink"
+              href="/patient/account/insurance-info"
             >
-              <path
-                d="M8 16h8v2H8zm0-4h8v2H8zm6-10H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"
-              />
-            </svg>
-            <span
-              class="MuiTypography-root MuiTypography-allVariants sidebarLink css-37jdci-MuiTypography-root"
-            >
-              Documents
-            </span>
-            <svg
-              aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1llyc99-MuiSvgIcon-root"
-              data-testid="KeyboardArrowRightOutlinedIcon"
-              focusable="false"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M8.59 16.59 13.17 12 8.59 7.41 10 6l6 6-6 6-1.41-1.41z"
-              />
-            </svg>
+              <span
+                class="MuiTypography-root MuiTypography-allVariants css-37jdci-MuiTypography-root"
+              >
+                Insurance documents
+              </span>
+            </a>
           </div>
         </div>
         <div
