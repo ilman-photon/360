@@ -112,7 +112,24 @@ export default function HomePage() {
     api
       .getAllPrescriptions()
       .then(function (response) {
-        setPrescriptionData(response.prescriptions);
+        const prescriptionDataTemp = {
+          glasses:
+            response.prescriptions?.glasses &&
+            response.prescriptions?.glasses.length > 0
+              ? [response.prescriptions?.glasses[0]]
+              : [],
+          contacts:
+            response.prescriptions?.contacts &&
+            response.prescriptions?.contacts.length > 0
+              ? [response.prescriptions?.contacts[0]]
+              : [],
+          medications:
+            response.prescriptions?.medications &&
+            response.prescriptions?.medications.length > 0
+              ? response.prescriptions?.medications
+              : [],
+        };
+        setPrescriptionData(prescriptionDataTemp);
       })
       .catch(function () {
         //Handle error getAllPrescriptions
@@ -133,7 +150,7 @@ export default function HomePage() {
   }
 
   function onViewPrescriptions() {
-    //TO DO: will navigate to prescription view page
+    router.push("/patient/prescription");
   }
 
   useEffect(() => {

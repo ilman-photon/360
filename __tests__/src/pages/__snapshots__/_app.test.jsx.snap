@@ -223,7 +223,7 @@ exports[`App renders App unchanged 1`] = `
                       >
                         <button
                           aria-selected="true"
-                          class="MuiButtonBase-root MuiTab-root MuiTab-labelIcon MuiTab-textColorInherit Mui-selected css-p8tmio-MuiButtonBase-root-MuiTab-root"
+                          class="MuiButtonBase-root MuiTab-root MuiTab-labelIcon MuiTab-textColorInherit Mui-selected css-l5f1s0-MuiButtonBase-root-MuiTab-root"
                           data-testid="menu-glasses"
                           role="tab"
                           tabindex="0"
@@ -262,7 +262,7 @@ exports[`App renders App unchanged 1`] = `
                         </button>
                         <button
                           aria-selected="false"
-                          class="MuiButtonBase-root MuiTab-root MuiTab-labelIcon MuiTab-textColorInherit css-1cb8j8o-MuiButtonBase-root-MuiTab-root"
+                          class="MuiButtonBase-root MuiTab-root MuiTab-labelIcon MuiTab-textColorInherit css-egu6us-MuiButtonBase-root-MuiTab-root"
                           data-testid="menu-contact"
                           role="tab"
                           tabindex="-1"
@@ -301,7 +301,7 @@ exports[`App renders App unchanged 1`] = `
                         </button>
                         <button
                           aria-selected="false"
-                          class="MuiButtonBase-root MuiTab-root MuiTab-labelIcon MuiTab-textColorInherit css-1gy6i31-MuiButtonBase-root-MuiTab-root"
+                          class="MuiButtonBase-root MuiTab-root MuiTab-labelIcon MuiTab-textColorInherit css-qu1hn3-MuiButtonBase-root-MuiTab-root"
                           data-testid="menu-medication"
                           role="tab"
                           tabindex="-1"
@@ -319,7 +319,7 @@ exports[`App renders App unchanged 1`] = `
                                 <img
                                   alt=""
                                   aria-hidden="true"
-                                  src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2714%27%20height=%2714%27/%3e"
+                                  src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2710%27%20height=%2714%27/%3e"
                                   style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
                                 />
                               </span>
@@ -356,7 +356,7 @@ exports[`App renders App unchanged 1`] = `
                       class="MuiBox-root css-0"
                     >
                       <div
-                        class="flexDisplay spaceBetween margin MuiBox-root css-0"
+                        class="flexDisplay spaceBetween margin marginBottom MuiBox-root css-0"
                       >
                         <span
                           class="MuiTypography-root MuiTypography-titleCard css-64d7ay-MuiTypography-root"
@@ -380,15 +380,6 @@ exports[`App renders App unchanged 1`] = `
                             />
                           </svg>
                         </div>
-                      </div>
-                      <div
-                        class="noPrescription MuiBox-root css-0"
-                      >
-                        <p
-                          class="MuiTypography-root MuiTypography-body1 css-6h2hyl-MuiTypography-root"
-                        >
-                          There are no active glasses prescriptions
-                        </p>
                       </div>
                       <div
                         class="flexDisplay viewPrescription MuiBox-root css-0"

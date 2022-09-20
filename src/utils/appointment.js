@@ -242,29 +242,36 @@ export function getProvideOverlay(providerId, listOfProvider) {
   return providerOverlay;
 }
 
-export function parsePrescriptionData(prescriptions) {
-  const parsePrescriptions = {};
-  if (prescriptions.glasses && prescriptions.glasses.length > 0) {
-    const glasses = prescriptions.glasses[0];
-    glasses.prescriptionDetails = parsePrescriptionDetailsData(
-      [...glasses.prescriptionDetails],
-      "glasses"
+function parsePrescriptionItemData(prescriptionData, key) {
+  const data = [];
+  for (const itemData of prescriptionData) {
+    itemData.prescriptionDetails = parsePrescriptionDetailsData(
+      [...itemData.prescriptionDetails],
+      key
     );
 
-    glasses.date = ddmmyyDateFormat(glasses.date);
-    glasses.expirationDate = ddmmyyDateFormat(glasses.expirationDate);
-    parsePrescriptions["glasses"] = glasses;
+    itemData.date = ddmmyyDateFormat(itemData.date);
+    itemData.expirationDate = ddmmyyDateFormat(itemData.expirationDate);
+    data.push(itemData);
+  }
+
+  return data;
+}
+
+export function parsePrescriptionData(prescriptions) {
+  const parsePrescriptions = { glasses: [], contacts: [], medications: [] };
+  if (prescriptions.glasses && prescriptions.glasses.length > 0) {
+    parsePrescriptions["glasses"] = parsePrescriptionItemData(
+      prescriptions.glasses,
+      "glasses"
+    );
   }
 
   if (prescriptions.contacts && prescriptions.contacts.length > 0) {
-    const contacts = prescriptions.contacts[0];
-    contacts.prescriptionDetails = parsePrescriptionDetailsData(
-      [...contacts.prescriptionDetails],
+    parsePrescriptions["contacts"] = parsePrescriptionItemData(
+      prescriptions.contacts,
       "contacts"
     );
-    contacts.date = ddmmyyDateFormat(contacts.date);
-    contacts.expirationDate = ddmmyyDateFormat(contacts.expirationDate);
-    parsePrescriptions["contacts"] = contacts;
   }
 
   if (prescriptions.medications && prescriptions.medications.length > 0) {

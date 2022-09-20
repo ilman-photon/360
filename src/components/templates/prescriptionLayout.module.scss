@@ -1,0 +1,14 @@
+.defaultLayout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+
+  .defaultContainer {
+    padding-top: calc(64px + 43px + 80px);
+    flex: 1;
+    max-width: 1434px;
+    width: 100%;
+    margin: 0 auto;
+  }
+}
