@@ -5,6 +5,9 @@ import { Box } from "@mui/material";
 import styles from "../../styles.module.scss";
 import { Api } from "../../../../api/api";
 import { useEffect, useState } from "react";
+import DetailAppointment from "../../../../../components/organisms/DetailAppointment/detailAppointment";
+import { parseAppointmentDetails } from "../../../../../utils/appointment";
+
 export default function AppointmentDetails() {
   const [appointments, setAppointments] = useState();
 
@@ -28,9 +31,9 @@ export default function AppointmentDetails() {
 
   return (
     <Box className={styles.container}>
-      {/* {appointments && (
+      {appointments && (
         <DetailAppointment data={parseAppointmentDetails(appointments)} />
-      )} */}
+      )}
     </Box>
   );
 }

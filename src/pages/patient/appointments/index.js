@@ -48,7 +48,6 @@ export default function Appointments() {
   };
 
   useEffect(() => {
-    console.log("apponzs", appointments.length);
     if (appointments.length === 0) {
       getAppointments();
     }
