@@ -171,11 +171,7 @@
     padding: 8px 14px;
     gap: 10px;
     margin-right: 24px;
-
-    width: 90%;
-
-    /* Right Nav/ background */
-
+    width: 30%;
     background: #f4f4f4;
     border-radius: 4px;
     font-family: "Libre Franklin", sans-serif;
@@ -190,7 +186,8 @@
     @media (max-width: 767px) {
       width: 100%;
       justify-content: center;
-      margin-bottom: 24px;
+      margin-right: 0px;
+      margin-bottom: 4px;
     }
   }
 
@@ -203,9 +200,20 @@
   .gridHeight {
     margin-top: 15px;
     height: 40px;
-    @media (max-width: 767px) {
+    width: 30%;
+    margin-right: 24px;
+    @media (max-width: 834px) {
+      width: 100%;
       margin-top: 0px;
+      margin-right: 0px;
       height: 32px;
+    }
+  }
+
+  .stackContainer {
+    @media (max-width: 834px) {
+      flex-wrap: wrap;
+      margin-bottom: 20px;
     }
   }
 
@@ -264,5 +272,11 @@
       width: 100%;
       margin-top: 24px;
     }
+  }
+}
+
+.medicationDetailContainer {
+  .marginTop {
+    margin-top: 40px;
   }
 }
