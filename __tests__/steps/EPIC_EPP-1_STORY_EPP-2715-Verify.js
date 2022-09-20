@@ -395,7 +395,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByLabelText(/Appointments/i));
+      await waitFor(() => container.getAllByText(/Appointments/i));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -404,7 +404,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^User should see the "(.*)" option$/, (arg0) => {
-      const purposeVisit = container.getByLabelText(/Appointments/i);
+      const purposeVisit = container.getAllByText(/Appointments/i)[0];
       expect(purposeVisit).toBeInTheDocument();
     });
 
