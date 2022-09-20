@@ -398,7 +398,7 @@ exports[`App renders App unchanged 1`] = `
                     <a
                       class="loginLink"
                     >
-                      Login
+                      Sign in
                     </a>
                   </a>
                 </span>

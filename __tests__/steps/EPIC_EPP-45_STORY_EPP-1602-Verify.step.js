@@ -1232,7 +1232,7 @@ defineFeature(feature, (test) => {
   }
 
   async function userViewScheduleButton () {
-    await waitFor(() => container.getByText("Review appointment details"));
+    await waitFor(() => container.getByText("Review Appointment Details"));
 
       const scheduleBtn = await waitFor(() => container.getByText(/Schedule Appointment/i))
       act(() => {
