@@ -8,9 +8,9 @@ import styles from "../styles.module.scss";
 import FileDownloadIcon from "../../../../../assets/icons/FileDownload";
 import PDFFileIcon from "../../../../../assets/icons/PDFFileIcon";
 import { useEffect } from "react";
-import { fetchIntakeForms } from "../../../../../store/document";
+import { fetchHealthRecord } from "../../../../../store/document";
 
-export default function IntakeFormsPage() {
+export default function HealthRecordPage() {
   const dispatch = useDispatch();
   const tableConfiguration = {
     header: [
@@ -62,10 +62,10 @@ export default function IntakeFormsPage() {
     ],
   };
 
-  const rows = useSelector((state) => state.document.intakeFormsData);
+  const rows = useSelector((state) => state.document.healthRecordData);
 
   useEffect(() => {
-    dispatch(fetchIntakeForms());
+    dispatch(fetchHealthRecord());
   }, []);
 
   return (
@@ -73,7 +73,7 @@ export default function IntakeFormsPage() {
       <div className={styles.documentPageWrapper}>
         <Stack spacing={3}>
           <Typography variant="h3" color={colors.darkGreen}>
-            Intake Forms
+            Health Record
           </Typography>
           <TableWithSort config={tableConfiguration} rows={rows} />
         </Stack>
@@ -82,10 +82,10 @@ export default function IntakeFormsPage() {
   );
 }
 
-IntakeFormsPage.getLayout = function getLayout(page) {
+HealthRecordPage.getLayout = function getLayout(page) {
   return (
     <Provider store={store}>
-      <AccountLayout currentActivePage={"intake-forms"}>{page}</AccountLayout>
+      <AccountLayout currentActivePage={"health-record"}>{page}</AccountLayout>
     </Provider>
   );
 };
