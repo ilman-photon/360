@@ -22,7 +22,15 @@ export function UpcomingAppointmentCard({
   }
 
   const visitDate = new Date(data.appointmentInfo.date);
-  const isHideButtons = visitDate < minHours(4);
+  let hideHour = 0;
+  if (data.appointmentInfo.appointmentType === "Eye Exam") {
+    hideHour = 4;
+  }
+  if (data.appointmentInfo.appointmentType === "Comprehensive") {
+    hideHour = 24;
+  }
+
+  const isHideButtons = visitDate < minHours(hideHour);
   return (
     <Box className={styles.upcomingAppointmentsContainer}>
       <Box className={styles.upcomingAppointmentDetail}>
