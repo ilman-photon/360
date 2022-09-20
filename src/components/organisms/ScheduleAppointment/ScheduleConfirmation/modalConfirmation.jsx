@@ -12,6 +12,7 @@ export default function ModalConfirmation({
   isReschedule,
   patientData,
   providerData,
+  appointmentData,
   OnOkClicked = () => {
     // This is intended
   },
@@ -22,6 +23,7 @@ export default function ModalConfirmation({
         <ModalConfirmContent
           patientData={patientData}
           providerData={providerData}
+          appointmentData={appointmentData}
           isLoggedIn={isLoggedIn}
           isReschedule={isReschedule}
           OnOkClicked={OnOkClicked}

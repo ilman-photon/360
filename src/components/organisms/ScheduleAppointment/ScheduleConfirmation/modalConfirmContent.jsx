@@ -67,6 +67,7 @@ BootstrapDialogTitle.propTypes = {
 export default function ModalConfirmContent({
   patientData = {},
   providerData = {},
+  appointmentData = {},
   isLoggedIn,
   isReschedule,
   OnOkClicked = () => {
@@ -187,7 +188,11 @@ export default function ModalConfirmContent({
             >
               Purpose of Visit
             </Typography>
-            <Typography aria-label={"Eye exam"}>Eye exam</Typography>
+            <Typography
+              aria-label={appointmentData.appointmentType || "Eye exam"}
+            >
+              {appointmentData.appointmentType || "Eye exam"}
+            </Typography>
           </CardContent>
         </Card>
 
