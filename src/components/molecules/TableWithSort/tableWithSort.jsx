@@ -7,6 +7,7 @@ import {
   TableHead,
   TableRow,
   TableSortLabel,
+  Tooltip,
 } from "@mui/material";
 import React from "react";
 import { visuallyHidden } from "@mui/utils";
@@ -203,14 +204,16 @@ export default function DocumentTableWithSort({
                         case "download-icon":
                           return (
                             <TableCell key={cellIdx}>
-                              <a
-                                href={row.source}
-                                download
-                                target="_blank"
-                                rel="noreferrer"
-                              >
-                                {cell.icon}
-                              </a>
+                              <Tooltip title="download" placement="top">
+                                <a
+                                  href={row.source}
+                                  download
+                                  target="_blank"
+                                  rel="noreferrer"
+                                >
+                                  {cell.icon}
+                                </a>
+                              </Tooltip>
                             </TableCell>
                           );
                         case "text":

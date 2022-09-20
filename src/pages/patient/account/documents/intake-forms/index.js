@@ -1,14 +1,17 @@
 import AccountLayout from "../../../../../components/templates/accountLayout";
-import { Provider } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "../../../../../store/store";
-import DocumentTableWithSort from "../../../../../components/molecules/TableWithSort/tableWithSort";
+import TableWithSort from "../../../../../components/molecules/TableWithSort/tableWithSort";
 import { IconButton, Stack, Typography } from "@mui/material";
 import { colors } from "../../../../../styles/theme";
 import styles from "./styles.module.scss";
 import FileDownloadIcon from "../../../../../assets/icons/FileDownload";
 import PDFFileIcon from "../../../../../assets/icons/PDFFileIcon";
+import { useEffect } from "react";
+import { fetchIntakeForms } from "../../../../../store/document";
 
 export default function IntakeFormsPage() {
+  const dispatch = useDispatch();
   const tableConfiguration = {
     header: [
       { type: "empty" },
@@ -59,36 +62,11 @@ export default function IntakeFormsPage() {
     ],
   };
 
-  const createData = (name, modifiedAt, source) => {
-    return {
-      name,
-      modifiedAt,
-      source,
-    };
-  };
+  const rows = useSelector((state) => state.document.intakeFormsData);
 
-  const rows = [
-    createData(
-      "Consent to Treat - Patient Financial Responsibility - Assigment of Benefits",
-      "09/09/2022 12:00PM",
-      "/doctor.png"
-    ),
-    createData(
-      "Notice of Privacy Practices.pdf",
-      "09/09/2022 12:00PM",
-      "/doctor.png"
-    ),
-    createData(
-      "Medical/Vision Exams - Refractions - Prescription Release",
-      "09/09/2022 12:00PM",
-      "/doctor.png"
-    ),
-    createData(
-      "Authorization to Disclose Information to Those Involved in My Care",
-      "08/08/2022 12:00PM",
-      "/doctor.png"
-    ),
-  ];
+  useEffect(() => {
+    dispatch(fetchIntakeForms());
+  }, []);
 
   return (
     <>
@@ -97,7 +75,7 @@ export default function IntakeFormsPage() {
           <Typography variant="h3" color={colors.darkGreen}>
             Intake Forms
           </Typography>
-          <DocumentTableWithSort config={tableConfiguration} rows={rows} />
+          <TableWithSort config={tableConfiguration} rows={rows} />
         </Stack>
       </div>
     </>
