@@ -100,6 +100,7 @@ const ForgotPassword = ({
                   <StyledInput
                     label={t("usernamePlaceHolder")}
                     id="username"
+                    maxLength={254}
                     variant="filled"
                     value={value}
                     data-testid={FORGOT_TEST_ID.email}
