@@ -32,6 +32,7 @@ import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlin
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { StyledButton } from "../../atoms/Button/button";
 import constants from "../../../utils/constants";
+import { render } from "@testing-library/react";
 
 export default function Prescriptions({
   prescriptionData = {},
@@ -259,7 +260,7 @@ export default function Prescriptions({
           <Box
             className={[styles.flexDisplay]}
             sx={{
-              margin: "10px",
+              margin: "10px 16px",
               marginBottom: data.length == idx + 1 ? "26px" : "16px",
             }}
           >
@@ -284,7 +285,10 @@ export default function Prescriptions({
       <Stack direction={"row"} className={styles.medicationViewAllContainer}>
         {!isMobile && (
           <Box>
-            <Box className={styles.medicationIconContainer}>
+            <Box
+              className={styles.medicationIconContainer}
+              sx={{ justifyContent: "center" }}
+            >
               <Image alt="" src={iconMedication} width={32.88} height={44.63} />
             </Box>
           </Box>
@@ -296,49 +300,11 @@ export default function Prescriptions({
             </Typography>
             {!isMobile ? renderCTAIcon() : <MenuList />}
           </Stack>
-          <Grid
-            container
-            columns={3}
-            sx={{ width: !isMobile ? "75%" : "100%" }}
-          >
-            <Grid item xs={3} sm={1} md={1}>
+          <Stack sx={{ width: "100%" }}>
+            <Stack direction={"row"} className={styles.stackContainer}>
               <Typography className={styles.medicationViewAllStatus}>
                 Status: Refill requested
               </Typography>
-              <Stack
-                direction={"row"}
-                alignSelf={"center"}
-                className={styles.gridHeight}
-              >
-                <Typography
-                  variant="customBodyRegular"
-                  className={styles.gridText}
-                >
-                  Prescribed on: &nbsp;
-                </Typography>
-                <Typography variant="bodyMedium" className={styles.gridText}>
-                  01/10/2022
-                </Typography>
-              </Stack>
-              {!isMobile && (
-                <Stack
-                  direction={"row"}
-                  alignSelf={"center"}
-                  className={styles.gridHeight}
-                >
-                  <Typography
-                    variant="customBodyRegular"
-                    className={styles.gridText}
-                  >
-                    Expires on: &nbsp;
-                  </Typography>
-                  <Typography variant="bodyMedium" className={styles.gridText}>
-                    04/10/2023
-                  </Typography>
-                </Stack>
-              )}
-            </Grid>
-            <Grid item xs={3} sm={1} md={1}>
               <Stack
                 direction={"row"}
                 alignSelf={"center"}
@@ -352,6 +318,23 @@ export default function Prescriptions({
                 </Typography>
                 <Typography variant="bodyMedium" className={styles.gridText}>
                   01/11/2022
+                </Typography>
+              </Stack>
+            </Stack>
+            <Stack direction={"row"} className={styles.stackContainer}>
+              <Stack
+                direction={"row"}
+                alignSelf={"center"}
+                className={styles.gridHeight}
+              >
+                <Typography
+                  variant="customBodyRegular"
+                  className={styles.gridText}
+                >
+                  Prescribed on: &nbsp;
+                </Typography>
+                <Typography variant="bodyMedium" className={styles.gridText}>
+                  01/10/2022
                 </Typography>
               </Stack>
               <Stack
@@ -369,15 +352,6 @@ export default function Prescriptions({
                   Dr. Philip Morris
                 </Typography>
               </Stack>
-            </Grid>
-            <Grid item xs={3} sm={1} md={1}>
-              {!isMobile && (
-                <Stack
-                  direction={"row"}
-                  alignSelf={"center"}
-                  className={styles.gridHeight}
-                ></Stack>
-              )}
               <Stack
                 direction={"row"}
                 alignSelf={"center"}
@@ -393,22 +367,26 @@ export default function Prescriptions({
                   0.5 mL
                 </Typography>
               </Stack>
-            </Grid>
-          </Grid>
-          {isMobile && (
-            <Stack direction={"row"} className={styles.gridMobileExpired}>
-              <Typography
-                variant="customBodyRegular"
-                className={styles.gridText}
-              >
-                Expires on: &nbsp;
-              </Typography>
-              <Typography variant="bodyMedium" className={styles.gridText}>
-                04/10/2023
-              </Typography>
             </Stack>
-          )}
-          <Divider sx={{ paddingTop: "16px" }} />
+            <Stack direction={"row"} className={styles.stackContainer}>
+              <Stack
+                direction={"row"}
+                alignSelf={"center"}
+                className={styles.gridHeight}
+              >
+                <Typography
+                  variant="customBodyRegular"
+                  className={styles.gridText}
+                >
+                  Expires on: &nbsp;
+                </Typography>
+                <Typography variant="bodyMedium" className={styles.gridText}>
+                  04/10/2023
+                </Typography>
+              </Stack>
+            </Stack>
+          </Stack>
+          <Divider />
           <Stack direction={"row"} sx={{ marginTop: "24px", flexWrap: "wrap" }}>
             <Stack direction={"row"} className={styles.remainingTimeContainer}>
               <AccessTimeIcon sx={{ color: colors.darkGreen }} />
@@ -447,6 +425,65 @@ export default function Prescriptions({
       }
     });
     return contentUI;
+  }
+
+  function renderMedicationDetailUI() {
+    return (
+      <Box className={styles.medicationDetailContainer}>
+        <Box
+          className={[
+            styles.flexDisplay,
+            styles.spaceBetween,
+            styles.margin,
+            styles.marginTop,
+          ]}
+        >
+          <Typography variant="titleCard">Active Medications</Typography>
+        </Box>
+        {renderPrescriptionTabUI(prescription.medications, "medications")}
+        <Box
+          className={[
+            styles.flexDisplay,
+            styles.spaceBetween,
+            styles.margin,
+            styles.marginTop,
+          ]}
+        >
+          <Typography variant="titleCard">Past Medications</Typography>
+        </Box>
+        {renderPrescriptionTabUI(prescription.medications, "medications")}
+      </Box>
+    );
+  }
+
+  function renderSimpleMedicationUI() {
+    return (
+      <Box>
+        <Box
+          className={[styles.flexDisplay, styles.spaceBetween, styles.margin]}
+        >
+          <Typography variant="titleCard">Medications Prescriptions</Typography>
+        </Box>
+        {renderMedicationUI(prescription.medications)}
+        {!isViewAll && (
+          <Box
+            className={[styles.flexDisplay, styles.viewPrescription]}
+            onClick={() => {
+              onViewPrescriptions("medications");
+            }}
+            data-testid={"view-prescription-medication"}
+          >
+            <Link
+              className={styles.viewPrescriptionText}
+              sx={{ color: "#008294", fontFamily: "Inter" }}
+            >
+              View prescriptions
+            </Link>
+            <KeyboardArrowRightIcon />
+          </Box>
+        )}
+      </Box>
+    );
   }
 
   const contentPrescription = () => {
@@ -530,41 +567,9 @@ export default function Prescriptions({
           </Box>
         );
       default:
-        return (
-          <Box>
-            <Box
-              className={[
-                styles.flexDisplay,
-                styles.spaceBetween,
-                styles.margin,
-              ]}
-            >
-              <Typography variant="titleCard">
-                Medications Prescriptions
-              </Typography>
-            </Box>
-            {isViewAll
-              ? renderPrescriptionTabUI(prescription.medications, "medications")
-              : renderMedicationUI(prescription.medications)}
-            {!isViewAll && (
-              <Box
-                className={[styles.flexDisplay, styles.viewPrescription]}
-                onClick={() => {
-                  onViewPrescriptions("medications");
-                }}
-                data-testid={"view-prescription-medication"}
-              >
-                <Link
-                  className={styles.viewPrescriptionText}
-                  sx={{ color: "#008294", fontFamily: "Inter" }}
-                >
-                  View prescriptions
-                </Link>
-                <KeyboardArrowRightIcon />
-              </Box>
-            )}
-          </Box>
-        );
+        return !isViewAll
+          ? renderSimpleMedicationUI()
+          : renderMedicationDetailUI();
     }
   };
 
