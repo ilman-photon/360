@@ -1,3 +1,9 @@
 .documentPageWrapper {
+  display: flex;
+  flex-direction: column;
   max-width: 1073px;
+
+  @media (max-width: 768px) {
+    padding: 16px;
+  }
 }

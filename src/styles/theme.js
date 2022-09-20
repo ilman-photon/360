@@ -199,6 +199,14 @@ export const patientTypography = createTheme({
       fontSize: 16,
       lineHeight: "20px",
     },
+    headlineH4: {
+      fontFamily: "Bw Nista Geometric DEMO",
+      fontStyle: "normal",
+      fontWeight: 500,
+      fontSize: "18px",
+      lineHeight: "28px",
+      color: "#003B4A",
+    },
   },
 });
 

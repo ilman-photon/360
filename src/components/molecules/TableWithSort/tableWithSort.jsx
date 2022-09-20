@@ -8,9 +8,11 @@ import {
   TableRow,
   TableSortLabel,
   Tooltip,
+  Typography,
 } from "@mui/material";
 import React from "react";
 import { visuallyHidden } from "@mui/utils";
+import styles from "./styles.module.scss";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -63,7 +65,7 @@ const EnhancedTableHead = (props) => {
                   padding={headCell.disablePadding ? "none" : "normal"}
                   sortDirection={orderBy === headCell.id ? order : false}
                   width={headCell.width}
-                  sx={{ py: "15px" }}
+                  sx={{ py: "15px", ...headCell.sx }}
                 >
                   <TableSortLabel
                     active={orderBy === headCell.id}
@@ -147,7 +149,6 @@ export default function DocumentTableWithSort({
           aria-labelledby="tableTitle"
           size={dense ? "small" : "medium"}
           sx={{
-            minWidth: 750,
             "&.MuiTable-root": {
               borderCollapse: "separate",
               borderSpacing: "0 8px",
@@ -203,8 +204,23 @@ export default function DocumentTableWithSort({
                           );
                         case "download-icon":
                           return (
-                            <TableCell key={cellIdx}>
-                              <Tooltip title="download" placement="top">
+                            <TableCell key={cellIdx} {...cell.cellProps}>
+                              <Tooltip
+                                title={
+                                  <Typography
+                                    sx={{
+                                      fontSize: {
+                                        xs: 13,
+                                        md: 14,
+                                        color: "white",
+                                      },
+                                    }}
+                                  >
+                                    download
+                                  </Typography>
+                                }
+                                placement="top"
+                              >
                                 <a
                                   href={row.source}
                                   download
@@ -220,7 +236,13 @@ export default function DocumentTableWithSort({
                         default:
                           return (
                             <TableCell key={cellIdx} {...cell.cellProps}>
-                              <div style={cell.contentStyle}>
+                              <div
+                                style={cell.contentStyle}
+                                className={[
+                                  styles.tableCell,
+                                  cell.contentClass,
+                                ].join(" ")}
+                              >
                                 {row[cell.valueKey]}
                               </div>
                             </TableCell>
