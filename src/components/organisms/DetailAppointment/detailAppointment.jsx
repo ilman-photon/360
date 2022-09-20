@@ -75,13 +75,21 @@ export default function DetailAppointment({ data }) {
   return (
     <Box className={styles.upcomingAppointments} ref={container}>
       <Stack spacing={{ xs: 2, lg: 3.5 }}>
-        <Typography variant="h2" className={styles.title}>
+        <Typography
+          tabIndex={0}
+          aria-live={"Appointment Details heading"}
+          aria-label={"Appointment Details heading"}
+          variant="h2"
+          className={styles.title}
+        >
           Appointment Detail
         </Typography>
         <Box className={styles.dateContainer}>
           <Grid container spacing={2}>
             <Grid item xs={8}>
-              <Typography variant="h4">{fullDate}</Typography>
+              <Typography variant="h4" tabIndex={0} aria-label={fullDate}>
+                {fullDate}
+              </Typography>
             </Grid>
             <Grid item xs={4}>
               <Box
@@ -92,6 +100,9 @@ export default function DetailAppointment({ data }) {
               >
                 <Link
                   className={styles.link}
+                  tabIndex={0}
+                  aria-label={"Download Option"}
+                  aria-live={"Download Option"}
                   sx={{
                     display: isDownload ? "none" : "flex",
                     alignContent: "center",
@@ -118,12 +129,25 @@ export default function DetailAppointment({ data }) {
             className={styles.dateContainer}
             sx={{ p: 2, backgroundColor: "white" }}
           >
-            <Typography variant="h4" className={styles.mb36}>
+            <Typography
+              tabIndex={0}
+              aria-live={`Visit Purpose: ${appointmentInfo.appointmentType}`}
+              aria-label={`Visit Purpose: ${appointmentInfo.appointmentType}`}
+              variant="h4"
+              className={styles.mb36}
+            >
               {`Visit Purpose: ${appointmentInfo.appointmentType}`}
             </Typography>
             <Grid container spacing={2} sx={{ p: 1 }}>
               <Grid item xs={4}>
-                <Typography variant="h4">{providerInfo.name}</Typography>
+                <Typography
+                  tabIndex={0}
+                  aria-label={providerInfo.name}
+                  aria-live={providerInfo.name}
+                  variant="h4"
+                >
+                  {providerInfo.name}
+                </Typography>
               </Grid>
               <Grid item xs={8}>
                 <Box
@@ -132,8 +156,21 @@ export default function DetailAppointment({ data }) {
                   alignItems={"center"}
                   flexDirection={"row"}
                 >
-                  <Typography variant="h4">Patient :</Typography>
-                  <Typography variant="regularDarkGreen" sx={{ pl: 0.5 }}>
+                  <Typography
+                    tabIndex={0}
+                    aria-label={"Patient"}
+                    aria-live={"Patient"}
+                    variant="h4"
+                  >
+                    Patient :
+                  </Typography>
+                  <Typography
+                    tabIndex={0}
+                    aria-label={patientInfo.name}
+                    aria-live={patientInfo.name}
+                    variant="regularDarkGreen"
+                    sx={{ pl: 0.5 }}
+                  >
                     {patientInfo.name}
                   </Typography>
                 </Box>
@@ -142,14 +179,20 @@ export default function DetailAppointment({ data }) {
             <Divider />
             <Grid container spacing={2} sx={{ p: 1 }}>
               <Grid item xs={4} sx={{ p: 1 }}>
-                <Typography variant="h4" className={styles.mb14}>
+                <Typography tabIndex={0} variant="h4" className={styles.mb14}>
                   Location
                 </Typography>
-                <Typography variant="mediumDarkGreen" className={styles.mb36}>
+                <Typography
+                  tabIndex={0}
+                  aria-label={providerInfo.position}
+                  variant="mediumDarkGreen"
+                  className={styles.mb36}
+                >
                   {providerInfo.position}
                 </Typography>
                 <Typography
                   variant="regularDarkGreen"
+                  tabIndex={0}
                   component={"div"}
                   sx={{ pt: 1 }}
                 >
@@ -161,6 +204,8 @@ export default function DetailAppointment({ data }) {
                   {providerInfo.address.zipcode}
                 </Typography>
                 <Link
+                  tabIndex={0}
+                  ariaLabel={formatPhoneNumber(providerInfo.phoneNumber)}
                   sx={{
                     color: "teal",
                     display: "flex",
@@ -184,7 +229,13 @@ export default function DetailAppointment({ data }) {
                   alignItems={"center"}
                   flexDirection={"row"}
                 >
-                  <Typography variant="h4" className={styles.mb14}>
+                  <Typography
+                    tabIndex={0}
+                    ariaLabel={"Insurance"}
+                    ariaLive={"Insurance"}
+                    variant="h4"
+                    className={styles.mb14}
+                  >
                     Insurance
                   </Typography>
                 </Box>
@@ -197,7 +248,11 @@ export default function DetailAppointment({ data }) {
                     flexDirection={"row"}
                     sx={{ pb: 1 }}
                   >
-                    <Typography variant="regularDarkGreen">
+                    <Typography
+                      tabIndex={0}
+                      ariaLabel={insurance}
+                      variant="regularDarkGreen"
+                    >
                       {insurance}
                     </Typography>
                   </Box>
@@ -206,10 +261,20 @@ export default function DetailAppointment({ data }) {
             </Grid>
           </Box>
           <Box sx={{ p: 2, pb: 0, backgroundColor: grey[50] }}>
-            <Typography variant="h3" className={styles.mb14}>
+            <Typography
+              tabIndex={0}
+              aria-Label={"Documentation of"}
+              variant="h3"
+              className={styles.mb14}
+            >
               Documentation of
             </Typography>
-            <Typography variant="body1" className={styles.mb14}>
+            <Typography
+              tabIndex={0}
+              aria-label={appointmentInfo.documentation.name}
+              variant="body1"
+              className={styles.mb14}
+            >
               {appointmentInfo.documentation.name}
             </Typography>
           </Box>
@@ -223,7 +288,11 @@ export default function DetailAppointment({ data }) {
             }}
           >
             {appointmentInfo.documentation.list.map((documentation, index) => (
-              <Box key={index.toString()}>
+              <Box
+                tabIndex={0}
+                ariaLabel={documentation.name}
+                key={index.toString()}
+              >
                 <strong>{documentation.name}</strong> {documentation.value}
               </Box>
             ))}
@@ -264,9 +333,19 @@ export default function DetailAppointment({ data }) {
                   paddingLeft: "16px",
                 }}
               >
-                <Typography variant="h4">Allergies</Typography>
+                <Typography
+                  tabIndex={0}
+                  aria-label={"Allergies heading"}
+                  aria-live={"Allergies heading"}
+                  variant="h4"
+                >
+                  Allergies
+                </Typography>
               </Box>
               <Box
+                tabIndex={0}
+                aria-label={"Collapse option"}
+                ariaExpanded={openAllergies ? "true" : "false"}
                 sx={{
                   display: "flex",
                   justifyContent: "center",
@@ -275,7 +354,11 @@ export default function DetailAppointment({ data }) {
                   mr: 3,
                 }}
               >
-                {openAllergies ? <ExpandMoreIcon /> : <ExpandLessIcon />}
+                {openAllergies ? (
+                  <ExpandMoreIcon aria-expanded="true" />
+                ) : (
+                  <ExpandLessIcon tabIndex={0} aria-expanded="false" />
+                )}
               </Box>
             </Box>
             <Collapse in={openAllergies} timeout="auto" unmountOnExit>
