@@ -1,0 +1,67 @@
+@import "../../../../../../styles/colors.scss";
+
+.intakePageWrapper {
+  max-width: 1073px;
+  padding: 0;
+
+  @media (max-width: 767px) {
+    padding: 16px;
+    width: 100%;
+    max-width: 767px;
+  }
+}
+
+.disclaimerWrapper {
+  margin-top: 16px;
+  padding: 12px 16px;
+  border-radius: 4px;
+  color: #003b4a;
+  background: #edf5fe;
+}
+
+.infoLabel {
+  display: inline-flex;
+}
+
+.noResultText {
+  font-family: Bw Nista Geometric DEMO;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 28px;
+  letter-spacing: 0em;
+}
+
+.disclaimerText {
+  font-family: "Libre Franklin";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  word-break: break-word;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.container {
+  background-color: #e4e4e4;
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .pageWrapper {
+    display: flex;
+    max-width: 1450px;
+    width: inherit;
+  }
+}
+
+.closeIcon {
+  width: 25px;
+  height: 25px;
+  color: #003b4a !important;
+  padding: 0px;
+  margin-bottom: auto;
+  justify-content: right;
+}

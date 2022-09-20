@@ -17,7 +17,7 @@ describe("AccountSidebar Components", () => {
     expect(container.getByText("Care Plan")).toBeInTheDocument();
     expect(container.getByText("Prescriptions")).toBeInTheDocument();
     expect(container.getByText("Test & Lab Results")).toBeInTheDocument();
-    expect(container.getByText("Documents")).toBeInTheDocument();
+    expect(container.getByText("Insurance documents")).toBeInTheDocument();
     expect(container.getByText("Multi factor authentication")).toBeInTheDocument();
 
     setTimeout(() => {
