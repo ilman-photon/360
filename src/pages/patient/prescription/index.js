@@ -1,4 +1,4 @@
-import { Stack } from "@mui/material";
+import { Stack, useMediaQuery } from "@mui/material";
 import * as React from "react";
 import { useEffect } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
@@ -12,6 +12,7 @@ import store from "../../../store/store";
 import { Api } from "../../api/api";
 
 export default function PrescriptionPage() {
+  const isMobile = useMediaQuery("(max-width: 768px)");
   const [prescriptionData, setPrescriptionData] = React.useState({});
 
   //Call API for getAllPrescriptions
@@ -33,13 +34,13 @@ export default function PrescriptionPage() {
   }, []);
 
   return (
-    <Stack sx={{ width: "100%" }}>
+    <Stack sx={{ width: "100%", backgroundColor: "#F4F4F4" }}>
       <Stack
         sx={{
-          padding: "24px",
+          padding: isMobile ? "16px" : "24px",
           marginBottom: "32px",
           maxWidth: "1440px",
-          backgroundColor: "#fff",
+          backgroundColor: isMobile ? "#F4F4F4" : "#fff",
           alignSelf: "center",
           width: "100%",
         }}

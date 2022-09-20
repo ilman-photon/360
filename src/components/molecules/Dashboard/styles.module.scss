@@ -22,6 +22,15 @@
   .paddingTop22 {
     padding-top: 22px;
   }
+
+  .glassesViewAll {
+    font-family: "Bw Nista Geometric DEMO";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    color: #205a63;
+  }
 }
 
 .prescriptionContent {
@@ -41,7 +50,7 @@
 }
 
 .margin {
-  margin: 10px;
+  margin: 10px 16px;
 }
 
 .marginBottom {
@@ -121,4 +130,139 @@
 .herfItemMenu {
   display: flex;
   align-items: center;
+}
+
+.medicationViewAllContainer {
+  margin: 16px;
+  padding: 16px;
+  border: 1px solid #d4d4d4;
+  border-radius: 4px;
+  .medicationIconContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 10px;
+
+    width: 83px;
+    height: 83px;
+
+    /* ECP/Teal-5 */
+
+    background: #eef5f7;
+    border-radius: 48px;
+  }
+  .medicationViewAllTitle {
+    font-family: "Bw Nista Geometric DEMO";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 32px;
+    color: #003b4a;
+    @media (max-width: 767px) {
+      margin-right: auto;
+    }
+  }
+
+  .medicationViewAllStatus {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 14px;
+    gap: 10px;
+    margin-right: 24px;
+
+    width: 90%;
+
+    /* Right Nav/ background */
+
+    background: #f4f4f4;
+    border-radius: 4px;
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: 0.0016em;
+    color: #003b4a;
+    margin-top: 15px;
+    @media (max-width: 767px) {
+      width: 100%;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+  }
+
+  .medicationViewAllTabContainer {
+    gap: 24px;
+    padding-top: 24px;
+    flex-wrap: wrap;
+  }
+
+  .gridHeight {
+    margin-top: 15px;
+    height: 40px;
+    @media (max-width: 767px) {
+      margin-top: 0px;
+      height: 32px;
+    }
+  }
+
+  .gridMobileExpired {
+    margin-top: 24px;
+  }
+
+  .gridText {
+    line-height: 40px;
+    @media (max-width: 767px) {
+      line-height: 32px;
+    }
+  }
+
+  .buttomContiner {
+    margin-top: 24px;
+    @media (max-width: 767px) {
+      flex-wrap: wrap;
+    }
+  }
+
+  .remainingTimeContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+    width: 213px;
+    height: 48px;
+    background: #f2f7f7;
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+
+    .remainingTimeText {
+      font-family: "Libre Franklin", sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 28px;
+      color: #003b4a;
+    }
+  }
+
+  .requestButton {
+    align-self: center;
+    height: 36px !important;
+    margin-left: auto;
+    font-family: "Libre Franklin";
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    @media (max-width: 767px) {
+      width: 100%;
+      margin-top: 24px;
+    }
+  }
 }
