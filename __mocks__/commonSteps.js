@@ -1,4 +1,10 @@
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import {
+  act,
+  cleanup,
+  fireEvent,
+  render,
+  waitFor,
+} from "@testing-library/react";
 import { Provider } from "react-redux";
 import Login from "../src/pages/patient/login";
 import "@testing-library/jest-dom";
@@ -62,28 +68,11 @@ export async function clickContinueForgot(container, mock) {
 }
 
 export async function renderScheduleAppointment() {
-  {
-    const mock = new MockAdapter(axios);
-    const mockGeolocation = {
-      getCurrentPosition: jest.fn(),
-      watchPosition: jest.fn(),
-    };
-
-    const domain = window.location.origin;
-    mock
-      .onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`)
-      .reply(200, MOCK_SUGGESTION_DATA);
-    mock
-      .onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`)
-      .reply(400, {});
-    global.navigator.geolocation = mockGeolocation;
-    const container = render(
-      <Provider store={store}>
-        {Appointment.getLayout(<Appointment />)}
-      </Provider>
-    );
-    await waitFor(() => container.getByText(/City, state, or zip/i));
-    expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
-    return container;
-  }
+  let container;
+  container = render(
+    <Provider store={store}>{Appointment.getLayout(<Appointment />)}</Provider>
+  );
+  await waitFor(() => container.getByText("Purpose of Visit"));
+  expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
+  return container;
 }
