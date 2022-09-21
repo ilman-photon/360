@@ -43,7 +43,7 @@ export default function getAllAppointment(req, res) {
             },
             appointmentInfo: {
               appointmentType: "Eye Exam",
-              date: "Wed, 20 Sep 2022 07:30:00 EST",
+              date: "Wed, 22 Sep 2022 07:30:00 EST",
               insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
             },
           },
@@ -80,7 +80,7 @@ export default function getAllAppointment(req, res) {
             },
             appointmentInfo: {
               appointmentType: "Comprehensive",
-              date: "Wed, 22 Sep 2022 07:30:00 EST",
+              date: "Wed, 24 Sep 2022 07:30:00 EST",
               insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
             },
           },
@@ -117,7 +117,7 @@ export default function getAllAppointment(req, res) {
             },
             appointmentInfo: {
               appointmentType: "Comprehensive",
-              date: "Wed, 20 Sep 2022 07:30:00 EST",
+              date: "Wed, 24 Sep 2022 10:30:00 EST",
               insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
             },
           },
@@ -154,7 +154,7 @@ export default function getAllAppointment(req, res) {
             },
             appointmentInfo: {
               appointmentType: "Comprehensive",
-              date: "Wed, 20 Sep 2022 07:30:00 EST",
+              date: "Wed, 24 Sep 2022 14:30:00 EST",
               insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
             },
           },
@@ -191,7 +191,7 @@ export default function getAllAppointment(req, res) {
             },
             appointmentInfo: {
               appointmentType: "Comprehensive",
-              date: "Wed, 23 Sep 2022 07:30:00 EST",
+              date: "Wed, 24 Sep 2022 18:30:00 EST",
               insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
             },
           },

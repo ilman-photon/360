@@ -61,7 +61,7 @@ export function PastAppointmentCard({ data, threshold }) {
         </Box>
       </Box>
       <Collapse
-        in={threshold == 1 ? openAlt : open}
+        in={threshold == 0 ? openAlt : open}
         timeout="auto"
         unmountOnExit
       >
@@ -97,22 +97,28 @@ export function PastAppointmentCard({ data, threshold }) {
 }
 
 export default function PastAppointment({ data }) {
+  const appointments = [];
+  for (const appointment of data) {
+    if (
+      new Date(appointment.appointmentInfo.date) < new Date() &&
+      appointments.length < 11
+    ) {
+      appointments.push(appointment);
+    }
+  }
   const isData =
-    data.length == 0 ? (
+    appointments.length == 0 ? (
       <Box className={styles.subTitleWrapper}>
         <Typography variant="body2" className={styles.noPastAppointment}>
           You have no past appointments
         </Typography>
       </Box>
     ) : (
-      data
+      appointments
         .map((item, index) => {
-          const isPastItem = true; //new Date(item.appointmentInfo.date) < new Date();
-          if (index > 0) {
-            return index < 11 && isPastItem ? (
-              <PastAppointmentCard data={item} threshold={index} key={index} />
-            ) : null;
-          }
+          return (
+            <PastAppointmentCard data={item} threshold={index} key={index} />
+          );
         })
         .filter((temp) => temp)
     );
