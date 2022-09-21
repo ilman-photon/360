@@ -419,18 +419,33 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-44_STORY_EPP-1585 -Verify if user able to select the ‘Purpose of Visit’', ({ given, when, and, then }) => {
     given('user launch the Patient Portal url', () => {
-
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     when('user provides valid Email or Phone Number and password', () => {
-
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and('user clicks on Login button', () => {
-
+      const loginButton = container.getByRole("button", {
+        name: /loginButtonLabel/i,
+      });
+      fireEvent.click(loginButton);
     });
 
-    then('user navigates to the Patient Portal application', () => {
+    then('user navigates to the Patient Portal application', async () => {
       navigateToPatientPortalHome()
     });
 
@@ -461,18 +476,33 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-44_STORY_EPP-1585 -Verify if user able to view optional label under ‘Purpose of Visit’ field', ({ given, when, and, then }) => {
     given('user launch the Patient Portal url', () => {
-
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     when('user provides valid Email or Phone Number and password', () => {
-
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and('user clicks on Login button', () => {
-
+      const loginButton = container.getByRole("button", {
+        name: /loginButtonLabel/i,
+      });
+      fireEvent.click(loginButton);
     });
 
-    then('user navigates to the Patient Portal application', () => {
+    then('user navigates to the Patient Portal application', async () => {
       navigateToPatientPortalHome()
     });
 
