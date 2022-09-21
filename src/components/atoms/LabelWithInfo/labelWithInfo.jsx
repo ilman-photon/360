@@ -12,6 +12,7 @@ export const LabelWithInfo = ({
   titleIcon,
   sxRow,
   sxText,
+  alignItems = "unset",
 }) => (
   <Stack>
     <div className={styles.labelContainer} style={sxRow}>
@@ -55,7 +56,7 @@ export const LabelWithInfo = ({
         ""
       )}
     </div>
-    <Stack spacing={1} sx={{ mt: "10px" }}>
+    <Stack spacing={1} sx={{ mt: "10px", alignItems: alignItems }}>
       <div>{children}</div>
       {helperText ? (
         <Typography variant="bodySmallRegular" sx={{ mt: 1, fontWeight: 500 }}>

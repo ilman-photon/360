@@ -187,30 +187,24 @@ Object {
                     <button
                       aria-controls="full-width-tabpanel-0"
                       aria-selected="true"
-                      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth Mui-selected css-1orr1xa-MuiButtonBase-root-MuiTab-root"
+                      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth Mui-selected css-4i0shu-MuiButtonBase-root-MuiTab-root"
                       id="full-width-tab-0"
                       role="tab"
                       tabindex="0"
                       type="button"
                     >
                       Profile
-                      <span
-                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                      />
                     </button>
                     <button
                       aria-controls="full-width-tabpanel-1"
                       aria-selected="false"
-                      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth css-1orr1xa-MuiButtonBase-root-MuiTab-root"
+                      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth css-4i0shu-MuiButtonBase-root-MuiTab-root"
                       id="full-width-tab-1"
                       role="tab"
                       tabindex="-1"
                       type="button"
                     >
                       Contact
-                      <span
-                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                      />
                     </button>
                   </div>
                   <span
@@ -250,7 +244,7 @@ Object {
                             </div>
                           </div>
                           <div
-                            class="css-qkek6c-MuiStack-root"
+                            class="css-wb45zt-MuiStack-root"
                           >
                             <div>
                               <div
@@ -303,7 +297,7 @@ Object {
                             </button>
                           </div>
                           <div
-                            class="css-qkek6c-MuiStack-root"
+                            class="css-1sbz1s3-MuiStack-root"
                           >
                             <div>
                               <div
@@ -335,7 +329,7 @@ Object {
                             </div>
                           </div>
                           <div
-                            class="css-qkek6c-MuiStack-root"
+                            class="css-1sbz1s3-MuiStack-root"
                           >
                             <div>
                               <div
@@ -367,7 +361,7 @@ Object {
                             </div>
                           </div>
                           <div
-                            class="css-qkek6c-MuiStack-root"
+                            class="css-1sbz1s3-MuiStack-root"
                           >
                             <div>
                               <div
@@ -421,7 +415,7 @@ Object {
                             </button>
                           </div>
                           <div
-                            class="css-qkek6c-MuiStack-root"
+                            class="css-1sbz1s3-MuiStack-root"
                           >
                             <div>
                               <div
@@ -475,7 +469,7 @@ Object {
                             </button>
                           </div>
                           <div
-                            class="css-qkek6c-MuiStack-root"
+                            class="css-1sbz1s3-MuiStack-root"
                           >
                             <div>
                               <div
@@ -507,7 +501,7 @@ Object {
                             </div>
                           </div>
                           <div
-                            class="css-qkek6c-MuiStack-root"
+                            class="css-1sbz1s3-MuiStack-root"
                           >
                             <div>
                               <div
@@ -561,7 +555,7 @@ Object {
                             </button>
                           </div>
                           <div
-                            class="css-qkek6c-MuiStack-root"
+                            class="css-1sbz1s3-MuiStack-root"
                           >
                             <div>
                               <div
@@ -609,7 +603,7 @@ Object {
                                 </div>
                               </div>
                               <div
-                                class="css-qkek6c-MuiStack-root"
+                                class="css-1sbz1s3-MuiStack-root"
                               >
                                 <div>
                                   <div
@@ -665,7 +659,7 @@ Object {
                                 </div>
                               </div>
                               <div
-                                class="css-qkek6c-MuiStack-root"
+                                class="css-1sbz1s3-MuiStack-root"
                               >
                                 <div>
                                   <div
@@ -919,30 +913,24 @@ Object {
                   <button
                     aria-controls="full-width-tabpanel-0"
                     aria-selected="true"
-                    class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth Mui-selected css-1orr1xa-MuiButtonBase-root-MuiTab-root"
+                    class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth Mui-selected css-4i0shu-MuiButtonBase-root-MuiTab-root"
                     id="full-width-tab-0"
                     role="tab"
                     tabindex="0"
                     type="button"
                   >
                     Profile
-                    <span
-                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                    />
                   </button>
                   <button
                     aria-controls="full-width-tabpanel-1"
                     aria-selected="false"
-                    class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth css-1orr1xa-MuiButtonBase-root-MuiTab-root"
+                    class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth css-4i0shu-MuiButtonBase-root-MuiTab-root"
                     id="full-width-tab-1"
                     role="tab"
                     tabindex="-1"
                     type="button"
                   >
                     Contact
-                    <span
-                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                    />
                   </button>
                 </div>
                 <span
@@ -982,7 +970,7 @@ Object {
                           </div>
                         </div>
                         <div
-                          class="css-qkek6c-MuiStack-root"
+                          class="css-wb45zt-MuiStack-root"
                         >
                           <div>
                             <div
@@ -1035,7 +1023,7 @@ Object {
                           </button>
                         </div>
                         <div
-                          class="css-qkek6c-MuiStack-root"
+                          class="css-1sbz1s3-MuiStack-root"
                         >
                           <div>
                             <div
@@ -1067,7 +1055,7 @@ Object {
                           </div>
                         </div>
                         <div
-                          class="css-qkek6c-MuiStack-root"
+                          class="css-1sbz1s3-MuiStack-root"
                         >
                           <div>
                             <div
@@ -1099,7 +1087,7 @@ Object {
                           </div>
                         </div>
                         <div
-                          class="css-qkek6c-MuiStack-root"
+                          class="css-1sbz1s3-MuiStack-root"
                         >
                           <div>
                             <div
@@ -1153,7 +1141,7 @@ Object {
                           </button>
                         </div>
                         <div
-                          class="css-qkek6c-MuiStack-root"
+                          class="css-1sbz1s3-MuiStack-root"
                         >
                           <div>
                             <div
@@ -1207,7 +1195,7 @@ Object {
                           </button>
                         </div>
                         <div
-                          class="css-qkek6c-MuiStack-root"
+                          class="css-1sbz1s3-MuiStack-root"
                         >
                           <div>
                             <div
@@ -1239,7 +1227,7 @@ Object {
                           </div>
                         </div>
                         <div
-                          class="css-qkek6c-MuiStack-root"
+                          class="css-1sbz1s3-MuiStack-root"
                         >
                           <div>
                             <div
@@ -1293,7 +1281,7 @@ Object {
                           </button>
                         </div>
                         <div
-                          class="css-qkek6c-MuiStack-root"
+                          class="css-1sbz1s3-MuiStack-root"
                         >
                           <div>
                             <div
@@ -1341,7 +1329,7 @@ Object {
                               </div>
                             </div>
                             <div
-                              class="css-qkek6c-MuiStack-root"
+                              class="css-1sbz1s3-MuiStack-root"
                             >
                               <div>
                                 <div
@@ -1397,7 +1385,7 @@ Object {
                               </div>
                             </div>
                             <div
-                              class="css-qkek6c-MuiStack-root"
+                              class="css-1sbz1s3-MuiStack-root"
                             >
                               <div>
                                 <div
