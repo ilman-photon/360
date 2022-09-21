@@ -10,7 +10,7 @@ import AppointmentInformation from "../../molecules/AppointmentInformation/appoi
 export function PastAppointmentCard({ data, threshold }) {
   const date = data.appointmentInfo.date;
   const timezone = date.substring(date.length - 3);
-  const momentDate = new moment(date);
+  const momentDate = new moment(new Date(date));
   const year = momentDate.format("YYYY");
   const formatedDate = momentDate.format("dddd, MMM DD - h:mmA");
   const fullDate = `${formatedDate} ${timezone}`;
@@ -100,13 +100,16 @@ export default function PastAppointment({ data }) {
   const isData =
     data.length == 0 ? (
       <Box className={styles.subTitleWrapper}>
-        <Typography variant="body2">You Have no Past Appointment</Typography>
+        <Typography variant="body2" className={styles.noPastAppointment}>
+          You have no past appointments
+        </Typography>
       </Box>
     ) : (
       data
         .map((item, index) => {
+          const isPastItem = true; //new Date(item.appointmentInfo.date) < new Date();
           if (index > 0) {
-            return index < 11 ? (
+            return index < 11 && isPastItem ? (
               <PastAppointmentCard data={item} threshold={index} key={index} />
             ) : null;
           }

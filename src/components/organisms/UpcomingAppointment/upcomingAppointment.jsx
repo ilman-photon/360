@@ -124,14 +124,15 @@ export default function UpcomingAppointment({
 
       {isHasValue ? (
         data.map((item, index) => {
-          return (
+          const isUpcoming = new Date(item.appointmentInfo.date) > new Date();
+          return isUpcoming ? (
             <UpcomingAppointmentCard
               data={item}
               key={index}
               onRescheduleClicked={onRescheduleClicked}
               onCancelClicked={onCancelClicked}
             />
-          );
+          ) : null;
         })
       ) : (
         <NoAppointment></NoAppointment>
