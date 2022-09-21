@@ -40,6 +40,7 @@ export default function Prescriptions({
     //this is intentional
   },
   isViewAll = false,
+  activeIndex = 0,
 }) {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
@@ -49,7 +50,7 @@ export default function Prescriptions({
   const iconMedication = "/icon-medication.png";
   const iconShare = "/icon-share.png";
   const iconDownload = "/icon-download.png";
-  const [value, setValue] = React.useState(0);
+  const [value, setValue] = React.useState(activeIndex);
   const [prescription, setPrescriptione] = React.useState({
     contacts: [],
     glasses: [],
@@ -469,7 +470,7 @@ export default function Prescriptions({
           <Box
             className={[styles.flexDisplay, styles.viewPrescription]}
             onClick={() => {
-              onViewPrescriptions("medications");
+              onViewPrescriptions(2);
             }}
             data-testid={"view-prescription-medication"}
           >
@@ -512,7 +513,7 @@ export default function Prescriptions({
               <Box
                 className={[styles.flexDisplay, styles.viewPrescription]}
                 onClick={() => {
-                  onViewPrescriptions("glasses");
+                  onViewPrescriptions(0);
                 }}
                 data-testid={"view-prescription-glasses"}
               >
@@ -551,7 +552,7 @@ export default function Prescriptions({
               <Box
                 className={[styles.flexDisplay, styles.viewPrescription]}
                 onClick={() => {
-                  onViewPrescriptions("contact");
+                  onViewPrescriptions(1);
                 }}
                 data-testid={"view-prescription-contact"}
               >

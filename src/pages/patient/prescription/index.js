@@ -2,16 +2,19 @@ import { Stack, useMediaQuery } from "@mui/material";
 import * as React from "react";
 import { useEffect } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
-import Cookies from "universal-cookie";
-import AccountTitleHeading from "../../../components/atoms/AccountTitleHeading/accountTitleHeading";
 import Prescriptions from "../../../components/molecules/Dashboard/prescriptions";
-import Navbar from "../../../components/molecules/Navbar/Navbar";
-import AppointmentLayout from "../../../components/templates/appointmentLayout";
 import PrescriptionLayout from "../../../components/templates/prescriptionLayout";
 import store from "../../../store/store";
 import { Api } from "../../api/api";
 
-export default function PrescriptionPage() {
+export async function getServerSideProps({ query }) {
+  return {
+    props: {
+      activeTab: query.activeTab || null,
+    },
+  };
+}
+export default function PrescriptionPage({ activeTab }) {
   const isMobile = useMediaQuery("(max-width: 768px)");
   const [prescriptionData, setPrescriptionData] = React.useState({});
 
@@ -45,7 +48,11 @@ export default function PrescriptionPage() {
           width: "100%",
         }}
       >
-        <Prescriptions prescriptionData={prescriptionData} isViewAll={true} />
+        <Prescriptions
+          prescriptionData={prescriptionData}
+          isViewAll={true}
+          activeIndex={Number(activeTab)}
+        />
       </Stack>
     </Stack>
   );

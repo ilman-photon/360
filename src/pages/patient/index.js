@@ -149,8 +149,8 @@ export default function HomePage() {
       });
   }
 
-  function onViewPrescriptions() {
-    router.push("/patient/prescription");
+  function onViewPrescriptions(index) {
+    router.push(`/patient/prescription?activeTab=${index}`);
   }
 
   useEffect(() => {
