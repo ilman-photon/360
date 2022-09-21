@@ -15,8 +15,8 @@ export function UpcomingAppointmentCard({
   onRescheduleClicked,
   onCancelClicked,
 }) {
-  function minHours(numOfHours, date = new Date()) {
-    date.setTime(date.getTime() - numOfHours * 60 * 60 * 1000);
+  function addHours(numOfHours, date = new Date()) {
+    date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
 
     return date;
   }
@@ -30,7 +30,7 @@ export function UpcomingAppointmentCard({
     hideHour = 24;
   }
 
-  const isHideButtons = visitDate < minHours(hideHour);
+  const isHideButtons = visitDate < addHours(hideHour);
   return (
     <Box className={styles.upcomingAppointmentsContainer}>
       <Box className={styles.upcomingAppointmentDetail}>

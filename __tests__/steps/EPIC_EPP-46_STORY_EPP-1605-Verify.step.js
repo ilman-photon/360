@@ -412,6 +412,7 @@ defineFeature(feature, (test) => {
         const cancelButton = container.getByRole("button", {
           name: "Cancel",
         });
+        expect(cancelButton).toBeInTheDocument();
         expect(cancelButton).toBeVisible();
       }
     );
