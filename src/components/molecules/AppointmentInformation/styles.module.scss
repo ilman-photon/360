@@ -23,7 +23,7 @@
   padding-bottom: 14px;
 
   h6 {
-    font-family: "Bw Nista Geometric DEMO", sans-serif;
+    font-family: "Bw Nista Geometric DEMO", sans-serif !important;
   }
 
   @media (max-width: 992px) {
@@ -64,16 +64,16 @@
 }
 
 .appointmentInformation h6 {
-  font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 28px;
-  color: #003b4a;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 18px !important;
+  line-height: 28px !important;
+  color: #003b4a !important;
 }
 
 .locationContainer h6 {
-  font-size: 16px;
-  line-height: 19px;
+  font-size: 16px !important;
+  line-height: 19px !important;
 }
 
 .bodyTitle {
@@ -116,7 +116,7 @@
 }
 
 .link {
-  font-family: "Libre Franklin", sans-serif;
+  font-family: "Libre Franklin", sans-serif !important;
   font-style: normal;
   font-weight: 500;
   font-size: 16px;
