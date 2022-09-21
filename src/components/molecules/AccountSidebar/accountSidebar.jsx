@@ -81,7 +81,7 @@ export const AccountSidebar = ({ ...props }, ref) => {
               alignItems="center"
               color={colors.iconGrey}
             >
-              {link.icon}
+              {/* {link.icon} */}
               <SidebarLink router={router} href={link.href} child={link.child}>
                 {link.label}
               </SidebarLink>
@@ -95,7 +95,7 @@ export const AccountSidebar = ({ ...props }, ref) => {
                 sx={{ cursor: "pointer" }}
                 onClick={() => toggleSidebarChild("documents")}
               >
-                {link.icon}
+                {/* {link.icon} */}
                 <Typography
                   variant="allVariants"
                   className={styles.sidebarLink}

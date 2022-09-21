@@ -9,7 +9,7 @@ export default function InsuranceDocuments(req, res) {
 
   const dummyDocuments = [
     createData(
-      "Consent to Treat - Patient Financial Responsibility - Assigment of Benefits",
+      "Consent to Treataaa - Patient Financial Responsibility - Assigment of Benefits",
       "09/09/2022 12:00PM",
       "/doctor.png"
     ),
