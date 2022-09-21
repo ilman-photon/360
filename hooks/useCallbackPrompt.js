@@ -12,7 +12,7 @@ export const useLeavePageConfirm = ({
   const handleWindowClose = (e) => {
     e.preventDefault();
     
-    return ("Testse");
+    return (e.returnValue = "Change that you made might not be saved.");
   };
   useEffect(() => {
     return () => window.removeEventListener("beforeunload", handleWindowClose);
