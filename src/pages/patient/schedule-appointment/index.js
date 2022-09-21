@@ -43,6 +43,7 @@ import { setFormMessage } from "../../../store";
 import { TEST_ID } from "../../../utils/constants";
 import { StyledButton } from "../../../components/atoms/Button/button";
 import { colors } from "../../../styles/theme";
+import { useLeavePageConfirm } from "../../../../hooks/useCallbackPrompt";
 
 const MobileTopBar = (data) => {
   return (
@@ -241,6 +242,8 @@ export default function ScheduleAppointmentPage() {
   const [isReschedule, setIsReschedule] = React.useState(false);
   const [modalConfirmReschedule, setModalConfirmReschedule] =
     React.useState(false);
+
+  useLeavePageConfirm({ message: "Change that you made might not be saved." });
 
   const router = useRouter();
   const dispatch = useDispatch();
