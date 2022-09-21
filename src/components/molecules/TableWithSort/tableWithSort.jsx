@@ -93,6 +93,7 @@ const EnhancedTableHead = (props) => {
 export default function DocumentTableWithSort({
   config = { header: [], cells: [] },
   rows = [],
+  isDesktop = false,
 }) {
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("calories");
@@ -149,6 +150,7 @@ export default function DocumentTableWithSort({
           aria-labelledby="tableTitle"
           size={dense ? "small" : "medium"}
           sx={{
+            minWidth: isDesktop ? 750 : "none",
             "&.MuiTable-root": {
               borderCollapse: "separate",
               borderSpacing: "0 8px",
@@ -230,6 +232,25 @@ export default function DocumentTableWithSort({
                                   {cell.icon}
                                 </a>
                               </Tooltip>
+                            </TableCell>
+                          );
+                        case "test-lab-mobile":
+                          return (
+                            <TableCell key={cellIdx} {...cell.cellProps}>
+                              <div style={cell.contentStyle}>
+                                {row[cell.valueKey1]}
+                                <a
+                                  style={{
+                                    fontWeight: 600,
+                                    fontSize: "14px",
+                                    color: "#003B4A",
+                                    paddingTop: "16px",
+                                  }}
+                                >
+                                  {cell.cellHeadLabel}
+                                </a>
+                                {row[cell.valueKey2]}
+                              </div>
                             </TableCell>
                           );
                         case "text":
