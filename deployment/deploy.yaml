@@ -37,10 +37,10 @@ metadata:
     # service.beta.kubernetes.io/aws-load-balancer-type: elb
 spec:
   ports:
-  - name: 80-8080
+  - name: 80-3000
     port: 80
     protocol: TCP
-    targetPort: 8080
+    targetPort: 3000
   selector:
     app: patient
   type: LoadBalancer

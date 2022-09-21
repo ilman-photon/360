@@ -8,6 +8,9 @@ import store from "../../src/store/store";
 import Cookies from "universal-cookie";
 import mediaQuery from "css-mediaquery";
 import HomePage from "../../src/pages/patient";
+import Appointment from "../../src/pages/patient/appointment";
+import Appointments from "../../src/pages/patient/appointments";
+import RescheduleAppointments from "../../src/pages/patient/appointments/[appointmentId]/reschedule";
 
 import { getServerSideProps } from "../../src/pages/patient/mfa";
 
@@ -165,12 +168,12 @@ const MOCK_SUGESTION = {
     },
     {
       id: "3",
-      name: "optometry",
+      name: "Comprehensive",
       description: "Get detailed eye exam",
     },
     {
       id: "4",
-      name: "ophthalmology",
+      name: "Contacts Only",
       description: "Get fitted for the right contacts",
     },
   ],
@@ -323,38 +326,63 @@ function createMatchMedia(width) {
 }
 
 const feature = loadFeature(
-  "./__tests__/feature/Patient Portal/Sprint5/EPP-1604.feature"
+  "./__tests__/feature/Patient Portal/Sprint5/EPP-1603.feature"
 );
 
 defineFeature(feature, (test) => {
   let container;
+
   const defaultValidation = () => {
     expect(true).toBeTruthy();
   };
 
-  test("EPIC_EPP-3_STORY_EPP-1604-Verify User should see “Are you sure you want to cancel?” as confirmation message", ({
+  const renderReschedule = () => {
+    container.rerender(
+      <Provider store={store}>
+        {Appointment.getLayout(<RescheduleAppointments />)}
+      </Provider>
+    );
+  };
+
+  const renderAppointment = () => {
+    container.rerender(
+      <Provider store={store}>
+        {Appointment.getLayout(<Appointment />)}
+      </Provider>
+    );
+  };
+
+  const renderUpcoming = () => {
+    container.rerender(
+      <Provider store={store}>
+        {Appointments.getLayout(<Appointments />)}
+      </Provider>
+    );
+  };
+
+  test("EPIC_EPP-45_STORY_EPP-1603 - Verify user should receive an text message based on their registered phone number when user reshedule upcoming appointment list", ({
     given,
+    when,
     and,
     then,
-    when,
   }) => {
-    given(/^user launch the "(.*)" url$/, (arg0) => {
+    given("user launch Patient Portal url", () => {
       defaultValidation();
     });
 
-    when("User is logged in to the application", () => {
+    when("user is logged in to the application", () => {
       defaultValidation();
     });
 
-    and("User clicks to “Appointments” menu", () => {
+    and("user clicks to “Appointments” menu", () => {
       defaultValidation();
     });
 
-    then("User navigates to “Appointments” screen", () => {
+    then("user navigates to “Appointments” screen", () => {
       defaultValidation();
     });
 
-    and("User lands on “Appointments” screen", async () => {
+    and("user lands on 'Appointments' screen", async () => {
       Cookies.result = "true";
       const expectedResult = {
         ResponseCode: 2005,
@@ -402,284 +430,128 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and("User should see an option to schedule new appointments", () => {
+    and("user should see list of upcoming appointment", () => {
       defaultValidation();
     });
 
-    and(
-      "User should see Upcoming Appointments with an option to reschedule and cancel each of them",
-      () => {
-        expect(container.getByText("Cancel")).toBeInTheDocument();
-        expect(container.getByText("Reschedule")).toBeInTheDocument();
-      }
-    );
-
-    when("User clicks on the option to cancel an appointment", () => {
-      const cancelButton = container.getByRole("button", { name: "Cancel" });
-      fireEvent.click(cancelButton);
+    and("user should see reschedule and cancel each of them", async () => {
+      await waitFor(() => {
+        container.getAllByText("Cancel")[0];
+        container.getAllByText("Reschedule")[0];
+      });
     });
 
-    then(
-      "User should see “Are you sure you want to cancel?” as confirmation message",
+    and("user clicks on the reschedule an appointment", async () => {
+      const rescheduleButton = container.getByRole("button", {
+        name: "Reschedule",
+      });
+      fireEvent.click(rescheduleButton);
+
+      renderReschedule();
+
+      await waitFor(() => container.getByText("Reschedule Appointment"));
+    });
+
+    and("user view the selected location and able to change", async () => {
+      expect(container.getByText(/location/i)).toBeInTheDocument();
+      expect(container.getByText(/appointmentDetails/i)).toBeInTheDocument();
+      const editButton = container.getAllByRole("button", { name: /Edit/i })[0];
+      fireEvent.click(editButton);
+    });
+
+    and(
+      "user view the selected Date of the appointment and able to change",
       async () => {
-        await waitFor(() => container.getByText(/cancelTitle/i));
+        renderAppointment();
       }
     );
-  });
 
-  test('EPIC_EPP-3_STORY_EPP-1604-Verify User should see "confirm and deny" option', ({
-    given,
-    when,
-    and,
-    then,
-  }) => {
-    given(/^user launch the "(.*)" url$/, (arg0) => {
-      defaultValidation();
-    });
-
-    when("User is logged in to the application", () => {
-      defaultValidation();
-    });
-
-    and("User clicks to “Appointments” menu", () => {
-      defaultValidation();
-    });
-
-    then("User navigates to “Appointments” screen", () => {
-      defaultValidation();
-    });
-
-    and("User lands on “Appointments” screen", async () => {
-      Cookies.result = "true";
-      const expectedResult = {
-        ResponseCode: 2005,
-        ResponseType: "success",
-      };
-      const mock = new MockAdapter(axios);
-      const domain = window.location.origin;
-      mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-        )
-        .reply(200, MOCK_SUGESTION);
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`
-        )
-        .reply(200, MOCK_APPOINTMENT);
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
-        )
-        .reply(200, MOCK_PRESCRIPTION);
-      window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
-      const mockGeolocation = {
-        getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn(),
-      };
-      global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
-      act(() => {
-        container = render(
-          <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
-        );
-      });
-      await waitFor(() => container.getByText("Get Direction"));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
-    });
-
-    and("User should see an option to schedule new appointments", () => {
+    and("user view the selected time-slot and able to change", async () => {
       defaultValidation();
     });
 
     and(
-      "User should see Upcoming Appointments with an option to reschedule and cancel each of them",
-      () => {
-        expect(container.getByText("Cancel")).toBeInTheDocument();
-        expect(container.getByText("Reschedule")).toBeInTheDocument();
-      }
-    );
-
-    when("User clicks on the option to cancel an appointment", () => {
-      const cancelButton = container.getByRole("button", { name: "Cancel" });
-      fireEvent.click(cancelButton);
-    });
-
-    then(
-      "User should see “Are you sure you want to cancel?” as confirmation message",
+      "user view the selected purpose of visit and able to change",
       async () => {
-        await waitFor(() => container.getByText(/cancelTitle/i));
+        const pusposeField = container.getByText(/Purpose of Visit/i);
+        fireEvent.click(pusposeField);
+        await waitFor(() => {
+          const cancelButton = container.getByText(/Cancel/i);
+          expect(container.getByText(/Cancel/i)).toBeInTheDocument();
+          fireEvent.click(cancelButton);
+        });
       }
     );
-
-    and(/^User should see "(.*)" option$/, (arg0) => {
-      const cancelButton = container.getByRole("button", {
-        name: /btnCancel/i,
-      });
-      const KeepButton = container.getByRole("button", { name: /btnKeep/i });
-      expect(cancelButton).toBeTruthy();
-      expect(KeepButton).toBeTruthy();
-    });
-  });
-
-  test("EPIC_EPP-3_STORY_EPP-1604-Verify User should receive an email based on their registered mail-id regarding the cancellation", ({
-    given,
-    when,
-    and,
-    then,
-  }) => {
-    given(/^user launch the "(.*)" url$/, (arg0) => {
-      defaultValidation();
-    });
-
-    when("User is logged in to the application", () => {
-      defaultValidation();
-    });
-
-    and("User clicks to “Appointments” menu", () => {
-      defaultValidation();
-    });
-
-    then("User navigates to “Appointments” screen", () => {
-      defaultValidation();
-    });
-
-    and("User lands on “Appointments” screen", async () => {
-      Cookies.result = "true";
-      const expectedResult = {
-        ResponseCode: 2005,
-        ResponseType: "success",
-      };
-      const mock = new MockAdapter(axios);
-      const domain = window.location.origin;
-      mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-        )
-        .reply(200, MOCK_SUGESTION);
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`
-        )
-        .reply(200, MOCK_APPOINTMENT);
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
-        )
-        .reply(200, MOCK_PRESCRIPTION);
-      window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
-      const mockGeolocation = {
-        getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn(),
-      };
-      global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
-      act(() => {
-        container = render(
-          <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
-        );
-      });
-      await waitFor(() => container.getByText("Get Direction"));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
-    });
-
-    and("User should see an option to schedule new appointments", () => {
-      defaultValidation();
-    });
 
     and(
-      "User should see Upcoming Appointments with an option to reschedule and cancel each of them",
-      () => {
-        expect(container.getByText("Cancel")).toBeInTheDocument();
-        expect(container.getByText("Reschedule")).toBeInTheDocument();
-      }
-    );
-
-    when("User clicks on the option to cancel an appointment", () => {
-      const cancelButton = container.getByRole("button", { name: "Cancel" });
-      fireEvent.click(cancelButton);
-    });
-
-    then(
-      "User should see “Are you sure you want to cancel?” as confirmation message",
+      "user view the selected Insurance Career and able to change",
       async () => {
-        await waitFor(() => container.getByText(/cancelTitle/i));
+        const insuranceField = container.getByText(/Insurance Carrier/i);
+        fireEvent.click(insuranceField);
+        await waitFor(() => container.getByText(/Cancel/i));
+        const cancelButton = container.getByText(/Cancel/i);
+        expect(container.getByText(/Cancel/i)).toBeInTheDocument();
+        fireEvent.click(cancelButton);
       }
     );
 
-    and(/^User should see "(.*)" option$/, (arg0) => {
-      const cancelButton = container.getByRole("button", {
-        name: /btnCancel/i,
-      });
-      const KeepButton = container.getByRole("button", { name: /btnKeep/i });
-      expect(cancelButton).toBeTruthy();
-      expect(KeepButton).toBeTruthy();
-    });
-
-    when(/^User selects on "(.*)" option$/, (arg0) => {
-      const cancelButton = container.getByRole("button", {
-        name: /btnCancel/i,
-      });
-      fireEvent.click(cancelButton);
-    });
-
-    then(/^User should see "(.*)" as a note$/, (arg0) => {
+    then("user navigates to review the updated details", () => {
       defaultValidation();
     });
 
-    and("User navigates to “Appointments” screen", () => {
+    and("user view an option to reschedule the appointment", () => {
       defaultValidation();
     });
 
     and(
-      "User should receive an email based on their registered mail-id regarding the cancellation",
+      "user prompted with a confirmation message “Are you sure you want to reschedule?” with option to confirm and deny",
+      () => {
+        defaultValidation();
+      }
+    );
+
+    and("user clicks on the confirm botton", () => {
+      defaultValidation();
+    });
+
+    and(
+      "user receive the text message regarding the rescheduled Appointment",
+      () => {
+        defaultValidation();
+      }
+    );
+
+    and(
+      "user navigated to 'Appointments' screen to see the updated details under upcoming appointments",
       () => {
         defaultValidation();
       }
     );
   });
 
-  test("EPIC_EPP-3_STORY_EPP-1604-Verify User should receive a text based on their registered mobile number regarding the cancellation", ({
+  test("EPIC_EPP-45_STORY_EPP-1603 - Verify user should receive an email and text message based on their registered email and phone number when user reshedulle upcoming appointment list", ({
     given,
     when,
     and,
     then,
   }) => {
-    given(/^user launch the "(.*)" url$/, (arg0) => {
+    given("user launch Patient Portal url", () => {
       defaultValidation();
     });
 
-    when("User is logged in to the application", () => {
+    when("user is logged in to the application", () => {
       defaultValidation();
     });
 
-    and("User clicks to “Appointments” menu", () => {
+    and("user clicks to “Appointments” menu", () => {
       defaultValidation();
     });
 
-    then("User navigates to “Appointments” screen", () => {
+    then("user navigates to “Appointments” screen", () => {
       defaultValidation();
     });
 
-    and("User lands on “Appointments” screen", async () => {
+    and("user lands on 'Appointments' screen", async () => {
       Cookies.result = "true";
       const expectedResult = {
         ResponseCode: 2005,
@@ -727,81 +599,138 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and("User should see an option to schedule new appointments", () => {
-      defaultValidation();
+    and("user should see list of upcoming appointment", async () => {
+      const editButton = container.getByText("View Appointments");
+      fireEvent.click(editButton);
+
+      renderUpcoming();
+
+      await waitFor(() => {
+        container.getByText(/Upcoming appointments/i);
+      });
+    });
+
+    and("user should see reschedule and cancel each of them", async () => {
+      await waitFor(() => {
+        container.getAllByText("Cancel")[0];
+        container.getAllByText("Reschedule")[0];
+      });
+    });
+
+    and("user clicks on the reschedule an appointment", async () => {
+      const rescheduleButton = container.getAllByRole("button", {
+        name: "Reschedule",
+      })[0];
+      fireEvent.click(rescheduleButton);
+
+      renderReschedule();
+
+      await waitFor(() => container.getByText("Reschedule Appointment"));
+    });
+
+    and("user view the selected location and able to change", () => {
+      expect(container.getByText(/location/i)).toBeInTheDocument();
+      expect(container.getByText(/appointmentDetails/i)).toBeInTheDocument();
+      const editButton = container.getAllByRole("button", { name: /Edit/i })[0];
+      fireEvent.click(editButton);
     });
 
     and(
-      "User should see Upcoming Appointments with an option to reschedule and cancel each of them",
+      "user view the selected Date of the appointment and able to change",
       () => {
-        expect(container.getByText("Cancel")).toBeInTheDocument();
-        expect(container.getByText("Reschedule")).toBeInTheDocument();
+        renderAppointment();
       }
     );
 
-    when("User clicks on the option to cancel an appointment", () => {
-      const cancelButton = container.getByRole("button", { name: "Cancel" });
-      fireEvent.click(cancelButton);
-    });
-
-    then(
-      "User should see “Are you sure you want to cancel?” as confirmation message",
-      async () => {
-        await waitFor(() => container.getByText(/cancelTitle/i));
-      }
-    );
-
-    and(/^User should see "(.*)" option$/, (arg0) => {
-      const cancelButton = container.getByRole("button", {
-        name: /btnCancel/i,
-      });
-      const KeepButton = container.getByRole("button", { name: /btnKeep/i });
-      expect(cancelButton).toBeTruthy();
-      expect(KeepButton).toBeTruthy();
-    });
-
-    when(/^User selects on "(.*)" option$/, (arg0) => {
-      const cancelButton = container.getByRole("button", {
-        name: /btnCancel/i,
-      });
-      fireEvent.click(cancelButton);
-    });
-
-    then("User navigates to “Appointments” screen", () => {
+    and("user view the selected time-slot and able to change", () => {
       defaultValidation();
     });
 
     and(
-      "User should receive a text based on their registered mobile number regarding the cancellation",
+      "user view the selected purpose of visit and able to change",
+      async () => {
+        const pusposeField = container.getByText(/Purpose of Visit/i);
+        fireEvent.click(pusposeField);
+        await waitFor(() => container.getByText(/Cancel/i));
+        const cancelButton = container.getByText(/Cancel/i);
+        expect(container.getByText(/Cancel/i)).toBeInTheDocument();
+        fireEvent.click(cancelButton);
+      }
+    );
+
+    and(
+      "user view the selected Insurance Career and able to change",
+      async () => {
+        const insuranceField = container.getByText(/Insurance Carrier/i);
+        fireEvent.click(insuranceField);
+        await waitFor(() => container.getByText(/Cancel/i));
+        const cancelButton = container.getByText(/Cancel/i);
+        expect(container.getByText(/Cancel/i)).toBeInTheDocument();
+        fireEvent.click(cancelButton);
+      }
+    );
+
+    then("user navigates to review the updated details", () => {
+      defaultValidation();
+    });
+
+    and("user view an option to reschedule the appointment", () => {
+      defaultValidation();
+    });
+
+    and(
+      "user prompted with a confirmation message “Are you sure you want to reschedule?” with option to confirm and deny",
+      () => {
+        defaultValidation();
+      }
+    );
+
+    and("user clicks on the confirm botton", () => {
+      defaultValidation();
+    });
+
+    and(
+      "user receive an email and text message regarding the rescheduled Appointment",
+      () => {
+        defaultValidation();
+      }
+    );
+
+    when("user selected on their preferred method of communication", () => {
+      defaultValidation();
+    });
+
+    and(
+      "user navigated to 'Appointments' screen to see the updated details under upcoming appointments",
       () => {
         defaultValidation();
       }
     );
   });
 
-  test("EPIC_EPP-3_STORY_EPP-1604-Verify User should be able to deny and gets redirected back to “Appointments” screen without appointment being cancelled", ({
+  test("EPIC_EPP-45_STORY_EPP-1603 - Negative Test Cases-Verify  when the service is unavailable", ({
     given,
     when,
     and,
     then,
   }) => {
-    given(/^user launch the "(.*)" url$/, (arg0) => {
+    given("user launch Patient Portal url", () => {
       defaultValidation();
     });
 
-    when("User is logged in to the application", () => {
+    when("user is logged in to the application", () => {
       defaultValidation();
     });
 
-    and("User clicks to “Appointments” menu", () => {
+    and("user clicks to “Appointments” menu", () => {
       defaultValidation();
     });
 
-    then("User navigates to “Appointments” screen", () => {
+    then("user navigates to “Appointments” screen", () => {
       defaultValidation();
     });
 
-    and("User lands on “Appointments” screen", async () => {
+    and("user lands on 'Appointments' screen", async () => {
       Cookies.result = "true";
       const expectedResult = {
         ResponseCode: 2005,
@@ -849,308 +778,31 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and("User should see an option to schedule new appointments", () => {
+    and("user should see list of upcoming appointment", async () => {
+      const editButton = container.getByText("View Appointments");
+      fireEvent.click(editButton);
+
+      renderUpcoming();
+
+      await waitFor(() => {
+        container.getByText(/Upcoming appointments/i);
+      });
+    });
+
+    and("user should see reschedule and cancel each of them", async () => {
+      await waitFor(() => {
+        container.getAllByText("Cancel")[0];
+        container.getAllByText("Reschedule")[0];
+      });
+    });
+
+    and("user clicks on the reschedule the appointment", () => {
       defaultValidation();
     });
 
     and(
-      "User should see Upcoming Appointments with an option to reschedule and cancel each of them",
-      () => {
-        expect(container.getByText("Cancel")).toBeInTheDocument();
-        expect(container.getByText("Reschedule")).toBeInTheDocument();
-      }
-    );
-
-    when("User clicks on the option to cancel an appointment", () => {
-      const cancelButton = container.getByRole("button", { name: "Cancel" });
-      fireEvent.click(cancelButton);
-    });
-
-    then(
-      "User should see “Are you sure you want to cancel?” as confirmation message",
-      async () => {
-        await waitFor(() => container.getByText(/cancelTitle/i));
-      }
-    );
-
-    and(/^User should see "(.*)" option$/, (arg0) => {
-      const cancelButton = container.getByRole("button", {
-        name: /btnCancel/i,
-      });
-      const KeepButton = container.getByRole("button", { name: /btnKeep/i });
-      expect(cancelButton).toBeTruthy();
-      expect(KeepButton).toBeTruthy();
-    });
-
-    when(/^User selects on "(.*)" option$/, (arg0) => {
-      const keepButton = container.getByRole("button", { name: /btnKeep/i });
-      fireEvent.click(keepButton);
-    });
-
-    then("User navigates to “Appointments” screen", () => {
-      defaultValidation();
-    });
-
-    and("user should see the appointment is not cancelled", () => {
-      defaultValidation();
-    });
-  });
-
-  test("EPIC_EPP-3_STORY_EPP-1604-Negative Test Cases-Verify user should see the error message when the internet service is unavailable", ({
-    given,
-    when,
-    and,
-    then,
-  }) => {
-    given(/^user launch the "(.*)" url$/, (arg0) => {
-      defaultValidation();
-    });
-
-    when("User is logged in to the application", () => {
-      defaultValidation();
-    });
-
-    and("User clicks to “Appointments” menu", () => {
-      defaultValidation();
-    });
-
-    then("User navigates to “Appointments” screen", () => {
-      defaultValidation();
-    });
-
-    and("User lands on “Appointments” screen", async () => {
-      Cookies.result = "true";
-      const expectedResult = {
-        ResponseCode: 2005,
-        ResponseType: "success",
-      };
-      const mock = new MockAdapter(axios);
-      const domain = window.location.origin;
-      mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-        )
-        .reply(200, MOCK_SUGESTION);
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`
-        )
-        .reply(200, MOCK_APPOINTMENT);
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
-        )
-        .reply(200, MOCK_PRESCRIPTION);
-      window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
-      const mockGeolocation = {
-        getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn(),
-      };
-      global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
-      act(() => {
-        container = render(
-          <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
-        );
-      });
-      await waitFor(() => container.getByText("Get Direction"));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
-    });
-
-    and("User should see an option to schedule new appointments", () => {
-      defaultValidation();
-    });
-
-    and(
-      "User should see Upcoming Appointments with an option to reschedule and cancel each of them",
-      () => {
-        expect(container.getByText("Cancel")).toBeInTheDocument();
-        expect(container.getByText("Reschedule")).toBeInTheDocument();
-      }
-    );
-
-    when("User clicks on the option to cancel an appointment", () => {
-      const cancelButton = container.getByRole("button", { name: "Cancel" });
-      fireEvent.click(cancelButton);
-    });
-
-    then(
-      "User should see “Are you sure you want to cancel?” as confirmation message",
-      async () => {
-        await waitFor(() => container.getByText(/cancelTitle/i));
-      }
-    );
-
-    and(/^User should see "(.*)" option$/, (arg0) => {
-      const cancelButton = container.getByRole("button", {
-        name: /btnCancel/i,
-      });
-      const KeepButton = container.getByRole("button", { name: /btnKeep/i });
-      expect(cancelButton).toBeTruthy();
-      expect(KeepButton).toBeTruthy();
-    });
-
-    when(/^User selects on "(.*)" option$/, (arg0) => {
-      const cancelButton = container.getByRole("button", {
-        name: /btnCancel/i,
-      });
-      fireEvent.click(cancelButton);
-    });
-
-    then(/^User should see "(.*)" as a note$/, (arg0) => {
-      defaultValidation();
-    });
-
-    and("User navigates to “Appointments” screen", () => {
-      defaultValidation();
-    });
-
-    and(
-      "User should receive an email based on their registered mail-id regarding the cancellation",
-      () => {
-        defaultValidation();
-      }
-    );
-
-    and("the Internet service is unavailable", () => {
-      defaultValidation();
-    });
-
-    then("user should see the appropriate error message", () => {
-      defaultValidation();
-    });
-  });
-
-  test("EPIC_EPP-3_STORY_EPP-1604-Negative Test Cases-Verify  when the service is unavailable", ({
-    given,
-    when,
-    and,
-    then,
-  }) => {
-    given(/^user launch the "(.*)" url$/, (arg0) => {
-      defaultValidation();
-    });
-
-    when("User is logged in to the application", () => {
-      defaultValidation();
-    });
-
-    and("User clicks to “Appointments” menu", () => {
-      defaultValidation();
-    });
-
-    then("User navigates to “Appointments” screen", () => {
-      defaultValidation();
-    });
-
-    and("User lands on “Appointments” screen", async () => {
-      Cookies.result = "true";
-      const expectedResult = {
-        ResponseCode: 2005,
-        ResponseType: "success",
-      };
-      const mock = new MockAdapter(axios);
-      const domain = window.location.origin;
-      mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-        )
-        .reply(200, MOCK_SUGESTION);
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`
-        )
-        .reply(200, MOCK_APPOINTMENT);
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
-        )
-        .reply(200, MOCK_PRESCRIPTION);
-      window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
-      const mockGeolocation = {
-        getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn(),
-      };
-      global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
-      act(() => {
-        container = render(
-          <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
-        );
-      });
-      await waitFor(() => container.getByText("Get Direction"));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
-    });
-
-    and("User should see an option to schedule new appointments", () => {
-      defaultValidation();
-    });
-
-    and(
-      "User should see Upcoming Appointments with an option to reschedule and cancel each of them",
-      () => {
-        expect(container.getByText("Cancel")).toBeInTheDocument();
-        expect(container.getByText("Reschedule")).toBeInTheDocument();
-      }
-    );
-
-    when("User clicks on the option to cancel an appointment", () => {
-      const cancelButton = container.getByRole("button", { name: "Cancel" });
-      fireEvent.click(cancelButton);
-    });
-
-    then(
-      "User should see “Are you sure you want to cancel?” as confirmation message",
-      async () => {
-        await waitFor(() => container.getByText(/cancelTitle/i));
-      }
-    );
-
-    and(/^User should see "(.*)" option$/, (arg0) => {
-      const cancelButton = container.getByRole("button", {
-        name: /btnCancel/i,
-      });
-      const KeepButton = container.getByRole("button", { name: /btnKeep/i });
-      expect(cancelButton).toBeTruthy();
-      expect(KeepButton).toBeTruthy();
-    });
-
-    when(/^User selects on "(.*)" option$/, (arg0) => {
-      const cancelButton = container.getByRole("button", {
-        name: /btnCancel/i,
-      });
-      fireEvent.click(cancelButton);
-    });
-
-    then(/^User should see "(.*)" as a note$/, (arg0) => {
-      defaultValidation();
-    });
-
-    and("User navigates to “Appointments” screen", () => {
-      defaultValidation();
-    });
-
-    and(
-      "User should receive an email based on their registered mail-id regarding the cancellation",
-      () => {
+      /^user not able to reschedule the appointment which is in (\d+) hours before the time of appointment$/,
+      (arg0) => {
         defaultValidation();
       }
     );
@@ -1164,29 +816,29 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test("EPIC_EPP-3_STORY_EPP-1604-Negative Test Cases-Verify User navigates to “Appointments” screen when user refresh the page", ({
+  test("EPIC_EPP-45_STORY_EPP-1603 - Negative Test Cases-Verify User navigates to “Appointments” screen when user refresh the page", ({
     given,
     when,
     and,
     then,
   }) => {
-    given(/^user launch the "(.*)" url$/, (arg0) => {
+    given("user launch Patient Portal url", () => {
       defaultValidation();
     });
 
-    when("User is logged in to the application", () => {
+    when("user is logged in to the application", () => {
       defaultValidation();
     });
 
-    and("User clicks to “Appointments” menu", () => {
+    and("user clicks to “Appointments” menu", () => {
       defaultValidation();
     });
 
-    then("User navigates to “Appointments” screen", () => {
+    then("user navigates to “Appointments” screen", () => {
       defaultValidation();
     });
 
-    and("User lands on “Appointments” screen", async () => {
+    and("user lands on 'Appointments' screen", async () => {
       Cookies.result = "true";
       const expectedResult = {
         ResponseCode: 2005,
@@ -1234,68 +886,34 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and("User should see an option to schedule new appointments", () => {
+    and("user should see list of upcoming appointment", async () => {
+      const editButton = container.getByText("View Appointments");
+      fireEvent.click(editButton);
+
+      renderUpcoming();
+
+      await waitFor(() => {
+        container.getByText(/Upcoming appointments/i);
+      });
+    });
+
+    and("user should see reschedule and cancel each of them", async () => {
+      await waitFor(() => {
+        container.getAllByText("Cancel")[0];
+        container.getAllByText("Reschedule")[0];
+      });
+    });
+
+    and("user clicks on the reschedule the appointment", () => {
       defaultValidation();
     });
 
     and(
-      "User should see Upcoming Appointments with an option to reschedule and cancel each of them",
-      () => {
-        expect(container.getByText("Cancel")).toBeInTheDocument();
-        expect(container.getByText("Reschedule")).toBeInTheDocument();
-      }
-    );
-
-    when("User clicks on the option to cancel an appointment", () => {
-      const cancelButton = container.getByRole("button", { name: "Cancel" });
-      fireEvent.click(cancelButton);
-    });
-
-    then(
-      "User should see “Are you sure you want to cancel?” as confirmation message",
-      async () => {
-        await waitFor(() => container.getByText(/cancelTitle/i));
-      }
-    );
-
-    and(/^User should see "(.*)" option$/, (arg0) => {
-      const cancelButton = container.getByRole("button", {
-        name: /btnCancel/i,
-      });
-      const KeepButton = container.getByRole("button", { name: /btnKeep/i });
-      expect(cancelButton).toBeTruthy();
-      expect(KeepButton).toBeTruthy();
-    });
-
-    when(/^User selects on "(.*)" option$/, (arg0) => {
-      const cancelButton = container.getByRole("button", {
-        name: /btnCancel/i,
-      });
-      fireEvent.click(cancelButton);
-    });
-
-    then(/^User should see "(.*)" as a note$/, (arg0) => {
-      defaultValidation();
-    });
-
-    and("User navigates to “Appointments” screen", () => {
-      defaultValidation();
-    });
-
-    and(
-      "User should receive an email based on their registered mail-id regarding the cancellation",
-      () => {
+      /^user not able to reschedule the appointment which is in (\d+) hours before the time of appointment$/,
+      (arg0) => {
         defaultValidation();
       }
     );
-
-    and("the service is unavailable", () => {
-      defaultValidation();
-    });
-
-    then("user should see the appropriate error message", () => {
-      defaultValidation();
-    });
 
     when("User refresh the page", () => {
       defaultValidation();
@@ -1306,29 +924,29 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test("EPIC_EPP-3_STORY_EPP-1604-Verify User should not see the any errors script when user clicks F12 on the console", ({
+  test("EPIC_EPP-45_STORY_EPP-1603 - Verify the user is not able to reschedule the upcoming appointment 4 hours before the time of appointment", ({
     given,
     when,
     and,
     then,
   }) => {
-    given(/^user launch the "(.*)" url$/, (arg0) => {
+    given("user launch Patient Portal url", () => {
       defaultValidation();
     });
 
-    when("User is logged in to the application", () => {
+    when("user is logged in to the application", () => {
       defaultValidation();
     });
 
-    and("User clicks to “Appointments” menu", () => {
+    and("user clicks to “Appointments” menu", () => {
       defaultValidation();
     });
 
-    then("User navigates to “Appointments” screen", () => {
+    then("user navigates to “Appointments” screen", () => {
       defaultValidation();
     });
 
-    and("User lands on “Appointments” screen", async () => {
+    and("user lands on 'Appointments' screen", async () => {
       Cookies.result = "true";
       const expectedResult = {
         ResponseCode: 2005,
@@ -1376,64 +994,356 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and("User should see an option to schedule new appointments", () => {
+    and("user should see list of upcoming appointment", async () => {
+      const editButton = container.getByText("View Appointments");
+      fireEvent.click(editButton);
+
+      renderUpcoming();
+
+      await waitFor(() => {
+        container.getByText(/Upcoming appointments/i);
+      });
+    });
+
+    and("user should see reschedule and cancel each of them", async () => {
+      await waitFor(() => {
+        container.getAllByText("Cancel")[0];
+        container.getAllByText("Reschedule")[0];
+      });
+    });
+
+    and("user clicks on the reschedule the appointment", () => {
       defaultValidation();
     });
 
     and(
-      "User should see Upcoming Appointments with an option to reschedule and cancel each of them",
-      () => {
-        expect(container.getByText("Cancel")).toBeInTheDocument();
-        expect(container.getByText("Reschedule")).toBeInTheDocument();
+      /^user not able to reschedule the appointment which is in (\d+) hours before the time of appointment$/,
+      (arg0) => {
+        defaultValidation();
       }
     );
+  });
 
-    when("User clicks on the option to cancel an appointment", () => {
-      const cancelButton = container.getByRole("button", { name: "Cancel" });
-      fireEvent.click(cancelButton);
-    });
-
-    then(
-      "User should see “Are you sure you want to cancel?” as confirmation message",
-      async () => {
-        await waitFor(() => container.getByText(/cancelTitle/i));
-      }
-    );
-
-    and(/^User should see "(.*)" option$/, (arg0) => {
-      const cancelButton = container.getByRole("button", {
-        name: /btnCancel/i,
-      });
-      const KeepButton = container.getByRole("button", { name: /btnKeep/i });
-      expect(cancelButton).toBeTruthy();
-      expect(KeepButton).toBeTruthy();
-    });
-
-    when(/^User selects on "(.*)" option$/, (arg0) => {
-      const cancelButton = container.getByRole("button", {
-        name: /btnCancel/i,
-      });
-      fireEvent.click(cancelButton);
-    });
-
-    then(/^User should see "(.*)" as a note$/, (arg0) => {
+  test("EPIC_EPP-45_STORY_EPP-1603 - Verify the user to reschedule the upcoming appointment 5 hours before the time of the appointment", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch Patient Portal url", () => {
       defaultValidation();
     });
 
-    and("User navigates to “Appointments” screen", () => {
+    when("user is logged in to the application", () => {
+      defaultValidation();
+    });
+
+    and("user clicks to “Appointments” menu", () => {
+      defaultValidation();
+    });
+
+    then("user navigates to “Appointments” screen", () => {
+      defaultValidation();
+    });
+
+    and("user lands on 'Appointments' screen", async () => {
+      Cookies.result = "true";
+      const expectedResult = {
+        ResponseCode: 2005,
+        ResponseType: "success",
+      };
+      const mock = new MockAdapter(axios);
+      const domain = window.location.origin;
+      mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+        )
+        .reply(200, MOCK_SUGESTION);
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`
+        )
+        .reply(200, MOCK_APPOINTMENT);
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+        )
+        .reply(200, MOCK_PRESCRIPTION);
+      window.matchMedia = createMatchMedia("700px");
+      const response = await getServerSideProps({
+        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
+        res: jest.fn(),
+      });
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn(),
+      };
+      global.navigator.geolocation = mockGeolocation;
+      Cookies.result = false;
+      act(() => {
+        container = render(
+          <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
+        );
+      });
+      await waitFor(() => container.getByText("Get Direction"));
+      expect(response).toEqual({
+        props: {
+          isStepTwo: false,
+        },
+      });
+    });
+
+    and("user should see list of upcoming appointment", async () => {
+      const editButton = container.getByText("View Appointments");
+      fireEvent.click(editButton);
+
+      renderUpcoming();
+
+      await waitFor(() => {
+        container.getByText(/Upcoming appointments/i);
+      });
+    });
+
+    and("user should see reschedule and cancel each of them", async () => {
+      await waitFor(() => {
+        container.getAllByText("Cancel")[0];
+        container.getAllByText("Reschedule")[0];
+      });
+    });
+
+    and("user clicks on the reschedule the appointment", () => {
       defaultValidation();
     });
 
     and(
-      "User should receive an email based on their registered mail-id regarding the cancellation",
-      () => {
+      /^user reschedule the appointment which is in (\d+) hours before the time of the appointment$/,
+      (arg0) => {
+        defaultValidation();
+      }
+    );
+  });
+
+  test("EPIC_EPP-45_STORY_EPP-1603 - Negative Test Cases-Verify user should see the error message when the internet service is unavailable", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch Patient Portal url", () => {
+      defaultValidation();
+    });
+
+    when("user is logged in to the application", () => {
+      defaultValidation();
+    });
+
+    and("user clicks to “Appointments” menu", () => {
+      defaultValidation();
+    });
+
+    then("user navigates to “Appointments” screen", () => {
+      defaultValidation();
+    });
+
+    and("user lands on 'Appointments' screen", async () => {
+      Cookies.result = "true";
+      const expectedResult = {
+        ResponseCode: 2005,
+        ResponseType: "success",
+      };
+      const mock = new MockAdapter(axios);
+      const domain = window.location.origin;
+      mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+        )
+        .reply(200, MOCK_SUGESTION);
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`
+        )
+        .reply(200, MOCK_APPOINTMENT);
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+        )
+        .reply(200, MOCK_PRESCRIPTION);
+      window.matchMedia = createMatchMedia("700px");
+      const response = await getServerSideProps({
+        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
+        res: jest.fn(),
+      });
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn(),
+      };
+      global.navigator.geolocation = mockGeolocation;
+      Cookies.result = false;
+      act(() => {
+        container = render(
+          <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
+        );
+      });
+      await waitFor(() => container.getByText("Get Direction"));
+      expect(response).toEqual({
+        props: {
+          isStepTwo: false,
+        },
+      });
+    });
+
+    and("user should see list of upcoming appointment", async () => {
+      const editButton = container.getByText("View Appointments");
+      fireEvent.click(editButton);
+
+      renderUpcoming();
+
+      await waitFor(() => {
+        container.getByText(/Upcoming appointments/i);
+      });
+    });
+
+    and("user should see reschedule and cancel each of them", async () => {
+      await waitFor(() => {
+        container.getAllByText("Cancel")[0];
+        container.getAllByText("Reschedule")[0];
+      });
+    });
+
+    and("user clicks on the reschedule the appointment", async () => {
+      const rescheduleButton = container.getAllByRole("button", {
+        name: "Reschedule",
+      })[0];
+      fireEvent.click(rescheduleButton);
+
+      renderReschedule();
+
+      await waitFor(() => container.getByText("Reschedule Appointment"));
+    });
+
+    and(
+      /^user not able to reschedule the appointment which is in (\d+) hours before the time of appointment$/,
+      (arg0) => {
         defaultValidation();
       }
     );
 
-    and(/^User should see the page loads within "(.*)"$/, (arg0) => {
+    and("the internet service is unavailable", () => {
       defaultValidation();
     });
+
+    then("user should see the appropriate error message", () => {
+      defaultValidation();
+    });
+  });
+
+  test("EPIC_EPP-45_STORY_EPP-1603 - Verify User should not see the any errors script when user clicks F12 on the console", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch Patient Portal url", () => {
+      defaultValidation();
+    });
+
+    when("user is logged in to the application", () => {
+      defaultValidation();
+    });
+
+    and("user clicks to “Appointments” menu", () => {
+      defaultValidation();
+    });
+
+    then("user navigates to “Appointments” screen", () => {
+      defaultValidation();
+    });
+
+    and("user lands on 'Appointments' screen", async () => {
+      Cookies.result = "true";
+      const expectedResult = {
+        ResponseCode: 2005,
+        ResponseType: "success",
+      };
+      const mock = new MockAdapter(axios);
+      const domain = window.location.origin;
+      mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+        )
+        .reply(200, MOCK_SUGESTION);
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`
+        )
+        .reply(200, MOCK_APPOINTMENT);
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+        )
+        .reply(200, MOCK_PRESCRIPTION);
+      window.matchMedia = createMatchMedia("700px");
+      const response = await getServerSideProps({
+        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
+        res: jest.fn(),
+      });
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn(),
+      };
+      global.navigator.geolocation = mockGeolocation;
+      Cookies.result = false;
+      act(() => {
+        container = render(
+          <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
+        );
+      });
+      await waitFor(() => container.getByText("Get Direction"));
+      expect(response).toEqual({
+        props: {
+          isStepTwo: false,
+        },
+      });
+    });
+
+    and("user should see list of upcoming appointment", async () => {
+      const editButton = container.getByText("View Appointments");
+      fireEvent.click(editButton);
+
+      renderUpcoming();
+
+      await waitFor(() => {
+        container.getByText(/Upcoming appointments/i);
+      });
+    });
+
+    and("user should see reschedule and cancel each of them", async () => {
+      await waitFor(() => {
+        container.getAllByText("Cancel")[0];
+        container.getAllByText("Reschedule")[0];
+      });
+    });
+
+    and("user clicks on the reschedule the appointment", async () => {
+      const rescheduleButton = container.getAllByRole("button", {
+        name: "Reschedule",
+      })[0];
+      fireEvent.click(rescheduleButton);
+
+      renderReschedule();
+
+      await waitFor(() => container.getByText("Reschedule Appointment"));
+    });
+
+    and(
+      /^user not able to reschedule the appointment which is in (\d+) hours before the time of appointment$/,
+      (arg0) => {
+        defaultValidation();
+      }
+    );
 
     when(/^user clicks on F(\d+) on the console$/, (arg0) => {
       defaultValidation();
@@ -1442,5 +1352,97 @@ defineFeature(feature, (test) => {
     then("user should not to see any errors script", () => {
       defaultValidation();
     });
+  });
+
+  test("EPIC_EPP-45_STORY_EPP-1603 - Verify user should receive an email based on their registered mail-id when user reshedulle upcoming appointment list", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch Patient Portal url", () => {
+      defaultValidation();
+    });
+
+    when("user is logged in to the application", () => {
+      defaultValidation();
+    });
+
+    and("user clicks to “Appointments” menu", () => {
+      defaultValidation();
+    });
+
+    then("user navigates to “Appointments” screen", () => {
+      defaultValidation();
+    });
+
+    and("user lands on 'Appointments' screen", () => {
+      defaultValidation();
+    });
+
+    and("user should see list of upcoming appointment", () => {
+      defaultValidation();
+    });
+
+    and("user should see reschedule and cancel each of them", () => {
+      defaultValidation();
+    });
+
+    and("user clicks on the reschedule an appointment", () => {
+      defaultValidation();
+    });
+
+    and("user view the selected location and able to change", () => {
+      defaultValidation();
+    });
+
+    and(
+      "user view the selected Date of the appointment and able to change",
+      () => {
+        defaultValidation();
+      }
+    );
+
+    and("user view the selected time-slot and able to change", () => {
+      defaultValidation();
+    });
+
+    and("user view the selected purpose of visit and able to change", () => {
+      defaultValidation();
+    });
+
+    and("user view the selected Insurance Career and able to change", () => {
+      defaultValidation();
+    });
+
+    then("user navigates to review the updated details", () => {
+      defaultValidation();
+    });
+
+    and("user view an option to reschedule the appointment", () => {
+      defaultValidation();
+    });
+
+    and(
+      "user prompted with a confirmation message “Are you sure you want to reschedule?” with option to confirm and deny",
+      () => {
+        defaultValidation();
+      }
+    );
+
+    and("user clicks on the confirm botton", () => {
+      defaultValidation();
+    });
+
+    and("user receive an email regarding the reschedule", () => {
+      defaultValidation();
+    });
+
+    and(
+      "user navigated to 'Appointments' screen to see the updated details under upcoming appointments",
+      () => {
+        defaultValidation();
+      }
+    );
   });
 });
