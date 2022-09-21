@@ -14,7 +14,9 @@ Object {
           id="customized-dialog-title"
         >
           <span
+            arialabel="You’re Scheduled!"
             class="MuiTypography-root MuiTypography-bodyMedium scheduledText css-37jdci-MuiTypography-root"
+            tabindex="0"
           >
             <svg
               aria-hidden="true"
@@ -345,7 +347,9 @@ Object {
         id="customized-dialog-title"
       >
         <span
+          arialabel="You’re Scheduled!"
           class="MuiTypography-root MuiTypography-bodyMedium scheduledText css-37jdci-MuiTypography-root"
+          tabindex="0"
         >
           <svg
             aria-hidden="true"
