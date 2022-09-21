@@ -77,6 +77,7 @@ const loginProps = {
 export default function login() {
   const api = new Api();
   const cookies = new Cookies();
+  cookies.remove("isStay", { path: "/patient" });
 
   const removeCookies = () => {
     if (cookies.get("mfa")) {

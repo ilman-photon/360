@@ -102,7 +102,16 @@ export default function ModalConfirmContent({
         onClose={handleClose}
         sx={{ textAlign: "center" }}
       >
-        <Typography variant="bodyMedium" className={styles.scheduledText}>
+        <Typography
+          tabIndex={0}
+          ariaLabel={
+            isReschedule
+              ? "Reschedule Appointment Successful"
+              : "You’re Scheduled!"
+          }
+          variant="bodyMedium"
+          className={styles.scheduledText}
+        >
           <CheckCircleRoundedIcon sx={{ mr: 1, color: "#168845" }} />{" "}
           {isReschedule
             ? "Reschedule Appointment Successful"
