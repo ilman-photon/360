@@ -4,14 +4,28 @@ import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import { Provider } from "react-redux";
-import Appointments from "../../src/pages/patient/appointments";
+import Appointments, { getServerSideProps } from "../../src/pages/patient/appointments";
 import store from "../../src/store/store";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 import constants from "../../src/utils/constants";
+import Cookies from "universal-cookie";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-1584.feature",
 );
+
+jest.mock("universal-cookie", () => {
+  class MockCookies {
+    static result = {};
+    get() {
+      return MockCookies.result;
+    }
+    remove() {
+      return jest.fn();
+    }
+  }
+  return MockCookies;
+});
 
 defineFeature(feature, (test) => {
   let container;
@@ -102,6 +116,7 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-44_STORY_EPP-1584-Verify if   user able to view the "Appointments" screen.', ({ given, and, when, then }) => {
     given('User is logged in to the application', () => {
+      Cookies.result = { authorized: true };
       defaultValidation()
     });
 
@@ -129,6 +144,10 @@ defineFeature(feature, (test) => {
       mock
         .onGet(`${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment`)
         .reply(200, userData);
+      await getServerSideProps({
+        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
+        res: jest.fn(),
+      });
       act(() => {
         container = render(
           <Provider store={store}>
