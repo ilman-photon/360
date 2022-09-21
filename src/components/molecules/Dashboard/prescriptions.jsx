@@ -19,6 +19,9 @@ import {
   Box,
   Stack,
   Divider,
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
 } from "@mui/material";
 import AccountCard from "../AccountCard/accountCard";
 import Image from "next/image";
@@ -32,7 +35,8 @@ import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlin
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { StyledButton } from "../../atoms/Button/button";
 import constants from "../../../utils/constants";
-import { render } from "@testing-library/react";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 
 export default function Prescriptions({
   prescriptionData = {},
@@ -54,7 +58,10 @@ export default function Prescriptions({
   const [prescription, setPrescriptione] = React.useState({
     contacts: [],
     glasses: [],
-    medications: [],
+    medications: {
+      active: [],
+      past: [],
+    },
   });
 
   const handleChange = (event, newValue) => {
@@ -281,9 +288,65 @@ export default function Prescriptions({
     }
   }
 
-  function renderMedicationViewAllUI(data) {
+  function renderStatusMedication(status, statusDescription) {
+    const intentUI = [];
+    if (status === "completed") {
+      intentUI.push(
+        <Accordion
+          className={styles.medicationStatusAccordion}
+          sx={{
+            "&.Mui-expanded": {
+              margin: "0px",
+            },
+          }}
+        >
+          <AccordionSummary
+            expandIcon={<ExpandMoreIcon />}
+            aria-controls="panel1a-content"
+            id="panel1a-header"
+            className={styles.medicationAccordionSummary}
+            sx={{
+              margin: "0px",
+            }}
+          >
+            <CheckCircleIcon
+              sx={{ color: "#168845", width: "25px", marginRight: "8px" }}
+            />
+            <Typography className={styles.medicationStatusDescription}>
+              Status: {status}
+            </Typography>
+          </AccordionSummary>
+          <AccordionDetails sx={{ paddingTop: "0px" }}>
+            <Typography className={styles.medicationStatusDescription}>
+              You can now go to your preferred pharmacy to pick-up your
+              medication.
+            </Typography>
+            <Typography
+              className={styles.medicationStatusDescription}
+              sx={{ fontWeight: "500" }}
+            >
+              {statusDescription}
+            </Typography>
+          </AccordionDetails>
+        </Accordion>
+      );
+    } else {
+      intentUI.push(
+        <Typography className={styles.medicationViewAllStatus}>
+          Status: {status}
+        </Typography>
+      );
+    }
+    return intentUI;
+  }
+
+  function renderMedicationViewAllUI(data, idx) {
     return (
-      <Stack direction={"row"} className={styles.medicationViewAllContainer}>
+      <Stack
+        direction={"row"}
+        className={styles.medicationViewAllContainer}
+        key={idx}
+      >
         {!isMobile && (
           <Box>
             <Box
@@ -295,33 +358,38 @@ export default function Prescriptions({
           </Box>
         )}
         <Stack display={"flex"} marginLeft={"8px"} width={"100%"}>
-          <Stack direction={"row"} sx={{ marginBottom: "8px" }}>
+          <Stack
+            direction={"row"}
+            className={styles.medicationViewAllTitleContainer}
+            sx={{ marginBottom: "8px" }}
+          >
             <Typography className={styles.medicationViewAllTitle}>
-              Aspirin
+              {data.prescription}
             </Typography>
             {!isMobile ? renderCTAIcon() : <MenuList />}
           </Stack>
           <Stack sx={{ width: "100%" }}>
-            <Stack direction={"row"} className={styles.stackContainer}>
-              <Typography className={styles.medicationViewAllStatus}>
-                Status: Refill requested
-              </Typography>
-              <Stack
-                direction={"row"}
-                alignSelf={"center"}
-                className={styles.gridHeight}
-              >
-                <Typography
-                  variant="customBodyRegular"
-                  className={styles.gridText}
+            {(data.status === "refill request" ||
+              data.status === "completed") && (
+              <Stack direction={"row"} className={styles.stackContainer}>
+                {renderStatusMedication(data.status, data.statusDetails)}
+                <Stack
+                  direction={"row"}
+                  alignSelf={"center"}
+                  className={styles.gridHeight}
                 >
-                  Fill request date: &nbsp;
-                </Typography>
-                <Typography variant="bodyMedium" className={styles.gridText}>
-                  01/11/2022
-                </Typography>
+                  <Typography
+                    variant="customBodyRegular"
+                    className={styles.gridText}
+                  >
+                    Fill request date: &nbsp;
+                  </Typography>
+                  <Typography variant="bodyMedium" className={styles.gridText}>
+                    {data.fillRequestDate}
+                  </Typography>
+                </Stack>
               </Stack>
-            </Stack>
+            )}
             <Stack direction={"row"} className={styles.stackContainer}>
               <Stack
                 direction={"row"}
@@ -335,7 +403,7 @@ export default function Prescriptions({
                   Prescribed on: &nbsp;
                 </Typography>
                 <Typography variant="bodyMedium" className={styles.gridText}>
-                  01/10/2022
+                  {data.date}
                 </Typography>
               </Stack>
               <Stack
@@ -350,7 +418,7 @@ export default function Prescriptions({
                   Prescribed by: &nbsp;
                 </Typography>
                 <Typography variant="bodyMedium" className={styles.gridText}>
-                  Dr. Philip Morris
+                  {data.prescribedBy}
                 </Typography>
               </Stack>
               <Stack
@@ -365,7 +433,7 @@ export default function Prescriptions({
                   Dose: &nbsp;
                 </Typography>
                 <Typography variant="bodyMedium" className={styles.gridText}>
-                  0.5 mL
+                  {data.dose}
                 </Typography>
               </Stack>
             </Stack>
@@ -382,12 +450,12 @@ export default function Prescriptions({
                   Expires on: &nbsp;
                 </Typography>
                 <Typography variant="bodyMedium" className={styles.gridText}>
-                  04/10/2023
+                  {data.expirationDate}
                 </Typography>
               </Stack>
             </Stack>
           </Stack>
-          <Divider />
+          <Divider className={styles.dividerStyle} />
           <Stack direction={"row"} sx={{ marginTop: "24px", flexWrap: "wrap" }}>
             <Stack direction={"row"} className={styles.remainingTimeContainer}>
               <AccessTimeIcon sx={{ color: colors.darkGreen }} />
@@ -395,14 +463,24 @@ export default function Prescriptions({
                 Take 2 times a day
               </Typography>
             </Stack>
-            <StyledButton
-              mode={constants.PRIMARY}
-              gradient={false}
-              onClick={() => {}}
-              className={styles.requestButton}
-            >
-              Request Refill
-            </StyledButton>
+            {data.status !== "refill request" ? (
+              <StyledButton
+                mode={constants.PRIMARY}
+                gradient={false}
+                onClick={() => {}}
+                className={styles.requestButton}
+              >
+                Request Refill
+              </StyledButton>
+            ) : (
+              <StyledButton
+                mode={constants.SECONDARY}
+                onClick={() => {}}
+                className={styles.requestButton}
+              >
+                Cancel Refill Request
+              </StyledButton>
+            )}
           </Stack>
         </Stack>
       </Stack>
@@ -416,9 +494,7 @@ export default function Prescriptions({
     const contentUI = [];
     data.map((row, idx) => {
       if (type === "medications") {
-        contentUI.push(
-          renderMedicationViewAllUI(row, type, idx, data.length === idx + 1)
-        );
+        contentUI.push(renderMedicationViewAllUI(row, idx));
       } else {
         contentUI.push(
           renderPrescriptionTable(row, type, idx, data.length === idx + 1)
@@ -441,18 +517,34 @@ export default function Prescriptions({
         >
           <Typography variant="titleCard">Active Medications</Typography>
         </Box>
-        {renderPrescriptionTabUI(prescription.medications, "medications")}
-        <Box
-          className={[
-            styles.flexDisplay,
-            styles.spaceBetween,
-            styles.margin,
-            styles.marginTop,
-          ]}
-        >
-          <Typography variant="titleCard">Past Medications</Typography>
-        </Box>
-        {renderPrescriptionTabUI(prescription.medications, "medications")}
+        {prescription.medications?.active?.length > 0 ? (
+          renderPrescriptionTabUI(
+            prescription.medications.active,
+            "medications"
+          )
+        ) : (
+          <Box className={[styles.noPrescription, styles.margin].join(" ")}>
+            <Typography>{`There are no active medications`}</Typography>
+          </Box>
+        )}
+        {prescription.medications?.past?.length > 0 && (
+          <>
+            <Box
+              className={[
+                styles.flexDisplay,
+                styles.spaceBetween,
+                styles.margin,
+                styles.marginTop,
+              ]}
+            >
+              <Typography variant="titleCard">Past Medications</Typography>
+            </Box>
+            {renderPrescriptionTabUI(
+              prescription.medications.past,
+              "medications"
+            )}
+          </>
+        )}
       </Box>
     );
   }
@@ -465,7 +557,7 @@ export default function Prescriptions({
         >
           <Typography variant="titleCard">Medications Prescriptions</Typography>
         </Box>
-        {renderMedicationUI(prescription.medications)}
+        {renderMedicationUI(prescription.medications.active)}
         {!isViewAll && (
           <Box
             className={[styles.flexDisplay, styles.viewPrescription]}

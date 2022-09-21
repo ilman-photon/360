@@ -276,11 +276,37 @@ export function parsePrescriptionData(prescriptions) {
 
   if (prescriptions.medications && prescriptions.medications.length > 0) {
     const medications = prescriptions.medications;
-
+    const past = [];
+    const active = [];
     for (let index = 0; index < medications.length; index++) {
-      medications[index].date = ddmmyyDateFormat(medications[index].date);
+      const medicationData = {};
+      medicationData.prescription = medications[index].prescription;
+      medicationData.date = ddmmyyDateFormat(medications[index].date);
+      medicationData.prescribedBy = "Dr. Philip Morris";
+      medicationData.expirationDate = ddmmyyDateFormat(
+        "2022-09-11T11:18:47.229Z"
+      );
+      medicationData.fillRequestDate = ddmmyyDateFormat(
+        "2022-09-02T11:18:47.229Z"
+      );
+      medicationData.timeRemaining = "Take 2 times a day";
+      medicationData.dose = "0.5 mL";
+      medicationData.status = "completed"; // TODO: the type of the input will be "" | "refill request" | "completed"
+      medicationData.statusDetails =
+        "CVS Pharmacy, 123 Broadway Blvd, New Jersey, NY 12889";
+      medicationData.type = index % 2 == 0 ? "active" : "past";
+
+      if (medicationData.type === "active") {
+        active.push(medicationData);
+      } else {
+        past.push(medicationData);
+      }
     }
-    parsePrescriptions["medications"] = medications;
+
+    parsePrescriptions["medications"] = {
+      active: active,
+      past: past,
+    };
   }
   return parsePrescriptions;
 }

@@ -99,6 +99,14 @@ export default function getAllPrescriptions(req, res) {
             prescription: "Aspirint 0.1% Ointmanet",
             date: "2022-09-02T11:18:47.229Z",
           },
+          {
+            prescription: "Aspirint 0.1% Ointmanet",
+            date: "2022-09-02T11:18:47.229Z",
+          },
+          {
+            prescription: "Aspirint 0.1% Ointmanet",
+            date: "2022-09-02T11:18:47.229Z",
+          },
         ],
       },
     });
