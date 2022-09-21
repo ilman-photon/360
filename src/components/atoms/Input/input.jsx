@@ -70,6 +70,7 @@ export const CustomPasswordInput = styled((props) => (
   />
 ))(({ theme }) => ({
   ".MuiInputLabel-root": {
+    color: "#303030",
     "&.MuiInputLabel-shrink": {
       color: "#003B4A",
       fontWeight: 600,
@@ -132,6 +133,7 @@ export const RedditTextField = styled((props) => (
   />
 ))(({ theme }) => ({
   ".MuiInputLabel-root": {
+    color: "#303030",
     "&.MuiInputLabel-shrink": {
       color: "#003B4A",
       fontWeight: 600,
