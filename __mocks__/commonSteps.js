@@ -5,6 +5,9 @@ import "@testing-library/jest-dom";
 import store from "../src/store/store";
 import { TEST_ID } from "../src/utils/constants";
 import ForgotPasswordPage from "../src/pages/patient/forgot-password";
+import Appointment from "../src/pages/patient/appointment";
+import MockAdapter from "axios-mock-adapter";
+import axios from "axios";
 
 export function createMatchMedia(width) {
   return (query) => ({
@@ -56,4 +59,31 @@ export async function clickContinueForgot(container, mock) {
   });
   await waitFor(() => container.getByText("or"));
   return container;
+}
+
+export async function renderScheduleAppointment() {
+  {
+    const mock = new MockAdapter(axios);
+    const mockGeolocation = {
+      getCurrentPosition: jest.fn(),
+      watchPosition: jest.fn(),
+    };
+
+    const domain = window.location.origin;
+    mock
+      .onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`)
+      .reply(200, MOCK_SUGGESTION_DATA);
+    mock
+      .onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`)
+      .reply(400, {});
+    global.navigator.geolocation = mockGeolocation;
+    const container = render(
+      <Provider store={store}>
+        {Appointment.getLayout(<Appointment />)}
+      </Provider>
+    );
+    await waitFor(() => container.getByText(/City, state, or zip/i));
+    expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
+    return container;
+  }
 }
