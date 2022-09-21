@@ -2,9 +2,8 @@ import * as React from "react";
 import AccountLayout from "../../../../../components/templates/accountLayout";
 import { Provider } from "react-redux";
 import store from "../../../../../store/store";
-import DocumentTableWithSort from "../../../../../components/molecules/TableWithSort/tableWithSort";
-import { IconButton, Stack, Typography } from "@mui/material";
-import { colors } from "../../../../../styles/theme";
+import TableWithSort from "../../../../../components/molecules/TableWithSort/tableWithSort";
+import { IconButton, Stack } from "@mui/material";
 import styles from "./styles.module.scss";
 import FileDownloadIcon from "../../../../../assets/icons/FileDownload";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
@@ -139,6 +138,7 @@ export default function TestLabPage() {
           fontSize: "14px",
           display: "flex",
           flexFlow: "column",
+          borderLeft: "2px solid #F3F3F3",
         },
       },
       {
@@ -207,8 +207,9 @@ export default function TestLabPage() {
               </span>
               <Button
                 p={0}
+                data-testid={"close-disclaimer-icon"}
                 onClick={() => setIsHideDisclaimer(true)}
-                sx={{ color: "#003B4A" }}
+                sx={{ color: "#003B4A", display: "contents" }}
               >
                 <CloseIcon sx={styles.closeIcon} />
               </Button>
@@ -216,7 +217,7 @@ export default function TestLabPage() {
           </div>
         ) : null}
         <Stack spacing={3}>
-          <DocumentTableWithSort
+          <TableWithSort
             config={isDesktop ? tableConfiguration : tableConfigurationMobile}
             rows={rows}
             isDesktop={isDesktop}

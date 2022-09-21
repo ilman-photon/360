@@ -90,7 +90,7 @@ const EnhancedTableHead = (props) => {
   );
 };
 
-export default function DocumentTableWithSort({
+export default function TableWithSort({
   config = { header: [], cells: [] },
   rows = [],
   isDesktop = false,
