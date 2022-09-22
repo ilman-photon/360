@@ -47,7 +47,7 @@ export const LabelWithInfo = ({
           >
             <IconButton sx={{ p: 0 }}>
               <ErrorOutlineOutlinedIcon
-                sx={{ width: 20, height: 20, color: "#00000080" }}
+                sx={{ width: 24, height: 24, color: "#00000080" }}
               />
             </IconButton>
           </Tooltip>

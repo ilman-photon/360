@@ -16,6 +16,7 @@ import { styled } from "@mui/material/styles";
 
 const StyledTab = styled((props) => <Tab disableRipple {...props} />)(() => ({
   textTransform: "none",
+  fontSize: "14px",
 }));
 
 function TabPanel(props) {

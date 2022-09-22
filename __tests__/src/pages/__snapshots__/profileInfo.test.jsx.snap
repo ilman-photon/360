@@ -187,7 +187,7 @@ Object {
                     <button
                       aria-controls="full-width-tabpanel-0"
                       aria-selected="true"
-                      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth Mui-selected css-4i0shu-MuiButtonBase-root-MuiTab-root"
+                      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth Mui-selected css-1slmlvq-MuiButtonBase-root-MuiTab-root"
                       id="full-width-tab-0"
                       role="tab"
                       tabindex="0"
@@ -198,7 +198,7 @@ Object {
                     <button
                       aria-controls="full-width-tabpanel-1"
                       aria-selected="false"
-                      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth css-4i0shu-MuiButtonBase-root-MuiTab-root"
+                      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth css-1slmlvq-MuiButtonBase-root-MuiTab-root"
                       id="full-width-tab-1"
                       role="tab"
                       tabindex="-1"
@@ -282,7 +282,7 @@ Object {
                             >
                               <svg
                                 aria-hidden="true"
-                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1k6stih-MuiSvgIcon-root"
                                 data-testid="ErrorOutlineOutlinedIcon"
                                 focusable="false"
                                 viewBox="0 0 24 24"
@@ -400,7 +400,7 @@ Object {
                             >
                               <svg
                                 aria-hidden="true"
-                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1k6stih-MuiSvgIcon-root"
                                 data-testid="ErrorOutlineOutlinedIcon"
                                 focusable="false"
                                 viewBox="0 0 24 24"
@@ -454,7 +454,7 @@ Object {
                             >
                               <svg
                                 aria-hidden="true"
-                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1k6stih-MuiSvgIcon-root"
                                 data-testid="ErrorOutlineOutlinedIcon"
                                 focusable="false"
                                 viewBox="0 0 24 24"
@@ -540,7 +540,7 @@ Object {
                             >
                               <svg
                                 aria-hidden="true"
-                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1k6stih-MuiSvgIcon-root"
                                 data-testid="ErrorOutlineOutlinedIcon"
                                 focusable="false"
                                 viewBox="0 0 24 24"
@@ -913,7 +913,7 @@ Object {
                   <button
                     aria-controls="full-width-tabpanel-0"
                     aria-selected="true"
-                    class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth Mui-selected css-4i0shu-MuiButtonBase-root-MuiTab-root"
+                    class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth Mui-selected css-1slmlvq-MuiButtonBase-root-MuiTab-root"
                     id="full-width-tab-0"
                     role="tab"
                     tabindex="0"
@@ -924,7 +924,7 @@ Object {
                   <button
                     aria-controls="full-width-tabpanel-1"
                     aria-selected="false"
-                    class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth css-4i0shu-MuiButtonBase-root-MuiTab-root"
+                    class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth css-1slmlvq-MuiButtonBase-root-MuiTab-root"
                     id="full-width-tab-1"
                     role="tab"
                     tabindex="-1"
@@ -1008,7 +1008,7 @@ Object {
                           >
                             <svg
                               aria-hidden="true"
-                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1k6stih-MuiSvgIcon-root"
                               data-testid="ErrorOutlineOutlinedIcon"
                               focusable="false"
                               viewBox="0 0 24 24"
@@ -1126,7 +1126,7 @@ Object {
                           >
                             <svg
                               aria-hidden="true"
-                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1k6stih-MuiSvgIcon-root"
                               data-testid="ErrorOutlineOutlinedIcon"
                               focusable="false"
                               viewBox="0 0 24 24"
@@ -1180,7 +1180,7 @@ Object {
                           >
                             <svg
                               aria-hidden="true"
-                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1k6stih-MuiSvgIcon-root"
                               data-testid="ErrorOutlineOutlinedIcon"
                               focusable="false"
                               viewBox="0 0 24 24"
@@ -1266,7 +1266,7 @@ Object {
                           >
                             <svg
                               aria-hidden="true"
-                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1k6stih-MuiSvgIcon-root"
                               data-testid="ErrorOutlineOutlinedIcon"
                               focusable="false"
                               viewBox="0 0 24 24"
