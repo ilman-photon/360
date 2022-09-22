@@ -382,6 +382,15 @@ exports[`App renders App unchanged 1`] = `
                         </div>
                       </div>
                       <div
+                        class="noPrescription MuiBox-root css-0"
+                      >
+                        <p
+                          class="MuiTypography-root MuiTypography-body1 normalText css-6h2hyl-MuiTypography-root"
+                        >
+                          There are no active glasses prescriptions
+                        </p>
+                      </div>
+                      <div
                         class="flexDisplay viewPrescription MuiBox-root css-0"
                         data-testid="view-prescription-glasses"
                       >

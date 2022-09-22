@@ -248,7 +248,7 @@ export default function PrescriptionMedication({
       <Stack
         direction={"row"}
         className={styles.medicationViewAllContainer}
-        key={idx}
+        key={`${idx}-madication-prescription`}
       >
         {!isMobile && (
           <Box>
@@ -401,27 +401,9 @@ export default function PrescriptionMedication({
     return contentUI;
   }
 
-  return (
-    <Box className={styles.medicationDetailContainer}>
-      {requestRefillResponseData && (
-        <FormMessage success={true} sx={{ margin: "20px 10px 10px 10px" }}>
-          <Typography className={styles.formMessageText}>
-            {requestRefillResponseData.message}
-          </Typography>
-        </FormMessage>
-      )}
-      <Box
-        className={[
-          styles.flexDisplay,
-          styles.spaceBetween,
-          styles.margin,
-          styles.marginTop,
-        ]}
-      >
-        <Typography variant="titleCard">
-          {isFilterApplied ? "Medications" : "Active Medications"}{" "}
-          {`(${medications?.active?.length})`}
-        </Typography>
+  function renderUIFilter() {
+    if (medications?.active?.length > 0) {
+      return (
         <Box className={styles.filterButtonContainer}>
           <FilterBy
             activedFilter={[...activeFilter]}
@@ -464,12 +446,42 @@ export default function PrescriptionMedication({
             </>
           )}
         </Box>
+      );
+    }
+  }
+
+  return (
+    <Box className={styles.medicationDetailContainer}>
+      {requestRefillResponseData && (
+        <FormMessage success={true} sx={{ margin: "20px 10px 10px 10px" }}>
+          <Typography className={styles.formMessageText}>
+            {requestRefillResponseData.message}
+          </Typography>
+        </FormMessage>
+      )}
+      <Box
+        className={[
+          styles.flexDisplay,
+          styles.spaceBetween,
+          styles.margin,
+          styles.marginTop,
+        ]}
+      >
+        <Typography variant="titleCard">
+          {isFilterApplied ? "Medications" : "Active Medications"}{" "}
+          {medications?.active?.length > 0
+            ? `(${medications?.active?.length})`
+            : ``}
+        </Typography>
+        {renderUIFilter()}
       </Box>
       {medications?.active?.length > 0 ? (
         renderPrescriptionTabUI(medications.active)
       ) : (
         <Box className={[styles.noPrescription, styles.margin].join(" ")}>
-          <Typography>{`There are no active medications`}</Typography>
+          <Typography
+            className={styles.normalText}
+          >{`There are no active medications`}</Typography>
         </Box>
       )}
       {medications?.past?.length > 0 && !isFilterApplied && (

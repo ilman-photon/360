@@ -207,14 +207,16 @@ export default function Prescriptions({
                 <TableHead>
                   <TableRow>
                     {tableHeader.map((header, idx) => (
-                      <StyledTableCell key={idx}>{header}</StyledTableCell>
+                      <StyledTableCell key={`${idxKey}-${idx}-tabel-header`}>
+                        {header}
+                      </StyledTableCell>
                     ))}
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {data?.prescriptionDetails.map((row, idx) => (
                     <TableRow
-                      key={idx}
+                      key={`${idxKey}-${idx}-tabel-body`}
                       sx={{
                         "&:last-child td, &:last-child th": { border: 0 },
                       }}
@@ -238,12 +240,6 @@ export default function Prescriptions({
               </Table>
             </TableContainer>
           </Box>
-        </Box>
-      );
-    } else {
-      return (
-        <Box className={styles.noPrescription} key={type + idxKey}>
-          <Typography>{`There are no active ${type} prescriptions`}</Typography>
         </Box>
       );
     }
@@ -280,7 +276,9 @@ export default function Prescriptions({
     } else {
       return (
         <Box className={styles.noPrescription}>
-          <Typography>{`There are no active medications`}</Typography>
+          <Typography
+            className={styles.normalText}
+          >{`There are no active medications`}</Typography>
         </Box>
       );
     }
@@ -291,11 +289,21 @@ export default function Prescriptions({
       return <></>;
     }
     const contentUI = [];
-    data.map((row, idx) => {
+    if (data && data.length > 0) {
+      data.map((row, idx) => {
+        contentUI.push(
+          renderPrescriptionTable(row, type, idx, data.length === idx + 1)
+        );
+      });
+    } else {
       contentUI.push(
-        renderPrescriptionTable(row, type, idx, data.length === idx + 1)
+        <Box className={styles.noPrescription}>
+          <Typography
+            className={styles.normalText}
+          >{`There are no active ${type} prescriptions`}</Typography>
+        </Box>
       );
-    });
+    }
     return contentUI;
   }
 
@@ -360,7 +368,7 @@ export default function Prescriptions({
               </Typography>
               {!isViewAll && <MenuList pdfFile="/Prescription_Glasses.pdf" />}
             </Box>
-            {renderPrescriptionTabUI(prescription.glasses)}
+            {renderPrescriptionTabUI(prescription.glasses, "glasses")}
             {!isViewAll && (
               <Box
                 className={[styles.flexDisplay, styles.viewPrescription]}
@@ -399,7 +407,7 @@ export default function Prescriptions({
               </Typography>
               {!isViewAll && <MenuList pdfFile="/Prescription_Contacts.pdf" />}
             </Box>
-            {renderPrescriptionTabUI(prescription.contacts)}
+            {renderPrescriptionTabUI(prescription.contacts, "contacts")}
             {!isViewAll && (
               <Box
                 className={[styles.flexDisplay, styles.viewPrescription]}

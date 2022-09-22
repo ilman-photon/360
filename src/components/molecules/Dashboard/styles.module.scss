@@ -54,7 +54,7 @@
 }
 
 .marginBottom {
-  margin-bottom: 0px;
+  margin-bottom: 10px;
 }
 
 .marginVertical {
@@ -88,12 +88,14 @@
   min-height: 58px;
   background: #f2f7f7;
   text-align: center;
+  margin: 0 16px;
+  color: #003b4a;
 
   .normalText {
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
-    line-height: 28px;
+    line-height: 26px;
     color: #003b4a;
   }
 
@@ -321,7 +323,7 @@
 
 .medicationDetailContainer {
   .marginTop {
-    margin-top: 40px;
+    margin-top: 32px;
   }
 }
 

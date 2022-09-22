@@ -281,21 +281,14 @@ function getLatestDate(glassesDate, contactDate, medicationDate) {
 function parsePrescriptionItemMediaction(medications) {
   const past = [];
   const active = [];
-  let latestDate = "";
+  let latestDateMedic = "";
   for (let index = 0; index < medications.length; index++) {
-    if (!latestDate) {
-      latestDate = new Date(medications[index].date);
-    } else {
-      latestDate =
-        latestDate < new Date(medications[index].date)
-          ? latestDate
-          : new Date(medications[index].date);
-    }
+    const date = medications[index].date;
 
     const medicationData = {};
     medicationData.id = medications[index].id;
     medicationData.prescription = medications[index].prescription;
-    medicationData.date = ddmmyyDateFormat(medications[index].date);
+    medicationData.date = ddmmyyDateFormat(date);
     medicationData.prescribedBy = "Dr. Philip Morris";
     medicationData.expirationDate = ddmmyyDateFormat(
       "2022-09-11T11:18:47.229Z"
@@ -315,8 +308,15 @@ function parsePrescriptionItemMediaction(medications) {
     } else {
       past.push(medicationData);
     }
+
+    if (!latestDateMedic) {
+      latestDateMedic = new Date(date);
+    } else {
+      latestDateMedic =
+        latestDateMedic < new Date(date) ? latestDateMedic : new Date(date);
+    }
   }
-  return { active, past, latestDate };
+  return { active, past, latestDateMedic };
 }
 
 export function parsePrescriptionData(prescriptions) {
@@ -344,9 +344,9 @@ export function parsePrescriptionData(prescriptions) {
 
   if (prescriptions.medications && prescriptions.medications.length > 0) {
     const medications = prescriptions.medications;
-    const { active, past, latestDate } =
+    const { active, past, latestDateMedic } =
       parsePrescriptionItemMediaction(medications);
-    medicationDate = latestDate;
+    medicationDate = latestDateMedic;
 
     parsePrescriptions["medications"] = {
       active: active,
