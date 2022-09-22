@@ -1,7 +1,7 @@
 import { Stack, useMediaQuery } from "@mui/material";
 import * as React from "react";
 import { useEffect } from "react";
-import { Provider, useDispatch, useSelector } from "react-redux";
+import { Provider } from "react-redux";
 import Prescriptions from "../../../components/molecules/Dashboard/prescriptions";
 import PrescriptionLayout from "../../../components/templates/prescriptionLayout";
 import store from "../../../store/store";
@@ -10,6 +10,8 @@ import { Api } from "../../api/api";
 export default function PrescriptionPage() {
   const isMobile = useMediaQuery("(max-width: 768px)");
   const [prescriptionData, setPrescriptionData] = React.useState({});
+  const [requestRefillResponse, setRequestRefillResponse] =
+    React.useState(null);
 
   //Call API for getAllPrescriptions
   function onCalledGetAllPrescriptionsAPI() {
@@ -22,6 +24,49 @@ export default function PrescriptionPage() {
       .catch(function () {
         //Handle error getAllPrescriptions
       });
+  }
+
+  //Call API for medication request refill
+  function onMedicationRequestRefill(postBody, isCancelRequest) {
+    const index = prescriptionData.medications.findIndex(
+      (x) => x.id === postBody.medicationId
+    );
+    const api = new Api();
+    if (isCancelRequest) {
+      api
+        .doMedicationCancelRequestRefill(postBody)
+        .then(function (response) {
+          const data = JSON.parse(JSON.stringify(prescriptionData));
+          data.medications[index].status = "";
+          setPrescriptionData(data);
+          setRequestRefillResponse(response);
+          resetRequestRefillResponse();
+        })
+        .catch(function () {
+          //Handle error medication cancel request refill
+          resetRequestRefillResponse();
+        });
+    } else {
+      api
+        .doMedicationRequestRefill(postBody)
+        .then(function (response) {
+          const data = JSON.parse(JSON.stringify(prescriptionData));
+          data.medications[index].status = "refill request";
+          setPrescriptionData(data);
+          setRequestRefillResponse(response);
+          resetRequestRefillResponse();
+        })
+        .catch(function () {
+          //Handle error medication request refill
+          resetRequestRefillResponse();
+        });
+    }
+  }
+
+  function resetRequestRefillResponse() {
+    setTimeout(() => {
+      setRequestRefillResponse(null);
+    }, 2000);
   }
 
   useEffect(() => {
@@ -41,7 +86,12 @@ export default function PrescriptionPage() {
           width: "100%",
         }}
       >
-        <Prescriptions prescriptionData={prescriptionData} isViewAll={true} />
+        <Prescriptions
+          prescriptionData={prescriptionData}
+          isViewAll={true}
+          onMedicationRequestRefill={onMedicationRequestRefill}
+          requestRefillResponseData={requestRefillResponse}
+        />
       </Stack>
     </Stack>
   );

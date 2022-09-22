@@ -293,6 +293,7 @@ function parsePrescriptionItemMediaction(medications) {
     }
 
     const medicationData = {};
+    medicationData.id = medications[index].id;
     medicationData.prescription = medications[index].prescription;
     medicationData.date = ddmmyyDateFormat(medications[index].date);
     medicationData.prescribedBy = "Dr. Philip Morris";
@@ -304,7 +305,7 @@ function parsePrescriptionItemMediaction(medications) {
     );
     medicationData.timeRemaining = "Take 2 times a day";
     medicationData.dose = "0.5 mL";
-    medicationData.status = "";
+    medicationData.status = medications[index].status || "";
     medicationData.statusDetails =
       "CVS Pharmacy, 123 Broadway Blvd, New Jersey, NY 12889";
     medicationData.type = index % 2 == 0 ? "active" : "past";

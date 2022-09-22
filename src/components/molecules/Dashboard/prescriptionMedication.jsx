@@ -22,16 +22,22 @@ import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlin
 import MenuList from "./menuList";
 import styles from "./styles.module.scss";
 import constants from "../../../utils/constants";
-import { colors, patientTypography } from "../../../styles/theme";
+import { colors } from "../../../styles/theme";
+import { useEffect } from "react";
+import FormMessage from "../FormMessage/formMessage";
 
 export default function PrescriptionMedication({
   medications = {
     active: [],
     past: [],
   },
+  onMedicationRequestRefill = () => {},
+  requestRefillResponseData = null,
 }) {
   const [filterOpen, setFilterOpen] = React.useState(false);
   const [activeFilter, setActiveFilter] = React.useState([]);
+  const [requestRefillResponse, setRequestRefillResponse] =
+    React.useState(null);
   const isFilterApplied = activeFilter.length > 0;
   const imageSrcState = "/mobileFilter.png";
   const imageSrcFilled = "/appliedMobileFilter.png";
@@ -112,6 +118,24 @@ export default function PrescriptionMedication({
   const onSetFilter = (newFilterData) => {
     setFilterOpen(!filterOpen);
     setActiveFilter([...newFilterData]);
+  };
+
+  useEffect(() => {
+    setRequestRefillResponse(requestRefillResponseData);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [requestRefillResponseData]);
+
+  /**
+   * Handle medication request refill or cancel request refill
+   * @param {JSONObject} data as selected medication
+   * @param {Boolean} isCancel as request type (request or cancel refill)
+   * @param {Integer} index as selected index
+   */
+  const onRequestCancelRefill = (data, isCancel) => {
+    const postBody = {
+      medicationId: data.id,
+    };
+    onMedicationRequestRefill(postBody, isCancel);
   };
 
   function renderAppliedFilter() {
@@ -346,7 +370,7 @@ export default function PrescriptionMedication({
               <StyledButton
                 mode={constants.PRIMARY}
                 gradient={false}
-                onClick={() => {}}
+                onClick={() => onRequestCancelRefill(data, false)}
                 className={styles.requestButton}
               >
                 Request Refill
@@ -354,7 +378,7 @@ export default function PrescriptionMedication({
             ) : (
               <StyledButton
                 mode={constants.SECONDARY}
-                onClick={() => {}}
+                onClick={() => onRequestCancelRefill(data, true)}
                 className={styles.requestButton}
               >
                 Cancel Refill Request
@@ -379,6 +403,13 @@ export default function PrescriptionMedication({
 
   return (
     <Box className={styles.medicationDetailContainer}>
+      {requestRefillResponseData && (
+        <FormMessage success={true} sx={{ margin: "20px 10px 10px 10px" }}>
+          <Typography className={styles.formMessageText}>
+            {requestRefillResponseData.message}
+          </Typography>
+        </FormMessage>
+      )}
       <Box
         className={[
           styles.flexDisplay,

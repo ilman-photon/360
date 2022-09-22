@@ -193,6 +193,7 @@
     text-align: center;
     letter-spacing: 0.0016em;
     color: #003b4a;
+    text-transform: capitalize;
     @media (max-width: 767px) {
       width: 100%;
       justify-content: center;
@@ -381,4 +382,10 @@
     margin-left: 5px;
     cursor: pointer;
   }
+}
+
+.formMessageText {
+  color: white;
+  font-size: 14px;
+  font-weight: 400;
 }

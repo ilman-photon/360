@@ -11,8 +11,6 @@ import { logoutProps } from "../../utils/authetication";
 
 export default function PrescriptionLayout({
   children,
-  backTitle,
-  onBackClicked,
   pageTitle = "EyeCare Patient Portal - Prescription",
   title = "Prescriptions",
 }) {

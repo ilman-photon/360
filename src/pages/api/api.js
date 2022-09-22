@@ -266,4 +266,16 @@ export class Api {
     const url = `${domain}api/dummy/appointment/my-appointment/cancelAppointment`;
     return this.getResponse(url, postbody, "post");
   }
+
+  doMedicationRequestRefill(postBody) {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/prescription/requestRefill`;
+    return this.getResponse(url, postBody, "post");
+  }
+
+  doMedicationCancelRequestRefill(postBody) {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/prescription/cancelRequestRefill`;
+    return this.getResponse(url, postBody, "post");
+  }
 }

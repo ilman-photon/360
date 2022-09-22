@@ -36,6 +36,8 @@ export default function Prescriptions({
     //this is intentional
   },
   isViewAll = false,
+  onMedicationRequestRefill = () => {},
+  requestRefillResponseData = null,
 }) {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
@@ -63,7 +65,7 @@ export default function Prescriptions({
     const { parsePrescriptions, activeTab } =
       parsePrescriptionData(prescriptionData);
     setPrescriptione(parsePrescriptions);
-    if (isViewAll) {
+    if (isViewAll && requestRefillResponseData === null) {
       setValue(activeTab);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -298,7 +300,13 @@ export default function Prescriptions({
   }
 
   function renderMedicationDetailUI() {
-    return <PrescriptionMedication medications={prescription.medications} />;
+    return (
+      <PrescriptionMedication
+        medications={prescription.medications}
+        onMedicationRequestRefill={onMedicationRequestRefill}
+        requestRefillResponseData={requestRefillResponseData}
+      />
+    );
   }
 
   function renderSimpleMedicationUI() {
