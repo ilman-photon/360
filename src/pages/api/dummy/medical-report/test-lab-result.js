@@ -10,25 +10,25 @@ export default function TestLabResult(req, res) {
 
   const dummyMedRep = [
     createData(
-      "Consent to Treat - Patient Financial Responsibility - Assigment of Benefits",
+      "Eye Surgery",
       "Hopkins, D.M.",
       "09/09/2022 12:00PM",
       "Completed"
     ),
     createData(
-      "Notice of Privacy Practices.pdf",
+      "Eye Surgery",
       "Hopkins, D.M.",
       "09/09/2022 12:00PM",
       "Completed"
     ),
     createData(
-      "Medical/Vision Exams - Refractions - Prescription Release",
+      "Eye Surgery",
       "Hopkins, D.M.",
       "09/09/2022 12:00PM",
       "Completed"
     ),
     createData(
-      "Authorization to Disclose Information to Those Involved in My Care",
+      "Eye Surgery",
       "Hopkins, D.M.",
       "08/08/2022 12:00PM",
       "Completed"

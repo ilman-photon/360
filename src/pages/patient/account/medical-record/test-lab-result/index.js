@@ -5,7 +5,6 @@ import TableWithSort from "../../../../../components/molecules/TableWithSort/tab
 import { IconButton, Stack, Button, useMediaQuery } from "@mui/material";
 import styles from "../styles.module.scss";
 import FileDownloadIcon from "../../../../../assets/icons/FileDownload";
-import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import CloseIcon from "@mui/icons-material/Close";
 import TableEmpty from "../../../../../components/atoms/TableEmpty/tableEmpty";
@@ -179,8 +178,8 @@ export default function TestLabPage() {
         valueKey: "source",
         cellProps: { padding: "16px" },
         icon: (
-          <IconButton>
-            <DownloadOutlinedIcon sx={{ color: "#003B4A" }} />
+          <IconButton sx={{ width: 24, height: 24, p: 0 }}>
+            <FileDownloadIcon />
           </IconButton>
         ),
       },
@@ -195,13 +194,6 @@ export default function TestLabPage() {
       status,
     };
   };
-
-  //   const rows = [
-  //     createData("Eye Surgery", "Hopkins, D.M.", "09/09/2022", "Completed"),
-  //     createData("Eye Surgery2", "Hopkins, D.M.", "09/09/2022", "Completed"),
-  //     createData("Eye Surgery3", "Hopkins, D.M.", "09/09/2022", "Completed"),
-  //     createData("Eye Surgery4", "Hopkins, D.M.", "09/09/2022", "Completed"),
-  //   ];
 
   const rows = useSelector((state) => state.medicalResult.testLabData);
 

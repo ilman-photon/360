@@ -9,7 +9,7 @@ Object {
         class="defaultLayout"
       >
         <header
-          class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-rxbk4x-MuiPaper-root-MuiAppBar-root"
+          class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-wzn3iz-MuiPaper-root-MuiAppBar-root"
         >
           <div
             class="MuiContainer-root MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root"
@@ -57,7 +57,7 @@ Object {
                 class="MuiBox-root css-mfiwgy"
               >
                 <button
-                  class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-iszgx6-MuiButtonBase-root-MuiButton-root"
+                  class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-197aad1-MuiButtonBase-root-MuiButton-root"
                   tabindex="0"
                   type="button"
                 >
@@ -67,7 +67,7 @@ Object {
                   />
                 </button>
                 <button
-                  class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-iszgx6-MuiButtonBase-root-MuiButton-root"
+                  class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-197aad1-MuiButtonBase-root-MuiButton-root"
                   tabindex="0"
                   type="button"
                 >
@@ -80,7 +80,7 @@ Object {
                   class="MuiBox-root css-0"
                 >
                   <button
-                    class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1f208vh-MuiButtonBase-root-MuiButton-root"
+                    class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1azqmfe-MuiButtonBase-root-MuiButton-root"
                     tabindex="0"
                     type="button"
                   >
@@ -109,7 +109,7 @@ Object {
                   class="MuiBox-root css-0"
                 >
                   <button
-                    class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1f208vh-MuiButtonBase-root-MuiButton-root"
+                    class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1azqmfe-MuiButtonBase-root-MuiButton-root"
                     tabindex="0"
                     type="button"
                   >
@@ -258,7 +258,7 @@ Object {
                 <span
                   class="MuiTypography-root MuiTypography-headlineH4 css-15tij5e-MuiTypography-root"
                 >
-                  There are no intake forms.
+                  There are no tests or lab results.
                 </span>
               </div>
             </div>
@@ -461,7 +461,7 @@ Object {
             <p
               class="MuiTypography-root MuiTypography-body1 css-b8h4m8-MuiTypography-root"
             >
-              Intake forms
+              Intake Forms
             </p>
             <span
               class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -497,7 +497,7 @@ Object {
             <p
               class="MuiTypography-root MuiTypography-body1 css-b8h4m8-MuiTypography-root"
             >
-              Insurance
+              Insurance Documents
             </p>
             <span
               class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -517,7 +517,7 @@ Object {
                 <img
                   alt=""
                   aria-hidden="true"
-                  src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2713%27%20height=%2710%27/%3e"
+                  src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%2716%27%20height=%2716%27/%3e"
                   style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
                 />
               </span>
@@ -552,7 +552,7 @@ Object {
       class="defaultLayout"
     >
       <header
-        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-rxbk4x-MuiPaper-root-MuiAppBar-root"
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-wzn3iz-MuiPaper-root-MuiAppBar-root"
       >
         <div
           class="MuiContainer-root MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root"
@@ -600,7 +600,7 @@ Object {
               class="MuiBox-root css-mfiwgy"
             >
               <button
-                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-iszgx6-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-197aad1-MuiButtonBase-root-MuiButton-root"
                 tabindex="0"
                 type="button"
               >
@@ -610,7 +610,7 @@ Object {
                 />
               </button>
               <button
-                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-iszgx6-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-197aad1-MuiButtonBase-root-MuiButton-root"
                 tabindex="0"
                 type="button"
               >
@@ -623,7 +623,7 @@ Object {
                 class="MuiBox-root css-0"
               >
                 <button
-                  class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1f208vh-MuiButtonBase-root-MuiButton-root"
+                  class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1azqmfe-MuiButtonBase-root-MuiButton-root"
                   tabindex="0"
                   type="button"
                 >
@@ -652,7 +652,7 @@ Object {
                 class="MuiBox-root css-0"
               >
                 <button
-                  class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1f208vh-MuiButtonBase-root-MuiButton-root"
+                  class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1azqmfe-MuiButtonBase-root-MuiButton-root"
                   tabindex="0"
                   type="button"
                 >
@@ -801,7 +801,7 @@ Object {
               <span
                 class="MuiTypography-root MuiTypography-headlineH4 css-15tij5e-MuiTypography-root"
               >
-                There are no intake forms.
+                There are no tests or lab results.
               </span>
             </div>
           </div>

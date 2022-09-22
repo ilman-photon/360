@@ -18,9 +18,9 @@ import { Stack } from "@mui/material";
 const iconintakeFoms = "/iconintakeFoms.png";
 const iconCardinsuranceCard = "/iconCardinsuranceCard.png";
 const iconHealthRecord = "/iconHealthRecord.png";
-const iconcarePlan = "/icon-carePlan.png";
-const iconprescription2 = "/icon-prescription2.png";
-const icontestLabResults = "/icon-testLabResults.png";
+const iconCarePlan = "/icon-carePlan.png";
+const iconPrescription2 = "/icon-prescription2.png";
+const iconTestLabResults = "/icon-testLabResults.png";
 
 const pages = [
   { href: "#", label: "Dashboard" },
@@ -44,6 +44,24 @@ const documents = [
     icon: iconHealthRecord,
     href: "/patient/account/documents?type=health-record",
     label: "Health Record",
+  },
+];
+
+const medical = [
+  {
+    icon: iconCarePlan,
+    href: "/patient/account/medical-record/test-lab-result",
+    label: "Care Plan",
+  },
+  {
+    icon: iconPrescription2,
+    href: "/patient/account/medical-record/test-lab-result",
+    label: "Prescriptions",
+  },
+  {
+    icon: iconTestLabResults,
+    href: "/patient/account/medical-record/test-lab-result",
+    label: "Test & Lab Results",
   },
 ];
 
@@ -147,68 +165,32 @@ const Navbar = () => {
                 open={Boolean(anchorElNav)}
                 onClose={handleCloseNavMenu}
               >
-                <MenuItem key={"Care Plan"} onClick={handleCloseNavMenu}>
-                  <Image
-                    alt=""
-                    src={iconcarePlan}
-                    width={"16px"}
-                    height={"16px"}
-                  />
-                  <Typography
-                    textAlign="center"
-                    sx={{
-                      margin: "0 10px",
-                      fontFamily: "Libre Franklin",
-                      fontWeight: "400",
-                      fontSize: "14px",
-                    }}
-                  >
-                    Care Plan
-                  </Typography>
-                </MenuItem>
-
-                <MenuItem key={"Prescriptions"} onClick={handleCloseNavMenu}>
-                  <Image
-                    alt=""
-                    src={iconprescription2}
-                    width={"16px"}
-                    height={"16px"}
-                  />
-                  <Typography
-                    textAlign="center"
-                    sx={{
-                      margin: "0 10px",
-                      fontFamily: "Libre Franklin",
-                      fontWeight: "400",
-                      fontSize: "14px",
-                    }}
-                  >
-                    Prescriptions
-                  </Typography>
-                </MenuItem>
-
-                <MenuItem
-                  key={"Test & Lab Results"}
-                  onClick={handleCloseNavMenu}
-                >
-                  <Image
-                    alt=""
-                    src={icontestLabResults}
-                    width={"16px"}
-                    height={"16px"}
-                  />
-                  <Typography
-                    textAlign="center"
-                    sx={{
-                      margin: "0 10px",
-                      fontFamily: "Libre Franklin",
-                      fontWeight: "400",
-                      fontSize: "14px",
-                    }}
-                  >
-                    Test & Lab Results
-                  </Typography>
-                </MenuItem>
+                {medical.map((doc, docIdx) => {
+                  return (
+                    <MenuItem
+                      key={docIdx}
+                      onClick={() => handleCloseUserMenu(doc.href)}
+                    >
+                      <Image
+                        alt=""
+                        src={doc.icon}
+                        width={"16px"}
+                        height={"16px"}
+                      />
+                      <Typography
+                        textAlign="center"
+                        sx={{
+                          margin: "0 10px",
+                          fontFamily: "Libre Franklin",
+                          fontWeight: "400",
+                          fontSize: "14px",
+                        }}
+                      >
+                        {doc.label}
+                      </Typography>
+                    </MenuItem>
+                  );
+                })}
               </Menu>
             </Box>
             <Box>
