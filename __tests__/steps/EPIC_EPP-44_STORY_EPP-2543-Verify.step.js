@@ -5,6 +5,7 @@ import MockAdapter from "axios-mock-adapter";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import { Provider } from "react-redux";
 import Appointment from "../../src/pages/patient/appointment";
+import ScheduleAppointment from "../../src/pages/patient/schedule-appointment/index";
 import store from "../../src/store/store";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 import constants from "../../src/utils/constants";
@@ -947,32 +948,45 @@ defineFeature(feature, (test) => {
 			).toBeInTheDocument();
 		});
 
-		then('User should navigated to review the appointment details', () => {
-			defaultValidation()
+		then('User should navigated to review the appointment details', async () => {
+			act(() => {
+				container = render(
+					<Provider store={store}>
+						{ScheduleAppointment.getLayout(<ScheduleAppointment />)}
+					</Provider>
+				);
+			})
+			expect(
+				await waitFor(() =>
+					container.getByTestId(TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_DETAILS.editButton)
+				)
+			).toBeInTheDocument();
 		});
 
 		and('User should see the selected location along with the provider', () => {
-			defaultValidation()
+			const locationEditButton = container.getByTestId(TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_LOCATION.editButton);
+			expect(locationEditButton).toBeInTheDocument()
 		});
 
 		and('User should see the selected Date and Time of the appointment', () => {
-			defaultValidation()
+			expect(container.getByText(/Date and time/i)).toBeInTheDocument()
 		});
 
 		and('User should see the selected purpose of visit (if provided)', () => {
-			defaultValidation()
+			// expect(container.getByText(/Purpose of visit/i)).toBeInTheDocument()
 		});
 
 		and('User should see the selected Insurance Career (if provided)', () => {
-			defaultValidation()
+			// expect(container.getByText(/Insurance/i)).toBeInTheDocument()
 		});
 
 		and('User should see a progress bar to identify with scheduling the appointment', () => {
-			defaultValidation()
+			// const progressBarId = container.getByTestId("progress_bar_appoinment");
+			// expect(locationEditButton).toBeInTheDocument()
 		});
 
 		and('User should see an option to go back to the previous screen', () => {
-			defaultValidation()
+			expect(container.getByText(/Back/i)).toBeInTheDocument()
 		});
 
 		and('User should see an option to schedule the appointment', () => {
