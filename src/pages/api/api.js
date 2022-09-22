@@ -78,7 +78,7 @@ export class Api {
             err.code === constants.ERROR_CODE.NETWORK_ERR)
         ) {
           const errors = err?.response?.data?._errors; // error from e360+ API
-          if (errors[0]) {
+          if (errors && errors[0]) {
             // error jwt not found in header / expired
             if (errors[0].code === "B4988908-5081-48CF-9B95-CA67E3FA87F0") {
               this.requestCounter++;
@@ -141,22 +141,22 @@ export class Api {
       };
 
       const cookies = new Cookies();
-      const config = { headers: cookies.getAll() };
+      // const config = { headers: cookies.getAll() };
 
       switch (method) {
         case "get":
-          return api.client
-            .get(url, postbody, config)
+          return this.client
+            .get(url, postbody)
             .then(resolver)
             .catch(rejecter);
         case "post":
-          return api.client
-            .post(url, postbody, config)
+          return this.client
+            .post(url, postbody)
             .then(resolver)
             .catch(rejecter);
         default:
-          return api.client
-            .get(url, postbody, config)
+          return this.client
+            .get(url, postbody)
             .then(resolver)
             .catch(rejecter);
       }

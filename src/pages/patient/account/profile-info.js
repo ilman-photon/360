@@ -12,6 +12,7 @@ import { useRouter } from "next/router";
 import { Api } from "../../api/api";
 import constants from "../../../utils/constants";
 import FormMessage from "../../../components/molecules/FormMessage/formMessage";
+import Cookies from "universal-cookie";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -57,6 +58,7 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
 
   const router = useRouter();
   const api = new Api();
+  const cookies = new Cookies()
 
   const onBackButtonEvent = (e) => {
     e.preventDefault();
@@ -84,7 +86,7 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
   };
 
   const onSavePersonalData = async (postBody) => {
-    await dispatch(fetchToken());
+    // await dispatch(fetchToken());
     const { payload } = await dispatch(
       updateUser({ token: accessToken, payload: postBody })
     );
@@ -95,7 +97,7 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
   };
 
   const onSaveContactData = async (postBody) => {
-    await dispatch(fetchToken());
+    // await dispatch(fetchToken());
     const { payload } = await dispatch(
       updateUser({ token: accessToken, payload: postBody })
     );
@@ -106,15 +108,17 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
   };
 
   useEffect(() => {
-    dispatch(fetchToken());
+    // dispatch(fetchToken());
+    console.log({accessToken: cookies.get("accessToken")})
+    dispatch(fetchUser({ token: cookies.get("accessToken") }))
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   console.log({ userData });
 
-  useEffect(() => {
-    if (accessToken) dispatch(fetchUser({ token: accessToken }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [accessToken, dispatch, fetchUser]);
+  // useEffect(() => {
+  //   if (accessToken) dispatch(fetchUser({ token: accessToken }));
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [accessToken, dispatch, fetchUser]);
 
   useEffect(() => {
     fetchUSListOfStates();
