@@ -148,7 +148,7 @@ export default function BaseHeader({
                     setAnchorElNav(false);
                   }}
                   onLogoutClicked={() => {
-                    console.log('sini', router);
+                    console.log("sini", router);
                     OnLogoutClicked(router);
                   }}
                 />

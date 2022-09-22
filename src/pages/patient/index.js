@@ -150,7 +150,7 @@ export default function HomePage() {
   }
 
   function onViewPrescriptions(index) {
-    router.push(`/patient/prescription?activeTab=${index}`);
+    router.push(`/patient/prescription`);
   }
 
   useEffect(() => {

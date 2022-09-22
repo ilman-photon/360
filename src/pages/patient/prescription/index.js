@@ -7,14 +7,7 @@ import PrescriptionLayout from "../../../components/templates/prescriptionLayout
 import store from "../../../store/store";
 import { Api } from "../../api/api";
 
-export async function getServerSideProps({ query }) {
-  return {
-    props: {
-      activeTab: query.activeTab || null,
-    },
-  };
-}
-export default function PrescriptionPage({ activeTab }) {
+export default function PrescriptionPage() {
   const isMobile = useMediaQuery("(max-width: 768px)");
   const [prescriptionData, setPrescriptionData] = React.useState({});
 
@@ -48,11 +41,7 @@ export default function PrescriptionPage({ activeTab }) {
           width: "100%",
         }}
       >
-        <Prescriptions
-          prescriptionData={prescriptionData}
-          isViewAll={true}
-          activeIndex={Number(activeTab)}
-        />
+        <Prescriptions prescriptionData={prescriptionData} isViewAll={true} />
       </Stack>
     </Stack>
   );

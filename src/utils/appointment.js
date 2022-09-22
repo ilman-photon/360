@@ -244,71 +244,118 @@ export function getProvideOverlay(providerId, listOfProvider) {
 
 function parsePrescriptionItemData(prescriptionData, key) {
   const data = [];
+  let latestDate = "";
   for (const itemData of prescriptionData) {
     itemData.prescriptionDetails = parsePrescriptionDetailsData(
       [...itemData.prescriptionDetails],
       key
     );
 
+    if (!latestDate) {
+      latestDate = new Date(itemData.date);
+    } else {
+      latestDate =
+        latestDate < new Date(itemData.date)
+          ? latestDate
+          : new Date(itemData.date);
+    }
+
     itemData.date = ddmmyyDateFormat(itemData.date);
     itemData.expirationDate = ddmmyyDateFormat(itemData.expirationDate);
     data.push(itemData);
   }
 
-  return data;
+  return { data, latestDate };
+}
+
+function getLatestDate(glassesDate, contactDate, medicationDate) {
+  if (glassesDate < contactDate && glassesDate < medicationDate) {
+    return 0;
+  } else if (contactDate < medicationDate) {
+    return 1;
+  } else {
+    return 2;
+  }
+}
+
+function parsePrescriptionItemMediaction(medications) {
+  const past = [];
+  const active = [];
+  let latestDate = "";
+  for (let index = 0; index < medications.length; index++) {
+    if (!latestDate) {
+      latestDate = new Date(medications[index].date);
+    } else {
+      latestDate =
+        latestDate < new Date(medications[index].date)
+          ? latestDate
+          : new Date(medications[index].date);
+    }
+
+    const medicationData = {};
+    medicationData.prescription = medications[index].prescription;
+    medicationData.date = ddmmyyDateFormat(medications[index].date);
+    medicationData.prescribedBy = "Dr. Philip Morris";
+    medicationData.expirationDate = ddmmyyDateFormat(
+      "2022-09-11T11:18:47.229Z"
+    );
+    medicationData.fillRequestDate = ddmmyyDateFormat(
+      "2022-09-02T11:18:47.229Z"
+    );
+    medicationData.timeRemaining = "Take 2 times a day";
+    medicationData.dose = "0.5 mL";
+    medicationData.status = "";
+    medicationData.statusDetails =
+      "CVS Pharmacy, 123 Broadway Blvd, New Jersey, NY 12889";
+    medicationData.type = index % 2 == 0 ? "active" : "past";
+
+    if (medicationData.type === "active") {
+      active.push(medicationData);
+    } else {
+      past.push(medicationData);
+    }
+  }
+  return { active, past, latestDate };
 }
 
 export function parsePrescriptionData(prescriptions) {
   const parsePrescriptions = { glasses: [], contacts: [], medications: [] };
+  let glassesDate = null;
+  let contactDate = null;
+  let medicationDate = null;
   if (prescriptions.glasses && prescriptions.glasses.length > 0) {
-    parsePrescriptions["glasses"] = parsePrescriptionItemData(
+    const { data, latestDate } = parsePrescriptionItemData(
       prescriptions.glasses,
       "glasses"
     );
+    parsePrescriptions["glasses"] = data;
+    glassesDate = latestDate;
   }
 
   if (prescriptions.contacts && prescriptions.contacts.length > 0) {
-    parsePrescriptions["contacts"] = parsePrescriptionItemData(
+    const { data, latestDate } = parsePrescriptionItemData(
       prescriptions.contacts,
       "contacts"
     );
+    parsePrescriptions["contacts"] = data;
+    contactDate = latestDate;
   }
 
   if (prescriptions.medications && prescriptions.medications.length > 0) {
     const medications = prescriptions.medications;
-    const past = [];
-    const active = [];
-    for (let index = 0; index < medications.length; index++) {
-      const medicationData = {};
-      medicationData.prescription = medications[index].prescription;
-      medicationData.date = ddmmyyDateFormat(medications[index].date);
-      medicationData.prescribedBy = "Dr. Philip Morris";
-      medicationData.expirationDate = ddmmyyDateFormat(
-        "2022-09-11T11:18:47.229Z"
-      );
-      medicationData.fillRequestDate = ddmmyyDateFormat(
-        "2022-09-02T11:18:47.229Z"
-      );
-      medicationData.timeRemaining = "Take 2 times a day";
-      medicationData.dose = "0.5 mL";
-      medicationData.status = "completed"; // TODO: the type of the input will be "" | "refill request" | "completed"
-      medicationData.statusDetails =
-        "CVS Pharmacy, 123 Broadway Blvd, New Jersey, NY 12889";
-      medicationData.type = index % 2 == 0 ? "active" : "past";
-
-      if (medicationData.type === "active") {
-        active.push(medicationData);
-      } else {
-        past.push(medicationData);
-      }
-    }
+    const { active, past, latestDate } =
+      parsePrescriptionItemMediaction(medications);
+    medicationDate = latestDate;
 
     parsePrescriptions["medications"] = {
       active: active,
       past: past,
     };
   }
-  return parsePrescriptions;
+  return {
+    parsePrescriptions,
+    activeTab: getLatestDate(glassesDate, contactDate, medicationDate),
+  };
 }
 
 function parsePrescriptionDetailsData(prescriptionDetails, type) {

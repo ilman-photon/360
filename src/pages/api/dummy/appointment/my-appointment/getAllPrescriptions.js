@@ -49,7 +49,7 @@ export default function getAllPrescriptions(req, res) {
         contacts: [
           {
             prescribedBy: "Dr. Sonha Nguyen",
-            date: "2022-09-02T11:18:47.229Z",
+            date: "2022-09-01T11:18:47.229Z",
             expirationDate: "2022-10-02T11:18:47.229Z",
             prescriptionDetails: [
               {
