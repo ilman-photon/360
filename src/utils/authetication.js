@@ -4,9 +4,10 @@ import { Api } from "../pages/api/api";
 export const logoutProps = {
   OnLogoutClicked: function (router) {
     const api = new Api();
-
+    const cookies = new Cookies();
     const postbody = {
-      username: "user1",
+      username: cookies.get("username"),
+      refreshToken: cookies.get("refreshToken")
     };
 
     api
@@ -18,6 +19,8 @@ export const logoutProps = {
         cookies.remove("ip", { path: "/patient" });
         cookies.remove("mfaAccessToken", { path: "/patient" });
         cookies.remove("securityQuestions", { path: "/patient" });
+        cookies.remove("accessToken", { path: "/patient" });
+        cookies.remove("refreshToken", { path: "/patient" });
         router.push("/patient/login");
       })
       .catch(() => {
