@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "universal-cookie";
 import { setGenericErrorMessage } from "../../store";
 import constants from "../../utils/constants";
 
@@ -53,13 +54,25 @@ export class Api {
         }
       };
 
+      const cookies = new Cookies();
+      const config = { headers: cookies.getAll() };
+
       switch (method) {
         case "get":
-          return api.client.get(url, postbody).then(resolver).catch(rejecter);
+          return api.client
+            .get(url, postbody, config)
+            .then(resolver)
+            .catch(rejecter);
         case "post":
-          return api.client.post(url, postbody).then(resolver).catch(rejecter);
+          return api.client
+            .post(url, postbody, config)
+            .then(resolver)
+            .catch(rejecter);
         default:
-          return api.client.get(url, postbody).then(resolver).catch(rejecter);
+          return api.client
+            .get(url, postbody, config)
+            .then(resolver)
+            .catch(rejecter);
       }
     });
   }

@@ -40,7 +40,6 @@ Object {
                   <div
                     aria-label="location heading"
                     class="title"
-                    style="font-weight: 700;"
                     tabindex="0"
                   >
                     location
@@ -182,7 +181,6 @@ Object {
                 <div
                   aria-label="location heading"
                   class="title"
-                  style="font-weight: 700;"
                   tabindex="0"
                 >
                   location
