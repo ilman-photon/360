@@ -56,20 +56,11 @@ export class Api {
 
       switch (method) {
         case "get":
-          return api.client
-            .get(url, postbody, config)
-            .then(resolver)
-            .catch(rejecter);
+          return api.client.get(url, postbody).then(resolver).catch(rejecter);
         case "post":
-          return api.client
-            .post(url, postbody, config)
-            .then(resolver)
-            .catch(rejecter);
+          return api.client.post(url, postbody).then(resolver).catch(rejecter);
         default:
-          return api.client
-            .get(url, postbody, config)
-            .then(resolver)
-            .catch(rejecter);
+          return api.client.get(url, postbody).then(resolver).catch(rejecter);
       }
     });
   }
