@@ -1,20 +1,39 @@
 import * as React from "react";
-import AccountLayout from "../../../../../components/templates/accountLayout";
-import { Provider } from "react-redux";
+import PrescriptionLayout from "../../../../../components/templates/prescriptionLayout";
 import store from "../../../../../store/store";
 import TableWithSort from "../../../../../components/molecules/TableWithSort/tableWithSort";
-import { IconButton, Stack } from "@mui/material";
-import styles from "./styles.module.scss";
+import { IconButton, Stack, Button, useMediaQuery } from "@mui/material";
+import styles from "../styles.module.scss";
 import FileDownloadIcon from "../../../../../assets/icons/FileDownload";
 import DownloadOutlinedIcon from "@mui/icons-material/DownloadOutlined";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import CloseIcon from "@mui/icons-material/Close";
-import { Button, useMediaQuery } from "@mui/material";
+import TableEmpty from "../../../../../components/atoms/TableEmpty/tableEmpty";
+import { useEffect } from "react";
+import { fetchTestLabResult } from "../../../../../store/medicalReport";
+
+import { Provider, useDispatch, useSelector } from "react-redux";
+import { useRouter } from "next/router";
+
+import { Controller, useForm } from "react-hook-form";
+import { StyledSelect } from "../../../../../components/atoms/Select/select";
 
 export default function TestLabPage() {
   const [isHideDisclaimer, setIsHideDisclaimer] = React.useState(false);
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
+  const router = useRouter();
+  const dispatch = useDispatch();
+
+  const categories = [
+    { id: 0, label: "Care Plan", value: "test-lab-result" },
+    { id: 1, label: "Prescriptions", value: "test-lab-result" },
+    { id: 2, label: "Test & Lab Results", value: "test-lab-result" },
+  ];
+
+  const { control, setValue } = useForm({
+    defaultValues: { category: "" },
+  });
 
   const tableConfiguration = {
     header: [
@@ -177,19 +196,44 @@ export default function TestLabPage() {
     };
   };
 
-  const rows = [
-    createData("Eye Surgery", "Hopkins, D.M.", "09/09/2022", "Completed"),
-    createData("Eye Surgery2", "Hopkins, D.M.", "09/09/2022", "Completed"),
-    createData("Eye Surgery3", "Hopkins, D.M.", "09/09/2022", "Completed"),
-    createData("Eye Surgery4", "Hopkins, D.M.", "09/09/2022", "Completed"),
-  ];
+  //   const rows = [
+  //     createData("Eye Surgery", "Hopkins, D.M.", "09/09/2022", "Completed"),
+  //     createData("Eye Surgery2", "Hopkins, D.M.", "09/09/2022", "Completed"),
+  //     createData("Eye Surgery3", "Hopkins, D.M.", "09/09/2022", "Completed"),
+  //     createData("Eye Surgery4", "Hopkins, D.M.", "09/09/2022", "Completed"),
+  //   ];
+
+  const rows = useSelector((state) => state.medicalResult.testLabData);
+
+  useEffect(() => {
+    dispatch(fetchTestLabResult());
+
+    const splitted = router.pathname.split("/");
+    const category = splitted[splitted.length - 1];
+    setValue("category", category);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>
-      <div
-        className={styles.intakePageWrapper}
-        style={{ padding: { xs: "16px", md: "0" } }}
-      >
+      <div className={styles.documentPageWrapper}>
+        <Controller
+          name="category"
+          control={control}
+          render={({ field: { onChange, value }, fieldState: { error } }) => {
+            return (
+              <StyledSelect
+                options={categories}
+                onChange={(v) =>
+                  router.push(`/patient/account/documents/${v.target.value}`)
+                }
+                value={value}
+                label="Choose a category"
+                sx={{ m: 0, display: isDesktop ? "none" : "" }}
+              />
+            );
+          }}
+        />
         {!isHideDisclaimer ? (
           <div className={styles.disclaimerWrapper}>
             <div className={styles.disclaimerText}>
@@ -216,22 +260,18 @@ export default function TestLabPage() {
             </div>
           </div>
         ) : null}
-        <Stack spacing={3}>
-          <TableWithSort
-            config={isDesktop ? tableConfiguration : tableConfigurationMobile}
-            rows={rows}
-            isDesktop={isDesktop}
-          />
-        </Stack>
 
-        <div className={styles.disclaimerWrapper}>
-          <div
-            className={styles.noResultText}
-            style={{ textAlign: { xs: "left", md: "center" } }}
-          >
-            There are no tests or lab results
-          </div>
-        </div>
+        <Stack spacing={3} sx={{ mt: 1 }}>
+          {rows?.length > 0 ? (
+            <TableWithSort
+              config={isDesktop ? tableConfiguration : tableConfigurationMobile}
+              rows={rows}
+              isDesktop={isDesktop}
+            />
+          ) : (
+            <TableEmpty text="There are no tests or lab results." />
+          )}
+        </Stack>
       </div>
     </>
   );
@@ -240,9 +280,12 @@ export default function TestLabPage() {
 TestLabPage.getLayout = function getLayout(page) {
   return (
     <Provider store={store}>
-      <AccountLayout currentActivePage={"test-lab-result"}>
+      <PrescriptionLayout
+        currentActivePage={"test-lab-result"}
+        title={"Test & Lab Results"}
+      >
         {page}
-      </AccountLayout>
+      </PrescriptionLayout>
     </Provider>
   );
 };

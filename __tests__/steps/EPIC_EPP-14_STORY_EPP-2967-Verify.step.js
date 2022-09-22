@@ -2,9 +2,9 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
-import TestLabPage from "../../src/pages/patient/account/documents/test-lab-result";
+import TestLabPage from "../../src/pages/patient/account/medical-record/test-lab-result";
 
-import { render } from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import mediaQuery from 'css-mediaquery';
 
@@ -38,14 +38,16 @@ defineFeature(feature, (test) => {
           });
     }
 
-    const componentsPage = () => {
-        container.getByText("Your lab results are available. Please reach out to your provider.");
-        container.getByText("Test & Lab Results");
+    const componentsPage = async () => {
+        await waitFor(() => {
+        expect(container.getByText("Your lab results are available. Please reach out to your provider.")).toBeInTheDocument();
+        expect(container.getAllByText("Test & Lab Results")[0]).toBeInTheDocument();
         
-        container.getByText("Test Name");
-        container.getByText("Ordered by");
-        container.getByText("Test Date");
-        container.getByText("Test Status");
+        expect(container.getByText("Test Name")).toBeInTheDocument();
+        expect(container.getByText("Ordered by")).toBeInTheDocument();
+        expect(container.getByText("Test Date")).toBeInTheDocument();
+        expect(container.getByText("Test Status")).toBeInTheDocument();
+        })
     }
 
     test('EPIC_EPP-14_STORY_EPP-2697- Verify whether the user is able to view their test results', ({ given, when, and, then }) => {
@@ -91,7 +93,7 @@ defineFeature(feature, (test) => {
             renderPage();
         });
 
-        and('user able to view the following details', async (table) => {
+        and('user able to view the following details', () => {
             componentsPage();
         });
     });
@@ -117,7 +119,7 @@ defineFeature(feature, (test) => {
             renderPage();
         });
 
-        and('user able to view the details (Test Type, Ordered By, Test Date and Testing Status)', async () => {
+        and('user able to view the details (Test Type, Ordered By, Test Date and Testing Status)', () => {
             componentsPage();
         });
 

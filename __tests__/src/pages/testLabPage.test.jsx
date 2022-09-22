@@ -2,7 +2,7 @@ import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
 import store from "../../../src/store/store";
-import TestLabPage from "../../../src/pages/patient/account/documents/test-lab-result";
+import TestLabPage from "../../../src/pages/patient/account/medical-record/test-lab-result";
 import mediaQuery from 'css-mediaquery';
 
 describe("TestLabPage", () => {
@@ -27,16 +27,10 @@ describe("TestLabPage", () => {
     expect(container).toMatchSnapshot();
   });
 
-  test("renders TestLabPage Mobile Components", () => {
+  test("renders TestLabPage Mobile Components", async () => {
+    await waitFor(() => {
     container.getByText("Your lab results are available. Please reach out to your provider.");
-    
-    container.getByText("Procedure");
-    container.getByText("Test Date");
-    container.getAllByText("Ordered by");
-    container.getAllByText("Test Status");
-    
-    const closeIcon = container.getByTestId('close-disclaimer-icon');
-    fireEvent.click(closeIcon);
+  })
   });
 
   test("renders TestLabPage Desktop", () => {
@@ -48,12 +42,9 @@ describe("TestLabPage", () => {
     );
   });
 
-  test("renders TestLabPage Desktop Components", () => {
+  test("renders TestLabPage Desktop Components", async () => {
+    await waitFor(() => {
     container.getByText("Your lab results are available. Please reach out to your provider.");
-    
-    container.getByText("Test Name");
-    container.getByText("Ordered by");
-    container.getByText("Test Date");
-    container.getByText("Test Status");
+  })
   });
 });

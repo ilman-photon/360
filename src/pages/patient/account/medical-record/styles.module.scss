@@ -1,13 +1,13 @@
-@import "../../../../../../styles/colors.scss";
+.documentPageWrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 1434px;
+  margin: 0 auto 35px auto;
+  background: white;
+  padding: 32px 24px;
 
-.intakePageWrapper {
-  max-width: 1073px;
-  padding: 0;
-
-  @media (max-width: 767px) {
+  @media (max-width: 768px) {
     padding: 16px;
-    width: 100%;
-    max-width: 767px;
   }
 }
 
@@ -42,27 +42,4 @@
   word-break: break-word;
   width: 100%;
   justify-content: space-between;
-}
-
-.container {
-  background-color: #e4e4e4;
-  margin: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  .pageWrapper {
-    display: flex;
-    max-width: 1450px;
-    width: inherit;
-  }
-}
-
-.closeIcon {
-  width: 25px;
-  height: 25px;
-  color: #003b4a !important;
-  padding: 0px;
-  margin-bottom: auto;
-  justify-content: right;
 }

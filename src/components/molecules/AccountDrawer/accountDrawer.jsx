@@ -49,7 +49,20 @@ export const AccountDrawer = ({
   linkObject = {
     dashboard: [],
     appointments: [],
-    medical: [],
+    medical: [
+      {
+        label: "Care Plan",
+        href: "/patient/account/medical-record/test-lab-result",
+      },
+      {
+        label: "Prescriptions",
+        href: "/patient/account/medical-record/test-lab-result",
+      },
+      {
+        label: "Test & Lab Results",
+        href: "/patient/account/medical-record/test-lab-result",
+      },
+    ],
     documents: [
       {
         label: "Intake Forms",
