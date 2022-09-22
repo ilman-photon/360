@@ -13,7 +13,7 @@ Object {
         class="defaultLayout"
       >
         <header
-          class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-rxbk4x-MuiPaper-root-MuiAppBar-root"
+          class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-wzn3iz-MuiPaper-root-MuiAppBar-root"
           style="padding-right: 1024px;"
         >
           <div
@@ -334,6 +334,15 @@ Object {
               >
                 Past Appointments
               </h2>
+              <div
+                class="subTitleWrapper MuiBox-root css-0"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 noPastAppointment css-1b03qeg-MuiTypography-root"
+                >
+                  You have no past appointments
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -989,7 +998,7 @@ Object {
       class="defaultLayout"
     >
       <header
-        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-rxbk4x-MuiPaper-root-MuiAppBar-root"
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-wzn3iz-MuiPaper-root-MuiAppBar-root"
         style="padding-right: 1024px;"
       >
         <div
@@ -1310,6 +1319,15 @@ Object {
             >
               Past Appointments
             </h2>
+            <div
+              class="subTitleWrapper MuiBox-root css-0"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body2 noPastAppointment css-1b03qeg-MuiTypography-root"
+              >
+                You have no past appointments
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -1382,7 +1400,7 @@ Object {
         class="defaultLayout"
       >
         <header
-          class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-rxbk4x-MuiPaper-root-MuiAppBar-root"
+          class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-wzn3iz-MuiPaper-root-MuiAppBar-root"
           style="padding-right: 1024px;"
         >
           <div
@@ -1703,6 +1721,15 @@ Object {
               >
                 Past Appointments
               </h2>
+              <div
+                class="subTitleWrapper MuiBox-root css-0"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 noPastAppointment css-1b03qeg-MuiTypography-root"
+                >
+                  You have no past appointments
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -2358,7 +2385,7 @@ Object {
       class="defaultLayout"
     >
       <header
-        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-rxbk4x-MuiPaper-root-MuiAppBar-root"
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-wzn3iz-MuiPaper-root-MuiAppBar-root"
         style="padding-right: 1024px;"
       >
         <div
@@ -2679,6 +2706,15 @@ Object {
             >
               Past Appointments
             </h2>
+            <div
+              class="subTitleWrapper MuiBox-root css-0"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body2 noPastAppointment css-1b03qeg-MuiTypography-root"
+              >
+                You have no past appointments
+              </p>
+            </div>
           </div>
         </div>
       </div>

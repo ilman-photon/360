@@ -172,12 +172,10 @@ export default function HomePage() {
   };
 
   const handleClose = () => {
-    console.log(isOpenCancel, "false");
     setIsOpenCancel(false);
   };
 
-  const handleCancelSchedule = (data) => {
-    console.log(data, isOpenCancel, "falsedata");
+  const handleCancelSchedule = () => {
     setIsOpenCancel(false);
   };
 

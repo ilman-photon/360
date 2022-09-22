@@ -1,19 +1,23 @@
-import PrescriptionLayout from "../../../../../components/templates/prescriptionLayout";
+import PrescriptionLayout from "../../../../components/templates/prescriptionLayout";
 import { Provider, useDispatch, useSelector } from "react-redux";
-import store from "../../../../../store/store";
-import TableWithSort from "../../../../../components/molecules/TableWithSort/tableWithSort";
+import store from "../../../../store/store";
+import TableWithSort from "../../../../components/molecules/TableWithSort/tableWithSort";
 import { IconButton, Stack, useMediaQuery } from "@mui/material";
-import styles from "../styles.module.scss";
-import FileDownloadIcon from "../../../../../assets/icons/FileDownload";
-import PDFFileIcon from "../../../../../assets/icons/PDFFileIcon";
+import styles from "./styles.module.scss";
+import FileDownloadIcon from "../../../../assets/icons/FileDownload";
+import PDFFileIcon from "../../../../assets/icons/PDFFileIcon";
 import { useEffect } from "react";
-import { fetchIntakeForms } from "../../../../../store/document";
-import { StyledSelect } from "../../../../../components/atoms/Select/select";
+import {
+  fetchHealthRecord,
+  fetchInsuranceDocuments,
+  fetchIntakeForms,
+} from "../../../../store/document";
+import { StyledSelect } from "../../../../components/atoms/Select/select";
 import { useRouter } from "next/router";
 import { Controller, useForm } from "react-hook-form";
-import TableEmpty from "../../../../../components/atoms/TableEmpty/tableEmpty";
+import TableEmpty from "../../../../components/atoms/TableEmpty/tableEmpty";
 
-export default function IntakeFormsPage() {
+export default function AccountDocumentsPage() {
   const isDesktop = useMediaQuery("(min-width: 769px)");
   const router = useRouter();
   const dispatch = useDispatch();
@@ -24,9 +28,12 @@ export default function IntakeFormsPage() {
     { id: 2, label: "Health record", value: "health-record" },
   ];
 
-  const { control, setValue } = useForm({
+  const { control, setValue, watch } = useForm({
     defaultValues: { category: "" },
   });
+
+  const watchedCategory = watch("category", "");
+  console.log({ watchedCategory });
 
   const tableConfiguration = {
     header: [
@@ -90,16 +97,45 @@ export default function IntakeFormsPage() {
     ],
   };
 
-  const rows = useSelector((state) => state.document.intakeFormsData);
+  const rows = useSelector((state) => {
+    switch (watchedCategory) {
+      case "intake-forms":
+        return state.document.intakeFormsData;
+      case "insurance-documents":
+        return state.document.insuranceDocument;
+      case "health-record":
+        return state.document.healthRecordData;
+      default:
+        return [];
+    }
+  });
 
   useEffect(() => {
-    dispatch(fetchIntakeForms());
-
-    const splitted = router.pathname.split("/");
-    const category = splitted[splitted.length - 1];
+    const category = router.query.type;
     setValue("category", category);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [router.query]);
+
+  useEffect(() => {
+    if (watchedCategory) {
+      switch (watchedCategory) {
+        case "intake-forms":
+          dispatch(fetchIntakeForms());
+          break;
+        case "insurance-documents":
+          dispatch(fetchInsuranceDocuments());
+          break;
+        case "health-record":
+          dispatch(fetchHealthRecord());
+          break;
+      }
+    } else
+      router.push({
+        pathname: router.pathname,
+        query: { type: "intake-forms" },
+      });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [watchedCategory]);
 
   return (
     <>
@@ -112,7 +148,9 @@ export default function IntakeFormsPage() {
               <StyledSelect
                 options={categories}
                 onChange={(v) =>
-                  router.push(`/patient/account/documents/${v.target.value}`)
+                  router.push(
+                    `/patient/account/documents?type=${v.target.value}`
+                  )
                 }
                 value={value}
                 label="Choose a category"
@@ -126,7 +164,7 @@ export default function IntakeFormsPage() {
           {rows.length > 0 ? (
             <TableWithSort config={tableConfiguration} rows={rows} />
           ) : (
-            <TableEmpty text="There are no intake forms." />
+            <TableEmpty text={`There are no ${watchedCategory}.`} />
           )}
         </Stack>
       </div>
@@ -134,10 +172,10 @@ export default function IntakeFormsPage() {
   );
 }
 
-IntakeFormsPage.getLayout = function getLayout(page) {
+AccountDocumentsPage.getLayout = function getLayout(page) {
   return (
     <Provider store={store}>
-      <PrescriptionLayout currentActivePage={"intake-forms"}>
+      <PrescriptionLayout currentActivePage={"documents"}>
         {page}
       </PrescriptionLayout>
     </Provider>

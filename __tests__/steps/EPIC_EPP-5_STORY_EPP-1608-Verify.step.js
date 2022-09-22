@@ -65,7 +65,7 @@ const MOCK_APPOINTMENT = {
       },
     },
     {
-      appointmentId: "1",
+      appointmentId: "2",
       providerInfo: {
         providerId: "1",
         name: "Dr. Sonha Nguyen",
@@ -96,13 +96,50 @@ const MOCK_APPOINTMENT = {
         phoneNumber: "1234567890",
       },
       appointmentInfo: {
-        appointmentType: "Eye Exam",
-        date: "Thu, 12 Jan 2023 04:30:00 EST",
+        appointmentType: "Comprehensive",
+        date: "Wed, 28 Aug 2014 07:30:00 EST",
+        insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+      },
+    },
+    {
+      appointmentId: "2",
+      providerInfo: {
+        providerId: "1",
+        name: "Dr. Sonha Nguyen",
+        position: "Scripps Eyecare",
+        address: {
+          addressLine1: "51 West 51st Street",
+          addressLine2: "Floor 3, Suite 320 Midtown",
+          city: "Florida",
+          state: "FR",
+          zipcode: "54231",
+        },
+        rating: "5",
+        phoneNumber: "8572999989",
+        distance: "10 mi",
+        image: "/doctor.png",
+        from: "2022-07-18",
+        to: "2022-07-23",
+        location: {
+          latitude: 32.751204,
+          longitude: -117.1641166,
+        },
+      },
+      patientInfo: {
+        name: "Rebecca Chan",
+        firstname: "Rebecca",
+        lastname: "Chan",
+        dob: "12/12/2022",
+        phoneNumber: "1234567890",
+      },
+      appointmentInfo: {
+        appointmentType: "Comprehensive",
+        date: "Wed, 28 Aug 2014 07:30:00 EST",
         insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
       },
     },
   ],
-}
+};
 
 const MOCK_PRESCRIPTION = {
   prescriptions: {
@@ -163,7 +200,7 @@ const MOCK_PRESCRIPTION = {
       },
     ],
   },
-}
+};
 
 const MOCK_APPOINTMENT_DETAILS = {
   appointmentId: "1",
@@ -286,8 +323,8 @@ const MOCK_APPOINTMENT_DETAILS = {
       },
     ],
     documentation: {
-      name: "Care Provision"
-    }
+      name: "Care Provision",
+    },
   },
 };
 
@@ -310,8 +347,13 @@ defineFeature(feature, (test) => {
 
   afterEach(cleanup);
 
-  test('EPIC_EPP-50_STORY_EPP-1608 - Verify whether the user should see the option to view the visit summary from the past appointments', ({ given, when, and, then }) => {
-    given('user launch the  Patient Portal url', () => {
+  test("EPIC_EPP-50_STORY_EPP-1608 - Verify whether the user should see the option to view the visit summary from the past appointments", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the  Patient Portal url", () => {
       defaultValidation();
     });
 
@@ -319,72 +361,95 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    and('user clicks on Login button', () => {
+    and("user clicks on Login button", () => {
       defaultValidation();
     });
 
-    then('user lands on to the Patient portal home page', async () => {
+    then("user lands on to the Patient portal home page", async () => {
       Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
       };
       const mock = new MockAdapter(axios);
-      mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`).reply(200, MOCK_PRESCRIPTION);
-      
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+        )
+        .reply(200, MOCK_PRESCRIPTION);
+
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn()
+        watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
       const response = await getServerSideProps({
         req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
         res: jest.fn(),
       });
-      act(()=>{
+      act(() => {
         container = render(
-            <Provider store={store}>
-                {HomePage.getLayout(<HomePage />)}
-            </Provider>
-            );
-        })
-      await waitFor(()=> container.getByLabelText(/Prescriptions/i))
+          <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
+        );
+      });
+      await waitFor(() => container.getByLabelText(/Prescriptions/i));
       expect(response).toEqual({
         props: { isStepTwo: false },
       });
     });
 
-    and('user navigates to Appointments screen', async () => {
+    and("user navigates to Appointments screen", async () => {
       defaultValidation();
     });
 
-    when('user lands on Appointments screen', async () => {
+    when("user lands on Appointments screen", async () => {
+      cleanup();
       const mock = new MockAdapter(axios);
-      mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllAppointment`).reply(200, MOCK_APPOINTMENT);
-      act(()=>{
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`
+        )
+        .reply(200, MOCK_APPOINTMENT);
+      act(() => {
         appointmentsContainer = render(
-            <Provider store={store}>
-                {Appointments.getLayout(<Appointments />)}
-            </Provider>
-            );
-        })
-      await waitFor(()=> appointmentsContainer.getAllByText(/Paul Wagner Md/i));
-      expect(appointmentsContainer.getAllByText(/Paul Wagner Md/i)[0]).toBeInTheDocument();
+          <Provider store={store}>
+            {Appointments.getLayout(<Appointments />)}
+          </Provider>
+        );
+      });
+      await waitFor(() =>
+        appointmentsContainer.getByText(/View appointment details/i)
+      );
+      expect(
+        appointmentsContainer.getAllByText(/Paul Wagner Md/i)[0]
+      ).toBeInTheDocument();
     });
 
-    then('user should be able to view the list of past appointments', () => {
-      expect(appointmentsContainer.getByText(/Past Appointments/i)).toBeInTheDocument();
+    then("user should be able to view the list of past appointments", () => {
+      expect(
+        appointmentsContainer.getByText(/Past Appointments/i)
+      ).toBeInTheDocument();
     });
 
-    and('user should see the option to view the visit summary from the past appointments', () => {
-      const link = appointmentsContainer.getByText(/View appointment details/i);
-      expect(link).toBeInTheDocument();
-      fireEvent.click(link);
-    });
+    and(
+      "user should see the option to view the visit summary from the past appointments",
+      () => {
+        const link = appointmentsContainer.getByText(
+          /View appointment details/i
+        );
+        expect(link).toBeInTheDocument();
+        fireEvent.click(link);
+      }
+    );
   });
 
-  test('EPIC_EPP-50_STORY_EPP-1608 - Verify whether the user should able to view the visit summary for that appointment', ({ given, when, and, then }) => {
-    given('user launch the  Patient Portal url', () => {
+  test("EPIC_EPP-50_STORY_EPP-1608 - Verify whether the user should able to view the visit summary for that appointment", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the  Patient Portal url", () => {
       defaultValidation();
     });
 
@@ -392,46 +457,63 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    and('user clicks on Login button', () => {
+    and("user clicks on Login button", () => {
       defaultValidation();
     });
 
-    then('user lands on to the Patient portal home page', () => {
+    then("user lands on to the Patient portal home page", () => {
       defaultValidation();
     });
 
-    and('user navigates to Appointments screen', () => {
+    and("user navigates to Appointments screen", () => {
       defaultValidation();
     });
 
-    when('user lands on Appointments screen', () => {
+    when("user lands on Appointments screen", () => {
       defaultValidation();
     });
 
-    then('user should be able to view the list of past appointments', () => {
+    then("user should be able to view the list of past appointments", () => {
       defaultValidation();
     });
 
-    and('user should see the option to view the visit summary from the past appointments', async () => {
-      const mock = new MockAdapter(axios);
-      mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAppointmentDetails`).reply(200, MOCK_APPOINTMENT_DETAILS);
-      act(()=>{
-        appointmentDetailsContainer = render(
+    and(
+      "user should see the option to view the visit summary from the past appointments",
+      async () => {
+        const mock = new MockAdapter(axios);
+        mock
+          .onGet(
+            `${domain}/api/dummy/appointment/my-appointment/getAppointmentDetails`
+          )
+          .reply(200, MOCK_APPOINTMENT_DETAILS);
+        act(() => {
+          appointmentDetailsContainer = render(
             <Provider store={store}>
-                {AppointmentDetails.getLayout(<AppointmentDetails />)}
+              {AppointmentDetails.getLayout(<AppointmentDetails />)}
             </Provider>
-            );
-        })
-      await waitFor(()=> appointmentDetailsContainer.getByText(/Appointment Detail/i));
-      expect(appointmentDetailsContainer.getByText(/Appointment Detail/i)).toBeInTheDocument();
-    });
+          );
+        });
+        await waitFor(() =>
+          appointmentDetailsContainer.getByText(/Appointment Detail/i)
+        );
+        expect(
+          appointmentDetailsContainer.getByText(/Appointment Detail/i)
+        ).toBeInTheDocument();
+      }
+    );
 
-    when('user select the option to view the visit summary from the past appointments', () => {
-      defaultValidation();
-    });
+    when(
+      "user select the option to view the visit summary from the past appointments",
+      () => {
+        defaultValidation();
+      }
+    );
 
-    then('User should be able to view the visit summary for that appointment', () => {
-      defaultValidation();
-    });
+    then(
+      "User should be able to view the visit summary for that appointment",
+      () => {
+        defaultValidation();
+      }
+    );
   });
-})
+});
