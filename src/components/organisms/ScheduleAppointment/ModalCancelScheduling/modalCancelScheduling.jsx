@@ -186,10 +186,6 @@ export default function ModalCancelScheduling({
                     xs: "column",
                     md: "row-reverse",
                   },
-                  marginLeft: {
-                    xs: "0px",
-                    md: "82px",
-                  },
                 }}
               >
                 <Button
