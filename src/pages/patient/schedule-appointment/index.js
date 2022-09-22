@@ -45,6 +45,15 @@ import { StyledButton } from "../../../components/atoms/Button/button";
 import { colors } from "../../../styles/theme";
 import { useLeavePageConfirm } from "../../../../hooks/useCallbackPrompt";
 
+export async function getServerSideProps(ctx) {
+  console.log({state: store.getState().appointment.appointmentSchedule.providerInfo})
+  return {
+    props: {
+      
+    },
+  };
+}
+
 const MobileTopBar = (data) => {
   return (
     <Box className={styles.mobileMenuBar}>
@@ -243,7 +252,7 @@ export default function ScheduleAppointmentPage() {
   const [modalConfirmReschedule, setModalConfirmReschedule] =
     React.useState(false);
 
-  useLeavePageConfirm({ message: "Change that you made might not be saved." });
+  // useLeavePageConfirm({ message: "Change that you made might not be saved." });
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -279,6 +288,12 @@ export default function ScheduleAppointmentPage() {
   const appointmentScheduleData = useSelector((state) => {
     return state.appointment.appointmentSchedule;
   });
+
+  React.useEffect(() => {
+    if (!appointmentScheduleData.providerInfo.providerId) {
+      router.replace("/patient/appointment")
+    }
+  },[appointmentScheduleData])
 
   React.useEffect(() => {
     if (router.query.reschedule) {
