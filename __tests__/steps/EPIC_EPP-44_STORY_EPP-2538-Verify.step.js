@@ -694,10 +694,8 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => {
-        container.getByText(/City, state, or zip/i);
-        expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
-      });
+      await waitFor(() => container.getByText(/City, state, or zip/i));
+      expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
     });
 
     and("user enters the location", () => {
@@ -760,10 +758,8 @@ defineFeature(feature, (test) => {
     and("user applies the filters", async () => {
       const done = container.getByRole("button", { name: "Done" });
       fireEvent.click(done);
-      await waitFor(() => {
-        container.getByText("Arabic");
-        expect(container.getByText("Arabic")).toBeInTheDocument();
-      });
+      await waitFor(() => container.getByText("Arabic"));
+      expect(container.getByText("Arabic")).toBeInTheDocument();
     });
   });
 
@@ -911,9 +907,7 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => {
-        container.getByText(/City, state, or zip/i);
-      });
+      await waitFor(() => container.getByText(/City, state, or zip/i));
       expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
     });
 
