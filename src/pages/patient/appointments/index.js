@@ -96,10 +96,7 @@ export default function Appointments() {
         <AccountTitleHeading
           title={"Appointments"}
           sx={{
-            textAlign: "left",
-            width: isMobile ? "100%" : "auto",
-            display: "flex",
-            padding: isMobile && "14px 10px",
+            padding: "27px 10px",
           }}
         />
         {appointments && (
