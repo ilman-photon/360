@@ -137,6 +137,9 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
   }, [formMessage]);
   const isDOB = (value) => {
     let date = new Date().getFullYear();
+    if (value.getYear() < 0) {
+      return false;
+    }
     if (value.getFullYear() <= date) {
       return true;
     }

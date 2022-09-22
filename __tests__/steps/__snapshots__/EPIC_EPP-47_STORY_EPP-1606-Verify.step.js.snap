@@ -62,7 +62,7 @@ Object {
                 aria-label="Appointments heading"
                 aria-live="polite"
                 class="title"
-                style="text-align: left; width: auto; display: flex;"
+                style="padding: 27px 10px;"
                 tabindex="0"
               >
                 Appointments
@@ -1047,7 +1047,7 @@ Object {
               aria-label="Appointments heading"
               aria-live="polite"
               class="title"
-              style="text-align: left; width: auto; display: flex;"
+              style="padding: 27px 10px;"
               tabindex="0"
             >
               Appointments
@@ -1449,7 +1449,7 @@ Object {
                 aria-label="Appointments heading"
                 aria-live="polite"
                 class="title"
-                style="text-align: left; width: auto; display: flex;"
+                style="padding: 27px 10px;"
                 tabindex="0"
               >
                 Appointments
@@ -2434,7 +2434,7 @@ Object {
               aria-label="Appointments heading"
               aria-live="polite"
               class="title"
-              style="text-align: left; width: auto; display: flex;"
+              style="padding: 27px 10px;"
               tabindex="0"
             >
               Appointments

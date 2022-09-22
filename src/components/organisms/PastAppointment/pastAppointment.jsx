@@ -1,11 +1,10 @@
 import { Box, Typography, Link } from "@mui/material";
 import styles from "./styles.module.scss";
 import moment from "moment";
-import { useState } from "react";
+import React, { useState } from "react";
 import Collapse from "@mui/material/Collapse";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Button from "@mui/material/Button";
-import React from "react";
 import AppointmentInformation from "../../molecules/AppointmentInformation/appointmentInformation";
 export function PastAppointmentCard({ data, threshold }) {
   const date = data.appointmentInfo.date;
@@ -54,7 +53,7 @@ export function PastAppointmentCard({ data, threshold }) {
           }}
         >
           <Button
-            onClick={() => (threshold == 1 ? handleClickAlt() : handleClick())}
+            onClick={() => (threshold == 0 ? handleClickAlt() : handleClick())}
           >
             <ExpandMoreIcon />
           </Button>

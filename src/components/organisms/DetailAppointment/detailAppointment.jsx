@@ -1,4 +1,4 @@
-import { Box, Stack, Typography, Link, Button } from "@mui/material";
+import { Box, Stack, Typography, Link } from "@mui/material";
 import styles from "./styles.module.scss";
 import AppointmentButton from "../../atoms/AppointmentButton/appointmentButton";
 import moment from "moment";
@@ -51,13 +51,6 @@ export default function DetailAppointment({ data }) {
     setOpenResults(true);
     setOpenVitals(true);
   };
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  }));
   const downloadPDF = () => {
     let element = container.current || document.body;
     savePDF(
