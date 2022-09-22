@@ -49,12 +49,14 @@
       background-color: #b93632 !important;
       border-radius: 30px;
       text-transform: none;
+      white-space: nowrap;
     }
     &.outlined {
       background-color: transparent !important;
       border: solid 1px #007e8f;
       color: #007e8f;
       border-radius: 30px;
+      box-shadow: none;
       text-transform: none;
     }
   }
