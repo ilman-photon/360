@@ -44,6 +44,8 @@ export default function ProviderProfile({
   isShownRating = true,
   providerData = {},
   imageSize = "large",
+  bioContainerClass = "",
+  addressClass = "",
 }) {
   const isAppointment = variant === "appointment";
   const isBio = variant === "bio";
@@ -110,7 +112,7 @@ export default function ProviderProfile({
           ></Image>
         </Box>
         <Box
-          className={styles.bioContainer}
+          className={[styles.bioContainer, bioContainerClass].join(" ")}
           sx={{
             width:
               isMap || isAppointment || imageSize === "small"
@@ -144,7 +146,7 @@ export default function ProviderProfile({
               <Box aria-label="Doctor Address">
                 <Typography
                   variant="body2"
-                  className={styles.address}
+                  className={[styles.address, addressClass].join(" ")}
                   fontSize={isViewSchedule ? "14px" : "16px"}
                   tabindex={"0"}
                 >
