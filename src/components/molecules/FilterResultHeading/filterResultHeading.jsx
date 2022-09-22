@@ -280,7 +280,6 @@ export const FilterResultHeading = ({
     );
   }
 
-  console.log(filter, "filter boy");
   function renderMobileView() {
     return (
       <Box

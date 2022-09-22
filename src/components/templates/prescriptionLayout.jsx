@@ -17,7 +17,7 @@ export default function PrescriptionLayout({
   title = "Prescriptions",
 }) {
   const router = useRouter();
-  const isDesktop = useMediaQuery("(min-width: 769px)");
+  const isDesktop = useMediaQuery("(min-width: 768px)");
   return (
     <>
       <Head>

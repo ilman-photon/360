@@ -29,7 +29,7 @@ import styles from "./styles.module.scss";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { ThemeProvider } from "@emotion/react";
 import MenuList from "./menuList";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { parsePrescriptionData } from "../../../utils/appointment";
 import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlined";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
@@ -37,6 +37,10 @@ import { StyledButton } from "../../atoms/Button/button";
 import constants from "../../../utils/constants";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import TuneIcon from "@mui/icons-material/Tune";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import FilterBy from "../FilterBy/filterBy";
+import CloseIcon from "@mui/icons-material/Close";
 
 export default function Prescriptions({
   prescriptionData = {},
@@ -55,6 +59,9 @@ export default function Prescriptions({
   const iconShare = "/icon-share.png";
   const iconDownload = "/icon-download.png";
   const [value, setValue] = React.useState(activeIndex);
+  const imageSrcState = "/mobileFilter.png";
+  const imageSrcFilled = "/appliedMobileFilter.png";
+  const [filterOpen, setFilterOpen] = React.useState(false);
   const [prescription, setPrescriptione] = React.useState({
     contacts: [],
     glasses: [],
@@ -63,6 +70,9 @@ export default function Prescriptions({
       past: [],
     },
   });
+
+  const [activeFilter, setActiveFilter] = useState([]);
+  const isFilterApplied = activeFilter.length > 0;
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -83,6 +93,80 @@ export default function Prescriptions({
       fontSize: 14,
     },
   }));
+
+  const testFilterData = [
+    {
+      name: "Filter By",
+      checklist: [
+        {
+          name: "All",
+          checked: false,
+        },
+        {
+          name: "Refill Requested",
+          checked: false,
+        },
+        {
+          name: "Active",
+          checked: false,
+        },
+      ],
+    },
+    {
+      name: "Providers",
+      checklist: [
+        {
+          name: "Phillip Morries, M.D.",
+          checked: false,
+        },
+        {
+          name: "Melsanie Chantal, M.D. ",
+          checked: false,
+        },
+        {
+          name: "Jonathan P Chan, M.D.",
+          checked: false,
+        },
+        {
+          name: "Adriane Moore, M.D.",
+          checked: false,
+        },
+        {
+          name: "John D More, M.D.",
+          checked: false,
+        },
+        {
+          name: "John E More, M.D.",
+          checked: false,
+        },
+        {
+          name: "John F More, M.D.",
+          checked: false,
+        },
+        {
+          name: "John G More, M.D.",
+          checked: false,
+        },
+        {
+          name: "John H More, M.D.",
+          checked: false,
+        },
+        {
+          name: "John I More, M.D.",
+          checked: false,
+        },
+        {
+          name: "John D More, M.D.",
+          checked: false,
+        },
+      ],
+    },
+  ];
+
+  const onSetFilter = (newFilterData) => {
+    setFilterOpen(!filterOpen);
+    setActiveFilter([...newFilterData]);
+  };
 
   function getBoxStyle() {
     if (!isMobile) {
@@ -504,6 +588,27 @@ export default function Prescriptions({
     return contentUI;
   }
 
+  function renderAppliedFilter() {
+    return activeFilter.map((option, idx) => {
+      return (
+        <Box className={styles.filterChildButton} key={idx}>
+          {option.name}
+          <CloseIcon
+            className={styles.closeIcon}
+            onClick={() => {
+              const id = activeFilter.findIndex((x) => x.name === option.name);
+              if (id > -1) {
+                const data = activeFilter;
+                data.splice(id, 1);
+                setActiveFilter([...data]);
+              }
+            }}
+          />
+        </Box>
+      );
+    });
+  }
+
   function renderMedicationDetailUI() {
     return (
       <Box className={styles.medicationDetailContainer}>
@@ -515,7 +620,52 @@ export default function Prescriptions({
             styles.marginTop,
           ]}
         >
-          <Typography variant="titleCard">Active Medications</Typography>
+          <Typography variant="titleCard">
+            {isFilterApplied ? "Medications" : "Active Medications"}{" "}
+            {`(${prescription.medications?.active?.length})`}
+          </Typography>
+          <Box className={styles.filterButtonContainer}>
+            <FilterBy
+              activedFilter={[...activeFilter]}
+              filter={testFilterData}
+              isOpen={filterOpen}
+              onClose={() => {
+                setFilterOpen(!filterOpen);
+              }}
+              onDone={(selectedFilterData) => {
+                onSetFilter(selectedFilterData);
+              }}
+              isPrescription={true}
+            ></FilterBy>
+            {isMobile ? (
+              <Image
+                alt=""
+                src={isFilterApplied ? imageSrcFilled : imageSrcState}
+                width={"26px"}
+                height={isFilterApplied ? "28px" : "26px"}
+                onClick={() => {
+                  setFilterOpen(!filterOpen);
+                }}
+              />
+            ) : (
+              <>
+                <StyledButton
+                  className={styles.filterBtn}
+                  mode={constants.SECONDARY}
+                  size={constants.SMALL}
+                  gradient={false}
+                  onClick={() => {
+                    setFilterOpen(!filterOpen);
+                  }}
+                >
+                  <TuneIcon className={styles.tuneIcon} />
+                  Filters
+                  <KeyboardArrowDownIcon className={styles.keydownIcon} />
+                </StyledButton>
+                {renderAppliedFilter()}
+              </>
+            )}
+          </Box>
         </Box>
         {prescription.medications?.active?.length > 0 ? (
           renderPrescriptionTabUI(
@@ -527,7 +677,7 @@ export default function Prescriptions({
             <Typography>{`There are no active medications`}</Typography>
           </Box>
         )}
-        {prescription.medications?.past?.length > 0 && (
+        {prescription.medications?.past?.length > 0 && !isFilterApplied && (
           <>
             <Box
               className={[
@@ -537,7 +687,9 @@ export default function Prescriptions({
                 styles.marginTop,
               ]}
             >
-              <Typography variant="titleCard">Past Medications</Typography>
+              <Typography variant="titleCard">
+                Past Medications{` (${prescription.medications?.past?.length})`}
+              </Typography>
             </Box>
             {renderPrescriptionTabUI(
               prescription.medications.past,

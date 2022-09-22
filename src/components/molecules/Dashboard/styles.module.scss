@@ -330,3 +330,55 @@
     margin-top: 0px;
   }
 }
+
+.filterButtonContainer {
+  display: flex;
+  // @media (max-width: 768px) {
+  height: 26px;
+  // }
+
+  .filterBtn {
+    width: 135px;
+    height: 26px;
+    border: 1px solid #205a63;
+    border-radius: 24px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    // line-height: 18px;
+    justify-content: left;
+  }
+}
+
+.tuneIcon {
+  color: "#22292F";
+}
+
+.keydownIcon {
+  position: absolute;
+  left: 72%;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.filterChildButton {
+  background: #ffffff;
+  border: 1px solid #003b4a;
+  border-radius: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 4px 3px 10px;
+  margin-left: 10px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #6d6f73;
+  .closeIcon {
+    width: 15px;
+    height: 15px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+}

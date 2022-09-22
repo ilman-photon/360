@@ -65,7 +65,7 @@ export default function BaseHeader({
     setAnchorElUser(null);
   };
 
-  const test = [
+  const prescriptionMenus = [
     {
       name: "Dashboard",
       imgSrc: "/icon-carePlan.png",
@@ -142,10 +142,14 @@ export default function BaseHeader({
               </Box>
               {isPrescription ? (
                 <MobileNavMenu
-                  filter={test}
+                  navMenu={prescriptionMenus}
                   isOpen={anchorElNav}
                   onClose={() => {
                     setAnchorElNav(false);
+                  }}
+                  onLogoutClicked={() => {
+                    console.log('sini', router);
+                    OnLogoutClicked(router);
                   }}
                 />
               ) : (
