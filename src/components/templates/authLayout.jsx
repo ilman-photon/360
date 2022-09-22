@@ -17,6 +17,7 @@ export default function AuthLayout({
   theme = "patient",
   imageSrc,
   title,
+  isReverseFlex = true,
 }) {
   const isPatient = theme === "patient";
   const pathImageWebsite = "/desktop_3x.png";
@@ -27,6 +28,22 @@ export default function AuthLayout({
     !matches ? pathImageWebsite : pathImageMobile
   );
   const hasImage = imageSrcState ? true : false;
+
+  const appHeight = () => {
+    const doc = document.documentElement;
+    doc.style.setProperty("--app-height", `${window.innerHeight}px`);
+  };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      window.addEventListener("resize", appHeight);
+      appHeight();
+    }
+    return () => {
+      window.removeEventListener("resize", appHeight);
+    };
+  }, []);
+
   useEffect(() => {
     if (title) {
       setTitleState(title);
