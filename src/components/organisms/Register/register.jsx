@@ -271,8 +271,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               required: "This field is required",
               validate: {
                 required: (value) => {
-                  if (!isDOB(value))
-                    return "Incorect Date of Birth is required";
+                  if (!isDOB(value)) return "Invalid date of birth";
                 },
               },
             }}
