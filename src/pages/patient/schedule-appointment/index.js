@@ -267,8 +267,8 @@ export default function ScheduleAppointmentPage() {
 
   const headerText = [
     "Location",
-    "Review appointment details",
-    "Provide basic information",
+    "Review Appointment Details",
+    "Provide Basic Information",
     "Contact Information",
     "Confirm",
   ];
