@@ -380,6 +380,7 @@ export default function ScheduleAppointmentPage() {
         isReschedule={isReschedule}
         patientData={appointmentScheduleData.patientInfo}
         providerData={appointmentScheduleData.providerInfo}
+        appointmentData={appointmentScheduleData.appointmentInfo}
         isOpen={isOpen}
         OnOkClicked={handleOkClicked}
         isDesktop={isDesktop}
