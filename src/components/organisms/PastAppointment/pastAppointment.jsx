@@ -54,7 +54,7 @@ export function PastAppointmentCard({ data, threshold }) {
           }}
         >
           <Button
-            onClick={() => (threshold == 1 ? handleClickAlt() : handleClick())}
+            onClick={() => (threshold == 0 ? handleClickAlt() : handleClick())}
           >
             <ExpandMoreIcon />
           </Button>
