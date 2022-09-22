@@ -54,9 +54,6 @@ export class Api {
         }
       };
 
-      const cookies = new Cookies();
-      const config = { headers: cookies.getAll() };
-
       switch (method) {
         case "get":
           return api.client
