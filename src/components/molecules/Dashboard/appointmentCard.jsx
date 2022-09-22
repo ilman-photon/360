@@ -114,8 +114,8 @@ export default function AppointmentCard({
       )
     );
   }
-  function minHours(numOfHours, date = new Date()) {
-    date.setTime(date.getTime() - numOfHours * 60 * 60 * 1000);
+  function addHours(numOfHours, date = new Date()) {
+    date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
 
     return date;
   }
@@ -124,7 +124,15 @@ export default function AppointmentCard({
     if (appointment && appointment.appointmentId) {
       const today = new Date();
       const visitDate = new Date(appointment.appointmentInfo.date);
-      const isHideButtons = visitDate < minHours(4);
+      let hideHour = 0;
+      if (appointment.appointmentInfo.appointmentType === "Eye Exam") {
+        hideHour = 4;
+      }
+      if (appointment.appointmentInfo.appointmentType === "Comprehensive") {
+        hideHour = 24;
+      }
+
+      const isHideButtons = visitDate < addHours(hideHour);
       const daysAway = visitDate.getTime() - today.getTime();
       const TotalDays = Math.ceil(daysAway / (1000 * 3600 * 24));
 

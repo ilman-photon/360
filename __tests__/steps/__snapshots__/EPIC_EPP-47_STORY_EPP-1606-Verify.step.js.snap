@@ -334,6 +334,15 @@ Object {
               >
                 Past Appointments
               </h2>
+              <div
+                class="subTitleWrapper MuiBox-root css-0"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 noPastAppointment css-1b03qeg-MuiTypography-root"
+                >
+                  You have no past appointments
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -1310,6 +1319,15 @@ Object {
             >
               Past Appointments
             </h2>
+            <div
+              class="subTitleWrapper MuiBox-root css-0"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body2 noPastAppointment css-1b03qeg-MuiTypography-root"
+              >
+                You have no past appointments
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -1703,6 +1721,15 @@ Object {
               >
                 Past Appointments
               </h2>
+              <div
+                class="subTitleWrapper MuiBox-root css-0"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 noPastAppointment css-1b03qeg-MuiTypography-root"
+                >
+                  You have no past appointments
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -2679,6 +2706,15 @@ Object {
             >
               Past Appointments
             </h2>
+            <div
+              class="subTitleWrapper MuiBox-root css-0"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body2 noPastAppointment css-1b03qeg-MuiTypography-root"
+              >
+                You have no past appointments
+              </p>
+            </div>
           </div>
         </div>
       </div>

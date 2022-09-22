@@ -25,6 +25,7 @@ export default function Appointments() {
   const [modalErrorRequest, setModalErrorRequest] = useState(false);
   const [modalSuccessCancel, setModalSuccessCancel] = useState(false);
   const [modalCancel, setModalCancel] = useState(false);
+  const [isRequested, setIsRequested] = useState(false);
 
   const appointments = useSelector((state) => state.user.userAppointmentData);
   const userData = useSelector((state) => state.user.userData);
@@ -39,16 +40,18 @@ export default function Appointments() {
       api
         .getAllAppointment()
         .then((response) => {
+          setIsRequested(true);
           dispatch(setUserAppointmentData(response.appointmentList));
         })
         .catch(function () {
+          setIsRequested(true);
           setModalErrorRequest(true);
           //Handle error getAppointments
         });
   };
 
   useEffect(() => {
-    if (appointments.length === 0) {
+    if (!isRequested && appointments.length === 0) {
       getAppointments();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
