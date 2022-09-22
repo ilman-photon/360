@@ -1,6 +1,5 @@
 import Box from "@mui/material/Box";
 import React, { useEffect, useState } from "react";
-import Link from "@mui/material/Link";
 import { StyledButton } from "../../atoms/Button/button";
 import styles from "./styles.module.scss";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
