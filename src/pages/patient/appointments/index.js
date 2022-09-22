@@ -49,6 +49,7 @@ export default function Appointments() {
 
   const router = useRouter();
   const dispatch = useDispatch();
+  const isMobile = useMediaQuery("(max-width: 992px)");
 
   const getAppointments = () => {
     const api = new Api();
@@ -111,9 +112,11 @@ export default function Appointments() {
       <Box className={styles.container}>
         <AccountTitleHeading
           title={"Appointments"}
-          sx={{
-            padding: "27px 10px",
-          }}
+          sx={
+            isMobile && {
+              padding: "27px 10px",
+            }
+          }
         />
         {appointments && (
           <UpcomingAppointment
