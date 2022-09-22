@@ -10,7 +10,7 @@ import AppointmentInformation from "../../molecules/AppointmentInformation/appoi
 export function PastAppointmentCard({ data, threshold }) {
   const date = data.appointmentInfo.date;
   const timezone = date.substring(date.length - 3);
-  const momentDate = new moment(date);
+  const momentDate = new moment(new Date(date));
   const year = momentDate.format("YYYY");
   const formatedDate = momentDate.format("dddd, MMM DD - h:mmA");
   const fullDate = `${formatedDate} ${timezone}`;
@@ -61,7 +61,7 @@ export function PastAppointmentCard({ data, threshold }) {
         </Box>
       </Box>
       <Collapse
-        in={threshold == 1 ? openAlt : open}
+        in={threshold == 0 ? openAlt : open}
         timeout="auto"
         unmountOnExit
       >
@@ -79,7 +79,12 @@ export function PastAppointmentCard({ data, threshold }) {
           </Box>
           <AppointmentInformation data={data}></AppointmentInformation>
           <Box className={styles.viewDetails}>
-            <Link className={styles.link}>View appointment details</Link>
+            <Link
+              href={`/patient/appointments/detail-appoiments/${data.appointmentId}`}
+              className={styles.link}
+            >
+              View appointment details
+            </Link>
           </Box>
         </Box>
         <Box
@@ -92,19 +97,28 @@ export function PastAppointmentCard({ data, threshold }) {
 }
 
 export default function PastAppointment({ data }) {
+  const appointments = [];
+  for (const appointment of data) {
+    if (
+      new Date(appointment.appointmentInfo.date) < new Date() &&
+      appointments.length < 11
+    ) {
+      appointments.push(appointment);
+    }
+  }
   const isData =
-    data.length == 0 ? (
+    appointments.length == 0 ? (
       <Box className={styles.subTitleWrapper}>
-        <Typography variant="body2">You Have no Past Appointment</Typography>
+        <Typography variant="body2" className={styles.noPastAppointment}>
+          You have no past appointments
+        </Typography>
       </Box>
     ) : (
-      data
+      appointments
         .map((item, index) => {
-          if (index > 0) {
-            return index < 11 ? (
-              <PastAppointmentCard data={item} threshold={index} key={index} />
-            ) : null;
-          }
+          return (
+            <PastAppointmentCard data={item} threshold={index} key={index} />
+          );
         })
         .filter((temp) => temp)
     );

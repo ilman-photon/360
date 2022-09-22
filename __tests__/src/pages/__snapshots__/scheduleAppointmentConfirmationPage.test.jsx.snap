@@ -85,7 +85,9 @@ exports[`App renders App unchanged 1`] = `
               id="customized-dialog-title"
             >
               <span
+                arialabel="You’re Scheduled!"
                 class="MuiTypography-root MuiTypography-bodyMedium scheduledText css-37jdci-MuiTypography-root"
+                tabindex="0"
               >
                 <svg
                   aria-hidden="true"
