@@ -215,29 +215,30 @@ Object {
                         >
                           Location
                         </h6>
-                        <p
-                          arialabel="Scripps Eyecare"
-                          class="MuiTypography-root MuiTypography-body1 bodyTitle css-6h2hyl-MuiTypography-root"
+                        <div
+                          arialabel="Scripps Eyecare
+51 West 51st Street
+Floor 3, Suite 320 Midtown
+Florida
+FR
+54231"
                           tabindex="0"
                         >
-                          Scripps Eyecare
-                        </p>
-                        <p
-                          class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
-                          tabindex="0"
-                        >
-                          51 West 51st Street
-                          <br />
-                          Floor 3, Suite 320 Midtown
-                          <br />
-                          Florida
-                          ,
-                           
-                          FR
-                          ,
-                           
-                          54231
-                        </p>
+                          <p
+                            class="MuiTypography-root MuiTypography-body1 bodyTitle css-6h2hyl-MuiTypography-root"
+                          >
+                            Scripps Eyecare
+                          </p>
+                          <p
+                            class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                          >
+                            51 West 51st Street
+Floor 3, Suite 320 Midtown
+Florida
+FR
+54231
+                          </p>
+                        </div>
                         <a
                           arialabel="(857) 299-9989"
                           class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
@@ -1225,29 +1226,30 @@ Object {
                       >
                         Location
                       </h6>
-                      <p
-                        arialabel="Scripps Eyecare"
-                        class="MuiTypography-root MuiTypography-body1 bodyTitle css-6h2hyl-MuiTypography-root"
+                      <div
+                        arialabel="Scripps Eyecare
+51 West 51st Street
+Floor 3, Suite 320 Midtown
+Florida
+FR
+54231"
                         tabindex="0"
                       >
-                        Scripps Eyecare
-                      </p>
-                      <p
-                        class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
-                        tabindex="0"
-                      >
-                        51 West 51st Street
-                        <br />
-                        Floor 3, Suite 320 Midtown
-                        <br />
-                        Florida
-                        ,
-                         
-                        FR
-                        ,
-                         
-                        54231
-                      </p>
+                        <p
+                          class="MuiTypography-root MuiTypography-body1 bodyTitle css-6h2hyl-MuiTypography-root"
+                        >
+                          Scripps Eyecare
+                        </p>
+                        <p
+                          class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        >
+                          51 West 51st Street
+Floor 3, Suite 320 Midtown
+Florida
+FR
+54231
+                        </p>
+                      </div>
                       <a
                         arialabel="(857) 299-9989"
                         class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
@@ -1652,29 +1654,30 @@ Object {
                         >
                           Location
                         </h6>
-                        <p
-                          arialabel="Scripps Eyecare"
-                          class="MuiTypography-root MuiTypography-body1 bodyTitle css-6h2hyl-MuiTypography-root"
+                        <div
+                          arialabel="Scripps Eyecare
+51 West 51st Street
+Floor 3, Suite 320 Midtown
+Florida
+FR
+54231"
                           tabindex="0"
                         >
-                          Scripps Eyecare
-                        </p>
-                        <p
-                          class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
-                          tabindex="0"
-                        >
-                          51 West 51st Street
-                          <br />
-                          Floor 3, Suite 320 Midtown
-                          <br />
-                          Florida
-                          ,
-                           
-                          FR
-                          ,
-                           
-                          54231
-                        </p>
+                          <p
+                            class="MuiTypography-root MuiTypography-body1 bodyTitle css-6h2hyl-MuiTypography-root"
+                          >
+                            Scripps Eyecare
+                          </p>
+                          <p
+                            class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                          >
+                            51 West 51st Street
+Floor 3, Suite 320 Midtown
+Florida
+FR
+54231
+                          </p>
+                        </div>
                         <a
                           arialabel="(857) 299-9989"
                           class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
@@ -2662,29 +2665,30 @@ Object {
                       >
                         Location
                       </h6>
-                      <p
-                        arialabel="Scripps Eyecare"
-                        class="MuiTypography-root MuiTypography-body1 bodyTitle css-6h2hyl-MuiTypography-root"
+                      <div
+                        arialabel="Scripps Eyecare
+51 West 51st Street
+Floor 3, Suite 320 Midtown
+Florida
+FR
+54231"
                         tabindex="0"
                       >
-                        Scripps Eyecare
-                      </p>
-                      <p
-                        class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
-                        tabindex="0"
-                      >
-                        51 West 51st Street
-                        <br />
-                        Floor 3, Suite 320 Midtown
-                        <br />
-                        Florida
-                        ,
-                         
-                        FR
-                        ,
-                         
-                        54231
-                      </p>
+                        <p
+                          class="MuiTypography-root MuiTypography-body1 bodyTitle css-6h2hyl-MuiTypography-root"
+                        >
+                          Scripps Eyecare
+                        </p>
+                        <p
+                          class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        >
+                          51 West 51st Street
+Floor 3, Suite 320 Midtown
+Florida
+FR
+54231
+                        </p>
+                      </div>
                       <a
                         arialabel="(857) 299-9989"
                         class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"

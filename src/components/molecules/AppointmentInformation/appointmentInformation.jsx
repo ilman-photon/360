@@ -54,25 +54,38 @@ export default function AppointmentInformation({ data }) {
           >
             Location
           </Typography>
-          <Typography
+
+          <div
             tabIndex={0}
-            ariaLabel={data.providerInfo.position}
-            variant="body1"
-            className={styles.bodyTitle}
+            ariaLabel={
+              data.providerInfo.position +
+              `\n` +
+              data.providerInfo.address.addressLine1 +
+              `\n` +
+              data.providerInfo.address.addressLine2 +
+              `\n` +
+              data.providerInfo.address.city +
+              "\n" +
+              data.providerInfo.address.state +
+              `\n` +
+              data.providerInfo.address.zipcode
+            }
           >
-            {data.providerInfo.position}
-          </Typography>
-          <Typography tabIndex={0} variant="body2">
-            <>
-              {data.providerInfo.address.addressLine1}
-              <br />
-              {data.providerInfo.address.addressLine2}
-              <br />
-              {data.providerInfo.address.city},{" "}
-              {data.providerInfo.address.state},{" "}
-              {data.providerInfo.address.zipcode}
-            </>
-          </Typography>
+            <Typography variant="body1" className={styles.bodyTitle}>
+              {data.providerInfo.position}
+            </Typography>
+            <Typography variant="body2">
+              {data.providerInfo.address.addressLine1 +
+                `\n` +
+                data.providerInfo.address.addressLine2 +
+                `\n` +
+                data.providerInfo.address.city +
+                "\n" +
+                data.providerInfo.address.state +
+                `\n` +
+                data.providerInfo.address.zipcode}
+            </Typography>
+          </div>
           <Link
             tabIndex={0}
             ariaLabel={formatPhoneNumber(data.providerInfo.phoneNumber)}
