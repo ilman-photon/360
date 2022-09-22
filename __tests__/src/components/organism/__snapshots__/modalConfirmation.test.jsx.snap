@@ -46,7 +46,9 @@ Object {
               id=":r0:"
             >
               <span
+                arialabel="You’re Scheduled!"
                 class="MuiTypography-root MuiTypography-bodyMedium scheduledText css-37jdci-MuiTypography-root"
+                tabindex="0"
               >
                 <svg
                   aria-hidden="true"
@@ -150,7 +152,7 @@ Object {
                     >
                       <svg
                         aria-hidden="false"
-                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-q0n8nh-MuiSvgIcon-root"
                         data-testid="CalendarTodayIcon"
                         focusable="false"
                         viewBox="0 0 24 24"
@@ -159,7 +161,8 @@ Object {
                           d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"
                         />
                       </svg>
-                       Add to calendar
+                       
+                      Add to calendar
                     </p>
                     <span
                       class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -192,7 +195,7 @@ Object {
                       class="MuiGrid-root MuiGrid-container css-zmgw4q-MuiGrid-root"
                     >
                       <div
-                        class="MuiGrid-root css-1dhf0bi-MuiGrid-root"
+                        class="MuiGrid-root css-vj1n65-MuiGrid-root"
                       >
                         <div
                           class="appointment MuiBox-root css-1qa5ro4"
@@ -480,7 +483,9 @@ Object {
               id="customized-dialog-title"
             >
               <span
+                arialabel="You’re Scheduled!"
                 class="MuiTypography-root MuiTypography-bodyMedium scheduledText css-37jdci-MuiTypography-root"
+                tabindex="0"
               >
                 <svg
                   aria-hidden="true"
@@ -584,7 +589,7 @@ Object {
                     >
                       <svg
                         aria-hidden="false"
-                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-q0n8nh-MuiSvgIcon-root"
                         data-testid="CalendarTodayIcon"
                         focusable="false"
                         viewBox="0 0 24 24"
@@ -593,7 +598,8 @@ Object {
                           d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"
                         />
                       </svg>
-                       Add to calendar
+                       
+                      Add to calendar
                     </p>
                     <span
                       class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
@@ -626,7 +632,7 @@ Object {
                       class="MuiGrid-root MuiGrid-container css-zmgw4q-MuiGrid-root"
                     >
                       <div
-                        class="MuiGrid-root css-1dhf0bi-MuiGrid-root"
+                        class="MuiGrid-root css-vj1n65-MuiGrid-root"
                       >
                         <div
                           class="appointment MuiBox-root css-1qa5ro4"

@@ -1217,10 +1217,8 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => {
-        container.getByText(/City, state, or zip/i);
-        expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
-      });
+      await waitFor(() => container.getByText(/City, state, or zip/i));
+      expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
     });
 
     and("user should fill the location", () => {
@@ -1303,10 +1301,8 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => {
-        container.getByText(/City, state, or zip/i);
-        expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
-      });
+      await waitFor(() => container.getByText(/City, state, or zip/i));
+      expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
     });
 
     and("user should fill the location", () => {
@@ -1404,10 +1400,8 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => {
-        container.getByText(/City, state, or zip/i);
-        expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
-      });
+      await waitFor(() => container.getByText(/City, state, or zip/i));
+      expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
     });
 
     and("user should fill the location", () => {
@@ -1501,10 +1495,8 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => {
-        container.getByText(/City, state, or zip/i);
-        expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
-      });
+      await waitFor(() => container.getByText(/City, state, or zip/i));
+      expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
     });
 
     and("user should fill the location", () => {
@@ -1598,10 +1590,8 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => {
-        container.getByText(/City, state, or zip/i);
-        expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
-      });
+      await waitFor(() => container.getByText(/City, state, or zip/i));
+      expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
     });
 
     and("user should fill the location", () => {
@@ -1698,10 +1688,8 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => {
-        container.getByText(/City, state, or zip/i);
-        expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
-      });
+      await waitFor(() => container.getByText(/City, state, or zip/i));
+      expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
     });
 
     and("user should fill the location", () => {
@@ -1802,10 +1790,8 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => {
-        container.getByText(/City, state, or zip/i);
-        expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
-      });
+      await waitFor(() => container.getByText(/City, state, or zip/i));
+      expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
     });
 
     and("user should fill the location", () => {

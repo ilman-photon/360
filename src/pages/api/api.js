@@ -1,4 +1,5 @@
 import axios from "axios";
+import Cookies from "universal-cookie";
 import { setGenericErrorMessage } from "../../store";
 import { fetchUser } from "../../store/user";
 import constants from "../../utils/constants";
@@ -139,15 +140,25 @@ export class Api {
         }
       };
 
+      const cookies = new Cookies();
+      const config = { headers: cookies.getAll() };
+
       switch (method) {
         case "get":
-          return this.client.get(url).then(resolver).catch(rejecter);
+          return api.client
+            .get(url, postbody, config)
+            .then(resolver)
+            .catch(rejecter);
         case "post":
-          return this.client.post(url, postbody).then(resolver).catch(rejecter);
-        case "put":
-          return this.client.put(url, postbody).then(resolver).catch(rejecter);
+          return api.client
+            .post(url, postbody, config)
+            .then(resolver)
+            .catch(rejecter);
         default:
-          return this.client.get(url, postbody).then(resolver).catch(rejecter);
+          return api.client
+            .get(url, postbody, config)
+            .then(resolver)
+            .catch(rejecter);
       }
     });
   }
@@ -323,6 +334,12 @@ export class Api {
   getAllAppointment() {
     const domain = window.location.origin;
     const url = `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  getAppointmentDetails() {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/appointment/my-appointment/getAppointmentDetails`;
     return this.getResponse(url, {}, "get");
   }
 

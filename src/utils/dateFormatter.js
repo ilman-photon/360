@@ -45,14 +45,12 @@ export function formatDate(payload, withTimezone) {
 }
 
 export function formatAppointmentDate(date) {
-  if (!date) return "-";
-  const momentDate = new moment(date);
-  return (
-    momentDate
-      // TODO: Not used for now
-      // .tz("America/New_York")
-      .format("dddd, MMM DD, YYYY [at] h:mm")
-  );
+  if (!date) {
+    return "-";
+  } else {
+    const momentDate = new moment(date);
+    return momentDate.format("dddd, MMM DD, YYYY [at] h:mm");
+  }
 }
 
 export function ddmmyyDateFormat(date) {
@@ -67,7 +65,8 @@ export function mmddyyDateFormat(date) {
 
 export function fullDateFormat(date) {
   const timezone = date.substring(date.length - 3);
-  const momentDate = new moment(date);
+  const dateObj = new Date(date);
+  const momentDate = new moment(dateObj);
   const time = momentDate.format("h:mm a");
   const formatedDateTime = momentDate.format("ddd, MMM DD, YYYY");
   return `${time} ${timezone}, ${formatedDateTime}`;
@@ -90,8 +89,12 @@ export const convertTime12to24 = (time12h) => {
 };
 
 export const upcomingAppointmentDate = (data) => {
-  const date = new Date(data);
-  if (!date) return "-";
-  const momentDate = new moment(date);
-  return momentDate.tz("America/New_York").format("dddd, MMM DD - h:mmA z");
+  if (!data) {
+    return "-";
+  } else {
+    const date = new Date(data);
+    const momentDate = new moment(date);
+    const americaTimezone = momentDate.tz("America/New_York");
+    return americaTimezone.format("dddd, MMM DD - h:mmA z");
+  }
 };
