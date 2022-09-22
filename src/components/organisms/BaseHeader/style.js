@@ -19,7 +19,7 @@ export const styles = {
     display: { xs: "none", md: "flex" },
     justifyContent: "flex-end",
   },
-  bottonStyledDesktop: { my: 2, color: "black", display: "block" },
+  bottonStyledDesktop: { color: "black", display: "block" },
   boxStyledMobile: {
     flexGrow: 1,
     display: { xs: "flex", md: "none" },

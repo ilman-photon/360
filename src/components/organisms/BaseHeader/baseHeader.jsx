@@ -1,6 +1,6 @@
 import * as React from "react";
 import { styles } from "./style";
-import { Button, Stack } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Container from "@mui/material/Container";
 import Toolbar from "@mui/material/Toolbar";
@@ -21,6 +21,7 @@ import AccountDrawer from "../../molecules/AccountDrawer/accountDrawer";
 import SubNavigation from "../../molecules/SubNavigation/subNavigation";
 import { logoutProps } from "../../../utils/authetication";
 import { useSelector } from "react-redux";
+import MobileNavMenu from "../../molecules/Navbar/MobileNavMenu";
 
 export default function BaseHeader({
   OnLogoutClicked = (router) => {
@@ -28,6 +29,7 @@ export default function BaseHeader({
   },
   backTitle,
   onBackClicked,
+  isPrescription = false,
 }) {
   const { HOME_TEST_ID } = constants.TEST_ID;
   const pages = [
@@ -63,6 +65,25 @@ export default function BaseHeader({
     setAnchorElUser(null);
   };
 
+  const test = [
+    {
+      name: "Dashboard",
+      imgSrc: "/icon-carePlan.png",
+    },
+    {
+      name: "Appointments",
+      imgSrc: "/icon-carePlan.png",
+    },
+    {
+      name: "Medical Report",
+      imgSrc: "/iconHealthRecord.png",
+    },
+    {
+      name: "Documents",
+      imgSrc: "/iconintakeFoms.png",
+    },
+  ];
+
   return (
     <>
       <AppBar
@@ -73,6 +94,7 @@ export default function BaseHeader({
             boxShadow:
               "0px 1px 1px 0px rgb(0 0 0 / 20%), 0px 0px 1px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)",
           },
+          height: 64,
         }}
       >
         <Container maxWidth="xl">
@@ -80,8 +102,8 @@ export default function BaseHeader({
             <Toolbar disableGutters>
               <Image
                 src={logo}
-                width="124px"
-                height="36px"
+                width={124}
+                height={36}
                 style={styles.logoStyled}
                 aria-label={"Clarkson Eyecare logo"}
                 title="Your Account"
@@ -119,15 +141,25 @@ export default function BaseHeader({
                   <MenuIcon />
                 </IconButton>
               </Box>
-              <AccountDrawer
-                onClose={() => {
-                  setAnchorElNav(false);
-                }}
-                opened={anchorElNav}
-                onLogoutClicked={() => {
-                  OnLogoutClicked(router);
-                }}
-              />
+              {isPrescription ? (
+                <MobileNavMenu
+                  filter={test}
+                  isOpen={anchorElNav}
+                  onClose={() => {
+                    setAnchorElNav(false);
+                  }}
+                />
+              ) : (
+                <AccountDrawer
+                  onClose={() => {
+                    setAnchorElNav(false);
+                  }}
+                  opened={anchorElNav}
+                  onLogoutClicked={() => {
+                    OnLogoutClicked(router);
+                  }}
+                />
+              )}
               {/* profile menu */}
               <Box sx={styles.boxProfileMenuStyles}>
                 <Tooltip title="Open settings">

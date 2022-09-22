@@ -28,6 +28,7 @@ export const colors = {
   errorField: "#f91e18",
   primaryButton: "#007e8f",
   link: "#008294",
+  iconGrey: "#757575",
 };
 
 // declare module '@mui/material/styles' {
@@ -197,6 +198,14 @@ export const patientTypography = createTheme({
       fontWeight: "500",
       fontSize: 16,
       lineHeight: "20px",
+    },
+    headlineH4: {
+      fontFamily: "Bw Nista Geometric DEMO",
+      fontStyle: "normal",
+      fontWeight: 500,
+      fontSize: "18px",
+      lineHeight: "28px",
+      color: "#003B4A",
     },
   },
 });
