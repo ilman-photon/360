@@ -226,6 +226,7 @@ export default function TableWithSort({
                                 <a
                                   href={row.source}
                                   download
+                                  data-testid="downloadPDFButton"
                                   target="_blank"
                                   rel="noreferrer"
                                 >
@@ -270,26 +271,6 @@ export default function TableWithSort({
                           );
                       }
                     })}
-
-                    {/* <TableCell>
-                      <PDFFileIcon />
-                    </TableCell> */}
-                    {/* <TableCell padding="none">
-                      {row.name}
-                    </TableCell> */}
-                    {/* <TableCell padding="none">
-                      <div style={{padding: "12px 0"}}>
-                        {row.modifiedAt}
-                      </div>
-                    </TableCell> */}
-                    {/* <TableCell align="right" padding="none">
-                      <a href={row.source} download target="_blank" rel="noreferrer">
-                        <IconButton>
-                          <FileDownloadIcon>
-                          </FileDownloadIcon>
-                        </IconButton>
-                      </a>
-                    </TableCell> */}
                   </TableRow>
                 );
               })}

@@ -112,7 +112,8 @@ export default function AccountDocumentsPage() {
 
   useEffect(() => {
     const category = router.query.type;
-    setValue("category", category);
+    console.log({ isDesktop });
+    if (!isDesktop) setValue("category", category);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query]);
 
@@ -162,7 +163,11 @@ export default function AccountDocumentsPage() {
 
         <Stack spacing={3} sx={{ mt: 1 }}>
           {rows.length > 0 ? (
-            <TableWithSort config={tableConfiguration} rows={rows} />
+            <TableWithSort
+              config={tableConfiguration}
+              rows={rows}
+              data-testid="table-documents"
+            />
           ) : (
             <TableEmpty text={`There are no ${watchedCategory}.`} />
           )}
