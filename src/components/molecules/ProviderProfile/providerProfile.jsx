@@ -91,6 +91,12 @@ export default function ProviderProfile({
     }
   }
 
+  function getWidtBioContainer() {
+    const isNotBio = isMap || isAppointment || imageSize === "small";
+    const bioWidth = !isMobile ? "20vw" : "auto";
+    return isNotBio ? "unset" : bioWidth;
+  }
+
   return (
     <Box
       className={isBio ? styles.shortBio : styles.appointment}
@@ -112,10 +118,7 @@ export default function ProviderProfile({
         <Box
           className={styles.bioContainer}
           sx={{
-            width:
-              isMap || isAppointment || imageSize === "small"
-                ? "unset"
-                : "20vw",
+            width: getWidtBioContainer(),
           }}
         >
           <Typography
@@ -168,6 +171,10 @@ export default function ProviderProfile({
                       aria-label={`phone number ${formatPhoneNumber(
                         phoneNumber
                       )}`}
+                      role={isMobile && "link"}
+                      onClick={() => {
+                        isMobile && window.open(`tel:${phoneNumber}`);
+                      }}
                     >
                       {formatPhoneNumber(phoneNumber)}
                     </Typography>
