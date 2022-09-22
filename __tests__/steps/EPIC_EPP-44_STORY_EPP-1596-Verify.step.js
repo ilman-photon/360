@@ -8,7 +8,7 @@ import {
 import "@testing-library/jest-dom";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import { TEST_ID } from "../../src/utils/constants";
-import { renderScheduleAppointment } from "../../__mocks__/commonSteps";
+import { renderScheduleAppointment, renderResultsScreen } from "../../__mocks__/commonSteps";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import { MOCK_SUBMIT } from "./EPIC_EPP-1_STORY_EPP-3299-Verify.step";
@@ -279,7 +279,7 @@ defineFeature(feature, (test) => {
     and(
       "user should lands on Schedule Appointment Review screen with selected location, Date and Time, Purpose of visit andInsurance carrier data",
       () => {
-        defaultValidation();
+        renderResultsScreen()
       }
     );
 
@@ -327,7 +327,7 @@ defineFeature(feature, (test) => {
     and(
       "user should lands on Schedule Appointment Review screen with selected location, Date and Time, Purpose of visit and Insurance carrier data",
       () => {
-        defaultValidation();
+        renderResultsScreen()
       }
     );
 
@@ -373,7 +373,7 @@ defineFeature(feature, (test) => {
     and(
       "user should lands on Schedule Appointment Review screen with selected location, Date and Time, Purpose of visit and Insurance carrier data",
       () => {
-        defaultValidation();
+        renderResultsScreen()
       }
     );
 

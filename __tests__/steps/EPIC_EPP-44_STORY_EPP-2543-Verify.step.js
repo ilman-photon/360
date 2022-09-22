@@ -9,6 +9,7 @@ import store from "../../src/store/store";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 import constants from "../../src/utils/constants";
 import mediaQuery from 'css-mediaquery';
+import { TEST_ID } from "../../src/utils/constants";
 
 const feature = loadFeature(
 	"./__tests__/feature/Patient Portal/Sprint4/EPP-2543.feature"
@@ -822,19 +823,18 @@ defineFeature(feature, (test) => {
 			expect(container.getByText(/Insurance Carrier/i)).toBeInTheDocument()
 		});
 
-		and('User should see a time slot of the provider', () => {
-			// const timeSlot = container.getByTestId("appointment_all_availability_timeslot_button");
-			// expect(timeSlot).toBeInTheDocument()
-
+		and('User should see a time slot of the provider', async () => {
+			expect(container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]).toBeInTheDocument();
 		});
 
-		when('User selects a time slot of the provider', () => {
-			// const timeSlotButton = container.getByTestId("appointment_all_availability_timeslot_button");
-			// fireEvent.click(timeSlotButton)
-
-			// await waitFor(() => {
-			// 	container.getByText(/Filter/i);
-			// });
+		when('User selects a time slot of the provider', async () => {
+			const timeSlotButton = await waitFor(() => container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]);
+			act(() => {
+				fireEvent.click(timeSlotButton)
+			});
+			expect(
+				container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
+			).toBeInTheDocument();
 		});
 
 		then('User should navigated to review the appointment details', () => {
@@ -933,12 +933,18 @@ defineFeature(feature, (test) => {
 			expect(container.getByText(/Insurance Carrier/i)).toBeInTheDocument()
 		});
 
-		and('User should see a time slot of the provider', () => {
-			defaultValidation()
+		and('User should see a time slot of the provider', async () => {
+			expect(container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]).toBeInTheDocument();
 		});
 
-		when('User selects a time slot of the provider', () => {
-			defaultValidation()
+		when('User selects a time slot of the provider', async () => {
+			const timeSlotButton = await waitFor(() => container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]);
+			act(() => {
+				fireEvent.click(timeSlotButton)
+			});
+			expect(
+				container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
+			).toBeInTheDocument();
 		});
 
 		then('User should navigated to review the appointment details', () => {
@@ -1061,12 +1067,18 @@ defineFeature(feature, (test) => {
 			expect(container.getByText(/Insurance Carrier/i)).toBeInTheDocument()
 		});
 
-		and('User should see a time slot of the provider', () => {
-			defaultValidation()
+		and('User should see a time slot of the provider', async () => {
+			expect(container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]).toBeInTheDocument();
 		});
 
-		when('User selects a time slot of the provider', () => {
-			defaultValidation()
+		when('User selects a time slot of the provider', async () => {
+			const timeSlotButton = await waitFor(() => container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]);
+			act(() => {
+				fireEvent.click(timeSlotButton)
+			});
+			expect(
+				container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
+			).toBeInTheDocument();
 		});
 
 		and(/^User should see page load within "(.*)"$/, (arg0) => {
@@ -1169,12 +1181,18 @@ defineFeature(feature, (test) => {
 			expect(container.getByText(/Insurance Carrier/i)).toBeInTheDocument()
 		});
 
-		and('User should see a time slot of the provider', () => {
-			defaultValidation()
+		and('User should see a time slot of the provider', async () => {
+			expect(container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]).toBeInTheDocument();
 		});
 
-		when('User selects a time slot of the provider', () => {
-			defaultValidation()
+		when('User selects a time slot of the provider', async () => {
+			const timeSlotButton = await waitFor(() => container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]);
+			act(() => {
+				fireEvent.click(timeSlotButton)
+			});
+			expect(
+				container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
+			).toBeInTheDocument();
 		});
 
 		and(/^User should see page load within "(.*)"$/, (arg0) => {
@@ -1285,12 +1303,18 @@ defineFeature(feature, (test) => {
 			expect(container.getByText(/Insurance Carrier/i)).toBeInTheDocument()
 		});
 
-		and('User should see a time slot of the provider', () => {
-			defaultValidation()
+		and('User should see a time slot of the provider', async () => {
+			expect(container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]).toBeInTheDocument();
 		});
 
-		when('User selects a time slot of the provider', () => {
-			defaultValidation()
+		when('User selects a time slot of the provider', async () => {
+			const timeSlotButton = await waitFor(() => container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]);
+			act(() => {
+				fireEvent.click(timeSlotButton)
+			});
+			expect(
+				container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
+			).toBeInTheDocument();
 		});
 
 		then('The Internet service is unavailable', () => {
@@ -1389,12 +1413,18 @@ defineFeature(feature, (test) => {
 			expect(container.getByText(/Insurance Carrier/i)).toBeInTheDocument()
 		});
 
-		and('User should see a time slot of the provider', () => {
-			defaultValidation()
+		and('User should see a time slot of the provider', async () => {
+			expect(container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]).toBeInTheDocument();
 		});
 
-		when('User selects a time slot of the provider', () => {
-			defaultValidation()
+		when('User selects a time slot of the provider', async () => {
+			const timeSlotButton = await waitFor(() => container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]);
+			act(() => {
+				fireEvent.click(timeSlotButton)
+			});
+			expect(
+				container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
+			).toBeInTheDocument();
 		});
 
 		then('The service is unavailable', () => {
