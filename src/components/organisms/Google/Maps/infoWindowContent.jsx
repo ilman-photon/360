@@ -5,6 +5,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { StyledButton } from "../../../atoms/Button/button";
 import constants from "../../../../utils/constants";
+import styles from "./iwStyles.module.scss";
 
 const InfoWindowContent = ({
   data = [],
@@ -62,6 +63,8 @@ const InfoWindowContent = ({
               variant={"map"}
               providerData={data[counter - 1]}
               imageSize={"medium"}
+              bioContainerClass={styles.customBioContainer}
+              addressClass={styles.customAddress}
             />
           </Stack>
         </Grid>
@@ -113,9 +116,10 @@ const InfoWindowContent = ({
                     </Typography>
                     <Stack
                       flexDirection="row"
-                      overflow="auto"
+                      flexWrap="wrap"
+                      // overflow="auto"
                       gap={1}
-                      className="hide-scrollbar"
+                      // className="hide-scrollbar"
                     >
                       {v.list.map((item, timeIdx) => {
                         return (
@@ -136,6 +140,15 @@ const InfoWindowContent = ({
                                 ),
                                 data[counter - 1]
                               );
+                            }}
+                            sx={{
+                              "&.sxButton": {
+                                height: "30px",
+                                padding: 0,
+                                minWidth: "90px !important",
+                                fontSize: "14px",
+                                fontWeight: 500,
+                              },
                             }}
                           >
                             <Typography variant="bodyRegularSmall">
