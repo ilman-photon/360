@@ -38,7 +38,6 @@ export default function AppointmentLocation({
           <LocationOnIcon aria-label={"calendar icon"} aria-hidden={"false"} />
         }
         title={t("location")}
-        textStyle={{ fontWeight: "700" }}
         isAppoinment={true}
         actionContent={
           <Button

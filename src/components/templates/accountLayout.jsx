@@ -32,7 +32,7 @@ function AccountLayout({
   };
 
   const getHeadingStyle = () => {
-    return isMobile ? { fontWeight: "500" } : {};
+    return isMobile ? { fontWeight: "500", textAlign: "center" } : {};
   };
 
   return (
