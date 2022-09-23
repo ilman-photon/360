@@ -59,6 +59,9 @@ input[type="number"] {
     max-height: 300px !important;
   }
 }
+.gm-ui-hover-effect {
+  display: none !important;
+}
 
 //Hide show password button of Edge browser
 input::-ms-reveal,
