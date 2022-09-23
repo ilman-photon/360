@@ -16,39 +16,81 @@ export default function AppointmentInformation({ data }) {
         <Image
           src={data.providerInfo.image}
           layout="fill"
+          tabIndex={0}
           className={styles.profilePhoto}
           alt="Doctor Image"
+          aria-label="Doctor Image"
         ></Image>
       </Box>
       <Box className={styles.nameContainer}>
-        <Typography variant="subtitle1" className={styles.doctorName}>
+        <Typography
+          tabIndex={0}
+          ariaLabel={data.providerInfo.name}
+          variant="subtitle1"
+          className={styles.doctorName}
+        >
           {data.providerInfo.name}
         </Typography>
         <Box className={styles.subTitleWrapper}>
-          <Typography variant="subtitle1">Patient: </Typography>
-          <Typography variant="body2">{data.patientInfo.name}</Typography>
+          <Typography tabIndex={0} ariaLabel={"Patient"} variant="subtitle1">
+            Patient:{" "}
+          </Typography>
+          <Typography
+            tabIndex={0}
+            ariaLabel={data.patientInfo.name}
+            variant="body2"
+          >
+            {data.patientInfo.name}
+          </Typography>
         </Box>
       </Box>
       <Box className={styles.locationContainer}>
         <Box className={styles.locationWrapper}>
-          <Typography variant="subtitle2" className={styles.titleLocation}>
+          <Typography
+            tabIndex={0}
+            ariaLabel={"Location"}
+            variant="subtitle2"
+            className={styles.titleLocation}
+          >
             Location
           </Typography>
-          <Typography variant="body1" className={styles.bodyTitle}>
-            {data.providerInfo.position}
-          </Typography>
-          <Typography variant="body2">
-            <>
-              {data.providerInfo.address.addressLine1}
-              <br />
-              {data.providerInfo.address.addressLine2}
-              <br />
-              {data.providerInfo.address.city},{" "}
-              {data.providerInfo.address.state},{" "}
-              {data.providerInfo.address.zipcode}
-            </>
-          </Typography>
-          <Link className={styles.link}>
+
+          <div
+            tabIndex={0}
+            ariaLabel={
+              data.providerInfo.position +
+              `\n` +
+              data.providerInfo.address.addressLine1 +
+              `\n` +
+              data.providerInfo.address.addressLine2 +
+              `\n` +
+              data.providerInfo.address.city +
+              "\n" +
+              data.providerInfo.address.state +
+              `\n` +
+              data.providerInfo.address.zipcode
+            }
+          >
+            <Typography variant="body1" className={styles.bodyTitle}>
+              {data.providerInfo.position}
+            </Typography>
+            <Typography variant="body2">
+              {data.providerInfo.address.addressLine1 +
+                `\n` +
+                data.providerInfo.address.addressLine2 +
+                `\n` +
+                data.providerInfo.address.city +
+                "\n" +
+                data.providerInfo.address.state +
+                `\n` +
+                data.providerInfo.address.zipcode}
+            </Typography>
+          </div>
+          <Link
+            tabIndex={0}
+            ariaLabel={formatPhoneNumber(data.providerInfo.phoneNumber)}
+            className={styles.link}
+          >
             {formatPhoneNumber(data.providerInfo.phoneNumber)}
           </Link>
           <Box className={styles.getDirectionLink}>
@@ -63,12 +105,22 @@ export default function AppointmentInformation({ data }) {
           </Box>
         </Box>
         <Box className={styles.insuranceWrapper}>
-          <Typography variant="subtitle2" className={styles.titleLocation}>
+          <Typography
+            tabIndex={0}
+            ariaLabel={"Insurance"}
+            variant="subtitle2"
+            className={styles.titleLocation}
+          >
             Insurance
           </Typography>
           {data.appointmentInfo.insuranceCarrier.map((item, index) => {
             return (
-              <Typography variant="body2" key={index}>
+              <Typography
+                tabIndex={0}
+                ariaLabel={item}
+                variant="body2"
+                key={index}
+              >
                 {item}
               </Typography>
             );
