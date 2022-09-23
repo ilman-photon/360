@@ -9,7 +9,6 @@ const AccountTitleHeading = ({ title, sx = {}, sxContainer = {} }) => {
         style={{
           ...sx,
         }}
-        aria-live={"polite"}
         aria-label={`${title} heading`}
         tabIndex={"0"}
       >
