@@ -74,6 +74,11 @@ export class Api {
     return this.forgotFeatureValidation(url, postbody, "post", 2000);
   }
 
+  getPatientId(postbody) {
+    const url = "/ecp/patient/search/ecppatientid";
+    return this.getResponse(url, postbody, "post");
+  }
+
   validateGuestUser(postbody) {
     const url = "/ecp/patient/validate";
     return this.forgotFeatureValidation(url, postbody, "post");
