@@ -100,7 +100,7 @@ export const fetchUser = createAsyncThunk(
   async ({ token }) => {
     const api = new Api();
     return api.getResponse(
-      "/ecp/patient-management/v1/patients/0f8baebc-7820-497b-8e27-a7356adce58c",
+      "/ecp/patient/getPatient/9a76d8d6-f5ae-4a22-8cc0-3454bb688d20",
       null,
       "get",
       token
@@ -115,7 +115,7 @@ export const updateUser = createAsyncThunk(
     try {
       // get the userData first, just to make sure
       const res = await api.getResponse(
-        "/ecp/patient-management/v1/patients/0f8baebc-7820-497b-8e27-a7356adce58c",
+        "/ecp/patient/getPatient/9a76d8d6-f5ae-4a22-8cc0-3454bb688d20",
         null,
         "get",
         token
@@ -123,7 +123,7 @@ export const updateUser = createAsyncThunk(
       // then apply changes from our side with response body from "res" and do a PUT request
       const postBody = buildProfilePostBody(res, payload);
       const response = await api.getResponse(
-        "/ecp/patient-management/v1/patients/0f8baebc-7820-497b-8e27-a7356adce58c",
+        "/ecp/patient/editPatient/9a76d8d6-f5ae-4a22-8cc0-3454bb688d20",
         postBody,
         "put",
         token
@@ -146,7 +146,7 @@ export const fetchInsurance = createAsyncThunk(
   "user/fetchInsurance",
   async ({ token, patientId }) => {
     const api = new Api();
-    url = `/ecp/insurance/v1/beneficiaries/${patientId}/coverages`;
+    url = `/ecp/insurance/beneficiaries/${patientId}/coverages`;
     return api.getResponse(url, null, "get", token);
   }
 );
@@ -166,7 +166,7 @@ export const updateInsurance = createAsyncThunk(
       );
       console.log("Post body to put to API: ", { postBody });
       const response = await api.getResponse(
-        `/ecp/insurance/v1/beneficiaries/${patientId}/coverages/${coverageId}`,
+        `/ecp/insurance/beneficiaries/${patientId}/coverages/${coverageId}`,
         postBody,
         "put",
         token
@@ -199,7 +199,7 @@ export const postInsurance = createAsyncThunk(
       );
       console.log("Post body to POST to API: ", { postBody });
       const response = await api.getResponse(
-        `/ecp/insurance/v1/beneficiaries/${patientId}/coverages/`,
+        `/ecp/insurance/beneficiaries/${patientId}/coverages/`,
         postBody,
         "post",
         token

@@ -18,7 +18,7 @@ export const fetchAllPayers = createAsyncThunk(
   "user/fetchAllPayers",
   async ({ token }) => {
     const api = new Api();
-    url = `/ecp/insurance/allpayers`;
+    url = `/ecp/appointments/insurance/allpayers`;
     return api.getResponse(url, null, "get", token);
   }
 );
@@ -27,7 +27,7 @@ export const fetchPlans = createAsyncThunk(
   "user/fetchplans",
   async ({ token, payerId }) => {
     const api = new Api();
-    url = `/ecp/insurance/v1/payers/${payerId}/plans?pageNo=1&pageSize=500`;
+    url = `/ecp/appointments/insurancepayers/${payerId}/plans?pageNo=1&pageSize=500`;
     return api.getResponse(url, null, "get", token);
   }
 );
