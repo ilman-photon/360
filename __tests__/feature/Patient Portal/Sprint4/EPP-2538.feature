@@ -47,7 +47,7 @@ Feature: Patient Portal : Schedule appointment from Patient Portal - Apply filte
   @Sprint4
   Scenario: EPIC_EPP-44_STORY_EPP-2538 - Verify user able to apply the filters which will update the results accordingly from the patient portal.
     Feature: Schedule appointment from Patient Portal - Apply filters in schedule appointment screen
-    Scenario: "EPIC_EPP-44_STORY_EPP-2538 - Verify user able to apply the filters which will update the results accordingly from the patient portal."
+    
     
     Given user launch Patient Portal url		
     When user is logged in to the application
@@ -80,7 +80,6 @@ Feature: Patient Portal : Schedule appointment from Patient Portal - Apply filte
   @Sprint4
   Scenario: EPIC_EPP-44_STORY_EPP-2538 - Verify user able to view the filters in the schedule appointment screen from the patient portal and user apply the filter and getting result accordingly.
     Feature: Schedule appointment from Patient Portal - View filters in schedule appointment screen
-    Scenario: "EPIC_EPP-44_STORY_EPP-2537 - Verify user able to view the filters in the schedule appointment screen from the patient portal and user apply the filter and getting result accordingly."
     
     Given user launch Patient Portal url		
     When user is logged in to the application
@@ -104,7 +103,6 @@ Feature: Patient Portal : Schedule appointment from Patient Portal - Apply filte
   @Sprint4
   Scenario: EPIC_EPP-44_STORY_EPP-2538 - Verify user able to view the filters in the schedule appointment screen from the patient portal and the user clears the filter.
     Feature: Schedule appointment from Patient Portal - View filters in schedule appointment screen
-    Scenario: "EPIC_EPP-44_STORY_EPP-2537 - Verify user able to view the filters in the schedule appointment screen from the patient portal and the user clears the filter."
     
     Given user launch Patient Portal url		
     When user is logged in to the application

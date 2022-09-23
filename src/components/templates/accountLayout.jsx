@@ -46,7 +46,10 @@ function AccountLayout({
           theme={isPatient ? patientTypography : providerTypography}
         >
           <BaseHeader {...logoutProps} />
-          <AccountTitleHeading title={getHeadingTitle(currentActivePage)} />
+          <AccountTitleHeading
+            title={getHeadingTitle(currentActivePage)}
+            sx={{ textAlign: isMobile && "center" }}
+          />
           <div className={styles.container}>
             <div className={styles.sidebarContainer}>
               <AccountSidebar />

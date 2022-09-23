@@ -35,9 +35,9 @@ export default function CreateAccountPage() {
         dispatch(
           setFormMessage({
             success: false,
-            title: errorMessage.title,
-            content: errorMessage.content,
-            isBackToLogin: errorMessage.isBackToLogin,
+            title: errorMessage?.title,
+            content: errorMessage?.content,
+            isBackToLogin: errorMessage?.isBackToLogin,
           })
         );
       }
