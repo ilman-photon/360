@@ -44,6 +44,8 @@ export default function ProviderProfile({
   isShownRating = true,
   providerData = {},
   imageSize = "large",
+  bioContainerClass = "",
+  addressClass = "",
 }) {
   const isAppointment = variant === "appointment";
   const isBio = variant === "bio";
@@ -91,6 +93,12 @@ export default function ProviderProfile({
     }
   }
 
+  function getWidtBioContainer() {
+    const isNotBio = isMap || isAppointment || imageSize === "small";
+    const bioWidth = !isMobile ? "20vw" : "auto";
+    return isNotBio ? "unset" : bioWidth;
+  }
+
   return (
     <Box
       className={isBio ? styles.shortBio : styles.appointment}
@@ -110,12 +118,9 @@ export default function ProviderProfile({
           ></Image>
         </Box>
         <Box
-          className={styles.bioContainer}
+          className={[styles.bioContainer, bioContainerClass].join(" ")}
           sx={{
-            width:
-              isMap || isAppointment || imageSize === "small"
-                ? "unset"
-                : "20vw",
+            width: getWidtBioContainer(),
           }}
         >
           <Typography
@@ -144,7 +149,7 @@ export default function ProviderProfile({
               <Box aria-label="Doctor Address">
                 <Typography
                   variant="body2"
-                  className={styles.address}
+                  className={[styles.address, addressClass].join(" ")}
                   fontSize={isViewSchedule ? "14px" : "16px"}
                   tabindex={"0"}
                 >
@@ -168,6 +173,10 @@ export default function ProviderProfile({
                       aria-label={`phone number ${formatPhoneNumber(
                         phoneNumber
                       )}`}
+                      role={isMobile && "link"}
+                      onClick={() => {
+                        isMobile && window.open(`tel:${phoneNumber}`);
+                      }}
                     >
                       {formatPhoneNumber(phoneNumber)}
                     </Typography>

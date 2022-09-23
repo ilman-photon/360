@@ -8,8 +8,9 @@ import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import FilterResultContainer from "../FilterResultContainer/filterResultContainer";
 import { colors } from "../../../styles/theme";
 import { useEffect, useState } from "react";
-import { getDates } from "../../../utils/appointment";
+import { getDates, isPrevArrowDisable } from "../../../utils/appointment";
 import { TEST_ID } from "../../../utils/constants";
+import styles from "./filterResult.module.scss";
 
 export const FilterResult = ({
   providerList = [],
@@ -151,18 +152,26 @@ export const FilterResult = ({
             alignItems={"center"}
             height={"56px"}
             sx={{ backgroundColor: "#fff" }}
+            className={styles.stackListContainer}
           >
             <Button
               role={"button"}
               onClick={() => {
-                if (currentDateIndex <= 0) {
-                  const date = new Date(dateList.dateRange[0]);
-                  date.setDate(date.getDate() - 7);
+                if (
+                  !isPrevArrowDisable(
+                    dateList,
+                    dateList.dateRange[currentDateIndex]
+                  )
+                ) {
+                  if (currentDateIndex <= 0) {
+                    const date = new Date(dateList.dateRange[0]);
+                    date.setDate(date.getDate() - 7);
 
-                  onPrevScheduleClicked("day", date);
-                  setCurrentDateIndex(5);
-                } else {
-                  setCurrentDateIndex(currentDateIndex - 1);
+                    onPrevScheduleClicked("day", date);
+                    setCurrentDateIndex(5);
+                  } else {
+                    setCurrentDateIndex(currentDateIndex - 1);
+                  }
                 }
               }}
               sx={{
@@ -178,6 +187,14 @@ export const FilterResult = ({
                   marginLeft: "22px",
                   cursor: "pointer",
                 }}
+                className={
+                  isPrevArrowDisable(
+                    dateList,
+                    dateList.dateRange[currentDateIndex]
+                  )
+                    ? styles.prevArrowDisable
+                    : styles.prevArrowActive
+                }
               />
             </Button>
             <Box
