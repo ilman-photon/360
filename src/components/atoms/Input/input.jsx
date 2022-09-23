@@ -42,27 +42,31 @@ export const CustomPasswordInput = styled((props) => (
       disableUnderline: true,
       endAdornment: (
         <InputAdornment position="end">
-          <Tooltip
-            title={`${
-              props.type !== "password" ? "Hide Password" : "Show Password"
-            }`}
-          >
-            <IconButton
-              aria-label={`${
-                props.type !== "password"
-                  ? "Password hide icon"
-                  : "Password unhide icon"
+          {props.value ? (
+            <Tooltip
+              title={`${
+                props.type !== "password" ? "Hide Password" : "Show Password"
               }`}
-              {...props.customevent}
-              edge="end"
             >
-              {props.type !== "password" ? (
-                <VisibilityOutlinedIcon />
-              ) : (
-                <VisibilityOffOutlinedIcon sx={{ transform: "scaleX(-1)" }} />
-              )}
-            </IconButton>
-          </Tooltip>
+              <IconButton
+                aria-label={`${
+                  props.type !== "password"
+                    ? "Password hide icon"
+                    : "Password unhide icon"
+                }`}
+                {...props.customevent}
+                edge="end"
+              >
+                {props.type !== "password" ? (
+                  <VisibilityOutlinedIcon />
+                ) : (
+                  <VisibilityOffOutlinedIcon sx={{ transform: "scaleX(-1)" }} />
+                )}
+              </IconButton>
+            </Tooltip>
+          ) : (
+            ""
+          )}
         </InputAdornment>
       ),
     }}
@@ -85,7 +89,7 @@ export const CustomPasswordInput = styled((props) => (
     overflow: "hidden",
     borderRadius: 4,
     height: 52,
-    backgroundColor: theme.palette.mode === "light" ? "#fcfcfb" : "#2b2b2b",
+    backgroundColor: theme.palette.mode === "light" ? "#fff" : "#2b2b2b",
     transition: theme.transitions.create([
       "border-color",
       "background-color",
@@ -147,7 +151,7 @@ export const RedditTextField = styled((props) => (
     overflow: "hidden",
     borderRadius: 4,
     height: 52,
-    backgroundColor: theme.palette.mode === "light" ? "#fcfcfb" : "#2b2b2b",
+    backgroundColor: theme.palette.mode === "light" ? "#fff" : "#2b2b2b",
     transition: theme.transitions.create([
       "border-color",
       "background-color",
@@ -227,6 +231,7 @@ export const CustomInput = styled(({ ...props }) => {
               helperText={props.helperText}
               style={props.style}
               onPaste={handleMouseDownPassword}
+              value={props.value}
             />
           </CustomFormControl>
         </>
