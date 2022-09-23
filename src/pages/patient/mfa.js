@@ -145,7 +145,7 @@ export default function MfaPage({ isStepTwo }) {
           });
         }
 
-        const securityQuestions = cookies.get("securityQuestions");
+        const securityQuestions = cookies.get("securityQuestions") === "true";
         if (!securityQuestions) {
           onShowSecurityQuestionForm();
         } else {
