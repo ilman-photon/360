@@ -1,4 +1,5 @@
 import moment from "moment";
+import "moment-timezone";
 
 export function convertToDate(date) {
   if (!date) {
@@ -44,8 +45,12 @@ export function formatDate(payload, withTimezone) {
 }
 
 export function formatAppointmentDate(date) {
-  const momentDate = new moment(date);
-  return momentDate.format("dddd, MMM DD - h:mm a");
+  if (!date) {
+    return "-";
+  } else {
+    const momentDate = new moment(date);
+    return momentDate.format("dddd, MMM DD, YYYY [at] h:mm");
+  }
 }
 
 export function ddmmyyDateFormat(date) {
@@ -53,10 +58,43 @@ export function ddmmyyDateFormat(date) {
   return momentDate.format("DD/MM/YYYY");
 }
 
+export function mmddyyDateFormat(date) {
+  const momentDate = new moment(date);
+  return momentDate.format("MM/DD/YYYY");
+}
+
 export function fullDateFormat(date) {
   const timezone = date.substring(date.length - 3);
-  const momentDate = new moment(date);
+  const dateObj = new Date(date);
+  const momentDate = new moment(dateObj);
   const time = momentDate.format("h:mm a");
   const formatedDateTime = momentDate.format("ddd, MMM DD, YYYY");
   return `${time} ${timezone}, ${formatedDateTime}`;
 }
+
+export const convertTime12to24 = (time12h) => {
+  const [time, modifier] = time12h.split(" ");
+
+  let [hours, minutes] = time.split(":");
+
+  if (hours === "12") {
+    hours = "00";
+  }
+
+  if (modifier === "PM") {
+    hours = parseInt(hours, 10) + 12;
+  }
+
+  return `${hours}:${minutes}:00`;
+};
+
+export const upcomingAppointmentDate = (data) => {
+  if (!data) {
+    return "-";
+  } else {
+    const date = new Date(data);
+    const momentDate = new moment(date);
+    const americaTimezone = momentDate.tz("America/New_York");
+    return americaTimezone.format("dddd, MMM DD - h:mmA z");
+  }
+};

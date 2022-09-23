@@ -14,6 +14,8 @@ import FormMessage from "../../molecules/FormMessage/formMessage";
 import { useTranslation } from "next-i18next";
 import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
+import { Regex } from "../../../utils/regex";
+import { colors } from "../../../styles/theme";
 
 const constants = require("../../../utils/constants");
 
@@ -27,23 +29,12 @@ export function Login({
   const router = useRouter();
   const { t } = useTranslation("translation", { keyPrefix: "Login" });
   const { LOGIN_TEST_ID } = constants.TEST_ID;
-  const { handleSubmit, setError, control } = useForm();
+  const { handleSubmit, control } = useForm();
   const onSubmit = ({ username, password }) => {
     OnLoginClicked({ username, password }, router, checkMessage);
   };
 
   const checkMessage = (message) => {
-    const messageStatus = message.status === "failed";
-    if (messageStatus) {
-      setError("username", {
-        type: "custom",
-        message: "Enter a valid Email or Phone Number",
-      });
-      setError("password", {
-        type: "custom",
-        message: "This field is required",
-      });
-    }
     setPostMessage(message);
   };
 
@@ -97,6 +88,10 @@ export function Login({
               }}
               rules={{
                 required: t("thisFieldRequired"),
+                pattern: {
+                  value: Regex.usernameValidation,
+                  message: t("emailRequiredLabel"),
+                },
               }}
             />
             <Controller
@@ -156,7 +151,7 @@ export function Login({
           <Grid container justifyContent={constants.CENTER}>
             <Typography
               variant="bodyMedium"
-              sx={{ color: "#003B4A", fontWeight: 600, textAlign: "center" }}
+              sx={{ color: colors.grey, fontWeight: 400, textAlign: "center" }}
             >
               {t("alreadyHaveAnAppointment")}
               <br />

@@ -241,7 +241,7 @@ export default function InsuranceForm({
                 }) => {
                   return (
                     <StyledInput
-                      type="number"
+                      type="text"
                       label="Group #"
                       value={value}
                       onChange={onChange}
@@ -253,6 +253,12 @@ export default function InsuranceForm({
                       sx={{ width: "100%" }}
                     />
                   );
+                }}
+                rules={{
+                  validate: {
+                    isNumber: (v) =>
+                      Regex.numberOnly.test(v) || "Invalid format",
+                  },
                 }}
               />
               <DisclaimerText label="(Optional)" />
@@ -277,6 +283,7 @@ export default function InsuranceForm({
                   label="Are you the Subscriber?"
                   options={isSubscriberOptions}
                   helperText={error ? error.message : null}
+                  isInsuranceForm={true}
                   tooltipContent="The person who pays for health insurance premiums. For example, if you have health insurance through your spouse’s health insurance plan, he or she is the primary subscriber."
                 />
               );
@@ -286,7 +293,7 @@ export default function InsuranceForm({
 
           <Collapse in={watchedSubscriber === "No"}>
             <Stack spacing={3}>
-              <Typography variant="bodyRegular">
+              <Typography variant="bodyMedium">
                 Enter the subscriber’s details
               </Typography>
 
@@ -364,7 +371,7 @@ export default function InsuranceForm({
                     />
                   </Grid>
 
-                  <Grid item xs={12} md={4} sx={{ display: "none" }} />
+                  <Grid item xs={12} md={4} sx={{ visibility: "hidden" }} />
 
                   <Grid
                     item
@@ -412,8 +419,8 @@ export default function InsuranceForm({
                     />
                   </Grid>
 
-                  <Grid item xs={12} md={4} sx={{ display: "none" }} />
-                  <Grid item xs={12} md={4} sx={{ display: "none" }} />
+                  <Grid item xs={12} md={4} sx={{ visibility: "hidden" }} />
+                  <Grid item xs={12} md={4} sx={{ visibility: "hidden" }} />
 
                   <Grid
                     item
@@ -592,6 +599,7 @@ export default function InsuranceForm({
                     label="Insurance Priority"
                     options={priorityOptions}
                     helperText={error ? error.message : null}
+                    isInsuranceForm={true}
                     tooltipContent="You can legally have multiple insurances to cover your eyecare expenses. Picking a primary insurance will allow you to decide which insurance takes priority."
                   />
                 </>

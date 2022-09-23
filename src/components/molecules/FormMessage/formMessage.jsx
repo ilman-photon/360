@@ -59,6 +59,7 @@ export const FormMessage = (
           }}
           data-testid="submission-message"
           aria-live="polite"
+          role="alert"
           {...accessibility}
         >
           {props.title ? (

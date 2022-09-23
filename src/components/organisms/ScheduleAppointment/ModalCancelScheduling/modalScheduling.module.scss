@@ -1,0 +1,61 @@
+.modalDialog {
+  width: auto;
+  @media (max-width: 556px) {
+    width: 100% !important;
+    margin: 0;
+  }
+}
+
+.boxModalContents {
+  margin: 16px;
+  width: 500px;
+  @media (max-width: 556px) {
+    width: auto;
+  }
+
+  .scheduledText {
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 30px;
+    letter-spacing: 0.0016em;
+    color: #003b4a;
+  }
+
+  form {
+    display: grid;
+  }
+
+  .checkBoxContainer {
+    padding: 0px;
+    overflow-y: visible;
+  }
+
+  .formButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 13px 20px;
+    border-radius: 30px;
+    font-size: 14px;
+    height: 40px;
+    width: 100%;
+    text-transform: none;
+    font-weight: 600;
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    line-height: 18px;
+
+    &.cancel {
+      background-color: #b93632 !important;
+      border-radius: 30px;
+      text-transform: none;
+    }
+    &.outlined {
+      background-color: transparent !important;
+      border: solid 1px #007e8f;
+      color: #007e8f;
+      border-radius: 30px;
+      text-transform: none;
+    }
+  }
+}

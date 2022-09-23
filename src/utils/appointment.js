@@ -174,6 +174,14 @@ export function timeInWeekLabel(startDate, endDate) {
     : "";
 }
 
+export function timeInWeekACLabel(startDate, endDate) {
+  return startDate && endDate
+    ? `${getDateName(new Date(startDate))} until ${getDateName(
+        new Date(endDate)
+      )}`
+    : "";
+}
+
 Date.prototype.addDays = function (days) {
   var date = new Date(this.valueOf());
   date.setDate(date.getDate() + days);
@@ -185,7 +193,7 @@ export function getDates(startDate, stopDate, isDayView = false) {
   const dateArray = [];
   let currentDate = startDate;
   while (currentDate <= stopDate) {
-    dateArray.push(new Date(currentDate));
+    dateArray.push(currentDate);
     currentDate = currentDate.addDays(1);
   }
   return {
@@ -311,4 +319,88 @@ export function parseAppointmentCardData(appointmentData) {
     data = appointmentData[0];
   }
   return data;
+}
+
+export function isPrevArrowDisable(dateList, currentDate = null) {
+  if (currentDate) {
+    return new Date() > currentDate;
+  } else {
+    return (
+      new Date() >
+      (dateList?.dateRange?.length > 0 ? dateList.dateRange[0] : null)
+    );
+  }
+}
+
+export function parseAppointmentDetails(appointmentDetails) {
+  const data = JSON.parse(JSON.stringify(appointmentDetails));
+
+  data.appointmentInfo.documentation.list = [
+    {
+      name: "Date/Time",
+      value: "Lorem Ipsum",
+    },
+    {
+      name: "Performer",
+      value: "Lorem Ipsum",
+    },
+    {
+      name: "Performer",
+      value: "Lorem Ipsum",
+    },
+    {
+      name: "Performer",
+      value: "Lorem Ipsum",
+    },
+    {
+      name: "Performer",
+      value: "Lorem Ipsum",
+    },
+    {
+      name: "Performer",
+      value: "Lorem Ipsum",
+    },
+    {
+      name: "Performer",
+      value: "Lorem Ipsum",
+    },
+  ];
+
+  for (let i = 0; i < data.appointmentInfo.contents; i++) {
+    let headers = [];
+    switch (data.appointmentInfo.contents[i].type.toLowerCase()) {
+      case "allergies":
+        headers = ["Subtance", "Code", "Status", "Severity", "Reaction"];
+        break;
+      case "results":
+        headers = ["Battery", "Date", "Test", "Result", "Result Date", "Lab"];
+        break;
+      case "vital signs":
+        headers = [
+          "Date",
+          "Height",
+          "Weight",
+          "BMI",
+          "Blood Pressure",
+          "Body Temp.",
+          "Pulse",
+          "O2 Concentration",
+          "Inhaled O2",
+          "Resp. Rate",
+        ];
+        break;
+      default:
+        break;
+    }
+    data.appointmentInfo.contents[i].headers = headers;
+  }
+  return data;
+}
+
+export function getDirection(providerCordinate) {
+  window.open(
+    `https://maps.google.com?q=${providerCordinate.latitude},${providerCordinate.longitude}`,
+    "_blank",
+    "noopener,noreferrer"
+  );
 }

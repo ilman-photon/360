@@ -88,6 +88,11 @@ module.exports = {
       registerbtn: "registerBtn",
       signInlink: "signInlink",
     },
+    CANCEL_SCHEDULE_TEST_ID: {
+      btnCancel: "loc_btnCancel",
+      btnKeep: "loc_btnKeep",
+      other: "other",
+    },
     HOME_TEST_ID: {
       appoinments: "appoinments",
       myhealthchart: "myhealthchart",
@@ -168,15 +173,34 @@ module.exports = {
     SCHEDULE_APPOINTMENT_TEST_ID: {
       APPOINTMENT_LOCATION: {
         editButton: "schedule_appointment_location_edit_button",
+        address: "schedule_appointment_location_address",
       },
       APPOINTMENT_DETAILS: {
         editButton: "schedule_appointment_details_edit_button",
+        date: "schedule_appointment_location_date",
       },
       step2Button: "schedule_appointment_step2_button",
+      DIALOG_CONFIRMATION_RESCHEDULE: {
+        confirmBtn: "schedule_appointment_dialog_reschedule_confirm_button",
+        denyBtn: "schedule_appointment_dialog_reschedule_deny_button",
+      },
+    },
+    APPOINTMENTS_TEST_ID: {
+      upcomingAppointmentsHeader: "appointments_upcoming_appointments_header",
+      cancelAppointmentButton:
+        "appointments_upcoming_appointments_cancel_button",
+      rescheduleAppointmentButton:
+        "appointments_upcoming_appointments_reschedule_button",
+      confirmRescheduleButton:
+        "appointments_upcoming_appointments_confirm_reschedule_button",
     },
     MAP_INFO_WINDOW: {
       previousProvider: "provider_btnPrevious",
       nextProvider: "provider_btnNext",
     },
+  },
+  ERROR_CODE: {
+    NETWORK_ERR: "ERR_NETWORK",
+    BAD_REQUEST: "ERR_BAD_REQUEST",
   },
 };

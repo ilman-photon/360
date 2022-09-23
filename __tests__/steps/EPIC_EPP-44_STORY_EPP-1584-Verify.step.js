@@ -4,14 +4,30 @@ import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import { Provider } from "react-redux";
-import Appointments from "../../src/pages/patient/appointments";
+import Appointments, {
+  getServerSideProps,
+} from "../../src/pages/patient/appointments";
 import store from "../../src/store/store";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 import constants from "../../src/utils/constants";
+import Cookies from "universal-cookie";
 
 const feature = loadFeature(
-  "./__tests__/feature/Patient Portal/Sprint4/EPP-1584.feature",
+  "./__tests__/feature/Patient Portal/Sprint4/EPP-1584.feature"
 );
+
+jest.mock("universal-cookie", () => {
+  class MockCookies {
+    static result = {};
+    get() {
+      return MockCookies.result;
+    }
+    remove() {
+      return jest.fn();
+    }
+  }
+  return MockCookies;
+});
 
 defineFeature(feature, (test) => {
   let container;
@@ -94,73 +110,98 @@ defineFeature(feature, (test) => {
         },
       },
     ],
-  }
+  };
 
   const defaultValidation = () => {
     expect(true).toBeTruthy();
   };
 
-  test('EPIC_EPP-44_STORY_EPP-1584-Verify if   user able to view the "Appointments" screen.', ({ given, and, when, then }) => {
-    given('User is logged in to the application', () => {
-      defaultValidation()
+  test('EPIC_EPP-44_STORY_EPP-1584-Verify if   user able to view the "Appointments" screen.', ({
+    given,
+    and,
+    when,
+    then,
+  }) => {
+    given("User is logged in to the application", () => {
+      Cookies.result = { authorized: true };
+      defaultValidation();
     });
 
-    and('User navigates to “Appointments” screen', () => {
-      defaultValidation()
+    and("User navigates to “Appointments” screen", () => {
+      defaultValidation();
     });
 
-    when('User lands on “Appointments” screen', () => {
-      defaultValidation()
+    when("User lands on “Appointments” screen", () => {
+      defaultValidation();
     });
 
-    then('User should be able to view an option to schedule new appointments', () => {
-      defaultValidation()
-    });
+    then(
+      "User should be able to view an option to schedule new appointments",
+      () => {
+        defaultValidation();
+      }
+    );
 
-    and('User should be able to view Upcoming Appointments with an option to reschedule and cancel each of them', () => {
-      defaultValidation()
-    });
+    and(
+      "User should be able to view Upcoming Appointments with an option to reschedule and cancel each of them",
+      () => {
+        defaultValidation();
+      }
+    );
 
-    and('User should be able to view Past Appointments with an option to view the visit summary for each appointment', async () => {
-      useRouter.mockReturnValue({
-        back: jest.fn(),
-      });
-      window.scrollTo = jest.fn();
-      mock
-        .onGet(`${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment`)
-        .reply(200, userData);
-      act(() => {
-        container = render(
-          <Provider store={store}>
-            {Appointments.getLayout(<Appointments />)}
-          </Provider>
-        );
-      });
-      await waitFor(() => {
-        container.getByText(/Upcoming appointments/i)
-      })
+    and(
+      "User should be able to view Past Appointments with an option to view the visit summary for each appointment",
+      async () => {
+        useRouter.mockReturnValue({
+          back: jest.fn(),
+        });
+        window.scrollTo = jest.fn();
+        mock
+          .onGet(
+            `${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+          )
+          .reply(200, userData);
+        await getServerSideProps({
+          req: {
+            headers: { cookie: { get: jest.fn().mockReturnValue(true) } },
+          },
+          res: jest.fn(),
+        });
+        act(() => {
+          container = render(
+            <Provider store={store}>
+              {Appointments.getLayout(<Appointments />)}
+            </Provider>
+          );
+        });
+        await waitFor(() => {
+          container.getByText(/Upcoming appointments/i);
+        });
 
-      expect(container.getByText(/Upcoming appointments/i).textContent).toEqual("Upcoming appointments")
-    });
+        expect(
+          container.getByText(/Upcoming appointments/i).textContent
+        ).toEqual("Upcoming Appointments");
+      }
+    );
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1584-Verify if user able to view an option to schedule new appointments', ({ }) => {
-    defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1584-Verify if user able to view an option to schedule new appointments", ({}) => {
+    defaultValidation();
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1584 -Verify if user able to view Upcoming Appointments', ({ }) => {
-    defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1584 -Verify if user able to view Upcoming Appointments", ({}) => {
+    defaultValidation();
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1584-Verify if user able to view Upcoming Appointments option to reschedule and cancel', ({ }) => {
-    defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1584-Verify if user able to view Upcoming Appointments option to reschedule and cancel", ({}) => {
+    defaultValidation();
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1584-Verify if user  able to  view Past Appointments', ({ }) => {
-    defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1584-Verify if user  able to  view Past Appointments", ({}) => {
+    defaultValidation();
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1584-Verify if user  able to  view Past Appointment with option to already visited deatails', ({ }) => {
-    defaultValidation()
+  test("EPIC_EPP-44_STORY_EPP-1584-Verify if user  able to  view Past Appointment with option to already visited deatails", ({}) => {
+    defaultValidation();
   });
 });
