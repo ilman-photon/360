@@ -21,6 +21,7 @@
     font-size: 14px;
     line-height: 18px;
     justify-content: left;
+    padding: 3px 16px;
   }
 }
 
@@ -39,6 +40,8 @@
   font-size: 14px;
   line-height: 17px;
   color: #6d6f73;
+  height: 30px;
+  margin-bottom: 10px;
   .closeIcon {
     width: 15px;
     height: 15px;
@@ -165,17 +168,12 @@
 
 .dateListContainer {
   .prevArrowActive {
-    grid-area: arrowLeft;
-    margin: auto;
-    width: 22px;
-    cursor: pointer;
+    color: rgba(0, 0, 0, 0.54);
     opacity: 1;
   }
   .prevArrowDisable {
-    grid-area: arrowLeft;
-    margin: auto;
-    width: 22px;
-    opacity: 0.3;
     cursor: not-allowed;
+    color: rgba(0, 0, 0, 0.54);
+    opacity: 0.5;
   }
 }

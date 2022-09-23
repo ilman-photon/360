@@ -4,7 +4,6 @@ import SwipeableDrawer from "@mui/material/Drawer";
 
 import ModalConfirmContent from "./modalConfirmContent";
 import { Box } from "@mui/material";
-import { useEffect } from "react";
 
 export default function ModalConfirmation({
   isOpen,
@@ -13,20 +12,18 @@ export default function ModalConfirmation({
   isReschedule,
   patientData,
   providerData,
+  appointmentData,
   OnOkClicked = () => {
     // This is intended
   },
 }) {
-  useEffect(() => {
-    console.log(isOpen, "isOpen");
-  }, [isOpen]);
-
   return isDesktop ? (
     <Box>
       <Dialog open={isOpen}>
         <ModalConfirmContent
           patientData={patientData}
           providerData={providerData}
+          appointmentData={appointmentData}
           isLoggedIn={isLoggedIn}
           isReschedule={isReschedule}
           OnOkClicked={OnOkClicked}

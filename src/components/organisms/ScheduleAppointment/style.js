@@ -2,12 +2,12 @@ import { colors } from "../../../styles/theme";
 
 export const styles = {
   primaryText: {
-    color: "#003B4A",
+    color: "#0095A9",
     fontSize: "18px",
-    fontWeight: "700",
+    fontWeight: "600",
   },
   switchButton: {
-    border: "solid 1px #003B4A",
+    border: "1px solid #205A63",
     padding: "40px",
     borderRadius: "8px",
     textAlign: "center",
@@ -27,7 +27,6 @@ export const styles = {
     borderRadius: "46px",
     textTransform: "none",
     color: "#FFFFFF",
-    backgroundColor: "#007E8F",
   },
   form: {
     display: "grid",
@@ -39,24 +38,26 @@ export const styles = {
     color: "#366A70",
     fontSize: "34px",
   },
+  sigInInfoLabel: {
+    fontFamily: "Libre Franklin",
+    fontWeight: "600",
+    fontSize: "18px",
+    color: "#000000",
+  },
   link: {
     color: "#008294",
     cursor: "pointer",
-    fontSize: "1.2rem",
-    fontWeight: "700",
-    paddingLeft: "16px",
+    fontWeight: "500",
+    paddingLeft: "8px",
+    fontSize: "16px",
   },
   linkText: {
     color: "#008294",
   },
-  boldLabel: {
-    fontWeight: "700",
-    fontSize: "1.2rem",
-    color: "#191919",
-  },
   passwordLabel: {
-    fontSize: "1rem",
-    color: "#191919",
+    fontFamily: "Libre Franklin",
+    fontSize: "16px",
+    color: "#000000",
   },
   divMargin: {
     marginTop: "32px",

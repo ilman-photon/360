@@ -14,9 +14,11 @@ import { useTranslation } from "next-i18next";
 import { formatPhoneNumber } from "../../utils/phoneFormatter";
 import { Provider } from "react-redux";
 import store from "../../store/store";
+import { removeAuthCookies } from "../../utils/authetication";
 
 export async function getServerSideProps(context) {
   const cookies = new Cookies(context.req.headers.cookie);
+  const isStepTwo = cookies.get("isStay") == "stay";
 
   if (!cookies.get("mfa")) {
     return {
@@ -28,16 +30,18 @@ export async function getServerSideProps(context) {
   }
 
   return {
-    props: {},
+    props: {
+      isStepTwo,
+    },
   };
 }
 
-export default function MfaPage() {
+export default function MfaPage({ isStepTwo }) {
   const api = new Api();
   const cookies = new Cookies();
   const router = useRouter();
   const username = cookies.get("username", { path: "/patient" });
-  const ip = cookies.get("ip", { path: "/patient" });
+  // const ip = cookies.get("ip", { path: "/patient" });
   const [componentName, setComponentName] = React.useState("");
   const [rememberMe, setRememberMe] = React.useState(false);
   const [successSubmit, setSuccessSubmit] = React.useState(false);
@@ -53,21 +57,9 @@ export default function MfaPage() {
 
   React.useEffect(() => {
     if (Object.keys(communicationMethod).length == 0) {
-      const postBody = {
-        username,
-      };
-      api
-        .getUserData(postBody)
-        .then((response) => {
-          const method = response.communicationMethod;
-          if (method.phone) {
-            method.phone = formatPhoneNumber(method.phone, true);
-          }
-          setCommunicationMethod(method);
-        })
-        .catch(() => {
-          // This is intentional
-        });
+      const userData = JSON.parse(localStorage.getItem("userData"));
+      const communicationMethod = userData.communicationMethod;
+      setCommunicationMethod(communicationMethod);
     }
     window.history.pushState(null, null, window.location.pathname);
     window.addEventListener("popstate", onBackButtonEvent);
@@ -83,7 +75,7 @@ export default function MfaPage() {
   };
 
   function onConfirmClicked(communication, callback) {
-    const deviceId = ip.replace(/\./g, "");
+    const deviceId = ""; //ip.replace(/\./g, "");
     const postBody = {
       username,
       deviceId,
@@ -94,6 +86,7 @@ export default function MfaPage() {
       .then((response) => {
         setTempValidation(response);
         setComponentName(constants.MFA_COMPONENT_NAME);
+        cookies.set("isStay", "stay", { path: "/patient" });
       })
       .catch((err) => {
         if (err.ResponseCode === 4004) {
@@ -109,10 +102,7 @@ export default function MfaPage() {
   }
 
   function onBackToLoginClicked() {
-    cookies.remove("mfa", { path: "/patient" });
-    cookies.remove("username", { path: "/patient" });
-    cookies.remove("ip", { path: "/patient" });
-    cookies.remove("mfaAccessToken", { path: "/patient" });
+    removeAuthCookies();
     router.push("/patient/login");
   }
 
@@ -134,9 +124,14 @@ export default function MfaPage() {
     api
       .submitMfaCode(postBody)
       .then((response) => {
-        if (response.mfaAccessToken) {
-          cookies.set("mfaAccessToken", response.mfaAccessToken, {
+        if (rememberMe) {
+          const token = JSON.parse(
+            localStorage.getItem("userData")
+          ).patientId.replace(/-/g, "");
+          const maxAge = 90 * 86400;
+          cookies.set("mfaAccessToken", token, {
             path: "/patient",
+            maxAge,
           });
         }
 
@@ -148,29 +143,32 @@ export default function MfaPage() {
         }
       })
       .catch((err) => {
-        if (err.ResponseCode === 4003) {
-          callback({
-            status: "failed",
-            isEndView: true,
-            message: {
-              title: t("mfaLockTitle"),
-              description: t("mfaLockDescription"),
-            },
-          });
-        } else {
-          callback({
-            status: "failed",
-            message: {
-              title: t("mfaFailedTitle"),
-              description: t("mfaFailedDescription"),
-            },
-          });
+        if (err.ResponseCode !== constants.ERROR_CODE.NETWORK_ERR) {
+          if (err.ResponseCode === 4003) {
+            callback({
+              status: "failed",
+              isEndView: true,
+              message: {
+                title: t("mfaLockTitle"),
+                description: t("mfaLockDescription"),
+              },
+            });
+          } else {
+            callback({
+              status: "failed",
+              message: {
+                title: t("mfaFailedTitle"),
+                description: t("mfaFailedDescription"),
+              },
+            });
+          }
         }
-      });
+      })
+      .finally(() => cookies.remove("isStay", { path: "/patient" }));
   }
 
   function onResendCodeClicked(callback) {
-    const deviceId = ip.replace(/\./g, "");
+    const deviceId = ""; //ip.replace(/\./g, "");
     const postBody = {
       username,
       deviceId,
@@ -185,14 +183,16 @@ export default function MfaPage() {
         });
       })
       .catch((err) => {
-        if (err.ResponseCode === 4001) {
-          callback({
-            status: "failed",
-            isEndView: true,
-            message: {
-              description: err.ResponseType,
-            },
-          });
+        if (err.ResponseCode !== constants.ERROR_CODE.NETWORK_ERR) {
+          if (err.ResponseCode === 4001) {
+            callback({
+              status: "failed",
+              isEndView: true,
+              message: {
+                description: err.ResponseType,
+              },
+            });
+          }
         }
       });
   }
@@ -233,11 +233,13 @@ export default function MfaPage() {
           redirectToDashboard();
         }, 3000);
       })
-      .catch(function () {
-        callback({
-          status: "failed",
-          message: "Failed to sumbit the security question.",
-        });
+      .catch(function (err) {
+        if (err.ResponseCode !== constants.ERROR_CODE.NETWORK_ERR) {
+          callback({
+            status: "failed",
+            message: "Failed to sumbit the security question.",
+          });
+        }
       });
   }
 
@@ -252,7 +254,7 @@ export default function MfaPage() {
     return questionList;
   }
 
-  if (componentName === constants.MFA_COMPONENT_NAME) {
+  if (componentName === constants.MFA_COMPONENT_NAME || isStepTwo) {
     return (
       <>
         <MultiFactorAuthentication
@@ -266,7 +268,13 @@ export default function MfaPage() {
         {otpValidation ? (
           <Typography
             aria-hidden={"true"}
-            style={{ display: "none" }}
+            style={{
+              opacity: 0.3,
+              position: "fixed",
+              bottom: 0,
+              left: 0,
+              fontSize: "12px",
+            }}
             data-testid={"loc_validationMFA"}
           >
             {otpValidation}
@@ -286,14 +294,7 @@ export default function MfaPage() {
       >
         {!successSubmit ? (
           <Box sx={{ background: "#FAFAFA" }}>
-            <AccountTitleHeading
-              title={"Set-up Security Questions"}
-              sx={{
-                textAlign: "left",
-                paddingLeft: "16px",
-              }}
-            />
-            :
+            <AccountTitleHeading title={"Set-up Security Questions"} />:
             <Box
               sx={{
                 paddingTop: "65px",

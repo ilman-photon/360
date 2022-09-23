@@ -3,6 +3,7 @@
   flex-direction: column;
   background: linear-gradient(96.59deg, #003b4a 10.15%, #0389ab 140.82%);
   min-height: 100vh;
+  min-height: var(--app-height);
 }
 
 .authContainer {

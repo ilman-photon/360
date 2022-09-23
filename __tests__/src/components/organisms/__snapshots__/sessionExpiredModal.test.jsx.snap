@@ -36,18 +36,15 @@ Object {
         >
           <h2
             aria-label="Session Timeout heading"
-            aria-live="Session Timeout heading"
             class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-bdhsul-MuiTypography-root-MuiDialogTitle-root"
             id="alert-dialog-title"
             style="padding: 16px 16px 0px 16px;"
-            tabindex="1"
           >
             Session Timeout
           </h2>
           <div
             class="MuiDialogContent-root css-14ywww5-MuiDialogContent-root"
             style="padding: 16px 16px 16px 16px;"
-            tabindex="1"
           >
             <div
               class="MuiBox-root css-1y4mj6z"
@@ -66,6 +63,7 @@ Object {
               <div
                 aria-live="off"
                 data-testid="submission-message"
+                role="alert"
                 style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
               >
                 <div
@@ -86,11 +84,10 @@ Object {
             >
               <button
                 aria-label="Log off button"
-                aria-live="Log off button"
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-19s7hx2-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-logoff-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="1"
+                tabindex="0"
                 type="button"
               >
                 Log Off
@@ -100,11 +97,10 @@ Object {
               </button>
               <button
                 aria-label="Stay Logged in button"
-                aria-live="Stay Logged in button"
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-stay-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="1"
+                tabindex="0"
                 type="button"
               >
                 Stay Logged in
@@ -216,18 +212,15 @@ Object {
         >
           <h2
             aria-label="Session Timeout heading"
-            aria-live="Session Timeout heading"
             class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-bdhsul-MuiTypography-root-MuiDialogTitle-root"
             id="alert-dialog-title"
             style="padding: 16px 16px 0px 16px;"
-            tabindex="1"
           >
             Session Timeout
           </h2>
           <div
             class="MuiDialogContent-root css-14ywww5-MuiDialogContent-root"
             style="padding: 16px 16px 16px 16px;"
-            tabindex="1"
           >
             <div
               class="MuiBox-root css-1y4mj6z"
@@ -246,6 +239,7 @@ Object {
               <div
                 aria-live="off"
                 data-testid="submission-message"
+                role="alert"
                 style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
               >
                 <div
@@ -266,11 +260,10 @@ Object {
             >
               <button
                 aria-label="Log off button"
-                aria-live="Log off button"
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-19s7hx2-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-logoff-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="1"
+                tabindex="0"
                 type="button"
               >
                 Log Off
@@ -280,11 +273,10 @@ Object {
               </button>
               <button
                 aria-label="Stay Logged in button"
-                aria-live="Stay Logged in button"
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-stay-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="1"
+                tabindex="0"
                 type="button"
               >
                 Stay Logged in
@@ -331,18 +323,15 @@ Object {
         >
           <h2
             aria-label="Session Expired heading"
-            aria-live="Session Expired heading"
             class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-bdhsul-MuiTypography-root-MuiDialogTitle-root"
             id="alert-dialog-title"
             style="padding: 16px 16px 0px 16px;"
-            tabindex="1"
           >
             Session Expired
           </h2>
           <div
             class="MuiDialogContent-root css-14ywww5-MuiDialogContent-root"
             style="padding: 16px 16px 16px 16px;"
-            tabindex="1"
           >
             <div
               class="MuiBox-root css-1y4mj6z"
@@ -361,6 +350,7 @@ Object {
               <div
                 aria-live="off"
                 data-testid="submission-message"
+                role="alert"
                 style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
               >
                 <div
@@ -381,11 +371,10 @@ Object {
             >
               <button
                 aria-label="Ok button"
-                aria-live="Ok button"
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-ok-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="1"
+                tabindex="0"
                 type="button"
               >
                 OK
@@ -496,18 +485,15 @@ Object {
         >
           <h2
             aria-label="Session Timeout heading"
-            aria-live="Session Timeout heading"
             class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-bdhsul-MuiTypography-root-MuiDialogTitle-root"
             id="alert-dialog-title"
             style="padding: 16px 16px 0px 16px;"
-            tabindex="1"
           >
             Session Timeout
           </h2>
           <div
             class="MuiDialogContent-root css-14ywww5-MuiDialogContent-root"
             style="padding: 16px 16px 16px 16px;"
-            tabindex="1"
           >
             <div
               class="MuiBox-root css-1y4mj6z"
@@ -526,6 +512,7 @@ Object {
               <div
                 aria-live="off"
                 data-testid="submission-message"
+                role="alert"
                 style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
               >
                 <div
@@ -546,11 +533,10 @@ Object {
             >
               <button
                 aria-label="Log off button"
-                aria-live="Log off button"
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-19s7hx2-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-logoff-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="1"
+                tabindex="0"
                 type="button"
               >
                 Log Off
@@ -560,11 +546,10 @@ Object {
               </button>
               <button
                 aria-label="Stay Logged in button"
-                aria-live="Stay Logged in button"
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-stay-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="1"
+                tabindex="0"
                 type="button"
               >
                 Stay Logged in
@@ -674,18 +659,15 @@ Object {
         >
           <h2
             aria-label="Session Timeout heading"
-            aria-live="Session Timeout heading"
             class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-bdhsul-MuiTypography-root-MuiDialogTitle-root"
             id="alert-dialog-title"
             style="padding: 16px 16px 0px 16px;"
-            tabindex="1"
           >
             Session Timeout
           </h2>
           <div
             class="MuiDialogContent-root css-14ywww5-MuiDialogContent-root"
             style="padding: 16px 16px 16px 16px;"
-            tabindex="1"
           >
             <div
               class="MuiBox-root css-1y4mj6z"
@@ -704,6 +686,7 @@ Object {
               <div
                 aria-live="off"
                 data-testid="submission-message"
+                role="alert"
                 style="color: rgb(255, 255, 255); font-size: 16px; line-height: 24px; letter-spacing: 0.0016em;"
               >
                 <div
@@ -724,11 +707,10 @@ Object {
             >
               <button
                 aria-label="Log off button"
-                aria-live="Log off button"
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-19s7hx2-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-logoff-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="1"
+                tabindex="0"
                 type="button"
               >
                 Log Off
@@ -738,11 +720,10 @@ Object {
               </button>
               <button
                 aria-label="Stay Logged in button"
-                aria-live="Stay Logged in button"
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-stay-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="1"
+                tabindex="0"
                 type="button"
               >
                 Stay Logged in
