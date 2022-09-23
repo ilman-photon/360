@@ -3,7 +3,10 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 import PasswordSecurityQuestion from "../../src/components/organisms/PasswordSecurityQuestion/passwordSecurityQuestion";
 
 const feature = loadFeature(
-  "./__tests__/feature/Patient Portal/Sprint2/EPP-217.feature"
+  "./__tests__/feature/Patient Portal/Sprint2/EPP-217.feature",
+  {
+    tagFilter: "@included and not @excluded",
+  }
 );
 
 defineFeature(feature, (test) => {

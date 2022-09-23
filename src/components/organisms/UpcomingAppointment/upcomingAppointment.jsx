@@ -15,14 +15,22 @@ export function UpcomingAppointmentCard({
   onRescheduleClicked,
   onCancelClicked,
 }) {
-  function minHours(numOfHours, date = new Date()) {
-    date.setTime(date.getTime() - numOfHours * 60 * 60 * 1000);
+  function addHours(numOfHours, date = new Date()) {
+    date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
 
     return date;
   }
 
   const visitDate = new Date(data.appointmentInfo.date);
-  const isHideButtons = visitDate < minHours(4);
+  let hideHour = 0;
+  if (data.appointmentInfo.appointmentType === "Eye Exam") {
+    hideHour = 4;
+  }
+  if (data.appointmentInfo.appointmentType === "Comprehensive") {
+    hideHour = 24;
+  }
+
+  const isHideButtons = visitDate < addHours(hideHour);
   return (
     <Box className={styles.upcomingAppointmentsContainer}>
       <Box className={styles.upcomingAppointmentDetail}>
@@ -123,7 +131,13 @@ export default function UpcomingAppointment({
   onRescheduleClicked,
   onCancelClicked,
 }) {
-  const isHasValue = data.length !== 0;
+  const appointments = [];
+  for (const appointment of data) {
+    if (new Date(appointment.appointmentInfo.date) > new Date()) {
+      appointments.push(appointment);
+    }
+  }
+  const isHasValue = appointments.length !== 0;
   return (
     <Box className={styles.upcomingAppointment}>
       <Typography
@@ -137,15 +151,16 @@ export default function UpcomingAppointment({
       </Typography>
 
       {isHasValue ? (
-        data.map((item, index) => {
-          return (
+        appointments.map((item, index) => {
+          const isUpcoming = new Date(item.appointmentInfo.date) > new Date();
+          return isUpcoming ? (
             <UpcomingAppointmentCard
               data={item}
               key={index}
               onRescheduleClicked={onRescheduleClicked}
               onCancelClicked={onCancelClicked}
             />
-          );
+          ) : null;
         })
       ) : (
         <NoAppointment></NoAppointment>

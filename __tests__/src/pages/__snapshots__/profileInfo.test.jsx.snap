@@ -713,7 +713,7 @@ Object {
                   >
                     <button
                       aria-label="Edit option"
-                      class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-5kb46n-MuiButtonBase-root-MuiButton-root"
+                      class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-5kb46n-MuiButtonBase-root-MuiButton-root"
                       data-testid="loc_edit"
                       tabindex="0"
                       type="button"
@@ -1444,7 +1444,7 @@ Object {
                 >
                   <button
                     aria-label="Edit option"
-                    class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-5kb46n-MuiButtonBase-root-MuiButton-root"
+                    class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-5kb46n-MuiButtonBase-root-MuiButton-root"
                     data-testid="loc_edit"
                     tabindex="0"
                     type="button"
