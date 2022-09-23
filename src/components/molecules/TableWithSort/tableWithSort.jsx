@@ -265,6 +265,7 @@ export default function TableWithSort({
                                 <a
                                   href={row.source}
                                   download
+                                  data-testid="downloadPDFButton"
                                   target="_blank"
                                   rel="noreferrer"
                                 >

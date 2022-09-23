@@ -93,8 +93,8 @@ defineFeature(feature, (test) => {
     }, 10000);
   }
 
-  test('EPIC_EPP-9_STORY_EPP-2714- Verify whether the user is able to view the list of documents that can be downloaded', ({ given, when, and, then }) => {
-    given('user Launch  the browser and enter the user portal URL', () => {      
+  test("EPIC_EPP-9_STORY_EPP-2714- Verify whether the user is able to view the list of documents that can be downloaded", ({ given, and, when, then }) => {
+    given('user Launch  the browser and enter the user portal URL', () => {
       launchBrowser()
     });
 
@@ -102,7 +102,7 @@ defineFeature(feature, (test) => {
       enterValidUsername()
     });
 
-    and('clicks  on login button.', () => {
+    and('clicks  on login button.', async () => {
       clickLogin()
     });
 
@@ -110,39 +110,13 @@ defineFeature(feature, (test) => {
       navigateToDocumentsPage()
     });
 
-    then('user should view the list of documents that can be downloaded', () => {
+    then('user should view the list of documents that can be downloaded', async () => {
       userSeeEmptyDocumentTable()
     });
-  });
-
-  test('EPIC_EPP-9_STORY_EPP-2714- Verify whether the user is able to view the list of documents with an option to download them as pdfs', ({ given, when, and, then }) => {
-    given('user Launch  the browser and enter the user portal URL', () => {      
-      launchBrowser()
-    });
-
-    when('user enter valid "<username or phone number>" and "<password>"', (arg0, arg1) => {
-      enterValidUsername()
-    });
-
-    and('clicks  on login button.', () => {
-      clickLogin()
-    });
-
-    and('navigate to the screen to view the list of documents that can be downloaded', () => {
-      navigateToDocumentsPage()
-    });
-
-    then('user should view the list of documents that can be downloaded', () => {
-      userSeeEmptyDocumentTable()
-    });
-
-    and('user should be able to view the list of documents with an option to download them as pdfs', () => {
-      userSeeTableAndDownloadBtn()
-    });
-  });
+  })
 
   test('EPIC_EPP-9_STORY_EPP-2714- Verify whether the user is able to view the forms at all the times i.e. not based on appointment scheduled', ({ given, when, and, then }) => {
-    given('user Launch  the browser and enter the user portal URL', () => {      
+    given('user Launch  the browser and enter the user portal URL', () => {
       launchBrowser()
     });
 
@@ -150,7 +124,7 @@ defineFeature(feature, (test) => {
       enterValidUsername()
     });
 
-    and('clicks  on login button.', () => {
+    and('clicks  on login button.', async () => {
       clickLogin()
     });
 
@@ -158,7 +132,7 @@ defineFeature(feature, (test) => {
       navigateToDocumentsPage()
     });
 
-    then('user should view the list of documents that can be downloaded', () => {
+    then('user should view the list of documents that can be downloaded', async () => {
       userSeeEmptyDocumentTable()
     });
 
@@ -175,38 +149,8 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('EPIC_EPP-9_STORY_EPP-2714- Verify whether the System should bring the list of documents from a folder in the backend', ({ given, when, and, then }) => {        
-    given('user Launch  the browser and enter the user portal URL', () => {      
-      launchBrowser()
-    });
-
-    when('user enter valid "<username or phone number>" and "<password>"', (arg0, arg1) => {
-      enterValidUsername()
-    });
-
-    and('clicks  on login button.', () => {
-      clickLogin()
-    });
-
-    and('navigate to the screen to view the list of documents that can be downloaded', () => {
-      navigateToDocumentsPage()
-    });
-
-    then('user should view the list of documents that can be downloaded', () => {
-      userSeeEmptyDocumentTable()
-    });
-
-    and('user should be able to view the list of documents with an option to download them as pdfs', () => {
-      userSeeTableAndDownloadBtn()
-    });
-
-    and('System should bring the list of documents from a folder in the backend', () => {
-      defaultValidation()
-    });
-  });
-
   test('EPIC_EPP-9_STORY_EPP-2714- Verify whether the user is able to view the file name of the document added in the backend as the display name for that document in front end', ({ given, when, and, then }) => {
-    given('user Launch  the browser and enter the user portal URL', () => {      
+    given('user Launch  the browser and enter the user portal URL', () => {
       launchBrowser()
     });
 
@@ -214,7 +158,7 @@ defineFeature(feature, (test) => {
       enterValidUsername()
     });
 
-    and('clicks  on login button.', () => {
+    and('clicks  on login button.', async () => {
       clickLogin()
     });
 
@@ -222,7 +166,7 @@ defineFeature(feature, (test) => {
       navigateToDocumentsPage()
     });
 
-    then('user should view the list of documents that can be downloaded', () => {
+    then('user should view the list of documents that can be downloaded', async () => {
       userSeeEmptyDocumentTable()
     });
 
@@ -231,6 +175,62 @@ defineFeature(feature, (test) => {
     });
 
     and('user should be able to view the file name of the document added in the backend as the display name for that document in front end', () => {
+      defaultValidation()
+    });
+  });
+
+  test('EPIC_EPP-9_STORY_EPP-2714- Verify whether the System should bring the list of documents from a folder in the backend', ({ given, when, and, then }) => {
+    given('user Launch  the browser and enter the user portal URL', () => {
+      launchBrowser()
+    });
+
+    when('user enter valid "<username or phone number>" and "<password>"', (arg0, arg1) => {
+      enterValidUsername()
+    });
+
+    and('clicks  on login button.', async () => {
+      clickLogin()
+    });
+
+    and('navigate to the screen to view the list of documents that can be downloaded', () => {
+      navigateToDocumentsPage()
+    });
+
+    then('user should view the list of documents that can be downloaded', async () => {
+      userSeeEmptyDocumentTable()
+    });
+
+    and('user should be able to view the list of documents with an option to download them as pdfs', () => {
+      userSeeTableAndDownloadBtn()
+    });
+
+    and('System should bring the list of documents from a folder in the backend', () => {
+
+    });
+  });
+
+  test('EPIC_EPP-9_STORY_EPP-2714- Verify whether the user is able to view the list of documents with an option to download them as pdfs', ({ given, when, and, then }) => {
+    given('user Launch  the browser and enter the user portal URL', () => {
+      launchBrowser()
+    });
+
+    when('user enter valid "<username or phone number>" and "<password>"', (arg0, arg1) => {
+      enterValidUsername()
+    });
+
+    and('clicks  on login button.', async () => {
+      clickLogin()
+    });
+
+    and('navigate to the screen to view the list of documents that can be downloaded', () => {
+      navigateToDocumentsPage()
+    });
+
+    then('user should view the list of documents that can be downloaded', async () => {
+      userSeeEmptyDocumentTable()
+    });
+
+    and('user should be able to view the list of documents with an option to download them as pdfs', () => {
       defaultValidation()
     });
   });

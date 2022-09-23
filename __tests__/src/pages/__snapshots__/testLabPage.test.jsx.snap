@@ -144,7 +144,6 @@ Object {
         >
           <div
             aria-label="Test & Lab Results heading"
-            aria-live="polite"
             class="title"
             tabindex="0"
           >
@@ -161,7 +160,7 @@ Object {
               class="MuiFormControl-root css-ynahvl-MuiFormControl-root"
             >
               <label
-                class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1pdzfj6-MuiFormLabel-root-MuiInputLabel-root"
+                class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-gll04g-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="false"
               >
                 Choose a category
@@ -223,7 +222,9 @@ Object {
                     />
                   </svg>
                    
-                  Your lab results are available. Please reach out to your provider.
+                  <div>
+                    Your lab results are available. Please reach out to your provider.
+                  </div>
                 </span>
                 <button
                   class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1f79hym-MuiButtonBase-root-MuiButton-root"
@@ -687,7 +688,6 @@ Object {
       >
         <div
           aria-label="Test & Lab Results heading"
-          aria-live="polite"
           class="title"
           tabindex="0"
         >
@@ -704,7 +704,7 @@ Object {
             class="MuiFormControl-root css-ynahvl-MuiFormControl-root"
           >
             <label
-              class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1pdzfj6-MuiFormLabel-root-MuiInputLabel-root"
+              class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-gll04g-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="false"
             >
               Choose a category
@@ -766,7 +766,9 @@ Object {
                   />
                 </svg>
                  
-                Your lab results are available. Please reach out to your provider.
+                <div>
+                  Your lab results are available. Please reach out to your provider.
+                </div>
               </span>
               <button
                 class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1f79hym-MuiButtonBase-root-MuiButton-root"
