@@ -7,6 +7,23 @@ import { Api } from "../../../../api/api";
 import { useEffect, useState } from "react";
 import DetailAppointment from "../../../../../components/organisms/DetailAppointment/detailAppointment";
 import { parseAppointmentDetails } from "../../../../../utils/appointment";
+import Cookies from "universal-cookie";
+
+export async function getServerSideProps({ req }) {
+  const cookies = new Cookies(req.headers.cookie);
+
+  if (!cookies.get("authorized")) {
+    return {
+      redirect: {
+        destination: "/patient/login",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+}
 
 export default function AppointmentDetails() {
   const [appointments, setAppointments] = useState();

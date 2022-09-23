@@ -272,7 +272,7 @@ exports[`App renders App unchanged 1`] = `
                               </span>
                             </div>
                             <div
-                              class="bioContainer MuiBox-root css-1oovyp6"
+                              class="bioContainer  MuiBox-root css-1oovyp6"
                             >
                               <h2
                                 class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-1i5ehwd-MuiTypography-root"
@@ -296,7 +296,7 @@ exports[`App renders App unchanged 1`] = `
                                     class="MuiBox-root css-0"
                                   >
                                     <p
-                                      class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
+                                      class="MuiTypography-root MuiTypography-body2 address  css-166djn1-MuiTypography-root"
                                       tabindex="0"
                                     />
                                   </div>
