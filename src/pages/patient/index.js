@@ -23,22 +23,6 @@ import { Box } from "@mui/system";
 
 import ModalCancelScheduling from "../../components/organisms/ScheduleAppointment/ModalCancelScheduling/modalCancelScheduling";
 
-export async function getServerSideProps({ req }) {
-  const cookies = new Cookies(req.headers.cookie);
-
-  if (!cookies.get("authorized")) {
-    return {
-      redirect: {
-        destination: "/patient/login",
-        permanent: false,
-      },
-    };
-  }
-  return {
-    props: {},
-  };
-}
-
 export default function HomePage() {
   const [filterSuggestionData, setFilterSuggestionData] = React.useState({});
   const [prescriptionData, setPrescriptionData] = React.useState({});
