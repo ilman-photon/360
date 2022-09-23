@@ -146,7 +146,7 @@ export default function MfaPage({ isStepTwo }) {
         }
 
         const securityQuestions = cookies.get("securityQuestions");
-        if (securityQuestions.length === 0) {
+        if (!securityQuestions) {
           onShowSecurityQuestionForm();
         } else {
           redirectToDashboard();
@@ -233,7 +233,7 @@ export default function MfaPage({ isStepTwo }) {
 
     const postBody = {
       username: cookies.get("username", { path: "/patient" }),
-      SecurityQuestions: [questionAnswer],
+      SetUpSecurityQuestions: [questionAnswer],
     };
     api
       .submitSecurityQuestion(postBody)

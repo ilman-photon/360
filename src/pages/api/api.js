@@ -85,7 +85,7 @@ export class Api {
   }
 
   resetPassword(postbody) {
-    const url = "/ecp/patient/resetPassword";
+    const url = "/ecp/patient/resetPasswordLink";
     return this.forgotFeatureValidation(url, postbody, "post");
   }
 
