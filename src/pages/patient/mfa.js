@@ -14,6 +14,7 @@ import { useTranslation } from "next-i18next";
 import { formatPhoneNumber } from "../../utils/phoneFormatter";
 import { Provider } from "react-redux";
 import store from "../../store/store";
+import { removeAuthCookies } from "../../utils/authetication";
 
 export async function getServerSideProps(context) {
   const cookies = new Cookies(context.req.headers.cookie);
@@ -40,7 +41,7 @@ export default function MfaPage({ isStepTwo }) {
   const cookies = new Cookies();
   const router = useRouter();
   const username = cookies.get("username", { path: "/patient" });
-  const ip = cookies.get("ip", { path: "/patient" });
+  // const ip = cookies.get("ip", { path: "/patient" });
   const [componentName, setComponentName] = React.useState("");
   const [rememberMe, setRememberMe] = React.useState(false);
   const [successSubmit, setSuccessSubmit] = React.useState(false);
@@ -55,23 +56,16 @@ export default function MfaPage({ isStepTwo }) {
   };
 
   React.useEffect(() => {
-    if (Object.keys(communicationMethod).length == 0) {
-      const postBody = {
-        username,
-      };
-      api
-        .getUserData(postBody)
-        .then((response) => {
-          const method = response.communicationMethod;
-          if (method.phone) {
-            method.phone = formatPhoneNumber(method.phone, true);
-          }
-          setCommunicationMethod(method);
-        })
-        .catch(() => {
-          // This is intentional
-        });
-    }
+    // if (Object.keys(communicationMethod).length == 0) {
+    //   const userData = JSON.parse(localStorage.getItem("userData"));
+    //   //console.log("111",userData)
+    //   // const communicationMethod = {
+    //   //   "email": "patient1@photoninfotech.net",
+    //   //   "phone": "(977) 623-4567"
+    //   // }
+    //   const communicationMethod = userData.communicationMethod;
+    //   setCommunicationMethod(communicationMethod);
+    // }
     window.history.pushState(null, null, window.location.pathname);
     window.addEventListener("popstate", onBackButtonEvent);
     return () => {
@@ -86,7 +80,7 @@ export default function MfaPage({ isStepTwo }) {
   };
 
   function onConfirmClicked(communication, callback) {
-    const deviceId = ip.replace(/\./g, "");
+    const deviceId = ""; //ip.replace(/\./g, "");
     const postBody = {
       username,
       deviceId,
@@ -113,11 +107,7 @@ export default function MfaPage({ isStepTwo }) {
   }
 
   function onBackToLoginClicked() {
-    cookies.remove("mfa", { path: "/patient" });
-    cookies.remove("username", { path: "/patient" });
-    cookies.remove("ip", { path: "/patient" });
-    cookies.remove("mfaAccessToken", { path: "/patient" });
-    cookies.remove("isStay", { path: "/patient" });
+    removeAuthCookies();
     router.push("/patient/login");
   }
 
@@ -178,7 +168,7 @@ export default function MfaPage({ isStepTwo }) {
   }
 
   function onResendCodeClicked(callback) {
-    const deviceId = ip.replace(/\./g, "");
+    const deviceId = ""; //ip.replace(/\./g, "");
     const postBody = {
       username,
       deviceId,
@@ -345,7 +335,7 @@ export default function MfaPage({ isStepTwo }) {
         onBackToLoginClicked={onBackToLoginClicked}
         rememberMe={rememberMe}
         setRememberMe={onSetRememberMe}
-        data={communicationMethod}
+        data={JSON.parse(localStorage.getItem("userData"))}
         testIds={MFA_TEST_ID}
       />
     );
