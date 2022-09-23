@@ -277,7 +277,7 @@ function getLatestDate(glassesDate, contactDate, medicationDate) {
   }
 }
 
-function parsePrescriptionItemMediaction(medications) {
+function parsePrescriptionItemMedication(medications) {
   const past = [];
   const active = [];
   let latestDateMedic = "";
@@ -290,7 +290,7 @@ function parsePrescriptionItemMediaction(medications) {
     medicationData.date = ddmmyyDateFormat(date);
     medicationData.prescribedBy = "Dr. Philip Morris";
     medicationData.expirationDate = ddmmyyDateFormat(
-      "2022-09-11T11:18:47.229Z"
+      medications[index].expiredDate || "2022-10-02T11:18:47.229Z"
     );
     medicationData.fillRequestDate = ddmmyyDateFormat(
       "2022-09-02T11:18:47.229Z"
@@ -344,7 +344,7 @@ export function parsePrescriptionData(prescriptions) {
   if (prescriptions.medications && prescriptions.medications.length > 0) {
     const medications = prescriptions.medications;
     const { active, past, latestDateMedic } =
-      parsePrescriptionItemMediaction(medications);
+      parsePrescriptionItemMedication(medications);
     medicationDate = latestDateMedic;
 
     parsePrescriptions["medications"] = {

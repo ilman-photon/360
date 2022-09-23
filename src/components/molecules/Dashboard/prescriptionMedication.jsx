@@ -25,6 +25,7 @@ import constants from "../../../utils/constants";
 import { colors } from "../../../styles/theme";
 import { useEffect } from "react";
 import FormMessage from "../FormMessage/formMessage";
+import moment from "moment";
 
 export default function PrescriptionMedication({
   medications = {
@@ -366,23 +367,27 @@ export default function PrescriptionMedication({
                 Take 2 times a day
               </Typography>
             </Stack>
-            {data.status !== "refill request" ? (
-              <StyledButton
-                mode={constants.PRIMARY}
-                gradient={false}
-                onClick={() => onRequestCancelRefill(data, false)}
-                className={styles.requestButton}
-              >
-                Request Refill
-              </StyledButton>
-            ) : (
-              <StyledButton
-                mode={constants.SECONDARY}
-                onClick={() => onRequestCancelRefill(data, true)}
-                className={styles.requestButton}
-              >
-                Cancel Refill Request
-              </StyledButton>
+            {moment(data.expirationDate) < moment() && (
+              <>
+                {data.status !== "refill request" ? (
+                  <StyledButton
+                    mode={constants.PRIMARY}
+                    gradient={false}
+                    onClick={() => onRequestCancelRefill(data, false)}
+                    className={styles.requestButton}
+                  >
+                    Request Refill
+                  </StyledButton>
+                ) : (
+                  <StyledButton
+                    mode={constants.SECONDARY}
+                    onClick={() => onRequestCancelRefill(data, true)}
+                    className={styles.requestButton}
+                  >
+                    Cancel Refill Request
+                  </StyledButton>
+                )}
+              </>
             )}
           </Stack>
         </Stack>
