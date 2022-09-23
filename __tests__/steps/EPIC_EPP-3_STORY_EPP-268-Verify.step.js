@@ -57,7 +57,7 @@ defineFeature(feature, (test) => {
 
     getServerSideProps(contex);
     container = render(<MfaPage />);
-    //await waitFor(() => container.getByText("communicationMethodTitle"));
+    await waitFor(() => container.getByText("backToLoginBtn"));
   });
   afterEach(() => {
     mock.reset();
@@ -78,8 +78,7 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
     });
 
     and(
@@ -91,8 +90,7 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
       }
     );
 
@@ -103,8 +101,7 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
     });
 
     and(/^user fill (.*) field with invalid code$/, async (arg0) => {
@@ -114,8 +111,7 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      ////await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
     });
 
     when(/^user click on "(.*)" button$/, async (arg0) => {
@@ -125,8 +121,7 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
     });
 
     then(/^user should see error message "(.*)"$/, async (arg0) => {
@@ -136,8 +131,7 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
     });
 
     and(
@@ -149,8 +143,7 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
       }
     );
   });
@@ -169,8 +162,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -183,8 +176,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -196,8 +189,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -208,8 +201,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -220,8 +213,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -232,8 +225,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -246,8 +239,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -268,8 +261,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -282,8 +275,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -295,8 +288,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -307,8 +300,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -319,8 +312,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -331,8 +324,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -345,8 +338,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -367,8 +360,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -381,8 +374,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -394,8 +387,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -406,8 +399,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -418,8 +411,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -430,8 +423,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -444,8 +437,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -466,8 +459,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -480,8 +473,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -493,8 +486,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -505,8 +498,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -517,8 +510,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -529,8 +522,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -543,8 +536,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -565,8 +558,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -579,8 +572,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -592,8 +585,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -604,8 +597,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -616,8 +609,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -628,8 +621,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -642,8 +635,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -664,8 +657,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -678,8 +671,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -691,8 +684,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -703,8 +696,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -715,8 +708,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -727,8 +720,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -741,8 +734,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -754,8 +747,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -766,8 +759,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -778,8 +771,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -792,8 +785,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -805,8 +798,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -817,8 +810,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -829,8 +822,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -843,8 +836,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -856,8 +849,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
   });
@@ -877,8 +870,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -891,8 +884,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -904,8 +897,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -916,8 +909,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -928,8 +921,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -940,8 +933,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -954,8 +947,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -967,8 +960,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -979,8 +972,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -991,8 +984,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1005,8 +998,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -1018,8 +1011,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1030,8 +1023,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1042,8 +1035,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1056,8 +1049,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -1069,8 +1062,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
   });
@@ -1090,8 +1083,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1104,8 +1097,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -1117,8 +1110,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1129,8 +1122,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1141,8 +1134,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1153,8 +1146,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1167,8 +1160,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -1180,8 +1173,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1192,8 +1185,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1204,8 +1197,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1218,8 +1211,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -1231,8 +1224,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1243,8 +1236,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1255,8 +1248,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1269,8 +1262,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -1282,8 +1275,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
   });
@@ -1304,8 +1297,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1318,8 +1311,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -1331,8 +1324,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1343,8 +1336,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1355,8 +1348,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1381,8 +1374,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1395,8 +1388,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -1408,8 +1401,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1420,8 +1413,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1432,8 +1425,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1458,8 +1451,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1472,8 +1465,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -1485,8 +1478,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1499,8 +1492,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -1523,8 +1516,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1537,8 +1530,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );
@@ -1550,8 +1543,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1562,8 +1555,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1574,8 +1567,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1586,8 +1579,8 @@ defineFeature(feature, (test) => {
           legacyRoot: true,
         });
       });
-      //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-      expect(container).toMatchSnapshot();
+      await waitFor(() => container.getByText("backToLoginBtn"));
+
       expect(true).toBeTruthy();
     });
 
@@ -1600,8 +1593,8 @@ defineFeature(feature, (test) => {
             legacyRoot: true,
           });
         });
-        //await waitFor(() => container.getByText(/communicationMethodTitle/i));
-        expect(container).toMatchSnapshot();
+        await waitFor(() => container.getByText("backToLoginBtn"));
+
         expect(true).toBeTruthy();
       }
     );

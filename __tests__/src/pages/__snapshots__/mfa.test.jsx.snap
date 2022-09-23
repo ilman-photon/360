@@ -216,7 +216,7 @@ Object {
               class="css-1p5q5e5-MuiStack-root"
             >
               <button
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 data-testid="loc_btnConfirm"
                 tabindex="0"
                 type="button"
@@ -227,7 +227,7 @@ Object {
                 />
               </button>
               <button
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-19s7hx2-MuiButtonBase-root-MuiButton-root"
                 data-testid="loc_btnBack"
                 tabindex="0"
                 type="button"
@@ -461,7 +461,7 @@ Object {
             class="css-1p5q5e5-MuiStack-root"
           >
             <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
               data-testid="loc_btnConfirm"
               tabindex="0"
               type="button"
@@ -472,7 +472,7 @@ Object {
               />
             </button>
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-19s7hx2-MuiButtonBase-root-MuiButton-root"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-19s7hx2-MuiButtonBase-root-MuiButton-root"
               data-testid="loc_btnBack"
               tabindex="0"
               type="button"
