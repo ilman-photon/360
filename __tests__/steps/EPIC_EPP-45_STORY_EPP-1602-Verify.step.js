@@ -9,7 +9,7 @@ import store from "../../src/store/store";
 import constants, { TEST_ID } from "../../src/utils/constants";
 import mediaQuery from 'css-mediaquery';
 import { Login } from "../../src/components/organisms/Login/login";
-import Appointments from "../../src/pages/patient/appointments";
+import Appointments, { getServerSideProps } from "../../src/pages/patient/appointments";
 import RescheduleAppointments from "../../src/pages/patient/appointments/[appointmentId]/reschedule";
 import FilterResult from "../../src/components/molecules/FilterResult/filterResult";
 import ScheduleAppointmentPage from "../../src/pages/patient/schedule-appointment";
@@ -347,80 +347,80 @@ const providerList = [
 
 const userData = {
   appointmentList: [
-      {
-          appointmentId: "1",
-          providerInfo: {
-              providerId: "1",
-              name: "Paul Wagner Md",
-              position: "Scripps Eyecare",
-              address: {
-                  addressLine1: "51 West 51st Street",
-                  addressLine2: "Floor 3, Suite 320 Midtown",
-                  city: "Florida",
-                  state: "FR",
-                  zipcode: "54231",
-              },
-              rating: "5",
-              phoneNumber: "8572999989",
-              distance: "10 mi",
-              image: "/doctor.png",
-              from: "2022-07-18",
-              to: "2022-07-23",
-              location: {
-                  latitude: 32.751204,
-                  longitude: -117.1641166,
-              },
-          },
-          patientInfo: {
-              name: "Rebecca Chan",
-              firstname: "Rebecca",
-              lastname: "Chan",
-              dob: "12/12/2022",
-              phoneNumber: "1234567890",
-          },
-          appointmentInfo: {
-              appointmentType: "Eye Exam",
-              date: "Thu, 12 Jan 2023 04:30:00 EST",
-              insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
-          },
+    {
+      appointmentId: "1",
+      providerInfo: {
+        providerId: "1",
+        name: "Paul Wagner Md",
+        position: "Scripps Eyecare",
+        address: {
+          addressLine1: "51 West 51st Street",
+          addressLine2: "Floor 3, Suite 320 Midtown",
+          city: "Florida",
+          state: "FR",
+          zipcode: "54231",
+        },
+        rating: "5",
+        phoneNumber: "8572999989",
+        distance: "10 mi",
+        image: "/doctor.png",
+        from: "2022-07-18",
+        to: "2022-07-23",
+        location: {
+          latitude: 32.751204,
+          longitude: -117.1641166,
+        },
       },
-      {
-          appointmentId: "1",
-          providerInfo: {
-              providerId: "1",
-              name: "Dr. Sonha Nguyen",
-              position: "Scripps Eyecare",
-              address: {
-                  addressLine1: "51 West 51st Street",
-                  addressLine2: "Floor 3, Suite 320 Midtown",
-                  city: "Florida",
-                  state: "FR",
-                  zipcode: "54231",
-              },
-              rating: "5",
-              phoneNumber: "8572999989",
-              distance: "10 mi",
-              image: "/doctor.png",
-              from: "2022-07-18",
-              to: "2022-07-23",
-              location: {
-                  latitude: 32.751204,
-                  longitude: -117.1641166,
-              },
-          },
-          patientInfo: {
-              name: "Rebecca Chan",
-              firstname: "Rebecca",
-              lastname: "Chan",
-              dob: "12/12/2022",
-              phoneNumber: "1234567890",
-          },
-          appointmentInfo: {
-              appointmentType: "Eye Exam",
-              date: "Thu, 12 Jan 2023 04:30:00 EST",
-              insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
-          },
+      patientInfo: {
+        name: "Rebecca Chan",
+        firstname: "Rebecca",
+        lastname: "Chan",
+        dob: "12/12/2022",
+        phoneNumber: "1234567890",
       },
+      appointmentInfo: {
+        appointmentType: "Eye Exam",
+        date: "Thu, 12 Jan 2023 04:30:00 EST",
+        insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+      },
+    },
+    {
+      appointmentId: "1",
+      providerInfo: {
+        providerId: "1",
+        name: "Dr. Sonha Nguyen",
+        position: "Scripps Eyecare",
+        address: {
+          addressLine1: "51 West 51st Street",
+          addressLine2: "Floor 3, Suite 320 Midtown",
+          city: "Florida",
+          state: "FR",
+          zipcode: "54231",
+        },
+        rating: "5",
+        phoneNumber: "8572999989",
+        distance: "10 mi",
+        image: "/doctor.png",
+        from: "2022-07-18",
+        to: "2022-07-23",
+        location: {
+          latitude: 32.751204,
+          longitude: -117.1641166,
+        },
+      },
+      patientInfo: {
+        name: "Rebecca Chan",
+        firstname: "Rebecca",
+        lastname: "Chan",
+        dob: "12/12/2022",
+        phoneNumber: "1234567890",
+      },
+      appointmentInfo: {
+        appointmentType: "Eye Exam",
+        date: "Thu, 12 Jan 2023 04:30:00 EST",
+        insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+      },
+    },
   ],
 }
 
@@ -1040,23 +1040,23 @@ const mockSubmitFilter = {
 }
 
 defineFeature(feature, (test) => {
-	let container;
+  let container;
   const { APPOINTMENT_TEST_ID, SEARCH_PROVIDER_TEST_ID } = constants.TEST_ID
-	const mock = new MockAdapter(axios);
+  const mock = new MockAdapter(axios);
 
-	const defaultValidation = () => {
-		expect(true).toBeTruthy();
-	};
+  const defaultValidation = () => {
+    expect(true).toBeTruthy();
+  };
 
-	function createMatchMedia(width) {
-		return query => ({
-			matches: mediaQuery.match(query, { width }),
-			addListener: () => { },
-			removeListener: () => { },
-		});
-	}
+  function createMatchMedia(width) {
+    return query => ({
+      matches: mediaQuery.match(query, { width }),
+      addListener: () => { },
+      removeListener: () => { },
+    });
+  }
 
-  async function isLoggedIn () {
+  async function isLoggedIn() {
     const mockOnLoginClicked = jest.fn((data, route, callback) => {
       callback({
         status: "success",
@@ -1085,10 +1085,15 @@ defineFeature(feature, (test) => {
     mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
   }
 
-  async function userInAppointmentsPage () {
+  async function userInAppointmentsPage() {
     mock
       .onGet(`${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment`)
       .reply(200, userData);
+
+    await getServerSideProps({
+      req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
+      res: jest.fn(),
+    });
     act(() => {
       container.rerender(
         <Provider store={store}>
@@ -1103,7 +1108,7 @@ defineFeature(feature, (test) => {
     expect(container.getByText(/Upcoming appointments/i).textContent).toEqual("Upcoming appointments")
   }
 
-  async function userSeeListAppointment () {
+  async function userSeeListAppointment() {
     await waitFor(() => {
       container.getByText(/Upcoming appointments/i)
     })
@@ -1111,18 +1116,21 @@ defineFeature(feature, (test) => {
     expect(container.getByText(/Upcoming appointments/i).textContent).toEqual("Upcoming appointments")
   }
 
-  async function userSeeRescheduleAndCancel () {
+  async function userSeeRescheduleAndCancel() {
     const cancelBtn = await waitFor(() => container.getAllByTestId(TEST_ID.APPOINTMENTS_TEST_ID.cancelAppointmentButton)[0])
     const rescheduleBtn = await waitFor(() => container.getAllByTestId(TEST_ID.APPOINTMENTS_TEST_ID.rescheduleAppointmentButton)[0])
     expect(cancelBtn).toBeInTheDocument()
     expect(rescheduleBtn).toBeInTheDocument()
   }
 
-  async function userClickReschedule () {
-    const rescheduleButtons =await waitFor(() => container.getAllByTestId(TEST_ID.APPOINTMENTS_TEST_ID.rescheduleAppointmentButton))
+  async function userClickReschedule() {
+    const rescheduleButtons = await waitFor(() => container.getAllByTestId(TEST_ID.APPOINTMENTS_TEST_ID.rescheduleAppointmentButton))
+    await getServerSideProps({
+      req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
+      res: jest.fn(),
+    });
     act(() => {
       fireEvent.click(rescheduleButtons[0]);
-      
       container.rerender(
         <Provider store={store}>
           {RescheduleAppointments.getLayout(<RescheduleAppointments />)}
@@ -1135,7 +1143,7 @@ defineFeature(feature, (test) => {
     });
   }
 
-  async function userViewLocationWithEdit () {
+  async function userViewLocationWithEdit() {
     await waitFor(() => container.getByTestId(TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_LOCATION.address))
     const editButton = await waitFor(() => container.getByTestId(TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_LOCATION.editButton))
 
@@ -1144,7 +1152,7 @@ defineFeature(feature, (test) => {
     })
   }
 
-  async function userViewDateWithEdit () {
+  async function userViewDateWithEdit() {
     await waitFor(() => container.getByTestId(TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_DETAILS.date))
     const editButton = await waitFor(() => container.getByTestId(TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_DETAILS.editButton))
 
@@ -1153,7 +1161,7 @@ defineFeature(feature, (test) => {
     })
   }
 
-  async function userViewTimeSlotResult () {
+  async function userViewTimeSlotResult() {
     const mockGeolocation = {
       getCurrentPosition: jest.fn(),
       watchPosition: jest.fn()
@@ -1176,14 +1184,14 @@ defineFeature(feature, (test) => {
     });
   }
 
-  async function userViewPurposeWithEdit () {
+  async function userViewPurposeWithEdit() {
     const purposeInput = await waitFor(() => container.getByTestId("select-purposes-of-visit"))
     act(() => {
       fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
     });
   }
 
-  async function userViewInsuranceWithEdit () {
+  async function userViewInsuranceWithEdit() {
     const insuranceInput = await waitFor(() => container.getByLabelText("Insurance Carrier"))
     act(() => {
       fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
@@ -1221,7 +1229,7 @@ defineFeature(feature, (test) => {
     })
   }
 
-  async function userNavigatesToSchedulePage () {
+  async function userNavigatesToSchedulePage() {
     act(() => {
       container.rerender(
         <Provider store={store}>
@@ -1234,25 +1242,25 @@ defineFeature(feature, (test) => {
   async function userViewScheduleButton () {
     await waitFor(() => container.getByText("Review Appointment Details"));
 
-      const scheduleBtn = await waitFor(() => container.getByText(/Schedule Appointment/i))
-      act(() => {
-        fireEvent.click(scheduleBtn)
-      })
+    const scheduleBtn = await waitFor(() => container.getByText(/Schedule Appointment/i))
+    act(() => {
+      fireEvent.click(scheduleBtn)
+    })
   }
 
-  async function userPromptedWithConfirmationDialog () {
+  async function userPromptedWithConfirmationDialog() {
     const dialogConfirmation = await waitFor(() => container.getByText("Are you sure you want to reschedule?"))
     expect(dialogConfirmation).toBeInTheDocument()
   }
 
-  async function userClickConfirmReschedule () {
+  async function userClickConfirmReschedule() {
     const confirmBtn = await waitFor(() => container.getByTestId(TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.DIALOG_CONFIRMATION_RESCHEDULE.confirmBtn))
     act(() => {
       fireEvent.click(confirmBtn)
     })
   }
 
-  async function userClickDenyReschedule () {
+  async function userClickDenyReschedule() {
     const denyBtn = await waitFor(() => container.getByTestId(TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.CONFIRMATION_RESCHEDULE.denyBtn))
     act(() => {
       fireEvent.click(denyBtn)
@@ -1304,11 +1312,11 @@ defineFeature(feature, (test) => {
       userViewTimeSlotResult()
     });
 
-    and('user view the selected purpose of visit and able to change', async () => {    
+    and('user view the selected purpose of visit and able to change', async () => {
       userViewPurposeWithEdit()
     });
 
-    and('user view the selected Insurance Career and able to change', async () => {    
+    and('user view the selected Insurance Career and able to change', async () => {
       userViewInsuranceWithEdit()
     });
 
@@ -1382,11 +1390,11 @@ defineFeature(feature, (test) => {
       userViewTimeSlotResult()
     });
 
-    and('user view the selected purpose of visit and able to change', async () => {    
+    and('user view the selected purpose of visit and able to change', async () => {
       userViewPurposeWithEdit()
     });
 
-    and('user view the selected Insurance Career and able to change', async () => {    
+    and('user view the selected Insurance Career and able to change', async () => {
       userViewInsuranceWithEdit()
     });
 
@@ -1460,11 +1468,11 @@ defineFeature(feature, (test) => {
       userViewTimeSlotResult()
     });
 
-    and('user view the selected purpose of visit and able to change', async () => {    
+    and('user view the selected purpose of visit and able to change', async () => {
       userViewPurposeWithEdit()
     });
 
-    and('user view the selected Insurance Career and able to change', async () => {    
+    and('user view the selected Insurance Career and able to change', async () => {
       userViewInsuranceWithEdit()
     });
 
@@ -1538,11 +1546,11 @@ defineFeature(feature, (test) => {
       userViewTimeSlotResult()
     });
 
-    and('user view the selected purpose of visit and able to change', async () => {    
+    and('user view the selected purpose of visit and able to change', async () => {
       userViewPurposeWithEdit()
     });
 
-    and('user view the selected Insurance Career and able to change', async () => {    
+    and('user view the selected Insurance Career and able to change', async () => {
       userViewInsuranceWithEdit()
     });
 
@@ -1604,11 +1612,11 @@ defineFeature(feature, (test) => {
       userViewTimeSlotResult()
     });
 
-    and('user view the selected purpose of visit and able to change', async () => {    
+    and('user view the selected purpose of visit and able to change', async () => {
       userViewPurposeWithEdit()
     });
 
-    and('user view the selected Insurance Career and able to change', async () => {    
+    and('user view the selected Insurance Career and able to change', async () => {
       userViewInsuranceWithEdit()
     });
 
@@ -1678,11 +1686,11 @@ defineFeature(feature, (test) => {
       userViewTimeSlotResult()
     });
 
-    and('user view the selected purpose of visit and able to change', async () => {    
+    and('user view the selected purpose of visit and able to change', async () => {
       userViewPurposeWithEdit()
     });
 
-    and('user view the selected Insurance Career and able to change', async () => {    
+    and('user view the selected Insurance Career and able to change', async () => {
       userViewInsuranceWithEdit()
     });
 
@@ -1713,7 +1721,7 @@ defineFeature(feature, (test) => {
     and(/^User should see the page loads within (\d+) seconds$/, (arg0) => {
       defaultValidation()
     });
-});
+  });
 
   test('EPIC_EPP-45_STORY_EPP-1602 - Verify user able to see “Are you sure you want to reschedule?” as a confirmation message', ({ given, when, and, then }) => {
     given('user launch Patient Portal url', () => {
@@ -1760,11 +1768,11 @@ defineFeature(feature, (test) => {
       userViewTimeSlotResult()
     });
 
-    and('user view the selected purpose of visit and able to change', async () => {    
+    and('user view the selected purpose of visit and able to change', async () => {
       userViewPurposeWithEdit()
     });
 
-    and('user view the selected Insurance Career and able to change', async () => {    
+    and('user view the selected Insurance Career and able to change', async () => {
       userViewInsuranceWithEdit()
     });
 
@@ -1788,7 +1796,7 @@ defineFeature(feature, (test) => {
       defaultValidation()
     });
 
-    when('user selected on their preferred method of communication', () => {     
+    when('user selected on their preferred method of communication', () => {
       defaultValidation()
     });
 
@@ -1842,11 +1850,11 @@ defineFeature(feature, (test) => {
       userViewTimeSlotResult()
     });
 
-    and('user view the selected purpose of visit and able to change', async () => {    
+    and('user view the selected purpose of visit and able to change', async () => {
       userViewPurposeWithEdit()
     });
 
-    and('user view the selected Insurance Career and able to change', async () => {    
+    and('user view the selected Insurance Career and able to change', async () => {
       userViewInsuranceWithEdit()
     });
 
@@ -1884,7 +1892,7 @@ defineFeature(feature, (test) => {
   });
 
   test('EPIC_EPP-45_STORY_EPP-1602 - Negative Test Cases-Verify  when the service is unavailable', ({ given, when, and, then }) => {
-     given('user launch Patient Portal url', () => {
+    given('user launch Patient Portal url', () => {
       defaultValidation()
     });
 
@@ -1928,11 +1936,11 @@ defineFeature(feature, (test) => {
       userViewTimeSlotResult()
     });
 
-    and('user view the selected purpose of visit and able to change', async () => {    
+    and('user view the selected purpose of visit and able to change', async () => {
       userViewPurposeWithEdit()
     });
 
-    and('user view the selected Insurance Career and able to change', async () => {    
+    and('user view the selected Insurance Career and able to change', async () => {
       userViewInsuranceWithEdit()
     });
 
@@ -2014,11 +2022,11 @@ defineFeature(feature, (test) => {
       userViewTimeSlotResult()
     });
 
-    and('user view the selected purpose of visit and able to change', async () => {    
+    and('user view the selected purpose of visit and able to change', async () => {
       userViewPurposeWithEdit()
     });
 
-    and('user view the selected Insurance Career and able to change', async () => {    
+    and('user view the selected Insurance Career and able to change', async () => {
       userViewInsuranceWithEdit()
     });
 
@@ -2100,11 +2108,11 @@ defineFeature(feature, (test) => {
       userViewTimeSlotResult()
     });
 
-    and('user view the selected purpose of visit and able to change', async () => {    
+    and('user view the selected purpose of visit and able to change', async () => {
       userViewPurposeWithEdit()
     });
 
-    and('user view the selected Insurance Career and able to change', async () => {    
+    and('user view the selected Insurance Career and able to change', async () => {
       userViewInsuranceWithEdit()
     });
 

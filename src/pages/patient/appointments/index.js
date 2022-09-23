@@ -20,6 +20,24 @@ import FormMessage from "../../../components/molecules/FormMessage/formMessage";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { colors } from "../../../styles/theme";
 import ModalCancelScheduling from "../../../components/organisms/ScheduleAppointment/ModalCancelScheduling/modalCancelScheduling";
+import Cookies from "universal-cookie";
+
+export async function getServerSideProps({ req }) {
+  const cookies = new Cookies(req.headers.cookie);
+
+  if (!cookies.get("authorized")) {
+    return {
+      redirect: {
+        destination: "/patient/login",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+}
+
 export default function Appointments() {
   const [modalErrorRequest, setModalErrorRequest] = useState(false);
   const [modalSuccessCancel, setModalSuccessCancel] = useState(false);
@@ -31,6 +49,7 @@ export default function Appointments() {
 
   const router = useRouter();
   const dispatch = useDispatch();
+  const isMobile = useMediaQuery("(max-width: 992px)");
 
   const getAppointments = () => {
     const api = new Api();
@@ -93,9 +112,11 @@ export default function Appointments() {
       <Box className={styles.container}>
         <AccountTitleHeading
           title={"Appointments"}
-          sx={{
-            padding: "27px 10px",
-          }}
+          sx={
+            isMobile && {
+              padding: "27px 10px",
+            }
+          }
         />
         {appointments && (
           <UpcomingAppointment

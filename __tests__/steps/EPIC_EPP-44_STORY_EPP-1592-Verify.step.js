@@ -4,7 +4,6 @@ import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import { Provider } from "react-redux";
-import Appointments from "../../src/pages/patient/appointments";
 import store from "../../src/store/store";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 import constants from "../../src/utils/constants";
