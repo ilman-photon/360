@@ -28,7 +28,7 @@ Object {
             >
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-lw08pq-MuiSvgIcon-root"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconDisableSchedule css-lw08pq-MuiSvgIcon-root"
                 data-testid="appointment_all_availability_previous_week_button"
                 focusable="false"
                 viewBox="0 0 24 24"
@@ -99,7 +99,7 @@ Object {
           >
             <svg
               aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-lw08pq-MuiSvgIcon-root"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconDisableSchedule css-lw08pq-MuiSvgIcon-root"
               data-testid="appointment_all_availability_previous_week_button"
               focusable="false"
               viewBox="0 0 24 24"
@@ -227,7 +227,7 @@ Object {
             >
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-lw08pq-MuiSvgIcon-root"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconDisableSchedule css-lw08pq-MuiSvgIcon-root"
                 data-testid="appointment_all_availability_previous_week_button"
                 focusable="false"
                 viewBox="0 0 24 24"
@@ -297,7 +297,7 @@ Object {
             >
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-lw08pq-MuiSvgIcon-root"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconDisableSchedule css-lw08pq-MuiSvgIcon-root"
                 data-testid="appointment_all_availability_previous_week_button"
                 focusable="false"
                 viewBox="0 0 24 24"
@@ -368,7 +368,7 @@ Object {
           >
             <svg
               aria-hidden="true"
-              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconSchedule css-lw08pq-MuiSvgIcon-root"
+              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium iconDisableSchedule css-lw08pq-MuiSvgIcon-root"
               data-testid="appointment_all_availability_previous_week_button"
               focusable="false"
               viewBox="0 0 24 24"

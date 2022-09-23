@@ -5,7 +5,6 @@ import "@testing-library/jest-dom";
 import store from "../src/store/store";
 import { TEST_ID } from "../src/utils/constants";
 import ForgotPasswordPage from "../src/pages/patient/forgot-password";
-
 export function createMatchMedia(width) {
   return (query) => ({
     matches: mediaQuery.match(query, { width }),

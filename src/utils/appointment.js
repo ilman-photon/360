@@ -328,6 +328,17 @@ export function parseAppointmentCardData(appointmentData) {
   return data;
 }
 
+export function isPrevArrowDisable(dateList, currentDate = null) {
+  if (currentDate) {
+    return new Date() > currentDate;
+  } else {
+    return (
+      new Date() >
+      (dateList?.dateRange?.length > 0 ? dateList.dateRange[0] : null)
+    );
+  }
+}
+
 export function parseAppointmentDetails(appointmentDetails) {
   const data = JSON.parse(JSON.stringify(appointmentDetails));
 
