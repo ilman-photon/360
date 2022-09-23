@@ -168,8 +168,8 @@ export default function BaseHeader({
                 <Tooltip title="Open settings">
                   <Button
                     variant="text"
-                    sx={styles.boxButtonStyles}
-                    startIcon={<Avatar />}
+                    sx={[styles.boxButtonStyles, styles.userText]}
+                    startIcon={<Avatar sx={{ background: "#003B4A" }} />}
                     data-testid="user-menu-open"
                     endIcon={<ExpandMoreIcon />}
                     onClick={handleOpenUserMenu}

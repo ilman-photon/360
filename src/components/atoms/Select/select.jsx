@@ -18,7 +18,7 @@ const CustomSelect = (props) => {
             fontWeight: 600,
           },
           "&.Mui-error": {
-            color: "#B00020",
+            color: "#B93632",
           },
           "&.Mui-focused": {
             color: colors.darkGreen,
