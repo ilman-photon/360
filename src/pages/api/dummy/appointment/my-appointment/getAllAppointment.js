@@ -82,11 +82,13 @@ export default function getAllAppointment(req, res) {
       ],
     };
     const patientId = cookie.get("patientId");
-    if (patientId == "7300529f-ce7e-4f8e-946b-92d498a4b03d") {
+    if (patientId == "2efef720-4bfc-4fb7-b1a2-19fd11c67eba") {
+      //patient 3: 10 appointments
       responseData = {
         appointmentList: [],
       };
-    } else if (patientId == "ccc5a017-1339-404a-87cc-a8f863b27bdc") {
+    } else if (patientId == "1cd0eee2-3bf6-4606-aec0-f80dff4eedf7") {
+      //patient 5: 10 appointments
       const mockData = {
         appointmentId: "1",
         providerInfo: {
@@ -151,7 +153,8 @@ export default function getAllAppointment(req, res) {
           ...mockData,
         });
       }
-    } else if (patientId == "0f8baebc-7820-497b-8e27-a7356adce58c") {
+    } else if (patientId == "9832a190-f682-4d32-81c9-8f6cdf6a32b4") {
+      //patient 4: can't reschedule
       const dateMock = new Date();
       const eyeCare = new Date(dateMock.setHours(dateMock.getHours() + 2));
       const comprehensive = new Date(
