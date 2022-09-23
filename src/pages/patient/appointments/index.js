@@ -14,7 +14,6 @@ import {
   setFilterData,
 } from "../../../store/appointment";
 import { setUserAppointmentData } from "../../../store/user";
-import { TEST_ID } from "../../../utils/constants";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CustomModal from "../../../components/molecules/CustomModal/customModal";
 import FormMessage from "../../../components/molecules/FormMessage/formMessage";
@@ -32,7 +31,6 @@ export default function Appointments() {
 
   const router = useRouter();
   const dispatch = useDispatch();
-  const isMobile = useMediaQuery("(max-width: 992px)");
 
   const getAppointments = () => {
     const api = new Api();

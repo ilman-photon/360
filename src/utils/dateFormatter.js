@@ -65,7 +65,8 @@ export function mmddyyDateFormat(date) {
 
 export function fullDateFormat(date) {
   const timezone = date.substring(date.length - 3);
-  const momentDate = new moment(date);
+  const dateObj = new Date(date);
+  const momentDate = new moment(dateObj);
   const time = momentDate.format("h:mm a");
   const formatedDateTime = momentDate.format("ddd, MMM DD, YYYY");
   return `${time} ${timezone}, ${formatedDateTime}`;
