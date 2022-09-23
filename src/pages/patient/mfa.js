@@ -56,16 +56,11 @@ export default function MfaPage({ isStepTwo }) {
   };
 
   React.useEffect(() => {
-    // if (Object.keys(communicationMethod).length == 0) {
-    //   const userData = JSON.parse(localStorage.getItem("userData"));
-    //   //console.log("111",userData)
-    //   // const communicationMethod = {
-    //   //   "email": "patient1@photoninfotech.net",
-    //   //   "phone": "(977) 623-4567"
-    //   // }
-    //   const communicationMethod = userData.communicationMethod;
-    //   setCommunicationMethod(communicationMethod);
-    // }
+    if (Object.keys(communicationMethod).length == 0) {
+      const userData = JSON.parse(localStorage.getItem("userData"));
+      const communicationMethod = userData.communicationMethod;
+      setCommunicationMethod(communicationMethod);
+    }
     window.history.pushState(null, null, window.location.pathname);
     window.addEventListener("popstate", onBackButtonEvent);
     return () => {
@@ -129,9 +124,14 @@ export default function MfaPage({ isStepTwo }) {
     api
       .submitMfaCode(postBody)
       .then((response) => {
-        if (response.mfaAccessToken) {
-          cookies.set("mfaAccessToken", response.mfaAccessToken, {
+        if (rememberMe) {
+          const token = JSON.parse(
+            localStorage.getItem("userData")
+          ).patientId.replace(/-/g, "");
+          const maxAge = 90 * 86400;
+          cookies.set("mfaAccessToken", token, {
             path: "/patient",
+            maxAge,
           });
         }
 
@@ -335,7 +335,7 @@ export default function MfaPage({ isStepTwo }) {
         onBackToLoginClicked={onBackToLoginClicked}
         rememberMe={rememberMe}
         setRememberMe={onSetRememberMe}
-        data={JSON.parse(localStorage.getItem("userData"))}
+        data={communicationMethod}
         testIds={MFA_TEST_ID}
       />
     );

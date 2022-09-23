@@ -26,7 +26,7 @@ export const logoutProps = {
 export const removeAuthCookies = () => {
   cookies.remove("authorized", { path: "/patient" });
   cookies.remove("username", { path: "/patient" });
-  cookies.remove("mfaAccessToken", { path: "/patient" });
+  cookies.remove("mfa", { path: "/patient" });
   cookies.remove("securityQuestions", { path: "/patient" });
   cookies.remove("accessToken", { path: "/patient" });
   cookies.remove("refreshToken", { path: "/patient" });

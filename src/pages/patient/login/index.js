@@ -16,14 +16,18 @@ function getUserData(postbody, callback) {
   api
     .getUserData(post)
     .then((response) => {
-      const mfaAccessToken = response.mfaAccessToken || "";
-      const isHasMfaAccessToken = mfaAccessToken !== "";
       getPatientId(postbody, (patientId) => {
+        const mfaAccessToken =
+          cookies.get("mfaAccessToken", { path: "/patient" }) || "";
+        const isHasMfaAccessToken =
+          mfaAccessToken === patientId.replace(/-/g, "");
         const userData = {
           communicationMethod: response.communicationMethod,
           patientId,
         };
         localStorage.setItem("userData", JSON.stringify(userData));
+        !isHasMfaAccessToken &&
+          cookies.remove("mfaAccessToken", { path: "/patient" });
         callback(isHasMfaAccessToken);
       });
     })

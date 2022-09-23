@@ -75,7 +75,7 @@ export class Api {
   }
 
   getPatientId(postbody) {
-    const url = "/ecp/patient/search/patientid";
+    const url = "/ecp/patient/search/ecppatientid";
     return this.getResponse(url, postbody, "post");
   }
 
