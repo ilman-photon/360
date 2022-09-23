@@ -40,7 +40,7 @@ function getPatientId(postBody, callback) {
   api
     .getPatientId(postBody)
     .then((response) => {
-      callback(response.ecpPatientId);
+      callback(response.ecpPatientId || "");
     })
     .catch(() => {
       callback(false);

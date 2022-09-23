@@ -238,7 +238,8 @@ export class Api {
 
   getAllAppointment() {
     const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`;
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const url = `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/${userData.patientId}`;
     return this.getResponse(url, {}, "get");
   }
 

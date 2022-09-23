@@ -1,7 +1,5 @@
-import Cookies from "universal-cookie";
-
 export default function getAllAppointment(req, res) {
-  const cookie = new Cookies(req.headers.cookie);
+  const { patientId } = req.query;
   if (req.method === "GET") {
     let responseData = {
       appointmentList: [
@@ -81,7 +79,6 @@ export default function getAllAppointment(req, res) {
         },
       ],
     };
-    const patientId = cookie.get("patientId");
     if (patientId == "2efef720-4bfc-4fb7-b1a2-19fd11c67eba") {
       //patient 3: 10 appointments
       responseData = {
