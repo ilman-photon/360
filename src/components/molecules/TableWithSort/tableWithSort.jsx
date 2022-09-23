@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Table,
   TableBody,
   TableCell,
@@ -100,6 +101,9 @@ export default function TableWithSort({
   config = { header: [], cells: [] },
   rows = [],
   isDesktop = false,
+  onAssetDownload = () => {
+    // This is intentional
+  },
 }) {
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("calories");
@@ -207,6 +211,35 @@ export default function TableWithSort({
                           return (
                             <TableCell key={cellIdx} {...cell.cellProps}>
                               {cell.icon}
+                            </TableCell>
+                          );
+                        case "download-asset":
+                          return (
+                            <TableCell key={cellIdx} {...cell.cellProps}>
+                              <Tooltip
+                                title={
+                                  <Typography
+                                    sx={{
+                                      fontSize: {
+                                        xs: 13,
+                                        md: 14,
+                                        color: "white",
+                                      },
+                                    }}
+                                  >
+                                    download
+                                  </Typography>
+                                }
+                                placement="top"
+                              >
+                                <Button
+                                  onClick={() =>
+                                    onAssetDownload(row[cell.valueKey])
+                                  }
+                                >
+                                  {cell.icon}
+                                </Button>
+                              </Tooltip>
                             </TableCell>
                           );
                         case "download-icon":

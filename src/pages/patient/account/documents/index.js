@@ -16,6 +16,7 @@ import { StyledSelect } from "../../../../components/atoms/Select/select";
 import { useRouter } from "next/router";
 import { Controller, useForm } from "react-hook-form";
 import TableEmpty from "../../../../components/atoms/TableEmpty/tableEmpty";
+import { fetchSource } from "../../../../utils/fetchDigitalAssetSource";
 
 export default function AccountDocumentsPage() {
   const isDesktop = useMediaQuery("(min-width: 769px)");
@@ -33,11 +34,10 @@ export default function AccountDocumentsPage() {
   });
 
   const watchedCategory = watch("category", "");
-  // console.log({ watchedCategory });
 
   const tableConfiguration = {
     header: [
-      { type: "empty" },
+      { type: "empty", width: 22 },
       {
         type: "text",
         id: "name",
@@ -60,7 +60,7 @@ export default function AccountDocumentsPage() {
         label: "Modified",
         width: isDesktop ? 136 : 71,
       },
-      { type: "empty" },
+      { type: "empty", width: 22 },
     ],
     cells: [
       {
@@ -84,9 +84,19 @@ export default function AccountDocumentsPage() {
         },
         contentClass: isDesktop ? "" : "clipped clip-2",
       },
+      // {
+      //   type: "download-icon",
+      //   valueKey: "source",
+      //   cellProps: { padding: "none" },
+      //   icon: (
+      //     <IconButton sx={{ width: 24, height: 24, p: 0 }}>
+      //       <FileDownloadIcon />
+      //     </IconButton>
+      //   ),
+      // },
       {
-        type: "download-icon",
-        valueKey: "source",
+        type: "download-asset",
+        valueKey: "digitalId",
         cellProps: { padding: "none" },
         icon: (
           <IconButton sx={{ width: 24, height: 24, p: 0 }}>
@@ -109,6 +119,10 @@ export default function AccountDocumentsPage() {
         return [];
     }
   });
+
+  const handleAssetDownload = (id) => {
+    fetchSource(id);
+  };
 
   useEffect(() => {
     const category = router.query.type;
@@ -162,7 +176,11 @@ export default function AccountDocumentsPage() {
 
         <Stack spacing={3} sx={{ mt: 1 }}>
           {rows.length > 0 ? (
-            <TableWithSort config={tableConfiguration} rows={rows} />
+            <TableWithSort
+              config={tableConfiguration}
+              rows={rows}
+              onAssetDownload={handleAssetDownload}
+            />
           ) : (
             <TableEmpty text={`There are no ${watchedCategory}.`} />
           )}
