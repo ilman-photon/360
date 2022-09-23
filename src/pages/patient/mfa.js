@@ -268,7 +268,13 @@ export default function MfaPage({ isStepTwo }) {
         {otpValidation ? (
           <Typography
             aria-hidden={"true"}
-            style={{ display: "none" }}
+            style={{
+              opacity: 0.3,
+              position: "fixed",
+              bottom: 0,
+              left: 0,
+              fontSize: "12px",
+            }}
             data-testid={"loc_validationMFA"}
           >
             {otpValidation}
