@@ -33,7 +33,7 @@ export default function AccountDocumentsPage() {
   });
 
   const watchedCategory = watch("category", "");
-  console.log({ watchedCategory });
+  // console.log({ watchedCategory });
 
   const tableConfiguration = {
     header: [

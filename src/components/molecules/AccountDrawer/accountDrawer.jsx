@@ -92,6 +92,7 @@ export const AccountDrawer = ({
 
   useEffect(() => {
     setSidebarLinks(linkObject[activeMenu]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeMenu]);
 
   const drawerContent = () => (
@@ -108,7 +109,7 @@ export const AccountDrawer = ({
           ".MuiListItem-root": { borderBottomWidth: 1, borderColor: "#F3F3F3" },
         }}
       >
-        <Slide direction="left" in={activeMenu} mountOnEnter unmountOnExit>
+        <Slide direction="left" in={!!activeMenu} mountOnEnter unmountOnExit>
           <ListItemButton sx={{ background: "#F4F4F4" }}>
             <ListItemIcon sx={{ placeContent: "start" }}>
               <KeyboardArrowLeftIcon />
