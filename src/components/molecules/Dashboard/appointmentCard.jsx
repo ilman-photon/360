@@ -19,12 +19,26 @@ import {
 } from "@mui/material";
 import { StyledButton } from "../../atoms/Button/button";
 import { patientTypography, colors } from "../../../styles/theme";
-import { parseAppointmentCardData } from "../../../utils/appointment";
+import {
+  getDirection,
+  parseAppointmentCardData,
+} from "../../../utils/appointment";
 import { fullDateFormat } from "../../../utils/dateFormatter";
 import { useEffect } from "react";
 import Image from "next/image";
 
-export default function AppointmentCard({ appointmentData = [] }) {
+export default function AppointmentCard({
+  appointmentData = [],
+  OnClickCancel = () => {
+    // This is intentional
+  },
+  onViewAppointment = () => {
+    // This is intentional
+  },
+  onClickReschedule = () => {
+    // This is intentional
+  },
+}) {
   const [appointment, setAppointment] = React.useState({
     appointmentId: "",
     providerInfo: {},
@@ -37,14 +51,6 @@ export default function AppointmentCard({ appointmentData = [] }) {
     setAppointment(parseAppointmentCardData(appointmentData));
     setAppointmentCount(appointmentData.length);
   }, [appointmentData, appointmentCount]);
-
-  function getDirection(providerCordinate) {
-    window.open(
-      `https://maps.google.com?q=${providerCordinate.latitude},${providerCordinate.longitude}`,
-      "_blank",
-      "noopener,noreferrer"
-    );
-  }
 
   function renderAddressUI() {
     const address = appointment.providerInfo?.address || {};
@@ -108,9 +114,28 @@ export default function AppointmentCard({ appointmentData = [] }) {
       )
     );
   }
+  function addHours(numOfHours, date = new Date()) {
+    date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
+
+    return date;
+  }
 
   function renderAppointmentUI() {
     if (appointment && appointment.appointmentId) {
+      const today = new Date();
+      const visitDate = new Date(appointment.appointmentInfo.date);
+      let hideHour = 0;
+      if (appointment.appointmentInfo.appointmentType === "Eye Exam") {
+        hideHour = 4;
+      }
+      if (appointment.appointmentInfo.appointmentType === "Comprehensive") {
+        hideHour = 24;
+      }
+
+      const isHideButtons = visitDate < addHours(hideHour);
+      const daysAway = visitDate.getTime() - today.getTime();
+      const TotalDays = Math.ceil(daysAway / (1000 * 3600 * 24));
+
       return (
         <Box>
           <Grid container columns={5} spacing={2} p={3}>
@@ -182,77 +207,75 @@ export default function AppointmentCard({ appointmentData = [] }) {
               </Box>
             </Grid>
           </Grid>
-          <Box
-            className={styles.flexDisplay}
-            p={4}
-            sx={{
-              paddingTop: "8px",
-            }}
-          >
-            <StyledButton
-              mode="secondary"
-              size="small"
-              onClick={() => {
-                // on click
-              }}
+          {!isHideButtons ? (
+            <Box
+              className={styles.flexDisplay}
+              p={4}
               sx={{
-                width: { xs: "100%", md: "fit-content" },
-                minWidth: "107px",
-                padding: { xs: 1 },
-                borderColor: "#003B4A",
-                height: "40px !important",
-                borderRadius: "5px",
-                marginRight: "15px",
+                paddingTop: "8px",
               }}
             >
-              <Stack direction="row" alignItems="center">
-                <CancelOutlinedIcon
-                  sx={{
-                    width: 18,
-                    height: 18,
-                    mr: 1,
-                    color: "#003B4A",
-                  }}
-                />
-                <span style={{ fontSize: 14, color: "#007E8F" }}>Cancel</span>
-              </Stack>
-            </StyledButton>
-            <StyledButton
-              mode="secondary"
-              size="small"
-              onClick={() => {
-                // on click
-              }}
-              sx={{
-                width: { xs: "100%", md: "fit-content" },
-                minWidth: "107px",
-                padding: { xs: 1 },
-                borderColor: "#003B4A",
-                height: "40px !important",
-                borderRadius: "5px",
-              }}
-            >
-              <Stack direction="row" alignItems="center">
-                <CalendarTodayRoundedIcon
-                  sx={{
-                    width: 18,
-                    height: 18,
-                    mr: 1,
-                    color: "#003B4A",
-                  }}
-                />
-                <span style={{ fontSize: 14, color: "#007E8F" }}>
-                  Reschedule
-                </span>
-              </Stack>
-            </StyledButton>
-          </Box>
+              <StyledButton
+                mode="secondary"
+                size="small"
+                onClick={OnClickCancel}
+                sx={{
+                  width: { xs: "100%", md: "fit-content" },
+                  minWidth: "107px",
+                  padding: { xs: 1 },
+                  borderColor: "#003B4A",
+                  height: "40px !important",
+                  borderRadius: "5px",
+                  marginRight: "15px",
+                }}
+              >
+                <Stack direction="row" alignItems="center">
+                  <CancelOutlinedIcon
+                    sx={{
+                      width: 18,
+                      height: 18,
+                      mr: 1,
+                      color: "#003B4A",
+                    }}
+                  />
+                  <span style={{ fontSize: 14, color: "#007E8F" }}>Cancel</span>
+                </Stack>
+              </StyledButton>
+              <StyledButton
+                mode="secondary"
+                size="small"
+                onClick={() => onClickReschedule(appointmentData[0])}
+                sx={{
+                  width: { xs: "100%", md: "fit-content" },
+                  minWidth: "107px",
+                  padding: { xs: 1 },
+                  borderColor: "#003B4A",
+                  height: "40px !important",
+                  borderRadius: "5px",
+                }}
+              >
+                <Stack direction="row" alignItems="center">
+                  <CalendarTodayRoundedIcon
+                    sx={{
+                      width: 18,
+                      height: 18,
+                      mr: 1,
+                      color: "#003B4A",
+                    }}
+                  />
+                  <span style={{ fontSize: 14, color: "#007E8F" }}>
+                    Reschedule
+                  </span>
+                </Stack>
+              </StyledButton>
+            </Box>
+          ) : null}
           <Box className={styles.noPrescription}>
             {/* <Typography>Your appointment is 15 days away.</Typography> */}
             <Typography component="div" className={styles.normalText}>
               Your appointment is{" "}
               <Box className={styles.boldText} display="inline">
-                15 days
+                {TotalDays} days
               </Box>{" "}
               away.
             </Typography>
@@ -271,7 +294,9 @@ export default function AppointmentCard({ appointmentData = [] }) {
   return (
     <ThemeProvider theme={patientTypography}>
       <AccountCard
+        className={styles.appointmentContainer}
         isAppoinment={true}
+        isDashboard={true}
         titleIcon={
           <CalendarTodayOutlinedIcon
             sx={{ color: "#007787" }}
@@ -302,6 +327,9 @@ export default function AppointmentCard({ appointmentData = [] }) {
           <Link
             className={styles.viewPrescriptionText}
             sx={{ color: "#008294", fontFamily: "Inter" }}
+            onClick={() => {
+              onViewAppointment();
+            }}
           >
             View Appointments
           </Link>

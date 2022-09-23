@@ -1,4 +1,14 @@
 import axios from "axios";
+import Cookies from "universal-cookie";
+import { setGenericErrorMessage } from "../../store";
+import constants from "../../utils/constants";
+
+let store;
+
+export const injectStore = (_store) => {
+  store = _store;
+};
+
 export class Api {
   client;
   constructor() {
@@ -13,7 +23,6 @@ export class Api {
   }
 
   getResponse(url, postbody, method) {
-    const api = new Api();
     return new Promise((resolve, reject) => {
       const resolver = function (response) {
         if (response && response.data) {
@@ -23,7 +32,21 @@ export class Api {
         }
       };
       const rejecter = function (err) {
-        if (err && err.response && err.response.data) {
+        if (
+          err &&
+          ((err.code === constants.ERROR_CODE.BAD_REQUEST &&
+            err?.response?.data?.ResponseCode === undefined) ||
+            err.code === constants.ERROR_CODE.NETWORK_ERR)
+        ) {
+          store.dispatch(
+            setGenericErrorMessage("Please try again after sometime.")
+          );
+          reject({
+            description:
+              "Something went wrong. Please try again after sometime.",
+            ResponseCode: err.code,
+          });
+        } else if (err && err.response && err.response.data) {
           reject(err.response.data);
         } else {
           reject(err);
@@ -32,11 +55,11 @@ export class Api {
 
       switch (method) {
         case "get":
-          return api.client.get(url, postbody).then(resolver).catch(rejecter);
+          return this.client.get(url, postbody).then(resolver).catch(rejecter);
         case "post":
-          return api.client.post(url, postbody).then(resolver).catch(rejecter);
+          return this.client.post(url, postbody).then(resolver).catch(rejecter);
         default:
-          return api.client.get(url, postbody).then(resolver).catch(rejecter);
+          return this.client.get(url, postbody).then(resolver).catch(rejecter);
       }
     });
   }
@@ -49,6 +72,11 @@ export class Api {
   login(postbody) {
     const url = "/ecp/patient/login";
     return this.forgotFeatureValidation(url, postbody, "post", 2000);
+  }
+
+  getPatientId(postbody) {
+    const url = "/ecp/patient/search/ecppatientid";
+    return this.getResponse(url, postbody, "post");
   }
 
   validateGuestUser(postbody) {
@@ -210,7 +238,17 @@ export class Api {
 
   getAllAppointment() {
     const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`;
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const patientId = `/${userData.patientId}`;
+    const url = `${domain}/api/dummy/appointment/my-appointment/getAllAppointment${
+      userData.patientId ? patientId : ""
+    }`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  getAppointmentDetails() {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/appointment/my-appointment/getAppointmentDetails`;
     return this.getResponse(url, {}, "get");
   }
 
@@ -230,5 +268,11 @@ export class Api {
     const domain = window.location.origin;
     const url = `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`;
     return this.getResponse(url, {}, "get");
+  }
+
+  cancelAppointment() {
+    const domain = window.location.origin;
+    const url = `${domain}api/dummy/appointment/my-appointment/cancelAppointment`;
+    return this.getResponse(url, postbody, "post");
   }
 }

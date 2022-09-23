@@ -29,6 +29,7 @@ import {
   Grid,
   Tooltip,
 } from "@mui/material";
+import { getDirection } from "../../../../utils/appointment";
 
 const BootstrapDialogTitle = (props) => {
   const { children, onClose, ...other } = props;
@@ -66,13 +67,13 @@ BootstrapDialogTitle.propTypes = {
 export default function ModalConfirmContent({
   patientData = {},
   providerData = {},
+  appointmentData = {},
   isLoggedIn,
   isReschedule,
   OnOkClicked = () => {
     // This is intended
   },
 }) {
-  console.log({ providerData });
   const { REGISTER_TEST_ID } = constants.TEST_ID;
 
   const { t } = useTranslation("translation", {
@@ -82,6 +83,15 @@ export default function ModalConfirmContent({
   const handleClose = () => {
     OnOkClicked();
   };
+
+  function getProviderLocation() {
+    return (
+      providerData.coordinate || {
+        latitude: "",
+        longitude: "",
+      }
+    );
+  }
 
   return (
     <Box
@@ -93,8 +103,17 @@ export default function ModalConfirmContent({
         onClose={handleClose}
         sx={{ textAlign: "center" }}
       >
-        <Typography variant="bodyMedium" className={styles.scheduledText}>
-          <CheckCircleRoundedIcon sx={{ mr: 1 }} />{" "}
+        <Typography
+          tabIndex={0}
+          ariaLabel={
+            isReschedule
+              ? "Reschedule Appointment Successful"
+              : "You’re Scheduled!"
+          }
+          variant="bodyMedium"
+          className={styles.scheduledText}
+        >
+          <CheckCircleRoundedIcon sx={{ mr: 1, color: "#168845" }} />{" "}
           {isReschedule
             ? "Reschedule Appointment Successful"
             : "You’re Scheduled!"}
@@ -168,7 +187,11 @@ export default function ModalConfirmContent({
                 }}
                 aria-label={"Add to calendar"}
               >
-                <CalendarTodayIcon /> Add to calendar
+                <CalendarTodayIcon
+                  aria-hidden={"false"}
+                  sx={{ color: "#003B4A" }}
+                />{" "}
+                Add to calendar
               </Typography>
             </Button>
 
@@ -178,7 +201,11 @@ export default function ModalConfirmContent({
             >
               Purpose of Visit
             </Typography>
-            <Typography aria-label={"Eye exam"}>Eye exam</Typography>
+            <Typography
+              aria-label={appointmentData.appointmentType || "Eye exam"}
+            >
+              {appointmentData.appointmentType || "Eye exam"}
+            </Typography>
           </CardContent>
         </Card>
 
@@ -186,15 +213,20 @@ export default function ModalConfirmContent({
           <CardContent sx={{ px: { xs: 2, md: 4 }, py: { xs: 2, md: 4 } }}>
             <Stack spacing={2}>
               <Grid container sx={{ placeContent: "center" }}>
-                <Grid pl={2}>
+                <Grid>
                   <ProviderProfile
                     variant={"appointment"}
                     showPosition
-                    phoneLink
+                    phoneLink={true}
                     providerData={providerData}
                     isDayAvailableView={true}
                   />
-                  <Box className={styles.getDirectionLink}>
+                  <Box
+                    className={styles.getDirectionLink}
+                    onClick={() => {
+                      getDirection(getProviderLocation());
+                    }}
+                  >
                     <DirectionsOutlinedIcon></DirectionsOutlinedIcon>
                     <Link
                       className={styles.getDirectionLinkText}
@@ -240,7 +272,7 @@ export default function ModalConfirmContent({
                 href="/patient/login"
                 data-testid={REGISTER_TEST_ID.loginlink}
               >
-                <a className={styles.loginLink}>Login</a>
+                <a className={styles.loginLink}>Sign in</a>
               </Link>
             </Typography>
           </div>

@@ -55,6 +55,8 @@ const appointmentSlice = createSlice({
     filterData: DEFAULT_FILTER_DATA,
     isFilterApplied: false,
     providerListData: [],
+    filterBy: [],
+    activeFilterBy: [],
   },
   reducers: {
     setAppointmentSchedule: (state, { payload }) => {
@@ -64,6 +66,7 @@ const appointmentSlice = createSlice({
       state.appointmentSchedule = DEFAULT_USER_SCHEDULE_APPOINTMENT_DATA;
       state.isFilterApplied = false;
       state.providerListData = [];
+      state.activeFilterBy = [];
     },
     editAppointmentScheduleData: (state, { payload }) => {
       state.appointmentSchedule[payload.key] = payload.value;
@@ -116,6 +119,12 @@ const appointmentSlice = createSlice({
     setProviderListData: (state, { payload }) => {
       state.providerListData = payload;
     },
+    setActiveFilterBy: (state, { payload }) => {
+      state.activeFilterBy = payload;
+    },
+    setFilterBy: (state, { payload }) => {
+      state.filterBy = payload;
+    },
   },
 });
 
@@ -129,6 +138,8 @@ export const {
   resetFilterData,
   setIsFilterApplied,
   setProviderListData,
+  setActiveFilterBy,
+  setFilterBy,
 } = appointmentSlice.actions;
 
 export default appointmentSlice.reducer;

@@ -22,7 +22,7 @@ const SecurityQuestion = ({
   testIds,
 }) => {
   const [questionVals, setQuestionVals] = useState([null, null, null]);
-  const [questionValsDua, setQuestionValsDua] = useState(securityQuestionList);
+  const [questionValsDua] = useState(securityQuestionList);
 
   const handleQuestionValChange = (option, index) => {
     const newQuestionVals = questionVals;

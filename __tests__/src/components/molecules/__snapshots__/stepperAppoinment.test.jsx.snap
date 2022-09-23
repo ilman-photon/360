@@ -17,7 +17,9 @@ Object {
             class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel Mui-completed css-1ifo3oi-MuiStep-root"
           >
             <span
+              aria-label="Stepper 1. Location "
               class="MuiStepLabel-root MuiStepLabel-horizontal MuiStepLabel-alternativeLabel css-1vlz8yb-MuiStepLabel-root"
+              tabindex="0"
             >
               <span
                 class="MuiStepLabel-iconContainer MuiStepLabel-alternativeLabel css-vnkopk-MuiStepLabel-iconContainer"
@@ -57,7 +59,9 @@ Object {
               />
             </div>
             <span
+              aria-label="Stepper 2. Review "
               class="MuiStepLabel-root MuiStepLabel-horizontal MuiStepLabel-alternativeLabel css-1vlz8yb-MuiStepLabel-root"
+              tabindex="0"
             >
               <span
                 class="MuiStepLabel-iconContainer MuiStepLabel-alternativeLabel css-vnkopk-MuiStepLabel-iconContainer"
@@ -107,7 +111,9 @@ Object {
               />
             </div>
             <span
+              aria-label="Stepper 3. Appointment Details "
               class="MuiStepLabel-root MuiStepLabel-horizontal Mui-disabled MuiStepLabel-alternativeLabel css-1vlz8yb-MuiStepLabel-root"
+              tabindex="0"
             >
               <span
                 class="MuiStepLabel-iconContainer MuiStepLabel-alternativeLabel css-vnkopk-MuiStepLabel-iconContainer"
@@ -157,7 +163,9 @@ Object {
               />
             </div>
             <span
+              aria-label="Stepper 4. Contact Info "
               class="MuiStepLabel-root MuiStepLabel-horizontal Mui-disabled MuiStepLabel-alternativeLabel css-1vlz8yb-MuiStepLabel-root"
+              tabindex="0"
             >
               <span
                 class="MuiStepLabel-iconContainer MuiStepLabel-alternativeLabel css-vnkopk-MuiStepLabel-iconContainer"
@@ -207,7 +215,9 @@ Object {
               />
             </div>
             <span
+              aria-label="Stepper 5. Confirm "
               class="MuiStepLabel-root MuiStepLabel-horizontal Mui-disabled MuiStepLabel-alternativeLabel css-1vlz8yb-MuiStepLabel-root"
+              tabindex="0"
             >
               <span
                 class="MuiStepLabel-iconContainer MuiStepLabel-alternativeLabel css-vnkopk-MuiStepLabel-iconContainer"
@@ -262,7 +272,9 @@ Object {
           class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel Mui-completed css-1ifo3oi-MuiStep-root"
         >
           <span
+            aria-label="Stepper 1. Location "
             class="MuiStepLabel-root MuiStepLabel-horizontal MuiStepLabel-alternativeLabel css-1vlz8yb-MuiStepLabel-root"
+            tabindex="0"
           >
             <span
               class="MuiStepLabel-iconContainer MuiStepLabel-alternativeLabel css-vnkopk-MuiStepLabel-iconContainer"
@@ -302,7 +314,9 @@ Object {
             />
           </div>
           <span
+            aria-label="Stepper 2. Review "
             class="MuiStepLabel-root MuiStepLabel-horizontal MuiStepLabel-alternativeLabel css-1vlz8yb-MuiStepLabel-root"
+            tabindex="0"
           >
             <span
               class="MuiStepLabel-iconContainer MuiStepLabel-alternativeLabel css-vnkopk-MuiStepLabel-iconContainer"
@@ -352,7 +366,9 @@ Object {
             />
           </div>
           <span
+            aria-label="Stepper 3. Appointment Details "
             class="MuiStepLabel-root MuiStepLabel-horizontal Mui-disabled MuiStepLabel-alternativeLabel css-1vlz8yb-MuiStepLabel-root"
+            tabindex="0"
           >
             <span
               class="MuiStepLabel-iconContainer MuiStepLabel-alternativeLabel css-vnkopk-MuiStepLabel-iconContainer"
@@ -402,7 +418,9 @@ Object {
             />
           </div>
           <span
+            aria-label="Stepper 4. Contact Info "
             class="MuiStepLabel-root MuiStepLabel-horizontal Mui-disabled MuiStepLabel-alternativeLabel css-1vlz8yb-MuiStepLabel-root"
+            tabindex="0"
           >
             <span
               class="MuiStepLabel-iconContainer MuiStepLabel-alternativeLabel css-vnkopk-MuiStepLabel-iconContainer"
@@ -452,7 +470,9 @@ Object {
             />
           </div>
           <span
+            aria-label="Stepper 5. Confirm "
             class="MuiStepLabel-root MuiStepLabel-horizontal Mui-disabled MuiStepLabel-alternativeLabel css-1vlz8yb-MuiStepLabel-root"
+            tabindex="0"
           >
             <span
               class="MuiStepLabel-iconContainer MuiStepLabel-alternativeLabel css-vnkopk-MuiStepLabel-iconContainer"

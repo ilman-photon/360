@@ -17,9 +17,11 @@ Object {
               style="width: 100%;"
             >
               <label
+                aria-label=""
                 class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="false"
                 id="demo-simple-select-label"
+                tabindex="0"
               >
                 Question 1
               </label>
@@ -65,7 +67,7 @@ Object {
               </div>
             </div>
             <div
-              class="MuiFormControl-root MuiTextField-root custom-input css-153igoe-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiTextField-root custom-input css-7pi34n-MuiFormControl-root-MuiTextField-root"
               style="width: 100%;"
               tabindex="0"
               withicon="true"
@@ -101,9 +103,11 @@ Object {
               style="width: 100%;"
             >
               <label
+                aria-label=""
                 class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="false"
                 id="demo-simple-select-label"
+                tabindex="0"
               >
                 Question 2
               </label>
@@ -149,7 +153,7 @@ Object {
               </div>
             </div>
             <div
-              class="MuiFormControl-root MuiTextField-root custom-input css-153igoe-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiTextField-root custom-input css-7pi34n-MuiFormControl-root-MuiTextField-root"
               style="width: 100%;"
               tabindex="1"
               withicon="true"
@@ -185,9 +189,11 @@ Object {
               style="width: 100%;"
             >
               <label
+                aria-label=""
                 class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="false"
                 id="demo-simple-select-label"
+                tabindex="0"
               >
                 Question 3
               </label>
@@ -233,7 +239,7 @@ Object {
               </div>
             </div>
             <div
-              class="MuiFormControl-root MuiTextField-root custom-input css-153igoe-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiTextField-root custom-input css-7pi34n-MuiFormControl-root-MuiTextField-root"
               style="width: 100%;"
               tabindex="2"
               withicon="true"
@@ -269,9 +275,11 @@ Object {
               style="width: 100%;"
             >
               <label
+                aria-label=""
                 class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="false"
                 id="demo-simple-select-label"
+                tabindex="0"
               >
                 Question 4
               </label>
@@ -317,7 +325,7 @@ Object {
               </div>
             </div>
             <div
-              class="MuiFormControl-root MuiTextField-root custom-input css-153igoe-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiTextField-root custom-input css-7pi34n-MuiFormControl-root-MuiTextField-root"
               style="width: 100%;"
               tabindex="3"
               withicon="true"
@@ -353,9 +361,11 @@ Object {
               style="width: 100%;"
             >
               <label
+                aria-label=""
                 class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
                 data-shrink="false"
                 id="demo-simple-select-label"
+                tabindex="0"
               >
                 Question 5
               </label>
@@ -401,7 +411,7 @@ Object {
               </div>
             </div>
             <div
-              class="MuiFormControl-root MuiTextField-root custom-input css-153igoe-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiTextField-root custom-input css-7pi34n-MuiFormControl-root-MuiTextField-root"
               style="width: 100%;"
               tabindex="4"
               withicon="true"
@@ -434,7 +444,7 @@ Object {
             style="display: flex;"
           >
             <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-j63g57-MuiButtonBase-root-MuiButton-root"
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-j63g57-MuiButtonBase-root-MuiButton-root"
               data-testid="loc_btnSubmitSecurity"
               style="margin-right: 10px; font-size: 14px; box-shadow: none; transform: none;"
               tabindex="0"
@@ -446,7 +456,7 @@ Object {
               />
             </button>
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-184shb1-MuiButtonBase-root-MuiButton-root"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-184shb1-MuiButtonBase-root-MuiButton-root"
               data-testid="loc_btnSkip"
               style="margin-right: 10px; font-size: 14px; box-shadow: none; transform: none;"
               tabindex="0"
@@ -475,9 +485,11 @@ Object {
             style="width: 100%;"
           >
             <label
+              aria-label=""
               class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="false"
               id="demo-simple-select-label"
+              tabindex="0"
             >
               Question 1
             </label>
@@ -523,7 +535,7 @@ Object {
             </div>
           </div>
           <div
-            class="MuiFormControl-root MuiTextField-root custom-input css-153igoe-MuiFormControl-root-MuiTextField-root"
+            class="MuiFormControl-root MuiTextField-root custom-input css-7pi34n-MuiFormControl-root-MuiTextField-root"
             style="width: 100%;"
             tabindex="0"
             withicon="true"
@@ -559,9 +571,11 @@ Object {
             style="width: 100%;"
           >
             <label
+              aria-label=""
               class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="false"
               id="demo-simple-select-label"
+              tabindex="0"
             >
               Question 2
             </label>
@@ -607,7 +621,7 @@ Object {
             </div>
           </div>
           <div
-            class="MuiFormControl-root MuiTextField-root custom-input css-153igoe-MuiFormControl-root-MuiTextField-root"
+            class="MuiFormControl-root MuiTextField-root custom-input css-7pi34n-MuiFormControl-root-MuiTextField-root"
             style="width: 100%;"
             tabindex="1"
             withicon="true"
@@ -643,9 +657,11 @@ Object {
             style="width: 100%;"
           >
             <label
+              aria-label=""
               class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="false"
               id="demo-simple-select-label"
+              tabindex="0"
             >
               Question 3
             </label>
@@ -691,7 +707,7 @@ Object {
             </div>
           </div>
           <div
-            class="MuiFormControl-root MuiTextField-root custom-input css-153igoe-MuiFormControl-root-MuiTextField-root"
+            class="MuiFormControl-root MuiTextField-root custom-input css-7pi34n-MuiFormControl-root-MuiTextField-root"
             style="width: 100%;"
             tabindex="2"
             withicon="true"
@@ -727,9 +743,11 @@ Object {
             style="width: 100%;"
           >
             <label
+              aria-label=""
               class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="false"
               id="demo-simple-select-label"
+              tabindex="0"
             >
               Question 4
             </label>
@@ -775,7 +793,7 @@ Object {
             </div>
           </div>
           <div
-            class="MuiFormControl-root MuiTextField-root custom-input css-153igoe-MuiFormControl-root-MuiTextField-root"
+            class="MuiFormControl-root MuiTextField-root custom-input css-7pi34n-MuiFormControl-root-MuiTextField-root"
             style="width: 100%;"
             tabindex="3"
             withicon="true"
@@ -811,9 +829,11 @@ Object {
             style="width: 100%;"
           >
             <label
+              aria-label=""
               class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
               data-shrink="false"
               id="demo-simple-select-label"
+              tabindex="0"
             >
               Question 5
             </label>
@@ -859,7 +879,7 @@ Object {
             </div>
           </div>
           <div
-            class="MuiFormControl-root MuiTextField-root custom-input css-153igoe-MuiFormControl-root-MuiTextField-root"
+            class="MuiFormControl-root MuiTextField-root custom-input css-7pi34n-MuiFormControl-root-MuiTextField-root"
             style="width: 100%;"
             tabindex="4"
             withicon="true"
@@ -892,7 +912,7 @@ Object {
           style="display: flex;"
         >
           <button
-            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-j63g57-MuiButtonBase-root-MuiButton-root"
+            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-j63g57-MuiButtonBase-root-MuiButton-root"
             data-testid="loc_btnSubmitSecurity"
             style="margin-right: 10px; font-size: 14px; box-shadow: none; transform: none;"
             tabindex="0"
@@ -904,7 +924,7 @@ Object {
             />
           </button>
           <button
-            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-184shb1-MuiButtonBase-root-MuiButton-root"
+            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-184shb1-MuiButtonBase-root-MuiButton-root"
             data-testid="loc_btnSkip"
             style="margin-right: 10px; font-size: 14px; box-shadow: none; transform: none;"
             tabindex="0"

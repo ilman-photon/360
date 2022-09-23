@@ -423,7 +423,7 @@ defineFeature(feature, (test) => {
 
   const reviewAppPage = async () => {
     container.rerender(<Provider store={store}>{ScheduleAppointmentPage.getLayout(<ScheduleAppointmentPage />)}</Provider>);
-    await waitFor(() => container.getByText("Review appointment details"))
+    await waitFor(() => container.getByText("Review Appointment Details"))
   }
 
   const clickHour = async () => {

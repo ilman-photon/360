@@ -36,10 +36,6 @@ export default function BaseHeader({
       testId: HOME_TEST_ID.appoinments,
       href: "/patient/appointments",
     },
-    { page: "My Health Chart", testId: HOME_TEST_ID.myhealthchart },
-    { page: "My Care Team", testId: HOME_TEST_ID.mycareteam },
-    { page: "Lab Results", testId: HOME_TEST_ID.labresults },
-    { page: "Billing", testId: HOME_TEST_ID.billing },
   ];
   const [isUserLoged, setUserLoged] = React.useState(false);
   const router = useRouter();
@@ -69,7 +65,16 @@ export default function BaseHeader({
 
   return (
     <>
-      <AppBar position="fixed" sx={{ backgroundColor: "white" }}>
+      <AppBar
+        position="fixed"
+        sx={{
+          backgroundColor: "white",
+          "@media print": {
+            boxShadow:
+              "0px 1px 1px 0px rgb(0 0 0 / 20%), 0px 0px 1px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)",
+          },
+        }}
+      >
         <Container maxWidth="xl">
           {isUserLoged ? (
             <Toolbar disableGutters>
@@ -80,6 +85,8 @@ export default function BaseHeader({
                 style={styles.logoStyled}
                 aria-label={"Clarkson Eyecare logo"}
                 title="Your Account"
+                tabindex={0}
+                role={"img"}
               ></Image>
               {/* Menu Desktop*/}
               <Box sx={styles.boxStyled}>
@@ -126,8 +133,8 @@ export default function BaseHeader({
                 <Tooltip title="Open settings">
                   <Button
                     variant="text"
-                    sx={styles.boxButtonStyles}
-                    startIcon={<Avatar />}
+                    sx={[styles.boxButtonStyles, styles.userText]}
+                    startIcon={<Avatar sx={{ background: "#003B4A" }} />}
                     data-testid="user-menu-open"
                     endIcon={<ExpandMoreIcon />}
                     onClick={handleOpenUserMenu}
@@ -186,9 +193,11 @@ export default function BaseHeader({
                 src={logo}
                 width="124px"
                 height="36px"
+                role={"img"}
                 quality={100}
                 style={styles.logoStyled}
                 aria-label={"Clarkson Eyecare logo"}
+                tabindex={0}
               ></Image>
             </Toolbar>
           )}

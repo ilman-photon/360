@@ -70,12 +70,13 @@ export const CustomPasswordInput = styled((props) => (
   />
 ))(({ theme }) => ({
   ".MuiInputLabel-root": {
+    color: "#303030",
     "&.MuiInputLabel-shrink": {
       color: "#003B4A",
       fontWeight: 600,
     },
     "&.Mui-error": {
-      color: "#B00020",
+      color: "#B93632",
       fontWeight: "unset",
     },
   },
@@ -94,7 +95,7 @@ export const CustomPasswordInput = styled((props) => (
       backgroundColor: "transparent",
     },
     "&.Mui-error": {
-      borderColor: "#B00020",
+      borderColor: "#B93632",
       backgroundColor: "#FBF4F4",
       color: "#6C6C6C",
     },
@@ -105,7 +106,7 @@ export const CustomPasswordInput = styled((props) => (
   },
   "& .MuiFormHelperText-root": {
     "&.Mui-error": {
-      color: "#B00020",
+      color: "#B93632",
     },
   },
 }));
@@ -113,6 +114,11 @@ export const CustomPasswordInput = styled((props) => (
 export const RedditTextField = styled((props) => (
   <TextField
     onKeyDown={props.onKeyDown}
+    onInput={(e) => {
+      e.target.value = e.target.value
+        .toString()
+        .slice(0, props.maxLength || 1000);
+    }}
     InputProps={{
       disableUnderline: true,
       endAdornment: props.adorment ? (
@@ -127,13 +133,13 @@ export const RedditTextField = styled((props) => (
   />
 ))(({ theme }) => ({
   ".MuiInputLabel-root": {
+    color: "#303030",
     "&.MuiInputLabel-shrink": {
       color: "#003B4A",
       fontWeight: 600,
     },
     "&.Mui-error": {
-      color: "#B00020",
-      fontWeight: "unset",
+      color: "#B93632",
     },
   },
   "& .MuiFilledInput-root": {
@@ -157,7 +163,7 @@ export const RedditTextField = styled((props) => (
       borderColor: "transparent !important",
     },
     "&.Mui-error": {
-      borderColor: "#B00020",
+      borderColor: "#B93632",
       backgroundColor: "#FBF4F4",
       color: "#6C6C6C",
     },
@@ -167,14 +173,16 @@ export const RedditTextField = styled((props) => (
     },
     input: {
       height: "unset",
+      color: "#303030",
     },
     "input::placeholder": {
       fontSize: 12,
+      color: "#303030",
     },
   },
   "& .MuiFormHelperText-root": {
     "&.Mui-error": {
-      color: "#B00020",
+      color: "#B93632",
     },
   },
 }));
@@ -260,8 +268,10 @@ export const CustomInput = styled(({ ...props }) => {
                   onClick={props.onClick}
                   error={props.error || params.error}
                   helperText={props.helperText}
+                  InputProps={props.InputProps || {}}
                 />
               )}
+              inputProps={props.inputProps}
               {...props}
             />
           </LocalizationProvider>
@@ -319,6 +329,7 @@ export const StyledInput = ({
         placeholder={placeholder}
         helperText={helperText}
         withicon={withIcon}
+        tabIndex={0}
         {...props}
         className={["custom-input"].join(" ")}
         adorment={adorment}
