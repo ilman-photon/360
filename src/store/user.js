@@ -100,7 +100,7 @@ export const fetchUser = createAsyncThunk(
   async ({ token }) => {
     const api = new Api();
     return api.getResponse(
-      "/ecp/patient-management/v1/patients/98f9404b-6ea8-4732-b14f-9c1a168d8066",
+      "/ecp/patient-management/v1/patients/0f8baebc-7820-497b-8e27-a7356adce58c",
       null,
       "get",
       token
@@ -115,7 +115,7 @@ export const updateUser = createAsyncThunk(
     try {
       // get the userData first, just to make sure
       const res = await api.getResponse(
-        "/ecp/patient-management/v1/patients/98f9404b-6ea8-4732-b14f-9c1a168d8066",
+        "/ecp/patient-management/v1/patients/0f8baebc-7820-497b-8e27-a7356adce58c",
         null,
         "get",
         token
@@ -123,7 +123,7 @@ export const updateUser = createAsyncThunk(
       // then apply changes from our side with response body from "res" and do a PUT request
       const postBody = buildProfilePostBody(res, payload);
       const response = await api.getResponse(
-        "/ecp/patient-management/v1/patients/98f9404b-6ea8-4732-b14f-9c1a168d8066",
+        "/ecp/patient-management/v1/patients/0f8baebc-7820-497b-8e27-a7356adce58c",
         postBody,
         "put",
         token

@@ -7,7 +7,7 @@ export const logoutProps = {
     const cookies = new Cookies();
     const postbody = {
       username: cookies.get("username"),
-      refreshToken: cookies.get("refreshToken")
+      refreshToken: cookies.get("refreshToken"),
     };
 
     api

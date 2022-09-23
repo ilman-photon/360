@@ -7,7 +7,7 @@ import { Provider, useDispatch, useSelector } from "react-redux";
 import { fetchUser, updateUser } from "../../../store/user";
 import store from "../../../store/store";
 import PropTypes from "prop-types";
-import { fetchToken, closePageMessage, setPageMessage } from "../../../store";
+import { closePageMessage, setPageMessage } from "../../../store";
 import { useRouter } from "next/router";
 import { Api } from "../../api/api";
 import constants from "../../../utils/constants";
@@ -51,14 +51,13 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
 
   const userData = useSelector((state) => state.user.userData);
   const pageMessage = useSelector((state) => state.index.pageMessage);
-  const accessToken = useSelector((state) => state.index.accessToken);
 
   const dispatch = useDispatch();
   const isDesktop = useMediaQuery("(min-width: 769px)");
 
   const router = useRouter();
   const api = new Api();
-  const cookies = new Cookies()
+  const cookies = new Cookies();
 
   const onBackButtonEvent = (e) => {
     e.preventDefault();
@@ -86,9 +85,8 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
   };
 
   const onSavePersonalData = async (postBody) => {
-    // await dispatch(fetchToken());
     const { payload } = await dispatch(
-      updateUser({ token: accessToken, payload: postBody })
+      updateUser({ token: cookies.get("accessToken"), payload: postBody })
     );
     if (payload.success) {
       showSuccessMessage("Your changes were saved");
@@ -97,9 +95,8 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
   };
 
   const onSaveContactData = async (postBody) => {
-    // await dispatch(fetchToken());
     const { payload } = await dispatch(
-      updateUser({ token: accessToken, payload: postBody })
+      updateUser({ token: cookies.get("accessToken"), payload: postBody })
     );
     if (payload.success) {
       showSuccessMessage("Your changes were saved");
@@ -108,17 +105,10 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
   };
 
   useEffect(() => {
-    // dispatch(fetchToken());
-    console.log({accessToken: cookies.get("accessToken")})
-    dispatch(fetchUser({ token: cookies.get("accessToken") }))
+    dispatch(fetchUser({ token: cookies.get("accessToken") }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   console.log({ userData });
-
-  // useEffect(() => {
-  //   if (accessToken) dispatch(fetchUser({ token: accessToken }));
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [accessToken, dispatch, fetchUser]);
 
   useEffect(() => {
     fetchUSListOfStates();

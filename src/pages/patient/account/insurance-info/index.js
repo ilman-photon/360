@@ -41,6 +41,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AccountCircleOutlined from "@mui/icons-material/AccountCircleOutlined";
 import constants from "../../../../utils/constants";
 import { fetchAllPayers, fetchPlans } from "../../../../store/provider";
+import Cookies from "universal-cookie";
 
 export default function InsuranceInfoPage() {
   const [openNewInsuranceForm, setOpenNewInsuranceForm] = useState(false);
@@ -53,7 +54,6 @@ export default function InsuranceInfoPage() {
   const [editForm, setEditForm] = useState(null);
 
   const pageMessage = useSelector((state) => state.index.pageMessage);
-  const accessToken = useSelector((state) => state.index.accessToken);
   const loadingInsurance = useSelector((state) => state.user.status);
   const providerList = useSelector((state) => state.provider.list);
   const planList = useSelector((state) => state.provider.planList);
@@ -70,6 +70,7 @@ export default function InsuranceInfoPage() {
   const dispatch = useDispatch();
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
+  const cookies = new Cookies();
 
   const newInsuranceComp = useRef(null);
 
@@ -86,7 +87,6 @@ export default function InsuranceInfoPage() {
   };
 
   const OnCreateInsurance = async (postBody) => {
-    // console.log({payload})
     const { backCard, frontCard } = postBody;
     if (
       (backCard !== "" && frontCard === "") ||
@@ -97,7 +97,7 @@ export default function InsuranceInfoPage() {
     } else {
       const { payload } = await dispatch(
         postInsurance({
-          token: accessToken,
+          token: cookies.get("accessToken"),
           payload: postBody,
           patientId: "59f43690-807f-4522-a615-e4b3b9ed8434", // hardcoded patient id
         })
@@ -110,8 +110,6 @@ export default function InsuranceInfoPage() {
             content: "Insurance successfully added",
           })
         );
-        // setIsShowErrorNew(false);
-        // setIsShowError(false);
         setOpenNewInsuranceForm(false);
       }
     }
@@ -144,7 +142,7 @@ export default function InsuranceInfoPage() {
     }
     const { payload } = await dispatch(
       updateInsurance({
-        token: accessToken,
+        token: cookies.get("accessToken"),
         patientId: "59f43690-807f-4522-a615-e4b3b9ed8434", // hardcoded patient id
         coverageId: postBody.id,
         payload: postBody,
@@ -158,19 +156,19 @@ export default function InsuranceInfoPage() {
   };
 
   const OnAddNewInsurance = () => {
-    // if (userInsuranceData.length < 5) {
-    setOpenNewInsuranceForm(true);
-    setFocusToNewInsurance(true);
-    // } else {
-    //   dispatch(
-    //     setPageMessage({
-    //       isShow: true,
-    //       content:
-    //         "Cannot add any more insurances. Maximum limit has been reached",
-    //       error: true,
-    //     })
-    //   );
-    // }
+    if (userInsuranceData.length < 5) {
+      setOpenNewInsuranceForm(true);
+      setFocusToNewInsurance(true);
+    } else {
+      dispatch(
+        setPageMessage({
+          isShow: true,
+          content:
+            "Cannot add any more insurances. Maximum limit has been reached",
+          error: true,
+        })
+      );
+    }
   };
   useEffect(() => {
     if (newInsuranceComp.current && focusToNewInsurance) {
@@ -184,26 +182,20 @@ export default function InsuranceInfoPage() {
   }, [openNewInsuranceForm, focusToNewInsurance]);
 
   useEffect(() => {
-    dispatch(fetchToken());
+    dispatch(
+      fetchInsurance({
+        token: cookies.get("accessToken"),
+        patientId: "0f8baebc-7820-497b-8e27-a7356adce58c", // hardcoded patientId
+      })
+    );
+
+    dispatch(fetchAllPayers({ token: cookies.get("accessToken") }));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    if (accessToken) {
-      dispatch(
-        fetchInsurance({
-          token: accessToken,
-          patientId: "59f43690-807f-4522-a615-e4b3b9ed8434", // hardcoded patientId
-        })
-      );
-      dispatch(fetchAllPayers({ token: accessToken }));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [accessToken, dispatch, fetchInsurance]);
-
   const handleFetchPlans = (payerId) => {
     if (payerId) {
-      dispatch(fetchPlans({ token: accessToken, payerId }));
+      dispatch(fetchPlans({ token: cookies.get("accessToken"), payerId }));
     }
   };
 

@@ -35,7 +35,9 @@ const loginProps = {
         cookies.set("IdleTimeOut", IdleTimeOut, { path: "/patient" });
         cookies.set("username", postbody.username, { path: "/patient" });
         cookies.set("accessToken", response.access_token, { path: "/patient" });
-        cookies.set("refreshToken", response.refresh_token, { path: "/patient" });
+        cookies.set("refreshToken", response.refresh_token, {
+          path: "/patient",
+        });
         cookies.set("securityQuestions", securityQuestions, {
           path: "/patient",
         });

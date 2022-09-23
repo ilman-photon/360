@@ -145,20 +145,11 @@ export class Api {
 
       switch (method) {
         case "get":
-          return this.client
-            .get(url, postbody)
-            .then(resolver)
-            .catch(rejecter);
+          return this.client.get(url, postbody).then(resolver).catch(rejecter);
         case "post":
-          return this.client
-            .post(url, postbody)
-            .then(resolver)
-            .catch(rejecter);
+          return this.client.post(url, postbody).then(resolver).catch(rejecter);
         default:
-          return this.client
-            .get(url, postbody)
-            .then(resolver)
-            .catch(rejecter);
+          return this.client.get(url, postbody).then(resolver).catch(rejecter);
       }
     });
   }
