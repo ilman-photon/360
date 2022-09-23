@@ -457,7 +457,7 @@ defineFeature(feature, (test) => {
         {ScheduleAppointmentPage.getLayout(<ScheduleAppointmentPage />)}
       </Provider>
     );
-    await waitFor(() => container.getByText("Review appointment details"));
+    await waitFor(() => container.getByText("Review Appointment Details"));
   };
 
   const provideDetailsValid = () => {

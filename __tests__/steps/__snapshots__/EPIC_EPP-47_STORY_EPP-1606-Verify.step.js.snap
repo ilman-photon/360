@@ -62,7 +62,6 @@ Object {
                 aria-label="Appointments heading"
                 aria-live="polite"
                 class="title"
-                style="text-align: left; width: auto; display: flex;"
                 tabindex="0"
               >
                 Appointments
@@ -334,6 +333,15 @@ Object {
               >
                 Past Appointments
               </h2>
+              <div
+                class="subTitleWrapper MuiBox-root css-0"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 noPastAppointment css-1b03qeg-MuiTypography-root"
+                >
+                  You have no past appointments
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -1038,7 +1046,6 @@ Object {
               aria-label="Appointments heading"
               aria-live="polite"
               class="title"
-              style="text-align: left; width: auto; display: flex;"
               tabindex="0"
             >
               Appointments
@@ -1310,6 +1317,15 @@ Object {
             >
               Past Appointments
             </h2>
+            <div
+              class="subTitleWrapper MuiBox-root css-0"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body2 noPastAppointment css-1b03qeg-MuiTypography-root"
+              >
+                You have no past appointments
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -1431,7 +1447,6 @@ Object {
                 aria-label="Appointments heading"
                 aria-live="polite"
                 class="title"
-                style="text-align: left; width: auto; display: flex;"
                 tabindex="0"
               >
                 Appointments
@@ -1703,6 +1718,15 @@ Object {
               >
                 Past Appointments
               </h2>
+              <div
+                class="subTitleWrapper MuiBox-root css-0"
+              >
+                <p
+                  class="MuiTypography-root MuiTypography-body2 noPastAppointment css-1b03qeg-MuiTypography-root"
+                >
+                  You have no past appointments
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -2407,7 +2431,6 @@ Object {
               aria-label="Appointments heading"
               aria-live="polite"
               class="title"
-              style="text-align: left; width: auto; display: flex;"
               tabindex="0"
             >
               Appointments
@@ -2679,6 +2702,15 @@ Object {
             >
               Past Appointments
             </h2>
+            <div
+              class="subTitleWrapper MuiBox-root css-0"
+            >
+              <p
+                class="MuiTypography-root MuiTypography-body2 noPastAppointment css-1b03qeg-MuiTypography-root"
+              >
+                You have no past appointments
+              </p>
+            </div>
           </div>
         </div>
       </div>

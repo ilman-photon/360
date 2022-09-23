@@ -79,13 +79,6 @@ export default function MfaPage({ isStepTwo }) {
     };
   });
 
-  React.useEffect(() => {
-    return () => {
-      cookies.remove("isStay");
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const setTempValidation = (response) => {
     if (process.env.ENV_NAME !== "prod" && response && response.mfaCode) {
       setOTPValidation(response.mfaCode);
@@ -124,6 +117,7 @@ export default function MfaPage({ isStepTwo }) {
     cookies.remove("username", { path: "/patient" });
     cookies.remove("ip", { path: "/patient" });
     cookies.remove("mfaAccessToken", { path: "/patient" });
+    cookies.remove("isStay", { path: "/patient" });
     router.push("/patient/login");
   }
 
@@ -179,7 +173,8 @@ export default function MfaPage({ isStepTwo }) {
             });
           }
         }
-      });
+      })
+      .finally(() => cookies.remove("isStay", { path: "/patient" }));
   }
 
   function onResendCodeClicked(callback) {
@@ -303,14 +298,7 @@ export default function MfaPage({ isStepTwo }) {
       >
         {!successSubmit ? (
           <Box sx={{ background: "#FAFAFA" }}>
-            <AccountTitleHeading
-              title={"Set-up Security Questions"}
-              sx={{
-                textAlign: "left",
-                paddingLeft: "16px",
-              }}
-            />
-            :
+            <AccountTitleHeading title={"Set-up Security Questions"} />:
             <Box
               sx={{
                 paddingTop: "65px",

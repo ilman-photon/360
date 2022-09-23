@@ -4,14 +4,28 @@ import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import { Provider } from "react-redux";
-import Appointments from "../../src/pages/patient/appointments";
+import Appointments, { getServerSideProps } from "../../src/pages/patient/appointments";
 import store from "../../src/store/store";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 import constants from "../../src/utils/constants";
+import Cookies from "universal-cookie";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint5/EPP-1606.feature",
 );
+
+jest.mock("universal-cookie", () => {
+  class MockCookies {
+    static result = {};
+    get() {
+      return MockCookies.result;
+    }
+    remove() {
+      return jest.fn();
+    }
+  }
+  return MockCookies;
+});
 
 defineFeature(feature, (test) => {
   let container;
@@ -62,7 +76,7 @@ defineFeature(feature, (test) => {
     expect(true).toBeTruthy();
   };
 
-  test('EPIC_EPP-3_STORY_EPP-1606-Verify User should see the following details under each upcoming appointment', ({  }) => {
+  test('EPIC_EPP-3_STORY_EPP-1606-Verify User should see the following details under each upcoming appointment', ({ }) => {
 
   });
 
@@ -72,7 +86,7 @@ defineFeature(feature, (test) => {
     });
 
     and('User is logged in to the application', () => {
-
+      Cookies.result = { authorized: true };
     });
 
     when('User clicks to “Appointments” menu', () => {
@@ -90,6 +104,10 @@ defineFeature(feature, (test) => {
       mock
         .onGet(`${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment`)
         .reply(200, userData);
+      await getServerSideProps({
+        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
+        res: jest.fn(),
+      });
       act(() => {
         container = render(
           <Provider store={store}>
@@ -115,7 +133,7 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('EPIC_EPP-3_STORY_EPP-1606-Verify User should navigated to maps screen  when clicks on "Directions" button', ({  }) => {
+  test('EPIC_EPP-3_STORY_EPP-1606-Verify User should navigated to maps screen  when clicks on "Directions" button', ({ }) => {
 
   });
 
@@ -125,7 +143,7 @@ defineFeature(feature, (test) => {
     });
 
     when('User is logged in to the application', () => {
-
+      Cookies.result = { authorized: true };
     });
 
     and('User clicks to “Appointments” menu', () => {
@@ -143,6 +161,10 @@ defineFeature(feature, (test) => {
       mock
         .onGet(`${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment`)
         .reply(200, userData);
+      await getServerSideProps({
+        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
+        res: jest.fn(),
+      });
       act(() => {
         container = render(
           <Provider store={store}>
@@ -177,7 +199,7 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('EPIC_EPP-3_STORY_EPP-1606-Verify User should see Upcoming Appointments with an option to reschedule and cancel each of them', ({  }) => {
+  test('EPIC_EPP-3_STORY_EPP-1606-Verify User should see Upcoming Appointments with an option to reschedule and cancel each of them', ({ }) => {
 
   });
 
@@ -187,7 +209,7 @@ defineFeature(feature, (test) => {
     });
 
     when('User is logged in to the application', () => {
-
+      Cookies.result = { authorized: true };
     });
 
     and('User clicks to “Appointments” menu', () => {
@@ -205,6 +227,10 @@ defineFeature(feature, (test) => {
       mock
         .onGet(`${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment`)
         .reply(200, userData);
+      await getServerSideProps({
+        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
+        res: jest.fn(),
+      });
       act(() => {
         container = render(
           <Provider store={store}>
@@ -239,7 +265,7 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('EPIC_EPP-3_STORY_EPP-1606-Verify User should see the following message "You have no upcoming appointments" (if there are no upcoming appointments)', ({  }) => {
+  test('EPIC_EPP-3_STORY_EPP-1606-Verify User should see the following message "You have no upcoming appointments" (if there are no upcoming appointments)', ({ }) => {
 
   });
 
@@ -249,7 +275,7 @@ defineFeature(feature, (test) => {
     });
 
     when('User is logged in to the application', () => {
-
+      Cookies.result = { authorized: true };
     });
 
     and('User clicks to “Appointments” menu', () => {
@@ -267,6 +293,10 @@ defineFeature(feature, (test) => {
       mock
         .onGet(`${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment`)
         .reply(200, userData);
+      await getServerSideProps({
+        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
+        res: jest.fn(),
+      });
       act(() => {
         container = render(
           <Provider store={store}>
@@ -333,7 +363,7 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('EPIC_EPP-3_STORY_EPP-1606-Verify User should see the following message "You have no upcoming appointments" (if there are no upcoming appointments) within 3 seconds', ({  }) => {
+  test('EPIC_EPP-3_STORY_EPP-1606-Verify User should see the following message "You have no upcoming appointments" (if there are no upcoming appointments) within 3 seconds', ({ }) => {
 
   });
 
@@ -344,7 +374,7 @@ defineFeature(feature, (test) => {
     });
 
     when('User is logged in to the application', () => {
-
+      Cookies.result = { authorized: true };
     });
 
     and('User clicks to “Appointments” menu', () => {
@@ -352,7 +382,7 @@ defineFeature(feature, (test) => {
     });
 
     then('User navigates to “Appointments” screen', () => {
-      
+
     });
 
     and('User lands on “Appointments” screen', async () => {
@@ -363,6 +393,10 @@ defineFeature(feature, (test) => {
       mock
         .onGet(`${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment`)
         .reply(200, userData);
+      await getServerSideProps({
+        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
+        res: jest.fn(),
+      });
       act(() => {
         container = render(
           <Provider store={store}>
@@ -429,7 +463,7 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('EPIC_EPP-3_STORY_EPP-1606-Verify User should not see the any errors script when user clicks F12 on the console', ({  }) => {
+  test('EPIC_EPP-3_STORY_EPP-1606-Verify User should not see the any errors script when user clicks F12 on the console', ({ }) => {
 
   });
 
@@ -439,7 +473,7 @@ defineFeature(feature, (test) => {
     });
 
     when('User is logged in to the application', () => {
-
+      Cookies.result = { authorized: true };
     });
 
     and('User clicks to “Appointments” menu', () => {
@@ -499,7 +533,7 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('EPIC_EPP-3_STORY_EPP-1606-Negative Test Cases-Verify user should see the error message when the internet service is unavailable', ({  }) => {
+  test('EPIC_EPP-3_STORY_EPP-1606-Negative Test Cases-Verify user should see the error message when the internet service is unavailable', ({ }) => {
 
   });
 
@@ -509,7 +543,7 @@ defineFeature(feature, (test) => {
     });
 
     when('User is logged in to the application', () => {
-
+      Cookies.result = { authorized: true };
     });
 
     and('User clicks to “Appointments” menu', () => {
@@ -561,7 +595,7 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('EPIC_EPP-3_STORY_EPP-1606-Negative Test Cases-Verify  when the service is unavailable', ({  }) => {
+  test('EPIC_EPP-3_STORY_EPP-1606-Negative Test Cases-Verify  when the service is unavailable', ({ }) => {
 
   });
 
@@ -571,7 +605,7 @@ defineFeature(feature, (test) => {
     });
 
     when('User is logged in to the application', () => {
-
+      Cookies.result = { authorized: true };
     });
 
     and('User clicks to “Appointments” menu', () => {
@@ -589,7 +623,11 @@ defineFeature(feature, (test) => {
       });
       mock
         .onGet(`${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment`)
-        .reply(400,{});
+        .reply(400, {});
+      await getServerSideProps({
+        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
+        res: jest.fn(),
+      });
       act(() => {
         container = render(
           <Provider store={store}>

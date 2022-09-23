@@ -645,9 +645,7 @@ defineFeature(feature, (test) => {
     });
   }
 
-  test("EPIC_EPP-44_STORY_EPP-2538 - Verify user able to apply the filters which will update the results accordingly from the patient portal.", ({}) => {});
-
-  test('"EPIC_EPP-44_STORY_EPP-2538 - Verify user able to apply the filters which will update the results accordingly from the patient portal."', ({
+  test("EPIC_EPP-44_STORY_EPP-2538 - Verify user able to apply the filters which will update the results accordingly from the patient portal.", ({
     given,
     when,
     and,
@@ -758,16 +756,12 @@ defineFeature(feature, (test) => {
     and("user applies the filters", async () => {
       const done = container.getByRole("button", { name: "Done" });
       fireEvent.click(done);
-      await waitFor(() => {
-        container.getByText("Arabic");
-        expect(container.getByText("Arabic")).toBeInTheDocument();
-      });
+      await waitFor(() => container.getByText("Arabic"));
+      expect(container.getByText("Arabic")).toBeInTheDocument();
     });
   });
 
-  test("EPIC_EPP-44_STORY_EPP-2538 - Verify user able to view the filters in the schedule appointment screen from the patient portal and user apply the filter and getting result accordingly.", ({}) => {});
-
-  test('"EPIC_EPP-44_STORY_EPP-2537 - Verify user able to view the filters in the schedule appointment screen from the patient portal and user apply the filter and getting result accordingly."', ({
+  test("EPIC_EPP-44_STORY_EPP-2538 - Verify user able to view the filters in the schedule appointment screen from the patient portal and user apply the filter and getting result accordingly.", ({
     given,
     when,
     and,
@@ -801,7 +795,9 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByText(/City, state, or zip/i));
+      await waitFor(() => {
+        container.getByText(/City, state, or zip/i);
+      });
       expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
     });
 
@@ -862,8 +858,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(done);
       await waitFor(() => {
         container.getByText("English");
-        expect(container.getByText("English")).toBeInTheDocument();
       });
+      expect(container.getByText("English")).toBeInTheDocument();
     });
 
     and("user gets the updated result", () => {
@@ -871,9 +867,7 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test("EPIC_EPP-44_STORY_EPP-2538 - Verify user able to view the filters in the schedule appointment screen from the patient portal and the user clears the filter.", ({}) => {});
-
-  test('"EPIC_EPP-44_STORY_EPP-2537 - Verify user able to view the filters in the schedule appointment screen from the patient portal and the user clears the filter."', ({
+  test("EPIC_EPP-44_STORY_EPP-2538 - Verify user able to view the filters in the schedule appointment screen from the patient portal and the user clears the filter.", ({
     given,
     when,
     and,
@@ -968,8 +962,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(done);
       await waitFor(() => {
         container.getByText("English");
-        expect(container.getByText("English")).toBeInTheDocument();
       });
+      expect(container.getByText("English")).toBeInTheDocument();
     });
 
     and("user gets the updated result", () => {

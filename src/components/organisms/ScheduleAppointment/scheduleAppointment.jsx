@@ -56,12 +56,18 @@ export default function ScheduleAppointment({
               backgroundColor: `${
                 selectedSelf === 1 ? "#EEF5F7 !important" : null
               }`,
+              color: `${selectedSelf === 1 ? "#003B4A !important" : "#0095A9"}`,
             }}
             onClick={() => OnSetSelectedSelf(1)}
           >
             <Typography
               variant="h4"
               style={styles.primaryText}
+              sx={{
+                color: `${
+                  selectedSelf === 1 ? "#003B4A !important" : "#0095A9"
+                }`,
+              }}
               aria-label={"Myself option"}
             >
               {t("myself")}
@@ -82,6 +88,11 @@ export default function ScheduleAppointment({
               variant="h4"
               aria-label={"Someone else option"}
               style={styles.primaryText}
+              sx={{
+                color: `${
+                  selectedSelf === 2 ? "#003B4A !important" : "#0095A9"
+                }`,
+              }}
             >
               {t("someoneElse")}
             </Typography>

@@ -84,7 +84,7 @@ export const FilterResultHeading = ({
             onClick={() => {
               const id = appliedFilter.findIndex((x) => x.name === option.name);
               if (id > -1) {
-                const data = appliedFilter;
+                const data = [...appliedFilter];
                 data.splice(id, 1);
                 setActiveFilter([...data]);
                 onActivFilter([...data]);
@@ -146,7 +146,9 @@ export const FilterResultHeading = ({
             Filters
             <KeyboardArrowDownIcon className={styles.keydownIcon} />
           </StyledButton>
-          {renderAppliedFilter()}
+          <Box display="flex" flexWrap="wrap">
+            {renderAppliedFilter()}
+          </Box>
         </Box>
         <Box
           sx={{

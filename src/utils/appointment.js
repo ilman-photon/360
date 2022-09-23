@@ -1,4 +1,3 @@
-import moment from "moment";
 import constants from "./constants";
 import { ddmmyyDateFormat } from "./dateFormatter";
 
@@ -331,6 +330,71 @@ export function isPrevArrowDisable(dateList, currentDate = null) {
       (dateList?.dateRange?.length > 0 ? dateList.dateRange[0] : null)
     );
   }
+}
+
+export function parseAppointmentDetails(appointmentDetails) {
+  const data = JSON.parse(JSON.stringify(appointmentDetails));
+
+  data.appointmentInfo.documentation.list = [
+    {
+      name: "Date/Time",
+      value: "Lorem Ipsum",
+    },
+    {
+      name: "Performer",
+      value: "Lorem Ipsum",
+    },
+    {
+      name: "Performer",
+      value: "Lorem Ipsum",
+    },
+    {
+      name: "Performer",
+      value: "Lorem Ipsum",
+    },
+    {
+      name: "Performer",
+      value: "Lorem Ipsum",
+    },
+    {
+      name: "Performer",
+      value: "Lorem Ipsum",
+    },
+    {
+      name: "Performer",
+      value: "Lorem Ipsum",
+    },
+  ];
+
+  for (let i = 0; i < data.appointmentInfo.contents; i++) {
+    let headers = [];
+    switch (data.appointmentInfo.contents[i].type.toLowerCase()) {
+      case "allergies":
+        headers = ["Subtance", "Code", "Status", "Severity", "Reaction"];
+        break;
+      case "results":
+        headers = ["Battery", "Date", "Test", "Result", "Result Date", "Lab"];
+        break;
+      case "vital signs":
+        headers = [
+          "Date",
+          "Height",
+          "Weight",
+          "BMI",
+          "Blood Pressure",
+          "Body Temp.",
+          "Pulse",
+          "O2 Concentration",
+          "Inhaled O2",
+          "Resp. Rate",
+        ];
+        break;
+      default:
+        break;
+    }
+    data.appointmentInfo.contents[i].headers = headers;
+  }
+  return data;
 }
 
 export function getDirection(providerCordinate) {

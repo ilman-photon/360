@@ -29,7 +29,6 @@ export const buttonSchedule = (
   const parseDate = new moment(date).format("YYYY-MM-DD");
   const isNextAvailabilityLabel =
     isScheduleAvailability && label.indexOf("Next availability is") > -1;
-  label;
   const dateTime =
     !isScheduleAvailability || !isNextAvailabilityLabel
       ? new Date(
