@@ -284,11 +284,13 @@ defineFeature(feature, (test) => {
     );
 
     and("try to update the Date and Time if already provided", () => {
-      defaultValidation();
+      const dateField = container.getByText(/Date/i);
+			expect(dateField).toBeInTheDocument()
     });
 
     then("user should allow to update the Date and Time.", () => {
-      defaultValidation();
+      const dateField = container.getByText(/Date/i);
+			expect(dateField).toBeInTheDocument()
     });
   });
 
@@ -332,11 +334,13 @@ defineFeature(feature, (test) => {
     );
 
     and("try to add the Date and Time", () => {
-      defaultValidation();
+      const dateField = container.getByText(/Date/i);
+			expect(dateField).toBeInTheDocument()
     });
 
     then("user should allow to add the Date and Time.", () => {
-      defaultValidation();
+      const dateField = container.getByText(/Date/i);
+			expect(dateField).toBeInTheDocument()
     });
   });
 
@@ -378,7 +382,8 @@ defineFeature(feature, (test) => {
     );
 
     and("try to update the Date and Time if already provided", () => {
-      defaultValidation();
+      const dateField = container.getByText(/Date/i);
+			expect(dateField).toBeInTheDocument()
     });
 
     then(

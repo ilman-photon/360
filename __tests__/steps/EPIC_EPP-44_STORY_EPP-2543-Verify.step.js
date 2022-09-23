@@ -11,6 +11,7 @@ const useRouter = jest.spyOn(require("next/router"), "useRouter");
 import constants from "../../src/utils/constants";
 import mediaQuery from 'css-mediaquery';
 import { TEST_ID } from "../../src/utils/constants";
+import { renderAppointmentDetail } from "../../__mocks__/commonSteps";
 
 const feature = loadFeature(
 	"./__tests__/feature/Patient Portal/Sprint4/EPP-2543.feature"
@@ -839,11 +840,12 @@ defineFeature(feature, (test) => {
 		});
 
 		then('User should navigated to review the appointment details', () => {
-			defaultValidation()
+			renderAppointmentDetail()
 		});
 
 		and('User should see the selected location along with the provider', () => {
-			defaultValidation()
+			const locationField = container.container.querySelector('#location');
+			fireEvent.change(locationField, { target: { value: "Texas" } })
 		});
 	});
 
@@ -949,18 +951,7 @@ defineFeature(feature, (test) => {
 		});
 
 		then('User should navigated to review the appointment details', async () => {
-			act(() => {
-				container = render(
-					<Provider store={store}>
-						{ScheduleAppointment.getLayout(<ScheduleAppointment />)}
-					</Provider>
-				);
-			})
-			expect(
-				await waitFor(() =>
-					container.getByTestId(TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_DETAILS.editButton)
-				)
-			).toBeInTheDocument();
+			renderAppointmentDetail()
 		});
 
 		and('User should see the selected location along with the provider', () => {
@@ -1100,7 +1091,7 @@ defineFeature(feature, (test) => {
 		});
 
 		then('User should navigated to review the appointment details', () => {
-			defaultValidation()
+			renderAppointmentDetail()
 		});
 
 		and('User should see the selected location along with the provider', () => {
@@ -1214,11 +1205,12 @@ defineFeature(feature, (test) => {
 		});
 
 		then('User should navigated to review the appointment details', () => {
-			defaultValidation()
+			renderAppointmentDetail()
 		});
 
 		and('User should see the selected location along with the provider', () => {
-			defaultValidation()
+			const locationField = container.container.querySelector('#location');
+			fireEvent.change(locationField, { target: { value: "Texas" } })
 		});
 
 		when(/^user clicks on F(\d+) on the console$/, (arg0) => {
