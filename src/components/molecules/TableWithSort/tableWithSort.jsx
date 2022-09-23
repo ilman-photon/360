@@ -232,13 +232,14 @@ export default function TableWithSort({
                                 }
                                 placement="top"
                               >
-                                <Button
+                                <div
+                                  role="button"
                                   onClick={() =>
                                     onAssetDownload(row[cell.valueKey])
                                   }
                                 >
                                   {cell.icon}
-                                </Button>
+                                </div>
                               </Tooltip>
                             </TableCell>
                           );

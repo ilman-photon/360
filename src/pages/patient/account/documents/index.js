@@ -30,10 +30,10 @@ export default function AccountDocumentsPage() {
   ];
 
   const { control, setValue, watch } = useForm({
-    defaultValues: { category: "" },
+    defaultValues: { category: "intake-forms" },
   });
 
-  const watchedCategory = watch("category", "");
+  const watchedCategory = watch("category");
 
   const tableConfiguration = {
     header: [
@@ -108,6 +108,7 @@ export default function AccountDocumentsPage() {
   };
 
   const rows = useSelector((state) => {
+    console.log({ watchedCategory });
     switch (watchedCategory) {
       case "intake-forms":
         return state.document.intakeFormsData;
@@ -126,7 +127,7 @@ export default function AccountDocumentsPage() {
 
   useEffect(() => {
     const category = router.query.type;
-    setValue("category", category);
+    if (category) setValue("category", category);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query]);
 
@@ -144,7 +145,7 @@ export default function AccountDocumentsPage() {
           break;
       }
     } else
-      router.push({
+      router.replace({
         pathname: router.pathname,
         query: { type: "intake-forms" },
       });
