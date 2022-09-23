@@ -94,6 +94,11 @@ export class Api {
     return this.forgotFeatureValidation(url, postbody, "post");
   }
 
+  validateSecurityQuestion(postbody) {
+    const url = "​/ecp​/patient​/securityquestions​/validate";
+    return this.forgotFeatureValidation(url, postbody, "post");
+  }
+
   updatePassword(postbody) {
     const url = "/ecp/patient/updatepassword";
     return this.forgotFeatureValidation(url, postbody, "post");
@@ -173,7 +178,7 @@ export class Api {
   }
 
   submitSecurityQuestion(postbody) {
-    const url = "/ecp/patient/securityQuestions";
+    const url = "/ecp/patient/submit";
     return this.forgotFeatureValidation(url, postbody, "post", 2000);
   }
 
