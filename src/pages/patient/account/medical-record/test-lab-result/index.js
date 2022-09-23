@@ -18,7 +18,7 @@ import { Controller, useForm } from "react-hook-form";
 import { StyledSelect } from "../../../../../components/atoms/Select/select";
 
 export default function TestLabPage() {
-  const [isHideDisclaimer, setIsHideDisclaimer] = React.useState(false);
+  const [isHideDisclaimer, setIsHideDisclaimer] = React.useState(true);
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
   const router = useRouter();
@@ -67,15 +67,12 @@ export default function TestLabPage() {
         label: "Test Status",
         width: 136,
       },
-      { type: "empty", width: 22 },
     ],
     cells: [
       {
         type: "text",
-        primary: true,
         valueKey: "name",
         cellProps: {
-          padding: "12px 24px",
           fontWeight: "400",
           fontSize: "16px",
         },
@@ -83,7 +80,7 @@ export default function TestLabPage() {
       {
         type: "text",
         valueKey: "orderBy",
-        cellProps: { align: "left", component: "th", padding: "none" },
+        cellProps: { align: "left", padding: "none" },
         contentStyle: {
           padding: "12px 0",
           fontWeight: "500",
@@ -93,7 +90,7 @@ export default function TestLabPage() {
       {
         type: "text",
         valueKey: "date",
-        cellProps: { align: "left", component: "th", padding: "none" },
+        cellProps: { align: "left", padding: "none" },
         contentStyle: {
           padding: "12px 0",
           fontWeight: "500",
@@ -103,22 +100,12 @@ export default function TestLabPage() {
       {
         type: "text",
         valueKey: "status",
-        cellProps: { align: "left", component: "th", padding: "none" },
+        cellProps: { align: "left", padding: "none" },
         contentStyle: {
           padding: "12px 0",
           fontWeight: "700",
           fontSize: "16px",
         },
-      },
-      {
-        type: "download-icon",
-        valueKey: "source",
-        cellProps: { padding: "none" },
-        icon: (
-          <IconButton>
-            <FileDownloadIcon></FileDownloadIcon>
-          </IconButton>
-        ),
       },
     ],
   };
@@ -149,7 +136,7 @@ export default function TestLabPage() {
         valueKey1: "name",
         valueKey2: "orderBy",
         cellHeadLabel: "Ordered by",
-        cellProps: { align: "left", component: "th", padding: "none" },
+        cellProps: { align: "left", padding: "none" },
         contentStyle: {
           padding: "12px",
           fontWeight: "500",
@@ -164,7 +151,7 @@ export default function TestLabPage() {
         valueKey1: "date",
         valueKey2: "status",
         cellHeadLabel: "Test Status",
-        cellProps: { align: "left", component: "th", padding: "none" },
+        cellProps: { align: "left", padding: "none" },
         contentStyle: {
           padding: "12px",
           fontWeight: "500",
@@ -186,16 +173,11 @@ export default function TestLabPage() {
     ],
   };
 
-  const createData = (name, orderBy, date, status) => {
-    return {
-      name,
-      orderBy,
-      date,
-      status,
-    };
-  };
-
   const rows = useSelector((state) => state.medicalResult.testLabData);
+
+  useEffect(() => {
+    if (rows.length > 0) setIsHideDisclaimer(false);
+  }, [rows]);
 
   useEffect(() => {
     dispatch(fetchTestLabResult());

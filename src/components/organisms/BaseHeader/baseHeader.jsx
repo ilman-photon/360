@@ -45,7 +45,9 @@ export default function BaseHeader({
   const userData = useSelector((state) => state.user.userData);
   React.useEffect(() => {
     const cookies = new Cookies();
-    const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
+    const isLogin =
+      cookies.get("authorized", { path: "/patient" }) === "true" ||
+      !!cookies.get("accessToken");
     setUserLoged(isLogin);
   }, []);
 
