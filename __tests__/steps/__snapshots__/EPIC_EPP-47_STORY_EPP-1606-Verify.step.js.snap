@@ -372,9 +372,11 @@ FR
                 class="subTitleWrapper MuiBox-root css-0"
               >
                 <p
+                  arialabel="You Have no Past Appointment"
                   class="MuiTypography-root MuiTypography-body2 noPastAppointment css-1b03qeg-MuiTypography-root"
+                  tabindex="0"
                 >
-                  You have no past appointments
+                  You Have no Past Appointment
                 </p>
               </div>
             </div>
@@ -1391,9 +1393,11 @@ FR
               class="subTitleWrapper MuiBox-root css-0"
             >
               <p
+                arialabel="You Have no Past Appointment"
                 class="MuiTypography-root MuiTypography-body2 noPastAppointment css-1b03qeg-MuiTypography-root"
+                tabindex="0"
               >
-                You have no past appointments
+                You Have no Past Appointment
               </p>
             </div>
           </div>
@@ -1827,9 +1831,11 @@ FR
                 class="subTitleWrapper MuiBox-root css-0"
               >
                 <p
+                  arialabel="You Have no Past Appointment"
                   class="MuiTypography-root MuiTypography-body2 noPastAppointment css-1b03qeg-MuiTypography-root"
+                  tabindex="0"
                 >
-                  You have no past appointments
+                  You Have no Past Appointment
                 </p>
               </div>
             </div>
@@ -2846,9 +2852,11 @@ FR
               class="subTitleWrapper MuiBox-root css-0"
             >
               <p
+                arialabel="You Have no Past Appointment"
                 class="MuiTypography-root MuiTypography-body2 noPastAppointment css-1b03qeg-MuiTypography-root"
+                tabindex="0"
               >
-                You have no past appointments
+                You Have no Past Appointment
               </p>
             </div>
           </div>
