@@ -109,7 +109,7 @@ export default function Appointments() {
 
   return (
     <>
-      <Box className={styles.container}>
+      <Box ariaLabel={"Appointments page"} className={styles.container}>
         <AccountTitleHeading
           title={"Appointments"}
           sx={

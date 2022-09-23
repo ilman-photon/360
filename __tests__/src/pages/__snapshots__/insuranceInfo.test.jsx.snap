@@ -49,7 +49,6 @@ Object {
         >
           <div
             aria-label="Your Account heading"
-            aria-live="polite"
             class="title"
             tabindex="0"
           >
@@ -1249,7 +1248,6 @@ Object {
       >
         <div
           aria-label="Your Account heading"
-          aria-live="polite"
           class="title"
           tabindex="0"
         >
