@@ -17,17 +17,4 @@ export const useLeavePageConfirm = ({
   useEffect(() => {
     return () => window.removeEventListener("beforeunload", handleWindowClose);
   }, []);
-
-  // navigate
-  useEffect(() => {
-    const handler = () => {
-      if (isConfirm && !window.confirm(message)) {
-        throw "Route Canceled";
-      }
-    };
-    Router.events?.on("routeChangeStart", handler);
-    return () => {
-      Router.events?.off("routeChangeStart", handler);
-    };
-  }, [isConfirm, message]);
 };

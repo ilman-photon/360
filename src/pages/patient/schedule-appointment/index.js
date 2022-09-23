@@ -282,9 +282,10 @@ export default function ScheduleAppointmentPage() {
 
   React.useEffect(() => {
     if (!appointmentScheduleData.providerInfo.providerId) {
-      router.replace("/patient/appointment")
+      router.replace("/patient/appointment");
     }
-  },[appointmentScheduleData])
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [appointmentScheduleData]);
 
   React.useEffect(() => {
     if (router.query.reschedule) {
