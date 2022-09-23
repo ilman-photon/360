@@ -44,7 +44,7 @@
     font-family: "Libre Franklin", sans-serif;
     font-style: normal;
     line-height: 18px;
-    box-shadow: none;
+    box-shadow: none !important;
 
     &.cancel {
       background-color: #b93632 !important;
