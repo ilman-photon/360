@@ -55,12 +55,12 @@ const medical = [
   },
   {
     icon: iconPrescription2,
-    href: "/patient/account/medical-record/test-lab-result",
+    href: "/patient/account/medical-record?type=care-plan-overview",
     label: "Prescriptions",
   },
   {
     icon: iconTestLabResults,
-    href: "/patient/account/medical-record/test-lab-result",
+    href: "/patient/account/medical-record?type=test-lab-result",
     label: "Test & Lab Results",
   },
 ];
