@@ -645,9 +645,7 @@ defineFeature(feature, (test) => {
     });
   }
 
-  test("EPIC_EPP-44_STORY_EPP-2538 - Verify user able to apply the filters which will update the results accordingly from the patient portal.", ({}) => {});
-
-  test('"EPIC_EPP-44_STORY_EPP-2538 - Verify user able to apply the filters which will update the results accordingly from the patient portal."', ({
+  test("EPIC_EPP-44_STORY_EPP-2538 - Verify user able to apply the filters which will update the results accordingly from the patient portal.", ({
     given,
     when,
     and,
@@ -763,9 +761,7 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test("EPIC_EPP-44_STORY_EPP-2538 - Verify user able to view the filters in the schedule appointment screen from the patient portal and user apply the filter and getting result accordingly.", ({}) => {});
-
-  test('"EPIC_EPP-44_STORY_EPP-2537 - Verify user able to view the filters in the schedule appointment screen from the patient portal and user apply the filter and getting result accordingly."', ({
+  test("EPIC_EPP-44_STORY_EPP-2538 - Verify user able to view the filters in the schedule appointment screen from the patient portal and user apply the filter and getting result accordingly.", ({
     given,
     when,
     and,
@@ -871,9 +867,7 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test("EPIC_EPP-44_STORY_EPP-2538 - Verify user able to view the filters in the schedule appointment screen from the patient portal and the user clears the filter.", ({}) => {});
-
-  test('"EPIC_EPP-44_STORY_EPP-2537 - Verify user able to view the filters in the schedule appointment screen from the patient portal and the user clears the filter."', ({
+  test("EPIC_EPP-44_STORY_EPP-2538 - Verify user able to view the filters in the schedule appointment screen from the patient portal and the user clears the filter.", ({
     given,
     when,
     and,

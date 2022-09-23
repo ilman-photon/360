@@ -61,7 +61,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
   const watchedPassword = watch("password", "");
   const [watchedEmail, watchedMobile, watchedPreferredCommunication] = watch([
     "email",
-    "mobile",
+    "mobileNumber",
     "preferredCommunication",
   ]); // you can also target specific fields by their names
   const getRegisteredUsername = () => {
@@ -276,8 +276,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               required: "This field is required",
               validate: {
                 required: (value) => {
-                  if (!isDOB(value))
-                    return "Incorect Date of Birth is required";
+                  if (!isDOB(value)) return "Invalid date of birth";
                 },
               },
             }}
@@ -324,7 +323,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               return (
                 <StyledInput
                   type="phone"
-                  id="mobile"
+                  id="mobileNumber"
                   data-testid={REGISTER_TEST_ID.mobilenumber}
                   label="Mobile Number"
                   value={value}
