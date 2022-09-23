@@ -95,7 +95,7 @@ export class Api {
   }
 
   validateSecurityQuestion(postbody) {
-    const url = "​/ecp​/patient​/securityquestions​/validate";
+    const url = "/ecp/patient/securityquestions/validate";
     return this.forgotFeatureValidation(url, postbody, "post");
   }
 

@@ -127,8 +127,8 @@ export default function ForgotPasswordPage() {
     router
   ) {
     const postbody = {
-      SecurityQuestions: securityQuestion,
-      userName: patientData.username,
+      SecurityQuestions: [{...securityQuestion}],
+      username: patientData.username,
     };
     const api = new Api();
     api
