@@ -277,7 +277,7 @@ Object {
               </div>
               <button
                 aria-label="Search"
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter   css-fruob7-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter   sxButton css-fruob7-MuiButtonBase-root-MuiButton-root"
                 data-testid="searchbtn"
                 tabindex="0"
                 type="submit"
@@ -595,7 +595,7 @@ Object {
             </div>
             <button
               aria-label="Search"
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter   css-fruob7-MuiButtonBase-root-MuiButton-root"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter   sxButton css-fruob7-MuiButtonBase-root-MuiButton-root"
               data-testid="searchbtn"
               tabindex="0"
               type="submit"
@@ -970,7 +970,7 @@ Object {
               </div>
               <button
                 aria-label="Search"
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter   css-fruob7-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter   sxButton css-fruob7-MuiButtonBase-root-MuiButton-root"
                 data-testid="searchbtn"
                 tabindex="0"
                 type="submit"

@@ -89,7 +89,7 @@ export function Login({
               rules={{
                 required: t("thisFieldRequired"),
                 pattern: {
-                  value: Regex.emailValidation,
+                  value: Regex.usernameValidation,
                   message: t("emailRequiredLabel"),
                 },
               }}
