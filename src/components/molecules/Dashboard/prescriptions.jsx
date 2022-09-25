@@ -100,6 +100,7 @@ export default function Prescriptions({
             width: "15px",
             height: "15px",
           }}
+          data-testid={"download-icon"}
         >
           <Image alt="" src={iconDownload} width={15} height={15} />
         </Box>
@@ -109,6 +110,7 @@ export default function Prescriptions({
             height: "15px",
             margin: "0px 15px",
           }}
+          data-testid={"shared-icon"}
         >
           <Image alt="" src={iconShare} width={15} height={15} />
         </Box>
@@ -119,6 +121,7 @@ export default function Prescriptions({
             height: "18px",
             color: colors.darkGreen,
           }}
+          data-testid={"print-icon"}
         />
       </Stack>
     );
@@ -134,6 +137,7 @@ export default function Prescriptions({
         <Box
           key={type + idxKey}
           className={isViewAll ? styles.prescriptionContent : {}}
+          data-testid={`${type}-container-${idxKey}`}
         >
           <Box className={[styles.flexDisplay, styles.margin]}>
             <Typography

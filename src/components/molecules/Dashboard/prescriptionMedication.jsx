@@ -168,6 +168,7 @@ export default function PrescriptionMedication({
             width: "15px",
             height: "15px",
           }}
+          data-testid={"download-icon"}
         >
           <Image alt="" src={iconDownload} width={15} height={15} />
         </Box>
@@ -177,6 +178,7 @@ export default function PrescriptionMedication({
             height: "15px",
             margin: "0px 15px",
           }}
+          data-testid={"shared-icon"}
         >
           <Image alt="" src={iconShare} width={15} height={15} />
         </Box>
@@ -187,6 +189,7 @@ export default function PrescriptionMedication({
             height: "18px",
             color: colors.darkGreen,
           }}
+          data-testid={"print-icon"}
         />
       </Stack>
     );
@@ -250,6 +253,7 @@ export default function PrescriptionMedication({
         direction={"row"}
         className={styles.medicationViewAllContainer}
         key={`${idx}-madication-prescription`}
+        data-testid={`medication-container-${idx}`}
       >
         {!isMobile && (
           <Box>
@@ -375,6 +379,7 @@ export default function PrescriptionMedication({
                     gradient={false}
                     onClick={() => onRequestCancelRefill(data, false)}
                     className={styles.requestButton}
+                    data-testid={"request-refill-button"}
                   >
                     Request Refill
                   </StyledButton>

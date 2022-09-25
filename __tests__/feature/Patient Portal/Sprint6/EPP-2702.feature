@@ -6,6 +6,7 @@ Feature: Patient Portal : Prescription Results - View Prescriptions Screen
   @Patient_Portal
   @Prescription
   @Regression
+  @included
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-2702 - To verify whether the patient is able to see the list of Prescriptions in the Prescription page
     Given Patient Launch  the browser and enter the Patient portal URL
@@ -19,6 +20,7 @@ Feature: Patient Portal : Prescription Results - View Prescriptions Screen
   @Patient_Portal
   @Prescription
   @Regression
+  @included
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-2702 - To verify whether the patient is able to view the option to Refill the Prescription.
     Given Patient Launch  the browser and enter the Patient portal URL
@@ -32,6 +34,7 @@ Feature: Patient Portal : Prescription Results - View Prescriptions Screen
   @Patient_Portal
   @Prescription
   @Regression
+  @included
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-2702 - To verify whether the patient is able to view the Cancel option for cancelling those requested Prescription.
     Given Patient Launch  the browser and enter the Patient portal URL
@@ -45,6 +48,7 @@ Feature: Patient Portal : Prescription Results - View Prescriptions Screen
   @Patient_Portal
   @Prescription
   @Regression
+  @included
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-2702 - To verify whether the patient is able to view the Download option for refilled Prescription.
     Given Patient Launch  the browser and enter the Patient portal URL
@@ -58,6 +62,7 @@ Feature: Patient Portal : Prescription Results - View Prescriptions Screen
   @Patient_Portal
   @Prescription
   @Regression
+  @excluded
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-2702 - To verify whether the patient is able to view the Download option for not expired Prescription.
     Given Patient Launch  the browser and enter the Patient portal URL
@@ -71,6 +76,7 @@ Feature: Patient Portal : Prescription Results - View Prescriptions Screen
   @Patient_Portal
   @Prescription
   @Regression
+  @excluded
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-2702 - To verify whether the patient is not able to view the Download option for expired Prescription.
     Given Patient Launch  the browser and enter the Patient portal URL
@@ -84,6 +90,7 @@ Feature: Patient Portal : Prescription Results - View Prescriptions Screen
   @Patient_Portal
   @Prescription
   @Regression
+  @included
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-2702 - To verify whether the Patient is able to view the verbiage There are no prescriptions when there is no prescription for the Patient.
     Given Patient Launch  the browser and enter the Patient portal URL

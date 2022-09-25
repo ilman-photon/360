@@ -92,12 +92,14 @@ const MOCK_PRESCRIPTION = {
     ],
     medications: [
       {
+        id:"0",
         prescription: "Aspirint 0.1% Ointmanet",
-        date: "2022-09-02T11:18:47.229Z",
+        date: "2022-09-01T11:18:47.229Z",
       },
       {
+        id:"0",
         prescription: "Aspirint 0.1% Ointmanet",
-        date: "2022-09-02T11:18:47.229Z",
+        date: "2022-09-01T11:18:47.229Z",
       },
     ],
   },

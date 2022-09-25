@@ -268,9 +268,13 @@ function parsePrescriptionItemData(prescriptionData, key) {
 }
 
 function getLatestDate(glassesDate, contactDate, medicationDate) {
-  if (glassesDate < contactDate && glassesDate < medicationDate) {
+  if (
+    glassesDate &&
+    glassesDate <= contactDate &&
+    glassesDate <= medicationDate
+  ) {
     return 0;
-  } else if (contactDate < medicationDate) {
+  } else if (contactDate && contactDate <= medicationDate) {
     return 1;
   } else {
     return 2;
