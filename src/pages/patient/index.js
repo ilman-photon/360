@@ -13,6 +13,7 @@ import { useRouter } from "next/router";
 import { Api } from "../api/api";
 import {
   setAppointmentSchedule,
+  setFilterBy,
   setFilterData,
   setIsFilterApplied,
   setProviderListData,
@@ -97,6 +98,7 @@ export default function HomePage() {
         } else {
           dispatch(setProviderListData([]));
         }
+        dispatch(setFilterBy(response.filterbyData));
       })
       .catch(function () {
         dispatch(setProviderListData([]));
@@ -236,8 +238,8 @@ export default function HomePage() {
             isTablet={false}
             filterData={filterData}
             onSearchProvider={onSearchProvider}
-            purposeOfVisitData={filterSuggestionData.purposeOfVisitData}
-            insuranceCarrierData={filterSuggestionData.insuranceCarrierData}
+            purposeOfVisitData={filterSuggestionData.purposeOfVisit}
+            insuranceCarrierData={filterSuggestionData.insuranceCarrier}
             filter={[]}
             onActivFilter={() => {
               //this is intentional
