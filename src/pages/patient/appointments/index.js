@@ -21,28 +21,12 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { colors } from "../../../styles/theme";
 import ModalCancelScheduling from "../../../components/organisms/ScheduleAppointment/ModalCancelScheduling/modalCancelScheduling";
 import Cookies from "universal-cookie";
-
-export async function getServerSideProps({ req }) {
-  const cookies = new Cookies(req.headers.cookie);
-
-  if (!cookies.get("authorized")) {
-    return {
-      redirect: {
-        destination: "/patient/login",
-        permanent: false,
-      },
-    };
-  }
-  return {
-    props: {},
-  };
-}
-
 export default function Appointments() {
   const [modalErrorRequest, setModalErrorRequest] = useState(false);
   const [modalSuccessCancel, setModalSuccessCancel] = useState(false);
   const [modalCancel, setModalCancel] = useState(false);
   const [isRequested, setIsRequested] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
 
   const appointments = useSelector((state) => state.user.userAppointmentData);
   const userData = useSelector((state) => state.user.userData);
@@ -66,6 +50,16 @@ export default function Appointments() {
           //Handle error getAppointments
         });
   };
+
+  useEffect(() => {
+    const cookies = new Cookies();
+    if (!cookies.get("authorized")) {
+      router.push("/patient/login");
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+  }, [setIsAuthenticated, router]);
 
   useEffect(() => {
     if (!isRequested && appointments.length === 0) {
@@ -109,27 +103,29 @@ export default function Appointments() {
 
   return (
     <>
-      <Box ariaLabel={"Appointments page"} className={styles.container}>
-        <AccountTitleHeading
-          title={"Appointments"}
-          isFixed={false}
-          sx={
-            isMobile && {
-              padding: "27px 10px",
+      {!isAuthenticated && (
+        <Box ariaLabel={"Appointments page"} className={styles.container}>
+          <AccountTitleHeading
+            title={"Appointments"}
+            isFixed={false}
+            sx={
+              isMobile && {
+                padding: "27px 10px",
+              }
             }
-          }
-        />
-        {appointments && (
-          <UpcomingAppointment
-            data={appointments}
-            onRescheduleClicked={onRescheduleClicked}
-            onCancelClicked={() => {
-              setModalCancel(true);
-            }}
           />
-        )}
-        {appointments && <PastAppointment data={appointments} />}
-      </Box>
+          {appointments && (
+            <UpcomingAppointment
+              data={appointments}
+              onRescheduleClicked={onRescheduleClicked}
+              onCancelClicked={() => {
+                setModalCancel(true);
+              }}
+            />
+          )}
+          {appointments && <PastAppointment data={appointments} />}
+        </Box>
+      )}
 
       <CustomModal
         buttonText={"OK"}

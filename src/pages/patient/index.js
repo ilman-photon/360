@@ -21,30 +21,15 @@ import {
 import { parseSuggestionData } from "../../utils/appointment";
 import FilterResultHeading from "../../components/molecules/FilterResultHeading/filterResultHeading";
 import { Box } from "@mui/system";
-
 import ModalCancelScheduling from "../../components/organisms/ScheduleAppointment/ModalCancelScheduling/modalCancelScheduling";
-
-export async function getServerSideProps({ req }) {
-  const cookies = new Cookies(req.headers.cookie);
-
-  if (!cookies.get("authorized")) {
-    return {
-      redirect: {
-        destination: "/patient/login",
-        permanent: false,
-      },
-    };
-  }
-  return {
-    props: {},
-  };
-}
 
 export default function HomePage() {
   const [filterSuggestionData, setFilterSuggestionData] = React.useState({});
   const [prescriptionData, setPrescriptionData] = React.useState({});
   const [appointmentData, setAppointmentData] = React.useState({});
   const [isOpenCancel, setIsOpenCancel] = React.useState(false);
+  const [isAuthenticated, setIsAuthenticated] = React.useState(true);
+
   const filterData = useSelector((state) => state.appointment.filterData);
   const userData = useSelector((state) => state.user.userData);
   const isDesktop = useMediaQuery("(min-width: 900px)");
@@ -156,6 +141,16 @@ export default function HomePage() {
   }
 
   useEffect(() => {
+    const cookies = new Cookies();
+    if (!cookies.get("authorized")) {
+      router.push("/patient/login");
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+  }, [setIsAuthenticated, router]);
+
+  useEffect(() => {
     onCalledgetSugestionAPI();
     onCalledGetAllPrescriptionsAPI();
     onCalledGetAllAppointment();
@@ -210,80 +205,85 @@ export default function HomePage() {
   };
 
   return (
-    <Stack sx={{ width: "100%" }}>
-      {isDesktop ? (
-        <FilterHeading
-          isDesktop={isDesktop}
-          isTablet={false}
-          onSearchProvider={onSearchProvider}
-          isGeolocationEnabled={isGeolocationEnabled}
-          filterData={filterData}
-          purposeOfVisitData={filterSuggestionData.purposeOfVisit}
-          insuranceCarrierData={filterSuggestionData.insuranceCarrier}
-          title={"John, Welcome to your dashboard"}
-          subtitle={"Search for a doctor"}
-          isFixed={false}
-        />
-      ) : (
-        <Box
-          sx={{
-            marginTop: "-25px",
-            display: "flex",
-            width: "100%",
-            zIndex: "9",
-          }}
-        >
-          <FilterResultHeading
-            isDesktop={false}
-            isTablet={false}
-            filterData={filterData}
-            onSearchProvider={onSearchProvider}
-            purposeOfVisitData={filterSuggestionData.purposeOfVisit}
-            insuranceCarrierData={filterSuggestionData.insuranceCarrier}
-            filter={[]}
-            onActivFilter={() => {
-              //this is intentional
+    <>
+      {!isAuthenticated && (
+        <Stack sx={{ width: "100%" }}>
+          {isDesktop ? (
+            <FilterHeading
+              isDesktop={isDesktop}
+              isTablet={false}
+              onSearchProvider={onSearchProvider}
+              isGeolocationEnabled={isGeolocationEnabled}
+              filterData={filterData}
+              purposeOfVisitData={filterSuggestionData.purposeOfVisit}
+              insuranceCarrierData={filterSuggestionData.insuranceCarrier}
+              title={"John, Welcome to your dashboard"}
+              subtitle={"Search for a doctor"}
+              isFixed={false}
+            />
+          ) : (
+            <Box
+              sx={{
+                marginTop: "-25px",
+                display: "flex",
+                position: "fixed",
+                width: "100%",
+                zIndex: "9",
+              }}
+            >
+              <FilterResultHeading
+                isDesktop={false}
+                isTablet={false}
+                filterData={filterData}
+                onSearchProvider={onSearchProvider}
+                purposeOfVisitData={filterSuggestionData.purposeOfVisit}
+                insuranceCarrierData={filterSuggestionData.insuranceCarrier}
+                filter={[]}
+                onActivFilter={() => {
+                  //this is intentional
+                }}
+                appliedFilter={[]}
+                title={"John, Welcome to your dashboard"}
+                subtitle={"Search for a doctor"}
+              />
+            </Box>
+          )}
+          <Grid
+            container
+            columns={5}
+            spacing={3}
+            p={3}
+            sx={{
+              paddingTop: isDesktop ? "220px" : "185px",
+              flexDirection: !isDesktop ? "column-reverse" : "unset",
+              "@media print": {
+                paddingTop: "30px !important",
+              },
             }}
-            appliedFilter={[]}
-            title={"John, Welcome to your dashboard"}
-            subtitle={"Search for a doctor"}
+          >
+            <Grid item xs={5} sm={5} md={2}>
+              <Prescriptions
+                prescriptionData={prescriptionData}
+                onViewPrescriptions={onViewPrescriptions}
+              />
+            </Grid>
+            <Grid item xs={5} sm={5} md={3}>
+              <AppointmentCard
+                appointmentData={appointmentData}
+                OnClickCancel={handleClickCancel}
+                onViewAppointment={onViewAppointment}
+                onClickReschedule={onClickReschedule}
+              />
+            </Grid>
+          </Grid>
+          <ModalCancelScheduling
+            isOpen={isOpenCancel}
+            OnClickCancel={handleClose}
+            OnCancelClicked={handleCancelSchedule}
           />
-        </Box>
+        </Stack>
       )}
-      <Grid
-        container
-        columns={5}
-        spacing={3}
-        p={3}
-        sx={{
-          paddingTop: isDesktop ? "30px" : "46px",
-          flexDirection: !isDesktop ? "column-reverse" : "unset",
-          "@media print": {
-            paddingTop: "30px !important",
-          },
-        }}
-      >
-        <Grid item xs={5} sm={5} md={2}>
-          <Prescriptions
-            prescriptionData={prescriptionData}
-            onViewPrescriptions={onViewPrescriptions}
-          />
-        </Grid>
-        <Grid item xs={5} sm={5} md={3}>
-          <AppointmentCard
-            appointmentData={appointmentData}
-            OnClickCancel={handleClickCancel}
-            onViewAppointment={onViewAppointment}
-            onClickReschedule={onClickReschedule}
-          />
-        </Grid>
-      </Grid>
-      <ModalCancelScheduling
-        isOpen={isOpenCancel}
-        OnClickCancel={handleClose}
-        OnCancelClicked={handleCancelSchedule}
-      />
-    </Stack>
+    </>
   );
 }
 
