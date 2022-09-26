@@ -26,10 +26,12 @@ export default function SetPasswordPage({ username }) {
   const dispatch = useDispatch();
 
   const isEmail = Regex.isEmailCorrect.test(username);
-  const mailFormat = username.replace(
-    /^(..)(.*)(@.*)$/,
-    (_, a, b, c) => a + b.replace(/./g, "*") + c
-  );
+  const mailFormat =
+    username &&
+    username.replace(
+      /^(..)(.*)(@.*)$/,
+      (_, a, b, c) => a + b.replace(/./g, "*") + c
+    );
 
   const maskedUsername = isEmail
     ? mailFormat

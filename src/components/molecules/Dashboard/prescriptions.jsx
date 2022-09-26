@@ -134,48 +134,80 @@ export default function Prescriptions({
   function renderPrescriptionTable(data, type, idxKey, lastRow = false) {
     if (data && data.prescriptionDetails) {
       let tableHeader = ["Eye", "Sph", "Cyl", "Axis", "Add"];
-      if (type === "contact") {
+      if (type === "contacts") {
         tableHeader = ["Eye", "Sph", "BC", "CYL", "AXIS"];
       }
       return (
         <Box
           key={type + idxKey}
-          className={isViewAll ? styles.prescriptionContent : {}}
+          className={
+            isViewAll && !isMobile
+              ? styles.prescriptionContent
+              : styles.prescriptionContentMobile
+          }
           data-testid={`${type}-container-${idxKey}`}
         >
-          <Box className={[styles.flexDisplay, styles.margin]}>
+          <Box
+            className={[
+              styles.flexDisplay,
+              styles.margin,
+              idxKey === 0 ? styles.marginTop0 : "",
+            ].join(" ")}
+            sx={{
+              position: "relative",
+            }}
+          >
             <Typography
               variant="customBodyRegular"
-              className={isViewAll ? styles.glassesViewAll : {}}
+              className={styles.glassesViewAll}
             >
-              {isViewAll ? `Prescribed on:` : `Prescribed by:`}&nbsp;
+              Prescribed on:&nbsp;
             </Typography>
             <Typography
               variant="bodyMedium"
-              className={isViewAll ? styles.glassesViewAll : {}}
+              className={styles.glassesViewAll}
               sx={{
-                marginRight: isViewAll && isMobile ? "auto" : "0px",
+                marginRight: "auto",
               }}
             >
-              {isViewAll ? data.date : data.prescribedBy}
+              {data.date}
             </Typography>
-            {isViewAll && !isMobile ? renderCTAIcon() : <MenuList />}
+            {isViewAll && !isMobile ? (
+              renderCTAIcon()
+            ) : (
+              <Box sx={{ position: "absolute", right: 0 }}>
+                <MenuList />
+              </Box>
+            )}
           </Box>
 
           <Box className={[isMobile ? "" : styles.flexDisplay, styles.margin]}>
             <Box className={[styles.flexDisplay, getBoxStyle()]}>
               <Typography variant="customBodyRegular">
-                {isViewAll ? `Prescribed by:` : `Prescribed on:`}&nbsp;
+                Prescribed by: &nbsp;
               </Typography>
-              <Typography variant="bodyMedium">
-                {isViewAll ? data.prescribedBy : data.date}
-              </Typography>
+              <Typography variant="bodyMedium">{data.prescribedBy}</Typography>
             </Box>
+            {isViewAll && (
+              <Box
+                className={[
+                  styles.flexDisplay,
+                  isMobile ? styles.marginVertical : "",
+                ]}
+              >
+                <Typography variant="customBodyRegular">
+                  Expires on: &nbsp;
+                </Typography>
+                <Typography variant="bodyMedium">
+                  {data.expirationDate}
+                </Typography>
+              </Box>
+            )}
+          </Box>
+
+          {!isViewAll && (
             <Box
-              className={[
-                styles.flexDisplay,
-                isMobile ? styles.marginVertical : "",
-              ]}
+              className={[isMobile ? "" : styles.flexDisplay, styles.margin]}
             >
               <Typography variant="customBodyRegular">
                 Expires on: &nbsp;
@@ -184,7 +216,8 @@ export default function Prescriptions({
                 {data.expirationDate}
               </Typography>
             </Box>
-          </Box>
+          )}
+
           <Box
             sx={{
               borderBottom: lastRow ? 0 : 1,
@@ -235,13 +268,13 @@ export default function Prescriptions({
                       </TableCell>
                       <TableCell>{row.sph}</TableCell>
                       <TableCell>
-                        {type === "contact" ? row.bc : row.cyl}
+                        {type === "contacts" ? row.bc : row.cyl}
                       </TableCell>
                       <TableCell>
-                        {type === "contact" ? row.cyl : row.axis}
+                        {type === "contacts" ? row.cyl : row.axis}
                       </TableCell>
                       <TableCell>
-                        {type === "contact" ? row.axis : row.add}
+                        {type === "contacts" ? row.axis : row.add}
                       </TableCell>
                     </TableRow>
                   ))}
@@ -465,7 +498,11 @@ export default function Prescriptions({
         <Box
           className={[styles.flexDisplay, styles.spaceBetween, styles.margin]}
         >
-          <Typography variant="titleCard">Medications Prescriptions</Typography>
+          <Typography variant="titleCard">
+            {prescription?.medications?.active?.length > 0
+              ? `Medications Prescriptions (${prescription?.medications?.active?.length})`
+              : `Medications Prescriptions`}
+          </Typography>
         </Box>
         {renderMedicationUI(prescription.medications.active)}
         {!isViewAll && (
@@ -504,11 +541,10 @@ export default function Prescriptions({
             >
               <Typography
                 variant="titleCard"
-                className={isViewAll ? styles.paddingTop22 : {}}
+                className={isViewAll && !isMobile ? styles.paddingTop22 : {}}
               >
                 Glasses Prescriptions
               </Typography>
-              {!isViewAll && <MenuList pdfFile="/Prescription_Glasses.pdf" />}
             </Box>
             {renderPrescriptionTabUI(prescription.glasses, "glasses")}
             {!isViewAll && (
@@ -543,11 +579,10 @@ export default function Prescriptions({
             >
               <Typography
                 variant="titleCard"
-                className={isViewAll ? styles.paddingTop22 : {}}
+                className={isViewAll && !isMobile ? styles.paddingTop22 : {}}
               >
                 Contacts Prescriptions
               </Typography>
-              {!isViewAll && <MenuList pdfFile="/Prescription_Contacts.pdf" />}
             </Box>
             {renderPrescriptionTabUI(prescription.contacts, "contacts")}
             {!isViewAll && (
