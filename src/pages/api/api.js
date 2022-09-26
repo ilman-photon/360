@@ -23,7 +23,6 @@ export class Api {
   }
 
   getResponse(url, postbody, method) {
-    const api = new Api();
     return new Promise((resolve, reject) => {
       const resolver = function (response) {
         if (response && response.data) {
@@ -54,25 +53,13 @@ export class Api {
         }
       };
 
-      const cookies = new Cookies();
-      const config = { headers: cookies.getAll() };
-
       switch (method) {
         case "get":
-          return api.client
-            .get(url, postbody, config)
-            .then(resolver)
-            .catch(rejecter);
+          return this.client.get(url, postbody).then(resolver).catch(rejecter);
         case "post":
-          return api.client
-            .post(url, postbody, config)
-            .then(resolver)
-            .catch(rejecter);
+          return this.client.post(url, postbody).then(resolver).catch(rejecter);
         default:
-          return api.client
-            .get(url, postbody, config)
-            .then(resolver)
-            .catch(rejecter);
+          return this.client.get(url, postbody).then(resolver).catch(rejecter);
       }
     });
   }
@@ -85,6 +72,11 @@ export class Api {
   login(postbody) {
     const url = "/ecp/patient/login";
     return this.forgotFeatureValidation(url, postbody, "post", 2000);
+  }
+
+  getPatientId(postbody) {
+    const url = "/ecp/patient/search/ecppatientid";
+    return this.getResponse(url, postbody, "post");
   }
 
   validateGuestUser(postbody) {
@@ -246,7 +238,11 @@ export class Api {
 
   getAllAppointment() {
     const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`;
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const patientId = `/${userData.patientId}`;
+    const url = `${domain}/api/dummy/appointment/my-appointment/getAllAppointment${
+      userData.patientId ? patientId : ""
+    }`;
     return this.getResponse(url, {}, "get");
   }
 
