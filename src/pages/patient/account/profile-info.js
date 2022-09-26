@@ -12,6 +12,15 @@ import { Api } from "../../api/api";
 import constants from "../../../utils/constants";
 import { closePageMessage, setPageMessage } from "../../../store";
 import FormMessage from "../../../components/molecules/FormMessage/formMessage";
+import { styled } from "@mui/material/styles";
+
+const StyledTab = styled((props) => <Tab disableRipple {...props} />)(() => ({
+  textTransform: "none",
+  fontSize: "14px",
+  "&.MuiTab-root.Mui-selected": {
+    color: "#003B4A",
+  },
+}));
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -148,6 +157,7 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
           display: {
             md: "none",
           },
+          backgroundColor: "#F4F4F4",
         }}
         value={activeTabs}
         onChange={(_evt, val) => {
@@ -155,9 +165,12 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
         }}
         textColor="inherit"
         variant="fullWidth"
+        TabIndicatorProps={{
+          style: { background: "#0095A9", color: "red" },
+        }}
       >
-        <Tab value={0} label="Profile" {...a11yProps(0)} />
-        <Tab value={1} label="Contact" {...a11yProps(1)} />
+        <StyledTab value={0} label="Profile" {...a11yProps(0)} />
+        <StyledTab value={1} label="Contact" {...a11yProps(1)} />
       </Tabs>
       <Grid container spacing={isDesktop ? 2 : 0}>
         <Grid item xs={12} md={6}>

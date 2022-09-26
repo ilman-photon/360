@@ -18,7 +18,7 @@ import { Controller, useForm } from "react-hook-form";
 import { StyledSelect } from "../../../../../components/atoms/Select/select";
 
 export default function TestLabPage() {
-  const [isHideDisclaimer, setIsHideDisclaimer] = React.useState(true);
+  const [isHideDisclaimer, setIsHideDisclaimer] = React.useState(false);
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
   const router = useRouter();
@@ -220,8 +220,10 @@ export default function TestLabPage() {
                     marginRight: "18px",
                   }}
                 />{" "}
-                Your lab results are available. Please reach out to your
-                provider.
+                <div>
+                  Your lab results are available. Please reach out to your
+                  provider.
+                </div>
               </span>
               <Button
                 p={0}

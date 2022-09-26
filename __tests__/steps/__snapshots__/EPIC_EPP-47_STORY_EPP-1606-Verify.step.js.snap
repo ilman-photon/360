@@ -43,9 +43,104 @@ Object {
                   src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                   style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
                   tabindex="0"
+                  title="Your Account"
                 />
                 <noscript />
               </span>
+              <div
+                class="MuiBox-root css-19wv5ok"
+              >
+                <button
+                  class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1ux1dh0-MuiButtonBase-root-MuiButton-root"
+                  data-testid="appoinments"
+                  tabindex="0"
+                  type="button"
+                >
+                  Appointments
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+              <div
+                class="MuiBox-root css-1kybfnd"
+              >
+                <button
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  aria-label="account of current user"
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeLarge css-mf1cb5-MuiButtonBase-root-MuiIconButton-root"
+                  data-testid="user-menu-nav-open"
+                  tabindex="0"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                    data-testid="MenuIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+                    />
+                  </svg>
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+              <div
+                class="MuiBox-root css-1t0e2o"
+              >
+                <button
+                  aria-label="Open settings"
+                  class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1kuz0we-MuiButtonBase-root-MuiButton-root"
+                  data-mui-internal-clone-element="true"
+                  data-testid="user-menu-open"
+                  tabindex="0"
+                  type="button"
+                >
+                  <span
+                    class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+                  >
+                    <div
+                      class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-1izoy3a-MuiAvatar-root"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiAvatar-fallback css-10mi8st-MuiSvgIcon-root-MuiAvatar-fallback"
+                        data-testid="PersonIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                        />
+                      </svg>
+                    </div>
+                  </span>
+                  Eyecare User
+                  <span
+                    class="MuiButton-endIcon MuiButton-iconSizeMedium css-9tj150-MuiButton-endIcon"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                      data-testid="ExpandMoreIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                      />
+                    </svg>
+                  </span>
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
             </div>
           </div>
         </header>
@@ -60,9 +155,7 @@ Object {
             >
               <div
                 aria-label="Appointments heading"
-                aria-live="polite"
                 class="title"
-                style="text-align: left; width: auto; display: flex;"
                 tabindex="0"
               >
                 Appointments
@@ -74,6 +167,8 @@ Object {
               <h2
                 class="MuiTypography-root MuiTypography-h2 title css-13trq03-MuiTypography-root"
                 data-testid="appointments_upcoming_appointments_header"
+                label="Upcoming appointments heading"
+                tabindex="0"
               >
                 Upcoming Appointments
               </h2>
@@ -84,7 +179,9 @@ Object {
                   class="upcomingAppointmentDetail MuiBox-root css-0"
                 >
                   <h3
+                    arialabel="Eye Exam"
                     class="MuiTypography-root MuiTypography-h3 appointmentTitle css-14r3n6q-MuiTypography-root"
+                    tabindex="0"
                   >
                     Eye Exam
                   </h3>
@@ -92,7 +189,9 @@ Object {
                     class="dateContainer MuiBox-root css-0"
                   >
                     <h6
+                      arialabel="Thursday, Jan 12 - 4:30AM EST"
                       class="MuiTypography-root MuiTypography-subtitle1 date css-8t55lz-MuiTypography-root"
+                      tabindex="0"
                     >
                       Thursday, Jan 12 - 4:30AM EST
                     </h6>
@@ -100,12 +199,17 @@ Object {
                       class="subTitleWrapper MuiBox-root css-0"
                     >
                       <h6
+                        arialabel="Visit Purpose"
                         class="MuiTypography-root MuiTypography-subtitle1 css-8t55lz-MuiTypography-root"
+                        tabindex="0"
                       >
-                        Visit Purpose: 
+                        Visit Purpose:
+                         
                       </h6>
                       <p
+                        arialabel="Eye Exam"
                         class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        tabindex="0"
                       >
                         Eye Exam
                       </p>
@@ -151,11 +255,13 @@ Object {
                       >
                         <img
                           alt="Doctor Image"
+                          aria-label="Doctor Image"
                           class="profilePhoto"
                           data-nimg="fill"
                           decoding="async"
                           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                           style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                          tabindex="0"
                         />
                         <noscript />
                       </span>
@@ -164,7 +270,9 @@ Object {
                       class="nameContainer MuiBox-root css-0"
                     >
                       <h6
+                        arialabel="Paul Wagner Md"
                         class="MuiTypography-root MuiTypography-subtitle1 doctorName css-8t55lz-MuiTypography-root"
+                        tabindex="0"
                       >
                         Paul Wagner Md
                       </h6>
@@ -172,12 +280,17 @@ Object {
                         class="subTitleWrapper MuiBox-root css-0"
                       >
                         <h6
+                          arialabel="Patient"
                           class="MuiTypography-root MuiTypography-subtitle1 css-8t55lz-MuiTypography-root"
+                          tabindex="0"
                         >
-                          Patient: 
+                          Patient:
+                           
                         </h6>
                         <p
+                          arialabel="Rebecca Chan"
                           class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                          tabindex="0"
                         >
                           Rebecca Chan
                         </p>
@@ -190,32 +303,40 @@ Object {
                         class="locationWrapper MuiBox-root css-0"
                       >
                         <h6
+                          arialabel="Location"
                           class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-57coag-MuiTypography-root"
+                          tabindex="0"
                         >
                           Location
                         </h6>
-                        <p
-                          class="MuiTypography-root MuiTypography-body1 bodyTitle css-6h2hyl-MuiTypography-root"
+                        <div
+                          arialabel="Scripps Eyecare
+51 West 51st Street
+Floor 3, Suite 320 Midtown
+Florida
+FR
+54231"
+                          tabindex="0"
                         >
-                          Scripps Eyecare
-                        </p>
-                        <p
-                          class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
-                        >
-                          51 West 51st Street
-                          <br />
-                          Floor 3, Suite 320 Midtown
-                          <br />
-                          Florida
-                          ,
-                           
-                          FR
-                          ,
-                           
-                          54231
-                        </p>
+                          <p
+                            class="MuiTypography-root MuiTypography-body1 bodyTitle css-6h2hyl-MuiTypography-root"
+                          >
+                            Scripps Eyecare
+                          </p>
+                          <p
+                            class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                          >
+                            51 West 51st Street
+Floor 3, Suite 320 Midtown
+Florida
+FR
+54231
+                          </p>
+                        </div>
                         <a
+                          arialabel="(857) 299-9989"
                           class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                          tabindex="0"
                         >
                           (857) 299-9989
                         </a>
@@ -246,17 +367,23 @@ Object {
                         class="insuranceWrapper MuiBox-root css-0"
                       >
                         <h6
+                          arialabel="Insurance"
                           class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-57coag-MuiTypography-root"
+                          tabindex="0"
                         >
                           Insurance
                         </h6>
                         <p
+                          arialabel="ECP Vision"
                           class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                          tabindex="0"
                         >
                           ECP Vision
                         </p>
                         <p
+                          arialabel="BlueCare Vision"
                           class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                          tabindex="0"
                         >
                           BlueCare Vision
                         </p>
@@ -330,7 +457,9 @@ Object {
               class="pastAppointment MuiBox-root css-0"
             >
               <h2
+                arialabel="Past Appointments"
                 class="MuiTypography-root MuiTypography-h2 title css-13trq03-MuiTypography-root"
+                tabindex="0"
               >
                 Past Appointments
               </h2>
@@ -338,15 +467,110 @@ Object {
                 class="subTitleWrapper MuiBox-root css-0"
               >
                 <p
+                  arialabel="You Have no Past Appointment"
                   class="MuiTypography-root MuiTypography-body2 noPastAppointment css-1b03qeg-MuiTypography-root"
+                  tabindex="0"
                 >
-                  You have no past appointments
+                  You Have no Past Appointment
                 </p>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+    <div
+      aria-hidden="true"
+      class="MuiPopover-root MuiMenu-root MuiModal-root MuiModal-hidden css-14ogsoa-MuiModal-root-MuiPopover-root-MuiMenu-root"
+      data-testid="user-menu-close"
+      id="menu-appbar"
+      role="presentation"
+    >
+      <div
+        aria-hidden="true"
+        class="MuiBackdrop-root MuiBackdrop-invisible css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop"
+        style="opacity: 0; visibility: hidden;"
+      />
+      <div
+        data-test="sentinelStart"
+        tabindex="0"
+      />
+      <div
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiMenu-paper MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiPopover-paper css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper"
+        style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
+        tabindex="-1"
+      >
+        <ul
+          class="MuiList-root MuiList-padding MuiMenu-list css-6hp17o-MuiList-root-MuiMenu-list"
+          role="menu"
+          tabindex="-1"
+        >
+          <div
+            class="css-1p5q5e5-MuiStack-root"
+            tabindex="0"
+          >
+            <li
+              class="MuiMenuItem-root MuiMenuItem-gutters MuiButtonBase-root css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
+              role="menuitem"
+              tabindex="-1"
+            >
+              <button
+                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-19nvhel-MuiButtonBase-root-MuiButton-root"
+                data-testid="account"
+                tabindex="0"
+                type="button"
+              >
+                Account
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </li>
+            <li
+              class="MuiMenuItem-root MuiMenuItem-gutters MuiButtonBase-root css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
+              role="menuitem"
+              tabindex="-1"
+            >
+              <button
+                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-19nvhel-MuiButtonBase-root-MuiButton-root"
+                data-testid="logout"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                    data-testid="ExitToAppIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M10.09 15.59 11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                    />
+                  </svg>
+                </span>
+                Logout
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </li>
+          </div>
+        </ul>
+      </div>
+      <div
+        data-test="sentinelEnd"
+        tabindex="0"
+      />
     </div>
     <div
       class="MuiDialog-root modalDialog MuiModal-root css-i3g3nq-MuiModal-root-MuiDialog-root"
@@ -1028,9 +1252,104 @@ Object {
                 src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                 style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
                 tabindex="0"
+                title="Your Account"
               />
               <noscript />
             </span>
+            <div
+              class="MuiBox-root css-19wv5ok"
+            >
+              <button
+                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1ux1dh0-MuiButtonBase-root-MuiButton-root"
+                data-testid="appoinments"
+                tabindex="0"
+                type="button"
+              >
+                Appointments
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiBox-root css-1kybfnd"
+            >
+              <button
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                aria-label="account of current user"
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeLarge css-mf1cb5-MuiButtonBase-root-MuiIconButton-root"
+                data-testid="user-menu-nav-open"
+                tabindex="0"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                  data-testid="MenuIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+                  />
+                </svg>
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiBox-root css-1t0e2o"
+            >
+              <button
+                aria-label="Open settings"
+                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1kuz0we-MuiButtonBase-root-MuiButton-root"
+                data-mui-internal-clone-element="true"
+                data-testid="user-menu-open"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+                >
+                  <div
+                    class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-1izoy3a-MuiAvatar-root"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiAvatar-fallback css-10mi8st-MuiSvgIcon-root-MuiAvatar-fallback"
+                      data-testid="PersonIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                      />
+                    </svg>
+                  </div>
+                </span>
+                Eyecare User
+                <span
+                  class="MuiButton-endIcon MuiButton-iconSizeMedium css-9tj150-MuiButton-endIcon"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                    data-testid="ExpandMoreIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                    />
+                  </svg>
+                </span>
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
           </div>
         </div>
       </header>
@@ -1045,9 +1364,7 @@ Object {
           >
             <div
               aria-label="Appointments heading"
-              aria-live="polite"
               class="title"
-              style="text-align: left; width: auto; display: flex;"
               tabindex="0"
             >
               Appointments
@@ -1059,6 +1376,8 @@ Object {
             <h2
               class="MuiTypography-root MuiTypography-h2 title css-13trq03-MuiTypography-root"
               data-testid="appointments_upcoming_appointments_header"
+              label="Upcoming appointments heading"
+              tabindex="0"
             >
               Upcoming Appointments
             </h2>
@@ -1069,7 +1388,9 @@ Object {
                 class="upcomingAppointmentDetail MuiBox-root css-0"
               >
                 <h3
+                  arialabel="Eye Exam"
                   class="MuiTypography-root MuiTypography-h3 appointmentTitle css-14r3n6q-MuiTypography-root"
+                  tabindex="0"
                 >
                   Eye Exam
                 </h3>
@@ -1077,7 +1398,9 @@ Object {
                   class="dateContainer MuiBox-root css-0"
                 >
                   <h6
+                    arialabel="Thursday, Jan 12 - 4:30AM EST"
                     class="MuiTypography-root MuiTypography-subtitle1 date css-8t55lz-MuiTypography-root"
+                    tabindex="0"
                   >
                     Thursday, Jan 12 - 4:30AM EST
                   </h6>
@@ -1085,12 +1408,17 @@ Object {
                     class="subTitleWrapper MuiBox-root css-0"
                   >
                     <h6
+                      arialabel="Visit Purpose"
                       class="MuiTypography-root MuiTypography-subtitle1 css-8t55lz-MuiTypography-root"
+                      tabindex="0"
                     >
-                      Visit Purpose: 
+                      Visit Purpose:
+                       
                     </h6>
                     <p
+                      arialabel="Eye Exam"
                       class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                      tabindex="0"
                     >
                       Eye Exam
                     </p>
@@ -1136,11 +1464,13 @@ Object {
                     >
                       <img
                         alt="Doctor Image"
+                        aria-label="Doctor Image"
                         class="profilePhoto"
                         data-nimg="fill"
                         decoding="async"
                         src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                         style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                        tabindex="0"
                       />
                       <noscript />
                     </span>
@@ -1149,7 +1479,9 @@ Object {
                     class="nameContainer MuiBox-root css-0"
                   >
                     <h6
+                      arialabel="Paul Wagner Md"
                       class="MuiTypography-root MuiTypography-subtitle1 doctorName css-8t55lz-MuiTypography-root"
+                      tabindex="0"
                     >
                       Paul Wagner Md
                     </h6>
@@ -1157,12 +1489,17 @@ Object {
                       class="subTitleWrapper MuiBox-root css-0"
                     >
                       <h6
+                        arialabel="Patient"
                         class="MuiTypography-root MuiTypography-subtitle1 css-8t55lz-MuiTypography-root"
+                        tabindex="0"
                       >
-                        Patient: 
+                        Patient:
+                         
                       </h6>
                       <p
+                        arialabel="Rebecca Chan"
                         class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        tabindex="0"
                       >
                         Rebecca Chan
                       </p>
@@ -1175,32 +1512,40 @@ Object {
                       class="locationWrapper MuiBox-root css-0"
                     >
                       <h6
+                        arialabel="Location"
                         class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-57coag-MuiTypography-root"
+                        tabindex="0"
                       >
                         Location
                       </h6>
-                      <p
-                        class="MuiTypography-root MuiTypography-body1 bodyTitle css-6h2hyl-MuiTypography-root"
+                      <div
+                        arialabel="Scripps Eyecare
+51 West 51st Street
+Floor 3, Suite 320 Midtown
+Florida
+FR
+54231"
+                        tabindex="0"
                       >
-                        Scripps Eyecare
-                      </p>
-                      <p
-                        class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
-                      >
-                        51 West 51st Street
-                        <br />
-                        Floor 3, Suite 320 Midtown
-                        <br />
-                        Florida
-                        ,
-                         
-                        FR
-                        ,
-                         
-                        54231
-                      </p>
+                        <p
+                          class="MuiTypography-root MuiTypography-body1 bodyTitle css-6h2hyl-MuiTypography-root"
+                        >
+                          Scripps Eyecare
+                        </p>
+                        <p
+                          class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        >
+                          51 West 51st Street
+Floor 3, Suite 320 Midtown
+Florida
+FR
+54231
+                        </p>
+                      </div>
                       <a
+                        arialabel="(857) 299-9989"
                         class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                        tabindex="0"
                       >
                         (857) 299-9989
                       </a>
@@ -1231,17 +1576,23 @@ Object {
                       class="insuranceWrapper MuiBox-root css-0"
                     >
                       <h6
+                        arialabel="Insurance"
                         class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-57coag-MuiTypography-root"
+                        tabindex="0"
                       >
                         Insurance
                       </h6>
                       <p
+                        arialabel="ECP Vision"
                         class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        tabindex="0"
                       >
                         ECP Vision
                       </p>
                       <p
+                        arialabel="BlueCare Vision"
                         class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        tabindex="0"
                       >
                         BlueCare Vision
                       </p>
@@ -1315,7 +1666,9 @@ Object {
             class="pastAppointment MuiBox-root css-0"
           >
             <h2
+              arialabel="Past Appointments"
               class="MuiTypography-root MuiTypography-h2 title css-13trq03-MuiTypography-root"
+              tabindex="0"
             >
               Past Appointments
             </h2>
@@ -1323,9 +1676,11 @@ Object {
               class="subTitleWrapper MuiBox-root css-0"
             >
               <p
+                arialabel="You Have no Past Appointment"
                 class="MuiTypography-root MuiTypography-body2 noPastAppointment css-1b03qeg-MuiTypography-root"
+                tabindex="0"
               >
-                You have no past appointments
+                You Have no Past Appointment
               </p>
             </div>
           </div>
@@ -1430,9 +1785,104 @@ Object {
                   src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                   style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
                   tabindex="0"
+                  title="Your Account"
                 />
                 <noscript />
               </span>
+              <div
+                class="MuiBox-root css-19wv5ok"
+              >
+                <button
+                  class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1ux1dh0-MuiButtonBase-root-MuiButton-root"
+                  data-testid="appoinments"
+                  tabindex="0"
+                  type="button"
+                >
+                  Appointments
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+              <div
+                class="MuiBox-root css-1kybfnd"
+              >
+                <button
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  aria-label="account of current user"
+                  class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeLarge css-mf1cb5-MuiButtonBase-root-MuiIconButton-root"
+                  data-testid="user-menu-nav-open"
+                  tabindex="0"
+                  type="button"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                    data-testid="MenuIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+                    />
+                  </svg>
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
+              <div
+                class="MuiBox-root css-1t0e2o"
+              >
+                <button
+                  aria-label="Open settings"
+                  class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1kuz0we-MuiButtonBase-root-MuiButton-root"
+                  data-mui-internal-clone-element="true"
+                  data-testid="user-menu-open"
+                  tabindex="0"
+                  type="button"
+                >
+                  <span
+                    class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+                  >
+                    <div
+                      class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-1izoy3a-MuiAvatar-root"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiAvatar-fallback css-10mi8st-MuiSvgIcon-root-MuiAvatar-fallback"
+                        data-testid="PersonIcon"
+                        focusable="false"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                        />
+                      </svg>
+                    </div>
+                  </span>
+                  Eyecare User
+                  <span
+                    class="MuiButton-endIcon MuiButton-iconSizeMedium css-9tj150-MuiButton-endIcon"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                      data-testid="ExpandMoreIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                      />
+                    </svg>
+                  </span>
+                  <span
+                    class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                  />
+                </button>
+              </div>
             </div>
           </div>
         </header>
@@ -1447,9 +1897,7 @@ Object {
             >
               <div
                 aria-label="Appointments heading"
-                aria-live="polite"
                 class="title"
-                style="text-align: left; width: auto; display: flex;"
                 tabindex="0"
               >
                 Appointments
@@ -1461,6 +1909,8 @@ Object {
               <h2
                 class="MuiTypography-root MuiTypography-h2 title css-13trq03-MuiTypography-root"
                 data-testid="appointments_upcoming_appointments_header"
+                label="Upcoming appointments heading"
+                tabindex="0"
               >
                 Upcoming Appointments
               </h2>
@@ -1471,7 +1921,9 @@ Object {
                   class="upcomingAppointmentDetail MuiBox-root css-0"
                 >
                   <h3
+                    arialabel="Eye Exam"
                     class="MuiTypography-root MuiTypography-h3 appointmentTitle css-14r3n6q-MuiTypography-root"
+                    tabindex="0"
                   >
                     Eye Exam
                   </h3>
@@ -1479,7 +1931,9 @@ Object {
                     class="dateContainer MuiBox-root css-0"
                   >
                     <h6
+                      arialabel="Thursday, Jan 12 - 4:30AM EST"
                       class="MuiTypography-root MuiTypography-subtitle1 date css-8t55lz-MuiTypography-root"
+                      tabindex="0"
                     >
                       Thursday, Jan 12 - 4:30AM EST
                     </h6>
@@ -1487,12 +1941,17 @@ Object {
                       class="subTitleWrapper MuiBox-root css-0"
                     >
                       <h6
+                        arialabel="Visit Purpose"
                         class="MuiTypography-root MuiTypography-subtitle1 css-8t55lz-MuiTypography-root"
+                        tabindex="0"
                       >
-                        Visit Purpose: 
+                        Visit Purpose:
+                         
                       </h6>
                       <p
+                        arialabel="Eye Exam"
                         class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        tabindex="0"
                       >
                         Eye Exam
                       </p>
@@ -1538,11 +1997,13 @@ Object {
                       >
                         <img
                           alt="Doctor Image"
+                          aria-label="Doctor Image"
                           class="profilePhoto"
                           data-nimg="fill"
                           decoding="async"
                           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                           style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                          tabindex="0"
                         />
                         <noscript />
                       </span>
@@ -1551,7 +2012,9 @@ Object {
                       class="nameContainer MuiBox-root css-0"
                     >
                       <h6
+                        arialabel="Paul Wagner Md"
                         class="MuiTypography-root MuiTypography-subtitle1 doctorName css-8t55lz-MuiTypography-root"
+                        tabindex="0"
                       >
                         Paul Wagner Md
                       </h6>
@@ -1559,12 +2022,17 @@ Object {
                         class="subTitleWrapper MuiBox-root css-0"
                       >
                         <h6
+                          arialabel="Patient"
                           class="MuiTypography-root MuiTypography-subtitle1 css-8t55lz-MuiTypography-root"
+                          tabindex="0"
                         >
-                          Patient: 
+                          Patient:
+                           
                         </h6>
                         <p
+                          arialabel="Rebecca Chan"
                           class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                          tabindex="0"
                         >
                           Rebecca Chan
                         </p>
@@ -1577,32 +2045,40 @@ Object {
                         class="locationWrapper MuiBox-root css-0"
                       >
                         <h6
+                          arialabel="Location"
                           class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-57coag-MuiTypography-root"
+                          tabindex="0"
                         >
                           Location
                         </h6>
-                        <p
-                          class="MuiTypography-root MuiTypography-body1 bodyTitle css-6h2hyl-MuiTypography-root"
+                        <div
+                          arialabel="Scripps Eyecare
+51 West 51st Street
+Floor 3, Suite 320 Midtown
+Florida
+FR
+54231"
+                          tabindex="0"
                         >
-                          Scripps Eyecare
-                        </p>
-                        <p
-                          class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
-                        >
-                          51 West 51st Street
-                          <br />
-                          Floor 3, Suite 320 Midtown
-                          <br />
-                          Florida
-                          ,
-                           
-                          FR
-                          ,
-                           
-                          54231
-                        </p>
+                          <p
+                            class="MuiTypography-root MuiTypography-body1 bodyTitle css-6h2hyl-MuiTypography-root"
+                          >
+                            Scripps Eyecare
+                          </p>
+                          <p
+                            class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                          >
+                            51 West 51st Street
+Floor 3, Suite 320 Midtown
+Florida
+FR
+54231
+                          </p>
+                        </div>
                         <a
+                          arialabel="(857) 299-9989"
                           class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                          tabindex="0"
                         >
                           (857) 299-9989
                         </a>
@@ -1633,17 +2109,23 @@ Object {
                         class="insuranceWrapper MuiBox-root css-0"
                       >
                         <h6
+                          arialabel="Insurance"
                           class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-57coag-MuiTypography-root"
+                          tabindex="0"
                         >
                           Insurance
                         </h6>
                         <p
+                          arialabel="ECP Vision"
                           class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                          tabindex="0"
                         >
                           ECP Vision
                         </p>
                         <p
+                          arialabel="BlueCare Vision"
                           class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                          tabindex="0"
                         >
                           BlueCare Vision
                         </p>
@@ -1717,7 +2199,9 @@ Object {
               class="pastAppointment MuiBox-root css-0"
             >
               <h2
+                arialabel="Past Appointments"
                 class="MuiTypography-root MuiTypography-h2 title css-13trq03-MuiTypography-root"
+                tabindex="0"
               >
                 Past Appointments
               </h2>
@@ -1725,15 +2209,110 @@ Object {
                 class="subTitleWrapper MuiBox-root css-0"
               >
                 <p
+                  arialabel="You Have no Past Appointment"
                   class="MuiTypography-root MuiTypography-body2 noPastAppointment css-1b03qeg-MuiTypography-root"
+                  tabindex="0"
                 >
-                  You have no past appointments
+                  You Have no Past Appointment
                 </p>
               </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
+    <div
+      aria-hidden="true"
+      class="MuiPopover-root MuiMenu-root MuiModal-root MuiModal-hidden css-14ogsoa-MuiModal-root-MuiPopover-root-MuiMenu-root"
+      data-testid="user-menu-close"
+      id="menu-appbar"
+      role="presentation"
+    >
+      <div
+        aria-hidden="true"
+        class="MuiBackdrop-root MuiBackdrop-invisible css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop"
+        style="opacity: 0; visibility: hidden;"
+      />
+      <div
+        data-test="sentinelStart"
+        tabindex="0"
+      />
+      <div
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation1 MuiMenu-paper MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation8 MuiPopover-paper css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper"
+        style="opacity: 0; transform: scale(0.75, 0.5625); visibility: hidden;"
+        tabindex="-1"
+      >
+        <ul
+          class="MuiList-root MuiList-padding MuiMenu-list css-6hp17o-MuiList-root-MuiMenu-list"
+          role="menu"
+          tabindex="-1"
+        >
+          <div
+            class="css-1p5q5e5-MuiStack-root"
+            tabindex="0"
+          >
+            <li
+              class="MuiMenuItem-root MuiMenuItem-gutters MuiButtonBase-root css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
+              role="menuitem"
+              tabindex="-1"
+            >
+              <button
+                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-19nvhel-MuiButtonBase-root-MuiButton-root"
+                data-testid="account"
+                tabindex="0"
+                type="button"
+              >
+                Account
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </li>
+            <li
+              class="MuiMenuItem-root MuiMenuItem-gutters MuiButtonBase-root css-kk1bwy-MuiButtonBase-root-MuiMenuItem-root"
+              role="menuitem"
+              tabindex="-1"
+            >
+              <button
+                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-19nvhel-MuiButtonBase-root-MuiButton-root"
+                data-testid="logout"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                    data-testid="ExitToAppIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M10.09 15.59 11.5 17l5-5-5-5-1.41 1.41L12.67 11H3v2h9.67l-2.58 2.59zM19 3H5c-1.11 0-2 .9-2 2v4h2V5h14v14H5v-4H3v4c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"
+                    />
+                  </svg>
+                </span>
+                Logout
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+              <span
+                class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+              />
+            </li>
+          </div>
+        </ul>
+      </div>
+      <div
+        data-test="sentinelEnd"
+        tabindex="0"
+      />
     </div>
     <div
       class="MuiDialog-root modalDialog MuiModal-root css-i3g3nq-MuiModal-root-MuiDialog-root"
@@ -2415,9 +2994,104 @@ Object {
                 src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                 style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
                 tabindex="0"
+                title="Your Account"
               />
               <noscript />
             </span>
+            <div
+              class="MuiBox-root css-19wv5ok"
+            >
+              <button
+                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1ux1dh0-MuiButtonBase-root-MuiButton-root"
+                data-testid="appoinments"
+                tabindex="0"
+                type="button"
+              >
+                Appointments
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiBox-root css-1kybfnd"
+            >
+              <button
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                aria-label="account of current user"
+                class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeLarge css-mf1cb5-MuiButtonBase-root-MuiIconButton-root"
+                data-testid="user-menu-nav-open"
+                tabindex="0"
+                type="button"
+              >
+                <svg
+                  aria-hidden="true"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                  data-testid="MenuIcon"
+                  focusable="false"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"
+                  />
+                </svg>
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
+            <div
+              class="MuiBox-root css-1t0e2o"
+            >
+              <button
+                aria-label="Open settings"
+                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-1kuz0we-MuiButtonBase-root-MuiButton-root"
+                data-mui-internal-clone-element="true"
+                data-testid="user-menu-open"
+                tabindex="0"
+                type="button"
+              >
+                <span
+                  class="MuiButton-startIcon MuiButton-iconSizeMedium css-1d6wzja-MuiButton-startIcon"
+                >
+                  <div
+                    class="MuiAvatar-root MuiAvatar-circular MuiAvatar-colorDefault css-1izoy3a-MuiAvatar-root"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiAvatar-fallback css-10mi8st-MuiSvgIcon-root-MuiAvatar-fallback"
+                      data-testid="PersonIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                      />
+                    </svg>
+                  </div>
+                </span>
+                Eyecare User
+                <span
+                  class="MuiButton-endIcon MuiButton-iconSizeMedium css-9tj150-MuiButton-endIcon"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                    data-testid="ExpandMoreIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M16.59 8.59 12 13.17 7.41 8.59 6 10l6 6 6-6z"
+                    />
+                  </svg>
+                </span>
+                <span
+                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                />
+              </button>
+            </div>
           </div>
         </div>
       </header>
@@ -2432,9 +3106,7 @@ Object {
           >
             <div
               aria-label="Appointments heading"
-              aria-live="polite"
               class="title"
-              style="text-align: left; width: auto; display: flex;"
               tabindex="0"
             >
               Appointments
@@ -2446,6 +3118,8 @@ Object {
             <h2
               class="MuiTypography-root MuiTypography-h2 title css-13trq03-MuiTypography-root"
               data-testid="appointments_upcoming_appointments_header"
+              label="Upcoming appointments heading"
+              tabindex="0"
             >
               Upcoming Appointments
             </h2>
@@ -2456,7 +3130,9 @@ Object {
                 class="upcomingAppointmentDetail MuiBox-root css-0"
               >
                 <h3
+                  arialabel="Eye Exam"
                   class="MuiTypography-root MuiTypography-h3 appointmentTitle css-14r3n6q-MuiTypography-root"
+                  tabindex="0"
                 >
                   Eye Exam
                 </h3>
@@ -2464,7 +3140,9 @@ Object {
                   class="dateContainer MuiBox-root css-0"
                 >
                   <h6
+                    arialabel="Thursday, Jan 12 - 4:30AM EST"
                     class="MuiTypography-root MuiTypography-subtitle1 date css-8t55lz-MuiTypography-root"
+                    tabindex="0"
                   >
                     Thursday, Jan 12 - 4:30AM EST
                   </h6>
@@ -2472,12 +3150,17 @@ Object {
                     class="subTitleWrapper MuiBox-root css-0"
                   >
                     <h6
+                      arialabel="Visit Purpose"
                       class="MuiTypography-root MuiTypography-subtitle1 css-8t55lz-MuiTypography-root"
+                      tabindex="0"
                     >
-                      Visit Purpose: 
+                      Visit Purpose:
+                       
                     </h6>
                     <p
+                      arialabel="Eye Exam"
                       class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                      tabindex="0"
                     >
                       Eye Exam
                     </p>
@@ -2523,11 +3206,13 @@ Object {
                     >
                       <img
                         alt="Doctor Image"
+                        aria-label="Doctor Image"
                         class="profilePhoto"
                         data-nimg="fill"
                         decoding="async"
                         src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
                         style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
+                        tabindex="0"
                       />
                       <noscript />
                     </span>
@@ -2536,7 +3221,9 @@ Object {
                     class="nameContainer MuiBox-root css-0"
                   >
                     <h6
+                      arialabel="Paul Wagner Md"
                       class="MuiTypography-root MuiTypography-subtitle1 doctorName css-8t55lz-MuiTypography-root"
+                      tabindex="0"
                     >
                       Paul Wagner Md
                     </h6>
@@ -2544,12 +3231,17 @@ Object {
                       class="subTitleWrapper MuiBox-root css-0"
                     >
                       <h6
+                        arialabel="Patient"
                         class="MuiTypography-root MuiTypography-subtitle1 css-8t55lz-MuiTypography-root"
+                        tabindex="0"
                       >
-                        Patient: 
+                        Patient:
+                         
                       </h6>
                       <p
+                        arialabel="Rebecca Chan"
                         class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        tabindex="0"
                       >
                         Rebecca Chan
                       </p>
@@ -2562,32 +3254,40 @@ Object {
                       class="locationWrapper MuiBox-root css-0"
                     >
                       <h6
+                        arialabel="Location"
                         class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-57coag-MuiTypography-root"
+                        tabindex="0"
                       >
                         Location
                       </h6>
-                      <p
-                        class="MuiTypography-root MuiTypography-body1 bodyTitle css-6h2hyl-MuiTypography-root"
+                      <div
+                        arialabel="Scripps Eyecare
+51 West 51st Street
+Floor 3, Suite 320 Midtown
+Florida
+FR
+54231"
+                        tabindex="0"
                       >
-                        Scripps Eyecare
-                      </p>
-                      <p
-                        class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
-                      >
-                        51 West 51st Street
-                        <br />
-                        Floor 3, Suite 320 Midtown
-                        <br />
-                        Florida
-                        ,
-                         
-                        FR
-                        ,
-                         
-                        54231
-                      </p>
+                        <p
+                          class="MuiTypography-root MuiTypography-body1 bodyTitle css-6h2hyl-MuiTypography-root"
+                        >
+                          Scripps Eyecare
+                        </p>
+                        <p
+                          class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        >
+                          51 West 51st Street
+Floor 3, Suite 320 Midtown
+Florida
+FR
+54231
+                        </p>
+                      </div>
                       <a
+                        arialabel="(857) 299-9989"
                         class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways link css-1ps4owl-MuiTypography-root-MuiLink-root"
+                        tabindex="0"
                       >
                         (857) 299-9989
                       </a>
@@ -2618,17 +3318,23 @@ Object {
                       class="insuranceWrapper MuiBox-root css-0"
                     >
                       <h6
+                        arialabel="Insurance"
                         class="MuiTypography-root MuiTypography-subtitle2 titleLocation css-57coag-MuiTypography-root"
+                        tabindex="0"
                       >
                         Insurance
                       </h6>
                       <p
+                        arialabel="ECP Vision"
                         class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        tabindex="0"
                       >
                         ECP Vision
                       </p>
                       <p
+                        arialabel="BlueCare Vision"
                         class="MuiTypography-root MuiTypography-body2 css-1b03qeg-MuiTypography-root"
+                        tabindex="0"
                       >
                         BlueCare Vision
                       </p>
@@ -2702,7 +3408,9 @@ Object {
             class="pastAppointment MuiBox-root css-0"
           >
             <h2
+              arialabel="Past Appointments"
               class="MuiTypography-root MuiTypography-h2 title css-13trq03-MuiTypography-root"
+              tabindex="0"
             >
               Past Appointments
             </h2>
@@ -2710,9 +3418,11 @@ Object {
               class="subTitleWrapper MuiBox-root css-0"
             >
               <p
+                arialabel="You Have no Past Appointment"
                 class="MuiTypography-root MuiTypography-body2 noPastAppointment css-1b03qeg-MuiTypography-root"
+                tabindex="0"
               >
-                You have no past appointments
+                You Have no Past Appointment
               </p>
             </div>
           </div>

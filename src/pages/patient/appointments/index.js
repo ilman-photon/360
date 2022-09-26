@@ -14,13 +14,30 @@ import {
   setFilterData,
 } from "../../../store/appointment";
 import { setUserAppointmentData } from "../../../store/user";
-import { TEST_ID } from "../../../utils/constants";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CustomModal from "../../../components/molecules/CustomModal/customModal";
 import FormMessage from "../../../components/molecules/FormMessage/formMessage";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { colors } from "../../../styles/theme";
 import ModalCancelScheduling from "../../../components/organisms/ScheduleAppointment/ModalCancelScheduling/modalCancelScheduling";
+import Cookies from "universal-cookie";
+
+export async function getServerSideProps({ req }) {
+  const cookies = new Cookies(req.headers.cookie);
+
+  if (!cookies.get("authorized")) {
+    return {
+      redirect: {
+        destination: "/patient/login",
+        permanent: false,
+      },
+    };
+  }
+  return {
+    props: {},
+  };
+}
+
 export default function Appointments() {
   const [modalErrorRequest, setModalErrorRequest] = useState(false);
   const [modalSuccessCancel, setModalSuccessCancel] = useState(false);
@@ -92,15 +109,14 @@ export default function Appointments() {
 
   return (
     <>
-      <Box className={styles.container}>
+      <Box ariaLabel={"Appointments page"} className={styles.container}>
         <AccountTitleHeading
           title={"Appointments"}
-          sx={{
-            textAlign: "left",
-            width: isMobile ? "100%" : "auto",
-            display: "flex",
-            padding: isMobile && "14px 10px",
-          }}
+          sx={
+            isMobile && {
+              padding: "27px 10px",
+            }
+          }
         />
         {appointments && (
           <UpcomingAppointment

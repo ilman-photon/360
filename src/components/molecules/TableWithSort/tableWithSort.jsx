@@ -1,5 +1,6 @@
 import {
   Box,
+  Button,
   Table,
   TableBody,
   TableCell,
@@ -100,6 +101,9 @@ export default function TableWithSort({
   config = { header: [], cells: [] },
   rows = [],
   isDesktop = false,
+  onAssetDownload = () => {
+    // This is intentional
+  },
 }) {
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("calories");
@@ -209,6 +213,36 @@ export default function TableWithSort({
                               {cell.icon}
                             </TableCell>
                           );
+                        case "download-asset":
+                          return (
+                            <TableCell key={cellIdx} {...cell.cellProps}>
+                              <Tooltip
+                                title={
+                                  <Typography
+                                    sx={{
+                                      fontSize: {
+                                        xs: 13,
+                                        md: 14,
+                                        color: "white",
+                                      },
+                                    }}
+                                  >
+                                    download
+                                  </Typography>
+                                }
+                                placement="top"
+                              >
+                                <div
+                                  role="button"
+                                  onClick={() =>
+                                    onAssetDownload(row[cell.valueKey])
+                                  }
+                                >
+                                  {cell.icon}
+                                </div>
+                              </Tooltip>
+                            </TableCell>
+                          );
                         case "download-icon":
                           return (
                             <TableCell key={cellIdx} {...cell.cellProps}>
@@ -231,6 +265,7 @@ export default function TableWithSort({
                                 <a
                                   href={row.source}
                                   download
+                                  data-testid="downloadPDFButton"
                                   target="_blank"
                                   rel="noreferrer"
                                 >

@@ -13,32 +13,32 @@
 }
 
 .title {
-  font-family: "Bw Nista Geometric DEMO";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 32px;
-  line-height: 44px;
-  color: #003b4a;
+  font-family: "Bw Nista Geometric DEMO", sans-serif !important;
+  font-style: normal !important;
+  font-weight: 400 !important;
+  font-size: 32px !important;
+  line-height: 44px !important;
+  color: #003b4a !important;
 
   @media (max-width: 992px) {
-    font-size: 26px;
+    font-size: 26px !important;
   }
 }
 
 .appointmentTitle {
-  font-family: "Bw Nista Geometric DEMO";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 26px;
-  line-height: 32px;
+  font-family: "Bw Nista Geometric DEMO", sans-serif;
+  font-style: normal !important;
+  font-weight: 500 !important;
+  font-size: 26px !important;
+  line-height: 32px !important;
   display: flex;
   align-items: center;
-  color: #003b4a;
-  margin-bottom: 24px;
+  color: #003b4a !important;
+  margin-bottom: 24px !important;
 
   @media (max-width: 992px) {
-    font-size: 22px;
-    margin-bottom: 16px;
+    font-size: 22px !important;
+    margin-bottom: 16px !important;
   }
 }
 
@@ -77,23 +77,25 @@
   font-weight: 600 !important;
   font-size: 18px !important;
   margin-right: 81px !important;
+  width: 340px;
   @media (max-width: 992px) {
     margin-right: unset !important;
     margin-bottom: 8px;
+    width: unset;
   }
 }
 
 .upcomingAppointmentDetail h6 {
-  font-family: "Libre Franklin";
-  font-style: normal;
-  font-weight: 700;
-  font-size: 16px;
-  line-height: 24px;
-  letter-spacing: 0.0016em;
-  color: #003b4a;
+  font-family: "Libre Franklin", sans-serif !important;
+  font-style: normal !important;
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  line-height: 24px !important;
+  letter-spacing: 0.0016em !important;
+  color: #003b4a !important;
 
   @media (max-width: 992px) {
-    font-size: 18px;
+    font-size: 18px !important;
   }
 }
 
@@ -138,7 +140,6 @@
   padding: 10px;
 
   @media (max-width: 992px) {
-    background: unset;
     border: 2px solid #f3f3f3;
     background: unset;
   }

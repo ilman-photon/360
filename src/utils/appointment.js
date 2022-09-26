@@ -1,4 +1,3 @@
-import moment from "moment";
 import constants from "./constants";
 import { ddmmyyDateFormat } from "./dateFormatter";
 
@@ -327,6 +326,17 @@ export function parseAppointmentCardData(appointmentData) {
     data = appointmentData[0];
   }
   return data;
+}
+
+export function isPrevArrowDisable(dateList, currentDate = null) {
+  if (currentDate) {
+    return new Date() > currentDate;
+  } else {
+    return (
+      new Date() >
+      (dateList?.dateRange?.length > 0 ? dateList.dateRange[0] : null)
+    );
+  }
 }
 
 export function parseAppointmentDetails(appointmentDetails) {

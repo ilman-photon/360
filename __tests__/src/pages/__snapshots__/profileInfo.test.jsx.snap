@@ -49,7 +49,6 @@ Object {
         >
           <div
             aria-label="Your Account heading"
-            aria-live="polite"
             class="title"
             tabindex="0"
           >
@@ -227,7 +226,7 @@ Object {
                 </div>
               </div>
               <div
-                class="MuiTabs-root css-4km1ta-MuiTabs-root"
+                class="MuiTabs-root css-myy0xu-MuiTabs-root"
               >
                 <div
                   class="MuiTabs-scroller MuiTabs-fixed css-jpln7h-MuiTabs-scroller"
@@ -240,35 +239,29 @@ Object {
                     <button
                       aria-controls="full-width-tabpanel-0"
                       aria-selected="true"
-                      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth Mui-selected css-1orr1xa-MuiButtonBase-root-MuiTab-root"
+                      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth Mui-selected css-qsvfmw-MuiButtonBase-root-MuiTab-root"
                       id="full-width-tab-0"
                       role="tab"
                       tabindex="0"
                       type="button"
                     >
                       Profile
-                      <span
-                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                      />
                     </button>
                     <button
                       aria-controls="full-width-tabpanel-1"
                       aria-selected="false"
-                      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth css-1orr1xa-MuiButtonBase-root-MuiTab-root"
+                      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth css-qsvfmw-MuiButtonBase-root-MuiTab-root"
                       id="full-width-tab-1"
                       role="tab"
                       tabindex="-1"
                       type="button"
                     >
                       Contact
-                      <span
-                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                      />
                     </button>
                   </div>
                   <span
                     class="MuiTabs-indicator css-1aquho2-MuiTabs-indicator"
-                    style="left: 0px; width: 0px;"
+                    style="left: 0px; width: 0px; background: rgb(0, 149, 169); color: red;"
                   />
                 </div>
               </div>
@@ -303,7 +296,7 @@ Object {
                             </div>
                           </div>
                           <div
-                            class="css-qkek6c-MuiStack-root"
+                            class="css-wb45zt-MuiStack-root"
                           >
                             <div>
                               <div
@@ -341,7 +334,7 @@ Object {
                             >
                               <svg
                                 aria-hidden="true"
-                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1k6stih-MuiSvgIcon-root"
                                 data-testid="ErrorOutlineOutlinedIcon"
                                 focusable="false"
                                 viewBox="0 0 24 24"
@@ -356,7 +349,7 @@ Object {
                             </button>
                           </div>
                           <div
-                            class="css-qkek6c-MuiStack-root"
+                            class="css-1sbz1s3-MuiStack-root"
                           >
                             <div>
                               <div
@@ -388,7 +381,7 @@ Object {
                             </div>
                           </div>
                           <div
-                            class="css-qkek6c-MuiStack-root"
+                            class="css-1sbz1s3-MuiStack-root"
                           >
                             <div>
                               <div
@@ -420,7 +413,7 @@ Object {
                             </div>
                           </div>
                           <div
-                            class="css-qkek6c-MuiStack-root"
+                            class="css-1sbz1s3-MuiStack-root"
                           >
                             <div>
                               <div
@@ -459,7 +452,7 @@ Object {
                             >
                               <svg
                                 aria-hidden="true"
-                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1k6stih-MuiSvgIcon-root"
                                 data-testid="ErrorOutlineOutlinedIcon"
                                 focusable="false"
                                 viewBox="0 0 24 24"
@@ -474,7 +467,7 @@ Object {
                             </button>
                           </div>
                           <div
-                            class="css-qkek6c-MuiStack-root"
+                            class="css-1sbz1s3-MuiStack-root"
                           >
                             <div>
                               <div
@@ -513,7 +506,7 @@ Object {
                             >
                               <svg
                                 aria-hidden="true"
-                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1k6stih-MuiSvgIcon-root"
                                 data-testid="ErrorOutlineOutlinedIcon"
                                 focusable="false"
                                 viewBox="0 0 24 24"
@@ -528,7 +521,7 @@ Object {
                             </button>
                           </div>
                           <div
-                            class="css-qkek6c-MuiStack-root"
+                            class="css-1sbz1s3-MuiStack-root"
                           >
                             <div>
                               <div
@@ -560,7 +553,7 @@ Object {
                             </div>
                           </div>
                           <div
-                            class="css-qkek6c-MuiStack-root"
+                            class="css-1sbz1s3-MuiStack-root"
                           >
                             <div>
                               <div
@@ -599,7 +592,7 @@ Object {
                             >
                               <svg
                                 aria-hidden="true"
-                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1k6stih-MuiSvgIcon-root"
                                 data-testid="ErrorOutlineOutlinedIcon"
                                 focusable="false"
                                 viewBox="0 0 24 24"
@@ -614,7 +607,7 @@ Object {
                             </button>
                           </div>
                           <div
-                            class="css-qkek6c-MuiStack-root"
+                            class="css-1sbz1s3-MuiStack-root"
                           >
                             <div>
                               <div
@@ -662,7 +655,7 @@ Object {
                                 </div>
                               </div>
                               <div
-                                class="css-qkek6c-MuiStack-root"
+                                class="css-1sbz1s3-MuiStack-root"
                               >
                                 <div>
                                   <div
@@ -718,7 +711,7 @@ Object {
                                 </div>
                               </div>
                               <div
-                                class="css-qkek6c-MuiStack-root"
+                                class="css-1sbz1s3-MuiStack-root"
                               >
                                 <div>
                                   <div
@@ -767,7 +760,7 @@ Object {
                   >
                     <button
                       aria-label="Edit option"
-                      class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-5kb46n-MuiButtonBase-root-MuiButton-root"
+                      class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-5kb46n-MuiButtonBase-root-MuiButton-root"
                       data-testid="loc_edit"
                       tabindex="0"
                       type="button"
@@ -834,7 +827,6 @@ Object {
       >
         <div
           aria-label="Your Account heading"
-          aria-live="polite"
           class="title"
           tabindex="0"
         >
@@ -1012,7 +1004,7 @@ Object {
               </div>
             </div>
             <div
-              class="MuiTabs-root css-4km1ta-MuiTabs-root"
+              class="MuiTabs-root css-myy0xu-MuiTabs-root"
             >
               <div
                 class="MuiTabs-scroller MuiTabs-fixed css-jpln7h-MuiTabs-scroller"
@@ -1025,35 +1017,29 @@ Object {
                   <button
                     aria-controls="full-width-tabpanel-0"
                     aria-selected="true"
-                    class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth Mui-selected css-1orr1xa-MuiButtonBase-root-MuiTab-root"
+                    class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth Mui-selected css-qsvfmw-MuiButtonBase-root-MuiTab-root"
                     id="full-width-tab-0"
                     role="tab"
                     tabindex="0"
                     type="button"
                   >
                     Profile
-                    <span
-                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                    />
                   </button>
                   <button
                     aria-controls="full-width-tabpanel-1"
                     aria-selected="false"
-                    class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth css-1orr1xa-MuiButtonBase-root-MuiTab-root"
+                    class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth css-qsvfmw-MuiButtonBase-root-MuiTab-root"
                     id="full-width-tab-1"
                     role="tab"
                     tabindex="-1"
                     type="button"
                   >
                     Contact
-                    <span
-                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                    />
                   </button>
                 </div>
                 <span
                   class="MuiTabs-indicator css-1aquho2-MuiTabs-indicator"
-                  style="left: 0px; width: 0px;"
+                  style="left: 0px; width: 0px; background: rgb(0, 149, 169); color: red;"
                 />
               </div>
             </div>
@@ -1088,7 +1074,7 @@ Object {
                           </div>
                         </div>
                         <div
-                          class="css-qkek6c-MuiStack-root"
+                          class="css-wb45zt-MuiStack-root"
                         >
                           <div>
                             <div
@@ -1126,7 +1112,7 @@ Object {
                           >
                             <svg
                               aria-hidden="true"
-                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1k6stih-MuiSvgIcon-root"
                               data-testid="ErrorOutlineOutlinedIcon"
                               focusable="false"
                               viewBox="0 0 24 24"
@@ -1141,7 +1127,7 @@ Object {
                           </button>
                         </div>
                         <div
-                          class="css-qkek6c-MuiStack-root"
+                          class="css-1sbz1s3-MuiStack-root"
                         >
                           <div>
                             <div
@@ -1173,7 +1159,7 @@ Object {
                           </div>
                         </div>
                         <div
-                          class="css-qkek6c-MuiStack-root"
+                          class="css-1sbz1s3-MuiStack-root"
                         >
                           <div>
                             <div
@@ -1205,7 +1191,7 @@ Object {
                           </div>
                         </div>
                         <div
-                          class="css-qkek6c-MuiStack-root"
+                          class="css-1sbz1s3-MuiStack-root"
                         >
                           <div>
                             <div
@@ -1244,7 +1230,7 @@ Object {
                           >
                             <svg
                               aria-hidden="true"
-                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1k6stih-MuiSvgIcon-root"
                               data-testid="ErrorOutlineOutlinedIcon"
                               focusable="false"
                               viewBox="0 0 24 24"
@@ -1259,7 +1245,7 @@ Object {
                           </button>
                         </div>
                         <div
-                          class="css-qkek6c-MuiStack-root"
+                          class="css-1sbz1s3-MuiStack-root"
                         >
                           <div>
                             <div
@@ -1298,7 +1284,7 @@ Object {
                           >
                             <svg
                               aria-hidden="true"
-                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1k6stih-MuiSvgIcon-root"
                               data-testid="ErrorOutlineOutlinedIcon"
                               focusable="false"
                               viewBox="0 0 24 24"
@@ -1313,7 +1299,7 @@ Object {
                           </button>
                         </div>
                         <div
-                          class="css-qkek6c-MuiStack-root"
+                          class="css-1sbz1s3-MuiStack-root"
                         >
                           <div>
                             <div
@@ -1345,7 +1331,7 @@ Object {
                           </div>
                         </div>
                         <div
-                          class="css-qkek6c-MuiStack-root"
+                          class="css-1sbz1s3-MuiStack-root"
                         >
                           <div>
                             <div
@@ -1384,7 +1370,7 @@ Object {
                           >
                             <svg
                               aria-hidden="true"
-                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1k6stih-MuiSvgIcon-root"
                               data-testid="ErrorOutlineOutlinedIcon"
                               focusable="false"
                               viewBox="0 0 24 24"
@@ -1399,7 +1385,7 @@ Object {
                           </button>
                         </div>
                         <div
-                          class="css-qkek6c-MuiStack-root"
+                          class="css-1sbz1s3-MuiStack-root"
                         >
                           <div>
                             <div
@@ -1447,7 +1433,7 @@ Object {
                               </div>
                             </div>
                             <div
-                              class="css-qkek6c-MuiStack-root"
+                              class="css-1sbz1s3-MuiStack-root"
                             >
                               <div>
                                 <div
@@ -1503,7 +1489,7 @@ Object {
                               </div>
                             </div>
                             <div
-                              class="css-qkek6c-MuiStack-root"
+                              class="css-1sbz1s3-MuiStack-root"
                             >
                               <div>
                                 <div
@@ -1552,7 +1538,7 @@ Object {
                 >
                   <button
                     aria-label="Edit option"
-                    class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-5kb46n-MuiButtonBase-root-MuiButton-root"
+                    class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-5kb46n-MuiButtonBase-root-MuiButton-root"
                     data-testid="loc_edit"
                     tabindex="0"
                     type="button"
