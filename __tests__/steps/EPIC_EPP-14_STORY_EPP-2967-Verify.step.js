@@ -2,7 +2,7 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
-import TestLabPage from "../../src/pages/patient/account/medical-record/test-lab-result";
+import MedicalRecordPage from "../../src/pages/patient/account/medical-record";
 
 import { render, waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
@@ -32,7 +32,7 @@ defineFeature(feature, (test) => {
             window.matchMedia = createMatchMedia('1920px');
             container = render(
                 <Provider store={store}>
-                  {TestLabPage.getLayout(<TestLabPage />)}
+                  {MedicalRecordPage.getLayout(<MedicalRecordPage />)}
                 </Provider>
               );
           });

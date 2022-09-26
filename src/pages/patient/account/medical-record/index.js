@@ -7,7 +7,7 @@ import { IconButton, Stack, useMediaQuery, Button } from "@mui/material";
 import styles from "./styles.module.scss";
 import FileDownloadIcon from "../../../../assets/icons/FileDownload";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import PDFFileIcon from "../../../../assets/icons/PDFFileIcon";
+import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CloseIcon from "@mui/icons-material/Close";
 import { useEffect } from "react";
 import {
@@ -19,7 +19,7 @@ import { useRouter } from "next/router";
 import { Controller, useForm } from "react-hook-form";
 import TableEmpty from "../../../../components/atoms/TableEmpty/tableEmpty";
 
-export default function TestLabPage() {
+export default function MedicalRecordPage() {
   const isDesktop = useMediaQuery("(min-width: 769px)");
   const router = useRouter();
   const dispatch = useDispatch();
@@ -38,7 +38,7 @@ export default function TestLabPage() {
   const watchedCategory = watch("category", "");
   console.log({ watchedCategory });
 
-  const tableConfiguration = {
+  const tableDesktopTestLab = {
     header: [
       {
         type: "text",
@@ -116,7 +116,7 @@ export default function TestLabPage() {
     ],
   };
 
-  const tableConfigurationMobile = {
+  const tableMobileTestLab = {
     header: [
       {
         type: "text",
@@ -134,7 +134,6 @@ export default function TestLabPage() {
         label: "Test Date",
         width: 250,
       },
-      { type: "empty", width: 22 },
     ],
     cells: [
       {
@@ -166,13 +165,54 @@ export default function TestLabPage() {
           flexFlow: "column",
         },
       },
+    ],
+  };
+
+  const tableCarePlan = {
+    header: [
       {
-        type: "download-icon",
-        valueKey: "source",
-        cellProps: { padding: "16px" },
+        type: "text",
+        id: "procedure",
+        numeric: false,
+        disablePadding: false,
+        label: "Procedure",
+        width: 250,
+      },
+      {
+        type: "text",
+        id: "date",
+        numeric: false,
+        disablePadding: false,
+        label: "Date",
+        width: 250,
+      },
+      { type: "empty", width: 22 },
+    ],
+    cells: [
+      {
+        type: "text",
+        primary: true,
+        valueKey: "procedure",
+        cellProps: { padding: "none" },
+        contentClass: isDesktop ? "" : "clipped clip-2",
+      },
+      {
+        type: "text",
+        valueKey: "date",
+        cellProps: { align: "left", component: "th", padding: "none" },
+        contentStyle: {
+          padding: isDesktop ? "12px 0" : "8px 0",
+          fontSize: isDesktop ? "unset" : "12px",
+        },
+        contentClass: isDesktop ? "" : "clipped clip-2",
+      },
+      {
+        type: "download-asset",
+        valueKey: "digitalId",
+        cellProps: { padding: "none" },
         icon: (
           <IconButton sx={{ width: 24, height: 24, p: 0 }}>
-            <FileDownloadIcon />
+            <MoreVertIcon />
           </IconButton>
         ),
       },
@@ -189,6 +229,29 @@ export default function TestLabPage() {
         return [];
     }
   });
+
+  const tableDesktopSwitch = () => {
+    console.log(watchedCategory, "watchedCategory");
+    switch (watchedCategory) {
+      case "test-lab-result":
+        return tableDesktopTestLab;
+      case "care-plan-overview":
+        return tableCarePlan;
+      default:
+        return tableCarePlan;
+    }
+  };
+
+  const tableMobileSwitch = () => {
+    switch (watchedCategory) {
+      case "test-lab-result":
+        return tableMobileTestLab;
+      case "care-plan-overview":
+        return tableCarePlan;
+      default:
+        return tableCarePlan;
+    }
+  };
 
   useEffect(() => {
     const category = router.query.type;
@@ -267,7 +330,7 @@ export default function TestLabPage() {
         <Stack spacing={3} sx={{ mt: 1 }}>
           {rows?.length > 0 ? (
             <TableWithSort
-              config={isDesktop ? tableConfiguration : tableConfigurationMobile}
+              config={isDesktop ? tableDesktopTestLab : tableMobileTestLab}
               rows={rows}
               isDesktop={isDesktop}
             />
@@ -281,7 +344,7 @@ export default function TestLabPage() {
   );
 }
 
-TestLabPage.getLayout = function getLayout(page) {
+MedicalRecordPage.getLayout = function getLayout(page) {
   return (
     <Provider store={store}>
       <PrescriptionLayout currentActivePage={"documents"}>

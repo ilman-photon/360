@@ -46,7 +46,7 @@ const documents = [
 const medical = [
   {
     icon: iconCarePlan,
-    href: "/patient/account/medical-record/test-lab-result",
+    href: "/patient/account/medical-record?type=test-lab-result",
     label: "Care Plan",
   },
   {

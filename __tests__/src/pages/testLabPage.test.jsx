@@ -2,15 +2,15 @@ import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
 import store from "../../../src/store/store";
-import TestLabPage from "../../../src/pages/patient/account/medical-record/test-lab-result";
+import MedicalRecordPage from "../../../src/pages/patient/account/medical-record";
 import mediaQuery from 'css-mediaquery';
 
-describe("TestLabPage", () => {
+describe("MedicalRecordPage", () => {
   let container;
   beforeEach(() => {
     container = render(
       <Provider store={store}>
-        {TestLabPage.getLayout(<TestLabPage />)}
+        {MedicalRecordPage.getLayout(<MedicalRecordPage />)}
       </Provider>
     );
   });
@@ -23,26 +23,26 @@ describe("TestLabPage", () => {
     });
   }
 
-  test("renders TestLabPage Mobile", () => {
+  test("renders MedicalRecordPage Mobile", () => {
     expect(container).toMatchSnapshot();
   });
 
-  // test("renders TestLabPage Mobile Components", async () => {
+  // test("renders MedicalRecordPage Mobile Components", async () => {
   //   await waitFor(() => {
   //   container.getByText("Your lab results are available. Please reach out to your provider.");
   // })
   // });
 
-  test("renders TestLabPage Desktop", () => {
+  test("renders MedicalRecordPage Desktop", () => {
     window.matchMedia = createMatchMedia('1920px');
     container.rerender(
       <Provider store={store}>
-        {TestLabPage.getLayout(<TestLabPage />)}
+        {MedicalRecordPage.getLayout(<MedicalRecordPage />)}
       </Provider>
     );
   });
 
-  // test("renders TestLabPage Desktop Components", async () => {
+  // test("renders MedicalRecordPage Desktop Components", async () => {
   //   await waitFor(() => {
   //   container.getByText("Your lab results are available. Please reach out to your provider.");
   // })
