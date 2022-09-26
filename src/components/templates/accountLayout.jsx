@@ -31,6 +31,10 @@ function AccountLayout({
     }
   };
 
+  const getHeadingStyle = () => {
+    return isMobile ? { fontWeight: "500", textAlign: "center" } : {};
+  };
+
   return (
     <Provider store={store}>
       <Head>
@@ -48,7 +52,7 @@ function AccountLayout({
           <BaseHeader {...logoutProps} />
           <AccountTitleHeading
             title={getHeadingTitle(currentActivePage)}
-            sx={{ textAlign: isMobile && "center" }}
+            sx={getHeadingStyle()}
           />
           <div className={styles.container}>
             <div className={styles.sidebarContainer}>

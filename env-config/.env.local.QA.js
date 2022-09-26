@@ -4,7 +4,7 @@ PORT = "3000";
 HOST = "http://$HOSTNAME:$PORT";
 
 NEXT_PUBLIC_API_URL =
-  "http://a24c974191644443aae1286e65687b8d-1042238406.us-east-1.elb.amazonaws.com";
+  "http://internal-a09166de44a0a4f48b742547332da7e5-1970730926.us-east-1.elb.amazonaws.com";
 MAPBOX_API_TOKEN =
   "pk.eyJ1Ijoia3VydWt1cnVydXUiLCJhIjoiY2w2dWdteXhlMDM4eTNkczh3ZnA4c2N6NSJ9.ilTZ5K51DsrAXlnJBuD_tw";
 GOOGLE_API_KEY = "AIzaSyBIUDjY57Y2582Cytem10tATiBJAC_a00Y";
