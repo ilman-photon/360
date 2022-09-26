@@ -1,10 +1,11 @@
 .boxModalContents {
   .scheduledText {
-    color: #366a70;
-    font-weight: 700;
+    color: #003b4a;
+    font-weight: 500;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 22px;
   }
 
   .registeredUsernameWrapper {
@@ -34,6 +35,7 @@
     color: #ef4836;
     text-decoration: underline;
     font-size: 16px;
+    font-family: "Libre Franklin";
   }
 
   .dateBold {
@@ -61,6 +63,12 @@
   .card {
     margin: 8px 0px;
   }
+
+  .cardDate {
+    margin: 20px 0px;
+    text-align: center;
+  }
+
   .cardPatient {
     margin: 20px 0px;
   }

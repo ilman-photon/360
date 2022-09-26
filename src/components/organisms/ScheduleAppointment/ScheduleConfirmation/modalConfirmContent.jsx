@@ -156,12 +156,12 @@ export default function ModalConfirmContent({
           </Tooltip>
         </div>
 
-        <Card variant="outlined" className={styles.cardPatient}>
+        <Card variant="outlined" className={styles.cardDate}>
           <CardContent
             sx={{
               px: { xs: 3, md: 3 },
               py: { xs: 3, md: 3 },
-              textAlign: "-webkit-center",
+              textAlign: "-moz-center",
             }}
           >
             <Typography
@@ -172,28 +172,31 @@ export default function ModalConfirmContent({
               Saturday, Sep 21, 2022, AT 8:30 AM EST
             </Typography>
 
-            <Button
-              className={styles.addCalendarButton}
-              sx={{
-                backgroundColor: "#EEF5F7",
-                mb: 2,
-              }}
-            >
-              <Typography
+            <div style={{ display: "inline-flex" }}>
+              <Button
+                className={styles.addCalendarButton}
                 sx={{
-                  mb: 1,
-                  display: "contents",
-                  fontWeight: "700",
+                  backgroundColor: "#EEF5F7",
+                  mb: 2,
                 }}
-                aria-label={"Add to calendar"}
               >
-                <CalendarTodayIcon
-                  aria-hidden={"false"}
-                  sx={{ color: "#003B4A" }}
-                />{" "}
-                Add to calendar
-              </Typography>
-            </Button>
+                <Typography
+                  sx={{
+                    mb: 1,
+                    display: "contents",
+                    fontWeight: "600",
+                    fontSize: "14px",
+                  }}
+                  aria-label={"Add to calendar"}
+                >
+                  <CalendarTodayIcon
+                    aria-hidden={"false"}
+                    sx={{ color: "#003B4A" }}
+                  />{" "}
+                  Add to calendar
+                </Typography>
+              </Button>
+            </div>
 
             <Typography
               className={styles.dateBold}
@@ -255,7 +258,7 @@ export default function ModalConfirmContent({
             <LabelWithInfo
               label="Name"
               sxRow={{ justifyContent: "unset" }}
-              sxText={{ color: colors.darkGreen }}
+              sxText={{ color: colors.darkGreen, fontSize: "16px" }}
             >
               <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
                 {patientData.firstName || "-"}
