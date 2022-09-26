@@ -1,5 +1,4 @@
 import axios from "axios";
-import Cookies from "universal-cookie";
 import { setGenericErrorMessage } from "../../store";
 import constants from "../../utils/constants";
 
@@ -279,5 +278,29 @@ export class Api {
     const domain = window.location.origin;
     const url = `${domain}api/dummy/appointment/my-appointment/cancelAppointment`;
     return this.getResponse(url, postbody, "post");
+  }
+
+  doMedicationRequestRefill(postBody) {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/prescription/requestRefill`;
+    return this.getResponse(url, postBody, "post");
+  }
+
+  doMedicationCancelRequestRefill(postBody) {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/prescription/cancelRequestRefill`;
+    return this.getResponse(url, postBody, "post");
+  }
+
+  async getURLDigitalAsset(id) {
+    const url = `/ecp/digital-asset/v1/asset/${id}`;
+    try {
+      const response = await this.getResponse(url, null, "get");
+      if (response.data) {
+        return response.data.presignedUrl;
+      }
+    } catch (error) {
+      console.error({ error });
+    }
   }
 }

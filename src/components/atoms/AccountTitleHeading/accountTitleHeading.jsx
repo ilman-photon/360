@@ -1,9 +1,9 @@
 import React from "react";
 import styles from "./accountTitleHeading.module.scss";
 
-const AccountTitleHeading = ({ title, sx = {} }) => {
+const AccountTitleHeading = ({ title, sx = {}, sxContainer = {} }) => {
   return (
-    <div className={styles.titleHeadingWrapper}>
+    <div className={styles.titleHeadingWrapper} style={{ ...sxContainer }}>
       <div
         className={styles.title}
         style={{
