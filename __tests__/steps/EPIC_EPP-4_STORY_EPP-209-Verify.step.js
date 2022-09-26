@@ -2,23 +2,24 @@ import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
+import { renderLogin } from "../../__mocks__/commonSteps";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-209.feature", {
-    tagFilter: '@included and not @excluded'
-  }
+  tagFilter: '@included and not @excluded'
+}
 );
 
 defineFeature(feature, (test) => {
+  let container, login;
+  const mock = new MockAdapter(axios);
+  const element = document.createElement("div");
   test("EPIC_EPP-4_STORY_EPP-209 - Verify whether the Admin is able to Login  with Valid Email and Valid Password using E360+ SSO", ({
     given,
     when,
     then,
     and,
   }) => {
-    let container, login;
-    const mock = new MockAdapter(axios);
-    const element = document.createElement("div");
     given("Admin launch the \'XXX\' url", () => {
       expect(true).toBeTruthy()
     });
@@ -32,14 +33,14 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
-    when('Admin lands onto E360+ \“Patient Login\” screen', () => {
-        expect(true).toBeTruthy()
+    when('Admin lands onto E360+ \“Patient Login\” screen', async () => {
+      renderLogin()
     });
     and('Admin provides valid \"<Email>\" and valid \"<password>\"', () => {
       expect(true).toBeTruthy()
     });
     and("Admin click \'Login\' button.", () => {
-        expect(true).toBeTruthy()
+      expect(true).toBeTruthy()
     });
 
     then(
@@ -61,17 +62,22 @@ defineFeature(feature, (test) => {
     });
 
     and("Admin navigates to the Patient Portal application", () => {
-        expect(true).toBeTruthy()
+      const expectedResult = {
+        ResponseCode: 2001,
+        ResponseType: "failure",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     when('Admin lands onto E360+ \“Patient Login\” screen', () => {
-        expect(true).toBeTruthy()
+      renderLogin()
     });
     and('Admin provides valid "<Phone number>" and valid "<password>"', () => {
-          expect(true).toBeTruthy()
+      expect(true).toBeTruthy()
     });
     and("Admin click \'Login\' button.", () => {
-        expect(true).toBeTruthy()
+      expect(true).toBeTruthy()
     });
 
     then(
@@ -92,10 +98,15 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy()
     });
     when('user navigates to the Patient Portal application', () => {
-      expect(true).toBeTruthy()
-  });
+      const expectedResult = {
+        ResponseCode: 2001,
+        ResponseType: "failure",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
+    });
     and("turn off the Data", () => {
-        expect(true).toBeTruthy()
+      expect(true).toBeTruthy()
     });
     then(
       "user should view appropriate error message",
@@ -116,11 +127,16 @@ defineFeature(feature, (test) => {
     });
 
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy()
-  });
+      const expectedResult = {
+        ResponseCode: 2001,
+        ResponseType: "failure",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
+    });
     when('user lands onto “Patient Login” screen', () => {
-      expect(true).toBeTruthy()
-  });
+      renderLogin()
+    });
     then(
       "page should load in 3 seconds",
       () => {
@@ -140,14 +156,19 @@ defineFeature(feature, (test) => {
     });
 
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy()
-  });
+      const expectedResult = {
+        ResponseCode: 2001,
+        ResponseType: "failure",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
+    });
     when('user lands onto “Patient Login” screen', () => {
+      renderLogin()
+    });
+    and("press the F12 button from the keyboard.", () => {
       expect(true).toBeTruthy()
-  });
-  and("press the F12 button from the keyboard.", () => {
-    expect(true).toBeTruthy()
-});
+    });
     then(
       "none of the javascript error should be seen by the user.",
       () => {
@@ -166,15 +187,20 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy()
     });
 
-    
+
     when('the service is unavailable', () => {
       expect(true).toBeTruthy()
-  });
-      and("user navigates to the Patient Portal application", () => {
-        expect(true).toBeTruthy()
+    });
+    and("user navigates to the Patient Portal application", () => {
+      const expectedResult = {
+        ResponseCode: 2001,
+        ResponseType: "failure",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
     and("user lands on “Patient Login” screen", () => {
-      expect(true).toBeTruthy()
+      renderLogin()
     });
     then(
       "error message '503 - Server is not ready to handle the request' should get display.",
