@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, Slide, Stack } from "@mui/material";
+import { Button, IconButton, Slide, Stack } from "@mui/material";
 import SwipeableDrawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -52,6 +52,7 @@ export const AccountDrawer = ({
     medical: [
       {
         label: "Care Plan",
+        href: "/patient/account/medical-record/test-lab-result",
       },
       {
         label: "Prescriptions",
@@ -59,6 +60,7 @@ export const AccountDrawer = ({
       },
       {
         label: "Test & Lab Results",
+        href: "/patient/account/medical-record/test-lab-result",
       },
     ],
     documents: [
@@ -90,6 +92,7 @@ export const AccountDrawer = ({
 
   useEffect(() => {
     setSidebarLinks(linkObject[activeMenu]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeMenu]);
 
   const drawerContent = () => (
@@ -106,7 +109,7 @@ export const AccountDrawer = ({
           ".MuiListItem-root": { borderBottomWidth: 1, borderColor: "#F3F3F3" },
         }}
       >
-        <Slide direction="left" in={activeMenu} mountOnEnter unmountOnExit>
+        <Slide direction="left" in={!!activeMenu} mountOnEnter unmountOnExit>
           <ListItemButton sx={{ background: "#F4F4F4" }}>
             <ListItemIcon sx={{ placeContent: "start" }}>
               <KeyboardArrowLeftIcon />

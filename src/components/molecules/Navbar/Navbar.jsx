@@ -2,24 +2,77 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
 import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
-import MenuIcon from "@mui/icons-material/Menu";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Container from "@mui/material/Container";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
 import Image from "next/image";
-import styles from "./styles.module.scss";
+import { useRouter } from "next/router";
 
-const pages = ["Dashboard", "Appointments"];
+const iconintakeFoms = "/iconintakeFoms.png";
+const iconCardinsuranceCard = "/iconCardinsuranceCard.png";
+const iconHealthRecord = "/iconHealthRecord.png";
+const iconCarePlan = "/icon-carePlan.png";
+const iconPrescription2 = "/icon-prescription2.png";
+const iconTestLabResults = "/icon-testLabResults.png";
+
+const pages = [
+  { href: "#", label: "Dashboard" },
+  { href: "#", label: "Appointments" },
+];
 const expandablePages = ["Medical Record", "Documents"];
 const settings = ["Intake forms", "Insurance", "Health Record"];
+
+const documents = [
+  {
+    icon: iconintakeFoms,
+    href: "/patient/account/documents?type=intake-forms",
+    label: "Intake Forms",
+  },
+  {
+    icon: iconCardinsuranceCard,
+    href: "/patient/account/documents?type=insurance-documents",
+    label: "Insurance Documents",
+  },
+  {
+    icon: iconHealthRecord,
+    href: "/patient/account/documents?type=health-record",
+    label: "Health Record",
+  },
+];
+
+const medical = [
+  {
+    icon: iconCarePlan,
+    href: "/patient/account/medical-record/test-lab-result",
+    label: "Care Plan",
+  },
+  {
+    icon: iconPrescription2,
+    href: "/patient/account/medical-record/test-lab-result",
+    label: "Prescriptions",
+  },
+  {
+    icon: iconTestLabResults,
+    href: "/patient/account/medical-record/test-lab-result",
+    label: "Test & Lab Results",
+  },
+];
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+
+  const router = useRouter();
+
+  const isCurrentPath = (href) => {
+    return router.pathname.includes(href);
+  };
+  (function prefetchPages() {
+    if (typeof window !== "undefined") router.prefetch(router.pathname);
+  })();
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -32,16 +85,10 @@ const Navbar = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = (href) => {
     setAnchorElUser(null);
+    if (typeof href === "string") router.push(href);
   };
-
-  const iconintakeFoms = "/iconintakeFoms.png";
-  const iconCardinsuranceCard = "/iconCardinsuranceCard.png";
-  const iconHealthRecord = "/iconHealthRecord.png";
-  const iconcarePlan = "/icon-carePlan.png";
-  const iconprescription2 = "/icon-prescription2.png";
-  const icontestLabResults = "/icon-testLabResults.png";
 
   return (
     <AppBar
@@ -58,19 +105,24 @@ const Navbar = () => {
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{ minHeight: "43px !important" }}>
           <Box sx={{ flexGrow: 1, display: { xs: "none", sm: "flex" } }}>
-            {pages.map((page) => (
+            {pages.map((page, pageIdx) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={pageIdx}
+                onClick={() => router.push(page.href)}
                 sx={{
                   my: 2,
                   color: "white",
                   textTransform: "none",
                   display: "block",
                   margin: "0 !important",
+                  borderRadius: "2px 2px 0px 0px",
+                  borderTop: "solid 4px transparent",
+                  borderBottom: isCurrentPath(page.href)
+                    ? "solid 4px #D9D9D9"
+                    : "solid 4px transparent",
                 }}
               >
-                {page}
+                {page.label}
               </Button>
             ))}
             <Box>
@@ -83,6 +135,11 @@ const Navbar = () => {
                   textTransform: "none",
                   display: "flex",
                   margin: "0 !important",
+                  borderRadius: "2px 2px 0px 0px",
+                  borderTop: "solid 4px transparent",
+                  borderBottom: isCurrentPath("medical-record")
+                    ? "solid 4px #D9D9D9"
+                    : "solid 4px transparent",
                 }}
                 endIcon={<ExpandMoreIcon />}
               >
@@ -104,68 +161,32 @@ const Navbar = () => {
                 open={Boolean(anchorElNav)}
                 onClose={handleCloseNavMenu}
               >
-                <MenuItem key={"Care Plan"} onClick={handleCloseNavMenu}>
-                  <Image
-                    alt=""
-                    src={iconcarePlan}
-                    width={"16px"}
-                    height={"16px"}
-                  />
-                  <Typography
-                    textAlign="center"
-                    sx={{
-                      margin: "0 10px",
-                      fontFamily: "Libre Franklin",
-                      fontWeight: "400",
-                      fontSize: "14px",
-                    }}
-                  >
-                    Care Plan
-                  </Typography>
-                </MenuItem>
-
-                <MenuItem key={"Prescriptions"} onClick={handleCloseNavMenu}>
-                  <Image
-                    alt=""
-                    src={iconprescription2}
-                    width={"16px"}
-                    height={"16px"}
-                  />
-                  <Typography
-                    textAlign="center"
-                    sx={{
-                      margin: "0 10px",
-                      fontFamily: "Libre Franklin",
-                      fontWeight: "400",
-                      fontSize: "14px",
-                    }}
-                  >
-                    Prescriptions
-                  </Typography>
-                </MenuItem>
-
-                <MenuItem
-                  key={"Test & Lab Results"}
-                  onClick={handleCloseNavMenu}
-                >
-                  <Image
-                    alt=""
-                    src={icontestLabResults}
-                    width={"16px"}
-                    height={"16px"}
-                  />
-                  <Typography
-                    textAlign="center"
-                    sx={{
-                      margin: "0 10px",
-                      fontFamily: "Libre Franklin",
-                      fontWeight: "400",
-                      fontSize: "14px",
-                    }}
-                  >
-                    Test & Lab Results
-                  </Typography>
-                </MenuItem>
+                {medical.map((doc, docIdx) => {
+                  return (
+                    <MenuItem
+                      key={docIdx}
+                      onClick={() => handleCloseUserMenu(doc.href)}
+                    >
+                      <Image
+                        alt=""
+                        src={doc.icon}
+                        width={"16px"}
+                        height={"16px"}
+                      />
+                      <Typography
+                        textAlign="center"
+                        sx={{
+                          margin: "0 10px",
+                          fontFamily: "Libre Franklin",
+                          fontWeight: "400",
+                          fontSize: "14px",
+                        }}
+                      >
+                        {doc.label}
+                      </Typography>
+                    </MenuItem>
+                  );
+                })}
               </Menu>
             </Box>
             <Box>
@@ -178,6 +199,11 @@ const Navbar = () => {
                   textTransform: "none",
                   display: "flex",
                   margin: "0 !important",
+                  borderRadius: "2px 2px 0px 0px",
+                  borderTop: "solid 4px transparent",
+                  borderBottom: isCurrentPath("documents")
+                    ? "solid 4px #D9D9D9"
+                    : "solid 4px transparent",
                 }}
                 endIcon={<ExpandMoreIcon />}
               >
@@ -199,65 +225,32 @@ const Navbar = () => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                <MenuItem key={"Intake forms"} onClick={handleCloseUserMenu}>
-                  <Image
-                    alt=""
-                    src={iconintakeFoms}
-                    width={"16px"}
-                    height={"16px"}
-                  />
-                  <Typography
-                    textAlign="center"
-                    sx={{
-                      margin: "0 10px",
-                      fontFamily: "Libre Franklin",
-                      fontWeight: "400",
-                      fontSize: "14px",
-                    }}
-                  >
-                    Intake forms
-                  </Typography>
-                </MenuItem>
-
-                <MenuItem key={"Insurance"} onClick={handleCloseUserMenu}>
-                  <Image
-                    alt=""
-                    src={iconCardinsuranceCard}
-                    width={"16px"}
-                    height={"16px"}
-                  />
-                  <Typography
-                    textAlign="center"
-                    sx={{
-                      margin: "0 10px",
-                      fontFamily: "Libre Franklin",
-                      fontWeight: "400",
-                      fontSize: "14px",
-                    }}
-                  >
-                    Insurance
-                  </Typography>
-                </MenuItem>
-
-                <MenuItem key={"Health Record"} onClick={handleCloseUserMenu}>
-                  <Image
-                    alt=""
-                    src={iconHealthRecord}
-                    width={"13.33px"}
-                    height={"10.67px"}
-                  />
-                  <Typography
-                    textAlign="center"
-                    sx={{
-                      margin: "0 10px",
-                      fontFamily: "Libre Franklin",
-                      fontWeight: "400",
-                      fontSize: "14px",
-                    }}
-                  >
-                    Health Record
-                  </Typography>
-                </MenuItem>
+                {documents.map((doc, docIdx) => {
+                  return (
+                    <MenuItem
+                      key={docIdx}
+                      onClick={() => handleCloseUserMenu(doc.href)}
+                    >
+                      <Image
+                        alt=""
+                        src={doc.icon}
+                        width={"16px"}
+                        height={"16px"}
+                      />
+                      <Typography
+                        textAlign="center"
+                        sx={{
+                          margin: "0 10px",
+                          fontFamily: "Libre Franklin",
+                          fontWeight: "400",
+                          fontSize: "14px",
+                        }}
+                      >
+                        {doc.label}
+                      </Typography>
+                    </MenuItem>
+                  );
+                })}
               </Menu>
             </Box>
           </Box>

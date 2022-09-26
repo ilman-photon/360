@@ -56,7 +56,13 @@ const EnhancedTableHead = (props) => {
         {props.config.map((headCell, headIdx) => {
           switch (headCell.type) {
             case "empty":
-              return <TableCell key={headIdx} />;
+              return (
+                <TableCell
+                  key={headIdx}
+                  sx={{ ...headCell.sx }}
+                  width={headCell.width}
+                />
+              );
             case "text":
               return (
                 <TableCell
@@ -90,9 +96,13 @@ const EnhancedTableHead = (props) => {
   );
 };
 
-export default function DocumentTableWithSort({
+export default function TableWithSort({
   config = { header: [], cells: [] },
   rows = [],
+  isDesktop = false,
+  onAssetDownload = () => {
+    // This is intentional
+  },
 }) {
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("calories");
@@ -109,19 +119,19 @@ export default function DocumentTableWithSort({
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelected = rows.map((n) => n.name);
+      const newSelected = rows.map((n) => n.id);
       setSelected(newSelected);
       return;
     }
     setSelected([]);
   };
 
-  const handleClick = (_event, name) => {
-    const selectedIndex = selected.indexOf(name);
+  const handleClick = (_event, id) => {
+    const selectedIndex = selected.indexOf(id);
     let newSelected = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
+      newSelected = newSelected.concat(selected, id);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -136,7 +146,7 @@ export default function DocumentTableWithSort({
     setSelected(newSelected);
   };
 
-  const isSelected = (name) => selected.indexOf(name) !== -1;
+  const isSelected = (id) => selected.indexOf(id) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -149,6 +159,7 @@ export default function DocumentTableWithSort({
           aria-labelledby="tableTitle"
           size={dense ? "small" : "medium"}
           sx={{
+            minWidth: isDesktop ? 750 : "none",
             "&.MuiTable-root": {
               borderCollapse: "separate",
               borderSpacing: "0 8px",
@@ -158,10 +169,10 @@ export default function DocumentTableWithSort({
               borderTop: "2px solid #F3F3F3",
               borderBottom: "2px solid #F3F3F3",
             },
-            "&.MuiTable-root td:first-child": {
+            ".MuiTableRow-root td:first-of-type": {
               borderLeft: "2px solid #F3F3F3",
             },
-            "&.MuiTable-root td:last-child": {
+            ".MuiTableRow-root td:last-of-type": {
               borderRight: "2px solid #F3F3F3",
             },
           }}
@@ -180,17 +191,16 @@ export default function DocumentTableWithSort({
                 rows.slice().sort(getComparator(order, orderBy)) */}
             {stableSort(rows, getComparator(order, orderBy))
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((row, index) => {
-                const isItemSelected = isSelected(row.name);
-
+              .map((row, rowIdx) => {
+                const isItemSelected = isSelected(row.id);
                 return (
                   <TableRow
                     hover
-                    onClick={(event) => handleClick(event, row.name)}
+                    onClick={(event) => handleClick(event, row.id)}
                     role="checkbox"
                     aria-checked={isItemSelected}
                     tabIndex={-1}
-                    key={row.name}
+                    key={rowIdx}
                     selected={isItemSelected}
                     sx={{ border: "2px solid #F3F3F3" }}
                   >
@@ -200,6 +210,36 @@ export default function DocumentTableWithSort({
                           return (
                             <TableCell key={cellIdx} {...cell.cellProps}>
                               {cell.icon}
+                            </TableCell>
+                          );
+                        case "download-asset":
+                          return (
+                            <TableCell key={cellIdx} {...cell.cellProps}>
+                              <Tooltip
+                                title={
+                                  <Typography
+                                    sx={{
+                                      fontSize: {
+                                        xs: 13,
+                                        md: 14,
+                                        color: "white",
+                                      },
+                                    }}
+                                  >
+                                    download
+                                  </Typography>
+                                }
+                                placement="top"
+                              >
+                                <div
+                                  role="button"
+                                  onClick={() =>
+                                    onAssetDownload(row[cell.valueKey])
+                                  }
+                                >
+                                  {cell.icon}
+                                </div>
+                              </Tooltip>
                             </TableCell>
                           );
                         case "download-icon":
@@ -224,12 +264,32 @@ export default function DocumentTableWithSort({
                                 <a
                                   href={row.source}
                                   download
+                                  data-testid="downloadPDFButton"
                                   target="_blank"
                                   rel="noreferrer"
                                 >
                                   {cell.icon}
                                 </a>
                               </Tooltip>
+                            </TableCell>
+                          );
+                        case "test-lab-mobile":
+                          return (
+                            <TableCell key={cellIdx} {...cell.cellProps}>
+                              <div style={cell.contentStyle}>
+                                {row[cell.valueKey1]}
+                                <a
+                                  style={{
+                                    fontWeight: 600,
+                                    fontSize: "14px",
+                                    color: "#003B4A",
+                                    paddingTop: "16px",
+                                  }}
+                                >
+                                  {cell.cellHeadLabel}
+                                </a>
+                                {row[cell.valueKey2]}
+                              </div>
                             </TableCell>
                           );
                         case "text":
@@ -249,26 +309,6 @@ export default function DocumentTableWithSort({
                           );
                       }
                     })}
-
-                    {/* <TableCell>
-                      <PDFFileIcon />
-                    </TableCell> */}
-                    {/* <TableCell padding="none">
-                      {row.name}
-                    </TableCell> */}
-                    {/* <TableCell padding="none">
-                      <div style={{padding: "12px 0"}}>
-                        {row.modifiedAt}
-                      </div>
-                    </TableCell> */}
-                    {/* <TableCell align="right" padding="none">
-                      <a href={row.source} download target="_blank" rel="noreferrer">
-                        <IconButton>
-                          <FileDownloadIcon>
-                          </FileDownloadIcon>
-                        </IconButton>
-                      </a>
-                    </TableCell> */}
                   </TableRow>
                 );
               })}

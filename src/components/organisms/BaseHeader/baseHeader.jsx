@@ -1,6 +1,6 @@
 import * as React from "react";
 import { styles } from "./style";
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Container from "@mui/material/Container";
 import Toolbar from "@mui/material/Toolbar";
@@ -45,7 +45,9 @@ export default function BaseHeader({
   const userData = useSelector((state) => state.user.userData);
   React.useEffect(() => {
     const cookies = new Cookies();
-    const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
+    const isLogin =
+      cookies.get("authorized", { path: "/patient" }) === "true" ||
+      !!cookies.get("accessToken");
     setUserLoged(isLogin);
   }, []);
 
@@ -94,6 +96,7 @@ export default function BaseHeader({
             boxShadow:
               "0px 1px 1px 0px rgb(0 0 0 / 20%), 0px 0px 1px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)",
           },
+          height: 64,
         }}
       >
         <Container maxWidth="xl">
@@ -101,8 +104,8 @@ export default function BaseHeader({
             <Toolbar disableGutters>
               <Image
                 src={logo}
-                width="124px"
-                height="36px"
+                width={124}
+                height={36}
                 style={styles.logoStyled}
                 aria-label={"Clarkson Eyecare logo"}
                 title="Your Account"

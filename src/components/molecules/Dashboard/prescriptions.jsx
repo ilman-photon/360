@@ -18,6 +18,7 @@ import {
   Tab,
   Box,
   Stack,
+  Divider,
 } from "@mui/material";
 import AccountCard from "../AccountCard/accountCard";
 import Image from "next/image";
@@ -25,10 +26,13 @@ import styles from "./styles.module.scss";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { ThemeProvider } from "@emotion/react";
 import MenuList from "./menuList";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { parsePrescriptionData } from "../../../utils/appointment";
 import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlined";
 import PrescriptionMedication from "./prescriptionMedication";
+import AccessTimeIcon from "@mui/icons-material/AccessTime";
+import { StyledButton } from "../../atoms/Button/button";
+import constants from "../../../utils/constants";
 
 export default function Prescriptions({
   prescriptionData = {},
@@ -288,6 +292,136 @@ export default function Prescriptions({
     }
   }
 
+  function renderMedicationViewAllUI(data) {
+    return (
+      <Stack direction={"row"} className={styles.medicationViewAllContainer}>
+        {!isMobile && (
+          <Box>
+            <Box
+              className={styles.medicationIconContainer}
+              sx={{ justifyContent: "center" }}
+            >
+              <Image alt="" src={iconMedication} width={32.88} height={44.63} />
+            </Box>
+          </Box>
+        )}
+        <Stack display={"flex"} marginLeft={"8px"} width={"100%"}>
+          <Stack direction={"row"} sx={{ marginBottom: "8px" }}>
+            <Typography className={styles.medicationViewAllTitle}>
+              Aspirin
+            </Typography>
+            {!isMobile ? renderCTAIcon() : <MenuList />}
+          </Stack>
+          <Stack sx={{ width: "100%" }}>
+            <Stack direction={"row"} className={styles.stackContainer}>
+              <Typography className={styles.medicationViewAllStatus}>
+                Status: Refill requested
+              </Typography>
+              <Stack
+                direction={"row"}
+                alignSelf={"center"}
+                className={styles.gridHeight}
+              >
+                <Typography
+                  variant="customBodyRegular"
+                  className={styles.gridText}
+                >
+                  Fill request date: &nbsp;
+                </Typography>
+                <Typography variant="bodyMedium" className={styles.gridText}>
+                  01/11/2022
+                </Typography>
+              </Stack>
+            </Stack>
+            <Stack direction={"row"} className={styles.stackContainer}>
+              <Stack
+                direction={"row"}
+                alignSelf={"center"}
+                className={styles.gridHeight}
+              >
+                <Typography
+                  variant="customBodyRegular"
+                  className={styles.gridText}
+                >
+                  Prescribed on: &nbsp;
+                </Typography>
+                <Typography variant="bodyMedium" className={styles.gridText}>
+                  01/10/2022
+                </Typography>
+              </Stack>
+              <Stack
+                direction={"row"}
+                alignSelf={"center"}
+                className={styles.gridHeight}
+              >
+                <Typography
+                  variant="customBodyRegular"
+                  className={styles.gridText}
+                >
+                  Prescribed by: &nbsp;
+                </Typography>
+                <Typography variant="bodyMedium" className={styles.gridText}>
+                  Dr. Philip Morris
+                </Typography>
+              </Stack>
+              <Stack
+                direction={"row"}
+                alignSelf={"center"}
+                className={styles.gridHeight}
+              >
+                <Typography
+                  variant="customBodyRegular"
+                  className={styles.gridText}
+                >
+                  Dose: &nbsp;
+                </Typography>
+                <Typography variant="bodyMedium" className={styles.gridText}>
+                  0.5 mL
+                </Typography>
+              </Stack>
+            </Stack>
+            <Stack direction={"row"} className={styles.stackContainer}>
+              <Stack
+                direction={"row"}
+                alignSelf={"center"}
+                className={styles.gridHeight}
+              >
+                <Typography
+                  variant="customBodyRegular"
+                  className={styles.gridText}
+                >
+                  Expires on: &nbsp;
+                </Typography>
+                <Typography variant="bodyMedium" className={styles.gridText}>
+                  04/10/2023
+                </Typography>
+              </Stack>
+            </Stack>
+          </Stack>
+          <Divider />
+          <Stack direction={"row"} sx={{ marginTop: "24px", flexWrap: "wrap" }}>
+            <Stack direction={"row"} className={styles.remainingTimeContainer}>
+              <AccessTimeIcon sx={{ color: colors.darkGreen }} />
+              <Typography className={styles.remainingTimeText}>
+                Take 2 times a day
+              </Typography>
+            </Stack>
+            <StyledButton
+              mode={constants.PRIMARY}
+              gradient={false}
+              onClick={() => {
+                //this is intentional
+              }}
+              className={styles.requestButton}
+            >
+              Request Refill
+            </StyledButton>
+          </Stack>
+        </Stack>
+      </Stack>
+    );
+  }
+
   function renderPrescriptionTabUI(data, type) {
     if (!data) {
       return <></>;
@@ -295,9 +429,13 @@ export default function Prescriptions({
     const contentUI = [];
     if (data && data.length > 0) {
       data.map((row, idx) => {
-        contentUI.push(
-          renderPrescriptionTable(row, type, idx, data.length === idx + 1)
-        );
+        if (type === "medications") {
+          contentUI.push(renderMedicationViewAllUI(row));
+        } else {
+          contentUI.push(
+            renderPrescriptionTable(row, type, idx, data.length === idx + 1)
+          );
+        }
       });
     } else {
       contentUI.push(
