@@ -25,7 +25,11 @@ export class Api {
     this.maxRequestCounter = 3;
   }
 
-  getResponse(url, postbody, method) {
+  getResponse(url, postbody, method, token) {
+    if (token) {
+      this.client.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    }
+
     return new Promise((resolve, reject) => {
       const resolver = function (response) {
         if (response && response.data) {
