@@ -1,4 +1,4 @@
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import { act, cleanup, fireEvent, render, waitFor, } from "@testing-library/react";
 import { Provider } from "react-redux";
 import Login from "../src/pages/patient/login";
 import "@testing-library/jest-dom";
@@ -9,6 +9,322 @@ import Appointment from "../src/pages/patient/appointment/index"
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import mediaQuery from 'css-mediaquery';
+import FilterResult from "../src/components/molecules/FilterResult/filterResult";
+import ScheduleAppointment from "../src/pages/patient/schedule-appointment/index";
+
+const providerList = [
+  {
+    providerId: "1",
+    address: {
+      addressLine1: "51 West 51st Street",
+      addressLine2: "Floor 3, Suite 320 Midtown",
+      city: "Florida",
+      state: "FR",
+      zipcode: "54231",
+    },
+    rating: "5",
+    name: "Paul Wagner Md",
+    phoneNumber: "(123) 123-4567",
+    distance: "10 mi",
+    image: "/doctor.png",
+    from: "2022-09-19",
+    to: "2022-09-24",
+    availability: [
+      {
+        date: "2022-09-19",
+        list: [
+          {
+            time: "11:30am",
+            key: 12222,
+          },
+        ],
+      },
+      {
+        date: "2022-09-20",
+        list: [
+          {
+            time: "08:00am",
+            key: 12223,
+          },
+          {
+            time: "10:30am",
+            key: 12224,
+          },
+          {
+            time: "11:00am",
+            key: 12225,
+          },
+          {
+            time: "12:00pm",
+            key: 12226,
+          },
+          {
+            time: "13:00pm",
+            key: 12227,
+          },
+          {
+            time: "14:00pm",
+            key: 12228,
+          },
+        ],
+      },
+      {
+        date: "2022-09-21",
+        list: [
+          {
+            time: "08:30am",
+            key: 12229,
+          },
+          {
+            time: "10:30am",
+            key: 12230,
+          },
+        ],
+      },
+      {
+        date: "2022-09-22",
+        list: [
+          {
+            time: "09:30am",
+            key: 12237,
+          },
+          {
+            time: "11:00am",
+            key: 12238,
+          },
+        ],
+      },
+      {
+        date: "2022-09-23",
+        list: [
+          {
+            time: "09:30am",
+            key: 12239,
+          },
+        ],
+      },
+      {
+        date: "2022-09-24",
+        list: [
+          {
+            time: "09:30am",
+            key: 12240,
+          },
+        ],
+      },
+    ],
+    coordinate: {
+      latitude: 32.751204,
+      longitude: -117.1641166,
+    },
+  },
+  {
+    providerId: "2",
+    address: {
+      addressLine1: "51 West 51st Street",
+      addressLine2: "Floor 3, Suite 320 Midtown",
+      city: "Florida",
+      state: "FR",
+      zipcode: "54231",
+    },
+    rating: "5",
+    name: "Paul Wagner Md",
+    phoneNumber: "(123) 123-4567",
+    distance: "10 mi",
+    image: "/doctor.png",
+    from: "2022-09-19",
+    to: "2022-09-24",
+    availability: [
+      {
+        date: "2022-09-19",
+        list: [
+          {
+            time: "11:30am",
+            key: 12222,
+          },
+        ],
+      },
+      {
+        date: "2022-09-20",
+        list: [
+          {
+            time: "08:00am",
+            key: 12223,
+          },
+          {
+            time: "10:30am",
+            key: 12224,
+          },
+          {
+            time: "11:00am",
+            key: 12225,
+          },
+          {
+            time: "12:00pm",
+            key: 12226,
+          },
+          {
+            time: "13:00pm",
+            key: 12227,
+          },
+          {
+            time: "14:00pm",
+            key: 12228,
+          },
+        ],
+      },
+      {
+        date: "2022-09-21",
+        list: [
+          {
+            time: "08:30am",
+            key: 12229,
+          },
+        ],
+      },
+      {
+        date: "2022-09-22",
+        list: [
+          {
+            time: "09:30am",
+            key: 12237,
+          },
+          {
+            time: "11:00am",
+            key: 12238,
+          },
+        ],
+      },
+      {
+        date: "2022-09-23",
+        list: [
+          {
+            time: "09:30am",
+            key: 12239,
+          },
+        ],
+      },
+      {
+        date: "2022-09-24",
+        list: [
+          {
+            time: "09:30am",
+            key: 12240,
+          },
+        ],
+      },
+    ],
+    coordinate: {
+      latitude: 32.751204,
+      longitude: -117.1641166,
+    },
+  },
+  {
+    providerId: "3",
+    name: "Paul Wagner Md",
+    address: {
+      addressLine1: "51 West 51st Street",
+      addressLine2: "Floor 3, Suite 320 Midtown",
+      city: "Florida",
+      state: "FR",
+      zipcode: "54231",
+    },
+    rating: "5",
+    phoneNumber: "(123) 123-4567",
+    distance: "10 mi",
+    image: "/doctor.png",
+    from: "2022-09-19",
+    to: "2022-09-24",
+    availability: [
+      {
+        date: "2022-09-19",
+        list: [
+          {
+            time: "11:30am",
+            key: 12222,
+          },
+        ],
+      },
+      {
+        date: "2022-09-20",
+        list: [
+          {
+            time: "08:00am",
+            key: 12223,
+          },
+          {
+            time: "10:30am",
+            key: 12224,
+          },
+          {
+            time: "11:00am",
+            key: 12225,
+          },
+          {
+            time: "12:00pm",
+            key: 12226,
+          },
+          {
+            time: "13:00pm",
+            key: 12227,
+          },
+          {
+            time: "14:00pm",
+            key: 12228,
+          },
+        ],
+      },
+      {
+        date: "2022-09-21",
+        list: [
+          {
+            time: "08:30am",
+            key: 12229,
+          },
+          {
+            time: "10:30am",
+            key: 12230,
+          },
+        ],
+      },
+      {
+        date: "2022-09-22",
+        list: [
+          {
+            time: "09:30am",
+            key: 12237,
+          },
+          {
+            time: "11:00am",
+            key: 12238,
+          },
+        ],
+      },
+      {
+        date: "2022-09-23",
+        list: [
+          {
+            time: "09:30am",
+            key: 12239,
+          },
+        ],
+      },
+      {
+        date: "2022-09-24",
+        list: [
+          {
+            time: "09:30am",
+            key: 12240,
+          },
+        ],
+      },
+    ],
+    coordinate: {
+      latitude: 32.751204,
+      longitude: -117.1641166,
+    },
+  },
+]
 
 const mockSuggestion = {
 	appointmentType: [
