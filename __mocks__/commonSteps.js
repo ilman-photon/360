@@ -5,11 +5,13 @@ import "@testing-library/jest-dom";
 import store from "../src/store/store";
 import { TEST_ID } from "../src/utils/constants";
 import ForgotPasswordPage from "../src/pages/patient/forgot-password";
+import Appointment from "../src/pages/patient/appointment/index"
+
 export function createMatchMedia(width) {
   return (query) => ({
     matches: mediaQuery.match(query, { width }),
-    addListener: () => {},
-    removeListener: () => {},
+    addListener: () => { },
+    removeListener: () => { },
   });
 }
 export async function renderLogin() {
@@ -55,4 +57,56 @@ export async function clickContinueForgot(container, mock) {
   });
   await waitFor(() => container.getByText("or"));
   return container;
+}
+
+export async function renderScheduleAppointment() {
+  let container;
+  container = render(
+    <Provider store={store}>{Appointment.getLayout(<Appointment />)}</Provider>
+  );
+  await waitFor(() => container.getByText("Purpose of Visit"));
+  expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
+  return container;
+}
+
+export async function renderResultsScreen() {
+  const rangeDate = { startDate: "2022-10-10", endDate: "2022-10-15" };
+  let container
+  container = render(
+    <FilterResult
+      isDesktop={true}
+      providerList={providerList}
+      rangeDate={rangeDate}
+      purposeOfVisitData={[]}
+      insuranceCarrierData={[]}
+      googleApiKey={"Test"}
+      filterData={{
+        location: "",
+        date: "",
+        purposeOfVisit: "",
+        insuranceCarrier: "",
+      }}
+    />
+  );
+  expect(
+    await waitFor(() =>
+      container.getByTestId(TEST_ID.APPOINTMENT_TEST_ID.FILTER_RESULT.container)
+    )
+  ).toBeInTheDocument();
+};
+
+export async function renderAppointmentDetail() {
+  let container
+  act(() => {
+    container = render(
+      <Provider store={store}>
+        {ScheduleAppointment.getLayout(<ScheduleAppointment />)}
+      </Provider>
+    );
+  })
+  expect(
+    await waitFor(() =>
+      container.getByTestId(TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_DETAILS.editButton)
+    )
+  ).toBeInTheDocument();
 }

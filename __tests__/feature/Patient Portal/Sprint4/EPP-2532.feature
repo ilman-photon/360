@@ -2,63 +2,23 @@
 @Appointments
 @P1
 @Patient_Portal
+@Include
 Feature: Patient Portal : Schedule appointment from Patient Portal  - View schedule appointment screen
   User Story: As a user, I should be able to view a screen to search for location and select the date of appointment as well as purpose of visit and insurance from patient portal.
-
-  Acceptance Criteria:
-
-  GIVEN
-
-  User clicks on “Schedule Appointment” CTA from patient portal
-
-  And
-
-  User navigates to a screen to search for location, select the date of appointment as well as purpose of visit and insurance
-
-  WHEN
-
-  User lands on to the screen to search for location, select the date of appointment as well as purpose of visit and insurance
-
-  THEN
-
-  User should be able to view an option to search locations using City or State or Zipcode
-
-  And
-
-  System by default should take the user’s current location if enabled and list results
-
-  And
-
-  User should have the option to allow the system to detect their location (like Locate me) 
-
-  And
-
-  User should be able to view verbiage informing the user enter a location if geo location of the user is not enabled or option to enable their geo location
-
-  And
-
-  User should be able to select the date of appointment (default today’s date)
-
-  And
-
-  User should be able to view the 'Purpose for Visit' field  (List comes from API)
-
-  And
-
-  User should be able to view the option to add their ‘Insurance Carrier’ (List comes from API)
-
-  And
-
-  User should be able to view an option to Search which when clicked will display the results
-
-  And
-
-  User should be able to view the map
-
-  And
-
-  User should be prompted with the inline validation error message “This field is required” if the mandatory fields are not filled
-
+  Acceptance Criteria: 
+  GIVEN User clicks on “Schedule Appointment” CTA from patient portal
+  And User navigates to a screen to search for location, select the date of appointment as well as purpose of visit and insurance
+  WHEN User lands on to the screen to search for location, select the date of appointment as well as purpose of visit and insurance
+  THEN User should be able to view an option to search locations using City or State or Zipcode
+  And System by default should take the user’s current location if enabled and list results
+  And User should have the option to allow the system to detect their location (like Locate me) 
+  And User should be able to view verbiage informing the user enter a location if geo location of the user is not enabled or option to enable their geo location
+  And User should be able to select the date of appointment (default today’s date) 
+  And User should be able to view the 'Purpose for Visit' field  (List comes from API)
+  And User should be able to view the option to add their ‘Insurance Carrier’ (List comes from API)
+  And User should be able to view an option to Search which when clicked will display the results
+  And User should be able to view the map 
+  And User should be prompted with the inline validation error message “This field is required” if the mandatory fields are not filled
   | Field Names         | Mandatory |
   |---------------------|-----------|
   | Location            | Yes       |
