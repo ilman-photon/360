@@ -30,7 +30,6 @@ const PasswordSecurityQuestion = ({
     keyPrefix: "PasswordSecurityQuestion",
   });
   const { handleSubmit, control } = useForm();
-  const [countLock, setCountLock] = useState(0);
   const [postMessage, setPostMessage] = useState({ title: "", message: "" });
   const { FORGOT_TEST_ID } = constants.TEST_ID;
   const onSubmit = (data) => {

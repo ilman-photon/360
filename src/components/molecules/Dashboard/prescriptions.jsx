@@ -32,7 +32,6 @@ import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlin
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { StyledButton } from "../../atoms/Button/button";
 import constants from "../../../utils/constants";
-import { render } from "@testing-library/react";
 
 export default function Prescriptions({
   prescriptionData = {},
@@ -397,7 +396,9 @@ export default function Prescriptions({
             <StyledButton
               mode={constants.PRIMARY}
               gradient={false}
-              onClick={() => {}}
+              onClick={() => {
+                //this is intentional
+              }}
               className={styles.requestButton}
             >
               Request Refill
@@ -415,9 +416,7 @@ export default function Prescriptions({
     const contentUI = [];
     data.map((row, idx) => {
       if (type === "medications") {
-        contentUI.push(
-          renderMedicationViewAllUI(row, type, idx, data.length === idx + 1)
-        );
+        contentUI.push(renderMedicationViewAllUI(row));
       } else {
         contentUI.push(
           renderPrescriptionTable(row, type, idx, data.length === idx + 1)

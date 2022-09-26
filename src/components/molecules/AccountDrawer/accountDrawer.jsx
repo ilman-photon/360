@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, Slide, Stack } from "@mui/material";
+import { Button, IconButton, Slide, Stack } from "@mui/material";
 import SwipeableDrawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";

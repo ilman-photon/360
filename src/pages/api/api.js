@@ -1,5 +1,4 @@
 import axios from "axios";
-import Cookies from "universal-cookie";
 import { setGenericErrorMessage } from "../../store";
 import constants from "../../utils/constants";
 
