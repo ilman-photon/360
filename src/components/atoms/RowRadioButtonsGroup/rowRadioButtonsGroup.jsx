@@ -39,7 +39,12 @@ export default function RowRadioButtonsGroup({
         {props.label}
         {tooltipContent ? (
           <>
-            <Tooltip title={tooltipContent} placement="top">
+            <Tooltip
+              title={tooltipContent}
+              tabindex="0"
+              aria-hidden="true"
+              placement="top"
+            >
               <ErrorOutlineOutlinedIcon
                 sx={{
                   width: 16,
