@@ -48,7 +48,11 @@ export default function MfaPage({ isStepTwo }) {
   const [otpValidation, setOTPValidation] = React.useState("");
   const [securityQuestionList, setSecurityQuestionList] = React.useState([]);
   const [communicationMethod, setCommunicationMethod] = React.useState({});
-  const { t } = useTranslation("translation", { keyPrefix: "mfaPage" });
+  const [isLoading, setIsLoading] = React.useState(true);
+  const { t, ready } = useTranslation("translation", {
+    keyPrefix: "mfaPage",
+    useSuspense: false,
+  });
   const { MFA_TEST_ID } = constants.TEST_ID;
   const onBackButtonEvent = (e) => {
     e.preventDefault();
@@ -60,6 +64,7 @@ export default function MfaPage({ isStepTwo }) {
       const userData = JSON.parse(localStorage.getItem("userData"));
       const communicationMethod = userData.communicationMethod;
       setCommunicationMethod(communicationMethod);
+      setIsLoading(false);
     }
     window.history.pushState(null, null, window.location.pathname);
     window.addEventListener("popstate", onBackButtonEvent);
@@ -254,7 +259,7 @@ export default function MfaPage({ isStepTwo }) {
     return questionList;
   }
 
-  if (componentName === constants.MFA_COMPONENT_NAME || isStepTwo) {
+  if (componentName === constants.MFA_COMPONENT_NAME || (isStepTwo && ready)) {
     return (
       <>
         <MultiFactorAuthentication
@@ -282,7 +287,7 @@ export default function MfaPage({ isStepTwo }) {
         ) : null}
       </>
     );
-  } else if (componentName === constants.SQ_COMPONENT_NAME) {
+  } else if (componentName === constants.SQ_COMPONENT_NAME && ready) {
     return (
       <Box
         sx={{
@@ -336,14 +341,18 @@ export default function MfaPage({ isStepTwo }) {
     );
   } else {
     return (
-      <SetMultiFactorAuthentication
-        onConfirmClicked={onConfirmClicked}
-        onBackToLoginClicked={onBackToLoginClicked}
-        rememberMe={rememberMe}
-        setRememberMe={onSetRememberMe}
-        data={communicationMethod}
-        testIds={MFA_TEST_ID}
-      />
+      <>
+        {!isLoading && ready && (
+          <SetMultiFactorAuthentication
+            onConfirmClicked={onConfirmClicked}
+            onBackToLoginClicked={onBackToLoginClicked}
+            rememberMe={rememberMe}
+            setRememberMe={onSetRememberMe}
+            data={communicationMethod}
+            testIds={MFA_TEST_ID}
+          />
+        )}
+      </>
     );
   }
 }

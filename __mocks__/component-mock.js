@@ -66,6 +66,7 @@ jest.mock("next-i18next", () => ({
   useTranslation: () => {
     return {
       t: (str) => str,
+      ready: true,
       i18n: {
         changeLanguage: () => new Promise(() => {}),
       },
