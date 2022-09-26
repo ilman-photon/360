@@ -99,7 +99,7 @@ export default function InsuranceInfoPage() {
         postInsurance({
           token: cookies.get("accessToken"),
           payload: postBody,
-          patientId: "59f43690-807f-4522-a615-e4b3b9ed8434", // hardcoded patient id
+          patientId: "9a76d8d6-f5ae-4a22-8cc0-3454bb688d20", // hardcoded patient id
         })
       );
 
@@ -143,7 +143,7 @@ export default function InsuranceInfoPage() {
     const { payload } = await dispatch(
       updateInsurance({
         token: cookies.get("accessToken"),
-        patientId: "59f43690-807f-4522-a615-e4b3b9ed8434", // hardcoded patient id
+        patientId: "9a76d8d6-f5ae-4a22-8cc0-3454bb688d20", // hardcoded patient id
         coverageId: postBody.id,
         payload: postBody,
       })

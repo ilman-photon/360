@@ -324,11 +324,11 @@ const buildUserInsuranceData = (payload) => {
         relationship: RELATIONSHIP_LIST[insurance.subscriberRelation - 1],
       },
       priority: insurance.priority,
-      frontCard: "/transparent.png",
-      backCard: "/transparent.png",
+      // frontCard: "/transparent.png",
+      // backCard: "/transparent.png",
       // TODO later only images
-      // frontCard: digitalAssets.master_front,
-      // backCard: digitalAssets.master_backCard,
+      frontCard: digitalAssets.master_front,
+      backCard: digitalAssets.master_back,
     };
   });
 };
@@ -347,8 +347,8 @@ export const DEFAULT_INSURANCE_DATA = {
     relationship: "",
   },
   priority: "PRIMARY",
-  frontCard: "",
-  backCard: "",
+  frontCard: null,
+  backCard: null,
 };
 
 const DEFAULT_USER_APPOINTMENT_DATA = {

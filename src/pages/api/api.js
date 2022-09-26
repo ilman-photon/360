@@ -113,6 +113,8 @@ export class Api {
           return this.client.get(url, postbody).then(resolver).catch(rejecter);
         case "post":
           return this.client.post(url, postbody).then(resolver).catch(rejecter);
+        case "put":
+          return this.client.put(url, postbody).then(resolver).catch(rejecter);
         default:
           return this.client.get(url, postbody).then(resolver).catch(rejecter);
       }
@@ -371,9 +373,50 @@ export class Api {
     const url = `/ecp/digital-asset/v1/asset/${id}`;
     try {
       const response = await this.getResponse(url, null, "get");
-      if (response.data) {
-        return response.data.presignedUrl;
+      if (response) {
+        return response;
       }
+    } catch (error) {
+      console.error({ error });
+    }
+  }
+
+  async createURLDigitalAsset(file) {
+    const url = `/ecp/digital-asset/v1/asset`;
+    const splitted = file.type.split("/");
+    const subType = splitted[0];
+    const type = splitted[1];
+    const postBody = {
+      description: file.name,
+      name: file.name,
+      originalFileName: file.name,
+      subType,
+      type,
+    };
+    try {
+      const response = await this.getResponse(url, postBody, "post");
+      if (response) {
+        return response;
+      }
+    } catch (error) {
+      console.error({ error });
+    }
+  }
+
+  async uploadFile(url, file) {
+    try {
+      const response = await axios({
+        method: "put",
+        url: url, //API url
+        data: file, // Buffer
+        maxContentLength: Infinity,
+        maxBodyLength: Infinity,
+        headers: {
+          "Content-Type": "image/png",
+        },
+      });
+      // console.log("upload response", {response})
+      if (response.status === 200) return { success: true };
     } catch (error) {
       console.error({ error });
     }

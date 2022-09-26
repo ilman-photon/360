@@ -498,18 +498,13 @@ export default function InsuranceForm({
                   field: { onChange, value },
                   fieldState: { _error },
                 }) => {
-                  {
-                    JSON.stringify(value);
-                  }
                   return (
                     <ImageUploader
                       OnUpload={onChange}
                       OnInputError={onFormCardFrontError}
-                      source={
-                        formData ? `/${formData.frontCard?.fileName}` : null
-                      }
                       testIds={testIds.uploadFrontImage}
-                      preview={value}
+                      source={formData?.frontCard?.source || null}
+                      preview={value?.presignedUrl}
                       label="Upload Front"
                       width="100%"
                       src="/login-bg.png"
@@ -552,11 +547,9 @@ export default function InsuranceForm({
                     <ImageUploader
                       OnUpload={onChange}
                       OnInputError={onFormCardBackError}
-                      source={
-                        formData ? `/${formData.backCard?.fileName}` : null
-                      }
+                      source={formData?.backCard?.source || null}
+                      preview={value?.presignedUrl}
                       testIds={testIds.uploadBackImage}
-                      preview={value}
                       label="Upload Back"
                       width="100%"
                       src="/login-bg.png"
