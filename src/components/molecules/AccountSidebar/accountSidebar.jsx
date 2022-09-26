@@ -70,6 +70,11 @@ export const AccountSidebar = ({ ...props }, ref) => {
     setActiveSidebarChild(router.pathname.split("/")[3]);
   }, [router]);
 
+  const KeyboardComponent =
+    activeSidebarChild === "documents"
+      ? KeyboardArrowDownOutlinedIcon
+      : KeyboardArrowRightOutlinedIcon;
+
   return (
     <div className={styles.sidebarWrapper}>
       <Stack className={styles.sidebarLinkWrapper} spacing={2}>
@@ -81,7 +86,6 @@ export const AccountSidebar = ({ ...props }, ref) => {
               alignItems="center"
               color={colors.iconGrey}
             >
-              {/* {link.icon} */}
               <SidebarLink router={router} href={link.href} child={link.child}>
                 {link.label}
               </SidebarLink>
@@ -95,22 +99,13 @@ export const AccountSidebar = ({ ...props }, ref) => {
                 sx={{ cursor: "pointer" }}
                 onClick={() => toggleSidebarChild("documents")}
               >
-                {/* {link.icon} */}
                 <Typography
                   variant="allVariants"
                   className={styles.sidebarLink}
                 >
                   {link.label}
                 </Typography>
-                {activeSidebarChild === "documents" ? (
-                  <KeyboardArrowDownOutlinedIcon
-                    sx={{ width: 23, height: 23, ml: "auto" }}
-                  />
-                ) : (
-                  <KeyboardArrowRightOutlinedIcon
-                    sx={{ width: 23, height: 23, ml: "auto" }}
-                  />
-                )}
+                <KeyboardComponent sx={{ width: 23, height: 23, ml: "auto" }} />
               </Stack>
 
               <Collapse

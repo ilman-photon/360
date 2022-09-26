@@ -1,5 +1,4 @@
 import axios from "axios";
-import Cookies from "universal-cookie";
 import { setGenericErrorMessage } from "../../store";
 import constants from "../../utils/constants";
 
@@ -90,13 +89,18 @@ export class Api {
   }
 
   resetPassword(postbody) {
-    const url = "/ecp/patient/resetPassword";
+    const url = "/ecp/patient/resetPasswordLink";
     return this.forgotFeatureValidation(url, postbody, "post");
   }
 
   oneTimeLink(postbody) {
     const url = "/ecp/patient/onetimelink";
     return this.forgotFeatureValidation(url, postbody, "post");
+  }
+
+  validateSecurityQuestion(postbody) {
+    const url = "/ecp/patient/securityquestions/validate";
+    return this.forgotFeatureValidation(url, postbody, "post", 2000);
   }
 
   updatePassword(postbody) {
@@ -178,7 +182,7 @@ export class Api {
   }
 
   submitSecurityQuestion(postbody) {
-    const url = "/ecp/patient/securityQuestions";
+    const url = "/ecp/patient/saveSecurityQuestions";
     return this.forgotFeatureValidation(url, postbody, "post", 2000);
   }
 

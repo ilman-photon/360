@@ -1,12 +1,8 @@
 import { Stack, useMediaQuery } from "@mui/material";
 import * as React from "react";
 import { useEffect } from "react";
-import { Provider, useDispatch, useSelector } from "react-redux";
-import Cookies from "universal-cookie";
-import AccountTitleHeading from "../../../components/atoms/AccountTitleHeading/accountTitleHeading";
+import { Provider } from "react-redux";
 import Prescriptions from "../../../components/molecules/Dashboard/prescriptions";
-import Navbar from "../../../components/molecules/Navbar/Navbar";
-import AppointmentLayout from "../../../components/templates/appointmentLayout";
 import PrescriptionLayout from "../../../components/templates/prescriptionLayout";
 import store from "../../../store/store";
 import { Api } from "../../api/api";
