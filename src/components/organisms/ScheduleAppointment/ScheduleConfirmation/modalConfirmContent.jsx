@@ -269,7 +269,10 @@ export default function ModalConfirmContent({
 
         {!isLoggedIn ? (
           <div className={styles.bottomParagraph}>
-            <Typography variant="caption" sx={{ fontSize: "16px" }}>
+            <Typography
+              variant="caption"
+              sx={{ fontSize: "16px", fontFamily: "Libre Franklin" }}
+            >
               Already have an account?{" "}
               <Link
                 href="/patient/login"
