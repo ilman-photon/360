@@ -5,6 +5,7 @@ import AuthPage from "../../src/pages/patient/login";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import Cookies from "universal-cookie";
+import { navigateToPatientPortalHome } from "../../__mocks__/commonSteps";
 
 jest.mock("universal-cookie", () => {
   class MockCookies {
@@ -85,8 +86,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(login);
     });
 
-    then("user should view Home/Dashboard page", () => {
-      expect(true).toBeTruthy();
+    then("user should view Home/Dashboard page", async() => {
+      navigateToPatientPortalHome()
     });
   });
   test("EPIC_EPP-4_STORY_EPP-207-Verify whether the Patient is able to login with Email and valid Password.", ({
@@ -130,8 +131,8 @@ defineFeature(feature, (test) => {
       const login = container.getByRole("button", { name: /Login/i });
       fireEvent.click(login);
     });
-    then("user should view Home/Dashboard page", () => {
-      expect(true).toBeTruthy();
+    then("user should view Home/Dashboard page", async() => {
+      navigateToPatientPortalHome()
     });
   });
   test("EPIC_EPP-4_STORY_EPP-207-Verify whether the Patient is able to login with Phone number with valid Password.", ({
@@ -167,8 +168,8 @@ defineFeature(feature, (test) => {
       const login = container.getByRole("button", { name: /Login/i });
       fireEvent.click(login);
     });
-    then("user should view Home/Dashboard page", () => {
-      expect(true).toBeTruthy();
+    then("user should view Home/Dashboard page", async() => {
+      navigateToPatientPortalHome()
     });
   });
   test("EPIC_EPP-4_STORY_EPP-207-Verify whether the user is able to see the Patient Login page without Internet connection", ({
@@ -227,7 +228,10 @@ defineFeature(feature, (test) => {
     });
 
     when(`user lands onto “Patient Login” screen`, () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
+      container = render(<AuthPage />);
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     then("page should load in 3 seconds", () => {
@@ -278,7 +282,10 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
     and("user lands on “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
+      container = render(<AuthPage />);
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     then(

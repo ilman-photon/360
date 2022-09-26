@@ -1,10 +1,11 @@
 import { defineFeature, loadFeature } from "jest-cucumber";
 import { Login } from "../../src/components/organisms/Login/login";
-import { fireEvent, render, act } from "@testing-library/react";
+import { fireEvent, render, act, cleanup } from "@testing-library/react";
 import AuthPage from "../../src/pages/patient/login";
 import HomePage from "../../src/pages/patient";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
+import { renderLogin } from "../../__mocks__/commonSteps";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-206.feature",
@@ -64,7 +65,7 @@ defineFeature(feature, (test) => {
       navigateToPatientPortalApp()
     });
 
-    when(`user lands onto \“Patient Login\” screen`, () => {
+    when(`user lands onto \“Patient Login\” screen`, async () => {
       landOnPatientPortalScreen()
     });
 
@@ -89,9 +90,8 @@ defineFeature(feature, (test) => {
       navigateToPatientPortalApp()
     });
 
-    when(`user lands onto \“Patient Login\” screen`, () => {
-      const title = container.getByText("formTitle");
-      expect("formTitle").toEqual(title.textContent);
+    when(`user lands onto \“Patient Login\” screen`, async () => {
+      landOnPatientPortalScreen()
     });
     and('user provides "<Email or Phone Number>" and "<password>"', () => {
       const mockOnLoginClicked = jest.fn((data, route, callback) => {
@@ -124,8 +124,8 @@ defineFeature(feature, (test) => {
       navigateToPatientPortalApp()
     });
 
-    when(`user lands onto \“Patient Login\” screen`, () => {
-      expect(true).toBeTruthy();
+    when(`user lands onto \“Patient Login\” screen`, async () => {
+      landOnPatientPortalScreen()
     });
     and('user provides "<username>" and "<password>"', () => {
       const mockOnLoginClicked = jest.fn((data, route, callback) => {
@@ -169,8 +169,8 @@ defineFeature(feature, (test) => {
       navigateToPatientPortalApp()
     });
 
-    when(`user lands onto “Patient Login” screen`, () => {
-      expect(true).toBeTruthy();
+    when(`user lands onto “Patient Login” screen`, async () => {
+      landOnPatientPortalScreen()
     });
     then("user should able to view 'Login' button .", () => {
       expect(true).toBeTruthy();
@@ -202,8 +202,8 @@ defineFeature(feature, (test) => {
       navigateToPatientPortalApp()
     });
 
-    when(`user lands onto \“Patient Login\” screen`, () => {
-      expect(true).toBeTruthy();
+    when(`user lands onto \“Patient Login\” screen`, async () => {
+      landOnPatientPortalScreen()
     });
     and("user click the 'Continues as a guest' button", () => {
       expect(true).toBeTruthy();
@@ -250,8 +250,8 @@ defineFeature(feature, (test) => {
       navigateToPatientPortalApp()
     });
 
-    when(`user lands onto “Patient Login” screen`, () => {
-      expect(true).toBeTruthy();
+    when(`user lands onto “Patient Login” screen`, async () => {
+      landOnPatientPortalScreen()
     });
     and("user click the 'Create Account' button", () => {
       expect(true).toBeTruthy();
@@ -274,8 +274,8 @@ defineFeature(feature, (test) => {
       navigateToPatientPortalApp()
     });
 
-    when(`user lands onto “Patient Login” screen`, () => {
-      expect(true).toBeTruthy();
+    when(`user lands onto “Patient Login” screen`, async () => {
+      landOnPatientPortalScreen()
     });
     and("user click the 'Forgot Password' link", () => {
       expect(true).toBeTruthy();
@@ -298,8 +298,8 @@ defineFeature(feature, (test) => {
       navigateToPatientPortalApp()
     });
 
-    when("user/ admin user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+    when("user/ admin user lands onto “Patient Login” screen", async () => {
+      landOnPatientPortalScreen()
     });
     and(
       'user/admin user provides blank "<Email or Phone Number>" and valid "<password>"',
@@ -328,8 +328,8 @@ defineFeature(feature, (test) => {
       navigateToPatientPortalApp()
     });
 
-    when(`user/ admin user lands onto \“Patient Login\” screen`, () => {
-      expect(true).toBeTruthy();
+    when(`user/ admin user lands onto \“Patient Login\” screen`, async () => {
+      landOnPatientPortalScreen()
     });
     and(
       'user/admin user provides valid "<Email or Phone Number>" and blank "<password>"',
@@ -358,8 +358,8 @@ defineFeature(feature, (test) => {
       navigateToPatientPortalApp()
     });
 
-    when(`admin user lands onto \“Patient Login\” screen`, () => {
-      expect(true).toBeTruthy();
+    when(`admin user lands onto \“Patient Login\” screen`, async () => {
+      landOnPatientPortalScreen()
     });
 
     then('admin user should view "Login" button', () => {
@@ -389,11 +389,11 @@ defineFeature(feature, (test) => {
     });
 
     and("user/ admin user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp()
     });
 
-    when(`user/ admin user lands onto \“Patient Login\” screen`, () => {
-      expect(true).toBeTruthy();
+    when(`user/ admin user lands onto \“Patient Login\” screen`, async () => {
+      landOnPatientPortalScreen()
     });
     and(
       'user/admin user provides blank "<Email or Phone Number>" and blank "<password>"',
@@ -417,7 +417,7 @@ defineFeature(feature, (test) => {
       launchURL()
     });
     when(`user/ admin user navigates to the Patient Portal application`, () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp()
     });
     then("user/ admin user should view appropriate error message", () => {
       expect(true).toBeTruthy();
@@ -434,11 +434,11 @@ defineFeature(feature, (test) => {
     });
 
     and("Admin navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp()
     });
 
-    when(`Admin lands onto \“Patient Login\” screen`, () => {
-      expect(true).toBeTruthy();
+    when(`Admin lands onto \“Patient Login\” screen`, async () => {
+      landOnPatientPortalScreen()
     });
 
     and('Admin provides "<username>" and "<password>"', () => {
@@ -469,11 +469,11 @@ defineFeature(feature, (test) => {
     });
 
     and("Admin navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp()
     });
 
-    when(`Admin lands onto \“Patient Login\” screen`, () => {
-      expect(true).toBeTruthy();
+    when(`Admin lands onto \“Patient Login\” screen`, async () => {
+      landOnPatientPortalScreen()
     });
 
     then(
@@ -509,9 +509,13 @@ defineFeature(feature, (test) => {
       launchURL()
     });
 
-    and("user navigates to the Patient Portal application", () => { });
+    and("user navigates to the Patient Portal application", () => {
+      navigateToPatientPortalApp()
+    });
 
-    when("user lands onto “Patient Login” screen", () => { });
+    when("user lands onto “Patient Login” screen", async () => {
+      landOnPatientPortalScreen()
+    });
 
     then(/^page should load in (\d+) seconds$/, (arg0) => { });
   });
@@ -525,9 +529,13 @@ defineFeature(feature, (test) => {
       launchURL()
     });
 
-    and("user navigates to the Patient Portal application", () => { });
+    and("user navigates to the Patient Portal application", () => {
+      navigateToPatientPortalApp()
+    });
 
-    when("user lands onto “Patient Login” screen", () => { });
+    when("user lands onto “Patient Login” screen", async () => {
+      landOnPatientPortalScreen()
+    });
 
     and(/^press the F(\d+) button from the keyboard.$/, (arg0) => { });
 
@@ -541,11 +549,15 @@ defineFeature(feature, (test) => {
   }) => {
     given(/^user user launch the "(.*)" url$/, (arg0) => { });
 
-    and("user navigates to the Patient Portal application", () => { });
+    and("user navigates to the Patient Portal application", () => {
+      navigateToPatientPortalApp()
+    });
 
     when("the service is unavailable", () => { });
 
-    and("user lands on “Patient Login” screen", () => { });
+    and("user lands on “Patient Login” screen", async () => {
+      landOnPatientPortalScreen()
+    });
 
     then(
       /^error message '(\d+) - Server is not ready to handle the request' should get display.$/,
@@ -560,9 +572,13 @@ defineFeature(feature, (test) => {
   }) => {
     given("Admin launch the 'XXX' url", () => { });
 
-    and("Admin navigates to the Patient Portal application", () => { });
+    and("Admin navigates to the Patient Portal application", () => {
+      navigateToPatientPortalApp()
+    });
 
-    when("Admin lands onto “Patient Login” screen", () => { });
+    when("Admin lands onto “Patient Login” screen", async () => {
+      landOnPatientPortalScreen()
+    });
 
     and(/^Admin provides (.*) and (.*)$/, (arg0, arg1) => { });
 
