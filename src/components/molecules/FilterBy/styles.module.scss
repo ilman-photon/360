@@ -69,7 +69,8 @@
   @media (max-width: 992px) {
     width: 100%;
     margin: unset;
-    padding: 16px 16px 0 16px;
+    bottom: 0px;
+    padding: 16px 16px 40px 16px;
   }
 }
 
@@ -107,5 +108,7 @@
   max-height: calc(100vh - 144px);
   @media (max-width: 992px) {
     width: 100vw;
+    max-height: unset;
+    padding-bottom: 100px;
   }
 }

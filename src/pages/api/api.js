@@ -1,5 +1,4 @@
 import axios from "axios";
-import Cookies from "universal-cookie";
 import { setGenericErrorMessage } from "../../store";
 import { fetchUser } from "../../store/user";
 import constants from "../../utils/constants";
@@ -26,43 +25,8 @@ export class Api {
     this.maxRequestCounter = 3;
   }
 
-  getToken() {
-    const request = axios.create({
-      baseURL: process.env.NEXT_PUBLIC_API_URL,
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-        Accept: "application/json",
-      },
-      timeout: 10000,
-    });
-
-    const params = new URLSearchParams(); // x-www-form-urlencoded
-    params.append("grant_type", "password");
-    params.append("client_id", "master-realm");
-    params.append("client_secret", "dd766bf5-fa6e-470d-a13f-8d357bf6ee71");
-    params.append("username", "test.photon");
-    params.append("password", "Password@1");
-
-    try {
-      return request.post("/ecp/gettoken", params);
-    } catch (err) {
-      console.log("Failed to fetch token", err);
-      return err.response.data;
-    }
-  }
-
-  // this somehow doesn't work ??
-  setAuthorizationHeader(payload) {
-    this.client.defaults.headers.common["Authorization"] = payload;
-  }
-
-  // Good luck @Dewo xd
-  getResponse(url, postbody, method, token) {
-    if (token) {
-      this.client.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    }
-
-    return new Promise(async (resolve, reject) => {
+  getResponse(url, postbody, method) {
+    return new Promise((resolve, reject) => {
       const resolver = function (response) {
         if (response && response.data) {
           resolve(response.data);
@@ -140,9 +104,6 @@ export class Api {
         }
       };
 
-      const cookies = new Cookies();
-      // const config = { headers: cookies.getAll() };
-
       switch (method) {
         case "get":
           return this.client.get(url, postbody).then(resolver).catch(rejecter);
@@ -164,6 +125,11 @@ export class Api {
     return this.forgotFeatureValidation(url, postbody, "post", 2000);
   }
 
+  getPatientId(postbody) {
+    const url = "/ecp/patient/search/ecppatientid";
+    return this.getResponse(url, postbody, "post");
+  }
+
   validateGuestUser(postbody) {
     const url = "/ecp/patient/validate";
     return this.forgotFeatureValidation(url, postbody, "post");
@@ -175,13 +141,18 @@ export class Api {
   }
 
   resetPassword(postbody) {
-    const url = "/ecp/patient/resetPassword";
+    const url = "/ecp/patient/resetPasswordLink";
     return this.forgotFeatureValidation(url, postbody, "post");
   }
 
   oneTimeLink(postbody) {
     const url = "/ecp/patient/onetimelink";
     return this.forgotFeatureValidation(url, postbody, "post");
+  }
+
+  validateSecurityQuestion(postbody) {
+    const url = "/ecp/patient/securityquestions/validate";
+    return this.forgotFeatureValidation(url, postbody, "post", 2000);
   }
 
   updatePassword(postbody) {
@@ -263,7 +234,7 @@ export class Api {
   }
 
   submitSecurityQuestion(postbody) {
-    const url = "/ecp/patient/securityQuestions";
+    const url = "/ecp/patient/saveSecurityQuestions";
     return this.forgotFeatureValidation(url, postbody, "post", 2000);
   }
 
@@ -324,7 +295,11 @@ export class Api {
 
   getAllAppointment() {
     const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`;
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const patientId = `/${userData.patientId}`;
+    const url = `${domain}/api/dummy/appointment/my-appointment/getAllAppointment${
+      userData.patientId ? patientId : ""
+    }`;
     return this.getResponse(url, {}, "get");
   }
 
@@ -375,4 +350,28 @@ export class Api {
   //     }
   //   }
   // }
+
+  doMedicationRequestRefill(postBody) {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/prescription/requestRefill`;
+    return this.getResponse(url, postBody, "post");
+  }
+
+  doMedicationCancelRequestRefill(postBody) {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/prescription/cancelRequestRefill`;
+    return this.getResponse(url, postBody, "post");
+  }
+
+  async getURLDigitalAsset(id) {
+    const url = `/ecp/digital-asset/v1/asset/${id}`;
+    try {
+      const response = await this.getResponse(url, null, "get");
+      if (response.data) {
+        return response.data.presignedUrl;
+      }
+    } catch (error) {
+      console.error({ error });
+    }
+  }
 }

@@ -32,7 +32,7 @@ exports[`App renders App unchanged 1`] = `
     style="padding-top: 64px;"
   >
     <header
-      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-rxbk4x-MuiPaper-root-MuiAppBar-root"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-wzn3iz-MuiPaper-root-MuiAppBar-root"
     >
       <div
         class="MuiContainer-root MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root"
@@ -272,7 +272,7 @@ exports[`App renders App unchanged 1`] = `
                               </span>
                             </div>
                             <div
-                              class="bioContainer MuiBox-root css-1oovyp6"
+                              class="bioContainer  MuiBox-root css-1oovyp6"
                             >
                               <h2
                                 class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-1i5ehwd-MuiTypography-root"
@@ -296,7 +296,7 @@ exports[`App renders App unchanged 1`] = `
                                     class="MuiBox-root css-0"
                                   >
                                     <p
-                                      class="MuiTypography-root MuiTypography-body2 address css-166djn1-MuiTypography-root"
+                                      class="MuiTypography-root MuiTypography-body2 address  css-166djn1-MuiTypography-root"
                                       tabindex="0"
                                     />
                                   </div>
@@ -371,7 +371,7 @@ exports[`App renders App unchanged 1`] = `
                       </div>
                     </div>
                     <div
-                      class="css-qkek6c-MuiStack-root"
+                      class="css-1sbz1s3-MuiStack-root"
                     >
                       <div>
                         <span

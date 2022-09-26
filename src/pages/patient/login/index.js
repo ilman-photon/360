@@ -4,19 +4,43 @@ import { Api } from "../../api/api";
 import { Login as LoginComponent } from "../../../components/organisms/Login/login";
 import { useEffect } from "react";
 import constants from "../../../utils/constants";
+import { removeAuthCookies } from "../../../utils/authetication";
 
-function getUserData(username, callback) {
-  const api = new Api();
+const api = new Api();
+const cookies = new Cookies();
 
-  const postBody = {
-    username,
+function getUserData(postbody, callback) {
+  const post = {
+    username: postbody.username,
   };
   api
-    .getUserData(postBody)
+    .getUserData(post)
     .then((response) => {
-      const mfaAccessToken = response.mfaAccessToken || "";
-      const isHasMfaAccessToken = mfaAccessToken !== "";
-      callback(isHasMfaAccessToken);
+      getPatientId(postbody, (patientId) => {
+        const mfaAccessToken =
+          cookies.get("mfaAccessToken", { path: "/patient" }) || "";
+        const isHasMfaAccessToken =
+          mfaAccessToken === patientId.replace(/-/g, "");
+        const userData = {
+          communicationMethod: response.communicationMethod,
+          patientId,
+        };
+        localStorage.setItem("userData", JSON.stringify(userData));
+        !isHasMfaAccessToken &&
+          cookies.remove("mfaAccessToken", { path: "/patient" });
+        callback(isHasMfaAccessToken);
+      });
+    })
+    .catch(() => {
+      callback(false);
+    });
+}
+
+function getPatientId(postBody, callback) {
+  api
+    .getPatientId(postBody)
+    .then((response) => {
+      callback(response.ecpPatientId || "");
     })
     .catch(() => {
       callback(false);
@@ -25,13 +49,11 @@ function getUserData(username, callback) {
 
 const loginProps = {
   OnLoginClicked: function (postbody, _router, callback) {
-    const api = new Api();
-    const cookies = new Cookies();
     api
       .login(postbody)
       .then(function (response) {
         const IdleTimeOut = response.IdleTimeOut * 1000 || 1200 * 1000;
-        const securityQuestions = response.SecurityQuestions || [];
+        const securityQuestions = response.SecurityQuestions;
         cookies.set("IdleTimeOut", IdleTimeOut, { path: "/patient" });
         cookies.set("username", postbody.username, { path: "/patient" });
         cookies.set("accessToken", response.access_token, { path: "/patient" });
@@ -41,7 +63,8 @@ const loginProps = {
         cookies.set("securityQuestions", securityQuestions, {
           path: "/patient",
         });
-        getUserData(postbody.username, (isNotNeedMfa) => {
+
+        getUserData(postbody, (isNotNeedMfa) => {
           if (isNotNeedMfa) {
             cookies.set("authorized", true, { path: "/patient" });
           } else {
@@ -79,34 +102,9 @@ const loginProps = {
 };
 
 export default function login() {
-  const api = new Api();
-  const cookies = new Cookies();
-  cookies.remove("isStay", { path: "/patient" });
-
-  const removeCookies = () => {
-    if (cookies.get("mfa")) {
-      cookies.remove("mfa", { path: "/patient" });
-    }
-    if (cookies.get("authorized")) {
-      cookies.remove("authorized", { path: "/patient" });
-    }
-  };
-
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
-    if (!cookies.get("ip")) {
-      api
-        .getIpAddress()
-        .then((ip) => {
-          cookies.set("ip", ip, { path: "/patient" });
-          removeCookies();
-        })
-        .catch(() => {
-          removeCookies();
-        });
-    } else {
-      removeCookies();
-    }
+    removeAuthCookies();
   });
 
   return <LoginComponent {...loginProps} />;
