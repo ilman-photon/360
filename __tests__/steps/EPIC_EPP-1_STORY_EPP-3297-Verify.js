@@ -330,7 +330,7 @@ const feature = loadFeature(
 );
 
 const mockApi = () => {
-  Cookies.result = "true";
+  Cookies.result = { authorized: true };
   const expectedResult = {
     ResponseCode: 2005,
     ResponseType: "success",
@@ -402,7 +402,7 @@ defineFeature(feature, (test) => {
         then(/^User should navigated to "(.*)" screen$/, async(arg0) => {
 			    mockApi();
           geolocation();
-          Cookies.result = false;
+          Cookies.result = { authorized: true };
           act(() => {
             container = render(
               <Provider store={store}>
@@ -467,7 +467,7 @@ defineFeature(feature, (test) => {
         then(/^User should navigated to "(.*)" screen$/, async(arg0) => {
 			    mockApi();
           geolocation();
-          Cookies.result = false;
+          Cookies.result = { authorized: true };
           act(() => {
             container = render(
               <Provider store={store}>
@@ -538,7 +538,7 @@ defineFeature(feature, (test) => {
             res: jest.fn(),
           });
           geolocation();
-          Cookies.result = false;
+          Cookies.result = { authorized: true };
           act(() => {
             container = render(
               <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
@@ -596,7 +596,7 @@ defineFeature(feature, (test) => {
             res: jest.fn(),
           });
           geolocation();
-          Cookies.result = false;
+          Cookies.result = { authorized: true };
           act(() => {
             container = render(
               <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>

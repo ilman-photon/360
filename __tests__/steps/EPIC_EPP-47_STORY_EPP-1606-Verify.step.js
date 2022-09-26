@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import { Provider } from "react-redux";
-import Appointments, { getServerSideProps } from "../../src/pages/patient/appointments";
+import Appointments from "../../src/pages/patient/appointments";
 import store from "../../src/store/store";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 import constants from "../../src/utils/constants";
@@ -104,10 +104,7 @@ defineFeature(feature, (test) => {
       mock
         .onGet(`${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment`)
         .reply(200, userData);
-      await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+
       act(() => {
         container = render(
           <Provider store={store}>
@@ -161,10 +158,6 @@ defineFeature(feature, (test) => {
       mock
         .onGet(`${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment`)
         .reply(200, userData);
-      await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
       act(() => {
         container = render(
           <Provider store={store}>
@@ -175,7 +168,6 @@ defineFeature(feature, (test) => {
       await waitFor(() => {
         container.getAllByText(userData.appointmentList[0].patientInfo.name);
       })
-
       expect(container.getByText(/Upcoming appointments/i).textContent).toEqual("Upcoming Appointments")
     });
 
@@ -227,10 +219,7 @@ defineFeature(feature, (test) => {
       mock
         .onGet(`${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment`)
         .reply(200, userData);
-      await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+      
       act(() => {
         container = render(
           <Provider store={store}>
@@ -293,10 +282,7 @@ defineFeature(feature, (test) => {
       mock
         .onGet(`${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment`)
         .reply(200, userData);
-      await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+      
       act(() => {
         container = render(
           <Provider store={store}>
@@ -393,10 +379,7 @@ defineFeature(feature, (test) => {
       mock
         .onGet(`${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment`)
         .reply(200, userData);
-      await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+      
       act(() => {
         container = render(
           <Provider store={store}>
@@ -624,10 +607,7 @@ defineFeature(feature, (test) => {
       mock
         .onGet(`${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment`)
         .reply(400, {});
-      await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+      
       act(() => {
         container = render(
           <Provider store={store}>

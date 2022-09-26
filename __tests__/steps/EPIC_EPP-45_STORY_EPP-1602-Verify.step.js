@@ -9,7 +9,7 @@ import store from "../../src/store/store";
 import constants, { TEST_ID } from "../../src/utils/constants";
 import mediaQuery from 'css-mediaquery';
 import { Login } from "../../src/components/organisms/Login/login";
-import Appointments, { getServerSideProps } from "../../src/pages/patient/appointments";
+import Appointments from "../../src/pages/patient/appointments";
 import RescheduleAppointments from "../../src/pages/patient/appointments/[appointmentId]/reschedule";
 import FilterResult from "../../src/components/molecules/FilterResult/filterResult";
 import ScheduleAppointmentPage from "../../src/pages/patient/schedule-appointment";
@@ -1090,10 +1090,7 @@ defineFeature(feature, (test) => {
       .onGet(`${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment`)
       .reply(200, userData);
 
-    await getServerSideProps({
-      req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-      res: jest.fn(),
-    });
+    
     act(() => {
       container.rerender(
         <Provider store={store}>
@@ -1125,10 +1122,7 @@ defineFeature(feature, (test) => {
 
   async function userClickReschedule() {
     const rescheduleButtons = await waitFor(() => container.getAllByTestId(TEST_ID.APPOINTMENTS_TEST_ID.rescheduleAppointmentButton))
-    await getServerSideProps({
-      req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-      res: jest.fn(),
-    });
+    
     act(() => {
       fireEvent.click(rescheduleButtons[0]);
       container.rerender(

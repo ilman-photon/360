@@ -6,6 +6,20 @@ import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import { Provider } from "react-redux";
 import store from "../../../src/store/store";
+import Cookies from "universal-cookie";
+
+jest.mock("universal-cookie", () => {
+  class MockCookies {
+    static result = {};
+    get() {
+      return MockCookies.result;
+    }
+    remove() {
+      return jest.fn();
+    }
+  }
+  return MockCookies;
+});
 
 describe("Render Appointment", () => {
   let container;
@@ -89,6 +103,7 @@ describe("Render Appointment", () => {
     ]
   };
   beforeEach(async () => {
+    Cookies.result = { authorized: true };
     mock
       .onGet(`${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment`)
       .reply(200, userData);
