@@ -10,7 +10,7 @@ import constants from "../../src/utils/constants";
 import { Provider } from "react-redux";
 import HomePage from "../../src/pages/patient";
 import store from "../../src/store/store";
-import mediaQuery from 'css-mediaquery';
+import mediaQuery from "css-mediaquery";
 
 const MOCK_APPOINTMENT = {
   appointmentList: [
@@ -89,7 +89,7 @@ const MOCK_APPOINTMENT = {
       },
     },
   ],
-}
+};
 
 const MOCK_PRESCRIPTION = {
   prescriptions: {
@@ -150,7 +150,7 @@ const MOCK_PRESCRIPTION = {
       },
     ],
   },
-}
+};
 
 const MOCK_SUGESTION = {
   appointmentType: [
@@ -300,7 +300,7 @@ const MOCK_SUGESTION = {
       ],
     },
   ],
-}
+};
 
 const MOCK_SUBMIT = {
   listOfProvider: [
@@ -765,13 +765,13 @@ const MOCK_SUBMIT = {
       ],
     },
   ],
-}
+};
 
 function createMatchMedia(width) {
-  return query => ({
+  return (query) => ({
     matches: mediaQuery.match(query, { width }),
-    addListener: () => { },
-    removeListener: () => { },
+    addListener: () => {},
+    removeListener: () => {},
   });
 }
 
@@ -804,37 +804,42 @@ defineFeature(feature, (test) => {
 
   afterEach(cleanup);
 
-  test('EPIC_EPP-1_STORY_EPP-3299 - Verify User should see the following details as part of each prescriptions', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
-      defaultValidation()
+  test("EPIC_EPP-1_STORY_EPP-3299 - Verify User should see the following details as part of each prescriptions", ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
+      defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      defaultValidation()
+    when("User is logged in to the application", () => {
+      defaultValidation();
     });
 
     then(/^User lands to the "(.*)" screen$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
     and(/^User should see the "(.*)" option$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
     when(/^User selects the "(.*)" option$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
     then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
     and(/^User should see on "(.*)" button$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
     when(/^User clicks on "(.*)" button$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
@@ -846,94 +851,118 @@ defineFeature(feature, (test) => {
       const mock = new MockAdapter(axios);
       const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
-      mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGESTION);
-      mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllAppointment`).reply(200, MOCK_APPOINTMENT);
-      mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`).reply(200, MOCK_PRESCRIPTION);
-      mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(400, {});
-      window.matchMedia = createMatchMedia('1920px');
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+        )
+        .reply(200, MOCK_SUGESTION);
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, MOCK_APPOINTMENT);
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+        )
+        .reply(200, MOCK_PRESCRIPTION);
+      mock
+        .onPost(
+          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
+        )
+        .reply(400, {});
+      window.matchMedia = createMatchMedia("1920px");
       const response = await getServerSideProps({
         req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
         res: jest.fn(),
       });
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn()
+        watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
       Cookies.result = { authorized: true };
       act(() => {
         container = render(
-          <Provider store={store}>
-            {HomePage.getLayout(<HomePage />)}
-          </Provider>
+          <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
-      })
-      await waitFor(() => container.getByLabelText(/Prescriptions/i))
+      });
+      await waitFor(() => container.getByLabelText(/Prescriptions/i));
       expect(response).toEqual({
         props: { isStepTwo: false },
       });
     });
 
-    and('User should see the widget with prescriptions', () => {
-      const prescriptions = container.getByLabelText(/Prescriptions/i)
-      expect(prescriptions).toBeInTheDocument()
+    and("User should see the widget with prescriptions", () => {
+      const prescriptions = container.getByLabelText(/Prescriptions/i);
+      expect(prescriptions).toBeInTheDocument();
 
-      const locationField = container.container.querySelector('#location');
-      fireEvent.change(locationField, { target: { value: "Texas" } })
+      const locationField = container.container.querySelector("#location");
+      fireEvent.change(locationField, { target: { value: "Texas" } });
     });
 
-    when('User clicks on the widget with prescriptions', () => {
-      const prescriptionsView = container.getByTestId("view-prescription-glasses")
-      fireEvent.click(prescriptionsView)
+    when("User clicks on the widget with prescriptions", () => {
+      const prescriptionsView = container.getByTestId(
+        "view-prescription-glasses"
+      );
+      fireEvent.click(prescriptionsView);
 
-      const searchBtn = container.getByTestId("searchbtn")
-      fireEvent.click(searchBtn)
+      const searchBtn = container.getByTestId("searchbtn");
+      fireEvent.click(searchBtn);
     });
 
     then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
-    and('User should be able to view the following details as below:', (table) => {
-      defaultValidation()
-    });
+    and(
+      "User should be able to view the following details as below:",
+      (table) => {
+        defaultValidation();
+      }
+    );
   });
 
-  test('EPIC_EPP-1_STORY_EPP-3299 - Verify User on clicking the widget will get navigated to the screen with upcoming prescriptions', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
-      defaultValidation()
+  test("EPIC_EPP-1_STORY_EPP-3299 - Verify User on clicking the widget will get navigated to the screen with upcoming prescriptions", ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
+      defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      defaultValidation()
+    when("User is logged in to the application", () => {
+      defaultValidation();
     });
 
     then(/^User lands to the "(.*)" screen$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
     and(/^User should see the "(.*)" option$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
     when(/^User selects the "(.*)" option$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
     then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
     and(/^User should see on "(.*)" button$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
     when(/^User clicks on "(.*)" button$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      Cookies.result = { authorized: true };
+        Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -941,88 +970,105 @@ defineFeature(feature, (test) => {
       const mock = new MockAdapter(axios);
       const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
-      mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGESTION);
-      mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllAppointment`).reply(200, MOCK_APPOINTMENT);
-      mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`).reply(200, MOCK_PRESCRIPTION);
-      window.matchMedia = createMatchMedia('700px');
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+        )
+        .reply(200, MOCK_SUGESTION);
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, MOCK_APPOINTMENT);
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+        )
+        .reply(200, MOCK_PRESCRIPTION);
+      window.matchMedia = createMatchMedia("700px");
       const response = await getServerSideProps({
         req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
         res: jest.fn(),
       });
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn()
+        watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
       Cookies.result = { authorized: true };
       act(() => {
         container = render(
-          <Provider store={store}>
-            {HomePage.getLayout(<HomePage />)}
-          </Provider>
+          <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
-      })
-      await waitFor(() => container.getByTestId("menu-contact"))
-      console.log(response)
+      });
+      await waitFor(() => container.getByTestId("menu-contact"));
+      console.log(response);
       // expect(response).toEqual({
       //   props: {},
       // });
     });
 
-    and('User should see the widget with prescriptions', async () => {
-      const contactMenu = container.getByTestId("menu-contact")
+    and("User should see the widget with prescriptions", async () => {
+      const contactMenu = container.getByTestId("menu-contact");
       act(() => {
-        fireEvent.click(contactMenu)
-      })
+        fireEvent.click(contactMenu);
+      });
 
-      await waitFor(() => container.getByText(/Contacts Prescriptions/i))
+      await waitFor(() => container.getByText(/Contacts Prescriptions/i));
     });
 
-    when('User clicks on the widget with prescriptions', () => {
-      const prescriptionsView = container.getByTestId("view-prescription-contact")
-      fireEvent.click(prescriptionsView)
+    when("User clicks on the widget with prescriptions", () => {
+      const prescriptionsView = container.getByTestId(
+        "view-prescription-contact"
+      );
+      fireEvent.click(prescriptionsView);
     });
 
     then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-1_STORY_EPP-3299 - Verify User on clicking any particular test/ procedure will get navigated to that particular test/ procedure in the screen with upcoming test sand procedures', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
-      defaultValidation()
+  test("EPIC_EPP-1_STORY_EPP-3299 - Verify User on clicking any particular test/ procedure will get navigated to that particular test/ procedure in the screen with upcoming test sand procedures", ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
+      defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      defaultValidation()
+    when("User is logged in to the application", () => {
+      defaultValidation();
     });
 
     then(/^User lands to the "(.*)" screen$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
     and(/^User should see the "(.*)" option$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
     when(/^User selects the "(.*)" option$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
     then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
     and(/^User should see on "(.*)" button$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
     when(/^User clicks on "(.*)" button$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      Cookies.result = { authorized: true };
+        Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -1030,96 +1076,116 @@ defineFeature(feature, (test) => {
       const mock = new MockAdapter(axios);
       const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
-      mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGESTION);
-      mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllAppointment`).reply(200, MOCK_APPOINTMENT);
-      mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`).reply(200, MOCK_PRESCRIPTION);
-      window.matchMedia = createMatchMedia('700px');
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+        )
+        .reply(200, MOCK_SUGESTION);
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, MOCK_APPOINTMENT);
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+        )
+        .reply(200, MOCK_PRESCRIPTION);
+      window.matchMedia = createMatchMedia("700px");
       const response = await getServerSideProps({
         req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
         res: jest.fn(),
       });
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn()
+        watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
       Cookies.result = { authorized: true };
       act(() => {
         container = render(
-          <Provider store={store}>
-            {HomePage.getLayout(<HomePage />)}
-          </Provider>
+          <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
-      })
-      await waitFor(() => container.getByText(/Purpose of Visit/i))
+      });
+      await waitFor(() => container.getByText(/Purpose of Visit/i));
 
       expect(response).toEqual({
         props: { isStepTwo: false },
       });
     });
 
-    and('User should see the widget with prescriptions', async () => {
-      const medicationMenu = container.getByTestId("menu-medication")
+    and("User should see the widget with prescriptions", async () => {
+      const medicationMenu = container.getByTestId("menu-medication");
       act(() => {
-        fireEvent.click(medicationMenu)
-      })
+        fireEvent.click(medicationMenu);
+      });
 
-      await waitFor(() => container.getByText(/Medications Prescriptions/i))
+      await waitFor(() => container.getByText(/Medications Prescriptions/i));
     });
 
-    when('User clicks on the widget with prescriptions', () => {
-      const prescriptionsView = container.getByTestId("view-prescription-medication")
-      fireEvent.click(prescriptionsView)
+    when("User clicks on the widget with prescriptions", () => {
+      const prescriptionsView = container.getByTestId(
+        "view-prescription-medication"
+      );
+      fireEvent.click(prescriptionsView);
     });
 
     then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
-    when('User on clicking any particular appointment', () => {
-      defaultValidation()
+    when("User on clicking any particular appointment", () => {
+      defaultValidation();
     });
 
-    then('User should navigated particular appointment in the screen with upcoming appointments', () => {
-      defaultValidation()
-    });
+    then(
+      "User should navigated particular appointment in the screen with upcoming appointments",
+      () => {
+        defaultValidation();
+      }
+    );
   });
 
-  test('EPIC_EPP-1_STORY_EPP-3299 - Verify User should be able to swipe through to view other upcoming prescriptionss', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {
-      defaultValidation()
+  test("EPIC_EPP-1_STORY_EPP-3299 - Verify User should be able to swipe through to view other upcoming prescriptionss", ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {
+      defaultValidation();
     });
 
-    when('User is logged in to the application', () => {
-      defaultValidation()
+    when("User is logged in to the application", () => {
+      defaultValidation();
     });
 
     then(/^User lands to the "(.*)" screen$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
     and(/^User should see the "(.*)" option$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
     when(/^User selects the "(.*)" option$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
     then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
     and(/^User should see on "(.*)" button$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
     when(/^User clicks on "(.*)" button$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      Cookies.result = { authorized: true };
+        Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -1127,64 +1193,83 @@ defineFeature(feature, (test) => {
       const mock = new MockAdapter(axios);
       const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
-      mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGESTION);
-      mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllAppointment`).reply(200, MOCK_APPOINTMENT);
-      mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`).reply(200, MOCK_PRESCRIPTION);
-      mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(200, MOCK_SUBMIT);
-      window.matchMedia = createMatchMedia('1920px');
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
+        )
+        .reply(200, MOCK_SUGESTION);
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, MOCK_APPOINTMENT);
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+        )
+        .reply(200, MOCK_PRESCRIPTION);
+      mock
+        .onPost(
+          `${domain}/api/dummy/appointment/create-appointment/submitFilter`
+        )
+        .reply(200, MOCK_SUBMIT);
+      window.matchMedia = createMatchMedia("1920px");
       const response = await getServerSideProps({
         req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
         res: jest.fn(),
       });
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn()
+        watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
       Cookies.result = { authorized: true };
       act(() => {
         container = render(
-          <Provider store={store}>
-            {HomePage.getLayout(<HomePage />)}
-          </Provider>
+          <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
-      })
-      await waitFor(() => container.getByText(/Purpose of Visit/i))
+      });
+      await waitFor(() => container.getByText(/Purpose of Visit/i));
       expect(response).toEqual({
-        props: { isStepTwo: false }
+        props: { isStepTwo: false },
       });
     });
 
-    and('User should see the widget with prescriptions', async () => {
-      const medicationMenu = container.getByTestId("menu-medication")
+    and("User should see the widget with prescriptions", async () => {
+      const medicationMenu = container.getByTestId("menu-medication");
       act(() => {
-        fireEvent.click(medicationMenu)
-      })
+        fireEvent.click(medicationMenu);
+      });
 
-      await waitFor(() => container.getByText(/Medications Prescriptions/i))
+      await waitFor(() => container.getByText(/Medications Prescriptions/i));
     });
 
-    when('User clicks on the widget with prescriptions', () => {
-      const prescriptionsView = container.getByTestId("view-prescription-medication")
-      fireEvent.click(prescriptionsView)
+    when("User clicks on the widget with prescriptions", () => {
+      const prescriptionsView = container.getByTestId(
+        "view-prescription-medication"
+      );
+      fireEvent.click(prescriptionsView);
 
-      const locationField = container.container.querySelector('#location');
-      fireEvent.change(locationField, { target: { value: "Texas" } })
+      const locationField = container.container.querySelector("#location");
+      fireEvent.change(locationField, { target: { value: "Texas" } });
 
-      const searchBtn = container.getByTestId("searchbtn")
-      fireEvent.click(searchBtn)
+      const searchBtn = container.getByTestId("searchbtn");
+      fireEvent.click(searchBtn);
     });
 
     then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
-    when('User on clicking any particular appointment', () => {
-      defaultValidation()
+    when("User on clicking any particular appointment", () => {
+      defaultValidation();
     });
 
-    and('User should be able to swipe through to view other upcoming appointments', () => {
-      defaultValidation()
-    });
+    and(
+      "User should be able to swipe through to view other upcoming appointments",
+      () => {
+        defaultValidation();
+      }
+    );
   });
 });

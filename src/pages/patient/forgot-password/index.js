@@ -120,6 +120,27 @@ export default function ForgotPasswordPage() {
       });
   };
 
+  //Call API for check security question
+  const onCalledValidateSubmitSecurityQuestion = function (
+    securityQuestion,
+    callback,
+    router
+  ) {
+    const postbody = {
+      SecurityQuestions: [{ ...securityQuestion }],
+      username: patientData.username,
+    };
+    const api = new Api();
+    api
+      .validateSecurityQuestion(postbody)
+      .then(function (response) {
+        onContinueButtonClicked("updatePassword", router);
+      })
+      .catch(function (error) {
+        callback(error);
+      });
+  };
+
   //Call API for userame validation
   const onCalledValidateUsernameAPI = function ({ username }, showForm) {
     const postbody = {
@@ -370,7 +391,7 @@ export default function ForgotPasswordPage() {
           showPostMessage={showPostMessage}
           setShowPostMessage={setShowPostMessage}
           securityQuestionData={patientData.securityQuestions}
-          onContinueButtonClicked={onContinueButtonClicked}
+          onContinueButtonClicked={onCalledValidateSubmitSecurityQuestion}
           title={"Password recovery security questions page"}
         />
       ) : (

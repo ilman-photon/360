@@ -87,7 +87,10 @@ export default function ValidatePage({ query }) {
 
   const onCalledOneTimeLinkValidationAPI = function () {
     const cookies = new Cookies();
-    const postbody = queryParam;
+    const postbody = {
+      oneTimeToken: Number(queryParam.oneTimeToken),
+      username: queryParam.username,
+    };
     const api = new Api();
     api
       .tokenValidation(postbody)
@@ -102,14 +105,17 @@ export default function ValidatePage({ query }) {
   };
 
   const onCalledResetPasswordValidationAPI = function () {
-    const postbody = queryParam;
+    const postbody = {
+      resetPasswordToken: Number(queryParam.resetPasswordToken),
+      username: queryParam.username,
+    };
     const api = new Api();
     api
       .tokenValidation(postbody, true)
       .then(function (response) {
         //Navigate to Update
         const name = response.email || "Smith1@photon.com";
-        router.push(`update-password?username=${name}`);
+        router.push(`update-password?username=${queryParam.username}`);
       })
       .catch(function () {
         onShowErrorPostMessage(postbody);

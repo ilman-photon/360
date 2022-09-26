@@ -32,7 +32,7 @@ exports[`App renders App unchanged 1`] = `
     style="padding-top: 64px;"
   >
     <header
-      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-rxbk4x-MuiPaper-root-MuiAppBar-root"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-wzn3iz-MuiPaper-root-MuiAppBar-root"
     >
       <div
         class="MuiContainer-root MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root"
@@ -371,7 +371,7 @@ exports[`App renders App unchanged 1`] = `
                       </div>
                     </div>
                     <div
-                      class="css-qkek6c-MuiStack-root"
+                      class="css-1sbz1s3-MuiStack-root"
                     >
                       <div>
                         <span

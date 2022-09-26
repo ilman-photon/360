@@ -100,12 +100,14 @@ describe("Render Appointment", () => {
           insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
         },
       },
-    ]
+    ],
   };
   beforeEach(async () => {
     Cookies.result = { authorized: true };
     mock
-      .onGet(`${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment`)
+      .onGet(
+        `${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+      )
       .reply(200, userData);
     act(() => {
       container = render(
