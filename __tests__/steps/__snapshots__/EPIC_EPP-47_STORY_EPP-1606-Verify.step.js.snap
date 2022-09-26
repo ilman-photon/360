@@ -385,7 +385,7 @@ FR
       </div>
     </div>
     <div
-      class="MuiDialog-root modalDialog MuiModal-root css-i3g3nq-MuiModal-root-MuiDialog-root"
+      class="MuiDialog-root modalDialog MuiModal-root css-1ulhvbw-MuiModal-root-MuiDialog-root"
       role="presentation"
     >
       <div
@@ -410,7 +410,7 @@ FR
           role="dialog"
         >
           <div
-            class="boxModalContents MuiBox-root css-17wkslb"
+            class="boxModalContents MuiBox-root css-68zbsl"
           >
             <span
               class="MuiTypography-root MuiTypography-bodyMedium scheduledText css-kwoz5u-MuiTypography-root"
@@ -990,7 +990,7 @@ FR
                     />
                   </div>
                   <div
-                    class="css-16v2jrp-MuiStack-root"
+                    class="css-1g80z4v-MuiStack-root"
                   >
                     <button
                       class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton cancel css-d094te-MuiButtonBase-root-MuiButton-root"
@@ -1844,7 +1844,7 @@ FR
       </div>
     </div>
     <div
-      class="MuiDialog-root modalDialog MuiModal-root css-i3g3nq-MuiModal-root-MuiDialog-root"
+      class="MuiDialog-root modalDialog MuiModal-root css-1ulhvbw-MuiModal-root-MuiDialog-root"
       role="presentation"
     >
       <div
@@ -1869,7 +1869,7 @@ FR
           role="dialog"
         >
           <div
-            class="boxModalContents MuiBox-root css-17wkslb"
+            class="boxModalContents MuiBox-root css-68zbsl"
           >
             <span
               class="MuiTypography-root MuiTypography-bodyMedium scheduledText css-kwoz5u-MuiTypography-root"
@@ -2449,7 +2449,7 @@ FR
                     />
                   </div>
                   <div
-                    class="css-16v2jrp-MuiStack-root"
+                    class="css-1g80z4v-MuiStack-root"
                   >
                     <button
                       class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root formButton cancel css-d094te-MuiButtonBase-root-MuiButton-root"
