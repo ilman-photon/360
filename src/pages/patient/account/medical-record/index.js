@@ -71,7 +71,6 @@ export default function TestLabPage() {
         label: "Test Status",
         width: 136,
       },
-      { type: "empty", width: 22 },
     ],
     cells: [
       {
@@ -113,16 +112,6 @@ export default function TestLabPage() {
           fontWeight: "700",
           fontSize: "16px",
         },
-      },
-      {
-        type: "download-icon",
-        valueKey: "source",
-        cellProps: { padding: "none" },
-        icon: (
-          <IconButton>
-            <FileDownloadIcon></FileDownloadIcon>
-          </IconButton>
-        ),
       },
     ],
   };
@@ -213,7 +202,7 @@ export default function TestLabPage() {
         case "test-lab-result":
           dispatch(fetchTestLabResult());
           break;
-        case "care-plan":
+        case "care-plan-overview":
           dispatch(fetchCarePlan());
           break;
       }

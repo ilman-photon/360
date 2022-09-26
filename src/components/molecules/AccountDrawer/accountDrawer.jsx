@@ -52,15 +52,15 @@ export const AccountDrawer = ({
     medical: [
       {
         label: "Care Plan",
-        href: "/patient/account/medical-record/test-lab-result",
+        href: "/patient/account/medical-record?type=care-plan-overview",
       },
       {
         label: "Prescriptions",
-        href: "/patient/account/medical-record/test-lab-result",
+        href: "/patient/account/medical-record?type=test-lab-result",
       },
       {
         label: "Test & Lab Results",
-        href: "/patient/account/medical-record/test-lab-result",
+        href: "/patient/account/medical-record?type=test-lab-result",
       },
     ],
     documents: [

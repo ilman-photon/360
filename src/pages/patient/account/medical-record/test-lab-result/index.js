@@ -25,7 +25,7 @@ export default function TestLabPage() {
   const dispatch = useDispatch();
 
   const categories = [
-    { id: 0, label: "Care Plan", value: "test-lab-result" },
+    { id: 0, label: "Care Plan", value: "care-plan-overview" },
     { id: 1, label: "Prescriptions", value: "test-lab-result" },
     { id: 2, label: "Test & Lab Results", value: "test-lab-result" },
   ];
