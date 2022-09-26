@@ -53,7 +53,11 @@ const MobileTopBar = (data) => {
         sx={styles.mobileTextBar}
         primaryColor={true}
       />
-      <Button variant="text" className={styles.editButton}>
+      <Button
+        variant="text"
+        className={styles.editButton}
+        onClick={data.onEditClicked}
+      >
         <div
           type="link"
           style={{
@@ -403,8 +407,14 @@ export default function ScheduleAppointmentPage() {
           xs={12}
           sx={{ display: { md: "none", xs: "block" } }}
         >
-          <MobileTopBar label="51 West 51st street..." />
-          <MobileTopBar label="Sat, Sep 11, 8:30 am EST" />
+          <MobileTopBar
+            label="51 West 51st street..."
+            onEditClicked={handleEditSchedule}
+          />
+          <MobileTopBar
+            label="Sat, Sep 11, 8:30 am EST"
+            onEditClicked={handleEditSchedule}
+          />
         </Grid>
       ) : null}
       <Grid
