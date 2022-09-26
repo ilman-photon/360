@@ -280,4 +280,16 @@ export class Api {
     const url = `${domain}api/dummy/appointment/my-appointment/cancelAppointment`;
     return this.getResponse(url, postbody, "post");
   }
+
+  async getURLDigitalAsset(id) {
+    const url = `/ecp/digital-asset/v1/asset/${id}`;
+    try {
+      const response = await this.getResponse(url, null, "get");
+      if (response.data) {
+        return response.data.presignedUrl;
+      }
+    } catch (error) {
+      console.error({ error });
+    }
+  }
 }
