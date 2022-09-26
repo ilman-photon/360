@@ -11,7 +11,6 @@ import AccountTitleHeading from "../../components/atoms/AccountTitleHeading/acco
 import FormMessage from "../../components/molecules/FormMessage/formMessage";
 import { Api } from "../api/api";
 import { useTranslation } from "next-i18next";
-import { formatPhoneNumber } from "../../utils/phoneFormatter";
 import { Provider } from "react-redux";
 import store from "../../store/store";
 import { removeAuthCookies } from "../../utils/authetication";
@@ -41,7 +40,6 @@ export default function MfaPage({ isStepTwo }) {
   const cookies = new Cookies();
   const router = useRouter();
   const username = cookies.get("username", { path: "/patient" });
-  // const ip = cookies.get("ip", { path: "/patient" });
   const [componentName, setComponentName] = React.useState("");
   const [rememberMe, setRememberMe] = React.useState(false);
   const [successSubmit, setSuccessSubmit] = React.useState(false);
@@ -80,7 +78,7 @@ export default function MfaPage({ isStepTwo }) {
   };
 
   function onConfirmClicked(communication, callback) {
-    const deviceId = ""; //ip.replace(/\./g, "");
+    const deviceId = "";
     const postBody = {
       username,
       deviceId,
@@ -140,8 +138,8 @@ export default function MfaPage({ isStepTwo }) {
           });
         }
 
-        const securityQuestions = cookies.get("securityQuestions");
-        if (securityQuestions.length === 0) {
+        const securityQuestions = cookies.get("securityQuestions") === "true";
+        if (!securityQuestions) {
           onShowSecurityQuestionForm();
         } else {
           redirectToDashboard();
@@ -173,7 +171,7 @@ export default function MfaPage({ isStepTwo }) {
   }
 
   function onResendCodeClicked(callback) {
-    const deviceId = ""; //ip.replace(/\./g, "");
+    const deviceId = "";
     const postBody = {
       username,
       deviceId,
@@ -228,7 +226,7 @@ export default function MfaPage({ isStepTwo }) {
 
     const postBody = {
       username: cookies.get("username", { path: "/patient" }),
-      SecurityQuestions: [questionAnswer],
+      SetUpSecurityQuestions: [questionAnswer],
     };
     api
       .submitSecurityQuestion(postBody)
@@ -248,12 +246,12 @@ export default function MfaPage({ isStepTwo }) {
       });
   }
 
-  function mappingSecurityQuestionList(securityQuestionList = []) {
+  function mappingSecurityQuestionList(securityQuestionsList = []) {
     const questionList = [];
-    securityQuestionList = securityQuestionList[0]
-      ? securityQuestionList[0]
+    securityQuestionsList = securityQuestionsList[0]
+      ? securityQuestionsList[0]
       : {};
-    for (const [key] of Object.entries(securityQuestionList)) {
+    for (const [key] of Object.entries(securityQuestionsList)) {
       questionList.push(key);
     }
     return questionList;
