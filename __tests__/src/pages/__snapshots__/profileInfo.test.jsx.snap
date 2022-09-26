@@ -46,6 +46,7 @@ Object {
         </header>
         <div
           class="titleHeadingWrapper"
+          style="position: fixed;"
         >
           <div
             aria-label="Your Account heading"
@@ -771,6 +772,7 @@ Object {
       </header>
       <div
         class="titleHeadingWrapper"
+        style="position: fixed;"
       >
         <div
           aria-label="Your Account heading"

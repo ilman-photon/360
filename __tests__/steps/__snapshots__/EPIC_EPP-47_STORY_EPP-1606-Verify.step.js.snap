@@ -57,6 +57,7 @@ Object {
           >
             <div
               class="titleHeadingWrapper"
+              style="position: relative;"
             >
               <div
                 aria-label="Appointments heading"
@@ -1078,6 +1079,7 @@ FR
         >
           <div
             class="titleHeadingWrapper"
+            style="position: relative;"
           >
             <div
               aria-label="Appointments heading"
@@ -1516,6 +1518,7 @@ Object {
           >
             <div
               class="titleHeadingWrapper"
+              style="position: relative;"
             >
               <div
                 aria-label="Appointments heading"
@@ -2537,6 +2540,7 @@ FR
         >
           <div
             class="titleHeadingWrapper"
+            style="position: relative;"
           >
             <div
               aria-label="Appointments heading"
