@@ -75,39 +75,43 @@ export default function Prescriptions({
       return (
         <Box>
           <Box className={[styles.flexDisplay, styles.margin]}>
+            <Typography
+              variant="customBodyRegular"
+              class={styles.prescriptionOnStyle}
+            >
+              Prescribed on: &nbsp;
+            </Typography>
+            <Typography variant="bodyMedium" class={styles.prescriptionOnStyle}>
+              {data.date}
+            </Typography>
+            <Box sx={{ position: "absolute", right: 0 }}>
+              <MenuList
+                pdfFile={
+                  type === "contact"
+                    ? "/Prescription_Contacts.pdf"
+                    : "/Prescription_Glasses.pdf"
+                }
+              />
+            </Box>
+          </Box>
+          <Box className={[isMobile ? "" : styles.flexDisplay, styles.margin]}>
             <Typography variant="customBodyRegular">
               Prescribed by: &nbsp;
             </Typography>
             <Typography variant="bodyMedium">{data.prescribedBy}</Typography>
           </Box>
+
           <Box className={[isMobile ? "" : styles.flexDisplay, styles.margin]}>
-            <Box
-              className={[styles.flexDisplay, isMobile ? "" : styles.halfBox]}
-            >
-              <Typography variant="customBodyRegular">
-                Prescribed on: &nbsp;
-              </Typography>
-              <Typography variant="bodyMedium">{data.date}</Typography>
-            </Box>
-            <Box
-              className={[
-                styles.flexDisplay,
-                isMobile ? styles.marginVertical : "",
-              ]}
-            >
-              <Typography variant="customBodyRegular">
-                Expires on: &nbsp;
-              </Typography>
-              <Typography variant="bodyMedium">
-                {data.expirationDate}
-              </Typography>
-            </Box>
+            <Typography variant="customBodyRegular">
+              Expires on: &nbsp;
+            </Typography>
+            <Typography variant="bodyMedium">{data.expirationDate}</Typography>
           </Box>
           <Box
             sx={{
               borderBottom: 1,
               borderColor: "divider",
-              padding: "20px 10px",
+              padding: "20px 16px",
               "@media print": {
                 borderBottom: 0,
               },
@@ -184,7 +188,6 @@ export default function Prescriptions({
           sx={{
             borderBottom: 1,
             borderColor: "divider",
-            paddingTop: "5px",
           }}
         >
           <Box className={[styles.flexDisplay, styles.margin]}>
@@ -193,7 +196,7 @@ export default function Prescriptions({
           <Box
             className={[styles.flexDisplay]}
             sx={{
-              margin: "10px",
+              margin: "8px 16px",
               marginBottom: data.length == idx + 1 ? "26px" : "16px",
             }}
           >
@@ -226,7 +229,6 @@ export default function Prescriptions({
               ]}
             >
               <Typography variant="titleCard">Glasses Prescriptions</Typography>
-              <MenuList pdfFile="/Prescription_Glasses.pdf" />
             </Box>
             {renderPrescriptionTable(prescription.glasses, "glasses")}
             <Box
@@ -259,7 +261,6 @@ export default function Prescriptions({
               <Typography variant="titleCard">
                 Contacts Prescriptions
               </Typography>
-              <MenuList pdfFile="/Prescription_Contacts.pdf" />
             </Box>
             {renderPrescriptionTable(prescription.contacts, "contact")}
             <Box
@@ -290,7 +291,9 @@ export default function Prescriptions({
               ]}
             >
               <Typography variant="titleCard">
-                Medications Prescriptions
+                {prescription.medications.length > 0
+                  ? `Medications Prescriptions (${prescription.medications.length})`
+                  : `Medications Prescriptions`}
               </Typography>
             </Box>
             {renderMedicationUI(prescription.medications)}
@@ -404,7 +407,7 @@ export default function Prescriptions({
         titleIcon={
           <Image alt="" src={iconPrescription} width={32} height={32} />
         }
-        title={`Prescriptions (3)`}
+        title={`Prescriptions`}
         sx={{
           ".MuiCardContent-root": {
             p: 0,

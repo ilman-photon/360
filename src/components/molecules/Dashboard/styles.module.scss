@@ -12,6 +12,7 @@
 
 .flexDisplay {
   display: flex;
+  position: relative;
 }
 
 .spaceBetween {
@@ -23,7 +24,17 @@
 }
 
 .margin {
-  margin: 10px;
+  margin: 16px;
+  margin-bottom: 0px;
+
+  .prescriptionOnStyle {
+    font-family: "Bw Nista Geometric DEMO";
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 28px;
+    color: #205a63;
+  }
 }
 
 .marginVertical {

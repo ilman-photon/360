@@ -74,7 +74,7 @@ exports[`App renders App unchanged 1`] = `
         class="css-16ml5pn-MuiStack-root"
       >
         <div
-          class="MuiBox-root css-1n325gh"
+          class="MuiBox-root css-1jp3ll3"
         >
           <div
             aria-live="polite"
@@ -144,13 +144,13 @@ exports[`App renders App unchanged 1`] = `
           </div>
         </div>
         <div
-          class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3 css-1phs6nn-MuiGrid-root"
+          class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-3 css-9dwo7h-MuiGrid-root"
         >
           <div
             class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-5 MuiGrid-grid-sm-5 MuiGrid-grid-md-2 css-120m39a-MuiGrid-root"
           >
             <div
-              class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1psqxpj-MuiPaper-root-MuiCard-root"
+              class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1uy7g03-MuiPaper-root-MuiCard-root"
             >
               <div
                 class="MuiCardHeader-root dashboardHeader cardHeader css-1ele1k2-MuiCardHeader-root"
@@ -189,11 +189,11 @@ exports[`App renders App unchanged 1`] = `
                         </span>
                       </span>
                       <div
-                        aria-label="Prescriptions (3) heading"
+                        aria-label="Prescriptions heading"
                         class="title"
                         tabindex="0"
                       >
-                        Prescriptions (3)
+                        Prescriptions
                       </div>
                     </div>
                   </span>
@@ -363,23 +363,6 @@ exports[`App renders App unchanged 1`] = `
                         >
                           Glasses Prescriptions
                         </span>
-                        <div>
-                          <svg
-                            aria-haspopup="true"
-                            aria-hidden="true"
-                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-177jyrj-MuiSvgIcon-root"
-                            data-testid="MoreHorizIcon"
-                            endicon="[object Object]"
-                            focusable="false"
-                            id="demo-customized-button"
-                            variant="contained"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              d="M6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm12 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm-6 0c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"
-                            />
-                          </svg>
-                        </div>
                       </div>
                       <div
                         class="noPrescription MuiBox-root css-0"
@@ -421,7 +404,7 @@ exports[`App renders App unchanged 1`] = `
             class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-5 MuiGrid-grid-sm-5 MuiGrid-grid-md-3 css-9f74e3-MuiGrid-root"
           >
             <div
-              class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card appointmentContainer css-jbta4g-MuiPaper-root-MuiCard-root"
+              class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card appointmentContainer css-d4d98w-MuiPaper-root-MuiCard-root"
             >
               <div
                 class="MuiCardHeader-root dashboardHeader cardHeader css-1ele1k2-MuiCardHeader-root"
