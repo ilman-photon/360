@@ -1,5 +1,5 @@
 import "@testing-library/jest-dom/extend-expect";
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, waitFor, cleanup } from "@testing-library/react";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import { defineFeature, loadFeature } from "jest-cucumber";
@@ -10,6 +10,7 @@ import { getServerSideProps } from "../../src/pages/patient/mfa";
 import HomePage from "../../src/pages/patient";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
+import { renderScheduleAppointment } from "../../__mocks__/commonSteps";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-1585.feature"
@@ -399,16 +400,20 @@ defineFeature(feature, (test) => {
       defaultValidation()
     });
 
-    then('User lands on to the screen', () => {
-      defaultValidation()
+    then('User lands on to the screen', async() => {
+      cleanup();
+			container = await renderScheduleAppointment()
     });
 
-    and('user view and search  the location', () => {
-      defaultValidation()
+    and('user view and search  the location', async() => {
+      await waitFor(() => {
+				expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
+			});
     });
 
     when('user view  the date of appointment', () => {
-      defaultValidation()
+      const dateField = container.getByText(/Date/i);
+      expect(dateField).toBeInTheDocument()
     });
 
     and('user view the purpose of visit dropdown field', () => {
