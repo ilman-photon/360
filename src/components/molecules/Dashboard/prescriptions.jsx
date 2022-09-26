@@ -291,7 +291,7 @@ export default function Prescriptions({
               ]}
             >
               <Typography variant="titleCard">
-                {prescription.medications.length > 0
+                {prescription?.medications?.length > 0
                   ? `Medications Prescriptions (${prescription.medications.length})`
                   : `Medications Prescriptions`}
               </Typography>
