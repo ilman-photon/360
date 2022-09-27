@@ -303,4 +303,9 @@ export class Api {
       console.error({ error });
     }
   }
+
+  getAppointmentTypes() {
+    const url = "/ecp/appointments/appointment-types";
+    return this.getResponse(url, {}, "get");
+  }
 }

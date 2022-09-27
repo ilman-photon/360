@@ -34,11 +34,14 @@ import {
   parseSuggestionData,
   setRangeDateData,
   getProvideOverlay,
+  parsePurposeOfVisit,
+  parseInsuranceCarrier,
 } from "../../../utils/appointment";
 import { Api } from "../../api/api";
 import ModalConfirmation from "../../../components/organisms/ScheduleAppointment/ScheduleConfirmation/modalConfirmation";
 import Cookies from "universal-cookie";
 import { TEST_ID } from "../../../utils/constants";
+import { fetchAllPayers } from "../../../store/provider";
 
 export async function getStaticProps() {
   return {
@@ -71,6 +74,7 @@ export default function Appointment({ googleApiKey }) {
   const dispatch = useDispatch();
   const cookies = new Cookies();
 
+  const insuranceCarrierList = useSelector((state) => state.provider.list);
   const filterData = useSelector((state) => state.appointment.filterData);
   const filterBy = useSelector((state) => state.appointment.filterBy);
   const activeFilterBy = useSelector(
@@ -132,15 +136,14 @@ export default function Appointment({ googleApiKey }) {
     setProviderDataOverview({});
   };
 
-  //Call API for getSuggestion
-  function onCalledgetSugestionAPI() {
+  function onCalledGetAppointmentTypesAPI() {
     const api = new Api();
     api
-      .getSugestion()
+      .getAppointmentTypes()
       .then(function (response) {
         const filterSuggestion = {
-          ...filterSuggestionData,
-          ...parseSuggestionData(response),
+          purposeOfVisit: parsePurposeOfVisit(response?.entities || []),
+          insuranceCarrier: parseInsuranceCarrier(insuranceCarrierList),
         };
         setFilterSuggestionData(filterSuggestion);
       })
@@ -286,16 +289,17 @@ export default function Appointment({ googleApiKey }) {
     }
   }, [dataFilter, coords]);
 
-  useEffect(() => {
-    onCalledgetSugestionAPI();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   React.useEffect(() => {
     const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
     setIsLoggedIn(isLogin);
+
+    dispatch(fetchAllPayers());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    onCalledGetAppointmentTypesAPI();
+  }, [insuranceCarrierList]);
 
   function onRenderDialogView() {
     return (

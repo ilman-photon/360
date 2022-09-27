@@ -1,45 +1,54 @@
 import constants from "./constants";
 import { ddmmyyDateFormat } from "./dateFormatter";
 
-export function parseSuggestionData(suggestionData) {
-  return {
-    purposeOfVisit: parsePurposeOfVisit(suggestionData.appointmentType),
-    insuranceCarrier: parseInsuranceCarrier(suggestionData.insuranceCarrier),
-  };
-}
+export function parseInsuranceCarrier(insuranceCarrierData) {
+  if (insuranceCarrierData && insuranceCarrierData.length > 0) {
+    const defaultInsurance = [
+      {
+        id: "1",
+        label: "I'm paying out of my pocket",
+        category: "general",
+      },
+      {
+        id: "2",
+        label: "skip and choose insurance later",
+        category: "general",
+      },
+      {
+        id: "3",
+        label: "Other Insurance",
+        category: "general",
+      },
+    ];
 
-function parsePurposeOfVisit(appointmentData) {
-  if (appointmentData && appointmentData.length > 0) {
+    const allInsuranceData = [...defaultInsurance, ...insuranceCarrierData];
     const data = [];
-    for (const item of appointmentData) {
-      const purposeOfVisitItem = {
-        id: item.id,
-        title: item.name,
-        subtitle: item.description,
+    for (let index = 0; index < allInsuranceData.length; index++) {
+      const insuranceItem = {
+        id: allInsuranceData[index].id,
+        name: allInsuranceData[index].label,
+        category: allInsuranceData[index].category !== "general" ? `all` : "",
+        divider:
+          allInsuranceData[index].category === "general" &&
+          index === defaultInsurance.length - 1,
       };
-      data.push(purposeOfVisitItem);
+      data.push(insuranceItem);
     }
     return data;
   }
   return [];
 }
 
-function parseInsuranceCarrier(insuranceCarrierData) {
-  if (insuranceCarrierData) {
+export function parsePurposeOfVisit(appointmentType) {
+  if (appointmentType && appointmentType.length > 0) {
     const data = [];
-    for (const [category, insuranceCarrierList] of Object.entries(
-      insuranceCarrierData
-    )) {
-      for (let i = 0; i < insuranceCarrierList.length; i++) {
-        const itemData = {
-          id: insuranceCarrierList[i].id,
-          name: insuranceCarrierList[i].name,
-          category: category !== "general" ? `${category} carriers` : "",
-          divider:
-            category === "general" && i === insuranceCarrierList.length - 1,
-        };
-        data.push(itemData);
-      }
+    for (const item of appointmentType) {
+      const purposeOfVisitItem = {
+        id: `${item.key}`,
+        title: item.name,
+        subtitle: item.category?.description || "",
+      };
+      data.push(purposeOfVisitItem);
     }
     return data;
   }
