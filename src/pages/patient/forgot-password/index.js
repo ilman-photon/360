@@ -177,15 +177,24 @@ export default function ForgotPasswordPage() {
     api
       .resetPassword(postbody)
       .then(function (response) {
+        const maskedEmail = response?.email?.replace(
+          Regex.maskingEmail,
+          (_, a, b, c) => a + b.replace(/./g, "*") + c
+        );
+        const maskedPhoneNumber = formatPhoneNumber(
+          response?.phone,
+          true,
+          true
+        );
         const userCommunicationCode =
           modeOfCommuication.toLowerCase() === "email"
-            ? `${response.email} for an email`
-            : `${response.phone} for a link`;
+            ? `${maskedEmail} for an email`
+            : `${maskedPhoneNumber} for a link`;
         // Handle success to call API
         confirmationFormProps = {
           pageTitle: "Password reset page",
           title: t("titlePasswordReset"),
-          subtitle: `Check ${userCommunicationCode} to reset your password.`,
+          subtitle: `Check ${userCommunicationCode} to reset your password`,
           description: t("descriptionPasswordResetSuccess"),
           postMessage: `Link sent to your ${modeOfCommuication.toLowerCase()}`,
           successPostMessage: true,
@@ -255,14 +264,9 @@ export default function ForgotPasswordPage() {
     };
 
     const isEmail = username.match(Regex.isEmailCorrect);
-    const maskedEmail = username.replace(
-      Regex.maskingEmail,
-      (_, a, b, c) => a + b.replace(/./g, "*") + c
-    );
-    const maskedPhoneNumber = formatPhoneNumber(username, true, true);
     const subtitle = isEmail
-      ? `Check ${maskedEmail}  for an email to set up your password.`
-      : `Check ${maskedPhoneNumber} for a link to set up your password.`;
+      ? `Check ${username}  for an email to set up your password.`
+      : `Check ${username} for a link to set up your password.`;
     console.log(subtitle, "sub ");
     const postMessage = isEmail
       ? `Link sent to your email`

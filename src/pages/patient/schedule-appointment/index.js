@@ -390,7 +390,10 @@ export default function ScheduleAppointmentPage() {
     dispatch(
       setUserAppointmentDataByIndex({
         appointmentId: 0,
-        appointmentInfo: appointmentScheduleData.appointmentInfo,
+        appointmentInfo: {
+          ...appointmentScheduleData.appointmentInfo,
+          date: appointmentScheduleData.appointmentInfo.date.toUTCString(),
+        },
         providerInfo: appointmentScheduleData.providerInfo,
       })
     );
