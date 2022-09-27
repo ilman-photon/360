@@ -890,9 +890,7 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByLabelText(/Prescriptions/i));
-      expect(response).toEqual({
-        props: { isStepTwo: false },
-      });
+      expect(container.getByText(/Purpose of Visit/i)).toBeInTheDocument();
     });
 
     and("User should see the widget with prescriptions", () => {
@@ -1109,9 +1107,7 @@ defineFeature(feature, (test) => {
       });
       await waitFor(() => container.getByText(/Purpose of Visit/i));
 
-      expect(response).toEqual({
-        props: { isStepTwo: false },
-      });
+      expect(container.getByText(/Purpose of Visit/i)).toBeInTheDocument();
     });
 
     and("User should see the widget with prescriptions", async () => {
@@ -1230,9 +1226,7 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByText(/Purpose of Visit/i));
-      expect(response).toEqual({
-        props: { isStepTwo: false },
-      });
+      expect(container.getByText(/Purpose of Visit/i)).toBeInTheDocument();
     });
 
     and("User should see the widget with prescriptions", async () => {
