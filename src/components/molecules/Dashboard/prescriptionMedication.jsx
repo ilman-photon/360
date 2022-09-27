@@ -447,6 +447,7 @@ export default function PrescriptionMedication({
                 onClick={() => {
                   setFilterOpen(!filterOpen);
                 }}
+                data-testid={"medication-filter-button"}
               >
                 <TuneIcon className={styles.tuneIcon} />
                 Filters
