@@ -4,9 +4,19 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
-import { FormHelperText, Tooltip } from "@mui/material";
+import { FormHelperText } from "@mui/material";
 import { colors } from "../../../styles/theme";
 import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
+import { styled } from "@mui/material/styles";
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+
+const CustomWidthTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))({
+  [`& .${tooltipClasses.tooltip}`]: {
+    maxWidth: 221,
+  },
+});
 
 export default function RowRadioButtonsGroup({
   row = true,
@@ -39,15 +49,16 @@ export default function RowRadioButtonsGroup({
         {props.label}
         {tooltipContent ? (
           <>
-            <Tooltip title={tooltipContent} placement="top">
+            <CustomWidthTooltip title={tooltipContent} placement="top" arrow>
               <ErrorOutlineOutlinedIcon
                 sx={{
-                  width: 16,
-                  height: 16,
+                  width: 18,
+                  height: 18,
                   marginLeft: "4px",
+                  cursor: "pointer",
                 }}
               />
-            </Tooltip>
+            </CustomWidthTooltip>
           </>
         ) : (
           ""

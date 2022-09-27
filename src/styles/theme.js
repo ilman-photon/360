@@ -132,6 +132,11 @@ export const patientTypography = createTheme({
       fontWeight: 500,
       fontSize: 14,
     },
+    bodySmallLightMedium: {
+      fontFamily: "Libre Franklin",
+      fontWeight: 400,
+      fontSize: 14,
+    },
     bodyTinyRegular: {
       fontFamily: "Libre Franklin",
       fontWeight: "normal",
@@ -185,6 +190,18 @@ export const patientTypography = createTheme({
     allVariants: {
       color: "#292929",
     },
+    bodySmallItalic: {
+      fontFamily: "Libre Franklin",
+      fontWeight: 400,
+      fontSize: 12,
+      fontStyle: "italic",
+    },
+    lightError: {
+      fontFamily: "Libre Franklin",
+      fontWeight: 400,
+      fontSize: 12,
+      color: "#B00020",
+    },
     regularDarkGreen: {
       fontFamily: "Libre Franklin",
       color: "#003B4A",
@@ -198,6 +215,19 @@ export const patientTypography = createTheme({
       fontWeight: "500",
       fontSize: 16,
       lineHeight: "20px",
+    },
+    grayscaleBlack: {
+      fontFamily: "Libre Franklin",
+      color: "#292929",
+      fontWeight: "500",
+      fontSize: 22,
+      lineHeight: "30px",
+    },
+    mediumBlueNavy: {
+      fontFamily: "Libre Franklin",
+      color: colors.foundationBlue,
+      fontWeight: "500",
+      fontSize: 16,
     },
     headlineH4: {
       fontFamily: "Bw Nista Geometric DEMO",
