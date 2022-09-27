@@ -487,7 +487,6 @@ export default function Appointment({ googleApiKey }) {
         display="flex"
         flex={1}
         sx={{
-          paddingTop: "135px",
           alignSelf: !isLoading ? "none" : "center",
         }}
       >
@@ -565,6 +564,7 @@ export default function Appointment({ googleApiKey }) {
             filterData={filterData}
             purposeOfVisitData={filterSuggestionData.purposeOfVisit}
             insuranceCarrierData={filterSuggestionData.insuranceCarrier}
+            isFixed={false}
           />
         </>
       ) : (

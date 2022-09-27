@@ -10,7 +10,7 @@ jest.mock("universal-cookie", () => {
   class MockCookies {
     static result = {};
     get(param) {
-      if (param === "username") return "user1@photon.com"
+      if (param === "username") return "user1@photon.com";
 
       return MockCookies.result;
     }
@@ -58,17 +58,17 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
-    when("user lands onto “Patient Login” screen", () => {
-      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
-      act(() => {
-        container = render(<AuthPage />, {
-          container: document.body.appendChild(element),
-          legacyRoot: true,
-        });
+  when("user lands onto “Patient Login” screen", () => {
+    // mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
+    act(() => {
+      container = render(<AuthPage />, {
+        container: document.body.appendChild(element),
+        legacyRoot: true,
       });
-      const title = container.getByText("formTitle");
-      expect("formTitle").toEqual(title.textContent);
     });
+    const title = container.getByText("formTitle");
+    expect("formTitle").toEqual(title.textContent);
+  });
 
     and(
       'user provides invalid  "<Email or Phone Number>" and valid "<password>"',
@@ -122,7 +122,7 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
+      // mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
       act(() => {
         container = render(<AuthPage />, {
           container: document.body.appendChild(element),

@@ -10,9 +10,7 @@ import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import { Provider } from "react-redux";
-import Appointments, {
-  getServerSideProps,
-} from "../../src/pages/patient/appointments";
+import Appointments from "../../src/pages/patient/appointments";
 import store from "../../src/store/store";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 import constants from "../../src/utils/constants";
@@ -111,10 +109,7 @@ defineFeature(feature, (test) => {
           `${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, userData);
-      await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+      
       act(() => {
         container = render(
           <Provider store={store}>
@@ -172,10 +167,7 @@ defineFeature(feature, (test) => {
           `${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, userData);
-      await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+      
       act(() => {
         container = render(
           <Provider store={store}>
@@ -240,10 +232,7 @@ defineFeature(feature, (test) => {
           `${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, userData);
-      await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+      
       act(() => {
         container = render(
           <Provider store={store}>
@@ -311,10 +300,7 @@ defineFeature(feature, (test) => {
           `${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, userData);
-      await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+      
       act(() => {
         container = render(
           <Provider store={store}>
@@ -416,10 +402,7 @@ defineFeature(feature, (test) => {
           `${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, userData);
-      await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+      
       act(() => {
         container = render(
           <Provider store={store}>
@@ -612,10 +595,7 @@ defineFeature(feature, (test) => {
           `${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(400, {});
-      await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+      
       act(() => {
         container = render(
           <Provider store={store}>
