@@ -798,13 +798,20 @@ const feature = loadFeature(
 );
 
 defineFeature(feature, (test) => {
-  let container;
+  let container, mock;
 
   const defaultValidation = () => {
     expect(true).toBeTruthy();
   };
 
-  afterEach(cleanup);
+  beforeEach(() => {
+    mock = new MockAdapter(axios);
+  });
+
+  afterEach(() => {
+    mock.reset();
+    cleanup();
+  });
 
   test("EPIC_EPP-1_STORY_EPP-3299 - Verify User should see the following details as part of each prescriptions", ({
     given,
@@ -850,7 +857,7 @@ defineFeature(feature, (test) => {
         ResponseCode: 2005,
         ResponseType: "success",
       };
-      const mock = new MockAdapter(axios);
+
       const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock
@@ -874,10 +881,6 @@ defineFeature(feature, (test) => {
         )
         .reply(400, {});
       window.matchMedia = createMatchMedia("1920px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -890,7 +893,7 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByLabelText(/Prescriptions/i));
-      expect(container.getByText(/Purpose of Visit/i)).toBeInTheDocument();
+      expect(container.getByLabelText(/Prescriptions/i)).toBeInTheDocument();
     });
 
     and("User should see the widget with prescriptions", () => {
@@ -967,7 +970,6 @@ defineFeature(feature, (test) => {
         ResponseCode: 2005,
         ResponseType: "success",
       };
-      const mock = new MockAdapter(axios);
       const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock
@@ -986,10 +988,6 @@ defineFeature(feature, (test) => {
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -1002,7 +1000,6 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByTestId("menu-contact"));
-      console.log(response);
       expect(container.getByTestId("menu-contact")).toBeInTheDocument();
     });
 
@@ -1071,7 +1068,7 @@ defineFeature(feature, (test) => {
         ResponseCode: 2005,
         ResponseType: "success",
       };
-      const mock = new MockAdapter(axios);
+
       const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock
@@ -1090,10 +1087,6 @@ defineFeature(feature, (test) => {
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -1106,7 +1099,6 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByText(/Purpose of Visit/i));
-
       expect(container.getByText(/Purpose of Visit/i)).toBeInTheDocument();
     });
 
@@ -1186,7 +1178,7 @@ defineFeature(feature, (test) => {
         ResponseCode: 2005,
         ResponseType: "success",
       };
-      const mock = new MockAdapter(axios);
+
       const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock
@@ -1210,10 +1202,6 @@ defineFeature(feature, (test) => {
         )
         .reply(200, MOCK_SUBMIT);
       window.matchMedia = createMatchMedia("1920px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
