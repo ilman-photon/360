@@ -5,7 +5,6 @@ import store from "../../../../store/store";
 import TableWithSort from "../../../../components/molecules/TableWithSort/tableWithSort";
 import { IconButton, Stack, useMediaQuery, Button } from "@mui/material";
 import styles from "./styles.module.scss";
-import FileDownloadIcon from "../../../../assets/icons/FileDownload";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CloseIcon from "@mui/icons-material/Close";
@@ -18,6 +17,13 @@ import { StyledSelect } from "../../../../components/atoms/Select/select";
 import { useRouter } from "next/router";
 import { Controller, useForm } from "react-hook-form";
 import TableEmpty from "../../../../components/atoms/TableEmpty/tableEmpty";
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Typography from "@mui/material/Typography";
+
+import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
+import ReplyIcon from "@mui/icons-material/Reply";
+import PrintOutlinedIcon from "@mui/icons-material/PrintOutlined";
 
 export default function MedicalRecordPage() {
   const isDesktop = useMediaQuery("(min-width: 769px)");
@@ -30,6 +36,33 @@ export default function MedicalRecordPage() {
     { id: 1, label: "Prescriptions", value: "test-lab-result" },
     { id: 2, label: "Test & Lab Results", value: "test-lab-result" },
   ];
+
+  //menu MoreVertIcon
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const MyOptions = [
+    {
+      icon: <FileDownloadOutlinedIcon />,
+      label: "Download",
+    },
+    {
+      icon: <ReplyIcon />,
+      label: "Share",
+    },
+    {
+      icon: <PrintOutlinedIcon />,
+      label: "Print",
+    },
+  ];
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const open = Boolean(anchorEl);
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const { control, setValue, watch } = useForm({
     defaultValues: { category: "" },
@@ -124,46 +157,23 @@ export default function MedicalRecordPage() {
         numeric: false,
         disablePadding: false,
         label: "Procedure",
-        width: 250,
+        // width: 250,
       },
       {
         type: "text",
         id: "orderBy",
         numeric: false,
         disablePadding: false,
+        label: "Ordered By",
+        // width: 250,
+      },
+      {
+        type: "text",
+        id: "date",
+        numeric: false,
+        disablePadding: false,
         label: "Test Date",
-        width: 250,
-      },
-    ],
-    cells: [
-      {
-        type: "test-lab-mobile",
-        valueKey1: "name",
-        valueKey2: "orderBy",
-        cellHeadLabel: "Ordered by",
-        cellProps: { align: "left", component: "th", padding: "none" },
-        contentStyle: {
-          padding: "12px",
-          fontWeight: "500",
-          fontSize: "14px",
-          display: "flex",
-          flexFlow: "column",
-          borderLeft: "2px solid #F3F3F3",
-        },
-      },
-      {
-        type: "test-lab-mobile",
-        valueKey1: "date",
-        valueKey2: "status",
-        cellHeadLabel: "Test Status",
-        cellProps: { align: "left", component: "th", padding: "none" },
-        contentStyle: {
-          padding: "12px",
-          fontWeight: "500",
-          fontSize: "14px",
-          display: "flex",
-          flexFlow: "column",
-        },
+        // width: 250,
       },
     ],
   };
@@ -172,28 +182,28 @@ export default function MedicalRecordPage() {
     header: [
       {
         type: "text",
-        id: "procedure",
+        id: "name",
         numeric: false,
         disablePadding: false,
         label: "Procedure",
-        width: 250,
+        // width: 250,
       },
       {
         type: "text",
         id: "date",
         numeric: false,
-        disablePadding: false,
+        disablePadding: true,
         label: "Date",
-        width: 250,
+        width: isDesktop ? 136 : 120,
       },
-      { type: "empty", width: 22 },
+      { type: "empty", width: 50 },
     ],
     cells: [
       {
         type: "text",
         primary: true,
-        valueKey: "procedure",
-        cellProps: { padding: "none" },
+        valueKey: "name",
+        // cellProps: { padding: "none" },
         contentClass: isDesktop ? "" : "clipped clip-2",
       },
       {
@@ -211,9 +221,42 @@ export default function MedicalRecordPage() {
         valueKey: "digitalId",
         cellProps: { padding: "none" },
         icon: (
-          <IconButton sx={{ width: 24, height: 24, p: 0 }}>
-            <MoreVertIcon />
-          </IconButton>
+          <>
+            <IconButton
+              sx={{ width: 24, height: 24, p: 0 }}
+              aria-label="more"
+              onClick={handleClick}
+              aria-haspopup="true"
+              aria-controls="long-menu"
+              data-testid="more-vert-button"
+            >
+              <MoreVertIcon />
+            </IconButton>
+            <Menu
+              sx={{ mt: "40px" }}
+              anchorEl={anchorEl}
+              keepMounted
+              onClose={handleClose}
+              open={open}
+            >
+              {MyOptions.map((more, moreIdx) => (
+                <MenuItem key={moreIdx} onClick={handleClose}>
+                  {more.icon}
+                  <Typography
+                    textAlign="center"
+                    sx={{
+                      margin: "0 8px",
+                      fontFamily: "Libre Franklin",
+                      fontWeight: "500",
+                      fontSize: "14px",
+                    }}
+                  >
+                    {more.label}
+                  </Typography>
+                </MenuItem>
+              ))}
+            </Menu>
+          </>
         ),
       },
     ],
@@ -230,32 +273,9 @@ export default function MedicalRecordPage() {
     }
   });
 
-  const tableDesktopSwitch = () => {
-    console.log(watchedCategory, "watchedCategory");
-    switch (watchedCategory) {
-      case "test-lab-result":
-        return tableDesktopTestLab;
-      case "care-plan-overview":
-        return tableCarePlan;
-      default:
-        return tableCarePlan;
-    }
-  };
-
-  const tableMobileSwitch = () => {
-    switch (watchedCategory) {
-      case "test-lab-result":
-        return tableMobileTestLab;
-      case "care-plan-overview":
-        return tableCarePlan;
-      default:
-        return tableCarePlan;
-    }
-  };
-
   useEffect(() => {
     const category = router.query.type;
-    setValue("category", category);
+    if (category) setValue("category", category);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query]);
 
@@ -309,7 +329,7 @@ export default function MedicalRecordPage() {
                     width: "18px",
                     height: "18px",
                     color: "#080707",
-                    marginRight: "18px",
+                    marginRight: "12px",
                   }}
                 />{" "}
                 Your lab results are available. Please reach out to your
@@ -330,9 +350,18 @@ export default function MedicalRecordPage() {
         <Stack spacing={3} sx={{ mt: 1 }}>
           {rows?.length > 0 ? (
             <TableWithSort
-              config={isDesktop ? tableDesktopTestLab : tableMobileTestLab}
+              config={
+                watchedCategory === "care-plan-overview"
+                  ? tableCarePlan
+                  : isDesktop
+                  ? tableDesktopTestLab
+                  : tableMobileTestLab
+              }
               rows={rows}
-              isDesktop={isDesktop}
+              // isDesktop={isDesktop}
+              mobileTestLab={
+                watchedCategory === "test-lab-result" && !isDesktop
+              }
             />
           ) : (
             // <TableEmpty text="There are no tests or lab results." />

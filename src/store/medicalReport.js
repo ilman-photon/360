@@ -12,7 +12,7 @@ export const fetchTestLabResult = createAsyncThunk(
 export const fetchCarePlan = createAsyncThunk(
   "medical-report/fetchCarePlan",
   async () => {
-    return fetch("/api/dummy/medical-report/test-lab-result").then((res) =>
+    return fetch("/api/dummy/medical-report/care-plan-overview").then((res) =>
       res.json()
     );
   }

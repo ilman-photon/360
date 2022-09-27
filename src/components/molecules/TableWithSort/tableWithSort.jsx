@@ -9,6 +9,7 @@ import {
   TableSortLabel,
   Tooltip,
   Typography,
+  Grid,
 } from "@mui/material";
 import React from "react";
 import { visuallyHidden } from "@mui/utils";
@@ -52,7 +53,7 @@ const EnhancedTableHead = (props) => {
 
   return (
     <TableHead sx={{ backgroundColor: "#F3F5F6" }}>
-      <TableRow>
+      <TableRow sx={{ whiteSpace: "nowrap" }}>
         {props.config.map((headCell, headIdx) => {
           switch (headCell.type) {
             case "empty":
@@ -100,6 +101,7 @@ export default function TableWithSort({
   config = { header: [], cells: [] },
   rows = [],
   isDesktop = false,
+  mobileTestLab = false,
   onAssetDownload = () => {
     // This is intentional
   },
@@ -192,124 +194,136 @@ export default function TableWithSort({
             {stableSort(rows, getComparator(order, orderBy))
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row, rowIdx) => {
+                console.log(row, config, "rorow");
                 const isItemSelected = isSelected(row.id);
                 return (
-                  <TableRow
-                    hover
-                    onClick={(event) => handleClick(event, row.id)}
-                    role="checkbox"
-                    aria-checked={isItemSelected}
-                    tabIndex={-1}
-                    key={rowIdx}
-                    selected={isItemSelected}
-                    sx={{ border: "2px solid #F3F3F3" }}
-                  >
-                    {config.cells.map((cell, cellIdx) => {
-                      switch (cell.type) {
-                        case "icon":
-                          return (
-                            <TableCell key={cellIdx} {...cell.cellProps}>
-                              {cell.icon}
-                            </TableCell>
-                          );
-                        case "download-asset":
-                          return (
-                            <TableCell key={cellIdx} {...cell.cellProps}>
-                              <Tooltip
-                                title={
-                                  <Typography
-                                    sx={{
-                                      fontSize: {
-                                        xs: 13,
-                                        md: 14,
-                                        color: "white",
-                                      },
-                                    }}
-                                  >
-                                    download
-                                  </Typography>
-                                }
-                                placement="top"
-                              >
-                                <div
-                                  role="button"
-                                  onClick={() =>
-                                    onAssetDownload(row[cell.valueKey])
+                  // eslint-disable-next-line react/jsx-key
+                  <>
+                    <TableRow
+                      hover
+                      onClick={(event) => handleClick(event, row.id)}
+                      role="checkbox"
+                      aria-checked={isItemSelected}
+                      tabIndex={-1}
+                      key={rowIdx}
+                      selected={isItemSelected}
+                      sx={{ border: "2px solid #F3F3F3" }}
+                    >
+                      {config?.cells?.map((cell, cellIdx) => {
+                        switch (cell.type) {
+                          case "icon":
+                            return (
+                              <TableCell key={cellIdx} {...cell.cellProps}>
+                                {cell.icon}
+                              </TableCell>
+                            );
+                          case "download-asset":
+                            return (
+                              <TableCell key={cellIdx} {...cell.cellProps}>
+                                <Tooltip
+                                  title={
+                                    <Typography
+                                      sx={{
+                                        fontSize: {
+                                          xs: 13,
+                                          md: 14,
+                                          color: "white",
+                                        },
+                                      }}
+                                    >
+                                      download
+                                    </Typography>
                                   }
+                                  placement="top"
                                 >
-                                  {cell.icon}
-                                </div>
-                              </Tooltip>
-                            </TableCell>
-                          );
-                        case "download-icon":
-                          return (
-                            <TableCell key={cellIdx} {...cell.cellProps}>
-                              <Tooltip
-                                title={
-                                  <Typography
-                                    sx={{
-                                      fontSize: {
-                                        xs: 13,
-                                        md: 14,
-                                        color: "white",
-                                      },
-                                    }}
+                                  <div
+                                    role="button"
+                                    onClick={() =>
+                                      onAssetDownload(row[cell.valueKey])
+                                    }
                                   >
+                                    {cell.icon}
+                                  </div>
+                                </Tooltip>
+                              </TableCell>
+                            );
+                          case "download-icon":
+                            return (
+                              <TableCell key={cellIdx} {...cell.cellProps}>
+                                <Tooltip
+                                  title={
+                                    <Typography
+                                      sx={{
+                                        fontSize: {
+                                          xs: 13,
+                                          md: 14,
+                                          color: "white",
+                                        },
+                                      }}
+                                    >
+                                      download
+                                    </Typography>
+                                  }
+                                  placement="top"
+                                >
+                                  <a
+                                    href={row.source}
                                     download
-                                  </Typography>
-                                }
-                                placement="top"
-                              >
-                                <a
-                                  href={row.source}
-                                  download
-                                  data-testid="downloadPDFButton"
-                                  target="_blank"
-                                  rel="noreferrer"
+                                    data-testid="downloadPDFButton"
+                                    target="_blank"
+                                    rel="noreferrer"
+                                  >
+                                    {cell.icon}
+                                  </a>
+                                </Tooltip>
+                              </TableCell>
+                            );
+                          case "text":
+                          default:
+                            return (
+                              <TableCell key={cellIdx} {...cell.cellProps}>
+                                <div
+                                  style={cell.contentStyle}
+                                  className={[
+                                    styles.tableCell,
+                                    cell.contentClass,
+                                  ].join(" ")}
                                 >
-                                  {cell.icon}
-                                </a>
-                              </Tooltip>
-                            </TableCell>
-                          );
-                        case "test-lab-mobile":
-                          return (
-                            <TableCell key={cellIdx} {...cell.cellProps}>
-                              <div style={cell.contentStyle}>
-                                {row[cell.valueKey1]}
-                                <a
-                                  style={{
-                                    fontWeight: 600,
-                                    fontSize: "14px",
-                                    color: "#003B4A",
-                                    paddingTop: "16px",
-                                  }}
-                                >
-                                  {cell.cellHeadLabel}
-                                </a>
-                                {row[cell.valueKey2]}
-                              </div>
-                            </TableCell>
-                          );
-                        case "text":
-                        default:
-                          return (
-                            <TableCell key={cellIdx} {...cell.cellProps}>
-                              <div
-                                style={cell.contentStyle}
-                                className={[
-                                  styles.tableCell,
-                                  cell.contentClass,
-                                ].join(" ")}
-                              >
-                                {row[cell.valueKey]}
-                              </div>
-                            </TableCell>
-                          );
-                      }
-                    })}
-                  </TableRow>
+                                  {row[cell.valueKey]}
+                                </div>
+                              </TableCell>
+                            );
+                        }
+                      })}
+                    </TableRow>
+
+                    {mobileTestLab && (
+                      <TableRow>
+                        <TableCell colspan={3}>
+                          <Grid container spacing={2}>
+                            <Grid xs={4} p={2}>
+                              {row.name}
+                            </Grid>
+                            <Grid xs={4} p={2}>
+                              {row.orderBy}
+                            </Grid>
+                            <Grid xs={4} p={2}>
+                              {row.date}
+                            </Grid>
+                            <hr className={styles.hrTestLab} />
+                            <Grid xs={12} p={2} textAlign={"end"}>
+                              <Typography className={styles.statusText}>
+                                <span style={{ fontWeight: "600" }}>
+                                  Test Status:
+                                </span>{" "}
+                                {row.status}
+                              </Typography>
+                            </Grid>
+                          </Grid>
+                        </TableCell>
+                      </TableRow>
+                    )}
+                  </>
                 );
               })}
             {emptyRows > 0 && (
