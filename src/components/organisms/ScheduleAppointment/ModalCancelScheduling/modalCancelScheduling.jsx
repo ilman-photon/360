@@ -34,8 +34,8 @@ export default function ModalCancelScheduling({
 
   const options = [
     {
-      label: "Family emergency",
-      value: "familyemergency",
+      label: "Appointment no longer needed",
+      value: "noNeeded",
     },
     {
       label: "Patient passed away",

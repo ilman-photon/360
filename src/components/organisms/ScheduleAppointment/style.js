@@ -82,7 +82,7 @@ export const styles = {
     color: "#008294",
     textDecorationLine: "underline",
     textTransform: "capitalize",
-    fontSize: "18px",
+    fontSize: "15px",
   },
   scheduledText: {
     color: colors.darkGreen,
