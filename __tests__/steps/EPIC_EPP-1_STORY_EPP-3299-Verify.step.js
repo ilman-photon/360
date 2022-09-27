@@ -141,10 +141,12 @@ const MOCK_PRESCRIPTION = {
     ],
     medications: [
       {
+        id:"0",
         prescription: "Aspirint 0.1% Ointmanet",
         date: "2022-09-02T11:18:47.229Z",
       },
       {
+        id:"0",
         prescription: "Aspirint 0.1% Ointmanet",
         date: "2022-09-02T11:18:47.229Z",
       },
@@ -843,7 +845,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -881,7 +883,7 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
@@ -962,7 +964,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      Cookies.result = "true";
+        Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -995,7 +997,7 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
@@ -1068,7 +1070,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      Cookies.result = "true";
+        Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -1101,7 +1103,7 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
@@ -1185,7 +1187,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      Cookies.result = "true";
+        Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -1223,7 +1225,7 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>

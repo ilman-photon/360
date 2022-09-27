@@ -374,7 +374,7 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>

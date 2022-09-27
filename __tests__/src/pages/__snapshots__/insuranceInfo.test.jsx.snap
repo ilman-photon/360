@@ -46,6 +46,7 @@ Object {
         </header>
         <div
           class="titleHeadingWrapper"
+          style="position: fixed;"
         >
           <div
             aria-label="Your Account heading"
@@ -233,7 +234,7 @@ Object {
                   class="MuiBox-root css-8u5xrh"
                 >
                   <div
-                    class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1v5z4dq-MuiPaper-root-MuiCard-root"
+                    class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1yepo06-MuiPaper-root-MuiCard-root"
                   >
                     <div
                       class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
@@ -263,76 +264,82 @@ Object {
                                   data-testid="loc_inputProvider"
                                 >
                                   <div
-                                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-7pvuas-MuiFormControl-root-MuiTextField-root"
-                                    tabindex="0"
-                                    withicon="true"
+                                    class="MuiBox-root css-18okncf"
                                   >
-                                    <label
-                                      class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-1vtu5nf-MuiFormLabel-root-MuiInputLabel-root"
-                                      data-shrink="false"
-                                      for=":r0:"
-                                      id=":r0:-label"
+                                    <svg
+                                      aria-hidden="true"
+                                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1f3hpk0-MuiSvgIcon-root"
+                                      data-testid="SearchIcon"
+                                      focusable="false"
+                                      viewBox="0 0 24 24"
                                     >
-                                      Insurance Provider
-                                    </label>
-                                    <div
-                                      class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1cousx2-MuiInputBase-root-MuiOutlinedInput-root"
-                                    >
-                                      <input
-                                        aria-autocomplete="list"
-                                        aria-expanded="false"
-                                        aria-invalid="false"
-                                        autocapitalize="none"
-                                        autocomplete="off"
-                                        class="MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
-                                        id=":r0:"
-                                        placeholder=""
-                                        role="combobox"
-                                        spellcheck="false"
-                                        type="text"
-                                        value=""
+                                      <path
+                                        d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
                                       />
+                                    </svg>
+                                    <div
+                                      class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1fm1cj0-MuiFormControl-root-MuiTextField-root"
+                                      tabindex="0"
+                                      withicon="true"
+                                    >
+                                      <label
+                                        class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
+                                        data-shrink="false"
+                                        for=":r0:"
+                                        id=":r0:-label"
+                                      >
+                                        Insurance Provider
+                                      </label>
                                       <div
-                                        class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+                                        class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-dvqt9d-MuiInputBase-root-MuiFilledInput-root"
                                       >
-                                        <button
-                                          aria-label="Open"
-                                          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
-                                          tabindex="-1"
-                                          title="Open"
-                                          type="button"
+                                        <input
+                                          aria-autocomplete="list"
+                                          aria-expanded="false"
+                                          aria-invalid="false"
+                                          autocapitalize="none"
+                                          autocomplete="off"
+                                          class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-1gctnaj-MuiInputBase-input-MuiFilledInput-input"
+                                          id=":r0:"
+                                          placeholder=""
+                                          role="combobox"
+                                          spellcheck="false"
+                                          type="text"
+                                          value=""
+                                        />
+                                        <div
+                                          class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
                                         >
-                                          <svg
-                                            aria-hidden="true"
-                                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-                                            data-testid="ArrowDropDownIcon"
-                                            focusable="false"
-                                            viewBox="0 0 24 24"
+                                          <button
+                                            aria-label="Open"
+                                            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+                                            tabindex="-1"
+                                            title="Open"
+                                            type="button"
                                           >
-                                            <path
-                                              d="M7 10l5 5 5-5z"
+                                            <svg
+                                              aria-hidden="true"
+                                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                                              data-testid="KeyboardArrowDownIcon"
+                                              focusable="false"
+                                              viewBox="0 0 24 24"
+                                            >
+                                              <path
+                                                d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
+                                              />
+                                            </svg>
+                                            <span
+                                              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                                             />
-                                          </svg>
-                                          <span
-                                            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                                          />
-                                        </button>
+                                          </button>
+                                        </div>
                                       </div>
-                                      <fieldset
-                                        aria-hidden="true"
-                                        class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
-                                      >
-                                        <legend
-                                          class="css-1ftyaf0"
-                                        >
-                                          <span>
-                                            Insurance Provider
-                                          </span>
-                                        </legend>
-                                      </fieldset>
                                     </div>
                                   </div>
                                 </div>
+                                <span
+                                  class="MuiTypography-root MuiTypography-lightError css-1w02gfh-MuiTypography-root"
+                                />
                               </div>
                               <div
                                 class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
@@ -342,78 +349,84 @@ Object {
                                   data-testid="loc_inputPlan"
                                 >
                                   <div
-                                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-7pvuas-MuiFormControl-root-MuiTextField-root"
-                                    tabindex="0"
-                                    withicon="true"
+                                    class="MuiBox-root css-18okncf"
                                   >
-                                    <label
-                                      class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-1vtu5nf-MuiFormLabel-root-MuiInputLabel-root"
-                                      data-shrink="false"
-                                      for=":r2:"
-                                      id=":r2:-label"
+                                    <svg
+                                      aria-hidden="true"
+                                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1f3hpk0-MuiSvgIcon-root"
+                                      data-testid="SearchIcon"
+                                      focusable="false"
+                                      viewBox="0 0 24 24"
                                     >
-                                      Plan Name
-                                    </label>
-                                    <div
-                                      class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1cousx2-MuiInputBase-root-MuiOutlinedInput-root"
-                                    >
-                                      <input
-                                        aria-autocomplete="list"
-                                        aria-expanded="false"
-                                        aria-invalid="false"
-                                        autocapitalize="none"
-                                        autocomplete="off"
-                                        class="MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
-                                        id=":r2:"
-                                        placeholder=""
-                                        role="combobox"
-                                        spellcheck="false"
-                                        type="text"
-                                        value=""
+                                      <path
+                                        d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
                                       />
+                                    </svg>
+                                    <div
+                                      class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1fm1cj0-MuiFormControl-root-MuiTextField-root"
+                                      tabindex="0"
+                                      withicon="true"
+                                    >
+                                      <label
+                                        class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
+                                        data-shrink="false"
+                                        for=":r2:"
+                                        id=":r2:-label"
+                                      >
+                                        Plan Name
+                                      </label>
                                       <div
-                                        class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+                                        class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-dvqt9d-MuiInputBase-root-MuiFilledInput-root"
                                       >
-                                        <button
-                                          aria-label="Open"
-                                          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
-                                          tabindex="-1"
-                                          title="Open"
-                                          type="button"
+                                        <input
+                                          aria-autocomplete="list"
+                                          aria-expanded="false"
+                                          aria-invalid="false"
+                                          autocapitalize="none"
+                                          autocomplete="off"
+                                          class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-1gctnaj-MuiInputBase-input-MuiFilledInput-input"
+                                          id=":r2:"
+                                          placeholder=""
+                                          role="combobox"
+                                          spellcheck="false"
+                                          type="text"
+                                          value=""
+                                        />
+                                        <div
+                                          class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
                                         >
-                                          <svg
-                                            aria-hidden="true"
-                                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-                                            data-testid="ArrowDropDownIcon"
-                                            focusable="false"
-                                            viewBox="0 0 24 24"
+                                          <button
+                                            aria-label="Open"
+                                            class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+                                            tabindex="-1"
+                                            title="Open"
+                                            type="button"
                                           >
-                                            <path
-                                              d="M7 10l5 5 5-5z"
+                                            <svg
+                                              aria-hidden="true"
+                                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                                              data-testid="KeyboardArrowDownIcon"
+                                              focusable="false"
+                                              viewBox="0 0 24 24"
+                                            >
+                                              <path
+                                                d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
+                                              />
+                                            </svg>
+                                            <span
+                                              class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                                             />
-                                          </svg>
-                                          <span
-                                            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                                          />
-                                        </button>
+                                          </button>
+                                        </div>
                                       </div>
-                                      <fieldset
-                                        aria-hidden="true"
-                                        class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
-                                      >
-                                        <legend
-                                          class="css-1ftyaf0"
-                                        >
-                                          <span>
-                                            Plan Name
-                                          </span>
-                                        </legend>
-                                      </fieldset>
                                     </div>
                                   </div>
                                 </div>
+                                <span
+                                  class="MuiTypography-root MuiTypography-lightError css-1w02gfh-MuiTypography-root"
+                                />
                                 <label
-                                  class="MuiFormLabel-root MuiFormLabel-colorPrimary css-jim0fx-MuiFormLabel-root"
+                                  class="MuiFormLabel-root MuiFormLabel-colorPrimary css-a1uk4n-MuiFormLabel-root"
                                   id="row-input-disclaimer"
                                 >
                                   (Optional)
@@ -423,7 +436,7 @@ Object {
                                 class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
                               >
                                 <div
-                                  class="MuiFormControl-root MuiTextField-root custom-input css-zmo6oi-MuiFormControl-root-MuiTextField-root"
+                                  class="MuiFormControl-root MuiTextField-root custom-input css-1b3m0b7-MuiFormControl-root-MuiTextField-root"
                                   data-testid="loc_inputSubsId"
                                   tabindex="0"
                                   withicon="true"
@@ -454,7 +467,7 @@ Object {
                                 class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
                               >
                                 <div
-                                  class="MuiFormControl-root MuiTextField-root custom-input css-zmo6oi-MuiFormControl-root-MuiTextField-root"
+                                  class="MuiFormControl-root MuiTextField-root custom-input css-1b3m0b7-MuiFormControl-root-MuiTextField-root"
                                   data-testid="loc_inputGroup"
                                   tabindex="0"
                                   withicon="true"
@@ -481,7 +494,7 @@ Object {
                                   </div>
                                 </div>
                                 <label
-                                  class="MuiFormLabel-root MuiFormLabel-colorPrimary css-jim0fx-MuiFormLabel-root"
+                                  class="MuiFormLabel-root MuiFormLabel-colorPrimary css-a1uk4n-MuiFormLabel-root"
                                   id="row-input-disclaimer"
                                 >
                                   (Optional)
@@ -491,11 +504,11 @@ Object {
                             <hr
                               class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
                             />
-                            <h3
-                              class="MuiTypography-root MuiTypography-h3 css-ju7v9i-MuiTypography-root"
+                            <span
+                              class="MuiTypography-root MuiTypography-grayscaleBlack css-19wbwrb-MuiTypography-root"
                             >
                               Policy Holder
-                            </h3>
+                            </span>
                             <div
                               class="MuiFormControl-root css-1nrlq1o-MuiFormControl-root"
                               label="Are you the Subscriber?"
@@ -512,7 +525,7 @@ Object {
                                 <svg
                                   aria-hidden="true"
                                   aria-label="The person who pays for health insurance premiums. For example, if you have health insurance through your spouse’s health insurance plan, he or she is the primary subscriber."
-                                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1kbzx26-MuiSvgIcon-root"
+                                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-961pdr-MuiSvgIcon-root"
                                   data-mui-internal-clone-element="true"
                                   data-testid="ErrorOutlineOutlinedIcon"
                                   focusable="false"
@@ -660,7 +673,7 @@ Object {
                                           class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
                                         >
                                           <div
-                                            class="MuiFormControl-root MuiTextField-root custom-input css-zmo6oi-MuiFormControl-root-MuiTextField-root"
+                                            class="MuiFormControl-root MuiTextField-root custom-input css-1b3m0b7-MuiFormControl-root-MuiTextField-root"
                                             maxlength="50"
                                             minlength="2"
                                             tabindex="0"
@@ -692,7 +705,7 @@ Object {
                                           class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
                                         >
                                           <div
-                                            class="MuiFormControl-root MuiTextField-root custom-input css-zmo6oi-MuiFormControl-root-MuiTextField-root"
+                                            class="MuiFormControl-root MuiTextField-root custom-input css-1b3m0b7-MuiFormControl-root-MuiTextField-root"
                                             tabindex="0"
                                             withicon="true"
                                           >
@@ -719,13 +732,13 @@ Object {
                                           </div>
                                         </div>
                                         <div
-                                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-xfwq4j-MuiGrid-root"
+                                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1s43b9l-MuiGrid-root"
                                         />
                                         <div
                                           class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
                                         >
                                           <div
-                                            class="MuiFormControl-root MuiTextField-root css-1v3ll4p-MuiFormControl-root-MuiTextField-root"
+                                            class="MuiFormControl-root MuiTextField-root css-1g6pwsg-MuiFormControl-root-MuiTextField-root"
                                           >
                                             <label
                                               class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
@@ -733,7 +746,7 @@ Object {
                                               for=":ra:"
                                               id=":ra:-label"
                                             >
-                                              Subscriber Date of Birth
+                                              Subscriber Date of Birth field
                                             </label>
                                             <div
                                               class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
@@ -759,10 +772,10 @@ Object {
                                           </div>
                                         </div>
                                         <div
-                                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-xfwq4j-MuiGrid-root"
+                                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1s43b9l-MuiGrid-root"
                                         />
                                         <div
-                                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-xfwq4j-MuiGrid-root"
+                                          class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1s43b9l-MuiGrid-root"
                                         />
                                         <div
                                           class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
@@ -808,12 +821,12 @@ Object {
                                               <svg
                                                 aria-hidden="true"
                                                 class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-1rejtkv-MuiSvgIcon-root-MuiSelect-icon"
-                                                data-testid="ArrowDropDownIcon"
+                                                data-testid="KeyboardArrowDownIcon"
                                                 focusable="false"
                                                 viewBox="0 0 24 24"
                                               >
                                                 <path
-                                                  d="M7 10l5 5 5-5z"
+                                                  d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
                                                 />
                                               </svg>
                                             </div>
@@ -822,7 +835,7 @@ Object {
                                       </div>
                                     </div>
                                     <label
-                                      class="MuiFormLabel-root MuiFormLabel-colorPrimary css-jim0fx-MuiFormLabel-root"
+                                      class="MuiFormLabel-root MuiFormLabel-colorPrimary css-a1uk4n-MuiFormLabel-root"
                                       id="row-input-disclaimer"
                                     >
                                       Optional
@@ -835,9 +848,9 @@ Object {
                               </div>
                             </div>
                             <div
-                              class="MuiTypography-root MuiTypography-bodyRegular css-kwfea0-MuiTypography-root"
+                              class="MuiTypography-root MuiTypography-bodyLarge css-1qkz9ls-MuiTypography-root"
                             >
-                              Upload images of your insurance.
+                              Upload images of your insurance
                             </div>
                             <div
                               class="MuiGrid-root MuiGrid-container MuiGrid-spacing-md-2 css-1lnta3l-MuiGrid-root"
@@ -914,7 +927,7 @@ Object {
                                           />
                                         </svg>
                                         <span
-                                          class="MuiTypography-root MuiTypography-regularBold css-37jdci-MuiTypography-root"
+                                          class="MuiTypography-root MuiTypography-mediumBlueNavy css-xm79g7-MuiTypography-root"
                                         >
                                           Upload Front
                                         </span>
@@ -1004,7 +1017,7 @@ Object {
                                           />
                                         </svg>
                                         <span
-                                          class="MuiTypography-root MuiTypography-regularBold css-37jdci-MuiTypography-root"
+                                          class="MuiTypography-root MuiTypography-mediumBlueNavy css-xm79g7-MuiTypography-root"
                                         >
                                           Upload Back
                                         </span>
@@ -1042,7 +1055,7 @@ Object {
                                 <svg
                                   aria-hidden="true"
                                   aria-label="You can legally have multiple insurances to cover your eyecare expenses. Picking a primary insurance will allow you to decide which insurance takes priority."
-                                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1kbzx26-MuiSvgIcon-root"
+                                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-961pdr-MuiSvgIcon-root"
                                   data-mui-internal-clone-element="true"
                                   data-testid="ErrorOutlineOutlinedIcon"
                                   focusable="false"
@@ -1298,6 +1311,7 @@ Object {
       </header>
       <div
         class="titleHeadingWrapper"
+        style="position: fixed;"
       >
         <div
           aria-label="Your Account heading"
@@ -1485,7 +1499,7 @@ Object {
                 class="MuiBox-root css-8u5xrh"
               >
                 <div
-                  class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1v5z4dq-MuiPaper-root-MuiCard-root"
+                  class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1yepo06-MuiPaper-root-MuiCard-root"
                 >
                   <div
                     class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
@@ -1515,76 +1529,82 @@ Object {
                                 data-testid="loc_inputProvider"
                               >
                                 <div
-                                  class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-7pvuas-MuiFormControl-root-MuiTextField-root"
-                                  tabindex="0"
-                                  withicon="true"
+                                  class="MuiBox-root css-18okncf"
                                 >
-                                  <label
-                                    class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-1vtu5nf-MuiFormLabel-root-MuiInputLabel-root"
-                                    data-shrink="false"
-                                    for=":r0:"
-                                    id=":r0:-label"
+                                  <svg
+                                    aria-hidden="true"
+                                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1f3hpk0-MuiSvgIcon-root"
+                                    data-testid="SearchIcon"
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
                                   >
-                                    Insurance Provider
-                                  </label>
-                                  <div
-                                    class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1cousx2-MuiInputBase-root-MuiOutlinedInput-root"
-                                  >
-                                    <input
-                                      aria-autocomplete="list"
-                                      aria-expanded="false"
-                                      aria-invalid="false"
-                                      autocapitalize="none"
-                                      autocomplete="off"
-                                      class="MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
-                                      id=":r0:"
-                                      placeholder=""
-                                      role="combobox"
-                                      spellcheck="false"
-                                      type="text"
-                                      value=""
+                                    <path
+                                      d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
                                     />
+                                  </svg>
+                                  <div
+                                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1fm1cj0-MuiFormControl-root-MuiTextField-root"
+                                    tabindex="0"
+                                    withicon="true"
+                                  >
+                                    <label
+                                      class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
+                                      data-shrink="false"
+                                      for=":r0:"
+                                      id=":r0:-label"
+                                    >
+                                      Insurance Provider
+                                    </label>
                                     <div
-                                      class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+                                      class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-dvqt9d-MuiInputBase-root-MuiFilledInput-root"
                                     >
-                                      <button
-                                        aria-label="Open"
-                                        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
-                                        tabindex="-1"
-                                        title="Open"
-                                        type="button"
+                                      <input
+                                        aria-autocomplete="list"
+                                        aria-expanded="false"
+                                        aria-invalid="false"
+                                        autocapitalize="none"
+                                        autocomplete="off"
+                                        class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-1gctnaj-MuiInputBase-input-MuiFilledInput-input"
+                                        id=":r0:"
+                                        placeholder=""
+                                        role="combobox"
+                                        spellcheck="false"
+                                        type="text"
+                                        value=""
+                                      />
+                                      <div
+                                        class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
                                       >
-                                        <svg
-                                          aria-hidden="true"
-                                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-                                          data-testid="ArrowDropDownIcon"
-                                          focusable="false"
-                                          viewBox="0 0 24 24"
+                                        <button
+                                          aria-label="Open"
+                                          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+                                          tabindex="-1"
+                                          title="Open"
+                                          type="button"
                                         >
-                                          <path
-                                            d="M7 10l5 5 5-5z"
+                                          <svg
+                                            aria-hidden="true"
+                                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                                            data-testid="KeyboardArrowDownIcon"
+                                            focusable="false"
+                                            viewBox="0 0 24 24"
+                                          >
+                                            <path
+                                              d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
+                                            />
+                                          </svg>
+                                          <span
+                                            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                                           />
-                                        </svg>
-                                        <span
-                                          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                                        />
-                                      </button>
+                                        </button>
+                                      </div>
                                     </div>
-                                    <fieldset
-                                      aria-hidden="true"
-                                      class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
-                                    >
-                                      <legend
-                                        class="css-1ftyaf0"
-                                      >
-                                        <span>
-                                          Insurance Provider
-                                        </span>
-                                      </legend>
-                                    </fieldset>
                                   </div>
                                 </div>
                               </div>
+                              <span
+                                class="MuiTypography-root MuiTypography-lightError css-1w02gfh-MuiTypography-root"
+                              />
                             </div>
                             <div
                               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
@@ -1594,78 +1614,84 @@ Object {
                                 data-testid="loc_inputPlan"
                               >
                                 <div
-                                  class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-7pvuas-MuiFormControl-root-MuiTextField-root"
-                                  tabindex="0"
-                                  withicon="true"
+                                  class="MuiBox-root css-18okncf"
                                 >
-                                  <label
-                                    class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-outlined MuiFormLabel-root MuiFormLabel-colorPrimary css-1vtu5nf-MuiFormLabel-root-MuiInputLabel-root"
-                                    data-shrink="false"
-                                    for=":r2:"
-                                    id=":r2:-label"
+                                  <svg
+                                    aria-hidden="true"
+                                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1f3hpk0-MuiSvgIcon-root"
+                                    data-testid="SearchIcon"
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
                                   >
-                                    Plan Name
-                                  </label>
-                                  <div
-                                    class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1cousx2-MuiInputBase-root-MuiOutlinedInput-root"
-                                  >
-                                    <input
-                                      aria-autocomplete="list"
-                                      aria-expanded="false"
-                                      aria-invalid="false"
-                                      autocapitalize="none"
-                                      autocomplete="off"
-                                      class="MuiOutlinedInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-nxo287-MuiInputBase-input-MuiOutlinedInput-input"
-                                      id=":r2:"
-                                      placeholder=""
-                                      role="combobox"
-                                      spellcheck="false"
-                                      type="text"
-                                      value=""
+                                    <path
+                                      d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
                                     />
+                                  </svg>
+                                  <div
+                                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1fm1cj0-MuiFormControl-root-MuiTextField-root"
+                                    tabindex="0"
+                                    withicon="true"
+                                  >
+                                    <label
+                                      class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
+                                      data-shrink="false"
+                                      for=":r2:"
+                                      id=":r2:-label"
+                                    >
+                                      Plan Name
+                                    </label>
                                     <div
-                                      class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
+                                      class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-dvqt9d-MuiInputBase-root-MuiFilledInput-root"
                                     >
-                                      <button
-                                        aria-label="Open"
-                                        class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
-                                        tabindex="-1"
-                                        title="Open"
-                                        type="button"
+                                      <input
+                                        aria-autocomplete="list"
+                                        aria-expanded="false"
+                                        aria-invalid="false"
+                                        autocapitalize="none"
+                                        autocomplete="off"
+                                        class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-1gctnaj-MuiInputBase-input-MuiFilledInput-input"
+                                        id=":r2:"
+                                        placeholder=""
+                                        role="combobox"
+                                        spellcheck="false"
+                                        type="text"
+                                        value=""
+                                      />
+                                      <div
+                                        class="MuiAutocomplete-endAdornment css-1q60rmi-MuiAutocomplete-endAdornment"
                                       >
-                                        <svg
-                                          aria-hidden="true"
-                                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-                                          data-testid="ArrowDropDownIcon"
-                                          focusable="false"
-                                          viewBox="0 0 24 24"
+                                        <button
+                                          aria-label="Open"
+                                          class="MuiButtonBase-root MuiIconButton-root MuiIconButton-sizeMedium MuiAutocomplete-popupIndicator css-qzbt6i-MuiButtonBase-root-MuiIconButton-root-MuiAutocomplete-popupIndicator"
+                                          tabindex="-1"
+                                          title="Open"
+                                          type="button"
                                         >
-                                          <path
-                                            d="M7 10l5 5 5-5z"
+                                          <svg
+                                            aria-hidden="true"
+                                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
+                                            data-testid="KeyboardArrowDownIcon"
+                                            focusable="false"
+                                            viewBox="0 0 24 24"
+                                          >
+                                            <path
+                                              d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
+                                            />
+                                          </svg>
+                                          <span
+                                            class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                                           />
-                                        </svg>
-                                        <span
-                                          class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                                        />
-                                      </button>
+                                        </button>
+                                      </div>
                                     </div>
-                                    <fieldset
-                                      aria-hidden="true"
-                                      class="MuiOutlinedInput-notchedOutline css-1d3z3hw-MuiOutlinedInput-notchedOutline"
-                                    >
-                                      <legend
-                                        class="css-1ftyaf0"
-                                      >
-                                        <span>
-                                          Plan Name
-                                        </span>
-                                      </legend>
-                                    </fieldset>
                                   </div>
                                 </div>
                               </div>
+                              <span
+                                class="MuiTypography-root MuiTypography-lightError css-1w02gfh-MuiTypography-root"
+                              />
                               <label
-                                class="MuiFormLabel-root MuiFormLabel-colorPrimary css-jim0fx-MuiFormLabel-root"
+                                class="MuiFormLabel-root MuiFormLabel-colorPrimary css-a1uk4n-MuiFormLabel-root"
                                 id="row-input-disclaimer"
                               >
                                 (Optional)
@@ -1675,7 +1701,7 @@ Object {
                               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
                             >
                               <div
-                                class="MuiFormControl-root MuiTextField-root custom-input css-zmo6oi-MuiFormControl-root-MuiTextField-root"
+                                class="MuiFormControl-root MuiTextField-root custom-input css-1b3m0b7-MuiFormControl-root-MuiTextField-root"
                                 data-testid="loc_inputSubsId"
                                 tabindex="0"
                                 withicon="true"
@@ -1706,7 +1732,7 @@ Object {
                               class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
                             >
                               <div
-                                class="MuiFormControl-root MuiTextField-root custom-input css-zmo6oi-MuiFormControl-root-MuiTextField-root"
+                                class="MuiFormControl-root MuiTextField-root custom-input css-1b3m0b7-MuiFormControl-root-MuiTextField-root"
                                 data-testid="loc_inputGroup"
                                 tabindex="0"
                                 withicon="true"
@@ -1733,7 +1759,7 @@ Object {
                                 </div>
                               </div>
                               <label
-                                class="MuiFormLabel-root MuiFormLabel-colorPrimary css-jim0fx-MuiFormLabel-root"
+                                class="MuiFormLabel-root MuiFormLabel-colorPrimary css-a1uk4n-MuiFormLabel-root"
                                 id="row-input-disclaimer"
                               >
                                 (Optional)
@@ -1743,11 +1769,11 @@ Object {
                           <hr
                             class="MuiDivider-root MuiDivider-fullWidth css-9mgopn-MuiDivider-root"
                           />
-                          <h3
-                            class="MuiTypography-root MuiTypography-h3 css-ju7v9i-MuiTypography-root"
+                          <span
+                            class="MuiTypography-root MuiTypography-grayscaleBlack css-19wbwrb-MuiTypography-root"
                           >
                             Policy Holder
-                          </h3>
+                          </span>
                           <div
                             class="MuiFormControl-root css-1nrlq1o-MuiFormControl-root"
                             label="Are you the Subscriber?"
@@ -1764,7 +1790,7 @@ Object {
                               <svg
                                 aria-hidden="true"
                                 aria-label="The person who pays for health insurance premiums. For example, if you have health insurance through your spouse’s health insurance plan, he or she is the primary subscriber."
-                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1kbzx26-MuiSvgIcon-root"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-961pdr-MuiSvgIcon-root"
                                 data-mui-internal-clone-element="true"
                                 data-testid="ErrorOutlineOutlinedIcon"
                                 focusable="false"
@@ -1912,7 +1938,7 @@ Object {
                                         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
                                       >
                                         <div
-                                          class="MuiFormControl-root MuiTextField-root custom-input css-zmo6oi-MuiFormControl-root-MuiTextField-root"
+                                          class="MuiFormControl-root MuiTextField-root custom-input css-1b3m0b7-MuiFormControl-root-MuiTextField-root"
                                           maxlength="50"
                                           minlength="2"
                                           tabindex="0"
@@ -1944,7 +1970,7 @@ Object {
                                         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1lj5egr-MuiGrid-root"
                                       >
                                         <div
-                                          class="MuiFormControl-root MuiTextField-root custom-input css-zmo6oi-MuiFormControl-root-MuiTextField-root"
+                                          class="MuiFormControl-root MuiTextField-root custom-input css-1b3m0b7-MuiFormControl-root-MuiTextField-root"
                                           tabindex="0"
                                           withicon="true"
                                         >
@@ -1971,13 +1997,13 @@ Object {
                                         </div>
                                       </div>
                                       <div
-                                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-xfwq4j-MuiGrid-root"
+                                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1s43b9l-MuiGrid-root"
                                       />
                                       <div
                                         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
                                       >
                                         <div
-                                          class="MuiFormControl-root MuiTextField-root css-1v3ll4p-MuiFormControl-root-MuiTextField-root"
+                                          class="MuiFormControl-root MuiTextField-root css-1g6pwsg-MuiFormControl-root-MuiTextField-root"
                                         >
                                           <label
                                             class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
@@ -1985,7 +2011,7 @@ Object {
                                             for=":ra:"
                                             id=":ra:-label"
                                           >
-                                            Subscriber Date of Birth
+                                            Subscriber Date of Birth field
                                           </label>
                                           <div
                                             class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
@@ -2011,10 +2037,10 @@ Object {
                                         </div>
                                       </div>
                                       <div
-                                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-xfwq4j-MuiGrid-root"
+                                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1s43b9l-MuiGrid-root"
                                       />
                                       <div
-                                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-xfwq4j-MuiGrid-root"
+                                        class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-1s43b9l-MuiGrid-root"
                                       />
                                       <div
                                         class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-4 css-260rxh-MuiGrid-root"
@@ -2060,12 +2086,12 @@ Object {
                                             <svg
                                               aria-hidden="true"
                                               class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-1rejtkv-MuiSvgIcon-root-MuiSelect-icon"
-                                              data-testid="ArrowDropDownIcon"
+                                              data-testid="KeyboardArrowDownIcon"
                                               focusable="false"
                                               viewBox="0 0 24 24"
                                             >
                                               <path
-                                                d="M7 10l5 5 5-5z"
+                                                d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
                                               />
                                             </svg>
                                           </div>
@@ -2074,7 +2100,7 @@ Object {
                                     </div>
                                   </div>
                                   <label
-                                    class="MuiFormLabel-root MuiFormLabel-colorPrimary css-jim0fx-MuiFormLabel-root"
+                                    class="MuiFormLabel-root MuiFormLabel-colorPrimary css-a1uk4n-MuiFormLabel-root"
                                     id="row-input-disclaimer"
                                   >
                                     Optional
@@ -2087,9 +2113,9 @@ Object {
                             </div>
                           </div>
                           <div
-                            class="MuiTypography-root MuiTypography-bodyRegular css-kwfea0-MuiTypography-root"
+                            class="MuiTypography-root MuiTypography-bodyLarge css-1qkz9ls-MuiTypography-root"
                           >
-                            Upload images of your insurance.
+                            Upload images of your insurance
                           </div>
                           <div
                             class="MuiGrid-root MuiGrid-container MuiGrid-spacing-md-2 css-1lnta3l-MuiGrid-root"
@@ -2166,7 +2192,7 @@ Object {
                                         />
                                       </svg>
                                       <span
-                                        class="MuiTypography-root MuiTypography-regularBold css-37jdci-MuiTypography-root"
+                                        class="MuiTypography-root MuiTypography-mediumBlueNavy css-xm79g7-MuiTypography-root"
                                       >
                                         Upload Front
                                       </span>
@@ -2256,7 +2282,7 @@ Object {
                                         />
                                       </svg>
                                       <span
-                                        class="MuiTypography-root MuiTypography-regularBold css-37jdci-MuiTypography-root"
+                                        class="MuiTypography-root MuiTypography-mediumBlueNavy css-xm79g7-MuiTypography-root"
                                       >
                                         Upload Back
                                       </span>
@@ -2294,7 +2320,7 @@ Object {
                               <svg
                                 aria-hidden="true"
                                 aria-label="You can legally have multiple insurances to cover your eyecare expenses. Picking a primary insurance will allow you to decide which insurance takes priority."
-                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1kbzx26-MuiSvgIcon-root"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-961pdr-MuiSvgIcon-root"
                                 data-mui-internal-clone-element="true"
                                 data-testid="ErrorOutlineOutlinedIcon"
                                 focusable="false"

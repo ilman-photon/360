@@ -23,4 +23,5 @@ export class Regex {
   static isMin2Max50Length = /^\w{2,50}$/;
   static usernameValidation =
     /(^[\w%\+\-]+(\.[\w%\+\-]+)*@[\w%\+\-]+(\.[\w%\+\-]+)+$)|(^\d*$)/g;
+  static maskingEmail = /^(..)(.*)(@.*)$/;
 }
