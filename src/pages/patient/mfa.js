@@ -11,7 +11,6 @@ import AccountTitleHeading from "../../components/atoms/AccountTitleHeading/acco
 import FormMessage from "../../components/molecules/FormMessage/formMessage";
 import { Api } from "../api/api";
 import { useTranslation } from "next-i18next";
-import { formatPhoneNumber } from "../../utils/phoneFormatter";
 import { Provider } from "react-redux";
 import store from "../../store/store";
 import { removeAuthCookies } from "../../utils/authetication";
@@ -41,14 +40,17 @@ export default function MfaPage({ isStepTwo }) {
   const cookies = new Cookies();
   const router = useRouter();
   const username = cookies.get("username", { path: "/patient" });
-  // const ip = cookies.get("ip", { path: "/patient" });
   const [componentName, setComponentName] = React.useState("");
   const [rememberMe, setRememberMe] = React.useState(false);
   const [successSubmit, setSuccessSubmit] = React.useState(false);
   const [otpValidation, setOTPValidation] = React.useState("");
   const [securityQuestionList, setSecurityQuestionList] = React.useState([]);
   const [communicationMethod, setCommunicationMethod] = React.useState({});
-  const { t } = useTranslation("translation", { keyPrefix: "mfaPage" });
+  const [isLoading, setIsLoading] = React.useState(true);
+  const { t, ready } = useTranslation("translation", {
+    keyPrefix: "mfaPage",
+    useSuspense: false,
+  });
   const { MFA_TEST_ID } = constants.TEST_ID;
   const onBackButtonEvent = (e) => {
     e.preventDefault();
@@ -60,6 +62,7 @@ export default function MfaPage({ isStepTwo }) {
       const userData = JSON.parse(localStorage.getItem("userData"));
       const communicationMethod = userData.communicationMethod;
       setCommunicationMethod(communicationMethod);
+      setIsLoading(false);
     }
     window.history.pushState(null, null, window.location.pathname);
     window.addEventListener("popstate", onBackButtonEvent);
@@ -75,7 +78,7 @@ export default function MfaPage({ isStepTwo }) {
   };
 
   function onConfirmClicked(communication, callback) {
-    const deviceId = ""; //ip.replace(/\./g, "");
+    const deviceId = "";
     const postBody = {
       username,
       deviceId,
@@ -135,8 +138,8 @@ export default function MfaPage({ isStepTwo }) {
           });
         }
 
-        const securityQuestions = cookies.get("securityQuestions");
-        if (securityQuestions.length === 0) {
+        const securityQuestions = cookies.get("securityQuestions") === "true";
+        if (!securityQuestions) {
           onShowSecurityQuestionForm();
         } else {
           redirectToDashboard();
@@ -168,7 +171,7 @@ export default function MfaPage({ isStepTwo }) {
   }
 
   function onResendCodeClicked(callback) {
-    const deviceId = ""; //ip.replace(/\./g, "");
+    const deviceId = "";
     const postBody = {
       username,
       deviceId,
@@ -223,7 +226,7 @@ export default function MfaPage({ isStepTwo }) {
 
     const postBody = {
       username: cookies.get("username", { path: "/patient" }),
-      SecurityQuestions: [questionAnswer],
+      SetUpSecurityQuestions: [questionAnswer],
     };
     api
       .submitSecurityQuestion(postBody)
@@ -243,18 +246,18 @@ export default function MfaPage({ isStepTwo }) {
       });
   }
 
-  function mappingSecurityQuestionList(securityQuestionList = []) {
+  function mappingSecurityQuestionList(securityQuestionsList = []) {
     const questionList = [];
-    securityQuestionList = securityQuestionList[0]
-      ? securityQuestionList[0]
+    securityQuestionsList = securityQuestionsList[0]
+      ? securityQuestionsList[0]
       : {};
-    for (const [key] of Object.entries(securityQuestionList)) {
+    for (const [key] of Object.entries(securityQuestionsList)) {
       questionList.push(key);
     }
     return questionList;
   }
 
-  if (componentName === constants.MFA_COMPONENT_NAME || isStepTwo) {
+  if (componentName === constants.MFA_COMPONENT_NAME || (isStepTwo && ready)) {
     return (
       <>
         <MultiFactorAuthentication
@@ -282,7 +285,7 @@ export default function MfaPage({ isStepTwo }) {
         ) : null}
       </>
     );
-  } else if (componentName === constants.SQ_COMPONENT_NAME) {
+  } else if (componentName === constants.SQ_COMPONENT_NAME && ready) {
     return (
       <Box
         sx={{
@@ -336,14 +339,18 @@ export default function MfaPage({ isStepTwo }) {
     );
   } else {
     return (
-      <SetMultiFactorAuthentication
-        onConfirmClicked={onConfirmClicked}
-        onBackToLoginClicked={onBackToLoginClicked}
-        rememberMe={rememberMe}
-        setRememberMe={onSetRememberMe}
-        data={communicationMethod}
-        testIds={MFA_TEST_ID}
-      />
+      <>
+        {!isLoading && ready && (
+          <SetMultiFactorAuthentication
+            onConfirmClicked={onConfirmClicked}
+            onBackToLoginClicked={onBackToLoginClicked}
+            rememberMe={rememberMe}
+            setRememberMe={onSetRememberMe}
+            data={communicationMethod}
+            testIds={MFA_TEST_ID}
+          />
+        )}
+      </>
     );
   }
 }
