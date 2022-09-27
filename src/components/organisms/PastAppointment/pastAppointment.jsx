@@ -129,11 +129,11 @@ export default function PastAppointment({ data }) {
       <Box className={styles.subTitleWrapper}>
         <Typography
           tabIndex={0}
-          ariaLabel={"You Have no Past Appointment"}
+          ariaLabel={"You have no past appointments"}
           className={styles.noPastAppointment}
           variant="body2"
         >
-          You Have no Past Appointment
+          You have no past appointments
         </Typography>
       </Box>
     ) : (
