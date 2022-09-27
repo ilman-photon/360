@@ -141,12 +141,12 @@ const MOCK_PRESCRIPTION = {
     ],
     medications: [
       {
-        id:"0",
+        id: "0",
         prescription: "Aspirint 0.1% Ointmanet",
         date: "2022-09-02T11:18:47.229Z",
       },
       {
-        id:"0",
+        id: "0",
         prescription: "Aspirint 0.1% Ointmanet",
         date: "2022-09-02T11:18:47.229Z",
       },
@@ -964,7 +964,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-        Cookies.result = { authorized: true };
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -1005,9 +1005,7 @@ defineFeature(feature, (test) => {
       });
       await waitFor(() => container.getByTestId("menu-contact"));
       console.log(response);
-      // expect(response).toEqual({
-      //   props: {},
-      // });
+      expect(container.getByTestId("menu-contact")).toBeInTheDocument();
     });
 
     and("User should see the widget with prescriptions", async () => {
@@ -1070,7 +1068,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-        Cookies.result = { authorized: true };
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -1187,7 +1185,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-        Cookies.result = { authorized: true };
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",

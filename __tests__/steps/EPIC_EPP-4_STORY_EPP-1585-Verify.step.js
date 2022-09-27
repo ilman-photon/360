@@ -1,5 +1,11 @@
 import "@testing-library/jest-dom/extend-expect";
-import { act, fireEvent, render, waitFor, cleanup } from "@testing-library/react";
+import {
+  act,
+  fireEvent,
+  render,
+  waitFor,
+  cleanup,
+} from "@testing-library/react";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 import { defineFeature, loadFeature } from "jest-cucumber";
@@ -304,9 +310,9 @@ const MOCK_SUGESTION = {
       ],
     },
   ],
-}
+};
 
-navigateToPatientPortalHome = async () => {
+const navigateToPatientPortalHome = async () => {
   let container;
   const element = document.createElement("div");
   const mock = new MockAdapter(axios);
@@ -318,19 +324,13 @@ navigateToPatientPortalHome = async () => {
   const domain = window.location.origin;
   mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
   mock
-    .onGet(
-      `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-    )
+    .onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`)
     .reply(200, MOCK_SUGESTION);
   mock
-    .onGet(
-      `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`
-    )
+    .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllAppointment`)
     .reply(200, MOCK_APPOINTMENT);
   mock
-    .onGet(
-      `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
-    )
+    .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`)
     .reply(200, MOCK_PRESCRIPTION);
   const response = await getServerSideProps({
     req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
@@ -350,11 +350,11 @@ navigateToPatientPortalHome = async () => {
   await waitFor(() => container.getByLabelText(/Appointments/i));
   expect(response).toEqual({
     redirect: {
-      "destination": "/patient/login",
-      "permanent": false,
+      destination: "/patient/login",
+      permanent: false,
     },
   });
-}
+};
 
 const defaultValidation = () => {
   expect(true).toBeTruthy();
@@ -364,8 +364,13 @@ defineFeature(feature, (test) => {
   let container;
   const element = document.createElement("div");
   const mock = new MockAdapter(axios);
-  test('EPIC_EPP-44_STORY_EPP-1585 -Verify whether the user able to view  purpose of visit on the screen', ({ given, when, and, then }) => {
-    given('user launch the Patient Portal url', () => {
+  test("EPIC_EPP-44_STORY_EPP-1585 -Verify whether the user able to view  purpose of visit on the screen", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Patient Portal url", () => {
       const expectedResult = {
         ResponseCode: 2000,
         ResponseType: "success",
@@ -374,7 +379,7 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
-    when('user provides valid Email or Phone Number and password', () => {
+    when("user provides valid Email or Phone Number and password", () => {
       act(() => {
         container = render(<AuthPage />, {
           container: document.body.appendChild(element),
@@ -385,48 +390,53 @@ defineFeature(feature, (test) => {
       expect("formTitle").toEqual(title.textContent);
     });
 
-    and('user clicks on Login button', () => {
+    and("user clicks on Login button", () => {
       const loginButton = container.getByRole("button", {
         name: /loginButtonLabel/i,
       });
       fireEvent.click(loginButton);
     });
 
-    then('user navigates to the Patient Portal application', async () => {
-      navigateToPatientPortalHome()
+    then("user navigates to the Patient Portal application", async () => {
+      navigateToPatientPortalHome();
     });
 
-    when('user  clicks on Schedule Appointment menu', () => {
-      defaultValidation()
+    when("user  clicks on Schedule Appointment menu", () => {
+      defaultValidation();
     });
 
-    then('User lands on to the screen', async() => {
+    then("User lands on to the screen", async () => {
       cleanup();
-			container = await renderScheduleAppointment()
+      container = await renderScheduleAppointment();
     });
 
-    and('user view and search  the location', async() => {
+    and("user view and search  the location", async () => {
       await waitFor(() => {
-				expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
-			});
+        expect(container.getByText(/City, state, or zip/i)).toBeInTheDocument();
+      });
     });
 
-    when('user view  the date of appointment', () => {
+    when("user view  the date of appointment", () => {
       const dateField = container.getByText(/Date/i);
-      expect(dateField).toBeInTheDocument()
+      expect(dateField).toBeInTheDocument();
     });
 
-    and('user view the purpose of visit dropdown field', () => {
-      defaultValidation()
+    and("user view the purpose of visit dropdown field", () => {
+      defaultValidation();
     });
 
-    then('user view  Insurance field', () => {
-      defaultValidation()
+    then("user view  Insurance field", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1585 -Verify if user able to select the ‘Purpose of Visit’', ({ given, when, and, then }) => {
-    given('user launch the Patient Portal url', () => {
+  test("EPIC_EPP-44_STORY_EPP-1585 -Verify if user able to select the ‘Purpose of Visit’", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Patient Portal url", () => {
       const expectedResult = {
         ResponseCode: 2000,
         ResponseType: "success",
@@ -435,7 +445,7 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
-    when('user provides valid Email or Phone Number and password', () => {
+    when("user provides valid Email or Phone Number and password", () => {
       act(() => {
         container = render(<AuthPage />, {
           container: document.body.appendChild(element),
@@ -446,44 +456,49 @@ defineFeature(feature, (test) => {
       expect("formTitle").toEqual(title.textContent);
     });
 
-    and('user clicks on Login button', () => {
+    and("user clicks on Login button", () => {
       const loginButton = container.getByRole("button", {
         name: /loginButtonLabel/i,
       });
       fireEvent.click(loginButton);
     });
 
-    then('user navigates to the Patient Portal application', async () => {
-      navigateToPatientPortalHome()
+    then("user navigates to the Patient Portal application", async () => {
+      navigateToPatientPortalHome();
     });
 
-    when('user  clicks on Schedule Appointment menu', () => {
-      defaultValidation()
+    when("user  clicks on Schedule Appointment menu", () => {
+      defaultValidation();
     });
 
-    then('User lands on to the screen', () => {
-      defaultValidation()
+    then("User lands on to the screen", () => {
+      defaultValidation();
     });
 
-    and('user view and search  the location', () => {
-      defaultValidation()
+    and("user view and search  the location", () => {
+      defaultValidation();
     });
 
-    when('user select  the date of appointment', () => {
-      defaultValidation()
+    when("user select  the date of appointment", () => {
+      defaultValidation();
     });
 
     and(/^user view the"(.*)"$/, (arg0) => {
-      defaultValidation()
+      defaultValidation();
     });
 
-    then('user select the Purpose of Visit in dropdown field', () => {
-      defaultValidation()
+    then("user select the Purpose of Visit in dropdown field", () => {
+      defaultValidation();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1585 -Verify if user able to view optional label under ‘Purpose of Visit’ field', ({ given, when, and, then }) => {
-    given('user launch the Patient Portal url', () => {
+  test("EPIC_EPP-44_STORY_EPP-1585 -Verify if user able to view optional label under ‘Purpose of Visit’ field", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user launch the Patient Portal url", () => {
       const expectedResult = {
         ResponseCode: 2000,
         ResponseType: "success",
@@ -492,7 +507,7 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
-    when('user provides valid Email or Phone Number and password', () => {
+    when("user provides valid Email or Phone Number and password", () => {
       act(() => {
         container = render(<AuthPage />, {
           container: document.body.appendChild(element),
@@ -503,43 +518,43 @@ defineFeature(feature, (test) => {
       expect("formTitle").toEqual(title.textContent);
     });
 
-    and('user clicks on Login button', () => {
+    and("user clicks on Login button", () => {
       const loginButton = container.getByRole("button", {
         name: /loginButtonLabel/i,
       });
       fireEvent.click(loginButton);
     });
 
-    then('user navigates to the Patient Portal application', async () => {
-      navigateToPatientPortalHome()
+    then("user navigates to the Patient Portal application", async () => {
+      navigateToPatientPortalHome();
     });
 
-    when('user  clicks on Schedule Appointment menu', () => {
-      defaultValidation()
+    when("user  clicks on Schedule Appointment menu", () => {
+      defaultValidation();
     });
 
-    then('User lands on to the screen', () => {
-      defaultValidation()
+    then("User lands on to the screen", () => {
+      defaultValidation();
     });
 
-    and('user view and search  the location', () => {
-      defaultValidation()
+    and("user view and search  the location", () => {
+      defaultValidation();
     });
 
-    when('user select  the date of appointment', () => {
-      defaultValidation()
+    when("user select  the date of appointment", () => {
+      defaultValidation();
     });
 
-    and('user view the purpose of visit field', () => {
-      defaultValidation()
+    and("user view the purpose of visit field", () => {
+      defaultValidation();
     });
 
-    then('user able to select the Purpose of Visit', () => {
-      defaultValidation()
+    then("user able to select the Purpose of Visit", () => {
+      defaultValidation();
     });
 
-    and('user view optional label under Purpose of Visit field', () => {
-      defaultValidation()
+    and("user view optional label under Purpose of Visit field", () => {
+      defaultValidation();
     });
   });
 });

@@ -18,37 +18,39 @@ let container;
 const mock = new MockAdapter(axios);
 const element = document.createElement("div");
 
-launchURL = () => {
+const launchURL = () => {
   const mockOnLoginClicked = jest.fn((data, route, callback) => {
     callback({
       status: "success",
     });
   });
   container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
-}
+};
 
-navigateToPatientPortalApp = () => {
-  mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+const navigateToPatientPortalApp = () => {
+  mock
+    .onGet(`https://api.ipify.org?format=json`)
+    .reply(200, { ip: "10.10.10.10" });
   act(() => {
     container = render(<AuthPage />, {
       container: document.body.appendChild(element),
       legacyRoot: true,
     });
   });
-}
+};
 
-landOnPatientPortalScreen = () => {
+const landOnPatientPortalScreen = () => {
   const title = container.getByText("formTitle");
   expect("formTitle").toEqual(title.textContent);
-}
+};
 
-passwordAndUserView = () => {
-  launchURL()
+const passwordAndUserView = () => {
+  launchURL();
   const usernameField = container.getByLabelText("emailUserLabel");
   const passwordField = container.getByLabelText("passwordLabel");
   expect(usernameField.id).toEqual("username");
   expect(passwordField.id).toEqual("password");
-}
+};
 
 defineFeature(feature, (test) => {
   test("EPIC_EPP-4_STORY_EPP-206-Verify whether the user is able to see the Patient Login page with Email or phone number & Password fields", ({
@@ -58,21 +60,21 @@ defineFeature(feature, (test) => {
     and,
   }) => {
     given("user launch the 'XXX' url", () => {
-      launchURL()
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when(`user lands onto \“Patient Login\” screen`, async () => {
-      landOnPatientPortalScreen()
+      landOnPatientPortalScreen();
     });
 
     then(
       'user should be able to view "Email or phone number" & "Password fields"',
       () => {
-        passwordAndUserView()
+        passwordAndUserView();
       }
     );
   });
@@ -83,15 +85,15 @@ defineFeature(feature, (test) => {
     and,
   }) => {
     given("user launch the 'XXX' url", () => {
-      launchURL()
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when(`user lands onto \“Patient Login\” screen`, async () => {
-      landOnPatientPortalScreen()
+      landOnPatientPortalScreen();
     });
     and('user provides "<Email or Phone Number>" and "<password>"', () => {
       const mockOnLoginClicked = jest.fn((data, route, callback) => {
@@ -117,15 +119,15 @@ defineFeature(feature, (test) => {
     and,
   }) => {
     given("user launch the 'XXX' url", () => {
-      launchURL()
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when(`user lands onto \“Patient Login\” screen`, async () => {
-      landOnPatientPortalScreen()
+      landOnPatientPortalScreen();
     });
     and('user provides "<username>" and "<password>"', () => {
       const mockOnLoginClicked = jest.fn((data, route, callback) => {
@@ -162,15 +164,15 @@ defineFeature(feature, (test) => {
     and,
   }) => {
     given("user user launch the 'XXX' url", () => {
-      launchURL()
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when(`user lands onto “Patient Login” screen`, async () => {
-      landOnPatientPortalScreen()
+      landOnPatientPortalScreen();
     });
     then("user should able to view 'Login' button .", () => {
       expect(true).toBeTruthy();
@@ -199,11 +201,11 @@ defineFeature(feature, (test) => {
     });
 
     and("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when(`user lands onto \“Patient Login\” screen`, async () => {
-      landOnPatientPortalScreen()
+      landOnPatientPortalScreen();
     });
     and("user click the 'Continues as a guest' button", () => {
       expect(true).toBeTruthy();
@@ -243,15 +245,15 @@ defineFeature(feature, (test) => {
     and,
   }) => {
     given("user launch the 'XXX' url", () => {
-      launchURL()
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when(`user lands onto “Patient Login” screen`, async () => {
-      landOnPatientPortalScreen()
+      landOnPatientPortalScreen();
     });
     and("user click the 'Create Account' button", () => {
       expect(true).toBeTruthy();
@@ -267,15 +269,15 @@ defineFeature(feature, (test) => {
     and,
   }) => {
     given("user launch the 'XXX' url", () => {
-      launchURL()
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when(`user lands onto “Patient Login” screen`, async () => {
-      landOnPatientPortalScreen()
+      landOnPatientPortalScreen();
     });
     and("user click the 'Forgot Password' link", () => {
       expect(true).toBeTruthy();
@@ -291,15 +293,15 @@ defineFeature(feature, (test) => {
     and,
   }) => {
     given("user/admin user launch the 'XXX' url", () => {
-      launchURL()
+      launchURL();
     });
 
     and("user/ admin user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when("user/ admin user lands onto “Patient Login” screen", async () => {
-      landOnPatientPortalScreen()
+      landOnPatientPortalScreen();
     });
     and(
       'user/admin user provides blank "<Email or Phone Number>" and valid "<password>"',
@@ -321,15 +323,15 @@ defineFeature(feature, (test) => {
     and,
   }) => {
     given("user/admin user launch the 'XXX' url", () => {
-      launchURL()
+      launchURL();
     });
 
     and("user/ admin user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when(`user/ admin user lands onto \“Patient Login\” screen`, async () => {
-      landOnPatientPortalScreen()
+      landOnPatientPortalScreen();
     });
     and(
       'user/admin user provides valid "<Email or Phone Number>" and blank "<password>"',
@@ -351,15 +353,15 @@ defineFeature(feature, (test) => {
     and,
   }) => {
     given("admin user launch the 'XXX' url", () => {
-      launchURL()
+      launchURL();
     });
 
     and("admin user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when(`admin user lands onto \“Patient Login\” screen`, async () => {
-      landOnPatientPortalScreen()
+      landOnPatientPortalScreen();
     });
 
     then('admin user should view "Login" button', () => {
@@ -385,15 +387,15 @@ defineFeature(feature, (test) => {
     and,
   }) => {
     given("user/admin user launch the 'XXX' url", () => {
-      launchURL()
+      launchURL();
     });
 
     and("user/ admin user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when(`user/ admin user lands onto \“Patient Login\” screen`, async () => {
-      landOnPatientPortalScreen()
+      landOnPatientPortalScreen();
     });
     and(
       'user/admin user provides blank "<Email or Phone Number>" and blank "<password>"',
@@ -414,10 +416,10 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user/admin user launch the 'XXX' url", () => {
-      launchURL()
+      launchURL();
     });
     when(`user/ admin user navigates to the Patient Portal application`, () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
     then("user/ admin user should view appropriate error message", () => {
       expect(true).toBeTruthy();
@@ -434,11 +436,11 @@ defineFeature(feature, (test) => {
     });
 
     and("Admin navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when(`Admin lands onto \“Patient Login\” screen`, async () => {
-      landOnPatientPortalScreen()
+      landOnPatientPortalScreen();
     });
 
     and('Admin provides "<username>" and "<password>"', () => {
@@ -469,11 +471,11 @@ defineFeature(feature, (test) => {
     });
 
     and("Admin navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when(`Admin lands onto \“Patient Login\” screen`, async () => {
-      landOnPatientPortalScreen()
+      landOnPatientPortalScreen();
     });
 
     then(
@@ -490,14 +492,14 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      launchURL()
+      launchURL();
     });
 
-    when("user navigates to the Patient 'Login' page", () => { });
+    when("user navigates to the Patient 'Login' page", () => {});
 
-    and("turn off the Data", () => { });
+    and("turn off the Data", () => {});
 
-    then("user should view appropriate error message", () => { });
+    then("user should view appropriate error message", () => {});
   });
   test("EPIC_EPP-4_STORY_EPP-206-Verify whether the page is loading with in 3 seconds", ({
     given,
@@ -506,18 +508,18 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user user launch the 'XXX' url", () => {
-      launchURL()
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when("user lands onto “Patient Login” screen", async () => {
-      landOnPatientPortalScreen()
+      landOnPatientPortalScreen();
     });
 
-    then(/^page should load in (\d+) seconds$/, (arg0) => { });
+    then(/^page should load in (\d+) seconds$/, (arg0) => {});
   });
   test("EPIC_EPP-4_STORY_EPP-206-Verify whether any error is displaying when we press F12 after navigating to the Patient Login page.", ({
     given,
@@ -526,20 +528,20 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user user launch the 'XXX' url", () => {
-      launchURL()
+      launchURL();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when("user lands onto “Patient Login” screen", async () => {
-      landOnPatientPortalScreen()
+      landOnPatientPortalScreen();
     });
 
-    and(/^press the F(\d+) button from the keyboard.$/, (arg0) => { });
+    and(/^press the F(\d+) button from the keyboard.$/, (arg0) => {});
 
-    then("none of the javascript error should be seen by the user.", () => { });
+    then("none of the javascript error should be seen by the user.", () => {});
   });
   test("EPIC_EPP-4_STORY_EPP-206-Verify whether the error message is displaying when the service is unavailable.", ({
     given,
@@ -547,21 +549,21 @@ defineFeature(feature, (test) => {
     when,
     then,
   }) => {
-    given(/^user user launch the "(.*)" url$/, (arg0) => { });
+    given(/^user user launch the "(.*)" url$/, (arg0) => {});
 
     and("user navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
-    when("the service is unavailable", () => { });
+    when("the service is unavailable", () => {});
 
     and("user lands on “Patient Login” screen", async () => {
-      landOnPatientPortalScreen()
+      landOnPatientPortalScreen();
     });
 
     then(
       /^error message '(\d+) - Server is not ready to handle the request' should get display.$/,
-      (arg0) => { }
+      (arg0) => {}
     );
   });
   test("EPIC_EPP-4_STORY_EPP-206-Verify whether the Password is getting mask when Admin typing the Password.", ({
@@ -570,18 +572,18 @@ defineFeature(feature, (test) => {
     when,
     then,
   }) => {
-    given("Admin launch the 'XXX' url", () => { });
+    given("Admin launch the 'XXX' url", () => {});
 
     and("Admin navigates to the Patient Portal application", () => {
-      navigateToPatientPortalApp()
+      navigateToPatientPortalApp();
     });
 
     when("Admin lands onto “Patient Login” screen", async () => {
-      landOnPatientPortalScreen()
+      landOnPatientPortalScreen();
     });
 
-    and(/^Admin provides (.*) and (.*)$/, (arg0, arg1) => { });
+    and(/^Admin provides (.*) and (.*)$/, (arg0, arg1) => {});
 
-    then("entered password should be masked.", (table) => { });
+    then("entered password should be masked.", (table) => {});
   });
 });
