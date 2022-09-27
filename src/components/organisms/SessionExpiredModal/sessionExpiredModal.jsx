@@ -60,7 +60,8 @@ function SessionExpiredModal({
           }}
         >
           {!isExpired
-            ? `Your session is about to time-out. You will be logged out in ${remaining} seconds.`
+            ? // ? `Your session is about to time-out. You will be logged out in ${remaining} seconds.`
+              `Your session is about to time-out. You will be logged out in 60 seconds.`
             : "Your session expired. Please login again."}
         </FormMessage>
       </DialogContent>
