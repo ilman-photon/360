@@ -13,6 +13,7 @@ import Appointments from "../../src/pages/patient/appointments";
 import RescheduleAppointments from "../../src/pages/patient/appointments/[appointmentId]/reschedule";
 
 import { getServerSideProps } from "../../src/pages/patient/mfa";
+import { TEST_ID } from "../../src/utils/constants";
 
 const MOCK_APPOINTMENT = {
   appointmentList: [
@@ -618,9 +619,9 @@ defineFeature(feature, (test) => {
     });
 
     and("user clicks on the reschedule an appointment", async () => {
-      const rescheduleButton = container.getAllByRole("button", {
-        name: "Reschedule",
-      })[0];
+      const rescheduleButton = container.getAllByTestId(
+        TEST_ID.APPOINTMENTS_TEST_ID.cancelAppointmentButton
+      )[0];
       fireEvent.click(rescheduleButton);
 
       renderReschedule();
@@ -1213,9 +1214,9 @@ defineFeature(feature, (test) => {
     });
 
     and("user clicks on the reschedule the appointment", async () => {
-      const rescheduleButton = container.getAllByRole("button", {
-        name: "Reschedule",
-      })[0];
+      const rescheduleButton = container.getAllByTestId(
+        TEST_ID.APPOINTMENTS_TEST_ID.cancelAppointmentButton
+      )[0];
       fireEvent.click(rescheduleButton);
 
       renderReschedule();
@@ -1328,9 +1329,9 @@ defineFeature(feature, (test) => {
     });
 
     and("user clicks on the reschedule the appointment", async () => {
-      const rescheduleButton = container.getAllByRole("button", {
-        name: "Reschedule",
-      })[0];
+      const rescheduleButton = container.getAllByTestId(
+        TEST_ID.APPOINTMENTS_TEST_ID.cancelAppointmentButton
+      )[0];
       fireEvent.click(rescheduleButton);
 
       renderReschedule();
