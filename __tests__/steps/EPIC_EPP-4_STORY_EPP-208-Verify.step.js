@@ -10,7 +10,7 @@ jest.mock("universal-cookie", () => {
   class MockCookies {
     static result = {};
     get(param) {
-      if (param === "username") return "user1@photon.com"
+      if (param === "username") return "user1@photon.com";
 
       return MockCookies.result;
     }
@@ -39,65 +39,65 @@ defineFeature(feature, (test) => {
     mock.reset();
   });
 
-  test('EPIC_EPP-4_STORY_EPP-208-Verify whether the "Invalid Username or Password" error message is displaying when user provides Invalid Email or Phone Number and Valid Password', ({
-    given,
-    when,
-    then,
-    and,
-  }) => {
-    given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
-    });
+  // test('EPIC_EPP-4_STORY_EPP-208-Verify whether the "Invalid Username or Password" error message is displaying when user provides Invalid Email or Phone Number and Valid Password', ({
+  //   given,
+  //   when,
+  //   then,
+  //   and,
+  // }) => {
+  //   given("user launch the 'XXX' url", () => {
+  //     expect(true).toBeTruthy();
+  //   });
 
-    and("user navigates to the Patient Portal application", () => {
-      const expectedResult = {
-        ResponseCode: 2001,
-        ResponseType: "failure",
-        userType: "patient",
-      };
-      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
-    });
+  //   and("user navigates to the Patient Portal application", () => {
+  //     const expectedResult = {
+  //       ResponseCode: 2001,
+  //       ResponseType: "failure",
+  //       userType: "patient",
+  //     };
+  //     mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
+  //   });
 
-    when("user lands onto “Patient Login” screen", () => {
-      // mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
-      act(() => {
-        container = render(<AuthPage />, {
-          container: document.body.appendChild(element),
-          legacyRoot: true,
-        });
-      });
-      const title = container.getByText("formTitle");
-      expect("formTitle").toEqual(title.textContent);
-    });
+  // when("user lands onto “Patient Login” screen", () => {
+  //   // mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
+  //   act(() => {
+  //     container = render(<AuthPage />, {
+  //       container: document.body.appendChild(element),
+  //       legacyRoot: true,
+  //     });
+  //   });
+  //   const title = container.getByText("formTitle");
+  //   expect("formTitle").toEqual(title.textContent);
+  // });
 
-    and(
-      'user provides invalid  "<Email or Phone Number>" and valid "<password>"',
-      () => {
-        const usernameField = container.getByLabelText("emailUserLabel");
-        const passwordField = container.getByLabelText("passwordLabel");
-        fireEvent.change(usernameField, { target: { value: "wrongUserName@email.cc" } });
-        fireEvent.change(passwordField, { target: { value: "validPassword" } });
-        expect(usernameField.value).not.toEqual("validUsername@email.cc");
-        expect(passwordField.value).toEqual("validPassword");
-      }
-    );
+  //   and(
+  //     'user provides invalid  "<Email or Phone Number>" and valid "<password>"',
+  //     () => {
+  //       const usernameField = container.getByLabelText("emailUserLabel");
+  //       const passwordField = container.getByLabelText("passwordLabel");
+  //       fireEvent.change(usernameField, { target: { value: "wrongUserName@email.cc" } });
+  //       fireEvent.change(passwordField, { target: { value: "validPassword" } });
+  //       expect(usernameField.value).not.toEqual("validUsername@email.cc");
+  //       expect(passwordField.value).toEqual("validPassword");
+  //     }
+  //   );
 
-    and('user clicks on "Login" Button', async () => {
-      const login = container.getByRole("button", { name: /Login/i });
-      fireEvent.click(login);
-      await waitFor(() => container.getByTestId("submission-message"));
-    });
+  //   and('user clicks on "Login" Button', async () => {
+  //     const login = container.getByRole("button", { name: /Login/i });
+  //     fireEvent.click(login);
+  //     await waitFor(() => container.getByTestId("submission-message"));
+  //   });
 
-    then(
-      'user should see the error message "Invalid Username or Password"',
-      () => {
-        const submissionMessage = container.getByTestId("submission-message");
-        expect("Invalid Username or Password").toEqual(
-          submissionMessage.textContent
-        );
-      }
-    );
-  });
+  //   then(
+  //     'user should see the error message "Invalid Username or Password"',
+  //     () => {
+  //       const submissionMessage = container.getByTestId("submission-message");
+  //       expect("Invalid Username or Password").toEqual(
+  //         submissionMessage.textContent
+  //       );
+  //     }
+  //   );
+  // });
 
   test("EPIC_EPP-4_STORY_EPP-208-Verify whether the Password field is accepting 8 characters", ({
     given,

@@ -46,6 +46,7 @@ Object {
         </header>
         <div
           class="titleHeadingWrapper"
+          style="position: fixed;"
         >
           <div
             aria-label="Your Account heading"
@@ -233,7 +234,7 @@ Object {
                   class="MuiBox-root css-8u5xrh"
                 >
                   <div
-                    class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1v5z4dq-MuiPaper-root-MuiCard-root"
+                    class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1yepo06-MuiPaper-root-MuiCard-root"
                   >
                     <div
                       class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
@@ -1298,6 +1299,7 @@ Object {
       </header>
       <div
         class="titleHeadingWrapper"
+        style="position: fixed;"
       >
         <div
           aria-label="Your Account heading"
@@ -1485,7 +1487,7 @@ Object {
                 class="MuiBox-root css-8u5xrh"
               >
                 <div
-                  class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1v5z4dq-MuiPaper-root-MuiCard-root"
+                  class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1yepo06-MuiPaper-root-MuiCard-root"
                 >
                   <div
                     class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
