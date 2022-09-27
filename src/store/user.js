@@ -63,14 +63,25 @@ const buildProfilePostBody = (postBody, payload) => {
   };
 };
 
-const buildInsurancePostBody = (postBody, payload) => {
+const buildDigitalAssetObject = (payload) => {
+  return {
+    uid: payload._id,
+    fileName: payload.name,
+    metaInfo: {},
+    _version: payload._version,
+  };
+};
+
+const buildInsurancePostBody = (postBody = {}, payload = {}) => {
   console.log({ postBody, payload });
   const subscriberData = payload.subscriberData;
   const subscriberDob = subscriberData.dob
     ? new moment(subscriberData.dob).format("MM/DD/YYYY")
     : null;
   return {
-    ...postBody,
+    // ...postBody,
+    _version: postBody._version,
+    insuranceType: "VISION",
     group: payload.groupID,
     isPatientSubscriber: payload.isSubscriber === "Yes",
     priority: payload.priority,
@@ -87,11 +98,17 @@ const buildInsurancePostBody = (postBody, payload) => {
       ...postBody.subscriber,
       firstName: subscriberData.firstName,
       lastName: subscriberData.lastName,
-      dob: subscriberDob, // MM/DD/YYYY
+      dob: subscriberDob, // MM/DD/YYYY,
+      _id: payload.memberID,
     },
-    // TODO later when image handler & data are ready
-    // backCard: payload.backCard,
-    // frontCard: payload.backCard,
+    digitalAssets: {
+      master_front: payload.frontCard.uid
+        ? payload.frontCard
+        : buildDigitalAssetObject(payload.frontCard),
+      master_back: payload.backCard.uid
+        ? payload.backCard
+        : buildDigitalAssetObject(payload.backCard),
+    },
   };
 };
 
@@ -100,7 +117,7 @@ export const fetchUser = createAsyncThunk(
   async ({ token }) => {
     const api = new Api();
     return api.getResponse(
-      "/ecp/patient/getPatient/9a76d8d6-f5ae-4a22-8cc0-3454bb688d20",
+      "/ecp/patient/getPatient/59f43690-807f-4522-a615-e4b3b9ed8434",
       null,
       "get",
       token
@@ -115,7 +132,7 @@ export const updateUser = createAsyncThunk(
     try {
       // get the userData first, just to make sure
       const res = await api.getResponse(
-        "/ecp/patient/getPatient/9a76d8d6-f5ae-4a22-8cc0-3454bb688d20",
+        "/ecp/patient/getPatient/59f43690-807f-4522-a615-e4b3b9ed8434",
         null,
         "get",
         token
@@ -123,7 +140,7 @@ export const updateUser = createAsyncThunk(
       // then apply changes from our side with response body from "res" and do a PUT request
       const postBody = buildProfilePostBody(res, payload);
       const response = await api.getResponse(
-        "/ecp/patient/editPatient/9a76d8d6-f5ae-4a22-8cc0-3454bb688d20",
+        "/ecp/patient/editPatient/59f43690-807f-4522-a615-e4b3b9ed8434",
         postBody,
         "put",
         token
@@ -156,9 +173,14 @@ export const updateInsurance = createAsyncThunk(
   async ({ token, payload, patientId, coverageId }, { getState }) => {
     const api = new Api();
     const state = getState();
-    const foundIndex =
-      state.user.rawUserInsuranceData.findIndex((v) => v._id === coverageId) +
-      1;
+    const foundIndex = state.user.rawUserInsuranceData.findIndex(
+      (v) => v._id === coverageId
+    ); // +1;
+    console.log(
+      "found",
+      foundIndex,
+      state.user.rawUserInsuranceData[foundIndex]
+    );
     try {
       const postBody = buildInsurancePostBody(
         state.user.rawUserInsuranceData[foundIndex],
@@ -300,7 +322,7 @@ const buildUserInsuranceData = (payload) => {
   const insurances = payload.entities;
   return insurances.map((insurance) => {
     const subscriberData = insurance.subscriber;
-    // const digitalAssets = insurance.digitalAssets;
+    const digitalAssets = insurance.digitalAssets;
     return {
       id: insurance._id,
       provider: {
@@ -313,8 +335,8 @@ const buildUserInsuranceData = (payload) => {
         label: insurance.plan.name,
         value: insurance.plan.name,
       },
-      // memberID: subscriberData._id,
-      memberID: "",
+      memberID: subscriberData._id,
+      // memberID: "",
       groupID: insurance.group,
       isSubscriber: insurance.isPatientSubscriber ? "Yes" : "No",
       subscriberData: {
@@ -327,8 +349,8 @@ const buildUserInsuranceData = (payload) => {
       // frontCard: "/transparent.png",
       // backCard: "/transparent.png",
       // TODO later only images
-      frontCard: digitalAssets.master_front,
-      backCard: digitalAssets.master_back,
+      frontCard: digitalAssets ? digitalAssets.master_front : {},
+      backCard: digitalAssets ? digitalAssets.master_back : {},
     };
   });
 };
@@ -414,12 +436,15 @@ const userSlice = createSlice({
     setUserInsuranceData: (state, { payload }) => {
       state.userInsuranceData = payload;
     },
-    setUserInsuranceDataByIndex: (state, { payload }) => {
-      state.userInsuranceData = state.userInsuranceData.map((item, idx) => {
-        if (payload.id === idx) {
+    setUserInsuranceDataById: (state, { payload }) => {
+      const statePayload = state.rawUserInsuranceData.map((item, idx) => {
+        if (payload._id === item._id) {
           item = payload;
         }
         return item;
+      });
+      state.userInsuranceData = buildUserInsuranceData({
+        entities: statePayload,
       });
     },
     addUserInsuranceData: (state, { payload }) => {
@@ -491,7 +516,7 @@ export const {
   addUserInsuranceData,
   resetUserInsuranceData,
   removeUserInsuranceData,
-  setUserInsuranceDataByIndex,
+  setUserInsuranceDataById,
   resetUserAppointmentData,
   setUserAppointmentData,
   setUserAppointmentDataByIndex,

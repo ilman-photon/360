@@ -18,7 +18,7 @@ export class Api {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      timeout: 10000,
+      // timeout: 10000,
     });
 
     this.requestCounter = 0;

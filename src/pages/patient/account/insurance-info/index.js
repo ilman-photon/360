@@ -7,6 +7,7 @@ import {
   fetchInsurance,
   postInsurance,
   removeUserInsuranceData,
+  setUserInsuranceDataById,
   updateInsurance,
 } from "../../../../store/user";
 import FormMessage from "../../../../components/molecules/FormMessage/formMessage";
@@ -143,12 +144,16 @@ export default function InsuranceInfoPage() {
     const { payload } = await dispatch(
       updateInsurance({
         token: cookies.get("accessToken"),
-        patientId: "9a76d8d6-f5ae-4a22-8cc0-3454bb688d20", // hardcoded patient id
+        patientId: "59f43690-807f-4522-a615-e4b3b9ed8434", // hardcoded patient id
         coverageId: postBody.id,
         payload: postBody,
       })
     );
     if (payload.success) {
+      // after effect to edit state of rawuserinsuranceData manually and rebuild
+      dispatch(setUserInsuranceDataById(payload.response));
+
+      // show messages or anything
       showSuccessMessage("Your changes were saved");
       setEditForm(null);
       setIsEditing(false);
@@ -185,7 +190,7 @@ export default function InsuranceInfoPage() {
     dispatch(
       fetchInsurance({
         token: cookies.get("accessToken"),
-        patientId: "0f8baebc-7820-497b-8e27-a7356adce58c", // hardcoded patientId
+        patientId: "59f43690-807f-4522-a615-e4b3b9ed8434", // hardcoded patientId
       })
     );
 

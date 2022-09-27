@@ -107,19 +107,15 @@ export default function InsuranceForm({
 
   const handleCancel = () => {
     OnCancelClicked();
-    reset(DEFAULT_INSURANCE_DATA);
+    reset(formData);
     setFormCardFrontState(DEFAULT_FORM_FIELD_STATE);
     setFormCardBackState(DEFAULT_FORM_FIELD_STATE);
   };
 
   const onSubmit = (data) => {
     OnSaveClicked(data);
-    if (isError !== false) reset(DEFAULT_INSURANCE_DATA);
+    if (isError !== false) reset(formData);
   };
-
-  const EmptyGrid = () => (
-    <Grid item xs={12} md={4} sx={{ display: { xs: "none", md: "flex" } }} />
-  );
 
   const DisclaimerText = (data) => {
     return (
@@ -133,7 +129,7 @@ export default function InsuranceForm({
           paddingLeft: 2,
           display: "inline-flex",
           alignItems: "center",
-          color: "#49454F",
+          color: "#424747",
         }}
       >
         {data.label}
@@ -229,10 +225,12 @@ export default function InsuranceForm({
                 }}
                 rules={{
                   required: "This field is required",
-                  validate: {
-                    isNumber: (v) =>
-                      Regex.numberOnly.test(v) || "Invalid format",
-                  },
+                  // REMINDER !! this validation is disabled for testing integration purpose, not based on story
+                  // change back after solution are found
+                  // validate: {
+                  //   isNumber: (v) =>
+                  //     Regex.numberOnly.test(v) || "Invalid format",
+                  // },
                 }}
               />
             </Grid>
@@ -273,7 +271,9 @@ export default function InsuranceForm({
 
           <Divider />
 
-          <Typography variant="grayscaleBlack">Policy Holder</Typography>
+          <Typography variant="h3" sx={{ pb: 2, color: colors.black }}>
+            Policy Holder
+          </Typography>
 
           <Controller
             name="isSubscriber"
@@ -375,7 +375,7 @@ export default function InsuranceForm({
                     />
                   </Grid>
 
-                  <EmptyGrid />
+                  <Grid item xs={12} md={4} sx={{ visibility: "hidden" }} />
 
                   <Grid
                     item
@@ -394,9 +394,8 @@ export default function InsuranceForm({
                           <>
                             <StyledInput
                               disableFuture
-                              tabIndex={0}
                               type="dob"
-                              label="Subscriber Date of Birth field"
+                              label="Subscriber Date of Birth"
                               value={value}
                               onChange={onChange}
                               error={!!error}
@@ -424,8 +423,8 @@ export default function InsuranceForm({
                     />
                   </Grid>
 
-                  <EmptyGrid />
-                  <EmptyGrid />
+                  <Grid item xs={12} md={4} sx={{ visibility: "hidden" }} />
+                  <Grid item xs={12} md={4} sx={{ visibility: "hidden" }} />
 
                   <Grid
                     item
@@ -469,12 +468,8 @@ export default function InsuranceForm({
             </Stack>
           </Collapse>
 
-          <Typography
-            variant="bodyLarge"
-            component="div"
-            sx={{ lineHeight: "28px", color: "#292929" }}
-          >
-            Upload images of your insurance
+          <Typography variant="bodyRegular" component="div">
+            Upload images of your insurance.
           </Typography>
 
           <Grid
@@ -510,13 +505,12 @@ export default function InsuranceForm({
                       OnUpload={onChange}
                       OnInputError={onFormCardFrontError}
                       testIds={testIds.uploadFrontImage}
-                      source={formData?.frontCard?.source || null}
-                      preview={value?.presignedUrl}
+                      source={value}
+                      // preview={value?.presignedUrl}
                       label="Upload Front"
                       width="100%"
                       src="/login-bg.png"
                       alt=""
-                      labelVariant="mediumBlueNavy"
                       helperText={
                         isMobile
                           ? "*JPG or PNG file formats only. (File size limit is 4 MB)"
@@ -555,14 +549,13 @@ export default function InsuranceForm({
                     <ImageUploader
                       OnUpload={onChange}
                       OnInputError={onFormCardBackError}
-                      source={formData?.backCard?.source || null}
-                      preview={value?.presignedUrl}
+                      source={value}
+                      // preview={value?.presignedUrl}
                       testIds={testIds.uploadBackImage}
                       label="Upload Back"
                       width="100%"
                       src="/login-bg.png"
                       alt=""
-                      labelVariant="mediumBlueNavy"
                       helperText={
                         isMobile
                           ? "*JPG or PNG file formats only. (File size limit is 4 MB)"
@@ -576,9 +569,10 @@ export default function InsuranceForm({
             {isDesktop ? (
               <Grid item xs={12} md={8}>
                 <Typography
-                  variant="bodySmallItalic"
+                  variant="bodySmallMedium"
                   component="div"
                   sx={{
+                    fontStyle: "italic",
                     textAlign: "right",
                     marginLeft: "auto",
                   }}

@@ -13,10 +13,10 @@ import { colors } from "../../../styles/theme";
 import Image from "../../atoms/Image/image";
 import { Regex } from "../../../utils/regex";
 import DigitalAssetsHandler from "../../../utils/digitalAssetsHandler";
+import { useEffect } from "react";
 
 export const ImageUploader = ({
   label,
-  preview,
   helperText = false,
   source,
   OnUpload = () => {
@@ -29,18 +29,26 @@ export const ImageUploader = ({
   labelVariant = "bodyRegular",
 }) => {
   const [loading, setLoading] = useState(false);
+  const [preview, setPreview] = useState(null);
+  const [imageSource, setImageSource] = useState(null);
   const inputImage = useRef(null);
   const digitalAsset = new DigitalAssetsHandler();
   const isDesktop = useMediaQuery("(min-width: 769px)");
 
-  const sourceURL = () => {
-    if (!source) return;
-    return digitalAsset.source.presignedUrl;
+  useEffect(() => {
+    setImageSource(preview);
+  }, [preview]);
+
+  const fetchImageURL = async () => {
+    digitalAsset.setSource(source);
+    const src = await digitalAsset.fetchSourceURL();
+    setImageSource(src.presignedUrl);
   };
 
-  const imageUrlSource = () => {
-    return preview || sourceURL();
-  };
+  useEffect(() => {
+    if (source) fetchImageURL();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [source]);
 
   const shimmer = (w, h) => `
     <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -62,9 +70,9 @@ export const ImageUploader = ({
       : window.btoa(str);
 
   const renderBasedOnImgSource = () => {
-    return imageUrlSource() ? (
+    return imageSource ? (
       <Image
-        src={imageUrlSource()}
+        src={imageSource || null}
         width={275}
         height={173}
         style={{ borderRadius: 4 }}
@@ -135,6 +143,7 @@ export const ImageUploader = ({
           await digitalAsset.upload();
           if (digitalAsset.status) {
             OnUpload(digitalAsset.source);
+            setPreview(digitalAsset.source.presignedUrl);
           }
         } catch (error) {
           console.error("Error when uploading", error);
@@ -176,7 +185,7 @@ export const ImageUploader = ({
         ""
       )}
 
-      {imageUrlSource() ? (
+      {imageSource ? (
         <Button
           variant="text"
           sx={{

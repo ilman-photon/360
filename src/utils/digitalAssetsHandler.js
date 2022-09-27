@@ -17,14 +17,18 @@ export default class DigitalAssetHandler {
     this.file = payload;
   };
 
+  setSource = (payload) => {
+    this.source = payload;
+  };
+
   readBinaryFile = async () => {
     // Read into an array buffer, create
     this.bufferFile = await this.file.arrayBuffer();
   };
 
   fetchURLFromDigitalAsset = () => {
-    if (!this.source._id) return;
-    return api.getURLDigitalAsset(this.source._id);
+    if (!this.source._id && !this.source.uid) return;
+    return api.getURLDigitalAsset(this.source._id || this.source.uid);
   };
   fetchSourceURL = () => {
     if (!this.source) return;
@@ -39,6 +43,7 @@ export default class DigitalAssetHandler {
       console.error(`Error reading file:`, error);
     });
     this.source = await this.createDigitalAsset();
+    console.log("source digital", { source: this.source });
     if (this.source) {
       const { success } = await api.uploadFile(
         this.source.presignedUrl,
@@ -46,6 +51,7 @@ export default class DigitalAssetHandler {
       );
       this.status = success ? "success" : "failed";
       this.source = await this.fetchSourceURL();
+      console.log("source fetch", { source: this.source });
     }
   };
 }

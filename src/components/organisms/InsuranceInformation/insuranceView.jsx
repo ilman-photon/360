@@ -197,7 +197,7 @@ export default function InsuranceView({
                                   <Image
                                     width={263}
                                     height={139}
-                                    source={`/${item.frontCard?.fileName}`}
+                                    source={item.frontCard?.source || null}
                                     placeholder="blur"
                                     blurDataURL="/transparent.png"
                                     alt="front"
@@ -215,17 +215,17 @@ export default function InsuranceView({
                                 >
                                   Insurance Card - Back
                                 </Typography>
-                                {/* <div className={styles.insuranceImageContainer}>
+                                <div className={styles.insuranceImageContainer}>
                                   <Image
                                     width={263}
                                     height={139}
-                                    src={`/${item.backCard?.fileName}`}
+                                    src={item.frontCard?.source || null}
                                     placeholder="blur"
                                     blurDataURL="/transparent.png"
                                     alt="back"
                                     className={styles.insuranceImage}
                                   />
-                                </div> */}
+                                </div>
                               </Grid>
                             </Grid>
                           </div>
