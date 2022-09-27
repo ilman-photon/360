@@ -504,7 +504,7 @@ Object {
                             for=":ra:"
                             id=":ra:-label"
                           >
-                            Subscriber Date of Birth
+                            Subscriber Date of Birth field
                           </label>
                           <div
                             class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
@@ -1515,7 +1515,7 @@ Object {
                           for=":ra:"
                           id=":ra:-label"
                         >
-                          Subscriber Date of Birth
+                          Subscriber Date of Birth field
                         </label>
                         <div
                           class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"

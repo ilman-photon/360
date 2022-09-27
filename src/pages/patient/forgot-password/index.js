@@ -256,7 +256,7 @@ export default function ForgotPasswordPage() {
 
     const isEmail = username.match(Regex.isEmailCorrect);
     const maskedEmail = username.replace(
-      /^(..)(.*)(@.*)$/,
+      Regex.maskingEmail,
       (_, a, b, c) => a + b.replace(/./g, "*") + c
     );
     const maskedPhoneNumber = formatPhoneNumber(username, true, true);

@@ -240,14 +240,16 @@ export const CustomInput = styled(({ ...props }) => {
               disabled={props.disabled}
               disableFuture={props.disableFuture}
               disablePast={props.disablePast}
+              ariaLabel={props.label}
+              ariaLive={props.label}
               label={props.label}
               onChange={props.onChange}
               value={props.value}
-              components={{
-                OpenPickerIcon: function () {
-                  return null;
-                },
-              }}
+              // components={{
+              //   OpenPickerIcon: function () {
+              //     return null;
+              //   },
+              // }}
               renderInput={(params) => (
                 <RedditTextField
                   variant="filled"
