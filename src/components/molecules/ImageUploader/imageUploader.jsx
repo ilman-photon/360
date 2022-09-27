@@ -4,8 +4,10 @@ import {
   CircularProgress,
   Stack,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
+import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import { useRef, useState } from "react";
 import { colors } from "../../../styles/theme";
 import Image from "../../atoms/Image/image";
@@ -24,10 +26,12 @@ export const ImageUploader = ({
     // This is intended
   },
   testIds,
+  labelVariant = "bodyRegular",
 }) => {
   const [loading, setLoading] = useState(false);
   const inputImage = useRef(null);
   const digitalAsset = new DigitalAssetsHandler();
+  const isDesktop = useMediaQuery("(min-width: 769px)");
 
   const sourceURL = () => {
     if (!source) return;
@@ -84,8 +88,12 @@ export const ImageUploader = ({
         variant="outlined"
       >
         <Stack direction="row" alignItems="center" spacing={1}>
-          <CameraAltOutlinedIcon sx={{ width: 16, height: 16 }} />
-          <Typography variant="regularBold">{label}</Typography>
+          {isDesktop ? (
+            <FileUploadOutlinedIcon sx={{ width: 16, height: 16 }} />
+          ) : (
+            <CameraAltOutlinedIcon sx={{ width: 16, height: 16 }} />
+          )}
+          <Typography variant={labelVariant}>{label}</Typography>
         </Stack>
       </Button>
     );
@@ -161,7 +169,7 @@ export const ImageUploader = ({
         </>
       </Box>
       {helperText ? (
-        <Typography variant="bodySmallMedium">
+        <Typography variant="bodySmallLightMedium">
           *JPG or PNG file formats only. (File size limit is 4 MB)
         </Typography>
       ) : (

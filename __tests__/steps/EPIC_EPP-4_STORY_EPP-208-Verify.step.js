@@ -10,7 +10,7 @@ jest.mock("universal-cookie", () => {
   class MockCookies {
     static result = {};
     get(param) {
-      if (param === "username") return "user1@photon.com"
+      if (param === "username") return "user1@photon.com";
 
       return MockCookies.result;
     }
@@ -59,7 +59,9 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
+      mock
+        .onGet(`https://api.ipify.org?format=json`)
+        .reply(200, { ip: "10.10.10.10" });
       act(() => {
         container = render(<AuthPage />, {
           container: document.body.appendChild(element),
@@ -75,7 +77,9 @@ defineFeature(feature, (test) => {
       () => {
         const usernameField = container.getByLabelText("emailUserLabel");
         const passwordField = container.getByLabelText("passwordLabel");
-        fireEvent.change(usernameField, { target: { value: "wrongUserName@email.cc" } });
+        fireEvent.change(usernameField, {
+          target: { value: "wrongUserName@email.cc" },
+        });
         fireEvent.change(passwordField, { target: { value: "validPassword" } });
         expect(usernameField.value).not.toEqual("validUsername@email.cc");
         expect(passwordField.value).toEqual("validPassword");

@@ -14,6 +14,7 @@ import { Box } from "@mui/material";
 import globalStyles from "../../../styles/Global.module.scss";
 import { useRouter } from "next/router";
 import { Regex } from "../../../utils/regex";
+import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 
 let confirmationFormProps = {
   title: constants.EMPTY_STRING,
@@ -254,9 +255,15 @@ export default function ForgotPasswordPage() {
     };
 
     const isEmail = username.match(Regex.isEmailCorrect);
+    const maskedEmail = username.replace(
+      Regex.maskingEmail,
+      (_, a, b, c) => a + b.replace(/./g, "*") + c
+    );
+    const maskedPhoneNumber = formatPhoneNumber(username, true, true);
     const subtitle = isEmail
-      ? `Check ${username}  for an email to set up your password.`
-      : `Check ${username} for a link to set up your password.`;
+      ? `Check ${maskedEmail}  for an email to set up your password.`
+      : `Check ${maskedPhoneNumber} for a link to set up your password.`;
+    console.log(subtitle, "sub ");
     const postMessage = isEmail
       ? `Link sent to your email`
       : `Link sent to your phone number`;

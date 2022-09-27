@@ -490,6 +490,7 @@ const FilterHeading = ({
   insuranceCarrierData = [],
   title = "",
   subtitle = "",
+  isFixed = true,
 }) => {
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
   const { handleSubmit, control } = useForm({
@@ -784,7 +785,10 @@ const FilterHeading = ({
     return (
       <Box
         className={styles.titleHeadingWrapper}
-        sx={{ height: title && subtitle ? "200px" : "151px" }}
+        sx={{
+          height: title && subtitle ? "200px" : "151px",
+          position: isFixed ? "fixed" : "relative",
+        }}
       >
         <Box
           className={styles.centeredElement}

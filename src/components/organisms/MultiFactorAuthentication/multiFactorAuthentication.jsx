@@ -18,7 +18,10 @@ export default function MultiFactorAuthentication({
   const [mfaCode, setMfaCode] = React.useState("");
   const image = "/mail-mfa.png";
 
-  const { t } = useTranslation("translation", { keyPrefix: "mfaPage" });
+  const { t } = useTranslation("translation", {
+    keyPrefix: "mfaPage",
+    useSuspense: false,
+  });
 
   const content = () => {
     return (
