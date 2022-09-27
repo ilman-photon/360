@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="css-nplzvf-MuiStack-root"
+        class="css-zvyj3o-MuiStack-root"
       >
         <div
           class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 css-a5rdam-MuiGrid-root"
@@ -66,13 +66,13 @@ Object {
                   <div
                     class="bioContainer customBioContainer MuiBox-root css-1oovyp6"
                   >
-                    <h2
-                      class="MuiTypography-root MuiTypography-h2 css-1i5ehwd-MuiTypography-root"
+                    <h4
+                      class="MuiTypography-root MuiTypography-h4 css-1ed8v3f-MuiTypography-root"
                       data-testid="appointment_provider_profile_name"
                       tabindex="0"
                     >
                       Paul Wagner Md
-                    </h2>
+                    </h4>
                     <div
                       class="detailContainer MuiBox-root css-0"
                     >
@@ -469,7 +469,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="css-nplzvf-MuiStack-root"
+      class="css-zvyj3o-MuiStack-root"
     >
       <div
         class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 css-a5rdam-MuiGrid-root"
@@ -529,13 +529,13 @@ Object {
                 <div
                   class="bioContainer customBioContainer MuiBox-root css-1oovyp6"
                 >
-                  <h2
-                    class="MuiTypography-root MuiTypography-h2 css-1i5ehwd-MuiTypography-root"
+                  <h4
+                    class="MuiTypography-root MuiTypography-h4 css-1ed8v3f-MuiTypography-root"
                     data-testid="appointment_provider_profile_name"
                     tabindex="0"
                   >
                     Paul Wagner Md
-                  </h2>
+                  </h4>
                   <div
                     class="detailContainer MuiBox-root css-0"
                   >
