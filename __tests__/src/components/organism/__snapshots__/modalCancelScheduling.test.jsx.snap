@@ -10,7 +10,7 @@ Object {
       aria-hidden="true"
     />
     <div
-      class="MuiDialog-root modalDialog MuiModal-root css-i3g3nq-MuiModal-root-MuiDialog-root"
+      class="MuiDialog-root modalDialog MuiModal-root css-1ulhvbw-MuiModal-root-MuiDialog-root"
       role="presentation"
     >
       <div
@@ -35,7 +35,7 @@ Object {
           role="dialog"
         >
           <div
-            class="boxModalContents MuiBox-root css-17wkslb"
+            class="boxModalContents MuiBox-root css-68zbsl"
           >
             <span
               class="MuiTypography-root MuiTypography-bodyMedium scheduledText css-37jdci-MuiTypography-root"

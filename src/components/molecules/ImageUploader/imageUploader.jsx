@@ -1,5 +1,6 @@
-import { Box, Button, Stack, Typography } from "@mui/material";
+import { Box, Button, Stack, Typography, useMediaQuery } from "@mui/material";
 import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
+import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import { useRef } from "react";
 import { colors } from "../../../styles/theme";
 import Image from "next/image";
@@ -17,8 +18,10 @@ export const ImageUploader = ({
     // This is intended
   },
   testIds,
+  labelVariant = "bodyRegular",
 }) => {
   const inputImage = useRef(null);
+  const isDesktop = useMediaQuery("(min-width: 769px)");
 
   const handleInputChange = (event) => {
     const max = 4;
@@ -94,8 +97,12 @@ export const ImageUploader = ({
               variant="outlined"
             >
               <Stack direction="row" alignItems="center" spacing={1}>
-                <CameraAltOutlinedIcon sx={{ width: 16, height: 16 }} />
-                <Typography variant="regularBold">{label}</Typography>
+                {isDesktop ? (
+                  <FileUploadOutlinedIcon sx={{ width: 16, height: 16 }} />
+                ) : (
+                  <CameraAltOutlinedIcon sx={{ width: 16, height: 16 }} />
+                )}
+                <Typography variant={labelVariant}>{label}</Typography>
               </Stack>
             </Button>
           )}
@@ -110,7 +117,7 @@ export const ImageUploader = ({
         </>
       </Box>
       {helperText ? (
-        <Typography variant="bodySmallMedium">
+        <Typography variant="bodySmallLightMedium">
           *JPG or PNG file formats only. (File size limit is 4 MB)
         </Typography>
       ) : (

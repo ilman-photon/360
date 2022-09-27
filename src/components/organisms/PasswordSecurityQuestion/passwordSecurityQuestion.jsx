@@ -30,38 +30,27 @@ const PasswordSecurityQuestion = ({
     keyPrefix: "PasswordSecurityQuestion",
   });
   const { handleSubmit, control } = useForm();
-  const [countLock, setCountLock] = useState(0);
   const [postMessage, setPostMessage] = useState({ title: "", message: "" });
   const { FORGOT_TEST_ID } = constants.TEST_ID;
   const onSubmit = (data) => {
-    let isValid = true;
-    for (let i = 0; i < securityQuestionData.length; i++) {
-      if (
-        securityQuestionData[i]["Answer"] &&
-        securityQuestionData[i]["Answer"].toLowerCase() !==
-          data[`securityQuestion${i}`].toLowerCase()
-      ) {
-        isValid = false;
-        setCountLock(countLock + 1);
-        break;
-      }
-    }
-
-    if (!isValid) {
-      if (countLock >= constants.ACCOUNT_LOCK_COUNT) {
+    const callback = (err) => {
+      if (err.ResponseCode === 2004) {
         setPostMessage({
           title: t("errorAccountLockTitle"),
           message: t("errorAccountLock"),
         });
-        setShowPostMessage(true);
       } else {
         setPostMessage({ title: "", message: t("errorIncorrectAnswer") });
-        setShowPostMessage(true);
       }
-    } else {
-      //TO DO: Navigate to update password
-      onContinueButtonClicked("updatePassword", router);
+
+      setShowPostMessage(true);
+    };
+    const questionAnswer = {};
+    for (let i = 0; i < Object.keys(data).length; i++) {
+      questionAnswer[securityQuestionData[i][`Question`]] =
+        data[`securityQuestion${i}`];
     }
+    onContinueButtonClicked(questionAnswer, callback, router);
   };
 
   return (

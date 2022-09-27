@@ -10,8 +10,35 @@
   width: 14px;
 }
 
+.tabImageContainerViewAll {
+  margin-right: 8px;
+  height: 21px;
+  width: 21px;
+}
+
 .flexDisplay {
   display: flex;
+
+  .paddingTop22 {
+    padding-top: 22px;
+  }
+
+  .glassesViewAll {
+    font-family: "Bw Nista Geometric DEMO", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 28px;
+    color: #205a63;
+  }
+}
+
+.prescriptionContent {
+  padding-top: 22px;
+}
+
+.prescriptionContentMobile {
+  padding-top: 6px;
 }
 
 .spaceBetween {
@@ -22,8 +49,23 @@
   width: 50%;
 }
 
+.quarteBox {
+  width: 30%;
+}
+
 .margin {
-  margin: 10px;
+  margin: 16px 16px 0px 16px;
+  @media (max-width: 767px) {
+    margin: 8px 16px;
+  }
+}
+
+.marginTop0 {
+  margin-top: 0px;
+}
+
+.marginBottom {
+  margin-bottom: 10px;
 }
 
 .marginVertical {
@@ -57,12 +99,14 @@
   min-height: 58px;
   background: #f2f7f7;
   text-align: center;
+  margin: 0 16px;
+  color: #003b4a;
 
   .normalText {
     font-style: normal;
     font-weight: 400;
     font-size: 18px;
-    line-height: 28px;
+    line-height: 26px;
     color: #003b4a;
   }
 
@@ -72,6 +116,10 @@
     font-size: 18px;
     line-height: 28px;
     color: #003b4a;
+  }
+
+  .margin {
+    padding: 16px 16px;
   }
 }
 
@@ -99,4 +147,258 @@
 .herfItemMenu {
   display: flex;
   align-items: center;
+}
+
+.medicationViewAllContainer {
+  margin: 16px;
+  padding: 16px;
+  border: 1px solid #d4d4d4;
+  border-radius: 4px;
+  .medicationIconContainer {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 16px;
+    gap: 10px;
+
+    width: 83px;
+    height: 83px;
+
+    /* ECP/Teal-5 */
+
+    background: #eef5f7;
+    border-radius: 48px;
+  }
+  .medicationViewAllTitleContainer {
+    margin-bottom: 8px;
+    @media (max-width: 767px) {
+      margin-bottom: 24px;
+    }
+  }
+
+  .medicationViewAllTitle {
+    font-family: "Bw Nista Geometric DEMO", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 32px;
+    color: #003b4a;
+    @media (max-width: 767px) {
+      margin-right: auto;
+    }
+  }
+
+  .medicationViewAllStatus {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 8px 14px;
+    gap: 10px;
+    margin-right: 24px;
+    width: 30%;
+    background: #f4f4f4;
+    border-radius: 4px;
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    letter-spacing: 0.0016em;
+    color: #003b4a;
+    text-transform: capitalize;
+    @media (max-width: 767px) {
+      width: 100%;
+      justify-content: center;
+      margin-right: 0px;
+      margin-bottom: 4px;
+    }
+  }
+
+  .medicationStatusContainer {
+    width: 30%;
+  }
+
+  .medicationStatusAccordion {
+    box-shadow: none;
+    background-color: transparent;
+    padding: 0px;
+    width: 30%;
+    background: #f4f4f4;
+    margin-right: 24px;
+    @media (max-width: 767px) {
+      width: 100%;
+      justify-content: center;
+      margin-right: 0px;
+    }
+  }
+  .medicationAccordionSummary {
+    padding-left: 16px;
+    font-size: 16px;
+    width: 85%;
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+  }
+
+  .medicationStatusDescription {
+    font-size: 16px;
+    align-self: center;
+    color: #003b4a;
+  }
+
+  .medicationViewAllTabContainer {
+    gap: 24px;
+    padding-top: 24px;
+    flex-wrap: wrap;
+  }
+
+  .gridHeight {
+    height: 40px;
+    width: 30%;
+    margin-right: 24px;
+    @media (max-width: 834px) {
+      width: 100%;
+      margin-top: 0px;
+      margin-right: 0px;
+      height: 32px;
+    }
+  }
+
+  .stackContainer {
+    margin-top: 15px;
+    @media (max-width: 834px) {
+      margin-top: 0px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+  }
+
+  .gridMobileExpired {
+    margin-top: 24px;
+  }
+
+  .gridText {
+    line-height: 40px;
+    @media (max-width: 767px) {
+      line-height: 32px;
+    }
+  }
+
+  .buttomContiner {
+    margin-top: 24px;
+    @media (max-width: 767px) {
+      flex-wrap: wrap;
+    }
+  }
+
+  .remainingTimeContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    gap: 10px;
+    width: 213px;
+    height: 48px;
+    background: #f2f7f7;
+    @media (max-width: 767px) {
+      width: 100%;
+    }
+
+    .remainingTimeText {
+      font-family: "Libre Franklin", sans-serif;
+      font-style: normal;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 28px;
+      color: #003b4a;
+    }
+  }
+
+  .requestButton {
+    align-self: center;
+    height: 36px !important;
+    margin-left: auto;
+    font-family: "Libre Franklin", sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 18px;
+    @media (max-width: 767px) {
+      width: 100%;
+      margin-top: 24px;
+    }
+  }
+}
+
+.medicationDetailContainer {
+  .marginTop {
+    margin-top: 32px;
+  }
+}
+
+.dividerStyle {
+  margin-top: 15px;
+  @media (max-width: 767px) {
+    margin-top: 0px;
+  }
+}
+
+.filterButtonContainer {
+  display: flex;
+  // @media (max-width: 768px) {
+  height: 26px;
+  // }
+
+  .filterBtn {
+    width: 135px;
+    height: 26px;
+    border: 1px solid #205a63;
+    border-radius: 24px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    // line-height: 18px;
+    justify-content: left;
+  }
+}
+
+.tuneIcon {
+  color: "#22292F";
+}
+
+.keydownIcon {
+  position: absolute;
+  left: 72%;
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.filterChildButton {
+  background: #ffffff;
+  border: 1px solid #003b4a;
+  border-radius: 100px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 3px 4px 3px 10px;
+  margin-left: 10px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  color: #6d6f73;
+  .closeIcon {
+    width: 15px;
+    height: 15px;
+    margin-left: 5px;
+    cursor: pointer;
+  }
+}
+
+.formMessageText {
+  color: white;
+  font-size: 14px;
+  font-weight: 400;
 }
