@@ -29,7 +29,7 @@ export default function SetPasswordPage({ username }) {
   const mailFormat =
     username &&
     username.replace(
-      /^(..)(.*)(@.*)$/,
+      Regex.maskingEmail,
       (_, a, b, c) => a + b.replace(/./g, "*") + c
     );
 

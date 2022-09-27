@@ -392,8 +392,9 @@ export default function InsuranceForm({
                           <>
                             <StyledInput
                               disableFuture
+                              tabIndex={0}
                               type="dob"
-                              label="Subscriber Date of Birth"
+                              label="Subscriber Date of Birth field"
                               value={value}
                               onChange={onChange}
                               error={!!error}
