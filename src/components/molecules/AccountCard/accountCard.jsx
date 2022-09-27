@@ -18,7 +18,13 @@ export const AccountCard = ({
       <Card
         variant="outlined"
         className={[styles.card, props.className].join(" ")}
-        sx={props.sx}
+        sx={{
+          ...props.sx,
+          border: isDesktop ? 0 : "1px solidrgba(0, 0, 0, 0.12)",
+          boxShadow: isDesktop
+            ? "0px 1.65922px 3.31845px rgb(0 51 89 / 10%)"
+            : "none",
+        }}
       >
         {(isDesktop || isAppoinment) && (
           <CardHeader

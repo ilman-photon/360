@@ -37,6 +37,10 @@
   padding-top: 22px;
 }
 
+.prescriptionContentMobile {
+  padding-top: 6px;
+}
+
 .spaceBetween {
   justify-content: space-between;
 }
@@ -50,7 +54,14 @@
 }
 
 .margin {
-  margin: 10px 16px;
+  margin: 16px 16px 0px 16px;
+  @media (max-width: 767px) {
+    margin: 8px 16px;
+  }
+}
+
+.marginTop0 {
+  margin-top: 0px;
 }
 
 .marginBottom {

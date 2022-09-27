@@ -140,7 +140,7 @@ Object {
         </header>
         <div
           class="titleHeadingWrapper"
-          style="margin-top: 56px;"
+          style="position: fixed;"
         >
           <div
             aria-label="Test & Lab Results heading"
@@ -684,7 +684,7 @@ Object {
       </header>
       <div
         class="titleHeadingWrapper"
-        style="margin-top: 56px;"
+        style="position: fixed;"
       >
         <div
           aria-label="Test & Lab Results heading"

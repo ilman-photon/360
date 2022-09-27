@@ -219,13 +219,13 @@ export default function HomePage() {
               insuranceCarrierData={filterSuggestionData.insuranceCarrier}
               title={"John, Welcome to your dashboard"}
               subtitle={"Search for a doctor"}
+              isFixed={false}
             />
           ) : (
             <Box
               sx={{
                 marginTop: "-25px",
                 display: "flex",
-                position: "fixed",
                 width: "100%",
                 zIndex: "9",
               }}
@@ -253,7 +253,7 @@ export default function HomePage() {
             spacing={3}
             p={3}
             sx={{
-              paddingTop: isDesktop ? "220px" : "185px",
+              paddingTop: isDesktop ? "30px" : "46px",
               flexDirection: !isDesktop ? "column-reverse" : "unset",
               "@media print": {
                 paddingTop: "30px !important",

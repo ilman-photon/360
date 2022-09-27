@@ -10,7 +10,7 @@ jest.mock("universal-cookie", () => {
   class MockCookies {
     static result = {};
     get(param) {
-      if (param === "username") return "user1@photon.com"
+      if (param === "username") return "user1@photon.com";
 
       return MockCookies.result;
     }
