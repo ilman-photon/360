@@ -1,12 +1,18 @@
 import React from "react";
 import styles from "./accountTitleHeading.module.scss";
 
-const AccountTitleHeading = ({ title, sx = {}, isFixed = true }) => {
+const AccountTitleHeading = ({
+  title,
+  sx = {},
+  isFixed = true,
+  sxContainer = {},
+}) => {
   return (
     <div
       className={styles.titleHeadingWrapper}
       style={{
         position: isFixed ? "fixed" : "relative",
+        ...sxContainer,
       }}
     >
       <div
