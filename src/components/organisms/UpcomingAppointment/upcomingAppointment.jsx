@@ -57,7 +57,7 @@ export function UpcomingAppointmentCard({
               ariaLabel={"Visit Purpose"}
               variant="subtitle1"
             >
-              Visit Purpose:{" "}
+              Purpose of Visit::{" "}
             </Typography>
             <Typography
               tabIndex={0}

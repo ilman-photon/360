@@ -108,7 +108,7 @@ Object {
                         class="MuiTypography-root MuiTypography-subtitle1 css-8t55lz-MuiTypography-root"
                         tabindex="0"
                       >
-                        Visit Purpose:
+                        Purpose of Visit::
                          
                       </h6>
                       <p
@@ -1129,7 +1129,7 @@ FR
                       class="MuiTypography-root MuiTypography-subtitle1 css-8t55lz-MuiTypography-root"
                       tabindex="0"
                     >
-                      Visit Purpose:
+                      Purpose of Visit::
                        
                     </h6>
                     <p
@@ -1567,7 +1567,7 @@ Object {
                         class="MuiTypography-root MuiTypography-subtitle1 css-8t55lz-MuiTypography-root"
                         tabindex="0"
                       >
-                        Visit Purpose:
+                        Purpose of Visit::
                          
                       </h6>
                       <p
@@ -2588,7 +2588,7 @@ FR
                       class="MuiTypography-root MuiTypography-subtitle1 css-8t55lz-MuiTypography-root"
                       tabindex="0"
                     >
-                      Visit Purpose:
+                      Purpose of Visit::
                        
                     </h6>
                     <p
