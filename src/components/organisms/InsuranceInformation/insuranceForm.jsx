@@ -111,6 +111,10 @@ export default function InsuranceForm({
     if (isError !== false) reset(DEFAULT_INSURANCE_DATA);
   };
 
+  const EmptyGrid = () => (
+    <Grid item xs={12} md={4} sx={{ display: { xs: "none", md: "flex" } }} />
+  );
+
   const DisclaimerText = (data) => {
     return (
       <FormLabel
@@ -123,7 +127,7 @@ export default function InsuranceForm({
           paddingLeft: 2,
           display: "inline-flex",
           alignItems: "center",
-          color: "#424747",
+          color: "#49454F",
         }}
       >
         {data.label}
@@ -267,9 +271,7 @@ export default function InsuranceForm({
 
           <Divider />
 
-          <Typography variant="h3" sx={{ pb: 2, color: colors.black }}>
-            Policy Holder
-          </Typography>
+          <Typography variant="grayscaleBlack">Policy Holder</Typography>
 
           <Controller
             name="isSubscriber"
@@ -371,7 +373,7 @@ export default function InsuranceForm({
                     />
                   </Grid>
 
-                  <Grid item xs={12} md={4} sx={{ visibility: "hidden" }} />
+                  <EmptyGrid />
 
                   <Grid
                     item
@@ -419,8 +421,8 @@ export default function InsuranceForm({
                     />
                   </Grid>
 
-                  <Grid item xs={12} md={4} sx={{ visibility: "hidden" }} />
-                  <Grid item xs={12} md={4} sx={{ visibility: "hidden" }} />
+                  <EmptyGrid />
+                  <EmptyGrid />
 
                   <Grid
                     item
@@ -464,8 +466,12 @@ export default function InsuranceForm({
             </Stack>
           </Collapse>
 
-          <Typography variant="bodyRegular" component="div">
-            Upload images of your insurance.
+          <Typography
+            variant="bodyLarge"
+            component="div"
+            sx={{ lineHeight: "28px", color: "#292929" }}
+          >
+            Upload images of your insurance
           </Typography>
 
           <Grid
@@ -510,6 +516,7 @@ export default function InsuranceForm({
                       width="100%"
                       src="/login-bg.png"
                       alt=""
+                      labelVariant="mediumBlueNavy"
                       helperText={
                         isMobile
                           ? "*JPG or PNG file formats only. (File size limit is 4 MB)"
@@ -555,6 +562,7 @@ export default function InsuranceForm({
                       width="100%"
                       src="/login-bg.png"
                       alt=""
+                      labelVariant="mediumBlueNavy"
                       helperText={
                         isMobile
                           ? "*JPG or PNG file formats only. (File size limit is 4 MB)"
@@ -568,10 +576,9 @@ export default function InsuranceForm({
             {isDesktop ? (
               <Grid item xs={12} md={8}>
                 <Typography
-                  variant="bodySmallMedium"
+                  variant="bodySmallItalic"
                   component="div"
                   sx={{
-                    fontStyle: "italic",
                     textAlign: "right",
                     marginLeft: "auto",
                   }}
