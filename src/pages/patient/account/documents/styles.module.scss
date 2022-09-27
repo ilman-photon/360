@@ -1,0 +1,12 @@
+.documentPageWrapper {
+  display: flex;
+  flex-direction: column;
+  max-width: 1434px;
+  margin: 0 auto 35px auto;
+  background: white;
+  padding: 32px 24px;
+
+  @media (max-width: 768px) {
+    padding: 16px;
+  }
+}

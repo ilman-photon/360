@@ -22,7 +22,6 @@ export class Api {
   }
 
   getResponse(url, postbody, method) {
-    const api = new Api();
     return new Promise((resolve, reject) => {
       const resolver = function (response) {
         if (response && response.data) {
@@ -55,11 +54,11 @@ export class Api {
 
       switch (method) {
         case "get":
-          return api.client.get(url, postbody).then(resolver).catch(rejecter);
+          return this.client.get(url, postbody).then(resolver).catch(rejecter);
         case "post":
-          return api.client.post(url, postbody).then(resolver).catch(rejecter);
+          return this.client.post(url, postbody).then(resolver).catch(rejecter);
         default:
-          return api.client.get(url, postbody).then(resolver).catch(rejecter);
+          return this.client.get(url, postbody).then(resolver).catch(rejecter);
       }
     });
   }
@@ -74,6 +73,11 @@ export class Api {
     return this.forgotFeatureValidation(url, postbody, "post", 2000);
   }
 
+  getPatientId(postbody) {
+    const url = "/ecp/patient/search/ecppatientid";
+    return this.getResponse(url, postbody, "post");
+  }
+
   validateGuestUser(postbody) {
     const url = "/ecp/patient/validate";
     return this.forgotFeatureValidation(url, postbody, "post");
@@ -85,13 +89,18 @@ export class Api {
   }
 
   resetPassword(postbody) {
-    const url = "/ecp/patient/resetPassword";
+    const url = "/ecp/patient/resetPasswordLink";
     return this.forgotFeatureValidation(url, postbody, "post");
   }
 
   oneTimeLink(postbody) {
     const url = "/ecp/patient/onetimelink";
     return this.forgotFeatureValidation(url, postbody, "post");
+  }
+
+  validateSecurityQuestion(postbody) {
+    const url = "/ecp/patient/securityquestions/validate";
+    return this.forgotFeatureValidation(url, postbody, "post", 2000);
   }
 
   updatePassword(postbody) {
@@ -173,7 +182,7 @@ export class Api {
   }
 
   submitSecurityQuestion(postbody) {
-    const url = "/ecp/patient/securityQuestions";
+    const url = "/ecp/patient/saveSecurityQuestions";
     return this.forgotFeatureValidation(url, postbody, "post", 2000);
   }
 
@@ -233,7 +242,17 @@ export class Api {
 
   getAllAppointment() {
     const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`;
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const patientId = `/${userData.patientId}`;
+    const url = `${domain}/api/dummy/appointment/my-appointment/getAllAppointment${
+      userData.patientId ? patientId : ""
+    }`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  getAppointmentDetails() {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/appointment/my-appointment/getAppointmentDetails`;
     return this.getResponse(url, {}, "get");
   }
 
@@ -265,5 +284,29 @@ export class Api {
     const domain = window.location.origin;
     const url = `${domain}api/dummy/appointment/my-appointment/cancelAppointment`;
     return this.getResponse(url, postbody, "post");
+  }
+
+  doMedicationRequestRefill(postBody) {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/prescription/requestRefill`;
+    return this.getResponse(url, postBody, "post");
+  }
+
+  doMedicationCancelRequestRefill(postBody) {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/prescription/cancelRequestRefill`;
+    return this.getResponse(url, postBody, "post");
+  }
+
+  async getURLDigitalAsset(id) {
+    const url = `/ecp/digital-asset/v1/asset/${id}`;
+    try {
+      const response = await this.getResponse(url, null, "get");
+      if (response.data) {
+        return response.data.presignedUrl;
+      }
+    } catch (error) {
+      console.error({ error });
+    }
   }
 }

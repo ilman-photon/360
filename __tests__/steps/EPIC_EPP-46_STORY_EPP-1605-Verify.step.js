@@ -359,7 +359,7 @@ defineFeature(feature, (test) => {
     });
 
     and("User lands on “Appointments” screen", async () => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -374,7 +374,7 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_SUGESTION);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`
+          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_APPOINTMENT);
       mock
@@ -392,7 +392,7 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
@@ -409,7 +409,11 @@ defineFeature(feature, (test) => {
     and(
       /^User should not be able to see the option to cancel an optometry appointment (\d+) hours before the time of appointment$/,
       (arg0) => {
-        defaultValidation();
+        const cancelButton = container.getByRole("button", {
+          name: "Cancel",
+        });
+        expect(cancelButton).toBeInTheDocument();
+        expect(cancelButton).toBeVisible();
       }
     );
   });

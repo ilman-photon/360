@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="titleHeadingWrapper MuiBox-root css-hkzat1"
+        class="titleHeadingWrapper MuiBox-root css-w1mo3z"
       >
         <div
           class="centeredElement MuiBox-root css-4z08j"
@@ -41,7 +41,7 @@ Object {
                     />
                   </svg>
                   <div
-                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1l757c0-MuiFormControl-root-MuiTextField-root"
+                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-psd1hh-MuiFormControl-root-MuiTextField-root"
                     tabindex="0"
                     withicon="true"
                   >
@@ -108,7 +108,7 @@ Object {
                   />
                 </svg>
                 <div
-                  class="MuiFormControl-root MuiTextField-root css-an390i-MuiFormControl-root-MuiTextField-root"
+                  class="MuiFormControl-root MuiTextField-root css-4x347i-MuiFormControl-root-MuiTextField-root"
                 >
                   <label
                     class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
@@ -194,12 +194,12 @@ Object {
                     <svg
                       aria-hidden="true"
                       class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-                      data-testid="ArrowDropDownIcon"
+                      data-testid="KeyboardArrowDownIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
                     >
                       <path
-                        d="M7 10l5 5 5-5z"
+                        d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
                       />
                     </svg>
                   </div>
@@ -242,7 +242,7 @@ Object {
                     </span>
                   </div>
                   <div
-                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1lju9mp-MuiFormControl-root-MuiTextField-root"
+                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-19aeqpf-MuiFormControl-root-MuiTextField-root"
                     tabindex="0"
                     withicon="true"
                   >
@@ -277,7 +277,7 @@ Object {
               </div>
               <button
                 aria-label="Search"
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter   css-fruob7-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter   sxButton css-fruob7-MuiButtonBase-root-MuiButton-root"
                 data-testid="searchbtn"
                 tabindex="0"
                 type="submit"
@@ -324,7 +324,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="titleHeadingWrapper MuiBox-root css-hkzat1"
+      class="titleHeadingWrapper MuiBox-root css-w1mo3z"
     >
       <div
         class="centeredElement MuiBox-root css-4z08j"
@@ -359,7 +359,7 @@ Object {
                   />
                 </svg>
                 <div
-                  class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1l757c0-MuiFormControl-root-MuiTextField-root"
+                  class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-psd1hh-MuiFormControl-root-MuiTextField-root"
                   tabindex="0"
                   withicon="true"
                 >
@@ -426,7 +426,7 @@ Object {
                 />
               </svg>
               <div
-                class="MuiFormControl-root MuiTextField-root css-an390i-MuiFormControl-root-MuiTextField-root"
+                class="MuiFormControl-root MuiTextField-root css-4x347i-MuiFormControl-root-MuiTextField-root"
               >
                 <label
                   class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
@@ -512,12 +512,12 @@ Object {
                   <svg
                     aria-hidden="true"
                     class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-                    data-testid="ArrowDropDownIcon"
+                    data-testid="KeyboardArrowDownIcon"
                     focusable="false"
                     viewBox="0 0 24 24"
                   >
                     <path
-                      d="M7 10l5 5 5-5z"
+                      d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
                     />
                   </svg>
                 </div>
@@ -560,7 +560,7 @@ Object {
                   </span>
                 </div>
                 <div
-                  class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1lju9mp-MuiFormControl-root-MuiTextField-root"
+                  class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-19aeqpf-MuiFormControl-root-MuiTextField-root"
                   tabindex="0"
                   withicon="true"
                 >
@@ -595,7 +595,7 @@ Object {
             </div>
             <button
               aria-label="Search"
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter   css-fruob7-MuiButtonBase-root-MuiButton-root"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter   sxButton css-fruob7-MuiButtonBase-root-MuiButton-root"
               data-testid="searchbtn"
               tabindex="0"
               type="submit"
@@ -699,7 +699,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="titleHeadingWrapper MuiBox-root css-hkzat1"
+        class="titleHeadingWrapper MuiBox-root css-w1mo3z"
       >
         <div
           class="centeredElement MuiBox-root css-4z08j"
@@ -734,7 +734,7 @@ Object {
                     />
                   </svg>
                   <div
-                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1l757c0-MuiFormControl-root-MuiTextField-root"
+                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-psd1hh-MuiFormControl-root-MuiTextField-root"
                     tabindex="0"
                     withicon="true"
                   >
@@ -801,7 +801,7 @@ Object {
                   />
                 </svg>
                 <div
-                  class="MuiFormControl-root MuiTextField-root css-an390i-MuiFormControl-root-MuiTextField-root"
+                  class="MuiFormControl-root MuiTextField-root css-4x347i-MuiFormControl-root-MuiTextField-root"
                 >
                   <label
                     class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
@@ -887,12 +887,12 @@ Object {
                     <svg
                       aria-hidden="true"
                       class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-                      data-testid="ArrowDropDownIcon"
+                      data-testid="KeyboardArrowDownIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
                     >
                       <path
-                        d="M7 10l5 5 5-5z"
+                        d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
                       />
                     </svg>
                   </div>
@@ -935,7 +935,7 @@ Object {
                     </span>
                   </div>
                   <div
-                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-1lju9mp-MuiFormControl-root-MuiTextField-root"
+                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-19aeqpf-MuiFormControl-root-MuiTextField-root"
                     tabindex="0"
                     withicon="true"
                   >
@@ -970,7 +970,7 @@ Object {
               </div>
               <button
                 aria-label="Search"
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter   css-fruob7-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonFilter   sxButton css-fruob7-MuiButtonBase-root-MuiButton-root"
                 data-testid="searchbtn"
                 tabindex="0"
                 type="submit"
@@ -1050,7 +1050,7 @@ Object {
                   />
                 </svg>
                 <div
-                  class="MuiFormControl-root MuiTextField-root custom-input css-1oon76h-MuiFormControl-root-MuiTextField-root"
+                  class="MuiFormControl-root MuiTextField-root custom-input css-5ec4jj-MuiFormControl-root-MuiTextField-root"
                   tabindex="0"
                   withicon="true"
                 >
@@ -1111,7 +1111,7 @@ Object {
                   />
                 </svg>
                 <div
-                  class="MuiFormControl-root MuiTextField-root custom-input css-1oon76h-MuiFormControl-root-MuiTextField-root"
+                  class="MuiFormControl-root MuiTextField-root custom-input css-5ec4jj-MuiFormControl-root-MuiTextField-root"
                   tabindex="0"
                   withicon="true"
                 >
@@ -1157,7 +1157,7 @@ Object {
                   />
                 </svg>
                 <div
-                  class="MuiFormControl-root MuiTextField-root custom-input css-1oon76h-MuiFormControl-root-MuiTextField-root"
+                  class="MuiFormControl-root MuiTextField-root custom-input css-5ec4jj-MuiFormControl-root-MuiTextField-root"
                   tabindex="0"
                   withicon="true"
                 >
@@ -1223,7 +1223,7 @@ Object {
                   </span>
                 </div>
                 <div
-                  class="MuiFormControl-root MuiTextField-root custom-input css-1oon76h-MuiFormControl-root-MuiTextField-root"
+                  class="MuiFormControl-root MuiTextField-root custom-input css-5ec4jj-MuiFormControl-root-MuiTextField-root"
                   tabindex="0"
                   withicon="true"
                 >
@@ -1309,7 +1309,7 @@ Object {
                 />
               </svg>
               <div
-                class="MuiFormControl-root MuiTextField-root custom-input css-1oon76h-MuiFormControl-root-MuiTextField-root"
+                class="MuiFormControl-root MuiTextField-root custom-input css-5ec4jj-MuiFormControl-root-MuiTextField-root"
                 tabindex="0"
                 withicon="true"
               >
@@ -1370,7 +1370,7 @@ Object {
                 />
               </svg>
               <div
-                class="MuiFormControl-root MuiTextField-root custom-input css-1oon76h-MuiFormControl-root-MuiTextField-root"
+                class="MuiFormControl-root MuiTextField-root custom-input css-5ec4jj-MuiFormControl-root-MuiTextField-root"
                 tabindex="0"
                 withicon="true"
               >
@@ -1416,7 +1416,7 @@ Object {
                 />
               </svg>
               <div
-                class="MuiFormControl-root MuiTextField-root custom-input css-1oon76h-MuiFormControl-root-MuiTextField-root"
+                class="MuiFormControl-root MuiTextField-root custom-input css-5ec4jj-MuiFormControl-root-MuiTextField-root"
                 tabindex="0"
                 withicon="true"
               >
@@ -1482,7 +1482,7 @@ Object {
                 </span>
               </div>
               <div
-                class="MuiFormControl-root MuiTextField-root custom-input css-1oon76h-MuiFormControl-root-MuiTextField-root"
+                class="MuiFormControl-root MuiTextField-root custom-input css-5ec4jj-MuiFormControl-root-MuiTextField-root"
                 tabindex="0"
                 withicon="true"
               >

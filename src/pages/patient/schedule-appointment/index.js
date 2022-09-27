@@ -53,13 +53,18 @@ const MobileTopBar = (data) => {
         sx={styles.mobileTextBar}
         primaryColor={true}
       />
-      <Button variant="text" className={styles.editButton}>
+      <Button
+        variant="text"
+        className={styles.editButton}
+        onClick={data.onEditClicked}
+      >
         <div
           type="link"
           style={{
             marginLeft: 4,
             color: "#008294",
             textDecoration: "underline",
+            textTransform: "capitalize",
           }}
         >
           Edit
@@ -267,8 +272,8 @@ export default function ScheduleAppointmentPage() {
 
   const headerText = [
     "Location",
-    "Review appointment details",
-    "Provide basic information",
+    "Review Appointment Details",
+    "Provide Basic Information",
     "Contact Information",
     "Confirm",
   ];
@@ -380,6 +385,7 @@ export default function ScheduleAppointmentPage() {
         isReschedule={isReschedule}
         patientData={appointmentScheduleData.patientInfo}
         providerData={appointmentScheduleData.providerInfo}
+        appointmentData={appointmentScheduleData.appointmentInfo}
         isOpen={isOpen}
         OnOkClicked={handleOkClicked}
         isDesktop={isDesktop}
@@ -402,8 +408,14 @@ export default function ScheduleAppointmentPage() {
           xs={12}
           sx={{ display: { md: "none", xs: "block" } }}
         >
-          <MobileTopBar label="51 West 51st street..." />
-          <MobileTopBar label="Sat, Sep 11, 8:30 am EST" />
+          <MobileTopBar
+            label="51 West 51st street..."
+            onEditClicked={handleEditSchedule}
+          />
+          <MobileTopBar
+            label="Sat, Sep 11, 8:30 am EST"
+            onEditClicked={handleEditSchedule}
+          />
         </Grid>
       ) : null}
       <Grid

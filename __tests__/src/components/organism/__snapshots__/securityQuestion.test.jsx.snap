@@ -56,18 +56,18 @@ Object {
                 <svg
                   aria-hidden="true"
                   class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-                  data-testid="ArrowDropDownIcon"
+                  data-testid="KeyboardArrowDownIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
                 >
                   <path
-                    d="M7 10l5 5 5-5z"
+                    d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
                   />
                 </svg>
               </div>
             </div>
             <div
-              class="MuiFormControl-root MuiTextField-root custom-input css-153igoe-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiTextField-root custom-input css-1v38xwk-MuiFormControl-root-MuiTextField-root"
               style="width: 100%;"
               tabindex="0"
               withicon="true"
@@ -142,18 +142,18 @@ Object {
                 <svg
                   aria-hidden="true"
                   class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-                  data-testid="ArrowDropDownIcon"
+                  data-testid="KeyboardArrowDownIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
                 >
                   <path
-                    d="M7 10l5 5 5-5z"
+                    d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
                   />
                 </svg>
               </div>
             </div>
             <div
-              class="MuiFormControl-root MuiTextField-root custom-input css-153igoe-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiTextField-root custom-input css-1v38xwk-MuiFormControl-root-MuiTextField-root"
               style="width: 100%;"
               tabindex="1"
               withicon="true"
@@ -228,18 +228,18 @@ Object {
                 <svg
                   aria-hidden="true"
                   class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-                  data-testid="ArrowDropDownIcon"
+                  data-testid="KeyboardArrowDownIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
                 >
                   <path
-                    d="M7 10l5 5 5-5z"
+                    d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
                   />
                 </svg>
               </div>
             </div>
             <div
-              class="MuiFormControl-root MuiTextField-root custom-input css-153igoe-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiTextField-root custom-input css-1v38xwk-MuiFormControl-root-MuiTextField-root"
               style="width: 100%;"
               tabindex="2"
               withicon="true"
@@ -314,18 +314,18 @@ Object {
                 <svg
                   aria-hidden="true"
                   class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-                  data-testid="ArrowDropDownIcon"
+                  data-testid="KeyboardArrowDownIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
                 >
                   <path
-                    d="M7 10l5 5 5-5z"
+                    d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
                   />
                 </svg>
               </div>
             </div>
             <div
-              class="MuiFormControl-root MuiTextField-root custom-input css-153igoe-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiTextField-root custom-input css-1v38xwk-MuiFormControl-root-MuiTextField-root"
               style="width: 100%;"
               tabindex="3"
               withicon="true"
@@ -400,18 +400,18 @@ Object {
                 <svg
                   aria-hidden="true"
                   class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-                  data-testid="ArrowDropDownIcon"
+                  data-testid="KeyboardArrowDownIcon"
                   focusable="false"
                   viewBox="0 0 24 24"
                 >
                   <path
-                    d="M7 10l5 5 5-5z"
+                    d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
                   />
                 </svg>
               </div>
             </div>
             <div
-              class="MuiFormControl-root MuiTextField-root custom-input css-153igoe-MuiFormControl-root-MuiTextField-root"
+              class="MuiFormControl-root MuiTextField-root custom-input css-1v38xwk-MuiFormControl-root-MuiTextField-root"
               style="width: 100%;"
               tabindex="4"
               withicon="true"
@@ -444,7 +444,7 @@ Object {
             style="display: flex;"
           >
             <button
-              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-j63g57-MuiButtonBase-root-MuiButton-root"
+              class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-j63g57-MuiButtonBase-root-MuiButton-root"
               data-testid="loc_btnSubmitSecurity"
               style="margin-right: 10px; font-size: 14px; box-shadow: none; transform: none;"
               tabindex="0"
@@ -456,7 +456,7 @@ Object {
               />
             </button>
             <button
-              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-184shb1-MuiButtonBase-root-MuiButton-root"
+              class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-184shb1-MuiButtonBase-root-MuiButton-root"
               data-testid="loc_btnSkip"
               style="margin-right: 10px; font-size: 14px; box-shadow: none; transform: none;"
               tabindex="0"
@@ -524,18 +524,18 @@ Object {
               <svg
                 aria-hidden="true"
                 class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-                data-testid="ArrowDropDownIcon"
+                data-testid="KeyboardArrowDownIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
               >
                 <path
-                  d="M7 10l5 5 5-5z"
+                  d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
                 />
               </svg>
             </div>
           </div>
           <div
-            class="MuiFormControl-root MuiTextField-root custom-input css-153igoe-MuiFormControl-root-MuiTextField-root"
+            class="MuiFormControl-root MuiTextField-root custom-input css-1v38xwk-MuiFormControl-root-MuiTextField-root"
             style="width: 100%;"
             tabindex="0"
             withicon="true"
@@ -610,18 +610,18 @@ Object {
               <svg
                 aria-hidden="true"
                 class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-                data-testid="ArrowDropDownIcon"
+                data-testid="KeyboardArrowDownIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
               >
                 <path
-                  d="M7 10l5 5 5-5z"
+                  d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
                 />
               </svg>
             </div>
           </div>
           <div
-            class="MuiFormControl-root MuiTextField-root custom-input css-153igoe-MuiFormControl-root-MuiTextField-root"
+            class="MuiFormControl-root MuiTextField-root custom-input css-1v38xwk-MuiFormControl-root-MuiTextField-root"
             style="width: 100%;"
             tabindex="1"
             withicon="true"
@@ -696,18 +696,18 @@ Object {
               <svg
                 aria-hidden="true"
                 class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-                data-testid="ArrowDropDownIcon"
+                data-testid="KeyboardArrowDownIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
               >
                 <path
-                  d="M7 10l5 5 5-5z"
+                  d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
                 />
               </svg>
             </div>
           </div>
           <div
-            class="MuiFormControl-root MuiTextField-root custom-input css-153igoe-MuiFormControl-root-MuiTextField-root"
+            class="MuiFormControl-root MuiTextField-root custom-input css-1v38xwk-MuiFormControl-root-MuiTextField-root"
             style="width: 100%;"
             tabindex="2"
             withicon="true"
@@ -782,18 +782,18 @@ Object {
               <svg
                 aria-hidden="true"
                 class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-                data-testid="ArrowDropDownIcon"
+                data-testid="KeyboardArrowDownIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
               >
                 <path
-                  d="M7 10l5 5 5-5z"
+                  d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
                 />
               </svg>
             </div>
           </div>
           <div
-            class="MuiFormControl-root MuiTextField-root custom-input css-153igoe-MuiFormControl-root-MuiTextField-root"
+            class="MuiFormControl-root MuiTextField-root custom-input css-1v38xwk-MuiFormControl-root-MuiTextField-root"
             style="width: 100%;"
             tabindex="3"
             withicon="true"
@@ -868,18 +868,18 @@ Object {
               <svg
                 aria-hidden="true"
                 class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium MuiSelect-icon MuiSelect-iconFilled css-hfutr2-MuiSvgIcon-root-MuiSelect-icon"
-                data-testid="ArrowDropDownIcon"
+                data-testid="KeyboardArrowDownIcon"
                 focusable="false"
                 viewBox="0 0 24 24"
               >
                 <path
-                  d="M7 10l5 5 5-5z"
+                  d="M7.41 8.59 12 13.17l4.59-4.58L18 10l-6 6-6-6 1.41-1.41z"
                 />
               </svg>
             </div>
           </div>
           <div
-            class="MuiFormControl-root MuiTextField-root custom-input css-153igoe-MuiFormControl-root-MuiTextField-root"
+            class="MuiFormControl-root MuiTextField-root custom-input css-1v38xwk-MuiFormControl-root-MuiTextField-root"
             style="width: 100%;"
             tabindex="4"
             withicon="true"
@@ -912,7 +912,7 @@ Object {
           style="display: flex;"
         >
           <button
-            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-j63g57-MuiButtonBase-root-MuiButton-root"
+            class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-j63g57-MuiButtonBase-root-MuiButton-root"
             data-testid="loc_btnSubmitSecurity"
             style="margin-right: 10px; font-size: 14px; box-shadow: none; transform: none;"
             tabindex="0"
@@ -924,7 +924,7 @@ Object {
             />
           </button>
           <button
-            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   css-184shb1-MuiButtonBase-root-MuiButton-root"
+            class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-184shb1-MuiButtonBase-root-MuiButton-root"
             data-testid="loc_btnSkip"
             style="margin-right: 10px; font-size: 14px; box-shadow: none; transform: none;"
             tabindex="0"

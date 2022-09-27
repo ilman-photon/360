@@ -67,6 +67,7 @@ BootstrapDialogTitle.propTypes = {
 export default function ModalConfirmContent({
   patientData = {},
   providerData = {},
+  appointmentData = {},
   isLoggedIn,
   isReschedule,
   OnOkClicked = () => {
@@ -102,7 +103,16 @@ export default function ModalConfirmContent({
         onClose={handleClose}
         sx={{ textAlign: "center" }}
       >
-        <Typography variant="bodyMedium" className={styles.scheduledText}>
+        <Typography
+          tabIndex={0}
+          ariaLabel={
+            isReschedule
+              ? "Reschedule Appointment Successful"
+              : "You’re Scheduled!"
+          }
+          variant="bodyMedium"
+          className={styles.scheduledText}
+        >
           <CheckCircleRoundedIcon sx={{ mr: 1, color: "#168845" }} />{" "}
           {isReschedule
             ? "Reschedule Appointment Successful"
@@ -146,12 +156,12 @@ export default function ModalConfirmContent({
           </Tooltip>
         </div>
 
-        <Card variant="outlined" className={styles.cardPatient}>
+        <Card variant="outlined" className={styles.cardDate}>
           <CardContent
             sx={{
               px: { xs: 3, md: 3 },
               py: { xs: 3, md: 3 },
-              textAlign: "-webkit-center",
+              textAlign: "-moz-center",
             }}
           >
             <Typography
@@ -162,24 +172,31 @@ export default function ModalConfirmContent({
               Saturday, Sep 21, 2022, AT 8:30 AM EST
             </Typography>
 
-            <Button
-              className={styles.addCalendarButton}
-              sx={{
-                backgroundColor: "#EEF5F7",
-                mb: 2,
-              }}
-            >
-              <Typography
+            <div style={{ display: "inline-flex" }}>
+              <Button
+                className={styles.addCalendarButton}
                 sx={{
-                  mb: 1,
-                  display: "contents",
-                  fontWeight: "700",
+                  backgroundColor: "#EEF5F7",
+                  mb: 2,
                 }}
-                aria-label={"Add to calendar"}
               >
-                <CalendarTodayIcon aria-hidden={"false"} /> Add to calendar
-              </Typography>
-            </Button>
+                <Typography
+                  sx={{
+                    mb: 1,
+                    display: "contents",
+                    fontWeight: "600",
+                    fontSize: "14px",
+                  }}
+                  aria-label={"Add to calendar"}
+                >
+                  <CalendarTodayIcon
+                    aria-hidden={"false"}
+                    sx={{ color: "#003B4A" }}
+                  />{" "}
+                  Add to calendar
+                </Typography>
+              </Button>
+            </div>
 
             <Typography
               className={styles.dateBold}
@@ -187,7 +204,11 @@ export default function ModalConfirmContent({
             >
               Purpose of Visit
             </Typography>
-            <Typography aria-label={"Eye exam"}>Eye exam</Typography>
+            <Typography
+              aria-label={appointmentData.appointmentType || "Eye exam"}
+            >
+              {appointmentData.appointmentType || "Eye exam"}
+            </Typography>
           </CardContent>
         </Card>
 
@@ -195,7 +216,7 @@ export default function ModalConfirmContent({
           <CardContent sx={{ px: { xs: 2, md: 4 }, py: { xs: 2, md: 4 } }}>
             <Stack spacing={2}>
               <Grid container sx={{ placeContent: "center" }}>
-                <Grid pl={2}>
+                <Grid>
                   <ProviderProfile
                     variant={"appointment"}
                     showPosition
@@ -237,7 +258,7 @@ export default function ModalConfirmContent({
             <LabelWithInfo
               label="Name"
               sxRow={{ justifyContent: "unset" }}
-              sxText={{ color: colors.darkGreen }}
+              sxText={{ color: colors.darkGreen, fontSize: "16px" }}
             >
               <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
                 {patientData.firstName || "-"}
@@ -248,13 +269,16 @@ export default function ModalConfirmContent({
 
         {!isLoggedIn ? (
           <div className={styles.bottomParagraph}>
-            <Typography variant="caption" sx={{ fontSize: "16px" }}>
+            <Typography
+              variant="caption"
+              sx={{ fontSize: "16px", fontFamily: "Libre Franklin" }}
+            >
               Already have an account?{" "}
               <Link
                 href="/patient/login"
                 data-testid={REGISTER_TEST_ID.loginlink}
               >
-                <a className={styles.loginLink}>Login</a>
+                <a className={styles.loginLink}>Sign in</a>
               </Link>
             </Typography>
           </div>

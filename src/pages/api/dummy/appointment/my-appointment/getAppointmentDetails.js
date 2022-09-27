@@ -150,7 +150,6 @@ export default function getAppointmentDetails(req, res) {
               },
             ],
           },
-
           {
             type: "Social History",
             list: [

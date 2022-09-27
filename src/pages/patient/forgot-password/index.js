@@ -14,6 +14,7 @@ import { Box } from "@mui/material";
 import globalStyles from "../../../styles/Global.module.scss";
 import { useRouter } from "next/router";
 import { Regex } from "../../../utils/regex";
+import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 
 let confirmationFormProps = {
   title: constants.EMPTY_STRING,
@@ -117,6 +118,27 @@ export default function ForgotPasswordPage() {
       })
       .catch(() => {
         setShowPostMessage(true);
+      });
+  };
+
+  //Call API for check security question
+  const onCalledValidateSubmitSecurityQuestion = function (
+    securityQuestion,
+    callback,
+    router
+  ) {
+    const postbody = {
+      SecurityQuestions: [{ ...securityQuestion }],
+      username: patientData.username,
+    };
+    const api = new Api();
+    api
+      .validateSecurityQuestion(postbody)
+      .then(function (response) {
+        onContinueButtonClicked("updatePassword", router);
+      })
+      .catch(function (error) {
+        callback(error);
       });
   };
 
@@ -233,9 +255,15 @@ export default function ForgotPasswordPage() {
     };
 
     const isEmail = username.match(Regex.isEmailCorrect);
+    const maskedEmail = username.replace(
+      Regex.maskingEmail,
+      (_, a, b, c) => a + b.replace(/./g, "*") + c
+    );
+    const maskedPhoneNumber = formatPhoneNumber(username, true, true);
     const subtitle = isEmail
-      ? `Check ${username}  for an email to set up your password.`
-      : `Check ${username} for a link to set up your password.`;
+      ? `Check ${maskedEmail}  for an email to set up your password.`
+      : `Check ${maskedPhoneNumber} for a link to set up your password.`;
+    console.log(subtitle, "sub ");
     const postMessage = isEmail
       ? `Link sent to your email`
       : `Link sent to your phone number`;
@@ -370,7 +398,7 @@ export default function ForgotPasswordPage() {
           showPostMessage={showPostMessage}
           setShowPostMessage={setShowPostMessage}
           securityQuestionData={patientData.securityQuestions}
-          onContinueButtonClicked={onContinueButtonClicked}
+          onContinueButtonClicked={onCalledValidateSubmitSecurityQuestion}
           title={"Password recovery security questions page"}
         />
       ) : (

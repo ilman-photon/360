@@ -357,7 +357,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User lands to the "(.*)" screen$/, async (arg0) => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -372,7 +372,7 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_SUGESTION);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`
+          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_APPOINTMENT);
       mock
@@ -389,13 +389,13 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByLabelText(/Appointments/i));
+      await waitFor(() => container.getAllByText(/Appointments/i));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -404,7 +404,7 @@ defineFeature(feature, (test) => {
     });
 
     and(/^User should see the "(.*)" option$/, (arg0) => {
-      const purposeVisit = container.getByLabelText(/Appointments/i);
+      const purposeVisit = container.getAllByText(/Appointments/i)[0];
       expect(purposeVisit).toBeInTheDocument();
     });
 
@@ -448,7 +448,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -463,7 +463,7 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_SUGESTION);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`
+          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_APPOINTMENT);
       mock
@@ -481,7 +481,7 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
@@ -548,7 +548,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -563,7 +563,7 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_SUGESTION);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`
+          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_APPOINTMENT);
       mock
@@ -580,7 +580,7 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
@@ -641,7 +641,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -656,7 +656,7 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_SUGESTION);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`
+          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_APPOINTMENT);
       mock
@@ -673,7 +673,7 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>

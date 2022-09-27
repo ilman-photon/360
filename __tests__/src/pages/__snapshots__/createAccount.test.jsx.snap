@@ -6,7 +6,7 @@ exports[`App renders App unchanged 1`] = `
     class="authLayout"
   >
     <header
-      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-rxbk4x-MuiPaper-root-MuiAppBar-root"
+      class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-wzn3iz-MuiPaper-root-MuiAppBar-root"
     >
       <div
         class="MuiContainer-root MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root"
@@ -94,7 +94,7 @@ exports[`App renders App unchanged 1`] = `
                 style="display: grid; margin-top: 8px;"
               >
                 <div
-                  class="MuiFormControl-root MuiTextField-root custom-input css-1wu0uay-MuiFormControl-root-MuiTextField-root"
+                  class="MuiFormControl-root MuiTextField-root custom-input css-1xbhe5v-MuiFormControl-root-MuiTextField-root"
                   data-testid="firstname"
                   tabindex="0"
                   withicon="true"
@@ -121,7 +121,7 @@ exports[`App renders App unchanged 1`] = `
                   </div>
                 </div>
                 <div
-                  class="MuiFormControl-root MuiTextField-root custom-input css-1wu0uay-MuiFormControl-root-MuiTextField-root"
+                  class="MuiFormControl-root MuiTextField-root custom-input css-1xbhe5v-MuiFormControl-root-MuiTextField-root"
                   data-testid="lastname"
                   tabindex="0"
                   withicon="true"
@@ -148,7 +148,7 @@ exports[`App renders App unchanged 1`] = `
                   </div>
                 </div>
                 <div
-                  class="MuiFormControl-root MuiTextField-root css-1bsw3ty-MuiFormControl-root-MuiTextField-root"
+                  class="MuiFormControl-root MuiTextField-root css-1g6pwsg-MuiFormControl-root-MuiTextField-root"
                 >
                   <label
                     class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-1suhfmo-MuiFormLabel-root-MuiInputLabel-root"
@@ -174,7 +174,7 @@ exports[`App renders App unchanged 1`] = `
                   </div>
                 </div>
                 <div
-                  class="MuiFormControl-root MuiTextField-root custom-input css-1wu0uay-MuiFormControl-root-MuiTextField-root"
+                  class="MuiFormControl-root MuiTextField-root custom-input css-1xbhe5v-MuiFormControl-root-MuiTextField-root"
                   data-testid="email"
                   tabindex="0"
                   withicon="true"
@@ -204,7 +204,7 @@ exports[`App renders App unchanged 1`] = `
                   class="MuiFormControl-root css-1hqe463-MuiFormControl-root"
                 >
                   <div
-                    class="MuiFormControl-root MuiTextField-root custom-input css-1eoibh5-MuiFormControl-root-MuiTextField-root"
+                    class="MuiFormControl-root MuiTextField-root custom-input css-cmxgyv-MuiFormControl-root-MuiTextField-root"
                     data-testid="mobilenumber"
                     tabindex="0"
                     withicon="true"
@@ -212,8 +212,8 @@ exports[`App renders App unchanged 1`] = `
                     <label
                       class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-sizeSmall MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-pl8awd-MuiFormLabel-root-MuiInputLabel-root"
                       data-shrink="false"
-                      for="mobile"
-                      id="mobile-label"
+                      for="mobileNumber"
+                      id="mobileNumber-label"
                     >
                       Mobile Number
                     </label>
@@ -223,7 +223,7 @@ exports[`App renders App unchanged 1`] = `
                       <input
                         aria-invalid="false"
                         class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputSizeSmall css-c5v1qu-MuiInputBase-input-MuiFilledInput-input"
-                        id="mobile"
+                        id="mobileNumber"
                         name="phone"
                         placeholder=""
                         type="phone"
@@ -241,7 +241,7 @@ exports[`App renders App unchanged 1`] = `
                   class="MuiFormControl-root css-1c2vtuz-MuiFormControl-root"
                 >
                   <div
-                    class="MuiFormControl-root MuiTextField-root css-1llzccm-MuiFormControl-root-MuiTextField-root"
+                    class="MuiFormControl-root MuiTextField-root css-1s8lirf-MuiFormControl-root-MuiTextField-root"
                     customevent="[object Object]"
                   >
                     <label
@@ -393,17 +393,17 @@ exports[`App renders App unchanged 1`] = `
                         >
                           <svg
                             aria-hidden="true"
-                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-yh3mte-MuiSvgIcon-root"
-                            data-testid="CheckCircleRoundedIcon"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1xdnwdx-MuiSvgIcon-root"
+                            data-testid="CancelIcon"
                             focusable="false"
                             viewBox="0 0 24 24"
                           >
                             <path
-                              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM9.29 16.29 5.7 12.7a.9959.9959 0 0 1 0-1.41c.39-.39 1.02-.39 1.41 0L10 14.17l6.88-6.88c.39-.39 1.02-.39 1.41 0 .39.39.39 1.02 0 1.41l-7.59 7.59c-.38.39-1.02.39-1.41 0z"
+                              d="M12 2C6.47 2 2 6.47 2 12s4.47 10 10 10 10-4.47 10-10S17.53 2 12 2zm5 13.59L15.59 17 12 13.41 8.41 17 7 15.59 10.59 12 7 8.41 8.41 7 12 10.59 15.59 7 17 8.41 13.41 12 17 15.59z"
                             />
                           </svg>
                           <span
-                            style="margin-left: 10px; color: rgb(22, 136, 69); font-family: Libre Franklin; font-style: normal; font-weight: 500; font-size: 14px; line-height: 18px;"
+                            style="margin-left: 10px; color: rgb(8, 7, 7); font-family: Libre Franklin; font-style: normal; font-weight: 400; font-size: 14px; line-height: 18px;"
                           >
                             Password should not contain your username
                           </span>

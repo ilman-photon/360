@@ -31,6 +31,10 @@ function AccountLayout({
     }
   };
 
+  const getHeadingStyle = () => {
+    return isMobile ? { fontWeight: "500", textAlign: "center" } : {};
+  };
+
   return (
     <Provider store={store}>
       <Head>
@@ -46,7 +50,10 @@ function AccountLayout({
           theme={isPatient ? patientTypography : providerTypography}
         >
           <BaseHeader {...logoutProps} />
-          <AccountTitleHeading title={getHeadingTitle(currentActivePage)} />
+          <AccountTitleHeading
+            title={getHeadingTitle(currentActivePage)}
+            sx={getHeadingStyle()}
+          />
           <div className={styles.container}>
             <div className={styles.sidebarContainer}>
               <AccountSidebar />

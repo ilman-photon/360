@@ -46,8 +46,10 @@
 
 .date {
   margin-right: 81px !important;
+  width: 338px;
   @media (max-width: 992px) {
     margin-right: unset !important;
+    width: unset;
   }
 }
 
@@ -83,6 +85,21 @@
   display: flex;
   align-items: baseline;
   gap: 5px;
+}
+
+.noPastAppointment {
+  font-family: "Libre Franklin", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 26px;
+
+  display: flex;
+  align-items: center;
+  letter-spacing: 0.0016em;
+
+  color: #000000;
+  margin-top: 23px;
 }
 
 .viewDetails {

@@ -5,7 +5,6 @@ import {
   FormGroup,
   Typography,
   IconButton,
-  Link,
   Divider,
   Button,
 } from "@mui/material";
@@ -17,7 +16,14 @@ import { TEST_ID } from "../../../utils/constants";
 
 const constants = require("../../../utils/constants");
 
-const FilterBy = ({ isOpen, onClose, onDone, filter, activedFilter = [] }) => {
+const FilterBy = ({
+  isOpen,
+  onClose,
+  onDone,
+  filter,
+  activedFilter = [],
+  isPrescription = false,
+}) => {
   const [openDrawer, setOpenDrawer] = React.useState(false);
   const [expand, setExpand] = React.useState(false);
   const [activeFilter, setActiveFilter] = React.useState([]);
@@ -63,7 +69,9 @@ const FilterBy = ({ isOpen, onClose, onDone, filter, activedFilter = [] }) => {
         </Typography>
         <FormGroup
           className={
-            !expand ? styles.checkBoxGroup : styles.checkBoxGroupExpand
+            !isPrescription && !expand
+              ? styles.checkBoxGroup
+              : styles.checkBoxGroupExpand
           }
         >
           {isMultiple ? (

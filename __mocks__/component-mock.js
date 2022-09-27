@@ -66,6 +66,7 @@ jest.mock("next-i18next", () => ({
   useTranslation: () => {
     return {
       t: (str) => str,
+      ready: true,
       i18n: {
         changeLanguage: () => new Promise(() => {}),
       },
@@ -75,6 +76,38 @@ jest.mock("next-i18next", () => ({
     return jest.fn();
   },
 }));
+
+const localStorageMock = (function() {
+  let store = {}
+
+  return {
+    getItem: function(key) {
+      if (key === 'userData') {
+        return JSON.stringify({
+          "communicationMethod": {
+            "email": "patient1@photoninfotech.net",
+            "phone": "(977) 623-4567"
+          },
+          "patientId": "98f9404b-6ea8-4732-b14f-9c1a168d8066"
+        });
+      }
+      return store[key] || null
+    },
+    setItem: function(key, value) {
+      store[key] = value.toString()
+    },
+    removeItem: function(key) {
+      delete store[key]
+    },
+    clear: function() {
+      store = {}
+    }
+  }
+})()
+
+Object.defineProperty(window, 'localStorage', {
+  value: localStorageMock
+})
 
 // jest.mock("react-idle-timer", () => ({
 //   useIdleTimer: jest.fn().mockReturnValue({
