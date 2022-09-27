@@ -16,10 +16,10 @@ const buildList = (payload) => {
 
 export const fetchAllPayers = createAsyncThunk(
   "user/fetchAllPayers",
-  async ({ token }) => {
+  async () => {
     const api = new Api();
     url = `/ecp/appointments/insurance/allpayers`;
-    return api.getResponse(url, null, "get", token);
+    return api.getResponse(url, null, "get");
   }
 );
 

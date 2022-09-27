@@ -10,7 +10,7 @@ import { useRef, useState } from "react";
 import { colors } from "../../../styles/theme";
 import Image from "../../atoms/Image/image";
 import { Regex } from "../../../utils/regex";
-import { Api } from "../../../pages/api/api";
+import DigitalAssetsHandler from "../../../utils/digitalAssetsHandler";
 
 export const ImageUploader = ({
   label,
@@ -27,19 +27,14 @@ export const ImageUploader = ({
 }) => {
   const [loading, setLoading] = useState(false);
   const inputImage = useRef(null);
-  const api = new Api();
-
-  const fetchURLFromDigitalAsset = (id) => {
-    if (!id) return;
-    return api.getURLDigitalAsset(id);
-  };
+  const digitalAsset = new DigitalAssetsHandler();
 
   const sourceURL = () => {
     if (!source) return;
-    return fetchURLFromDigitalAsset(source._id);
+    return digitalAsset.source.presignedUrl;
   };
 
-  const isImageUrlAvailable = () => {
+  const imageUrlSource = () => {
     return preview || sourceURL();
   };
 
@@ -63,9 +58,9 @@ export const ImageUploader = ({
       : window.btoa(str);
 
   const renderBasedOnImgSource = () => {
-    return isImageUrlAvailable() ? (
+    return imageUrlSource() ? (
       <Image
-        src={isImageUrlAvailable()}
+        src={imageUrlSource()}
         width={275}
         height={173}
         style={{ borderRadius: 4 }}
@@ -126,32 +121,12 @@ export const ImageUploader = ({
         };
         event.target.value = null;
       } else {
-        // legacy
-        // const blobFile = URL.createObjectURL(event.target.files[0]);
-        // OnUpload(blobFile);
-
         setLoading(true);
-        const readBinaryFile = async (payload) => {
-          // Read into an array buffer, create
-          const buffer = await payload.arrayBuffer();
-          return buffer;
-        };
-
         try {
-          const result = await readBinaryFile(file).catch((error) => {
-            console.error(`Error reading file:`, error);
-          });
-
-          const api = new Api();
-          const response = await api.createURLDigitalAsset(file);
-          const uploadResponse = await api.uploadFile(
-            response.presignedUrl,
-            Buffer.from(result)
-          );
-          const getResponse = await fetchURLFromDigitalAsset(response._id);
-
-          if (uploadResponse.success) {
-            OnUpload(getResponse);
+          digitalAsset.setFile(file);
+          await digitalAsset.upload();
+          if (digitalAsset.status) {
+            OnUpload(digitalAsset.source);
           }
         } catch (error) {
           console.error("Error when uploading", error);
@@ -193,7 +168,7 @@ export const ImageUploader = ({
         ""
       )}
 
-      {isImageUrlAvailable() ? (
+      {imageUrlSource() ? (
         <Button
           variant="text"
           sx={{

@@ -291,14 +291,15 @@ export default function PersonalInformation({
               name="profilePhoto"
               control={control}
               render={({
-                field: { onChange, _value },
+                field: { onChange, value },
                 fieldState: { _error },
               }) => {
                 return (
                   <>
                     <ProfilePhotoUploader
                       username={userData.name}
-                      source={userData.profilePhoto}
+                      source={userData.profilePhoto?.source || null}
+                      preview={value?.presignedUrl}
                       OnPhotoChange={onChange}
                       OnInputError={onFormProfilePhotoError}
                     />
@@ -541,8 +542,8 @@ export default function PersonalInformation({
                           }
                           OnUpload={onChange}
                           OnInputError={onFormIssuedFrontError}
-                          source={userData.issuedCardFront}
-                          preview={value}
+                          source={userData?.issuedCardFront?.source || null}
+                          preview={value?.presignedUrl}
                           label="Upload Front"
                           width="100%"
                           src="/login-bg.png"
@@ -589,8 +590,8 @@ export default function PersonalInformation({
                           }
                           OnUpload={onChange}
                           OnInputError={onFormIssuedBackError}
-                          source={userData.issuedCardBack}
-                          preview={value}
+                          source={userData?.issuedCardFront?.source || null}
+                          preview={value?.presignedUrl}
                           label="Upload Back"
                           width="100%"
                           alt=""

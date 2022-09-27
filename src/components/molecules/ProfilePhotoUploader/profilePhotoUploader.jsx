@@ -6,10 +6,12 @@ import { colors } from "../../../styles/theme";
 import { stringAvatar } from "../../../utils/avatar";
 import { Regex } from "../../../utils/regex";
 import SwapIcon from "../../../assets/icons/SwapIcon";
+import DigitalAssetsHandler from "../../../utils/digitalAssetsHandler";
 
 export const ProfilePhotoUploader = ({
   username = "",
   source = null,
+  preview,
   OnPhotoChange = () => {
     // This is intended
   },
@@ -17,10 +19,20 @@ export const ProfilePhotoUploader = ({
     // This is intended
   },
 }) => {
-  const [previewPhoto, setPreviewPhoto] = useState("");
+  const [loading, setLoading] = useState(false);
   const inputImage = useRef(null);
+  const digitalAsset = new DigitalAssetsHandler();
 
-  const handleInputChange = (event) => {
+  const sourceURL = () => {
+    if (!source) return;
+    return digitalAsset.source.presignedUrl;
+  };
+
+  const imageUrlSource = () => {
+    return preview || sourceURL();
+  };
+
+  const handleInputChange = async (event) => {
     const max = 4;
     const maxSize = max * 1024 * 1024; // 4MB
     if (event.target.files && event.target.files[0]) {
@@ -48,9 +60,19 @@ export const ProfilePhotoUploader = ({
           content: "Invalid file type",
         };
       } else {
-        const blobFile = URL.createObjectURL(file);
-        setPreviewPhoto({ name: file.name, source: blobFile });
-        OnPhotoChange({ name: file.name, source: blobFile });
+        setLoading(true);
+
+        try {
+          digitalAsset.setFile(file);
+          await digitalAsset.upload();
+          if (digitalAsset.status) {
+            OnPhotoChange(digitalAsset.source);
+          }
+        } catch (error) {
+          console.error("Error when uploading", error);
+        } finally {
+          setLoading(false);
+        }
       }
       OnInputError(error);
     }
@@ -61,9 +83,9 @@ export const ProfilePhotoUploader = ({
         sx={{ border: "1px dashed #DDDBDA", px: 2, py: 3, borderRadius: "4px" }}
       >
         <Stack direction="row" spacing={4} alignItems="center">
-          {previewPhoto || source ? (
+          {imageUrlSource() ? (
             <Image
-              src={previewPhoto.source || source.source}
+              src={imageUrlSource()}
               width={80}
               height={80}
               style={{ borderRadius: "50%" }}
@@ -77,11 +99,11 @@ export const ProfilePhotoUploader = ({
           )}
 
           <Stack spacing={1}>
-            {previewPhoto || source ? (
+            {imageUrlSource() ? (
               <Typography
                 sx={{ fontSize: "13px", fontWeight: 400, textAlign: "center" }}
               >
-                {previewPhoto.name || source.name}
+                {preview?.name || source?.name}
               </Typography>
             ) : (
               ""
@@ -100,7 +122,7 @@ export const ProfilePhotoUploader = ({
               }}
             >
               <Stack direction="row" alignItems="center" spacing={1}>
-                {previewPhoto || source ? (
+                {imageUrlSource() ? (
                   <SwapIcon style={{ width: 20, height: 20 }} />
                 ) : (
                   <FileUploadOutlinedIcon sx={{ width: 20, height: 20 }} />

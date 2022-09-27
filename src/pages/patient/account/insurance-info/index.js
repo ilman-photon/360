@@ -189,7 +189,7 @@ export default function InsuranceInfoPage() {
       })
     );
 
-    dispatch(fetchAllPayers({ token: cookies.get("accessToken") }));
+    dispatch(fetchAllPayers());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
