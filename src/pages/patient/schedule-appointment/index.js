@@ -77,6 +77,7 @@ const MobileTopBar = (data) => {
 export const PageContent = ({
   activeStep,
   isLoggedIn = false,
+  isReschedule = false,
   dispatch,
   appointmentScheduleData = {},
   OnsetActiveStep = () => {
@@ -96,6 +97,16 @@ export const PageContent = ({
 
   const api = new Api();
   const cookies = new Cookies();
+
+  const getScheduleButtonText = () => {
+    if (isLoggedIn) {
+      if (isReschedule) {
+        return "Reschedule Appointment";
+      } else {
+        return t("scheduleAppointment");
+      }
+    } else return t("continue");
+  };
 
   const handleFormSubmit = (payload) => {
     dispatch(
@@ -158,7 +169,7 @@ export const PageContent = ({
                 }}
                 onClick={() => OnsetActiveStep(2)}
               >
-                {isLoggedIn ? t("scheduleAppoinment") : t("continue")}
+                {getScheduleButtonText()}
               </Button>
             </Stack>
           </Box>
@@ -456,6 +467,7 @@ export default function ScheduleAppointmentPage() {
           <PageContent
             dispatch={dispatch}
             isLoggedIn={isLoggedIn}
+            isReschedule={isReschedule}
             activeStep={activeStep}
             OnsetActiveStep={handleSetActiveStep}
             appointmentScheduleData={appointmentScheduleData}
