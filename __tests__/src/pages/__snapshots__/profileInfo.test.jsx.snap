@@ -9,7 +9,7 @@ Object {
         class="accountLayout "
       >
         <header
-          class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-rxbk4x-MuiPaper-root-MuiAppBar-root"
+          class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-wzn3iz-MuiPaper-root-MuiAppBar-root"
         >
           <div
             class="MuiContainer-root MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root"
@@ -46,6 +46,7 @@ Object {
         </header>
         <div
           class="titleHeadingWrapper"
+          style="position: fixed;"
         >
           <div
             aria-label="Your Account heading"
@@ -62,85 +63,138 @@ Object {
             class="sidebarContainer"
           >
             <div
-              class="sidebarWrapper css-137a1xe-MuiStack-root"
+              class="sidebarWrapper"
             >
-              <a
-                class="sidebarLink"
-                href="/patient/account/profile-info"
-                style="border-color: #003b4a;"
+              <div
+                class="sidebarLinkWrapper css-1p5q5e5-MuiStack-root"
               >
-                <span
-                  class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                <div
+                  class="css-gbwphf-MuiStack-root"
                 >
-                  Profile Information
-                </span>
-              </a>
-              <a
-                class="sidebarLink"
-                href="#"
-                style="border-color: #003b4a;"
-              >
-                <span
-                  class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                  <div
+                    class="css-vuohop-MuiStack-root"
+                  >
+                    <hr
+                      class="MuiDivider-root MuiDivider-middle MuiDivider-vertical MuiDivider-flexItem css-yhaord-MuiDivider-root"
+                    />
+                    <a
+                      class="sidebarLink"
+                      href="/patient/account/profile-info"
+                    >
+                      <span
+                        class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                      >
+                        Profile Information
+                      </span>
+                    </a>
+                  </div>
+                </div>
+                <div
+                  class="css-gbwphf-MuiStack-root"
                 >
-                  Financial Information
-                </span>
-              </a>
-              <a
-                class="sidebarLink"
-                href="#"
-                style="border-color: #003b4a;"
-              >
-                <span
-                  class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                  <div
+                    class="css-vuohop-MuiStack-root"
+                  >
+                    <hr
+                      class="MuiDivider-root MuiDivider-middle MuiDivider-vertical MuiDivider-flexItem css-yhaord-MuiDivider-root"
+                    />
+                    <a
+                      class="sidebarLink"
+                      href="#"
+                    >
+                      <span
+                        class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                      >
+                        Care Plan
+                      </span>
+                    </a>
+                  </div>
+                </div>
+                <div
+                  class="css-gbwphf-MuiStack-root"
                 >
-                  Toggle accounts
-                </span>
-              </a>
-              <a
-                class="sidebarLink"
-                href="#"
-                style="border-color: #003b4a;"
-              >
-                <span
-                  class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                  <div
+                    class="css-vuohop-MuiStack-root"
+                  >
+                    <hr
+                      class="MuiDivider-root MuiDivider-middle MuiDivider-vertical MuiDivider-flexItem css-yhaord-MuiDivider-root"
+                    />
+                    <a
+                      class="sidebarLink"
+                      href="#"
+                    >
+                      <span
+                        class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                      >
+                        Prescriptions
+                      </span>
+                    </a>
+                  </div>
+                </div>
+                <div
+                  class="css-gbwphf-MuiStack-root"
                 >
-                  Merge accounts
-                </span>
-              </a>
-              <a
-                class="sidebarLink"
-                href="#"
-                style="border-color: #003b4a;"
-              >
-                <span
-                  class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                  <div
+                    class="css-vuohop-MuiStack-root"
+                  >
+                    <hr
+                      class="MuiDivider-root MuiDivider-middle MuiDivider-vertical MuiDivider-flexItem css-yhaord-MuiDivider-root"
+                    />
+                    <a
+                      class="sidebarLink"
+                      href="#"
+                    >
+                      <span
+                        class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                      >
+                        Test & Lab Results
+                      </span>
+                    </a>
+                  </div>
+                </div>
+                <div
+                  class="css-gbwphf-MuiStack-root"
                 >
-                  Prescriptions
-                </span>
-              </a>
-              <a
-                class="sidebarLink"
-                href="/patient/account/insurance-info"
-                style="border-color: #003b4a;"
-              >
-                <span
-                  class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                  <div
+                    class="css-vuohop-MuiStack-root"
+                  >
+                    <hr
+                      class="MuiDivider-root MuiDivider-middle MuiDivider-vertical MuiDivider-flexItem css-yhaord-MuiDivider-root"
+                    />
+                    <a
+                      class="sidebarLink"
+                      href="/patient/account/insurance-info"
+                    >
+                      <span
+                        class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                      >
+                        Insurance documents
+                      </span>
+                    </a>
+                  </div>
+                </div>
+                <div
+                  class="css-gbwphf-MuiStack-root"
                 >
-                  Insurance documents
-                </span>
-              </a>
-              <a
-                class="sidebarLink"
-                href="#"
-                style="border-color: #003b4a;"
-              >
-                <span
-                  class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
-                >
-                  Multi factor authentication
-                </span>
-              </a>
+                  <div
+                    class="css-vuohop-MuiStack-root"
+                  >
+                    <hr
+                      class="MuiDivider-root MuiDivider-middle MuiDivider-vertical MuiDivider-flexItem css-yhaord-MuiDivider-root"
+                    />
+                    <a
+                      class="sidebarLink"
+                      href="#"
+                    >
+                      <span
+                        class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                      >
+                        Multi factor authentication
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div
@@ -219,7 +273,7 @@ Object {
                   class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
                 >
                   <div
-                    class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1v5z4dq-MuiPaper-root-MuiCard-root"
+                    class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1yepo06-MuiPaper-root-MuiCard-root"
                   >
                     <div
                       class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
@@ -734,7 +788,7 @@ Object {
       class="accountLayout "
     >
       <header
-        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-rxbk4x-MuiPaper-root-MuiAppBar-root"
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-wzn3iz-MuiPaper-root-MuiAppBar-root"
       >
         <div
           class="MuiContainer-root MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root"
@@ -771,6 +825,7 @@ Object {
       </header>
       <div
         class="titleHeadingWrapper"
+        style="position: fixed;"
       >
         <div
           aria-label="Your Account heading"
@@ -787,85 +842,138 @@ Object {
           class="sidebarContainer"
         >
           <div
-            class="sidebarWrapper css-137a1xe-MuiStack-root"
+            class="sidebarWrapper"
           >
-            <a
-              class="sidebarLink"
-              href="/patient/account/profile-info"
-              style="border-color: #003b4a;"
+            <div
+              class="sidebarLinkWrapper css-1p5q5e5-MuiStack-root"
             >
-              <span
-                class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+              <div
+                class="css-gbwphf-MuiStack-root"
               >
-                Profile Information
-              </span>
-            </a>
-            <a
-              class="sidebarLink"
-              href="#"
-              style="border-color: #003b4a;"
-            >
-              <span
-                class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                <div
+                  class="css-vuohop-MuiStack-root"
+                >
+                  <hr
+                    class="MuiDivider-root MuiDivider-middle MuiDivider-vertical MuiDivider-flexItem css-yhaord-MuiDivider-root"
+                  />
+                  <a
+                    class="sidebarLink"
+                    href="/patient/account/profile-info"
+                  >
+                    <span
+                      class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                    >
+                      Profile Information
+                    </span>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="css-gbwphf-MuiStack-root"
               >
-                Financial Information
-              </span>
-            </a>
-            <a
-              class="sidebarLink"
-              href="#"
-              style="border-color: #003b4a;"
-            >
-              <span
-                class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                <div
+                  class="css-vuohop-MuiStack-root"
+                >
+                  <hr
+                    class="MuiDivider-root MuiDivider-middle MuiDivider-vertical MuiDivider-flexItem css-yhaord-MuiDivider-root"
+                  />
+                  <a
+                    class="sidebarLink"
+                    href="#"
+                  >
+                    <span
+                      class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                    >
+                      Care Plan
+                    </span>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="css-gbwphf-MuiStack-root"
               >
-                Toggle accounts
-              </span>
-            </a>
-            <a
-              class="sidebarLink"
-              href="#"
-              style="border-color: #003b4a;"
-            >
-              <span
-                class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                <div
+                  class="css-vuohop-MuiStack-root"
+                >
+                  <hr
+                    class="MuiDivider-root MuiDivider-middle MuiDivider-vertical MuiDivider-flexItem css-yhaord-MuiDivider-root"
+                  />
+                  <a
+                    class="sidebarLink"
+                    href="#"
+                  >
+                    <span
+                      class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                    >
+                      Prescriptions
+                    </span>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="css-gbwphf-MuiStack-root"
               >
-                Merge accounts
-              </span>
-            </a>
-            <a
-              class="sidebarLink"
-              href="#"
-              style="border-color: #003b4a;"
-            >
-              <span
-                class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                <div
+                  class="css-vuohop-MuiStack-root"
+                >
+                  <hr
+                    class="MuiDivider-root MuiDivider-middle MuiDivider-vertical MuiDivider-flexItem css-yhaord-MuiDivider-root"
+                  />
+                  <a
+                    class="sidebarLink"
+                    href="#"
+                  >
+                    <span
+                      class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                    >
+                      Test & Lab Results
+                    </span>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="css-gbwphf-MuiStack-root"
               >
-                Prescriptions
-              </span>
-            </a>
-            <a
-              class="sidebarLink"
-              href="/patient/account/insurance-info"
-              style="border-color: #003b4a;"
-            >
-              <span
-                class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                <div
+                  class="css-vuohop-MuiStack-root"
+                >
+                  <hr
+                    class="MuiDivider-root MuiDivider-middle MuiDivider-vertical MuiDivider-flexItem css-yhaord-MuiDivider-root"
+                  />
+                  <a
+                    class="sidebarLink"
+                    href="/patient/account/insurance-info"
+                  >
+                    <span
+                      class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                    >
+                      Insurance documents
+                    </span>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="css-gbwphf-MuiStack-root"
               >
-                Insurance documents
-              </span>
-            </a>
-            <a
-              class="sidebarLink"
-              href="#"
-              style="border-color: #003b4a;"
-            >
-              <span
-                class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
-              >
-                Multi factor authentication
-              </span>
-            </a>
+                <div
+                  class="css-vuohop-MuiStack-root"
+                >
+                  <hr
+                    class="MuiDivider-root MuiDivider-middle MuiDivider-vertical MuiDivider-flexItem css-yhaord-MuiDivider-root"
+                  />
+                  <a
+                    class="sidebarLink"
+                    href="#"
+                  >
+                    <span
+                      class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                    >
+                      Multi factor authentication
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div
@@ -944,7 +1052,7 @@ Object {
                 class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
               >
                 <div
-                  class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1v5z4dq-MuiPaper-root-MuiCard-root"
+                  class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1yepo06-MuiPaper-root-MuiCard-root"
                 >
                   <div
                     class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"

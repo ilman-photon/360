@@ -73,7 +73,7 @@ describe("Api test", () => {
         ResponseType: "success",
         email: "smith1@photon.com",
       };
-      mock.onPost(`/ecp/patient/resetPassword`).reply(200, expectedResult);
+      mock.onPost(`/ecp/patient/resetPasswordLink`).reply(200, expectedResult);
       const api = new Api();
       const result = await api.resetPassword({
         resetPassword: true,
@@ -189,7 +189,7 @@ describe("Api test", () => {
       const expectedResult = {
         message: "invalid username format",
       };
-      mock.onPost(`/ecp/patient/resetPassword`).reply(200, expectedResult);
+      mock.onPost(`/ecp/patient/resetPasswordLink`).reply(200, expectedResult);
       const api = new Api();
       await api
         .resetPassword({

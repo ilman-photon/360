@@ -65,6 +65,7 @@ const MobileTopBar = (data) => {
             marginLeft: 4,
             color: "#008294",
             textDecoration: "underline",
+            textTransform: "capitalize",
           }}
         >
           Edit

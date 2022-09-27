@@ -67,9 +67,9 @@ describe("InsuranceDocument Components", () => {
       expect(relationship.value).toEqual("Relationship value");
 
       const uploadText = container.getByText(
-        "Upload images of your insurance."
+        "Upload images of your insurance"
       );
-      expect("Upload images of your insurance.").toEqual(
+      expect("Upload images of your insurance").toEqual(
         uploadText.textContent
       );
 
