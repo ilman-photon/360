@@ -220,6 +220,7 @@ Object {
                     class="addToCalendarContainer MuiBox-root css-0"
                   >
                     <button
+                      aria-label="Collapse All option"
                       class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root appointmentButton css-1wby7gd-MuiButtonBase-root-MuiButton-root"
                       tabindex="0"
                       type="button"
@@ -398,6 +399,7 @@ FR
                       class="buttonContainer MuiBox-root css-0"
                     >
                       <button
+                        aria-label="Collapse All option"
                         class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root appointmentButton css-1wby7gd-MuiButtonBase-root-MuiButton-root"
                         data-testid="appointments_upcoming_appointments_cancel_button"
                         tabindex="0"
@@ -424,6 +426,7 @@ FR
                         />
                       </button>
                       <button
+                        aria-label="Collapse All option"
                         class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root appointmentButton css-1wby7gd-MuiButtonBase-root-MuiButton-root"
                         data-testid="appointments_upcoming_appointments_reschedule_button"
                         tabindex="0"
@@ -1430,6 +1433,7 @@ FR
                   class="addToCalendarContainer MuiBox-root css-0"
                 >
                   <button
+                    aria-label="Collapse All option"
                     class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root appointmentButton css-1wby7gd-MuiButtonBase-root-MuiButton-root"
                     tabindex="0"
                     type="button"
@@ -1608,6 +1612,7 @@ FR
                     class="buttonContainer MuiBox-root css-0"
                   >
                     <button
+                      aria-label="Collapse All option"
                       class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root appointmentButton css-1wby7gd-MuiButtonBase-root-MuiButton-root"
                       data-testid="appointments_upcoming_appointments_cancel_button"
                       tabindex="0"
@@ -1634,6 +1639,7 @@ FR
                       />
                     </button>
                     <button
+                      aria-label="Collapse All option"
                       class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root appointmentButton css-1wby7gd-MuiButtonBase-root-MuiButton-root"
                       data-testid="appointments_upcoming_appointments_reschedule_button"
                       tabindex="0"
@@ -1964,6 +1970,7 @@ Object {
                     class="addToCalendarContainer MuiBox-root css-0"
                   >
                     <button
+                      aria-label="Collapse All option"
                       class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root appointmentButton css-1wby7gd-MuiButtonBase-root-MuiButton-root"
                       tabindex="0"
                       type="button"
@@ -2142,6 +2149,7 @@ FR
                       class="buttonContainer MuiBox-root css-0"
                     >
                       <button
+                        aria-label="Collapse All option"
                         class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root appointmentButton css-1wby7gd-MuiButtonBase-root-MuiButton-root"
                         data-testid="appointments_upcoming_appointments_cancel_button"
                         tabindex="0"
@@ -2168,6 +2176,7 @@ FR
                         />
                       </button>
                       <button
+                        aria-label="Collapse All option"
                         class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root appointmentButton css-1wby7gd-MuiButtonBase-root-MuiButton-root"
                         data-testid="appointments_upcoming_appointments_reschedule_button"
                         tabindex="0"
@@ -3174,6 +3183,7 @@ FR
                   class="addToCalendarContainer MuiBox-root css-0"
                 >
                   <button
+                    aria-label="Collapse All option"
                     class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root appointmentButton css-1wby7gd-MuiButtonBase-root-MuiButton-root"
                     tabindex="0"
                     type="button"
@@ -3352,6 +3362,7 @@ FR
                     class="buttonContainer MuiBox-root css-0"
                   >
                     <button
+                      aria-label="Collapse All option"
                       class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root appointmentButton css-1wby7gd-MuiButtonBase-root-MuiButton-root"
                       data-testid="appointments_upcoming_appointments_cancel_button"
                       tabindex="0"
@@ -3378,6 +3389,7 @@ FR
                       />
                     </button>
                     <button
+                      aria-label="Collapse All option"
                       class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root appointmentButton css-1wby7gd-MuiButtonBase-root-MuiButton-root"
                       data-testid="appointments_upcoming_appointments_reschedule_button"
                       tabindex="0"
