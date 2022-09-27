@@ -165,7 +165,7 @@
     "patientInformation": "Patient Information",
     "cancelTitle": "Are you sure you want to cancel?",
     "cancelReason": "Reason for cancelation",
-    "cancelOther": "Enter Other Reason For Cancelation",
+    "cancelOther": "Enter other reason for cancelation",
     "btnCancel": "Cancel appointment",
     "btnKeep": "Keep appointment"
 

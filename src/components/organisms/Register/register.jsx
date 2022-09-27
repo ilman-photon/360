@@ -143,12 +143,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
     if (value.getFullYear() <= date) {
       return true;
     }
-    if (value.getMonth() <= 12) {
-      return true;
-    }
-    if (value.getMonth() <= 12) {
-      return true;
-    }
     return false;
   };
   const isOneOfPreferredValid = (name, value) => {

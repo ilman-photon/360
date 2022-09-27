@@ -29,7 +29,10 @@ export default function Container({
   setRememberMe,
   testIds,
 }) {
-  const { t } = useTranslation("translation", { keyPrefix: "mfaPage" });
+  const { t } = useTranslation("translation", {
+    keyPrefix: "mfaPage",
+    useSuspense: false,
+  });
   const renderFromMessage = () => {
     if (postMessage && postMessage !== "") {
       return (
