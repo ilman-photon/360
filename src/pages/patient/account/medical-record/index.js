@@ -100,7 +100,7 @@ export default function MedicalRecordPage() {
         type: "text",
         id: "status",
         numeric: false,
-        disablePadding: true,
+        disablePadding: false,
         label: "Test Status",
         width: 136,
       },
@@ -119,7 +119,7 @@ export default function MedicalRecordPage() {
       {
         type: "text",
         valueKey: "orderBy",
-        cellProps: { align: "left", component: "th", padding: "none" },
+        cellProps: { align: "left", padding: "none" },
         contentStyle: {
           padding: "12px 0",
           fontWeight: "500",
@@ -129,7 +129,7 @@ export default function MedicalRecordPage() {
       {
         type: "text",
         valueKey: "date",
-        cellProps: { align: "left", component: "th", padding: "none" },
+        cellProps: { align: "left", padding: "none", borderRight: "none" },
         contentStyle: {
           padding: "12px 0",
           fontWeight: "500",
@@ -139,7 +139,7 @@ export default function MedicalRecordPage() {
       {
         type: "text",
         valueKey: "status",
-        cellProps: { align: "left", component: "th", padding: "none" },
+        cellProps: { align: "left" },
         contentStyle: {
           padding: "12px 0",
           fontWeight: "700",
@@ -157,7 +157,6 @@ export default function MedicalRecordPage() {
         numeric: false,
         disablePadding: false,
         label: "Procedure",
-        // width: 250,
       },
       {
         type: "text",
@@ -165,7 +164,6 @@ export default function MedicalRecordPage() {
         numeric: false,
         disablePadding: false,
         label: "Ordered By",
-        // width: 250,
       },
       {
         type: "text",
@@ -173,7 +171,6 @@ export default function MedicalRecordPage() {
         numeric: false,
         disablePadding: false,
         label: "Test Date",
-        // width: 250,
       },
     ],
   };

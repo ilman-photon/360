@@ -47,7 +47,7 @@ export default function PrescriptionLayout({
         <AccountTitleHeading
           title={headingTitle()}
           sxContainer={{ marginTop: isDesktop ? "107px" : "56px" }}
-          sx={{ fontWeight: "400" }}
+          sx={{ fontWeight: "400", maxWidth: "1477px", margin: "0 auto" }}
         />
         <ThemeProvider theme={patientTypography}>
           <div className={styles.defaultContainer}>{children}</div>
