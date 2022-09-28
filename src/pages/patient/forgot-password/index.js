@@ -68,7 +68,8 @@ const mappingSecurityData = function (securityQuestionsData) {
     };
     securityQuestionList.push(securityQuestion);
   }
-  return securityQuestionList;
+  const shuffled = securityQuestionList.sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, 3);
 };
 
 const backToLoginProps = {
