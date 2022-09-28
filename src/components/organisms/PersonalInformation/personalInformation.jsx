@@ -23,7 +23,7 @@ import { StyledSelect } from "../../atoms/Select/select";
 import { formatSocialSecurity } from "../../../utils/ssnFormatter";
 import { GENDER_LIST, TITLE_LIST } from "../../../utils/constantData";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import Image from "next/image";
+import ImageFallback from "../../atoms/Image/image";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 
 export default function PersonalInformation({
@@ -140,14 +140,14 @@ export default function PersonalInformation({
             alignItems={isDesktop ? "unset" : "center"}
           >
             {userData.profilePhoto ? (
-              <Image
-                src={userData.profilePhoto.source}
+              <ImageFallback
+                source={userData.profilePhoto}
                 width={122}
                 height={122}
                 style={{ borderRadius: "50%" }}
                 alt="image"
                 aria-label="Image"
-              ></Image>
+              />
             ) : (
               <Avatar
                 {...stringAvatar(userData.name)}
@@ -242,10 +242,10 @@ export default function PersonalInformation({
                 helperText="JPG or PNG file formats only. (File size limit is 4 MB)"
               >
                 <div className={styles.issuedCardContainer}>
-                  <Image
+                  <ImageFallback
                     width={267}
                     height={175}
-                    src={userData.issuedCardFront || "/transparent.png"}
+                    source={userData.issuedCardFront}
                     tabIndex={0}
                     alt="Front image"
                     aria-label="Front image"
@@ -259,11 +259,11 @@ export default function PersonalInformation({
                 helperText="JPG or PNG file formats only. (File size limit is 4 MB)"
               >
                 <div className={styles.issuedCardContainer}>
-                  <Image
+                  <ImageFallback
                     tabIndex={0}
                     width={267}
                     height={175}
-                    src={userData.issuedCardBack || "/transparent.png"}
+                    source={userData.issuedCardBack}
                     alt="Back image"
                     aria-label="Back Image"
                   />
@@ -298,8 +298,7 @@ export default function PersonalInformation({
                   <>
                     <ProfilePhotoUploader
                       username={userData.name}
-                      source={userData.profilePhoto?.source || null}
-                      preview={value?.presignedUrl}
+                      source={value}
                       OnPhotoChange={onChange}
                       OnInputError={onFormProfilePhotoError}
                     />
@@ -542,12 +541,8 @@ export default function PersonalInformation({
                           }
                           OnUpload={onChange}
                           OnInputError={onFormIssuedFrontError}
-                          source={userData?.issuedCardFront?.source || null}
-                          preview={value?.presignedUrl}
+                          source={value}
                           label="Upload Front"
-                          width="100%"
-                          src="/login-bg.png"
-                          alt=""
                         />
                       </>
                     );
@@ -590,11 +585,8 @@ export default function PersonalInformation({
                           }
                           OnUpload={onChange}
                           OnInputError={onFormIssuedBackError}
-                          source={userData?.issuedCardFront?.source || null}
-                          preview={value?.presignedUrl}
+                          source={value}
                           label="Upload Back"
-                          width="100%"
-                          alt=""
                         />
                       </>
                     );

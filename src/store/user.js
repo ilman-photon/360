@@ -117,7 +117,7 @@ export const fetchUser = createAsyncThunk(
   async ({ token }) => {
     const api = new Api();
     return api.getResponse(
-      "/ecp/patient/getPatient/59f43690-807f-4522-a615-e4b3b9ed8434",
+      "/ecp/patient/getPatient/1656b00e-916b-4cea-ba3e-96cffe291858",
       null,
       "get",
       token
@@ -132,7 +132,7 @@ export const updateUser = createAsyncThunk(
     try {
       // get the userData first, just to make sure
       const res = await api.getResponse(
-        "/ecp/patient/getPatient/59f43690-807f-4522-a615-e4b3b9ed8434",
+        "/ecp/patient/getPatient/1656b00e-916b-4cea-ba3e-96cffe291858",
         null,
         "get",
         token
@@ -140,7 +140,7 @@ export const updateUser = createAsyncThunk(
       // then apply changes from our side with response body from "res" and do a PUT request
       const postBody = buildProfilePostBody(res, payload);
       const response = await api.getResponse(
-        "/ecp/patient/editPatient/59f43690-807f-4522-a615-e4b3b9ed8434",
+        "/ecp/patient/editPatient/1656b00e-916b-4cea-ba3e-96cffe291858",
         postBody,
         "put",
         token
@@ -242,6 +242,8 @@ export const postInsurance = createAsyncThunk(
 
 const buildUserData = (payload) => {
   const userAddress = payload.address[0] || {};
+  const patientDetails = payload.patientDetails || {};
+  console.log({ patientDetails });
 
   let userPreferredCommunication = "";
   if (payload.contactInformation) {
@@ -261,9 +263,9 @@ const buildUserData = (payload) => {
     lastName: payload.lastName,
     name: `${payload.firstName} ${payload.lastName}`,
     preferedName: "---",
-    profilePhoto: "",
-    issuedCardFront: "/transparent.png",
-    issuedCardBack: "/transparent.png",
+    profilePhoto: patientDetails.profilePhoto?.digitalAsset || null,
+    issuedCardFront: {},
+    issuedCardBack: {},
     dob: payload.dob,
     title: TITLE_LIST[payload.title - 1],
     ssn: payload.ssn,
@@ -296,8 +298,8 @@ const DEFAULT_USER_DATA = {
   name: "Eyecare User",
   preferredName: "---",
   profilePhoto: null,
-  issuedCardFront: "/transparent.png",
-  issuedCardBack: "/transparent.png",
+  issuedCardFront: {},
+  issuedCardBack: {},
   dob: new Date(),
   title: "Mr.",
   ssn: 1234567,

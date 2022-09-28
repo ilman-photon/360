@@ -51,7 +51,7 @@ export default class DigitalAssetHandler {
       );
       this.status = success ? "success" : "failed";
       this.source = await this.fetchSourceURL();
-      console.log("source fetch", { source: this.source });
+      console.log("source fetch", { status: this.status, source: this.source });
     }
   };
 }

@@ -8,12 +8,11 @@ import {
 } from "@mui/material";
 import CameraAltOutlinedIcon from "@mui/icons-material/CameraAltOutlined";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { colors } from "../../../styles/theme";
-import Image from "../../atoms/Image/image";
 import { Regex } from "../../../utils/regex";
 import DigitalAssetsHandler from "../../../utils/digitalAssetsHandler";
-import { useEffect } from "react";
+import Image from "next/image";
 
 export const ImageUploader = ({
   label,
@@ -42,7 +41,7 @@ export const ImageUploader = ({
   const fetchImageURL = async () => {
     digitalAsset.setSource(source);
     const src = await digitalAsset.fetchSourceURL();
-    setImageSource(src.presignedUrl);
+    if (src) setImageSource(src.presignedUrl);
   };
 
   useEffect(() => {
@@ -70,13 +69,13 @@ export const ImageUploader = ({
       : window.btoa(str);
 
   const renderBasedOnImgSource = () => {
-    return imageSource ? (
+    return !!imageSource ? (
       <Image
-        src={imageSource || null}
+        src={imageSource}
         width={275}
         height={173}
         style={{ borderRadius: 4 }}
-        alt="photo"
+        alt="image"
         placeholder="blur"
         blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
       />
@@ -141,7 +140,7 @@ export const ImageUploader = ({
         try {
           digitalAsset.setFile(file);
           await digitalAsset.upload();
-          if (digitalAsset.status) {
+          if (digitalAsset.status === "success") {
             OnUpload(digitalAsset.source);
             setPreview(digitalAsset.source.presignedUrl);
           }

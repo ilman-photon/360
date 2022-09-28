@@ -508,9 +508,6 @@ export default function InsuranceForm({
                       source={value}
                       // preview={value?.presignedUrl}
                       label="Upload Front"
-                      width="100%"
-                      src="/login-bg.png"
-                      alt=""
                       helperText={
                         isMobile
                           ? "*JPG or PNG file formats only. (File size limit is 4 MB)"
@@ -553,9 +550,6 @@ export default function InsuranceForm({
                       // preview={value?.presignedUrl}
                       testIds={testIds.uploadBackImage}
                       label="Upload Back"
-                      width="100%"
-                      src="/login-bg.png"
-                      alt=""
                       helperText={
                         isMobile
                           ? "*JPG or PNG file formats only. (File size limit is 4 MB)"
