@@ -92,9 +92,10 @@ export default function RowRadioButtonsGroup({
               }
               label={option.label}
               sx={{
-                ".MuiTypography-root": props.isInsuranceForm
-                  ? { fontSize: 16, color: "#242526" }
-                  : { fontSize: 14 },
+                ".MuiTypography-root":
+                  props.isInsuranceForm || props.isRegistrationForm
+                    ? { fontSize: 16, color: "#242526" }
+                    : { fontSize: 14 },
               }}
             />
           );
