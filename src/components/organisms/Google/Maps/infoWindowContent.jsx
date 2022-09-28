@@ -52,7 +52,7 @@ const InfoWindowContent = ({
   };
 
   return (
-    <Stack spacing={2} pb={5} sx={{ maxWidth: "400px" }}>
+    <Stack spacing={2} pb={5} sx={{ maxWidth: { xs: "300px", md: "400px" } }}>
       <Grid container spacing={1}>
         <Grid item xs={10}>
           <Stack spacing={2} divider={<Divider />}>
@@ -130,6 +130,7 @@ const InfoWindowContent = ({
                             size={constants.SMALL}
                             gradient={false}
                             onClick={() => {
+                              console.log({ dats: data[counter - 1] });
                               if (!item) return;
                               OnTimeClicked(
                                 new Date(

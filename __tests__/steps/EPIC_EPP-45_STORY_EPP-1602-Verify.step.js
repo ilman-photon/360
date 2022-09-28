@@ -28,6 +28,7 @@ useRouter.mockReturnValue({
   query: {
     reschedule: true,
   },
+  replace: jest.fn(),
 });
 window.scrollTo = jest.fn();
 

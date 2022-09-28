@@ -45,7 +45,7 @@ export default function Prescriptions({
 }) {
   const isMobile = useMediaQuery("(max-width: 768px)");
 
-  const iconPrescription = "/icon-prescription.png";
+  const iconPrescription = "/icon-prescription2.png";
   const iconContacts = "/icon-contacts.png";
   const iconGlasses = "/icon-glasses.png";
   const iconMedication = "/icon-medication.png";

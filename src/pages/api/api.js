@@ -315,6 +315,12 @@ export class Api {
     return this.getResponse(url, {}, "get");
   }
 
+  getAppointmentDetails() {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/appointment/my-appointment/getAppointmentDetails`;
+    return this.getResponse(url, {}, "get");
+  }
+
   updateAppointment(postbody) {
     const domain = window.location.origin;
     const url = `${domain}/api/dummy/appointment/my-appointment/updateAppointment`;
