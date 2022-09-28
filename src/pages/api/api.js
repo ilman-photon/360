@@ -22,6 +22,7 @@ export class Api {
   }
 
   getResponse(url, postbody, method) {
+    const api = new Api();
     return new Promise((resolve, reject) => {
       const resolver = function (response) {
         if (response && response.data) {
@@ -54,11 +55,11 @@ export class Api {
 
       switch (method) {
         case "get":
-          return this.client.get(url, postbody).then(resolver).catch(rejecter);
+          return api.client.get(url, postbody).then(resolver).catch(rejecter);
         case "post":
-          return this.client.post(url, postbody).then(resolver).catch(rejecter);
+          return api.client.post(url, postbody).then(resolver).catch(rejecter);
         default:
-          return this.client.get(url, postbody).then(resolver).catch(rejecter);
+          return api.client.get(url, postbody).then(resolver).catch(rejecter);
       }
     });
   }

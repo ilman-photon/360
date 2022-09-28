@@ -141,12 +141,12 @@ const MOCK_PRESCRIPTION = {
     ],
     medications: [
       {
-        id:"0",
+        id: "0",
         prescription: "Aspirint 0.1% Ointmanet",
         date: "2022-09-02T11:18:47.229Z",
       },
       {
-        id:"0",
+        id: "0",
         prescription: "Aspirint 0.1% Ointmanet",
         date: "2022-09-02T11:18:47.229Z",
       },
@@ -865,7 +865,7 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_APPOINTMENT);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
       mock
@@ -964,7 +964,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-        Cookies.result = { authorized: true };
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -984,7 +984,7 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_APPOINTMENT);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
@@ -1070,7 +1070,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-        Cookies.result = { authorized: true };
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -1090,7 +1090,7 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_APPOINTMENT);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
@@ -1187,7 +1187,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-        Cookies.result = { authorized: true };
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -1207,7 +1207,7 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_APPOINTMENT);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
       mock

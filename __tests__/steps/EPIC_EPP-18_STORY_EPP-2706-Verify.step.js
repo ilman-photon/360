@@ -1,9 +1,4 @@
-import {
-  act,
-  render,
-  waitFor,
-  fireEvent,
-} from "@testing-library/react";
+import { act, render, waitFor, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import Cookies from "universal-cookie";
@@ -12,7 +7,7 @@ import PrescriptionPage from "../../src/pages/patient/prescription";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import store from "../../src/store/store";
-import mediaQuery from 'css-mediaquery';
+import mediaQuery from "css-mediaquery";
 
 function createMatchMedia(width) {
   return (query) => ({
@@ -164,113 +159,152 @@ defineFeature(feature, (test) => {
   const domain = window.location.origin;
   const mock = new MockAdapter(axios);
 
-  test('EPIC_EPP-18_STORY_EPP-2706- To verify whether the patient is able to view the option to Refill the Prescription.', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {});
+  test("EPIC_EPP-18_STORY_EPP-2706- To verify whether the patient is able to view the option to Refill the Prescription.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {}
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, () => {});
 
-    and('clicks  on login button.', () => {
+    and("clicks  on login button.", () => {
       Cookies.result = { authorized: true };
     });
 
-    and('navigate to the View Prescription page.', async () => {
+    and("navigate to the View Prescription page.", async () => {
       Cookies.result = "true";
-      mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`).reply(200, MOCK_PRESCRIPTION);
-      window.matchMedia = createMatchMedia('1920px');
-      
-      act(()=>{
-      container = render(
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, MOCK_PRESCRIPTION);
+      window.matchMedia = createMatchMedia("1920px");
+
+      act(() => {
+        container = render(
           <Provider store={store}>
-              {PrescriptionPage.getLayout(<PrescriptionPage />)}
+            {PrescriptionPage.getLayout(<PrescriptionPage />)}
           </Provider>
-          );
-      })
-      await waitFor(()=> container.getByText(/Filter/i));
-      expect(container.getAllByText(/Active Medications/i)[0]).toBeInTheDocument();
+        );
+      });
+      await waitFor(() => container.getByText(/Filter/i));
+      expect(
+        container.getAllByText(/Active Medications/i)[0]
+      ).toBeInTheDocument();
     });
 
-    then('patient should see the option to Refill the Prescription.', () => {
+    then("patient should see the option to Refill the Prescription.", () => {
       expect(container.getAllByText(/Request Refill/i)[0]).toBeInTheDocument();
     });
   });
 
-  test('EPIC_EPP-18_STORY_EPP-2706- To verify whether the Patient is not able to request for the expired prescription.', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {});
+  test("EPIC_EPP-18_STORY_EPP-2706- To verify whether the Patient is not able to request for the expired prescription.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {}
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, () => {});
 
-    and('clicks  on login button.', () => {
+    and("clicks  on login button.", () => {
       Cookies.result = { authorized: true };
     });
 
-    and('navigate to the View Prescription page.', async () => {
+    and("navigate to the View Prescription page.", async () => {
       Cookies.result = "true";
       mock.reset();
-      mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`).reply(200, MOCK_PRESCRIPTION);
-      window.matchMedia = createMatchMedia('1920px');
-      
-      act(()=>{
-      container = render(
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, MOCK_PRESCRIPTION);
+      window.matchMedia = createMatchMedia("1920px");
+
+      act(() => {
+        container = render(
           <Provider store={store}>
-              {PrescriptionPage.getLayout(<PrescriptionPage />)}
+            {PrescriptionPage.getLayout(<PrescriptionPage />)}
           </Provider>
-          );
-      })
-      await waitFor(()=> container.getByText(/Filter/i));
-      expect(container.getAllByText(/Active Medications/i)[0]).toBeInTheDocument();
+        );
+      });
+      await waitFor(() => container.getByText(/Filter/i));
+      expect(
+        container.getAllByText(/Active Medications/i)[0]
+      ).toBeInTheDocument();
     });
 
-    and('patient should see the option to Refill the Prescription.', () => {
+    and("patient should see the option to Refill the Prescription.", () => {
       expect(container.getAllByText(/Request Refill/i)[0]).toBeInTheDocument();
     });
 
-    and('request for the expired prescription.', async () => {
+    and("request for the expired prescription.", async () => {
       const mockResponse = {
         message: "Your refill request has been sumbitted",
       };
-      
-      mock.onPost(`${domain}/api/dummy/prescription/requestRefill`).reply(200, mockResponse);
-      
+
+      mock
+        .onPost(`${domain}/api/dummy/prescription/requestRefill`)
+        .reply(200, mockResponse);
+
       const requestRefill = container.getAllByText(/Request Refill/i)[0];
       expect(requestRefill).toBeInTheDocument();
-      
-      act(()=>{
+
+      act(() => {
         fireEvent.click(requestRefill);
       });
-      
-      await waitFor(()=> container.getByText(/Cancel Refill Request/i));
-      expect(container.getAllByText(/Cancel Refill Request/i)[0]).toBeInTheDocument();
+
+      await waitFor(() => container.getByText(/Cancel Refill Request/i));
+      expect(
+        container.getAllByText(/Cancel Refill Request/i)[0]
+      ).toBeInTheDocument();
     });
 
-    then('Patient should not able to request for the expired prescription.', async () => {
-      let expiredContainer;
-      const mockResp = {
-        prescriptions: {
-          glasses: [],
-          contacts: [],
-          medications: [
-            {
-              id: "3",
-              prescription: "Aspirint 0.1% Ointmanet",
-              date: "2022-08-02T11:18:47.229Z",
-            },
-          ],
-        }
-      }
-      const mockq = new MockAdapter(axios);
-      mockq.reset();
-      mockq.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`).reply(200, mockResp);
-      window.matchMedia = createMatchMedia('1920px');
-      
-      act(()=>{
-        expiredContainer = render(
-          <Provider store={store}>
+    then(
+      "Patient should not able to request for the expired prescription.",
+      async () => {
+        let expiredContainer;
+        const mockResp = {
+          prescriptions: {
+            glasses: [],
+            contacts: [],
+            medications: [
+              {
+                id: "3",
+                prescription: "Aspirint 0.1% Ointmanet",
+                date: "2022-08-02T11:18:47.229Z",
+              },
+            ],
+          },
+        };
+        const mockq = new MockAdapter(axios);
+        mockq.reset();
+        mockq
+          .onGet(
+            `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
+          )
+          .reply(200, mockResp);
+        window.matchMedia = createMatchMedia("1920px");
+
+        act(() => {
+          expiredContainer = render(
+            <Provider store={store}>
               {PrescriptionPage.getLayout(<PrescriptionPage />)}
-          </Provider>
+            </Provider>
           );
-      })
-      await waitFor(()=> expiredContainer.getByText(/Past Medications/i));
-      //expect(expiredContainer.getAllByText(/Request Refill/i)[0]).not.toBeInTheDocument();
-    });
+        });
+        await waitFor(() => expiredContainer.getByText(/Past Medications/i));
+        //expect(expiredContainer.getAllByText(/Request Refill/i)[0]).not.toBeInTheDocument();
+      }
+    );
   });
 });
