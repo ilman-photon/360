@@ -22,6 +22,10 @@ export default function Bio({ googleApiKey }) {
     const api = new Api();
     !providerData &&
       api.getProviderDetails().then((response) => {
+        const isHasMultipleAddress = Array.isArray(response.address);
+        response.address = !isHasMultipleAddress
+          ? [response.address]
+          : response.address;
         setProviderData(response);
       });
   };
@@ -32,15 +36,17 @@ export default function Bio({ googleApiKey }) {
   }, [providerData]);
 
   return (
-    <Box className={styles.bioPage}>
-      <Box className={styles.shortBioContainer}>
-        <ProviderProfile providerData={providerData} variant={"bio"} />
+    providerData && (
+      <Box className={styles.bioPage}>
+        <Box className={styles.shortBioContainer}>
+          <ProviderProfile providerData={providerData} variant={"bio"} />
+        </Box>
+        <BiographyDetails
+          googleApiKey={googleApiKey}
+          providerData={providerData}
+        />
       </Box>
-      <BiographyDetails
-        googleApiKey={googleApiKey}
-        providerData={providerData}
-      />
-    </Box>
+    )
   );
 }
 
