@@ -234,7 +234,7 @@ export default function PersonalInformation({
               License or State-issued ID.
             </Typography>
 
-            <Stack spacing={6}>
+            <Stack spacing={6} sx={{ maxWidth: { sm: "415px" } }}>
               <LabelWithInfo
                 label="Front Card"
                 tabIndex={0}

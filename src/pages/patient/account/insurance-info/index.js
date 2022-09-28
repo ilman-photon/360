@@ -397,7 +397,7 @@ export default function InsuranceInfoPage() {
         ariaLive={"Remove Insurance"}
         sx={{
           ".MuiPaper-root": {
-            minWidth: "500px",
+            minWidth: "280px",
           },
           ".MuiDialogActions-root": {
             padding: 2,
