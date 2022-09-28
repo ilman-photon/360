@@ -28,9 +28,7 @@ describe("App", () => {
     expect(container.getByText("Date of Birth")).toBeInTheDocument();
     expect(container.getByText("optional")).toBeInTheDocument();
     expect(container.getByText("passwordInfo")).toBeInTheDocument();
-    expect(
-      container.getByLabelText("Password unhide icon")
-    ).toBeInTheDocument();
+    expect(container.getByLabelText("passwordLabel")).toBeInTheDocument();
   });
 
   it("Set Invalid value to all field and see error message", async () => {

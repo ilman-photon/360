@@ -98,7 +98,12 @@ export default function AppointmentLocation({
               aria-label={`provider phone number ${providerData.phoneNumber}`}
               tabindex={"0"}
             >
-              <Link style={styles.linkText}>{providerData.phoneNumber}</Link>
+              <Link
+                style={styles.linkText}
+                href={`tel:${providerData.phoneNumber}`}
+              >
+                {providerData.phoneNumber}
+              </Link>
             </Typography>
           </Box>
         </Stack>

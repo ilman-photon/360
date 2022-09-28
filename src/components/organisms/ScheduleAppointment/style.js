@@ -41,7 +41,7 @@ export const styles = {
   sigInInfoLabel: {
     fontFamily: "Libre Franklin",
     fontWeight: "600",
-    fontSize: "18px",
+    fontSize: "16px",
     color: "#000000",
   },
   link: {

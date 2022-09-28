@@ -10,10 +10,6 @@ describe("InsuranceDocument Components", () => {
     container = render(<InsuranceInformationNew />);
   });
 
-  it("InsuranceDocument render", () => {
-    expect(container).toMatchSnapshot();
-  });
-
   it("Set value to all field", () => {
     setTimeout(() => {
       const insuranceProvider = container.getByLabelText("Insurance Provider");
@@ -66,12 +62,8 @@ describe("InsuranceDocument Components", () => {
       });
       expect(relationship.value).toEqual("Relationship value");
 
-      const uploadText = container.getByText(
-        "Upload images of your insurance"
-      );
-      expect("Upload images of your insurance").toEqual(
-        uploadText.textContent
-      );
+      const uploadText = container.getByText("Upload images of your insurance");
+      expect("Upload images of your insurance").toEqual(uploadText.textContent);
 
       const uploadDisclaimer = container.getByText(
         "*JPG or PNG file formats only. (File size limit is 4 MB)"

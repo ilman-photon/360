@@ -16,6 +16,7 @@ import { useRouter } from "next/router";
 import constants from "../../../utils/constants";
 import { HeadingTitle } from "../../atoms/Heading";
 import { colors } from "../../../styles/theme";
+import { fontSize } from "@mui/system";
 export default function Register({ OnRegisterClicked, formMessage = null }) {
   const router = useRouter();
   const { handleSubmit, control, watch } = useForm({
@@ -200,7 +201,9 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   size="small"
                   variant="filled"
                   helperText={error ? error.message : null}
-                  sx={{ margin: "8px" }}
+                  sx={{
+                    margin: "8px",
+                  }}
                 />
               );
             }}
@@ -229,7 +232,9 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   size="small"
                   variant="filled"
                   helperText={error ? error.message : null}
-                  sx={{ margin: "8px" }}
+                  sx={{
+                    margin: "8px",
+                  }}
                 />
               );
             }}
@@ -286,7 +291,9 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   size="small"
                   variant="filled"
                   helperText={error ? error.message : null}
-                  sx={{ margin: "8px" }}
+                  sx={{
+                    margin: "8px",
+                  }}
                 />
               );
             }}
@@ -319,7 +326,9 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   size="small"
                   variant="filled"
                   helperText={error ? error.message : null}
-                  sx={{ m: 1 }}
+                  sx={{
+                    m: 1,
+                  }}
                 />
               );
             }}
@@ -336,7 +345,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               },
             }}
           />
-          <Typography sx={styles.passwordLabel}>
+          <Typography sx={{ ...styles.passwordLabel, fontSize: "18px" }}>
             Please create a password
           </Typography>
           <Controller
@@ -406,6 +415,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                       label="Preferred mode of Communication"
                       options={options}
                       helperText={error ? error.message : null}
+                      isRegistrationForm={true}
                     />
                   </>
                 );

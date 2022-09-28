@@ -13,9 +13,6 @@ describe("Update Password", () => {
       </Provider>
     );
   });
-  test("renders forgot password", () => {
-    expect(container).toMatchSnapshot();
-  });
 
   test("check valid email", () => {
     setTimeout(() => {
