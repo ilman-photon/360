@@ -58,9 +58,9 @@ export default function MfaPage({ isStepTwo }) {
   };
 
   React.useEffect(() => {
-    if (Object.keys(communicationMethod).length == 0 && !ready) {
+    if (Object.keys(communicationMethod).length == 0) {
       const userData = JSON.parse(localStorage.getItem("userData"));
-      const communicationMethod = userData?.communicationMethod || {};
+      const communicationMethod = userData.communicationMethod;
       setCommunicationMethod(communicationMethod);
       setIsLoading(false);
     }
@@ -69,7 +69,7 @@ export default function MfaPage({ isStepTwo }) {
     return () => {
       window.removeEventListener("popstate", onBackButtonEvent);
     };
-  }, [communicationMethod]);
+  });
 
   const setTempValidation = (response) => {
     if (process.env.ENV_NAME !== "prod" && response && response.mfaCode) {
