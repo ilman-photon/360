@@ -26,7 +26,6 @@ defineFeature(feature, (test) => {
     router.push(
         `/patient/account/medical-record?type=test-lab-result`
       )
-    console.log(router, 'containerd-------')
     const mock = new MockAdapter(axios);
     const element = document.createElement("div");
     const setState = jest.fn()
@@ -37,10 +36,6 @@ defineFeature(feature, (test) => {
     afterEach(() => {
       mock.reset();
     });
-
-  const defaultValidation = () => {
-    expect(true).toBeTruthy();
-  };
 
   const launchBrowser = () => {
     mock
@@ -70,20 +65,23 @@ defineFeature(feature, (test) => {
     fireEvent.click(login);
   }
 
-  const renderPage = async () => {
+  const navigateToMedicalPage = () => {
       act(() => {
-          router.push(
-              `/patient/account/medical-record?type=care-plan-overview`
-            )
           container.rerender(
               <Provider store={store}>
                 <TestLabPage />
               </Provider>
             );
+          router.push(
+            `/patient/account/medical-record?type=care-plan-overview`
+          )
         });
-        await waitFor(() => {
-          expect(container.getByText("Choose a category")).toBeInTheDocument();
-        })
+  }
+
+  const landsOnMedicalPage = async () => {
+    await waitFor(() => {
+        expect(container.getByText("Choose a category")).toBeInTheDocument();
+    })
   }
 
   const userSeeEmptyTable = async () => {
@@ -99,14 +97,6 @@ defineFeature(feature, (test) => {
     expect(moreVertBtn).toBeInTheDocument()
     fireEvent.click(moreVertBtn)
     expect(container.getByText("Share")).toBeInTheDocument();
-
-    // setTimeout(async () => {
-
-    //   const moreVertBtn = await waitFor(() => container.getByTestId("more-vert-button"));
-    //   expect(tableDocument).toBeInTheDocument()
-    //   fireEvent.click(moreVertBtn)
-    //   expect(container.getByText("Procedure")).toBeInTheDocument();
-    // }, 10000);
   }
 
   const componentsPage = async () => {
@@ -133,11 +123,11 @@ defineFeature(feature, (test) => {
     });
 
     and('user navigates to the screen to view their Care Plan Overview', () => {
-        defaultValidation();
+        navigateToMedicalPage();
     });
 
     then('user lands on the screen to view Care Plan Overview', () => {
-        renderPage();
+        landsOnMedicalPage();
     });
   });
 
@@ -155,11 +145,11 @@ defineFeature(feature, (test) => {
     });
 
     and('user navigates to the screen to view their Care Plan Overview', () => {
-        defaultValidation();
+        navigateToMedicalPage();
     });
 
     then('user lands on the screen to view Care Plan Overview', () => {
-        renderPage();
+        landsOnMedicalPage();
     });
 
     and('user view the fallowing details', (table) => {
@@ -181,11 +171,11 @@ defineFeature(feature, (test) => {
     });
 
     and('user navigates to the screen to view their Care Plan Overview', () => {
-        defaultValidation();
+        navigateToMedicalPage();
     });
 
     then('user lands on the screen to view Care Plan Overview', () => {
-        renderPage();
+        landsOnMedicalPage();
     });
 
     and('user view the fallowing details', () => {
@@ -211,11 +201,11 @@ defineFeature(feature, (test) => {
     });
 
     and('user navigates to the screen to view their Care Plan Overview', () => {
-        defaultValidation();
+        navigateToMedicalPage();
     });
 
     then('user lands on the screen to view Care Plan Overview', () => {
-        renderPage();
+        landsOnMedicalPage();
     });
 
     and('user able to view the following verbiage “There is no care plan overview document.” when there is no care plan overview documents for the user', () => {

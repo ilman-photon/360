@@ -66,17 +66,20 @@ defineFeature(feature, (test) => {
       fireEvent.click(login);
     }
 
-    const renderPage = async () => {
+    const navigateToMedicalPage = () => {
         act(() => {
             container.rerender(
                 <Provider store={store}>
-                    <TestLabPage />
+                  <TestLabPage />
                 </Provider>
               );
-        });
-        await waitFor(() => {
+          });
+    }
+  
+    const landsOnMedicalPage = async () => {
+      await waitFor(() => {
           expect(container.getByText("Choose a category")).toBeInTheDocument();
-        })
+      })
     }
 
   const userSeeEmptyTable = async () => {
@@ -117,7 +120,7 @@ defineFeature(feature, (test) => {
         });
 
         then('user lands on the screen to view their test results', () => {
-            renderPage();
+            landsOnMedicalPage();
         });
     });
 
@@ -135,11 +138,11 @@ defineFeature(feature, (test) => {
         });
 
         and('user navigates to the screen to view their test results', () => {
-            defaultValidation();
+            navigateToMedicalPage();
         });
 
         then('user lands on the screen to view their test results', () => {
-            renderPage();
+            landsOnMedicalPage();
         });
 
         and('user able to view the following details', () => {
@@ -161,11 +164,11 @@ defineFeature(feature, (test) => {
         });
 
         and('user navigates to the screen to view their test results', () => {
-            defaultValidation();
+            navigateToMedicalPage();
         });
 
         then('user lands on the screen to view their test results', () => {
-            renderPage();
+            landsOnMedicalPage();
         });
 
         and('user able to view the details (Test Type, Ordered By, Test Date and Testing Status)', () => {
@@ -191,11 +194,11 @@ defineFeature(feature, (test) => {
         });
 
         and('user navigates to the screen to view their test results', () => {
-            defaultValidation();
+            navigateToMedicalPage();
         });
 
         then('user lands on the screen to view their test results', () => {
-            renderPage();
+            landsOnMedicalPage();
         });
 
         and('user able to view the details (Test Type, Ordered By, Test Date and Testing Status)', () => {
@@ -221,11 +224,11 @@ defineFeature(feature, (test) => {
         });
 
         and('user navigates to the screen to view their test results', () => {
-            defaultValidation();
+            navigateToMedicalPage();
         });
 
         then('user lands on the screen to view their test results', () => {
-            renderPage();
+            landsOnMedicalPage();
         });
 
         and('user is able to see the following message “There are no test results for you now” when there are no tests results', () => {
@@ -247,11 +250,11 @@ defineFeature(feature, (test) => {
         });
 
         and('user navigates to the screen to view their test results', () => {
-            defaultValidation();
+            navigateToMedicalPage();
         });
 
         then('user lands on the screen to view their test results', () => {
-            renderPage();
+            landsOnMedicalPage();
         });
 
         and('user is able to view the test result in user portal only when it is approved by the provider in E360+ system', (arg0) => {
