@@ -70,7 +70,20 @@ export default function MedicalRecordPage() {
 
   const handleMoreMenu = (id) => {
     setAnchorEl(null);
-    if (typeof id === "string" && id === "download") fetchSource("digitalId");
+    if (typeof id === "string") {
+      switch (id) {
+        case "download":
+          fetchSource("digitalId");
+          break;
+        case "print":
+          setTimeout(() => {
+            window.print();
+          }, 300);
+          break;
+        default:
+          break;
+      }
+    }
   };
 
   const { control, setValue, watch } = useForm({
