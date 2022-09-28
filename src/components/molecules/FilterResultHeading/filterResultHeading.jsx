@@ -79,7 +79,7 @@ export const FilterResultHeading = ({
       return (
         <Box className={styles.filterChildButton} key={idx} tabIndex="0">
           {option.name}
-          <IconButton
+          <IconButto
             aria-description="Close"
             onClick={() => {
               const id = appliedFilter.findIndex((x) => x.name === option.name);
@@ -92,7 +92,7 @@ export const FilterResultHeading = ({
             }}
           >
             <CloseIcon className={styles.closeIcon} />
-          </IconButton>
+          </IconButto>
         </Box>
       );
     });
