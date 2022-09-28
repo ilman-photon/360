@@ -194,7 +194,6 @@ export default function TableWithSort({
             {stableSort(rows, getComparator(order, orderBy))
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row, rowIdx) => {
-                console.log(row, config, "rorow");
                 const isItemSelected = isSelected(row.id);
                 return (
                   // eslint-disable-next-line react/jsx-key

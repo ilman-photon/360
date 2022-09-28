@@ -17,6 +17,8 @@ import { StyledSelect } from "../../../../components/atoms/Select/select";
 import { useRouter } from "next/router";
 import { Controller, useForm } from "react-hook-form";
 import TableEmpty from "../../../../components/atoms/TableEmpty/tableEmpty";
+import { fetchSource } from "../../../../utils/fetchDigitalAssetSource";
+
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import Typography from "@mui/material/Typography";
@@ -41,16 +43,22 @@ export default function MedicalRecordPage() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const MyOptions = [
     {
+      id: "download",
       icon: <FileDownloadOutlinedIcon />,
       label: "Download",
+      dataTestId: "download-menu",
     },
     {
+      id: "share",
       icon: <ReplyIcon />,
       label: "Share",
+      dataTestId: "share-menu",
     },
     {
+      id: "print",
       icon: <PrintOutlinedIcon />,
       label: "Print",
+      dataTestId: "print-menu",
     },
   ];
 
@@ -60,8 +68,9 @@ export default function MedicalRecordPage() {
 
   const open = Boolean(anchorEl);
 
-  const handleClose = () => {
+  const handleMoreMenu = (id) => {
     setAnchorEl(null);
+    if (typeof id === "string" && id === "download") fetchSource("digitalId");
   };
 
   const { control, setValue, watch } = useForm({
@@ -233,11 +242,11 @@ export default function MedicalRecordPage() {
               sx={{ mt: "40px" }}
               anchorEl={anchorEl}
               keepMounted
-              onClose={handleClose}
+              onClose={handleMoreMenu}
               open={open}
             >
               {MyOptions.map((more, moreIdx) => (
-                <MenuItem key={moreIdx} onClick={handleClose}>
+                <MenuItem key={moreIdx} onClick={() => handleMoreMenu(more.id)}>
                   {more.icon}
                   <Typography
                     textAlign="center"
@@ -247,6 +256,7 @@ export default function MedicalRecordPage() {
                       fontWeight: "500",
                       fontSize: "14px",
                     }}
+                    data-testid={more.dataTestId}
                   >
                     {more.label}
                   </Typography>
