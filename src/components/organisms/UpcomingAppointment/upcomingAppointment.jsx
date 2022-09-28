@@ -54,10 +54,10 @@ export function UpcomingAppointmentCard({
           <Box className={styles.subTitleWrapper}>
             <Typography
               tabIndex={0}
-              ariaLabel={"Visit Purpose"}
+              ariaLabel={"Purpose of Visit"}
               variant="subtitle1"
             >
-              Visit Purpose:{" "}
+              Purpose of Visit::{" "}
             </Typography>
             <Typography
               tabIndex={0}

@@ -109,7 +109,7 @@ defineFeature(feature, (test) => {
           `${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, userData);
-      
+
       act(() => {
         container = render(
           <Provider store={store}>
@@ -167,7 +167,7 @@ defineFeature(feature, (test) => {
           `${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, userData);
-      
+
       act(() => {
         container = render(
           <Provider store={store}>
@@ -232,7 +232,7 @@ defineFeature(feature, (test) => {
           `${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, userData);
-      
+
       act(() => {
         container = render(
           <Provider store={store}>
@@ -300,7 +300,7 @@ defineFeature(feature, (test) => {
           `${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, userData);
-      
+
       act(() => {
         container = render(
           <Provider store={store}>
@@ -343,7 +343,6 @@ defineFeature(feature, (test) => {
     when("User clicks on the option to cancel an appointment", async () => {
       const cancel = container.getByText(/Cancel/i);
       fireEvent.click(cancel);
-      expect(container).toMatchSnapshot();
       await waitFor(() => {
         container.getByText(/cancelTitle/i);
       });
@@ -402,7 +401,7 @@ defineFeature(feature, (test) => {
           `${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, userData);
-      
+
       act(() => {
         container = render(
           <Provider store={store}>
@@ -450,7 +449,6 @@ defineFeature(feature, (test) => {
     when("User clicks on the option to cancel an appointment", async () => {
       const cancel = container.getByText(/Cancel/i);
       fireEvent.click(cancel);
-      expect(container).toMatchSnapshot();
       await waitFor(() => {
         container.getByText(/cancelTitle/i);
       });
@@ -595,7 +593,7 @@ defineFeature(feature, (test) => {
           `${window.location.origin}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(400, {});
-      
+
       act(() => {
         container = render(
           <Provider store={store}>
