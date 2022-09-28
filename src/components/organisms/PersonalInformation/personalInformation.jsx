@@ -202,7 +202,7 @@ export default function PersonalInformation({
 
           <LabelWithInfo label="Gender" ariaLabel={"Gender"}>
             <div tabIndex={0} aria-label={userData.gender}>
-              {userData.gender}
+              {userData.gender || "-"}
             </div>
           </LabelWithInfo>
 

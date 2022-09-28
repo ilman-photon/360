@@ -266,7 +266,7 @@ describe("Api test", () => {
           },
         })
         .catch((response) => {
-          expect(response.message).toEqual("timeout of 10000ms exceeded");
+          expect(response.message).toEqual("timeout of 20000ms exceeded");
         });
     });
 

@@ -18,7 +18,7 @@ export class Api {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      timeout: 10000,
+      timeout: 20000,
     });
 
     this.requestCounter = 0;
@@ -304,7 +304,7 @@ export class Api {
     const userData = JSON.parse(localStorage.getItem("userData"));
     const patientId = `/${userData.patientId}`;
     const url = `${domain}/api/dummy/appointment/my-appointment/getAllAppointment${
-      userData.patientId ? patientId : ""
+      userData?.patientId ? patientId : ""
     }`;
     return this.getResponse(url, {}, "get");
   }

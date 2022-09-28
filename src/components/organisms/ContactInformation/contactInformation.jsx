@@ -4,6 +4,7 @@ import {
   Divider,
   Fade,
   Grid,
+  MenuItem,
   Stack,
   useMediaQuery,
 } from "@mui/material";
@@ -96,6 +97,7 @@ export default function ContactInformation({
   };
 
   const onSubmit = (data) => {
+    // console.log({data})
     OnSaveClicked(data);
   };
 
@@ -367,25 +369,24 @@ export default function ContactInformation({
                     fieldState: { error },
                   }) => {
                     return (
-                      <StyledSelect
-                        id="state"
+                      <StyledInput
+                        select
                         label="State"
-                        inputProps={{
-                          "aria-label": "State drop down menu",
-                        }}
                         autoComplete="address-level1"
-                        options={usStatesList}
                         value={value}
                         onChange={onChange}
                         error={!!error}
                         helperText={error ? error.message : null}
                         sx={{
                           width: "100%",
-                          "&.MuiFormControl-root": {
-                            m: 0,
-                          },
                         }}
-                      />
+                      >
+                        {usStatesList.map((item, idx) => (
+                          <MenuItem key={idx} value={item.value}>
+                            {item.label}
+                          </MenuItem>
+                        ))}
+                      </StyledInput>
                     );
                   }}
                 />

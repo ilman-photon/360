@@ -4,7 +4,7 @@ import ContactInformation from "../../../components/organisms/ContactInformation
 import { Box, Grid, Tab, Tabs, useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
-import { fetchUser, updateUser } from "../../../store/user";
+import { fetchUser, setUserData, updateUser } from "../../../store/user";
 import store from "../../../store/store";
 import PropTypes from "prop-types";
 import { closePageMessage, setPageMessage } from "../../../store";
@@ -57,6 +57,7 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
   const [personalEditing, setPersonalEditing] = useState(false);
   const [activeTabs, setActiveTabs] = useState(0);
   const [usStatesList, setUsStatesList] = useState([]);
+  const [patientId, setPatientId] = useState(null);
 
   const userData = useSelector((state) => state.user.userData);
   const pageMessage = useSelector((state) => state.index.pageMessage);
@@ -75,6 +76,12 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
 
   useEffect(() => {
     window.addEventListener("popstate", onBackButtonEvent);
+
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    dispatch(fetchUser({ patientId: userData.patientId }));
+    setPatientId(userData.patientId);
+    fetchUSListOfStates();
+
     return () => {
       window.removeEventListener("popstate", onBackButtonEvent);
     };
@@ -95,7 +102,7 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
 
   const onSavePersonalData = async (postBody) => {
     const { payload } = await dispatch(
-      updateUser({ token: cookies.get("accessToken"), payload: postBody })
+      updateUser({ patientId, payload: postBody })
     );
     if (payload.success) {
       showSuccessMessage("Your changes were saved");
@@ -105,24 +112,13 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
 
   const onSaveContactData = async (postBody) => {
     const { payload } = await dispatch(
-      updateUser({ token: cookies.get("accessToken"), payload: postBody })
+      updateUser({ patientId, payload: postBody })
     );
     if (payload.success) {
       showSuccessMessage("Your changes were saved");
       setContactEditing(false);
     }
   };
-
-  useEffect(() => {
-    dispatch(fetchUser({ token: cookies.get("accessToken") }));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-  console.log({ userData });
-
-  useEffect(() => {
-    fetchUSListOfStates();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const fetchUSListOfStates = async () => {
     const stateList = await api.getUSListOfStates();
@@ -141,6 +137,8 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
     };
   }
   const { PERSONAL_INFO_TEST_ID } = constants.TEST_ID;
+
+  console.log({ userData });
 
   return (
     <section>
@@ -173,7 +171,7 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
         }}
         value={activeTabs}
         onChange={(_evt, val) => {
-          setActiveTabs(val);
+          setActiveTabs(Number(val));
         }}
         textColor="inherit"
         variant="fullWidth"

@@ -10,6 +10,7 @@ import {
 let url;
 
 const buildProfilePostBody = (postBody, payload) => {
+  console.log("build profile post body", { postBody, payload });
   let emailData = postBody.contactInformation.emails;
   emailData[0] = {
     ...emailData[0],
@@ -23,13 +24,15 @@ const buildProfilePostBody = (postBody, payload) => {
   };
 
   let addressData = postBody.address;
-  addressData[0] = {
-    ...addressData[0],
-    addressLine1: payload.address,
-    city: payload.city,
-    state: payload.state,
-    zip: payload.zip,
-  };
+  if (payload.address) {
+    addressData[0] = {
+      ...addressData[0],
+      addressLine1: payload.address,
+      city: payload.city,
+      state: payload.state,
+      zip: payload.zip,
+    };
+  }
 
   let contactPreferenceDetailData = {
     ...postBody.contactPreferenceDetail,
@@ -39,6 +42,14 @@ const buildProfilePostBody = (postBody, payload) => {
     phone:
       payload.preferredCommunication === "both" ||
       payload.preferredCommunication === "phone",
+  };
+
+  let patientDetailsDetailsData = {
+    ...postBody.patientDetails,
+    profilePhoto: payload.profilePhoto,
+    stateIssuedId: payload.issuedCardFront.uid
+      ? payload.issuedCardFront
+      : buildDigitalAssetObject(payload.issuedCardFront, "profile"),
   };
 
   const getGenderCode = (gender) => {
@@ -60,16 +71,28 @@ const buildProfilePostBody = (postBody, payload) => {
     sex: getGenderCode(payload.gender),
     title: getTitleCode(payload.title),
     contactPreferenceDetail: contactPreferenceDetailData,
+    patientDetails: patientDetailsDetailsData,
   };
 };
 
-const buildDigitalAssetObject = (payload) => {
-  return {
-    uid: payload._id,
-    fileName: payload.name,
-    metaInfo: {},
-    _version: payload._version,
-  };
+const buildDigitalAssetObject = (payload, type) => {
+  if (!payload._id) return null;
+  switch (type) {
+    case "profile":
+      return {
+        uid: payload._id,
+        fileName: payload.name,
+        assetUrl: "/v1/patient",
+        _version: payload._version,
+      };
+    case "insurance":
+      return {
+        uid: payload._id,
+        fileName: payload.name,
+        metaInfo: {},
+        _version: payload._version,
+      };
+  }
 };
 
 const buildInsurancePostBody = (postBody = {}, payload = {}) => {
@@ -104,46 +127,39 @@ const buildInsurancePostBody = (postBody = {}, payload = {}) => {
     digitalAssets: {
       master_front: payload.frontCard.uid
         ? payload.frontCard
-        : buildDigitalAssetObject(payload.frontCard),
+        : buildDigitalAssetObject(payload.frontCard, "insurance"),
       master_back: payload.backCard.uid
         ? payload.backCard
-        : buildDigitalAssetObject(payload.backCard),
+        : buildDigitalAssetObject(payload.backCard, "insurance"),
     },
   };
 };
 
 export const fetchUser = createAsyncThunk(
   "user/fetchUser",
-  async ({ token }) => {
+  async ({ patientId }) => {
     const api = new Api();
-    return api.getResponse(
-      "/ecp/patient/getPatient/1656b00e-916b-4cea-ba3e-96cffe291858",
-      null,
-      "get",
-      token
-    );
+    return api.getResponse(`/ecp/patient/getPatient/${patientId}`, null, "get");
   }
 );
 
 export const updateUser = createAsyncThunk(
   "user/updateUser",
-  async ({ token, payload }) => {
+  async ({ patientId, payload }) => {
     const api = new Api();
     try {
       // get the userData first, just to make sure
       const res = await api.getResponse(
-        "/ecp/patient/getPatient/1656b00e-916b-4cea-ba3e-96cffe291858",
+        `/ecp/patient/getPatient/${patientId}`,
         null,
-        "get",
-        token
+        "get"
       );
       // then apply changes from our side with response body from "res" and do a PUT request
       const postBody = buildProfilePostBody(res, payload);
       const response = await api.getResponse(
-        "/ecp/patient/editPatient/1656b00e-916b-4cea-ba3e-96cffe291858",
+        `/ecp/patient/editPatient/${patientId}`,
         postBody,
-        "put",
-        token
+        "put"
       );
       return {
         success: true,
@@ -243,7 +259,6 @@ export const postInsurance = createAsyncThunk(
 const buildUserData = (payload) => {
   const userAddress = payload.address[0] || {};
   const patientDetails = payload.patientDetails || {};
-  console.log({ patientDetails });
 
   let userPreferredCommunication = "";
   if (payload.contactInformation) {
@@ -267,21 +282,21 @@ const buildUserData = (payload) => {
     issuedCardFront: {},
     issuedCardBack: {},
     dob: payload.dob,
-    title: TITLE_LIST[payload.title - 1],
+    title: TITLE_LIST[payload.title - 1] || "",
     ssn: payload.ssn,
     email: payload.contactInformation.emails[0]
       ? payload.contactInformation.emails[0].email
       : "-",
     mobile: payload.contactInformation.phones[0]
-      ? payload.contactInformation.phones[0].number.replace(/\D/g, "")
+      ? payload.contactInformation.phones[0].number
       : "-",
-    address: userAddress.addressLine1,
-    city: userAddress.city,
-    state: userAddress.state,
-    zip: userAddress.zip,
+    address: userAddress.addressLine1 || "",
+    city: userAddress.city || "",
+    state: userAddress.state || "",
+    zip: userAddress.zip || "",
     preferredCommunication: userPreferredCommunication,
     age: payload.age,
-    gender: GENDER_LIST[payload.sex - 1],
+    gender: GENDER_LIST[payload.sex - 1] || "",
     // insurances
     relationship: "",
     insurancePriority: "",
@@ -490,8 +505,10 @@ const userSlice = createSlice({
       state.status = "failed";
     },
     [updateUser.fulfilled]: (state, { payload }) => {
-      state.userData = buildUserData(payload.response);
-      state.status = "success";
+      if (payload.response._id) {
+        state.userData = buildUserData(payload.response);
+        state.status = "success";
+      }
     },
     // insurance
     [fetchInsurance.pending]: (state) => {
