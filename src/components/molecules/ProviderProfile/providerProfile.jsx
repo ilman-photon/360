@@ -124,7 +124,7 @@ export default function ProviderProfile({
           }}
         >
           <Typography
-            variant="h2"
+            variant={isMap ? "h4" : "h2"}
             fontSize={getNameFontSize()}
             data-testid={TEST_ID.APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name}
             onClick={() => {

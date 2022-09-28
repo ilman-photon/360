@@ -1,3 +1,5 @@
+import Cookies from "universal-cookie";
+
 export default function getAllAppointment(req, res) {
   const { patientId } = req.query;
   if (req.method === "GET") {
@@ -156,6 +158,98 @@ export default function getAllAppointment(req, res) {
       const eyeCare = new Date(dateMock.setHours(dateMock.getHours() + 2));
       const comprehensive = new Date(
         dateMock.setHours(dateMock.getHours() + 10)
+      );
+      responseData = {
+        appointmentList: [
+          {
+            appointmentId: "1",
+            providerInfo: {
+              providerId: "1",
+              name: "Paul Wagner Md",
+              position: "Scripps Eyecare",
+              address: {
+                addressLine1: "51 West 51st Street",
+                addressLine2: "Floor 3, Suite 320 Midtown",
+                city: "Florida",
+                state: "FR",
+                zipcode: "54231",
+              },
+              rating: "5",
+              phoneNumber: "8572999989",
+              distance: "10 mi",
+              image: "/doctor.png",
+              from: "2022-07-18",
+              to: "2022-07-23",
+              location: {
+                latitude: 32.751204,
+                longitude: -117.1641166,
+              },
+            },
+            patientInfo: {
+              name: "Rebecca Chan",
+              firstname: "Rebecca",
+              lastname: "Chan",
+              dob: "12/12/2022",
+              phoneNumber: "1234567890",
+            },
+            appointmentInfo: {
+              appointmentType: "Eye Exam",
+              date: eyeCare.toUTCString(),
+              insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+            },
+          },
+          {
+            appointmentId: "2",
+            providerInfo: {
+              providerId: "1",
+              name: "Paul Wagner Md",
+              position: "Scripps Eyecare",
+              address: {
+                addressLine1: "51 West 51st Street",
+                addressLine2: "Floor 3, Suite 320 Midtown",
+                city: "Florida",
+                state: "FR",
+                zipcode: "54231",
+              },
+              rating: "5",
+              phoneNumber: "8572999989",
+              distance: "10 mi",
+              image: "/doctor.png",
+              from: "2022-07-18",
+              to: "2022-07-23",
+              location: {
+                latitude: 32.751204,
+                longitude: -117.1641166,
+              },
+            },
+            patientInfo: {
+              name: "Rebecca Chan",
+              firstname: "Rebecca",
+              lastname: "Chan",
+              dob: "12/12/2022",
+              phoneNumber: "1234567890",
+            },
+            appointmentInfo: {
+              appointmentType: "Comprehensive",
+              date: comprehensive.toUTCString(),
+              insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+            },
+          },
+        ],
+      };
+    } else if (patientId == "d3724cd1-ebae-4f1a-82a5-544ff33b0313") {
+      const cookie = new Cookies(req.headers.cookie);
+      //patient 1: can't reschedule
+      const dateMock = new Date();
+      let elapseTime = 3;
+      if (cookie.get("appointmentTimeOut")) {
+        elapseTime = cookie.get("appointmentTimeOut");
+      }
+      const eyeCare = new Date(
+        dateMock.getTime() + 60 * 60 * 4 * 1000 + 60000 * elapseTime
+      );
+      const comprehensive = new Date(
+        dateMock.getTime() + 60 * 60 * 24 * 1000 + 60000 * elapseTime
       );
       responseData = {
         appointmentList: [
