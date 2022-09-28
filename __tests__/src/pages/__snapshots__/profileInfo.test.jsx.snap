@@ -9,7 +9,7 @@ Object {
         class="accountLayout "
       >
         <header
-          class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-rxbk4x-MuiPaper-root-MuiAppBar-root"
+          class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-wzn3iz-MuiPaper-root-MuiAppBar-root"
         >
           <div
             class="MuiContainer-root MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root"
@@ -46,6 +46,7 @@ Object {
         </header>
         <div
           class="titleHeadingWrapper"
+          style="position: fixed;"
         >
           <div
             aria-label="Your Account heading"
@@ -62,85 +63,138 @@ Object {
             class="sidebarContainer"
           >
             <div
-              class="sidebarWrapper css-137a1xe-MuiStack-root"
+              class="sidebarWrapper"
             >
-              <a
-                class="sidebarLink"
-                href="/patient/account/profile-info"
-                style="border-color: #003b4a;"
+              <div
+                class="sidebarLinkWrapper css-1p5q5e5-MuiStack-root"
               >
-                <span
-                  class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                <div
+                  class="css-gbwphf-MuiStack-root"
                 >
-                  Profile Information
-                </span>
-              </a>
-              <a
-                class="sidebarLink"
-                href="#"
-                style="border-color: #003b4a;"
-              >
-                <span
-                  class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                  <div
+                    class="css-vuohop-MuiStack-root"
+                  >
+                    <hr
+                      class="MuiDivider-root MuiDivider-middle MuiDivider-vertical MuiDivider-flexItem css-yhaord-MuiDivider-root"
+                    />
+                    <a
+                      class="sidebarLink"
+                      href="/patient/account/profile-info"
+                    >
+                      <span
+                        class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                      >
+                        Profile Information
+                      </span>
+                    </a>
+                  </div>
+                </div>
+                <div
+                  class="css-gbwphf-MuiStack-root"
                 >
-                  Financial Information
-                </span>
-              </a>
-              <a
-                class="sidebarLink"
-                href="#"
-                style="border-color: #003b4a;"
-              >
-                <span
-                  class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                  <div
+                    class="css-vuohop-MuiStack-root"
+                  >
+                    <hr
+                      class="MuiDivider-root MuiDivider-middle MuiDivider-vertical MuiDivider-flexItem css-yhaord-MuiDivider-root"
+                    />
+                    <a
+                      class="sidebarLink"
+                      href="#"
+                    >
+                      <span
+                        class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                      >
+                        Care Plan
+                      </span>
+                    </a>
+                  </div>
+                </div>
+                <div
+                  class="css-gbwphf-MuiStack-root"
                 >
-                  Toggle accounts
-                </span>
-              </a>
-              <a
-                class="sidebarLink"
-                href="#"
-                style="border-color: #003b4a;"
-              >
-                <span
-                  class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                  <div
+                    class="css-vuohop-MuiStack-root"
+                  >
+                    <hr
+                      class="MuiDivider-root MuiDivider-middle MuiDivider-vertical MuiDivider-flexItem css-yhaord-MuiDivider-root"
+                    />
+                    <a
+                      class="sidebarLink"
+                      href="#"
+                    >
+                      <span
+                        class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                      >
+                        Prescriptions
+                      </span>
+                    </a>
+                  </div>
+                </div>
+                <div
+                  class="css-gbwphf-MuiStack-root"
                 >
-                  Merge accounts
-                </span>
-              </a>
-              <a
-                class="sidebarLink"
-                href="#"
-                style="border-color: #003b4a;"
-              >
-                <span
-                  class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                  <div
+                    class="css-vuohop-MuiStack-root"
+                  >
+                    <hr
+                      class="MuiDivider-root MuiDivider-middle MuiDivider-vertical MuiDivider-flexItem css-yhaord-MuiDivider-root"
+                    />
+                    <a
+                      class="sidebarLink"
+                      href="#"
+                    >
+                      <span
+                        class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                      >
+                        Test & Lab Results
+                      </span>
+                    </a>
+                  </div>
+                </div>
+                <div
+                  class="css-gbwphf-MuiStack-root"
                 >
-                  Prescriptions
-                </span>
-              </a>
-              <a
-                class="sidebarLink"
-                href="/patient/account/insurance-info"
-                style="border-color: #003b4a;"
-              >
-                <span
-                  class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                  <div
+                    class="css-vuohop-MuiStack-root"
+                  >
+                    <hr
+                      class="MuiDivider-root MuiDivider-middle MuiDivider-vertical MuiDivider-flexItem css-yhaord-MuiDivider-root"
+                    />
+                    <a
+                      class="sidebarLink"
+                      href="/patient/account/insurance-info"
+                    >
+                      <span
+                        class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                      >
+                        Insurance documents
+                      </span>
+                    </a>
+                  </div>
+                </div>
+                <div
+                  class="css-gbwphf-MuiStack-root"
                 >
-                  Insurance documents
-                </span>
-              </a>
-              <a
-                class="sidebarLink"
-                href="#"
-                style="border-color: #003b4a;"
-              >
-                <span
-                  class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
-                >
-                  Multi factor authentication
-                </span>
-              </a>
+                  <div
+                    class="css-vuohop-MuiStack-root"
+                  >
+                    <hr
+                      class="MuiDivider-root MuiDivider-middle MuiDivider-vertical MuiDivider-flexItem css-yhaord-MuiDivider-root"
+                    />
+                    <a
+                      class="sidebarLink"
+                      href="#"
+                    >
+                      <span
+                        class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                      >
+                        Multi factor authentication
+                      </span>
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div
@@ -173,7 +227,7 @@ Object {
                 </div>
               </div>
               <div
-                class="MuiTabs-root css-4km1ta-MuiTabs-root"
+                class="MuiTabs-root css-myy0xu-MuiTabs-root"
               >
                 <div
                   class="MuiTabs-scroller MuiTabs-fixed css-jpln7h-MuiTabs-scroller"
@@ -186,35 +240,29 @@ Object {
                     <button
                       aria-controls="full-width-tabpanel-0"
                       aria-selected="true"
-                      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth Mui-selected css-1orr1xa-MuiButtonBase-root-MuiTab-root"
+                      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth Mui-selected css-qsvfmw-MuiButtonBase-root-MuiTab-root"
                       id="full-width-tab-0"
                       role="tab"
                       tabindex="0"
                       type="button"
                     >
                       Profile
-                      <span
-                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                      />
                     </button>
                     <button
                       aria-controls="full-width-tabpanel-1"
                       aria-selected="false"
-                      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth css-1orr1xa-MuiButtonBase-root-MuiTab-root"
+                      class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth css-qsvfmw-MuiButtonBase-root-MuiTab-root"
                       id="full-width-tab-1"
                       role="tab"
                       tabindex="-1"
                       type="button"
                     >
                       Contact
-                      <span
-                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                      />
                     </button>
                   </div>
                   <span
                     class="MuiTabs-indicator css-1aquho2-MuiTabs-indicator"
-                    style="left: 0px; width: 0px;"
+                    style="left: 0px; width: 0px; background: rgb(0, 149, 169); color: red;"
                   />
                 </div>
               </div>
@@ -225,7 +273,7 @@ Object {
                   class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
                 >
                   <div
-                    class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1v5z4dq-MuiPaper-root-MuiCard-root"
+                    class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1yepo06-MuiPaper-root-MuiCard-root"
                   >
                     <div
                       class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
@@ -249,7 +297,7 @@ Object {
                             </div>
                           </div>
                           <div
-                            class="css-qkek6c-MuiStack-root"
+                            class="css-wb45zt-MuiStack-root"
                           >
                             <div>
                               <div
@@ -287,7 +335,7 @@ Object {
                             >
                               <svg
                                 aria-hidden="true"
-                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1k6stih-MuiSvgIcon-root"
                                 data-testid="ErrorOutlineOutlinedIcon"
                                 focusable="false"
                                 viewBox="0 0 24 24"
@@ -302,7 +350,7 @@ Object {
                             </button>
                           </div>
                           <div
-                            class="css-qkek6c-MuiStack-root"
+                            class="css-1sbz1s3-MuiStack-root"
                           >
                             <div>
                               <div
@@ -334,7 +382,7 @@ Object {
                             </div>
                           </div>
                           <div
-                            class="css-qkek6c-MuiStack-root"
+                            class="css-1sbz1s3-MuiStack-root"
                           >
                             <div>
                               <div
@@ -366,7 +414,7 @@ Object {
                             </div>
                           </div>
                           <div
-                            class="css-qkek6c-MuiStack-root"
+                            class="css-1sbz1s3-MuiStack-root"
                           >
                             <div>
                               <div
@@ -405,7 +453,7 @@ Object {
                             >
                               <svg
                                 aria-hidden="true"
-                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1k6stih-MuiSvgIcon-root"
                                 data-testid="ErrorOutlineOutlinedIcon"
                                 focusable="false"
                                 viewBox="0 0 24 24"
@@ -420,7 +468,7 @@ Object {
                             </button>
                           </div>
                           <div
-                            class="css-qkek6c-MuiStack-root"
+                            class="css-1sbz1s3-MuiStack-root"
                           >
                             <div>
                               <div
@@ -459,7 +507,7 @@ Object {
                             >
                               <svg
                                 aria-hidden="true"
-                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1k6stih-MuiSvgIcon-root"
                                 data-testid="ErrorOutlineOutlinedIcon"
                                 focusable="false"
                                 viewBox="0 0 24 24"
@@ -474,7 +522,7 @@ Object {
                             </button>
                           </div>
                           <div
-                            class="css-qkek6c-MuiStack-root"
+                            class="css-1sbz1s3-MuiStack-root"
                           >
                             <div>
                               <div
@@ -506,7 +554,7 @@ Object {
                             </div>
                           </div>
                           <div
-                            class="css-qkek6c-MuiStack-root"
+                            class="css-1sbz1s3-MuiStack-root"
                           >
                             <div>
                               <div
@@ -545,7 +593,7 @@ Object {
                             >
                               <svg
                                 aria-hidden="true"
-                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1k6stih-MuiSvgIcon-root"
                                 data-testid="ErrorOutlineOutlinedIcon"
                                 focusable="false"
                                 viewBox="0 0 24 24"
@@ -560,7 +608,7 @@ Object {
                             </button>
                           </div>
                           <div
-                            class="css-qkek6c-MuiStack-root"
+                            class="css-1sbz1s3-MuiStack-root"
                           >
                             <div>
                               <div
@@ -608,7 +656,7 @@ Object {
                                 </div>
                               </div>
                               <div
-                                class="css-qkek6c-MuiStack-root"
+                                class="css-1sbz1s3-MuiStack-root"
                               >
                                 <div>
                                   <div
@@ -664,7 +712,7 @@ Object {
                                 </div>
                               </div>
                               <div
-                                class="css-qkek6c-MuiStack-root"
+                                class="css-1sbz1s3-MuiStack-root"
                               >
                                 <div>
                                   <div
@@ -740,7 +788,7 @@ Object {
       class="accountLayout "
     >
       <header
-        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-rxbk4x-MuiPaper-root-MuiAppBar-root"
+        class="MuiPaper-root MuiPaper-elevation MuiPaper-elevation4 MuiAppBar-root MuiAppBar-colorPrimary MuiAppBar-positionFixed mui-fixed css-wzn3iz-MuiPaper-root-MuiAppBar-root"
       >
         <div
           class="MuiContainer-root MuiContainer-maxWidthXl css-19r6kue-MuiContainer-root"
@@ -777,6 +825,7 @@ Object {
       </header>
       <div
         class="titleHeadingWrapper"
+        style="position: fixed;"
       >
         <div
           aria-label="Your Account heading"
@@ -793,85 +842,138 @@ Object {
           class="sidebarContainer"
         >
           <div
-            class="sidebarWrapper css-137a1xe-MuiStack-root"
+            class="sidebarWrapper"
           >
-            <a
-              class="sidebarLink"
-              href="/patient/account/profile-info"
-              style="border-color: #003b4a;"
+            <div
+              class="sidebarLinkWrapper css-1p5q5e5-MuiStack-root"
             >
-              <span
-                class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+              <div
+                class="css-gbwphf-MuiStack-root"
               >
-                Profile Information
-              </span>
-            </a>
-            <a
-              class="sidebarLink"
-              href="#"
-              style="border-color: #003b4a;"
-            >
-              <span
-                class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                <div
+                  class="css-vuohop-MuiStack-root"
+                >
+                  <hr
+                    class="MuiDivider-root MuiDivider-middle MuiDivider-vertical MuiDivider-flexItem css-yhaord-MuiDivider-root"
+                  />
+                  <a
+                    class="sidebarLink"
+                    href="/patient/account/profile-info"
+                  >
+                    <span
+                      class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                    >
+                      Profile Information
+                    </span>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="css-gbwphf-MuiStack-root"
               >
-                Financial Information
-              </span>
-            </a>
-            <a
-              class="sidebarLink"
-              href="#"
-              style="border-color: #003b4a;"
-            >
-              <span
-                class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                <div
+                  class="css-vuohop-MuiStack-root"
+                >
+                  <hr
+                    class="MuiDivider-root MuiDivider-middle MuiDivider-vertical MuiDivider-flexItem css-yhaord-MuiDivider-root"
+                  />
+                  <a
+                    class="sidebarLink"
+                    href="#"
+                  >
+                    <span
+                      class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                    >
+                      Care Plan
+                    </span>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="css-gbwphf-MuiStack-root"
               >
-                Toggle accounts
-              </span>
-            </a>
-            <a
-              class="sidebarLink"
-              href="#"
-              style="border-color: #003b4a;"
-            >
-              <span
-                class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                <div
+                  class="css-vuohop-MuiStack-root"
+                >
+                  <hr
+                    class="MuiDivider-root MuiDivider-middle MuiDivider-vertical MuiDivider-flexItem css-yhaord-MuiDivider-root"
+                  />
+                  <a
+                    class="sidebarLink"
+                    href="#"
+                  >
+                    <span
+                      class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                    >
+                      Prescriptions
+                    </span>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="css-gbwphf-MuiStack-root"
               >
-                Merge accounts
-              </span>
-            </a>
-            <a
-              class="sidebarLink"
-              href="#"
-              style="border-color: #003b4a;"
-            >
-              <span
-                class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                <div
+                  class="css-vuohop-MuiStack-root"
+                >
+                  <hr
+                    class="MuiDivider-root MuiDivider-middle MuiDivider-vertical MuiDivider-flexItem css-yhaord-MuiDivider-root"
+                  />
+                  <a
+                    class="sidebarLink"
+                    href="#"
+                  >
+                    <span
+                      class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                    >
+                      Test & Lab Results
+                    </span>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="css-gbwphf-MuiStack-root"
               >
-                Prescriptions
-              </span>
-            </a>
-            <a
-              class="sidebarLink"
-              href="/patient/account/insurance-info"
-              style="border-color: #003b4a;"
-            >
-              <span
-                class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                <div
+                  class="css-vuohop-MuiStack-root"
+                >
+                  <hr
+                    class="MuiDivider-root MuiDivider-middle MuiDivider-vertical MuiDivider-flexItem css-yhaord-MuiDivider-root"
+                  />
+                  <a
+                    class="sidebarLink"
+                    href="/patient/account/insurance-info"
+                  >
+                    <span
+                      class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                    >
+                      Insurance documents
+                    </span>
+                  </a>
+                </div>
+              </div>
+              <div
+                class="css-gbwphf-MuiStack-root"
               >
-                Insurance documents
-              </span>
-            </a>
-            <a
-              class="sidebarLink"
-              href="#"
-              style="border-color: #003b4a;"
-            >
-              <span
-                class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
-              >
-                Multi factor authentication
-              </span>
-            </a>
+                <div
+                  class="css-vuohop-MuiStack-root"
+                >
+                  <hr
+                    class="MuiDivider-root MuiDivider-middle MuiDivider-vertical MuiDivider-flexItem css-yhaord-MuiDivider-root"
+                  />
+                  <a
+                    class="sidebarLink"
+                    href="#"
+                  >
+                    <span
+                      class="MuiTypography-root MuiTypography-allVariants css-16q0bjh-MuiTypography-root"
+                    >
+                      Multi factor authentication
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div
@@ -904,7 +1006,7 @@ Object {
               </div>
             </div>
             <div
-              class="MuiTabs-root css-4km1ta-MuiTabs-root"
+              class="MuiTabs-root css-myy0xu-MuiTabs-root"
             >
               <div
                 class="MuiTabs-scroller MuiTabs-fixed css-jpln7h-MuiTabs-scroller"
@@ -917,35 +1019,29 @@ Object {
                   <button
                     aria-controls="full-width-tabpanel-0"
                     aria-selected="true"
-                    class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth Mui-selected css-1orr1xa-MuiButtonBase-root-MuiTab-root"
+                    class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth Mui-selected css-qsvfmw-MuiButtonBase-root-MuiTab-root"
                     id="full-width-tab-0"
                     role="tab"
                     tabindex="0"
                     type="button"
                   >
                     Profile
-                    <span
-                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                    />
                   </button>
                   <button
                     aria-controls="full-width-tabpanel-1"
                     aria-selected="false"
-                    class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth css-1orr1xa-MuiButtonBase-root-MuiTab-root"
+                    class="MuiButtonBase-root MuiTab-root MuiTab-textColorInherit MuiTab-fullWidth css-qsvfmw-MuiButtonBase-root-MuiTab-root"
                     id="full-width-tab-1"
                     role="tab"
                     tabindex="-1"
                     type="button"
                   >
                     Contact
-                    <span
-                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                    />
                   </button>
                 </div>
                 <span
                   class="MuiTabs-indicator css-1aquho2-MuiTabs-indicator"
-                  style="left: 0px; width: 0px;"
+                  style="left: 0px; width: 0px; background: rgb(0, 149, 169); color: red;"
                 />
               </div>
             </div>
@@ -956,7 +1052,7 @@ Object {
                 class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-12 MuiGrid-grid-md-6 css-1fyyp8j-MuiGrid-root"
               >
                 <div
-                  class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1v5z4dq-MuiPaper-root-MuiCard-root"
+                  class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1yepo06-MuiPaper-root-MuiCard-root"
                 >
                   <div
                     class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
@@ -980,7 +1076,7 @@ Object {
                           </div>
                         </div>
                         <div
-                          class="css-qkek6c-MuiStack-root"
+                          class="css-wb45zt-MuiStack-root"
                         >
                           <div>
                             <div
@@ -1018,7 +1114,7 @@ Object {
                           >
                             <svg
                               aria-hidden="true"
-                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1k6stih-MuiSvgIcon-root"
                               data-testid="ErrorOutlineOutlinedIcon"
                               focusable="false"
                               viewBox="0 0 24 24"
@@ -1033,7 +1129,7 @@ Object {
                           </button>
                         </div>
                         <div
-                          class="css-qkek6c-MuiStack-root"
+                          class="css-1sbz1s3-MuiStack-root"
                         >
                           <div>
                             <div
@@ -1065,7 +1161,7 @@ Object {
                           </div>
                         </div>
                         <div
-                          class="css-qkek6c-MuiStack-root"
+                          class="css-1sbz1s3-MuiStack-root"
                         >
                           <div>
                             <div
@@ -1097,7 +1193,7 @@ Object {
                           </div>
                         </div>
                         <div
-                          class="css-qkek6c-MuiStack-root"
+                          class="css-1sbz1s3-MuiStack-root"
                         >
                           <div>
                             <div
@@ -1136,7 +1232,7 @@ Object {
                           >
                             <svg
                               aria-hidden="true"
-                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1k6stih-MuiSvgIcon-root"
                               data-testid="ErrorOutlineOutlinedIcon"
                               focusable="false"
                               viewBox="0 0 24 24"
@@ -1151,7 +1247,7 @@ Object {
                           </button>
                         </div>
                         <div
-                          class="css-qkek6c-MuiStack-root"
+                          class="css-1sbz1s3-MuiStack-root"
                         >
                           <div>
                             <div
@@ -1190,7 +1286,7 @@ Object {
                           >
                             <svg
                               aria-hidden="true"
-                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1k6stih-MuiSvgIcon-root"
                               data-testid="ErrorOutlineOutlinedIcon"
                               focusable="false"
                               viewBox="0 0 24 24"
@@ -1205,7 +1301,7 @@ Object {
                           </button>
                         </div>
                         <div
-                          class="css-qkek6c-MuiStack-root"
+                          class="css-1sbz1s3-MuiStack-root"
                         >
                           <div>
                             <div
@@ -1237,7 +1333,7 @@ Object {
                           </div>
                         </div>
                         <div
-                          class="css-qkek6c-MuiStack-root"
+                          class="css-1sbz1s3-MuiStack-root"
                         >
                           <div>
                             <div
@@ -1276,7 +1372,7 @@ Object {
                           >
                             <svg
                               aria-hidden="true"
-                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1tkre7m-MuiSvgIcon-root"
+                              class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1k6stih-MuiSvgIcon-root"
                               data-testid="ErrorOutlineOutlinedIcon"
                               focusable="false"
                               viewBox="0 0 24 24"
@@ -1291,7 +1387,7 @@ Object {
                           </button>
                         </div>
                         <div
-                          class="css-qkek6c-MuiStack-root"
+                          class="css-1sbz1s3-MuiStack-root"
                         >
                           <div>
                             <div
@@ -1339,7 +1435,7 @@ Object {
                               </div>
                             </div>
                             <div
-                              class="css-qkek6c-MuiStack-root"
+                              class="css-1sbz1s3-MuiStack-root"
                             >
                               <div>
                                 <div
@@ -1395,7 +1491,7 @@ Object {
                               </div>
                             </div>
                             <div
-                              class="css-qkek6c-MuiStack-root"
+                              class="css-1sbz1s3-MuiStack-root"
                             >
                               <div>
                                 <div
