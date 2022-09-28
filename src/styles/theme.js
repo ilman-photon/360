@@ -77,7 +77,7 @@ export const patientTypography = createTheme({
       },
     },
     h3: {
-      fontFamily: "Bw Nista Geometric DEMO",
+      fontFamily: "Bw Nista Geometric DEMO, 'Inter', 'Roboto'",
       color: "#003B4A",
       fontWeight: "bold",
       fontSize: 22,

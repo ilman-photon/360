@@ -18,15 +18,27 @@
     top: 0;
     transition: all 0.5s ease-in-out;
 
-    @media (max-width: 767px) {
+    @media (max-width: 600px) {
       margin-top: 56px;
+    }
+
+    @media (min-width: 901px) and (max-width: 1200px) {
+      grid-template-columns: repeat(9, minmax(0, 1fr));
     }
 
     .sidebarContainer {
       grid-column: span 2 / span 2;
 
-      @media (max-width: 767px) {
+      @media (max-width: 600px) {
         display: none;
+      }
+
+      @media (min-width: 601px) and (max-width: 900px) {
+        display: none;
+      }
+
+      @media (min-width: 901px) and (max-width: 1200px) {
+        grid-column: span 3 / span 3;
       }
     }
 
@@ -37,7 +49,11 @@
       overflow: auto;
       transition: max-height 0.5s ease-in-out;
 
-      @media (max-width: 767px) {
+      > section {
+        max-width: 950px;
+      }
+
+      @media (max-width: 600px) {
         grid-column: span 7 / span 7;
         padding: 0;
 
@@ -46,8 +62,16 @@
         }
       }
 
-      > section {
-        max-width: 950px;
+      @media (min-width: 601px) and (max-width: 900px) {
+        grid-column: span 7 / span 7;
+      }
+
+      @media (min-width: 901px) and (max-width: 1200px) {
+        grid-column: span 6 / span 6;
+
+        > section {
+          max-width: 673px;
+        }
       }
     }
   }

@@ -68,6 +68,7 @@ export const ImageUploader = ({
           alignItems: "center",
           justifyContent: "center",
           height: "183px",
+          background: "#F9F9F9",
         }}
       >
         <>
