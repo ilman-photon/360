@@ -45,14 +45,14 @@ export const DEFAULT_INSURANCE_DATA = {
   plan: null,
   memberID: "",
   groupID: "",
-  isSubscriber: "Yes",
+  isSubscriber: null,
   subscriberData: {
     firstName: "",
     lastName: "",
     dob: null,
     relationship: "",
   },
-  priority: "Primary",
+  priority: null,
   frontCard: "",
   backCard: "",
 };

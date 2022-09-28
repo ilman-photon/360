@@ -30,6 +30,7 @@ import {
   Tooltip,
 } from "@mui/material";
 import { getDirection } from "../../../../utils/appointment";
+import { formatAppointmentDate } from "../../../../utils/dateFormatter";
 
 const BootstrapDialogTitle = (props) => {
   const { children, onClose, ...other } = props;
@@ -93,6 +94,7 @@ export default function ModalConfirmContent({
     );
   }
 
+  console.log("MASUK : ", appointmentData);
   return (
     <Box
       sx={{ width: { xs: "auto", md: "max-content" } }}
@@ -167,9 +169,9 @@ export default function ModalConfirmContent({
             <Typography
               className={styles.dateBold}
               sx={{ pb: 2 }}
-              aria-label={"Saturday, Sep 21, 2022, AT 8:30 AM EST"}
+              aria-label={appointmentData?.date}
             >
-              Saturday, Sep 21, 2022, AT 8:30 AM EST
+              {formatAppointmentDate(appointmentData.date)}
             </Typography>
 
             <div style={{ display: "inline-flex" }}>
