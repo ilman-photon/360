@@ -34,8 +34,8 @@ export default function ModalCancelScheduling({
 
   const options = [
     {
-      label: "Family emergency",
-      value: "familyemergency",
+      label: "Appointment no longer needed",
+      value: "noNeeded",
     },
     {
       label: "Patient passed away",
@@ -88,14 +88,11 @@ export default function ModalCancelScheduling({
       sx={{
         ".MuiDialog-container .MuiPaper-root": {
           xs: { width: "100%", margin: 0 },
-          md: { width: "auto", margin: "32px" },
+          md: { width: "635px", margin: "32px" },
         },
       }}
     >
-      <Box
-        sx={{ width: { xs: "auto", md: "max-content" } }}
-        className={styles.boxModalContents}
-      >
+      <Box sx={{ width: "auto" }} className={styles.boxModalContents}>
         <Typography variant="bodyMedium" className={styles.scheduledText}>
           {t("cancelTitle")}
         </Typography>
@@ -185,10 +182,6 @@ export default function ModalCancelScheduling({
                   flexDirection: {
                     xs: "column",
                     md: "row-reverse",
-                  },
-                  marginLeft: {
-                    xs: "0px",
-                    md: "82px",
                   },
                 }}
               >

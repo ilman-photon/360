@@ -11,8 +11,7 @@ Feature: Patient Portal : Prescription Results - View filters for medication pre
   @Regression
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-2704 - To verify whether the patient is able to view the below mentioned filters in the Prescription page
-    Scenario: To verify whether the patient is able to view the below mentioned filters in the Prescription page
-    
+      
     Given Patient Launch  the browser and enter the Patient portal URL
     When Patient enter valid "<username or phone number>" and "<password>" 
     And clicks  on login button.

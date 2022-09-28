@@ -7,10 +7,10 @@
 }
 
 .boxModalContents {
-  margin: 16px;
-  width: 500px;
+  padding: 16px;
+  width: 635px !important;
   @media (max-width: 556px) {
-    width: auto;
+    width: auto !important;
   }
 
   .scheduledText {
@@ -44,11 +44,13 @@
     font-family: "Libre Franklin", sans-serif;
     font-style: normal;
     line-height: 18px;
+    box-shadow: none !important;
 
     &.cancel {
       background-color: #b93632 !important;
       border-radius: 30px;
       text-transform: none;
+      white-space: nowrap;
     }
     &.outlined {
       background-color: transparent !important;
