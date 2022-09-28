@@ -9,7 +9,7 @@ import styles from "./filterResultHeading.module.scss";
 import CloseIcon from "@mui/icons-material/Close";
 import FilterBy from "../FilterBy/filterBy";
 import { useEffect, useState } from "react";
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, IconButton, Stack, Typography } from "@mui/material";
 import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import { colors } from "../../../styles/theme";
 import Image from "next/image";
@@ -77,10 +77,10 @@ export const FilterResultHeading = ({
   function renderAppliedFilter() {
     return appliedFilter.map((option, idx) => {
       return (
-        <Box className={styles.filterChildButton} key={idx}>
+        <Box className={styles.filterChildButton} key={idx} tabIndex="0">
           {option.name}
-          <CloseIcon
-            className={styles.closeIcon}
+          <IconButton
+            aria-description="Close"
             onClick={() => {
               const id = appliedFilter.findIndex((x) => x.name === option.name);
               if (id > -1) {
@@ -90,7 +90,9 @@ export const FilterResultHeading = ({
                 onActivFilter([...data]);
               }
             }}
-          />
+          >
+            <CloseIcon className={styles.closeIcon} />
+          </IconButton>
         </Box>
       );
     });
