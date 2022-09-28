@@ -1,4 +1,4 @@
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, waitFor, cleanup } from "@testing-library/react";
 import axios from "axios";
 import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
@@ -15,6 +15,7 @@ import FilterBy from "../../src/components/molecules/FilterBy/filterBy";
 import AppointmentDetails from "../../src/components/organisms/ScheduleAppointment/appointmentDetails";
 import AppointmentLocation from "../../src/components/organisms/ScheduleAppointment/appointmentLocation";
 import { PageContent } from "../../src/pages/patient/schedule-appointment";
+import { renderScheduleAppointment } from "../../__mocks__/commonSteps";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-1594.feature",
@@ -185,6 +186,7 @@ const inputLocation = async () => {
   act(() => {
     fireEvent.change(locationInput, { target: { value: "Texas" } });
   });
+  expect(locationInput).toBeInTheDocument()
 };
 
 const inputDate = async () => {
@@ -192,6 +194,7 @@ const inputDate = async () => {
   act(() => {
     fireEvent.change(dateInput, { target: { value: "22-09-2022" } });
   });
+  expect(dateInput).toBeInTheDocument()
 };
 
 const inputPurpose = async () => {
@@ -201,6 +204,7 @@ const inputPurpose = async () => {
   act(() => {
     fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
   });
+  expect(purposeInput).toBeInTheDocument()
 };
 
 const inputInsurance = async () => {
@@ -210,6 +214,7 @@ const inputInsurance = async () => {
   act(() => {
     fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
   });
+  expect(insuranceInput).toBeInTheDocument()
 };
 
 const clickSearch = async () => {
@@ -217,17 +222,28 @@ const clickSearch = async () => {
     container.getByTestId(APPOINTMENT_TEST_ID.searchbtn)
   );
   fireEvent.click(searchBtn);
+  expect(searchBtn).toBeInTheDocument()
 };
 
 const defaultValidation = () => {
   expect(true).toBeTruthy();
 };
 
+const launchURL = () => {
+  let container
+  const mockOnLoginClicked = jest.fn((callback) => {
+    callback({
+      status: "success",
+    });
+  });
+  container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+};
+
 defineFeature(feature, (test) => {
   let container
   test('EPIC_EPP-44_STORY_EPP-1594-To verify whether the user is allowed to change the Purpose of visit in Appointment Review screen.', ({ given, when, and, then }) => {
     given('user launch the Patient portal URL', () => {
-
+      launchURL()
     });
 
     when('user clicks on the Schedule Appointment button', () => {
@@ -260,22 +276,25 @@ defineFeature(feature, (test) => {
       clickSearch()
     });
 
-    and('user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit andInsurance carrier data', () => {
-      defaultValidation()
+    and('user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit andInsurance carrier data', async () => {
+      cleanup()
+      container = await renderScheduleAppointment()
     });
 
-    and('try to update the Purpose of visit if already provided', () => {
-      defaultValidation()
+    and('try to update the Purpose of visit if already provided', async() => {
+      await waitFor(() => container.getByText("Purpose of Visit"));
+      expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
     });
 
-    then('user should allow to update the Purpose of visit.', () => {
-      defaultValidation()
+    then('user should allow to update the Purpose of visit.', async() => {
+      await waitFor(() => container.getByText("Purpose of Visit"));
+      expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
     });
   });
 
   test('EPIC_EPP-44_STORY_EPP-1594-Verify whether the user is able to select the Purpose of visit, if not selected in Previous page.', ({ given, when, and, then }) => {
     given('user launch the Patient portal URL', () => {
-      defaultValidation()
+      launchURL()
     });
 
     when('user clicks on the Schedule Appointment button', () => {
@@ -308,22 +327,26 @@ defineFeature(feature, (test) => {
       clickSearch()
     });
 
-    and('user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data', () => {
-      defaultValidation()
+    and('user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data', async () => {
+      cleanup()
+      container = await renderScheduleAppointment()
     });
 
-    and('try to add the Purpose of visit', () => {
-      defaultValidation()
+    and('try to add the Purpose of visit', async () => {
+      await waitFor(() => container.getByText("Purpose of Visit"));
+      console.log(container.getByText("Purpose of Visit"))
+      expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
     });
 
-    then('user should allow to add the Purpose of visit.', () => {
-      defaultValidation()
+    then('user should allow to add the Purpose of visit.',async () => {
+      await waitFor(() => container.getByText("Purpose of Visit"));
+      expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
     });
   });
 
   test('EPIC_EPP-44_STORY_EPP-1594-Verify whether the already selected data are getting removed if we update the other Purpose of visit if not supported.', ({ given, when, and, then }) => {
     given('user launch the Patient portal URL', () => {
-      defaultValidation()
+      launchURL()
     });
 
     when('user clicks on the Schedule Appointment button', () => {
@@ -356,22 +379,25 @@ defineFeature(feature, (test) => {
       clickSearch()
     });
 
-    and('user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data', () => {
-      defaultValidation()
+    and('user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data', async () => {
+      cleanup()
+      container = await renderScheduleAppointment()
     });
 
-    and('try to update the Purpose of visit, which is not supported.', () => {
-      defaultValidation()
+    and('try to update the Purpose of visit, which is not supported.', async() => {
+      await waitFor(() => container.getByText("Purpose of Visit"));
+      expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
     });
 
-    then('already selected  Location, Date of Appointment, Insurance carrier should get removed.', () => {
-      defaultValidation()
+    then('already selected  Location, Date of Appointment, Insurance carrier should get removed.', async() => {
+      await waitFor(() => container.getByText("Purpose of Visit"));
+      expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
     });
   });
 
   test('EPIC_EPP-44_STORY_EPP-1594-Verify whether the user is able to review the Appointment details after updating the Purpose of visit.', ({ given, when, and, then }) => {
     given('user launch the Patient portal URL', () => {
-      defaultValidation()
+      launchURL()
     });
 
     when('user clicks on the Schedule Appointment button', () => {
@@ -404,16 +430,19 @@ defineFeature(feature, (test) => {
       clickSearch()
     });
 
-    and('user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data', () => {
-      defaultValidation()
+    and('user should lands on Schedule Appointment Review screen with selected location, date, Purpose of visit and Insurance carrier data', async () => {
+      cleanup()
+      container = await renderScheduleAppointment()
     });
 
-    and('try to update the Purpose of visit if already provided', () => {
-      defaultValidation()
+    and('try to update the Purpose of visit if already provided',async () => {
+      await waitFor(() => container.getByText("Purpose of Visit"));
+      expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
     });
 
-    then('it should allow to review once again the changed Purpose of visit in Appointment review screen.', () => {
-      defaultValidation()
+    then('it should allow to review once again the changed Purpose of visit in Appointment review screen.',async () => {
+      await waitFor(() => container.getByText("Purpose of Visit"));
+      expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
     });
   });
 });
