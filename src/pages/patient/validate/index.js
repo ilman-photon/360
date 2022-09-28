@@ -136,6 +136,9 @@ export default function ValidatePage({ query }) {
       .then(function (response) {
         cookies.set("username", postbody.username, { path: "/patient" });
         cookies.set("accessToken", response.access_token, { path: "/patient" });
+        cookies.set("refreshToken", response.refresh_token, {
+          path: "/patient",
+        });
         getUserData(postbody);
       })
       .catch(function () {
