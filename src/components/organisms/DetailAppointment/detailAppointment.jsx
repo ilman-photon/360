@@ -345,7 +345,7 @@ export default function DetailAppointment({ data }) {
           <Box sx={{ p: 2, pb: 0, backgroundColor: grey[50] }}>
             <Typography
               tabIndex={0}
-              aria-Label={"Documentation of"}
+              aria-label={"Documentation of"}
               variant="h3"
               className={styles.mb14}
             >

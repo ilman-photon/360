@@ -186,7 +186,7 @@
 
 .map {
   width: 471px;
-  height: 270px;
+  min-height: 320px;
   background-color: skyblue;
   @media (max-width: 556px) {
     width: 100%;
@@ -202,8 +202,10 @@
 
 .mapAddressContainer {
   margin-left: 24px;
+  width: 315px;
   @media (max-width: 992px) {
     margin-left: unset;
+    width: unset;
   }
 }
 
@@ -252,4 +254,12 @@
   @media (max-width: 992px) {
     margin-top: 0px !important;
   }
+}
+
+.addressTitle {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 0.0016em;
 }

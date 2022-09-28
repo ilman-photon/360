@@ -87,12 +87,16 @@ const ForgotPassword = ({
           ) : (
             <></>
           )}
-          <Typography
-            variant="bodyMedium"
-            style={{ ...styles.marginText, ...styles.link }}
-          >
-            {isAppointment ? t("syncTextContent") : ""}
-          </Typography>
+          {isAppointment ? (
+            <Typography
+              variant="bodyMedium"
+              style={{ ...styles.marginText, ...styles.link }}
+            >
+              {t("syncTextContent")}
+            </Typography>
+          ) : (
+            ""
+          )}
           <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
             <Controller
               name="username"
