@@ -104,7 +104,7 @@ export const PageContent = ({
       if (isReschedule) {
         return "Reschedule Appointment";
       } else {
-        return t("scheduleAppointment");
+        return t("scheduleAppoinment");
       }
     } else return t("continue");
   };
