@@ -142,7 +142,7 @@
 
   },
   "scheduleAppoinment": {
-    "formTitle": "Whos is this exam for?",
+    "formTitle": "Who is this exam for?",
     "guestForm": "Provide patient’s basic information",
     "myself": "Myself",
     "someoneElse": "Someone else",
