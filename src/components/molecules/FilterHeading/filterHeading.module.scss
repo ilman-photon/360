@@ -2,7 +2,6 @@
 
 .titleHeadingWrapper {
   margin-top: -15px;
-  position: fixed;
   width: 100%;
   padding: 24px 10px;
   gap: 10px;
@@ -10,6 +9,10 @@
   display: flex;
   z-index: 2;
   justify-content: center;
+
+  @media print {
+    display: none !important;
+  }
 }
 
 .centeredElement {

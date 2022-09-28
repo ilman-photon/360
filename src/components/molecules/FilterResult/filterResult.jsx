@@ -1,4 +1,4 @@
-import { Stack, Typography } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import { Box } from "@mui/system";
 import ItemResult from "../../organisms/ItemResult/ItemResult";
 import FilterResultHeading from "../FilterResultHeading/filterResultHeading";
@@ -8,8 +8,9 @@ import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
 import FilterResultContainer from "../FilterResultContainer/filterResultContainer";
 import { colors } from "../../../styles/theme";
 import { useEffect, useState } from "react";
-import { getDates } from "../../../utils/appointment";
+import { getDates, isPrevArrowDisable } from "../../../utils/appointment";
 import { TEST_ID } from "../../../utils/constants";
+import styles from "./filterResult.module.scss";
 
 export const FilterResult = ({
   providerList = [],
@@ -107,9 +108,7 @@ export const FilterResult = ({
         </Box>
         <div
           style={{
-            overflow: "auto",
             marginTop: 8,
-            maxHeight: "calc(100vh - 151px - 64px - 141px)",
           }}
           className="hide-scrollbar"
         >
@@ -151,24 +150,51 @@ export const FilterResult = ({
             alignItems={"center"}
             height={"56px"}
             sx={{ backgroundColor: "#fff" }}
+            className={styles.stackListContainer}
           >
-            <ArrowBackIosIcon
-              sx={{
-                marginLeft: "22px",
-                cursor: "pointer",
-              }}
+            <Button
+              role={"button"}
               onClick={() => {
-                if (currentDateIndex <= 0) {
-                  const date = new Date(dateList.dateRange[0]);
-                  date.setDate(date.getDate() - 7);
+                if (
+                  !isPrevArrowDisable(
+                    dateList,
+                    dateList.dateRange[currentDateIndex]
+                  )
+                ) {
+                  if (currentDateIndex <= 0) {
+                    const date = new Date(dateList.dateRange[0]);
+                    date.setDate(date.getDate() - 7);
 
-                  onPrevScheduleClicked("day", date);
-                  setCurrentDateIndex(5);
-                } else {
-                  setCurrentDateIndex(currentDateIndex - 1);
+                    onPrevScheduleClicked("day", date);
+                    setCurrentDateIndex(5);
+                  } else {
+                    setCurrentDateIndex(currentDateIndex - 1);
+                  }
                 }
               }}
-            />
+              sx={{
+                width: "25px",
+                minWidth: "25px",
+                padding: 0,
+                color: "#003b4a",
+              }}
+              aria-label={"Navigate to previous week option"}
+            >
+              <ArrowBackIosIcon
+                sx={{
+                  marginLeft: "22px",
+                  cursor: "pointer",
+                }}
+                className={
+                  isPrevArrowDisable(
+                    dateList,
+                    dateList.dateRange[currentDateIndex]
+                  )
+                    ? styles.prevArrowDisable
+                    : styles.prevArrowActive
+                }
+              />
+            </Button>
             <Box
               sx={{
                 margin: "0 auto",
@@ -194,11 +220,8 @@ export const FilterResult = ({
                 {dateList.dateListName[currentDateIndex]}
               </Typography>
             </Box>
-            <ArrowForwardIosIcon
-              sx={{
-                marginRight: "15px",
-                cursor: "pointer",
-              }}
+            <Button
+              role={"button"}
               onClick={() => {
                 if (currentDateIndex >= 5) {
                   const date = new Date(dateList.dateRange[5]);
@@ -210,7 +233,21 @@ export const FilterResult = ({
                   setCurrentDateIndex(currentDateIndex + 1);
                 }
               }}
-            />
+              sx={{
+                width: "25px",
+                minWidth: "25px",
+                padding: 0,
+                color: "#003b4a",
+              }}
+              aria-label={"Navigate to next week option"}
+            >
+              <ArrowForwardIosIcon
+                sx={{
+                  marginRight: "15px",
+                  cursor: "pointer",
+                }}
+              />
+            </Button>
           </Stack>
         </Box>
         <Box

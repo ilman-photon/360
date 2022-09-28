@@ -9,6 +9,6 @@ describe("InsuranceForm Components", () => {
   });
 
   it("InsuranceForm render", () => {
-    expect(container).toMatchSnapshot();
+    expect(container.getByText(/Subscriber First Name/i)).toBeInTheDocument();
   });
 });

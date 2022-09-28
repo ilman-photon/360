@@ -29,6 +29,8 @@ import {
   Grid,
   Tooltip,
 } from "@mui/material";
+import { getDirection } from "../../../../utils/appointment";
+import { formatAppointmentDate } from "../../../../utils/dateFormatter";
 
 const BootstrapDialogTitle = (props) => {
   const { children, onClose, ...other } = props;
@@ -66,13 +68,13 @@ BootstrapDialogTitle.propTypes = {
 export default function ModalConfirmContent({
   patientData = {},
   providerData = {},
+  appointmentData = {},
   isLoggedIn,
   isReschedule,
   OnOkClicked = () => {
     // This is intended
   },
 }) {
-  console.log({ providerData });
   const { REGISTER_TEST_ID } = constants.TEST_ID;
 
   const { t } = useTranslation("translation", {
@@ -83,6 +85,16 @@ export default function ModalConfirmContent({
     OnOkClicked();
   };
 
+  function getProviderLocation() {
+    return (
+      providerData.coordinate || {
+        latitude: "",
+        longitude: "",
+      }
+    );
+  }
+
+  console.log("MASUK : ", appointmentData);
   return (
     <Box
       sx={{ width: { xs: "auto", md: "max-content" } }}
@@ -93,8 +105,17 @@ export default function ModalConfirmContent({
         onClose={handleClose}
         sx={{ textAlign: "center" }}
       >
-        <Typography variant="bodyMedium" className={styles.scheduledText}>
-          <CheckCircleRoundedIcon sx={{ mr: 1 }} />{" "}
+        <Typography
+          tabIndex={0}
+          ariaLabel={
+            isReschedule
+              ? "Reschedule Appointment Successful"
+              : "You’re Scheduled!"
+          }
+          variant="bodyMedium"
+          className={styles.scheduledText}
+        >
+          <CheckCircleRoundedIcon sx={{ mr: 1, color: "#168845" }} />{" "}
           {isReschedule
             ? "Reschedule Appointment Successful"
             : "You’re Scheduled!"}
@@ -137,40 +158,47 @@ export default function ModalConfirmContent({
           </Tooltip>
         </div>
 
-        <Card variant="outlined" className={styles.cardPatient}>
+        <Card variant="outlined" className={styles.cardDate}>
           <CardContent
             sx={{
               px: { xs: 3, md: 3 },
               py: { xs: 3, md: 3 },
-              textAlign: "-webkit-center",
+              textAlign: "-moz-center",
             }}
           >
             <Typography
               className={styles.dateBold}
               sx={{ pb: 2 }}
-              aria-label={"Saturday, Sep 21, 2022, AT 8:30 AM EST"}
+              aria-label={appointmentData?.date}
             >
-              Saturday, Sep 21, 2022, AT 8:30 AM EST
+              {formatAppointmentDate(appointmentData.date)}
             </Typography>
 
-            <Button
-              className={styles.addCalendarButton}
-              sx={{
-                backgroundColor: "#EEF5F7",
-                mb: 2,
-              }}
-            >
-              <Typography
+            <div style={{ display: "inline-flex" }}>
+              <Button
+                className={styles.addCalendarButton}
                 sx={{
-                  mb: 1,
-                  display: "contents",
-                  fontWeight: "700",
+                  backgroundColor: "#EEF5F7",
+                  mb: 2,
                 }}
-                aria-label={"Add to calendar"}
               >
-                <CalendarTodayIcon /> Add to calendar
-              </Typography>
-            </Button>
+                <Typography
+                  sx={{
+                    mb: 1,
+                    display: "contents",
+                    fontWeight: "600",
+                    fontSize: "14px",
+                  }}
+                  aria-label={"Add to calendar"}
+                >
+                  <CalendarTodayIcon
+                    aria-hidden={"false"}
+                    sx={{ color: "#003B4A" }}
+                  />{" "}
+                  Add to calendar
+                </Typography>
+              </Button>
+            </div>
 
             <Typography
               className={styles.dateBold}
@@ -178,7 +206,11 @@ export default function ModalConfirmContent({
             >
               Purpose of Visit
             </Typography>
-            <Typography aria-label={"Eye exam"}>Eye exam</Typography>
+            <Typography
+              aria-label={appointmentData.appointmentType || "Eye exam"}
+            >
+              {appointmentData.appointmentType || "Eye exam"}
+            </Typography>
           </CardContent>
         </Card>
 
@@ -186,15 +218,20 @@ export default function ModalConfirmContent({
           <CardContent sx={{ px: { xs: 2, md: 4 }, py: { xs: 2, md: 4 } }}>
             <Stack spacing={2}>
               <Grid container sx={{ placeContent: "center" }}>
-                <Grid pl={2}>
+                <Grid>
                   <ProviderProfile
                     variant={"appointment"}
                     showPosition
-                    phoneLink
+                    phoneLink={true}
                     providerData={providerData}
                     isDayAvailableView={true}
                   />
-                  <Box className={styles.getDirectionLink}>
+                  <Box
+                    className={styles.getDirectionLink}
+                    onClick={() => {
+                      getDirection(getProviderLocation());
+                    }}
+                  >
                     <DirectionsOutlinedIcon></DirectionsOutlinedIcon>
                     <Link
                       className={styles.getDirectionLinkText}
@@ -223,7 +260,7 @@ export default function ModalConfirmContent({
             <LabelWithInfo
               label="Name"
               sxRow={{ justifyContent: "unset" }}
-              sxText={{ color: colors.darkGreen }}
+              sxText={{ color: colors.darkGreen, fontSize: "16px" }}
             >
               <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
                 {patientData.firstName || "-"}
@@ -234,13 +271,16 @@ export default function ModalConfirmContent({
 
         {!isLoggedIn ? (
           <div className={styles.bottomParagraph}>
-            <Typography variant="caption" sx={{ fontSize: "16px" }}>
+            <Typography
+              variant="caption"
+              sx={{ fontSize: "16px", fontFamily: "Libre Franklin" }}
+            >
               Already have an account?{" "}
               <Link
                 href="/patient/login"
                 data-testid={REGISTER_TEST_ID.loginlink}
               >
-                <a className={styles.loginLink}>Login</a>
+                <a className={styles.loginLink}>Sign in</a>
               </Link>
             </Typography>
           </div>

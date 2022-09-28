@@ -12,6 +12,7 @@ export const LabelWithInfo = ({
   titleIcon,
   sxRow,
   sxText,
+  alignItems = "unset",
 }) => (
   <Stack>
     <div className={styles.labelContainer} style={sxRow}>
@@ -44,9 +45,9 @@ export const LabelWithInfo = ({
             placement="top"
             aria-label={`Information Icon - ${tooltipContent}`}
           >
-            <IconButton>
+            <IconButton sx={{ p: 0 }}>
               <ErrorOutlineOutlinedIcon
-                sx={{ width: 20, height: 20, color: "#00000080" }}
+                sx={{ width: 24, height: 24, color: "#00000080" }}
               />
             </IconButton>
           </Tooltip>
@@ -55,8 +56,8 @@ export const LabelWithInfo = ({
         ""
       )}
     </div>
-    <Stack spacing={1}>
-      <div style={{ marginTop: 10 }}>{children}</div>
+    <Stack spacing={1} sx={{ mt: "10px", alignItems: alignItems }}>
+      <div>{children}</div>
       {helperText ? (
         <Typography variant="bodySmallRegular" sx={{ mt: 1, fontWeight: 500 }}>
           {helperText}

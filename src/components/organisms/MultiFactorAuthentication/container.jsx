@@ -29,7 +29,10 @@ export default function Container({
   setRememberMe,
   testIds,
 }) {
-  const { t } = useTranslation("translation", { keyPrefix: "mfaPage" });
+  const { t } = useTranslation("translation", {
+    keyPrefix: "mfaPage",
+    useSuspense: false,
+  });
   const renderFromMessage = () => {
     if (postMessage && postMessage !== "") {
       return (
@@ -73,6 +76,10 @@ export default function Container({
                 <Checkbox
                   sx={{
                     padding: 0,
+                    color: "#757575",
+                    "&.Mui-checked": {
+                      color: "#0095A9",
+                    },
                   }}
                   checked={rememberMe}
                   data-testid={testIds.checkbox}

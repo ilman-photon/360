@@ -35,8 +35,10 @@ describe("InsuranceInformationPage Components", () => {
   });
 
   it("InsuranceInformationPage render", async () => {
-    expect(container).toMatchSnapshot();
     await waitFor(() => container.getByText("You have no insurance on file"));
+    expect(
+      container.getByText("You have no insurance on file")
+    ).toBeInTheDocument();
   });
 
   const inputProviderSubsId = async () => {
@@ -62,7 +64,7 @@ describe("InsuranceInformationPage Components", () => {
   it(
     "InsuranceInformationPage Input Test provider & subscriber",
     inputProviderSubsId,
-    10000
+    20000
   );
 
   const inputPlanGroup = async () => {

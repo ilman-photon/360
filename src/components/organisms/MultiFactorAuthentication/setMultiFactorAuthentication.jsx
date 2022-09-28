@@ -16,7 +16,10 @@ export default function SetMultiFactorAuthentication({
   data,
   testIds,
 }) {
-  const { t } = useTranslation("translation", { keyPrefix: "mfaPage" });
+  const { t } = useTranslation("translation", {
+    keyPrefix: "mfaPage",
+    useSuspense: false,
+  });
   const [selectedCommunication, setSelectedCommunication] = React.useState("");
   const image = "/lock-mfa.png";
   const isMultipleComunication = Object.keys(data).length > 1;
@@ -40,7 +43,11 @@ export default function SetMultiFactorAuthentication({
     } else {
       return (
         <FormControl>
-          <Typography variant="body2" className={styles.radioLabel}>
+          <Typography
+            variant="body2"
+            className={styles.radioLabel}
+            sx={{ color: "#242526" }}
+          >
             {t("communicationMethodTitle")}
           </Typography>
           <RadioGroup

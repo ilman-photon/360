@@ -3,6 +3,7 @@ import FormControl from "@mui/material/FormControl";
 import { InputLabel, MenuItem, Select } from "@mui/material";
 import { styled, alpha } from "@mui/material/styles";
 import { colors } from "../../../styles/theme";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export const CustomFormControl = styled((props) => <FormControl {...props} />)(
   ({ theme }) => ({
@@ -50,6 +51,7 @@ export default function SelectOptionButton({
   value = "",
   onChange,
   renderMenuListUI = null,
+  ariaLabel = "",
   ...props
 }) {
   return (
@@ -59,6 +61,8 @@ export default function SelectOptionButton({
       style={{ width: "100%" }}
     >
       <InputLabel
+        tabIndex={0}
+        aria-label={ariaLabel}
         id="demo-simple-select-label"
         sx={{
           fontSize: "16px",
@@ -79,6 +83,7 @@ export default function SelectOptionButton({
         value={value}
         label={label}
         onChange={onChange}
+        IconComponent={KeyboardArrowDownIcon}
         sx={{
           fontSize: "16px",
           "& .MuiInputBase-input:focus": {

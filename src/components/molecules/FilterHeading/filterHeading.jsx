@@ -30,11 +30,14 @@ import CustomizedDialogs from "../../atoms/Dialog/dialog";
 import { LocalizationProvider, StaticDatePicker } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { convertToDate } from "../../../utils/dateFormatter";
+import { Regex } from "../../../utils/regex";
 
 export const imageSrcState = "/bx_insurance_card.png";
 export const muiInputRoot = "& .MuiFilledInput-root";
 export function keyDownPress(e, handleCloseDialog) {
-  if (e.code && e.code.toLowerCase() === "enter" && e.target.value) {
+  if (Regex.specialRegex.test(e.key)) {
+    e.preventDefault();
+  } else if (e.code && e.code.toLowerCase() === "enter" && e.target.value) {
     handleCloseDialog();
     e.preventDefault();
   }
@@ -254,14 +257,16 @@ export const insuraceIcon = (
 export function getMenuList(title, subtitle) {
   return (
     <Box className={styles.selectMenuContainer}>
-      <Typography
-        variant="bodySmallRegular"
-        sx={{ display: "block", color: colors.darkGreen }}
-      >
-        {title}
-      </Typography>
-      <Typography variant="bodySmallMedium" sx={{ color: colors.darkGreen }}>
-        {subtitle}
+      <Typography tabindex={0}>
+        <Typography
+          variant="bodySmallRegular"
+          sx={{ display: "block", color: colors.darkGreen }}
+        >
+          {title}
+        </Typography>
+        <Typography variant="bodySmallMedium" sx={{ color: colors.darkGreen }}>
+          {subtitle}
+        </Typography>
       </Typography>
     </Box>
   );
@@ -320,11 +325,12 @@ export const CustomPopper = function (props) {
 
 export function onGetInsuranceCarrierStyle(isDesktop = true) {
   return {
-    width: isDesktop ? "320px" : "auto",
+    width: isDesktop ? "100%" : "auto",
     background: "#FFF",
     marginTop: "0px",
     border: !isDesktop ? "1px solid #BDBDBD" : "none",
     borderRadius: !isDesktop ? "4px" : "auto",
+    backgroundColor: "#fff",
   };
 }
 
@@ -360,6 +366,13 @@ export function onRenderInputInsurance(
         sx={{
           [muiInputRoot]: {
             border: "0px",
+          },
+          ".MuiInputLabel-filled": {
+            fontStyle: "normal",
+            fontWeight: "400",
+            color: "#303030",
+            fontSize: "16px",
+            lineHeight: "24px",
           },
         }}
         onKeyDown={(e) => {
@@ -439,7 +452,9 @@ export function renderInsuranceCarrier(
             renderOption={(props, option) => {
               return (
                 <Box key={props["data-option-index"]}>
-                  <li {...props}>{option.name}</li>
+                  <li {...props} tabIndex={"0"}>
+                    {option.name}
+                  </li>
                   {option.divider ? (
                     <Divider
                       sx={{
@@ -475,6 +490,7 @@ const FilterHeading = ({
   insuranceCarrierData = [],
   title = "",
   subtitle = "",
+  isFixed = true,
 }) => {
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
   const { handleSubmit, control } = useForm({
@@ -488,7 +504,7 @@ const FilterHeading = ({
   const mapsData = isGeolocationEnabled ? ["Use my current location"] : [];
 
   const onSubmit = (data) => {
-    if (!data.location) {
+    if (!data.location.trim()) {
       setEmptyLocation(true);
     } else {
       onSearchProvider(data);
@@ -557,10 +573,13 @@ const FilterHeading = ({
                 onHideMandatoryFieldError();
                 onChange(newInputValue);
               }}
+              onKeyDown={(e) => {
+                if (Regex.specialRegex.test(e.key)) e.preventDefault();
+              }}
               disableClearable={true}
               options={mapsData}
               sx={{
-                width: "347px",
+                width: "100%",
                 background: "#FFF",
                 borderRadius: "100%",
               }}
@@ -580,6 +599,7 @@ const FilterHeading = ({
                     {...params}
                     label="City, state, or zip code"
                     InputProps={{
+                      "aria-label": "City, state, or zip code field",
                       ...params.InputProps,
                       endAdornment: (
                         <InputAdornment position="end">
@@ -601,6 +621,14 @@ const FilterHeading = ({
                       borderTopRightRadius: "50px",
                       [muiInputRoot]: {
                         border: "0px",
+                        backgroundColor: "#fff",
+                      },
+                      ".MuiInputLabel-filled": {
+                        fontStyle: "normal",
+                        fontWeight: "400",
+                        fontSize: "16px",
+                        lineHeight: "24px",
+                        color: "#303030",
                       },
                     }}
                   />
@@ -626,7 +654,7 @@ const FilterHeading = ({
                 display: "flex",
                 alignItems: "flex-end",
                 background: "#fff",
-                width: "210px",
+                width: "60%",
                 paddingLeft: "15px",
                 borderRadius: 0,
                 marginTop: "0px",
@@ -634,7 +662,7 @@ const FilterHeading = ({
             >
               <CalendarTodayIcon
                 sx={{
-                  margin: "auto",
+                  margin: "auto 0",
                   width: "18px",
                   height: "18px",
                   color: colors.darkGreen,
@@ -653,11 +681,23 @@ const FilterHeading = ({
                 isFilter={true}
                 value={value}
                 onChange={onChange}
+                inputProps={{
+                  "aria-label": "Date field",
+                  readOnly: true,
+                }}
                 sx={{
                   margin: 0,
                   [muiInputRoot]: {
                     border: "0px",
                     cursor: "pointer",
+                    backgroundColor: "#fff",
+                  },
+                  ".MuiInputLabel-filled": {
+                    fontWeight: "400",
+                    fontSize: "16px",
+                    color: "#303030",
+                    lineHeight: "24px",
+                    fontStyle: "normal",
                   },
                 }}
                 onClick={() => setOpen(true)}
@@ -667,6 +707,7 @@ const FilterHeading = ({
                   },
                 }}
                 inputFormat={"MMM dd, yyyy"}
+                disableMaskedInput
               />
             </Box>
           );
@@ -687,7 +728,7 @@ const FilterHeading = ({
                 display: "flex",
                 alignItems: "flex-end",
                 background: "#fff",
-                width: isDesktop ? "312px" : "auto",
+                width: isDesktop ? "85%" : "auto",
                 paddingLeft: "15px",
                 marginTop: isDesktop ? "0px" : "16px",
               }}
@@ -710,8 +751,16 @@ const FilterHeading = ({
                       boxShadow: "none",
                     },
                   },
+                  ".MuiInputLabel-filled": {
+                    fontWeight: "400",
+                    fontSize: "16px",
+                    color: "#303030",
+                    lineHeight: "24px",
+                    fontStyle: "normal",
+                  },
                 }}
                 label={"Purpose of Visit"}
+                ariaLabel={"Purpose of Visit field"}
                 labelId={`purposes-of-visit`}
                 id={`purposes-of-visit`}
                 options={purposeOfVisitData}
@@ -734,7 +783,10 @@ const FilterHeading = ({
     return (
       <Box
         className={styles.titleHeadingWrapper}
-        sx={{ height: title && subtitle ? "200px" : "151px" }}
+        sx={{
+          height: title && subtitle ? "200px" : "151px",
+          position: isFixed ? "fixed" : "relative",
+        }}
       >
         <Box
           className={styles.centeredElement}
@@ -755,6 +807,7 @@ const FilterHeading = ({
                 display: "flex",
                 background: "#fff",
                 borderRadius: "50px",
+                width: isTablet ? "85vw" : "80vw",
               }}
             >
               {renderLocationFilter()}
@@ -774,6 +827,7 @@ const FilterHeading = ({
                 handleCloseDialog
               )}
               <StyledButton
+                aria-label={"Search"}
                 type="submit"
                 theme="patient"
                 mode="filter"
@@ -796,6 +850,7 @@ const FilterHeading = ({
                 justifyContent={"center"}
                 className={styles.swapButtonContainer}
                 onClick={onSwapButtonClicked}
+                tabindex={0}
               >
                 <SwapHorizIcon className={styles.swapIcon} />
                 <Typography className={styles.swapLabel}>Map</Typography>
