@@ -42,31 +42,27 @@ export const CustomPasswordInput = styled((props) => (
       disableUnderline: true,
       endAdornment: (
         <InputAdornment position="end">
-          {props.value ? (
-            <Tooltip
-              title={`${
-                props.type !== "password" ? "Hide Password" : "Show Password"
+          <Tooltip
+            title={`${
+              props.type !== "password" ? "Hide Password" : "Show Password"
+            }`}
+          >
+            <IconButton
+              aria-label={`${
+                props.type !== "password"
+                  ? "Password hide icon"
+                  : "Password unhide icon"
               }`}
+              {...props.customevent}
+              edge="end"
             >
-              <IconButton
-                aria-label={`${
-                  props.type !== "password"
-                    ? "Password hide icon"
-                    : "Password unhide icon"
-                }`}
-                {...props.customevent}
-                edge="end"
-              >
-                {props.type !== "password" ? (
-                  <VisibilityOutlinedIcon />
-                ) : (
-                  <VisibilityOffOutlinedIcon sx={{ transform: "scaleX(-1)" }} />
-                )}
-              </IconButton>
-            </Tooltip>
-          ) : (
-            ""
-          )}
+              {props.type !== "password" ? (
+                <VisibilityOutlinedIcon />
+              ) : (
+                <VisibilityOffOutlinedIcon sx={{ transform: "scaleX(-1)" }} />
+              )}
+            </IconButton>
+          </Tooltip>
         </InputAdornment>
       ),
     }}
