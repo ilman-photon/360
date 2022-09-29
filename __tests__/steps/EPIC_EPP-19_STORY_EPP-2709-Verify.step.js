@@ -1,9 +1,4 @@
-import {
-  act,
-  render,
-  waitFor,
-  fireEvent,
-} from "@testing-library/react";
+import { act, render, waitFor, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import Cookies from "universal-cookie";
@@ -12,7 +7,7 @@ import PrescriptionPage from "../../src/pages/patient/prescription";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import store from "../../src/store/store";
-import mediaQuery from 'css-mediaquery';
+import mediaQuery from "css-mediaquery";
 
 function createMatchMedia(width) {
   return (query) => ({
@@ -138,7 +133,7 @@ const MOCK_PRESCRIPTION = {
         id: "0",
         prescription: "Aspirint 0.1% Ointmanet",
         date: "2022-09-02T11:18:47.229Z",
-        status: "refill request"
+        status: "refill request",
       },
       {
         id: "1",
@@ -164,10 +159,15 @@ defineFeature(feature, (test) => {
   let container;
   const mock = new MockAdapter(axios);
 
-  test('EPIC_EPP-19_STORY_EPP-2709 - Verify User should be able to see the option to cancel the requested refill', ({ given, when, then, and }) => {
-    given('User launch Patient Portal url', () => {});
+  test("EPIC_EPP-19_STORY_EPP-2709 - Verify User should be able to see the option to cancel the requested refill", ({
+    given,
+    when,
+    then,
+    and,
+  }) => {
+    given("User launch Patient Portal url", () => {});
 
-    when('User is logged in to the application', () => {
+    when("User is logged in to the application", () => {
       Cookies.result = { authorized: true };
     });
 
@@ -185,43 +185,63 @@ defineFeature(feature, (test) => {
 
     then(/^User should navigated to "(.*)" screen$/, () => {});
 
-    and('User should see the widget with prescriptions', () => {});
+    and("User should see the widget with prescriptions", () => {});
 
-    when('User clicks on the widget with prescriptions', () => {});
+    when("User clicks on the widget with prescriptions", () => {});
 
     then(/^User should navigated to "(.*)" screen$/, (arg0) => {});
 
-    and('User should be able to view the list of prescriptions with the details as below:', async () => {
-      Cookies.result = "true";
-      const domain = window.location.origin;
-      mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`).reply(200, MOCK_PRESCRIPTION);
-      window.matchMedia = createMatchMedia('1920px');
-      
-      act(()=>{
-      container = render(
-          <Provider store={store}>
+    and(
+      "User should be able to view the list of prescriptions with the details as below:",
+      async () => {
+        Cookies.result = "true";
+        const domain = window.location.origin;
+        mock
+          .onGet(
+            `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
+          )
+          .reply(200, MOCK_PRESCRIPTION);
+        window.matchMedia = createMatchMedia("1920px");
+
+        act(() => {
+          container = render(
+            <Provider store={store}>
               {PrescriptionPage.getLayout(<PrescriptionPage />)}
-          </Provider>
+            </Provider>
           );
-      })
-      await waitFor(()=> container.getByText(/Filter/i));
-      expect(container.getAllByText(/Active Medications/i)[0]).toBeInTheDocument();
-    });
+        });
+        await waitFor(() => container.getByText(/Filter/i));
+        expect(
+          container.getAllByText(/Active Medications/i)[0]
+        ).toBeInTheDocument();
+      }
+    );
 
-    and('User should be able to view options to filter the prescriptions with details as below:', async () => {
-      const filterButton = container.getByTestId("medication-filter-button");
-      act(()=>{
-          fireEvent.click(filterButton)
-      });
-      expect(container.getByText(/Filter By/i)).toBeInTheDocument();
-    });
+    and(
+      "User should be able to view options to filter the prescriptions with details as below:",
+      async () => {
+        const filterButton = container.getByTestId("medication-filter-button");
+        act(() => {
+          fireEvent.click(filterButton);
+        });
+        expect(container.getByText(/Filter By/i)).toBeInTheDocument();
+      }
+    );
 
-    and('User should be able to view an option to clear those filters when applied', () => {
-      defaultValidation();
-    });
+    and(
+      "User should be able to view an option to clear those filters when applied",
+      () => {
+        defaultValidation();
+      }
+    );
 
-    and('User should be able to view option to cancel refill for those requested prescriptions', () => {
-      expect(container.getAllByText(/Cancel Refill Request/i)[0]).toBeInTheDocument();
-    });
+    and(
+      "User should be able to view option to cancel refill for those requested prescriptions",
+      () => {
+        expect(
+          container.getAllByText(/Cancel Refill Request/i)[0]
+        ).toBeInTheDocument();
+      }
+    );
   });
 });
