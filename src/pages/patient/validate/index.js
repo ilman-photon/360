@@ -156,7 +156,6 @@ export default function ValidatePage({ query }) {
       .tokenValidation(postbody, true)
       .then(function (response) {
         //Navigate to Update
-        const name = response.email || "Smith1@photon.com";
         router.push(`update-password?username=${queryParam.username}`);
       })
       .catch(function () {
@@ -177,7 +176,9 @@ export default function ValidatePage({ query }) {
       onValidateQuesryParam();
       setLoaded(true);
     }
-    return () => {};
+    return () => {
+      //this is intentional
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

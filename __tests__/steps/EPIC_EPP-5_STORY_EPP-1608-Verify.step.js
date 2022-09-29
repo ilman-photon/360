@@ -392,7 +392,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByLabelText(/Prescriptions/i));
+      await waitFor(() => container.getAllByLabelText(/Prescriptions/i)[0]);
       expect(response).toEqual({
         props: { isStepTwo: false },
       });

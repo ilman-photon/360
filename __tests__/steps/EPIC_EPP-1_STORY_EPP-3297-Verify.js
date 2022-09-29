@@ -492,7 +492,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByLabelText(/Appointments/i));
+      await waitFor(() => container.getByText("Purpose of Visit"));
     });
 
     and("User should see the widget with upcoming appointments", () => {
@@ -569,7 +569,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByLabelText(/Appointments/i));
+      await waitFor(() => container.getByText("Purpose of Visit"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -729,7 +729,7 @@ defineFeature(feature, (test) => {
     });
 
     and("User should see the widget with upcoming appointments", () => {
-      expect(container.getByText(/Purpose of Visit/i)).toBeInTheDocument();
+      expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
     });
 
     when("User click on the widget with with upcoming appointments", () => {

@@ -880,24 +880,30 @@ defineFeature(feature, (test) => {
           `${domain}/api/dummy/appointment/create-appointment/submitFilter`
         )
         .reply(400, {});
-      window.matchMedia = createMatchMedia("1920px");
-      const mockGeolocation = {
-        getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn(),
-      };
-      global.navigator.geolocation = mockGeolocation;
-      Cookies.result = { authorized: true };
-      act(() => {
-        container = render(
-          <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
-        );
-      });
-      await waitFor(() => container.getByLabelText(/Prescriptions/i));
-      expect(container.getByLabelText(/Prescriptions/i)).toBeInTheDocument();
+        window.matchMedia = createMatchMedia("1920px");
+        const response = await getServerSideProps({
+          req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
+          res: jest.fn(),
+        });
+        const mockGeolocation = {
+          getCurrentPosition: jest.fn(),
+          watchPosition: jest.fn(),
+        };
+        global.navigator.geolocation = mockGeolocation;
+        Cookies.result = { authorized: true };
+        act(() => {
+          container = render(
+            <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
+          );
+        });
+        await waitFor(() => container.getAllByLabelText(/Prescriptions/i)[0]);
+        expect(response).toEqual({
+          props: { isStepTwo: false },
+        });
     });
 
     and("User should see the widget with prescriptions", () => {
-      const prescriptions = container.getByLabelText(/Prescriptions/i);
+      const prescriptions = container.getAllByLabelText(/Prescriptions/i)[0];
       expect(prescriptions).toBeInTheDocument();
 
       const locationField = container.container.querySelector("#location");
@@ -1009,7 +1015,7 @@ defineFeature(feature, (test) => {
         fireEvent.click(contactMenu);
       });
 
-      await waitFor(() => container.getByText(/Contacts Prescriptions/i));
+      await waitFor(() => container.getAllByText(/Contacts Prescriptions/i)[0]);
     });
 
     when("User clicks on the widget with prescriptions", () => {
