@@ -47,7 +47,7 @@ function getPatientId(postBody, callback) {
     });
 }
 
-const loginProps = {
+export const loginProps = {
   OnLoginClicked: function (postbody, _router, callback) {
     api
       .login(postbody)
