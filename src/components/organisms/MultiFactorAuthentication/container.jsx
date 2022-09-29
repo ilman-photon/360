@@ -66,7 +66,11 @@ export default function Container({
             {title}
           </Typography>
           {renderFromMessage()}
-          <Typography variant="body2" className={styles.description}>
+          <Typography
+            variant="body2"
+            sx={{ color: "#242526" }}
+            className={styles.description}
+          >
             {description}
           </Typography>
           {content}

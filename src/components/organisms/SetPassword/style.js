@@ -14,7 +14,6 @@ export const styles = {
     paddingTop: "6px",
     marginLeft: "8px",
     marginRight: "8px",
-    color: "#366A70",
     fontWeight: "400",
     fontSize: "16px",
   },

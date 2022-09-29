@@ -76,6 +76,9 @@ export default function InsuranceInfoPage() {
           content: "Insurance successfully added",
         })
       );
+      setTimeout(() => {
+        dispatch(closePageMessage());
+      }, 5000);
       setIsShowErrorNew(false);
       setIsShowError(false);
       setOpenNewInsuranceForm(false);
@@ -96,6 +99,9 @@ export default function InsuranceInfoPage() {
         content: "Insurance successfully removed",
       })
     );
+    setTimeout(() => {
+      dispatch(closePageMessage());
+    }, 5000);
   };
 
   const OnOpenEditInsuranceForm = (payload) => {
