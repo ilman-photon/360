@@ -17,7 +17,7 @@ let container;
 const mock = new MockAdapter(axios);
 const element = document.createElement("div");
 
-launchURL = () => {
+const launchURL = () => {
   const mockOnLoginClicked = jest.fn((data, route, callback) => {
     callback({
       status: "success",
@@ -26,7 +26,7 @@ launchURL = () => {
   container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
 }
 
-navigateToPatientPortalApp = () => {
+const navigateToPatientPortalApp = () => {
   mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
   act(() => {
     container = render(<AuthPage />, {
@@ -36,7 +36,7 @@ navigateToPatientPortalApp = () => {
   });
 }
 
-landOnPatientPortalScreen = () => {
+const landOnPatientPortalScreen = () => {
   const title = container.getByText("formTitle");
   expect("formTitle").toEqual(title.textContent);
 }
