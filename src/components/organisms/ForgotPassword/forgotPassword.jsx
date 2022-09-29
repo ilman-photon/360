@@ -87,6 +87,16 @@ const ForgotPassword = ({
           ) : (
             <></>
           )}
+          {isAppointment ? (
+            <Typography
+              variant="bodyMedium"
+              style={{ ...styles.marginText, ...styles.link }}
+            >
+              {t("syncTextContent")}
+            </Typography>
+          ) : (
+            ""
+          )}
           <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
             <Controller
               name="username"
@@ -100,6 +110,7 @@ const ForgotPassword = ({
                   <StyledInput
                     label={t("usernamePlaceHolder")}
                     id="username"
+                    maxLength={254}
                     variant="filled"
                     value={value}
                     data-testid={FORGOT_TEST_ID.email}

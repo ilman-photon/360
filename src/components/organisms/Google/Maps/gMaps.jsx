@@ -67,6 +67,7 @@ function GMaps({
       center={center}
       zoom={6}
       onLoad={onLoad}
+      onClick={() => handleActiveMarker(null)}
     >
       {/* Child components, such as markers, info windows, etc. */}
       {markers.map((marker, idx) => (

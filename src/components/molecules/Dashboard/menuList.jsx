@@ -62,7 +62,7 @@ export default function MenuList({ pdfFile = "" }) {
   };
 
   return (
-    <div>
+    <div aria-label={"More option"} tabIndex={0}>
       <MoreHorizIcon
         id="demo-customized-button"
         aria-controls={open ? "demo-customized-menu" : undefined}

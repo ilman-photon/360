@@ -1,4 +1,3 @@
-import moment from "moment";
 import constants from "./constants";
 import { ddmmyyDateFormat } from "./dateFormatter";
 
@@ -175,6 +174,14 @@ export function timeInWeekLabel(startDate, endDate) {
     : "";
 }
 
+export function timeInWeekACLabel(startDate, endDate) {
+  return startDate && endDate
+    ? `${getDateName(new Date(startDate))} until ${getDateName(
+        new Date(endDate)
+      )}`
+    : "";
+}
+
 Date.prototype.addDays = function (days) {
   var date = new Date(this.valueOf());
   date.setDate(date.getDate() + days);
@@ -234,40 +241,129 @@ export function getProvideOverlay(providerId, listOfProvider) {
   return providerOverlay;
 }
 
-export function parsePrescriptionData(prescriptions) {
-  const parsePrescriptions = {};
-  if (prescriptions.glasses && prescriptions.glasses.length > 0) {
-    const glasses = prescriptions.glasses[0];
-    glasses.prescriptionDetails = parsePrescriptionDetailsData(
-      [...glasses.prescriptionDetails],
-      "glasses"
+function parsePrescriptionItemData(prescriptionData, key) {
+  const data = [];
+  let latestDate = "";
+  for (const itemData of prescriptionData) {
+    itemData.prescriptionDetails = parsePrescriptionDetailsData(
+      [...itemData.prescriptionDetails],
+      key
     );
 
-    glasses.date = ddmmyyDateFormat(glasses.date);
-    glasses.expirationDate = ddmmyyDateFormat(glasses.expirationDate);
-    parsePrescriptions["glasses"] = glasses;
+    if (!latestDate) {
+      latestDate = new Date(itemData.date);
+    } else {
+      latestDate =
+        latestDate < new Date(itemData.date)
+          ? latestDate
+          : new Date(itemData.date);
+    }
+
+    itemData.date = ddmmyyDateFormat(itemData.date);
+    itemData.expirationDate = ddmmyyDateFormat(itemData.expirationDate);
+    data.push(itemData);
+  }
+
+  return { data, latestDate };
+}
+
+function getLatestDate(glassesDate, contactDate, medicationDate) {
+  if (
+    (glassesDate &&
+      glassesDate <= contactDate &&
+      glassesDate <= medicationDate) ||
+    (glassesDate && !contactDate && !medicationDate)
+  ) {
+    return 0;
+  } else if (
+    (contactDate && contactDate <= medicationDate) ||
+    (!glassesDate && contactDate && !medicationDate)
+  ) {
+    return 1;
+  } else {
+    return 2;
+  }
+}
+
+function parsePrescriptionItemMedication(medications) {
+  const past = [];
+  const active = [];
+  let latestDateMedic = "";
+  for (let index = 0; index < medications.length; index++) {
+    const date = medications[index].date;
+
+    const medicationData = {};
+    medicationData.id = medications[index].id;
+    medicationData.prescription = medications[index].prescription;
+    medicationData.date = ddmmyyDateFormat(date);
+    medicationData.prescribedBy = "Dr. Philip Morris";
+    medicationData.expirationDate = ddmmyyDateFormat(
+      medications[index].expiredDate || "2022-10-02T11:18:47.229Z"
+    );
+    medicationData.fillRequestDate = ddmmyyDateFormat(
+      "2022-09-02T11:18:47.229Z"
+    );
+    medicationData.timeRemaining = "Take 2 times a day";
+    medicationData.dose = "0.5 mL";
+    medicationData.status = medications[index].status || "";
+    medicationData.statusDetails =
+      "CVS Pharmacy, 123 Broadway Blvd, New Jersey, NY 12889";
+    medicationData.type = index % 2 == 0 ? "active" : "past";
+
+    if (medicationData.type === "active") {
+      active.push(medicationData);
+    } else {
+      past.push(medicationData);
+    }
+
+    if (!latestDateMedic) {
+      latestDateMedic = new Date(date);
+    } else {
+      latestDateMedic =
+        latestDateMedic < new Date(date) ? latestDateMedic : new Date(date);
+    }
+  }
+  return { active, past, latestDateMedic };
+}
+
+export function parsePrescriptionData(prescriptions) {
+  const parsePrescriptions = { glasses: [], contacts: [], medications: [] };
+  let glassesDate = null;
+  let contactDate = null;
+  let medicationDate = null;
+  if (prescriptions.glasses && prescriptions.glasses.length > 0) {
+    const { data, latestDate } = parsePrescriptionItemData(
+      prescriptions.glasses,
+      "glasses"
+    );
+    parsePrescriptions["glasses"] = data;
+    glassesDate = latestDate;
   }
 
   if (prescriptions.contacts && prescriptions.contacts.length > 0) {
-    const contacts = prescriptions.contacts[0];
-    contacts.prescriptionDetails = parsePrescriptionDetailsData(
-      [...contacts.prescriptionDetails],
+    const { data, latestDate } = parsePrescriptionItemData(
+      prescriptions.contacts,
       "contacts"
     );
-    contacts.date = ddmmyyDateFormat(contacts.date);
-    contacts.expirationDate = ddmmyyDateFormat(contacts.expirationDate);
-    parsePrescriptions["contacts"] = contacts;
+    parsePrescriptions["contacts"] = data;
+    contactDate = latestDate;
   }
 
   if (prescriptions.medications && prescriptions.medications.length > 0) {
     const medications = prescriptions.medications;
+    const { active, past, latestDateMedic } =
+      parsePrescriptionItemMedication(medications);
+    medicationDate = latestDateMedic;
 
-    for (let index = 0; index < medications.length; index++) {
-      medications[index].date = ddmmyyDateFormat(medications[index].date);
-    }
-    parsePrescriptions["medications"] = medications;
+    parsePrescriptions["medications"] = {
+      active: active,
+      past: past,
+    };
   }
-  return parsePrescriptions;
+  return {
+    parsePrescriptions,
+    activeTab: getLatestDate(glassesDate, contactDate, medicationDate),
+  };
 }
 
 function parsePrescriptionDetailsData(prescriptionDetails, type) {
@@ -310,6 +406,82 @@ export function parseAppointmentCardData(appointmentData) {
   let data = {};
   if (appointmentData && appointmentData.length > 0) {
     data = appointmentData[0];
+  }
+  return data;
+}
+
+export function isPrevArrowDisable(dateList, currentDate = null) {
+  if (currentDate) {
+    return new Date() > currentDate;
+  } else {
+    return (
+      new Date() >
+      (dateList?.dateRange?.length > 0 ? dateList.dateRange[0] : null)
+    );
+  }
+}
+
+export function parseAppointmentDetails(appointmentDetails) {
+  const data = JSON.parse(JSON.stringify(appointmentDetails));
+
+  data.appointmentInfo.documentation.list = [
+    {
+      name: "Date/Time",
+      value: "Lorem Ipsum",
+    },
+    {
+      name: "Performer",
+      value: "Lorem Ipsum",
+    },
+    {
+      name: "Performer",
+      value: "Lorem Ipsum",
+    },
+    {
+      name: "Performer",
+      value: "Lorem Ipsum",
+    },
+    {
+      name: "Performer",
+      value: "Lorem Ipsum",
+    },
+    {
+      name: "Performer",
+      value: "Lorem Ipsum",
+    },
+    {
+      name: "Performer",
+      value: "Lorem Ipsum",
+    },
+  ];
+
+  for (let i = 0; i < data.appointmentInfo.contents; i++) {
+    let headers = [];
+    switch (data.appointmentInfo.contents[i].type.toLowerCase()) {
+      case "allergies":
+        headers = ["Subtance", "Code", "Status", "Severity", "Reaction"];
+        break;
+      case "results":
+        headers = ["Battery", "Date", "Test", "Result", "Result Date", "Lab"];
+        break;
+      case "vital signs":
+        headers = [
+          "Date",
+          "Height",
+          "Weight",
+          "BMI",
+          "Blood Pressure",
+          "Body Temp.",
+          "Pulse",
+          "O2 Concentration",
+          "Inhaled O2",
+          "Resp. Rate",
+        ];
+        break;
+      default:
+        break;
+    }
+    data.appointmentInfo.contents[i].headers = headers;
   }
   return data;
 }

@@ -5,8 +5,8 @@ import {
   FormGroup,
   Typography,
   IconButton,
-  Link,
   Divider,
+  Button,
 } from "@mui/material";
 import * as styles from "./styles.module.scss";
 import CloseIcon from "@mui/icons-material/Close";
@@ -16,7 +16,14 @@ import { TEST_ID } from "../../../utils/constants";
 
 const constants = require("../../../utils/constants");
 
-const FilterBy = ({ isOpen, onClose, onDone, filter, activedFilter = [] }) => {
+const FilterBy = ({
+  isOpen,
+  onClose,
+  onDone,
+  filter,
+  activedFilter = [],
+  isPrescription = false,
+}) => {
   const [openDrawer, setOpenDrawer] = React.useState(false);
   const [expand, setExpand] = React.useState(false);
   const [activeFilter, setActiveFilter] = React.useState([]);
@@ -62,7 +69,9 @@ const FilterBy = ({ isOpen, onClose, onDone, filter, activedFilter = [] }) => {
         </Typography>
         <FormGroup
           className={
-            !expand ? styles.checkBoxGroup : styles.checkBoxGroupExpand
+            !isPrescription && !expand
+              ? styles.checkBoxGroup
+              : styles.checkBoxGroupExpand
           }
         >
           {isMultiple ? (
@@ -94,15 +103,20 @@ const FilterBy = ({ isOpen, onClose, onDone, filter, activedFilter = [] }) => {
           )}
         </FormGroup>
         {isShowSeeMore && (
-          <Box marginTop={"10px"}>
-            <Link
-              className={styles.link}
+          <Box marginTop={"10px"} className={styles.buttonLinkContainer}>
+            <Button
+              role={"link"}
               onClick={() => {
                 setExpand(!expand);
               }}
+              sx={{
+                padding: 0,
+              }}
             >
-              {expand ? "See Less" : "See more"}
-            </Link>
+              <Typography variant="link" className={styles.link}>
+                {expand ? "See Less" : "See more"}
+              </Typography>
+            </Button>
           </Box>
         )}
       </Box>

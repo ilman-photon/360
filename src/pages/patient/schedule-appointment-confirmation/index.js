@@ -17,6 +17,7 @@ export const ModalConfirmSchedule = () => {
       isLoggedIn={isLoggedIn}
       patientData={appointmentScheduleData.patientInfo}
       providerData={appointmentScheduleData.providerInfo}
+      appointmentData={appointmentScheduleData.appointmentInfo}
     />
   );
 };
@@ -82,6 +83,7 @@ export default function ScheduleAppointmentConfirmationPage() {
               isLoggedIn={isLoggedIn}
               patientData={appointmentScheduleData.patientInfo}
               providerData={appointmentScheduleData.providerInfo}
+              appointmentData={appointmentScheduleData.appointmentInfo}
             />
           </Grid>
         </div>

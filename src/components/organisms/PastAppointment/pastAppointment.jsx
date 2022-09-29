@@ -1,16 +1,15 @@
 import { Box, Typography, Link } from "@mui/material";
 import styles from "./styles.module.scss";
 import moment from "moment";
-import { useState } from "react";
+import React, { useState } from "react";
 import Collapse from "@mui/material/Collapse";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Button from "@mui/material/Button";
-import React from "react";
 import AppointmentInformation from "../../molecules/AppointmentInformation/appointmentInformation";
 export function PastAppointmentCard({ data, threshold }) {
   const date = data.appointmentInfo.date;
   const timezone = date.substring(date.length - 3);
-  const momentDate = new moment(date);
+  const momentDate = new moment(new Date(date));
   const year = momentDate.format("YYYY");
   const formatedDate = momentDate.format("dddd, MMM DD - h:mmA");
   const fullDate = `${formatedDate} ${timezone}`;
@@ -43,7 +42,9 @@ export function PastAppointmentCard({ data, threshold }) {
             paddingLeft: "16px",
           }}
         >
-          <Typography variant="h4">{year}</Typography>
+          <Typography tabIndex={0} ariaLabel={year} variant="h4">
+            {year}
+          </Typography>
         </Box>
         <Box
           sx={{
@@ -54,32 +55,54 @@ export function PastAppointmentCard({ data, threshold }) {
           }}
         >
           <Button
-            onClick={() => (threshold == 1 ? handleClickAlt() : handleClick())}
+            onClick={() => (threshold == 0 ? handleClickAlt() : handleClick())}
           >
             <ExpandMoreIcon />
           </Button>
         </Box>
       </Box>
       <Collapse
-        in={threshold == 1 ? openAlt : open}
+        in={threshold == 0 ? openAlt : open}
         timeout="auto"
         unmountOnExit
       >
         <Box className={styles.pastAppointmentDetail}>
           <Box className={styles.dateContainer}>
-            <Typography variant="subtitle1" className={styles.date}>
+            <Typography
+              tabIndex={0}
+              ariaLabel={fullDate}
+              variant="subtitle1"
+              className={styles.date}
+            >
               {fullDate}
             </Typography>
             <Box className={styles.subTitleWrapper}>
-              <Typography variant="subtitle1">Visit Purpose: </Typography>
-              <Typography variant="body2">
+              <Typography
+                tabIndex={0}
+                ariaLabel={"Visit Purpose:"}
+                variant="subtitle1"
+              >
+                Visit Purpose:{" "}
+              </Typography>
+              <Typography
+                tabIndex={0}
+                ariaLabel={data.appointmentInfo.appointmentType}
+                variant="body2"
+              >
                 {data.appointmentInfo.appointmentType}
               </Typography>
             </Box>
           </Box>
           <AppointmentInformation data={data}></AppointmentInformation>
           <Box className={styles.viewDetails}>
-            <Link className={styles.link}>View appointment details</Link>
+            <Link
+              tabIndex={0}
+              ariaLabel={"View appointment details"}
+              href={`/patient/appointments/detail-appoiments/${data.appointmentId}`}
+              className={styles.link}
+            >
+              View appointment details
+            </Link>
           </Box>
         </Box>
         <Box
@@ -92,25 +115,44 @@ export function PastAppointmentCard({ data, threshold }) {
 }
 
 export default function PastAppointment({ data }) {
+  const appointments = [];
+  for (const appointment of data) {
+    if (
+      new Date(appointment.appointmentInfo.date) < new Date() &&
+      appointments.length < 11
+    ) {
+      appointments.push(appointment);
+    }
+  }
   const isData =
-    data.length == 0 ? (
+    appointments.length == 0 ? (
       <Box className={styles.subTitleWrapper}>
-        <Typography variant="body2">You Have no Past Appointment</Typography>
+        <Typography
+          tabIndex={0}
+          ariaLabel={"You have no past appointments"}
+          className={styles.noPastAppointment}
+          variant="body2"
+        >
+          You have no past appointments
+        </Typography>
       </Box>
     ) : (
-      data
+      appointments
         .map((item, index) => {
-          if (index > 0) {
-            return index < 11 ? (
-              <PastAppointmentCard data={item} threshold={index} key={index} />
-            ) : null;
-          }
+          return (
+            <PastAppointmentCard data={item} threshold={index} key={index} />
+          );
         })
         .filter((temp) => temp)
     );
   return (
     <Box className={styles.pastAppointment}>
-      <Typography variant="h2" className={styles.title}>
+      <Typography
+        tabIndex={0}
+        ariaLabel={"Past Appointments"}
+        variant="h2"
+        className={styles.title}
+      >
         Past Appointments
       </Typography>
       {isData}

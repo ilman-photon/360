@@ -135,7 +135,10 @@ export default function PersonalInformation({
     >
       <Fade in={!isEditing} unmountOnExit sx={{ fontFamily: "Libre Franklin" }}>
         <Stack spacing={3} divider={<Divider />}>
-          <LabelWithInfo label="Photo">
+          <LabelWithInfo
+            label="Photo"
+            alignItems={isDesktop ? "unset" : "center"}
+          >
             {userData.profilePhoto ? (
               <Image
                 src={userData.profilePhoto.source}
@@ -231,7 +234,7 @@ export default function PersonalInformation({
               License or State-issued ID.
             </Typography>
 
-            <Stack spacing={6}>
+            <Stack spacing={6} sx={{ maxWidth: { sm: "415px" } }}>
               <LabelWithInfo
                 label="Front Card"
                 tabIndex={0}
@@ -529,7 +532,13 @@ export default function PersonalInformation({
                     return (
                       <>
                         <ImageUploader
-                          helperText
+                          helperText={
+                            isDesktop
+                              ? true
+                              : userData.issuedCardFront
+                              ? false
+                              : true
+                          }
                           OnUpload={onChange}
                           OnInputError={onFormIssuedFrontError}
                           source={userData.issuedCardFront}
@@ -571,7 +580,13 @@ export default function PersonalInformation({
                     return (
                       <>
                         <ImageUploader
-                          helperText
+                          helperText={
+                            isDesktop
+                              ? true
+                              : userData.issuedCardBack
+                              ? false
+                              : true
+                          }
                           OnUpload={onChange}
                           OnInputError={onFormIssuedBackError}
                           source={userData.issuedCardBack}

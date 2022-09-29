@@ -865,7 +865,7 @@ defineFeature(feature, (test) => {
         ResponseCode: 2000,
         ResponseType: "success",
       };
-      mock.onPost(`/ecp/patient/securityQuestions`).reply(200, expectedResult);
+      mock.onPost(`/ecp/patient/saveSecurityQuestions`).reply(200, expectedResult);
       const primaryButton = container.getByTestId(
         constants.TEST_ID.MFA_TEST_ID.btnSubmitSecurity
       );

@@ -1,10 +1,9 @@
 import Box from "@mui/material/Box";
 import React, { useEffect, useState } from "react";
-import Link from "@mui/material/Link";
 import { StyledButton } from "../../atoms/Button/button";
 import styles from "./styles.module.scss";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
-import { Divider, Typography } from "@mui/material";
+import { Button, Divider, Typography } from "@mui/material";
 import constants from "../../../utils/constants";
 import {
   parseDateWeekList,
@@ -25,17 +24,19 @@ export function viewAllAvailabilityLinkUI({
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        p: 3,
+        padding: "24px",
       }}
       className={styles.linkWrapper}
     >
-      <Link
+      <Button
+        role={"link"}
         className={styles.linkAvailabelity}
         data-testid={constants.TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll}
         onClick={onClickViewAllAvailability}
+        tabindex={"0"}
       >
-        View all availability
-      </Link>
+        <Typography variant="link">View all availability</Typography>
+      </Button>
     </Box>
   );
 }

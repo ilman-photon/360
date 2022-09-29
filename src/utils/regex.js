@@ -21,4 +21,7 @@ export class Regex {
   static isTenDigitPhone = /^(\d{3})(\d{3})(\d{4})$/;
   static isImageFile = /(image\/(png|jpg|jpeg))/;
   static isMin2Max50Length = /^\w{2,50}$/;
+  static usernameValidation =
+    /(^[\w%\+\-]+(\.[\w%\+\-]+)*@[\w%\+\-]+(\.[\w%\+\-]+)+$)|(^\d*$)/g;
+  static maskingEmail = /^(..)(.*)(@.*)$/;
 }

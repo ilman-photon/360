@@ -14,6 +14,7 @@ import { Box } from "@mui/material";
 import globalStyles from "../../../styles/Global.module.scss";
 import { useRouter } from "next/router";
 import { Regex } from "../../../utils/regex";
+import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 
 let confirmationFormProps = {
   title: constants.EMPTY_STRING,
@@ -67,7 +68,8 @@ const mappingSecurityData = function (securityQuestionsData) {
     };
     securityQuestionList.push(securityQuestion);
   }
-  return securityQuestionList;
+  const shuffled = securityQuestionList.sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, 3);
 };
 
 const backToLoginProps = {
@@ -120,6 +122,27 @@ export default function ForgotPasswordPage() {
       });
   };
 
+  //Call API for check security question
+  const onCalledValidateSubmitSecurityQuestion = function (
+    securityQuestion,
+    callback,
+    routerIns
+  ) {
+    const postbody = {
+      SecurityQuestions: [{ ...securityQuestion }],
+      username: patientData.username,
+    };
+    const api = new Api();
+    api
+      .validateSecurityQuestion(postbody)
+      .then(function (response) {
+        onContinueButtonClicked("updatePassword", routerIns);
+      })
+      .catch(function (error) {
+        callback(error);
+      });
+  };
+
   //Call API for userame validation
   const onCalledValidateUsernameAPI = function ({ username }, showForm) {
     const postbody = {
@@ -155,15 +178,24 @@ export default function ForgotPasswordPage() {
     api
       .resetPassword(postbody)
       .then(function (response) {
+        const maskedEmail = response?.email?.replace(
+          Regex.maskingEmail,
+          (_, a, b, c) => a + b.replace(/./g, "*") + c
+        );
+        const maskedPhoneNumber = formatPhoneNumber(
+          response?.phone,
+          true,
+          true
+        );
         const userCommunicationCode =
           modeOfCommuication.toLowerCase() === "email"
-            ? `${response.email} for an email`
-            : `${response.phone} for a link`;
+            ? `${maskedEmail} for an email`
+            : `${maskedPhoneNumber} for a link`;
         // Handle success to call API
         confirmationFormProps = {
           pageTitle: "Password reset page",
           title: t("titlePasswordReset"),
-          subtitle: `Check ${userCommunicationCode} to reset your password.`,
+          subtitle: `Check ${userCommunicationCode} to reset your password`,
           description: t("descriptionPasswordResetSuccess"),
           postMessage: `Link sent to your ${modeOfCommuication.toLowerCase()}`,
           successPostMessage: true,
@@ -172,7 +204,7 @@ export default function ForgotPasswordPage() {
             return <></>;
           },
           butttonMode: constants.SECONDARY,
-          onCTAButtonClicked: function ({ router }) {
+          onCTAButtonClicked: function () {
             router.push("/patient/login");
           },
         };
@@ -236,6 +268,7 @@ export default function ForgotPasswordPage() {
     const subtitle = isEmail
       ? `Check ${username}  for an email to set up your password.`
       : `Check ${username} for a link to set up your password.`;
+    console.log(subtitle, "sub ");
     const postMessage = isEmail
       ? `Link sent to your email`
       : `Link sent to your phone number`;
@@ -269,7 +302,7 @@ export default function ForgotPasswordPage() {
   };
 
   //Handle show/hide form in forgot password
-  const onContinueButtonClicked = function (form, router) {
+  const onContinueButtonClicked = function (form, routerIns) {
     setShowPostMessage(false);
     setShowForgotPassword(false);
     setShowSelectOption(false);
@@ -335,7 +368,9 @@ export default function ForgotPasswordPage() {
       }
       setShowOneTimeLink(true);
     } else if (form === "updatePassword") {
-      router.push(`/patient/update-password?username=${patientData.username}`);
+      routerIns.push(
+        `/patient/update-password?username=${patientData.username}`
+      );
     }
   };
 
@@ -370,7 +405,7 @@ export default function ForgotPasswordPage() {
           showPostMessage={showPostMessage}
           setShowPostMessage={setShowPostMessage}
           securityQuestionData={patientData.securityQuestions}
-          onContinueButtonClicked={onContinueButtonClicked}
+          onContinueButtonClicked={onCalledValidateSubmitSecurityQuestion}
           title={"Password recovery security questions page"}
         />
       ) : (

@@ -5,6 +5,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { StyledButton } from "../../../atoms/Button/button";
 import constants from "../../../../utils/constants";
+import styles from "./iwStyles.module.scss";
 
 const InfoWindowContent = ({
   data = [],
@@ -51,7 +52,7 @@ const InfoWindowContent = ({
   };
 
   return (
-    <Stack spacing={2} pb={5} sx={{ maxWidth: "400px" }}>
+    <Stack spacing={2} pb={5} sx={{ maxWidth: { xs: "300px", md: "400px" } }}>
       <Grid container spacing={1}>
         <Grid item xs={10}>
           <Stack spacing={2} divider={<Divider />}>
@@ -62,6 +63,8 @@ const InfoWindowContent = ({
               variant={"map"}
               providerData={data[counter - 1]}
               imageSize={"medium"}
+              bioContainerClass={styles.customBioContainer}
+              addressClass={styles.customAddress}
             />
           </Stack>
         </Grid>
@@ -107,14 +110,16 @@ const InfoWindowContent = ({
                         lineHeight: "24px",
                         fontWeight: 500,
                       }}
+                      tabindex={"0"}
                     >
                       {getLabelTime(v.date)}
                     </Typography>
                     <Stack
                       flexDirection="row"
-                      overflow="auto"
+                      flexWrap="wrap"
+                      // overflow="auto"
                       gap={1}
-                      className="hide-scrollbar"
+                      // className="hide-scrollbar"
                     >
                       {v.list.map((item, timeIdx) => {
                         return (
@@ -125,6 +130,7 @@ const InfoWindowContent = ({
                             size={constants.SMALL}
                             gradient={false}
                             onClick={() => {
+                              console.log({ dats: data[counter - 1] });
                               if (!item) return;
                               OnTimeClicked(
                                 new Date(
@@ -135,6 +141,15 @@ const InfoWindowContent = ({
                                 ),
                                 data[counter - 1]
                               );
+                            }}
+                            sx={{
+                              "&.sxButton": {
+                                height: "30px",
+                                padding: 0,
+                                minWidth: "90px !important",
+                                fontSize: "14px",
+                                fontWeight: 500,
+                              },
                             }}
                           >
                             <Typography variant="bodyRegularSmall">

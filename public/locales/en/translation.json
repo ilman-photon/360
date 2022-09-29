@@ -37,6 +37,7 @@
     "backSignIn": "Back to Sign-In",
     "syncButton": "Sync",
     "syncTitle" : "Sync your appointment",
+    "syncTextContent" : "Enter the email or phone number you provided when you scheduled your appointment",
     "syncErrorTitle" : "Existing User",
     "syncError" : "You are already a registered user. Please login to the application using your username and password.  Login"
   },
@@ -165,7 +166,7 @@
     "patientInformation": "Patient Information",
     "cancelTitle": "Are you sure you want to cancel?",
     "cancelReason": "Reason for cancelation",
-    "cancelOther": "Enter Other Reason For Cancelation",
+    "cancelOther": "Enter other reason for cancelation",
     "btnCancel": "Cancel appointment",
     "btnKeep": "Keep appointment"
 

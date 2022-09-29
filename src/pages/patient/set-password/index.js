@@ -10,6 +10,8 @@ import Cookies from "universal-cookie";
 import { useState } from "react";
 import constants from "../../../utils/constants";
 import ConfirmationForm from "../../../components/organisms/ConfirmationForm/confirmationForm";
+import { formatPhoneNumber } from "../../../utils/phoneFormatter";
+import { Regex } from "../../../utils/regex";
 
 export async function getServerSideProps({ query }) {
   return {
@@ -21,6 +23,18 @@ export async function getServerSideProps({ query }) {
 
 export default function SetPasswordPage({ username }) {
   const dispatch = useDispatch();
+
+  const isEmail = Regex.isEmailCorrect.test(username);
+  const mailFormat =
+    username &&
+    username.replace(
+      Regex.maskingEmail,
+      (_, a, b, c) => a + b.replace(/./g, "*") + c
+    );
+
+  const maskedUsername = isEmail
+    ? mailFormat
+    : formatPhoneNumber(username, true, true);
 
   const formMessage = useSelector((state) => state.index.formMessage);
   const [showPostMessage, setShowPostMessage] = useState(false);
@@ -82,7 +96,7 @@ export default function SetPasswordPage({ username }) {
         <SetPasswordComponent
           title={"Set Password"}
           subtitle={"Enter a password to setup your account."}
-          username={username}
+          username={maskedUsername}
           formMessage={formMessage}
           onSetPasswordClicked={OnSetPasswordClicked}
           onBackToLoginClicked={function (router) {

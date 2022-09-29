@@ -50,8 +50,8 @@ describe("AccountDrawer Components", () => {
     onClose={jest.fn()}
   />);
 
-    expect(await getAllByTestId("user-menu-nav-close")[0]).toBeInTheDocument();
-    fireEvent.click(getAllByTestId("user-menu-nav-close")[0]);
+    expect(await getAllByTestId("outer-menu-nav-close")[0]).toBeInTheDocument();
+    fireEvent.click(getAllByTestId("outer-menu-nav-close")[0]);
   });
 
 });
