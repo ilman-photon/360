@@ -237,11 +237,6 @@ export default function Appointment({ googleApiKey }) {
   );
 
   const handleDayClicked = (appointmentDate, providerData) => {
-    console.log("day clicked", isReschedule, {
-      appointmentId: 0,
-      appointmentDate,
-      providerData,
-    });
     const appointmentInfoObj = {
       ...appointmentInfo,
       date: appointmentDate,

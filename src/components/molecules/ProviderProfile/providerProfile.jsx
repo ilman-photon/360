@@ -113,7 +113,6 @@ export default function ProviderProfile({
             width={100}
             height={100}
             className={styles.profilePhoto}
-            tabindex={"0"}
             alt="Doctor Image"
             tabIndex={0}
           ></Image>
@@ -136,7 +135,7 @@ export default function ProviderProfile({
                 ? styles.doctorNameAppointment
                 : ""
             }
-            tabindex={"0"}
+            tabIndex={"0"}
           >
             {providerData.name}
           </Typography>
@@ -152,7 +151,7 @@ export default function ProviderProfile({
                   variant="body2"
                   className={[styles.address, addressClass].join(" ")}
                   fontSize={isViewSchedule ? "14px" : "16px"}
-                  tabindex={"0"}
+                  tabIndex={"0"}
                 >
                   {getAddress(providerData.address)}
                 </Typography>
@@ -170,7 +169,7 @@ export default function ProviderProfile({
                     <Typography
                       variant="body2"
                       className={styles.phone}
-                      tabindex={"0"}
+                      tabIndex={"0"}
                       aria-label={`phone number ${formatPhoneNumber(
                         phoneNumber
                       )}`}

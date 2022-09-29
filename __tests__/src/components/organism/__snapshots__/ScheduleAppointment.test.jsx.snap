@@ -66,7 +66,7 @@ Object {
               class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root Mui-disabled  css-17u0idc-MuiButtonBase-root-MuiButton-root"
               disabled=""
               style="height: 40px; align-self: self-end; border-radius: 46px; text-transform: none; color: rgb(255, 255, 255);"
-              tabindex="0"
+              tabindex="-1"
               type="submit"
             >
               continue
@@ -138,7 +138,7 @@ Object {
             class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root Mui-disabled  css-17u0idc-MuiButtonBase-root-MuiButton-root"
             disabled=""
             style="height: 40px; align-self: self-end; border-radius: 46px; text-transform: none; color: rgb(255, 255, 255);"
-            tabindex="0"
+            tabindex="-1"
             type="submit"
           >
             continue

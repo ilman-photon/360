@@ -1,7 +1,6 @@
 export const MESSAGES = {
   3000: {
     title: "Success",
-    content: "Thank you for your registration",
   },
   3001: {
     title: "Existing User",
@@ -16,11 +15,12 @@ export const MESSAGES = {
     isBackToLogin: true,
   },
   3002: {
-    title: null,
-    content: "You have successfully set your password",
+    title: "Error",
+    content: "Internal server error",
   },
   3500: {
     title: "Error",
+    content: "Bad Request",
   },
 };
 

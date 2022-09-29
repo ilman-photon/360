@@ -42,7 +42,7 @@ export default function UpdatePasswordPage() {
   const onCallConfirmPasswordAPI = function ({ password, confirmPassword }) {
     const postbody = {
       patient: { userName: username },
-      confirmPassword: { Password: password, ConfirmPassword: confirmPassword },
+      confirmPassword: { password: password, ConfirmPassword: confirmPassword },
     };
     const api = new Api();
     api

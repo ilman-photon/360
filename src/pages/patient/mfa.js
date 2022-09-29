@@ -52,6 +52,8 @@ export default function MfaPage({ isStepTwo }) {
     useSuspense: false,
   });
   const { MFA_TEST_ID } = constants.TEST_ID;
+  const isStepThree =
+    cookies.get("isSecurityQuestionStep", { path: "/patient" }) == "true";
   const onBackButtonEvent = (e) => {
     e.preventDefault();
     onBackToLoginClicked();
@@ -70,6 +72,15 @@ export default function MfaPage({ isStepTwo }) {
       window.removeEventListener("popstate", onBackButtonEvent);
     };
   });
+
+  React.useEffect(() => {
+    const securityQuestions = cookies.get("securityQuestions") === "true";
+
+    if (isStepThree && !securityQuestions) {
+      onShowSecurityQuestionForm();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const setTempValidation = (response) => {
     if (process.env.ENV_NAME !== "prod" && response && response.mfaCode) {
@@ -115,6 +126,8 @@ export default function MfaPage({ isStepTwo }) {
 
     cookies.set("authorized", true, { path: "/patient" });
     cookies.remove("mfa", { path: "/patient" });
+    cookies.remove("isStay", { path: "/patient" });
+    cookies.remove("isSecurityQuestionStep", { path: "/patient" });
     !rememberMe && cookies.remove("mfaAccessToken", { path: "/patient" });
   }
 
@@ -137,7 +150,7 @@ export default function MfaPage({ isStepTwo }) {
             maxAge,
           });
         }
-
+        cookies.set("isSecurityQuestionStep", true, { path: "/patient" });
         const securityQuestions = cookies.get("securityQuestions") === "true";
         if (!securityQuestions) {
           onShowSecurityQuestionForm();
@@ -257,7 +270,7 @@ export default function MfaPage({ isStepTwo }) {
     return questionList;
   }
 
-  if (componentName === constants.MFA_COMPONENT_NAME || (isStepTwo && ready)) {
+  if ((componentName === constants.MFA_COMPONENT_NAME || isStepTwo) && ready) {
     return (
       <>
         <MultiFactorAuthentication
@@ -340,7 +353,7 @@ export default function MfaPage({ isStepTwo }) {
   } else {
     return (
       <>
-        {!isLoading && ready && (
+        {!isLoading && ready && !isStepThree && (
           <SetMultiFactorAuthentication
             onConfirmClicked={onConfirmClicked}
             onBackToLoginClicked={onBackToLoginClicked}
