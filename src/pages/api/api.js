@@ -244,10 +244,16 @@ export class Api {
   getAllAppointment() {
     const domain = window.location.origin;
     const userData = JSON.parse(localStorage.getItem("userData"));
-    const patientId = `/${userData.patientId}`;
+    const patientId = `/${userData?.patientId}`;
     const url = `${domain}/api/dummy/appointment/my-appointment/getAllAppointment${
       userData.patientId ? patientId : ""
     }`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  getAppointmentDetails() {
+    const domain = window.location.origin;
+    const url = `${domain}/api/dummy/appointment/my-appointment/getAppointmentDetails`;
     return this.getResponse(url, {}, "get");
   }
 
@@ -271,7 +277,11 @@ export class Api {
 
   getAllPrescriptions() {
     const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`;
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const patientId = `?patientId=${userData?.patientId}`;
+    const url = `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions${
+      userData && userData.patientId ? patientId : ""
+    }`;
     return this.getResponse(url, {}, "get");
   }
 

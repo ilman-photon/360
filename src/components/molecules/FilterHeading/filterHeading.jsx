@@ -683,6 +683,7 @@ const FilterHeading = ({
                 onChange={onChange}
                 inputProps={{
                   "aria-label": "Date field",
+                  readOnly: true,
                 }}
                 sx={{
                   margin: 0,
@@ -706,9 +707,6 @@ const FilterHeading = ({
                   },
                 }}
                 inputFormat={"MMM dd, yyyy"}
-                InputProps={{
-                  readOnly: true,
-                }}
                 disableMaskedInput
               />
             </Box>

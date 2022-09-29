@@ -58,14 +58,15 @@ export default function ProviderProfile({
   const phoneNumber = providerData.phoneNumber;
 
   const getAddress = (address) => {
-    if (!address) return;
+    const addressData = Array.isArray(address) ? address[0] : address;
+    if (!addressData) return;
     return (
       <>
-        {address.addressLine1}
+        {addressData.addressLine1}
         <br />
-        {address.addressLine2}
+        {addressData.addressLine2}
         <br />
-        {address.city}, {address.state}, {address.zipcode}
+        {addressData.city}, {addressData.state}, {addressData.zipcode}
       </>
     );
   };
@@ -124,7 +125,7 @@ export default function ProviderProfile({
           }}
         >
           <Typography
-            variant="h2"
+            variant={isMap ? "h4" : "h2"}
             fontSize={getNameFontSize()}
             data-testid={TEST_ID.APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name}
             onClick={() => {

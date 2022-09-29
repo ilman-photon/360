@@ -43,6 +43,7 @@ import { setFormMessage } from "../../../store";
 import { TEST_ID } from "../../../utils/constants";
 import { StyledButton } from "../../../components/atoms/Button/button";
 import { colors } from "../../../styles/theme";
+import { useLeavePageConfirm } from "../../../../hooks/useCallbackPrompt";
 
 const MobileTopBar = (data) => {
   return (
@@ -77,6 +78,7 @@ const MobileTopBar = (data) => {
 export const PageContent = ({
   activeStep,
   isLoggedIn = false,
+  isReschedule = false,
   dispatch,
   appointmentScheduleData = {},
   OnsetActiveStep = () => {
@@ -96,6 +98,16 @@ export const PageContent = ({
 
   const api = new Api();
   const cookies = new Cookies();
+
+  const getScheduleButtonText = () => {
+    if (isLoggedIn) {
+      if (isReschedule) {
+        return "Reschedule Appointment";
+      } else {
+        return t("scheduleAppoinment");
+      }
+    } else return t("continue");
+  };
 
   const handleFormSubmit = (payload) => {
     dispatch(
@@ -158,7 +170,7 @@ export const PageContent = ({
                 }}
                 onClick={() => OnsetActiveStep(2)}
               >
-                {isLoggedIn ? t("scheduleAppoinment") : t("continue")}
+                {getScheduleButtonText()}
               </Button>
             </Stack>
           </Box>
@@ -247,6 +259,8 @@ export default function ScheduleAppointmentPage() {
   const [modalConfirmReschedule, setModalConfirmReschedule] =
     React.useState(false);
 
+  useLeavePageConfirm({ message: "Change that you made might not be saved." });
+
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -281,6 +295,13 @@ export default function ScheduleAppointmentPage() {
   const appointmentScheduleData = useSelector((state) => {
     return state.appointment.appointmentSchedule;
   });
+
+  React.useEffect(() => {
+    if (!appointmentScheduleData.providerInfo.providerId) {
+      router.replace("/patient/appointment");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [appointmentScheduleData]);
 
   React.useEffect(() => {
     if (router.query.reschedule) {
@@ -369,7 +390,10 @@ export default function ScheduleAppointmentPage() {
     dispatch(
       setUserAppointmentDataByIndex({
         appointmentId: 0,
-        appointmentInfo: appointmentScheduleData.appointmentInfo,
+        appointmentInfo: {
+          ...appointmentScheduleData.appointmentInfo,
+          date: appointmentScheduleData.appointmentInfo.date.toUTCString(),
+        },
         providerInfo: appointmentScheduleData.providerInfo,
       })
     );
@@ -456,6 +480,7 @@ export default function ScheduleAppointmentPage() {
           <PageContent
             dispatch={dispatch}
             isLoggedIn={isLoggedIn}
+            isReschedule={isReschedule}
             activeStep={activeStep}
             OnsetActiveStep={handleSetActiveStep}
             appointmentScheduleData={appointmentScheduleData}

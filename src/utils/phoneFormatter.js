@@ -12,7 +12,7 @@ export function formatPhoneNumber(
     let first = match[1];
     let middle = match[2];
     let last = match[3];
-    if (isMasked && Regex.REGEX_PHONE_NUMBER_ONLY.test(phoneNumberString)) {
+    if (isMasked && Regex.REGEX_PHONE_NUMBER_ONLY.test(cleaned)) {
       if (setPassword) {
         middle = `**${middle.charAt(middle.length - 1)}`;
         last = `***${last.charAt(last.length - 2)}${last.charAt(

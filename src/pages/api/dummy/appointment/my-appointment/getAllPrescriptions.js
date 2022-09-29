@@ -1,6 +1,7 @@
 export default function getAllPrescriptions(req, res) {
+  const { patientId } = req.query;
   if (req.method === "GET") {
-    res.status(200).json({
+    let data = {
       prescriptions: {
         glasses: [
           {
@@ -114,6 +115,16 @@ export default function getAllPrescriptions(req, res) {
           },
         ],
       },
-    });
+    };
+    if (patientId == "2efef720-4bfc-4fb7-b1a2-19fd11c67eba") {
+      data = {
+        prescriptions: {
+          glasses: [],
+          contacts: [],
+          medications: [],
+        },
+      };
+    }
+    res.status(200).json(data);
   }
 }
