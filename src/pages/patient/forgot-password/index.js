@@ -68,7 +68,8 @@ const mappingSecurityData = function (securityQuestionsData) {
     };
     securityQuestionList.push(securityQuestion);
   }
-  return securityQuestionList;
+  const shuffled = securityQuestionList.sort(() => 0.5 - Math.random());
+  return shuffled.slice(0, 3);
 };
 
 const backToLoginProps = {
@@ -125,7 +126,7 @@ export default function ForgotPasswordPage() {
   const onCalledValidateSubmitSecurityQuestion = function (
     securityQuestion,
     callback,
-    router
+    routerIns
   ) {
     const postbody = {
       SecurityQuestions: [{ ...securityQuestion }],
@@ -135,7 +136,7 @@ export default function ForgotPasswordPage() {
     api
       .validateSecurityQuestion(postbody)
       .then(function (response) {
-        onContinueButtonClicked("updatePassword", router);
+        onContinueButtonClicked("updatePassword", routerIns);
       })
       .catch(function (error) {
         callback(error);
@@ -203,7 +204,7 @@ export default function ForgotPasswordPage() {
             return <></>;
           },
           butttonMode: constants.SECONDARY,
-          onCTAButtonClicked: function ({ router }) {
+          onCTAButtonClicked: function () {
             router.push("/patient/login");
           },
         };
@@ -301,7 +302,7 @@ export default function ForgotPasswordPage() {
   };
 
   //Handle show/hide form in forgot password
-  const onContinueButtonClicked = function (form, router) {
+  const onContinueButtonClicked = function (form, routerIns) {
     setShowPostMessage(false);
     setShowForgotPassword(false);
     setShowSelectOption(false);
@@ -367,7 +368,9 @@ export default function ForgotPasswordPage() {
       }
       setShowOneTimeLink(true);
     } else if (form === "updatePassword") {
-      router.push(`/patient/update-password?username=${patientData.username}`);
+      routerIns.push(
+        `/patient/update-password?username=${patientData.username}`
+      );
     }
   };
 

@@ -30,6 +30,7 @@ export class Api {
       this.client.defaults.headers.common["Authorization"] = `Bearer ${token}`;
     }
 
+    const api = new Api();
     return new Promise((resolve, reject) => {
       const resolver = function (response) {
         if (response && response.data) {
@@ -110,13 +111,13 @@ export class Api {
 
       switch (method) {
         case "get":
-          return this.client.get(url, postbody).then(resolver).catch(rejecter);
+          return api.client.get(url, postbody).then(resolver).catch(rejecter);
         case "post":
-          return this.client.post(url, postbody).then(resolver).catch(rejecter);
+          return api.client.post(url, postbody).then(resolver).catch(rejecter);
         case "put":
           return this.client.put(url, postbody).then(resolver).catch(rejecter);
         default:
-          return this.client.get(url, postbody).then(resolver).catch(rejecter);
+          return api.client.get(url, postbody).then(resolver).catch(rejecter);
       }
     });
   }
@@ -302,16 +303,10 @@ export class Api {
   getAllAppointment() {
     const domain = window.location.origin;
     const userData = JSON.parse(localStorage.getItem("userData"));
-    const patientId = `/${userData.patientId}`;
+    const patientId = `/${userData?.patientId}`;
     const url = `${domain}/api/dummy/appointment/my-appointment/getAllAppointment${
       userData?.patientId ? patientId : ""
     }`;
-    return this.getResponse(url, {}, "get");
-  }
-
-  getAppointmentDetails() {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/my-appointment/getAppointmentDetails`;
     return this.getResponse(url, {}, "get");
   }
 
@@ -335,7 +330,11 @@ export class Api {
 
   getAllPrescriptions() {
     const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`;
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const patientId = `?patientId=${userData?.patientId}`;
+    const url = `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions${
+      userData && userData.patientId ? patientId : ""
+    }`;
     return this.getResponse(url, {}, "get");
   }
 

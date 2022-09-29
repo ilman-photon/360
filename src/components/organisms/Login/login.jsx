@@ -131,6 +131,8 @@ export function Login({
                 <Grid container justifyContent={constants.FLEX_END}>
                   <Typography variant="bodyMedium">
                     <Link
+                      tabIndex={0}
+                      aria-label={"Forgot password link"}
                       className={styles.link}
                       data-testid={LOGIN_TEST_ID.forgotLink}
                       {...getLinkAria(t("forgotPassword"))}

@@ -361,6 +361,7 @@ export function onRenderInputInsurance(
         {...params}
         label="Insurance Carrier"
         InputProps={{
+          "aria-label": "Insurace Carrier field",
           ...params.InputProps,
         }}
         sx={{
@@ -760,7 +761,7 @@ const FilterHeading = ({
                   },
                 }}
                 label={"Purpose of Visit"}
-                ariaLabel={"Purpose of Visit field"}
+                ariaLabel={"Purpose of Visit dropdown menu"}
                 labelId={`purposes-of-visit`}
                 id={`purposes-of-visit`}
                 options={purposeOfVisitData}
@@ -794,8 +795,10 @@ const FilterHeading = ({
         >
           {title && subtitle && (
             <Stack>
-              <Typography className={styles.titleElement}>{title}</Typography>
-              <Typography className={styles.subtitleElement}>
+              <Typography tabIndex={0} className={styles.titleElement}>
+                {title}
+              </Typography>
+              <Typography tabIndex={0} className={styles.subtitleElement}>
                 {subtitle}
               </Typography>
             </Stack>

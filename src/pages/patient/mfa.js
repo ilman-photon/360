@@ -60,8 +60,8 @@ export default function MfaPage({ isStepTwo }) {
   React.useEffect(() => {
     if (Object.keys(communicationMethod).length == 0) {
       const userData = JSON.parse(localStorage.getItem("userData"));
-      const communicationMethod = userData.communicationMethod;
-      setCommunicationMethod(communicationMethod);
+      const newCommunicationMethod = userData.communicationMethod;
+      setCommunicationMethod(newCommunicationMethod);
       setIsLoading(false);
     }
     window.history.pushState(null, null, window.location.pathname);

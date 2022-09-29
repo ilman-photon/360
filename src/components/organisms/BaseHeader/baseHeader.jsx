@@ -168,7 +168,7 @@ export default function BaseHeader({
               )}
               {/* profile menu */}
               <Box sx={styles.boxProfileMenuStyles}>
-                <Tooltip title="Open settings">
+                <Tooltip title="Username dropdown">
                   <Button
                     variant="text"
                     sx={[styles.boxButtonStyles, styles.userText]}

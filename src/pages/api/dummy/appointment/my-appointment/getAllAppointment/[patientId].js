@@ -81,13 +81,13 @@ export default function getAllAppointment(req, res) {
         },
       ],
     };
-    if (patientId == "2efef720-4bfc-4fb7-b1a2-19fd11c67eba") {
-      //patient 3: 10 appointments
+    if (patientId == "4041087c-c000-4f20-9844-3e43a2ab96d2") {
+      //patient2@gmail.com: 0 appointments
       responseData = {
         appointmentList: [],
       };
-    } else if (patientId == "1cd0eee2-3bf6-4606-aec0-f80dff4eedf7") {
-      //patient 5: 10 appointments
+    } else if (patientId == "064b8897-4227-4b37-a0ed-a3c84dc97054") {
+      //patient3@gmail.com: 10 appointments
       const mockData = {
         appointmentId: "1",
         providerInfo: {
@@ -152,8 +152,8 @@ export default function getAllAppointment(req, res) {
           ...mockData,
         });
       }
-    } else if (patientId == "9832a190-f682-4d32-81c9-8f6cdf6a32b4") {
-      //patient 4: can't reschedule
+    } else if (patientId == "e8b1d282-584d-4304-b220-f719365ee0c2") {
+      //patient4@gmail.com: can't reschedule
       const dateMock = new Date();
       const eyeCare = new Date(dateMock.setHours(dateMock.getHours() + 2));
       const comprehensive = new Date(
@@ -237,9 +237,9 @@ export default function getAllAppointment(req, res) {
           },
         ],
       };
-    } else if (patientId == "d3724cd1-ebae-4f1a-82a5-544ff33b0313") {
+    } else if (patientId == "c37c6f60-f8f0-40ff-89f2-cf77b69555e9") {
       const cookie = new Cookies(req.headers.cookie);
-      //patient 1: can't reschedule
+      //ppatient5@gmail.com: can't reschedule
       const dateMock = new Date();
       let elapseTime = 3;
       if (cookie.get("appointmentTimeOut")) {

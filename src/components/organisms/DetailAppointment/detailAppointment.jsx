@@ -4,7 +4,6 @@ import AppointmentButton from "../../atoms/AppointmentButton/appointmentButton";
 import moment from "moment";
 import Grid from "@mui/material/Grid";
 import Paper from "@mui/material/Paper";
-import { styled } from "@mui/material/styles";
 import DownloadIcon from "@mui/icons-material/DownloadOutlined";
 import { blueGrey, grey } from "@mui/material/colors";
 import Divider from "@mui/material/Divider";
@@ -19,9 +18,8 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
-import { useEffect } from "react";
 
 function AppointmentDetailTable(alergies, isExpandAll) {
   const [openAllergies, setOpenAllergies] = useState(isExpandAll);
@@ -132,18 +130,9 @@ export default function DetailAppointment({ data }) {
   const formatedDate = momentDate.format("dddd, MMM DD, YYYY");
   const time = momentDate.format("h:mm A");
   const fullDate = `${formatedDate}, AT ${time} ${timezone}`;
-  const listbilnagnan = [1, 2, 3, 4, 5];
   const [isDownload, setIsDownload] = React.useState(false);
   const [isExpandAll, setIsExpandAll] = React.useState(true);
-  const [alergyHead, setAlergyHead] = React.useState();
 
-  const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === "dark" ? "#1A2027" : "#fff",
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
-  }));
   const downloadPDF = () => {
     let element = container.current || document.body;
     savePDF(
@@ -345,7 +334,7 @@ export default function DetailAppointment({ data }) {
           <Box sx={{ p: 2, pb: 0, backgroundColor: grey[50] }}>
             <Typography
               tabIndex={0}
-              aria-Label={"Documentation of"}
+              aria-label={"Documentation of"}
               variant="h3"
               className={styles.mb14}
             >

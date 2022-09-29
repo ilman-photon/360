@@ -351,7 +351,9 @@ const mockApi = () => {
     )
     .reply(200, MOCK_APPOINTMENT);
   mock
-    .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`)
+    .onGet(
+      `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
+    )
     .reply(200, MOCK_PRESCRIPTION);
 };
 
@@ -490,7 +492,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByLabelText(/Appointments/i));
+      await waitFor(() => container.getByText("Purpose of Visit"));
     });
 
     and("User should see the widget with upcoming appointments", () => {
@@ -567,7 +569,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByLabelText(/Appointments/i));
+      await waitFor(() => container.getByText("Purpose of Visit"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -727,7 +729,7 @@ defineFeature(feature, (test) => {
     });
 
     and("User should see the widget with upcoming appointments", () => {
-      expect(container.getByText(/Purpose of Visit/i)).toBeInTheDocument();
+      expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
     });
 
     when("User click on the widget with with upcoming appointments", () => {
