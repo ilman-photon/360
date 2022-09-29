@@ -71,18 +71,13 @@ export const AutoCompleteCreatable = ({
         value={props.value}
         //   onChange={props.onChange}
         onChange={(_e, newValue) => {
-          console.log({ newValue });
           if (typeof newValue === "string") {
             props.onChange({
               label: newValue,
             });
           } else if (newValue && newValue.value) {
             // Create a new value from the user input
-            props.onChange({
-              id: newValue.id,
-              label: newValue.label,
-              value: newValue.value,
-            });
+            props.onChange(newValue);
           } else {
             props.onChange(newValue);
           }

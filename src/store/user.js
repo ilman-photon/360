@@ -10,7 +10,6 @@ import {
 let url;
 
 const buildProfilePostBody = (postBody, payload) => {
-  console.log("build profile post body", { postBody, payload });
   let emailData = postBody.contactInformation.emails;
   emailData[0] = {
     ...emailData[0],
@@ -76,6 +75,7 @@ const buildProfilePostBody = (postBody, payload) => {
 };
 
 const buildDigitalAssetObject = (payload, type) => {
+  if (!payload) return null;
   if (!payload._id) return null;
   switch (type) {
     case "profile":
@@ -96,11 +96,15 @@ const buildDigitalAssetObject = (payload, type) => {
 };
 
 const buildInsurancePostBody = (postBody = {}, payload = {}) => {
-  console.log({ postBody, payload });
   const subscriberData = payload.subscriberData;
   const subscriberDob = subscriberData.dob
     ? new moment(subscriberData.dob).format("MM/DD/YYYY")
     : null;
+
+  const payloadPlanData = payload.plan;
+
+  const frontCardData = payload.frontCard;
+  const backCardData = payload.backCard;
   return {
     // ...postBody,
     _version: postBody._version,
@@ -108,27 +112,33 @@ const buildInsurancePostBody = (postBody = {}, payload = {}) => {
     group: payload.groupID,
     isPatientSubscriber: payload.isSubscriber === "Yes",
     priority: payload.priority,
-    subscriberRelation: RELATIONSHIP_LIST.findIndex(
-      (v) => v === subscriberData.relationship
-    ),
+    subscriberRelation:
+      RELATIONSHIP_LIST.findIndex((v) => v === subscriberData.relationship) +
+        1 || 1,
     payer: {
       _id: payload.provider.id,
     },
     plan: {
-      _id: "06c596c3-4f7d-4d4e-b514-ec0f008fccd9",
+      _id: payloadPlanData._id || payloadPlanData.id,
     },
+    planAddress: payloadPlanData.address || postBody.planAddress,
+    planCity: payloadPlanData.city || postBody.planCity,
+    planState: payloadPlanData.state || postBody.planState,
+    planZip: payloadPlanData.zip || postBody.planZip,
+    planName: payloadPlanData.name || postBody.planName,
+    planPhone: payloadPlanData.phone1 || postBody.planPhone,
     subscriber: {
-      ...postBody.subscriber,
+      // ...postBody.subscriber,
       firstName: subscriberData.firstName,
       lastName: subscriberData.lastName,
       dob: subscriberDob, // MM/DD/YYYY,
       _id: payload.memberID,
     },
     digitalAssets: {
-      master_front: payload.frontCard.uid
+      master_front: frontCardData?.uid
         ? payload.frontCard
         : buildDigitalAssetObject(payload.frontCard, "insurance"),
-      master_back: payload.backCard.uid
+      master_back: backCardData?.uid
         ? payload.backCard
         : buildDigitalAssetObject(payload.backCard, "insurance"),
     },
@@ -177,37 +187,30 @@ export const updateUser = createAsyncThunk(
 
 export const fetchInsurance = createAsyncThunk(
   "user/fetchInsurance",
-  async ({ token, patientId }) => {
+  async ({ patientId }) => {
     const api = new Api();
     url = `/ecp/insurance/beneficiaries/${patientId}/coverages`;
-    return api.getResponse(url, null, "get", token);
+    return api.getResponse(url, null, "get");
   }
 );
 
 export const updateInsurance = createAsyncThunk(
   "user/updateInsurance",
-  async ({ token, payload, patientId, coverageId }, { getState }) => {
+  async ({ payload, patientId, coverageId }, { getState }) => {
     const api = new Api();
     const state = getState();
     const foundIndex = state.user.rawUserInsuranceData.findIndex(
       (v) => v._id === coverageId
-    ); // +1;
-    console.log(
-      "found",
-      foundIndex,
-      state.user.rawUserInsuranceData[foundIndex]
     );
     try {
       const postBody = buildInsurancePostBody(
         state.user.rawUserInsuranceData[foundIndex],
         payload
       );
-      console.log("Post body to put to API: ", { postBody });
       const response = await api.getResponse(
         `/ecp/insurance/beneficiaries/${patientId}/coverages/${coverageId}`,
         postBody,
-        "put",
-        token
+        "put"
       );
       return {
         success: true,
@@ -225,9 +228,8 @@ export const updateInsurance = createAsyncThunk(
 
 export const postInsurance = createAsyncThunk(
   "user/postInsurance",
-  async ({ token, payload, patientId }) => {
+  async ({ payload, patientId }) => {
     const api = new Api();
-    console.log("Post insurance", { payload });
     try {
       const postBody = buildInsurancePostBody(
         {
@@ -235,13 +237,47 @@ export const postInsurance = createAsyncThunk(
         },
         payload
       );
-      console.log("Post body to POST to API: ", { postBody });
       const response = await api.getResponse(
         `/ecp/insurance/beneficiaries/${patientId}/coverages/`,
         postBody,
-        "post",
-        token
+        "post"
       );
+      return {
+        success: true,
+        response,
+      };
+    } catch (error) {
+      console.error({ error });
+      return {
+        success: false,
+        response: error,
+      };
+    }
+  }
+);
+
+export const deleteInsurance = createAsyncThunk(
+  "user/deleteInsurance",
+  async ({ patientId, coverageId }) => {
+    const api = new Api();
+    url = `/ecp/insurance/beneficiaries/${patientId}/coverages`;
+
+    try {
+      const response = api.getResponse(
+        url,
+        {
+          op: "replace",
+          path: "/archive",
+          value: [
+            {
+              _id: coverageId,
+              archive: true,
+            },
+          ],
+        },
+        "patch"
+      );
+
       return {
         success: true,
         response,
@@ -336,7 +372,7 @@ const DEFAULT_USER_DATA = {
 };
 
 const buildUserInsuranceData = (payload) => {
-  const insurances = payload.entities;
+  const insurances = payload;
   return insurances.map((insurance) => {
     const subscriberData = insurance.subscriber;
     const digitalAssets = insurance.digitalAssets;
@@ -460,15 +496,23 @@ const userSlice = createSlice({
         }
         return item;
       });
-      state.userInsuranceData = buildUserInsuranceData({
-        entities: statePayload,
-      });
+      state.userInsuranceData = buildUserInsuranceData(statePayload);
     },
     addUserInsuranceData: (state, { payload }) => {
-      state.userInsuranceData.push(payload);
+      state.rawUserInsuranceData.push(payload);
+      state.userInsuranceData = buildUserInsuranceData(
+        state.rawUserInsuranceData
+      );
     },
     removeUserInsuranceData: (state, { payload }) => {
-      state.userInsuranceData.splice(payload, 1);
+      const foundIndex = state.userInsuranceData.findIndex(
+        (v) => v.id === payload.id
+      );
+      const foundRawIndex = state.rawUserInsuranceData.findIndex(
+        (v) => v._id === payload.id
+      );
+      state.userInsuranceData.splice(foundIndex, 1);
+      state.rawUserInsuranceData.splice(foundRawIndex, 1);
     },
     resetUserAppointmentData: (state) => {
       state.userAppointmentData = [];
@@ -516,8 +560,9 @@ const userSlice = createSlice({
     },
     [fetchInsurance.fulfilled]: (state, { payload }) => {
       if (payload) {
-        state.rawUserInsuranceData = payload.entities;
-        state.userInsuranceData = buildUserInsuranceData(payload);
+        const entities = payload.entities.filter((v) => !v.archive);
+        state.rawUserInsuranceData = entities;
+        state.userInsuranceData = buildUserInsuranceData(entities);
       }
       state.status = "success";
     },

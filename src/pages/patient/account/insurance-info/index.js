@@ -4,6 +4,8 @@ import InsuranceView from "../../../../components/organisms/InsuranceInformation
 import { useEffect, useRef, useState } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import {
+  addUserInsuranceData,
+  deleteInsurance,
   fetchInsurance,
   postInsurance,
   removeUserInsuranceData,
@@ -11,11 +13,7 @@ import {
   updateInsurance,
 } from "../../../../store/user";
 import FormMessage from "../../../../components/molecules/FormMessage/formMessage";
-import {
-  closePageMessage,
-  fetchToken,
-  setPageMessage,
-} from "../../../../store";
+import { closePageMessage, setPageMessage } from "../../../../store";
 import store from "../../../../store/store";
 import {
   Accordion,
@@ -53,6 +51,7 @@ export default function InsuranceInfoPage() {
   const [formDeleteInsurance, setFormDeleteInsurance] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [editForm, setEditForm] = useState(null);
+  const [patientId, setPatientId] = useState(null);
 
   const pageMessage = useSelector((state) => state.index.pageMessage);
   const loadingInsurance = useSelector((state) => state.user.status);
@@ -97,14 +96,12 @@ export default function InsuranceInfoPage() {
       setIsShowError(true);
     } else {
       const { payload } = await dispatch(
-        postInsurance({
-          token: cookies.get("accessToken"),
-          payload: postBody,
-          patientId: "9a76d8d6-f5ae-4a22-8cc0-3454bb688d20", // hardcoded patient id
-        })
+        postInsurance({ patientId, payload: postBody })
       );
 
       if (payload.success) {
+        // after effect to add state of rawuserinsuranceData manually and rebuild
+        dispatch(addUserInsuranceData(payload.response));
         dispatch(
           setPageMessage({
             isShow: true,
@@ -121,18 +118,25 @@ export default function InsuranceInfoPage() {
     setConfirmationDeleteDialog(true);
   };
 
-  const OnConfirmRemoveInsurance = () => {
-    dispatch(removeUserInsuranceData(formDeleteInsurance));
-    setConfirmationDeleteDialog(false);
-    dispatch(
-      setPageMessage({
-        isShow: true,
-        content: "Insurance successfully removed",
-      })
+  const OnConfirmRemoveInsurance = async () => {
+    const { payload } = await dispatch(
+      deleteInsurance({ patientId, coverageId: formDeleteInsurance.id })
     );
-    setTimeout(() => {
-      dispatch(closePageMessage());
-    }, 5000);
+
+    if (payload.success) {
+      // after effect to add state of rawuserinsuranceData manually and rebuild
+      dispatch(removeUserInsuranceData(formDeleteInsurance));
+      setConfirmationDeleteDialog(false);
+      dispatch(
+        setPageMessage({
+          isShow: true,
+          content: "Insurance successfully removed",
+        })
+      );
+      setTimeout(() => {
+        dispatch(closePageMessage());
+      }, 5000);
+    }
   };
 
   const OnOpenEditInsuranceForm = (payload) => {
@@ -146,8 +150,7 @@ export default function InsuranceInfoPage() {
     }
     const { payload } = await dispatch(
       updateInsurance({
-        token: cookies.get("accessToken"),
-        patientId: "59f43690-807f-4522-a615-e4b3b9ed8434", // hardcoded patient id
+        patientId: patientId,
         coverageId: postBody.id,
         payload: postBody,
       })
@@ -190,12 +193,9 @@ export default function InsuranceInfoPage() {
   }, [openNewInsuranceForm, focusToNewInsurance]);
 
   useEffect(() => {
-    dispatch(
-      fetchInsurance({
-        token: cookies.get("accessToken"),
-        patientId: "59f43690-807f-4522-a615-e4b3b9ed8434", // hardcoded patientId
-      })
-    );
+    const userStorageData = JSON.parse(localStorage.getItem("userData"));
+    dispatch(fetchInsurance({ patientId: userStorageData.patientId }));
+    setPatientId(userStorageData.patientId);
 
     dispatch(fetchAllPayers());
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -282,6 +282,7 @@ export default function InsuranceInfoPage() {
                   <Box>
                     <InsuranceForm
                       testIds={INSURANCE_TEST_ID}
+                      memberId={patientId}
                       providerList={providerList}
                       planList={planList}
                       formData={editForm}
@@ -353,6 +354,7 @@ export default function InsuranceInfoPage() {
                         <AccordionDetails>
                           <InsuranceForm
                             testIds={INSURANCE_TEST_ID}
+                            memberId={patientId}
                             providerList={providerList}
                             planList={planList}
                             isAutocompleteLoading={isAutocompleteLoading}

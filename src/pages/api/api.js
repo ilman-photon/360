@@ -116,6 +116,11 @@ export class Api {
           return api.client.post(url, postbody).then(resolver).catch(rejecter);
         case "put":
           return this.client.put(url, postbody).then(resolver).catch(rejecter);
+        case "patch":
+          return this.client
+            .patch(url, postbody)
+            .then(resolver)
+            .catch(rejecter);
         default:
           return api.client.get(url, postbody).then(resolver).catch(rejecter);
       }
@@ -263,7 +268,6 @@ export class Api {
       "https://public.opendatasoft.com/api/records/1.0/search/?dataset=georef-united-states-of-america-state&q=&sort=ste_name&facet=ste_name&rows=99";
     try {
       const response = await this.getResponse(usStatesApiUrl, null, "get");
-      console.log();
       return response.records.map((record) => {
         return {
           id: record.datasetid,
@@ -344,24 +348,6 @@ export class Api {
     return this.getResponse(url, postbody, "post");
   }
 
-  // async getPayers(accessToken) {
-  //   const url = '/ecp/appointment/insurance/allpayers'
-  //   try {
-  //     const response = await this.getResponse(url, null, "get", accessToken)
-  //     console.log("getpayer response", response)
-  //     return {
-  //       success: true,
-  //       response
-  //     }
-  //   } catch (error) {
-  //     console.log("getpayer error", error)
-  //     return {
-  //       success: false,
-  //       error
-  //     }
-  //   }
-  // }
-
   doMedicationRequestRefill(postBody) {
     const domain = window.location.origin;
     const url = `${domain}/api/dummy/prescription/requestRefill`;
@@ -420,7 +406,6 @@ export class Api {
           "Content-Type": "image/png",
         },
       });
-      // console.log("upload response", {response})
       if (response.status === 200) return { success: true };
     } catch (error) {
       console.error({ error });

@@ -31,6 +31,7 @@ export default function InsuranceForm({
   planList = [],
   isEditing = true,
   isAutocompleteLoading = false,
+  memberId,
   OnProviderChanged = () => {
     // this is intended
   },
@@ -104,6 +105,11 @@ export default function InsuranceForm({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watchedProvider]);
+
+  useEffect(() => {
+    setValue("memberID", memberId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [memberId]);
 
   const handleCancel = () => {
     OnCancelClicked();
@@ -179,12 +185,6 @@ export default function InsuranceForm({
                 }) => {
                   return (
                     <AutoCompleteCreatable
-                      onFetch={(e) => {
-                        console.log(e);
-                      }}
-                      // onInputEmpty={(e) => {
-                      //   console.log(e);
-                      // }}
                       isLoading={isAutocompleteLoading}
                       options={planList}
                       testId={testIds.planName}

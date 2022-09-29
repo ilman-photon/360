@@ -16,8 +16,8 @@ import { StyledButton } from "../../atoms/Button/button";
 import { colors } from "../../../styles/theme";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Image from "../../atoms/Image/image";
 import styles from "./insuranceView.module.scss";
+import ImageFallback from "../../atoms/Image/image";
 
 export default function InsuranceView({
   insuranceData = [],
@@ -194,13 +194,12 @@ export default function InsuranceView({
                                   Insurance Card - Front
                                 </Typography>
                                 <div className={styles.insuranceImageContainer}>
-                                  <Image
+                                  <ImageFallback
                                     width={263}
                                     height={139}
-                                    source={item.frontCard?.source || null}
-                                    placeholder="blur"
-                                    blurDataURL="/transparent.png"
+                                    source={item.frontCard}
                                     alt="front"
+                                    aria-label="Image"
                                   />
                                 </div>
                               </Grid>
@@ -216,13 +215,12 @@ export default function InsuranceView({
                                   Insurance Card - Back
                                 </Typography>
                                 <div className={styles.insuranceImageContainer}>
-                                  <Image
+                                  <ImageFallback
                                     width={263}
                                     height={139}
-                                    src={item.frontCard?.source || null}
-                                    placeholder="blur"
-                                    blurDataURL="/transparent.png"
+                                    source={item.backCard}
                                     alt="back"
+                                    aria-label="Image"
                                     className={styles.insuranceImage}
                                   />
                                 </div>
@@ -249,7 +247,7 @@ export default function InsuranceView({
                               mode="secondary"
                               size="small"
                               onClick={() => {
-                                OnRemoveClicked(idx);
+                                OnRemoveClicked(item);
                               }}
                               sx={{
                                 width: { xs: "100%", md: "fit-content" },

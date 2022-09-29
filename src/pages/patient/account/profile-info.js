@@ -4,7 +4,7 @@ import ContactInformation from "../../../components/organisms/ContactInformation
 import { Box, Grid, Tab, Tabs, useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
-import { fetchUser, setUserData, updateUser } from "../../../store/user";
+import { fetchUser, updateUser } from "../../../store/user";
 import store from "../../../store/store";
 import PropTypes from "prop-types";
 import { closePageMessage, setPageMessage } from "../../../store";
@@ -12,7 +12,6 @@ import { useRouter } from "next/router";
 import { Api } from "../../api/api";
 import constants from "../../../utils/constants";
 import FormMessage from "../../../components/molecules/FormMessage/formMessage";
-import Cookies from "universal-cookie";
 import { styled } from "@mui/material/styles";
 
 const StyledTab = styled((props) => <Tab disableRipple {...props} />)(() => ({
@@ -67,7 +66,6 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
 
   const router = useRouter();
   const api = new Api();
-  const cookies = new Cookies();
 
   const onBackButtonEvent = (e) => {
     e.preventDefault();
@@ -77,9 +75,9 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
   useEffect(() => {
     window.addEventListener("popstate", onBackButtonEvent);
 
-    const userData = JSON.parse(localStorage.getItem("userData"));
-    dispatch(fetchUser({ patientId: userData.patientId }));
-    setPatientId(userData.patientId);
+    const userStorageData = JSON.parse(localStorage.getItem("userData"));
+    dispatch(fetchUser({ patientId: userStorageData.patientId }));
+    setPatientId(userStorageData.patientId);
     fetchUSListOfStates();
 
     return () => {
