@@ -80,7 +80,7 @@ function AppointmentDetailTable(alergies, isExpandAll) {
               <TableRow key={alergies.type}>
                 {temp.map((item) => (
                   <TableCell
-                    tabindex={0}
+                    tabIndex={0}
                     key={alergies.type}
                     aria-label={item}
                     component="th"
@@ -102,7 +102,7 @@ function AppointmentDetailTable(alergies, isExpandAll) {
                 >
                   {Object.keys(item).map((key) => (
                     <TableCell
-                      tabindex={0}
+                      tabIndex={0}
                       key={item[key]}
                       aria-label={
                         item[key] ? `${key}: ${item[key]}` : `${key}: empty`
@@ -187,7 +187,6 @@ export default function DetailAppointment({ data }) {
                     cursor: "pointer",
                   }}
                   onClick={() => {
-                    setIsExpandAll(true);
                     setIsDownload(true);
                     setTimeout(() => {
                       downloadPDF();

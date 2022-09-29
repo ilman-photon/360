@@ -46,7 +46,7 @@ export default function RowRadioButtonsGroup({
           alignItems: "center",
           ...textSx,
         }}
-        tabindex={0}
+        tabIndex={0}
       >
         {props.label}
         {tooltipContent ? (

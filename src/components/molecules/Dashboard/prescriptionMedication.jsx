@@ -477,10 +477,13 @@ export default function PrescriptionMedication({
           styles.flexDisplay,
           styles.spaceBetween,
           styles.margin,
-          styles.marginTop,
+          styles.marginBottom,
         ]}
       >
-        <Typography variant="titleCard">
+        <Typography
+          variant="titleCard"
+          className={!isMobile ? styles.paddingTop22 : {}}
+        >
           {isFilterApplied ? "Medications" : "Active Medications"}{" "}
           {medications?.active?.length > 0
             ? `(${medications?.active?.length})`

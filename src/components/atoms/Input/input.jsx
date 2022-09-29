@@ -206,6 +206,10 @@ export const CustomInput = styled(({ ...props }) => {
     event.preventDefault();
   };
 
+  const preventPasteHandler = (event) => {
+    event.preventDefault();
+  };
+
   switch (props.type) {
     case "password":
       return (
@@ -272,6 +276,7 @@ export const CustomInput = styled(({ ...props }) => {
                   error={props.error || params.error}
                   helperText={props.helperText}
                   InputProps={props.InputProps || {}}
+                  onPaste={preventPasteHandler}
                 />
               )}
               inputProps={props.inputProps}
@@ -303,6 +308,7 @@ export const CustomInput = styled(({ ...props }) => {
               ...props.sx,
             }}
             {...props}
+            onPaste={preventPasteHandler}
           />
         </>
       );
