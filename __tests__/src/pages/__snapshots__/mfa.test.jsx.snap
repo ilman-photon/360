@@ -47,7 +47,7 @@ Object {
               setMFATitle
             </h1>
             <p
-              class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-body2 description css-1s8gdz4-MuiTypography-root"
             >
               setMFADescription
             </p>
@@ -292,7 +292,7 @@ Object {
             setMFATitle
           </h1>
           <p
-            class="MuiTypography-root MuiTypography-body2 description css-e784if-MuiTypography-root"
+            class="MuiTypography-root MuiTypography-body2 description css-1s8gdz4-MuiTypography-root"
           >
             setMFADescription
           </p>
