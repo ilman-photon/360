@@ -32,7 +32,9 @@ export default function PrescriptionMedication({
     active: [],
     past: [],
   },
-  onMedicationRequestRefill = () => {},
+  onMedicationRequestRefill = () => {
+    //this is intentional
+  },
   requestRefillResponseData = null,
 }) {
   const [filterOpen, setFilterOpen] = React.useState(false);

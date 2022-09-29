@@ -246,14 +246,8 @@ export class Api {
     const userData = JSON.parse(localStorage.getItem("userData"));
     const patientId = `/${userData?.patientId}`;
     const url = `${domain}/api/dummy/appointment/my-appointment/getAllAppointment${
-      userData.patientId ? patientId : ""
+      userData?.patientId ? patientId : ""
     }`;
-    return this.getResponse(url, {}, "get");
-  }
-
-  getAppointmentDetails() {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/my-appointment/getAppointmentDetails`;
     return this.getResponse(url, {}, "get");
   }
 

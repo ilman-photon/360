@@ -12,7 +12,6 @@ import {
 import styles from "./InsuranceInformationNew.module.scss";
 import { useForm, Controller } from "react-hook-form";
 import { StyledInput } from "../../atoms/Input/input";
-import { colors } from "../../../styles/theme";
 import FormLabel from "@mui/material/FormLabel";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import SelectOptionButton from "../../atoms/SelectOptionButton/selectOptionButton";

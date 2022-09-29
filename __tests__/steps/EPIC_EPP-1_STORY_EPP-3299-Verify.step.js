@@ -889,14 +889,14 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByLabelText(/Prescriptions/i));
+      await waitFor(() => container.getAllByLabelText(/Prescriptions/i)[0]);
       expect(response).toEqual({
         props: { isStepTwo: false },
       });
     });
 
     and("User should see the widget with prescriptions", () => {
-      const prescriptions = container.getByLabelText(/Prescriptions/i);
+      const prescriptions = container.getAllByLabelText(/Prescriptions/i)[0];
       expect(prescriptions).toBeInTheDocument();
 
       const locationField = container.container.querySelector("#location");
@@ -1016,7 +1016,7 @@ defineFeature(feature, (test) => {
         fireEvent.click(contactMenu);
       });
 
-      await waitFor(() => container.getByText(/Contacts Prescriptions/i));
+      await waitFor(() => container.getAllByText(/Contacts Prescriptions/i)[0]);
     });
 
     when("User clicks on the widget with prescriptions", () => {
