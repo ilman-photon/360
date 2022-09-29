@@ -36,6 +36,9 @@ const StyledMenu = styled((props) => (
       padding: "4px 0",
     },
     "& .MuiMenuItem-root": {
+      fontSize: "14px",
+      fontWeight: "400",
+      color: "#323338",
       "& .MuiSvgIcon-root": {
         fontSize: 18,
         color: theme.palette.text.secondary,
@@ -93,6 +96,9 @@ export default function MenuList({ pdfFile = "" }) {
             style={{
               display: "flex",
               alignItems: "center",
+              fontSize: "14px",
+              fontWeight: "400",
+              color: "#323338",
             }}
             download
           >

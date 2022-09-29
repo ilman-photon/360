@@ -31,8 +31,10 @@ function getUserData(postbody, callback) {
         callback(isHasMfaAccessToken);
       });
     })
-    .catch(() => {
-      callback(false);
+    .catch((err) => {
+      if (api.responseCodeValidation(err)) {
+        callback(false);
+      }
     });
 }
 

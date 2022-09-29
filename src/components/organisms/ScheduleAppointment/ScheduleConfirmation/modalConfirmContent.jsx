@@ -94,7 +94,14 @@ export default function ModalConfirmContent({
     );
   }
 
-  console.log("MASUK : ", appointmentData);
+  const getName = () => {
+    if (patientData.name) {
+      return patientData.name;
+    } else if (patientData.firstName) {
+      return `${patientData.firstName} ${patientData.lastName}`;
+    } else return "-";
+  };
+
   return (
     <Box
       sx={{ width: { xs: "auto", md: "max-content" } }}
@@ -263,7 +270,7 @@ export default function ModalConfirmContent({
               sxText={{ color: colors.darkGreen, fontSize: "16px" }}
             >
               <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
-                {patientData.firstName || "-"}
+                {getName()}
               </Typography>
             </LabelWithInfo>
           </CardContent>

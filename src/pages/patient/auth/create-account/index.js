@@ -35,7 +35,7 @@ export default function CreateAccountPage() {
     } catch (err) {
       console.error({ err });
       if (err.ResponseCode) {
-        const errorMessage = RESPONSE_MESSAGES[err.ResponseCode || 3500];
+        const errorMessage = RESPONSE_MESSAGES[err.ResponseCode || 3002];
 
         dispatch(
           setFormMessage({

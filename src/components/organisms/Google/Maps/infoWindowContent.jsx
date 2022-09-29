@@ -110,7 +110,7 @@ const InfoWindowContent = ({
                         lineHeight: "24px",
                         fontWeight: 500,
                       }}
-                      tabindex={"0"}
+                      tabIndex={"0"}
                     >
                       {getLabelTime(v.date)}
                     </Typography>

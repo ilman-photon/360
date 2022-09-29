@@ -109,7 +109,7 @@ export default function BaseHeader({
                 style={styles.logoStyled}
                 aria-label={"Clarkson Eyecare logo"}
                 title="Your Account"
-                tabindex={0}
+                tabIndex={0}
                 role={"img"}
               ></Image>
               {/* Menu Desktop*/}
@@ -235,7 +235,7 @@ export default function BaseHeader({
                 quality={100}
                 style={styles.logoStyled}
                 aria-label={"Clarkson Eyecare logo"}
-                tabindex={0}
+                tabIndex={0}
               ></Image>
             </Toolbar>
           )}

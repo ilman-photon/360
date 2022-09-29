@@ -37,7 +37,7 @@ export default function ScheduleAppointment({
         <Typography
           sx={isDesktop ? { fontSize: "26px" } : { fontSize: "32px" }}
           aria-label={"Who is this exam for?"}
-          tabindex={0}
+          tabIndex={0}
         >
           {t("formTitle")}
         </Typography>
@@ -125,7 +125,7 @@ export default function ScheduleAppointment({
                   }`,
                 }}
                 onClick={() => setActiveStep(3)}
-                tabindex={0}
+                tabIndex={0}
                 disabled={!selectedSelf}
               >
                 {t("continue")}

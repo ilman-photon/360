@@ -33,7 +33,7 @@ export function viewAllAvailabilityLinkUI({
         className={styles.linkAvailabelity}
         data-testid={constants.TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll}
         onClick={onClickViewAllAvailability}
-        tabindex={"0"}
+        tabIndex={"0"}
       >
         <Typography variant="link">View all availability</Typography>
       </Button>
