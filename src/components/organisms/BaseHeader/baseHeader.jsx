@@ -46,7 +46,7 @@ export default function BaseHeader({
   React.useEffect(() => {
     const cookies = new Cookies();
     const isLogin =
-      cookies.get("authorized", { path: "/patient" }) === "true" ||
+      cookies.get("authorized", { path: "/patient" }) === "true" &&
       !!cookies.get("accessToken");
     setUserLoged(isLogin);
   }, []);
@@ -168,7 +168,7 @@ export default function BaseHeader({
               )}
               {/* profile menu */}
               <Box sx={styles.boxProfileMenuStyles}>
-                <Tooltip title="Open settings">
+                <Tooltip title="Username dropdown">
                   <Button
                     variant="text"
                     sx={[styles.boxButtonStyles, styles.userText]}

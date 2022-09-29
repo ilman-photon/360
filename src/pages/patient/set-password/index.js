@@ -10,7 +10,6 @@ import Cookies from "universal-cookie";
 import { useState } from "react";
 import constants from "../../../utils/constants";
 import ConfirmationForm from "../../../components/organisms/ConfirmationForm/confirmationForm";
-import { formatSocialSecurity } from "../../../utils/ssnFormatter";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import { Regex } from "../../../utils/regex";
 
@@ -113,7 +112,7 @@ export default function SetPasswordPage({ username }) {
 }
 
 SetPasswordPage.getLayout = function getLayout(page) {
-  const backgroundImage = "/login-bg.png";
+  const backgroundImage = "/register-bg.png";
   return (
     <AuthLayout
       showMobileImage={false}

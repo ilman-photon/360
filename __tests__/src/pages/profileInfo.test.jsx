@@ -52,10 +52,6 @@ describe("ProfileInformationPage Components", () => {
     await waitFor(() => container.getByRole("button", { name: /Edit/i }));
   });
 
-  it("ProfileInformationPage render", () => {
-    expect(container).toMatchSnapshot();
-  });
-
   it("InsuranceInformationPage upload back foto", async () => {
     global.URL.createObjectURL = jest.fn(() => "/details.png");
     const file = new File(["(⌐□_□)"], "chucknorris.png", { type: "image/png" });

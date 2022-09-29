@@ -374,7 +374,7 @@ defineFeature(feature, (test) => {
       const mock = new MockAdapter(axios);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
 
@@ -392,7 +392,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByLabelText(/Prescriptions/i));
+      await waitFor(() => container.getAllByLabelText(/Prescriptions/i)[0]);
       expect(response).toEqual({
         props: { isStepTwo: false },
       });

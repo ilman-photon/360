@@ -183,6 +183,7 @@ export const AccountDrawer = ({
           borderRadius: "28px",
           margin: "auto",
         }}
+        onClick={onLogoutClicked}
       >
         LOG OUT
       </Button>

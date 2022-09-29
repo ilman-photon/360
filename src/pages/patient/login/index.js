@@ -47,13 +47,13 @@ function getPatientId(postBody, callback) {
     });
 }
 
-const loginProps = {
+export const loginProps = {
   OnLoginClicked: function (postbody, _router, callback) {
     api
       .login(postbody)
       .then(function (response) {
         const IdleTimeOut = response.IdleTimeOut * 1000 || 1200 * 1000;
-        const securityQuestions = response.SecurityQuestions;
+        const securityQuestions = response.isSecurityQuestionsSetUp;
         cookies.set("IdleTimeOut", IdleTimeOut, { path: "/patient" });
         cookies.set("username", postbody.username, { path: "/patient" });
         cookies.set("accessToken", response.access_token, { path: "/patient" });

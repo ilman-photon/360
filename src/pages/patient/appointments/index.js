@@ -21,6 +21,7 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { colors } from "../../../styles/theme";
 import ModalCancelScheduling from "../../../components/organisms/ScheduleAppointment/ModalCancelScheduling/modalCancelScheduling";
 import Cookies from "universal-cookie";
+import moment from "moment";
 export default function Appointments() {
   const [modalErrorRequest, setModalErrorRequest] = useState(false);
   const [modalSuccessCancel, setModalSuccessCancel] = useState(false);
@@ -81,10 +82,16 @@ export default function Appointments() {
       location: providerInfo.address ? providerInfo.address.city : "-",
     };
 
+    const parseDate = new moment(new Date(appointmentInfo.date)).format(
+      "YYYY-MM-DD[T]hh:mm:ss"
+    );
     const appointmentSchedule = {
       providerInfo: providerInfo,
       patientInfo: userData,
-      appointmentInfo: appointmentInfo,
+      appointmentInfo: {
+        ...appointmentInfo,
+        date: parseDate,
+      },
     };
     dispatch(setFilterData(filterData));
     dispatch(setAppointmentSchedule(appointmentSchedule));

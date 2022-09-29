@@ -40,7 +40,9 @@ export default function Prescriptions({
     //this is intentional
   },
   isViewAll = false,
-  onMedicationRequestRefill = () => {},
+  onMedicationRequestRefill = () => {
+    //this is intentional
+  },
   requestRefillResponseData = null,
 }) {
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -157,21 +159,23 @@ export default function Prescriptions({
               position: "relative",
             }}
           >
-            <Typography
-              variant="customBodyRegular"
-              className={styles.glassesViewAll}
-            >
-              Prescribed on:&nbsp;
-            </Typography>
-            <Typography
-              variant="bodyMedium"
-              className={styles.glassesViewAll}
-              sx={{
-                marginRight: "auto",
-              }}
-            >
-              {data.date}
-            </Typography>
+            <Box tabIndex={0}>
+              <Typography
+                variant="customBodyRegular"
+                className={styles.glassesViewAll}
+              >
+                Prescribed on:&nbsp;
+              </Typography>
+              <Typography
+                variant="bodyMedium"
+                className={styles.glassesViewAll}
+                sx={{
+                  marginRight: "auto",
+                }}
+              >
+                {data.date}
+              </Typography>
+            </Box>
             {isViewAll && !isMobile ? (
               renderCTAIcon()
             ) : (
@@ -181,7 +185,10 @@ export default function Prescriptions({
             )}
           </Box>
 
-          <Box className={[isMobile ? "" : styles.flexDisplay, styles.margin]}>
+          <Box
+            className={[isMobile ? "" : styles.flexDisplay, styles.margin]}
+            tabIndex={0}
+          >
             <Box className={[styles.flexDisplay, getBoxStyle()]}>
               <Typography variant="customBodyRegular">
                 Prescribed by: &nbsp;
@@ -208,6 +215,7 @@ export default function Prescriptions({
           {!isViewAll && (
             <Box
               className={[isMobile ? "" : styles.flexDisplay, styles.margin]}
+              tabIndex={0}
             >
               <Typography variant="customBodyRegular">
                 Expires on: &nbsp;
@@ -249,7 +257,10 @@ export default function Prescriptions({
                 <TableHead>
                   <TableRow>
                     {tableHeader.map((header, idx) => (
-                      <StyledTableCell key={`${idxKey}-${idx}-tabel-header`}>
+                      <StyledTableCell
+                        key={`${idxKey}-${idx}-tabel-header`}
+                        tabIndex={0}
+                      >
                         {header}
                       </StyledTableCell>
                     ))}
@@ -263,17 +274,17 @@ export default function Prescriptions({
                         "&:last-child td, &:last-child th": { border: 0 },
                       }}
                     >
-                      <TableCell component="th" scope="row">
+                      <TableCell component="th" scope="row" tabIndex={0}>
                         {row.eye}
                       </TableCell>
-                      <TableCell>{row.sph}</TableCell>
-                      <TableCell>
+                      <TableCell tabIndex={0}>{row.sph}</TableCell>
+                      <TableCell tabIndex={0}>
                         {type === "contacts" ? row.bc : row.cyl}
                       </TableCell>
-                      <TableCell>
+                      <TableCell tabIndex={0}>
                         {type === "contacts" ? row.cyl : row.axis}
                       </TableCell>
-                      <TableCell>
+                      <TableCell tabIndex={0}>
                         {type === "contacts" ? row.axis : row.add}
                       </TableCell>
                     </TableRow>
@@ -297,7 +308,7 @@ export default function Prescriptions({
             borderColor: "divider",
           }}
         >
-          <Box className={[styles.flexDisplay, styles.margin]}>
+          <Box className={[styles.flexDisplay, styles.margin]} tabIndex={0}>
             <Typography variant="medication">{row.prescription}</Typography>
           </Box>
           <Box
@@ -306,6 +317,7 @@ export default function Prescriptions({
               margin: "10px 16px",
               marginBottom: data.length == idx + 1 ? "26px" : "16px",
             }}
+            tabIndex={0}
           >
             <Typography variant="customBodyRegular">
               Prescribed on: &nbsp;
@@ -316,7 +328,7 @@ export default function Prescriptions({
       ));
     } else {
       return (
-        <Box className={styles.noPrescription}>
+        <Box className={styles.noPrescription} tabIndex={0}>
           <Typography
             className={styles.normalText}
           >{`There are no active medications`}</Typography>
@@ -474,6 +486,7 @@ export default function Prescriptions({
       contentUI.push(
         <Box className={styles.noPrescription}>
           <Typography
+            tabIndex={0}
             className={styles.normalText}
           >{`There are no active ${type} prescriptions`}</Typography>
         </Box>
@@ -498,7 +511,11 @@ export default function Prescriptions({
         <Box
           className={[styles.flexDisplay, styles.spaceBetween, styles.margin]}
         >
-          <Typography variant="titleCard">
+          <Typography
+            variant="titleCard"
+            tabIndex={0}
+            aria-label={"Medications Prescription Heading"}
+          >
             {prescription?.medications?.active?.length > 0
               ? `Medications Prescriptions (${prescription?.medications?.active?.length})`
               : `Medications Prescriptions`}
@@ -516,6 +533,8 @@ export default function Prescriptions({
             <Link
               className={styles.viewPrescriptionText}
               sx={{ color: "#008294", fontFamily: "Inter" }}
+              tabIndex={0}
+              aria-label="View prescriptions option"
             >
               View prescriptions
             </Link>
@@ -542,6 +561,8 @@ export default function Prescriptions({
               <Typography
                 variant="titleCard"
                 className={isViewAll && !isMobile ? styles.paddingTop22 : {}}
+                tabIndex={0}
+                aria-label={"Glasses Prescription Heading"}
               >
                 Glasses Prescriptions
               </Typography>
@@ -558,6 +579,8 @@ export default function Prescriptions({
                 <Link
                   className={styles.viewPrescriptionText}
                   sx={{ color: "#008294", fontFamily: "Inter" }}
+                  tabIndex={0}
+                  aria-label="View prescriptions option"
                 >
                   View prescriptions
                 </Link>
@@ -580,6 +603,8 @@ export default function Prescriptions({
               <Typography
                 variant="titleCard"
                 className={isViewAll && !isMobile ? styles.paddingTop22 : {}}
+                tabIndex={0}
+                aria-label={"Contacts Prescription Heading"}
               >
                 Contacts Prescriptions
               </Typography>
@@ -596,6 +621,8 @@ export default function Prescriptions({
                 <Link
                   className={styles.viewPrescriptionText}
                   sx={{ color: "#008294", fontFamily: "Inter" }}
+                  tabIndex={0}
+                  aria-label="View prescriptions option"
                 >
                   View prescriptions
                 </Link>
@@ -636,6 +663,7 @@ export default function Prescriptions({
         <Tab
           label="Glasses"
           data-testid={"menu-glasses"}
+          tabIndex={0}
           icon={
             <Box
               className={
@@ -667,6 +695,7 @@ export default function Prescriptions({
         <Tab
           label="Contacts"
           data-testid={"menu-contact"}
+          tabIndex={0}
           icon={
             <Box
               className={
@@ -698,6 +727,7 @@ export default function Prescriptions({
         <Tab
           label="Medications"
           data-testid={"menu-medication"}
+          tabIndex={0}
           icon={
             <Box
               className={

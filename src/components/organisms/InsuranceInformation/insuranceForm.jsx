@@ -12,7 +12,6 @@ import {
 import styles from "./InsuranceInformationNew.module.scss";
 import { useForm, Controller } from "react-hook-form";
 import { StyledInput } from "../../atoms/Input/input";
-import { colors } from "../../../styles/theme";
 import FormLabel from "@mui/material/FormLabel";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import SelectOptionButton from "../../atoms/SelectOptionButton/selectOptionButton";
@@ -140,7 +139,7 @@ export default function InsuranceForm({
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={3}>
           <Grid container spacing={2}>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} sm={6} lg={4}>
               <Controller
                 name="provider"
                 control={control}
@@ -172,7 +171,7 @@ export default function InsuranceForm({
               />
             </Grid>
 
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} sm={6} lg={4}>
               <Controller
                 name="plan"
                 control={control}
@@ -202,7 +201,7 @@ export default function InsuranceForm({
               <DisclaimerText label="(Optional)" />
             </Grid>
 
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} sm={6} lg={4}>
               <Controller
                 name="memberID"
                 control={control}
@@ -235,7 +234,7 @@ export default function InsuranceForm({
               />
             </Grid>
 
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} sm={6} lg={4}>
               <Controller
                 name="groupID"
                 control={control}
@@ -477,13 +476,22 @@ export default function InsuranceForm({
 
           <Grid
             container
-            spacing={{ xs: 0, md: 2 }}
-            rowSpacing={2}
+            rowSpacing={{ sx: 2, md: 0 }}
             sx={{
-              ".MuiGrid-item:first-of-type": { pt: { xs: 0, md: 2 }, pl: 0 },
+              ".MuiGrid-item:first-of-type": {
+                pt: 0,
+                pl: 0,
+                pr: { xs: 0, sm: 2 },
+              },
             }}
           >
-            <Grid item xs={12} md={4} sx={{ position: "relative", pl: "-8px" }}>
+            <Grid
+              item
+              xs={12}
+              sm={5}
+              lg={4}
+              sx={{ position: "relative", pl: "-8px" }}
+            >
               <div
                 style={{ position: "absolute", width: "100%", top: "-25px" }}
               >
@@ -503,9 +511,6 @@ export default function InsuranceForm({
                   field: { onChange, value },
                   fieldState: { _error },
                 }) => {
-                  {
-                    JSON.stringify(value);
-                  }
                   return (
                     <ImageUploader
                       OnUpload={onChange}
@@ -528,7 +533,7 @@ export default function InsuranceForm({
                 }}
               />
             </Grid>
-            <Grid item xs={12} md={4} sx={{ position: "relative" }}>
+            <Grid item xs={12} sm={5} lg={4} sx={{ position: "relative" }}>
               <div
                 style={{
                   position: "absolute",
@@ -575,7 +580,7 @@ export default function InsuranceForm({
               />
             </Grid>
             {isDesktop ? (
-              <Grid item xs={12} md={8}>
+              <Grid item xs={12} sm={10} lg={8}>
                 <Typography
                   variant="bodySmallItalic"
                   component="div"
