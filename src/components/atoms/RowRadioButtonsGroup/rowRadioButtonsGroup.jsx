@@ -25,6 +25,7 @@ export default function RowRadioButtonsGroup({
   textSx = {},
   isCancelSchedule = false,
   isInsuranceForm = false,
+  isRegistrationForm = false,
   ...props
 }) {
   const options = props.options || [];
