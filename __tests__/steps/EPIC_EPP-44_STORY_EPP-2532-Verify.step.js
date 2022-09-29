@@ -539,7 +539,7 @@ defineFeature(feature, (test) => {
     and(
       "user should see the current location as default, if location is enabled.",
       async () => {
-        defaultValidation();
+        expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
       }
     );
   });
@@ -597,7 +597,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see the list of locations based upon City.", () => {
-      defaultValidation();
+      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
     });
   });
 
@@ -654,7 +654,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see the list of locations based upon State.", () => {
-      defaultValidation();
+      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
     });
   });
 
@@ -713,7 +713,7 @@ defineFeature(feature, (test) => {
     then(
       "the user should see the list of locations based upon Zipcode.",
       () => {
-        defaultValidation();
+        expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
       }
     );
   });
@@ -765,13 +765,13 @@ defineFeature(feature, (test) => {
     });
 
     and("click the option such as use my current location link", () => {
-      defaultValidation();
+      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
     });
 
     then(
       "the user sees the his/her current location in location field.",
       () => {
-        defaultValidation();
+        expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
       }
     );
   });
@@ -933,7 +933,7 @@ defineFeature(feature, (test) => {
     });
 
     and("the user should select the location", () => {
-      defaultValidation();
+      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
     });
 
     and("the user should select the Date of Appointment", () => {

@@ -333,8 +333,7 @@ defineFeature(feature, (test) => {
     });
 
     and('try to add the Purpose of visit', async () => {
-      await waitFor(() => container.getByText("Purpose of Visit"));
-      console.log(container.getByText("Purpose of Visit"))
+      await waitFor(() => container.getByText("Purpose of Visit"));      
       expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
     });
 
