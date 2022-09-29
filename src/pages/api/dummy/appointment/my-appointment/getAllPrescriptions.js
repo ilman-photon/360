@@ -116,7 +116,7 @@ export default function getAllPrescriptions(req, res) {
         ],
       },
     };
-    if (patientId == "2efef720-4bfc-4fb7-b1a2-19fd11c67eba") {
+    if (patientId == "4041087c-c000-4f20-9844-3e43a2ab96d2") {
       data = {
         prescriptions: {
           glasses: [],
