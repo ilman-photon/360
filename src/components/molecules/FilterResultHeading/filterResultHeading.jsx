@@ -305,8 +305,10 @@ export const FilterResultHeading = ({
         >
           {title && subtitle && (
             <Stack className={styles.subtitleContainer}>
-              <Typography className={styles.titleElement}>{title}</Typography>
-              <Typography className={styles.subtitleElement}>
+              <Typography className={styles.titleElement} tabindex={0}>
+                {title}
+              </Typography>
+              <Typography className={styles.subtitleElement} tabindex={0}>
                 {subtitle}
               </Typography>
             </Stack>

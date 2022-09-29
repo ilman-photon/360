@@ -16,7 +16,6 @@ import { useRouter } from "next/router";
 import constants from "../../../utils/constants";
 import { HeadingTitle } from "../../atoms/Heading";
 import { colors } from "../../../styles/theme";
-import { fontSize } from "@mui/system";
 export default function Register({ OnRegisterClicked, formMessage = null }) {
   const router = useRouter();
   const { handleSubmit, control, watch } = useForm({

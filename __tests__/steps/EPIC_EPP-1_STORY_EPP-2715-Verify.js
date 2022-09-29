@@ -679,7 +679,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByLabelText(/Appointments/i));
+      await waitFor(() => container.getByText("Patient Information"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -688,7 +688,7 @@ defineFeature(feature, (test) => {
     });
 
     and("User should see the widget with upcoming test/ procedure", () => {
-      const titleAppointment = container.getByLabelText(/Appointments/i);
+      const titleAppointment = container.getByText("Patient Information");
       const patientName = container.getByText("Rebecca Chan");
       expect(titleAppointment).toBeInTheDocument();
       expect(patientName).toBeInTheDocument();
