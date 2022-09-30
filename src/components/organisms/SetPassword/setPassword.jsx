@@ -263,9 +263,10 @@ const SetPasswordComponent = ({
               variant={constants.H2}
               sx={{ marginLeft: "8px" }}
               title={title}
+              tabIndex="0"
             />
             {subtitle ? (
-              <Typography variant="h4" sx={styles.titleStyles2}>
+              <Typography variant="h4" sx={styles.titleStyles2} tabIndex="0">
                 {subtitle}
               </Typography>
             ) : (

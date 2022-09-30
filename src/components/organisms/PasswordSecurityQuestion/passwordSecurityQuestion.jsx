@@ -65,10 +65,16 @@ const PasswordSecurityQuestion = ({
           sx={{ minWidth: 275, padding: "16px" }}
         >
           <CardContent style={styles.cardContentStyle}>
-            <HeadingTitle variant={constants.H2} title={t("title")} />
+            <HeadingTitle
+              variant={constants.H2}
+              title={t("title")}
+              tabIndex="0"
+            />
             <Typography
               variant={constants.BODY_REGULAR}
               style={styles.subTitleMargin}
+              tabIndex="0"
+              aria-roledescription="text"
             >
               {t("subtitle")}
             </Typography>

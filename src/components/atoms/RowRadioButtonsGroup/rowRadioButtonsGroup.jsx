@@ -78,6 +78,7 @@ export default function RowRadioButtonsGroup({
               key={idx}
               value={option.value}
               aria-label={`${option.label} Radio Button`}
+              tabindex={0}
               control={
                 <Radio
                   checked={props.value === option.value}
