@@ -523,7 +523,7 @@ export default function Prescriptions({
         variant="scrollable"
         scrollButtons={false}
         aria-label="scrollable prevent tabs example"
-        textColor="inherit"
+        textColor="unset"
         TabIndicatorProps={{
           style: {
             backgroundColor: colors.teal,
@@ -554,6 +554,8 @@ export default function Prescriptions({
           iconPosition="start"
           value={0}
           sx={{
+            color: value === 0 ? "#003B4A" : "#424747",
+            fontWeight: value === 0 ? "500" : "400",
             textTransform: "capitalize",
             width: "30%",
             fontSize: isMobile ? "14px" : "16px",
@@ -586,6 +588,8 @@ export default function Prescriptions({
           iconPosition="start"
           value={1}
           sx={{
+            color: value === 1 ? "#003B4A" : "#424747",
+            fontWeight: value === 1 ? "500" : "400",
             textTransform: "capitalize",
             width: "32%",
             fontSize: isMobile ? "14px" : "16px",
@@ -618,6 +622,8 @@ export default function Prescriptions({
           iconPosition="start"
           value={2}
           sx={{
+            color: value === 2 ? "#003B4A" : "#424747",
+            fontWeight: value === 2 ? "500" : "400",
             textTransform: "capitalize",
             width: "38%",
             fontSize: isMobile ? "14px" : "16px",
