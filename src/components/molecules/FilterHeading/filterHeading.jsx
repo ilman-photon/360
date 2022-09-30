@@ -176,6 +176,7 @@ export function getDialogContents(
                   autoFocus
                   value={value}
                   onChange={onChange}
+                  maxLength={50}
                   type="default"
                   variant="filled"
                   label="City, state, or zip code"
@@ -632,6 +633,7 @@ const FilterHeading = ({
                         color: "#303030",
                       },
                     }}
+                    maxLength={50}
                   />
                 </Box>
               )}

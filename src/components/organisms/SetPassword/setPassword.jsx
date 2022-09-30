@@ -59,7 +59,10 @@ const SetPasswordComponent = ({
   showBackToLogin = true,
 }) => {
   const router = useRouter();
-  const { t } = useTranslation("translation", { keyPrefix: "SetPassword" });
+  const { t, ready } = useTranslation("translation", {
+    keyPrefix: "SetPassword",
+    useSuspense: false,
+  });
   const { handleSubmit, control, watch, setError, setValue } = useForm();
   const [showValidation, setShowValidation] = useState(isUpdatePassword);
 
@@ -249,181 +252,191 @@ const SetPasswordComponent = ({
   };
 
   return (
-    <Card
-      className={globalStyles.container}
-      sx={{ minWidth: 275, margin: 10, marginTop: 0 }}
-    >
-      <CardContent style={cardContentStyle}>
-        <HeadingTitle
-          variant={constants.H2}
-          sx={{ marginLeft: "8px" }}
-          title={title}
-        />
-        {subtitle ? (
-          <Typography variant="h4" sx={styles.titleStyles2}>
-            {subtitle}
-          </Typography>
-        ) : (
-          <></>
-        )}
-
-        <div>
-          {showPostMessage ? (
-            <FormMessage success={false} sx={styles.postMessage}>
-              {postMessage}
-            </FormMessage>
-          ) : (
-            <></>
-          )}
-
-          {formMessage && formMessage.content ? (
-            <FormMessage
-              ref={formMessageComp}
-              success={formMessage.success}
-              title={formMessage.title}
-              style={{ margin: 8 }}
-            >
-              {formMessage.content}
-            </FormMessage>
-          ) : (
-            ""
-          )}
-        </div>
-
-        <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
-          {!isUpdatePassword ? (
-            <Controller
-              name="username"
-              control={control}
-              defaultValue=""
-              render={({
-                field: { onChange, value },
-                fieldState: { error },
-              }) => {
-                return (
-                  <StyledInput
-                    type="text"
-                    id="username"
-                    label="Username"
-                    value={value}
-                    // style={styles.margin}
-                    disabled
-                    onChange={onChange}
-                    error={!!error}
-                    size="small"
-                    variant="filled"
-                    helperText={error ? error.message : null}
-                    sx={{
-                      margin: "8px",
-                    }}
-                  />
-                );
-              }}
-              rules={{
-                required: "Username required",
-              }}
+    <>
+      {ready && (
+        <Card
+          className={globalStyles.container}
+          sx={{ minWidth: 275, margin: 10, marginTop: 0 }}
+        >
+          <CardContent style={cardContentStyle}>
+            <HeadingTitle
+              variant={constants.H2}
+              sx={{ marginLeft: "8px" }}
+              title={title}
             />
-          ) : (
-            <></>
-          )}
-          <Controller
-            name="password"
-            control={control}
-            defaultValue=""
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
-              return (
-                <StyledInput
-                  id="password"
-                  label={passwordPlaceHolder}
-                  type="password"
-                  value={value}
-                  onChange={(event) => {
-                    onChange(event);
-                    onChangePasswordValue();
+            {subtitle ? (
+              <Typography variant="h4" sx={styles.titleStyles2}>
+                {subtitle}
+              </Typography>
+            ) : (
+              <></>
+            )}
+
+            <div>
+              {showPostMessage ? (
+                <FormMessage success={false} sx={styles.postMessage}>
+                  {postMessage}
+                </FormMessage>
+              ) : (
+                <></>
+              )}
+
+              {formMessage && formMessage.content ? (
+                <FormMessage
+                  ref={formMessageComp}
+                  success={formMessage.success}
+                  title={formMessage.title}
+                  style={{ margin: 8 }}
+                >
+                  {formMessage.content}
+                </FormMessage>
+              ) : (
+                ""
+              )}
+            </div>
+
+            <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
+              {!isUpdatePassword ? (
+                <Controller
+                  name="username"
+                  control={control}
+                  defaultValue=""
+                  render={({
+                    field: { onChange, value },
+                    fieldState: { error },
+                  }) => {
+                    return (
+                      <StyledInput
+                        type="text"
+                        id="username"
+                        label="Username"
+                        value={value}
+                        // style={styles.margin}
+                        disabled
+                        onChange={onChange}
+                        error={!!error}
+                        size="small"
+                        variant="filled"
+                        helperText={error ? error.message : null}
+                        sx={{
+                          margin: "8px",
+                        }}
+                      />
+                    );
                   }}
-                  error={!!error}
-                  helperText={error ? error.message : null}
-                />
-              );
-            }}
-            rules={{
-              required: "This field is required",
-              validate: !isUpdatePassword ? passwordRules() : {},
-            }}
-          />
-          {!isUpdatePassword ? (
-            getPasswordValidator({
-              passwordValidator,
-              showValidator: isPasswordError,
-              watchedPassword,
-              validateErrorPassword,
-            })
-          ) : (
-            <></>
-          )}
-          <Controller
-            name="confirmPassword"
-            control={control}
-            defaultValue=""
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
-              return (
-                <StyledInput
-                  id="confirmPassword"
-                  label={confirmPasswordPlaceHolder}
-                  type="password"
-                  value={value}
-                  // style={styles.margin}
-                  onChange={(event) => {
-                    onChange(event);
-                    onChangePasswordValue();
+                  rules={{
+                    required: "Username required",
                   }}
-                  error={!!error}
-                  helperText={error ? error.message : null}
                 />
-              );
-            }}
-            rules={{
-              required: t("errorEmptyField"),
-              validate: !isUpdatePassword ? passwordRules() : {},
-            }}
-          />
-          {isUpdatePassword ? (
-            getPasswordValidator({
-              passwordValidator,
-              showValidator: isPasswordError,
-              watchedPassword,
-              validateErrorPassword,
-            })
-          ) : (
-            <></>
-          )}
-          <StyledButton
-            type="submit"
-            theme="patient"
-            mode="primary"
-            size="small"
-            gradient={false}
-            style={{ ...styles.margin, margin: "0px 8px" }}
-          >
-            {ctaButtonLabel}
-          </StyledButton>
-        </form>
-        {showBackToLogin ? (
-          <Link
-            style={{ ...styles.margin, ...styles.link }}
-            color={colors.link}
-            onClick={function () {
-              onBackToLoginClicked(router);
-            }}
-            {...getLinkAria(t("backButtonLink"))}
-          >
-            {t("backButtonLink")}
-          </Link>
-        ) : (
-          <></>
-        )}
-      </CardContent>
-    </Card>
+              ) : (
+                <></>
+              )}
+              <Controller
+                name="password"
+                control={control}
+                defaultValue=""
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => {
+                  return (
+                    <StyledInput
+                      id="password"
+                      label={passwordPlaceHolder}
+                      type="password"
+                      value={value}
+                      onChange={(event) => {
+                        onChange(event);
+                        onChangePasswordValue();
+                      }}
+                      error={!!error}
+                      helperText={error ? error.message : null}
+                    />
+                  );
+                }}
+                rules={{
+                  required: "This field is required",
+                  validate: !isUpdatePassword ? passwordRules() : {},
+                }}
+              />
+              {!isUpdatePassword ? (
+                getPasswordValidator({
+                  passwordValidator,
+                  showValidator: isPasswordError,
+                  watchedPassword,
+                  validateErrorPassword,
+                })
+              ) : (
+                <></>
+              )}
+              <Controller
+                name="confirmPassword"
+                control={control}
+                defaultValue=""
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => {
+                  return (
+                    <StyledInput
+                      id="confirmPassword"
+                      label={confirmPasswordPlaceHolder}
+                      type="password"
+                      value={value}
+                      // style={styles.margin}
+                      onChange={(event) => {
+                        onChange(event);
+                        onChangePasswordValue();
+                      }}
+                      error={!!error}
+                      helperText={error ? error.message : null}
+                    />
+                  );
+                }}
+                rules={{
+                  required: t("errorEmptyField"),
+                  validate: !isUpdatePassword ? passwordRules() : {},
+                }}
+              />
+              {isUpdatePassword ? (
+                getPasswordValidator({
+                  passwordValidator,
+                  showValidator: isPasswordError,
+                  watchedPassword,
+                  validateErrorPassword,
+                })
+              ) : (
+                <></>
+              )}
+              <StyledButton
+                type="submit"
+                theme="patient"
+                mode="primary"
+                size="small"
+                gradient={false}
+                style={{ ...styles.margin, margin: "0px 8px" }}
+              >
+                {ctaButtonLabel}
+              </StyledButton>
+            </form>
+            {showBackToLogin ? (
+              <Link
+                style={{ ...styles.margin, ...styles.link }}
+                color={colors.link}
+                onClick={function () {
+                  onBackToLoginClicked(router);
+                }}
+                {...getLinkAria(t("backButtonLink"))}
+              >
+                {t("backButtonLink")}
+              </Link>
+            ) : (
+              <></>
+            )}
+          </CardContent>
+        </Card>
+      )}
+    </>
   );
 };
 
