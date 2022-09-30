@@ -76,9 +76,13 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
     window.addEventListener("popstate", onBackButtonEvent);
 
     const userStorageData = JSON.parse(localStorage.getItem("userData"));
-    dispatch(fetchUser({ patientId: userStorageData.patientId }));
-    setPatientId(userStorageData.patientId);
-    fetchUSListOfStates();
+    if (userStorageData) {
+      dispatch(fetchUser({ patientId: userStorageData.patientId }));
+      setPatientId(userStorageData.patientId);
+      fetchUSListOfStates();
+    } else {
+      router.replace("/patient/login");
+    }
 
     return () => {
       window.removeEventListener("popstate", onBackButtonEvent);

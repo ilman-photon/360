@@ -9,6 +9,12 @@ import {
 
 let url;
 
+/**
+ * This is parser for request API body user data
+ * @param {*} postBody
+ * @param {*} payload
+ * @returns
+ */
 const buildProfilePostBody = (postBody, payload) => {
   let emailData = postBody.contactInformation.emails;
   emailData[0] = {
@@ -74,6 +80,12 @@ const buildProfilePostBody = (postBody, payload) => {
   };
 };
 
+/**
+ * This is a parser for building digital asset object for request Body based on API endpoint
+ * @param {*} payload
+ * @param {*} type
+ * @returns
+ */
 const buildDigitalAssetObject = (payload, type) => {
   if (!payload) return null;
   if (!payload._id) return null;
@@ -95,6 +107,12 @@ const buildDigitalAssetObject = (payload, type) => {
   }
 };
 
+/**
+ * This is parser for request API body insurance data
+ * @param {*} postBody
+ * @param {*} payload
+ * @returns
+ */
 const buildInsurancePostBody = (postBody = {}, payload = {}) => {
   const subscriberData = payload.subscriberData;
   const subscriberDob = subscriberData.dob
@@ -106,7 +124,6 @@ const buildInsurancePostBody = (postBody = {}, payload = {}) => {
   const frontCardData = payload.frontCard;
   const backCardData = payload.backCard;
   return {
-    // ...postBody,
     _version: postBody._version,
     insuranceType: "VISION",
     group: payload.groupID,
@@ -292,6 +309,11 @@ export const deleteInsurance = createAsyncThunk(
   }
 );
 
+/**
+ * This is parser for user data to be populated in browser view
+ * @param {*} payload
+ * @returns
+ */
 const buildUserData = (payload) => {
   const userAddress = payload.address[0] || {};
   const patientDetails = payload.patientDetails || {};
@@ -333,13 +355,6 @@ const buildUserData = (payload) => {
     preferredCommunication: userPreferredCommunication,
     age: payload.age,
     gender: GENDER_LIST[payload.sex - 1] || "",
-    // insurances
-    relationship: "",
-    insurancePriority: "",
-    planName: "",
-    subscriberMember: "",
-    groupId: "",
-    isSubscriber: "",
   };
 };
 
@@ -371,6 +386,11 @@ const DEFAULT_USER_DATA = {
   isSubscriber: "",
 };
 
+/**
+ * This is parser for user insurance data to be populated in browser view
+ * @param {*} payload
+ * @returns
+ */
 const buildUserInsuranceData = (payload) => {
   const insurances = payload;
   return insurances.map((insurance) => {
@@ -389,7 +409,6 @@ const buildUserInsuranceData = (payload) => {
         value: insurance.plan.name,
       },
       memberID: subscriberData._id,
-      // memberID: "",
       groupID: insurance.group,
       isSubscriber: insurance.isPatientSubscriber ? "Yes" : "No",
       subscriberData: {
@@ -399,9 +418,6 @@ const buildUserInsuranceData = (payload) => {
         relationship: RELATIONSHIP_LIST[insurance.subscriberRelation - 1],
       },
       priority: insurance.priority,
-      // frontCard: "/transparent.png",
-      // backCard: "/transparent.png",
-      // TODO later only images
       frontCard: digitalAssets ? digitalAssets.master_front : {},
       backCard: digitalAssets ? digitalAssets.master_back : {},
     };
@@ -477,7 +493,7 @@ const userSlice = createSlice({
     setStatus: (state, { payload }) => {
       state.status = payload;
     },
-    resetUserData: (state, { payload }) => {
+    resetUserData: (state) => {
       state.userData = DEFAULT_USER_DATA;
     },
     setUserData: (state, { payload }) => {

@@ -194,8 +194,12 @@ export default function InsuranceInfoPage() {
 
   useEffect(() => {
     const userStorageData = JSON.parse(localStorage.getItem("userData"));
-    dispatch(fetchInsurance({ patientId: userStorageData.patientId }));
-    setPatientId(userStorageData.patientId);
+    if (userStorageData) {
+      dispatch(fetchInsurance({ patientId: userStorageData.patientId }));
+      setPatientId(userStorageData.patientId);
+    } else {
+      router.replace("/patient/login");
+    }
 
     dispatch(fetchAllPayers());
     // eslint-disable-next-line react-hooks/exhaustive-deps
