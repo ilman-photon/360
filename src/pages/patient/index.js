@@ -22,13 +22,23 @@ import { parseSuggestionData } from "../../utils/appointment";
 import FilterResultHeading from "../../components/molecules/FilterResultHeading/filterResultHeading";
 import { Box } from "@mui/system";
 import ModalCancelScheduling from "../../components/organisms/ScheduleAppointment/ModalCancelScheduling/modalCancelScheduling";
+import { getCity } from "../../utils/getCity";
 
-export default function HomePage() {
+export async function getStaticProps() {
+  return {
+    props: {
+      googleApiKey: process.env.GOOGLE_API_KEY,
+    },
+  };
+}
+export default function HomePage({ googleApiKey }) {
   const [filterSuggestionData, setFilterSuggestionData] = React.useState({});
   const [prescriptionData, setPrescriptionData] = React.useState({});
   const [appointmentData, setAppointmentData] = React.useState({});
   const [isOpenCancel, setIsOpenCancel] = React.useState(false);
   const [isAuthenticated, setIsAuthenticated] = React.useState(true);
+  const [currentCity, setCurrentCity] = React.useState("");
+  const [locationChange, setLocationChange] = React.useState(false);
 
   const filterData = useSelector((state) => state.appointment.filterData);
   const userData = useSelector((state) => state.user.userData);
@@ -153,6 +163,13 @@ export default function HomePage() {
   }
 
   useEffect(() => {
+    if (coords) {
+      getCity(googleApiKey, coords, setCurrentCity);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [coords, locationChange]);
+
+  useEffect(() => {
     const cookies = new Cookies();
     if (!cookies.get("authorized")) {
       router.push("/patient/login");
@@ -232,6 +249,8 @@ export default function HomePage() {
               title={"John, Welcome to your dashboard"}
               subtitle={"Search for a doctor"}
               isFixed={false}
+              currentCity={currentCity}
+              onChangeLocation={() => setLocationChange(true)}
             />
           ) : (
             <Box
