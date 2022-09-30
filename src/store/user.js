@@ -49,12 +49,26 @@ const buildProfilePostBody = (postBody, payload) => {
       payload.preferredCommunication === "phone",
   };
 
-  let patientDetailsDetailsData = {
+  let patientDetailsData = {
     ...postBody.patientDetails,
-    profilePhoto: payload.profilePhoto,
-    stateIssuedId: payload.issuedCardFront.uid
-      ? payload.issuedCardFront
-      : buildDigitalAssetObject(payload.issuedCardFront, "profile"),
+    profilePhoto: payload.profilePhoto
+      ? {
+          digitalAsset: buildDigitalAssetObject(
+            payload.profilePhoto,
+            "profile"
+          ),
+        }
+      : null,
+    stateIssuedId: payload.issuedCardFront?.uid
+      ? { digitalAsset: payload.issuedCardFront }
+      : payload.issuedCardFront
+      ? {
+          digitalAsset: buildDigitalAssetObject(
+            payload.issuedCardFront,
+            "profile"
+          ),
+        }
+      : null,
   };
 
   const getGenderCode = (gender) => {
@@ -67,6 +81,7 @@ const buildProfilePostBody = (postBody, payload) => {
 
   return {
     ...postBody,
+    nickName: payload.preferredName,
     contactInformation: {
       ...postBody.contactInformation,
       emails: emailData,
@@ -76,7 +91,7 @@ const buildProfilePostBody = (postBody, payload) => {
     sex: getGenderCode(payload.gender),
     title: getTitleCode(payload.title),
     contactPreferenceDetail: contactPreferenceDetailData,
-    patientDetails: patientDetailsDetailsData,
+    patientDetails: patientDetailsData,
   };
 };
 
@@ -87,6 +102,7 @@ const buildProfilePostBody = (postBody, payload) => {
  * @returns
  */
 const buildDigitalAssetObject = (payload, type) => {
+  console.log("build DA", payload, type);
   if (!payload) return null;
   if (!payload._id) return null;
   switch (type) {
@@ -335,10 +351,10 @@ const buildUserData = (payload) => {
     firstName: payload.firstName,
     lastName: payload.lastName,
     name: `${payload.firstName} ${payload.lastName}`,
-    preferedName: "---",
+    preferredName: payload.nickName || "",
     profilePhoto: patientDetails.profilePhoto?.digitalAsset || null,
-    issuedCardFront: {},
-    issuedCardBack: {},
+    issuedCardFront: patientDetails.stateIssuedId?.digitalAsset || null,
+    issuedCardBack: null,
     dob: payload.dob,
     title: TITLE_LIST[payload.title - 1] || "",
     ssn: payload.ssn,
@@ -364,8 +380,8 @@ const DEFAULT_USER_DATA = {
   name: "Eyecare User",
   preferredName: "---",
   profilePhoto: null,
-  issuedCardFront: {},
-  issuedCardBack: {},
+  issuedCardFront: null,
+  issuedCardBack: null,
   dob: new Date(),
   title: "Mr.",
   ssn: 1234567,

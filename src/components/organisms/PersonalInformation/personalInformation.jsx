@@ -337,7 +337,7 @@ export default function PersonalInformation({
             />
 
             <Controller
-              name="preferedName"
+              name="preferredName"
               control={control}
               render={({
                 field: { onChange, value },
