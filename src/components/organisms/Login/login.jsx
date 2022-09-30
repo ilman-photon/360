@@ -87,7 +87,10 @@ export function Login({
                         data-testid={LOGIN_TEST_ID.email}
                         type={constants.INPUT_TEXT}
                         value={value}
-                        onChange={onChange}
+                        onChange={(value) => {
+                          setPostMessage({ status: "" });
+                          onChange(value);
+                        }}
                         error={!!error}
                         helperText={error ? error.message : null}
                       />
@@ -118,7 +121,10 @@ export function Login({
                         size={constants.SMALL}
                         variant={constants.FILLED}
                         value={value}
-                        onChange={onChange}
+                        onChange={(value) => {
+                          setPostMessage({ status: "" });
+                          onChange(value);
+                        }}
                         error={!!error}
                         aria
                         helperText={error ? error.message : null}
