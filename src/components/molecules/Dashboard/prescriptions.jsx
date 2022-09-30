@@ -337,136 +337,6 @@ export default function Prescriptions({
     }
   }
 
-  function renderMedicationViewAllUI(data) {
-    return (
-      <Stack direction={"row"} className={styles.medicationViewAllContainer}>
-        {!isMobile && (
-          <Box>
-            <Box
-              className={styles.medicationIconContainer}
-              sx={{ justifyContent: "center" }}
-            >
-              <Image alt="" src={iconMedication} width={32.88} height={44.63} />
-            </Box>
-          </Box>
-        )}
-        <Stack display={"flex"} marginLeft={"8px"} width={"100%"}>
-          <Stack direction={"row"} sx={{ marginBottom: "8px" }}>
-            <Typography className={styles.medicationViewAllTitle}>
-              Aspirin
-            </Typography>
-            {!isMobile ? renderCTAIcon() : <MenuList />}
-          </Stack>
-          <Stack sx={{ width: "100%" }}>
-            <Stack direction={"row"} className={styles.stackContainer}>
-              <Typography className={styles.medicationViewAllStatus}>
-                Status: Refill requested
-              </Typography>
-              <Stack
-                direction={"row"}
-                alignSelf={"center"}
-                className={styles.gridHeight}
-              >
-                <Typography
-                  variant="customBodyRegular"
-                  className={styles.gridText}
-                >
-                  Fill request date: &nbsp;
-                </Typography>
-                <Typography variant="bodyMedium" className={styles.gridText}>
-                  01/11/2022
-                </Typography>
-              </Stack>
-            </Stack>
-            <Stack direction={"row"} className={styles.stackContainer}>
-              <Stack
-                direction={"row"}
-                alignSelf={"center"}
-                className={styles.gridHeight}
-              >
-                <Typography
-                  variant="customBodyRegular"
-                  className={styles.gridText}
-                >
-                  Prescribed on: &nbsp;
-                </Typography>
-                <Typography variant="bodyMedium" className={styles.gridText}>
-                  01/10/2022
-                </Typography>
-              </Stack>
-              <Stack
-                direction={"row"}
-                alignSelf={"center"}
-                className={styles.gridHeight}
-              >
-                <Typography
-                  variant="customBodyRegular"
-                  className={styles.gridText}
-                >
-                  Prescribed by: &nbsp;
-                </Typography>
-                <Typography variant="bodyMedium" className={styles.gridText}>
-                  Dr. Philip Morris
-                </Typography>
-              </Stack>
-              <Stack
-                direction={"row"}
-                alignSelf={"center"}
-                className={styles.gridHeight}
-              >
-                <Typography
-                  variant="customBodyRegular"
-                  className={styles.gridText}
-                >
-                  Dose: &nbsp;
-                </Typography>
-                <Typography variant="bodyMedium" className={styles.gridText}>
-                  0.5 mL
-                </Typography>
-              </Stack>
-            </Stack>
-            <Stack direction={"row"} className={styles.stackContainer}>
-              <Stack
-                direction={"row"}
-                alignSelf={"center"}
-                className={styles.gridHeight}
-              >
-                <Typography
-                  variant="customBodyRegular"
-                  className={styles.gridText}
-                >
-                  Expires on: &nbsp;
-                </Typography>
-                <Typography variant="bodyMedium" className={styles.gridText}>
-                  04/10/2023
-                </Typography>
-              </Stack>
-            </Stack>
-          </Stack>
-          <Divider />
-          <Stack direction={"row"} sx={{ marginTop: "24px", flexWrap: "wrap" }}>
-            <Stack direction={"row"} className={styles.remainingTimeContainer}>
-              <AccessTimeIcon sx={{ color: colors.darkGreen }} />
-              <Typography className={styles.remainingTimeText}>
-                Take 2 times a day
-              </Typography>
-            </Stack>
-            <StyledButton
-              mode={constants.PRIMARY}
-              gradient={false}
-              onClick={() => {
-                //this is intentional
-              }}
-              className={styles.requestButton}
-            >
-              Request Refill
-            </StyledButton>
-          </Stack>
-        </Stack>
-      </Stack>
-    );
-  }
-
   function renderPrescriptionTabUI(data, type) {
     if (!data) {
       return <></>;
@@ -474,13 +344,9 @@ export default function Prescriptions({
     const contentUI = [];
     if (data && data.length > 0) {
       data.map((row, idx) => {
-        if (type === "medications") {
-          contentUI.push(renderMedicationViewAllUI(row));
-        } else {
-          contentUI.push(
-            renderPrescriptionTable(row, type, idx, data.length === idx + 1)
-          );
-        }
+        contentUI.push(
+          renderPrescriptionTable(row, type, idx, data.length === idx + 1)
+        );
       });
     } else {
       contentUI.push(
@@ -509,7 +375,12 @@ export default function Prescriptions({
     return (
       <Box>
         <Box
-          className={[styles.flexDisplay, styles.spaceBetween, styles.margin]}
+          className={[
+            styles.flexDisplay,
+            styles.spaceBetween,
+            styles.margin,
+            styles.marginBottom,
+          ]}
         >
           <Typography
             variant="titleCard"
@@ -652,7 +523,7 @@ export default function Prescriptions({
         variant="scrollable"
         scrollButtons={false}
         aria-label="scrollable prevent tabs example"
-        textColor="inherit"
+        textColor="unset"
         TabIndicatorProps={{
           style: {
             backgroundColor: colors.teal,
@@ -683,6 +554,8 @@ export default function Prescriptions({
           iconPosition="start"
           value={0}
           sx={{
+            color: value === 0 ? "#003B4A" : "#424747",
+            fontWeight: value === 0 ? "500" : "400",
             textTransform: "capitalize",
             width: "30%",
             fontSize: isMobile ? "14px" : "16px",
@@ -715,6 +588,8 @@ export default function Prescriptions({
           iconPosition="start"
           value={1}
           sx={{
+            color: value === 1 ? "#003B4A" : "#424747",
+            fontWeight: value === 1 ? "500" : "400",
             textTransform: "capitalize",
             width: "32%",
             fontSize: isMobile ? "14px" : "16px",
@@ -747,6 +622,8 @@ export default function Prescriptions({
           iconPosition="start"
           value={2}
           sx={{
+            color: value === 2 ? "#003B4A" : "#424747",
+            fontWeight: value === 2 ? "500" : "400",
             textTransform: "capitalize",
             width: "38%",
             fontSize: isMobile ? "14px" : "16px",
@@ -772,6 +649,7 @@ export default function Prescriptions({
         sx={{
           ".MuiCardContent-root": {
             p: 0,
+            pb: 3,
           },
         }}
       >

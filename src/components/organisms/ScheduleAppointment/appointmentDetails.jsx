@@ -69,7 +69,7 @@ export default function AppointmentDetails({
             <Typography
               variant="bodyMedium"
               sx={{ color: colors.darkGreen }}
-              tabindex={"0"}
+              tabIndex={"0"}
               data-testid={
                 TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_DETAILS.date
               }
@@ -93,7 +93,7 @@ export default function AppointmentDetails({
             <Typography
               variant="bodyMedium"
               sx={{ color: colors.darkGreen }}
-              tabindex={"0"}
+              tabIndex={"0"}
             >
               {appointmentData.insuranceCarrier
                 ? appointmentData.insuranceCarrier
@@ -119,7 +119,7 @@ export default function AppointmentDetails({
             <Typography
               variant="bodyMedium"
               sx={{ color: colors.darkGreen }}
-              tabindex={"0"}
+              tabIndex={"0"}
               aria-label={
                 appointmentData.appointmentType ||
                 "no purpose of visit provided"

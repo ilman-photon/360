@@ -311,7 +311,6 @@ export default function ScheduleAppointmentPage() {
   }, [router]);
 
   const handleEditSchedule = () => {
-    console.log("change schedule data");
     router.push({ pathname: "/patient/appointment", query: router.query });
   };
 

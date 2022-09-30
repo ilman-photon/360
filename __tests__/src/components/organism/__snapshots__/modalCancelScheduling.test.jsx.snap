@@ -10,7 +10,7 @@ Object {
       aria-hidden="true"
     />
     <div
-      class="MuiDialog-root modalDialog MuiModal-root css-1ulhvbw-MuiModal-root-MuiDialog-root"
+      class="MuiDialog-root modalDialog MuiModal-root css-yzzger-MuiModal-root-MuiDialog-root"
       role="presentation"
     >
       <div
@@ -73,6 +73,7 @@ Object {
                       <label
                         aria-label="Appointment no longer needed Radio Button"
                         class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                        tabindex="0"
                       >
                         <span
                           class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -122,6 +123,7 @@ Object {
                       <label
                         aria-label="Patient passed away Radio Button"
                         class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                        tabindex="0"
                       >
                         <span
                           class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -171,6 +173,7 @@ Object {
                       <label
                         aria-label="Family emergency Radio Button"
                         class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                        tabindex="0"
                       >
                         <span
                           class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -220,6 +223,7 @@ Object {
                       <label
                         aria-label="Not covered by insurance Radio Button"
                         class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                        tabindex="0"
                       >
                         <span
                           class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -269,6 +273,7 @@ Object {
                       <label
                         aria-label="Rescheduled appointment Radio Button"
                         class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                        tabindex="0"
                       >
                         <span
                           class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -318,6 +323,7 @@ Object {
                       <label
                         aria-label="Patient hospitalized Radio Button"
                         class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                        tabindex="0"
                       >
                         <span
                           class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -367,6 +373,7 @@ Object {
                       <label
                         aria-label="Patient illness Radio Button"
                         class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                        tabindex="0"
                       >
                         <span
                           class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -416,6 +423,7 @@ Object {
                       <label
                         aria-label="Transportation issues Radio Button"
                         class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                        tabindex="0"
                       >
                         <span
                           class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -465,6 +473,7 @@ Object {
                       <label
                         aria-label="Weather Radio Button"
                         class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                        tabindex="0"
                       >
                         <span
                           class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -514,6 +523,7 @@ Object {
                       <label
                         aria-label="Homebound Radio Button"
                         class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                        tabindex="0"
                       >
                         <span
                           class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-hvpvox-MuiButtonBase-root-MuiRadio-root"
@@ -563,6 +573,7 @@ Object {
                       <label
                         aria-label="Other Radio Button"
                         class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hsda4-MuiFormControlLabel-root"
+                        tabindex="0"
                       >
                         <span
                           class="MuiRadio-root MuiRadio-colorPrimary MuiButtonBase-root MuiRadio-root MuiRadio-colorPrimary PrivateSwitchBase-root css-hvpvox-MuiButtonBase-root-MuiRadio-root"

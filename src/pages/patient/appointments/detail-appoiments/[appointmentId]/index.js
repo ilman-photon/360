@@ -61,6 +61,7 @@ AppointmentDetails.getLayout = function getLayout(page) {
       <AppointmentLayout
         currentActivePage={"appointments"}
         backTitle={"Back to Appointments"}
+        onBackClicked={"/patient/appointments"}
       >
         {page}
       </AppointmentLayout>

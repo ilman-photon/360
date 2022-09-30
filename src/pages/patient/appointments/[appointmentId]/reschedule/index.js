@@ -6,6 +6,7 @@ import AppointmentDetails from "../../../../../components/organisms/ScheduleAppo
 import { Provider, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import store from "../../../../../store/store";
+import React from "react";
 
 export default function RescheduleAppointments() {
   const router = useRouter();
@@ -13,6 +14,13 @@ export default function RescheduleAppointments() {
   const appointmentScheduleData = useSelector((state) => {
     return state.appointment.appointmentSchedule;
   });
+
+  React.useEffect(() => {
+    if (!appointmentScheduleData.providerInfo.providerId) {
+      router.replace("/patient/appointment");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [appointmentScheduleData]);
 
   const OnEditClicked = () => {
     router.push("/patient/appointment?reschedule=true");

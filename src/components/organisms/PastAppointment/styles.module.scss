@@ -83,6 +83,12 @@
 
 .subTitleWrapper {
   display: flex;
+  align-items: baseline;
+  gap: 5px;
+}
+
+.noAppointments {
+  display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;

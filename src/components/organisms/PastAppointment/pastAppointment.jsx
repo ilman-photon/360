@@ -126,7 +126,7 @@ export default function PastAppointment({ data }) {
   }
   const isData =
     appointments.length == 0 ? (
-      <Box className={styles.subTitleWrapper}>
+      <Box className={styles.noAppointments}>
         <Typography
           tabIndex={0}
           ariaLabel={"You have no past appointments"}

@@ -129,7 +129,19 @@ export default function HomePage() {
     api
       .getAllAppointment()
       .then(function (response) {
-        setAppointmentData(response.appointmentList);
+        const today = new Date();
+        const upcomingAppointments = [];
+        for (let index = 0; index < response.appointmentList.length; index++) {
+          const appointment = response.appointmentList[index];
+          const visitDate = new Date(appointment.appointmentInfo.date);
+
+          const daysAway = visitDate.getTime() - today.getTime();
+          const totalDays = Math.ceil(daysAway / (1000 * 3600 * 24));
+          if (totalDays >= 0) {
+            upcomingAppointments.push(appointment);
+          }
+        }
+        setAppointmentData(upcomingAppointments);
       })
       .catch(function () {
         //Handle error getAllAppointment

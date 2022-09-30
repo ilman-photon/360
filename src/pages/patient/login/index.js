@@ -31,8 +31,10 @@ function getUserData(postbody, callback) {
         callback(isHasMfaAccessToken);
       });
     })
-    .catch(() => {
-      callback(false);
+    .catch((err) => {
+      if (api.responseCodeValidation(err)) {
+        callback(false);
+      }
     });
 }
 
@@ -80,14 +82,16 @@ export const loginProps = {
       .catch(function (err) {
         if (err.ResponseCode !== constants.ERROR_CODE.NETWORK_ERR) {
           const isLockedAccount = err.ResponseCode === 2004;
-          const description = isLockedAccount
-            ? "Your account has been locked after too many failed attempts. Please contact Customer Support to unlock your account."
-            : "Invalid Username or Password";
           callback({
             status: "failed",
-            message: {
-              description,
-            },
+            message: isLockedAccount
+              ? {
+                  title: "errorLoginLockedTitle",
+                  description: "errorLoginLockedMessage",
+                }
+              : {
+                  description: "errorFailedLogin",
+                },
           });
         }
       });

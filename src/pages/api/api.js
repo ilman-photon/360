@@ -25,11 +25,23 @@ export class Api {
     this.maxRequestCounter = 3;
   }
 
-  getResponse(url, postbody, method, token) {
-    if (token) {
-      this.client.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-    }
+  errorGenericValidation = (err) => {
+    return (
+      err &&
+      ((err.code === constants.ERROR_CODE.BAD_REQUEST &&
+        err?.response?.data?.ResponseCode === undefined) ||
+        err.code === constants.ERROR_CODE.NETWORK_ERR ||
+        [500].indexOf(err.response?.status) !== -1)
+    );
+  };
 
+  responseCodeValidation = (err) => {
+    return (
+      [constants.ERROR_CODE.NETWORK_ERR, 500].indexOf(err.ResponseCode) === -1
+    );
+  };
+
+  getResponse(url, postbody, method) {
     const api = new Api();
     return new Promise((resolve, reject) => {
       const resolver = function (response) {
@@ -39,69 +51,16 @@ export class Api {
           reject(response);
         }
       };
-      const rejecter = async (err) => {
-        if (
-          err &&
-          ((err.code === constants.ERROR_CODE.BAD_REQUEST &&
-            err?.response?.data?.ResponseCode === undefined) ||
-            err.code === constants.ERROR_CODE.NETWORK_ERR)
-        ) {
-          const errors = err?.response?.data?._errors; // error from e360+ API
-          if (errors && errors[0]) {
-            // error jwt not found in header / expired
-            if (errors[0].code === "B4988908-5081-48CF-9B95-CA67E3FA87F0") {
-              this.requestCounter++;
-              if (this.requestCounter < this.maxRequestCounter) {
-                const tokenResponse = await this.getToken();
-                // TODO: call failed function
-                // was this, but realize that this only do fetchUser F.
-                // await store.dispatch(
-                //   fetchUser(tokenResponse?.data?.access_token)
-                // );
-                // reject(tokenResponse)
-
-                // dont delete, maybe insight
-                // await store.dispatch(
-                //   [callbackAction]({...callbackPayload, token: tokenResponse?.data?.access_token})
-                // );
-              } else {
-                // TODO: Duplicate with below else
-                this.requestCounter = 0;
-
-                store.dispatch(
-                  setGenericErrorMessage("Please try again after sometime.")
-                );
-
-                reject({
-                  description:
-                    "Something went wrong. Please try again after sometime.",
-                  ResponseCode: err.code,
-                  ResponseData: err.response.data,
-                });
-              }
-            } else {
-              const errorMessagee = errors[0].description;
-              store.dispatch(setGenericErrorMessage(errorMessagee));
-              reject({
-                description: errorMessagee,
-                ResponseCode: err.code,
-                ResponseData: err.response._errors,
-              });
-            }
-          } else {
-            this.requestCounter = 0;
-
-            store.dispatch(
-              setGenericErrorMessage("Please try again after sometime.")
-            );
-
-            reject({
-              description:
-                "Something went wrong. Please try again after sometime.",
-              ResponseCode: err.code,
-              ResponseData: err.response.data,
-            });
-          }
+      const rejecter = function (err) {
+        if (api.errorGenericValidation(err)) {
+          store.dispatch(
+            setGenericErrorMessage("Please try again after sometime.")
+          );
+          reject({
+            description:
+              "Something went wrong. Please try again after sometime.",
+            ResponseCode: err.response.status || err.code,
+          });
         } else if (err && err.response && err.response.data) {
           reject(err.response.data);
         } else {

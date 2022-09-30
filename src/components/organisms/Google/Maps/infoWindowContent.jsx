@@ -56,7 +56,10 @@ const InfoWindowContent = ({
       <Grid container spacing={1}>
         <Grid item xs={10}>
           <Stack spacing={2} divider={<Divider />}>
-            <Typography variant="bodySmallMedium" sx={{ color: "#757575" }}>
+            <Typography
+              variant="bodySmallMedium"
+              sx={{ color: "#757575", fontWeight: "400" }}
+            >
               {counter} of {data.length} doctors at this location
             </Typography>
             <ProviderProfile
@@ -78,19 +81,27 @@ const InfoWindowContent = ({
               <ArrowBackIosIcon
                 role="button"
                 data-testid={constants.TEST_ID.MAP_INFO_WINDOW.previousProvider}
-                sx={{ width: "22px", cursor: "pointer" }}
+                sx={{
+                  width: "22px",
+                  cursor: "pointer",
+                  color: "rgba(0, 0, 0, 0.54)",
+                }}
                 onClick={prev}
               />
               <ArrowForwardIosIcon
                 role="button"
                 data-testid={constants.TEST_ID.MAP_INFO_WINDOW.nextProvider}
-                sx={{ width: "22px", cursor: "pointer" }}
+                sx={{
+                  width: "22px",
+                  cursor: "pointer",
+                  color: "rgba(0, 0, 0, 0.54)",
+                }}
                 onClick={next}
               />
             </Stack>
             <Typography
               variant="bodySmallMedium"
-              sx={{ textAlign: "right", pt: 2 }}
+              sx={{ textAlign: "right", pt: 2, fontWeight: "400" }}
             >
               {data[counter - 1] ? data[counter - 1].distance : "-"}
             </Typography>
@@ -110,7 +121,7 @@ const InfoWindowContent = ({
                         lineHeight: "24px",
                         fontWeight: 500,
                       }}
-                      tabindex={"0"}
+                      tabIndex={"0"}
                     >
                       {getLabelTime(v.date)}
                     </Typography>

@@ -36,6 +36,9 @@ const StyledMenu = styled((props) => (
       padding: "4px 0",
     },
     "& .MuiMenuItem-root": {
+      fontSize: "14px",
+      fontWeight: "400",
+      color: "#323338",
       "& .MuiSvgIcon-root": {
         fontSize: 18,
         color: theme.palette.text.secondary,
@@ -93,6 +96,9 @@ export default function MenuList({ pdfFile = "" }) {
             style={{
               display: "flex",
               alignItems: "center",
+              fontSize: "14px",
+              fontWeight: "400",
+              color: "#323338",
             }}
             download
           >
@@ -102,7 +108,15 @@ export default function MenuList({ pdfFile = "" }) {
         </MenuItem>
         <MenuItem onClick={handleClose} disableRipple>
           <ShareOutlinedIcon />
-          Share
+          <a
+            style={{
+              display: "flex",
+              alignItems: "center",
+              fontSize: "14px",
+            }}
+          >
+            Share
+          </a>
         </MenuItem>
         <MenuItem
           onClick={() => {
@@ -114,7 +128,15 @@ export default function MenuList({ pdfFile = "" }) {
           disableRipple
         >
           <LocalPrintshopOutlinedIcon />
-          Print
+          <a
+            style={{
+              display: "flex",
+              alignItems: "center",
+              fontSize: "14px",
+            }}
+          >
+            Print
+          </a>
         </MenuItem>
       </StyledMenu>
     </div>

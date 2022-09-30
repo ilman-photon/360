@@ -231,14 +231,14 @@ export const FilterResultHeading = ({
                     <Typography
                       className={styles.calenderDay}
                       aria-label={`${option.slice(0, -8)}`}
-                      tabindex={"0"}
+                      tabIndex={"0"}
                     >
                       {option.slice(0, 3)}
                     </Typography>
                     <Typography
                       className={styles.calenderMonth}
                       aria-label={`${dateList.dateListName[idx]}`}
-                      tabindex={"0"}
+                      tabIndex={"0"}
                     >
                       {dateList.dateListName[idx]}
                     </Typography>
