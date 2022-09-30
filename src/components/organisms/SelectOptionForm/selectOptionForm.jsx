@@ -18,67 +18,73 @@ const SelectOptionForm = ({
   hasSecurityQuestion = false,
 }) => {
   const router = useRouter();
-  const { t } = useTranslation("translation", { keyPrefix: "SetOption" });
+  const { t, ready } = useTranslation("translation", {
+    keyPrefix: "SetOption",
+  });
   const { FORGOT_TEST_ID } = constants.TEST_ID;
 
   return (
-    <Card className={globalStyles.container} style={styles.cardStyle}>
-      <CardContent style={styles.cardContentStyle}>
-        <HeadingTitle variant={constants.H2} title={t("title")} />
-        <StyledButton
-          theme={constants.PATIENT}
-          mode={constants.PRIMARY}
-          size={constants.SMALL}
-          gradient={false}
-          data-testid={FORGOT_TEST_ID.answerQuestions}
-          onClick={() => {
-            onContinueButtonClicked(
-              hasSecurityQuestion
-                ? constants.SECURITY_QUESTION
-                : constants.PASSWORD_RESET
-            );
-          }}
-          style={{ ...styles.margin, ...styles.primaryButtoMargin }}
-        >
-          {hasSecurityQuestion
-            ? t("securityButtonText")
-            : t("noSecurityButtonText")}
-        </StyledButton>
-        <Box style={styles.dividerContainer}>
-          <Divider>
-            <Typography style={styles.informativeText}>or</Typography>
-          </Divider>
-        </Box>
-        <StyledButton
-          theme={constants.PATIENT}
-          mode={constants.SECONDARY}
-          size={constants.SMALL}
-          gradient={false}
-          data-testid={FORGOT_TEST_ID.oneTimeLink}
-          onClick={() => {
-            onContinueButtonClicked(constants.ONE_TIME_LINK);
-          }}
-          style={{ ...styles.margin, ...styles.secondaryButtoMargin }}
-        >
-          {t("oneTimeLoginButtonText")}
-        </StyledButton>
-        <Link
-          style={{
-            ...styles.margin,
-            ...styles.backToLoginMargin,
-            ...styles.link,
-          }}
-          data-testid={FORGOT_TEST_ID.loginLink}
-          color={colors.link}
-          onClick={function () {
-            onBackToLoginClicked(router);
-          }}
-          {...getLinkAria(t("backButtonLink"))}
-        >
-          {t("backButtonLink")}
-        </Link>
-      </CardContent>
-    </Card>
+    <>
+      {ready && (
+        <Card className={globalStyles.container} style={styles.cardStyle}>
+          <CardContent style={styles.cardContentStyle}>
+            <HeadingTitle variant={constants.H2} title={t("title")} />
+            <StyledButton
+              theme={constants.PATIENT}
+              mode={constants.PRIMARY}
+              size={constants.SMALL}
+              gradient={false}
+              data-testid={FORGOT_TEST_ID.answerQuestions}
+              onClick={() => {
+                onContinueButtonClicked(
+                  hasSecurityQuestion
+                    ? constants.SECURITY_QUESTION
+                    : constants.PASSWORD_RESET
+                );
+              }}
+              style={{ ...styles.margin, ...styles.primaryButtoMargin }}
+            >
+              {hasSecurityQuestion
+                ? t("securityButtonText")
+                : t("noSecurityButtonText")}
+            </StyledButton>
+            <Box style={styles.dividerContainer}>
+              <Divider>
+                <Typography style={styles.informativeText}>or</Typography>
+              </Divider>
+            </Box>
+            <StyledButton
+              theme={constants.PATIENT}
+              mode={constants.SECONDARY}
+              size={constants.SMALL}
+              gradient={false}
+              data-testid={FORGOT_TEST_ID.oneTimeLink}
+              onClick={() => {
+                onContinueButtonClicked(constants.ONE_TIME_LINK);
+              }}
+              style={{ ...styles.margin, ...styles.secondaryButtoMargin }}
+            >
+              {t("oneTimeLoginButtonText")}
+            </StyledButton>
+            <Link
+              style={{
+                ...styles.margin,
+                ...styles.backToLoginMargin,
+                ...styles.link,
+              }}
+              data-testid={FORGOT_TEST_ID.loginLink}
+              color={colors.link}
+              onClick={function () {
+                onBackToLoginClicked(router);
+              }}
+              {...getLinkAria(t("backButtonLink"))}
+            >
+              {t("backButtonLink")}
+            </Link>
+          </CardContent>
+        </Card>
+      )}
+    </>
   );
 };
 
