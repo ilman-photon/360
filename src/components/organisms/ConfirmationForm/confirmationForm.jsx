@@ -53,7 +53,7 @@ const ConfirmationForm = ({
       {ready && (
         <Card className={globalStyles.container} style={styles.cardStyle}>
           <CardContent style={styles.cardContentStyle}>
-            <HeadingTitle variant={constants.H2} title={title} />
+            <HeadingTitle variant={constants.H2} title={title} tabIndex="0" />
             {showPostMessage ? (
               <FormMessage
                 success={isSuccessPostMessage}
@@ -66,7 +66,11 @@ const ConfirmationForm = ({
               <></>
             )}
             {subtitle ? (
-              <Typography variant="bodyMedium" style={styles.margin}>
+              <Typography
+                variant="bodyMedium"
+                style={styles.margin}
+                tabIndex="0"
+              >
                 {subtitle}
               </Typography>
             ) : (
@@ -79,6 +83,7 @@ const ConfirmationForm = ({
                 <Typography
                   variant="bodyRegular"
                   style={styles.descriptionStyle}
+                  tabIndex="0"
                 >
                   {description}
                 </Typography>

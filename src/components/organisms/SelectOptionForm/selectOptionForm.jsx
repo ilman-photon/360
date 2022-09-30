@@ -28,7 +28,11 @@ const SelectOptionForm = ({
       {ready && (
         <Card className={globalStyles.container} style={styles.cardStyle}>
           <CardContent style={styles.cardContentStyle}>
-            <HeadingTitle variant={constants.H2} title={t("title")} />
+            <HeadingTitle
+              variant={constants.H2}
+              title={t("title")}
+              tabIndex="0"
+            />
             <StyledButton
               theme={constants.PATIENT}
               mode={constants.PRIMARY}
@@ -50,7 +54,13 @@ const SelectOptionForm = ({
             </StyledButton>
             <Box style={styles.dividerContainer}>
               <Divider>
-                <Typography style={styles.informativeText}>or</Typography>
+                <Typography
+                  style={styles.informativeText}
+                  tabIndex="0"
+                  aria-roledescription="text"
+                >
+                  or
+                </Typography>
               </Divider>
             </Box>
             <StyledButton
