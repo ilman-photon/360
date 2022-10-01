@@ -12,7 +12,7 @@ export const LabelWithIcon = ({
   style = {},
   primaryColor = false,
 }) => (
-  <Box style={{ ...styles.boxContainer, ...style }}>
+  <Box style={{ ...styles.boxContainer, ...style }} tabIndex="0">
     {error ? (
       <CancelIcon sx={{ color: styles.errorColor }} />
     ) : (

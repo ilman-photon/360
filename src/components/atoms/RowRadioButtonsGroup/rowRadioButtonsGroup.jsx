@@ -24,6 +24,8 @@ export default function RowRadioButtonsGroup({
   tooltipContent,
   textSx = {},
   isCancelSchedule = false,
+  isInsuranceForm = false,
+  isRegistrationForm = false,
   ...props
 }) {
   const options = props.options || [];
@@ -44,7 +46,7 @@ export default function RowRadioButtonsGroup({
           alignItems: "center",
           ...textSx,
         }}
-        tabindex={0}
+        tabIndex={0}
       >
         {props.label}
         {tooltipContent ? (
@@ -76,6 +78,7 @@ export default function RowRadioButtonsGroup({
               key={idx}
               value={option.value}
               aria-label={`${option.label} Radio Button`}
+              tabindex={0}
               control={
                 <Radio
                   checked={props.value === option.value}
@@ -92,9 +95,10 @@ export default function RowRadioButtonsGroup({
               }
               label={option.label}
               sx={{
-                ".MuiTypography-root": props.isInsuranceForm
-                  ? { fontSize: 16, color: "#242526" }
-                  : { fontSize: 14 },
+                ".MuiTypography-root":
+                  props.isInsuranceForm || props.isRegistrationForm
+                    ? { fontSize: 16, color: "#242526" }
+                    : { fontSize: 14 },
               }}
             />
           );

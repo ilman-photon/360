@@ -27,7 +27,10 @@ const ForgotPassword = ({
   isAppointment = true,
 }) => {
   const router = useRouter();
-  const { t } = useTranslation("translation", { keyPrefix: "ForgotPassword" });
+  const { t, ready } = useTranslation("translation", {
+    keyPrefix: "ForgotPassword",
+    useSuspense: false,
+  });
   const { handleSubmit, control, setError } = useForm();
   const { FORGOT_TEST_ID } = constants.TEST_ID;
   const onSubmit = ({ username }) => {
@@ -66,88 +69,90 @@ const ForgotPassword = ({
       <Head>
         <title>{`EyeCare Patient Portal - ${title}`}</title>
       </Head>
-      <Card
-        className={globalStyles.container}
-        sx={{ minWidth: 275, padding: "16px" }}
-      >
-        <CardContent style={styles.cardContentStyle}>
-          <HeadingTitle
-            variant={constants.H2}
-            title={isAppointment ? t("syncTitle") : t("title")}
-            sx={{ fontSize: "32px" }}
-          />
-          {showPostMessage ? (
-            <FormMessage
-              success={false}
-              sx={styles.postMessage}
-              title={isAppointment && t("syncErrorTitle")}
-            >
-              {isAppointment ? t("syncError") : t("errorUsernameNotFound")}
-            </FormMessage>
-          ) : (
-            <></>
-          )}
-          <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
-            <Controller
-              name="username"
-              control={control}
-              defaultValue=""
-              render={({
-                field: { onChange, value },
-                fieldState: { error },
-              }) => {
-                return (
-                  <StyledInput
-                    label={t("usernamePlaceHolder")}
-                    id="username"
-                    maxLength={254}
-                    variant="filled"
-                    value={value}
-                    data-testid={FORGOT_TEST_ID.email}
-                    onChange={(event) => {
-                      onChange(event);
-                      if (showPostMessage) {
-                        setShowPostMessage(false);
-                      }
-                    }}
-                    error={!!error}
-                    helperText={error ? error.message : null}
-                  />
-                );
-              }}
+      {ready && (
+        <Card
+          className={globalStyles.container}
+          sx={{ minWidth: 275, padding: "16px" }}
+        >
+          <CardContent style={styles.cardContentStyle}>
+            <HeadingTitle
+              variant={constants.H2}
+              title={isAppointment ? t("syncTitle") : t("title")}
+              sx={{ fontSize: "32px" }}
             />
+            {showPostMessage ? (
+              <FormMessage
+                success={false}
+                sx={styles.postMessage}
+                title={isAppointment && t("syncErrorTitle")}
+              >
+                {isAppointment ? t("syncError") : t("errorUsernameNotFound")}
+              </FormMessage>
+            ) : (
+              <></>
+            )}
+            <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
+              <Controller
+                name="username"
+                control={control}
+                defaultValue=""
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => {
+                  return (
+                    <StyledInput
+                      label={t("usernamePlaceHolder")}
+                      id="username"
+                      maxLength={254}
+                      variant="filled"
+                      value={value}
+                      data-testid={FORGOT_TEST_ID.email}
+                      onChange={(event) => {
+                        onChange(event);
+                        if (showPostMessage) {
+                          setShowPostMessage(false);
+                        }
+                      }}
+                      error={!!error}
+                      helperText={error ? error.message : null}
+                    />
+                  );
+                }}
+              />
 
-            <StyledButton
-              type="submit"
-              theme="patient"
-              mode="primary"
-              size="small"
-              gradient={false}
-              style={styles.margin}
-              data-testid={FORGOT_TEST_ID.continueBtn}
+              <StyledButton
+                type="submit"
+                theme="patient"
+                mode="primary"
+                size="small"
+                gradient={false}
+                style={styles.margin}
+                data-testid={FORGOT_TEST_ID.continueBtn}
+              >
+                {isAppointment ? t("syncButton") : t("resetPasswordText")}
+              </StyledButton>
+            </form>
+            <Typography
+              variant="bodyMedium"
+              style={{ ...styles.margin, ...styles.link }}
             >
-              {isAppointment ? t("syncButton") : t("resetPasswordText")}
-            </StyledButton>
-          </form>
-          <Typography
-            variant="bodyMedium"
-            style={{ ...styles.margin, ...styles.link }}
-          >
-            <Link
-              color={colors.link}
-              data-testid={FORGOT_TEST_ID.loginLink}
-              onClick={function () {
-                onBackToLoginClicked(router);
-              }}
-              {...getLinkAria(
-                isAppointment ? t("backSignIn") : t("backButtonLink")
-              )}
-            >
-              {isAppointment ? t("backSignIn") : t("backButtonLink")}
-            </Link>
-          </Typography>
-        </CardContent>
-      </Card>
+              <Link
+                color={colors.link}
+                data-testid={FORGOT_TEST_ID.loginLink}
+                onClick={function () {
+                  onBackToLoginClicked(router);
+                }}
+                {...getLinkAria(
+                  isAppointment ? t("backSignIn") : t("backButtonLink")
+                )}
+              >
+                {isAppointment ? t("backSignIn") : t("backButtonLink")}
+              </Link>
+            </Typography>
+          </CardContent>
+        </Card>
+      )}
     </>
   );
 };

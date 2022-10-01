@@ -85,7 +85,7 @@ export const CustomPasswordInput = styled((props) => (
     overflow: "hidden",
     borderRadius: 4,
     height: 52,
-    backgroundColor: theme.palette.mode === "light" ? "#fcfcfb" : "#2b2b2b",
+    backgroundColor: theme.palette.mode === "light" ? "#fff" : "#2b2b2b",
     transition: theme.transitions.create([
       "border-color",
       "background-color",
@@ -147,7 +147,7 @@ export const RedditTextField = styled((props) => (
     overflow: "hidden",
     borderRadius: 4,
     height: 52,
-    backgroundColor: theme.palette.mode === "light" ? "white" : "#2b2b2b",
+    backgroundColor: theme.palette.mode === "light" ? "#fff" : "#2b2b2b",
     transition: theme.transitions.create([
       "border-color",
       "background-color",
@@ -206,6 +206,10 @@ export const CustomInput = styled(({ ...props }) => {
     event.preventDefault();
   };
 
+  const preventPasteHandler = (event) => {
+    event.preventDefault();
+  };
+
   switch (props.type) {
     case "password":
       return (
@@ -227,6 +231,7 @@ export const CustomInput = styled(({ ...props }) => {
               helperText={props.helperText}
               style={props.style}
               onPaste={handleMouseDownPassword}
+              value={props.value}
             />
           </CustomFormControl>
         </>
@@ -271,6 +276,7 @@ export const CustomInput = styled(({ ...props }) => {
                   error={props.error || params.error}
                   helperText={props.helperText}
                   InputProps={props.InputProps || {}}
+                  onPaste={preventPasteHandler}
                 />
               )}
               inputProps={props.inputProps}
@@ -302,6 +308,7 @@ export const CustomInput = styled(({ ...props }) => {
               ...props.sx,
             }}
             {...props}
+            onPaste={preventPasteHandler}
           />
         </>
       );

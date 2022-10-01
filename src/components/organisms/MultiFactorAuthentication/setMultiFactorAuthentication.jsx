@@ -57,6 +57,10 @@ export default function SetMultiFactorAuthentication({
             onChange={(event) => {
               setSelectedCommunication(event.target.value);
             }}
+            sx={{
+              marginLeft: "8px",
+              marginTop: "15px",
+            }}
           >
             <FormControlLabel
               value="email"
@@ -71,6 +75,7 @@ export default function SetMultiFactorAuthentication({
               control={
                 <Radio
                   sx={{
+                    padding: "5px 8px",
                     ".MuiSvgIcon-root": {
                       width: "24px",
                     },
@@ -94,6 +99,7 @@ export default function SetMultiFactorAuthentication({
               control={
                 <Radio
                   sx={{
+                    padding: "5px 8px",
                     ".MuiSvgIcon-root": {
                       width: "24px",
                     },
@@ -117,7 +123,6 @@ export default function SetMultiFactorAuthentication({
   };
 
   const getMfaDescription = () => {
-    console.log(data);
     if (!isMultipleComunication && data.email) {
       return t("setMFAEmailDescription");
     } else if (!isMultipleComunication && data.phone) {

@@ -76,6 +76,9 @@ export default function InsuranceInfoPage() {
           content: "Insurance successfully added",
         })
       );
+      setTimeout(() => {
+        dispatch(closePageMessage());
+      }, 5000);
       setIsShowErrorNew(false);
       setIsShowError(false);
       setOpenNewInsuranceForm(false);
@@ -96,6 +99,9 @@ export default function InsuranceInfoPage() {
         content: "Insurance successfully removed",
       })
     );
+    setTimeout(() => {
+      dispatch(closePageMessage());
+    }, 5000);
   };
 
   const OnOpenEditInsuranceForm = (payload) => {
@@ -175,9 +181,10 @@ export default function InsuranceInfoPage() {
         <Stack>
           <AccountCard
             titleIcon={<AccountCircleOutlined />}
-            title="Insurance Document"
+            title="Insurance Documents"
             // OnEditClicked={OnEditClicked}
             sx={{ px: 3, py: 5 }}
+            textStyle={{ fontWeight: "700" }}
             actionContent={
               isDesktop ? (
                 <StyledButton
@@ -320,7 +327,7 @@ export default function InsuranceInfoPage() {
         ariaLive={"Remove Insurance"}
         sx={{
           ".MuiPaper-root": {
-            minWidth: "500px",
+            minWidth: "280px",
           },
           ".MuiDialogActions-root": {
             padding: 2,

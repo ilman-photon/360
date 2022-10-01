@@ -19,8 +19,8 @@ const iconPrescription2 = "/icon-prescription2.png";
 const iconTestLabResults = "/icon-testLabResults.png";
 
 const pages = [
-  { href: "#", label: "Dashboard" },
-  { href: "#", label: "Appointments" },
+  { href: "/patient", label: "Dashboard" },
+  { href: "/patient/appointments", label: "Appointments" },
 ];
 const expandablePages = ["Medical Record", "Documents"];
 const settings = ["Intake forms", "Insurance", "Health Record"];
@@ -51,7 +51,7 @@ const medical = [
   },
   {
     icon: iconPrescription2,
-    href: "/patient/account/medical-record/test-lab-result",
+    href: "/patient/prescription",
     label: "Prescriptions",
   },
   {

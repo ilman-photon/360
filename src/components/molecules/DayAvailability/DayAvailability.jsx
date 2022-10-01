@@ -180,7 +180,7 @@ export const DayAvailability = ({
       <Box className={styles.scheduleTimeContainer}>
         <Typography
           className={styles.scheduleTimeTitle}
-          tabindex={"0"}
+          tabIndex={"0"}
           aria-label={timeInWeekACLabel(rangeDate.startDate, rangeDate.endDate)}
         >
           {timeInWeek}

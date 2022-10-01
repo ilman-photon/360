@@ -19,7 +19,7 @@ export const styles = {
     marginRight: "8px",
     color: "#003B4A",
     // fontSize: "1.25rem",
-    fontSize: "34px",
+    fontSize: "26px",
   },
   passwordLabel: {
     margin: "8px",
@@ -42,12 +42,16 @@ export const styles = {
   },
   loginLink: {
     color: colors.link,
-    textDecoration: "underline",
+    // textDecoration: "underline",
+    borderBottom: "1.5px solid",
   },
   containedButton: {
     backgroundColor: colors.primaryButton,
-    borderRadius: 46,
+    borderRadius: 7.5,
     color: "white",
+    fontSize: "16px",
+    fontWeight: "600",
+    margin: "0px  8px",
     "&:hover": {
       backgroundColor: "#1c8696",
     },

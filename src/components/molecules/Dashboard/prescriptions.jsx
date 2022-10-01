@@ -19,6 +19,7 @@ import {
   Box,
   Stack,
   Divider,
+  Button,
 } from "@mui/material";
 import AccountCard from "../AccountCard/accountCard";
 import Image from "next/image";
@@ -33,6 +34,48 @@ import PrescriptionMedication from "./prescriptionMedication";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { StyledButton } from "../../atoms/Button/button";
 import constants from "../../../utils/constants";
+import { savePDF } from "@progress/kendo-react-pdf";
+
+export function renderCTAIcon(
+  onClickDownload = () => {},
+  onClickPrint = () => {}
+) {
+  const iconShare = "/icon-share.png";
+  const iconDownload = "/icon-download.png";
+  return (
+    <Stack
+      className={styles.ctaContainer}
+      direction={"row"}
+      alignSelf={"center"}
+      sx={{ marginLeft: "auto" }}
+    >
+      <Button
+        className={styles.butttonIconContainer}
+        data-testid={"download-icon"}
+        onClick={onClickDownload}
+      >
+        <Image alt="" src={iconDownload} width={15} height={15} />
+      </Button>
+      <Button
+        className={styles.butttonIconContainer}
+        data-testid={"shared-icon"}
+      >
+        <Image alt="" src={iconShare} width={15} height={15} />
+      </Button>
+      <Button className={styles.butttonIconContainer} onClick={onClickPrint}>
+        <LocalPrintshopOutlinedIcon
+          sx={{
+            width: "18px",
+            height: "18px",
+            color: colors.darkGreen,
+            cursor: "pointer",
+          }}
+          data-testid={"print-icon"}
+        />
+      </Button>
+    </Stack>
+  );
+}
 
 export default function Prescriptions({
   prescriptionData = {},
@@ -40,17 +83,19 @@ export default function Prescriptions({
     //this is intentional
   },
   isViewAll = false,
-  onMedicationRequestRefill = () => {},
+  onMedicationRequestRefill = () => {
+    //this is intentional
+  },
   requestRefillResponseData = null,
 }) {
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const containerGlasses = React.useRef(null);
+  const containerContact = React.useRef(null);
 
-  const iconPrescription = "/icon-prescription.png";
+  const iconPrescription = "/icon-prescription2.png";
   const iconContacts = "/icon-contacts.png";
   const iconGlasses = "/icon-glasses.png";
   const iconMedication = "/icon-medication.png";
-  const iconShare = "/icon-share.png";
-  const iconDownload = "/icon-download.png";
   const [value, setValue] = React.useState(0);
   const [prescription, setPrescriptione] = React.useState({
     contacts: [],
@@ -60,6 +105,53 @@ export default function Prescriptions({
       past: [],
     },
   });
+
+  const downloadPDF = (index = -1, type) => {
+    let containerSelector = null;
+    if (type === "contacts") {
+      containerSelector = containerContact;
+    } else {
+      containerSelector = containerGlasses;
+    }
+    let element =
+      containerSelector.current.querySelector(
+        `[data-testid=${type}-container-${index}]`
+      ) || document.body;
+    savePDF(element, {
+      paperSize: "auto",
+      margin: 40,
+      fileName: `Prescription ${type} Don John`,
+    });
+  };
+
+  const printHTML = (index = -1, type) => {
+    let containerSelector = null;
+    if (type === "contacts") {
+      containerSelector = containerContact;
+    } else {
+      containerSelector = containerGlasses;
+    }
+    let element =
+      containerSelector.current.querySelector(
+        `[data-testid=${type}-container-${index}]`
+      ) || document.body;
+    const styles = Array.from(document.head.querySelectorAll("style"));
+    var WinPrint = window.open(
+      "",
+      "",
+      "left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0"
+    );
+    WinPrint.document.write(element.innerHTML);
+    styles.forEach((st) => {
+      WinPrint.document.head.appendChild(st.cloneNode(true));
+    });
+    WinPrint.document.close();
+    WinPrint.focus();
+    WinPrint.print();
+    setTimeout(() => {
+      WinPrint.close();
+    }, 500);
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -96,46 +188,11 @@ export default function Prescriptions({
     return {};
   }
 
-  function renderCTAIcon() {
-    return (
-      <Stack direction={"row"} alignSelf={"center"} sx={{ marginLeft: "auto" }}>
-        <Box
-          sx={{
-            width: "15px",
-            height: "15px",
-          }}
-          data-testid={"download-icon"}
-        >
-          <Image alt="" src={iconDownload} width={15} height={15} />
-        </Box>
-        <Box
-          sx={{
-            width: "15px",
-            height: "15px",
-            margin: "0px 15px",
-          }}
-          data-testid={"shared-icon"}
-        >
-          <Image alt="" src={iconShare} width={15} height={15} />
-        </Box>
-
-        <LocalPrintshopOutlinedIcon
-          sx={{
-            width: "18px",
-            height: "18px",
-            color: colors.darkGreen,
-          }}
-          data-testid={"print-icon"}
-        />
-      </Stack>
-    );
-  }
-
   function renderPrescriptionTable(data, type, idxKey, lastRow = false) {
     if (data && data.prescriptionDetails) {
-      let tableHeader = ["Eye", "Sph", "Cyl", "Axis", "Add"];
+      let tableHeader = ["Eye", "Sphere", "Cylinder", "Axis", "Add"];
       if (type === "contacts") {
-        tableHeader = ["Eye", "Sph", "BC", "CYL", "AXIS"];
+        tableHeader = ["Eye", "Sphere", "BC", "Cylinder", "AXIS"];
       }
       return (
         <Box
@@ -157,31 +214,50 @@ export default function Prescriptions({
               position: "relative",
             }}
           >
-            <Typography
-              variant="customBodyRegular"
-              className={styles.glassesViewAll}
-            >
-              Prescribed on:&nbsp;
-            </Typography>
-            <Typography
-              variant="bodyMedium"
-              className={styles.glassesViewAll}
-              sx={{
-                marginRight: "auto",
-              }}
-            >
-              {data.date}
-            </Typography>
+            <Box tabIndex={0}>
+              <Typography
+                variant="customBodyRegular"
+                className={styles.glassesViewAll}
+              >
+                Prescribed on:&nbsp;
+              </Typography>
+              <Typography
+                variant="bodyMedium"
+                className={styles.glassesViewAll}
+                sx={{
+                  marginRight: "auto",
+                }}
+              >
+                {data.date}
+              </Typography>
+            </Box>
             {isViewAll && !isMobile ? (
-              renderCTAIcon()
+              renderCTAIcon(
+                () => {
+                  downloadPDF(idxKey, type);
+                },
+                () => {
+                  printHTML(idxKey, type);
+                }
+              )
             ) : (
               <Box sx={{ position: "absolute", right: 0 }}>
-                <MenuList />
+                <MenuList
+                  onClickDownloadButton={() => {
+                    downloadPDF(idxKey, type);
+                  }}
+                  onClickPrintButton={() => {
+                    printHTML(idxKey, type);
+                  }}
+                />
               </Box>
             )}
           </Box>
 
-          <Box className={[isMobile ? "" : styles.flexDisplay, styles.margin]}>
+          <Box
+            className={[isMobile ? "" : styles.flexDisplay, styles.margin]}
+            tabIndex={0}
+          >
             <Box className={[styles.flexDisplay, getBoxStyle()]}>
               <Typography variant="customBodyRegular">
                 Prescribed by: &nbsp;
@@ -208,6 +284,7 @@ export default function Prescriptions({
           {!isViewAll && (
             <Box
               className={[isMobile ? "" : styles.flexDisplay, styles.margin]}
+              tabIndex={0}
             >
               <Typography variant="customBodyRegular">
                 Expires on: &nbsp;
@@ -249,7 +326,10 @@ export default function Prescriptions({
                 <TableHead>
                   <TableRow>
                     {tableHeader.map((header, idx) => (
-                      <StyledTableCell key={`${idxKey}-${idx}-tabel-header`}>
+                      <StyledTableCell
+                        key={`${idxKey}-${idx}-tabel-header`}
+                        tabIndex={0}
+                      >
                         {header}
                       </StyledTableCell>
                     ))}
@@ -263,17 +343,17 @@ export default function Prescriptions({
                         "&:last-child td, &:last-child th": { border: 0 },
                       }}
                     >
-                      <TableCell component="th" scope="row">
+                      <TableCell component="th" scope="row" tabIndex={0}>
                         {row.eye}
                       </TableCell>
-                      <TableCell>{row.sph}</TableCell>
-                      <TableCell>
+                      <TableCell tabIndex={0}>{row.sph}</TableCell>
+                      <TableCell tabIndex={0}>
                         {type === "contacts" ? row.bc : row.cyl}
                       </TableCell>
-                      <TableCell>
+                      <TableCell tabIndex={0}>
                         {type === "contacts" ? row.cyl : row.axis}
                       </TableCell>
-                      <TableCell>
+                      <TableCell tabIndex={0}>
                         {type === "contacts" ? row.axis : row.add}
                       </TableCell>
                     </TableRow>
@@ -297,7 +377,7 @@ export default function Prescriptions({
             borderColor: "divider",
           }}
         >
-          <Box className={[styles.flexDisplay, styles.margin]}>
+          <Box className={[styles.flexDisplay, styles.margin]} tabIndex={0}>
             <Typography variant="medication">{row.prescription}</Typography>
           </Box>
           <Box
@@ -306,6 +386,7 @@ export default function Prescriptions({
               margin: "10px 16px",
               marginBottom: data.length == idx + 1 ? "26px" : "16px",
             }}
+            tabIndex={0}
           >
             <Typography variant="customBodyRegular">
               Prescribed on: &nbsp;
@@ -316,143 +397,13 @@ export default function Prescriptions({
       ));
     } else {
       return (
-        <Box className={styles.noPrescription}>
+        <Box className={styles.noPrescription} tabIndex={0}>
           <Typography
             className={styles.normalText}
           >{`There are no active medications`}</Typography>
         </Box>
       );
     }
-  }
-
-  function renderMedicationViewAllUI(data) {
-    return (
-      <Stack direction={"row"} className={styles.medicationViewAllContainer}>
-        {!isMobile && (
-          <Box>
-            <Box
-              className={styles.medicationIconContainer}
-              sx={{ justifyContent: "center" }}
-            >
-              <Image alt="" src={iconMedication} width={32.88} height={44.63} />
-            </Box>
-          </Box>
-        )}
-        <Stack display={"flex"} marginLeft={"8px"} width={"100%"}>
-          <Stack direction={"row"} sx={{ marginBottom: "8px" }}>
-            <Typography className={styles.medicationViewAllTitle}>
-              Aspirin
-            </Typography>
-            {!isMobile ? renderCTAIcon() : <MenuList />}
-          </Stack>
-          <Stack sx={{ width: "100%" }}>
-            <Stack direction={"row"} className={styles.stackContainer}>
-              <Typography className={styles.medicationViewAllStatus}>
-                Status: Refill requested
-              </Typography>
-              <Stack
-                direction={"row"}
-                alignSelf={"center"}
-                className={styles.gridHeight}
-              >
-                <Typography
-                  variant="customBodyRegular"
-                  className={styles.gridText}
-                >
-                  Fill request date: &nbsp;
-                </Typography>
-                <Typography variant="bodyMedium" className={styles.gridText}>
-                  01/11/2022
-                </Typography>
-              </Stack>
-            </Stack>
-            <Stack direction={"row"} className={styles.stackContainer}>
-              <Stack
-                direction={"row"}
-                alignSelf={"center"}
-                className={styles.gridHeight}
-              >
-                <Typography
-                  variant="customBodyRegular"
-                  className={styles.gridText}
-                >
-                  Prescribed on: &nbsp;
-                </Typography>
-                <Typography variant="bodyMedium" className={styles.gridText}>
-                  01/10/2022
-                </Typography>
-              </Stack>
-              <Stack
-                direction={"row"}
-                alignSelf={"center"}
-                className={styles.gridHeight}
-              >
-                <Typography
-                  variant="customBodyRegular"
-                  className={styles.gridText}
-                >
-                  Prescribed by: &nbsp;
-                </Typography>
-                <Typography variant="bodyMedium" className={styles.gridText}>
-                  Dr. Philip Morris
-                </Typography>
-              </Stack>
-              <Stack
-                direction={"row"}
-                alignSelf={"center"}
-                className={styles.gridHeight}
-              >
-                <Typography
-                  variant="customBodyRegular"
-                  className={styles.gridText}
-                >
-                  Dose: &nbsp;
-                </Typography>
-                <Typography variant="bodyMedium" className={styles.gridText}>
-                  0.5 mL
-                </Typography>
-              </Stack>
-            </Stack>
-            <Stack direction={"row"} className={styles.stackContainer}>
-              <Stack
-                direction={"row"}
-                alignSelf={"center"}
-                className={styles.gridHeight}
-              >
-                <Typography
-                  variant="customBodyRegular"
-                  className={styles.gridText}
-                >
-                  Expires on: &nbsp;
-                </Typography>
-                <Typography variant="bodyMedium" className={styles.gridText}>
-                  04/10/2023
-                </Typography>
-              </Stack>
-            </Stack>
-          </Stack>
-          <Divider />
-          <Stack direction={"row"} sx={{ marginTop: "24px", flexWrap: "wrap" }}>
-            <Stack direction={"row"} className={styles.remainingTimeContainer}>
-              <AccessTimeIcon sx={{ color: colors.darkGreen }} />
-              <Typography className={styles.remainingTimeText}>
-                Take 2 times a day
-              </Typography>
-            </Stack>
-            <StyledButton
-              mode={constants.PRIMARY}
-              gradient={false}
-              onClick={() => {
-                //this is intentional
-              }}
-              className={styles.requestButton}
-            >
-              Request Refill
-            </StyledButton>
-          </Stack>
-        </Stack>
-      </Stack>
-    );
   }
 
   function renderPrescriptionTabUI(data, type) {
@@ -462,18 +413,15 @@ export default function Prescriptions({
     const contentUI = [];
     if (data && data.length > 0) {
       data.map((row, idx) => {
-        if (type === "medications") {
-          contentUI.push(renderMedicationViewAllUI(row));
-        } else {
-          contentUI.push(
-            renderPrescriptionTable(row, type, idx, data.length === idx + 1)
-          );
-        }
+        contentUI.push(
+          renderPrescriptionTable(row, type, idx, data.length === idx + 1)
+        );
       });
     } else {
       contentUI.push(
         <Box className={styles.noPrescription}>
           <Typography
+            tabIndex={0}
             className={styles.normalText}
           >{`There are no active ${type} prescriptions`}</Typography>
         </Box>
@@ -496,9 +444,18 @@ export default function Prescriptions({
     return (
       <Box>
         <Box
-          className={[styles.flexDisplay, styles.spaceBetween, styles.margin]}
+          className={[
+            styles.flexDisplay,
+            styles.spaceBetween,
+            styles.margin,
+            styles.marginBottom,
+          ]}
         >
-          <Typography variant="titleCard">
+          <Typography
+            variant="titleCard"
+            tabIndex={0}
+            aria-label={"Medications Prescription Heading"}
+          >
             {prescription?.medications?.active?.length > 0
               ? `Medications Prescriptions (${prescription?.medications?.active?.length})`
               : `Medications Prescriptions`}
@@ -516,6 +473,8 @@ export default function Prescriptions({
             <Link
               className={styles.viewPrescriptionText}
               sx={{ color: "#008294", fontFamily: "Inter" }}
+              tabIndex={0}
+              aria-label="View prescriptions option"
             >
               View prescriptions
             </Link>
@@ -542,11 +501,15 @@ export default function Prescriptions({
               <Typography
                 variant="titleCard"
                 className={isViewAll && !isMobile ? styles.paddingTop22 : {}}
+                tabIndex={0}
+                aria-label={"Glasses Prescription Heading"}
               >
                 Glasses Prescriptions
               </Typography>
             </Box>
-            {renderPrescriptionTabUI(prescription.glasses, "glasses")}
+            <Box ref={containerGlasses}>
+              {renderPrescriptionTabUI(prescription.glasses, "glasses")}
+            </Box>
             {!isViewAll && (
               <Box
                 className={[styles.flexDisplay, styles.viewPrescription]}
@@ -558,6 +521,8 @@ export default function Prescriptions({
                 <Link
                   className={styles.viewPrescriptionText}
                   sx={{ color: "#008294", fontFamily: "Inter" }}
+                  tabIndex={0}
+                  aria-label="View prescriptions option"
                 >
                   View prescriptions
                 </Link>
@@ -580,11 +545,16 @@ export default function Prescriptions({
               <Typography
                 variant="titleCard"
                 className={isViewAll && !isMobile ? styles.paddingTop22 : {}}
+                tabIndex={0}
+                aria-label={"Contacts Prescription Heading"}
               >
                 Contacts Prescriptions
               </Typography>
             </Box>
-            {renderPrescriptionTabUI(prescription.contacts, "contacts")}
+            <Box ref={containerContact}>
+              {renderPrescriptionTabUI(prescription.contacts, "contacts")}
+            </Box>
+
             {!isViewAll && (
               <Box
                 className={[styles.flexDisplay, styles.viewPrescription]}
@@ -596,6 +566,8 @@ export default function Prescriptions({
                 <Link
                   className={styles.viewPrescriptionText}
                   sx={{ color: "#008294", fontFamily: "Inter" }}
+                  tabIndex={0}
+                  aria-label="View prescriptions option"
                 >
                   View prescriptions
                 </Link>
@@ -625,7 +597,7 @@ export default function Prescriptions({
         variant="scrollable"
         scrollButtons={false}
         aria-label="scrollable prevent tabs example"
-        textColor="inherit"
+        textColor="unset"
         TabIndicatorProps={{
           style: {
             backgroundColor: colors.teal,
@@ -636,6 +608,7 @@ export default function Prescriptions({
         <Tab
           label="Glasses"
           data-testid={"menu-glasses"}
+          tabIndex={0}
           icon={
             <Box
               className={
@@ -655,6 +628,8 @@ export default function Prescriptions({
           iconPosition="start"
           value={0}
           sx={{
+            color: value === 0 ? "#003B4A" : "#424747",
+            fontWeight: value === 0 ? "500" : "400",
             textTransform: "capitalize",
             width: "30%",
             fontSize: isMobile ? "14px" : "16px",
@@ -667,6 +642,7 @@ export default function Prescriptions({
         <Tab
           label="Contacts"
           data-testid={"menu-contact"}
+          tabIndex={0}
           icon={
             <Box
               className={
@@ -686,6 +662,8 @@ export default function Prescriptions({
           iconPosition="start"
           value={1}
           sx={{
+            color: value === 1 ? "#003B4A" : "#424747",
+            fontWeight: value === 1 ? "500" : "400",
             textTransform: "capitalize",
             width: "32%",
             fontSize: isMobile ? "14px" : "16px",
@@ -698,6 +676,7 @@ export default function Prescriptions({
         <Tab
           label="Medications"
           data-testid={"menu-medication"}
+          tabIndex={0}
           icon={
             <Box
               className={
@@ -717,6 +696,8 @@ export default function Prescriptions({
           iconPosition="start"
           value={2}
           sx={{
+            color: value === 2 ? "#003B4A" : "#424747",
+            fontWeight: value === 2 ? "500" : "400",
             textTransform: "capitalize",
             width: "38%",
             fontSize: isMobile ? "14px" : "16px",
@@ -742,6 +723,7 @@ export default function Prescriptions({
         sx={{
           ".MuiCardContent-root": {
             p: 0,
+            pb: 3,
           },
         }}
       >

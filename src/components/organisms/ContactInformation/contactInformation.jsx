@@ -182,7 +182,7 @@ export default function ContactInformation({
           </LabelWithInfo>
 
           <Grid container>
-            <Grid item xs={6} p={0}>
+            <Grid item xs={6} sm={4} lg={6} p={0}>
               <LabelWithInfo tabIndex={0} ariaLabel="State" label="State">
                 <div tabIndex={0} aria-label={userData.state || "-"}>
                   {userData.state || "-"}
@@ -190,7 +190,7 @@ export default function ContactInformation({
               </LabelWithInfo>
             </Grid>
 
-            <Grid item xs={6} p={0}>
+            <Grid item xs={6} sm={4} lg={6} p={0}>
               <LabelWithInfo label="Zip" tabIndex={0} ariaLabel="Zip">
                 <div tabIndex={0} aria-label={userData.zip || "-"}>
                   {userData.zip || "-"}

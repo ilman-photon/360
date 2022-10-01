@@ -9,8 +9,7 @@ Feature: Patient Portal : Request Refills - View
   @Prescription
   @Regression
   @Sprint6
-  Scenario: EPIC_EPP-18_STORY_EPP-2706 - To verify whether the patient is able to view the option to Refill the Prescription.
-    Scenario : To verify whether the patient is able to view the option to Refill the Prescription.
+  Scenario: EPIC_EPP-18_STORY_EPP-2706- To verify whether the patient is able to view the option to Refill the Prescription.
 
     Given Patient Launch  the browser and enter the Patient portal URL
     When Patient enter valid "<username or phone number>" and "<password>" 
@@ -25,7 +24,6 @@ Feature: Patient Portal : Request Refills - View
   @Regression
   @Sprint6
   Scenario: EPIC_EPP-18_STORY_EPP-2706- To verify whether the Patient is not able to request for the expired prescription.
-    Scenario : To verify whether the Patient is not able to request for the expired prescription.
 
     Given Patient Launch  the browser and enter the Patient portal URL
     When Patient enter valid "<username or phone number>" and "<password>" 

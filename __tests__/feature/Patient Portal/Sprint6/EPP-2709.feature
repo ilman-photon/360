@@ -9,7 +9,6 @@ Feature: Patient Portal : Cancel Refill Request - View
   @Regression
   @Sprint6
   Scenario: EPIC_EPP-19_STORY_EPP-2709 - Verify User should be able to see the option to cancel the requested refill
-    Scenario: EPIC_EPP-19_STORY_EPP-2709 - Verify User should be able to see the option to cancel the requested refill
 
     Given User launch Patient Portal url		
     When User is logged in to the application

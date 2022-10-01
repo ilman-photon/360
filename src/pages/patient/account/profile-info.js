@@ -66,19 +66,6 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
   const router = useRouter();
   const api = new Api();
 
-  const onBackButtonEvent = (e) => {
-    e.preventDefault();
-    router.push("/patient/login");
-  };
-
-  useEffect(() => {
-    window.addEventListener("popstate", onBackButtonEvent);
-    return () => {
-      window.removeEventListener("popstate", onBackButtonEvent);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const showSuccessMessage = (message) => {
     dispatch(
       setPageMessage({
@@ -155,7 +142,7 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
       <Tabs
         sx={{
           display: {
-            md: "none",
+            sm: "none",
           },
           backgroundColor: "#F4F4F4",
         }}
@@ -173,7 +160,7 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
         <StyledTab value={1} label="Contact" {...a11yProps(1)} />
       </Tabs>
       <Grid container spacing={isDesktop ? 2 : 0}>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} sm={12} lg={6}>
           {isDesktop || activeTabs === 0 ? (
             <>
               <PersonalInformation
@@ -189,7 +176,7 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
             ""
           )}
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} sm={12} lg={6}>
           {isDesktop || activeTabs === 1 ? (
             <>
               <ContactInformation

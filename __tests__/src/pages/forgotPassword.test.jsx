@@ -19,7 +19,7 @@ describe("Forgot Password", () => {
     );
   });
   test("renders forgot password", () => {
-    expect(container).toMatchSnapshot();
+    expect(container.getByTestId(FORGOT_TEST_ID.loginLink)).toBeInTheDocument();
     const button = container.getByTestId(FORGOT_TEST_ID.loginLink);
     fireEvent.click(button);
   });

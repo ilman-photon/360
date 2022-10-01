@@ -68,7 +68,7 @@ export default function AppointmentLocation({
               height={105}
               style={{ borderRadius: "50%" }}
               alt="Doctors image"
-              tabindex={"0"}
+              tabIndex={"0"}
             />
           </div>
 
@@ -76,7 +76,7 @@ export default function AppointmentLocation({
             <Typography
               variant="h4"
               style={{ ...styles.detailText, ...styles.boldText }}
-              tabindex={"0"}
+              tabIndex={"0"}
             >
               {providerData.name}
             </Typography>
@@ -96,9 +96,14 @@ export default function AppointmentLocation({
               variant="h4"
               style={styles.detailText}
               aria-label={`provider phone number ${providerData.phoneNumber}`}
-              tabindex={"0"}
+              tabIndex={"0"}
             >
-              <Link style={styles.linkText}>{providerData.phoneNumber}</Link>
+              <Link
+                style={styles.linkText}
+                href={`tel:${providerData.phoneNumber}`}
+              >
+                {providerData.phoneNumber}
+              </Link>
             </Typography>
           </Box>
         </Stack>

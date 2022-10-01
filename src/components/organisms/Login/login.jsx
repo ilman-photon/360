@@ -45,8 +45,11 @@ export function Login({
     return (
       postMessage.status === "failed" && (
         <Box marginBottom={"16px"}>
-          <FormMessage error title={postMessage.message.title}>
-            {postMessage.message.description}
+          <FormMessage
+            error
+            title={postMessage.message.title && t(postMessage.message.title)}
+          >
+            {t(postMessage.message.description)}
           </FormMessage>
         </Box>
       )
@@ -131,6 +134,8 @@ export function Login({
                 <Grid container justifyContent={constants.FLEX_END}>
                   <Typography variant="bodyMedium">
                     <Link
+                      tabIndex={0}
+                      aria-label={"Forgot password link"}
                       className={styles.link}
                       data-testid={LOGIN_TEST_ID.forgotLink}
                       {...getLinkAria(t("forgotPassword"))}

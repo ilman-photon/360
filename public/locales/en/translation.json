@@ -18,7 +18,10 @@
     "dontHaveAccountLabel" : "Don't have an account?",
     "syncYourAppointmentInformation" : "Sync your appointment information",
     "alreadyHaveAnAppointment" : "Already have an appointment?",
-    "errorAysncUser": "Login"
+    "errorAysncUser": "Login",
+    "errorLoginLockedTitle": "Account Locked",
+    "errorLoginLockedMessage": "Your account has been locked after too many failed attempts. An email/ text message with password reset link has been sent to your preferred mode of communication to login.",
+    "errorFailedLogin": "Invalid Username or Password"
   },
   "Input": {
     "usernameLable": "Patient Login",
@@ -37,6 +40,7 @@
     "backSignIn": "Back to Sign-In",
     "syncButton": "Sync",
     "syncTitle" : "Sync your appointment",
+    "syncTextContent" : "Enter the email or phone number you provided when you scheduled your appointment",
     "syncErrorTitle" : "Existing User",
     "syncError" : "You are already a registered user. Please login to the application using your username and password.  Login"
   },
@@ -52,7 +56,7 @@
     "subtitle": "Answer the following questions to reset your password.",
     "errorIncorrectAnswer": "Incorrect answer(s)",
     "errorAccountLockTitle": "Account Locked",
-    "errorAccountLock": "Your account is locked. Please contact customer support to unlock your account",
+    "errorAccountLock": "Your account has been locked after too many failed attempts. An email/ text message with password reset link has been sent to your preferred mode of communication to login.",
     "errorEmptyField": "This field is required",
     "continueButton": "Continue",
     "backButtonLink": "Back to Log in"

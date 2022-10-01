@@ -90,11 +90,14 @@ Object {
               class="MuiDialogContent-root css-1phsj2c-MuiDialogContent-root"
             >
               <div
+                aria-label="nono button"
                 class="registeredUsernameWrapper"
                 sx="[object Object]"
               >
                 <div
+                  aria-label="thanksBar"
                   class="thanksBar MuiBox-root css-1bwq3er"
+                  tabindex="0"
                 >
                   <svg
                     aria-hidden="true"
@@ -116,6 +119,7 @@ Object {
               >
                 <a
                   aria-label="isEmergency"
+                  arialabel="sIf this is a medical emergency, please call 911"
                   class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
                   data-mui-internal-clone-element="true"
                   data-testid="loginlink"
@@ -136,10 +140,9 @@ Object {
                   class="MuiCardContent-root css-1aithki-MuiCardContent-root"
                 >
                   <p
-                    aria-label="Saturday, Sep 21, 2022, AT 8:30 AM EST"
                     class="MuiTypography-root MuiTypography-body1 dateBold css-eyz4cw-MuiTypography-root"
                   >
-                    Saturday, Sep 21, 2022, AT 8:30 AM EST
+                    -
                   </p>
                   <div
                     style="display: inline-flex;"
@@ -531,11 +534,14 @@ Object {
               class="MuiDialogContent-root css-1phsj2c-MuiDialogContent-root"
             >
               <div
+                aria-label="nono button"
                 class="registeredUsernameWrapper"
                 sx="[object Object]"
               >
                 <div
+                  aria-label="thanksBar"
                   class="thanksBar MuiBox-root css-1bwq3er"
+                  tabindex="0"
                 >
                   <svg
                     aria-hidden="true"
@@ -557,6 +563,7 @@ Object {
               >
                 <a
                   aria-label="isEmergency"
+                  arialabel="sIf this is a medical emergency, please call 911"
                   class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
                   data-mui-internal-clone-element="true"
                   data-testid="loginlink"
@@ -577,10 +584,9 @@ Object {
                   class="MuiCardContent-root css-1aithki-MuiCardContent-root"
                 >
                   <p
-                    aria-label="Saturday, Sep 21, 2022, AT 8:30 AM EST"
                     class="MuiTypography-root MuiTypography-body1 dateBold css-eyz4cw-MuiTypography-root"
                   >
-                    Saturday, Sep 21, 2022, AT 8:30 AM EST
+                    -
                   </p>
                   <div
                     style="display: inline-flex;"

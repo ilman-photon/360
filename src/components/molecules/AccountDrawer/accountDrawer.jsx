@@ -82,6 +82,7 @@ export const AccountDrawer = ({
   const router = useRouter();
   const [activeMenu, setActiveMenu] = useState(null);
   const [sidebarLinks, setSidebarLinks] = useState(null);
+  const [haveChildren, setHaveChildren] = useState(false);
 
   const getMenuTitle = () => {
     if (activeMenu) {
@@ -91,7 +92,18 @@ export const AccountDrawer = ({
   };
 
   useEffect(() => {
-    setSidebarLinks(linkObject[activeMenu]);
+    if (activeMenu === "dashboard") {
+      onClose();
+      router.push("/patient");
+      setHaveChildren(false);
+    } else if (activeMenu === "appointments") {
+      onClose();
+      router.push("/patient/appointments");
+      setHaveChildren(false);
+    } else {
+      setHaveChildren(true);
+      setSidebarLinks(linkObject[activeMenu]);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [activeMenu]);
 
@@ -109,17 +121,19 @@ export const AccountDrawer = ({
           ".MuiListItem-root": { borderBottomWidth: 1, borderColor: "#F3F3F3" },
         }}
       >
-        <Slide direction="left" in={!!activeMenu} mountOnEnter unmountOnExit>
-          <ListItemButton sx={{ background: "#F4F4F4" }}>
-            <ListItemIcon sx={{ placeContent: "start" }}>
-              <KeyboardArrowLeftIcon />
-            </ListItemIcon>
-            <ListItemText
-              primary={getMenuTitle()}
-              onClick={() => setActiveMenu(null)}
-            />
-          </ListItemButton>
-        </Slide>
+        {haveChildren && (
+          <Slide direction="left" in={!!activeMenu} mountOnEnter unmountOnExit>
+            <ListItemButton sx={{ background: "#F4F4F4" }}>
+              <ListItemIcon sx={{ placeContent: "start" }}>
+                <KeyboardArrowLeftIcon />
+              </ListItemIcon>
+              <ListItemText
+                primary={getMenuTitle()}
+                onClick={() => setActiveMenu(null)}
+              />
+            </ListItemButton>
+          </Slide>
+        )}
 
         <Slide direction="left" in={!sidebarLinks} mountOnEnter unmountOnExit>
           <div>
@@ -183,6 +197,7 @@ export const AccountDrawer = ({
           borderRadius: "28px",
           margin: "auto",
         }}
+        onClick={onLogoutClicked}
       >
         LOG OUT
       </Button>

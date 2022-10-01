@@ -51,6 +51,9 @@
 
 .quarteBox {
   width: 30%;
+  @media print {
+    width: 50%;
+  }
 }
 
 .margin {
@@ -221,7 +224,6 @@
 
   .medicationStatusAccordion {
     box-shadow: none;
-    background-color: transparent;
     padding: 0px;
     width: 30%;
     background: #f4f4f4;
@@ -401,4 +403,16 @@
   color: white;
   font-size: 14px;
   font-weight: 400;
+}
+
+.ctaContainer {
+  .butttonIconContainer {
+    min-width: 15px;
+    margin: 0;
+    margin-left: 20px;
+    padding: 0;
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
+  }
 }

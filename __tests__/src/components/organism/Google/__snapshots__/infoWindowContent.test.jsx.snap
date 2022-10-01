@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="css-nplzvf-MuiStack-root"
+        class="css-zvyj3o-MuiStack-root"
       >
         <div
           class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 css-a5rdam-MuiGrid-root"
@@ -18,7 +18,7 @@ Object {
               class="css-1p5q5e5-MuiStack-root"
             >
               <span
-                class="MuiTypography-root MuiTypography-bodySmallMedium css-gczxxj-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-bodySmallMedium css-m3x1tt-MuiTypography-root"
               >
                 1
                  of 
@@ -66,13 +66,13 @@ Object {
                   <div
                     class="bioContainer customBioContainer MuiBox-root css-1oovyp6"
                   >
-                    <h2
-                      class="MuiTypography-root MuiTypography-h2 css-1i5ehwd-MuiTypography-root"
+                    <h4
+                      class="MuiTypography-root MuiTypography-h4 doctorMap css-36gbox-MuiTypography-root"
                       data-testid="appointment_provider_profile_name"
                       tabindex="0"
                     >
                       Paul Wagner Md
-                    </h2>
+                    </h4>
                     <div
                       class="detailContainer MuiBox-root css-0"
                     >
@@ -84,7 +84,7 @@ Object {
                           class="MuiBox-root css-0"
                         >
                           <p
-                            class="MuiTypography-root MuiTypography-body2 address customAddress css-166djn1-MuiTypography-root"
+                            class="MuiTypography-root MuiTypography-body2 address customAddress css-5hrm3t-MuiTypography-root"
                             tabindex="0"
                           >
                             51 West 51st Street
@@ -127,7 +127,7 @@ Object {
               >
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-3drn0e-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-127aa2z-MuiSvgIcon-root"
                   data-testid="provider_btnPrevious"
                   focusable="false"
                   role="button"
@@ -139,7 +139,7 @@ Object {
                 </svg>
                 <svg
                   aria-hidden="true"
-                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-3drn0e-MuiSvgIcon-root"
+                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-127aa2z-MuiSvgIcon-root"
                   data-testid="provider_btnNext"
                   focusable="false"
                   role="button"
@@ -151,7 +151,7 @@ Object {
                 </svg>
               </div>
               <span
-                class="MuiTypography-root MuiTypography-bodySmallMedium css-1wwdkmb-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-bodySmallMedium css-1bhtu6j-MuiTypography-root"
               >
                 10 mi
               </span>
@@ -469,7 +469,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="css-nplzvf-MuiStack-root"
+      class="css-zvyj3o-MuiStack-root"
     >
       <div
         class="MuiGrid-root MuiGrid-container MuiGrid-spacing-xs-1 css-a5rdam-MuiGrid-root"
@@ -481,7 +481,7 @@ Object {
             class="css-1p5q5e5-MuiStack-root"
           >
             <span
-              class="MuiTypography-root MuiTypography-bodySmallMedium css-gczxxj-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-bodySmallMedium css-m3x1tt-MuiTypography-root"
             >
               1
                of 
@@ -529,13 +529,13 @@ Object {
                 <div
                   class="bioContainer customBioContainer MuiBox-root css-1oovyp6"
                 >
-                  <h2
-                    class="MuiTypography-root MuiTypography-h2 css-1i5ehwd-MuiTypography-root"
+                  <h4
+                    class="MuiTypography-root MuiTypography-h4 doctorMap css-36gbox-MuiTypography-root"
                     data-testid="appointment_provider_profile_name"
                     tabindex="0"
                   >
                     Paul Wagner Md
-                  </h2>
+                  </h4>
                   <div
                     class="detailContainer MuiBox-root css-0"
                   >
@@ -547,7 +547,7 @@ Object {
                         class="MuiBox-root css-0"
                       >
                         <p
-                          class="MuiTypography-root MuiTypography-body2 address customAddress css-166djn1-MuiTypography-root"
+                          class="MuiTypography-root MuiTypography-body2 address customAddress css-5hrm3t-MuiTypography-root"
                           tabindex="0"
                         >
                           51 West 51st Street
@@ -590,7 +590,7 @@ Object {
             >
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-3drn0e-MuiSvgIcon-root"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-127aa2z-MuiSvgIcon-root"
                 data-testid="provider_btnPrevious"
                 focusable="false"
                 role="button"
@@ -602,7 +602,7 @@ Object {
               </svg>
               <svg
                 aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-3drn0e-MuiSvgIcon-root"
+                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-127aa2z-MuiSvgIcon-root"
                 data-testid="provider_btnNext"
                 focusable="false"
                 role="button"
@@ -614,7 +614,7 @@ Object {
               </svg>
             </div>
             <span
-              class="MuiTypography-root MuiTypography-bodySmallMedium css-1wwdkmb-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-bodySmallMedium css-1bhtu6j-MuiTypography-root"
             >
               10 mi
             </span>
