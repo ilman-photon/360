@@ -26,6 +26,8 @@ import { colors } from "../../../styles/theme";
 import { useEffect } from "react";
 import FormMessage from "../FormMessage/formMessage";
 import moment from "moment";
+import { renderCTAIcon } from "./prescriptions";
+import { savePDF } from "@progress/kendo-react-pdf";
 
 export default function PrescriptionMedication({
   medications = {
@@ -37,6 +39,8 @@ export default function PrescriptionMedication({
   },
   requestRefillResponseData = null,
 }) {
+  const containerActive = React.useRef(null);
+  const containerPast = React.useRef(null);
   const [filterOpen, setFilterOpen] = React.useState(false);
   const [activeFilter, setActiveFilter] = React.useState([]);
   const [requestRefillResponse, setRequestRefillResponse] =
@@ -115,8 +119,54 @@ export default function PrescriptionMedication({
   ];
   const isMobile = useMediaQuery("(max-width: 768px)");
   const iconMedication = "/icon-medication.png";
-  const iconShare = "/icon-share.png";
-  const iconDownload = "/icon-download.png";
+
+  const downloadPDF = (index = -1, medicationType) => {
+    let containerSelector = null;
+    if (medicationType === "past") {
+      containerSelector = containerPast;
+    } else {
+      containerSelector = containerActive;
+    }
+
+    let element =
+      containerSelector.current.querySelector(
+        `[data-testid=medication-${medicationType}-container-${index}]`
+      ) || document.body;
+    savePDF(element, {
+      paperSize: "auto",
+      margin: 40,
+      fileName: `Prescription Medication Don John`,
+    });
+  };
+
+  const printHTML = (index = -1, medicationType) => {
+    let containerSelector = null;
+    if (medicationType === "past") {
+      containerSelector = containerPast;
+    } else {
+      containerSelector = containerActive;
+    }
+    let element =
+      containerSelector.current.querySelector(
+        `[data-testid=medication-${medicationType}-container-${index}]`
+      ) || document.body;
+    const styles = Array.from(document.head.querySelectorAll("style"));
+    var WinPrint = window.open(
+      "",
+      "",
+      "left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0"
+    );
+    WinPrint.document.write(element.innerHTML);
+    styles.forEach((st) => {
+      WinPrint.document.head.appendChild(st.cloneNode(true));
+    });
+    WinPrint.document.close();
+    WinPrint.focus();
+    WinPrint.print();
+    // setTimeout(() => {
+    //   WinPrint.close();
+    // }, 500);
+  };
 
   const onSetFilter = (newFilterData) => {
     setFilterOpen(!filterOpen);
@@ -160,41 +210,6 @@ export default function PrescriptionMedication({
         </Box>
       );
     });
-  }
-
-  function renderCTAIcon() {
-    return (
-      <Stack direction={"row"} alignSelf={"center"} sx={{ marginLeft: "auto" }}>
-        <Box
-          sx={{
-            width: "15px",
-            height: "15px",
-          }}
-          data-testid={"download-icon"}
-        >
-          <Image alt="" src={iconDownload} width={15} height={15} />
-        </Box>
-        <Box
-          sx={{
-            width: "15px",
-            height: "15px",
-            margin: "0px 15px",
-          }}
-          data-testid={"shared-icon"}
-        >
-          <Image alt="" src={iconShare} width={15} height={15} />
-        </Box>
-
-        <LocalPrintshopOutlinedIcon
-          sx={{
-            width: "18px",
-            height: "18px",
-            color: colors.darkGreen,
-          }}
-          data-testid={"print-icon"}
-        />
-      </Stack>
-    );
   }
 
   function renderStatusMedication(status, statusDescription) {
@@ -249,13 +264,13 @@ export default function PrescriptionMedication({
     return intentUI;
   }
 
-  function renderMedicationViewAllUI(data, idx) {
+  function renderMedicationViewAllUI(data, idx, medicationType) {
     return (
       <Stack
         direction={"row"}
         className={styles.medicationViewAllContainer}
         key={`${idx}-madication-prescription`}
-        data-testid={`medication-container-${idx}`}
+        data-testid={`medication-${medicationType}-container-${idx}`}
       >
         {!isMobile && (
           <Box>
@@ -276,7 +291,25 @@ export default function PrescriptionMedication({
             <Typography className={styles.medicationViewAllTitle}>
               {data.prescription}
             </Typography>
-            {!isMobile ? renderCTAIcon() : <MenuList />}
+            {!isMobile ? (
+              renderCTAIcon(
+                () => {
+                  downloadPDF(idx, medicationType);
+                },
+                () => {
+                  printHTML(idx, medicationType);
+                }
+              )
+            ) : (
+              <MenuList
+                onClickDownloadButton={() => {
+                  downloadPDF(idx, medicationType);
+                }}
+                onClickPrintButton={() => {
+                  printHTML(idx, medicationType);
+                }}
+              />
+            )}
           </Stack>
           <Stack sx={{ width: "100%" }}>
             {(data.status === "refill request" ||
@@ -402,13 +435,13 @@ export default function PrescriptionMedication({
     );
   }
 
-  function renderPrescriptionTabUI(data) {
+  function renderPrescriptionTabUI(data, medicationType) {
     if (!data) {
       return <></>;
     }
     const contentUI = [];
     data.map((row, idx) => {
-      contentUI.push(renderMedicationViewAllUI(row, idx));
+      contentUI.push(renderMedicationViewAllUI(row, idx, medicationType));
     });
     return contentUI;
   }
@@ -492,7 +525,9 @@ export default function PrescriptionMedication({
         {renderUIFilter()}
       </Box>
       {medications?.active?.length > 0 ? (
-        renderPrescriptionTabUI(medications.active)
+        <Box ref={containerActive}>
+          {renderPrescriptionTabUI(medications.active, "active")}
+        </Box>
       ) : (
         <Box className={[styles.noPrescription, styles.margin].join(" ")}>
           <Typography
@@ -514,7 +549,9 @@ export default function PrescriptionMedication({
               Past Medications{` (${medications?.past?.length})`}
             </Typography>
           </Box>
-          {renderPrescriptionTabUI(medications.past)}
+          <Box ref={containerPast}>
+            {renderPrescriptionTabUI(medications.past, "past")}
+          </Box>
         </>
       )}
     </Box>
