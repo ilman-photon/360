@@ -7,6 +7,7 @@ import { TEST_ID } from "../../../utils/constants";
 import { StyledButton } from "../../atoms/Button/button";
 import AppointmentInformation from "../../molecules/AppointmentInformation/appointmentInformation";
 import { upcomingAppointmentDate } from "../../../utils/dateFormatter";
+import { useRouter } from "next/router";
 
 const constants = require("../../../utils/constants");
 
@@ -112,17 +113,28 @@ export function NoAppointment() {
         </Typography>
       </Box>
       <Box className={styles.noAppointmentButtonContainer}>
-        <StyledButton
-          theme={constants.PATIENT}
-          mode={constants.PRIMARY}
-          type="button"
-          size={constants.SMALL}
-          gradient={false}
-        >
-          Schedule Appointment Now
-        </StyledButton>
+        {scheduleAppointmentButton()}
       </Box>
     </Box>
+  );
+}
+
+export function scheduleAppointmentButton() {
+  const router = new useRouter();
+  return (
+    <StyledButton
+      theme={constants.PATIENT}
+      mode={constants.PRIMARY}
+      type="button"
+      size={constants.SMALL}
+      className={styles.scheduleButton}
+      gradient={false}
+      onClick={() => {
+        router.push("/patient/appointment");
+      }}
+    >
+      Schedule New Appointments
+    </StyledButton>
   );
 }
 
@@ -140,15 +152,18 @@ export default function UpcomingAppointment({
   const isHasValue = appointments.length !== 0;
   return (
     <Box className={styles.upcomingAppointment}>
-      <Typography
-        variant="h2"
-        tabIndex={0}
-        label={"Upcoming appointments heading"}
-        className={styles.title}
-        data-testid={TEST_ID.APPOINTMENTS_TEST_ID.upcomingAppointmentsHeader}
-      >
-        Upcoming Appointments
-      </Typography>
+      <Box className={styles.upcomingAppointmentHeader}>
+        <Typography
+          variant="h2"
+          tabIndex={0}
+          label={"Upcoming appointments heading"}
+          className={styles.title}
+          data-testid={TEST_ID.APPOINTMENTS_TEST_ID.upcomingAppointmentsHeader}
+        >
+          Upcoming Appointments
+        </Typography>
+        {isHasValue ? scheduleAppointmentButton() : null}
+      </Box>
 
       {isHasValue ? (
         appointments.map((item, index) => {
