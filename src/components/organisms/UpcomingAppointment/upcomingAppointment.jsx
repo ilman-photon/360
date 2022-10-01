@@ -7,7 +7,6 @@ import { TEST_ID } from "../../../utils/constants";
 import { StyledButton } from "../../atoms/Button/button";
 import AppointmentInformation from "../../molecules/AppointmentInformation/appointmentInformation";
 import { upcomingAppointmentDate } from "../../../utils/dateFormatter";
-import { useRouter } from "next/router";
 
 const constants = require("../../../utils/constants");
 
@@ -119,8 +118,7 @@ export function NoAppointment() {
   );
 }
 
-export function scheduleAppointmentButton() {
-  const router = new useRouter();
+export function scheduleAppointmentButton(onScheduleClicked) {
   return (
     <StyledButton
       theme={constants.PATIENT}
@@ -129,9 +127,7 @@ export function scheduleAppointmentButton() {
       size={constants.SMALL}
       className={styles.scheduleButton}
       gradient={false}
-      onClick={() => {
-        router.push("/patient/appointment");
-      }}
+      onClick={onScheduleClicked}
     >
       Schedule New Appointments
     </StyledButton>
@@ -162,7 +158,7 @@ export default function UpcomingAppointment({
         >
           Upcoming Appointments
         </Typography>
-        {isHasValue ? scheduleAppointmentButton() : null}
+        {isHasValue ? scheduleAppointmentButton(onRescheduleClicked) : null}
       </Box>
 
       {isHasValue ? (
