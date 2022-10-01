@@ -16,14 +16,14 @@ export const removeAuthCookies = () => {
 };
 
 export const logoutProps = {
-  OnLogoutClicked: function (router) {
+  OnLogoutClicked: async function (router) {
     const api = new Api();
     const postbody = {
       username: cookies.get("username"),
       refreshToken: cookies.get("refreshToken"),
     };
 
-    api
+    return api
       .logout(postbody)
       .then(function () {
         removeAuthCookies();
