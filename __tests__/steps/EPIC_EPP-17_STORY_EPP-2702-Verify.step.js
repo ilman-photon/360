@@ -189,7 +189,7 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByTestId("medication-container-0"));
+      await waitFor(() => container.getByTestId("medication-active-container-0"));
     });
 
     then("patient should see the option to Refill the Prescription.", () => {
@@ -251,8 +251,8 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByTestId("medication-container-0"));
-    });
+      await waitFor(() => container.getByTestId("medication-active-container-0"));
+  });
 
     then(
       "patient should see the option to Cancel the requested Prescription.",
@@ -316,8 +316,8 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByTestId("medication-container-0"));
-    });
+      await waitFor(() => container.getByTestId("medication-active-container-0"));
+  });
 
     then(
       "patient should see the option to download  the refilled Prescription.",
