@@ -103,21 +103,6 @@ export function UpcomingAppointmentCard({
   );
 }
 
-export function NoAppointment() {
-  return (
-    <Box>
-      <Box className={styles.noAppointmentTitle}>
-        <Typography variant="body2" className={styles.noAppointmentTitleText}>
-          You have no upcoming appointments
-        </Typography>
-      </Box>
-      <Box className={styles.noAppointmentButtonContainer}>
-        {scheduleAppointmentButton()}
-      </Box>
-    </Box>
-  );
-}
-
 export function scheduleAppointmentButton(onScheduleClicked) {
   return (
     <StyledButton
@@ -131,6 +116,21 @@ export function scheduleAppointmentButton(onScheduleClicked) {
     >
       Schedule New Appointments
     </StyledButton>
+  );
+}
+
+export function NoAppointment({ onRescheduleClicked }) {
+  return (
+    <Box>
+      <Box className={styles.noAppointmentTitle}>
+        <Typography variant="body2" className={styles.noAppointmentTitleText}>
+          You have no upcoming appointments
+        </Typography>
+      </Box>
+      <Box className={styles.noAppointmentButtonContainer}>
+        {scheduleAppointmentButton(onRescheduleClicked)}
+      </Box>
+    </Box>
   );
 }
 
@@ -174,7 +174,9 @@ export default function UpcomingAppointment({
           ) : null;
         })
       ) : (
-        <NoAppointment></NoAppointment>
+        <NoAppointment
+          onRescheduleClicked={onRescheduleClicked}
+        ></NoAppointment>
       )}
     </Box>
   );
