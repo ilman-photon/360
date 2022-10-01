@@ -40,7 +40,7 @@ export function UpcomingAppointmentCard({
           className={styles.appointmentTitle}
           variant="h3"
         >
-          Eye Exam
+          {data.appointmentInfo.appointmentType}
         </Typography>
         <Box className={styles.dateContainer}>
           <Typography

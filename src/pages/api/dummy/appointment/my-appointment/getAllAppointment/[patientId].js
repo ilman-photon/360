@@ -254,6 +254,43 @@ export default function getAllAppointment(req, res) {
       responseData = {
         appointmentList: [
           {
+            appointmentId: "2",
+            providerInfo: {
+              providerId: "1",
+              name: "Iori Blaze Md",
+              position: "Scripps Eyecare",
+              address: {
+                addressLine1: "51 West 51st Street",
+                addressLine2: "Floor 3, Suite 320 Midtown",
+                city: "California",
+                state: "CA",
+                zipcode: "90210",
+              },
+              rating: "4",
+              phoneNumber: "8572222289",
+              distance: "15 mi",
+              image: "/doctor.png",
+              from: "2022-07-18",
+              to: "2022-07-23",
+              location: {
+                latitude: 32.751204,
+                longitude: -117.1641166,
+              },
+            },
+            patientInfo: {
+              name: "Jessica Chan",
+              firstname: "Jessica",
+              lastname: "Chan",
+              dob: "12/12/2000",
+              phoneNumber: "1234567890",
+            },
+            appointmentInfo: {
+              appointmentType: "Test or Procedure",
+              date: comprehensive.toUTCString(),
+              insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+            },
+          },
+          {
             appointmentId: "1",
             providerInfo: {
               providerId: "1",
