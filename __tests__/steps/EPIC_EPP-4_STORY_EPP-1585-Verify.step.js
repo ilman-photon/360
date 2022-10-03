@@ -422,11 +422,13 @@ defineFeature(feature, (test) => {
     });
 
     and("user view the purpose of visit dropdown field", () => {
-      defaultValidation();
+      const pusposeField = container.getByText(/Purpose of Visit/i);
+      expect(pusposeField).toBeInTheDocument();
     });
 
     then("user view  Insurance field", () => {
-      defaultValidation();
+      const insuranceField = container.getByText(/Insurance Carrier/i);
+      expect(insuranceField).toBeInTheDocument();
     });
   });
 
@@ -471,16 +473,18 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    then("User lands on to the screen", () => {
-      defaultValidation();
+    then("User lands on to the screen", async() => {
+      cleanup()
+      container = await renderScheduleAppointment()
     });
 
     and("user view and search  the location", () => {
-      defaultValidation();
+      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
     });
 
     when("user select  the date of appointment", () => {
-      defaultValidation();
+      const dateField = container.getByText(/Date/i);
+      expect(dateField).toBeInTheDocument();
     });
 
     and(/^user view the"(.*)"$/, (arg0) => {
@@ -488,7 +492,8 @@ defineFeature(feature, (test) => {
     });
 
     then("user select the Purpose of Visit in dropdown field", () => {
-      defaultValidation();
+      const pusposeField = container.getByText(/Purpose of Visit/i);
+      expect(pusposeField).toBeInTheDocument();
     });
   });
 
@@ -533,28 +538,33 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    then("User lands on to the screen", () => {
-      defaultValidation();
+    then("User lands on to the screen", async() => {
+      cleanup()
+      container = await renderScheduleAppointment()
     });
 
     and("user view and search  the location", () => {
-      defaultValidation();
+      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
     });
 
     when("user select  the date of appointment", () => {
-      defaultValidation();
+      const dateField = container.getByText(/Date/i);
+      expect(dateField).toBeInTheDocument();
     });
 
     and("user view the purpose of visit field", () => {
-      defaultValidation();
+      const pusposeField = container.getByText(/Purpose of Visit/i);
+      expect(pusposeField).toBeInTheDocument();
     });
 
     then("user able to select the Purpose of Visit", () => {
-      defaultValidation();
+      const pusposeField = container.getByText(/Purpose of Visit/i);
+      expect(pusposeField).toBeInTheDocument();
     });
 
     and("user view optional label under Purpose of Visit field", () => {
-      defaultValidation();
+      const pusposeField = container.getByText(/Purpose of Visit/i);
+      expect(pusposeField).toBeInTheDocument();
     });
   });
 });

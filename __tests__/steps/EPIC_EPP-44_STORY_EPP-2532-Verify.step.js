@@ -18,6 +18,7 @@ import Cookies from "universal-cookie";
 import { getServerSideProps } from "../../src/pages/patient/mfa";
 import HomePage from "../../src/pages/patient";
 import { renderScheduleAppointment } from "../../__mocks__/commonSteps";
+import Appointment from "../../src/pages/patient/appointment";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-2532.feature"
@@ -951,12 +952,36 @@ defineFeature(feature, (test) => {
       expect(insuranceField).toBeInTheDocument();
     });
 
-    and("click on the Search button", () => {
-      defaultValidation();
+    and("click on the Search button", async () => {
+      cleanup()
+      const mock = new MockAdapter(axios);
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn()
+      };
+
+      const domain = window.location.origin;
+      global.navigator.geolocation = mockGeolocation;
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment />)}
+        </Provider>
+      );
+      const searchBtn = await waitFor(() =>
+        container.getByTestId(constants.TEST_ID.APPOINTMENT_TEST_ID.searchbtn)
+      );
+      fireEvent.click(searchBtn);
+      expect(searchBtn).toBeInTheDocument();
     });
 
     then("the user should see the results.", () => {
-      defaultValidation();
+      const dateField = container.getByText(/Date/i);
+      const pusposeField = container.getByText(/Purpose of Visit/i);
+      const insuranceField = container.getByText(/Insurance Carrier/i);
+      expect(insuranceField).toBeInTheDocument();
+      expect(pusposeField).toBeInTheDocument();
+      expect(dateField).toBeInTheDocument();
+      expect(container.getByLabelText("City, state, or zip code")).toBeInTheDocument();
     });
   });
 });

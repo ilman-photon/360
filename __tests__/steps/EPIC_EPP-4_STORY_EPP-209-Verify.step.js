@@ -1,8 +1,14 @@
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, waitFor, cleanup } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
-import { renderLogin } from "../../__mocks__/commonSteps";
+import { renderLogin, navigateToPatientPortalHome } from "../../__mocks__/commonSteps";
+import { Login } from "../../src/components/organisms/Login/login";
+import constants from "../../src/utils/constants";
+import { Provider } from "react-redux";
+import store from "../../src/store/store";
+import HomePage from "../../src/pages/patient";
+import Cookies from "universal-cookie";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-209.feature", {
@@ -21,7 +27,12 @@ defineFeature(feature, (test) => {
     and,
   }) => {
     given("Admin launch the \'XXX\' url", () => {
-      expect(true).toBeTruthy()
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "sucsess",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("Admin navigates to the Patient Portal application", () => {
@@ -37,16 +48,40 @@ defineFeature(feature, (test) => {
       renderLogin()
     });
     and('Admin provides valid \"<Email>\" and valid \"<password>\"', () => {
-      expect(true).toBeTruthy()
+      cleanup()
+      const mockOnLoginClicked = jest.fn((data, route, callback) => {
+        callback({
+          status: "success",
+        });
+      });
+      container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+      const usernameField = container.getByLabelText("emailUserLabel");
+      const passwordField = container.getByLabelText("passwordLabel");
+      expect(usernameField.id).toEqual("username");
+      expect(passwordField.id).toEqual("password");
     });
     and("Admin click \'Login\' button.", () => {
-      expect(true).toBeTruthy()
+      const loginBtn = container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)
+      fireEvent.click(loginBtn)
+      expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
     });
 
     then(
       "Admin should view Home/Dashboard page",
-      () => {
-        expect(true).toBeTruthy()
+      async() => {
+        cleanup()
+        const mockGeolocation = {
+          getCurrentPosition: jest.fn(),
+          watchPosition: jest.fn(),
+        };
+        global.navigator.geolocation = mockGeolocation;
+        Cookies.result = false;
+        act(() => {
+          container = render(
+            <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
+          );
+        });
+        // expect(container.getByText(constants.TEST_ID.HOME_TEST_ID.logout)).toBeInTheDocument();
       }
     );
   });
@@ -58,7 +93,12 @@ defineFeature(feature, (test) => {
   }) => {
     let container;
     given("Admin launch the \'XXX\' url", () => {
-      expect(true).toBeTruthy()
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "sucsess",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("Admin navigates to the Patient Portal application", () => {

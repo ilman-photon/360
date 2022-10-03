@@ -1,11 +1,12 @@
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, waitFor, cleanup } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
-import Login from "../../src/components/organisms/Login/login";
+import { Login } from "../../src/components/organisms/Login/login";
 import AuthPage from "../../src/pages/patient/login";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import Cookies from "universal-cookie";
 import { navigateToPatientPortalHome } from "../../__mocks__/commonSteps";
+import constants from "../../src/utils/constants";
 
 jest.mock("universal-cookie", () => {
   class MockCookies {
@@ -47,7 +48,12 @@ defineFeature(feature, (test) => {
     and,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2001,
+        ResponseType: "failure",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -60,7 +66,7 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
         container = render(<AuthPage />, {
           container: document.body.appendChild(element),
@@ -86,7 +92,7 @@ defineFeature(feature, (test) => {
       fireEvent.click(login);
     });
 
-    then("user should view Home/Dashboard page", async() => {
+    then("user should view Home/Dashboard page", async () => {
       navigateToPatientPortalHome()
     });
   });
@@ -101,7 +107,12 @@ defineFeature(feature, (test) => {
     const element = document.createElement("div");
 
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2001,
+        ResponseType: "failure",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -114,7 +125,7 @@ defineFeature(feature, (test) => {
     });
 
     when(`user lands onto “Patient Login” screen`, () => {
-      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       container = render(<AuthPage />);
       const title = container.getByText("formTitle");
       expect("formTitle").toEqual(title.textContent);
@@ -131,7 +142,7 @@ defineFeature(feature, (test) => {
       const login = container.getByRole("button", { name: /Login/i });
       fireEvent.click(login);
     });
-    then("user should view Home/Dashboard page", async() => {
+    then("user should view Home/Dashboard page", async () => {
       navigateToPatientPortalHome()
     });
   });
@@ -145,7 +156,12 @@ defineFeature(feature, (test) => {
     const mock = new MockAdapter(axios);
     const element = document.createElement("div");
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2001,
+        ResponseType: "failure",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
     and("user navigates to the Patient Portal application", () => {
       const expectedResult = {
@@ -156,19 +172,30 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
     when(`user lands onto “Patient Login” screen`, () => {
-      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       container = render(<AuthPage />);
       const title = container.getByText("formTitle");
       expect("formTitle").toEqual(title.textContent);
     });
     and('user provides valid "<Phone Number>" and valid"<password>"', () => {
-      expect(true).toBeTruthy();
+      cleanup()
+      const mockOnLoginClicked = jest.fn((data, route, callback) => {
+        callback({
+          status: "success",
+        });
+      });
+      container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+      const usernameField = container.getByLabelText("emailUserLabel");
+      const passwordField = container.getByLabelText("passwordLabel");
+      expect(usernameField.id).toEqual("username");
+      expect(passwordField.id).toEqual("password");
     });
     and("user click 'Login' button.", () => {
       const login = container.getByRole("button", { name: /Login/i });
       fireEvent.click(login);
+      expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
     });
-    then("user should view Home/Dashboard page", async() => {
+    then("user should view Home/Dashboard page", async () => {
       navigateToPatientPortalHome()
     });
   });
@@ -187,7 +214,7 @@ defineFeature(feature, (test) => {
       userType: "patient",
     };
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
     and("user navigates to the Patient Portal application", () => {
       mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
@@ -216,7 +243,7 @@ defineFeature(feature, (test) => {
       userType: "patient",
     };
     given("user user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
     and("user navigates to the Patient Portal application", () => {
       const expectedResult = {
@@ -228,7 +255,7 @@ defineFeature(feature, (test) => {
     });
 
     when(`user lands onto “Patient Login” screen`, () => {
-      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       container = render(<AuthPage />);
       const title = container.getByText("formTitle");
       expect("formTitle").toEqual(title.textContent);
@@ -245,15 +272,20 @@ defineFeature(feature, (test) => {
     and,
   }) => {
     let container;
+    const expectedResult = {
+      ResponseCode: 2000,
+      ResponseType: "success",
+      userType: "patient",
+    };
     given("user user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     when(`user lands onto “Patient Login” screen`, () => {
-      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       container = render(<AuthPage />);
       const title = container.getByText("formTitle");
       expect("formTitle").toEqual(title.textContent);
@@ -272,17 +304,22 @@ defineFeature(feature, (test) => {
     and,
   }) => {
     let container;
+    const expectedResult = {
+      ResponseCode: 2000,
+      ResponseType: "success",
+      userType: "patient",
+    };
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
     when(`the service is unavailable`, () => {
       expect(true).toBeTruthy();
     });
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
     and("user lands on “Patient Login” screen", () => {
-      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       container = render(<AuthPage />);
       const title = container.getByText("formTitle");
       expect("formTitle").toEqual(title.textContent);
