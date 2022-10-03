@@ -9,10 +9,20 @@ export const fetchTestLabResult = createAsyncThunk(
   }
 );
 
+export const fetchCarePlan = createAsyncThunk(
+  "medical-report/fetchCarePlan",
+  async () => {
+    return fetch("/api/dummy/medical-report/care-plan-overview").then((res) =>
+      res.json()
+    );
+  }
+);
+
 const medResSlice = createSlice({
   name: "medicalResult",
   initialState: {
     testLabData: [],
+    carePlanData: [],
     status: null,
   },
   extraReducers: {
@@ -24,6 +34,16 @@ const medResSlice = createSlice({
       state.status = "success";
     },
     [fetchTestLabResult.rejected]: (state) => {
+      state.status = "failed";
+    },
+    [fetchCarePlan.pending]: (state) => {
+      state.status = "loading";
+    },
+    [fetchCarePlan.fulfilled]: (state, { payload }) => {
+      state.carePlanData = payload;
+      state.status = "success";
+    },
+    [fetchCarePlan.rejected]: (state) => {
       state.status = "failed";
     },
   },
