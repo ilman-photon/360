@@ -112,7 +112,7 @@ deploy_to:
     - sed -i 's/TAG/'"$CI_PIPELINE_IID"'/g' ./deployment/deploy.yaml
     # - kubectl config view
     - cat ./deployment/deploy.yaml
-    - kubectl apply -f `pwd`/deployment/deploy.yaml
+    - kubectl apply -f `pwd`/deployment/deploy.yaml -n demo
 
 after_script:
   - echo "End CI"
