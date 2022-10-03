@@ -3,7 +3,7 @@ import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
-import TestLabPage from "../../src/pages/patient/account/medical-record";
+import MedicalRecordPage from "../../src/pages/patient/account/medical-record";
 
 import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import AuthPage from "../../src/pages/patient/login";
@@ -69,7 +69,7 @@ defineFeature(feature, (test) => {
       act(() => {
           container.rerender(
               <Provider store={store}>
-                <TestLabPage />
+                <MedicalRecordPage />
               </Provider>
             );
           router.push(
