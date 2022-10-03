@@ -45,8 +45,11 @@ export function Login({
     return (
       postMessage.status === "failed" && (
         <Box marginBottom={"16px"}>
-          <FormMessage error title={postMessage.message.title}>
-            {postMessage.message.description}
+          <FormMessage
+            error
+            title={postMessage.message.title && t(postMessage.message.title)}
+          >
+            {t(postMessage.message.description)}
           </FormMessage>
         </Box>
       )

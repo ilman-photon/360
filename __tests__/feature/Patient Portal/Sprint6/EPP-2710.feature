@@ -7,8 +7,8 @@ Feature: Patient Portal : Cancel Refill Request - Cancel a prescription refill
   @Patient_Portal
   @Prescription
   @Sprint6
+  @included
   Scenario: EPIC_EPP-19_STORY_EPP-2710 - Verify User should be able to click the option to cancel refill against a prescription
-    Scenario: EPIC_EPP-19_STORY_EPP-2710 - Verify User should be able to click the option to cancel refill against a prescription
 
     Given User launch Patient Portal url		
     When User is logged in to the application
@@ -43,8 +43,8 @@ Feature: Patient Portal : Cancel Refill Request - Cancel a prescription refill
   @Patient_Portal
   @Prescription
   @Sprint6
+  @included
   Scenario: EPIC_EPP-1_STORY_EPP-2710 - Verify User should see the following message that the System sends out a cancellation of refill request to Provider portal
-    Scenario: EPIC_EPP-1_STORY_EPP-2710 - Verify User should see the following message that the System sends out a cancellation of refill request to Provider portal
 
     Given User launch Patient Portal url		
     When User is logged in to the application
@@ -80,8 +80,8 @@ Feature: Patient Portal : Cancel Refill Request - Cancel a prescription refill
   @Prescription
   @Regression
   @Sprint6
+  @included
   Scenario: EPIC_EPP-1_STORY_EPP-2710 - Verify User should be able to see an option to request for refill when refill request has been cancelled
-    Scenario: EPIC_EPP-1_STORY_EPP-2710 - Verify User should be able to see an option to request for refill when refill request has been cancelled
 
     Given User launch Patient Portal url		
     When User is logged in to the application
@@ -117,8 +117,8 @@ Feature: Patient Portal : Cancel Refill Request - Cancel a prescription refill
   @Patient_Portal
   @Prescription
   @Sprint6
+  @included
   Scenario: EPIC_EPP-1_STORY_EPP-2710 - Verify User should be able to receive an email communication based on their registered email-id
-    Scenario: EPIC_EPP-1_STORY_EPP-2710 - Verify User should be able to receive an email communication based on their registered email-id
 
     Given User launch Patient Portal url		
     When User is logged in to the application
@@ -155,8 +155,8 @@ Feature: Patient Portal : Cancel Refill Request - Cancel a prescription refill
   @Patient_Portal
   @Prescription
   @Sprint6
+  @included
   Scenario: EPIC_EPP-1_STORY_EPP-2710 - Verify User should be able to receive a text communication based on their registered phone number
-    Scenario: EPIC_EPP-1_STORY_EPP-2710 - Verify User should be able to receive a text communication based on their registered phone number
 
     Given User launch Patient Portal url		
     When User is logged in to the application

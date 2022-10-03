@@ -181,9 +181,10 @@ export default function InsuranceInfoPage() {
         <Stack>
           <AccountCard
             titleIcon={<AccountCircleOutlined />}
-            title="Insurance Document"
+            title="Insurance Documents"
             // OnEditClicked={OnEditClicked}
             sx={{ px: 3, py: 5 }}
+            textStyle={{ fontWeight: "700" }}
             actionContent={
               isDesktop ? (
                 <StyledButton

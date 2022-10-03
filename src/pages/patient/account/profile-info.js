@@ -66,19 +66,6 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
   const router = useRouter();
   const api = new Api();
 
-  const onBackButtonEvent = (e) => {
-    e.preventDefault();
-    router.push("/patient/login");
-  };
-
-  useEffect(() => {
-    window.addEventListener("popstate", onBackButtonEvent);
-    return () => {
-      window.removeEventListener("popstate", onBackButtonEvent);
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const showSuccessMessage = (message) => {
     dispatch(
       setPageMessage({

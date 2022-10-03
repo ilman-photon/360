@@ -21,6 +21,22 @@ export class Api {
     });
   }
 
+  errorGenericValidation = (err) => {
+    return (
+      err &&
+      ((err.code === constants.ERROR_CODE.BAD_REQUEST &&
+        err?.response?.data?.ResponseCode === undefined) ||
+        err.code === constants.ERROR_CODE.NETWORK_ERR ||
+        [500].indexOf(err.response?.status) !== -1)
+    );
+  };
+
+  responseCodeValidation = (err) => {
+    return (
+      [constants.ERROR_CODE.NETWORK_ERR, 500].indexOf(err.ResponseCode) === -1
+    );
+  };
+
   getResponse(url, postbody, method) {
     const api = new Api();
     return new Promise((resolve, reject) => {
@@ -32,19 +48,14 @@ export class Api {
         }
       };
       const rejecter = function (err) {
-        if (
-          err &&
-          ((err.code === constants.ERROR_CODE.BAD_REQUEST &&
-            err?.response?.data?.ResponseCode === undefined) ||
-            err.code === constants.ERROR_CODE.NETWORK_ERR)
-        ) {
+        if (api.errorGenericValidation(err)) {
           store.dispatch(
             setGenericErrorMessage("Please try again after sometime.")
           );
           reject({
             description:
               "Something went wrong. Please try again after sometime.",
-            ResponseCode: err.code,
+            ResponseCode: err.response.status || err.code,
           });
         } else if (err && err.response && err.response.data) {
           reject(err.response.data);

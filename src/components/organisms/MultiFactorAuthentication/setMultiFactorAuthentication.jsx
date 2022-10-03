@@ -123,7 +123,6 @@ export default function SetMultiFactorAuthentication({
   };
 
   const getMfaDescription = () => {
-    console.log(data);
     if (!isMultipleComunication && data.email) {
       return t("setMFAEmailDescription");
     } else if (!isMultipleComunication && data.phone) {

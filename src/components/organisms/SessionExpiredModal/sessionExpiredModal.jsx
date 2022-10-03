@@ -22,8 +22,8 @@ function SessionExpiredModal({
   },
 }) {
   const router = useRouter();
-  const onLoggedOffClicked = () => {
-    logoutProps.OnLogoutClicked(router);
+  const onLoggedOffClicked = async () => {
+    await logoutProps.OnLogoutClicked(router);
     onLoggedOff();
   };
 

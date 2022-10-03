@@ -40,7 +40,7 @@ export function UpcomingAppointmentCard({
           className={styles.appointmentTitle}
           variant="h3"
         >
-          Eye Exam
+          {data.appointmentInfo.appointmentType}
         </Typography>
         <Box className={styles.dateContainer}>
           <Typography
@@ -57,7 +57,7 @@ export function UpcomingAppointmentCard({
               ariaLabel={"Purpose of Visit"}
               variant="subtitle1"
             >
-              Purpose of Visit::{" "}
+              Purpose of Visit:{" "}
             </Typography>
             <Typography
               tabIndex={0}
@@ -103,7 +103,23 @@ export function UpcomingAppointmentCard({
   );
 }
 
-export function NoAppointment() {
+export function scheduleAppointmentButton(onScheduleClicked) {
+  return (
+    <StyledButton
+      theme={constants.PATIENT}
+      mode={constants.PRIMARY}
+      type="button"
+      size={constants.SMALL}
+      className={styles.scheduleButton}
+      gradient={false}
+      onClick={onScheduleClicked}
+    >
+      Schedule New Appointments
+    </StyledButton>
+  );
+}
+
+export function NoAppointment({ onRescheduleClicked }) {
   return (
     <Box>
       <Box className={styles.noAppointmentTitle}>
@@ -112,15 +128,7 @@ export function NoAppointment() {
         </Typography>
       </Box>
       <Box className={styles.noAppointmentButtonContainer}>
-        <StyledButton
-          theme={constants.PATIENT}
-          mode={constants.PRIMARY}
-          type="button"
-          size={constants.SMALL}
-          gradient={false}
-        >
-          Schedule Appointment Now
-        </StyledButton>
+        {scheduleAppointmentButton(onRescheduleClicked)}
       </Box>
     </Box>
   );
@@ -140,15 +148,18 @@ export default function UpcomingAppointment({
   const isHasValue = appointments.length !== 0;
   return (
     <Box className={styles.upcomingAppointment}>
-      <Typography
-        variant="h2"
-        tabIndex={0}
-        label={"Upcoming appointments heading"}
-        className={styles.title}
-        data-testid={TEST_ID.APPOINTMENTS_TEST_ID.upcomingAppointmentsHeader}
-      >
-        Upcoming Appointments
-      </Typography>
+      <Box className={styles.upcomingAppointmentHeader}>
+        <Typography
+          variant="h2"
+          tabIndex={0}
+          label={"Upcoming appointments heading"}
+          className={styles.title}
+          data-testid={TEST_ID.APPOINTMENTS_TEST_ID.upcomingAppointmentsHeader}
+        >
+          Upcoming Appointments
+        </Typography>
+        {isHasValue ? scheduleAppointmentButton(onRescheduleClicked) : null}
+      </Box>
 
       {isHasValue ? (
         appointments.map((item, index) => {
@@ -163,7 +174,9 @@ export default function UpcomingAppointment({
           ) : null;
         })
       ) : (
-        <NoAppointment></NoAppointment>
+        <NoAppointment
+          onRescheduleClicked={onRescheduleClicked}
+        ></NoAppointment>
       )}
     </Box>
   );

@@ -87,13 +87,18 @@ export default function ModalCancelScheduling({
       className={styles.modalDialog}
       sx={{
         ".MuiDialog-container .MuiPaper-root": {
-          xs: { width: "100%", margin: 0 },
-          md: { width: "635px", margin: "32px" },
+          xs: { width: "100%", margin: 0, minHeight: "708px" },
+          md: { width: "635px", margin: "32px", minHeight: "660px" },
         },
       }}
     >
       <Box sx={{ width: "auto" }} className={styles.boxModalContents}>
-        <Typography variant="bodyMedium" className={styles.scheduledText}>
+        <Typography
+          tabIndex={0}
+          aria-label={t("cancelTitle")}
+          variant="bodyMedium"
+          className={styles.scheduledText}
+        >
           {t("cancelTitle")}
         </Typography>
         <DialogContent className={styles.checkBoxContainer}>

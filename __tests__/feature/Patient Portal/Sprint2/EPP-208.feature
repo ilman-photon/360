@@ -7,7 +7,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Patient_Portal
   @Regression
   @Sprint2
-  @excluded
+  @included
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the "Invalid Username or Password" error message is displaying when user provides Invalid Email or Phone Number and Valid Password
     Given user launch the 'XXX' url	
     And user navigates to the Patient Portal application

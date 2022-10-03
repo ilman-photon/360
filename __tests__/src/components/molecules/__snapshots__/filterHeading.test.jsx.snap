@@ -42,6 +42,7 @@ Object {
                   </svg>
                   <div
                     class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-igydhl-MuiFormControl-root-MuiTextField-root"
+                    maxlength="50"
                     tabindex="0"
                     withicon="true"
                   >
@@ -361,6 +362,7 @@ Object {
                 </svg>
                 <div
                   class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-igydhl-MuiFormControl-root-MuiTextField-root"
+                  maxlength="50"
                   tabindex="0"
                   withicon="true"
                 >
@@ -737,6 +739,7 @@ Object {
                   </svg>
                   <div
                     class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-igydhl-MuiFormControl-root-MuiTextField-root"
+                    maxlength="50"
                     tabindex="0"
                     withicon="true"
                   >
