@@ -37,8 +37,8 @@ export default function Bio({ googleApiKey, bio }) {
     const genderCode = response.sex?.name;
     const gender = genderCode === "M" ? "Male" : "Female";
     const address = [];
-    const primaryAddress = response.address[0] || "";
-    const secondaryAddress = response.offices?.[0] || "";
+    const primaryAddress = response.address || "";
+    const secondaryAddress = (response.offices && response.offices[0]) || "";
     primaryAddress !== "" && address.push(primaryAddress);
     secondaryAddress !== "" && address.push(secondaryAddress);
     const language = [
