@@ -137,7 +137,11 @@ export default function AppointmentCard({
       const isHideButtons = visitDate < addHours(hideHour);
       const daysAway = visitDate.getTime() - today.getTime();
       const TotalDays = Math.ceil(daysAway / (1000 * 3600 * 24));
-
+      let estimationTime = `${TotalDays} days`;
+      if (isHideButtons) {
+        const totalHours = Math.ceil(daysAway / (1000 * 3600));
+        estimationTime = `${totalHours} Hours`;
+      }
       return (
         <Box>
           <Grid container columns={5} spacing={2} p={3}>
@@ -290,7 +294,7 @@ export default function AppointmentCard({
             >
               Your appointment is{" "}
               <Box className={styles.boldText} display="inline">
-                {TotalDays} days
+                {estimationTime}
               </Box>{" "}
               away.
             </Typography>

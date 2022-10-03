@@ -19,6 +19,7 @@ import {
   Box,
   Stack,
   Divider,
+  Button,
 } from "@mui/material";
 import AccountCard from "../AccountCard/accountCard";
 import Image from "next/image";
@@ -33,6 +34,48 @@ import PrescriptionMedication from "./prescriptionMedication";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import { StyledButton } from "../../atoms/Button/button";
 import constants from "../../../utils/constants";
+import { savePDF } from "@progress/kendo-react-pdf";
+
+export function renderCTAIcon(
+  onClickDownload = () => {},
+  onClickPrint = () => {}
+) {
+  const iconShare = "/icon-share.png";
+  const iconDownload = "/icon-download.png";
+  return (
+    <Stack
+      className={styles.ctaContainer}
+      direction={"row"}
+      alignSelf={"center"}
+      sx={{ marginLeft: "auto" }}
+    >
+      <Button
+        className={styles.butttonIconContainer}
+        data-testid={"download-icon"}
+        onClick={onClickDownload}
+      >
+        <Image alt="" src={iconDownload} width={15} height={15} />
+      </Button>
+      <Button
+        className={styles.butttonIconContainer}
+        data-testid={"shared-icon"}
+      >
+        <Image alt="" src={iconShare} width={15} height={15} />
+      </Button>
+      <Button className={styles.butttonIconContainer} onClick={onClickPrint}>
+        <LocalPrintshopOutlinedIcon
+          sx={{
+            width: "18px",
+            height: "18px",
+            color: colors.darkGreen,
+            cursor: "pointer",
+          }}
+          data-testid={"print-icon"}
+        />
+      </Button>
+    </Stack>
+  );
+}
 
 export default function Prescriptions({
   prescriptionData = {},
@@ -46,13 +89,13 @@ export default function Prescriptions({
   requestRefillResponseData = null,
 }) {
   const isMobile = useMediaQuery("(max-width: 768px)");
+  const containerGlasses = React.useRef(null);
+  const containerContact = React.useRef(null);
 
   const iconPrescription = "/icon-prescription2.png";
   const iconContacts = "/icon-contacts.png";
   const iconGlasses = "/icon-glasses.png";
   const iconMedication = "/icon-medication.png";
-  const iconShare = "/icon-share.png";
-  const iconDownload = "/icon-download.png";
   const [value, setValue] = React.useState(0);
   const [prescription, setPrescriptione] = React.useState({
     contacts: [],
@@ -62,6 +105,53 @@ export default function Prescriptions({
       past: [],
     },
   });
+
+  const downloadPDF = (index = -1, type) => {
+    let containerSelector = null;
+    if (type === "contacts") {
+      containerSelector = containerContact;
+    } else {
+      containerSelector = containerGlasses;
+    }
+    let element =
+      containerSelector.current.querySelector(
+        `[data-testid=${type}-container-${index}]`
+      ) || document.body;
+    savePDF(element, {
+      paperSize: "auto",
+      margin: 40,
+      fileName: `Prescription ${type} Don John`,
+    });
+  };
+
+  const printHTML = (index = -1, type) => {
+    let containerSelector = null;
+    if (type === "contacts") {
+      containerSelector = containerContact;
+    } else {
+      containerSelector = containerGlasses;
+    }
+    let element =
+      containerSelector.current.querySelector(
+        `[data-testid=${type}-container-${index}]`
+      ) || document.body;
+    const styles = Array.from(document.head.querySelectorAll("style"));
+    var WinPrint = window.open(
+      "",
+      "",
+      "left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0"
+    );
+    WinPrint.document.write(element.innerHTML);
+    styles.forEach((st) => {
+      WinPrint.document.head.appendChild(st.cloneNode(true));
+    });
+    WinPrint.document.close();
+    WinPrint.focus();
+    WinPrint.print();
+    setTimeout(() => {
+      WinPrint.close();
+    }, 500);
+  };
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -98,46 +188,11 @@ export default function Prescriptions({
     return {};
   }
 
-  function renderCTAIcon() {
-    return (
-      <Stack direction={"row"} alignSelf={"center"} sx={{ marginLeft: "auto" }}>
-        <Box
-          sx={{
-            width: "15px",
-            height: "15px",
-          }}
-          data-testid={"download-icon"}
-        >
-          <Image alt="" src={iconDownload} width={15} height={15} />
-        </Box>
-        <Box
-          sx={{
-            width: "15px",
-            height: "15px",
-            margin: "0px 15px",
-          }}
-          data-testid={"shared-icon"}
-        >
-          <Image alt="" src={iconShare} width={15} height={15} />
-        </Box>
-
-        <LocalPrintshopOutlinedIcon
-          sx={{
-            width: "18px",
-            height: "18px",
-            color: colors.darkGreen,
-          }}
-          data-testid={"print-icon"}
-        />
-      </Stack>
-    );
-  }
-
   function renderPrescriptionTable(data, type, idxKey, lastRow = false) {
     if (data && data.prescriptionDetails) {
-      let tableHeader = ["Eye", "Sph", "Cyl", "Axis", "Add"];
+      let tableHeader = ["Eye", "Sphere", "Cylinder", "Axis", "Add"];
       if (type === "contacts") {
-        tableHeader = ["Eye", "Sph", "BC", "CYL", "AXIS"];
+        tableHeader = ["Eye", "Sphere", "BC", "Cylinder", "AXIS"];
       }
       return (
         <Box
@@ -177,10 +232,24 @@ export default function Prescriptions({
               </Typography>
             </Box>
             {isViewAll && !isMobile ? (
-              renderCTAIcon()
+              renderCTAIcon(
+                () => {
+                  downloadPDF(idxKey, type);
+                },
+                () => {
+                  printHTML(idxKey, type);
+                }
+              )
             ) : (
               <Box sx={{ position: "absolute", right: 0 }}>
-                <MenuList />
+                <MenuList
+                  onClickDownloadButton={() => {
+                    downloadPDF(idxKey, type);
+                  }}
+                  onClickPrintButton={() => {
+                    printHTML(idxKey, type);
+                  }}
+                />
               </Box>
             )}
           </Box>
@@ -438,7 +507,9 @@ export default function Prescriptions({
                 Glasses Prescriptions
               </Typography>
             </Box>
-            {renderPrescriptionTabUI(prescription.glasses, "glasses")}
+            <Box ref={containerGlasses}>
+              {renderPrescriptionTabUI(prescription.glasses, "glasses")}
+            </Box>
             {!isViewAll && (
               <Box
                 className={[styles.flexDisplay, styles.viewPrescription]}
@@ -480,7 +551,10 @@ export default function Prescriptions({
                 Contacts Prescriptions
               </Typography>
             </Box>
-            {renderPrescriptionTabUI(prescription.contacts, "contacts")}
+            <Box ref={containerContact}>
+              {renderPrescriptionTabUI(prescription.contacts, "contacts")}
+            </Box>
+
             {!isViewAll && (
               <Box
                 className={[styles.flexDisplay, styles.viewPrescription]}
