@@ -94,12 +94,7 @@ export default function AppointmentCard({
         <Box
           className={styles.flexDisplay}
           pt={3}
-          onClick={() => {
-            getDirection(location);
-          }}
-          sx={{ cursor: "pointer", alignItems: "center" }}
-          aria-label="Get Direction link"
-          tabIndex={0}
+          sx={{ alignItems: "center" }}
         >
           <Box pr={1}>
             <DirectionsOutlinedIcon sx={{ color: colors.darkGreen }} />
@@ -108,6 +103,12 @@ export default function AppointmentCard({
             variant="bodyLinkRegular"
             sx={{
               paddingBottom: "2px",
+              cursor: "pointer",
+            }}
+            aria-label="Get Direction link"
+            tabIndex={0}
+            onClick={() => {
+              getDirection(location);
             }}
           >
             Get Direction
