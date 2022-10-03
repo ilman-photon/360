@@ -10,6 +10,9 @@ import Cookies from "universal-cookie";
 import { useState } from "react";
 import constants from "../../../utils/constants";
 import ConfirmationForm from "../../../components/organisms/ConfirmationForm/confirmationForm";
+import { formatPhoneNumber } from "../../../utils/phoneFormatter";
+import { Regex } from "../../../utils/regex";
+import MESSAGES from "../../../utils/responseCodes";
 
 export async function getServerSideProps({ query }) {
   return {
@@ -21,6 +24,18 @@ export async function getServerSideProps({ query }) {
 
 export default function SetPasswordPage({ username }) {
   const dispatch = useDispatch();
+
+  const isEmail = Regex.isEmailCorrect.test(username);
+  const mailFormat =
+    username &&
+    username.replace(
+      Regex.maskingEmail,
+      (_, a, b, c) => a + b.replace(/./g, "*") + c
+    );
+
+  const maskedUsername = isEmail
+    ? mailFormat
+    : formatPhoneNumber(username, true, true);
 
   const formMessage = useSelector((state) => state.index.formMessage);
   const [showPostMessage, setShowPostMessage] = useState(false);
@@ -59,14 +74,15 @@ export default function SetPasswordPage({ username }) {
       }, 3000);
     } catch (err) {
       console.error({ err });
+      const errorMessage = MESSAGES[err.ResponseCode];
 
       dispatch(
         setFormMessage({
           success: false,
-          title: "Error",
+          title: errorMessage.title,
           content: (
             <>
-              <span>{err.message} </span>
+              <span>{errorMessage.content}. </span>
               <Link href="/patient/">
                 <a style={{ textDecoration: "underline" }}>Back to home</a>
               </Link>
@@ -82,7 +98,7 @@ export default function SetPasswordPage({ username }) {
         <SetPasswordComponent
           title={"Set Password"}
           subtitle={"Enter a password to setup your account."}
-          username={username}
+          username={maskedUsername}
           formMessage={formMessage}
           onSetPasswordClicked={OnSetPasswordClicked}
           onBackToLoginClicked={function (router) {
@@ -98,7 +114,7 @@ export default function SetPasswordPage({ username }) {
 }
 
 SetPasswordPage.getLayout = function getLayout(page) {
-  const backgroundImage = "/login-bg.png";
+  const backgroundImage = "/register-bg.png";
   return (
     <AuthLayout
       showMobileImage={false}

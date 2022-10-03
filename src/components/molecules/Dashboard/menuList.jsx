@@ -36,6 +36,9 @@ const StyledMenu = styled((props) => (
       padding: "4px 0",
     },
     "& .MuiMenuItem-root": {
+      fontSize: "14px",
+      fontWeight: "400",
+      color: "#323338",
       "& .MuiSvgIcon-root": {
         fontSize: 18,
         color: theme.palette.text.secondary,
@@ -51,7 +54,12 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function MenuList({ pdfFile = "" }) {
+export default function MenuList({
+  pdfFile = "",
+  onClickDownloadButton = () => {},
+  onClickPrintButton = () => {},
+  onClickShareButton = () => {},
+}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -62,7 +70,7 @@ export default function MenuList({ pdfFile = "" }) {
   };
 
   return (
-    <div>
+    <div aria-label={"More option"} tabIndex={0}>
       <MoreHorizIcon
         id="demo-customized-button"
         aria-controls={open ? "demo-customized-menu" : undefined}
@@ -87,34 +95,51 @@ export default function MenuList({ pdfFile = "" }) {
         onClose={handleClose}
         sx={{ top: "-15px" }}
       >
-        <MenuItem onClick={handleClose} disableRipple>
-          <a
-            href={pdfFile}
-            style={{
-              display: "flex",
-              alignItems: "center",
-            }}
-            download
-          >
-            <GetAppOutlinedIcon />
-            Download
-          </a>
-        </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
-          <ShareOutlinedIcon />
-          Share
+        <MenuItem
+          onClick={() => {
+            onClickDownloadButton();
+            handleClose();
+          }}
+          disableRipple
+        >
+          <GetAppOutlinedIcon />
+          Download
         </MenuItem>
         <MenuItem
           onClick={() => {
+            onClickShareButton();
             handleClose();
-            setTimeout(() => {
-              window.print();
-            }, 300);
+          }}
+          disableRipple
+        >
+          <ShareOutlinedIcon />
+          <a
+            style={{
+              display: "flex",
+              alignItems: "center",
+              fontSize: "14px",
+            }}
+          >
+            Share
+          </a>
+        </MenuItem>
+        <MenuItem
+          onClick={() => {
+            onClickShareButton();
+            handleClose();
           }}
           disableRipple
         >
           <LocalPrintshopOutlinedIcon />
-          Print
+          <a
+            style={{
+              display: "flex",
+              alignItems: "center",
+              fontSize: "14px",
+            }}
+          >
+            Print
+          </a>
         </MenuItem>
       </StyledMenu>
     </div>

@@ -6,29 +6,27 @@ import store from "../../src/store/store";
 import TestLabPage from "../../src/pages/patient/account/medical-record";
 
 import { act, fireEvent, render, waitFor } from "@testing-library/react";
-import mediaQuery from 'css-mediaquery';
 import AuthPage from "../../src/pages/patient/login";
 import axios from "axios";
 import React, { useState as useStateMock } from 'react';
-import { useRouter } from "next/router";
 
 const feature = loadFeature(
     "./__tests__/feature/Patient Portal/Sprint6/EPP-2697.feature",
 );
 
-jest.mock('react', () => ({
-  ...jest.requireActual('react'),
-  useState: jest.fn(),
-}))
+// jest.mock('react', () => ({
+//   ...jest.requireActual('react'),
+//   useState: jest.fn(),
+// }))
 
 defineFeature(feature, (test) => {
     let container;
     const mock = new MockAdapter(axios);
     const element = document.createElement("div");
-    const setState = jest.fn()
-    beforeEach(async () => {
-      useStateMock.mockImplementation(init => [init, setState])
-    });
+    // const setState = jest.fn()
+    // beforeEach(async () => {
+    //   useStateMock.mockImplementation(init => [init, setState])
+    // });
   
     afterEach(() => {
       mock.reset();
@@ -53,12 +51,14 @@ defineFeature(feature, (test) => {
     }
 
     const enterValidUsername = () => {
-      const usernameField = container.getByLabelText("emailUserLabel");
-      const passwordField = container.getByLabelText("passwordLabel");
-      fireEvent.change(usernameField, { target: { value: "wrongUserName@email.cc" } });
-      fireEvent.change(passwordField, { target: { value: "validPassword" } });
-      expect(usernameField.value).not.toEqual("validUsername@email.cc");
-      expect(passwordField.value).toEqual("validPassword");
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "wrongUserName@email.cc" },
+        });
+        fireEvent.change(passwordField, { target: { value: "validPassword" } });
+        expect(usernameField.value).not.toEqual("validUsername@email.cc");
+        expect(passwordField.value).toEqual("validPassword");
     }
   
     const clickLogin = () => {

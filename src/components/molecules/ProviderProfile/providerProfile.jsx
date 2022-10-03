@@ -58,14 +58,15 @@ export default function ProviderProfile({
   const phoneNumber = providerData.phoneNumber;
 
   const getAddress = (address) => {
-    if (!address) return;
+    const addressData = Array.isArray(address) ? address[0] : address;
+    if (!addressData) return;
     return (
       <>
-        {address.addressLine1}
+        {addressData.addressLine1}
         <br />
-        {address.addressLine2}
+        {addressData.addressLine2}
         <br />
-        {address.city}, {address.state}, {address.zipcode}
+        {addressData.city}, {addressData.state}, {addressData.zipcode}
       </>
     );
   };
@@ -74,7 +75,7 @@ export default function ProviderProfile({
     let size;
     if (isBio) {
       size = "32px";
-    } else if (isViewSchedule) {
+    } else if (isViewSchedule || isMap) {
       size = "16px";
     } else {
       size = "18px";
@@ -90,6 +91,16 @@ export default function ProviderProfile({
       return styles.imageContainerSmall;
     } else {
       return styles.imageContainer;
+    }
+  }
+
+  function getDoctorNameStyle() {
+    if (isAppointment || isViewSchedule) {
+      return styles.doctorNameAppointment;
+    } else if (isMap) {
+      return styles.doctorMap;
+    } else {
+      return "";
     }
   }
 
@@ -112,7 +123,6 @@ export default function ProviderProfile({
             width={100}
             height={100}
             className={styles.profilePhoto}
-            tabindex={"0"}
             alt="Doctor Image"
             tabIndex={0}
           ></Image>
@@ -124,17 +134,13 @@ export default function ProviderProfile({
           }}
         >
           <Typography
-            variant="h2"
+            variant={isMap ? "h4" : "h2"}
             fontSize={getNameFontSize()}
             data-testid={TEST_ID.APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name}
             onClick={() => {
               router.push("/patient/bio");
             }}
-            className={
-              isAppointment || isViewSchedule
-                ? styles.doctorNameAppointment
-                : ""
-            }
+            className={getDoctorNameStyle()}
             tabindex={"0"}
           >
             {providerData.name}
@@ -150,7 +156,7 @@ export default function ProviderProfile({
                 <Typography
                   variant="body2"
                   className={[styles.address, addressClass].join(" ")}
-                  fontSize={isViewSchedule ? "14px" : "16px"}
+                  fontSize={isViewSchedule || isMap ? "14px" : "16px"}
                   tabindex={"0"}
                 >
                   {getAddress(providerData.address)}
@@ -169,7 +175,7 @@ export default function ProviderProfile({
                     <Typography
                       variant="body2"
                       className={styles.phone}
-                      tabindex={"0"}
+                      tabIndex={"0"}
                       aria-label={`phone number ${formatPhoneNumber(
                         phoneNumber
                       )}`}

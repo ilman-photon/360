@@ -108,9 +108,7 @@ export const FilterResult = ({
         </Box>
         <div
           style={{
-            overflow: "auto",
             marginTop: 8,
-            maxHeight: "calc(100vh - 151px - 64px - 141px)",
           }}
           className="hide-scrollbar"
         >

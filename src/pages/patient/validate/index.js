@@ -20,6 +20,7 @@ export default function ValidatePage({ query }) {
   const { t } = useTranslation("translation", {
     keyPrefix: "ValidatePage",
   });
+  const [isloaded, setLoaded] = useState(false);
   const [showExpiredForm, setShowExpiredForm] = useState(false);
   const [confirmationFormData, setConfirmationFormData] = useState({
     title: constants.EMPTY_STRING,
@@ -85,16 +86,60 @@ export default function ValidatePage({ query }) {
     setShowExpiredForm(true);
   };
 
+  function getPatientId(postBody, callback) {
+    const api = new Api();
+    api
+      .getPatientId(postBody)
+      .then((response) => {
+        callback(response.ecpPatientId || "");
+      })
+      .catch(() => {
+        callback(false);
+      });
+  }
+
+  function getUserData(postbody) {
+    const cookies = new Cookies();
+    const post = {
+      username: postbody.username,
+    };
+    const api = new Api();
+    api
+      .getUserData(post)
+      .then((response) => {
+        const callBack = (patientId) => {
+          const userData = {
+            communicationMethod: response.communicationMethod,
+            patientId,
+          };
+          localStorage.setItem("userData", JSON.stringify(userData));
+          cookies.set("authorized", true, { path: "/patient" });
+          const hostname = window.location.origin;
+          window.location.href = `${hostname}/patient`;
+        };
+        getPatientId(post, callBack);
+      })
+      .catch(() => {
+        onShowErrorPostMessage(postbody);
+      });
+  }
+
   const onCalledOneTimeLinkValidationAPI = function () {
     const cookies = new Cookies();
-    const postbody = queryParam;
+    const postbody = {
+      oneTimeToken: Number(queryParam.oneTimeToken),
+      username: queryParam.username,
+    };
     const api = new Api();
     api
       .tokenValidation(postbody)
-      .then(function () {
-        cookies.set("authorized", true, { path: "/patient" });
-        const hostname = window.location.origin;
-        window.location.href = `${hostname}/patient`;
+      .then(function (response) {
+        cookies.set("username", postbody.username, { path: "/patient" });
+        cookies.set("accessToken", response.access_token, { path: "/patient" });
+        cookies.set("refreshToken", response.refresh_token, {
+          path: "/patient",
+        });
+        getUserData(postbody);
       })
       .catch(function () {
         onShowErrorPostMessage(postbody);
@@ -102,14 +147,16 @@ export default function ValidatePage({ query }) {
   };
 
   const onCalledResetPasswordValidationAPI = function () {
-    const postbody = queryParam;
+    const postbody = {
+      resetPasswordToken: Number(queryParam.resetPasswordToken),
+      username: queryParam.username,
+    };
     const api = new Api();
     api
       .tokenValidation(postbody, true)
       .then(function (response) {
         //Navigate to Update
-        const name = response.email || "Smith1@photon.com";
-        router.push(`update-password?username=${name}`);
+        router.push(`update-password?username=${queryParam.username}`);
       })
       .catch(function () {
         onShowErrorPostMessage(postbody);
@@ -125,7 +172,13 @@ export default function ValidatePage({ query }) {
   };
 
   useEffect(() => {
-    onValidateQuesryParam();
+    if (!isloaded) {
+      onValidateQuesryParam();
+      setLoaded(true);
+    }
+    return () => {
+      //this is intentional
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

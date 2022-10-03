@@ -47,7 +47,7 @@ export const LocationDistance = ({
           variant="body2"
           color="text.primary"
           className={styles.distanceLabel}
-          tabindex={"0"}
+          tabIndex={"0"}
           aria-label={`provider distance is ${distance}`}
         >
           {distance}

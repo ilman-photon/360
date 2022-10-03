@@ -8,7 +8,7 @@ import Image from "next/image";
 
 const constants = require("../../../utils/constants");
 
-const MobileNavMenu = ({ isOpen, onClose, filter }) => {
+const MobileNavMenu = ({ isOpen, onClose, navMenu }) => {
   const [openDrawer, setOpenDrawer] = React.useState(false);
 
   React.useEffect(() => {
@@ -16,7 +16,7 @@ const MobileNavMenu = ({ isOpen, onClose, filter }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
-  const renderCheckbox = (category, idx) => {
+  const renderMenuList = (category, idx) => {
     return (
       <Box
         className={styles.mobileNavContainerDivider}
@@ -49,9 +49,9 @@ const MobileNavMenu = ({ isOpen, onClose, filter }) => {
         >
           <CloseIcon className={styles.closeImage}></CloseIcon>
         </IconButton>
-        <Box className={styles.mobileNavListContainer} id="checkboxGroup">
-          {filter.map((item, index) => {
-            return renderCheckbox(item, index);
+        <Box className={styles.mobileNavListContainer}>
+          {navMenu.map((item, index) => {
+            return renderMenuList(item, index);
           })}
         </Box>
       </>

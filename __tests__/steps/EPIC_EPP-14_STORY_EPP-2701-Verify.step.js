@@ -15,10 +15,10 @@ const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint6/EPP-2701.feature"
 );
 
-jest.mock('react', () => ({
-  ...jest.requireActual('react'),
-  useState: jest.fn(),
-}))
+// jest.mock('react', () => ({
+//   ...jest.requireActual('react'),
+//   useState: jest.fn(),
+// }))
 
 defineFeature(feature, (test) => {
     let container;
@@ -28,10 +28,10 @@ defineFeature(feature, (test) => {
       )
     const mock = new MockAdapter(axios);
     const element = document.createElement("div");
-    const setState = jest.fn()
-    beforeEach(async () => {
-      useStateMock.mockImplementation(init => [init, setState])
-    });
+    // const setState = jest.fn()
+    // beforeEach(async () => {
+    //   useStateMock.mockImplementation(init => [init, setState])
+    // });
   
     afterEach(() => {
       mock.reset();

@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1v5z4dq-MuiPaper-root-MuiCard-root"
+        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1yepo06-MuiPaper-root-MuiCard-root"
       >
         <div
           class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
@@ -388,7 +388,7 @@ Object {
                 Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID.
               </div>
               <div
-                class="css-14w0e8k-MuiStack-root"
+                class="css-k84j26-MuiStack-root"
               >
                 <div
                   class="css-nen11g-MuiStack-root"
@@ -527,7 +527,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1v5z4dq-MuiPaper-root-MuiCard-root"
+      class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1yepo06-MuiPaper-root-MuiCard-root"
     >
       <div
         class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
@@ -909,7 +909,7 @@ Object {
               Please upload a photo of government-issued ID, such as Driver’s License or State-issued ID.
             </div>
             <div
-              class="css-14w0e8k-MuiStack-root"
+              class="css-k84j26-MuiStack-root"
             >
               <div
                 class="css-nen11g-MuiStack-root"

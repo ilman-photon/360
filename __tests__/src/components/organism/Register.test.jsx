@@ -9,12 +9,9 @@ describe("SecurityQuestion Components", () => {
   });
 
   it("select option render", () => {
-    expect(container).toMatchSnapshot();
-
     const password = container.getByLabelText("Password");
     fireEvent.change(password, { target: { value: "user123@A" } });
     expect(password.value).toEqual("user123@A");
-
 
     fireEvent.change(password, { target: { value: "abcd5678" } });
     expect(password.value).toEqual("abcd5678");
@@ -27,7 +24,5 @@ describe("SecurityQuestion Components", () => {
       );
       expect(passwordFieldError).toBeTruthy();
     }, 500);
-
-
   });
 });

@@ -10,7 +10,7 @@ jest.mock("universal-cookie", () => {
   class MockCookies {
     static result = {};
     get(param) {
-      if (param === "username") return "user1@photon.com"
+      if (param === "username") return "user1@photon.com";
 
       return MockCookies.result;
     }
@@ -108,21 +108,42 @@ defineFeature(feature, (test) => {
     let container, login;
     const mock = new MockAdapter(axios);
     const element = document.createElement("div");
-    const expectedResult = {
-      ResponseCode: 2000,
-      ResponseType: "success",
-      userType: "patient",
+    const mockResult = {
+      "userType": "patient",
+      "username": "patient1@photoninfotech.net",
+      "isSecurityQuestionsSetUp": true,
+      "ResponseCode": 2000,
+      "ResponseType": "success",
+      "access_token": "123",
+      "refresh_token": "123",
+      "IdleTimeOut": 120000
     };
+    const mockPatientId = {
+      "ecpPatientId": "98f9404b-6ea8-4732-b14f-9c1a168d8066"
+    }
+    const mockUserData = {
+      "communicationMethod": {
+        "email": "patient1@photoninfotech.net",
+        "phone": "(977) 623-4567"
+      },
+      "ResponseCode": 4000,
+      "ResponseType": "success"
+    }
     given("user launch the 'XXX' url", () => {
       expect(true).toBeTruthy();
     });
 
     and("user navigates to the Patient Portal application", () => {
-      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
+      //mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
+      mock.onPost(`/ecp/patient/login`).reply(200, mockResult);
+      mock.onPost(`/ecp/patient/search/ecppatientid`).reply(200, mockPatientId);
+      mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, mockUserData);
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
+      mock
+        .onGet(`https://api.ipify.org?format=json`)
+        .reply(200, { ip: "10.10.10.10" });
       act(() => {
         container = render(<AuthPage />, {
           container: document.body.appendChild(element),
@@ -135,8 +156,8 @@ defineFeature(feature, (test) => {
 
     and(/^user provides valid (.*)$/, (arg0) => {
       const usernameField = container.getByLabelText("emailUserLabel");
-      fireEvent.change(usernameField, { target: { value: "wrongUserName" } });
-      expect(usernameField.value).not.toEqual("validUsername");
+      fireEvent.change(usernameField, { target: { value: "validUsername@mail.com" } });
+      expect(usernameField.value).toEqual("validUsername@mail.com");
     });
 
     and(/^user provides (\d+) characters in (.*)$/, (arg0, arg1) => {

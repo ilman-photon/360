@@ -13,7 +13,7 @@ export default function PrescriptionLayout({
   children,
   pageTitle = "EyeCare Patient Portal - Prescription",
 }) {
-  const isDesktop = useMediaQuery("(min-width: 769px)");
+  const isDesktop = useMediaQuery("(min-width: 768px)");
 
   const router = useRouter();
 

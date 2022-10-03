@@ -46,7 +46,7 @@ export default function BaseHeader({
   React.useEffect(() => {
     const cookies = new Cookies();
     const isLogin =
-      cookies.get("authorized", { path: "/patient" }) === "true" ||
+      cookies.get("authorized", { path: "/patient" }) === "true" &&
       !!cookies.get("accessToken");
     setUserLoged(isLogin);
   }, []);
@@ -67,7 +67,7 @@ export default function BaseHeader({
     setAnchorElUser(null);
   };
 
-  const test = [
+  const prescriptionMenus = [
     {
       name: "Dashboard",
       imgSrc: "/icon-carePlan.png",
@@ -109,7 +109,7 @@ export default function BaseHeader({
                 style={styles.logoStyled}
                 aria-label={"Clarkson Eyecare logo"}
                 title="Your Account"
-                tabindex={0}
+                tabIndex={0}
                 role={"img"}
               ></Image>
               {/* Menu Desktop*/}
@@ -145,10 +145,14 @@ export default function BaseHeader({
               </Box>
               {isPrescription ? (
                 <MobileNavMenu
-                  filter={test}
+                  navMenu={prescriptionMenus}
                   isOpen={anchorElNav}
                   onClose={() => {
                     setAnchorElNav(false);
+                  }}
+                  onLogoutClicked={() => {
+                    console.log("sini", router);
+                    OnLogoutClicked(router);
                   }}
                 />
               ) : (
@@ -164,7 +168,7 @@ export default function BaseHeader({
               )}
               {/* profile menu */}
               <Box sx={styles.boxProfileMenuStyles}>
-                <Tooltip title="Open settings">
+                <Tooltip title="Username dropdown">
                   <Button
                     variant="text"
                     sx={[styles.boxButtonStyles, styles.userText]}
@@ -231,7 +235,7 @@ export default function BaseHeader({
                 quality={100}
                 style={styles.logoStyled}
                 aria-label={"Clarkson Eyecare logo"}
-                tabindex={0}
+                tabIndex={0}
               ></Image>
             </Toolbar>
           )}
