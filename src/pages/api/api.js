@@ -37,7 +37,7 @@ export class Api {
     );
   };
 
-  getResponse(url, postbody, method) {
+  getResponse(url, postbody, method, showError = true) {
     const api = new Api();
     return new Promise((resolve, reject) => {
       const resolver = function (response) {
@@ -48,7 +48,7 @@ export class Api {
         }
       };
       const rejecter = function (err) {
-        if (api.errorGenericValidation(err)) {
+        if (api.errorGenericValidation(err) && showError) {
           store.dispatch(
             setGenericErrorMessage("Please try again after sometime.")
           );
@@ -228,10 +228,9 @@ export class Api {
     }
   }
 
-  getProviderDetails() {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/biography/getProviderDetails`;
-    return this.getResponse(url, {}, "post");
+  getProviderDetails(providerId) {
+    const url = `/ecp/appointments/getprovider/${providerId}`;
+    return this.getResponse(url, {}, "get");
   }
 
   getProviderAvailibility() {
@@ -311,9 +310,9 @@ export class Api {
   async getURLDigitalAsset(id) {
     const url = `/ecp/digital-asset/v1/asset/${id}`;
     try {
-      const response = await this.getResponse(url, null, "get");
-      if (response.data) {
-        return response.data.presignedUrl;
+      const response = await this.getResponse(url, null, "get", false);
+      if (response) {
+        return response.presignedUrl;
       }
     } catch (error) {
       console.error({ error });

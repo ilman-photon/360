@@ -79,7 +79,13 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
   };
 
   const getAddressQuery = (address) => {
-    return `${address.addressLine1} ${address.addressLine2} ${address.city} ${address.state} ${address.zipcode}`.replace(
+    const addressLine1 = address.addressLine1 || "";
+    const addressLine2 = address.addressLine2 || "";
+    const city = address.city || "";
+    const state = address.state || "";
+    const zipcode = address.zipcode || address.zip || "";
+
+    return `${addressLine1}${addressLine2}${city}${state}${zipcode}`.replace(
       / /g,
       "+"
     );
@@ -96,11 +102,13 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
               aria-label="Address"
               key={idx}
               sx={
-                idx !== 0 && {
-                  borderTop: "1px solid rgba(0, 59, 74, 0.25)",
-                  marginTop: "26px",
-                  paddingTop: "24px",
-                }
+                idx !== 0
+                  ? {
+                      borderTop: "1px solid rgba(0, 59, 74, 0.25)",
+                      marginTop: "26px",
+                      paddingTop: "24px",
+                    }
+                  : {}
               }
             >
               <Typography className={styles.addressTitle}>
@@ -115,9 +123,13 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
                   <>
                     {address.addressLine1}
                     <br />
-                    {address.addressLine2}
-                    <br />
-                    {address.city}, {address.state}, {address.zipcode}
+                    {address.addressLine2 && (
+                      <>
+                        {address.addressLine2}
+                        <br />
+                      </>
+                    )}
+                    {address.city}, {address.state}, {address.zip}
                   </>
                 )}
               </Typography>
