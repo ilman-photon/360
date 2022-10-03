@@ -1,5 +1,11 @@
+import moment from "moment";
 import constants from "./constants";
-import { ddmmyyDateFormat } from "./dateFormatter";
+import {
+  convertTime24to12,
+  ddmmyyDateFormat,
+  mmddyyDateFormat,
+  yyyymmddDateFormat,
+} from "./dateFormatter";
 
 export function parseInsuranceCarrier(insuranceCarrierData) {
   if (insuranceCarrierData && insuranceCarrierData.length > 0) {
@@ -44,7 +50,7 @@ export function parsePurposeOfVisit(appointmentType) {
     const data = [];
     for (const item of appointmentType) {
       const purposeOfVisitItem = {
-        id: `${item.key}`,
+        id: item.code,
         title: item.name,
         subtitle: item.category?.description || "",
       };
@@ -117,7 +123,7 @@ function getScheduleData(availabilityData) {
 
 export function parseScheduleDataDay(availability, currentDateIndex) {
   const scheduleData = [];
-  if (availability[currentDateIndex].list.length > 0) {
+  if (availability[currentDateIndex]?.list.length > 0) {
     const maxLength =
       availability[currentDateIndex].list.length <= 4
         ? availability[currentDateIndex].list.length
@@ -240,14 +246,32 @@ function getDayName(date) {
   return `${dayName}, ${month} ${date.getDate()}`;
 }
 
-export function getProvideOverlay(providerId, listOfProvider) {
-  let providerOverlay = {};
+export function getProvideOverlay(
+  providerDataOverview,
+  listOfProvider,
+  startDate,
+  endDate
+) {
+  const providerDataTmp = { ...providerDataOverview };
   for (let index = 0; index < listOfProvider.length; index++) {
-    if (providerId === listOfProvider[index].providerId) {
-      providerOverlay = listOfProvider[index];
+    if (providerDataTmp.providerId === listOfProvider[index].providerId) {
+      providerDataTmp.availability = listOfProvider[index].availability;
+      break;
     }
   }
-  return providerOverlay;
+
+  if (listOfProvider?.length === 0) {
+    const getRangeDate = getDates(
+      new Date(startDate),
+      new Date(endDate),
+      false
+    );
+    providerDataTmp.availability = createAvailableTimeSlot(
+      providerDataTmp,
+      getRangeDate
+    );
+  }
+  return providerDataTmp;
 }
 
 function parsePrescriptionItemData(prescriptionData, key) {
@@ -501,4 +525,133 @@ export function getDirection(providerCordinate) {
     "_blank",
     "noopener,noreferrer"
   );
+}
+
+export function getMondayOfCurrentWeek(date) {
+  const today = new Date(date);
+  const first = today.getDate() - today.getDay() + 1;
+
+  const monday = new Date(today.setDate(first));
+  return mmddyyDateFormat(monday);
+}
+
+export function getSaturdayOfCurrentWeek(date) {
+  const today = new Date(date);
+  const six = today.getDate() - today.getDay() + 6;
+
+  const saturday = new Date(today.setDate(six));
+  return mmddyyDateFormat(saturday);
+}
+
+function parseTimeSlotAppointment(timeSlotList) {
+  const list = [];
+  for (const timeSlot of timeSlotList) {
+    let slotTemp = {
+      time: convertTime24to12(`${timeSlot.startHHMM}`),
+      key: timeSlot._id,
+    };
+    list.push(slotTemp);
+  }
+  return list;
+}
+
+function createAvailableTimeSlot(providerData, getRangeDate) {
+  const availabilityList = [];
+  for (const dateItem of getRangeDate.dateRange) {
+    const availability = {
+      date: yyyymmddDateFormat(dateItem),
+      list: [],
+    };
+    const isSameAvailability =
+      providerData?.availability?.find(
+        (item) => new Date(item.date).getDate() === dateItem.getDate()
+      ) || null;
+    if (isSameAvailability) {
+      availability.list = isSameAvailability.list;
+    }
+    availabilityList.push(availability);
+  }
+  return availabilityList;
+}
+
+export function parseProviderListData(response, startDate, endDate) {
+  startDate = yyyymmddDateFormat(startDate);
+  endDate = yyyymmddDateFormat(endDate);
+  const data = {
+    listOfProvider: [],
+    filterbyData: [
+      {
+        name: "Available Today",
+        checked: false,
+      },
+    ],
+  };
+  const offices = response.offices || [];
+  for (const item of offices) {
+    const office = item.office;
+    for (const providerTempItem of item.providerTemplate) {
+      const provider = providerTempItem.provider;
+      const providerId = provider._id;
+      const dateSchedule = new Date(providerTempItem.scheduleDate);
+      const availabilityDate = {
+        date: new moment(dateSchedule).format("YYYY-MM-DD"),
+        list: parseTimeSlotAppointment(providerTempItem.slots),
+      };
+      const currentProvider = data.listOfProvider
+        ? data.listOfProvider.find((item) => item.providerId === providerId)
+        : [];
+      if (data.listOfProvider.length === 0 || !currentProvider) {
+        const providerTemp = {
+          providerId: "",
+          providerTemplateId: "",
+          office: {
+            name: office.name,
+            id: office._id,
+          },
+          address: {
+            addressLine1: "",
+            addressLine2: "",
+            city: "",
+            state: "",
+            zipcode: "",
+          },
+          rating: "",
+          name: "",
+          phoneNumber: "",
+          distance: "",
+          image: "",
+          from: startDate,
+          to: endDate,
+          availability: [],
+          coordinate: {
+            latitude: "",
+            longitude: "",
+          },
+        };
+
+        providerTemp.providerId = providerId;
+        providerTemp.providerTemplateId = providerTempItem._id;
+        providerTemp.name = `${provider.designation} ${provider.firstName} ${provider.lastName}`;
+        providerTemp.availability.push(availabilityDate);
+        data.listOfProvider.push(providerTemp);
+      } else if (data.listOfProvider.length > 0 && currentProvider) {
+        const isSameDate = currentProvider.availability.find(
+          (item) => item.date === availabilityDate.date
+        );
+        if (!isSameDate) {
+          currentProvider.availability.push(availabilityDate);
+        }
+      }
+    }
+  }
+
+  const getRangeDate = getDates(new Date(startDate), new Date(endDate), false);
+  for (const providerData of data.listOfProvider) {
+    providerData.availability = createAvailableTimeSlot(
+      providerData,
+      getRangeDate
+    );
+  }
+
+  return data;
 }
