@@ -1,5 +1,3 @@
-// import { Api } from "../pages/api/api"
-
 function download(url) {
   const a = document.createElement("a");
   a.href = url;
@@ -10,9 +8,9 @@ function download(url) {
 }
 
 export const fetchSource = async (id) => {
-  if (!id) return;
-  // const api = new Api()
-  // const result = await api.getURLDigitalAsset(id) // still not working, so...
+  if (!id) {
+    return;
+  }
   const result = "/doctor.png"; // simulate
   download(result);
 };
