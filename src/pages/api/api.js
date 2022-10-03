@@ -312,7 +312,7 @@ export class Api {
     try {
       const response = await this.getResponse(url, null, "get", false);
       if (response) {
-        return response.presignedUrl;
+        return response;
       }
     } catch (error) {
       console.error({ error });

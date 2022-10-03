@@ -73,7 +73,7 @@ export default function Bio({ googleApiKey, bio }) {
     api
       .getURLDigitalAsset(data.imageId)
       .then((response) => {
-        const imageURL = response;
+        const imageURL = response.presignedUrl;
         data["image"] = imageURL;
         setProviderData(data);
       })
