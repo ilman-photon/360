@@ -188,8 +188,22 @@ export default function HomePage() {
     setIsOpenCancel(false);
   };
 
-  const handleCancelSchedule = () => {
+  const handleCancelSchedule = (data) => {
     setIsOpenCancel(false);
+    console.log(data, "data");
+    const api = new Api();
+    const postBody = {
+      current: {
+        state: "CONFIRMED",
+        subState: "CREATED",
+      },
+      target: {
+        state: "CANCELLED",
+        subState: "NONE",
+      },
+      code: 2,
+    };
+    api.cancelAppointment("5b449b02-fa41-43e0-bdec-e46e6bc7696b", postBody);
     setModalSuccessCancel(true);
   };
 
