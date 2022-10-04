@@ -202,7 +202,6 @@ defineFeature(feature, (test) => {
       });
     });
   });
-
   test('EPIC_EPP-4_STORY_EPP-208-Verify whether the "Invalid Username or Password" error message is displaying when user  provides Valid Email or Phone Number and Invalid Password', ({
     given,
     and,
