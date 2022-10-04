@@ -18,6 +18,13 @@ jest.mock("@fontsource/roboto", () => {
 jest.mock("@fontsource/libre-franklin", () => {
   return jest.fn();
 });
+jest.mock("@progress/kendo-react-pdf", () => {
+  return {
+    savePDF: (component, options, callback) => {
+      callback();
+    },
+  };
+});
 jest.mock("next/dynamic", () => ({
   __esModule: true,
   default: (...props) => {
