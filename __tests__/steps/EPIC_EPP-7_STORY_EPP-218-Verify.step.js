@@ -1,10 +1,42 @@
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, act } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import PasswordSecurityQuestion from "../../src/components/organisms/PasswordSecurityQuestion/passwordSecurityQuestion";
+import MockAdapter from "axios-mock-adapter";
+import axios from "axios";
+import AuthPage from "../../src/pages/patient/login";
+import { Login } from "../../src/components/organisms/Login/login";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-218.feature"
 );
+
+let container;
+const mock = new MockAdapter(axios);
+const element = document.createElement("div");
+
+const launchURL = () => {
+  const mockOnLoginClicked = jest.fn((data, route, callback) => {
+    callback({
+      status: "success",
+    });
+  });
+  container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+}
+
+const navigateToPatientPortalApp = () => {
+  mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+  act(() => {
+    container = render(<AuthPage />, {
+      container: document.body.appendChild(element),
+      legacyRoot: true,
+    });
+  });
+}
+
+const landOnPatientPortalScreen = () => {
+  const title = container.getByText("formTitle");
+  expect("formTitle").toEqual(title.textContent);
+}
 
 defineFeature(feature, (test) => {
   test('EPIC_EPP-7_STORY_EPP-218 - Verify the error message if user enter 3 times wrong/incorrect answer the security questions via "Answer security questions" mode', ({
@@ -15,15 +47,15 @@ defineFeature(feature, (test) => {
   }) => {
     let container;
     given("use launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      launchURL()
     });
 
     and("user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      navigateToPatientPortalApp()
     });
 
     when('user lands onto "Patient Login" screen', () => {
-      expect(true).toBeTruthy();
+      landOnPatientPortalScreen()
     });
 
     and("user clicks on 'Forgot Password' link", () => {
@@ -31,7 +63,14 @@ defineFeature(feature, (test) => {
     });
 
     and('user should enter valid "Email or Phone Number"', () => {
-      expect(true).toBeTruthy();
+      const mockOnLoginClicked = jest.fn((data, route, callback) => {
+        callback({
+          status: "success",
+        });
+      });
+      container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+      const usernameField = container.getByLabelText("emailUserLabel");
+      expect(usernameField.id).toEqual("username");
     });
 
     and('user clicks on "Continue" button', () => {
