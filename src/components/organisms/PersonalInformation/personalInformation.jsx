@@ -101,7 +101,7 @@ export default function PersonalInformation({
       title="Personal Information"
       isEditing={isEditing}
       textStyle={{
-        fontWeight: "bold",
+        fontWeight: "700",
       }}
       // OnEditClicked={OnEditClicked}
       actionContent={

@@ -109,7 +109,7 @@ export default function ContactInformation({
       titleIcon={<PermContactCalendarOutlinedIcon />}
       isEditing={isEditing}
       textStyle={{
-        fontWeight: "bold",
+        fontWeight: "700",
       }}
       // OnEditClicked={OnEditClicked}
       actionContent={
