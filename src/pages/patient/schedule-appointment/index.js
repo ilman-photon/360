@@ -362,6 +362,7 @@ export default function ScheduleAppointmentPage() {
 
   const handleCreateAppointment = (payload, isPage) => {
     const api = new Api();
+    const dateNow = new Date();
     const postBody = [
       {
         appointmentDate: mmddyyDateFormat(
@@ -384,19 +385,15 @@ export default function ScheduleAppointmentPage() {
           code: appointmentScheduleData.appointmentInfo.appointmentType,
         },
         patient: {
-          _id: "98f9404b-6ea8-4732-b14f-9c1a168d8066",
+          _id: "a2f0b4e0-4786-4b9e-b54e-f24d8a3d10f9",
         },
         patientDob: payload
           ? mmddyyDateFormat(payload.dob)
           : mmddyyDateFormat(appointmentScheduleData.patientInfo.dob),
         confirmationDetail: {
-          confirmationDate: mmddyyDateFormat(
-            appointmentScheduleData.appointmentInfo.date
-          ),
-          confirmationTime: hourDateFormat(
-            appointmentScheduleData.appointmentInfo.date
-          ),
-          confirmationBy: "a677f406-56b3-4f25-b7a5-37d9266675ba",
+          confirmationDate: mmddyyDateFormat(dateNow),
+          confirmationTime: hourDateFormat(dateNow),
+          confirmationBy: "a2f0b4e0-4786-4b9e-b54e-f24d8a3d10f9",
         },
         allowCreate: true,
       },
@@ -445,7 +442,7 @@ export default function ScheduleAppointmentPage() {
     if (isReschedule) {
       await router.push("/patient/appointments");
     } else {
-      await router.push("/patient/appointment");
+      await router.push("/patient");
     }
     dispatch(resetAppointmentSchedule());
   };
