@@ -44,6 +44,7 @@ import { TEST_ID } from "../../../utils/constants";
 import { StyledButton } from "../../../components/atoms/Button/button";
 import { colors } from "../../../styles/theme";
 import { useLeavePageConfirm } from "../../../../hooks/useCallbackPrompt";
+import { mmddyyDateFormat, hourDateFormat } from "../../../utils/dateFormatter";
 
 const MobileTopBar = (data) => {
   return (
@@ -90,6 +91,9 @@ export const PageContent = ({
   OnClickSchedule = () => {
     // This is intentional
   },
+  onCreateAppointment = () => {
+    // This is intentional
+  },
 }) => {
   const [selectedSelf, setSelectedSelf] = React.useState(null);
   const { t } = useTranslation("translation", {
@@ -116,6 +120,13 @@ export const PageContent = ({
         value: payload,
       })
     );
+
+    console.log("handleFormSubmit", payload);
+    if (activeStep === 2 || !payload?.password) {
+      onCreateAppointment(payload, true);
+    } else {
+      onCreateAppointment(payload, false);
+    }
   };
 
   const createAccount = async function (postbody) {
@@ -195,7 +206,7 @@ export const PageContent = ({
               }}
               OnSetSelectedSelf={(idx) => setSelectedSelf(idx)}
               setActiveStep={(idx) => OnsetActiveStep(idx)}
-              OnClickSchedule={OnClickSchedule}
+              // OnClickSchedule={OnClickSchedule}
             />
           </Grid>
           <Grid md={4} pl={2} sx={{ display: { xs: "none", md: "block" } }}>
@@ -223,7 +234,7 @@ export const PageContent = ({
           >
             <AppointmentForm
               isForMyself={true}
-              OnClickSchedule={OnClickSchedule}
+              // OnClickSchedule={OnClickSchedule}
               patientData={appointmentScheduleData.patientInfo}
               OnSubmit={(v) => {
                 handleFormSubmit(v);
@@ -314,21 +325,12 @@ export default function ScheduleAppointmentPage() {
     router.push({ pathname: "/patient/appointment", query: router.query });
   };
 
-  const handleClickSchedule = (data) => {
-    console.log("handleClickSchedule", data);
-    if (activeStep === 2 && !data?.password) {
-      router.push("/patient/schedule-appointment-confirmation");
-    } else {
-      setActiveStep(4);
-      setIsOpen(true);
-    }
-  };
-
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   React.useEffect(() => {
     const cookies = new Cookies();
     const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
     setIsLoggedIn(isLogin);
+    console.log("redux", appointmentScheduleData, userData);
   }, []);
 
   React.useEffect(() => {
@@ -358,16 +360,84 @@ export default function ScheduleAppointmentPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
 
+  const handleCreateAppointment = (payload, isPage) => {
+    const api = new Api();
+    const postBody = [
+      {
+        appointmentDate: mmddyyDateFormat(
+          appointmentScheduleData.appointmentInfo.date
+        ),
+        appointmentLength: 1,
+        office: {
+          _id: appointmentScheduleData.providerInfo.office.id,
+        },
+        providerTemplate: {
+          _id: appointmentScheduleData.providerInfo.providerTemplateId,
+        },
+        provider: {
+          _id: appointmentScheduleData.providerInfo.providerId,
+        },
+        appointmentTime: hourDateFormat(
+          appointmentScheduleData.appointmentInfo.date
+        ),
+        appointmentType: {
+          code: appointmentScheduleData.appointmentInfo.appointmentType,
+        },
+        patient: {
+          _id: "98f9404b-6ea8-4732-b14f-9c1a168d8066",
+        },
+        patientDob: payload
+          ? mmddyyDateFormat(payload.dob)
+          : mmddyyDateFormat(appointmentScheduleData.patientInfo.dob),
+        confirmationDetail: {
+          confirmationDate: mmddyyDateFormat(
+            appointmentScheduleData.appointmentInfo.date
+          ),
+          confirmationTime: hourDateFormat(
+            appointmentScheduleData.appointmentInfo.date
+          ),
+          confirmationBy: "a677f406-56b3-4f25-b7a5-37d9266675ba",
+        },
+        allowCreate: true,
+      },
+    ];
+
+    console.log(postBody);
+
+    api
+      .createAppointment(postBody)
+      .then(() => {
+        console.log("then");
+        if (isPage) {
+          router.push("/patient/schedule-appointment-confirmation");
+        } else {
+          setActiveStep(4);
+          setIsOpen(true);
+        }
+      })
+      .catch(() => {
+        // setShowPostMessage(true);
+      });
+  };
+
   const handleSetActiveStep = (idx) => {
     if (isLoggedIn) {
       if (isReschedule) {
         setModalConfirmReschedule(true);
       } else {
-        setActiveStep(4);
-        setIsOpen(true);
+        handleCreateAppointment();
       }
     } else {
       setActiveStep(idx);
+    }
+  };
+
+  const handleClickSchedule = (data) => {
+    console.log("handleClickSchedule", data);
+    if (activeStep === 2 || !data?.password) {
+      createAppointment(true);
+    } else {
+      createAppointment();
     }
   };
 
@@ -484,7 +554,8 @@ export default function ScheduleAppointmentPage() {
             OnsetActiveStep={handleSetActiveStep}
             appointmentScheduleData={appointmentScheduleData}
             OnEditClicked={handleEditSchedule}
-            OnClickSchedule={handleClickSchedule}
+            onCreateAppointment={handleCreateAppointment}
+            // OnClickSchedule={handleClickSchedule}
           />
         </div>
       </Grid>

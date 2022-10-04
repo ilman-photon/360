@@ -66,13 +66,13 @@ export class Api {
 
       switch (method) {
         case "get":
-          return api.client.get(url, postbody).then(resolver).catch(rejecter);
+          return this.client.get(url, postbody).then(resolver).catch(rejecter);
         case "post":
-          return api.client.post(url, postbody).then(resolver).catch(rejecter);
+          return this.client.post(url, postbody).then(resolver).catch(rejecter);
         case "put":
-          return api.client.put(url, postbody).then(resolver).catch(rejecter);
+          return this.client.put(url, postbody).then(resolver).catch(rejecter);
         default:
-          return api.client.get(url, postbody).then(resolver).catch(rejecter);
+          return this.client.get(url, postbody).then(resolver).catch(rejecter);
       }
     });
   }
@@ -248,12 +248,6 @@ export class Api {
     return this.getResponse(url, {}, "get");
   }
 
-  submitFilter(postBody) {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/create-appointment/submitFilter`;
-    return this.getResponse(url, postBody, "post");
-  }
-
   getAllAppointment() {
     const domain = window.location.origin;
     const userData = JSON.parse(localStorage.getItem("userData"));
@@ -292,10 +286,13 @@ export class Api {
     return this.getResponse(url, {}, "get");
   }
 
+  createAppointment(postBody) {
+    const url = `/ecp/appointments/savedetails`;
+    return this.getResponse(url, postBody, "post");
+  }
+
   cancelAppointment(id, postBody) {
     const url = `/ecp/appointments/cancel/${id}/stateTransition`;
-    console.log(url, "url");
-    // return this.cancelValidation(url, postbody, "post", 2000);
     return this.getResponse(url, postBody, "put");
   }
 
@@ -321,5 +318,16 @@ export class Api {
     } catch (error) {
       console.error({ error });
     }
+  }
+
+  getAppointmentTypes() {
+    const url = "/ecp/appointments/appointment-types";
+    return this.getResponse(url, {}, "get");
+  }
+
+  submitFilter(locationName, postBody) {
+    const domain = window.location.origin;
+    const url = `/ecp/appointments/available-slot?searchText=${locationName}`;
+    return this.getResponse(url, postBody, "put");
   }
 }

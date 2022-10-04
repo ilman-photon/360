@@ -61,7 +61,7 @@ export default function AppointmentForm({
   const { SCHEDULE_GUEST_TEST_ID } = constants.TEST_ID;
 
   const onSubmit = (data) => {
-    OnClickSchedule();
+    OnClickSchedule(data);
     OnSubmit(data);
   };
 

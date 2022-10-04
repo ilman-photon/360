@@ -97,7 +97,7 @@ export default function AccountDocumentsPage() {
       {
         type: "download-asset",
         valueKey: "digitalId",
-        cellProps: { padding: "none" },
+        cellProps: { padding: "16px" },
         icon: (
           <IconButton sx={{ width: 24, height: 24, p: 0 }}>
             <FileDownloadIcon />

@@ -18,10 +18,14 @@ import {
   setIsFilterApplied,
   setProviderListData,
 } from "../../store/appointment";
-import { parseSuggestionData } from "../../utils/appointment";
+import {
+  parseInsuranceCarrier,
+  parsePurposeOfVisit,
+} from "../../utils/appointment";
 import FilterResultHeading from "../../components/molecules/FilterResultHeading/filterResultHeading";
 import { Box } from "@mui/system";
 import ModalCancelScheduling from "../../components/organisms/ScheduleAppointment/ModalCancelScheduling/modalCancelScheduling";
+import { fetchAllPayers } from "../../store/provider";
 import CustomModal from "../../components/molecules/CustomModal/customModal";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { colors } from "../../styles/theme";
@@ -34,6 +38,7 @@ export default function HomePage() {
   const [isAuthenticated, setIsAuthenticated] = React.useState(true);
   const [modalSuccessCancel, setModalSuccessCancel] = React.useState(false);
 
+  const insuranceCarrierList = useSelector((state) => state.provider.list);
   const filterData = useSelector((state) => state.appointment.filterData);
   const userData = useSelector((state) => state.user.userData);
   const isDesktop = useMediaQuery("(min-width: 900px)");
@@ -46,16 +51,16 @@ export default function HomePage() {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  //Call API for getSuggestion
-  function onCalledgetSugestionAPI() {
+  function onCalledGetAppointmentTypesAPI() {
     const api = new Api();
     api
-      .getSugestion()
+      .getAppointmentTypes()
       .then(function (response) {
         const filterSuggestion = {
-          ...filterSuggestionData,
-          ...parseSuggestionData(response),
+          purposeOfVisit: parsePurposeOfVisit(response?.entities || []),
+          insuranceCarrier: parseInsuranceCarrier(insuranceCarrierList),
         };
+        console.log(filterSuggestion);
         setFilterSuggestionData(filterSuggestion);
       })
       .catch(function () {
@@ -167,11 +172,16 @@ export default function HomePage() {
   }, [setIsAuthenticated, router]);
 
   useEffect(() => {
-    onCalledgetSugestionAPI();
     onCalledGetAllPrescriptionsAPI();
     onCalledGetAllAppointment();
+    dispatch(fetchAllPayers());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    onCalledGetAppointmentTypesAPI();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [insuranceCarrierList]);
 
   function onSearchProvider(data) {
     dispatch(setFilterData(data));

@@ -63,6 +63,11 @@ export function mmddyyDateFormat(date) {
   return momentDate.format("MM/DD/YYYY");
 }
 
+export function yyyymmddDateFormat(date) {
+  const momentDate = new moment(date);
+  return momentDate.format("YYYY-MM-DD");
+}
+
 export function fullDateFormat(date) {
   const timezone = date.substring(date.length - 3);
   const dateObj = new Date(date);
@@ -70,6 +75,11 @@ export function fullDateFormat(date) {
   const time = momentDate.format("h:mm a");
   const formatedDateTime = momentDate.format("ddd, MMM DD, YYYY");
   return `${time} ${timezone}, ${formatedDateTime}`;
+}
+
+export function hourDateFormat(date) {
+  const momentDate = new moment(date);
+  return momentDate.format("hh:mm");
 }
 
 export const convertTime12to24 = (time12h) => {
@@ -87,6 +97,23 @@ export const convertTime12to24 = (time12h) => {
 
   return `${hours}:${minutes}:00`;
 };
+
+export function convertTime24to12(time) {
+  // Check correct time format and split into components
+  time = time.toString().match(/^([01]\d|2[0-3])(:)([0-5]\d)(:[0-5]\d)?$/) || [
+    time,
+  ];
+
+  if (time.length > 1) {
+    // If time format correct
+    time = time.slice(1); // Remove full string match value
+    time[5] = +time[0] < 12 ? "am" : "pm"; // Set AM/PM
+    time[0] = +time[0] % 12 || 12; // Adjust hours
+    time[0] = +time[0] < 10 ? `0${time[0]}` : time[0];
+  }
+
+  return time.join(""); // return adjusted time or original string
+}
 
 export const upcomingAppointmentDate = (data) => {
   if (!data) {
