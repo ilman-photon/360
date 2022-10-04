@@ -487,15 +487,19 @@ const FilterHeading = ({
   onSwapButtonClicked = () => {
     // This is intentional
   },
+  onChangeLocation = () => {
+    // This is intentional
+  },
   isGeolocationEnabled,
   purposeOfVisitData = [],
   insuranceCarrierData = [],
   title = "",
   subtitle = "",
   isFixed = true,
+  currentCity = "",
 }) => {
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
-  const { handleSubmit, control } = useForm({
+  const { handleSubmit, control, setValue } = useForm({
     defaultValues: { ...filterData },
   });
 
@@ -561,6 +565,7 @@ const FilterHeading = ({
         name="location"
         control={control}
         render={({ field: { onChange, value }, fieldState: { _error } }) => {
+          onChangeLocation();
           return (
             <Autocomplete
               freeSolo
@@ -570,6 +575,9 @@ const FilterHeading = ({
               onChange={(_e, data) => {
                 onHideMandatoryFieldError();
                 onChange(data);
+                if (data === "Use my current location") {
+                  setValue("location", currentCity);
+                }
               }}
               onInputChange={(_e, newInputValue) => {
                 onHideMandatoryFieldError();

@@ -87,7 +87,7 @@ function SessionExpiredModal({
               data-testid="session-logoff-btn"
               tabindex="1"
               onClick={onLoggedOffClicked}
-              aria-live={"Log off button"}
+              aria-live={"polite"}
               aria-label={"Log off button"}
             >
               Log Off
@@ -101,7 +101,7 @@ function SessionExpiredModal({
               data-testid="session-stay-btn"
               onClick={onStayLoggedIn}
               tabindex="1"
-              aria-live={"Stay Logged in button"}
+              aria-live={"polite"}
               aria-label={"Stay Logged in button"}
             >
               Stay Logged in
@@ -114,7 +114,7 @@ function SessionExpiredModal({
               mode="primary"
               size="small"
               tabindex="1"
-              aria-live="Ok button"
+              aria-live={"polite"}
               gradient={false}
               data-testid="session-ok-btn"
               style={styles.buttonStyle}
