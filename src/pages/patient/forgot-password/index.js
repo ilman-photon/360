@@ -4,7 +4,7 @@ import SelectOptionForm from "../../../components/organisms/SelectOptionForm/sel
 import PasswordSecurityQuestion from "../../../components/organisms/PasswordSecurityQuestion/passwordSecurityQuestion";
 import ConfirmationForm from "../../../components/organisms/ConfirmationForm/confirmationForm";
 import { Api } from "../../api/api";
-import constants from "../../../utils/constants";
+import constants, { TEST_ID } from "../../../utils/constants";
 import RowRadioButtonsGroup from "../../../components/atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import InsertLinkIcon from "@mui/icons-material/InsertLink";
 import { Controller } from "react-hook-form";
@@ -259,6 +259,7 @@ export default function ForgotPasswordPage() {
             : t("receiveLinkToResetPasswordLabel"),
           additional: null,
           butttonMode: constants.PRIMARY,
+          primaryButtonTestId: TEST_ID.FORGOT_TEST_ID.continueBtn,
           onCTAButtonClicked: function () {
             onContinueButtonClicked(
               patientData.securityQuestionsSet
