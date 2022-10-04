@@ -2,23 +2,13 @@
 @Appointments
 @P1
 @Patient_Portal
+@Include
 Feature: Patient Portal : Schedule appointment from Patient Portal - Select purpose of visit
   User Story: As a user, I should be able to select the purpose of visit for the appointment to be scheduled from patient portal.
-
   Acceptance Criteria:
-
-  GIVEN
-
-  User clicks on “Schedule Appointment” CTA from patient portal
-
-  WHEN
-
-  User lands on to the screen to search for location, select the date of appointment as well as purpose of visit and insurance
-
-  THEN
-
-  User should be able to select the ‘Purpose of Visit’ which is a optional field
-
+  GIVEN User clicks on “Schedule Appointment” CTA from patient portal
+  WHEN User lands on to the screen to search for location, select the date of appointment as well as purpose of visit and insurance
+  THEN User should be able to select the ‘Purpose of Visit’ which is a optional field
   @BDDTEST-EPP-3096
   @Appointments
   @P1

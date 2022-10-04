@@ -1,4 +1,4 @@
-import { Grid, Stack, useMediaQuery } from "@mui/material";
+import { Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 import * as React from "react";
 import { useEffect } from "react";
 import { useGeolocated } from "react-geolocated";
@@ -23,6 +23,9 @@ import FilterResultHeading from "../../components/molecules/FilterResultHeading/
 import { Box } from "@mui/system";
 import ModalCancelScheduling from "../../components/organisms/ScheduleAppointment/ModalCancelScheduling/modalCancelScheduling";
 import { getCity } from "../../utils/getCity";
+import CustomModal from "../../components/molecules/CustomModal/customModal";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { colors } from "../../styles/theme";
 
 export async function getStaticProps() {
   return {
@@ -39,6 +42,7 @@ export default function HomePage({ googleApiKey }) {
   const [isAuthenticated, setIsAuthenticated] = React.useState(true);
   const [currentCity, setCurrentCity] = React.useState("");
   const [locationChange, setLocationChange] = React.useState(false);
+  const [modalSuccessCancel, setModalSuccessCancel] = React.useState(false);
 
   const filterData = useSelector((state) => state.appointment.filterData);
   const userData = useSelector((state) => state.user.userData);
@@ -203,6 +207,7 @@ export default function HomePage({ googleApiKey }) {
 
   const handleCancelSchedule = () => {
     setIsOpenCancel(false);
+    setModalSuccessCancel(true);
   };
 
   const onViewAppointment = () => {
@@ -306,6 +311,26 @@ export default function HomePage({ googleApiKey }) {
               />
             </Grid>
           </Grid>
+          <CustomModal
+            buttonText={"OK"}
+            onClickButton={() => {
+              setModalSuccessCancel(false);
+            }}
+            open={modalSuccessCancel}
+            sx={{
+              "& .MuiPaper-root": {
+                top: { xs: "0", md: "87px" },
+                position: { xs: "relative", md: "absolute" },
+              },
+            }}
+          >
+            <Box display={"flex"} gap={"12px"}>
+              <CheckCircleIcon sx={{ color: colors.green }}></CheckCircleIcon>
+              <Typography sx={{ color: colors.darkGreen, fontSize: "22px" }}>
+                You’ve successfully cancelled this appointment
+              </Typography>
+            </Box>
+          </CustomModal>
           <ModalCancelScheduling
             isOpen={isOpenCancel}
             OnClickCancel={handleClose}

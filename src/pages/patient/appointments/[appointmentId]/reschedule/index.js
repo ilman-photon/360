@@ -53,7 +53,6 @@ RescheduleAppointments.getLayout = function getLayout(page) {
       <AppointmentLayout
         currentActivePage={"Reschedule appointments"}
         backTitle="Back to appointments"
-        onBackClicked={"/patient/appointments"}
       >
         {page}
       </AppointmentLayout>

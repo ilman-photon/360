@@ -73,30 +73,34 @@ export default function Appointments() {
     appointmentInfo,
     providerInfo = { address: {} },
   }) => {
-    const filterData = {
-      purposeOfVisit: appointmentInfo.appointmentType,
-      date: new Date(appointmentInfo.date),
-      insuranceCarrier: Array.isArray(appointmentInfo.insuranceCarrier)
-        ? appointmentInfo.insuranceCarrier[0]
-        : appointmentInfo.insuranceCarrier,
-      location: providerInfo.address ? providerInfo.address.city : "-",
-    };
+    if (appointmentInfo) {
+      const filterData = {
+        purposeOfVisit: appointmentInfo.appointmentType,
+        date: new Date(appointmentInfo.date),
+        insuranceCarrier: Array.isArray(appointmentInfo.insuranceCarrier)
+          ? appointmentInfo.insuranceCarrier[0]
+          : appointmentInfo.insuranceCarrier,
+        location: providerInfo.address ? providerInfo.address.city : "-",
+      };
 
-    const parseDate = new moment(new Date(appointmentInfo.date)).format(
-      "YYYY-MM-DD[T]hh:mm:ss"
-    );
-    const appointmentSchedule = {
-      providerInfo: providerInfo,
-      patientInfo: userData,
-      appointmentInfo: {
-        ...appointmentInfo,
-        date: parseDate,
-      },
-    };
-    dispatch(setFilterData(filterData));
-    dispatch(setAppointmentSchedule(appointmentSchedule));
+      const parseDate = new moment(new Date(appointmentInfo.date)).format(
+        "YYYY-MM-DD[T]hh:mm:ss"
+      );
+      const appointmentSchedule = {
+        providerInfo: providerInfo,
+        patientInfo: userData,
+        appointmentInfo: {
+          ...appointmentInfo,
+          date: parseDate,
+        },
+      };
+      dispatch(setFilterData(filterData));
+      dispatch(setAppointmentSchedule(appointmentSchedule));
 
-    router.push("/patient/appointments/1/reschedule");
+      router.push("/patient/appointments/1/reschedule");
+    } else {
+      router.push("/patient");
+    }
   };
 
   const handleClose = () => {

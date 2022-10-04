@@ -38,7 +38,9 @@ Object {
             class="boxModalContents MuiBox-root css-68zbsl"
           >
             <span
+              aria-label="cancelTitle"
               class="MuiTypography-root MuiTypography-bodyMedium scheduledText css-37jdci-MuiTypography-root"
+              tabindex="0"
             >
               cancelTitle
             </span>

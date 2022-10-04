@@ -54,7 +54,18 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function MenuList({ pdfFile = "" }) {
+export default function MenuList({
+  pdfFile = "",
+  onClickDownloadButton = () => {
+    //this is intentional
+  },
+  onClickPrintButton = () => {
+    //this is intentional
+  },
+  onClickShareButton = () => {
+    //this is intentional
+  },
+}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -90,23 +101,23 @@ export default function MenuList({ pdfFile = "" }) {
         onClose={handleClose}
         sx={{ top: "-15px" }}
       >
-        <MenuItem onClick={handleClose} disableRipple>
-          <a
-            href={pdfFile}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              fontSize: "14px",
-              fontWeight: "400",
-              color: "#323338",
-            }}
-            download
-          >
-            <GetAppOutlinedIcon />
-            Download
-          </a>
+        <MenuItem
+          onClick={() => {
+            onClickDownloadButton();
+            handleClose();
+          }}
+          disableRipple
+        >
+          <GetAppOutlinedIcon />
+          Download
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem
+          onClick={() => {
+            onClickShareButton();
+            handleClose();
+          }}
+          disableRipple
+        >
           <ShareOutlinedIcon />
           <a
             style={{
@@ -120,10 +131,8 @@ export default function MenuList({ pdfFile = "" }) {
         </MenuItem>
         <MenuItem
           onClick={() => {
+            onClickShareButton();
             handleClose();
-            setTimeout(() => {
-              window.print();
-            }, 300);
           }}
           disableRipple
         >
