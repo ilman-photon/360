@@ -103,7 +103,15 @@ export default function SelectOptionButton({
             return renderMenuListUI(option, idx);
           } else {
             return (
-              <MenuItem key={idx} value={option} sx={{ fontSize: "16px" }}>
+              <MenuItem
+                key={idx}
+                value={option}
+                sx={{ fontSize: "16px" }}
+                inputProps={{
+                  "aria-label": `${option}`,
+                  "aria-live": "polite",
+                }}
+              >
                 {option}
               </MenuItem>
             );

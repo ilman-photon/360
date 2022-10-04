@@ -67,6 +67,7 @@ Object {
                 style="color: rgb(255, 255, 255); font-size: 14px; line-height: 20.02px; letter-spacing: 0.17px;"
               >
                 <div
+                  role="alert"
                   style="font-size: 14px; font-weight: 400;"
                 >
                   Your session is about to time-out. You will be logged out in 60 seconds.
@@ -242,6 +243,7 @@ Object {
                 style="color: rgb(255, 255, 255); font-size: 14px; line-height: 20.02px; letter-spacing: 0.17px;"
               >
                 <div
+                  role="alert"
                   style="font-size: 14px; font-weight: 400;"
                 >
                   Your session is about to time-out. You will be logged out in 60 seconds.
@@ -418,6 +420,7 @@ Object {
                 style="color: rgb(255, 255, 255); font-size: 14px; line-height: 20.02px; letter-spacing: 0.17px;"
               >
                 <div
+                  role="alert"
                   style="font-size: 14px; font-weight: 400;"
                 >
                   Your session is about to time-out. You will be logged out in 60 seconds.
@@ -529,6 +532,7 @@ Object {
                 style="color: rgb(255, 255, 255); font-size: 14px; line-height: 20.02px; letter-spacing: 0.17px;"
               >
                 <div
+                  role="alert"
                   style="font-size: 14px; font-weight: 400;"
                 >
                   Your session expired. Please login again.
@@ -691,6 +695,7 @@ Object {
                 style="color: rgb(255, 255, 255); font-size: 14px; line-height: 20.02px; letter-spacing: 0.17px;"
               >
                 <div
+                  role="alert"
                   style="font-size: 14px; font-weight: 400;"
                 >
                   Your session is about to time-out. You will be logged out in 60 seconds.
@@ -866,6 +871,7 @@ Object {
                 style="color: rgb(255, 255, 255); font-size: 14px; line-height: 20.02px; letter-spacing: 0.17px;"
               >
                 <div
+                  role="alert"
                   style="font-size: 14px; font-weight: 400;"
                 >
                   Your session is about to time-out. You will be logged out in 60 seconds.
@@ -1042,6 +1048,7 @@ Object {
                 style="color: rgb(255, 255, 255); font-size: 14px; line-height: 20.02px; letter-spacing: 0.17px;"
               >
                 <div
+                  role="alert"
                   style="font-size: 14px; font-weight: 400;"
                 >
                   Your session is about to time-out. You will be logged out in 60 seconds.
@@ -1153,6 +1160,7 @@ Object {
                 style="color: rgb(255, 255, 255); font-size: 14px; line-height: 20.02px; letter-spacing: 0.17px;"
               >
                 <div
+                  role="alert"
                   style="font-size: 14px; font-weight: 400;"
                 >
                   Your session expired. Please login again.
@@ -1315,6 +1323,7 @@ Object {
                 style="color: rgb(255, 255, 255); font-size: 14px; line-height: 20.02px; letter-spacing: 0.17px;"
               >
                 <div
+                  role="alert"
                   style="font-size: 14px; font-weight: 400;"
                 >
                   Your session is about to time-out. You will be logged out in 60 seconds.
@@ -1491,6 +1500,7 @@ Object {
                 style="color: rgb(255, 255, 255); font-size: 14px; line-height: 20.02px; letter-spacing: 0.17px;"
               >
                 <div
+                  role="alert"
                   style="font-size: 14px; font-weight: 400;"
                 >
                   Your session is about to time-out. You will be logged out in 60 seconds.
@@ -1602,6 +1612,7 @@ Object {
                 style="color: rgb(255, 255, 255); font-size: 14px; line-height: 20.02px; letter-spacing: 0.17px;"
               >
                 <div
+                  role="alert"
                   style="font-size: 14px; font-weight: 400;"
                 >
                   Your session expired. Please login again.
