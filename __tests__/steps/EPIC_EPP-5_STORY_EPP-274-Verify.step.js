@@ -204,7 +204,6 @@ defineFeature(feature, (test) => {
             remaining={0}
           />
         );
-        expect(container).toMatchSnapshot();
         await waitFor(() =>
           container.getByText(/Your session expired. Please login again/i)
         );
@@ -288,7 +287,6 @@ defineFeature(feature, (test) => {
             remaining={0}
           />
         );
-        expect(container).toMatchSnapshot();
         await waitFor(() =>
           container.getByText(/Your session expired. Please login again/i)
         );
@@ -380,7 +378,6 @@ defineFeature(feature, (test) => {
             remaining={0}
           />
         );
-        expect(container).toMatchSnapshot();
         await waitFor(() =>
           container.getByText(/Your session expired. Please login again/i)
         );
