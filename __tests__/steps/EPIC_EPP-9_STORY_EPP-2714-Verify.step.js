@@ -27,13 +27,25 @@ defineFeature(feature, (test) => {
   let container;
   const mock = new MockAdapter(axios);
   const element = document.createElement("div");
-  // const setState = jest.fn();
   beforeEach(async () => {
-    // useStateMock.mockImplementation((init) => [init, setState]);
+    const expectedResult = [
+      {
+        id: 1,
+        name: "Consent to Treat - Patient Financial Responsibility - Assigment of Benefits",
+        modifiedAt: "09/09/2022 12:00PM",
+        source: "/doctor.png",
+      },
+    ];
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve(expectedResult),
+      })
+    );
   });
 
   afterEach(() => {
     mock.reset();
+    fetch.mockClear();
   });
 
   const defaultValidation = () => {
@@ -70,7 +82,7 @@ defineFeature(feature, (test) => {
     fireEvent.click(login);
   };
 
-  const navigateToDocumentsPage = () => {
+  const navigateToDocumentsPage = async () => {
     act(() => {
       container.rerender(
         <Provider store={store}>
@@ -78,12 +90,15 @@ defineFeature(feature, (test) => {
         </Provider>
       );
     });
+    await waitFor(() => container.getByText("Choose a category"));
     const categorySelector = container.getByText("Choose a category");
     expect(categorySelector).toBeInTheDocument();
   };
 
   const userSeeEmptyDocumentTable = () => {
-    const emptyTable = container.getByText("There are no intake forms.");
+    const emptyTable = container.getByText(
+      "Consent to Treat - Patient Financial Responsibility - Assigment of Benefits"
+    );
     expect(emptyTable).toBeInTheDocument();
   };
 
@@ -123,8 +138,8 @@ defineFeature(feature, (test) => {
 
     and(
       "navigate to the screen to view the list of documents that can be downloaded",
-      () => {
-        navigateToDocumentsPage();
+      async () => {
+        await navigateToDocumentsPage();
       }
     );
 
@@ -159,8 +174,8 @@ defineFeature(feature, (test) => {
 
     and(
       "navigate to the screen to view the list of documents that can be downloaded",
-      () => {
-        navigateToDocumentsPage();
+      async () => {
+        await navigateToDocumentsPage();
       }
     );
 
@@ -216,8 +231,8 @@ defineFeature(feature, (test) => {
 
     and(
       "navigate to the screen to view the list of documents that can be downloaded",
-      () => {
-        navigateToDocumentsPage();
+      async () => {
+        await navigateToDocumentsPage();
       }
     );
 
@@ -266,8 +281,8 @@ defineFeature(feature, (test) => {
 
     and(
       "navigate to the screen to view the list of documents that can be downloaded",
-      () => {
-        navigateToDocumentsPage();
+      async () => {
+        await navigateToDocumentsPage();
       }
     );
 
@@ -314,8 +329,8 @@ defineFeature(feature, (test) => {
 
     and(
       "navigate to the screen to view the list of documents that can be downloaded",
-      () => {
-        navigateToDocumentsPage();
+      async () => {
+        await navigateToDocumentsPage();
       }
     );
 
