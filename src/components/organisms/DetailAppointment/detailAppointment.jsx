@@ -152,11 +152,6 @@ export default function DetailAppointment({ data }) {
   const addressLabel = `address : ${providerInfo.address.addressLine1}.
                   ${providerInfo.address.city}, ${providerInfo.address.state}, 
                   ${providerInfo.address.zipcode}`;
-  const addressDetailId =
-    appointmentInfo.documentDetails.address.typePlace +
-    "\n" +
-    appointmentInfo.documentDetails.address.typePlace +
-    "\n";
   return (
     <Box className={styles.upcomingAppointments} ref={container}>
       <Stack spacing={{ xs: 2, lg: 3.5 }}>

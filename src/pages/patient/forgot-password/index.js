@@ -10,7 +10,7 @@ import InsertLinkIcon from "@mui/icons-material/InsertLink";
 import { Controller } from "react-hook-form";
 import { useTranslation } from "next-i18next";
 import ForgotPassword from "../../../components/organisms/ForgotPassword/forgotPassword";
-import { Box } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 import globalStyles from "../../../styles/Global.module.scss";
 import { useRouter } from "next/router";
 import { Regex } from "../../../utils/regex";
@@ -100,6 +100,23 @@ export default function ForgotPasswordPage() {
   const [showOneTimeLink, setShowOneTimeLink] = useState(false);
   const [showPasswordReset, setShowPasswordReset] = useState(false);
   const [isAppointment, setAppointment] = useState(true);
+  const bodyScrollLock = require("body-scroll-lock");
+  const disableBodyScroll = bodyScrollLock.disableBodyScroll;
+  const enableBodyScroll = bodyScrollLock.enableBodyScroll;
+
+  const isMobile = useMediaQuery("(max-width: 768px)");
+
+  useEffect(() => {
+    const targetElement = document.body;
+    if (isMobile) {
+      targetElement.style.width = "100%";
+      disableBodyScroll(targetElement);
+      return () => {
+        enableBodyScroll(targetElement);
+        targetElement.style.width = "";
+      };
+    }
+  }, [disableBodyScroll, enableBodyScroll, isMobile]);
 
   useEffect(() => {
     if (router.asPath === "/patient/sync") {

@@ -78,8 +78,8 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
     );
   };
 
-  const getAddressQuery = (address) => {
-    return `${address.addressLine1} ${address.addressLine2} ${address.city} ${address.state} ${address.zipcode}`.replace(
+  const getAddressQuery = (queryAddress) => {
+    return `${queryAddress.addressLine1} ${queryAddress.addressLine2} ${queryAddress.city} ${queryAddress.state} ${queryAddress.zipcode}`.replace(
       / /g,
       "+"
     );

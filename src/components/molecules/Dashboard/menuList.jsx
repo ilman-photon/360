@@ -56,9 +56,15 @@ const StyledMenu = styled((props) => (
 
 export default function MenuList({
   pdfFile = "",
-  onClickDownloadButton = () => {},
-  onClickPrintButton = () => {},
-  onClickShareButton = () => {},
+  onClickDownloadButton = () => {
+    //this is intentional
+  },
+  onClickPrintButton = () => {
+    //this is intentional
+  },
+  onClickShareButton = () => {
+    //this is intentional
+  },
 }) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
