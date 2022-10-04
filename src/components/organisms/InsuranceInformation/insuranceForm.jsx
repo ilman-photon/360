@@ -270,7 +270,13 @@ export default function InsuranceForm({
 
           <Divider />
 
-          <Typography variant="grayscaleBlack">Policy Holder</Typography>
+          <Typography
+            tabIndex={0}
+            aria-label={"Policy Holder"}
+            variant="grayscaleBlack"
+          >
+            Policy Holder
+          </Typography>
 
           <Controller
             name="isSubscriber"
