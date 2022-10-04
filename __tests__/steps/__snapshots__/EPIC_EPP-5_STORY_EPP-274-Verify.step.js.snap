@@ -1,181 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Patient Portal : Session Security Capability - Session time out prompt EPIC_EPP-3_STORY_EPP-274 - Verify that  User should be prompted regarding session time out. 1`] = `
-Object {
-  "asFragment": [Function],
-  "baseElement": <body
-    style="padding-right: 1024px; overflow: hidden;"
-  >
-    <div
-      aria-hidden="true"
-    />
-    <div
-      class="MuiDialog-root MuiModal-root css-zw3mfo-MuiModal-root-MuiDialog-root"
-      role="presentation"
-    >
-      <div
-        aria-hidden="true"
-        class="MuiBackdrop-root css-yiavyu-MuiBackdrop-root-MuiDialog-backdrop"
-        style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
-      />
-      <div
-        data-test="sentinelStart"
-        tabindex="0"
-      />
-      <div
-        class="MuiDialog-container MuiDialog-scrollPaper css-hz1bth-MuiDialog-container"
-        role="presentation"
-        style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
-        tabindex="-1"
-      >
-        <div
-          aria-describedby="alert-dialog-description"
-          aria-labelledby="alert-dialog-title"
-          class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation24 MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm css-1t1j96h-MuiPaper-root-MuiDialog-paper"
-          role="dialog"
-        >
-          <h2
-            aria-label="Session Timeout heading"
-            class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-bdhsul-MuiTypography-root-MuiDialogTitle-root"
-            id="alert-dialog-title"
-            style="padding: 16px 16px 0px 16px;"
-          >
-            Session Timeout
-          </h2>
-          <div
-            class="MuiDialogContent-root css-14ywww5-MuiDialogContent-root"
-            style="padding: 16px 16px 16px 16px;"
-          >
-            <div
-              class="MuiBox-root css-1y4mj6z"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1jteomo-MuiSvgIcon-root"
-                data-testid="BlockIcon"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9C4.63 15.55 4 13.85 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1C19.37 8.45 20 10.15 20 12c0 4.42-3.58 8-8 8z"
-                />
-              </svg>
-              <div
-                aria-live="off"
-                data-testid="submission-message"
-                role="alert"
-                style="color: rgb(255, 255, 255); font-size: 14px; line-height: 20.02px; letter-spacing: 0.17px;"
-              >
-                <div
-                  role="alert"
-                  style="font-size: 14px; font-weight: 400;"
-                >
-                  Your session is about to time-out. You will be logged out in 60 seconds.
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="MuiDialogActions-root MuiDialogActions-spacing css-hlj6pa-MuiDialogActions-root"
-            style="padding: 16px 16px 0px 16px;"
-          >
-            <div
-              class="MuiBox-root css-0"
-              style="display: flex; flex-direction: row; margin-bottom: 16px;"
-            >
-              <button
-                aria-label="Log off button"
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-19s7hx2-MuiButtonBase-root-MuiButton-root"
-                data-testid="session-logoff-btn"
-                style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="0"
-                type="button"
-              >
-                Log Off
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-              <button
-                aria-label="Stay Logged in button"
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
-                data-testid="session-stay-btn"
-                style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="0"
-                type="button"
-              >
-                Stay Logged in
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        data-test="sentinelEnd"
-        tabindex="0"
-      />
-    </div>
-  </body>,
-  "container": <div
-    aria-hidden="true"
-  />,
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
-`;
-
 exports[`Patient Portal : Session Security Capability - Session time out prompt EPIC_EPP-3_STORY_EPP-274 - Verify that User should be prompted Session Expired message after the given time 1`] = `
 Object {
   "asFragment": [Function],
@@ -186,6 +10,7 @@ Object {
       aria-hidden="true"
     />
     <div
+      aria-hidden="true"
       class="MuiDialog-root MuiModal-root css-zw3mfo-MuiModal-root-MuiDialog-root"
       role="presentation"
     >
@@ -212,15 +37,18 @@ Object {
         >
           <h2
             aria-label="Session Timeout heading"
+            aria-live="Session Timeout heading"
             class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-bdhsul-MuiTypography-root-MuiDialogTitle-root"
             id="alert-dialog-title"
             style="padding: 16px 16px 0px 16px;"
+            tabindex="1"
           >
             Session Timeout
           </h2>
           <div
             class="MuiDialogContent-root css-14ywww5-MuiDialogContent-root"
             style="padding: 16px 16px 16px 16px;"
+            tabindex="1"
           >
             <div
               class="MuiBox-root css-1y4mj6z"
@@ -261,10 +89,11 @@ Object {
             >
               <button
                 aria-label="Log off button"
+                aria-live="Log off button"
                 class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-19s7hx2-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-logoff-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="0"
+                tabindex="1"
                 type="button"
               >
                 Log Off
@@ -274,187 +103,11 @@ Object {
               </button>
               <button
                 aria-label="Stay Logged in button"
+                aria-live="Stay Logged in button"
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-stay-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="0"
-                type="button"
-              >
-                Stay Logged in
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        data-test="sentinelEnd"
-        tabindex="0"
-      />
-    </div>
-  </body>,
-  "container": <div
-    aria-hidden="true"
-  />,
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
-`;
-
-exports[`Patient Portal : Session Security Capability - Session time out prompt EPIC_EPP-3_STORY_EPP-274 - Verify that User should be prompted Session Expired message after the given time 2`] = `
-Object {
-  "asFragment": [Function],
-  "baseElement": <body
-    style="padding-right: 1024px; overflow: hidden;"
-  >
-    <div
-      aria-hidden="true"
-    />
-    <div
-      aria-hidden="true"
-      class="MuiDialog-root MuiModal-root css-zw3mfo-MuiModal-root-MuiDialog-root"
-      role="presentation"
-    >
-      <div
-        aria-hidden="true"
-        class="MuiBackdrop-root css-yiavyu-MuiBackdrop-root-MuiDialog-backdrop"
-        style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
-      />
-      <div
-        data-test="sentinelStart"
-        tabindex="0"
-      />
-      <div
-        class="MuiDialog-container MuiDialog-scrollPaper css-hz1bth-MuiDialog-container"
-        role="presentation"
-        style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
-        tabindex="-1"
-      >
-        <div
-          aria-describedby="alert-dialog-description"
-          aria-labelledby="alert-dialog-title"
-          class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation24 MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm css-1t1j96h-MuiPaper-root-MuiDialog-paper"
-          role="dialog"
-        >
-          <h2
-            aria-label="Session Timeout heading"
-            class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-bdhsul-MuiTypography-root-MuiDialogTitle-root"
-            id="alert-dialog-title"
-            style="padding: 16px 16px 0px 16px;"
-          >
-            Session Timeout
-          </h2>
-          <div
-            class="MuiDialogContent-root css-14ywww5-MuiDialogContent-root"
-            style="padding: 16px 16px 16px 16px;"
-          >
-            <div
-              class="MuiBox-root css-1y4mj6z"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1jteomo-MuiSvgIcon-root"
-                data-testid="BlockIcon"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9C4.63 15.55 4 13.85 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1C19.37 8.45 20 10.15 20 12c0 4.42-3.58 8-8 8z"
-                />
-              </svg>
-              <div
-                aria-live="off"
-                data-testid="submission-message"
-                role="alert"
-                style="color: rgb(255, 255, 255); font-size: 14px; line-height: 20.02px; letter-spacing: 0.17px;"
-              >
-                <div
-                  role="alert"
-                  style="font-size: 14px; font-weight: 400;"
-                >
-                  Your session is about to time-out. You will be logged out in 60 seconds.
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="MuiDialogActions-root MuiDialogActions-spacing css-hlj6pa-MuiDialogActions-root"
-            style="padding: 16px 16px 0px 16px;"
-          >
-            <div
-              class="MuiBox-root css-0"
-              style="display: flex; flex-direction: row; margin-bottom: 16px;"
-            >
-              <button
-                aria-label="Log off button"
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-19s7hx2-MuiButtonBase-root-MuiButton-root"
-                data-testid="session-logoff-btn"
-                style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="0"
-                type="button"
-              >
-                Log Off
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-              <button
-                aria-label="Stay Logged in button"
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
-                data-testid="session-stay-btn"
-                style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="0"
+                tabindex="1"
                 type="button"
               >
                 Stay Logged in
@@ -501,15 +154,18 @@ Object {
         >
           <h2
             aria-label="Session Expired heading"
+            aria-live="Session Expired heading"
             class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-bdhsul-MuiTypography-root-MuiDialogTitle-root"
             id="alert-dialog-title"
             style="padding: 16px 16px 0px 16px;"
+            tabindex="1"
           >
             Session Expired
           </h2>
           <div
             class="MuiDialogContent-root css-14ywww5-MuiDialogContent-root"
             style="padding: 16px 16px 16px 16px;"
+            tabindex="1"
           >
             <div
               class="MuiBox-root css-1y4mj6z"
@@ -550,189 +206,14 @@ Object {
             >
               <button
                 aria-label="Ok button"
+                aria-live="Ok button"
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-ok-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="0"
+                tabindex="1"
                 type="button"
               >
                 OK
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        data-test="sentinelEnd"
-        tabindex="0"
-      />
-    </div>
-  </body>,
-  "container": <div
-    aria-hidden="true"
-  />,
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
-`;
-
-exports[`Patient Portal : Session Security Capability - Session time out prompt EPIC_EPP-3_STORY_EPP-274 - Verify that User should be prompted regarding session time out with an option to ‘Stay logged in’ and ‘Log off’ 1`] = `
-Object {
-  "asFragment": [Function],
-  "baseElement": <body
-    style="padding-right: 1024px; overflow: hidden;"
-  >
-    <div
-      aria-hidden="true"
-    />
-    <div
-      class="MuiDialog-root MuiModal-root css-zw3mfo-MuiModal-root-MuiDialog-root"
-      role="presentation"
-    >
-      <div
-        aria-hidden="true"
-        class="MuiBackdrop-root css-yiavyu-MuiBackdrop-root-MuiDialog-backdrop"
-        style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
-      />
-      <div
-        data-test="sentinelStart"
-        tabindex="0"
-      />
-      <div
-        class="MuiDialog-container MuiDialog-scrollPaper css-hz1bth-MuiDialog-container"
-        role="presentation"
-        style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
-        tabindex="-1"
-      >
-        <div
-          aria-describedby="alert-dialog-description"
-          aria-labelledby="alert-dialog-title"
-          class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation24 MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm css-1t1j96h-MuiPaper-root-MuiDialog-paper"
-          role="dialog"
-        >
-          <h2
-            aria-label="Session Timeout heading"
-            class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-bdhsul-MuiTypography-root-MuiDialogTitle-root"
-            id="alert-dialog-title"
-            style="padding: 16px 16px 0px 16px;"
-          >
-            Session Timeout
-          </h2>
-          <div
-            class="MuiDialogContent-root css-14ywww5-MuiDialogContent-root"
-            style="padding: 16px 16px 16px 16px;"
-          >
-            <div
-              class="MuiBox-root css-1y4mj6z"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1jteomo-MuiSvgIcon-root"
-                data-testid="BlockIcon"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9C4.63 15.55 4 13.85 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1C19.37 8.45 20 10.15 20 12c0 4.42-3.58 8-8 8z"
-                />
-              </svg>
-              <div
-                aria-live="off"
-                data-testid="submission-message"
-                role="alert"
-                style="color: rgb(255, 255, 255); font-size: 14px; line-height: 20.02px; letter-spacing: 0.17px;"
-              >
-                <div
-                  role="alert"
-                  style="font-size: 14px; font-weight: 400;"
-                >
-                  Your session is about to time-out. You will be logged out in 60 seconds.
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="MuiDialogActions-root MuiDialogActions-spacing css-hlj6pa-MuiDialogActions-root"
-            style="padding: 16px 16px 0px 16px;"
-          >
-            <div
-              class="MuiBox-root css-0"
-              style="display: flex; flex-direction: row; margin-bottom: 16px;"
-            >
-              <button
-                aria-label="Log off button"
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-19s7hx2-MuiButtonBase-root-MuiButton-root"
-                data-testid="session-logoff-btn"
-                style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="0"
-                type="button"
-              >
-                Log Off
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-              <button
-                aria-label="Stay Logged in button"
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
-                data-testid="session-stay-btn"
-                style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="0"
-                type="button"
-              >
-                Stay Logged in
                 <span
                   class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
                 />
@@ -814,6 +295,7 @@ Object {
       aria-hidden="true"
     />
     <div
+      aria-hidden="true"
       class="MuiDialog-root MuiModal-root css-zw3mfo-MuiModal-root-MuiDialog-root"
       role="presentation"
     >
@@ -840,15 +322,18 @@ Object {
         >
           <h2
             aria-label="Session Timeout heading"
+            aria-live="Session Timeout heading"
             class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-bdhsul-MuiTypography-root-MuiDialogTitle-root"
             id="alert-dialog-title"
             style="padding: 16px 16px 0px 16px;"
+            tabindex="1"
           >
             Session Timeout
           </h2>
           <div
             class="MuiDialogContent-root css-14ywww5-MuiDialogContent-root"
             style="padding: 16px 16px 16px 16px;"
+            tabindex="1"
           >
             <div
               class="MuiBox-root css-1y4mj6z"
@@ -889,10 +374,11 @@ Object {
             >
               <button
                 aria-label="Log off button"
+                aria-live="Log off button"
                 class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-19s7hx2-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-logoff-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="0"
+                tabindex="1"
                 type="button"
               >
                 Log Off
@@ -902,187 +388,11 @@ Object {
               </button>
               <button
                 aria-label="Stay Logged in button"
+                aria-live="Stay Logged in button"
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-stay-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="0"
-                type="button"
-              >
-                Stay Logged in
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        data-test="sentinelEnd"
-        tabindex="0"
-      />
-    </div>
-  </body>,
-  "container": <div
-    aria-hidden="true"
-  />,
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
-`;
-
-exports[`Patient Portal : Session Security Capability - Session time out prompt EPIC_EPP-3_STORY_EPP-274 - Verify that when user clicks "OK" button, system should logout the user 2`] = `
-Object {
-  "asFragment": [Function],
-  "baseElement": <body
-    style="padding-right: 1024px; overflow: hidden;"
-  >
-    <div
-      aria-hidden="true"
-    />
-    <div
-      aria-hidden="true"
-      class="MuiDialog-root MuiModal-root css-zw3mfo-MuiModal-root-MuiDialog-root"
-      role="presentation"
-    >
-      <div
-        aria-hidden="true"
-        class="MuiBackdrop-root css-yiavyu-MuiBackdrop-root-MuiDialog-backdrop"
-        style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
-      />
-      <div
-        data-test="sentinelStart"
-        tabindex="0"
-      />
-      <div
-        class="MuiDialog-container MuiDialog-scrollPaper css-hz1bth-MuiDialog-container"
-        role="presentation"
-        style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
-        tabindex="-1"
-      >
-        <div
-          aria-describedby="alert-dialog-description"
-          aria-labelledby="alert-dialog-title"
-          class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation24 MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm css-1t1j96h-MuiPaper-root-MuiDialog-paper"
-          role="dialog"
-        >
-          <h2
-            aria-label="Session Timeout heading"
-            class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-bdhsul-MuiTypography-root-MuiDialogTitle-root"
-            id="alert-dialog-title"
-            style="padding: 16px 16px 0px 16px;"
-          >
-            Session Timeout
-          </h2>
-          <div
-            class="MuiDialogContent-root css-14ywww5-MuiDialogContent-root"
-            style="padding: 16px 16px 16px 16px;"
-          >
-            <div
-              class="MuiBox-root css-1y4mj6z"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1jteomo-MuiSvgIcon-root"
-                data-testid="BlockIcon"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9C4.63 15.55 4 13.85 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1C19.37 8.45 20 10.15 20 12c0 4.42-3.58 8-8 8z"
-                />
-              </svg>
-              <div
-                aria-live="off"
-                data-testid="submission-message"
-                role="alert"
-                style="color: rgb(255, 255, 255); font-size: 14px; line-height: 20.02px; letter-spacing: 0.17px;"
-              >
-                <div
-                  role="alert"
-                  style="font-size: 14px; font-weight: 400;"
-                >
-                  Your session is about to time-out. You will be logged out in 60 seconds.
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="MuiDialogActions-root MuiDialogActions-spacing css-hlj6pa-MuiDialogActions-root"
-            style="padding: 16px 16px 0px 16px;"
-          >
-            <div
-              class="MuiBox-root css-0"
-              style="display: flex; flex-direction: row; margin-bottom: 16px;"
-            >
-              <button
-                aria-label="Log off button"
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-19s7hx2-MuiButtonBase-root-MuiButton-root"
-                data-testid="session-logoff-btn"
-                style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="0"
-                type="button"
-              >
-                Log Off
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-              <button
-                aria-label="Stay Logged in button"
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
-                data-testid="session-stay-btn"
-                style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="0"
+                tabindex="1"
                 type="button"
               >
                 Stay Logged in
@@ -1129,15 +439,18 @@ Object {
         >
           <h2
             aria-label="Session Expired heading"
+            aria-live="Session Expired heading"
             class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-bdhsul-MuiTypography-root-MuiDialogTitle-root"
             id="alert-dialog-title"
             style="padding: 16px 16px 0px 16px;"
+            tabindex="1"
           >
             Session Expired
           </h2>
           <div
             class="MuiDialogContent-root css-14ywww5-MuiDialogContent-root"
             style="padding: 16px 16px 16px 16px;"
+            tabindex="1"
           >
             <div
               class="MuiBox-root css-1y4mj6z"
@@ -1178,10 +491,11 @@ Object {
             >
               <button
                 aria-label="Ok button"
+                aria-live="Ok button"
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-ok-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="0"
+                tabindex="1"
                 type="button"
               >
                 OK
@@ -1266,6 +580,7 @@ Object {
       aria-hidden="true"
     />
     <div
+      aria-hidden="true"
       class="MuiDialog-root MuiModal-root css-zw3mfo-MuiModal-root-MuiDialog-root"
       role="presentation"
     >
@@ -1292,15 +607,18 @@ Object {
         >
           <h2
             aria-label="Session Timeout heading"
+            aria-live="Session Timeout heading"
             class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-bdhsul-MuiTypography-root-MuiDialogTitle-root"
             id="alert-dialog-title"
             style="padding: 16px 16px 0px 16px;"
+            tabindex="1"
           >
             Session Timeout
           </h2>
           <div
             class="MuiDialogContent-root css-14ywww5-MuiDialogContent-root"
             style="padding: 16px 16px 16px 16px;"
+            tabindex="1"
           >
             <div
               class="MuiBox-root css-1y4mj6z"
@@ -1341,10 +659,11 @@ Object {
             >
               <button
                 aria-label="Log off button"
+                aria-live="Log off button"
                 class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-19s7hx2-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-logoff-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="0"
+                tabindex="1"
                 type="button"
               >
                 Log Off
@@ -1354,187 +673,11 @@ Object {
               </button>
               <button
                 aria-label="Stay Logged in button"
+                aria-live="Stay Logged in button"
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-stay-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="0"
-                type="button"
-              >
-                Stay Logged in
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        data-test="sentinelEnd"
-        tabindex="0"
-      />
-    </div>
-  </body>,
-  "container": <div
-    aria-hidden="true"
-  />,
-  "debug": [Function],
-  "findAllByAltText": [Function],
-  "findAllByDisplayValue": [Function],
-  "findAllByLabelText": [Function],
-  "findAllByPlaceholderText": [Function],
-  "findAllByRole": [Function],
-  "findAllByTestId": [Function],
-  "findAllByText": [Function],
-  "findAllByTitle": [Function],
-  "findByAltText": [Function],
-  "findByDisplayValue": [Function],
-  "findByLabelText": [Function],
-  "findByPlaceholderText": [Function],
-  "findByRole": [Function],
-  "findByTestId": [Function],
-  "findByText": [Function],
-  "findByTitle": [Function],
-  "getAllByAltText": [Function],
-  "getAllByDisplayValue": [Function],
-  "getAllByLabelText": [Function],
-  "getAllByPlaceholderText": [Function],
-  "getAllByRole": [Function],
-  "getAllByTestId": [Function],
-  "getAllByText": [Function],
-  "getAllByTitle": [Function],
-  "getByAltText": [Function],
-  "getByDisplayValue": [Function],
-  "getByLabelText": [Function],
-  "getByPlaceholderText": [Function],
-  "getByRole": [Function],
-  "getByTestId": [Function],
-  "getByText": [Function],
-  "getByTitle": [Function],
-  "queryAllByAltText": [Function],
-  "queryAllByDisplayValue": [Function],
-  "queryAllByLabelText": [Function],
-  "queryAllByPlaceholderText": [Function],
-  "queryAllByRole": [Function],
-  "queryAllByTestId": [Function],
-  "queryAllByText": [Function],
-  "queryAllByTitle": [Function],
-  "queryByAltText": [Function],
-  "queryByDisplayValue": [Function],
-  "queryByLabelText": [Function],
-  "queryByPlaceholderText": [Function],
-  "queryByRole": [Function],
-  "queryByTestId": [Function],
-  "queryByText": [Function],
-  "queryByTitle": [Function],
-  "rerender": [Function],
-  "unmount": [Function],
-}
-`;
-
-exports[`Patient Portal : Session Security Capability - Session time out prompt EPIC_EPP-3_STORY_EPP-274 - Verify that when user clicks "OK" button, system should logout within 3 seconds 2`] = `
-Object {
-  "asFragment": [Function],
-  "baseElement": <body
-    style="padding-right: 1024px; overflow: hidden;"
-  >
-    <div
-      aria-hidden="true"
-    />
-    <div
-      aria-hidden="true"
-      class="MuiDialog-root MuiModal-root css-zw3mfo-MuiModal-root-MuiDialog-root"
-      role="presentation"
-    >
-      <div
-        aria-hidden="true"
-        class="MuiBackdrop-root css-yiavyu-MuiBackdrop-root-MuiDialog-backdrop"
-        style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
-      />
-      <div
-        data-test="sentinelStart"
-        tabindex="0"
-      />
-      <div
-        class="MuiDialog-container MuiDialog-scrollPaper css-hz1bth-MuiDialog-container"
-        role="presentation"
-        style="opacity: 1; webkit-transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms; transition: opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;"
-        tabindex="-1"
-      >
-        <div
-          aria-describedby="alert-dialog-description"
-          aria-labelledby="alert-dialog-title"
-          class="MuiPaper-root MuiPaper-elevation MuiPaper-rounded MuiPaper-elevation24 MuiDialog-paper MuiDialog-paperScrollPaper MuiDialog-paperWidthSm css-1t1j96h-MuiPaper-root-MuiDialog-paper"
-          role="dialog"
-        >
-          <h2
-            aria-label="Session Timeout heading"
-            class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-bdhsul-MuiTypography-root-MuiDialogTitle-root"
-            id="alert-dialog-title"
-            style="padding: 16px 16px 0px 16px;"
-          >
-            Session Timeout
-          </h2>
-          <div
-            class="MuiDialogContent-root css-14ywww5-MuiDialogContent-root"
-            style="padding: 16px 16px 16px 16px;"
-          >
-            <div
-              class="MuiBox-root css-1y4mj6z"
-            >
-              <svg
-                aria-hidden="true"
-                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1jteomo-MuiSvgIcon-root"
-                data-testid="BlockIcon"
-                focusable="false"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zM4 12c0-4.42 3.58-8 8-8 1.85 0 3.55.63 4.9 1.69L5.69 16.9C4.63 15.55 4 13.85 4 12zm8 8c-1.85 0-3.55-.63-4.9-1.69L18.31 7.1C19.37 8.45 20 10.15 20 12c0 4.42-3.58 8-8 8z"
-                />
-              </svg>
-              <div
-                aria-live="off"
-                data-testid="submission-message"
-                role="alert"
-                style="color: rgb(255, 255, 255); font-size: 14px; line-height: 20.02px; letter-spacing: 0.17px;"
-              >
-                <div
-                  role="alert"
-                  style="font-size: 14px; font-weight: 400;"
-                >
-                  Your session is about to time-out. You will be logged out in 60 seconds.
-                </div>
-              </div>
-            </div>
-          </div>
-          <div
-            class="MuiDialogActions-root MuiDialogActions-spacing css-hlj6pa-MuiDialogActions-root"
-            style="padding: 16px 16px 0px 16px;"
-          >
-            <div
-              class="MuiBox-root css-0"
-              style="display: flex; flex-direction: row; margin-bottom: 16px;"
-            >
-              <button
-                aria-label="Log off button"
-                class="MuiButton-root MuiButton-outlined MuiButton-outlinedPrimary MuiButton-sizeMedium MuiButton-outlinedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-19s7hx2-MuiButtonBase-root-MuiButton-root"
-                data-testid="session-logoff-btn"
-                style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="0"
-                type="button"
-              >
-                Log Off
-                <span
-                  class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                />
-              </button>
-              <button
-                aria-label="Stay Logged in button"
-                class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
-                data-testid="session-stay-btn"
-                style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="0"
+                tabindex="1"
                 type="button"
               >
                 Stay Logged in
@@ -1581,15 +724,18 @@ Object {
         >
           <h2
             aria-label="Session Expired heading"
+            aria-live="Session Expired heading"
             class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-bdhsul-MuiTypography-root-MuiDialogTitle-root"
             id="alert-dialog-title"
             style="padding: 16px 16px 0px 16px;"
+            tabindex="1"
           >
             Session Expired
           </h2>
           <div
             class="MuiDialogContent-root css-14ywww5-MuiDialogContent-root"
             style="padding: 16px 16px 16px 16px;"
+            tabindex="1"
           >
             <div
               class="MuiBox-root css-1y4mj6z"
@@ -1630,10 +776,11 @@ Object {
             >
               <button
                 aria-label="Ok button"
+                aria-live="Ok button"
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1ai4zn7-MuiButtonBase-root-MuiButton-root"
                 data-testid="session-ok-btn"
                 style="min-width: 40px !important; margin-left: 10px; font-size: 14px; box-shadow: none; transform: none;"
-                tabindex="0"
+                tabindex="1"
                 type="button"
               >
                 OK
