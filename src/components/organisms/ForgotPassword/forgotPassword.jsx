@@ -63,7 +63,7 @@ const ForgotPassword = ({
       });
     }
   };
-
+  const errorMessage = isAppointment ? "syncError" : "errorUsernameNotFound";
   return (
     <>
       <Head>
@@ -86,7 +86,7 @@ const ForgotPassword = ({
                 sx={styles.postMessage}
                 title={isAppointment && t("syncErrorTitle")}
               >
-                {isAppointment ? t("syncError") : t("errorUsernameNotFound")}
+                {t(errorMessage)}
               </FormMessage>
             ) : (
               <></>

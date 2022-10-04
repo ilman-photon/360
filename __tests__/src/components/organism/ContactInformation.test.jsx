@@ -23,7 +23,7 @@ describe("ContactInformation Components", () => {
     preferredName: "---",
     profilePhoto: {
       name: "my-photo.jpg",
-      source: "https://loremflickr.com/640/480"
+      source: "https://loremflickr.com/640/480",
     },
     ssn: 3777306119,
     state: "South Dakota",
@@ -44,10 +44,6 @@ describe("ContactInformation Components", () => {
     );
 
     await waitFor(() => container.getByText("Phone Number"));
-  });
-
-  it("ContactInformation render", () => {
-    expect(container).toMatchSnapshot();
   });
 
   it("PersonalInformation View render", () => {
@@ -91,7 +87,9 @@ describe("ContactInformation Components", () => {
     fireEvent.change(field4, { target: { value: "Cities" } });
     expect(field4.value).toEqual("Cities");
 
-    const field5 = await waitFor(() => container.getByTestId("styled-select-state"));
+    const field5 = await waitFor(() =>
+      container.getByTestId("styled-select-state")
+    );
     expect(field5).toBeTruthy();
 
     const field6 = container.getByLabelText("Zip field");
@@ -99,8 +97,12 @@ describe("ContactInformation Components", () => {
     fireEvent.change(field6, { target: { value: "12345" } });
     expect(field6.value).toEqual("12345");
 
-    const radioTitle = container.getByText("Preferred mode of Communication");
-    expect("Preferred mode of Communication").toEqual(radioTitle.textContent);
+    const radioTitle = container.getByText(
+      "Preferred mode(s) of Communication"
+    );
+    expect("Preferred mode(s) of Communication").toEqual(
+      radioTitle.textContent
+    );
 
     const communicationRadio = container.getByRole("radio", { name: /Both/i });
     fireEvent.click(communicationRadio);
@@ -137,7 +139,7 @@ describe("ContactInformation Components", () => {
     );
 
     const field = container.container.querySelector("#zip");
-    console.log(field.value)
+    console.log(field.value);
     fireEvent.change(field, { target: { value: "12345" } });
     expect(field.value).toEqual("12345");
     const saveButton = container.getByRole("button", { name: "Save" });

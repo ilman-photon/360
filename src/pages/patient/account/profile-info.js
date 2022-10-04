@@ -7,7 +7,6 @@ import { Provider, useDispatch, useSelector } from "react-redux";
 import { fetchUser, setUserData } from "../../../store/user";
 import store from "../../../store/store";
 import PropTypes from "prop-types";
-import { useRouter } from "next/router";
 import { Api } from "../../api/api";
 import constants from "../../../utils/constants";
 import { closePageMessage, setPageMessage } from "../../../store";
@@ -62,8 +61,6 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
 
   const dispatch = useDispatch();
   const isDesktop = useMediaQuery("(min-width: 769px)");
-
-  const router = useRouter();
   const api = new Api();
 
   const showSuccessMessage = (message) => {

@@ -212,12 +212,12 @@ export default function ContactInformation({
                 tabIndex={0}
                 aria-label={
                   userData.preferredCommunication === "both"
-                    ? "Mobile,Email"
+                    ? "Mobile, Email"
                     : userData.preferredCommunication || "-"
                 }
               >
                 {userData.preferredCommunication === "both"
-                  ? "Mobile,Email"
+                  ? "Mobile, Email"
                   : userData.preferredCommunication || "-"}
               </div>
             </span>
@@ -249,6 +249,11 @@ export default function ContactInformation({
                     variant="filled"
                     helperText={error ? error.message : null}
                     xs={{ margin: 0 }}
+                    sx={{
+                      ".MuiFilledInput-root": {
+                        backgroundColor: "#FFF",
+                      },
+                    }}
                   />
                 );
               }}
@@ -286,6 +291,11 @@ export default function ContactInformation({
                     size="small"
                     variant="filled"
                     helperText={error ? error.message : null}
+                    sx={{
+                      ".MuiFilledInput-root": {
+                        backgroundColor: "#FFF",
+                      },
+                    }}
                   />
                 );
               }}
@@ -319,7 +329,12 @@ export default function ContactInformation({
                         label="Address"
                         autoComplete="address-line1"
                         placeholder="Start typing your address, e.g. 123 United States..."
-                        sx={{ width: "100%" }}
+                        sx={{
+                          width: "100%",
+                          ".MuiFilledInput-root": {
+                            backgroundColor: "#FFF",
+                          },
+                        }}
                         value={value}
                         onChange={onChange}
                         error={!!error}
@@ -355,6 +370,11 @@ export default function ContactInformation({
                     size="small"
                     variant="filled"
                     helperText={error ? error.message : null}
+                    sx={{
+                      ".MuiFilledInput-root": {
+                        backgroundColor: "#FFF",
+                      },
+                    }}
                   />
                 );
               }}
@@ -386,6 +406,10 @@ export default function ContactInformation({
                           width: "100%",
                           "&.MuiFormControl-root": {
                             m: 0,
+                          },
+
+                          ".MuiFilledInput-root": {
+                            backgroundColor: "#FFF",
                           },
                         }}
                       />
@@ -426,6 +450,7 @@ export default function ContactInformation({
                           },
                           ".MuiFilledInput-root": {
                             height: "100%",
+                            backgroundColor: "#FFF",
                           },
                         }}
                       />
@@ -454,9 +479,10 @@ export default function ContactInformation({
                       error={!!error}
                       value={value}
                       onChange={onChange}
-                      label="Preferred mode of Communication"
+                      label="Preferred mode(s) of Communication"
                       options={communicationOptions}
                       helperText={error ? error.message : null}
+                      textSx={{ justifyContent: "space-between" }}
                       isCancelSchedule={true}
                     />
                   </>
