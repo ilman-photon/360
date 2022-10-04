@@ -143,12 +143,6 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
     if (value.getFullYear() <= date) {
       return true;
     }
-    if (value.getMonth() <= 12) {
-      return true;
-    }
-    if (value.getMonth() <= 12) {
-      return true;
-    }
     return false;
   };
   const isOneOfPreferredValid = (name, value) => {
@@ -206,7 +200,9 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   size="small"
                   variant="filled"
                   helperText={error ? error.message : null}
-                  sx={{ margin: "8px" }}
+                  sx={{
+                    margin: "8px",
+                  }}
                 />
               );
             }}
@@ -235,7 +231,9 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   size="small"
                   variant="filled"
                   helperText={error ? error.message : null}
-                  sx={{ margin: "8px" }}
+                  sx={{
+                    margin: "8px",
+                  }}
                 />
               );
             }}
@@ -292,7 +290,9 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   size="small"
                   variant="filled"
                   helperText={error ? error.message : null}
-                  sx={{ margin: "8px" }}
+                  sx={{
+                    margin: "8px",
+                  }}
                 />
               );
             }}
@@ -325,7 +325,9 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   size="small"
                   variant="filled"
                   helperText={error ? error.message : null}
-                  sx={{ m: 1 }}
+                  sx={{
+                    m: 1,
+                  }}
                 />
               );
             }}
@@ -342,7 +344,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
               },
             }}
           />
-          <Typography sx={styles.passwordLabel}>
+          <Typography sx={{ ...styles.passwordLabel, fontSize: "18px" }}>
             Please create a password
           </Typography>
           <Controller
@@ -412,6 +414,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                       label="Preferred mode of Communication"
                       options={options}
                       helperText={error ? error.message : null}
+                      isRegistrationForm={true}
                     />
                   </>
                 );

@@ -26,42 +26,32 @@ const PasswordSecurityQuestion = ({
   title = "",
 }) => {
   const router = useRouter();
-  const { t } = useTranslation("translation", {
+  const { t, ready } = useTranslation("translation", {
     keyPrefix: "PasswordSecurityQuestion",
+    useSuspense: false,
   });
   const { handleSubmit, control } = useForm();
-  const [countLock, setCountLock] = useState(0);
   const [postMessage, setPostMessage] = useState({ title: "", message: "" });
   const { FORGOT_TEST_ID } = constants.TEST_ID;
   const onSubmit = (data) => {
-    let isValid = true;
-    for (let i = 0; i < securityQuestionData.length; i++) {
-      if (
-        securityQuestionData[i]["Answer"] &&
-        securityQuestionData[i]["Answer"].toLowerCase() !==
-          data[`securityQuestion${i}`].toLowerCase()
-      ) {
-        isValid = false;
-        setCountLock(countLock + 1);
-        break;
-      }
-    }
-
-    if (!isValid) {
-      if (countLock >= constants.ACCOUNT_LOCK_COUNT) {
+    const callback = (err) => {
+      if (err.ResponseCode === 2004) {
         setPostMessage({
           title: t("errorAccountLockTitle"),
           message: t("errorAccountLock"),
         });
-        setShowPostMessage(true);
       } else {
         setPostMessage({ title: "", message: t("errorIncorrectAnswer") });
-        setShowPostMessage(true);
       }
-    } else {
-      //TO DO: Navigate to update password
-      onContinueButtonClicked("updatePassword", router);
+
+      setShowPostMessage(true);
+    };
+    const questionAnswer = {};
+    for (let i = 0; i < Object.keys(data).length; i++) {
+      questionAnswer[securityQuestionData[i][`Question`]] =
+        data[`securityQuestion${i}`];
     }
+    onContinueButtonClicked(questionAnswer, callback, router);
   };
 
   return (
@@ -69,95 +59,103 @@ const PasswordSecurityQuestion = ({
       <Head>
         <title>{title}</title>
       </Head>
-      <Card
-        className={globalStyles.container}
-        sx={{ minWidth: 275, padding: "16px" }}
-      >
-        <CardContent style={styles.cardContentStyle}>
-          <HeadingTitle variant={constants.H2} title={t("title")} />
-          <Typography
-            variant={constants.BODY_REGULAR}
-            style={styles.subTitleMargin}
-          >
-            {t("subtitle")}
-          </Typography>
-          {showPostMessage ? (
-            <FormMessage
-              success={false}
-              sx={styles.postMessage}
-              title={postMessage["title"]}
+      {ready && (
+        <Card
+          className={globalStyles.container}
+          sx={{ minWidth: 275, padding: "16px" }}
+        >
+          <CardContent style={styles.cardContentStyle}>
+            <HeadingTitle
+              variant={constants.H2}
+              title={t("title")}
+              tabIndex="0"
+            />
+            <Typography
+              variant={constants.BODY_REGULAR}
+              style={styles.subTitleMargin}
+              tabIndex="0"
+              aria-roledescription="text"
             >
-              {postMessage["message"]}
-            </FormMessage>
-          ) : (
-            <></>
-          )}
-          <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
-            {securityQuestionData.map(function (question, i) {
-              return (
-                <Controller
-                  key={`controllerQuestion${i}`}
-                  name={`securityQuestion${i}`}
-                  control={control}
-                  defaultValue=""
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => {
-                    return (
-                      <StyledInput
-                        aria-label={value}
-                        label={question[`Question`]}
-                        id={`securityQuestion${i}`}
-                        variant="filled"
-                        style={styles.margin}
-                        key={`securityQuestion${i}`}
-                        value={value}
-                        onChange={(event) => {
-                          onChange(event);
-                          if (showPostMessage) {
-                            setShowPostMessage(false);
-                          }
-                        }}
-                        error={!!error}
-                        helperText={error ? error.message : null}
-                        sx={{ ".MuiInputLabel-root": { fontSize: "14px" } }}
-                      />
-                    );
-                  }}
-                  rules={{ required: t("errorEmptyField") }}
-                />
-              );
-            })}
-            <StyledButton
-              type={constants.SUBMIT}
-              theme={constants.PATIENT}
-              mode={constants.PRIMARY}
-              size={constants.SMALL}
-              gradient={false}
-              data-testid={FORGOT_TEST_ID.continueBtn}
-              style={styles.margin}
+              {t("subtitle")}
+            </Typography>
+            {showPostMessage ? (
+              <FormMessage
+                success={false}
+                sx={styles.postMessage}
+                title={postMessage["title"]}
+              >
+                {postMessage["message"]}
+              </FormMessage>
+            ) : (
+              <></>
+            )}
+            <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
+              {securityQuestionData.map(function (question, i) {
+                return (
+                  <Controller
+                    key={`controllerQuestion${i}`}
+                    name={`securityQuestion${i}`}
+                    control={control}
+                    defaultValue=""
+                    render={({
+                      field: { onChange, value },
+                      fieldState: { error },
+                    }) => {
+                      return (
+                        <StyledInput
+                          aria-label={value}
+                          label={question[`Question`]}
+                          id={`securityQuestion${i}`}
+                          variant="filled"
+                          style={styles.margin}
+                          key={`securityQuestion${i}`}
+                          value={value}
+                          onChange={(event) => {
+                            onChange(event);
+                            if (showPostMessage) {
+                              setShowPostMessage(false);
+                            }
+                          }}
+                          error={!!error}
+                          helperText={error ? error.message : null}
+                          sx={{ ".MuiInputLabel-root": { fontSize: "14px" } }}
+                        />
+                      );
+                    }}
+                    rules={{ required: t("errorEmptyField") }}
+                  />
+                );
+              })}
+              <StyledButton
+                type={constants.SUBMIT}
+                theme={constants.PATIENT}
+                mode={constants.PRIMARY}
+                size={constants.SMALL}
+                gradient={false}
+                data-testid={FORGOT_TEST_ID.continueBtn}
+                style={styles.margin}
+              >
+                {t("continueButton")}
+              </StyledButton>
+            </form>
+            <Link
+              style={{
+                ...styles.margin,
+                ...styles.backToLoginMargin,
+                ...styles.link,
+              }}
+              color={colors.link}
+              data-testid={FORGOT_TEST_ID.loginLink}
+              onClick={function () {
+                onBackToLoginClicked(router);
+              }}
+              {...getLinkAria(t("backButtonLink"))}
             >
-              {t("continueButton")}
-            </StyledButton>
-          </form>
-          <Link
-            style={{
-              ...styles.margin,
-              ...styles.backToLoginMargin,
-              ...styles.link,
-            }}
-            color={colors.link}
-            data-testid={FORGOT_TEST_ID.loginLink}
-            onClick={function () {
-              onBackToLoginClicked(router);
-            }}
-            {...getLinkAria(t("backButtonLink"))}
-          >
-            {t("backButtonLink")}
-          </Link>
-        </CardContent>
-      </Card>
+              {t("backButtonLink")}
+            </Link>
+          </CardContent>
+        </Card>
+      )}
     </>
   );
 };

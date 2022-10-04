@@ -2,6 +2,7 @@ import * as React from "react";
 import Container from "./container";
 import { StyledInput } from "../../atoms/Input/input";
 import { useTranslation } from "next-i18next";
+import { Regex } from "../../../utils/regex";
 
 const constants = require("../../../utils/constants");
 
@@ -104,7 +105,10 @@ export default function MultiFactorAuthentication({
     "/",
     "?",
   ];
-  const { t } = useTranslation("translation", { keyPrefix: "mfaPage" });
+  const { t } = useTranslation("translation", {
+    keyPrefix: "mfaPage",
+    useSuspense: false,
+  });
 
   const content = () => {
     return (
@@ -113,7 +117,7 @@ export default function MultiFactorAuthentication({
         id="mfaCode"
         label={t("mfaLabel")}
         onKeyDown={(e) => {
-          if (invalidChars.includes(e.key)) e.preventDefault();
+          if (!Regex.numberOnly.test(e.key)) e.preventDefault();
         }}
         fullWidth
         inputProps={{ minLength: 6, maxLength: 6 }}

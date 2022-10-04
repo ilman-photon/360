@@ -10,6 +10,12 @@ export const styles = {
     marginRight: "0px",
     textAlign: "center",
   },
+  marginText: {
+    marginTop: "16px",
+    marginLeft: "0px",
+    marginRight: "0px",
+    textAlign: "left",
+  },
   postMessage: {
     marginTop: "16px",
     marginLeft: "0px",

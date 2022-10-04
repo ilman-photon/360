@@ -18,6 +18,13 @@ jest.mock("@fontsource/roboto", () => {
 jest.mock("@fontsource/libre-franklin", () => {
   return jest.fn();
 });
+jest.mock("@progress/kendo-react-pdf", () => {
+  return {
+    savePDF: (component, options, callback) => {
+      callback();
+    },
+  };
+});
 jest.mock("next/dynamic", () => ({
   __esModule: true,
   default: (...props) => {
@@ -36,6 +43,7 @@ jest.mock("next/router", () => ({
       query: jest.fn(),
       asPath: "",
       push: jest.fn(),
+      replace: jest.fn(),
       events: {
         on: jest.fn(),
         off: jest.fn(),
@@ -66,6 +74,7 @@ jest.mock("next-i18next", () => ({
   useTranslation: () => {
     return {
       t: (str) => str,
+      ready: true,
       i18n: {
         changeLanguage: () => new Promise(() => {}),
       },
@@ -76,37 +85,37 @@ jest.mock("next-i18next", () => ({
   },
 }));
 
-const localStorageMock = (function() {
-  let store = {}
+const localStorageMock = (function () {
+  let store = {};
 
   return {
-    getItem: function(key) {
-      if (key === 'userData') {
+    getItem: function (key) {
+      if (key === "userData") {
         return JSON.stringify({
-          "communicationMethod": {
-            "email": "patient1@photoninfotech.net",
-            "phone": "(977) 623-4567"
+          communicationMethod: {
+            email: "patient1@photoninfotech.net",
+            phone: "(977) 623-4567",
           },
-          "patientId": "98f9404b-6ea8-4732-b14f-9c1a168d8066"
+          patientId: "98f9404b-6ea8-4732-b14f-9c1a168d8066",
         });
       }
-      return store[key] || null
+      return store[key] || null;
     },
-    setItem: function(key, value) {
-      store[key] = value.toString()
+    setItem: function (key, value) {
+      store[key] = value.toString();
     },
-    removeItem: function(key) {
-      delete store[key]
+    removeItem: function (key) {
+      delete store[key];
     },
-    clear: function() {
-      store = {}
-    }
-  }
-})()
+    clear: function () {
+      store = {};
+    },
+  };
+})();
 
-Object.defineProperty(window, 'localStorage', {
-  value: localStorageMock
-})
+Object.defineProperty(window, "localStorage", {
+  value: localStorageMock,
+});
 
 // jest.mock("react-idle-timer", () => ({
 //   useIdleTimer: jest.fn().mockReturnValue({

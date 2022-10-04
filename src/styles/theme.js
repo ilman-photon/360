@@ -28,6 +28,7 @@ export const colors = {
   errorField: "#f91e18",
   primaryButton: "#007e8f",
   link: "#008294",
+  iconGrey: "#757575",
 };
 
 // declare module '@mui/material/styles' {
@@ -76,7 +77,7 @@ export const patientTypography = createTheme({
       },
     },
     h3: {
-      fontFamily: "Bw Nista Geometric DEMO",
+      fontFamily: "Bw Nista Geometric DEMO, 'Inter', 'Roboto'",
       color: "#003B4A",
       fontWeight: "bold",
       fontSize: 22,
@@ -129,6 +130,11 @@ export const patientTypography = createTheme({
     bodySmallMedium: {
       fontFamily: "Libre Franklin",
       fontWeight: 500,
+      fontSize: 14,
+    },
+    bodySmallLightMedium: {
+      fontFamily: "Libre Franklin",
+      fontWeight: 400,
       fontSize: 14,
     },
     bodyTinyRegular: {
@@ -184,6 +190,18 @@ export const patientTypography = createTheme({
     allVariants: {
       color: "#292929",
     },
+    bodySmallItalic: {
+      fontFamily: "Libre Franklin",
+      fontWeight: 400,
+      fontSize: 12,
+      fontStyle: "italic",
+    },
+    lightError: {
+      fontFamily: "Libre Franklin",
+      fontWeight: 400,
+      fontSize: 12,
+      color: "#B00020",
+    },
     regularDarkGreen: {
       fontFamily: "Libre Franklin",
       color: "#003B4A",
@@ -197,6 +215,27 @@ export const patientTypography = createTheme({
       fontWeight: "500",
       fontSize: 16,
       lineHeight: "20px",
+    },
+    grayscaleBlack: {
+      fontFamily: "Libre Franklin",
+      color: "#292929",
+      fontWeight: "500",
+      fontSize: 22,
+      lineHeight: "30px",
+    },
+    mediumBlueNavy: {
+      fontFamily: "Libre Franklin",
+      color: colors.foundationBlue,
+      fontWeight: "500",
+      fontSize: 16,
+    },
+    headlineH4: {
+      fontFamily: "Bw Nista Geometric DEMO",
+      fontStyle: "normal",
+      fontWeight: 500,
+      fontSize: "18px",
+      lineHeight: "28px",
+      color: "#003B4A",
     },
   },
 });

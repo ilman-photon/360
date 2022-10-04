@@ -2,6 +2,7 @@ import { render, fireEvent, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import ScheduleAppointment from "../../../../src/components/organisms/ScheduleAppointment/scheduleAppointment";
 
+
 describe("App", () => {
     let container;
     beforeEach(() => {

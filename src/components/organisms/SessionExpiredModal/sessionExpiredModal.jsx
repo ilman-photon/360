@@ -22,8 +22,8 @@ function SessionExpiredModal({
   },
 }) {
   const router = useRouter();
-  const onLoggedOffClicked = () => {
-    logoutProps.OnLogoutClicked(router);
+  const onLoggedOffClicked = async () => {
+    await logoutProps.OnLogoutClicked(router);
     onLoggedOff();
   };
 
@@ -70,7 +70,8 @@ function SessionExpiredModal({
           }}
         >
           {!isExpired
-            ? `Your session is about to time-out. You will be logged out in ${remaining} seconds.`
+            ? // ? `Your session is about to time-out. You will be logged out in ${remaining} seconds.`
+              `Your session is about to time-out. You will be logged out in ${remaining} seconds.`
             : "Your session expired. Please login again."}
         </FormMessage>
       </DialogContent>

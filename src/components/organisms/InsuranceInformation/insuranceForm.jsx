@@ -12,7 +12,6 @@ import {
 import styles from "./InsuranceInformationNew.module.scss";
 import { useForm, Controller } from "react-hook-form";
 import { StyledInput } from "../../atoms/Input/input";
-import { colors } from "../../../styles/theme";
 import FormLabel from "@mui/material/FormLabel";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import SelectOptionButton from "../../atoms/SelectOptionButton/selectOptionButton";
@@ -111,6 +110,10 @@ export default function InsuranceForm({
     if (isError !== false) reset(DEFAULT_INSURANCE_DATA);
   };
 
+  const EmptyGrid = () => (
+    <Grid item xs={12} md={4} sx={{ display: { xs: "none", md: "flex" } }} />
+  );
+
   const DisclaimerText = (data) => {
     return (
       <FormLabel
@@ -123,7 +126,7 @@ export default function InsuranceForm({
           paddingLeft: 2,
           display: "inline-flex",
           alignItems: "center",
-          color: "#424747",
+          color: "#49454F",
         }}
       >
         {data.label}
@@ -136,7 +139,7 @@ export default function InsuranceForm({
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={3}>
           <Grid container spacing={2}>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} sm={6} lg={4}>
               <Controller
                 name="provider"
                 control={control}
@@ -168,7 +171,7 @@ export default function InsuranceForm({
               />
             </Grid>
 
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} sm={6} lg={4}>
               <Controller
                 name="plan"
                 control={control}
@@ -198,7 +201,7 @@ export default function InsuranceForm({
               <DisclaimerText label="(Optional)" />
             </Grid>
 
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} sm={6} lg={4}>
               <Controller
                 name="memberID"
                 control={control}
@@ -231,7 +234,7 @@ export default function InsuranceForm({
               />
             </Grid>
 
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} sm={6} lg={4}>
               <Controller
                 name="groupID"
                 control={control}
@@ -267,7 +270,11 @@ export default function InsuranceForm({
 
           <Divider />
 
-          <Typography variant="h3" sx={{ pb: 2, color: colors.black }}>
+          <Typography
+            tabIndex={0}
+            aria-label={"Policy Holder"}
+            variant="grayscaleBlack"
+          >
             Policy Holder
           </Typography>
 
@@ -371,7 +378,7 @@ export default function InsuranceForm({
                     />
                   </Grid>
 
-                  <Grid item xs={12} md={4} sx={{ visibility: "hidden" }} />
+                  <EmptyGrid />
 
                   <Grid
                     item
@@ -390,8 +397,9 @@ export default function InsuranceForm({
                           <>
                             <StyledInput
                               disableFuture
+                              tabIndex={0}
                               type="dob"
-                              label="Subscriber Date of Birth"
+                              label="Subscriber Date of Birth field"
                               value={value}
                               onChange={onChange}
                               error={!!error}
@@ -419,8 +427,8 @@ export default function InsuranceForm({
                     />
                   </Grid>
 
-                  <Grid item xs={12} md={4} sx={{ visibility: "hidden" }} />
-                  <Grid item xs={12} md={4} sx={{ visibility: "hidden" }} />
+                  <EmptyGrid />
+                  <EmptyGrid />
 
                   <Grid
                     item
@@ -464,19 +472,32 @@ export default function InsuranceForm({
             </Stack>
           </Collapse>
 
-          <Typography variant="bodyRegular" component="div">
-            Upload images of your insurance.
+          <Typography
+            variant="bodyLarge"
+            component="div"
+            sx={{ lineHeight: "28px", color: "#292929" }}
+          >
+            Upload images of your insurance
           </Typography>
 
           <Grid
             container
-            spacing={{ xs: 0, md: 2 }}
-            rowSpacing={2}
+            rowSpacing={{ sx: 2, md: 0 }}
             sx={{
-              ".MuiGrid-item:first-of-type": { pt: { xs: 0, md: 2 }, pl: 0 },
+              ".MuiGrid-item:first-of-type": {
+                pt: 0,
+                pl: 0,
+                pr: { xs: 0, sm: 2 },
+              },
             }}
           >
-            <Grid item xs={12} md={4} sx={{ position: "relative", pl: "-8px" }}>
+            <Grid
+              item
+              xs={12}
+              sm={5}
+              lg={4}
+              sx={{ position: "relative", pl: "-8px" }}
+            >
               <div
                 style={{ position: "absolute", width: "100%", top: "-25px" }}
               >
@@ -496,9 +517,6 @@ export default function InsuranceForm({
                   field: { onChange, value },
                   fieldState: { _error },
                 }) => {
-                  {
-                    JSON.stringify(value);
-                  }
                   return (
                     <ImageUploader
                       OnUpload={onChange}
@@ -510,6 +528,7 @@ export default function InsuranceForm({
                       width="100%"
                       src="/login-bg.png"
                       alt=""
+                      labelVariant="mediumBlueNavy"
                       helperText={
                         isMobile
                           ? "*JPG or PNG file formats only. (File size limit is 4 MB)"
@@ -520,7 +539,7 @@ export default function InsuranceForm({
                 }}
               />
             </Grid>
-            <Grid item xs={12} md={4} sx={{ position: "relative" }}>
+            <Grid item xs={12} sm={5} lg={4} sx={{ position: "relative" }}>
               <div
                 style={{
                   position: "absolute",
@@ -555,6 +574,7 @@ export default function InsuranceForm({
                       width="100%"
                       src="/login-bg.png"
                       alt=""
+                      labelVariant="mediumBlueNavy"
                       helperText={
                         isMobile
                           ? "*JPG or PNG file formats only. (File size limit is 4 MB)"
@@ -566,12 +586,11 @@ export default function InsuranceForm({
               />
             </Grid>
             {isDesktop ? (
-              <Grid item xs={12} md={8}>
+              <Grid item xs={12} sm={10} lg={8}>
                 <Typography
-                  variant="bodySmallMedium"
+                  variant="bodySmallItalic"
                   component="div"
                   sx={{
-                    fontStyle: "italic",
                     textAlign: "right",
                     marginLeft: "auto",
                   }}

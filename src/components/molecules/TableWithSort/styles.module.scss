@@ -1,0 +1,22 @@
+.tableCell {
+  font-family: "Libre Franklin", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+    line-height: 18px;
+  }
+}
+
+.hrTestLab {
+  border: 1px solid #dadada;
+  width: 100%;
+  margin: 0 0 0 16px;
+}
+
+.statusText {
+  color: #003b4a;
+}

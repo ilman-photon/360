@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1v5z4dq-MuiPaper-root-MuiCard-root"
+        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1yepo06-MuiPaper-root-MuiCard-root"
       >
         <div
           class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
@@ -32,7 +32,7 @@ Object {
                 </div>
               </div>
               <div
-                class="css-qkek6c-MuiStack-root"
+                class="css-1sbz1s3-MuiStack-root"
               >
                 <div>
                   <div
@@ -64,7 +64,7 @@ Object {
                 </div>
               </div>
               <div
-                class="css-qkek6c-MuiStack-root"
+                class="css-1sbz1s3-MuiStack-root"
               >
                 <div>
                   <div
@@ -96,7 +96,7 @@ Object {
                 </div>
               </div>
               <div
-                class="css-qkek6c-MuiStack-root"
+                class="css-1sbz1s3-MuiStack-root"
               >
                 <div>
                   <div
@@ -128,7 +128,7 @@ Object {
                 </div>
               </div>
               <div
-                class="css-qkek6c-MuiStack-root"
+                class="css-1sbz1s3-MuiStack-root"
               >
                 <div>
                   <div
@@ -147,7 +147,7 @@ Object {
               class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
             >
               <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1lojpzt-MuiGrid-root"
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-4 MuiGrid-grid-lg-6 css-1dzk13e-MuiGrid-root"
               >
                 <div
                   class="css-nen11g-MuiStack-root"
@@ -166,7 +166,7 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="css-qkek6c-MuiStack-root"
+                    class="css-1sbz1s3-MuiStack-root"
                   >
                     <div>
                       <div
@@ -180,7 +180,7 @@ Object {
                 </div>
               </div>
               <div
-                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1lojpzt-MuiGrid-root"
+                class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-4 MuiGrid-grid-lg-6 css-1dzk13e-MuiGrid-root"
               >
                 <div
                   class="css-nen11g-MuiStack-root"
@@ -199,7 +199,7 @@ Object {
                     </div>
                   </div>
                   <div
-                    class="css-qkek6c-MuiStack-root"
+                    class="css-1sbz1s3-MuiStack-root"
                   >
                     <div>
                       <div
@@ -233,7 +233,7 @@ Object {
                 </div>
               </div>
               <div
-                class="css-qkek6c-MuiStack-root"
+                class="css-1sbz1s3-MuiStack-root"
               >
                 <div>
                   <span
@@ -271,7 +271,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1v5z4dq-MuiPaper-root-MuiCard-root"
+      class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1yepo06-MuiPaper-root-MuiCard-root"
     >
       <div
         class="MuiCardContent-root css-4bhyjd-MuiCardContent-root"
@@ -297,7 +297,7 @@ Object {
               </div>
             </div>
             <div
-              class="css-qkek6c-MuiStack-root"
+              class="css-1sbz1s3-MuiStack-root"
             >
               <div>
                 <div
@@ -329,7 +329,7 @@ Object {
               </div>
             </div>
             <div
-              class="css-qkek6c-MuiStack-root"
+              class="css-1sbz1s3-MuiStack-root"
             >
               <div>
                 <div
@@ -361,7 +361,7 @@ Object {
               </div>
             </div>
             <div
-              class="css-qkek6c-MuiStack-root"
+              class="css-1sbz1s3-MuiStack-root"
             >
               <div>
                 <div
@@ -393,7 +393,7 @@ Object {
               </div>
             </div>
             <div
-              class="css-qkek6c-MuiStack-root"
+              class="css-1sbz1s3-MuiStack-root"
             >
               <div>
                 <div
@@ -412,7 +412,7 @@ Object {
             class="MuiGrid-root MuiGrid-container css-11lq3yg-MuiGrid-root"
           >
             <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1lojpzt-MuiGrid-root"
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-4 MuiGrid-grid-lg-6 css-1dzk13e-MuiGrid-root"
             >
               <div
                 class="css-nen11g-MuiStack-root"
@@ -431,7 +431,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="css-qkek6c-MuiStack-root"
+                  class="css-1sbz1s3-MuiStack-root"
                 >
                   <div>
                     <div
@@ -445,7 +445,7 @@ Object {
               </div>
             </div>
             <div
-              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 css-1lojpzt-MuiGrid-root"
+              class="MuiGrid-root MuiGrid-item MuiGrid-grid-xs-6 MuiGrid-grid-sm-4 MuiGrid-grid-lg-6 css-1dzk13e-MuiGrid-root"
             >
               <div
                 class="css-nen11g-MuiStack-root"
@@ -464,7 +464,7 @@ Object {
                   </div>
                 </div>
                 <div
-                  class="css-qkek6c-MuiStack-root"
+                  class="css-1sbz1s3-MuiStack-root"
                 >
                   <div>
                     <div
@@ -498,7 +498,7 @@ Object {
               </div>
             </div>
             <div
-              class="css-qkek6c-MuiStack-root"
+              class="css-1sbz1s3-MuiStack-root"
             >
               <div>
                 <span

@@ -100,6 +100,7 @@ export default function ContactInformation({
   };
 
   const invalidChars = ["e", "-", "+"];
+  const buttonWidth = isDesktop ? {} : { width: "100%" };
 
   return (
     <AccountCard
@@ -107,6 +108,9 @@ export default function ContactInformation({
       title="Contact Information"
       titleIcon={<PermContactCalendarOutlinedIcon />}
       isEditing={isEditing}
+      textStyle={{
+        fontWeight: "700",
+      }}
       // OnEditClicked={OnEditClicked}
       actionContent={
         isDesktop ? (
@@ -181,7 +185,7 @@ export default function ContactInformation({
           </LabelWithInfo>
 
           <Grid container>
-            <Grid item xs={6} p={0}>
+            <Grid item xs={6} sm={4} lg={6} p={0}>
               <LabelWithInfo tabIndex={0} ariaLabel="State" label="State">
                 <div tabIndex={0} aria-label={userData.state || "-"}>
                   {userData.state || "-"}
@@ -189,7 +193,7 @@ export default function ContactInformation({
               </LabelWithInfo>
             </Grid>
 
-            <Grid item xs={6} p={0}>
+            <Grid item xs={6} sm={4} lg={6} p={0}>
               <LabelWithInfo label="Zip" tabIndex={0} ariaLabel="Zip">
                 <div tabIndex={0} aria-label={userData.zip || "-"}>
                   {userData.zip || "-"}
@@ -357,7 +361,7 @@ export default function ContactInformation({
             />
 
             <Grid container columnSpacing={2}>
-              <Grid item xs={7} style={{ paddingLeft: 0 }}>
+              <Grid item xs={isDesktop ? 7 : 5.5} style={{ paddingLeft: 0 }}>
                 <Controller
                   name="state"
                   control={control}
@@ -390,7 +394,7 @@ export default function ContactInformation({
                 />
               </Grid>
 
-              <Grid item xs={4.5} p={0}>
+              <Grid item xs={isDesktop ? 4.5 : 6} p={0}>
                 <Controller
                   name="zip"
                   control={control}
@@ -453,29 +457,36 @@ export default function ContactInformation({
                       label="Preferred mode of Communication"
                       options={communicationOptions}
                       helperText={error ? error.message : null}
+                      isCancelSchedule={true}
                     />
                   </>
                 );
               }}
               rules={{ required: "This field is required" }}
             />
-
-            <Stack direction="row" justifyContent="flex-end" spacing={2}>
-              <Button
-                onClick={handleCancel}
-                variant="contained"
-                className={[styles.formButton, styles.outlined].join(" ")}
-              >
-                Cancel
-              </Button>
-              <Button
-                type="submit"
-                variant="contained"
-                className={[styles.formButton, styles.primary].join(" ")}
-              >
-                Save
-              </Button>
-            </Stack>
+          </Stack>
+          <Stack
+            direction="row"
+            justifyContent={isDesktop ? "flex-end" : "space-between"}
+            spacing={2}
+            sx={{ p: 2, mt: 2 }}
+          >
+            <Button
+              onClick={handleCancel}
+              variant="contained"
+              className={[styles.formButton, styles.outlined].join(" ")}
+              sx={buttonWidth}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="submit"
+              variant="contained"
+              className={[styles.formButton, styles.primary].join(" ")}
+              sx={buttonWidth}
+            >
+              Save
+            </Button>
           </Stack>
         </form>
       </Fade>

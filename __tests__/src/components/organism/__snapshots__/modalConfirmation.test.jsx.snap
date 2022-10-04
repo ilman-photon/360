@@ -90,11 +90,14 @@ Object {
               class="MuiDialogContent-root css-1phsj2c-MuiDialogContent-root"
             >
               <div
+                aria-label="nono button"
                 class="registeredUsernameWrapper"
                 sx="[object Object]"
               >
                 <div
+                  aria-label="thanksBar"
                   class="thanksBar MuiBox-root css-1bwq3er"
+                  tabindex="0"
                 >
                   <svg
                     aria-hidden="true"
@@ -116,6 +119,7 @@ Object {
               >
                 <a
                   aria-label="isEmergency"
+                  arialabel="sIf this is a medical emergency, please call 911"
                   class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
                   data-mui-internal-clone-element="true"
                   data-testid="loginlink"
@@ -130,44 +134,47 @@ Object {
                 </a>
               </div>
               <div
-                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root cardPatient css-1v5z4dq-MuiPaper-root-MuiCard-root"
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root cardDate css-1v5z4dq-MuiPaper-root-MuiCard-root"
               >
                 <div
-                  class="MuiCardContent-root css-1ba2ddx-MuiCardContent-root"
+                  class="MuiCardContent-root css-1aithki-MuiCardContent-root"
                 >
                   <p
-                    aria-label="Saturday, Sep 21, 2022, AT 8:30 AM EST"
                     class="MuiTypography-root MuiTypography-body1 dateBold css-eyz4cw-MuiTypography-root"
                   >
-                    Saturday, Sep 21, 2022, AT 8:30 AM EST
+                    -
                   </p>
-                  <button
-                    class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root addCalendarButton css-vij0pv-MuiButtonBase-root-MuiButton-root"
-                    tabindex="0"
-                    type="button"
+                  <div
+                    style="display: inline-flex;"
                   >
-                    <p
-                      aria-label="Add to calendar"
-                      class="MuiTypography-root MuiTypography-body1 css-o5ux9j-MuiTypography-root"
+                    <button
+                      class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root addCalendarButton css-vij0pv-MuiButtonBase-root-MuiButton-root"
+                      tabindex="0"
+                      type="button"
                     >
-                      <svg
-                        aria-hidden="false"
-                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-q0n8nh-MuiSvgIcon-root"
-                        data-testid="CalendarTodayIcon"
-                        focusable="false"
-                        viewBox="0 0 24 24"
+                      <p
+                        aria-label="Add to calendar"
+                        class="MuiTypography-root MuiTypography-body1 css-v8btcj-MuiTypography-root"
                       >
-                        <path
-                          d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"
-                        />
-                      </svg>
-                       
-                      Add to calendar
-                    </p>
-                    <span
-                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                    />
-                  </button>
+                        <svg
+                          aria-hidden="false"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-q0n8nh-MuiSvgIcon-root"
+                          data-testid="CalendarTodayIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"
+                          />
+                        </svg>
+                         
+                        Add to calendar
+                      </p>
+                      <span
+                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                      />
+                    </button>
+                  </div>
                   <p
                     aria-label="Purpose of Visit"
                     class="MuiTypography-root MuiTypography-body1 dateBold css-ahj2mt-MuiTypography-root"
@@ -339,14 +346,14 @@ Object {
                       <div
                         class="label"
                         role="text"
-                        style="color: rgb(0, 59, 74);"
+                        style="color: rgb(0, 59, 74); font-size: 16px;"
                         tabindex="0"
                       >
                         Name
                       </div>
                     </div>
                     <div
-                      class="css-qkek6c-MuiStack-root"
+                      class="css-1sbz1s3-MuiStack-root"
                     >
                       <div>
                         <span
@@ -527,11 +534,14 @@ Object {
               class="MuiDialogContent-root css-1phsj2c-MuiDialogContent-root"
             >
               <div
+                aria-label="nono button"
                 class="registeredUsernameWrapper"
                 sx="[object Object]"
               >
                 <div
+                  aria-label="thanksBar"
                   class="thanksBar MuiBox-root css-1bwq3er"
+                  tabindex="0"
                 >
                   <svg
                     aria-hidden="true"
@@ -553,6 +563,7 @@ Object {
               >
                 <a
                   aria-label="isEmergency"
+                  arialabel="sIf this is a medical emergency, please call 911"
                   class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
                   data-mui-internal-clone-element="true"
                   data-testid="loginlink"
@@ -567,44 +578,47 @@ Object {
                 </a>
               </div>
               <div
-                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root cardPatient css-1v5z4dq-MuiPaper-root-MuiCard-root"
+                class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root cardDate css-1v5z4dq-MuiPaper-root-MuiCard-root"
               >
                 <div
-                  class="MuiCardContent-root css-1ba2ddx-MuiCardContent-root"
+                  class="MuiCardContent-root css-1aithki-MuiCardContent-root"
                 >
                   <p
-                    aria-label="Saturday, Sep 21, 2022, AT 8:30 AM EST"
                     class="MuiTypography-root MuiTypography-body1 dateBold css-eyz4cw-MuiTypography-root"
                   >
-                    Saturday, Sep 21, 2022, AT 8:30 AM EST
+                    -
                   </p>
-                  <button
-                    class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root addCalendarButton css-vij0pv-MuiButtonBase-root-MuiButton-root"
-                    tabindex="0"
-                    type="button"
+                  <div
+                    style="display: inline-flex;"
                   >
-                    <p
-                      aria-label="Add to calendar"
-                      class="MuiTypography-root MuiTypography-body1 css-o5ux9j-MuiTypography-root"
+                    <button
+                      class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root addCalendarButton css-vij0pv-MuiButtonBase-root-MuiButton-root"
+                      tabindex="0"
+                      type="button"
                     >
-                      <svg
-                        aria-hidden="false"
-                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-q0n8nh-MuiSvgIcon-root"
-                        data-testid="CalendarTodayIcon"
-                        focusable="false"
-                        viewBox="0 0 24 24"
+                      <p
+                        aria-label="Add to calendar"
+                        class="MuiTypography-root MuiTypography-body1 css-v8btcj-MuiTypography-root"
                       >
-                        <path
-                          d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"
-                        />
-                      </svg>
-                       
-                      Add to calendar
-                    </p>
-                    <span
-                      class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
-                    />
-                  </button>
+                        <svg
+                          aria-hidden="false"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-q0n8nh-MuiSvgIcon-root"
+                          data-testid="CalendarTodayIcon"
+                          focusable="false"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            d="M20 3h-1V1h-2v2H7V1H5v2H4c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 18H4V8h16v13z"
+                          />
+                        </svg>
+                         
+                        Add to calendar
+                      </p>
+                      <span
+                        class="MuiTouchRipple-root css-8je8zh-MuiTouchRipple-root"
+                      />
+                    </button>
+                  </div>
                   <p
                     aria-label="Purpose of Visit"
                     class="MuiTypography-root MuiTypography-body1 dateBold css-ahj2mt-MuiTypography-root"
@@ -776,14 +790,14 @@ Object {
                       <div
                         class="label"
                         role="text"
-                        style="color: rgb(0, 59, 74);"
+                        style="color: rgb(0, 59, 74); font-size: 16px;"
                         tabindex="0"
                       >
                         Name
                       </div>
                     </div>
                     <div
-                      class="css-qkek6c-MuiStack-root"
+                      class="css-1sbz1s3-MuiStack-root"
                     >
                       <div>
                         <span
