@@ -271,7 +271,11 @@ export default function InsuranceForm({
 
           <Divider />
 
-          <Typography variant="h3" sx={{ pb: 2, color: colors.black }}>
+          <Typography
+            tabIndex={0}
+            aria-label={"Policy Holder"}
+            variant="grayscaleBlack"
+          >
             Policy Holder
           </Typography>
 
