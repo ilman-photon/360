@@ -145,8 +145,8 @@ export default function HomePage({ googleApiKey }) {
       .then(function (response) {
         const today = new Date();
         const upcomingAppointments = [];
-        for (let index = 0; index < response.appointmentList.length; index++) {
-          const appointment = response.appointmentList[index];
+        const appointmentList = response.appointmentList || [];
+        for (const appointment of appointmentList) {
           const visitDate = new Date(appointment.appointmentInfo.date);
 
           const daysAway = visitDate.getTime() - today.getTime();
