@@ -88,6 +88,7 @@ export default function AppointmentForm({
     "email",
     "mobile",
     "preferredCommunication",
+    "password",
   ]); // you can also target specific fields by their names
   const getRegisteredUsername = () => {
     return (
@@ -103,6 +104,9 @@ export default function AppointmentForm({
 
   const isDOB = (value) => {
     let date = new Date().getFullYear();
+    if (value.getYear() < 0) {
+      return false;
+    }
     if (value.getFullYear() <= date) {
       return true;
     }
@@ -161,7 +165,7 @@ export default function AppointmentForm({
               ? { fontSize: "32px", fontFamily: "Bw Nista Geometric DEMO" }
               : { fontSize: "26px", fontFamily: "Bw Nista Geometric DEMO" }
           }
-          tabindex={0}
+          tabIndex={0}
           aria-label={
             isForMyself
               ? `${t("selfTitle")} title`
@@ -173,7 +177,7 @@ export default function AppointmentForm({
         </Typography>
         {isForMyself ? (
           <Box sx={{ mt: 2, display: "flex" }}>
-            <Typography sx={styles.boldLabel} variant="h1">
+            <Typography sx={styles.sigInInfoLabel} variant="h1">
               {t("sigInInfo")}
             </Typography>
             <Link
@@ -294,7 +298,7 @@ export default function AppointmentForm({
               },
             },
             pattern: {
-              value: Regex.isEmailCorrect,
+              value: Regex.emailValidation,
               message: "Incorrect email format",
             },
           }}
@@ -353,7 +357,7 @@ export default function AppointmentForm({
                   value={value}
                   onChange={onChange}
                   error={!!error}
-                  helperText={error ? error.message : null}
+                  helperText={!!error ? error.message : "Month, Day, Year"}
                   sx={{ m: 1 }}
                 />
               );
@@ -362,13 +366,12 @@ export default function AppointmentForm({
               required: t("thisFieldRequired"),
               validate: {
                 required: (value) => {
-                  if (!isDOB(value)) return "Incorect Date of Birth";
+                  if (!isDOB(value)) return "Invalid Date of Birth";
                 },
               },
             }}
           />
         </Box>
-        <DisclaimerText label="Month, Day, Year" />
 
         <div style={styles.divMargin}>
           <Controller
@@ -386,8 +389,9 @@ export default function AppointmentForm({
                     helperText={error ? error.message : null}
                     textSx={{
                       justifyContent: "space-between",
-                      color: "black",
+                      color: "#242526",
                       fontWeight: "600",
+                      fontFamily: "Libre Franklin",
                     }}
                     sx={{
                       width: { xs: "100%", md: "56%" },
@@ -414,7 +418,7 @@ export default function AppointmentForm({
               <Box
                 sx={{ m: "24px 8px 16px", width: { xs: "100%", md: "70%" } }}
               >
-                <Typography sx={{ ...styles.boldLabel, mb: 1 }}>
+                <Typography sx={{ ...styles.sigInInfoLabel, mb: 1 }}>
                   {t("optional")}
                 </Typography>
                 <Typography sx={styles.passwordLabel}>
@@ -449,12 +453,16 @@ export default function AppointmentForm({
                   validate: {
                     isLength: (v) =>
                       Regex.lengthRegex.test(v) ||
+                      v.length === 0 ||
                       "Password does not meet requirements",
                     isAtLeastOneNumber: (v) =>
                       Regex.numberRegex.test(v) ||
+                      v.length === 0 ||
                       "Password does not meet requirements",
                     is3of4: (v) =>
-                      is3of4(v) || "Password does not meet requirements",
+                      is3of4(v) ||
+                      v.length === 0 ||
+                      "Password does not meet requirements",
                   },
                 }}
               />
@@ -484,7 +492,6 @@ export default function AppointmentForm({
           </Button>
         </div>
       </form>
-      {/* </Stack> */}
     </Stack>
   );
 }

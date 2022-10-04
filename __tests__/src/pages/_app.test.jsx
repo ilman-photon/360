@@ -166,7 +166,146 @@ const MOCK_SUGGESTION_DATA = {
       ],
     },
   ],
-}
+};
+const MOCK_APPOINTMENT = {
+  appointmentList: [
+    {
+      appointmentId: "1",
+      providerInfo: {
+        providerId: "1",
+        name: "Paul Wagner Md",
+        position: "Scripps Eyecare",
+        address: {
+          addressLine1: "51 West 51st Street",
+          addressLine2: "Floor 3, Suite 320 Midtown",
+          city: "Florida",
+          state: "FR",
+          zipcode: "54231",
+        },
+        rating: "5",
+        phoneNumber: "8572999989",
+        distance: "10 mi",
+        image: "/doctor.png",
+        from: "2022-07-18",
+        to: "2022-07-23",
+        location: {
+          latitude: 32.751204,
+          longitude: -117.1641166,
+        },
+      },
+      patientInfo: {
+        name: "Rebecca Chan",
+        firstname: "Rebecca",
+        lastname: "Chan",
+        dob: "12/12/2022",
+        phoneNumber: "1234567890",
+      },
+      appointmentInfo: {
+        appointmentType: "Eye Exam",
+        date: "Thu, 12 Jan 2023 04:30:00 EST",
+        insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+      },
+    },
+    {
+      appointmentId: "1",
+      providerInfo: {
+        providerId: "1",
+        name: "Dr. Sonha Nguyen",
+        position: "Scripps Eyecare",
+        address: {
+          addressLine1: "51 West 51st Street",
+          addressLine2: "Floor 3, Suite 320 Midtown",
+          city: "Florida",
+          state: "FR",
+          zipcode: "54231",
+        },
+        rating: "5",
+        phoneNumber: "8572999989",
+        distance: "10 mi",
+        image: "/doctor.png",
+        from: "2022-07-18",
+        to: "2022-07-23",
+        location: {
+          latitude: 32.751204,
+          longitude: -117.1641166,
+        },
+      },
+      patientInfo: {
+        name: "Rebecca Chan",
+        firstname: "Rebecca",
+        lastname: "Chan",
+        dob: "12/12/2022",
+        phoneNumber: "1234567890",
+      },
+      appointmentInfo: {
+        appointmentType: "Eye Exam",
+        date: "Thu, 12 Jan 2023 04:30:00 EST",
+        insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+      },
+    },
+  ],
+};
+
+const MOCK_PRESCRIPTION = {
+  prescriptions: {
+    glasses: [
+      {
+        prescribedBy: "Dr. Sonha Nguyen",
+        date: "2022-09-02T11:18:47.229Z",
+        expirationDate: "2022-10-02T11:18:47.229Z",
+        prescriptionDetails: [
+          {
+            Eye: "OD",
+            Sph: "+20.00",
+            Cyl: "-5.00",
+            Axis: "70",
+            Add: "x180",
+          },
+          {
+            Eye: "OS",
+            Sph: "+19.75",
+            Cyl: "-4.75",
+            Axis: "38",
+            Add: "x090",
+          },
+        ],
+      },
+    ],
+    contacts: [
+      {
+        prescribedBy: "Dr. Sonha Nguyen",
+        date: "2022-09-02T11:18:47.229Z",
+        expirationDate: "2022-10-02T11:18:47.229Z",
+        prescriptionDetails: [
+          {
+            Eye: "OD",
+            Sph: "+20.00",
+            Bc: "-5.00",
+            Cyl: "70",
+            Axis: "x180",
+          },
+          {
+            Eye: "OS",
+            Sph: "+19.75",
+            Bc: "-4.75",
+            Cyl: "38",
+            Axis: "x090",
+          },
+        ],
+      },
+    ],
+    medications: [
+      {
+        prescription: "Aspirint 0.1% Ointmanet",
+        date: "2022-09-02T11:18:47.229Z",
+      },
+      {
+        prescription: "Aspirint 0.1% Ointmanet",
+        date: "2022-09-02T11:18:47.229Z",
+      },
+    ],
+  },
+};
 
 jest.mock("universal-cookie", () => {
   class MockCookies {
@@ -181,8 +320,6 @@ jest.mock("universal-cookie", () => {
   return MockCookies;
 });
 
-
-
 describe("App", () => {
   let props, container;
   const headerText = /Clarkson Eyecare logo/i;
@@ -192,11 +329,9 @@ describe("App", () => {
   const mock = new MockAdapter(axios);
   const mockGeolocation = {
     getCurrentPosition: jest.fn(),
-    watchPosition: jest.fn()
+    watchPosition: jest.fn(),
   };
 
-  mock.onGet(`/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGGESTION_DATA);
-  global.navigator.geolocation = mockGeolocation;
   beforeEach(() => {
     props = {
       timeout: undefined,
@@ -222,6 +357,25 @@ describe("App", () => {
       syncTimers: undefined,
       leaderElection: undefined,
     };
+
+    mock
+      .onGet(`/api/dummy/appointment/create-appointment/getSugestion`)
+      .reply(200, MOCK_SUGGESTION_DATA);
+    mock
+      .onGet(
+        `/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+      )
+      .reply(200, MOCK_APPOINTMENT);
+    mock
+      .onGet(
+        `/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
+      )
+      .reply(200, MOCK_PRESCRIPTION);
+    global.navigator.geolocation = mockGeolocation;
+  });
+
+  afterEach(() => {
+    mock.reset();
   });
 
   it("renders App unchanged", () => {
@@ -317,13 +471,14 @@ describe("App", () => {
       container = render(
         <Provider store={store}>
           <App Component={HomePage} />
-        </Provider>);
+        </Provider>
+      );
     });
-    store.dispatch(setGenericErrorMessage("Please try again after sometime."))
+    store.dispatch(setGenericErrorMessage("Please try again after sometime."));
     setTimeout(() => {
-      expect(container.getByText("Something Went Wrong")).toBeInTheDocument()
-      const okBtn = container.getByTestId("generic-ok-btn")
-      fireEvent.click(okBtn)
+      expect(container.getByText("Something Went Wrong")).toBeInTheDocument();
+      const okBtn = container.getByTestId("generic-ok-btn");
+      fireEvent.click(okBtn);
     }, 1000);
   });
 });

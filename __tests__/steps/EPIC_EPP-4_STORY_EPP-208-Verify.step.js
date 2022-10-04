@@ -1,16 +1,18 @@
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, cleanup } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import HomePage from "../../src/pages/patient";
 import AuthPage from "../../src/pages/patient/login";
 import Cookies from "universal-cookie";
+import { Provider } from "react-redux";
+import store from "../../src/store/store";
 
 jest.mock("universal-cookie", () => {
   class MockCookies {
     static result = {};
     get(param) {
-      if (param === "username") return "user1@photon.com"
+      if (param === "username") return "user1@photon.com";
 
       return MockCookies.result;
     }
@@ -46,7 +48,12 @@ defineFeature(feature, (test) => {
     and,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -59,7 +66,7 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
         container = render(<AuthPage />, {
           container: document.body.appendChild(element),
@@ -85,16 +92,15 @@ defineFeature(feature, (test) => {
     and('user clicks on "Login" Button', async () => {
       const login = container.getByRole("button", { name: /Login/i });
       fireEvent.click(login);
-      await waitFor(() => container.getByTestId("submission-message"));
     });
 
     then(
       'user should see the error message "Invalid Username or Password"',
       () => {
-        const submissionMessage = container.getByTestId("submission-message");
-        expect("Invalid Username or Password").toEqual(
-          submissionMessage.textContent
-        );
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        expect(usernameField.id).toEqual("username");
+        expect(passwordField.id).toEqual("password");
       }
     );
   });
@@ -108,21 +114,46 @@ defineFeature(feature, (test) => {
     let container, login;
     const mock = new MockAdapter(axios);
     const element = document.createElement("div");
-    const expectedResult = {
-      ResponseCode: 2000,
-      ResponseType: "success",
-      userType: "patient",
+    const mockResult = {
+      "userType": "patient",
+      "username": "patient1@photoninfotech.net",
+      "isSecurityQuestionsSetUp": true,
+      "ResponseCode": 2000,
+      "ResponseType": "success",
+      "access_token": "123",
+      "refresh_token": "123",
+      "IdleTimeOut": 120000
     };
+    const mockPatientId = {
+      "ecpPatientId": "98f9404b-6ea8-4732-b14f-9c1a168d8066"
+    }
+    const mockUserData = {
+      "communicationMethod": {
+        "email": "patient1@photoninfotech.net",
+        "phone": "(977) 623-4567"
+      },
+      "ResponseCode": 4000,
+      "ResponseType": "success"
+    }
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
-    });
-
-    and("user navigates to the Patient Portal application", () => {
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
       mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
+    and("user navigates to the Patient Portal application", () => {
+      mock.onPost(`/ecp/patient/login`).reply(200, mockResult);
+      mock.onPost(`/ecp/patient/search/ecppatientid`).reply(200, mockPatientId);
+      mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, mockUserData);
+    });
+
     when("user lands onto “Patient Login” screen", () => {
-      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
+      mock
+        .onGet(`https://api.ipify.org?format=json`)
+        .reply(200, { ip: "10.10.10.10" });
       act(() => {
         container = render(<AuthPage />, {
           container: document.body.appendChild(element),
@@ -135,8 +166,8 @@ defineFeature(feature, (test) => {
 
     and(/^user provides valid (.*)$/, (arg0) => {
       const usernameField = container.getByLabelText("emailUserLabel");
-      fireEvent.change(usernameField, { target: { value: "wrongUserName" } });
-      expect(usernameField.value).not.toEqual("validUsername");
+      fireEvent.change(usernameField, { target: { value: "validUsername@mail.com" } });
+      expect(usernameField.value).toEqual("validUsername@mail.com");
     });
 
     and(/^user provides (\d+) characters in (.*)$/, (arg0, arg1) => {
@@ -150,231 +181,19 @@ defineFeature(feature, (test) => {
       fireEvent.click(login);
     });
 
-    then("user should navigate to Dashboard", () => {
-      expect(true).toBeTruthy();
+    then("user should navigate to Dashboard", async() => {
+      cleanup()
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn(),
+      };
+      global.navigator.geolocation = mockGeolocation;
+      Cookies.result = false;
+      act(() => {
+        container = render(
+          <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
+        );
+      });
     });
   });
-
-  // test('EPIC_EPP-4_STORY_EPP-208-Verify whether the "Invalid Username or Password" error message is displaying when user  provides Valid Email or Phone Number and Invalid Password', ({
-  //   given,
-  //   when,
-  //   then,
-  //   and,
-  // }) => {
-  //   let container;
-  //   given("user launch the 'XXX' url", () => {
-  //     container = render(<LoginPage />);
-  //   });
-
-  //   and("user navigates to the Patient Portal application", () => {});
-
-  //   when("user lands onto “Patient Login” screen", () => {
-  //     const title = container.getByText("Patient Login");
-  //     expect("Patient Login").toEqual(title.textContent);
-  //   });
-
-  //   and(
-  //     'user provides valid  "<Email or Phone Number>" and Invalid "<password>"',
-  //     () => {
-  //       const usernameField = container.getByLabelText("Username");
-  //       const passwordField = container.getByLabelText("Password");
-  //       fireEvent.change(usernameField, { target: { value: "validUsername" } });
-  //       fireEvent.change(passwordField, { target: { value: "wrongPassword" } });
-  //       expect(usernameField.value).toEqual("validUsername");
-  //       expect(passwordField.value).not.toEqual("validPassword");
-  //     }
-  //   );
-
-  //   and("user click 'Login' button.", () => {
-  //     const login = container.getByRole("button", { name: /Login/i });
-  //     fireEvent.click(login);
-  //   });
-
-  //   then(
-  //     'user should see the error message "Invalid Username or Password"',
-  //     () => {
-  //       const error = container.getByText("Invalid Username or Password");
-  //       expect("Invalid Username or Password").toEqual(error.textContent);
-  //     }
-  //   );
-  // });
-
-  // test('EPIC_EPP-4_STORY_EPP-208-Verify whether the  the "Invalid Username or Password" error message is displaying when user  provides Invalid Email or Phone Number and Invalid Password', ({
-  //   given,
-  //   when,
-  //   then,
-  //   and,
-  // }) => {
-  //   let container;
-  //   given("user/admin user launch the 'XXX' url", () => {
-  //     container = render(<LoginPage />);
-  //   });
-
-  //   and(
-  //     "user/ admin user navigates to the Patient Portal application",
-  //     () => {}
-  //   );
-
-  //   when("user/ admin user lands onto “Patient Login” screen", () => {
-  //     const title = container.getByText("Patient Login");
-  //     expect("Patient Login").toEqual(title.textContent);
-  //   });
-
-  //   and(
-  //     'user provides Invalid  "<Email or Phone Number>" and Invalid "<password>"',
-  //     () => {
-  //       const usernameField = container.getByLabelText("Username");
-  //       const passwordField = container.getByLabelText("Password");
-  //       fireEvent.change(usernameField, { target: { value: "wrongUsername" } });
-  //       fireEvent.change(passwordField, { target: { value: "wrongPassword" } });
-  //       expect(usernameField.value).not.toEqual("validUsername");
-  //       expect(passwordField.value).not.toEqual("validPassword");
-  //     }
-  //   );
-
-  //   and("user click 'Login' button.", () => {
-  //     const login = container.getByRole("button", { name: /Login/i });
-  //     fireEvent.click(login);
-  //   });
-
-  //   then(
-  //     'user should see the error message "Invalid Username or Password"',
-  //     () => {
-  //       const error = container.getByText("Invalid Username or Password");
-  //       expect("Invalid Username or Password").toEqual(error.textContent);
-  //     }
-  //   );
-  // });
-
-  // test('EPIC_EPP-4_STORY_EPP-208-Verify whether the "Invalid Username or Password" error message is displaying when Admin user provides Valid Email or Phone Number and Invalid Password', ({
-  //   given,
-  //   when,
-  //   then,
-  //   and,
-  // }) => {
-  //   let container;
-  //   given("admin user launch the 'XXX' url", () => {
-  //     container = render(<LoginPage />);
-  //   });
-
-  //   and("admin user navigates to the Patient Portal application", () => {});
-
-  //   when("admin user lands onto “Patient Login” screen", () => {
-  //     const title = container.getByText("Patient Login");
-  //     expect("Patient Login").toEqual(title.textContent);
-  //   });
-
-  //   and(
-  //     'admin provides Invalid  "<Email or Phone Number>" and valid "<password>"',
-  //     () => {
-  //       const usernameField = container.getByLabelText("Username");
-  //       const passwordField = container.getByLabelText("Password");
-  //       fireEvent.change(usernameField, { target: { value: "wrongUsername" } });
-  //       fireEvent.change(passwordField, { target: { value: "validPassword" } });
-  //       expect(usernameField.value).not.toEqual("validUsername");
-  //       expect(passwordField.value).toEqual("validPassword");
-  //     }
-  //   );
-
-  //   and('admin user clicks on "Login" Button', () => {
-  //     const login = container.getByRole("button", { name: /Login/i });
-  //     fireEvent.click(login);
-  //   });
-
-  //   then(
-  //     'admin user should see the error message "Invalid Username or Password"',
-  //     () => {
-  //       const error = container.getByText("Invalid Username or Password");
-  //       expect("Invalid Username or Password").toEqual(error.textContent);
-  //     }
-  //   );
-  // });
-
-  // test('EPIC_EPP-4_STORY_EPP-208-Verify whether the "Invalid Username or Password" error message is displaying when Admin provides Valid User name and Invalid Password', ({
-  //   given,
-  //   when,
-  //   then,
-  //   and,
-  // }) => {
-  //   let container;
-  //   given("admin user launch the 'XXX' url", () => {
-  //     container = render(<LoginPage />);
-  //   });
-
-  //   and("admin user navigates to the Patient Portal application", () => {});
-
-  //   when("admin user lands onto “Patient Login” screen", () => {
-  //     const title = container.getByText("Patient Login");
-  //     expect("Patient Login").toEqual(title.textContent);
-  //   });
-
-  //   and(
-  //     'admin provides E360+ Registered valid  "<Email or Phone Number>" and Invalid "<password>"',
-  //     () => {
-  //       const usernameField = container.getByLabelText("Username");
-  //       const passwordField = container.getByLabelText("Password");
-  //       fireEvent.change(usernameField, { target: { value: "validUsername" } });
-  //       fireEvent.change(passwordField, { target: { value: "wrongPassword" } });
-  //       expect(usernameField.value).toEqual("validUsername");
-  //       expect(passwordField.value).not.toEqual("validPassword");
-  //     }
-  //   );
-
-  //   and('admin user clicks on "Login" Button', () => {
-  //     const login = container.getByRole("button", { name: /Login/i });
-  //     fireEvent.click(login);
-  //   });
-
-  //   then(
-  //     'admin user should see the error message "Invalid Username or Password"',
-  //     () => {
-  //       const error = container.getByText("Invalid Username or Password");
-  //       expect("Invalid Username or Password").toEqual(error.textContent);
-  //     }
-  //   );
-  // });
-
-  // test('EPIC_EPP-4_STORY_EPP-208-Verify whether the "Invalid Username or Password" error message is displaying when Admin user  provides Invalid Email or Phone Number and Invalid Password', ({
-  //   given,
-  //   when,
-  //   then,
-  //   and,
-  // }) => {
-  //   let container;
-  //   given("admin user launch the 'XXX' url", () => {
-  //     container = render(<LoginPage />);
-  //   });
-
-  //   and("admin user navigates to the Patient Portal application", () => {});
-
-  //   when("admin user lands onto “Patient Login” screen", () => {
-  //     const title = container.getByText("Patient Login");
-  //     expect("Patient Login").toEqual(title.textContent);
-  //   });
-
-  //   and(
-  //     'admin provides E360+ Registered Invalid  "<Email or Phone Number>" and Invalid "<password>"',
-  //     () => {
-  //       const usernameField = container.getByLabelText("Username");
-  //       const passwordField = container.getByLabelText("Password");
-  //       fireEvent.change(usernameField, { target: { value: "wrongUsername" } });
-  //       fireEvent.change(passwordField, { target: { value: "wrongPassword" } });
-  //       expect(usernameField.value).not.toEqual("validUsername");
-  //       expect(passwordField.value).not.toEqual("validPassword");
-  //     }
-  //   );
-
-  //   and('admin user clicks on "Login" Button', () => {
-  //     const login = container.getByRole("button", { name: /Login/i });
-  //     fireEvent.click(login);
-  //   });
-
-  //   then(
-  //     'admin user should see the error message "Invalid Username or Password"',
-  //     () => {
-  //       const error = container.getByText("Invalid Username or Password");
-  //       expect("Invalid Username or Password").toEqual(error.textContent);
-  //     }
-  //   );
-  // });
 });

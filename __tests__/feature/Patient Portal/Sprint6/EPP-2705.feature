@@ -10,7 +10,6 @@ Feature: Patient Portal : Prescription Results - Select and Apply filters
   @Regression
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-2705 - Verify whether the Refill status is filtering correctly.
-    Scenario : Verify whether the Refill status is filtering correctly.
 
     Given Patient Launch  the browser and enter the Patient portal URL
     When Patient enter valid "<username or phone number>" and "<password>" 
@@ -26,7 +25,6 @@ Feature: Patient Portal : Prescription Results - Select and Apply filters
   @Regression
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-2705 - Verify whether the Provider is filtering correctly.
-    Scenario : Verify whether the Provider is filtering correctly.
 
     Given Patient Launch  the browser and enter the Patient portal URL
     When Patient enter valid "<username or phone number>" and "<password>" 
@@ -42,7 +40,6 @@ Feature: Patient Portal : Prescription Results - Select and Apply filters
   @Regression
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-2705 - Verify whether the Prescription type(Glass, Lens, Medications) is filtering correctly.
-    Scenario : Verify whether the Prescription type (Glass, Lens, Medications) is filtering correctly.
 
     Given Patient Launch  the browser and enter the Patient portal URL
     When Patient enter valid "<username or phone number>" and "<password>" 
@@ -58,7 +55,6 @@ Feature: Patient Portal : Prescription Results - Select and Apply filters
   @Regression
   @Sprint6
   Scenario: EPIC_EPP-17_STORY_EPP-2705 - Verify whether the clear option is available once applied the filter
-    Scenario: Verify whether the clear option is available once applied the filter.
 
     Given Patient Launch  the browser and enter the Patient portal URL
     When Patient enter valid "<username or phone number>" and "<password>" 

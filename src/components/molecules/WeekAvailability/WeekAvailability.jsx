@@ -1,6 +1,5 @@
 import Box from "@mui/material/Box";
 import React, { useEffect, useState } from "react";
-import Link from "@mui/material/Link";
 import { StyledButton } from "../../atoms/Button/button";
 import styles from "./styles.module.scss";
 import KeyboardArrowDownOutlinedIcon from "@mui/icons-material/KeyboardArrowDownOutlined";
@@ -34,7 +33,7 @@ export function viewAllAvailabilityLinkUI({
         className={styles.linkAvailabelity}
         data-testid={constants.TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll}
         onClick={onClickViewAllAvailability}
-        tabindex={"0"}
+        tabIndex={"0"}
       >
         <Typography variant="link">View all availability</Typography>
       </Button>

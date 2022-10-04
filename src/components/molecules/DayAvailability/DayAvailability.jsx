@@ -8,6 +8,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import {
   getDates,
+  isPrevArrowDisable,
   parseDateWeekList,
   parseScheduleDataWeekOverlay,
   timeInWeekACLabel,
@@ -28,7 +29,6 @@ export const buttonSchedule = (
   const parseDate = new moment(date).format("YYYY-MM-DD");
   const isNextAvailabilityLabel =
     isScheduleAvailability && label.indexOf("Next availability is") > -1;
-  label;
   const dateTime =
     !isScheduleAvailability || !isNextAvailabilityLabel
       ? new Date(
@@ -180,7 +180,7 @@ export const DayAvailability = ({
       <Box className={styles.scheduleTimeContainer}>
         <Typography
           className={styles.scheduleTimeTitle}
-          tabindex={"0"}
+          tabIndex={"0"}
           aria-label={timeInWeekACLabel(rangeDate.startDate, rangeDate.endDate)}
         >
           {timeInWeek}
@@ -189,9 +189,11 @@ export const DayAvailability = ({
           <Button
             role={"button"}
             onClick={() => {
-              const date = new Date(dateList.dateRange[0]);
-              date.setDate(date.getDate() - 7);
-              onPrevScheduleClicked("overlay", date);
+              if (!isPrevArrowDisable(dateList)) {
+                const date = new Date(dateList.dateRange[0]);
+                date.setDate(date.getDate() - 7);
+                onPrevScheduleClicked("overlay", date);
+              }
             }}
             sx={{
               width: "25px",
@@ -202,7 +204,11 @@ export const DayAvailability = ({
             aria-label={"Navigate to previous week option"}
           >
             <ArrowBackIosIcon
-              className={styles.iconSchedule}
+              className={
+                isPrevArrowDisable(dateList)
+                  ? styles.iconDisableSchedule
+                  : styles.iconSchedule
+              }
               data-testid={
                 TEST_ID.APPOINTMENT_TEST_ID.DIALOG_VIEW_ALL.previousWeekButton
               }

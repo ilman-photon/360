@@ -78,6 +78,67 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
     );
   };
 
+  const getAddressQuery = (queryAddress) => {
+    return `${queryAddress.addressLine1} ${queryAddress.addressLine2} ${queryAddress.city} ${queryAddress.state} ${queryAddress.zipcode}`.replace(
+      / /g,
+      "+"
+    );
+  };
+
+  const renderAddress = (addressArray) => {
+    return (
+      <Box>
+        {addressArray.map((address, idx) => {
+          const addressQuery = getAddressQuery(address);
+          return (
+            <Box
+              className={styles.mapAddressContainer}
+              aria-label="Address"
+              key={idx}
+              sx={
+                idx !== 0 && {
+                  borderTop: "1px solid rgba(0, 59, 74, 0.25)",
+                  marginTop: "26px",
+                  paddingTop: "24px",
+                }
+              }
+            >
+              <Typography className={styles.addressTitle}>
+                {idx === 0 ? "Primary Address" : "Secondary Address"}
+              </Typography>
+              <Typography
+                variant="body2"
+                className={styles.mapAddress}
+                tabIndex={0}
+              >
+                {address && (
+                  <>
+                    {address.addressLine1}
+                    <br />
+                    {address.addressLine2}
+                    <br />
+                    {address.city}, {address.state}, {address.zipcode}
+                  </>
+                )}
+              </Typography>
+              <Box className={styles.getDirectionLinkContainer}>
+                <DirectionsOutlinedIcon></DirectionsOutlinedIcon>
+                <Link
+                  className={styles.getDirectionLink}
+                  href={`https://www.google.com/maps/search/?api=1&query=${addressQuery}`}
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Get directions
+                </Link>
+              </Box>
+            </Box>
+          );
+        })}
+      </Box>
+    );
+  };
+
   const resetMenuStyle = () => {
     aboutMenuRef.current.className = styles.menuText;
     locationMenuRef.current.className = styles.menuText;
@@ -125,12 +186,7 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
   const { BIOGRAPHY_TEST_ID } = constants.TEST_ID;
 
   const address = providerData.address;
-  const addressQuery =
-    address &&
-    `${address.addressLine1} ${address.addressLine2} ${address.city} ${address.state} ${address.zipcode}`.replace(
-      / /g,
-      "+"
-    );
+  const addressQuery = getAddressQuery(address[0]);
 
   return (
     <Box className={styles.detailedBio}>
@@ -237,34 +293,7 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
               aria-label="Map"
             ></iframe>
           </Box>
-          <Box className={styles.mapAddressContainer} aria-label="Address">
-            <Typography
-              variant="body2"
-              className={styles.mapAddress}
-              tabIndex={0}
-            >
-              {address && (
-                <>
-                  {address.addressLine1}
-                  <br />
-                  {address.addressLine2}
-                  <br />
-                  {address.city}, {address.state}, {address.zipcode}
-                </>
-              )}
-            </Typography>
-            <Box className={styles.getDirectionLinkContainer}>
-              <DirectionsOutlinedIcon></DirectionsOutlinedIcon>
-              <Link
-                className={styles.getDirectionLink}
-                href={`https://www.google.com/maps/search/?api=1&query=${addressQuery}`}
-                target="_blank"
-                rel="noopener"
-              >
-                Get directions
-              </Link>
-            </Box>
-          </Box>
+          {renderAddress(address)}
         </Box>
 
         <Typography variant="h3" tabIndex={0}>

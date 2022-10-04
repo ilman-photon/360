@@ -50,6 +50,7 @@ export async function getStaticProps() {
 
 export default function Appointment({ googleApiKey }) {
   const isDesktop = useMediaQuery("(min-width: 834px)");
+  const isMobile = useMediaQuery("(max-width: 833px)");
   const isTablet = useMediaQuery("(max-width: 1440px)");
   const [filterSuggestionData, setFilterSuggestionData] = useState({});
   const [open, setOpen] = React.useState(false);
@@ -236,11 +237,6 @@ export default function Appointment({ googleApiKey }) {
   );
 
   const handleDayClicked = (appointmentDate, providerData) => {
-    console.log("day clicked", isReschedule, {
-      appointmentId: 0,
-      appointmentDate,
-      providerData,
-    });
     const appointmentInfoObj = {
       ...appointmentInfo,
       date: appointmentDate,
@@ -487,7 +483,6 @@ export default function Appointment({ googleApiKey }) {
         display="flex"
         flex={1}
         sx={{
-          paddingTop: "135px",
           alignSelf: !isLoading ? "none" : "center",
         }}
       >
@@ -557,7 +552,7 @@ export default function Appointment({ googleApiKey }) {
       {!isFilterApplied || isDesktop ? (
         <>
           <FilterHeading
-            isDesktop={isDesktop}
+            isDesktop={!isMobile}
             isTablet={isTablet}
             onSearchProvider={onSearchProvider}
             onSwapButtonClicked={onSwapButtonClicked}
@@ -565,6 +560,7 @@ export default function Appointment({ googleApiKey }) {
             filterData={filterData}
             purposeOfVisitData={filterSuggestionData.purposeOfVisit}
             insuranceCarrierData={filterSuggestionData.insuranceCarrier}
+            isFixed={false}
           />
         </>
       ) : (

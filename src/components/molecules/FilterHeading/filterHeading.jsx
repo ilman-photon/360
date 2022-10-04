@@ -176,6 +176,7 @@ export function getDialogContents(
                   autoFocus
                   value={value}
                   onChange={onChange}
+                  maxLength={50}
                   type="default"
                   variant="filled"
                   label="City, state, or zip code"
@@ -361,6 +362,7 @@ export function onRenderInputInsurance(
         {...params}
         label="Insurance Carrier"
         InputProps={{
+          "aria-label": "Insurace Carrier field",
           ...params.InputProps,
         }}
         sx={{
@@ -490,6 +492,7 @@ const FilterHeading = ({
   insuranceCarrierData = [],
   title = "",
   subtitle = "",
+  isFixed = true,
 }) => {
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
   const { handleSubmit, control } = useForm({
@@ -630,6 +633,7 @@ const FilterHeading = ({
                         color: "#303030",
                       },
                     }}
+                    maxLength={50}
                   />
                 </Box>
               )}
@@ -682,6 +686,7 @@ const FilterHeading = ({
                 onChange={onChange}
                 inputProps={{
                   "aria-label": "Date field",
+                  readOnly: true,
                 }}
                 sx={{
                   margin: 0,
@@ -705,9 +710,6 @@ const FilterHeading = ({
                   },
                 }}
                 inputFormat={"MMM dd, yyyy"}
-                InputProps={{
-                  readOnly: true,
-                }}
                 disableMaskedInput
               />
             </Box>
@@ -761,7 +763,7 @@ const FilterHeading = ({
                   },
                 }}
                 label={"Purpose of Visit"}
-                ariaLabel={"Purpose of Visit field"}
+                ariaLabel={"Purpose of Visit dropdown menu"}
                 labelId={`purposes-of-visit`}
                 id={`purposes-of-visit`}
                 options={purposeOfVisitData}
@@ -784,7 +786,10 @@ const FilterHeading = ({
     return (
       <Box
         className={styles.titleHeadingWrapper}
-        sx={{ height: title && subtitle ? "200px" : "151px" }}
+        sx={{
+          height: title && subtitle ? "200px" : "151px",
+          position: isFixed ? "fixed" : "relative",
+        }}
       >
         <Box
           className={styles.centeredElement}
@@ -792,8 +797,10 @@ const FilterHeading = ({
         >
           {title && subtitle && (
             <Stack>
-              <Typography className={styles.titleElement}>{title}</Typography>
-              <Typography className={styles.subtitleElement}>
+              <Typography tabIndex={0} className={styles.titleElement}>
+                {title}
+              </Typography>
+              <Typography tabIndex={0} className={styles.subtitleElement}>
                 {subtitle}
               </Typography>
             </Stack>
@@ -848,7 +855,7 @@ const FilterHeading = ({
                 justifyContent={"center"}
                 className={styles.swapButtonContainer}
                 onClick={onSwapButtonClicked}
-                tabindex={0}
+                tabIndex={0}
               >
                 <SwapHorizIcon className={styles.swapIcon} />
                 <Typography className={styles.swapLabel}>Map</Typography>

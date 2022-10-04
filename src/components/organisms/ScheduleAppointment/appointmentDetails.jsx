@@ -28,7 +28,6 @@ export default function AppointmentDetails({
     <Box>
       <AccountCard
         title={t("appointmentDetails")}
-        textStyle={{ fontWeight: "700" }}
         isAppoinment={true}
         actionContent={
           <Button
@@ -61,12 +60,16 @@ export default function AppointmentDetails({
               />
             }
             sxRow={{ justifyContent: "unset" }}
-            sxText={{ paddingLeft: "4px", color: colors.darkGreen }}
+            sxText={{
+              paddingLeft: "4px",
+              color: colors.darkGreen,
+              fontWeight: "500",
+            }}
           >
             <Typography
               variant="bodyMedium"
               sx={{ color: colors.darkGreen }}
-              tabindex={"0"}
+              tabIndex={"0"}
               data-testid={
                 TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_DETAILS.date
               }
@@ -81,12 +84,16 @@ export default function AppointmentDetails({
               <ContactMailIcon aria-label={"Mail icon"} aria-hidden={"false"} />
             }
             sxRow={{ justifyContent: "unset" }}
-            sxText={{ paddingLeft: "4px", color: colors.darkGreen }}
+            sxText={{
+              paddingLeft: "4px",
+              color: colors.darkGreen,
+              fontWeight: "500",
+            }}
           >
             <Typography
               variant="bodyMedium"
               sx={{ color: colors.darkGreen }}
-              tabindex={"0"}
+              tabIndex={"0"}
             >
               {appointmentData.insuranceCarrier
                 ? appointmentData.insuranceCarrier
@@ -103,12 +110,16 @@ export default function AppointmentDetails({
               />
             }
             sxRow={{ justifyContent: "unset" }}
-            sxText={{ paddingLeft: "4px", color: colors.darkGreen }}
+            sxText={{
+              paddingLeft: "4px",
+              color: colors.darkGreen,
+              fontWeight: "500",
+            }}
           >
             <Typography
               variant="bodyMedium"
               sx={{ color: colors.darkGreen }}
-              tabindex={"0"}
+              tabIndex={"0"}
               aria-label={
                 appointmentData.appointmentType ||
                 "no purpose of visit provided"

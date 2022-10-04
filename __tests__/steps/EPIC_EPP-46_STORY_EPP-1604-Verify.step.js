@@ -165,12 +165,12 @@ const MOCK_SUGESTION = {
     },
     {
       id: "3",
-      name: "Comprehensive",
+      name: "optometry",
       description: "Get detailed eye exam",
     },
     {
       id: "4",
-      name: "Contacts Only",
+      name: "ophthalmology",
       description: "Get fitted for the right contacts",
     },
   ],
@@ -355,7 +355,7 @@ defineFeature(feature, (test) => {
     });
 
     and("User lands on “Appointments” screen", async () => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -370,12 +370,12 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_SUGESTION);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`
+          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_APPOINTMENT);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
@@ -388,7 +388,7 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
@@ -450,7 +450,7 @@ defineFeature(feature, (test) => {
     });
 
     and("User lands on “Appointments” screen", async () => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -465,12 +465,12 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_SUGESTION);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`
+          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_APPOINTMENT);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
@@ -483,7 +483,7 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
@@ -554,7 +554,7 @@ defineFeature(feature, (test) => {
     });
 
     and("User lands on “Appointments” screen", async () => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -569,12 +569,12 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_SUGESTION);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`
+          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_APPOINTMENT);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
@@ -587,7 +587,7 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
@@ -680,7 +680,7 @@ defineFeature(feature, (test) => {
     });
 
     and("User lands on “Appointments” screen", async () => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -695,12 +695,12 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_SUGESTION);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`
+          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_APPOINTMENT);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
@@ -713,7 +713,7 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
@@ -802,7 +802,7 @@ defineFeature(feature, (test) => {
     });
 
     and("User lands on “Appointments” screen", async () => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -817,12 +817,12 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_SUGESTION);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`
+          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_APPOINTMENT);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
@@ -835,7 +835,7 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
@@ -919,7 +919,7 @@ defineFeature(feature, (test) => {
     });
 
     and("User lands on “Appointments” screen", async () => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -934,12 +934,12 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_SUGESTION);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`
+          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_APPOINTMENT);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
@@ -952,7 +952,7 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
@@ -1053,7 +1053,7 @@ defineFeature(feature, (test) => {
     });
 
     and("User lands on “Appointments” screen", async () => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -1068,12 +1068,12 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_SUGESTION);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`
+          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_APPOINTMENT);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
@@ -1086,7 +1086,7 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
@@ -1187,7 +1187,7 @@ defineFeature(feature, (test) => {
     });
 
     and("User lands on “Appointments” screen", async () => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -1202,12 +1202,12 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_SUGESTION);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`
+          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_APPOINTMENT);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
@@ -1220,7 +1220,7 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
@@ -1329,7 +1329,7 @@ defineFeature(feature, (test) => {
     });
 
     and("User lands on “Appointments” screen", async () => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -1344,12 +1344,12 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_SUGESTION);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment`
+          `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_APPOINTMENT);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
@@ -1362,7 +1362,7 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>

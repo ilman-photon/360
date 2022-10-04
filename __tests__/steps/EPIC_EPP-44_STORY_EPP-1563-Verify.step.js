@@ -56,7 +56,7 @@ defineFeature(feature, (test) => {
     });
 
     then('user should see Review appointment details screen', () => {
-      expect(container.getByText("Review appointment details")).toBeTruthy();
+      expect(container.getByText("Review Appointment Details")).toBeTruthy();
     });
 
     and('user selects Someone Else', () => {

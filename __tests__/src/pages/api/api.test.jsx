@@ -73,7 +73,7 @@ describe("Api test", () => {
         ResponseType: "success",
         email: "smith1@photon.com",
       };
-      mock.onPost(`/ecp/patient/resetPassword`).reply(200, expectedResult);
+      mock.onPost(`/ecp/patient/resetPasswordLink`).reply(200, expectedResult);
       const api = new Api();
       const result = await api.resetPassword({
         resetPassword: true,
@@ -189,7 +189,7 @@ describe("Api test", () => {
       const expectedResult = {
         message: "invalid username format",
       };
-      mock.onPost(`/ecp/patient/resetPassword`).reply(200, expectedResult);
+      mock.onPost(`/ecp/patient/resetPasswordLink`).reply(200, expectedResult);
       const api = new Api();
       await api
         .resetPassword({
@@ -271,7 +271,10 @@ describe("Api test", () => {
     });
 
     it("timeout error", async () => {
-      const expectedResult = { response: { data: {} } };
+      const expectedResult = {
+        ResponseCode: 500,
+        description: "Something went wrong. Please try again after sometime.",
+      };
       mock.onPost(`/ecp/patient/resetPasswordToken`).reply(500, expectedResult);
       const api = new Api();
       api
@@ -289,7 +292,7 @@ describe("Api test", () => {
     it("create client error", async () => {
       const expectedResult = new Error("Request failed with status code 404");
       const api = new Api();
-      console.log({api})
+      console.log({ api });
       api
         .getResponse(
           `/ecp/patient/resetPasswordToken`,

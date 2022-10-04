@@ -15,27 +15,55 @@ export function UpcomingAppointmentCard({
   onRescheduleClicked,
   onCancelClicked,
 }) {
-  function minHours(numOfHours, date = new Date()) {
-    date.setTime(date.getTime() - numOfHours * 60 * 60 * 1000);
+  function addHours(numOfHours, date = new Date()) {
+    date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
 
     return date;
   }
 
   const visitDate = new Date(data.appointmentInfo.date);
-  const isHideButtons = visitDate < minHours(4);
+  let hideHour = 0;
+  if (data.appointmentInfo.appointmentType === "Eye Exam") {
+    hideHour = 4;
+  }
+  if (data.appointmentInfo.appointmentType === "Comprehensive") {
+    hideHour = 24;
+  }
+
+  const isHideButtons = visitDate < addHours(hideHour);
   return (
     <Box className={styles.upcomingAppointmentsContainer}>
       <Box className={styles.upcomingAppointmentDetail}>
-        <Typography className={styles.appointmentTitle} variant="h3">
-          Eye Exam
+        <Typography
+          tabIndex={0}
+          ariaLabel={"Eye Exam"}
+          className={styles.appointmentTitle}
+          variant="h3"
+        >
+          {data.appointmentInfo.appointmentType}
         </Typography>
         <Box className={styles.dateContainer}>
-          <Typography className={styles.date} variant="subtitle1">
+          <Typography
+            tabIndex={0}
+            ariaLabel={upcomingAppointmentDate(data.appointmentInfo.date)}
+            className={styles.date}
+            variant="subtitle1"
+          >
             {upcomingAppointmentDate(data.appointmentInfo.date)}
           </Typography>
           <Box className={styles.subTitleWrapper}>
-            <Typography variant="subtitle1">Visit Purpose: </Typography>
-            <Typography variant="body2">
+            <Typography
+              tabIndex={0}
+              ariaLabel={"Purpose of Visit"}
+              variant="subtitle1"
+            >
+              Purpose of Visit:{" "}
+            </Typography>
+            <Typography
+              tabIndex={0}
+              ariaLabel={data.appointmentInfo.appointmentType}
+              variant="body2"
+            >
               {data.appointmentInfo.appointmentType}
             </Typography>
           </Box>
@@ -75,7 +103,23 @@ export function UpcomingAppointmentCard({
   );
 }
 
-export function NoAppointment() {
+export function scheduleAppointmentButton(onScheduleClicked) {
+  return (
+    <StyledButton
+      theme={constants.PATIENT}
+      mode={constants.PRIMARY}
+      type="button"
+      size={constants.SMALL}
+      className={styles.scheduleButton}
+      gradient={false}
+      onClick={onScheduleClicked}
+    >
+      Schedule New Appointments
+    </StyledButton>
+  );
+}
+
+export function NoAppointment({ onRescheduleClicked }) {
   return (
     <Box>
       <Box className={styles.noAppointmentTitle}>
@@ -84,15 +128,7 @@ export function NoAppointment() {
         </Typography>
       </Box>
       <Box className={styles.noAppointmentButtonContainer}>
-        <StyledButton
-          theme={constants.PATIENT}
-          mode={constants.PRIMARY}
-          type="button"
-          size={constants.SMALL}
-          gradient={false}
-        >
-          Schedule Appointment Now
-        </StyledButton>
+        {scheduleAppointmentButton(onRescheduleClicked)}
       </Box>
     </Box>
   );
@@ -103,30 +139,44 @@ export default function UpcomingAppointment({
   onRescheduleClicked,
   onCancelClicked,
 }) {
-  const isHasValue = data.length !== 0;
+  const appointments = [];
+  for (const appointment of data) {
+    if (new Date(appointment.appointmentInfo.date) > new Date()) {
+      appointments.push(appointment);
+    }
+  }
+  const isHasValue = appointments.length !== 0;
   return (
     <Box className={styles.upcomingAppointment}>
-      <Typography
-        variant="h2"
-        className={styles.title}
-        data-testid={TEST_ID.APPOINTMENTS_TEST_ID.upcomingAppointmentsHeader}
-      >
-        Upcoming Appointments
-      </Typography>
+      <Box className={styles.upcomingAppointmentHeader}>
+        <Typography
+          variant="h2"
+          tabIndex={0}
+          label={"Upcoming appointments heading"}
+          className={styles.title}
+          data-testid={TEST_ID.APPOINTMENTS_TEST_ID.upcomingAppointmentsHeader}
+        >
+          Upcoming Appointments
+        </Typography>
+        {isHasValue ? scheduleAppointmentButton(onRescheduleClicked) : null}
+      </Box>
 
       {isHasValue ? (
-        data.map((item, index) => {
-          return (
+        appointments.map((item, index) => {
+          const isUpcoming = new Date(item.appointmentInfo.date) > new Date();
+          return isUpcoming ? (
             <UpcomingAppointmentCard
               data={item}
               key={index}
               onRescheduleClicked={onRescheduleClicked}
               onCancelClicked={onCancelClicked}
             />
-          );
+          ) : null;
         })
       ) : (
-        <NoAppointment></NoAppointment>
+        <NoAppointment
+          onRescheduleClicked={onRescheduleClicked}
+        ></NoAppointment>
       )}
     </Box>
   );

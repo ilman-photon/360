@@ -5,7 +5,15 @@ import { Provider } from "react-redux";
 import store from "../../../src/store/store";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
-
+import mediaQuery from "css-mediaquery";
+import { act } from "react-dom/test-utils";
+function createMatchMedia(width) {
+  return (query) => ({
+    matches: mediaQuery.match(query, { width }),
+    addListener: () => {},
+    removeListener: () => {},
+  });
+}
 const MOCK_SUGGESTION_DATA = {
   appointmentType: [
     {
@@ -155,6 +163,470 @@ const MOCK_SUGGESTION_DATA = {
     },
   ],
 };
+const mockSubmitFilter = {
+  listOfProvider: [
+    {
+      providerId: "1",
+      address: {
+        addressLine1: "51 West 51st Street",
+        addressLine2: "Floor 3, Suite 320 Midtown",
+        city: "Florida",
+        state: "FR",
+        zipcode: "54231",
+      },
+      rating: "5",
+      name: "Paul Wagner Md",
+      phoneNumber: "(123) 123-4567",
+      distance: "10 mi",
+      image: "/doctor.png",
+      from: "2022-09-19",
+      to: "2022-09-24",
+      availability: [
+        {
+          date: "2022-09-19",
+          list: [
+            {
+              time: "11:30am",
+              key: 12222,
+            },
+          ],
+        },
+        {
+          date: "2022-09-20",
+          list: [
+            {
+              time: "08:00am",
+              key: 12223,
+            },
+            {
+              time: "10:30am",
+              key: 12224,
+            },
+            {
+              time: "11:00am",
+              key: 12225,
+            },
+            {
+              time: "12:00pm",
+              key: 12226,
+            },
+            {
+              time: "01:00pm",
+              key: 12227,
+            },
+            {
+              time: "02:00pm",
+              key: 12228,
+            },
+          ],
+        },
+        {
+          date: "2022-09-21",
+          list: [
+            {
+              time: "08:30am",
+              key: 12229,
+            },
+            {
+              time: "10:30am",
+              key: 12230,
+            },
+            {
+              time: "11:30am",
+              key: 12231,
+            },
+            {
+              time: "12:00pm",
+              key: 12232,
+            },
+            {
+              time: "01:30pm",
+              key: 12233,
+            },
+            {
+              time: "02:30pm",
+              key: 12234,
+            },
+            {
+              time: "03:30pm",
+              key: 12235,
+            },
+            {
+              time: "04:30pm",
+              key: 12236,
+            },
+            ,
+          ],
+        },
+        {
+          date: "2022-09-22",
+          list: [
+            {
+              time: "09:30am",
+              key: 12237,
+            },
+            {
+              time: "11:00am",
+              key: 12238,
+            },
+          ],
+        },
+        {
+          date: "2022-09-23",
+          list: [
+            {
+              time: "09:30am",
+              key: 12239,
+            },
+          ],
+        },
+        {
+          date: "2022-09-24",
+          list: [
+            {
+              time: "09:30am",
+              key: 12240,
+            },
+          ],
+        },
+      ],
+      coordinate: {
+        latitude: 32.751204,
+        longitude: -117.1641166,
+      },
+    },
+    {
+      providerId: "2",
+      address: {
+        addressLine1: "51 West 51st Street",
+        addressLine2: "Floor 3, Suite 320 Midtown",
+        city: "Florida",
+        state: "FR",
+        zipcode: "54231",
+      },
+      rating: "5",
+      name: "Paul Wagner Nd",
+      phoneNumber: "(123) 123-4567",
+      distance: "10 mi",
+      image: "/doctor.png",
+      from: "2022-09-19",
+      to: "2022-09-24",
+      availability: [
+        {
+          date: "2022-09-19",
+          list: [],
+        },
+        {
+          date: "2022-09-20",
+          list: [
+            {
+              time: "08:00am",
+              key: 12223,
+            },
+            {
+              time: "10:30am",
+              key: 12224,
+            },
+            {
+              time: "11:00am",
+              key: 12225,
+            },
+            {
+              time: "12:00pm",
+              key: 12226,
+            },
+            {
+              time: "01:00pm",
+              key: 12227,
+            },
+            {
+              time: "02:00pm",
+              key: 12228,
+            },
+          ],
+        },
+        {
+          date: "2022-09-21",
+          list: [
+            {
+              time: "08:30am",
+              key: 12229,
+            },
+            {
+              time: "10:30am",
+              key: 12230,
+            },
+            {
+              time: "11:30am",
+              key: 12231,
+            },
+            {
+              time: "12:00pm",
+              key: 12232,
+            },
+            {
+              time: "01:30pm",
+              key: 12233,
+            },
+            {
+              time: "02:30pm",
+              key: 12234,
+            },
+            {
+              time: "03:30pm",
+              key: 12235,
+            },
+            {
+              time: "04:30pm",
+              key: 12236,
+            },
+            ,
+          ],
+        },
+        {
+          date: "2022-09-22",
+          list: [
+            {
+              time: "09:30am",
+              key: 12237,
+            },
+            {
+              time: "11:00am",
+              key: 12238,
+            },
+          ],
+        },
+        {
+          date: "2022-09-23",
+          list: [],
+        },
+        {
+          date: "2022-09-24",
+          list: [
+            {
+              time: "09:30am",
+              key: 12240,
+            },
+          ],
+        },
+      ],
+      coordinate: {
+        latitude: 32.751204,
+        longitude: -117.1641166,
+      },
+    },
+    {
+      providerId: "3",
+      name: "Paul Wagner Md",
+      address: {
+        addressLine1: "51 West 51st Street",
+        addressLine2: "Floor 3, Suite 320 Midtown",
+        city: "Florida",
+        state: "FR",
+        zipcode: "54231",
+      },
+      rating: "5",
+      phoneNumber: "(123) 123-4567",
+      distance: "10 mi",
+      image: "/doctor.png",
+      from: "2022-09-19",
+      to: "2022-09-24",
+      availability: [
+        {
+          date: "2022-09-19",
+          list: [
+            {
+              time: "11:30am",
+              key: 12222,
+            },
+          ],
+        },
+        {
+          date: "2022-09-20",
+          list: [
+            {
+              time: "08:00am",
+              key: 12223,
+            },
+            {
+              time: "10:30am",
+              key: 12224,
+            },
+            {
+              time: "11:00am",
+              key: 12225,
+            },
+            {
+              time: "12:00pm",
+              key: 12226,
+            },
+            {
+              time: "01:00pm",
+              key: 12227,
+            },
+            {
+              time: "02:00pm",
+              key: 12228,
+            },
+          ],
+        },
+        {
+          date: "2022-09-21",
+          list: [
+            {
+              time: "08:30am",
+              key: 12229,
+            },
+            {
+              time: "10:30am",
+              key: 12230,
+            },
+            {
+              time: "11:30am",
+              key: 12231,
+            },
+            {
+              time: "12:00pm",
+              key: 12232,
+            },
+            {
+              time: "01:30pm",
+              key: 12233,
+            },
+            {
+              time: "02:30pm",
+              key: 12234,
+            },
+            {
+              time: "03:30pm",
+              key: 12235,
+            },
+            {
+              time: "04:30pm",
+              key: 12236,
+            },
+            ,
+          ],
+        },
+        {
+          date: "2022-09-22",
+          list: [
+            {
+              time: "09:30am",
+              key: 12237,
+            },
+            {
+              time: "11:00am",
+              key: 12238,
+            },
+          ],
+        },
+        {
+          date: "2022-09-23",
+          list: [
+            {
+              time: "09:30am",
+              key: 12239,
+            },
+          ],
+        },
+        {
+          date: "2022-09-24",
+          list: [],
+        },
+      ],
+      coordinate: {
+        latitude: 32.751204,
+        longitude: -117.1641166,
+      },
+    },
+  ],
+  filterbyData: [
+    {
+      name: "Available Today",
+      checked: false,
+    },
+    {
+      name: "Language",
+      checklist: [
+        {
+          name: "Arabic",
+          checked: false,
+        },
+        {
+          name: "Chinese",
+          checked: false,
+        },
+        {
+          name: "English",
+          checked: false,
+        },
+        {
+          name: "Farsi",
+          checked: false,
+        },
+        {
+          name: "French",
+          checked: false,
+        },
+        {
+          name: "Spanish",
+          checked: false,
+        },
+        {
+          name: "Portuguese",
+          checked: false,
+        },
+        {
+          name: "Korean",
+          checked: false,
+        },
+        {
+          name: "German",
+          checked: false,
+        },
+        {
+          name: "Italian",
+          checked: false,
+        },
+        {
+          name: "Indonesian",
+          checked: false,
+        },
+      ],
+    },
+    {
+      name: "Insurance",
+      checklist: [
+        {
+          name: "In Network",
+          checked: false,
+        },
+        {
+          name: "Out of Network",
+          checked: false,
+        },
+      ],
+    },
+    {
+      name: "Gender",
+      checklist: [
+        {
+          name: "Male",
+          checked: false,
+        },
+        {
+          name: "Female",
+          checked: false,
+        },
+        {
+          name: "Non-Binary",
+          checked: false,
+        },
+      ],
+    },
+  ],
+};
 describe("App", () => {
   let container;
   beforeEach(() => {
@@ -169,7 +641,10 @@ describe("App", () => {
     mock
       .onGet(`/api/dummy/appointment/create-appointment/getSugestion`)
       .reply(200, MOCK_SUGGESTION_DATA);
-    window = Object.assign(window, { innerWidth: 1500 });
+    mock
+      .onPost(`/api/dummy/appointment/create-appointment/submitFilter`)
+      .reply(200, mockSubmitFilter);
+    window.matchMedia = createMatchMedia("1920px");
     global.navigator.geolocation = mockGeolocation;
     container = render(
       <Provider store={store}>
@@ -180,50 +655,50 @@ describe("App", () => {
 
   it("renders App unchanged", async () => {
     await waitFor(() => {
-      container.getByText(/Schedule an eye/i);
+      container.getAllByText(/City, state, or zip code/i);
     });
-    expect(container.getByText(/Schedule an eye/i)).toBeInTheDocument();
+    expect(
+      container.getByText(/City, state, or zip code/i)
+    ).toBeInTheDocument();
   });
 
   it("on render mobile view", async () => {
-    window = Object.assign(window, { innerWidth: 500 });
-    await waitFor(() => {
-      container.getByText(/Schedule an eye/i);
+    window.matchMedia = createMatchMedia("700px");
+    act(() => {
+      container = render(
+        <Provider store={store}>
+          {Appointment.getLayout(<Appointment />)}
+        </Provider>
+      );
     });
-    expect(container.getByText(/Schedule an eye/i)).toBeInTheDocument();
+    await waitFor(() => container.getAllByText(/Schedule an eye exam/i));
+    expect(container.getByText(/Schedule an eye exam/i)).toBeInTheDocument();
 
-    const locationField = container.getByText(/City, state, or zip/i);
+    const locationField = container.getAllByText(/City, state, or zip/i)[1];
     fireEvent.change(locationField, { value: "Texas" });
     fireEvent.click(locationField);
-    await waitFor(() => {
-      const cancelButton = container.getByText(/Cancel/i);
-      expect(container.getByText(/Cancel/i)).toBeInTheDocument();
-      fireEvent.click(cancelButton);
-    });
+    await waitFor(() => container.getByText(/Cancel/i));
+    const cancelButton = container.getByText(/Cancel/i);
+    expect(container.getByText(/Cancel/i)).toBeInTheDocument();
+    fireEvent.click(cancelButton);
 
-    const dateField = container.getByText(/Date/i);
+    const dateField = container.getAllByText(/Date/i)[1];
     fireEvent.click(dateField);
-    await waitFor(() => {
-      const cancelButton = container.getByText(/Cancel/i);
-      expect(container.getByText(/Cancel/i)).toBeInTheDocument();
-      fireEvent.click(cancelButton);
-    });
+    await waitFor(() => container.getByText(/Cancel/i));
+    expect(container.getByText(/Cancel/i)).toBeInTheDocument();
+    fireEvent.click(cancelButton);
 
-    const pusposeField = container.getByText(/Purpose of Visit/i);
+    const pusposeField = container.getAllByText(/Purpose of Visit/i)[1];
     fireEvent.click(pusposeField);
-    await waitFor(() => {
-      const cancelButton = container.getByText(/Cancel/i);
-      expect(container.getByText(/Cancel/i)).toBeInTheDocument();
-      fireEvent.click(cancelButton);
-    });
+    await waitFor(() => container.getByText(/Cancel/i));
+    expect(container.getByText(/Cancel/i)).toBeInTheDocument();
+    fireEvent.click(cancelButton);
 
-    const insuranceField = container.getByText(/Insurance Carrier/i);
+    const insuranceField = container.getAllByText(/Insurance Carrier/i)[1];
     fireEvent.click(insuranceField);
-    await waitFor(() => {
-      const cancelButton = container.getByText(/Cancel/i);
-      expect(container.getByText(/Cancel/i)).toBeInTheDocument();
-      fireEvent.click(cancelButton);
-    });
+    await waitFor(() => container.getByText(/Cancel/i));
+    expect(container.getByText(/Cancel/i)).toBeInTheDocument();
+    fireEvent.click(cancelButton);
 
     const Searchbutton = container.getByText(/Search/i);
     fireEvent.click(Searchbutton);

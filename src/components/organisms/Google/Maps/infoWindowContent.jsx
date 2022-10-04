@@ -5,6 +5,7 @@ import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import { StyledButton } from "../../../atoms/Button/button";
 import constants from "../../../../utils/constants";
+import styles from "./iwStyles.module.scss";
 
 const InfoWindowContent = ({
   data = [],
@@ -51,17 +52,22 @@ const InfoWindowContent = ({
   };
 
   return (
-    <Stack spacing={2} pb={5} sx={{ maxWidth: "400px" }}>
+    <Stack spacing={2} pb={5} sx={{ maxWidth: { xs: "300px", md: "400px" } }}>
       <Grid container spacing={1}>
         <Grid item xs={10}>
           <Stack spacing={2} divider={<Divider />}>
-            <Typography variant="bodySmallMedium" sx={{ color: "#757575" }}>
+            <Typography
+              variant="bodySmallMedium"
+              sx={{ color: "#757575", fontWeight: "400" }}
+            >
               {counter} of {data.length} doctors at this location
             </Typography>
             <ProviderProfile
               variant={"map"}
               providerData={data[counter - 1]}
               imageSize={"medium"}
+              bioContainerClass={styles.customBioContainer}
+              addressClass={styles.customAddress}
             />
           </Stack>
         </Grid>
@@ -75,19 +81,27 @@ const InfoWindowContent = ({
               <ArrowBackIosIcon
                 role="button"
                 data-testid={constants.TEST_ID.MAP_INFO_WINDOW.previousProvider}
-                sx={{ width: "22px", cursor: "pointer" }}
+                sx={{
+                  width: "22px",
+                  cursor: "pointer",
+                  color: "rgba(0, 0, 0, 0.54)",
+                }}
                 onClick={prev}
               />
               <ArrowForwardIosIcon
                 role="button"
                 data-testid={constants.TEST_ID.MAP_INFO_WINDOW.nextProvider}
-                sx={{ width: "22px", cursor: "pointer" }}
+                sx={{
+                  width: "22px",
+                  cursor: "pointer",
+                  color: "rgba(0, 0, 0, 0.54)",
+                }}
                 onClick={next}
               />
             </Stack>
             <Typography
               variant="bodySmallMedium"
-              sx={{ textAlign: "right", pt: 2 }}
+              sx={{ textAlign: "right", pt: 2, fontWeight: "400" }}
             >
               {data[counter - 1] ? data[counter - 1].distance : "-"}
             </Typography>
@@ -107,15 +121,16 @@ const InfoWindowContent = ({
                         lineHeight: "24px",
                         fontWeight: 500,
                       }}
-                      tabindex={"0"}
+                      tabIndex={"0"}
                     >
                       {getLabelTime(v.date)}
                     </Typography>
                     <Stack
                       flexDirection="row"
-                      overflow="auto"
+                      flexWrap="wrap"
+                      // overflow="auto"
                       gap={1}
-                      className="hide-scrollbar"
+                      // className="hide-scrollbar"
                     >
                       {v.list.map((item, timeIdx) => {
                         return (
@@ -126,6 +141,7 @@ const InfoWindowContent = ({
                             size={constants.SMALL}
                             gradient={false}
                             onClick={() => {
+                              console.log({ dats: data[counter - 1] });
                               if (!item) return;
                               OnTimeClicked(
                                 new Date(
@@ -136,6 +152,15 @@ const InfoWindowContent = ({
                                 ),
                                 data[counter - 1]
                               );
+                            }}
+                            sx={{
+                              "&.sxButton": {
+                                height: "30px",
+                                padding: 0,
+                                minWidth: "90px !important",
+                                fontSize: "14px",
+                                fontWeight: 500,
+                              },
                             }}
                           >
                             <Typography variant="bodyRegularSmall">

@@ -14,7 +14,7 @@ import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import { colors } from "../../../styles/theme";
 import Image from "next/image";
 import FilterHeadingFilled from "../FilterHeading/filterHeadingFilled";
-import { getDates } from "../../../utils/appointment";
+import { getDates, isPrevArrowDisable } from "../../../utils/appointment";
 
 export const FilterResultHeading = ({
   appliedFilter = [],
@@ -84,7 +84,7 @@ export const FilterResultHeading = ({
             onClick={() => {
               const id = appliedFilter.findIndex((x) => x.name === option.name);
               if (id > -1) {
-                const data = appliedFilter;
+                const data = [...appliedFilter];
                 data.splice(id, 1);
                 setActiveFilter([...data]);
                 onActivFilter([...data]);
@@ -110,13 +110,6 @@ export const FilterResultHeading = ({
   function handleOpenDialog() {
     //Reset data when cancel the dialog
     setDialogOpen(true);
-  }
-
-  function isPrevArrowDisable() {
-    return (
-      new Date() >
-      (dateList?.dateRange?.length > 0 ? dateList.dateRange[0] : null)
-    );
   }
 
   function renderDesktopView() {
@@ -153,7 +146,9 @@ export const FilterResultHeading = ({
             Filters
             <KeyboardArrowDownIcon className={styles.keydownIcon} />
           </StyledButton>
-          {renderAppliedFilter()}
+          <Box display="flex" flexWrap="wrap">
+            {renderAppliedFilter()}
+          </Box>
         </Box>
         <Box
           sx={{
@@ -187,9 +182,11 @@ export const FilterResultHeading = ({
             <Button
               role={"button"}
               onClick={() => {
-                const date = new Date(dateList.dateRange[0]);
-                date.setDate(date.getDate() - 7);
-                onPrevScheduleClicked("week", date);
+                if (!isPrevArrowDisable(dateList)) {
+                  const date = new Date(dateList.dateRange[0]);
+                  date.setDate(date.getDate() - 7);
+                  onPrevScheduleClicked("week", date);
+                }
               }}
               sx={{
                 gridArea: "arrowLeft",
@@ -198,7 +195,7 @@ export const FilterResultHeading = ({
                 padding: 0,
               }}
               className={
-                isPrevArrowDisable()
+                isPrevArrowDisable(dateList)
                   ? styles.prevArrowDisable
                   : styles.prevArrowActive
               }
@@ -208,7 +205,6 @@ export const FilterResultHeading = ({
                 sx={{
                   margin: "auto",
                   width: "22px",
-                  cursor: "pointer",
                 }}
               />
             </Button>
@@ -235,14 +231,14 @@ export const FilterResultHeading = ({
                     <Typography
                       className={styles.calenderDay}
                       aria-label={`${option.slice(0, -8)}`}
-                      tabindex={"0"}
+                      tabIndex={"0"}
                     >
                       {option.slice(0, 3)}
                     </Typography>
                     <Typography
                       className={styles.calenderMonth}
                       aria-label={`${dateList.dateListName[idx]}`}
-                      tabindex={"0"}
+                      tabIndex={"0"}
                     >
                       {dateList.dateListName[idx]}
                     </Typography>
@@ -309,8 +305,10 @@ export const FilterResultHeading = ({
         >
           {title && subtitle && (
             <Stack className={styles.subtitleContainer}>
-              <Typography className={styles.titleElement}>{title}</Typography>
-              <Typography className={styles.subtitleElement}>
+              <Typography className={styles.titleElement} tabindex={0}>
+                {title}
+              </Typography>
+              <Typography className={styles.subtitleElement} tabindex={0}>
                 {subtitle}
               </Typography>
             </Stack>
