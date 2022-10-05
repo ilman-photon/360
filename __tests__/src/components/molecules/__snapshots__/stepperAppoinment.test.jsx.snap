@@ -14,7 +14,7 @@ Object {
         >
           <div
             aria-label="Location stage in progress bar"
-            class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel Mui-completed css-1ifo3oi-MuiStep-root"
+            class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel Mui-completed css-dzsk3b-MuiStep-root"
           >
             <span
               aria-label="Stepper 1. Location "
@@ -49,7 +49,7 @@ Object {
           </div>
           <div
             aria-label="Review stage in progress bar"
-            class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel css-1ifo3oi-MuiStep-root"
+            class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel css-dzsk3b-MuiStep-root"
           >
             <div
               class="MuiStepConnector-root MuiStepConnector-horizontal MuiStepConnector-alternativeLabel Mui-active css-zpcwqm-MuiStepConnector-root"
@@ -101,7 +101,7 @@ Object {
           </div>
           <div
             aria-label="Appointment Details stage in progress bar"
-            class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel css-1ifo3oi-MuiStep-root"
+            class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel css-dzsk3b-MuiStep-root"
           >
             <div
               class="MuiStepConnector-root MuiStepConnector-horizontal MuiStepConnector-alternativeLabel Mui-disabled css-zpcwqm-MuiStepConnector-root"
@@ -153,7 +153,7 @@ Object {
           </div>
           <div
             aria-label="Contact Info stage in progress bar"
-            class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel css-1ifo3oi-MuiStep-root"
+            class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel css-dzsk3b-MuiStep-root"
           >
             <div
               class="MuiStepConnector-root MuiStepConnector-horizontal MuiStepConnector-alternativeLabel Mui-disabled css-zpcwqm-MuiStepConnector-root"
@@ -205,7 +205,7 @@ Object {
           </div>
           <div
             aria-label="Confirm stage in progress bar"
-            class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel css-1ifo3oi-MuiStep-root"
+            class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel css-dzsk3b-MuiStep-root"
           >
             <div
               class="MuiStepConnector-root MuiStepConnector-horizontal MuiStepConnector-alternativeLabel Mui-disabled css-zpcwqm-MuiStepConnector-root"
@@ -269,7 +269,7 @@ Object {
       >
         <div
           aria-label="Location stage in progress bar"
-          class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel Mui-completed css-1ifo3oi-MuiStep-root"
+          class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel Mui-completed css-dzsk3b-MuiStep-root"
         >
           <span
             aria-label="Stepper 1. Location "
@@ -304,7 +304,7 @@ Object {
         </div>
         <div
           aria-label="Review stage in progress bar"
-          class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel css-1ifo3oi-MuiStep-root"
+          class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel css-dzsk3b-MuiStep-root"
         >
           <div
             class="MuiStepConnector-root MuiStepConnector-horizontal MuiStepConnector-alternativeLabel Mui-active css-zpcwqm-MuiStepConnector-root"
@@ -356,7 +356,7 @@ Object {
         </div>
         <div
           aria-label="Appointment Details stage in progress bar"
-          class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel css-1ifo3oi-MuiStep-root"
+          class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel css-dzsk3b-MuiStep-root"
         >
           <div
             class="MuiStepConnector-root MuiStepConnector-horizontal MuiStepConnector-alternativeLabel Mui-disabled css-zpcwqm-MuiStepConnector-root"
@@ -408,7 +408,7 @@ Object {
         </div>
         <div
           aria-label="Contact Info stage in progress bar"
-          class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel css-1ifo3oi-MuiStep-root"
+          class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel css-dzsk3b-MuiStep-root"
         >
           <div
             class="MuiStepConnector-root MuiStepConnector-horizontal MuiStepConnector-alternativeLabel Mui-disabled css-zpcwqm-MuiStepConnector-root"
@@ -460,7 +460,7 @@ Object {
         </div>
         <div
           aria-label="Confirm stage in progress bar"
-          class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel css-1ifo3oi-MuiStep-root"
+          class="MuiStep-root MuiStep-horizontal MuiStep-alternativeLabel css-dzsk3b-MuiStep-root"
         >
           <div
             class="MuiStepConnector-root MuiStepConnector-horizontal MuiStepConnector-alternativeLabel Mui-disabled css-zpcwqm-MuiStepConnector-root"

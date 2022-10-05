@@ -111,7 +111,7 @@ export default function ModalConfirmContent({
       <BootstrapDialogTitle
         id="customized-dialog-title"
         onClose={handleClose}
-        sx={{ textAlign: "center" }}
+        sx={{ textAlign: "center", fontSize: "22px" }}
         isPage={isPage}
       >
         <Typography
@@ -204,6 +204,7 @@ export default function ModalConfirmContent({
                     display: "contents",
                     fontWeight: "600",
                     fontSize: "14px",
+                    fontFamily: "Libre Franklin",
                   }}
                   aria-label={"Add to calendar"}
                 >

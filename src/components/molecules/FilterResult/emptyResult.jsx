@@ -1,8 +1,9 @@
 import { Box } from "@mui/system";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
+import SearchIcon from "@mui/icons-material/Search";
 import { Typography } from "@mui/material";
 
-export const EmptyResult = ({ message = "" }) => {
+export const EmptyResult = ({ message = "", isEmpty = false }) => {
   return (
     <Box
       sx={{
@@ -12,9 +13,13 @@ export const EmptyResult = ({ message = "" }) => {
         width: "100%",
       }}
     >
-      <CalendarTodayIcon
-        sx={{ alignSelf: "center", width: 38.5, height: 38.5 }}
-      />
+      {isEmpty ? (
+        <CalendarTodayIcon
+          sx={{ alignSelf: "center", width: 38.5, height: 38.5 }}
+        />
+      ) : (
+        <SearchIcon sx={{ alignSelf: "center", width: 38.5, height: 38.5 }} />
+      )}
       <Typography
         variant="bodyLarge"
         sx={{

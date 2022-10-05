@@ -39,6 +39,8 @@ import { Api } from "../../api/api";
 import ModalConfirmation from "../../../components/organisms/ScheduleAppointment/ScheduleConfirmation/modalConfirmation";
 import Cookies from "universal-cookie";
 import { TEST_ID } from "../../../utils/constants";
+import NearMeOutlinedIcon from "@mui/icons-material/NearMeOutlined";
+import { useTranslation } from "next-i18next";
 import { getCity } from "../../../utils/getCity";
 
 export async function getStaticProps() {
@@ -83,6 +85,9 @@ export default function Appointment({ googleApiKey }) {
   const providerListData = useSelector(
     (state) => state.appointment.providerListData
   );
+  const { t } = useTranslation("translation", {
+    keyPrefix: "appointment",
+  });
 
   useEffect(() => {
     if (providerListData) {
@@ -303,6 +308,30 @@ export default function Appointment({ googleApiKey }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  function currentlocText() {
+    return (
+      <>
+        , -or-{" "}
+        <NearMeOutlinedIcon
+          sx={{ width: "18px", height: "18px", color: "#008294" }}
+        />{" "}
+        <span style={{ color: "#008294", textDecoration: "underline" }}>
+          Use my current location
+        </span>{" "}
+        to see results
+      </>
+    );
+  }
+
+  function getBaseEmptyText() {
+    return (
+      <>
+        {t("baseText")}
+        {!isGeolocationEnabled ? currentlocText() : null}
+      </>
+    );
+  }
+
   function onRenderDialogView() {
     return (
       <div>
@@ -382,8 +411,11 @@ export default function Appointment({ googleApiKey }) {
               />
             ) : (
               <EmptyResult
+                isEmpty={isFilterApplied}
                 message={
-                  "No results found. Please try again with a different search criteria."
+                  isFilterApplied
+                    ? "No results found. Please try again with a different search criteria."
+                    : getBaseEmptyText()
                 }
               />
             )}
@@ -463,8 +495,11 @@ export default function Appointment({ googleApiKey }) {
               />
             ) : (
               <EmptyResult
+                isEmpty={isFilterApplied}
                 message={
-                  "No results found. Please try again with a different search criteria."
+                  isFilterApplied
+                    ? "No results found. Please try again with a different search criteria."
+                    : getBaseEmptyText()
                 }
               />
             )}
@@ -530,7 +565,7 @@ export default function Appointment({ googleApiKey }) {
   }
 
   function renderFilterResult() {
-    if (isDesktop && isFilterApplied) {
+    if (isDesktop) {
       return renderFilterResultDesktopView();
     } else if (!isDesktop && isFilterApplied) {
       return renderFilterResultMobileView();

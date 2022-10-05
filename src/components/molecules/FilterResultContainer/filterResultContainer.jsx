@@ -146,6 +146,7 @@ export const FilterResultContainer = ({
                   }}
                 >
                   <EmptyResult
+                    isEmpty={true}
                     message={
                       "No results found. Please try again with a different search criteria."
                     }
