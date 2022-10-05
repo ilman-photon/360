@@ -172,6 +172,8 @@
     "cancelOther": "Enter other reason for cancelation",
     "btnCancel": "Cancel appointment",
     "btnKeep": "Keep appointment"
-
+  },
+  "appointment": {
+    "baseText": "Enter a city, state, or zip code to view results"
   }
 }

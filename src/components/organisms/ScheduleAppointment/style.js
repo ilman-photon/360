@@ -16,6 +16,7 @@ export const styles = {
   detailText: {
     color: "#003B4A",
     fontSize: "16px",
+    marginTop: "2px",
   },
   boldText: {
     fontWeight: "700",

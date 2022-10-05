@@ -645,7 +645,7 @@ Object {
                                   class="bioContainer  MuiBox-root css-68zbsl"
                                 >
                                   <h2
-                                    class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                    class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                     data-testid="appointment_provider_profile_name"
                                     tabindex="0"
                                   >
@@ -1307,7 +1307,7 @@ Object {
                                   class="bioContainer  MuiBox-root css-68zbsl"
                                 >
                                   <h2
-                                    class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                    class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                     data-testid="appointment_provider_profile_name"
                                     tabindex="0"
                                   >
@@ -1946,7 +1946,7 @@ Object {
                                   class="bioContainer  MuiBox-root css-68zbsl"
                                 >
                                   <h2
-                                    class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                    class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                     data-testid="appointment_provider_profile_name"
                                     tabindex="0"
                                   >
@@ -2550,7 +2550,7 @@ Object {
                                   class="bioContainer  MuiBox-root css-68zbsl"
                                 >
                                   <h2
-                                    class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                    class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                     data-testid="appointment_provider_profile_name"
                                     tabindex="0"
                                   >
@@ -3708,7 +3708,7 @@ Object {
                                 class="bioContainer  MuiBox-root css-68zbsl"
                               >
                                 <h2
-                                  class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                  class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                   data-testid="appointment_provider_profile_name"
                                   tabindex="0"
                                 >
@@ -4370,7 +4370,7 @@ Object {
                                 class="bioContainer  MuiBox-root css-68zbsl"
                               >
                                 <h2
-                                  class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                  class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                   data-testid="appointment_provider_profile_name"
                                   tabindex="0"
                                 >
@@ -5009,7 +5009,7 @@ Object {
                                 class="bioContainer  MuiBox-root css-68zbsl"
                               >
                                 <h2
-                                  class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                  class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                   data-testid="appointment_provider_profile_name"
                                   tabindex="0"
                                 >
@@ -5613,7 +5613,7 @@ Object {
                                 class="bioContainer  MuiBox-root css-68zbsl"
                               >
                                 <h2
-                                  class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                  class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                   data-testid="appointment_provider_profile_name"
                                   tabindex="0"
                                 >
@@ -6830,7 +6830,7 @@ Object {
                                   class="bioContainer  MuiBox-root css-68zbsl"
                                 >
                                   <h2
-                                    class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                    class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                     data-testid="appointment_provider_profile_name"
                                     tabindex="0"
                                   >
@@ -7492,7 +7492,7 @@ Object {
                                   class="bioContainer  MuiBox-root css-68zbsl"
                                 >
                                   <h2
-                                    class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                    class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                     data-testid="appointment_provider_profile_name"
                                     tabindex="0"
                                   >
@@ -8131,7 +8131,7 @@ Object {
                                   class="bioContainer  MuiBox-root css-68zbsl"
                                 >
                                   <h2
-                                    class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                    class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                     data-testid="appointment_provider_profile_name"
                                     tabindex="0"
                                   >
@@ -8735,7 +8735,7 @@ Object {
                                   class="bioContainer  MuiBox-root css-68zbsl"
                                 >
                                   <h2
-                                    class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                    class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                     data-testid="appointment_provider_profile_name"
                                     tabindex="0"
                                   >
@@ -9893,7 +9893,7 @@ Object {
                                 class="bioContainer  MuiBox-root css-68zbsl"
                               >
                                 <h2
-                                  class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                  class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                   data-testid="appointment_provider_profile_name"
                                   tabindex="0"
                                 >
@@ -10555,7 +10555,7 @@ Object {
                                 class="bioContainer  MuiBox-root css-68zbsl"
                               >
                                 <h2
-                                  class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                  class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                   data-testid="appointment_provider_profile_name"
                                   tabindex="0"
                                 >
@@ -11194,7 +11194,7 @@ Object {
                                 class="bioContainer  MuiBox-root css-68zbsl"
                               >
                                 <h2
-                                  class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                  class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                   data-testid="appointment_provider_profile_name"
                                   tabindex="0"
                                 >
@@ -11798,7 +11798,7 @@ Object {
                                 class="bioContainer  MuiBox-root css-68zbsl"
                               >
                                 <h2
-                                  class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                  class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                   data-testid="appointment_provider_profile_name"
                                   tabindex="0"
                                 >
@@ -13015,7 +13015,7 @@ Object {
                                   class="bioContainer  MuiBox-root css-68zbsl"
                                 >
                                   <h2
-                                    class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                    class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                     data-testid="appointment_provider_profile_name"
                                     tabindex="0"
                                   >
@@ -13677,7 +13677,7 @@ Object {
                                   class="bioContainer  MuiBox-root css-68zbsl"
                                 >
                                   <h2
-                                    class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                    class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                     data-testid="appointment_provider_profile_name"
                                     tabindex="0"
                                   >
@@ -14316,7 +14316,7 @@ Object {
                                   class="bioContainer  MuiBox-root css-68zbsl"
                                 >
                                   <h2
-                                    class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                    class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                     data-testid="appointment_provider_profile_name"
                                     tabindex="0"
                                   >
@@ -14920,7 +14920,7 @@ Object {
                                   class="bioContainer  MuiBox-root css-68zbsl"
                                 >
                                   <h2
-                                    class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                    class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                     data-testid="appointment_provider_profile_name"
                                     tabindex="0"
                                   >
@@ -16078,7 +16078,7 @@ Object {
                                 class="bioContainer  MuiBox-root css-68zbsl"
                               >
                                 <h2
-                                  class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                  class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                   data-testid="appointment_provider_profile_name"
                                   tabindex="0"
                                 >
@@ -16740,7 +16740,7 @@ Object {
                                 class="bioContainer  MuiBox-root css-68zbsl"
                               >
                                 <h2
-                                  class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                  class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                   data-testid="appointment_provider_profile_name"
                                   tabindex="0"
                                 >
@@ -17379,7 +17379,7 @@ Object {
                                 class="bioContainer  MuiBox-root css-68zbsl"
                               >
                                 <h2
-                                  class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                  class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                   data-testid="appointment_provider_profile_name"
                                   tabindex="0"
                                 >
@@ -17983,7 +17983,7 @@ Object {
                                 class="bioContainer  MuiBox-root css-68zbsl"
                               >
                                 <h2
-                                  class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                  class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                   data-testid="appointment_provider_profile_name"
                                   tabindex="0"
                                 >
@@ -19198,7 +19198,7 @@ Object {
                                   class="bioContainer  MuiBox-root css-68zbsl"
                                 >
                                   <h2
-                                    class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                    class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                     data-testid="appointment_provider_profile_name"
                                     tabindex="0"
                                   >
@@ -19860,7 +19860,7 @@ Object {
                                   class="bioContainer  MuiBox-root css-68zbsl"
                                 >
                                   <h2
-                                    class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                    class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                     data-testid="appointment_provider_profile_name"
                                     tabindex="0"
                                   >
@@ -20499,7 +20499,7 @@ Object {
                                   class="bioContainer  MuiBox-root css-68zbsl"
                                 >
                                   <h2
-                                    class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                    class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                     data-testid="appointment_provider_profile_name"
                                     tabindex="0"
                                   >
@@ -21103,7 +21103,7 @@ Object {
                                   class="bioContainer  MuiBox-root css-68zbsl"
                                 >
                                   <h2
-                                    class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                    class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                     data-testid="appointment_provider_profile_name"
                                     tabindex="0"
                                   >
@@ -22261,7 +22261,7 @@ Object {
                                 class="bioContainer  MuiBox-root css-68zbsl"
                               >
                                 <h2
-                                  class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                  class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                   data-testid="appointment_provider_profile_name"
                                   tabindex="0"
                                 >
@@ -22923,7 +22923,7 @@ Object {
                                 class="bioContainer  MuiBox-root css-68zbsl"
                               >
                                 <h2
-                                  class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                  class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                   data-testid="appointment_provider_profile_name"
                                   tabindex="0"
                                 >
@@ -23562,7 +23562,7 @@ Object {
                                 class="bioContainer  MuiBox-root css-68zbsl"
                               >
                                 <h2
-                                  class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                  class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                   data-testid="appointment_provider_profile_name"
                                   tabindex="0"
                                 >
@@ -24166,7 +24166,7 @@ Object {
                                 class="bioContainer  MuiBox-root css-68zbsl"
                               >
                                 <h2
-                                  class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                  class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                   data-testid="appointment_provider_profile_name"
                                   tabindex="0"
                                 >
@@ -25383,7 +25383,7 @@ Object {
                                   class="bioContainer  MuiBox-root css-68zbsl"
                                 >
                                   <h2
-                                    class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                    class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                     data-testid="appointment_provider_profile_name"
                                     tabindex="0"
                                   >
@@ -26045,7 +26045,7 @@ Object {
                                   class="bioContainer  MuiBox-root css-68zbsl"
                                 >
                                   <h2
-                                    class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                    class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                     data-testid="appointment_provider_profile_name"
                                     tabindex="0"
                                   >
@@ -26684,7 +26684,7 @@ Object {
                                   class="bioContainer  MuiBox-root css-68zbsl"
                                 >
                                   <h2
-                                    class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                    class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                     data-testid="appointment_provider_profile_name"
                                     tabindex="0"
                                   >
@@ -27288,7 +27288,7 @@ Object {
                                   class="bioContainer  MuiBox-root css-68zbsl"
                                 >
                                   <h2
-                                    class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                    class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                     data-testid="appointment_provider_profile_name"
                                     tabindex="0"
                                   >
@@ -28446,7 +28446,7 @@ Object {
                                 class="bioContainer  MuiBox-root css-68zbsl"
                               >
                                 <h2
-                                  class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                  class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                   data-testid="appointment_provider_profile_name"
                                   tabindex="0"
                                 >
@@ -29108,7 +29108,7 @@ Object {
                                 class="bioContainer  MuiBox-root css-68zbsl"
                               >
                                 <h2
-                                  class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                  class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                   data-testid="appointment_provider_profile_name"
                                   tabindex="0"
                                 >
@@ -29747,7 +29747,7 @@ Object {
                                 class="bioContainer  MuiBox-root css-68zbsl"
                               >
                                 <h2
-                                  class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                  class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                   data-testid="appointment_provider_profile_name"
                                   tabindex="0"
                                 >
@@ -30351,7 +30351,7 @@ Object {
                                 class="bioContainer  MuiBox-root css-68zbsl"
                               >
                                 <h2
-                                  class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                  class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                   data-testid="appointment_provider_profile_name"
                                   tabindex="0"
                                 >
@@ -31292,6 +31292,62 @@ Object {
                 </div>
               </div>
             </div>
+            <div
+              class="MuiBox-root css-a8e15"
+            >
+              <div
+                class="css-1sag2zc-MuiStack-root"
+                data-testid="container-result"
+              >
+                <div
+                  class="MuiBox-root css-14ddcn9"
+                >
+                  <div
+                    class="MuiBox-root css-99f4pt"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-d6sfbn-MuiSvgIcon-root"
+                      data-testid="SearchIcon"
+                      focusable="false"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                      />
+                    </svg>
+                    <span
+                      class="MuiTypography-root MuiTypography-bodyLarge css-1glx6bf-MuiTypography-root"
+                    >
+                      baseText
+                    </span>
+                  </div>
+                </div>
+                <div
+                  class="MuiBox-root css-y8mce9"
+                >
+                  <span
+                    class="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-18lrjg1-MuiCircularProgress-root"
+                    role="progressbar"
+                    style="width: 40px; height: 40px;"
+                  >
+                    <svg
+                      class="MuiCircularProgress-svg css-1idz92c-MuiCircularProgress-svg"
+                      viewBox="22 22 44 44"
+                    >
+                      <circle
+                        class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate css-176wh8e-MuiCircularProgress-circle"
+                        cx="44"
+                        cy="44"
+                        fill="none"
+                        r="20.2"
+                        stroke-width="3.6"
+                      />
+                    </svg>
+                  </span>
+                </div>
+              </div>
+            </div>
             <div />
           </div>
         </div>
@@ -31690,6 +31746,62 @@ Object {
                   class="MuiTypography-root MuiTypography-bodyTinyRegular optionalInsuranceText css-1qgipj2-MuiTypography-root"
                 >
                   (Optional)
+                </span>
+              </div>
+            </div>
+          </div>
+          <div
+            class="MuiBox-root css-a8e15"
+          >
+            <div
+              class="css-1sag2zc-MuiStack-root"
+              data-testid="container-result"
+            >
+              <div
+                class="MuiBox-root css-14ddcn9"
+              >
+                <div
+                  class="MuiBox-root css-99f4pt"
+                >
+                  <svg
+                    aria-hidden="true"
+                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-d6sfbn-MuiSvgIcon-root"
+                    data-testid="SearchIcon"
+                    focusable="false"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"
+                    />
+                  </svg>
+                  <span
+                    class="MuiTypography-root MuiTypography-bodyLarge css-1glx6bf-MuiTypography-root"
+                  >
+                    baseText
+                  </span>
+                </div>
+              </div>
+              <div
+                class="MuiBox-root css-y8mce9"
+              >
+                <span
+                  class="MuiCircularProgress-root MuiCircularProgress-indeterminate MuiCircularProgress-colorPrimary css-18lrjg1-MuiCircularProgress-root"
+                  role="progressbar"
+                  style="width: 40px; height: 40px;"
+                >
+                  <svg
+                    class="MuiCircularProgress-svg css-1idz92c-MuiCircularProgress-svg"
+                    viewBox="22 22 44 44"
+                  >
+                    <circle
+                      class="MuiCircularProgress-circle MuiCircularProgress-circleIndeterminate css-176wh8e-MuiCircularProgress-circle"
+                      cx="44"
+                      cy="44"
+                      fill="none"
+                      r="20.2"
+                      stroke-width="3.6"
+                    />
+                  </svg>
                 </span>
               </div>
             </div>
@@ -32398,7 +32510,7 @@ Object {
                                   class="bioContainer  MuiBox-root css-68zbsl"
                                 >
                                   <h2
-                                    class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                    class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                     data-testid="appointment_provider_profile_name"
                                     tabindex="0"
                                   >
@@ -33060,7 +33172,7 @@ Object {
                                   class="bioContainer  MuiBox-root css-68zbsl"
                                 >
                                   <h2
-                                    class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                    class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                     data-testid="appointment_provider_profile_name"
                                     tabindex="0"
                                   >
@@ -33699,7 +33811,7 @@ Object {
                                   class="bioContainer  MuiBox-root css-68zbsl"
                                 >
                                   <h2
-                                    class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                    class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                     data-testid="appointment_provider_profile_name"
                                     tabindex="0"
                                   >
@@ -34303,7 +34415,7 @@ Object {
                                   class="bioContainer  MuiBox-root css-68zbsl"
                                 >
                                   <h2
-                                    class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                    class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                     data-testid="appointment_provider_profile_name"
                                     tabindex="0"
                                   >
@@ -35461,7 +35573,7 @@ Object {
                                 class="bioContainer  MuiBox-root css-68zbsl"
                               >
                                 <h2
-                                  class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                  class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                   data-testid="appointment_provider_profile_name"
                                   tabindex="0"
                                 >
@@ -36123,7 +36235,7 @@ Object {
                                 class="bioContainer  MuiBox-root css-68zbsl"
                               >
                                 <h2
-                                  class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                  class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                   data-testid="appointment_provider_profile_name"
                                   tabindex="0"
                                 >
@@ -36762,7 +36874,7 @@ Object {
                                 class="bioContainer  MuiBox-root css-68zbsl"
                               >
                                 <h2
-                                  class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                  class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                   data-testid="appointment_provider_profile_name"
                                   tabindex="0"
                                 >
@@ -37366,7 +37478,7 @@ Object {
                                 class="bioContainer  MuiBox-root css-68zbsl"
                               >
                                 <h2
-                                  class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-mtvlum-MuiTypography-root"
+                                  class="MuiTypography-root MuiTypography-h2 doctorNameViewSchedule css-mtvlum-MuiTypography-root"
                                   data-testid="appointment_provider_profile_name"
                                   tabindex="0"
                                 >

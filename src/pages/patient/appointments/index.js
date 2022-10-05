@@ -22,6 +22,7 @@ import { colors } from "../../../styles/theme";
 import ModalCancelScheduling from "../../../components/organisms/ScheduleAppointment/ModalCancelScheduling/modalCancelScheduling";
 import Cookies from "universal-cookie";
 import moment from "moment";
+import { addToCalendar } from "../../../utils/addToCalendar";
 export default function Appointments() {
   const [modalErrorRequest, setModalErrorRequest] = useState(false);
   const [modalSuccessCancel, setModalSuccessCancel] = useState(false);
@@ -132,6 +133,7 @@ export default function Appointments() {
               onCancelClicked={() => {
                 setModalCancel(true);
               }}
+              onAddToCalendarClicked={addToCalendar}
             />
           )}
           {appointments && <PastAppointment data={appointments} />}

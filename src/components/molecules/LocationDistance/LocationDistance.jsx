@@ -22,6 +22,7 @@ export const LocationDistance = ({
         gridTemplateColumns: isDesktop ? "repeat(2, 1fr)" : "none",
         width: isDesktop ? "auto" : "80px",
         marginLeft: isDesktop ? "0px" : "15px",
+        marginTop: isDesktop ? "10px" : "0px",
         justifyContent: "center",
         alignContent: "center",
         gridTemplateRows: "auto",

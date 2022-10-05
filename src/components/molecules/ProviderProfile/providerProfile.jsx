@@ -100,7 +100,9 @@ export default function ProviderProfile({
   }
 
   function getDoctorNameStyle() {
-    if (isAppointment || isViewSchedule) {
+    if (isViewSchedule) {
+      return styles.doctorNameViewSchedule;
+    } else if (isAppointment) {
       return styles.doctorNameAppointment;
     } else if (isMap) {
       return styles.doctorMap;
