@@ -4,6 +4,7 @@ import moment from "moment";
 import React, { useState } from "react";
 import Collapse from "@mui/material/Collapse";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import Button from "@mui/material/Button";
 import AppointmentInformation from "../../molecules/AppointmentInformation/appointmentInformation";
 export function PastAppointmentCard({ data, threshold }) {
@@ -57,7 +58,7 @@ export function PastAppointmentCard({ data, threshold }) {
           <Button
             onClick={() => (threshold == 0 ? handleClickAlt() : handleClick())}
           >
-            <ExpandMoreIcon />
+            {openAlt ? <ExpandLessIcon /> : <ExpandMoreIcon />}
           </Button>
         </Box>
       </Box>

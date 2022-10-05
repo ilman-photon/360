@@ -372,21 +372,21 @@ function parsePrescriptionDetailsData(prescriptionDetails, type) {
     if (type === "glasses") {
       data.push(
         createGlassesDataTable({
-          eye: prescription.Eye,
-          sph: prescription.Sph,
-          cyl: prescription.Cyl,
-          axis: prescription.Axis,
-          add: prescription.Add,
+          eye: prescription.Eye || prescription.eye,
+          sph: prescription.Sph || prescription.sph,
+          cyl: prescription.Cyl || prescription.cyl,
+          axis: prescription.Axis || prescription.axis,
+          add: prescription.Add || prescription.add,
         })
       );
     } else {
       data.push(
         createContactDataTable({
-          eye: prescription.Eye,
-          sph: prescription.Sph,
-          bc: prescription.Bc,
-          cyl: prescription.Cyl,
-          axis: prescription.Axis,
+          eye: prescription.Eye || prescription.eye,
+          sph: prescription.Sph || prescription.eye,
+          bc: prescription.Bc || prescription.bc,
+          cyl: prescription.Cyl || prescription.cyl,
+          axis: prescription.Axis || prescription.axis,
         })
       );
     }

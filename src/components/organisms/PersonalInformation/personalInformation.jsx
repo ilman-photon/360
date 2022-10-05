@@ -100,6 +100,9 @@ export default function PersonalInformation({
       titleIcon={<AccountCircleOutlinedIcon />}
       title="Personal Information"
       isEditing={isEditing}
+      textStyle={{
+        fontWeight: "700",
+      }}
       // OnEditClicked={OnEditClicked}
       actionContent={
         isDesktop ? (
@@ -220,7 +223,10 @@ export default function PersonalInformation({
           </LabelWithInfo>
 
           <div>
-            <Typography variant="h3" sx={{ pb: 2, color: colors.black }}>
+            <Typography
+              variant="h3"
+              sx={{ pb: 2, color: colors.black, fontSize: "26px" }}
+            >
               State Issued ID
             </Typography>
             <Typography
@@ -496,7 +502,10 @@ export default function PersonalInformation({
               }}
             />
 
-            <Typography variant="h3" sx={{ mb: 2, color: colors.black }}>
+            <Typography
+              variant="h3"
+              sx={{ mb: 2, color: colors.black, fontSize: "26px" }}
+            >
               State Issued ID
             </Typography>
             <Typography variant="regularBold" sx={{ mb: 3 }}>
@@ -508,7 +517,11 @@ export default function PersonalInformation({
               <Stack spacing={2}>
                 <Typography
                   variant="regularBold"
-                  sx={{ color: colors.black, fontWeight: 600 }}
+                  sx={{
+                    color: colors.black,
+                    fontSize: "18px",
+                    fontWeight: 700,
+                  }}
                 >
                   Front Card
                 </Typography>
@@ -556,7 +569,11 @@ export default function PersonalInformation({
               <Stack spacing={2}>
                 <Typography
                   variant="regularBold"
-                  sx={{ color: colors.black, fontWeight: 600 }}
+                  sx={{
+                    color: colors.black,
+                    fontSize: "18px",
+                    fontWeight: 700,
+                  }}
                 >
                   Back Card
                 </Typography>

@@ -5,6 +5,9 @@ import {
   AccordionDetails,
   AccordionSummary,
   Box,
+  Dialog,
+  DialogActions,
+  DialogContent,
   Divider,
   Stack,
   Typography,
@@ -18,7 +21,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlined";
 import MenuList from "./menuList";
 import styles from "./styles.module.scss";
 import constants from "../../../utils/constants";
@@ -39,10 +41,12 @@ export default function PrescriptionMedication({
   },
   requestRefillResponseData = null,
 }) {
+  const [showModal, setShowModal] = React.useState(false);
   const containerActive = React.useRef(null);
   const containerPast = React.useRef(null);
   const [filterOpen, setFilterOpen] = React.useState(false);
   const [activeFilter, setActiveFilter] = React.useState([]);
+  const [selectedData, setSelectedData] = React.useState({});
   const [requestRefillResponse, setRequestRefillResponse] =
     React.useState(null);
   const isFilterApplied = activeFilter.length > 0;
@@ -120,7 +124,7 @@ export default function PrescriptionMedication({
   const isMobile = useMediaQuery("(max-width: 768px)");
   const iconMedication = "/icon-medication.png";
 
-  const downloadPDF = (index = -1, medicationType) => {
+  const downloadPDF = (medicationType, index = -1) => {
     let containerSelector = null;
     if (medicationType === "past") {
       containerSelector = containerPast;
@@ -139,7 +143,7 @@ export default function PrescriptionMedication({
     });
   };
 
-  const printHTML = (index = -1, medicationType) => {
+  const printHTML = (medicationType, index = -1) => {
     let containerSelector = null;
     if (medicationType === "past") {
       containerSelector = containerPast;
@@ -150,22 +154,22 @@ export default function PrescriptionMedication({
       containerSelector.current.querySelector(
         `[data-testid=medication-${medicationType}-container-${index}]`
       ) || document.body;
-    const styles = Array.from(document.head.querySelectorAll("style"));
+    const headStyles = Array.from(document.head.querySelectorAll("style"));
     var WinPrint = window.open(
       "",
       "",
       "left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0"
     );
     WinPrint.document.write(element.innerHTML);
-    styles.forEach((st) => {
+    headStyles.forEach((st) => {
       WinPrint.document.head.appendChild(st.cloneNode(true));
     });
     WinPrint.document.close();
     WinPrint.focus();
     WinPrint.print();
-    // setTimeout(() => {
-    //   WinPrint.close();
-    // }, 500);
+    setTimeout(() => {
+      WinPrint.close();
+    }, 500);
   };
 
   const onSetFilter = (newFilterData) => {
@@ -184,12 +188,89 @@ export default function PrescriptionMedication({
    * @param {Boolean} isCancel as request type (request or cancel refill)
    * @param {Integer} index as selected index
    */
-  const onRequestCancelRefill = (data, isCancel) => {
-    const postBody = {
-      medicationId: data.id,
-    };
-    onMedicationRequestRefill(postBody, isCancel);
+  const onRequestCancelRefill = (data, isCancel, callback = () => {}) => {
+    if (isCancel && !showModal) {
+      setSelectedData(data);
+      setShowModal(true);
+    } else {
+      const postBody = {
+        medicationId: data.id,
+      };
+      onMedicationRequestRefill(postBody, isCancel);
+    }
+    callback();
   };
+
+  function renderDialogConfirmation() {
+    return (
+      <Dialog
+        class={styles.dialog}
+        open={showModal}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        sx={{
+          ".MuiDialog-container .MuiPaper-root": {
+            marginTop: "70px",
+            marginBottom: "auto",
+          },
+        }}
+      >
+        <DialogContent
+          className={styles.dialogContent}
+          style={{ padding: "16px" }}
+          sx={{
+            width: "500px",
+            "@media (max-width: 992px)": {
+              width: "auto",
+            },
+          }}
+        >
+          <Typography className={styles.dialogTypo}>
+            Are you sure you want to cancel?
+          </Typography>
+        </DialogContent>
+        <DialogActions
+          className={styles.dialogActionContainer}
+          style={{ padding: "16px" }}
+        >
+          <Box class={styles.dialogContainer}>
+            <StyledButton
+              theme="patient"
+              mode="secondary"
+              size="small"
+              gradient={false}
+              data-testid="close-refill-btn"
+              onClick={() => {
+                setShowModal(false);
+                setSelectedData({});
+              }}
+              aria-label={"Close"}
+              className={styles.closeButton}
+            >
+              Close
+            </StyledButton>
+            <StyledButton
+              theme="patient"
+              mode="primary"
+              size="small"
+              gradient={false}
+              data-testid="cancel-refill-btn"
+              onClick={() => {
+                onRequestCancelRefill(selectedData, true, () => {
+                  setShowModal(false);
+                  setSelectedData({});
+                });
+              }}
+              aria-label={"Cancel Refill"}
+              className={styles.cancelButton}
+            >
+              Cancel Refill
+            </StyledButton>
+          </Box>
+        </DialogActions>
+      </Dialog>
+    );
+  }
 
   function renderAppliedFilter() {
     return activeFilter.map((option, idx) => {
@@ -294,19 +375,19 @@ export default function PrescriptionMedication({
             {!isMobile ? (
               renderCTAIcon(
                 () => {
-                  downloadPDF(idx, medicationType);
+                  downloadPDF(medicationType, idx);
                 },
                 () => {
-                  printHTML(idx, medicationType);
+                  printHTML(medicationType, idx);
                 }
               )
             ) : (
               <MenuList
                 onClickDownloadButton={() => {
-                  downloadPDF(idx, medicationType);
+                  downloadPDF(medicationType, idx);
                 }}
                 onClickPrintButton={() => {
-                  printHTML(idx, medicationType);
+                  printHTML(medicationType, idx);
                 }}
               />
             )}
@@ -515,7 +596,10 @@ export default function PrescriptionMedication({
       >
         <Typography
           variant="titleCard"
-          className={!isMobile ? styles.paddingTop22 : {}}
+          className={[
+            styles.titleText,
+            !isMobile ? styles.paddingTop22 : {},
+          ].join(" ")}
         >
           {isFilterApplied ? "Medications" : "Active Medications"}{" "}
           {medications?.active?.length > 0
@@ -554,6 +638,7 @@ export default function PrescriptionMedication({
           </Box>
         </>
       )}
+      {renderDialogConfirmation()}
     </Box>
   );
 }

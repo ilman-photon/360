@@ -8,24 +8,33 @@ describe("ImageUploader Components", () => {
   const landscapeImage = faker.image.imageUrl(275, 173);
   const mockCallBack = jest.fn();
   beforeEach(() => {
-    container = render(<ImageUploader source={landscapeImage} OnUpload={mockCallBack}
+    container = render(
+      <ImageUploader
+        source={landscapeImage}
+        OnUpload={mockCallBack}
         label="Upload Front"
         width="100%"
         src="/login-bg.png"
-        alt=""/>);
+        alt=""
+      />
+    );
   });
 
   it("ImageUploader render", async () => {
-    expect(container).toMatchSnapshot();
-    await waitFor(() => container.getByText("Change photo"));
-    expect(container.getByText("Change photo")).toBeInTheDocument();
+    await waitFor(() => container.getByText("Change file"));
+    expect(container.getByText("Change file")).toBeInTheDocument();
 
-    container.rerender(<ImageUploader source={""} OnUpload={mockCallBack}
-      label="Upload Front"
-      width="100%"
-      src=""
-      alt=""/>);
+    container.rerender(
+      <ImageUploader
+        source={""}
+        OnUpload={mockCallBack}
+        label="Upload Front"
+        width="100%"
+        src=""
+        alt=""
+      />
+    );
 
-      expect(container.getByText("Upload Front")).toBeInTheDocument();
+    expect(container.getByText("Upload Front")).toBeInTheDocument();
   });
 });

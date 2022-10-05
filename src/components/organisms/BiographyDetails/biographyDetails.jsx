@@ -78,18 +78,18 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
     );
   };
 
-  const getAddressQuery = (address) => {
-    return `${address.addressLine1} ${address.addressLine2} ${address.city} ${address.state} ${address.zipcode}`.replace(
+  const getAddressQuery = (queryAddress) => {
+    return `${queryAddress.addressLine1} ${queryAddress.addressLine2} ${queryAddress.city} ${queryAddress.state} ${queryAddress.zipcode}`.replace(
       / /g,
       "+"
     );
   };
 
-  const renderAddress = (addressArray) => {
+  const renderAddress = (newAddressArray) => {
     return (
       <Box>
-        {addressArray.map((address, idx) => {
-          const addressQuery = getAddressQuery(address);
+        {newAddressArray.map((newAddress, idx) => {
+          const addressQuery = getAddressQuery(newAddress);
           return (
             <Box
               className={styles.mapAddressContainer}
@@ -111,13 +111,13 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
                 className={styles.mapAddress}
                 tabIndex={0}
               >
-                {address && (
+                {newAddress && (
                   <>
-                    {address.addressLine1}
+                    {newAddress.addressLine1}
                     <br />
-                    {address.addressLine2}
+                    {newAddress.addressLine2}
                     <br />
-                    {address.city}, {address.state}, {address.zipcode}
+                    {newAddress.city}, {newAddress.state}, {newAddress.zipcode}
                   </>
                 )}
               </Typography>
