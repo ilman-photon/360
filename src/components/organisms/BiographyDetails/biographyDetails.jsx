@@ -91,11 +91,11 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
     );
   };
 
-  const renderAddress = (addressArray) => {
+  const renderAddress = (newAddressArray) => {
     return (
       <Box>
-        {addressArray.map((address, idx) => {
-          const addressQuery = getAddressQuery(address);
+        {newAddressArray.map((newAddress, idx) => {
+          const addressQuery = getAddressQuery(newAddress);
           return (
             <Box
               className={styles.mapAddressContainer}
@@ -119,9 +119,9 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
                 className={styles.mapAddress}
                 tabIndex={0}
               >
-                {address && (
+                {newAddress && (
                   <>
-                    {address.addressLine1}
+                    {newAddress.addressLine1}
                     <br />
                     {address.addressLine2 && (
                       <>

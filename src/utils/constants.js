@@ -198,6 +198,11 @@ module.exports = {
       previousProvider: "provider_btnPrevious",
       nextProvider: "provider_btnNext",
     },
+    APPOINTMENTS_DETAIL_TEST_ID: {
+      expandCollapseAll: "appointment_expandCollapseAll",
+      expandCollapseSection: "provider_expandCollapseSection",
+      download: "provider_btnDownload",
+    },
   },
   ERROR_CODE: {
     NETWORK_ERR: "ERR_NETWORK",
