@@ -396,6 +396,7 @@ export default function ContactInformation({
                         select
                         label="State"
                         autoComplete="address-level1"
+                        data-testid="styled-select-state"
                         value={value}
                         onChange={onChange}
                         error={!!error}

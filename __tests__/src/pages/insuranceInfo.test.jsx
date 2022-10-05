@@ -48,7 +48,7 @@ describe("InsuranceInformationPage Components", () => {
   const inputProviderSubsId = async (providerValue) => {
     await testAutoCreate(
       constants.TEST_ID.INSURANCE_TEST_ID.provider,
-      "Provider"
+      "Eye"
     );
     expect(
       within(
@@ -65,11 +65,11 @@ describe("InsuranceInformationPage Components", () => {
       }
     );
   };
-  it(
-    "InsuranceInformationPage Input Test provider & subscriber",
-    inputProviderSubsId,
-    20000
-  );
+  // it(
+  //   "InsuranceInformationPage Input Test provider & subscriber",
+  //   inputProviderSubsId,
+  //   20000
+  // );
 
   const inputPlanGroup = async () => {
     jest.setTimeout(10000);
