@@ -39,6 +39,7 @@ import { Api } from "../../api/api";
 import ModalConfirmation from "../../../components/organisms/ScheduleAppointment/ScheduleConfirmation/modalConfirmation";
 import Cookies from "universal-cookie";
 import { TEST_ID } from "../../../utils/constants";
+import { getCity } from "../../../utils/getCity";
 
 export async function getStaticProps() {
   return {
@@ -67,6 +68,8 @@ export default function Appointment({ googleApiKey }) {
   const [isOpen, setIsOpen] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isReschedule, setIsReschedule] = useState(false);
+  const [currentCity, setCurrentCity] = useState("");
+  const [locationChange, setLocationChange] = useState(false);
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -281,6 +284,13 @@ export default function Appointment({ googleApiKey }) {
       });
     }
   }, [dataFilter, coords]);
+
+  useEffect(() => {
+    if (coords) {
+      getCity(googleApiKey, coords, setCurrentCity);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [coords, locationChange]);
 
   useEffect(() => {
     onCalledgetSugestionAPI();
@@ -561,6 +571,8 @@ export default function Appointment({ googleApiKey }) {
             purposeOfVisitData={filterSuggestionData.purposeOfVisit}
             insuranceCarrierData={filterSuggestionData.insuranceCarrier}
             isFixed={false}
+            currentCity={currentCity}
+            onChangeLocation={() => setLocationChange(true)}
           />
         </>
       ) : (

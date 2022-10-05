@@ -18,7 +18,6 @@ import CloseIcon from "@mui/icons-material/Close";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlined";
 import MenuList from "./menuList";
 import styles from "./styles.module.scss";
 import constants from "../../../utils/constants";
@@ -120,7 +119,7 @@ export default function PrescriptionMedication({
   const isMobile = useMediaQuery("(max-width: 768px)");
   const iconMedication = "/icon-medication.png";
 
-  const downloadPDF = (index = -1, medicationType) => {
+  const downloadPDF = (medicationType, index = -1) => {
     let containerSelector = null;
     if (medicationType === "past") {
       containerSelector = containerPast;
@@ -139,7 +138,7 @@ export default function PrescriptionMedication({
     });
   };
 
-  const printHTML = (index = -1, medicationType) => {
+  const printHTML = (medicationType, index = -1) => {
     let containerSelector = null;
     if (medicationType === "past") {
       containerSelector = containerPast;
@@ -150,22 +149,19 @@ export default function PrescriptionMedication({
       containerSelector.current.querySelector(
         `[data-testid=medication-${medicationType}-container-${index}]`
       ) || document.body;
-    const styles = Array.from(document.head.querySelectorAll("style"));
+    const headStyles = Array.from(document.head.querySelectorAll("style"));
     var WinPrint = window.open(
       "",
       "",
       "left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0"
     );
     WinPrint.document.write(element.innerHTML);
-    styles.forEach((st) => {
+    headStyles.forEach((st) => {
       WinPrint.document.head.appendChild(st.cloneNode(true));
     });
     WinPrint.document.close();
     WinPrint.focus();
     WinPrint.print();
-    // setTimeout(() => {
-    //   WinPrint.close();
-    // }, 500);
   };
 
   const onSetFilter = (newFilterData) => {
@@ -294,19 +290,19 @@ export default function PrescriptionMedication({
             {!isMobile ? (
               renderCTAIcon(
                 () => {
-                  downloadPDF(idx, medicationType);
+                  downloadPDF(medicationType, idx);
                 },
                 () => {
-                  printHTML(idx, medicationType);
+                  printHTML(medicationType, idx);
                 }
               )
             ) : (
               <MenuList
                 onClickDownloadButton={() => {
-                  downloadPDF(idx, medicationType);
+                  downloadPDF(medicationType, idx);
                 }}
                 onClickPrintButton={() => {
-                  printHTML(idx, medicationType);
+                  printHTML(medicationType, idx);
                 }}
               />
             )}

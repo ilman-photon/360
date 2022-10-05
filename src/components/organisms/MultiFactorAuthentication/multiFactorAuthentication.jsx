@@ -2,6 +2,7 @@ import * as React from "react";
 import Container from "./container";
 import { StyledInput } from "../../atoms/Input/input";
 import { useTranslation } from "next-i18next";
+import { Regex } from "../../../utils/regex";
 
 const constants = require("../../../utils/constants");
 
@@ -17,7 +18,6 @@ export default function MultiFactorAuthentication({
   const [isEndView, setEndView] = React.useState(false);
   const [mfaCode, setMfaCode] = React.useState("");
   const image = "/mail-mfa.png";
-
   const { t } = useTranslation("translation", {
     keyPrefix: "mfaPage",
     useSuspense: false,
@@ -29,6 +29,9 @@ export default function MultiFactorAuthentication({
         type="number"
         id="mfaCode"
         label={t("mfaLabel")}
+        onKeyDown={(e) => {
+          if (!Regex.numberOnly.test(e.key)) e.preventDefault();
+        }}
         fullWidth
         inputProps={{ minLength: 6, maxLength: 6 }}
         value={mfaCode}
