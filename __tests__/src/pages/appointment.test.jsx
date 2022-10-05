@@ -12,6 +12,7 @@ import {
   mockInsurance,
   submitFilter,
 } from "../../../__mocks__/mockResponse";
+import { TEST_ID } from "../../../src/utils/constants";
 function createMatchMedia(width) {
   return (query) => ({
     matches: mediaQuery.match(query, { width }),
@@ -21,8 +22,8 @@ function createMatchMedia(width) {
 }
 describe("App", () => {
   let container;
+  const mock = new MockAdapter(axios);
   beforeEach(() => {
-    const mock = new MockAdapter(axios);
     jest.useFakeTimers("modern");
     jest.setSystemTime(new Date(2022, 3, 1));
     const mockGeolocation = {
@@ -46,6 +47,10 @@ describe("App", () => {
         {Appointment.getLayout(<Appointment />)}
       </Provider>
     );
+  });
+
+  afterEach(() => {
+    mock.reset();
   });
 
   it("renders App unchanged", async () => {
@@ -95,7 +100,9 @@ describe("App", () => {
     expect(container.getByText(/Cancel/i)).toBeInTheDocument();
     fireEvent.click(cancelButton);
 
-    const Searchbutton = container.getByText(/Search/i);
+    const Searchbutton = container.getAllByTestId(
+      TEST_ID.APPOINTMENT_TEST_ID.searchbtn
+    )[0];
     fireEvent.click(Searchbutton);
 
     await waitFor(() => {
