@@ -46,7 +46,11 @@ export default function AppointmentCard({
     appointmentInfo: {},
   });
   const [appointmentCount, setAppointmentCount] = React.useState(0);
-
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      console.log("enter press here! ");
+    }
+  };
   useEffect(() => {
     setAppointment(parseAppointmentCardData(appointmentData));
     setAppointmentCount(appointmentData.length);
@@ -180,8 +184,22 @@ export default function AppointmentCard({
                   {appointment.providerInfo?.position}
                 </Typography>
                 {renderAddressUI()}
-                <Typography variant="bodyLinkRegular" tabIndex={0}>
-                  {appointment.providerInfo?.phoneNumber}
+                <Typography
+                  variant="bodyLinkRegular"
+                  tabIndex={0}
+                  onKeyPress={() =>
+                    window.open(`tel:${appointment.providerInfo?.phoneNumber}`)
+                  }
+                >
+                  <a
+                    onKeyPress={() =>
+                      window.open(
+                        `tel:${appointment.providerInfo?.phoneNumber}`
+                      )
+                    }
+                  >
+                    {appointment.providerInfo?.phoneNumber}{" "}
+                  </a>
                 </Typography>
                 {renderGetDirection()}
               </Box>
