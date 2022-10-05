@@ -34,11 +34,17 @@ import {
   parseSuggestionData,
   setRangeDateData,
   getProvideOverlay,
+  parsePurposeOfVisit,
+  parseInsuranceCarrier,
+  getMondayOfCurrentWeek,
+  parseProviderListData,
+  getSaturdayOfCurrentWeek,
 } from "../../../utils/appointment";
 import { Api } from "../../api/api";
 import ModalConfirmation from "../../../components/organisms/ScheduleAppointment/ScheduleConfirmation/modalConfirmation";
 import Cookies from "universal-cookie";
 import { TEST_ID } from "../../../utils/constants";
+import { fetchAllPayers } from "../../../store/provider";
 import { getCity } from "../../../utils/getCity";
 
 export async function getStaticProps() {
@@ -61,7 +67,12 @@ export default function Appointment({ googleApiKey }) {
   const [rangeDate, setRangeDate] = useState({ startDate: "", endDate: "" });
   const [isLoading, setIsLoading] = useState(false);
   const [providerDataOverview, setProviderDataOverview] = useState({});
+  const [tempProviderDataOverview, setTempProviderDataOverview] = useState({});
   const [rangeDateOverview, setRangeDateOverview] = useState({
+    startDate: "",
+    endDate: "",
+  });
+  const [tempRangeDateOverview, setTempRangeDateOverview] = useState({
     startDate: "",
     endDate: "",
   });
@@ -75,6 +86,7 @@ export default function Appointment({ googleApiKey }) {
   const dispatch = useDispatch();
   const cookies = new Cookies();
 
+  const insuranceCarrierList = useSelector((state) => state.provider.list);
   const filterData = useSelector((state) => state.appointment.filterData);
   const filterBy = useSelector((state) => state.appointment.filterBy);
   const activeFilterBy = useSelector(
@@ -85,7 +97,7 @@ export default function Appointment({ googleApiKey }) {
   );
 
   useEffect(() => {
-    if (providerListData) {
+    if (providerListData && providerListData.length > 0) {
       setRangeDate(setRangeDateData(providerListData));
       setRangeDateOverview(setRangeDateData(providerListData));
     }
@@ -133,18 +145,21 @@ export default function Appointment({ googleApiKey }) {
 
   const handleClose = () => {
     setOpen(false);
-    setProviderDataOverview({});
+    setProviderDataOverview(tempProviderDataOverview);
+    setTempProviderDataOverview({});
+
+    setRangeDateOverview(tempRangeDateOverview);
+    setTempRangeDateOverview({});
   };
 
-  //Call API for getSuggestion
-  function onCalledgetSugestionAPI() {
+  function onCalledGetAppointmentTypesAPI() {
     const api = new Api();
     api
-      .getSugestion()
+      .getAppointmentTypes()
       .then(function (response) {
         const filterSuggestion = {
-          ...filterSuggestionData,
-          ...parseSuggestionData(response),
+          purposeOfVisit: parsePurposeOfVisit(response?.entities || []),
+          insuranceCarrier: parseInsuranceCarrier(insuranceCarrierList),
         };
         setFilterSuggestionData(filterSuggestion);
       })
@@ -153,47 +168,59 @@ export default function Appointment({ googleApiKey }) {
       });
   }
 
-  //Call API for submitFilter
   function onCallSubmitFilterAPI(
     requestData,
     activeFilterByData = [],
     isOverlay = false
   ) {
+    const selectedAppointmentType = filterSuggestionData?.purposeOfVisit?.find(
+      (element) => element.title === requestData.purposeOfVisit
+    );
+    const startDateRequest = getMondayOfCurrentWeek(requestData.date);
+    const endDateRequest = getSaturdayOfCurrentWeek(requestData.date);
     const postBody = {
-      location: {
-        latitude: coords?.latitude,
-        longitude: coords?.longitude,
+      appointmentType: {
+        code: selectedAppointmentType?.id || "",
       },
-      locationName: requestData.location,
-      date: requestData.date,
-      appointmentType: requestData.purposeOfVisit,
-      insuranceCarrier: requestData.insuranceCarrier,
-      filterBy: activeFilterByData,
+      currentDate: startDateRequest,
+      numDays: 6,
+      days: ["ALL"],
+      prefTime: "ALL",
     };
     if (!isOverlay) {
       setIsLoading(true);
     }
     const api = new Api();
     api
-      .submitFilter(postBody)
+      .submitFilter(requestData.location, postBody)
       .then(function (response) {
+        const parseProviderData = parseProviderListData(
+          response,
+          postBody.currentDate,
+          endDateRequest
+        );
+        const rangeDate = {
+          startDate: startDateRequest,
+          endDate: endDateRequest,
+        };
         if (isOverlay) {
           const providerOverview = getProvideOverlay(
-            providerDataOverview.providerId,
-            response.listOfProvider
+            providerDataOverview,
+            parseProviderData.listOfProvider,
+            startDateRequest,
+            endDateRequest
           );
-          setRangeDateOverview(setRangeDateData(response?.listOfProvider));
+
+          setRangeDateOverview(rangeDate);
           setProviderDataOverview(providerOverview);
         } else {
-          if (
-            response?.listOfProvider.length > 0 &&
-            postBody.locationName !== "Jakarta"
-          ) {
-            dispatch(setProviderListData(response?.listOfProvider));
+          if (response?.offices?.length > 0) {
+            dispatch(setProviderListData(parseProviderData?.listOfProvider));
           } else {
             dispatch(setProviderListData([]));
+            setRangeDate(rangeDate);
           }
-          dispatch(setFilterBy(response.filterbyData));
+          dispatch(setFilterBy(parseProviderData.filterbyData));
         }
       })
       .catch(function () {
@@ -210,9 +237,9 @@ export default function Appointment({ googleApiKey }) {
 
   function getPostbodyForSubmit(date) {
     return {
-      locationName: dataFilter.location,
+      location: dataFilter.location,
       date: date,
-      appointmentType: dataFilter.purposeOfVisit,
+      purposeOfVisit: dataFilter.purposeOfVisit,
       insuranceCarrier: dataFilter.insuranceCarrier,
     };
   }
@@ -229,6 +256,8 @@ export default function Appointment({ googleApiKey }) {
 
   function onViewAllAvailability(providerData) {
     setProviderDataOverview(providerData);
+    setTempProviderDataOverview(providerData);
+    setTempRangeDateOverview(rangeDateOverview);
     setOpen(true);
   }
 
@@ -292,16 +321,18 @@ export default function Appointment({ googleApiKey }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [coords, locationChange]);
 
-  useEffect(() => {
-    onCalledgetSugestionAPI();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   React.useEffect(() => {
     const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
     setIsLoggedIn(isLogin);
+
+    dispatch(fetchAllPayers());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    onCalledGetAppointmentTypesAPI();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [insuranceCarrierList]);
 
   function onRenderDialogView() {
     return (
@@ -502,6 +533,7 @@ export default function Appointment({ googleApiKey }) {
   }
 
   function renderFilterResultMobileView() {
+    console.log("Index: ", rangeDate);
     return (
       <FilterResult
         onClickViewAllAvailability={onViewAllAvailability}
@@ -525,6 +557,7 @@ export default function Appointment({ googleApiKey }) {
           onCallSubmitFilterAPI(dataFilter, filter);
         }}
         appliedFilter={activeFilterBy}
+        isLoading={isLoading}
       />
     );
   }
