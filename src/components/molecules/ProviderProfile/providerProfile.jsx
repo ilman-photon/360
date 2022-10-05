@@ -157,7 +157,7 @@ export default function ProviderProfile({
             fontSize={getNameFontSize()}
             data-testid={TEST_ID.APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name}
             onClick={() => {
-              router.push("/patient/bio");
+              router.push(`/patient/bio/${providerData.providerId}`);
             }}
             className={getDoctorNameStyle()}
             tabIndex={"0"}
