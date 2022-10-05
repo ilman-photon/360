@@ -76,9 +76,6 @@ export default function InsuranceInfoPage() {
           content: "Insurance successfully added",
         })
       );
-      setTimeout(() => {
-        dispatch(closePageMessage());
-      }, 5000);
       setIsShowErrorNew(false);
       setIsShowError(false);
       setOpenNewInsuranceForm(false);
@@ -99,9 +96,6 @@ export default function InsuranceInfoPage() {
         content: "Insurance successfully removed",
       })
     );
-    setTimeout(() => {
-      dispatch(closePageMessage());
-    }, 5000);
   };
 
   const OnOpenEditInsuranceForm = (payload) => {
@@ -168,6 +162,7 @@ export default function InsuranceInfoPage() {
           borderRadius: "0px",
           justifyContent: "center",
           position: "absolute",
+          zIndex: "1",
           top: "-40px",
           left: 0,
           width: "100%",
@@ -181,10 +176,9 @@ export default function InsuranceInfoPage() {
         <Stack>
           <AccountCard
             titleIcon={<AccountCircleOutlined />}
-            title="Insurance Documents"
+            title="Insurance Document"
             // OnEditClicked={OnEditClicked}
             sx={{ px: 3, py: 5 }}
-            textStyle={{ fontWeight: "700" }}
             actionContent={
               isDesktop ? (
                 <StyledButton
@@ -322,32 +316,19 @@ export default function InsuranceInfoPage() {
       <Dialog
         onClose={() => setConfirmationDeleteDialog(false)}
         open={confirmationDeleteDialog}
-        tabIndex={"0"}
-        ariaLabel={"Remove Insurance"}
-        ariaLive={"Remove Insurance"}
         sx={{
           ".MuiPaper-root": {
-            minWidth: "280px",
+            minWidth: "500px",
           },
           ".MuiDialogActions-root": {
             padding: 2,
           },
         }}
       >
-        <DialogTitle
-          tabIndex={0}
-          ariaLabel={"Remove Insurance"}
-          ariaLive={"Remove Insurance"}
-          sx={{ color: "#003B4A", fontSize: "22px" }}
-        >
+        <DialogTitle sx={{ color: "#003B4A", fontSize: "22px" }}>
           Remove Insurance
         </DialogTitle>
-        <DialogContent
-          tabIndex={0}
-          ariaLabel={"Are you sure you want to remove insurance?"}
-          ariaLive={"Are you sure you want to remove insurance?"}
-          sx={{ color: "#6C757D" }}
-        >
+        <DialogContent sx={{ color: "#6C757D" }}>
           Are you sure you want to remove insurance?
         </DialogContent>
         <DialogActions>
@@ -355,9 +336,6 @@ export default function InsuranceInfoPage() {
             <StyledButton
               size="small"
               mode="secondary"
-              tabIndex={0}
-              ariaLabel={"No, keep Insurance button"}
-              ariaLive={" No, keep Insurance button"}
               onClick={() => setConfirmationDeleteDialog(false)}
               sx={{ fontSize: "14px" }}
             >
@@ -366,9 +344,6 @@ export default function InsuranceInfoPage() {
             <StyledButton
               size="small"
               mode="error"
-              tabIndex={0}
-              ariaLabel={"Yes, keep Insurance button"}
-              ariaLive={" Yes, keep Insurance button"}
               onClick={OnConfirmRemoveInsurance}
               sx={{ fontSize: "14px" }}
             >
