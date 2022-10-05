@@ -499,12 +499,17 @@ export default function Prescriptions({
               ]}
             >
               <Typography
-                variant="titleCard"
-                className={isViewAll && !isMobile ? styles.paddingTop22 : {}}
+                className={[
+                  styles.titleText,
+                  isViewAll && !isMobile ? styles.paddingTop22 : {},
+                ].join(" ")}
                 tabIndex={0}
                 aria-label={"Glasses Prescription Heading"}
               >
-                Glasses Prescriptions
+                {"Glasses Prescription"}{" "}
+                {prescription?.glasses?.length > 0
+                  ? `(${prescription?.glasses?.length})`
+                  : ``}
               </Typography>
             </Box>
             <Box ref={containerGlasses}>
@@ -543,12 +548,17 @@ export default function Prescriptions({
               ]}
             >
               <Typography
-                variant="titleCard"
-                className={isViewAll && !isMobile ? styles.paddingTop22 : {}}
+                className={[
+                  styles.titleText,
+                  isViewAll && !isMobile ? styles.paddingTop22 : {},
+                ].join(" ")}
                 tabIndex={0}
                 aria-label={"Contacts Prescription Heading"}
               >
-                Contacts Prescriptions
+                {"Contacts Prescriptions"}{" "}
+                {prescription?.contacts?.length > 0
+                  ? `(${prescription?.contacts?.length})`
+                  : ``}
               </Typography>
             </Box>
             <Box ref={containerContact}>

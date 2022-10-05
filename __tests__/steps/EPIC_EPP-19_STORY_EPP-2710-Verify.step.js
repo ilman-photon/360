@@ -583,7 +583,7 @@ defineFeature(feature, (test) => {
           fireEvent.click(glassesTab)
       })
       
-      await waitFor(()=> container.getByText(/Glasses Prescriptions/i))
+      await waitFor(()=> container.getAllByText(/Glasses Prescription/i)[0])
     });
 
     then(/^User should navigated to "(.*)" screen$/, (arg0) => {
