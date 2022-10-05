@@ -116,21 +116,19 @@ Object {
               >
                 <h4
                   class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
-                  style="color: rgb(0, 59, 74); font-size: 18px; font-weight: 700;"
+                  style="color: rgb(0, 59, 74); font-size: 18px; margin-top: 2px; font-weight: 700;"
                   tabindex="0"
                 />
                 <span
                   aria-label="Myself"
                   class="MuiTypography-root MuiTypography-regularBold css-37jdci-MuiTypography-root"
                   data-testid="schedule_appointment_location_address"
-                  style="color: rgb(0, 59, 74); font-size: 16px;"
-                >
-                  <br />
-                </span>
+                  style="color: rgb(0, 59, 74); font-size: 16px; margin-top: 2px;"
+                />
                 <h4
                   aria-label="provider phone number undefined"
                   class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
-                  style="color: rgb(0, 59, 74); font-size: 16px;"
+                  style="color: rgb(0, 59, 74); font-size: 16px; margin-top: 2px;"
                   tabindex="0"
                 >
                   <a
@@ -258,21 +256,19 @@ Object {
             >
               <h4
                 class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
-                style="color: rgb(0, 59, 74); font-size: 18px; font-weight: 700;"
+                style="color: rgb(0, 59, 74); font-size: 18px; margin-top: 2px; font-weight: 700;"
                 tabindex="0"
               />
               <span
                 aria-label="Myself"
                 class="MuiTypography-root MuiTypography-regularBold css-37jdci-MuiTypography-root"
                 data-testid="schedule_appointment_location_address"
-                style="color: rgb(0, 59, 74); font-size: 16px;"
-              >
-                <br />
-              </span>
+                style="color: rgb(0, 59, 74); font-size: 16px; margin-top: 2px;"
+              />
               <h4
                 aria-label="provider phone number undefined"
                 class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
-                style="color: rgb(0, 59, 74); font-size: 16px;"
+                style="color: rgb(0, 59, 74); font-size: 16px; margin-top: 2px;"
                 tabindex="0"
               >
                 <a

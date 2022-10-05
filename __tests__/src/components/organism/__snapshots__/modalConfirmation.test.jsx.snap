@@ -42,7 +42,7 @@ Object {
           >
             <h2
               aria-label="Appointment confirmation page"
-              class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-aw0cy1-MuiTypography-root-MuiDialogTitle-root"
+              class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-j0ed6i-MuiTypography-root-MuiDialogTitle-root"
               id=":r0:"
             >
               <span
@@ -154,7 +154,7 @@ Object {
                     >
                       <p
                         aria-label="Add to calendar"
-                        class="MuiTypography-root MuiTypography-body1 css-v8btcj-MuiTypography-root"
+                        class="MuiTypography-root MuiTypography-body1 css-1m0h8sf-MuiTypography-root"
                       >
                         <svg
                           aria-hidden="false"
@@ -486,7 +486,7 @@ Object {
           >
             <h2
               aria-label="Appointment confirmation page"
-              class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-aw0cy1-MuiTypography-root-MuiDialogTitle-root"
+              class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-j0ed6i-MuiTypography-root-MuiDialogTitle-root"
               id="customized-dialog-title"
             >
               <span
@@ -598,7 +598,7 @@ Object {
                     >
                       <p
                         aria-label="Add to calendar"
-                        class="MuiTypography-root MuiTypography-body1 css-v8btcj-MuiTypography-root"
+                        class="MuiTypography-root MuiTypography-body1 css-1m0h8sf-MuiTypography-root"
                       >
                         <svg
                           aria-hidden="false"

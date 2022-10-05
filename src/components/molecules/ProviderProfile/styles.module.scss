@@ -90,7 +90,7 @@
   }
 }
 
-.appointment h2.doctorNameAppointment {
+.appointment h2.doctorNameViewSchedule {
   font-weight: 700;
   line-height: 28px !important;
   margin-bottom: 4px;
@@ -98,6 +98,20 @@
   font-size: 16px;
   color: #003b4a;
   text-decoration: underline;
+  @media (max-width: 992px) {
+    font-size: 18px;
+  }
+}
+
+.appointment h2.doctorNameAppointment {
+  font-family: "Libre Franklin", sans-serif;
+  font-weight: 700;
+  line-height: 28px !important;
+  margin-bottom: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #003b4a;
+  text-decoration: none;
   @media (max-width: 992px) {
     font-size: 18px;
   }

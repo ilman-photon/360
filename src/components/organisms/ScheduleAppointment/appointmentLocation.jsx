@@ -90,7 +90,6 @@ export default function AppointmentLocation({
               }
             >
               {getAddress(providerData.address)}
-              <br />
             </Typography>
             <Typography
               variant="h4"
