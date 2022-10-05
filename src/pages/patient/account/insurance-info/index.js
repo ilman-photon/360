@@ -41,6 +41,7 @@ import AccountCircleOutlined from "@mui/icons-material/AccountCircleOutlined";
 import constants from "../../../../utils/constants";
 import { fetchAllPayers, fetchPlans } from "../../../../store/provider";
 import Cookies from "universal-cookie";
+import { useRouter } from "next/router";
 
 export default function InsuranceInfoPage() {
   const [openNewInsuranceForm, setOpenNewInsuranceForm] = useState(false);
@@ -71,6 +72,7 @@ export default function InsuranceInfoPage() {
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
   const cookies = new Cookies();
+  const router = useRouter();
 
   const newInsuranceComp = useRef(null);
 
