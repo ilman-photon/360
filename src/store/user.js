@@ -69,6 +69,16 @@ const buildProfilePostBody = (postBody, payload) => {
           ),
         }
       : null,
+    stateIssuedIdBack: payload.issuedCardBack?.uid
+      ? { digitalAsset: payload.issuedCardBack }
+      : payload.issuedCardBack
+      ? {
+          digitalAsset: buildDigitalAssetObject(
+            payload.issuedCardBack,
+            "profile"
+          ),
+        }
+      : null,
   };
 
   const getGenderCode = (gender) => {
@@ -354,7 +364,7 @@ const buildUserData = (payload) => {
     preferredName: payload.nickName || "",
     profilePhoto: patientDetails.profilePhoto?.digitalAsset || null,
     issuedCardFront: patientDetails.stateIssuedId?.digitalAsset || null,
-    issuedCardBack: null,
+    issuedCardBack: patientDetails.stateIssuedIdBack?.digitalAsset || null,
     dob: payload.dob,
     title: TITLE_LIST[payload.title - 1] || "",
     ssn: payload.ssn,

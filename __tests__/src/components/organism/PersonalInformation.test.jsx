@@ -48,10 +48,6 @@ describe("PersonalInformation Components", () => {
     await waitFor(() => container.getByText("Preferred Name"));
   });
 
-  it("PersonalInformation render", () => {
-    expect(container).toMatchSnapshot();
-  });
-
   it("PersonalInformation View render", () => {
     expect(container.getByText("Name")).toBeInTheDocument();
     expect(container.getByText("Preferred Name")).toBeInTheDocument();

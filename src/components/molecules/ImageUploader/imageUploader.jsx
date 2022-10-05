@@ -178,8 +178,8 @@ export const ImageUploader = ({
         </>
       </Box>
       {helperText ? (
-        <Typography variant="bodySmallLightMedium">
-          *JPG or PNG file formats only. (File size limit is 4 MB)
+        <Typography variant="bodySmallMedium">
+          JPG or PNG file formats only. (File size limit is 4 MB)
         </Typography>
       ) : (
         ""
@@ -191,6 +191,7 @@ export const ImageUploader = ({
           sx={{
             textTransform: "none",
             fontSize: "14px",
+            fontWeight: "400",
             textDecoration: "underline",
             width: "fit-content",
             alignSelf: "center",
@@ -200,7 +201,7 @@ export const ImageUploader = ({
             inputImage.current.click();
           }}
         >
-          Change photo
+          Change file
         </Button>
       ) : (
         ""

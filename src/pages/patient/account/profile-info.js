@@ -63,9 +63,8 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
 
   const dispatch = useDispatch();
   const isDesktop = useMediaQuery("(min-width: 769px)");
-
-  const router = useRouter();
   const api = new Api();
+  const router = useRouter();
 
   const onBackButtonEvent = (e) => {
     e.preventDefault();
