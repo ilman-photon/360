@@ -166,6 +166,7 @@
     "scheduled": "You’re Scheduled!",
     "isEmergency": "Is this a medical emergency?",
     "thanksBar" : "Thank you for scheduling your appointment. We will send a confirmation Email/Text shortly.",
+    "thanksBarReschedule" : "Thank you for rescheduling your appointment. We will send a confirmation Email/Text shortly.",
     "patientInformation": "Patient Information",
     "cancelTitle": "Are you sure you want to cancel?",
     "cancelReason": "Reason for cancelation",
