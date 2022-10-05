@@ -1,5 +1,6 @@
 import axios from "axios";
 import { setGenericErrorMessage } from "../../store";
+import { fetchUser } from "../../store/user";
 import constants from "../../utils/constants";
 
 let store;
@@ -17,8 +18,11 @@ export class Api {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      timeout: 10000,
+      timeout: 20000,
     });
+
+    this.requestCounter = 0;
+    this.maxRequestCounter = 3;
   }
 
   errorGenericValidation = (err) => {
@@ -66,13 +70,15 @@ export class Api {
 
       switch (method) {
         case "get":
-          return this.client.get(url, postbody).then(resolver).catch(rejecter);
+          return api.client.get(url, postbody).then(resolver).catch(rejecter);
         case "post":
-          return this.client.post(url, postbody).then(resolver).catch(rejecter);
+          return api.client.post(url, postbody).then(resolver).catch(rejecter);
         case "put":
-          return this.client.put(url, postbody).then(resolver).catch(rejecter);
+          return api.client.put(url, postbody).then(resolver).catch(rejecter);
+        case "patch":
+          return api.client.patch(url, postbody).then(resolver).catch(rejecter);
         default:
-          return this.client.get(url, postbody).then(resolver).catch(rejecter);
+          return api.client.get(url, postbody).then(resolver).catch(rejecter);
       }
     });
   }
@@ -221,8 +227,8 @@ export class Api {
       return response.records.map((record) => {
         return {
           id: record.datasetid,
-          label: record.fields.ste_name,
-          value: record.fields.ste_name,
+          label: record.fields.ste_stusps_code,
+          value: record.fields.ste_stusps_code,
         };
       });
     } catch (error) {
@@ -315,6 +321,28 @@ export class Api {
     }
   }
 
+  async createURLDigitalAsset(file) {
+    const url = `/ecp/digital-asset/v1/asset`;
+    const splitted = file.type.split("/");
+    const subType = splitted[0];
+    const type = splitted[1];
+    const postBody = {
+      description: file.name,
+      name: file.name,
+      originalFileName: file.name,
+      subType,
+      type,
+    };
+    try {
+      const response = await this.getResponse(url, postBody, "post");
+      if (response) {
+        return response;
+      }
+    } catch (error) {
+      console.error({ error });
+    }
+  }
+
   getAppointmentTypes() {
     const url = "/ecp/appointments/appointment-types";
     return this.getResponse(url, {}, "get");
@@ -324,5 +352,23 @@ export class Api {
     const domain = window.location.origin;
     const url = `/ecp/appointments/available-slot?searchText=${locationName}`;
     return this.getResponse(url, postBody, "put");
+  }
+
+  async uploadFile(url, file) {
+    try {
+      const response = await axios({
+        method: "put",
+        url: url, //API url
+        data: file, // Buffer
+        maxContentLength: Infinity,
+        maxBodyLength: Infinity,
+        headers: {
+          "Content-Type": "image/png",
+        },
+      });
+      if (response.status === 200) return { success: true };
+    } catch (error) {
+      console.error({ error });
+    }
   }
 }

@@ -16,8 +16,8 @@ import { StyledButton } from "../../atoms/Button/button";
 import { colors } from "../../../styles/theme";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import Image from "next/image";
 import styles from "./insuranceView.module.scss";
+import ImageFallback from "../../atoms/Image/image";
 
 export default function InsuranceView({
   insuranceData = [],
@@ -30,9 +30,9 @@ export default function InsuranceView({
   },
 }) {
   const transformedData = {
-    Primary: [],
-    Secondary: [],
-    Tertiary: [],
+    PRIMARY: [],
+    SECONDARY: [],
+    TERTIARY: [],
   };
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
@@ -44,13 +44,12 @@ export default function InsuranceView({
     }
   });
 
-  console.log({ transformedData });
-
   return (
     <Fade in={!isEditing} unmountOnExit>
       <Stack spacing={3}>
         {Object.keys(transformedData).map((category, idx) => {
           const items = transformedData[category];
+          const categoryName = category.toLowerCase();
           if (items.length > 0) {
             return (
               <Accordion key={idx}>
@@ -60,8 +59,11 @@ export default function InsuranceView({
                   sx={{ background: "#FAFAFA" }}
                 >
                   <Stack spacing={1} direction="row" alignItems="center">
-                    <Typography variant="h3" sx={{ fontSize: "24px" }}>
-                      {category}
+                    <Typography
+                      variant="h3"
+                      sx={{ fontSize: "24px", textTransform: "capitalize" }}
+                    >
+                      {categoryName}
                     </Typography>
                     <div className={styles.totalCategoryItemsWrapper}>
                       {items.length}
@@ -74,7 +76,6 @@ export default function InsuranceView({
                     divider={<Divider sx={{ borderBottomWidth: 8 }} />}
                   >
                     {items.map((item, itemIdx) => {
-                      console.log({ item });
                       return (
                         <Stack key={itemIdx} spacing={3} divider={<Divider />}>
                           <Grid container spacing={{ xs: 4 }}>
@@ -193,11 +194,12 @@ export default function InsuranceView({
                                   Insurance Card - Front
                                 </Typography>
                                 <div className={styles.insuranceImageContainer}>
-                                  <Image
+                                  <ImageFallback
                                     width={263}
                                     height={139}
-                                    src={item.frontCard || "/transparent.png"}
+                                    source={item.frontCard}
                                     alt="front"
+                                    aria-label="Image"
                                   />
                                 </div>
                               </Grid>
@@ -213,11 +215,12 @@ export default function InsuranceView({
                                   Insurance Card - Back
                                 </Typography>
                                 <div className={styles.insuranceImageContainer}>
-                                  <Image
+                                  <ImageFallback
                                     width={263}
                                     height={139}
-                                    src={item.backCard || "/transparent.png"}
+                                    source={item.backCard}
                                     alt="back"
+                                    aria-label="Image"
                                     className={styles.insuranceImage}
                                   />
                                 </div>
@@ -244,7 +247,7 @@ export default function InsuranceView({
                               mode="secondary"
                               size="small"
                               onClick={() => {
-                                OnRemoveClicked(idx);
+                                OnRemoveClicked(item);
                               }}
                               sx={{
                                 width: { xs: "100%", md: "fit-content" },

@@ -1,4 +1,14 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { Api } from "../pages/api/api";
+
+let url;
+
+export const fetchToken = createAsyncThunk("index/fetchToken", async () => {
+  const api = new Api();
+  const response = await api.getToken();
+
+  return response.data;
+});
 
 const DEFAULT_FORM_MESSAGE = { success: null, title: null, content: null };
 const DEFAULT_PAGE_MESSAGE = {
@@ -15,6 +25,7 @@ const INITIAL_STATE = {
   pageMessage: DEFAULT_PAGE_MESSAGE,
   isBackToLogin: false,
   genericErrorMessage: null,
+  accessToken: null,
 };
 
 export const indexStore = createSlice({
@@ -44,6 +55,18 @@ export const indexStore = createSlice({
     },
     setGenericErrorMessage: (state, { payload }) => {
       state.genericErrorMessage = payload;
+    },
+  },
+  extraReducers: {
+    [fetchToken.pending]: (state) => {
+      state.status = "loading";
+    },
+    [fetchToken.fulfilled]: (state, { payload }) => {
+      state.accessToken = payload.access_token;
+      state.status = "success";
+    },
+    [fetchToken.rejected]: (state) => {
+      state.status = "failed";
     },
   },
 });
