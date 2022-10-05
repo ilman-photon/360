@@ -276,7 +276,7 @@ export default function PrescriptionMedication({
     return activeFilter.map((option, idx) => {
       return (
         <Box className={styles.filterChildButton} key={idx}>
-          {option.name}
+          <Box className={styles.filterText}>{option.name}</Box>
           <CloseIcon
             className={styles.closeIcon}
             onClick={() => {
@@ -530,7 +530,7 @@ export default function PrescriptionMedication({
   function renderUIFilter() {
     if (medications?.active?.length > 0) {
       return (
-        <Box className={styles.filterButtonContainer}>
+        <Box className={[styles.filterButtonContainer, styles.paddingTop22]}>
           <FilterBy
             activedFilter={[...activeFilter]}
             filter={testFilterData}
