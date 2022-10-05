@@ -1,6 +1,6 @@
 import * as React from "react";
 import { styles } from "./style";
-import { Button, Stack } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Container from "@mui/material/Container";
 import Toolbar from "@mui/material/Toolbar";
@@ -130,6 +130,14 @@ export default function BaseHeader({
 
               {/* Menu Mobile*/}
               <Box sx={styles.boxStyledMobile}>
+                <Avatar
+                  sx={{
+                    background: "#003B4A",
+                    alignSelf: "center",
+                    width: "24px",
+                    height: "24px",
+                  }}
+                />
                 <IconButton
                   size="large"
                   aria-label="account of current user"
