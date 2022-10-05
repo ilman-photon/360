@@ -98,9 +98,6 @@ export default function InsuranceInfoPage() {
       const { payload } = await dispatch(
         postInsurance({ patientId, payload: postBody })
       );
-      setIsShowErrorNew(false);
-      setIsShowError(false);
-      setOpenNewInsuranceForm(false);
 
       if (payload.success) {
         // after effect to add state of rawuserinsuranceData manually and rebuild
@@ -112,6 +109,8 @@ export default function InsuranceInfoPage() {
           })
         );
         setOpenNewInsuranceForm(false);
+        setIsShowErrorNew(false);
+        setIsShowError(false);
       }
     }
   };
@@ -234,8 +233,8 @@ export default function InsuranceInfoPage() {
           borderRadius: "0px",
           justifyContent: "center",
           position: "absolute",
-          zIndex: "1",
           top: "-48px",
+          zIndex: "1",
           left: 0,
           width: "100%",
           transition: "0.3 s ease-in-out",
