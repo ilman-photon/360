@@ -14,6 +14,7 @@ export function UpcomingAppointmentCard({
   data,
   onRescheduleClicked,
   onCancelClicked,
+  onAddToCalendarClicked,
 }) {
   function addHours(numOfHours, date = new Date()) {
     date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
@@ -69,7 +70,26 @@ export function UpcomingAppointmentCard({
           </Box>
         </Box>
         <Box className={styles.addToCalendarContainer}>
-          <AppointmentButton icon={<CalendarTodayIcon />}>
+          <AppointmentButton
+            icon={<CalendarTodayIcon />}
+            onClick={() =>
+              onAddToCalendarClicked({
+                name: "ECP Appointment",
+                description: `Patient: ${data.patientInfo.name}, Purpose of Visit: ${data.appointmentInfo.appointmentType}`,
+                date: data.appointmentInfo.date,
+                location:
+                  data.providerInfo.address.addressLine1 +
+                  ` ` +
+                  data.providerInfo.address.addressLine2 +
+                  ` ` +
+                  data.providerInfo.address.city +
+                  ` ` +
+                  data.providerInfo.address.state +
+                  ` ` +
+                  data.providerInfo.address.zipcode,
+              })
+            }
+          >
             Add to calendar
           </AppointmentButton>
         </Box>
@@ -114,7 +134,7 @@ export function scheduleAppointmentButton(onScheduleClicked) {
       gradient={false}
       onClick={onScheduleClicked}
     >
-      Schedule New Appointments
+      Schedule New Appointment
     </StyledButton>
   );
 }
@@ -138,6 +158,7 @@ export default function UpcomingAppointment({
   data,
   onRescheduleClicked,
   onCancelClicked,
+  onAddToCalendarClicked,
 }) {
   const appointments = [];
   for (const appointment of data) {
@@ -170,6 +191,7 @@ export default function UpcomingAppointment({
               key={index}
               onRescheduleClicked={onRescheduleClicked}
               onCancelClicked={onCancelClicked}
+              onAddToCalendarClicked={onAddToCalendarClicked}
             />
           ) : null;
         })

@@ -361,8 +361,10 @@
 
 .filterButtonContainer {
   display: flex;
+  max-width: 80%;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
   // @media (max-width: 768px) {
-  height: 26px;
   // }
 
   .filterBtn {
@@ -373,13 +375,18 @@
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
-    // line-height: 18px;
+    line-height: 18px;
     justify-content: left;
+    color: #003b4a;
+    padding: 3px 16px;
+    margin-left: 10px;
   }
 }
 
 .tuneIcon {
-  color: "#22292F";
+  color: #22292f;
+  width: 16px;
+  height: 16px;
 }
 
 .keydownIcon {
@@ -403,16 +410,25 @@
   font-size: 14px;
   line-height: 17px;
   color: #6d6f73;
+  height: 26px;
+  max-width: 150px;
+  margin-bottom: 10px;
   .closeIcon {
     width: 15px;
     height: 15px;
     margin-left: 5px;
     cursor: pointer;
   }
+  .filterText {
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
 }
 
 .formMessageText {
-  color: white;
+  color: white !important;
   font-size: 14px;
   font-weight: 400;
 }

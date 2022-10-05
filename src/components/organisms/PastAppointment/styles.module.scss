@@ -99,14 +99,18 @@
 }
 
 .noPastAppointment {
-  font-family: "Libre Franklin", sans-serif;
-  font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 26px;
+  font-weight: 600 !important;
+  font-size: 18px !important;
+  color: #003b4a !important;
 
-  display: flex;
-  color: #003b4a;
+  @media (max-width: 992px) {
+    font-weight: 500 !important;
+    font-size: 26px !important;
+    line-height: 36px;
+    text-align: center;
+    color: #000000 !important;
+    margin: 24px;
+  }
 }
 
 .viewDetails {

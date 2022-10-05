@@ -49,8 +49,10 @@ export default function StepperAppoinment({ ...props }) {
                   color: "black", // Just text label (ACTIVE)
                 },
               "& .Mui-disabled .MuiStepIcon-root": {
-                fill: "transparent", // Hollow icon (INCOMPLETE)
+                color: "transparent", // Hollow icon (INCOMPLETE)
                 stroke: "black",
+                background: "transparent",
+                borderRadius: "50%",
               },
             }}
             key={label}
