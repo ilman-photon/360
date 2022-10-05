@@ -109,7 +109,26 @@ export default function Appointments() {
 
   const handleCancelSchedule = (data) => {
     setModalCancel(false);
-    setModalSuccessCancel(true);
+    const api = new Api();
+    const postBody = {
+      current: {
+        state: "CONFIRMED",
+        subState: "CREATED",
+      },
+      target: {
+        state: "CANCELLED",
+        subState: "NONE",
+      },
+      code: 2,
+    };
+    api
+      .cancelAppointment("5b449b02-fa41-43e0-bdec-e46e6bc7696b", postBody)
+      .then(() => {
+        setModalSuccessCancel(true);
+      })
+      .catch(() => {
+        //Handle error cancelAppointment
+      });
   };
 
   return (

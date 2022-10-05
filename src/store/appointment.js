@@ -57,6 +57,7 @@ const appointmentSlice = createSlice({
     providerListData: [],
     filterBy: [],
     activeFilterBy: [],
+    cancel: [],
   },
   reducers: {
     setAppointmentSchedule: (state, { payload }) => {
@@ -124,6 +125,9 @@ const appointmentSlice = createSlice({
     },
     setFilterBy: (state, { payload }) => {
       state.filterBy = payload;
+    },
+    setCancelSchedule: (state, { payload }) => {
+      state.cancel = payload;
     },
   },
 });

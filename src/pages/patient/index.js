@@ -213,8 +213,14 @@ export default function HomePage() {
       },
       code: 2,
     };
-    api.cancelAppointment("5b449b02-fa41-43e0-bdec-e46e6bc7696b", postBody);
-    setModalSuccessCancel(true);
+    api
+      .cancelAppointment("5b449b02-fa41-43e0-bdec-e46e6bc7696b", postBody)
+      .then(() => {
+        setModalSuccessCancel(true);
+      })
+      .catch(() => {
+        //Handle error cancelAppointment
+      });
   };
 
   const onViewAppointment = () => {
