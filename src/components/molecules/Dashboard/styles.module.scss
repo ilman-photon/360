@@ -26,10 +26,22 @@
   .glassesViewAll {
     font-family: "Bw Nista Geometric DEMO", sans-serif;
     font-style: normal;
-    font-weight: 500;
+    font-weight: 400;
     font-size: 18px;
     line-height: 28px;
     color: #205a63;
+  }
+
+  .titleText {
+    font-family: "Bw Nista Geometric DEMO", sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 26px;
+    line-height: 32px;
+    color: #003b4a;
+    @media (max-width: 767px) {
+      font-size: 18px;
+    }
   }
 }
 
@@ -405,14 +417,55 @@
   font-weight: 400;
 }
 
-.ctaContainer {
-  .butttonIconContainer {
-    min-width: 15px;
-    margin: 0;
-    margin-left: 20px;
-    padding: 0;
-    width: 15px;
-    height: 15px;
-    cursor: pointer;
+.menuItem {
+  min-height: 32px;
+  height: 32px;
+}
+
+.dialogActionContainer {
+  padding: 16px;
+  width: 100%;
+  .dialogContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    .closeButton {
+      width: 40%;
+      height: 39px;
+      margin-right: 10px;
+    }
+    .cancelButton {
+      width: 70%;
+      height: 39px;
+    }
+  }
+}
+
+.dialogContent {
+  .dialogTypo {
+    font-family: "Bw Nista Geometric DEMO";
+    font-style: normal;
+    font-weight: 500;
+    font-size: 22px;
+    line-height: 30px;
+    /* or 136% */
+
+    letter-spacing: 0.0016em;
+
+    /* ECP/Primary/DarkGreen */
+
+    color: #003b4a;
+  }
+  .ctaContainer {
+    .butttonIconContainer {
+      min-width: 15px;
+      margin: 0;
+      margin-left: 20px;
+      padding: 0;
+      width: 15px;
+      height: 15px;
+      cursor: pointer;
+    }
   }
 }

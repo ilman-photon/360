@@ -5,6 +5,9 @@ import {
   AccordionDetails,
   AccordionSummary,
   Box,
+  Dialog,
+  DialogActions,
+  DialogContent,
   Divider,
   Stack,
   Typography,
@@ -38,10 +41,12 @@ export default function PrescriptionMedication({
   },
   requestRefillResponseData = null,
 }) {
+  const [showModal, setShowModal] = React.useState(false);
   const containerActive = React.useRef(null);
   const containerPast = React.useRef(null);
   const [filterOpen, setFilterOpen] = React.useState(false);
   const [activeFilter, setActiveFilter] = React.useState([]);
+  const [selectedData, setSelectedData] = React.useState({});
   const [requestRefillResponse, setRequestRefillResponse] =
     React.useState(null);
   const isFilterApplied = activeFilter.length > 0;
@@ -162,6 +167,9 @@ export default function PrescriptionMedication({
     WinPrint.document.close();
     WinPrint.focus();
     WinPrint.print();
+    setTimeout(() => {
+      WinPrint.close();
+    }, 500);
   };
 
   const onSetFilter = (newFilterData) => {
@@ -180,12 +188,89 @@ export default function PrescriptionMedication({
    * @param {Boolean} isCancel as request type (request or cancel refill)
    * @param {Integer} index as selected index
    */
-  const onRequestCancelRefill = (data, isCancel) => {
-    const postBody = {
-      medicationId: data.id,
-    };
-    onMedicationRequestRefill(postBody, isCancel);
+  const onRequestCancelRefill = (data, isCancel, callback = () => {}) => {
+    if (isCancel && !showModal) {
+      setSelectedData(data);
+      setShowModal(true);
+    } else {
+      const postBody = {
+        medicationId: data.id,
+      };
+      onMedicationRequestRefill(postBody, isCancel);
+    }
+    callback();
   };
+
+  function renderDialogConfirmation() {
+    return (
+      <Dialog
+        class={styles.dialog}
+        open={showModal}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        sx={{
+          ".MuiDialog-container .MuiPaper-root": {
+            marginTop: "70px",
+            marginBottom: "auto",
+          },
+        }}
+      >
+        <DialogContent
+          className={styles.dialogContent}
+          style={{ padding: "16px" }}
+          sx={{
+            width: "500px",
+            "@media (max-width: 992px)": {
+              width: "auto",
+            },
+          }}
+        >
+          <Typography className={styles.dialogTypo}>
+            Are you sure you want to cancel?
+          </Typography>
+        </DialogContent>
+        <DialogActions
+          className={styles.dialogActionContainer}
+          style={{ padding: "16px" }}
+        >
+          <Box class={styles.dialogContainer}>
+            <StyledButton
+              theme="patient"
+              mode="secondary"
+              size="small"
+              gradient={false}
+              data-testid="close-refill-btn"
+              onClick={() => {
+                setShowModal(false);
+                setSelectedData({});
+              }}
+              aria-label={"Close"}
+              className={styles.closeButton}
+            >
+              Close
+            </StyledButton>
+            <StyledButton
+              theme="patient"
+              mode="primary"
+              size="small"
+              gradient={false}
+              data-testid="cancel-refill-btn"
+              onClick={() => {
+                onRequestCancelRefill(selectedData, true, () => {
+                  setShowModal(false);
+                  setSelectedData({});
+                });
+              }}
+              aria-label={"Cancel Refill"}
+              className={styles.cancelButton}
+            >
+              Cancel Refill
+            </StyledButton>
+          </Box>
+        </DialogActions>
+      </Dialog>
+    );
+  }
 
   function renderAppliedFilter() {
     return activeFilter.map((option, idx) => {
@@ -511,7 +596,10 @@ export default function PrescriptionMedication({
       >
         <Typography
           variant="titleCard"
-          className={!isMobile ? styles.paddingTop22 : {}}
+          className={[
+            styles.titleText,
+            !isMobile ? styles.paddingTop22 : {},
+          ].join(" ")}
         >
           {isFilterApplied ? "Medications" : "Active Medications"}{" "}
           {medications?.active?.length > 0
@@ -550,6 +638,7 @@ export default function PrescriptionMedication({
           </Box>
         </>
       )}
+      {renderDialogConfirmation()}
     </Box>
   );
 }
