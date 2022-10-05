@@ -23,23 +23,23 @@ describe("SessionExpiredModal Components", () => {
     jest.resetAllMocks();
   });
   it("render component", () => {
-    expect(container).toMatchSnapshot();
+    expect(container.getByText("Session Timeout")).toBeInTheDocument();
   });
   it("render component expired true", () => {
     container = render(
       <SessionExpiredModal showModal={true} isExpired={true} />
     );
-    expect(container).toMatchSnapshot();
+    expect(container.getByText("Session Timeout")).toBeInTheDocument();
   });
   it("render component expired true", () => {
     container = render(
       <SessionExpiredModal showModal={false} isExpired={true} />
     );
-    expect(container).toMatchSnapshot();
+    expect(container.getByText("Session Timeout")).toBeInTheDocument();
   });
   it("render component show modal false", () => {
     container = render(<SessionExpiredModal showModal={false} />);
-    expect(container).toMatchSnapshot();
+    expect(container.getByText("Session Timeout")).toBeInTheDocument();
   });
   it("click log off", () => {
     const logOffBtn = container.getByTestId("session-logoff-btn");

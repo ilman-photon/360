@@ -20,6 +20,7 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import React, { useEffect, useState } from "react";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
+import { TEST_ID } from "../../../utils/constants";
 
 function AppointmentDetailTable(alergies, isExpandAll) {
   const [openAllergies, setOpenAllergies] = useState(isExpandAll);
@@ -35,6 +36,7 @@ function AppointmentDetailTable(alergies, isExpandAll) {
     <Box sx={{ pt: 2 }}>
       <Box
         className={styles.accordionContainer}
+        data-testid={TEST_ID.APPOINTMENTS_DETAIL_TEST_ID.expandCollapseSection}
         onClick={() => !isEmptyData && handleClickAllergies()}
       >
         <Box
@@ -150,11 +152,6 @@ export default function DetailAppointment({ data }) {
   const addressLabel = `address : ${providerInfo.address.addressLine1}.
                   ${providerInfo.address.city}, ${providerInfo.address.state}, 
                   ${providerInfo.address.zipcode}`;
-  const addressDetailId =
-    appointmentInfo.documentDetails.address.typePlace +
-    "\n" +
-    appointmentInfo.documentDetails.address.typePlace +
-    "\n";
   return (
     <Box className={styles.upcomingAppointments} ref={container}>
       <Stack spacing={{ xs: 2, lg: 3.5 }}>
@@ -184,6 +181,7 @@ export default function DetailAppointment({ data }) {
                   className={styles.link}
                   tabIndex={0}
                   aria-label={"Download Option"}
+                  data-testid={TEST_ID.APPOINTMENTS_DETAIL_TEST_ID.download}
                   sx={{
                     display: isDownload ? "none" : "flex",
                     alignContent: "center",
@@ -392,6 +390,7 @@ export default function DetailAppointment({ data }) {
               justifyContent: "center",
               p: 2,
             }}
+            data-testid={TEST_ID.APPOINTMENTS_DETAIL_TEST_ID.expandCollapseAll}
             onClick={() => setIsExpandAll(!isExpandAll)}
           >
             <AppointmentButton>

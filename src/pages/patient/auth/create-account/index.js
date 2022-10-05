@@ -30,7 +30,9 @@ export default function CreateAccountPage() {
           password: postbody.password,
         },
         null,
-        () => {}
+        () => {
+          //this is intentional
+        }
       );
     } catch (err) {
       console.error({ err });

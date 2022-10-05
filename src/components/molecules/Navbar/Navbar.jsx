@@ -90,6 +90,25 @@ const Navbar = () => {
     if (typeof href === "string") router.push(href);
   };
 
+  const MenuItemLabel = (doc, docIdx) => {
+    return (
+      <MenuItem key={docIdx} onClick={() => handleCloseUserMenu(doc.href)}>
+        <Image alt="" src={doc.icon} width={"16px"} height={"16px"} />
+        <Typography
+          textAlign="center"
+          sx={{
+            margin: "0 10px",
+            fontFamily: "Libre Franklin",
+            fontWeight: "400",
+            fontSize: "14px",
+          }}
+        >
+          {doc.label}
+        </Typography>
+      </MenuItem>
+    );
+  };
+
   return (
     <AppBar
       position="static"
@@ -161,32 +180,7 @@ const Navbar = () => {
                 open={Boolean(anchorElNav)}
                 onClose={handleCloseNavMenu}
               >
-                {medical.map((doc, docIdx) => {
-                  return (
-                    <MenuItem
-                      key={docIdx}
-                      onClick={() => handleCloseUserMenu(doc.href)}
-                    >
-                      <Image
-                        alt=""
-                        src={doc.icon}
-                        width={"16px"}
-                        height={"16px"}
-                      />
-                      <Typography
-                        textAlign="center"
-                        sx={{
-                          margin: "0 10px",
-                          fontFamily: "Libre Franklin",
-                          fontWeight: "400",
-                          fontSize: "14px",
-                        }}
-                      >
-                        {doc.label}
-                      </Typography>
-                    </MenuItem>
-                  );
-                })}
+                {medical.map((doc, docIdx) => MenuItemLabel(doc, docIdx))}
               </Menu>
             </Box>
             <Box>
@@ -225,32 +219,7 @@ const Navbar = () => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {documents.map((doc, docIdx) => {
-                  return (
-                    <MenuItem
-                      key={docIdx}
-                      onClick={() => handleCloseUserMenu(doc.href)}
-                    >
-                      <Image
-                        alt=""
-                        src={doc.icon}
-                        width={"16px"}
-                        height={"16px"}
-                      />
-                      <Typography
-                        textAlign="center"
-                        sx={{
-                          margin: "0 10px",
-                          fontFamily: "Libre Franklin",
-                          fontWeight: "400",
-                          fontSize: "14px",
-                        }}
-                      >
-                        {doc.label}
-                      </Typography>
-                    </MenuItem>
-                  );
-                })}
+                {documents.map((doc, docIdx) => MenuItemLabel(doc, docIdx))}
               </Menu>
             </Box>
           </Box>

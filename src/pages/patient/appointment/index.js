@@ -45,6 +45,7 @@ import ModalConfirmation from "../../../components/organisms/ScheduleAppointment
 import Cookies from "universal-cookie";
 import { TEST_ID } from "../../../utils/constants";
 import { fetchAllPayers } from "../../../store/provider";
+import { getCity } from "../../../utils/getCity";
 
 export async function getStaticProps() {
   return {
@@ -78,6 +79,8 @@ export default function Appointment({ googleApiKey }) {
   const [isOpen, setIsOpen] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isReschedule, setIsReschedule] = useState(false);
+  const [currentCity, setCurrentCity] = useState("");
+  const [locationChange, setLocationChange] = useState(false);
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -311,6 +314,13 @@ export default function Appointment({ googleApiKey }) {
     }
   }, [dataFilter, coords]);
 
+  useEffect(() => {
+    if (coords) {
+      getCity(googleApiKey, coords, setCurrentCity);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [coords, locationChange]);
+
   React.useEffect(() => {
     const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
     setIsLoggedIn(isLogin);
@@ -321,6 +331,7 @@ export default function Appointment({ googleApiKey }) {
 
   useEffect(() => {
     onCalledGetAppointmentTypesAPI();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [insuranceCarrierList]);
 
   function onRenderDialogView() {
@@ -593,6 +604,8 @@ export default function Appointment({ googleApiKey }) {
             purposeOfVisitData={filterSuggestionData.purposeOfVisit}
             insuranceCarrierData={filterSuggestionData.insuranceCarrier}
             isFixed={false}
+            currentCity={currentCity}
+            onChangeLocation={() => setLocationChange(true)}
           />
         </>
       ) : (

@@ -26,16 +26,26 @@ import FilterResultHeading from "../../components/molecules/FilterResultHeading/
 import { Box } from "@mui/system";
 import ModalCancelScheduling from "../../components/organisms/ScheduleAppointment/ModalCancelScheduling/modalCancelScheduling";
 import { fetchAllPayers } from "../../store/provider";
+import { getCity } from "../../utils/getCity";
 import CustomModal from "../../components/molecules/CustomModal/customModal";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { colors } from "../../styles/theme";
 
-export default function HomePage() {
+export async function getStaticProps() {
+  return {
+    props: {
+      googleApiKey: process.env.GOOGLE_API_KEY,
+    },
+  };
+}
+export default function HomePage({ googleApiKey }) {
   const [filterSuggestionData, setFilterSuggestionData] = React.useState({});
   const [prescriptionData, setPrescriptionData] = React.useState({});
   const [appointmentData, setAppointmentData] = React.useState({});
   const [isOpenCancel, setIsOpenCancel] = React.useState(false);
   const [isAuthenticated, setIsAuthenticated] = React.useState(true);
+  const [currentCity, setCurrentCity] = React.useState("");
+  const [locationChange, setLocationChange] = React.useState(false);
   const [modalSuccessCancel, setModalSuccessCancel] = React.useState(false);
 
   const insuranceCarrierList = useSelector((state) => state.provider.list);
@@ -140,8 +150,8 @@ export default function HomePage() {
       .then(function (response) {
         const today = new Date();
         const upcomingAppointments = [];
-        for (let index = 0; index < response.appointmentList.length; index++) {
-          const appointment = response.appointmentList[index];
+        const appointmentList = response.appointmentList || [];
+        for (const appointment of appointmentList) {
           const visitDate = new Date(appointment.appointmentInfo.date);
 
           const daysAway = visitDate.getTime() - today.getTime();
@@ -160,6 +170,13 @@ export default function HomePage() {
   function onViewPrescriptions(index) {
     router.push(`/patient/prescription`);
   }
+
+  useEffect(() => {
+    if (coords) {
+      getCity(googleApiKey, coords, setCurrentCity);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [coords, locationChange]);
 
   useEffect(() => {
     const cookies = new Cookies();
@@ -247,6 +264,8 @@ export default function HomePage() {
               title={"John, Welcome to your dashboard"}
               subtitle={"Search for a doctor"}
               isFixed={false}
+              currentCity={currentCity}
+              onChangeLocation={() => setLocationChange(true)}
             />
           ) : (
             <Box
