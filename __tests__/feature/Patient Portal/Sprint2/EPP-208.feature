@@ -364,6 +364,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @included
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the "Email or Phone number" field is not allowing Email with consecutive dots before @ symbol.
     Given  user launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -687,6 +688,7 @@ Feature: Patient Portal : Patient/ Admin login using invalid credentials
   @Authentication
   @Patient_Portal
   @Sprint2
+  @included
   Scenario: EPIC_EPP-4_STORY_EPP-208-Verify whether the error message is displaying when the service is unavailable.
     Given user user launch the 'XXX' url
     When the service is unavailable	

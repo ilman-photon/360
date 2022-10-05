@@ -271,7 +271,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("admin user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("admin user navigates to the Patient Portal application", () => {
@@ -302,7 +307,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("admin user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("admin user navigates to the Patient Portal application", () => {
@@ -336,7 +346,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("admin user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("admin user navigates to the Patient Portal application", () => {
@@ -463,7 +478,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("admin user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("admin user navigates to the Patient Portal application", () => {
@@ -494,7 +514,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("admin user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("admin user navigates to the Patient Portal application", () => {
@@ -528,7 +553,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("admin user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("admin user navigates to the Patient Portal application", () => {
@@ -1572,6 +1602,58 @@ defineFeature(feature, (test) => {
     });
 
     then("none of the javascript error should be seen by the user.", () => {
+      expect(true).toBeTruthy();
+    });
+  });
+
+  test('EPIC_EPP-4_STORY_EPP-208-Verify whether the "Email or Phone number" field is not allowing Email with consecutive dots before @ symbol.', ({ given, and, when, then }) => {
+    given('user launch the \'XXX\' url', () => {
+      expect(true).toBeTruthy();
+    });
+
+    and('user navigates to the Patient Portal application', () => {
+      expect(true).toBeTruthy();
+    });
+
+    when('user lands onto “Patient Login” screen', () => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user provides (.*) Email with consecutive dots before @ symbol like "(.*)"$/, (arg0, arg1) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user provides valid (.*)$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^click "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then('user should see the Appropriate error message “Invalid Username or Password”', (table) => {
+      expect(true).toBeTruthy();
+    });
+  });
+
+  test('EPIC_EPP-4_STORY_EPP-208-Verify whether the error message is displaying when the service is unavailable.', ({ given, when, and, then }) => {
+    given('user user launch the \'XXX\' url', () => {
+      expect(true).toBeTruthy();
+    });
+
+    when('the service is unavailable', () => {
+      expect(true).toBeTruthy();
+    });
+
+    and('user navigates to the Patient Portal application', () => {
+      expect(true).toBeTruthy();
+    });
+
+    and('user lands on “Patient Login” screen', () => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^error message '(\d+) - Server is not ready to handle the request' should get display.$/, (arg0) => {
       expect(true).toBeTruthy();
     });
   });
