@@ -26,6 +26,7 @@ import {
 import { fullDateFormat } from "../../../utils/dateFormatter";
 import { useEffect } from "react";
 import Image from "next/image";
+import { getLinkAria } from "../../../utils/viewUtil";
 
 export default function AppointmentCard({
   appointmentData = [],
@@ -180,7 +181,11 @@ export default function AppointmentCard({
                   {appointment.providerInfo?.position}
                 </Typography>
                 {renderAddressUI()}
-                <Typography variant="bodyLinkRegular" tabIndex={0}>
+                <Typography
+                  variant="bodyLinkRegular"
+                  tabIndex={0}
+                  aria-label={`phone number ${appointment.providerInfo?.phoneNumber}`}
+                >
                   {appointment.providerInfo?.phoneNumber}
                 </Typography>
                 {renderGetDirection()}
@@ -191,7 +196,7 @@ export default function AppointmentCard({
                 <Image
                   src={appointment.providerInfo.image}
                   style={{ borderRadius: "50%" }}
-                  alt="Doctor Image"
+                  alt={`${appointment.providerInfo?.name} image`}
                   width="90px"
                   height="90px"
                   tabIndex={0}
@@ -354,7 +359,12 @@ export default function AppointmentCard({
             onClick={() => {
               onViewAppointment();
             }}
-            aria-label="View appointments option"
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                onViewAppointment();
+              }
+            }}
+            {...getLinkAria("View appointments option")}
             tabIndex={0}
           >
             View Appointments

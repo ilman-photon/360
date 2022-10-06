@@ -90,6 +90,13 @@ export const patientTypography = createTheme({
       fontSize: 18,
       lineHeight: "24px",
     },
+    cutomH4: {
+      fontFamily: "Roboto",
+      color: "#003B4A",
+      fontWeight: "600",
+      fontSize: 18,
+      lineHeight: "24px",
+    },
     bodyLarge: {
       fontFamily: "Libre Franklin",
       fontWeight: "bold",
@@ -130,6 +137,11 @@ export const patientTypography = createTheme({
     bodySmallMedium: {
       fontFamily: "Libre Franklin",
       fontWeight: 500,
+      fontSize: 14,
+    },
+    smallMediumRoboto: {
+      fontFamily: "Roboto",
+      fontWeight: 400,
       fontSize: 14,
     },
     bodySmallLightMedium: {
