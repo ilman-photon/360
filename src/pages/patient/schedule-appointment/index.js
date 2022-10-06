@@ -262,18 +262,26 @@ export const PageContent = ({
       return null;
   }
 };
-export default function ScheduleAppointmentPage() {
+
+export async function getServerSideProps({ query }) {
+  return {
+    props: { query },
+  };
+}
+export default function ScheduleAppointmentPage({ query }) {
   const [activeStep, setActiveStep] = React.useState(1);
   const isDesktop = useMediaQuery("(min-width: 769px)");
   const [isOpen, setIsOpen] = React.useState(false);
   const [isReschedule, setIsReschedule] = React.useState(false);
   const [modalConfirmReschedule, setModalConfirmReschedule] =
     React.useState(false);
+    const [patientId, setPatientId] = React.useState("");
 
   useLeavePageConfirm({ message: "Change that you made might not be saved." });
 
   const router = useRouter();
   const dispatch = useDispatch();
+  const api = new Api();
 
   React.useEffect(() => {
     if (activeStep === 2 || activeStep === 3) {
@@ -330,7 +338,20 @@ export default function ScheduleAppointmentPage() {
     const cookies = new Cookies();
     const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
     setIsLoggedIn(isLogin);
-    console.log("redux", appointmentScheduleData, userData);
+    console.log("redux", appointmentScheduleData, userData, cookies.get("username"));
+
+    const post = {
+      username: appointmentScheduleData.patientInfo.email,
+    };
+    api
+    .getPatientId(post)
+    .then((response) => {
+      setPatientId(response.ecpPatientId || "")
+      console.log("response", response)
+    })
+    .catch(() => {
+      console.log("catch")
+    });
   }, []);
 
   React.useEffect(() => {
@@ -363,6 +384,7 @@ export default function ScheduleAppointmentPage() {
   const handleCreateAppointment = (payload, isPage) => {
     const api = new Api();
     const dateNow = new Date();
+    console.log(payload, 'postBody');
     const postBody = [
       {
         appointmentDate: mmddyyDateFormat(
@@ -385,7 +407,7 @@ export default function ScheduleAppointmentPage() {
           code: appointmentScheduleData.appointmentInfo.appointmentType,
         },
         patient: {
-          _id: "a2f0b4e0-4786-4b9e-b54e-f24d8a3d10f9",
+          _id: patientId,
         },
         patientDob: payload
           ? mmddyyDateFormat(payload.dob)
@@ -393,7 +415,7 @@ export default function ScheduleAppointmentPage() {
         confirmationDetail: {
           confirmationDate: mmddyyDateFormat(dateNow),
           confirmationTime: hourDateFormat(dateNow),
-          confirmationBy: "a2f0b4e0-4786-4b9e-b54e-f24d8a3d10f9",
+          confirmationBy: patientId,
         },
         allowCreate: true,
       },
