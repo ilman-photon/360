@@ -44,7 +44,7 @@ Feature: As a user, I should be able to login into the patient portal without us
   @Patient_Portal
   @Automation
   @Sprint2
-@excluded
+@included
   Scenario: EPIC_EPP-7_STORY_EPP-216 - Verify user should be able to login into the patient portal without a username & password using the magic link received to my registered Phone number.
     Given use launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -71,10 +71,10 @@ Feature: As a user, I should be able to login into the patient portal without us
     When user access the messages from Phone  
     Then user should receive a magic link mail
     And user should see the mail with Email Subject as "Your Patient Portal Magic link"
-    And user should see mail/ message body as "Hi {username}, You asked us to send you a magic link for quickly signing into your Patient Portal. Sign in here - {link}. If you did not make this request, please contact customer support. Thanks, Admin"
+    And user should see mail message body as "Hi {username}, You asked us to send you a magic link for quickly signing into your Patient Portal. Sign in here - {link}. If you did not make this request, please contact customer support. Thanks, Admin"
     When user click on a magic link
     Then user should successfully be logged in
-    And user should see Home/Dashboard page
+    And user should see Home or Dashboard page
 
     Examples:
     |Email of Phone Number|
@@ -85,7 +85,7 @@ Feature: As a user, I should be able to login into the patient portal without us
   @Patient_Portal
   @Automation
   @Sprint2
-@excluded
+@included
   Scenario: EPIC_EPP-7_STORY_EPP-216  - Verify the error message if user accessing the magic link after 24 hours (email mode)
     Given use launch the "XXX" url	
     And user navigates to the Patient Portal application
@@ -118,7 +118,7 @@ Feature: As a user, I should be able to login into the patient portal without us
   @Authentication
   @Patient_Portal
   @Sprint2
-@excluded
+@included
   Scenario: EPIC_EPP-7_STORY_EPP-216 - Verify user is not able to receive magic link when Internet connection is unavailable
 
     Given use launch the 'XXX' url	
@@ -147,7 +147,7 @@ Feature: As a user, I should be able to login into the patient portal without us
   @Authentication
   @Patient_Portal
   @Sprint2
-@excluded
+@included
   Scenario: EPIC_EPP-7_STORY_EPP-216 - Verify user is not able to receive magic link when service is unavailable
     Given use launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -175,7 +175,7 @@ Feature: As a user, I should be able to login into the patient portal without us
   @Authentication
   @Patient_Portal
   @Sprint2
-@excluded
+@included
   Scenario: EPIC_EPP-7_STORY_EPP-216  - Verify the error message if user accessing the magic link after 24 hours (phone number mode)
     Given use launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -207,7 +207,7 @@ Feature: As a user, I should be able to login into the patient portal without us
   @Authentication
   @Patient_Portal
   @Sprint2
-@excluded
+@included
   Scenario: EPIC_EPP-7_STORY_EPP-216 - Verify user should see forgot password screen when user refresh the screen
    
     Given user launch the 'XXX' url	
@@ -226,7 +226,7 @@ Feature: As a user, I should be able to login into the patient portal without us
     And user clicks on Send magic link 
     Then user should see heading "Magic link sent"
     And user should see text "Success magic link is sent"
-    And user should see message "Click on the magic link sent to your email or phone number to access your account'' 
+    And user should see message "Click on the magic link sent to your email or phone number to access your account" 
     When user access the messages from Phone  
     Then user should receive a magic link mail
     And user should see the mail with Email
@@ -241,7 +241,7 @@ Feature: As a user, I should be able to login into the patient portal without us
   @Authentication
   @Patient_Portal
   @Sprint2
-@excluded
+@included
   Scenario: EPIC_EPP-7_STORY_EPP-216 - Verify user should see One-time screen loaded within 3 seconds
 
     Given user launch the 'XXX' url	
@@ -265,7 +265,7 @@ Feature: As a user, I should be able to login into the patient portal without us
   @Authentication
   @Patient_Portal
   @Sprint2
-@excluded
+@included
   Scenario: EPIC_EPP-7 _STORY_EPP-216 - Verify user should not see any error after click on F12
 
     Given user launch the 'XXX' url	

@@ -102,7 +102,11 @@ export default function Container({
                       {t("rememberMeLabel")}
                     </Typography>
                   </Box>
-                  <Typography variant="body2" className={styles.checkBoxText}>
+                  <Typography
+                    variant="body2"
+                    className={styles.checkBoxText}
+                    sx={{ fontSize: "14px !important" }}
+                  >
                     {t("rememberMeDescription")}
                   </Typography>
                 </Box>

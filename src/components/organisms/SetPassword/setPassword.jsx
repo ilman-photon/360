@@ -234,7 +234,7 @@ const SetPasswordComponent = ({
 
   const formMessageComp = useRef(null);
   useEffect(() => {
-    if (formMessageComp.current)
+    if (formMessageComp?.current?.scrollIntoView)
       formMessageComp.current.scrollIntoView({
         behavior: "smooth",
         block: "end",
