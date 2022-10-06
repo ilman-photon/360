@@ -120,7 +120,6 @@ defineFeature(feature, (test) => {
       const searchBtn = container.getByTestId("searchbtn");
       fireEvent.click(searchBtn);
 
-      expect(container).toMatchSnapshot();
       await waitFor(() => container.getByText(/Filters/i));
     });
 
@@ -212,7 +211,6 @@ defineFeature(feature, (test) => {
       const searchBtn = container.getByTestId("searchbtn");
       fireEvent.click(searchBtn);
 
-      expect(container).toMatchSnapshot();
       await waitFor(() => container.getByText(/Filters/i));
     });
 
@@ -332,7 +330,6 @@ defineFeature(feature, (test) => {
       const searchBtn = container.getByTestId("searchbtn");
       fireEvent.click(searchBtn);
 
-      expect(container).toMatchSnapshot();
       await waitFor(() => container.getByText(/Filters/i));
     });
 
@@ -485,7 +482,6 @@ defineFeature(feature, (test) => {
       const searchBtn = container.getByTestId("searchbtn");
       fireEvent.click(searchBtn);
 
-      expect(container).toMatchSnapshot();
       await waitFor(() => container.getByText(/Filters/i));
     });
 
@@ -608,7 +604,6 @@ defineFeature(feature, (test) => {
       const searchBtn = container.getByTestId("searchbtn");
       fireEvent.click(searchBtn);
 
-      expect(container).toMatchSnapshot();
       await waitFor(() => container.getByText(/Filters/i));
     });
 
@@ -740,7 +735,6 @@ defineFeature(feature, (test) => {
       const searchBtn = container.getByTestId("searchbtn");
       fireEvent.click(searchBtn);
 
-      expect(container).toMatchSnapshot();
       await waitFor(() => container.getByText(/Filters/i));
     });
 
@@ -859,7 +853,6 @@ defineFeature(feature, (test) => {
       const searchBtn = container.getByTestId("searchbtn");
       fireEvent.click(searchBtn);
 
-      expect(container).toMatchSnapshot();
       await waitFor(() => container.getByText(/Filters/i));
     });
 
