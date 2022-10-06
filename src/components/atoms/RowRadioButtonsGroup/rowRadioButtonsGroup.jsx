@@ -70,7 +70,7 @@ export default function RowRadioButtonsGroup({
         row={row}
         aria-labelledby="row-radio-buttons-group-label"
         name="row-radio-buttons-group"
-        sx={textSx}
+        sx={{ ...textSx, marginTop: isCancelSchedule ? "16px" : "unset" }}
       >
         {options.map((option, idx) => {
           return (
@@ -95,6 +95,9 @@ export default function RowRadioButtonsGroup({
               }
               label={option.label}
               sx={{
+                "& .MuiRadio-root": {
+                  padding: isCancelSchedule ? "2px 9px 2px 16px" : "9px",
+                },
                 ".MuiTypography-root":
                   props.isInsuranceForm || props.isRegistrationForm
                     ? { fontSize: 16, color: "#242526" }

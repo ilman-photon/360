@@ -7,6 +7,9 @@
 }
 
 .boxModalContents {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
   padding: 16px;
   width: 635px !important;
   @media (max-width: 556px) {
@@ -28,6 +31,14 @@
   .checkBoxContainer {
     padding: 0px;
     overflow-y: visible;
+    display: flex;
+  }
+
+  .formStyle {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .formButton {
