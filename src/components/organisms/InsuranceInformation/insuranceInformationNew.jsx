@@ -12,6 +12,10 @@ export default function InsuranceInformationNew({
   },
   FormMessageEl,
   isShowError = false,
+  providerList = [],
+  planList = [],
+  isAutocompleteLoading = false,
+  OnProviderChanged,
 }) {
   return (
     <Box
@@ -29,6 +33,10 @@ export default function InsuranceInformationNew({
             You have no insurance on file
           </Typography>
           <InsuranceForm
+            providerList={providerList}
+            planList={planList}
+            isAutocompleteLoading={isAutocompleteLoading}
+            OnProviderChanged={OnProviderChanged}
             OnCancelEditClicked={(_) => OnCancelEditClicked(false)}
             OnSaveClicked={OnCreateInsurance}
             isError={isShowError}

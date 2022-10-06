@@ -1,5 +1,6 @@
 import axios from "axios";
 import { setGenericErrorMessage } from "../../store";
+import { fetchUser } from "../../store/user";
 import constants from "../../utils/constants";
 
 let store;
@@ -17,8 +18,11 @@ export class Api {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      timeout: 10000,
+      timeout: 20000,
     });
+
+    this.requestCounter = 0;
+    this.maxRequestCounter = 3;
   }
 
   errorGenericValidation = (err) => {
@@ -37,7 +41,7 @@ export class Api {
     );
   };
 
-  getResponse(url, postbody, method) {
+  getResponse(url, postbody, method, showError = true) {
     const api = new Api();
     return new Promise((resolve, reject) => {
       const resolver = function (response) {
@@ -48,7 +52,7 @@ export class Api {
         }
       };
       const rejecter = function (err) {
-        if (api.errorGenericValidation(err)) {
+        if (api.errorGenericValidation(err) && showError) {
           store.dispatch(
             setGenericErrorMessage("Please try again after sometime.")
           );
@@ -69,6 +73,10 @@ export class Api {
           return api.client.get(url, postbody).then(resolver).catch(rejecter);
         case "post":
           return api.client.post(url, postbody).then(resolver).catch(rejecter);
+        case "put":
+          return api.client.put(url, postbody).then(resolver).catch(rejecter);
+        case "patch":
+          return api.client.patch(url, postbody).then(resolver).catch(rejecter);
         default:
           return api.client.get(url, postbody).then(resolver).catch(rejecter);
       }
@@ -219,8 +227,8 @@ export class Api {
       return response.records.map((record) => {
         return {
           id: record.datasetid,
-          label: record.fields.ste_name,
-          value: record.fields.ste_name,
+          label: record.fields.ste_stusps_code,
+          value: record.fields.ste_stusps_code,
         };
       });
     } catch (error) {
@@ -228,10 +236,9 @@ export class Api {
     }
   }
 
-  getProviderDetails() {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/biography/getProviderDetails`;
-    return this.getResponse(url, {}, "post");
+  getProviderDetails(providerId) {
+    const url = `/ecp/appointments/getprovider/${providerId}`;
+    return this.getResponse(url, {}, "get");
   }
 
   getProviderAvailibility() {
@@ -244,12 +251,6 @@ export class Api {
     const domain = window.location.origin;
     const url = `${domain}/api/dummy/appointment/create-appointment/getSugestion`;
     return this.getResponse(url, {}, "get");
-  }
-
-  submitFilter(postBody) {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/create-appointment/submitFilter`;
-    return this.getResponse(url, postBody, "post");
   }
 
   getAllAppointment() {
@@ -311,10 +312,61 @@ export class Api {
   async getURLDigitalAsset(id) {
     const url = `/ecp/digital-asset/v1/asset/${id}`;
     try {
-      const response = await this.getResponse(url, null, "get");
-      if (response.data) {
-        return response.data.presignedUrl;
+      const response = await this.getResponse(url, null, "get", false);
+      if (response) {
+        return response;
       }
+    } catch (error) {
+      console.error({ error });
+    }
+  }
+
+  async createURLDigitalAsset(file) {
+    const url = `/ecp/digital-asset/v1/asset`;
+    const splitted = file.type.split("/");
+    const subType = splitted[0];
+    const type = splitted[1];
+    const postBody = {
+      description: file.name,
+      name: file.name,
+      originalFileName: file.name,
+      subType,
+      type,
+    };
+    try {
+      const response = await this.getResponse(url, postBody, "post");
+      if (response) {
+        return response;
+      }
+    } catch (error) {
+      console.error({ error });
+    }
+  }
+
+  getAppointmentTypes() {
+    const url = "/ecp/appointments/appointment-types";
+    return this.getResponse(url, {}, "get");
+  }
+
+  submitFilter(locationName, postBody) {
+    const domain = window.location.origin;
+    const url = `/ecp/appointments/available-slot?searchText=${locationName}`;
+    return this.getResponse(url, postBody, "put");
+  }
+
+  async uploadFile(url, file) {
+    try {
+      const response = await axios({
+        method: "put",
+        url: url, //API url
+        data: file, // Buffer
+        maxContentLength: Infinity,
+        maxBodyLength: Infinity,
+        headers: {
+          "Content-Type": "image/png",
+        },
+      });
+      if (response.status === 200) return { success: true };
     } catch (error) {
       console.error({ error });
     }

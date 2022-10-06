@@ -1302,14 +1302,6 @@ export async function renderScheduleAppointment() {
     getCurrentPosition: jest.fn(),
     watchPosition: jest.fn(),
   };
-
-  const domain = window.location.origin;
-  mock
-    .onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`)
-    .reply(200, mockSuggestion);
-  mock
-    .onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`)
-    .reply(200, mockSubmitFilter);
   global.navigator.geolocation = mockGeolocation;
   window.matchMedia = createMatchMedia("1920px");
   container = render(
@@ -1365,50 +1357,62 @@ export async function renderAppointmentDetail() {
 }
 
 export async function navigateToPatientPortalHome() {
-	let container;
-	const element = document.createElement("div");
-	const mock = new MockAdapter(axios);
-	Cookies.result = "true";
-	const expectedResult = {
-		ResponseCode: 2005,
-		ResponseType: "success",
-	};
-	const domain = window.location.origin;
-	mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
-	mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGESTION);
-	mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllAppointment`).reply(200, MOCK_APPOINTMENT);
-	mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`).reply(200, MOCK_PRESCRIPTION);
-	const response = await getServerSideProps({
-		req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-		res: jest.fn(),
-	});
-	const mockGeolocation = {
-		getCurrentPosition: jest.fn(),
-		watchPosition: jest.fn(),
-	};
-	global.navigator.geolocation = mockGeolocation;
-	Cookies.result = false;
-	act(() => {
-		container = render(
-			<Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
-		);
-	});
-	await waitFor(() => container.getByText(constants.TEST_ID.HOME_TEST_ID.logout));
-	expect(response).toEqual({
-		redirect: {
-			"destination": "/patient/login",
-			"permanent": false,
-		},
-	});
+  let container;
+  const element = document.createElement("div");
+  const mock = new MockAdapter(axios);
+  Cookies.result = "true";
+  const expectedResult = {
+    ResponseCode: 2005,
+    ResponseType: "success",
+  };
+  const domain = window.location.origin;
+  mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
+  mock
+    .onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`)
+    .reply(200, MOCK_SUGESTION);
+  mock
+    .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllAppointment`)
+    .reply(200, MOCK_APPOINTMENT);
+  mock
+    .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`)
+    .reply(200, MOCK_PRESCRIPTION);
+  const response = await getServerSideProps({
+    req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
+    res: jest.fn(),
+  });
+  const mockGeolocation = {
+    getCurrentPosition: jest.fn(),
+    watchPosition: jest.fn(),
+  };
+  global.navigator.geolocation = mockGeolocation;
+  Cookies.result = false;
+  act(() => {
+    container = render(
+      <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
+    );
+  });
+  await waitFor(() =>
+    container.getByText(constants.TEST_ID.HOME_TEST_ID.logout)
+  );
+  expect(response).toEqual({
+    redirect: {
+      destination: "/patient/login",
+      permanent: false,
+    },
+  });
 }
 
 export async function landOnCreateAccountPage() {
-	let container;
-	act(() => {
-		container = render(
-			<Provider store={store}>{CreateAccountPage.getLayout(<CreateAccountPage />)}</Provider>
-		);
-	});
-	await waitFor(() => container.getByTestId(TEST_ID.REGISTER_TEST_ID.firstname));
-	return container;
+  let container;
+  act(() => {
+    container = render(
+      <Provider store={store}>
+        {CreateAccountPage.getLayout(<CreateAccountPage />)}
+      </Provider>
+    );
+  });
+  await waitFor(() =>
+    container.getByTestId(TEST_ID.REGISTER_TEST_ID.firstname)
+  );
+  return container;
 }

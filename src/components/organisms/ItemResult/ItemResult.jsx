@@ -46,12 +46,14 @@ export default function ItemResult({
           />
         </Box>
         <Box sx={{ gridArea: "locationDistance" }}>
-          <LocationDistance
-            distance={providerData.distance}
-            onGetDirection={() => {
-              onGetDirection(providerData.coordinate);
-            }}
-          />
+          {providerData.distance && (
+            <LocationDistance
+              distance={providerData.distance}
+              onGetDirection={() => {
+                onGetDirection(providerData.coordinate);
+              }}
+            />
+          )}
         </Box>
         <Box sx={{ gridArea: "weekAvailability" }}>
           <WeekAvailability
@@ -83,13 +85,15 @@ export default function ItemResult({
               imageSize={"small"}
             />
           </div>
-          <LocationDistance
-            isDesktop={isDesktop}
-            distance={providerData.distance}
-            onGetDirection={() => {
-              onGetDirection(providerData.coordinate);
-            }}
-          />
+          {providerData.distance && (
+            <LocationDistance
+              isDesktop={isDesktop}
+              distance={providerData.distance}
+              onGetDirection={() => {
+                onGetDirection(providerData.coordinate);
+              }}
+            />
+          )}
         </Stack>
         <ScheduleAvailability
           onClickViewAllAvailability={() => {
