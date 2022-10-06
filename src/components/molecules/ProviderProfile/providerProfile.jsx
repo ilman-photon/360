@@ -155,7 +155,7 @@ export default function ProviderProfile({
           }}
         >
           <Typography
-            variant={isMap ? "h4" : "h2"}
+            variant={isMap ? "cutomH4" : "h2"}
             fontSize={getNameFontSize()}
             data-testid={TEST_ID.APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name}
             onClick={() => {
@@ -188,8 +188,9 @@ export default function ProviderProfile({
                   className={
                     isBio ? styles.ratingContainer : styles.phoneContainer
                   }
+                  sx={{ marginLeft: isMap ? "-67px" : "0" }}
                 >
-                  {(isBio || (isViewSchedule && isShownRating)) && (
+                  {(isBio || isMap || (isViewSchedule && isShownRating)) && (
                     <StyledRating value={parseInt(providerData.rating)} />
                   )}
                   {!phoneLink ? (
