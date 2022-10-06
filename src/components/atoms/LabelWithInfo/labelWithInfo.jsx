@@ -47,7 +47,7 @@ export const LabelWithInfo = ({
           >
             <IconButton sx={{ p: 0 }}>
               <ErrorOutlineOutlinedIcon
-                sx={{ width: 24, height: 24, color: "#00000080" }}
+                sx={{ width: "16px", height: "16px", color: "#00000080" }}
               />
             </IconButton>
           </Tooltip>
@@ -59,7 +59,7 @@ export const LabelWithInfo = ({
     <Stack spacing={1} sx={{ mt: "10px", alignItems: alignItems }}>
       <div>{children}</div>
       {helperText ? (
-        <Typography variant="bodySmallRegular" sx={{ mt: 1, fontWeight: 500 }}>
+        <Typography variant="bodySmallRegular" sx={{ mt: 1, fontWeight: 400 }}>
           {helperText}
         </Typography>
       ) : (
