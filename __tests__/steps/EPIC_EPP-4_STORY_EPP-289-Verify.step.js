@@ -11,15 +11,15 @@ const feature = loadFeature(
 );
 
 defineFeature(feature, (test) => {
+  let container, login;
+  const mock = new MockAdapter(axios);
+  const element = document.createElement("div");
   test("EPIC_EPP-4_STORY_EPP-289 - Verify user  should be able to logout from patient portal", ({
     given,
     when,
     then,
     and,
   }) => {
-    let container, login;
-    const mock = new MockAdapter(axios);
-    const element = document.createElement("div");
     given('user launch the \'XXX\' url', () => {
       expect(true).toBeTruthy()
     });
