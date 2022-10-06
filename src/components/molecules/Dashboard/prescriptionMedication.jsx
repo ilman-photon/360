@@ -188,7 +188,13 @@ export default function PrescriptionMedication({
    * @param {Boolean} isCancel as request type (request or cancel refill)
    * @param {Integer} index as selected index
    */
-  const onRequestCancelRefill = (data, isCancel, callback = () => {}) => {
+  const onRequestCancelRefill = (
+    data,
+    isCancel,
+    callback = () => {
+      //this is intentional
+    }
+  ) => {
     if (isCancel && !showModal) {
       setSelectedData(data);
       setShowModal(true);

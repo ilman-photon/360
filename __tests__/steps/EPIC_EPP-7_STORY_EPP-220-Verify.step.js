@@ -11,6 +11,60 @@ const feature = loadFeature(
 );
 
 defineFeature(feature, (test) => {
+  test('EPIC_EPP-7_STORY_EPP-220 - Verify user able to navigate to the Select option screen from the Forgot Password Screen when Security questions not set', ({ given, and, when, then }) => {
+    given(/^use launch the "(.*)" url$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and('user navigates to the Patient Portal application', () => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user lands onto "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" link$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user clicks on "(.*)" link$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should enter valid (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user clicks on "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see "(.*)" button\(if security questions is not set\)$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+  });
+
   test("EPIC_EPP-7_STORY_EPP-220 -Verify should be able to receive reset password link  to the registered Email without answering the security questions if they are not set.", ({
     given,
     when,
@@ -110,15 +164,15 @@ defineFeature(feature, (test) => {
         successPostMessage: true,
         buttonLabel: "Login with one-time link",
         additional: null,
-        onCTAButtonClicked: function () {},
+        onCTAButtonClicked: function () { },
       };
 
       container = render(
         <ConfirmationForm
           {...confirmationFormProps}
-          onBackToLoginClicked={() => {}}
+          onBackToLoginClicked={() => { }}
           showPostMessage={true}
-          setShowPostMessage={() => {}}
+          setShowPostMessage={() => { }}
         />
       );
 
