@@ -201,6 +201,7 @@ export default function TableWithSort({
                     <TableRow
                       hover
                       onClick={(event) => handleClick(event, row.id)}
+                      data-testid={"table-sort-header"}
                       role="checkbox"
                       aria-checked={isItemSelected}
                       tabIndex={-1}
@@ -237,6 +238,7 @@ export default function TableWithSort({
                                 >
                                   <div
                                     role="button"
+                                    data-testid={"downloadPDFButton"}
                                     onClick={() =>
                                       onAssetDownload(row[cell.valueKey])
                                     }
