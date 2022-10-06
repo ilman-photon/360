@@ -17,10 +17,10 @@ defineFeature(feature, (test) => {
     given('use launch the "XXX" url', () => {
       container = render(
         <ForgotPassword
-          onBackToLoginClicked={() => {}}
-          onCalledValidateUsernameAPI={() => {}}
+          onBackToLoginClicked={() => { }}
+          onCalledValidateUsernameAPI={() => { }}
           showPostMessage={true}
-          setShowPostMessage={() => {}}
+          setShowPostMessage={() => { }}
         />
       );
     });

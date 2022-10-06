@@ -6,8 +6,8 @@ import AuthPage from "../../src/pages/patient/login";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-289.feature", {
-    tagFilter: '@included and not @excluded'
-  }
+  tagFilter: '@included and not @excluded'
+}
 );
 
 defineFeature(feature, (test) => {
@@ -24,7 +24,7 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy()
     });
 
-     and("user navigates to the Patient Portal application", () => {
+    and("user navigates to the Patient Portal application", () => {
       const expectedResult = {
         ResponseCode: 2001,
         ResponseType: "failure",
@@ -76,65 +76,65 @@ defineFeature(feature, (test) => {
     then('user should see Login screen', () => {
       expect(true).toBeTruthy()
     });
-    });
+  });
   test("EPIC_EPP-4_STORY_EPP-289 - Verify user is not able to logout when Internet connection is unavailable", ({
     given,
     when,
     then,
     and,
   }) => {
-      given('user launch the \'XXX\' url', () => {
-        expect(true).toBeTruthy()
-      });
-
-      and('user navigates to the Patient Portal application', () => {
-        expect(true).toBeTruthy()
-      });
-
-      when('lands onto “Patient Login” screen', () => {
-        expect(true).toBeTruthy()
-      });
-
-      then(/^user should see (.*) field$/, (arg0) => {
-        expect(true).toBeTruthy()
-      });
-
-      and(/^user should see (.*) field$/, (arg0) => {
-        expect(true).toBeTruthy()
-      });
-
-      when(/^user enter Email or Phone Number in (.*) field$/, (arg0) => {
-        expect(true).toBeTruthy()
-      });
-
-      and(/^user enter password in (.*) field$/, (arg0) => {
-        expect(true).toBeTruthy()
-      });
-
-      and('user should see \'Login\' button', () => {
-        expect(true).toBeTruthy()
-      });
-
-      when('user click on \'Login\' button', () => {
-        expect(true).toBeTruthy()
-      });
-
-      then('user should see Home/Dashboard Page', () => {
-        expect(true).toBeTruthy()
-      });
-
-      and('user should see \'Logout\' option under Profile name', () => {
-        expect(true).toBeTruthy()
-      });
-
-      when('user click on \'Logout\' button when internet is unavailable', () => {
-        expect(true).toBeTruthy()
-      });
-
-      then('user should see appropriate error message', () => {
-        expect(true).toBeTruthy()
-      });
+    given('user launch the \'XXX\' url', () => {
+      expect(true).toBeTruthy()
     });
+
+    and('user navigates to the Patient Portal application', () => {
+      expect(true).toBeTruthy()
+    });
+
+    when('lands onto “Patient Login” screen', () => {
+      expect(true).toBeTruthy()
+    });
+
+    then(/^user should see (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy()
+    });
+
+    and(/^user should see (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy()
+    });
+
+    when(/^user enter Email or Phone Number in (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy()
+    });
+
+    and(/^user enter password in (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy()
+    });
+
+    and('user should see \'Login\' button', () => {
+      expect(true).toBeTruthy()
+    });
+
+    when('user click on \'Login\' button', () => {
+      expect(true).toBeTruthy()
+    });
+
+    then('user should see Home/Dashboard Page', () => {
+      expect(true).toBeTruthy()
+    });
+
+    and('user should see \'Logout\' option under Profile name', () => {
+      expect(true).toBeTruthy()
+    });
+
+    when('user click on \'Logout\' button when internet is unavailable', () => {
+      expect(true).toBeTruthy()
+    });
+
+    then('user should see appropriate error message', () => {
+      expect(true).toBeTruthy()
+    });
+  });
   test("EPIC_EPP-4_STORY_EPP-289 - Verify admin user  should be able to logout form patient portal", ({
     given,
     when,
@@ -192,7 +192,7 @@ defineFeature(feature, (test) => {
     then('admin user should see Login screen', () => {
       expect(true).toBeTruthy()
     });
-    });  
+  });
   test("EPIC_EPP-4_STORY_EPP-289 - Verify user is not able to logout when Service is unavailable", ({
     given,
     when,
@@ -208,7 +208,7 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
         container = render(<AuthPage />, {
           container: document.body.appendChild(element),
@@ -258,76 +258,76 @@ defineFeature(feature, (test) => {
     then('user should see appropriate error message', () => {
       expect(true).toBeTruthy()
     });
-    }); 
-    test('EPIC_EPP-4_STORY_EPP-289 - Verify user is able to view the Logout screen loaded within 3 sec', ({ given, and, when, then }) => {
-      given('user launch the \'XXX\' url', () => {
-        expect(true).toBeTruthy()
-      });
+  });
+  test('EPIC_EPP-4_STORY_EPP-289 - Verify user is able to view the Logout screen loaded within 3 sec', ({ given, and, when, then }) => {
+    given('user launch the \'XXX\' url', () => {
+      expect(true).toBeTruthy()
+    });
 
-      and('user navigates to the Patient Portal application', () => {
-        expect(true).toBeTruthy()
-      });
+    and('user navigates to the Patient Portal application', () => {
+      expect(true).toBeTruthy()
+    });
 
-      when('user lands onto “Patient Login” screen', () => {
-        expect(true).toBeTruthy()
-      });
+    when('user lands onto “Patient Login” screen', () => {
+      expect(true).toBeTruthy()
+    });
 
-      then(/^user should see (.*) field$/, (arg0) => {
-        expect(true).toBeTruthy()
-      });
+    then(/^user should see (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy()
+    });
 
-      and(/^user should see (.*) field$/, (arg0) => {
-        expect(true).toBeTruthy()
-      });
+    and(/^user should see (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy()
+    });
 
-      when(/^user enter Email or Phone Number in (.*) field$/, (arg0) => {
-        expect(true).toBeTruthy()
-      });
+    when(/^user enter Email or Phone Number in (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy()
+    });
 
-      and(/^user enter password in (.*) field$/, (arg0) => {
-        expect(true).toBeTruthy()
-      });
+    and(/^user enter password in (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy()
+    });
 
-      and('user should see \'Login\' button', () => {
-        expect(true).toBeTruthy()
-      });
+    and('user should see \'Login\' button', () => {
+      expect(true).toBeTruthy()
+    });
 
-      when('user click on \'Login\' button', () => {
-        expect(true).toBeTruthy()
-      });
+    when('user click on \'Login\' button', () => {
+      expect(true).toBeTruthy()
+    });
 
-      then('user should see Home/Dashboard Page', () => {
-        expect(true).toBeTruthy()
-      });
+    then('user should see Home/Dashboard Page', () => {
+      expect(true).toBeTruthy()
+    });
 
-      and('user should see \'Logout\' option under Profile name', () => {
-        expect(true).toBeTruthy()
-      });
+    and('user should see \'Logout\' option under Profile name', () => {
+      expect(true).toBeTruthy()
+    });
 
-      when('user click on \'Logout\' button when internet is unavailable', () => {
-        expect(true).toBeTruthy()
-      });
+    when('user click on \'Logout\' button when internet is unavailable', () => {
+      expect(true).toBeTruthy()
+    });
 
-      then('user should see appropriate error message', () => {
-        expect(true).toBeTruthy()
-      });
+    then('user should see appropriate error message', () => {
+      expect(true).toBeTruthy()
+    });
   });
   test('EPIC_EPP-4_STORY_EPP-289 - Verify whether user is able to view Dev Tools without errors when F12 is clicked', ({ given, when, then }) => {
     given('Admin launch the \'XXX\' url', () => {
       expect(true).toBeTruthy()
-      });
+    });
 
-      when(/^Admin provides  (.*) and (.*)$/, (arg0, arg1) => {
-        expect(true).toBeTruthy()
-      });
+    when(/^Admin provides  (.*) and (.*)$/, (arg0, arg1) => {
+      expect(true).toBeTruthy()
+    });
 
-      when(/^Admin (.*) the (.*) button$/, (arg0, arg1) => {
-        expect(true).toBeTruthy()
-      });
+    when(/^Admin (.*) the (.*) button$/, (arg0, arg1) => {
+      expect(true).toBeTruthy()
+    });
 
-      then(/^Admin must "(.*)" whether the Dev Tools are Displayed$/, (arg0) => {
-        expect(true).toBeTruthy()
-      });
+    then(/^Admin must "(.*)" whether the Dev Tools are Displayed$/, (arg0) => {
+      expect(true).toBeTruthy()
+    });
   });
   test('EPIC_EPP-4_STORY_EPP-289 - Verify admin user is not able to logout when Internet connection is unavailable', ({ given, and, when, then }) => {
     given('user launch the \'XXX\' url', () => {
@@ -487,22 +487,22 @@ defineFeature(feature, (test) => {
     then('admin user should see appropriate error message', () => {
       expect(true).toBeTruthy()
     });
-});
-test('EPIC_EPP-4_STORY_EPP-289 - Verify whether admin user is able to view Dev Tools without errors when F12 is clicked', ({ given, when, then }) => {
-  given('Admin user launch the \'XXX\' url', () => {
-    expect(true).toBeTruthy()
   });
+  test('EPIC_EPP-4_STORY_EPP-289 - Verify whether admin user is able to view Dev Tools without errors when F12 is clicked', ({ given, when, then }) => {
+    given('Admin user launch the \'XXX\' url', () => {
+      expect(true).toBeTruthy()
+    });
 
-  when(/^Admin user provides  (.*) and (.*)$/, (arg0, arg1) => {
-    expect(true).toBeTruthy()
-  });
+    when(/^Admin user provides  (.*) and (.*)$/, (arg0, arg1) => {
+      expect(true).toBeTruthy()
+    });
 
-  when(/^Admin user (.*) the (.*) button$/, (arg0, arg1) => {
-    expect(true).toBeTruthy()
-  });
+    when(/^Admin user (.*) the (.*) button$/, (arg0, arg1) => {
+      expect(true).toBeTruthy()
+    });
 
-  then(/^Admin user must "(.*)" whether the Dev Tools are Displayed$/, (arg0) => {
-    expect(true).toBeTruthy()
+    then(/^Admin user must "(.*)" whether the Dev Tools are Displayed$/, (arg0) => {
+      expect(true).toBeTruthy()
+    });
   });
-});
 });

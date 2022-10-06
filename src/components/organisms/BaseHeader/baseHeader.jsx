@@ -1,6 +1,6 @@
 import * as React from "react";
 import { styles } from "./style";
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Container from "@mui/material/Container";
 import Toolbar from "@mui/material/Toolbar";
@@ -24,8 +24,8 @@ import { useSelector } from "react-redux";
 import MobileNavMenu from "../../molecules/Navbar/MobileNavMenu";
 
 export default function BaseHeader({
-  OnLogoutClicked = (router) => {
-    logoutProps.OnLogoutClicked(router);
+  OnLogoutClicked = (routerInstance) => {
+    logoutProps.OnLogoutClicked(routerInstance);
   },
   backTitle,
   onBackClicked,
@@ -159,7 +159,6 @@ export default function BaseHeader({
                     setAnchorElNav(false);
                   }}
                   onLogoutClicked={() => {
-                    console.log("sini", router);
                     OnLogoutClicked(router);
                   }}
                 />
