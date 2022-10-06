@@ -114,6 +114,17 @@ const ForgotPassword = ({
                           setShowPostMessage(false);
                         }
                       }}
+                      sx={{
+                        ".MuiFilledInput-input": {
+                          fontFamily: "Libre Franklin",
+                          color: "#6C6C6C !important",
+                          fontSize: "16px",
+                          lineHeight: "12px",
+                        },
+                        ".MuiInputLabel-root": {
+                          fontSize: "12px",
+                        },
+                      }}
                       error={!!error}
                       helperText={error ? error.message : null}
                     />

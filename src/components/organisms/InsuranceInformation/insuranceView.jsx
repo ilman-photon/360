@@ -291,6 +291,7 @@ export default function InsuranceView({
                                 textTransform: "none",
                                 fontWeight: 600,
                                 lineHeight: "18px",
+                                fontSize: "14px",
                               }}
                             >
                               Edit

@@ -20,7 +20,7 @@
     "alreadyHaveAnAppointment" : "Already have an appointment?",
     "errorAysncUser": "Login",
     "errorLoginLockedTitle": "Account Locked",
-    "errorLoginLockedMessage": "Your account has been locked after too many failed attempts. An email/ text message with password reset link has been sent to your preferred mode of communication to login.",
+    "errorLoginLockedMessage": "Your account has been locked. An email/ text message with password reset link has been sent to your preferred mode of communication to login.",
     "errorFailedLogin": "Invalid Username or Password"
   },
   "Input": {
@@ -56,7 +56,7 @@
     "subtitle": "Answer the following questions to reset your password.",
     "errorIncorrectAnswer": "Incorrect answer(s)",
     "errorAccountLockTitle": "Account Locked",
-    "errorAccountLock": "Your account has been locked after too many failed attempts. An email/ text message with password reset link has been sent to your preferred mode of communication to login.",
+    "errorAccountLock": "Your account has been locked. An email/ text message with password reset link has been sent to your preferred mode of communication to login.",
     "errorEmptyField": "This field is required",
     "continueButton": "Continue",
     "backButtonLink": "Back to Log in"
@@ -166,6 +166,7 @@
     "scheduled": "You’re Scheduled!",
     "isEmergency": "Is this a medical emergency?",
     "thanksBar" : "Thank you for scheduling your appointment. We will send a confirmation Email/Text shortly.",
+    "thanksBarReschedule" : "Thank you for rescheduling your appointment. We will send a confirmation Email/Text shortly.",
     "patientInformation": "Patient Information",
     "cancelTitle": "Are you sure you want to cancel?",
     "cancelReason": "Reason for cancelation",

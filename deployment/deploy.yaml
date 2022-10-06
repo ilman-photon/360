@@ -43,6 +43,6 @@ spec:
     targetPort: 3000
   selector:
     app: patient
-  type: LoadBalancer
+  type: ClusterIP
 status:
   loadBalancer: {}

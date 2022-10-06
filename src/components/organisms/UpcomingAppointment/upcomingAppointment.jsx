@@ -134,7 +134,7 @@ export function scheduleAppointmentButton(onScheduleClicked) {
       gradient={false}
       onClick={onScheduleClicked}
     >
-      Schedule New Appointments
+      Schedule New Appointment
     </StyledButton>
   );
 }

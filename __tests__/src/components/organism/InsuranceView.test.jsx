@@ -35,10 +35,6 @@ describe("InsuranceView Components", () => {
     );
   });
 
-  it("InsuranceView render", () => {
-    // expect(container).toMatchSnapshot();
-  });
-
   it("InsuranceView render field", () => {
     expect(container.getByText("Insurance Provider")).toBeInTheDocument();
     expect(container.getByText("Plan Name")).toBeInTheDocument();
