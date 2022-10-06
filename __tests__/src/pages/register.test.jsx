@@ -36,7 +36,6 @@ describe("Register", () => {
     fireEvent.change(email, { target: { value: "user123@mail.com" } });
     fireEvent.change(mobileNumber, { target: { value: "1234567890" } });
     fireEvent.change(password, { target: { value: "user123@A" } });
-    expect(container).toMatchSnapshot();
     expect(lastname.value).toEqual("testing");
     // expect(dob.value).toEqual("12/12/1991");
     expect("User Registration").toEqual(title.textContent);
