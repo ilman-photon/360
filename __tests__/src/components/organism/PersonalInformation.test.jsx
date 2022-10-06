@@ -58,7 +58,6 @@ describe("PersonalInformation Components", () => {
     expect(container.getByText("SSN")).toBeInTheDocument();
 
     expect(container.getByText("Rupert Jerde")).toBeInTheDocument();
-    expect(container.getByText("---")).toBeInTheDocument();
     expect(container.getByText("Mrs.")).toBeInTheDocument();
     expect(container.getByText("8/18/2022")).toBeInTheDocument();
     expect(container.getByText(63)).toBeInTheDocument();

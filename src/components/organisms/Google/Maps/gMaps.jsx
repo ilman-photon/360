@@ -21,29 +21,31 @@ function GMaps({
   const [activeMarker, setActiveMarker] = React.useState(null);
   const markers = [];
   providerListData.forEach((provider) => {
-    const foundIndex = markers.findIndex((v) => {
-      console.log(v.coordinate.latitude, provider.coordinate.latitude);
-      return (
-        v.coordinate.latitude === provider.coordinate.latitude &&
-        v.coordinate.longitude === provider.coordinate.longitude
-      );
-    });
-    const latlngObj = {
-      lat: provider.coordinate.latitude,
-      lng: provider.coordinate.longitude,
-    };
-    const obj = {
-      ...provider,
-      position: latlngObj,
-    };
-    if (foundIndex > -1) {
-      markers[foundIndex].providerData.push(obj);
-    } else {
-      markers.push({
-        coordinate: provider.coordinate,
-        position: latlngObj,
-        providerData: [obj],
+    if (provider?.coordinate?.latitude && provider?.coordinate?.longitude) {
+      const foundIndex = markers.findIndex((v) => {
+        console.log(v.coordinate.latitude, provider.coordinate.latitude);
+        return (
+          v.coordinate.latitude === provider.coordinate.latitude &&
+          v.coordinate.longitude === provider.coordinate.longitude
+        );
       });
+      const latlngObj = {
+        lat: provider.coordinate.latitude,
+        lng: provider.coordinate.longitude,
+      };
+      const obj = {
+        ...provider,
+        position: latlngObj,
+      };
+      if (foundIndex > -1) {
+        markers[foundIndex].providerData.push(obj);
+      } else {
+        markers.push({
+          coordinate: provider.coordinate,
+          position: latlngObj,
+          providerData: [obj],
+        });
+      }
     }
   });
 

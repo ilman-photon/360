@@ -24,7 +24,7 @@ describe("InsuranceView Components", () => {
         dob: null,
         relationship: "",
       },
-      priority: "Primary",
+      priority: "PRIMARY",
       frontCard: "",
       backCard: "",
     },

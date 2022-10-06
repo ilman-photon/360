@@ -123,6 +123,10 @@ export const DayAvailability = ({
             className={styles.scheduleContainer}
             sx={{
               marginTop: index == 0 ? "12px" : "24px",
+              minWidth: "410px",
+              "@media (max-width: 762px)": {
+                minWidth: "unset",
+              },
             }}
           >
             <Typography className={styles.scheduleTitle} tabindex={"0"}>
@@ -138,6 +142,10 @@ export const DayAvailability = ({
             className={[styles.noScheduleContainer].join(" ")}
             sx={{
               marginTop: index == 0 ? "12px" : "24px",
+              minWidth: "410px",
+              "@media (max-width: 762px)": {
+                minWidth: "unset",
+              },
             }}
           >
             <Typography className={styles.scheduleTitle} tabindex={"0"}>
