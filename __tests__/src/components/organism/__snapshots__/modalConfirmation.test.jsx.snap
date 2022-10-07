@@ -247,7 +247,12 @@ Object {
                                 data-testid="appointment_provider_profile_name"
                                 tabindex="0"
                               >
-                                Paul Wagner Md
+                                <span
+                                  class="doctorName"
+                                >
+                                  Paul Wagner Md
+                                   
+                                </span>
                               </h2>
                               <h3
                                 class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
@@ -691,7 +696,12 @@ Object {
                                 data-testid="appointment_provider_profile_name"
                                 tabindex="0"
                               >
-                                Paul Wagner Md
+                                <span
+                                  class="doctorName"
+                                >
+                                  Paul Wagner Md
+                                   
+                                </span>
                               </h2>
                               <h3
                                 class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"

@@ -71,7 +71,12 @@ Object {
                       data-testid="appointment_provider_profile_name"
                       tabindex="0"
                     >
-                      Paul Wagner Md
+                      <span
+                        class="doctorName"
+                      >
+                        Paul Wagner Md
+                         
+                      </span>
                     </span>
                     <div
                       class="detailContainer MuiBox-root css-0"
@@ -742,7 +747,12 @@ Object {
                     data-testid="appointment_provider_profile_name"
                     tabindex="0"
                   >
-                    Paul Wagner Md
+                    <span
+                      class="doctorName"
+                    >
+                      Paul Wagner Md
+                       
+                    </span>
                   </span>
                   <div
                     class="detailContainer MuiBox-root css-0"

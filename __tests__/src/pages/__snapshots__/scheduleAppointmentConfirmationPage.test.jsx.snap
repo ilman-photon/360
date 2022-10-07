@@ -252,7 +252,13 @@ exports[`App renders App unchanged 1`] = `
                                 class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-1i5ehwd-MuiTypography-root"
                                 data-testid="appointment_provider_profile_name"
                                 tabindex="0"
-                              />
+                              >
+                                <span
+                                  class="doctorName"
+                                >
+                                   
+                                </span>
+                              </h2>
                               <h3
                                 class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
                                 tabindex="0"
