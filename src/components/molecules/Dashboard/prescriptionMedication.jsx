@@ -349,7 +349,7 @@ export default function PrescriptionMedication({
     } else {
       intentUI.push(
         <Typography className={styles.medicationViewAllStatus}>
-          Status: {status}
+          Status: {status === "refill request" ? `${status}ed` : status}
         </Typography>
       );
     }
