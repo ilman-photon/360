@@ -107,7 +107,7 @@ export default function ProviderProfile({
     } else if (isMap) {
       return styles.doctorMap;
     } else {
-      return "";
+      return styles.doctorName;
     }
   }
 
@@ -164,7 +164,7 @@ export default function ProviderProfile({
             className={getDoctorNameStyle()}
             tabIndex={"0"}
           >
-            {providerData.name}
+            <span className={styles.doctorName}>{providerData.name} </span>
           </Typography>
           {showPosition && (
             <Typography variant="h3" tabIndex={0}>
