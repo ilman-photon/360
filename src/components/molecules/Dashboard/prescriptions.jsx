@@ -31,6 +31,7 @@ import { parsePrescriptionData } from "../../../utils/appointment";
 import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlined";
 import PrescriptionMedication from "./prescriptionMedication";
 import { savePDF } from "@progress/kendo-react-pdf";
+import { getLinkAria } from "../../../utils/viewUtil";
 
 export function renderCTAIcon(
   onClickDownload = () => {
@@ -53,16 +54,22 @@ export function renderCTAIcon(
         className={styles.butttonIconContainer}
         data-testid={"download-icon"}
         onClick={onClickDownload}
+        aria-label={"Download option"}
       >
         <Image alt="" src={iconDownload} width={15} height={15} />
       </Button>
       <Button
         className={styles.butttonIconContainer}
         data-testid={"shared-icon"}
+        aria-label={"Share option"}
       >
         <Image alt="" src={iconShare} width={15} height={15} />
       </Button>
-      <Button className={styles.butttonIconContainer} onClick={onClickPrint}>
+      <Button
+        className={styles.butttonIconContainer}
+        onClick={onClickPrint}
+        aria-label={"Print option"}
+      >
         <LocalPrintshopOutlinedIcon
           sx={{
             width: "18px",
@@ -469,12 +476,17 @@ export default function Prescriptions({
               onViewPrescriptions(2);
             }}
             data-testid={"view-prescription-medication"}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                onViewPrescriptions(2);
+              }
+            }}
           >
             <Link
               className={styles.viewPrescriptionText}
               sx={{ color: "#008294", fontFamily: "Inter" }}
               tabIndex={0}
-              aria-label="View prescriptions option"
+              {...getLinkAria("View prescriptions option")}
             >
               View prescriptions
             </Link>
@@ -521,13 +533,18 @@ export default function Prescriptions({
                 onClick={() => {
                   onViewPrescriptions(0);
                 }}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    onViewPrescriptions(0);
+                  }
+                }}
                 data-testid={"view-prescription-glasses"}
               >
                 <Link
                   className={styles.viewPrescriptionText}
                   sx={{ color: "#008294", fontFamily: "Inter" }}
                   tabIndex={0}
-                  aria-label="View prescriptions option"
+                  {...getLinkAria("View prescriptions option")}
                 >
                   View prescriptions
                 </Link>
@@ -571,13 +588,18 @@ export default function Prescriptions({
                 onClick={() => {
                   onViewPrescriptions(1);
                 }}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    onViewPrescriptions(1);
+                  }
+                }}
                 data-testid={"view-prescription-contact"}
               >
                 <Link
                   className={styles.viewPrescriptionText}
                   sx={{ color: "#008294", fontFamily: "Inter" }}
                   tabIndex={0}
-                  aria-label="View prescriptions option"
+                  {...getLinkAria("View prescriptions option")}
                 >
                   View prescriptions
                 </Link>
@@ -606,7 +628,6 @@ export default function Prescriptions({
         onChange={handleChange}
         variant="scrollable"
         scrollButtons={false}
-        aria-label="scrollable prevent tabs example"
         textColor="unset"
         TabIndicatorProps={{
           style: {
@@ -730,6 +751,7 @@ export default function Prescriptions({
           <Image alt="" src={iconPrescription} width={32} height={32} />
         }
         title={`Prescriptions`}
+        ariaLabel={`Prescriptions subtitle`}
         sx={{
           ".MuiCardContent-root": {
             p: 0,

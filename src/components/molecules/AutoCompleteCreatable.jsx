@@ -7,7 +7,14 @@ import SearchIcon from "@mui/icons-material/Search";
 
 const filter = createFilterOptions();
 
+function sleep(delay = 0) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, delay);
+  });
+}
+
 export const AutoCompleteCreatable = ({
+  isLoading = false,
   options = [],
   onFetch = () => {
     // This is intended
@@ -18,7 +25,7 @@ export const AutoCompleteCreatable = ({
   ...props
 }) => {
   const [open, setOpen] = React.useState(false);
-  const loading = open && options.length === 0;
+  const loading = open && options.length === 0 && isLoading;
   const borderColor = props.error ? "#B00020" : "#BDBDBD";
   let backgroundColor = props.error ? "#FBF4F4" : "white";
 
@@ -64,18 +71,13 @@ export const AutoCompleteCreatable = ({
         value={props.value}
         //   onChange={props.onChange}
         onChange={(_e, newValue) => {
-          console.log({ newValue });
           if (typeof newValue === "string") {
             props.onChange({
               label: newValue,
             });
           } else if (newValue && newValue.value) {
             // Create a new value from the user input
-            props.onChange({
-              id: newValue.id,
-              label: newValue.label,
-              value: newValue.value,
-            });
+            props.onChange(newValue);
           } else {
             props.onChange(newValue);
           }
