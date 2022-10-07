@@ -121,6 +121,10 @@ export default function AccountDocumentsPage() {
     }
   });
 
+  const status = useSelector((state) => {
+    return state.document.status;
+  });
+
   const handleAssetDownload = (id) => {
     fetchSource(id);
   };
@@ -154,39 +158,41 @@ export default function AccountDocumentsPage() {
 
   return (
     <>
-      <div className={styles.documentPageWrapper}>
-        <Controller
-          name="category"
-          control={control}
-          render={({ field: { onChange, value }, fieldState: { error } }) => {
-            return (
-              <StyledSelect
-                options={categories}
-                onChange={(v) =>
-                  router.push(
-                    `/patient/account/documents?type=${v.target.value}`
-                  )
-                }
-                value={value}
-                label="Choose a category"
-                sx={{ m: 0, display: isDesktop ? "none" : "" }}
-              />
-            );
-          }}
-        />
+      {status === "success" && (
+        <div className={styles.documentPageWrapper}>
+          <Controller
+            name="category"
+            control={control}
+            render={({ field: { onChange, value }, fieldState: { error } }) => {
+              return (
+                <StyledSelect
+                  options={categories}
+                  onChange={(v) =>
+                    router.push(
+                      `/patient/account/documents?type=${v.target.value}`
+                    )
+                  }
+                  value={value}
+                  label="Choose a category"
+                  sx={{ m: 0, display: isDesktop ? "none" : "" }}
+                />
+              );
+            }}
+          />
 
-        <Stack spacing={3} sx={{ mt: 1 }}>
-          {rows.length > 0 ? (
-            <TableWithSort
-              config={tableConfiguration}
-              rows={rows}
-              onAssetDownload={handleAssetDownload}
-            />
-          ) : (
-            <TableEmpty text={`There are no ${watchedCategory}.`} />
-          )}
-        </Stack>
-      </div>
+          <Stack spacing={3} sx={{ mt: 1 }}>
+            {rows.length > 0 ? (
+              <TableWithSort
+                config={tableConfiguration}
+                rows={rows}
+                onAssetDownload={handleAssetDownload}
+              />
+            ) : (
+              <TableEmpty text={`There are no ${watchedCategory}.`} />
+            )}
+          </Stack>
+        </div>
+      )}
     </>
   );
 }

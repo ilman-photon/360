@@ -18,7 +18,6 @@ import {
   Tab,
   Box,
   Stack,
-  Divider,
   Button,
 } from "@mui/material";
 import AccountCard from "../AccountCard/accountCard";
@@ -31,14 +30,15 @@ import { useEffect } from "react";
 import { parsePrescriptionData } from "../../../utils/appointment";
 import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlined";
 import PrescriptionMedication from "./prescriptionMedication";
-import AccessTimeIcon from "@mui/icons-material/AccessTime";
-import { StyledButton } from "../../atoms/Button/button";
-import constants from "../../../utils/constants";
 import { savePDF } from "@progress/kendo-react-pdf";
 
 export function renderCTAIcon(
-  onClickDownload = () => {},
-  onClickPrint = () => {}
+  onClickDownload = () => {
+    //this is intentional
+  },
+  onClickPrint = () => {
+    //this is intentional
+  }
 ) {
   const iconShare = "/icon-share.png";
   const iconDownload = "/icon-download.png";
@@ -106,7 +106,7 @@ export default function Prescriptions({
     },
   });
 
-  const downloadPDF = (index = -1, type) => {
+  const downloadPDF = (type, index = -1) => {
     let containerSelector = null;
     if (type === "contacts") {
       containerSelector = containerContact;
@@ -124,7 +124,7 @@ export default function Prescriptions({
     });
   };
 
-  const printHTML = (index = -1, type) => {
+  const printHTML = (type, index = -1) => {
     let containerSelector = null;
     if (type === "contacts") {
       containerSelector = containerContact;
@@ -135,14 +135,14 @@ export default function Prescriptions({
       containerSelector.current.querySelector(
         `[data-testid=${type}-container-${index}]`
       ) || document.body;
-    const styles = Array.from(document.head.querySelectorAll("style"));
+    const headStyles = Array.from(document.head.querySelectorAll("style"));
     var WinPrint = window.open(
       "",
       "",
       "left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0"
     );
     WinPrint.document.write(element.innerHTML);
-    styles.forEach((st) => {
+    headStyles.forEach((st) => {
       WinPrint.document.head.appendChild(st.cloneNode(true));
     });
     WinPrint.document.close();
@@ -234,20 +234,20 @@ export default function Prescriptions({
             {isViewAll && !isMobile ? (
               renderCTAIcon(
                 () => {
-                  downloadPDF(idxKey, type);
+                  downloadPDF(type, idxKey);
                 },
                 () => {
-                  printHTML(idxKey, type);
+                  printHTML(type, idxKey);
                 }
               )
             ) : (
               <Box sx={{ position: "absolute", right: 0 }}>
                 <MenuList
                   onClickDownloadButton={() => {
-                    downloadPDF(idxKey, type);
+                    downloadPDF(type, idxKey);
                   }}
                   onClickPrintButton={() => {
-                    printHTML(idxKey, type);
+                    printHTML(type, idxKey);
                   }}
                 />
               </Box>

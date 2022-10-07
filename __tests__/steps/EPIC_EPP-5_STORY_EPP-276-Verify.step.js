@@ -56,7 +56,7 @@ defineFeature(feature, (test) => {
       container = render(
         <SessionExpiredModal showModal={true} remaining={60} />
       );
-      expect(container).toMatchSnapshot();
+
       await waitFor(() =>
         container.getByText(
           /Your session is about to time-out. You will be logged out in /i
@@ -108,7 +108,7 @@ defineFeature(feature, (test) => {
       container = render(
         <SessionExpiredModal showModal={true} remaining={60} />
       );
-      expect(container).toMatchSnapshot();
+
       await waitFor(() =>
         container.getByText(
           /Your session is about to time-out. You will be logged out in /i
@@ -167,7 +167,7 @@ defineFeature(feature, (test) => {
           onLoggedOff={onLoggedOff}
         />
       );
-      expect(container).toMatchSnapshot();
+
       await waitFor(() =>
         container.getByText(
           /Your session is about to time-out. You will be logged out in /i
