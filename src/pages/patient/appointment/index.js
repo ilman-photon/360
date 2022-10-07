@@ -185,7 +185,7 @@ export default function Appointment({ googleApiKey }) {
     const endDateRequest = getSaturdayOfCurrentWeek(requestData.date);
     const postBody = {
       appointmentType: {
-        code: selectedAppointmentType?.id || "",
+        code: selectedAppointmentType?.id || " ",
       },
       currentDate: startDateRequest,
       numDays: 6,
