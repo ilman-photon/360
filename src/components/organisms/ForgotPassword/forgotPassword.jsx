@@ -16,7 +16,7 @@ import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
 import Head from "next/head";
 import { colors } from "../../../styles/theme";
-
+import { useMediaQuery } from "@mui/material";
 const ForgotPassword = ({
   onBackToLoginClicked,
   showPostMessage,
@@ -26,6 +26,7 @@ const ForgotPassword = ({
   title = "",
   isAppointment = true,
 }) => {
+  const isMobile = useMediaQuery("(max-width: 833px)");
   const router = useRouter();
   const { t, ready } = useTranslation("translation", {
     keyPrefix: "ForgotPassword",
@@ -76,10 +77,24 @@ const ForgotPassword = ({
         >
           <CardContent style={styles.cardContentStyle}>
             <HeadingTitle
-              variant={constants.H2}
+              variant={isMobile ? constants.h1 : constants.H2}
               title={isAppointment ? t("syncTitle") : t("title")}
-              sx={{ fontSize: "32px" }}
+              sx={{
+                fontSize: "32px",
+                pb: 1,
+                color: "#003B4A",
+                /* or 138% */
+              }}
             />
+            <Typography
+              variant="bodyMedium"
+              sx={{
+                pb: 2,
+                color: "#191919",
+              }}
+            >
+              {t("syncContent")}
+            </Typography>
             {showPostMessage ? (
               <FormMessage
                 success={false}
