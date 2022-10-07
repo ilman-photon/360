@@ -6,13 +6,13 @@ import LabelWithInfo from "../../atoms/LabelWithInfo/labelWithInfo";
 
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import ContactMailIcon from "@mui/icons-material/ContactMail";
-import BusinessIcon from "@mui/icons-material/Business";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 
 import { styles } from "./style";
 import { formatAppointmentDate } from "../../../utils/dateFormatter";
 import { colors } from "../../../styles/theme";
 import { TEST_ID } from "../../../utils/constants";
+import Image from "next/image";
 
 export default function AppointmentDetails({
   appointmentData = {},
@@ -23,6 +23,8 @@ export default function AppointmentDetails({
   const { t } = useTranslation("translation", {
     keyPrefix: "scheduleAppoinment",
   });
+
+  const iconCardinsuranceCard = "/iconCardinsuranceCard.png";
 
   return (
     <Box>
@@ -81,8 +83,14 @@ export default function AppointmentDetails({
           <LabelWithInfo
             label="Insurance"
             titleIcon={
-              <ContactMailIcon aria-label={"Mail icon"} aria-hidden={"false"} />
+              <Image
+                alt=""
+                src={iconCardinsuranceCard}
+                width={"24px"}
+                height={"24px"}
+              />
             }
+            iconWidth={"24px"}
             sxRow={{ justifyContent: "unset" }}
             sxText={{
               paddingLeft: "4px",
@@ -104,8 +112,8 @@ export default function AppointmentDetails({
           <LabelWithInfo
             label="Purpose of visit"
             titleIcon={
-              <BusinessIcon
-                aria-label={"Business icon"}
+              <VisibilityOutlinedIcon
+                aria-label={"Visibility icon"}
                 aria-hidden={"false"}
               />
             }

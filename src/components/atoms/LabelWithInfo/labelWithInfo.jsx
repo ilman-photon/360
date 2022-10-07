@@ -12,6 +12,7 @@ export const LabelWithInfo = ({
   titleIcon,
   sxRow,
   sxText,
+  iconWidth,
   alignItems = "unset",
 }) => (
   <Stack>
@@ -19,10 +20,10 @@ export const LabelWithInfo = ({
       {titleIcon && (
         <span
           style={{
-            marginRight: 8,
+            marginRight: iconWidth ? 2 : 8,
             display: "flex",
             alignItems: "center",
-            width: "18px",
+            width: iconWidth || "18px",
           }}
         >
           {titleIcon}
