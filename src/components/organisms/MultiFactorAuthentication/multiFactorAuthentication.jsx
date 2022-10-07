@@ -30,7 +30,9 @@ export default function MultiFactorAuthentication({
         id="mfaCode"
         label={t("mfaLabel")}
         onKeyDown={(e) => {
-          if (!Regex.numberOnly.test(e.key)) e.preventDefault();
+          if (!Regex.numberOnly.test(e.key) && e.key != "Backspace") {
+            e.preventDefault();
+          }
         }}
         fullWidth
         inputProps={{ minLength: 6, maxLength: 6 }}

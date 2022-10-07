@@ -23,7 +23,6 @@ import { AutoCompleteCreatable } from "../../molecules/AutoCompleteCreatable";
 import constants from "../../../utils/constants";
 import { Regex } from "../../../utils/regex";
 import { RELATIONSHIP_LIST } from "../../../utils/constantData";
-import { colors } from "../../../styles/theme";
 
 export default function InsuranceForm({
   formData = DEFAULT_INSURANCE_DATA,

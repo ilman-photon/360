@@ -21,7 +21,6 @@ import { Regex } from "../../../utils/regex";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import dynamic from "next/dynamic";
-import { StyledSelect } from "../../atoms/Select/select";
 
 let ClientAddressAutofill;
 
