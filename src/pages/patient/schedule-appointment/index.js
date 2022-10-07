@@ -275,7 +275,7 @@ export default function ScheduleAppointmentPage({ query }) {
   const [isReschedule, setIsReschedule] = React.useState(false);
   const [modalConfirmReschedule, setModalConfirmReschedule] =
     React.useState(false);
-    const [patientId, setPatientId] = React.useState("");
+  const [patientId, setPatientId] = React.useState("");
 
   useLeavePageConfirm({ message: "Change that you made might not be saved." });
 
@@ -338,20 +338,19 @@ export default function ScheduleAppointmentPage({ query }) {
     const cookies = new Cookies();
     const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
     setIsLoggedIn(isLogin);
-    console.log("redux", appointmentScheduleData, userData, cookies.get("username"));
 
     const post = {
       username: appointmentScheduleData.patientInfo.email,
     };
     api
-    .getPatientId(post)
-    .then((response) => {
-      setPatientId(response.ecpPatientId || "")
-      console.log("response", response)
-    })
-    .catch(() => {
-      console.log("catch")
-    });
+      .getPatientId(post)
+      .then((response) => {
+        setPatientId(response.ecpPatientId || "");
+        console.log("response", response);
+      })
+      .catch(() => {
+        console.log("catch");
+      });
   }, []);
 
   React.useEffect(() => {
@@ -384,7 +383,7 @@ export default function ScheduleAppointmentPage({ query }) {
   const handleCreateAppointment = (payload, isPage) => {
     const api = new Api();
     const dateNow = new Date();
-    console.log(payload, 'postBody');
+    console.log(payload, "postBody");
     const postBody = [
       {
         appointmentDate: mmddyyDateFormat(

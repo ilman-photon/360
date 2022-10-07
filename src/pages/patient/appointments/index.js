@@ -110,6 +110,8 @@ export default function Appointments() {
   const handleCancelSchedule = (data) => {
     setModalCancel(false);
     const api = new Api();
+    const cancelReason =
+      data.cancelSchedule === "other" ? data.cancelOther : data.cancelSchedule;
     const postBody = {
       current: {
         state: "CONFIRMED",
@@ -119,6 +121,7 @@ export default function Appointments() {
         state: "CANCELLED",
         subState: "NONE",
       },
+      reason: cancelReason,
       code: 2,
     };
     api

@@ -202,6 +202,7 @@ export default function HomePage() {
     setIsOpenCancel(false);
     console.log(data, "data");
     const api = new Api();
+    const cancelReason = data.cancelSchedule === "other" ? data.cancelOther : data.cancelSchedule;
     const postBody = {
       current: {
         state: "CONFIRMED",
@@ -211,6 +212,7 @@ export default function HomePage() {
         state: "CANCELLED",
         subState: "NONE",
       },
+      reason: cancelReason,
       code: 2,
     };
     api
