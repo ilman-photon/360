@@ -247,7 +247,12 @@ Object {
                                 data-testid="appointment_provider_profile_name"
                                 tabindex="0"
                               >
-                                Paul Wagner Md
+                                <span
+                                  class="doctorName"
+                                >
+                                  Paul Wagner Md
+                                   
+                                </span>
                               </h2>
                               <h3
                                 class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
@@ -281,7 +286,7 @@ Object {
                                     </p>
                                   </div>
                                   <div
-                                    class="phoneContainer MuiBox-root css-0"
+                                    class="phoneContainer MuiBox-root css-qbubgm"
                                   >
                                     <a
                                       class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways phoneLink css-1ps4owl-MuiTypography-root-MuiLink-root"
@@ -691,7 +696,12 @@ Object {
                                 data-testid="appointment_provider_profile_name"
                                 tabindex="0"
                               >
-                                Paul Wagner Md
+                                <span
+                                  class="doctorName"
+                                >
+                                  Paul Wagner Md
+                                   
+                                </span>
                               </h2>
                               <h3
                                 class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
@@ -725,7 +735,7 @@ Object {
                                     </p>
                                   </div>
                                   <div
-                                    class="phoneContainer MuiBox-root css-0"
+                                    class="phoneContainer MuiBox-root css-qbubgm"
                                   >
                                     <a
                                       class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways phoneLink css-1ps4owl-MuiTypography-root-MuiLink-root"

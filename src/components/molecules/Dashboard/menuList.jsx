@@ -72,6 +72,11 @@ export default function MenuList({
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  const onEnter = (event) => {
+    if (event.key == "Enter") {
+      handleClick(event);
+    }
+  };
   const handleClose = (callback) => {
     setAnchorEl(null);
   };
@@ -79,7 +84,7 @@ export default function MenuList({
   const iconDownload = "/icon-download.png";
 
   return (
-    <div aria-label={"More option"} tabIndex={0}>
+    <div aria-label="More option" tabIndex={0} onKeyPress={onEnter}>
       <MoreHorizIcon
         id="demo-customized-button"
         aria-controls={open ? "demo-customized-menu" : undefined}
@@ -89,6 +94,7 @@ export default function MenuList({
         onClick={handleClick}
         endicon={<KeyboardArrowDownIcon />}
         sx={{
+          cursor: "pointer",
           "@media print": {
             display: "none !important",
           },
@@ -111,6 +117,7 @@ export default function MenuList({
             onClickDownloadButton();
             handleClose();
           }}
+          tabIndex={0}
         >
           <Box className={"MuiSvgIcon-root"}>
             <Image alt="" src={iconDownload} width={15} height={15} />
@@ -124,6 +131,7 @@ export default function MenuList({
           }}
           className={styles.menuItem}
           disableRipple
+          tabIndex={0}
         >
           <Box className={"MuiSvgIcon-root"}>
             <Image alt="" src={iconShare} width={15} height={15} />

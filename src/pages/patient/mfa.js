@@ -59,6 +59,7 @@ export default function MfaPage({ isStepTwo }) {
     onBackToLoginClicked();
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   React.useEffect(() => {
     if (Object.keys(communicationMethod).length == 0) {
       const userData = JSON.parse(localStorage.getItem("userData"));

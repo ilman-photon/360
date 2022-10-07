@@ -26,6 +26,7 @@ export default function InsuranceInformationNew({
       <AccountCard
         titleIcon={<AccountCircleOutlinedIcon aria-hidden="false" />}
         title="Insurance Documents"
+        textStyle={{ fontWeight: "700" }}
       >
         <Stack spacing={2}>
           {isShowError && FormMessageEl}

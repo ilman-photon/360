@@ -63,7 +63,7 @@ export const FormMessage = (
           {...accessibility}
         >
           {props.title ? (
-            <div style={{ fontWeight: "600" }} role="alert">
+            <div style={{ fontWeight: "600" }} role="alert" tabIndex={"0"}>
               {props.title}
             </div>
           ) : (
@@ -72,6 +72,7 @@ export const FormMessage = (
           <div
             style={{ fontSize: props.fontTitle || 14, fontWeight: "400" }}
             role="alert"
+            tabIndex={"0"}
           >
             {props.children}
             {props.isBackToLogin ? (
