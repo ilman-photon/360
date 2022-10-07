@@ -54,6 +54,10 @@ export default function StepperAppoinment({ ...props }) {
                 background: "transparent",
                 borderRadius: "50%",
               },
+              "& .MuiStepIcon-text": {
+                fill: "black",
+                fontSize: "13px",
+              },
             }}
             key={label}
           >

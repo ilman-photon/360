@@ -381,7 +381,7 @@ export default function Appointment({ googleApiKey }) {
                 position: "absolute",
                 right: 8,
                 top: 8,
-                color: (theme) => theme.palette.grey[500],
+                color: "#000000",
               }}
             >
               <CloseIcon />
