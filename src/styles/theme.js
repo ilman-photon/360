@@ -9,6 +9,7 @@ export const colors = {
   darkGreen25: "#507A7D",
   green: "#168845",
   teal: "#0095A9", //'#E5EDF8',
+  teal15: "#DDF1F3",
   teal75: "#3EAFBD",
   teal50: "#7FCAD3",
   teal25: "#BFE$E8",

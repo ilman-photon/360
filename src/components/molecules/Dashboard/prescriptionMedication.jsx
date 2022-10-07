@@ -224,6 +224,7 @@ export default function PrescriptionMedication({
         <DialogContent
           className={styles.dialogContent}
           style={{ padding: "16px" }}
+          aria-live={"assertive"}
           sx={{
             width: "500px",
             "@media (max-width: 992px)": {
@@ -328,13 +329,17 @@ export default function PrescriptionMedication({
             </Typography>
           </AccordionSummary>
           <AccordionDetails sx={{ paddingTop: "0px" }}>
-            <Typography className={styles.medicationStatusDescription}>
+            <Typography
+              className={styles.medicationStatusDescription}
+              tabIndex={"0"}
+            >
               You can now go to your preferred pharmacy to pick-up your
               medication.
             </Typography>
             <Typography
               className={styles.medicationStatusDescription}
               sx={{ fontWeight: "500" }}
+              tabIndex={"0"}
             >
               {statusDescription}
             </Typography>
@@ -375,7 +380,10 @@ export default function PrescriptionMedication({
             className={styles.medicationViewAllTitleContainer}
             sx={{ marginBottom: "8px" }}
           >
-            <Typography className={styles.medicationViewAllTitle}>
+            <Typography
+              className={styles.medicationViewAllTitle}
+              tabIndex={"0"}
+            >
               {data.prescription}
             </Typography>
             {!isMobile ? (
@@ -411,10 +419,15 @@ export default function PrescriptionMedication({
                   <Typography
                     variant="customBodyRegular"
                     className={styles.gridText}
+                    tabIndex={"0"}
                   >
                     Fill request date: &nbsp;
                   </Typography>
-                  <Typography variant="bodyMedium" className={styles.gridText}>
+                  <Typography
+                    variant="bodyMedium"
+                    className={styles.gridText}
+                    tabIndex={"0"}
+                  >
                     {data.fillRequestDate}
                   </Typography>
                 </Stack>
@@ -429,10 +442,15 @@ export default function PrescriptionMedication({
                 <Typography
                   variant="customBodyRegular"
                   className={styles.gridText}
+                  tabIndex={"0"}
                 >
                   Prescribed on: &nbsp;
                 </Typography>
-                <Typography variant="bodyMedium" className={styles.gridText}>
+                <Typography
+                  variant="bodyMedium"
+                  className={styles.gridText}
+                  tabIndex={"0"}
+                >
                   {data.date}
                 </Typography>
               </Stack>
@@ -444,10 +462,15 @@ export default function PrescriptionMedication({
                 <Typography
                   variant="customBodyRegular"
                   className={styles.gridText}
+                  tabIndex={"0"}
                 >
                   Prescribed by: &nbsp;
                 </Typography>
-                <Typography variant="bodyMedium" className={styles.gridText}>
+                <Typography
+                  variant="bodyMedium"
+                  className={styles.gridText}
+                  tabIndex={"0"}
+                >
                   {data.prescribedBy}
                 </Typography>
               </Stack>
@@ -459,10 +482,15 @@ export default function PrescriptionMedication({
                 <Typography
                   variant="customBodyRegular"
                   className={styles.gridText}
+                  tabIndex={"0"}
                 >
                   Dose: &nbsp;
                 </Typography>
-                <Typography variant="bodyMedium" className={styles.gridText}>
+                <Typography
+                  variant="bodyMedium"
+                  className={styles.gridText}
+                  tabIndex={"0"}
+                >
                   {data.dose}
                 </Typography>
               </Stack>
@@ -476,10 +504,15 @@ export default function PrescriptionMedication({
                 <Typography
                   variant="customBodyRegular"
                   className={styles.gridText}
+                  tabIndex={"0"}
                 >
                   Expires on: &nbsp;
                 </Typography>
-                <Typography variant="bodyMedium" className={styles.gridText}>
+                <Typography
+                  variant="bodyMedium"
+                  className={styles.gridText}
+                  tabIndex={"0"}
+                >
                   {data.expirationDate}
                 </Typography>
               </Stack>
@@ -489,7 +522,7 @@ export default function PrescriptionMedication({
           <Stack direction={"row"} sx={{ marginTop: "24px", flexWrap: "wrap" }}>
             <Stack direction={"row"} className={styles.remainingTimeContainer}>
               <AccessTimeIcon sx={{ color: colors.darkGreen }} />
-              <Typography className={styles.remainingTimeText}>
+              <Typography className={styles.remainingTimeText} tabIndex={"0"}>
                 Take 2 times a day
               </Typography>
             </Stack>
@@ -570,6 +603,7 @@ export default function PrescriptionMedication({
                   setFilterOpen(!filterOpen);
                 }}
                 data-testid={"medication-filter-button"}
+                aria-label={"Filter option"}
               >
                 <TuneIcon className={styles.tuneIcon} />
                 Filters
@@ -601,11 +635,17 @@ export default function PrescriptionMedication({
         ]}
       >
         <Typography
+          tabIndex={"0"}
           variant="titleCard"
           className={[
             styles.titleText,
             !isMobile ? styles.paddingTop22 : {},
           ].join(" ")}
+          aria-label={`Active Medications ${
+            medications?.active?.length > 0
+              ? `(${medications?.active?.length} medications)`
+              : "No of medications"
+          } heading`}
         >
           {isFilterApplied ? "Medications" : "Active Medications"}{" "}
           {medications?.active?.length > 0
@@ -619,7 +659,10 @@ export default function PrescriptionMedication({
           {renderPrescriptionTabUI(medications.active, "active")}
         </Box>
       ) : (
-        <Box className={[styles.noPrescription, styles.margin].join(" ")}>
+        <Box
+          className={[styles.noPrescription, styles.margin].join(" ")}
+          tabIndex={0}
+        >
           <Typography
             className={styles.normalText}
           >{`There are no active medications`}</Typography>
@@ -635,7 +678,11 @@ export default function PrescriptionMedication({
               styles.marginTop,
             ]}
           >
-            <Typography variant="titleCard">
+            <Typography
+              variant="titleCard"
+              aria-label={`Past Medications (${medications?.past?.length} medications)`}
+              tabIndex={"0"}
+            >
               Past Medications{` (${medications?.past?.length})`}
             </Typography>
           </Box>
