@@ -572,7 +572,7 @@ export default function Prescriptions({
                 tabIndex={0}
                 aria-label={"Contacts Prescription Heading"}
               >
-                {"Contacts Prescriptions"}{" "}
+                {"Contacts Prescription"}{" "}
                 {prescription?.contacts?.length > 0
                   ? `(${prescription?.contacts?.length})`
                   : ``}
