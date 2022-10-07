@@ -92,7 +92,11 @@ const Navbar = () => {
 
   const MenuItemLabel = (doc, docIdx) => {
     return (
-      <MenuItem key={docIdx} onClick={() => handleCloseUserMenu(doc.href)}>
+      <MenuItem
+        key={docIdx}
+        onClick={() => handleCloseUserMenu(doc.href)}
+        aria-label={`${doc.label} menu`}
+      >
         <Image alt="" src={doc.icon} width={"16px"} height={"16px"} />
         <Typography
           textAlign="center"
@@ -128,6 +132,7 @@ const Navbar = () => {
               <Button
                 key={pageIdx}
                 onClick={() => router.push(page.href)}
+                aria-label={`${page.label} menu`}
                 sx={{
                   my: 2,
                   color: "white",
@@ -148,6 +153,7 @@ const Navbar = () => {
               <Button
                 key={"Medical Record"}
                 onClick={handleOpenNavMenu}
+                aria-label={`Medical Record menu`}
                 sx={{
                   my: 2,
                   color: "white",
@@ -186,6 +192,7 @@ const Navbar = () => {
             <Box>
               <Button
                 key={"Documents"}
+                aria-label={`Documents menu`}
                 onClick={handleOpenUserMenu}
                 sx={{
                   my: 2,
