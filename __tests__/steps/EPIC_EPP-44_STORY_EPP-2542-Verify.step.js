@@ -644,20 +644,159 @@ defineFeature(feature, (test) => {
 			removeListener: () => { },
 		});
 	}
+	test('EPIC_EPP-44_STORY_EPP-2542-Verify whether the doctors availability details is displaying when the user clicks the View all availability in Schedule Appointment screen', ({ given, when, and, then }) => {
+		given('user launch Patient Portal url', () => {
+			expect(true).toBeTruthy();
+		});
 
-  test('EPIC_EPP-44_STORY_EPP-2542-Verify whether the doctors availability details is displaying when the user clicks the View all availability in Schedule Appointment screen', ({ given, when, then, and }) => {
+		when('user is logged in to the application', () => {
+			expect(true).toBeTruthy();
+		});
 
-  })
-  
-  test("EPIC_EPP-44_STORY_EPP-2542-Verify whether the below mentioned details are displaying after user clicking the View all availability button. Doctor's name with image", ({ given, when, then, and }) => {
+		and('user clicks on Appointments menu', () => {
+			expect(true).toBeTruthy();
+		});
 
-  })
+		then('User should navigated to the search screen', () => {
+			expect(true).toBeTruthy();
+		});
 
-  test('EPIC_EPP-44_STORY_EPP-2542-Verify whether the user can able to see the available time slots of the doctors for the whole week in day wise', ({ given, when, then, and }) => {
+		and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
+			expect(true).toBeTruthy();
+		});
 
-  })
+		and('user clicks on the Search button', () => {
+			expect(true).toBeTruthy();
+		});
 
-  test('EPIC_EPP-44_STORY_EPP-2542-Verify whether the user is able to select the available time slot and schedule the appointment.', ({ given, when, then, and }) => {
+		then('user should lands on Schedule Appointment view screen with selected location, date, Purpose of visit and insurance carrier data.', () => {
+			expect(true).toBeTruthy();
+		});
 
-  })
+		when('user click the View all availability button', () => {
+			expect(true).toBeTruthy();
+		});
+
+		then('user should see all the doctors availability details.', () => {
+			expect(true).toBeTruthy();
+		});
+	});
+
+	test('EPIC_EPP-44_STORY_EPP-2542-Verify whether the below mentioned details are displaying after user clicking the View all availability button. Doctor\'s name with image', ({ given, when, and, then }) => {
+		given('user launch Patient Portal url', () => {
+			expect(true).toBeTruthy();
+		});
+
+		when('user is logged in to the application', () => {
+			expect(true).toBeTruthy();
+		});
+
+		and('user clicks on Appointments menu', () => {
+			expect(true).toBeTruthy();
+		});
+
+		then('User should navigated to the search screen', () => {
+			expect(true).toBeTruthy();
+		});
+
+		and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
+			expect(true).toBeTruthy();
+		});
+
+		and('user clicks on the Search button', () => {
+			expect(true).toBeTruthy();
+		});
+
+		then('user should lands on Schedule Appointment view screen with selected location, date, Purpose of visit and insurance carrier data.', () => {
+			expect(true).toBeTruthy();
+		});
+
+		when('user click the View all availability button', () => {
+			expect(true).toBeTruthy();
+		});
+
+		then('user should display the Doctor\'s name with Image.', () => {
+			expect(true).toBeTruthy();
+		});
+	});
+
+	test('EPIC_EPP-44_STORY_EPP-2542-Verify whether the user can able to see the available time slots of the doctors for the whole week in day wise', ({ given, when, and, then }) => {
+		given('user launch Patient Portal url', () => {
+			expect(true).toBeTruthy();
+		});
+
+		when('user is logged in to the application', () => {
+			expect(true).toBeTruthy();
+		});
+
+		and('user clicks on Appointments menu', () => {
+			expect(true).toBeTruthy();
+		});
+
+		then('User should navigated to the search screen', () => {
+			expect(true).toBeTruthy();
+		});
+
+		and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
+			expect(true).toBeTruthy();
+		});
+
+		and('user clicks on the Search button', () => {
+			expect(true).toBeTruthy();
+		});
+
+		then('user should lands on Schedule Appointment view screen with selected location, date, Purpose of visit and insurance carrier data.', () => {
+			expect(true).toBeTruthy();
+		});
+
+		when('user click the View all availability button', () => {
+			expect(true).toBeTruthy();
+		});
+
+		then('user should see the time slots of each doctor for whole week in day wise', () => {
+			expect(true).toBeTruthy();
+		});
+	});
+
+	test('EPIC_EPP-44_STORY_EPP-2542-Verify whether the user is able to select the available time slot and schedule the appointment.', ({ given, when, and, then }) => {
+		given('user launch Patient Portal url', () => {
+			expect(true).toBeTruthy();
+		});
+
+		when('user is logged in to the application', () => {
+			expect(true).toBeTruthy();
+		});
+
+		and('user clicks on Appointments menu', () => {
+			expect(true).toBeTruthy();
+		});
+
+		then('User should navigated to the search screen', () => {
+			expect(true).toBeTruthy();
+		});
+
+		and('user provided location,date of appointment,purpose of visit,insurance and provider', () => {
+			expect(true).toBeTruthy();
+		});
+
+		and('user clicks on the Search button', () => {
+			expect(true).toBeTruthy();
+		});
+
+		then('user should lands on Schedule Appointment view screen with selected location, date, Purpose of visit and insurance carrier data.', () => {
+			expect(true).toBeTruthy();
+		});
+
+		when('user click the View all availability button', () => {
+			expect(true).toBeTruthy();
+		});
+
+		and('user should select any available time slot.', () => {
+			expect(true).toBeTruthy();
+		});
+
+		then('user should able to schedule the appointment.', () => {
+			expect(true).toBeTruthy();
+		});
+	});
 })

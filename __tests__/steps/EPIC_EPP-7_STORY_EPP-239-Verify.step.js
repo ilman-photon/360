@@ -14,6 +14,7 @@ import store from "../../src/store/store";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
+import { Login } from "../../src/components/organisms/Login/login";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-239.feature",
@@ -22,10 +23,32 @@ const feature = loadFeature(
   }
 );
 
+let container;
+const mock = new MockAdapter(axios);
+const element = document.createElement("div");
+
+const launchURL = () => {
+  const mockOnLoginClicked = jest.fn((data, route, callback) => {
+    callback({
+      status: "success",
+    });
+  });
+  container = render(<Login OnLoginClicked={mockOnLoginClicked} />);
+};
+
+const navigateToPatientPortalApp = () => {
+  mock
+    .onGet(`https://api.ipify.org?format=json`)
+    .reply(200, { ip: "10.10.10.10" });
+  act(() => {
+    container = render(<AuthPage />, {
+      container: document.body.appendChild(element),
+      legacyRoot: true,
+    });
+  });
+};
+
 defineFeature(feature, (test) => {
-  let container;
-  const mock = new MockAdapter(axios);
-  const element = document.createElement("div");
   afterEach(cleanup);
   test('EPIC_EPP-7_STORY_EPP-239 - Verify user should see the "Passwords do not match" error message', ({
     given,
@@ -549,6 +572,494 @@ defineFeature(feature, (test) => {
     });
 
     and(/^User should see the (.*) and (.*) fields is empty$/, (arg0, arg1) => {
+      expect(true).toBeTruthy();
+    });
+  });
+
+  test('EPIC_EPP-7_STORY_EPP-239 - Verify user  is not able to submit during set forgot password "<New password>" and "<Confirm new password>" do not match when service is unavailable', ({ given, and, when, then }) => {
+    given(/^use launch the "(.*)" url$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and('user navigates to the Patient Portal application', () => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user lands onto "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" link$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user clicks on "(.*)" link$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should enter valid (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user clicks on "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see "(.*)" button\(if security questions is not set\)$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user click on "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" Page$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see "(.*)" options with radio buttons "(.*)" and "(.*)" \(if both are configured during registration\)$/, (arg0, arg1, arg2) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user click on "(.*)"$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then('user should view the page with “Password Reset” heading', () => {
+      expect(true).toBeTruthy();
+    });
+
+    and('User should view the text “Link sent to your phone number”', () => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^User should be able to view the message "(.*)"$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user access the messages of registered "(.*)"$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then('user should receive a link mail to reset password', () => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see the mail with Email Subject as "(.*)"$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and('user should see mail/ message body', () => {
+      expect(true).toBeTruthy();
+    });
+
+    when('user click on a magic link', () => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^User should see (.*) and (.*) fields$/, (arg0, arg1) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^User should fill valid (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^User should fill valid (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then('user should see mask the entered password along with an option to unmask it by default', () => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^User should see "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^User should click on "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then('user should see appropriate error message', () => {
+      expect(true).toBeTruthy();
+    });
+  });
+
+  test('EPIC_EPP-7_STORY_EPP-239 - Verify user  is not able to submit during set forgot password "<New password>" and "<Confirm new password>" do not match when internet connection is unavailable', ({ given, and, when, then }) => {
+    given(/^use launch the "(.*)" url$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and('user navigates to the Patient Portal application', () => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user lands onto "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" link$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user clicks on "(.*)" link$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should enter valid (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user clicks on "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see "(.*)" button\(if security questions is not set\)$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user click on "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" Page$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see "(.*)" options with radio buttons "(.*)" and "(.*)" \(if both are configured during registration\)$/, (arg0, arg1, arg2) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should select only (\d+) "(.*)" as "(.*)"$/, (arg0, arg1, arg2) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user click on "(.*)"$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then('user should view the page with “Password Reset” heading', () => {
+      expect(true).toBeTruthy();
+    });
+
+    and('User should view the text “Link sent to your phone number”', () => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^User should be able to view the message "(.*)"$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user access the messages of registered "(.*)"$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then('user should receive a link mail to reset password', () => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see the mail with Email Subject as "(.*)"$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and('user should see mail/ message body', () => {
+      expect(true).toBeTruthy();
+    });
+
+    when('user click on a magic link', () => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^User should see (.*) and (.*) fields$/, (arg0, arg1) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^User should fill valid (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^User should fill valid (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then('user should see mask the entered password along with an option to unmask it by default', () => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^User should see "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^User should click on "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then('user should see appropriate error message', () => {
+      expect(true).toBeTruthy();
+    });
+  });
+
+  test('EPIC_EPP-7_STORY_EPP-239 - Verify user should not see any scripts error when after user press F12 on the console', ({ given, and, when, then }) => {
+    given(/^use launch the "(.*)" url$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and('user navigates to the Patient Portal application', () => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user lands onto "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" link$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user clicks on "(.*)" link$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should enter valid (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user clicks on "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see "(.*)" button\(if security questions is set\)$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user click on "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" page$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and('user should view the text “Answer the following questions to reset your password”', () => {
+      expect(true).toBeTruthy();
+    });
+
+    and('user should view the questions fields', () => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user fills in (.*) and (.*)for the security questions they set up$/, (arg0, arg1) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user clicks on "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^User should see (.*) and (.*) fields$/, (arg0, arg1) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^User should fill the valid (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^User should fill valid (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then('user should see mask the entered password along with an option to unmask it by default', () => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^User should see "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^User should click on "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^User should see error message "(.*)"$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user press F(\d+) on the console$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then('user should not see any scripts error', () => {
+      expect(true).toBeTruthy();
+    });
+  });
+
+  test('EPIC_EPP-7_STORY_EPP-239 - Verify User should not copy and paste on <New Password>" and "<Confirm New Password>" fields', ({ given, and, when, then }) => {
+    given(/^use launch the "(.*)" url$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and('user navigates to the Patient Portal application', () => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user lands onto "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" link$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user clicks on "(.*)" link$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should enter valid (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user clicks on "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see "(.*)" button\(if security questions is set\)$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user click on "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" page$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and('user should view the text “Answer the following questions to reset your password”', () => {
+      expect(true).toBeTruthy();
+    });
+
+    and('user should view the questions fields', () => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user fills in (.*) and (.*)for the security questions they set up$/, (arg0, arg1) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user clicks on "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^User should see (.*) and (.*) fields$/, (arg0, arg1) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^User should fill the valid (.*) and (.*) fields$/, (arg0, arg1) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^User should not copy and paste on (.*) and (.*) fields$/, (arg0, arg1) => {
       expect(true).toBeTruthy();
     });
   });
