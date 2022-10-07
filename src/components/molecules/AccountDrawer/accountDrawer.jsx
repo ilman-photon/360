@@ -5,7 +5,6 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import styles from "./accountDrawer.module.scss";
 import { useRouter } from "next/router";
@@ -15,6 +14,13 @@ import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined
 import CreateNewFolderOutlinedIcon from "@mui/icons-material/CreateNewFolderOutlined";
 import DescriptionOutlinedIcon from "@mui/icons-material/DescriptionOutlined";
 import CloseOutlinedIcon from "@mui/icons-material/CloseOutlined";
+import CarePlanIcon from "../../../assets/icons/CarePlanIcon";
+import { colors } from "../../../styles/theme";
+import PrescriptionIcon from "../../../assets/icons/PrescriptionIcon";
+import TestLabIcon from "../../../assets/icons/TestLabIcon";
+import IntakeFormsIcon from "../../../assets/icons/IntakeFormsIcon";
+import InsuranceDocumentsIcon from "../../../assets/icons/InsuranceDocumentsIcon";
+import HealthRecordIcon from "../../../assets/icons/HealthRecordIcon";
 
 export const AccountDrawer = ({
   opened = false,
@@ -53,28 +59,34 @@ export const AccountDrawer = ({
       {
         label: "Care Plan",
         href: "/patient/account/medical-record?type=care-plan-overview",
+        icon: <CarePlanIcon sx={{ fill: colors.darkGreen }} />,
       },
       {
         label: "Prescriptions",
         href: "/patient/account/medical-record?type=test-lab-result",
+        icon: <PrescriptionIcon sx={{ fill: colors.darkGreen }} />,
       },
       {
         label: "Test & Lab Results",
         href: "/patient/account/medical-record?type=test-lab-result",
+        icon: <TestLabIcon sx={{ fill: colors.darkGreen }} />,
       },
     ],
     documents: [
       {
         label: "Intake Forms",
         href: "/patient/account/documents/intake-forms",
+        icon: <IntakeFormsIcon sx={{ fill: colors.darkGreen }} />,
       },
       {
         label: "Insurance Documents",
         href: "/patient/account/documents/insurance-documents",
+        icon: <InsuranceDocumentsIcon sx={{ fill: colors.darkGreen }} />,
       },
       {
         label: "Health Record",
         href: "/patient/account/documents/health-record",
+        icon: <HealthRecordIcon sx={{ fill: colors.darkGreen }} />,
       },
     ],
   },
@@ -124,12 +136,15 @@ export const AccountDrawer = ({
         {haveChildren && (
           <Slide direction="left" in={!!activeMenu} mountOnEnter unmountOnExit>
             <ListItemButton sx={{ background: "#F4F4F4" }}>
-              <ListItemIcon sx={{ placeContent: "start" }}>
-                <KeyboardArrowLeftIcon />
+              <ListItemIcon sx={{ placeContent: "start", minWidth: "unset" }}>
+                <KeyboardArrowLeftIcon sx={{ width: 24, height: 24 }} />
               </ListItemIcon>
               <ListItemText
                 primary={getMenuTitle()}
                 onClick={() => setActiveMenu(null)}
+                primaryTypographyProps={{
+                  sx: { textAlign: "center", fontWeight: 600 },
+                }}
               />
             </ListItemButton>
           </Slide>
@@ -171,10 +186,8 @@ export const AccountDrawer = ({
                     }}
                   >
                     <>
-                      <ListItemText primary={link.label} />
-                      <ListItemIcon sx={{ placeContent: "end" }}>
-                        <KeyboardArrowRightIcon />
-                      </ListItemIcon>
+                      {link.icon}
+                      <ListItemText primary={link.label} sx={{ ml: 1 }} />
                     </>
                   </ListItemButton>
                 </ListItem>

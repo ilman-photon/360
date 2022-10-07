@@ -17,6 +17,7 @@ import { useRouter } from "next/router";
 import { Controller, useForm } from "react-hook-form";
 import TableEmpty from "../../../../components/atoms/TableEmpty/tableEmpty";
 import { fetchSource } from "../../../../utils/fetchDigitalAssetSource";
+import { colors } from "../../../../styles/theme";
 
 export default function AccountDocumentsPage() {
   const isDesktop = useMediaQuery("(min-width: 769px)");
@@ -46,6 +47,7 @@ export default function AccountDocumentsPage() {
         label: "Name",
         width: isDesktop ? null : 161,
         sx: {
+          color: colors.darkGreen,
           fontSize: {
             xs: 14,
             md: 16,
@@ -59,6 +61,13 @@ export default function AccountDocumentsPage() {
         disablePadding: true,
         label: "Modified",
         width: isDesktop ? 136 : 71,
+        sx: {
+          color: colors.darkGreen,
+          fontSize: {
+            xs: 14,
+            md: 16,
+          },
+        },
       },
       { type: "empty", width: 22 },
     ],
@@ -100,7 +109,7 @@ export default function AccountDocumentsPage() {
         cellProps: { padding: "16px" },
         icon: (
           <IconButton sx={{ width: 24, height: 24, p: 0 }}>
-            <FileDownloadIcon />
+            <FileDownloadIcon sx={{ fill: colors.darkGreen }} />
           </IconButton>
         ),
       },

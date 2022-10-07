@@ -14,6 +14,7 @@ import {
 import React from "react";
 import { visuallyHidden } from "@mui/utils";
 import styles from "./styles.module.scss";
+import { colors } from "../../../styles/theme";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -52,8 +53,19 @@ const EnhancedTableHead = (props) => {
   };
 
   return (
-    <TableHead sx={{ backgroundColor: "#F3F5F6" }}>
-      <TableRow sx={{ whiteSpace: "nowrap" }}>
+    <TableHead
+      sx={{
+        backgroundColor: "#F3F5F6",
+      }}
+    >
+      <TableRow
+        sx={{
+          whiteSpace: "nowrap",
+          ".Mui-active .MuiTableSortLabel-icon": {
+            color: colors.darkGreen,
+          },
+        }}
+      >
         {props.config.map((headCell, headIdx) => {
           switch (headCell.type) {
             case "empty":
@@ -220,24 +232,27 @@ export default function TableWithSort({
                             return (
                               <TableCell key={cellIdx} {...cell.cellProps}>
                                 <Tooltip
+                                  arrow
                                   title={
                                     <Typography
                                       sx={{
                                         fontSize: {
                                           xs: 13,
                                           md: 14,
-                                          color: "white",
                                         },
+                                        color: "white",
+                                        px: "12px",
+                                        py: 1,
                                       }}
                                     >
-                                      download
+                                      Download
                                     </Typography>
                                   }
                                   placement="top"
                                 >
                                   <div
                                     role="button"
-                                    aria-label={`download`}
+                                    aria-label={`Download`}
                                     onClick={() =>
                                       onAssetDownload(row[cell.valueKey])
                                     }
@@ -257,11 +272,11 @@ export default function TableWithSort({
                                         fontSize: {
                                           xs: 13,
                                           md: 14,
-                                          color: "white",
                                         },
+                                        color: "white",
                                       }}
                                     >
-                                      download
+                                      Download
                                     </Typography>
                                   }
                                   placement="top"
