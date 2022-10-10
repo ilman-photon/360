@@ -19,6 +19,7 @@ exports[`GMaps GMaps render 1`] = `
   zoom={6}
 >
   <UNDEFINED
+    data-testid="schedule_appointment_maps_pin_marker"
     icon={
       Object {
         "url": "/provider-pin.svg",
