@@ -176,7 +176,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
     }
   };
   return (
-    <Box className={globalStyles.container}>
+    <Box className={globalStyles.container} sx={{ ...styles.overideContainer }}>
       <Stack spacing={3}>
         <HeadingTitle
           variant={constants.H1}
