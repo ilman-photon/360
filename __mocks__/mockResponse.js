@@ -6923,3 +6923,40 @@ export const submitFilter = {
     },
   ],
 };
+
+export const testLab = [
+  {
+    id: 1,
+    name: "Eye Surgery",
+    orderBy: "Hopkins, D.M.",
+    date: "09/09/2022 12:00PM",
+    status: "Completed",
+  },
+  {
+    id: 2,
+    name: "Eye Surgery",
+    orderBy: "Hopkins, D.M.",
+    date: "09/09/2022 12:00PM",
+    status: "Completed",
+  },
+  {
+    id: 3,
+    name: "Eye Surgery",
+    orderBy: "Hopkins, D.M.",
+    date: "09/09/2022 12:00PM",
+    status: "Completed",
+  },
+  {
+    id: 4,
+    name: "Eye Surgery",
+    orderBy: "Hopkins, D.M.",
+    date: "08/08/2022 12:00PM",
+    status: "Completed",
+  },
+];
+export const carePlan = [
+  { id: 1, name: "Eye Surgery", date: "09/09/2022 12:00PM" },
+  { id: 2, name: "Eye Surgery", date: "09/09/2022 12:00PM" },
+  { id: 3, name: "Eye Surgery", date: "09/09/2022 12:00PM" },
+  { id: 4, name: "Eye Surgery", date: "08/08/2022 12:00PM" },
+];

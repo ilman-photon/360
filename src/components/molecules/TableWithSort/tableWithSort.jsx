@@ -77,6 +77,7 @@ const EnhancedTableHead = (props) => {
                   <TableSortLabel
                     active={orderBy === headCell.id}
                     direction={orderBy === headCell.id ? order : "asc"}
+                    data-testid={"table-header-sort"}
                     onClick={createSortHandler(headCell.id)}
                   >
                     <b>{headCell.label}</b>

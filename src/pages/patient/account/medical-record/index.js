@@ -26,6 +26,7 @@ import Typography from "@mui/material/Typography";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import ReplyIcon from "@mui/icons-material/Reply";
 import PrintOutlinedIcon from "@mui/icons-material/PrintOutlined";
+import { TEST_ID } from "../../../../utils/constants";
 
 export default function MedicalRecordPage() {
   const isDesktop = useMediaQuery("(min-width: 769px)");
@@ -255,6 +256,7 @@ export default function MedicalRecordPage() {
               anchorEl={anchorEl}
               keepMounted
               onClose={handleMoreMenu}
+              data-testid={TEST_ID.MEDICAL_RECORD.moreMenu}
               open={open}
             >
               {MyOptions.map((more, moreIdx) => (
