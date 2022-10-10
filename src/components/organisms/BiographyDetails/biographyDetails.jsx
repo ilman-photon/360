@@ -123,13 +123,15 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
                   <>
                     {newAddress.addressLine1}
                     <br />
-                    {address.addressLine2 && (
+                    {newAddress.addressLine2 && (
                       <>
-                        {address.addressLine2}
+                        {newAddress.addressLine2}
                         <br />
                       </>
                     )}
-                    {address.city}, {address.state}, {address.zip}
+                    {newAddress.city && `${newAddress.city},`}{" "}
+                    {newAddress.state && `${newAddress.state},`}{" "}
+                    {newAddress.zip}
                   </>
                 )}
               </Typography>
@@ -315,7 +317,7 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
           {providerData.language &&
             providerData.language.map((item, index) => {
               const isLastIndex = providerData.language.length - 1 === index;
-              if (!isLastIndex) {
+              if (!isLastIndex && item !== "") {
                 return `${item}, `;
               } else {
                 return item;

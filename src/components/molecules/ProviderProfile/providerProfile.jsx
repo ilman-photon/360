@@ -71,7 +71,8 @@ export default function ProviderProfile({
             <br />
           </>
         )}
-        {addressData.city}, {addressData.state}, {addressData.zipcode}
+        {addressData.city}, {addressData.state},{" "}
+        {addressData.zipcode || addressData.zip}
       </>
     );
   };

@@ -12,13 +12,13 @@ export async function getServerSideProps(context) {
   const { bio } = context.query;
   return {
     props: {
-      googleApiKey: process.env.GOOGLE_API_KEY,
+      embedApi: process.env.NEXT_PUBLIC_EMBED_API,
       bio,
     },
   };
 }
 
-export default function Bio({ googleApiKey, bio }) {
+export default function Bio({ embedApi, bio }) {
   const [providerData, setProviderData] = useState();
 
   const getArrayValue = (data) => {
@@ -101,10 +101,7 @@ export default function Bio({ googleApiKey, bio }) {
         <Box className={styles.shortBioContainer}>
           <ProviderProfile providerData={providerData} variant={"bio"} />
         </Box>
-        <BiographyDetails
-          googleApiKey={googleApiKey}
-          providerData={providerData}
-        />
+        <BiographyDetails googleApiKey={embedApi} providerData={providerData} />
       </Box>
     )
   );
