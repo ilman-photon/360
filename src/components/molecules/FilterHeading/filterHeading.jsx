@@ -517,6 +517,10 @@ const FilterHeading = ({
     }
   };
 
+  React.useEffect(() => {
+    if (currentCity) setValue("location", currentCity);
+  }, [currentCity]);
+
   const minDate = new Date();
   const maxDate = new Date(); // add arguments as needed
   maxDate.setMonth(maxDate.getMonth() + 3);
@@ -565,7 +569,6 @@ const FilterHeading = ({
         name="location"
         control={control}
         render={({ field: { onChange, value }, fieldState: { _error } }) => {
-          onChangeLocation();
           return (
             <Autocomplete
               freeSolo
@@ -573,15 +576,15 @@ const FilterHeading = ({
               data-testid={APPOINTMENT_TEST_ID.locationInput}
               value={value}
               onChange={(_e, data) => {
-                onHideMandatoryFieldError();
                 onChange(data);
-                if (data === "Use my current location") {
-                  setValue("location", currentCity);
-                }
               }}
               onInputChange={(_e, newInputValue) => {
                 onHideMandatoryFieldError();
                 onChange(newInputValue);
+                if (newInputValue === "Use my current location") {
+                  onChange("");
+                  onChangeLocation();
+                }
               }}
               onKeyDown={(e) => {
                 if (Regex.specialRegex.test(e.key)) e.preventDefault();
