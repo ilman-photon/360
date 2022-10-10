@@ -100,7 +100,7 @@ export default function RowRadioButtonsGroup({
                   padding: isCancelSchedule ? "2px 9px 2px 16px" : "9px",
                 },
                 ".MuiTypography-root":
-                  props.isInsuranceForm || props.isRegistrationForm
+                  props.isInsuranceForm || isRegistrationForm
                     ? { fontSize: 16, color: "#242526" }
                     : { fontSize: 14 },
               }}
