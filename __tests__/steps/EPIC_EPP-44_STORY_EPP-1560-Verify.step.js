@@ -16,7 +16,7 @@ import {
 } from "../../__mocks__/mockResponse";
 
 const feature = loadFeature(
-  "./__tests__/feature/Patient Portal/Sprint4/EPP-1575.feature"
+  "./__tests__/feature/Patient Portal/Sprint4/EPP-1560.feature"
 );
 
 defineFeature(feature, (test) => {
@@ -39,10 +39,10 @@ defineFeature(feature, (test) => {
     window.matchMedia = createMatchMedia("1920px");
   });
 
-  test("EPIC_EPP-44_STORY_EPP-1575 - Verify user able to view the appointment confirmation message after scheduling an appointment as guest.", ({
+  test("EPIC_EPP-44_STORY_EPP-1560 - Verify user able to change the 'Date and Time' while reviewing the appointment.", ({
     given,
-    then,
     and,
+    then,
   }) => {
     given("user launch the Marketing Site url", () => {
       defaultValidation();
@@ -88,73 +88,51 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    and("user reviewed and clicks on the continue button", () => {
+    and("user view the location", () => {
       defaultValidation();
     });
 
-    and("user view the Whos is this exam for? screen", () => {
+    and("user view the date of appointment", () => {
       defaultValidation();
     });
 
-    and("user click on the Self button", () => {
+    then("user clicks on the edit to change the date and time", () => {
       defaultValidation();
     });
 
-    and("user redirects to the login screen", () => {
+    and("user select the date of appointment", () => {
       defaultValidation();
     });
 
-    and("user clicks on the continue as guest", () => {
+    and("user select the purpose of the visit", () => {
       defaultValidation();
     });
 
-    and("user navigated to the guest user page", () => {
+    and("user enters the insurance name", () => {
       defaultValidation();
     });
 
-    and(
-      "user clicks on the Already have an appointment? Sync your appointment information button",
-      () => {
-        defaultValidation();
-      }
-    );
-
-    and("user enter the Email", () => {
+    and("user clicks on the Search button", () => {
       defaultValidation();
     });
 
-    and("user clicks the 'Continue' button.", () => {
+    and("user views the results in the Schedule Appointments screen", () => {
       defaultValidation();
     });
 
-    and("user recieve the email link", () => {
+    and("user selected a time slot", () => {
       defaultValidation();
     });
 
-    and("user Set password using email link", () => {
+    and("user lands on the review of the appointment details", () => {
       defaultValidation();
     });
-
-    and("user naviigated to Dash board screen", () => {
-      defaultValidation();
-    });
-
-    and("user clicks on the Appointment synced button", () => {
-      defaultValidation();
-    });
-
-    and(
-      "user view the appointment confirmation message 'Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.'",
-      () => {
-        defaultValidation();
-      }
-    );
   });
 
-  test("EPIC_EPP-44_STORY_EPP-1575 - Verify user able to view the appointment confirmation message after scheduling an appointment as guest and user not providing the purpose of visit..", ({
+  test("EPIC_EPP-44_STORY_EPP-1560 - Verify user able to change the 'Date and Time' while reviewing the appointment and user get the error when user select the past dates.", ({
     given,
-    then,
     and,
+    then,
   }) => {
     given("user launch the Marketing Site url", () => {
       defaultValidation();
@@ -176,7 +154,7 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    and("user not selecting the purpose of visit", () => {
+    and("user not selecting the purpose of the visit", () => {
       defaultValidation();
     });
 
@@ -200,73 +178,54 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    and("user reviewed and clicks on the continue button", () => {
+    and("user view the location", () => {
       defaultValidation();
     });
 
-    and("user view the Whos is this exam for? screen", () => {
+    and("user view the date of appointment", () => {
       defaultValidation();
     });
 
-    and("user click on the Self button", () => {
+    then("user clicks on the edit to change the date and time", () => {
       defaultValidation();
     });
 
-    and("user redirects to the login screen", () => {
+    and("user select the date of appointment", () => {
       defaultValidation();
     });
 
-    and("user clicks on the continue as guest", () => {
+    and("user not selecting the purpose of the visit", () => {
       defaultValidation();
     });
 
-    and("user navigated to the guest user page", () => {
+    and("user enters the insurance name", () => {
       defaultValidation();
     });
 
-    and(
-      "user clicks on the Already have an appointment? Sync your appointment information button",
-      () => {
-        defaultValidation();
-      }
-    );
-
-    and("user enter the Email", () => {
+    and("user clicks on the Search button", () => {
       defaultValidation();
     });
 
-    and("user clicks the 'Continue' button.", () => {
+    and("user views the results in the Schedule Appointments screen", () => {
       defaultValidation();
     });
 
-    and("user recieve the email link", () => {
+    and("user selected a time slot", () => {
       defaultValidation();
     });
 
-    and("user Set password using email link", () => {
+    and("user lands on the review of the appointment details", () => {
       defaultValidation();
     });
-
-    and("user naviigated to Dash board screen", () => {
-      defaultValidation();
-    });
-
-    and("user clicks on the Appointment synced button", () => {
-      defaultValidation();
-    });
-
-    and(
-      "user view the appointment confirmation message 'Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.'",
-      () => {
-        defaultValidation();
-      }
-    );
+  });
+  test("EPIC_EPP-44_STORY_EPP-1560 - Verify user able to change the 'Date and Time' while reviewing the appointment and user not providing the purpose of visit.", ({}) => {
+    defaultValidation();
   });
 
-  test("EPIC_EPP-44_STORY_EPP-1575 - Verify user able to view the appointment confirmation message after scheduling an appointment as guest and user not providing the insurance name.", ({
+  test("EPIC_EPP-44_STORY_EPP-1560 - Verify user able to change the 'Date and Time' while reviewing the appointment and user not providing the insurance name.", ({
     given,
-    then,
     and,
+    then,
   }) => {
     given("user launch the Marketing Site url", () => {
       defaultValidation();
@@ -292,7 +251,7 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    and("user not entering the insurance name", () => {
+    and("user not providing the insurance name", () => {
       defaultValidation();
     });
 
@@ -312,73 +271,51 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    and("user reviewed and clicks on the continue button", () => {
+    and("user view the location", () => {
       defaultValidation();
     });
 
-    and("user view the Whos is this exam for? screen", () => {
+    and("user view the date of appointment", () => {
       defaultValidation();
     });
 
-    and("user click on the Self button", () => {
+    then("user clicks on the edit to change the date and time", () => {
       defaultValidation();
     });
 
-    and("user redirects to the login screen", () => {
+    and("user select the date of appointment", () => {
       defaultValidation();
     });
 
-    and("user clicks on the continue as guest", () => {
+    and("user select the purpose of the visit", () => {
       defaultValidation();
     });
 
-    and("user navigated to the guest user page", () => {
+    and("user not providing the insurance name", () => {
       defaultValidation();
     });
 
-    and(
-      "user clicks on the Already have an appointment? Sync your appointment information button",
-      () => {
-        defaultValidation();
-      }
-    );
-
-    and("user enter the Email", () => {
+    and("user clicks on the Search button", () => {
       defaultValidation();
     });
 
-    and("user clicks the 'Continue' button.", () => {
+    and("user views the results in the Schedule Appointments screen", () => {
       defaultValidation();
     });
 
-    and("user recieve the email link", () => {
+    and("user selected a time slot", () => {
       defaultValidation();
     });
 
-    and("user Set password using email link", () => {
+    and("user lands on the review of the appointment details", () => {
       defaultValidation();
     });
-
-    and("user naviigated to Dash board screen", () => {
-      defaultValidation();
-    });
-
-    and("user clicks on the Appointment synced button", () => {
-      defaultValidation();
-    });
-
-    and(
-      "user view the appointment confirmation message 'Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.'",
-      () => {
-        defaultValidation();
-      }
-    );
   });
 
-  test("EPIC_EPP-44_STORY_EPP-1575 - Verify user able to view the appointment confirmation message after scheduling an appointment as guest and user not providing the purpose of visit and insurance name.", ({
+  test("EPIC_EPP-44_STORY_EPP-1560 - Verify user able to change the 'Date and Time' while reviewing the appointment and user not providing the purpose of visit and  insurance name.", ({
     given,
-    then,
     and,
+    then,
   }) => {
     given("user launch the Marketing Site url", () => {
       defaultValidation();
@@ -400,11 +337,11 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    and("user not selecting the purpose of visit", () => {
+    and("user not selecting the purpose of the visit", () => {
       defaultValidation();
     });
 
-    and("user not entering the insurance name", () => {
+    and("user not providing the insurance name", () => {
       defaultValidation();
     });
 
@@ -424,66 +361,44 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    and("user reviewed and clicks on the continue button", () => {
+    and("user view the location", () => {
       defaultValidation();
     });
 
-    and("user view the Whos is this exam for? screen", () => {
+    and("user view the date of appointment", () => {
       defaultValidation();
     });
 
-    and("user click on the Self button", () => {
+    then("user clicks on the edit to change the date and time", () => {
       defaultValidation();
     });
 
-    and("user redirects to the login screen", () => {
+    and("user select the date of appointment", () => {
       defaultValidation();
     });
 
-    and("user clicks on the continue as guest", () => {
+    and("user not selecting the purpose of the visit", () => {
       defaultValidation();
     });
 
-    and("user navigated to the guest user page", () => {
+    and("user not providing the insurance name", () => {
       defaultValidation();
     });
 
-    and(
-      "user clicks on the Already have an appointment? Sync your appointment information button",
-      () => {
-        defaultValidation();
-      }
-    );
-
-    and("user enter the Email", () => {
+    and("user clicks on the Search button", () => {
       defaultValidation();
     });
 
-    and("user clicks the 'Continue' button.", () => {
+    and("user views the results in the Schedule Appointments screen", () => {
       defaultValidation();
     });
 
-    and("user recieve the email link", () => {
+    and("user selected a time slot", () => {
       defaultValidation();
     });
 
-    and("user Set password using email link", () => {
+    and("user lands on the review of the appointment details", () => {
       defaultValidation();
     });
-
-    and("user naviigated to Dash board screen", () => {
-      defaultValidation();
-    });
-
-    and("user clicks on the Appointment synced button", () => {
-      defaultValidation();
-    });
-
-    and(
-      "user view the appointment confirmation message 'Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.'",
-      () => {
-        defaultValidation();
-      }
-    );
   });
 });

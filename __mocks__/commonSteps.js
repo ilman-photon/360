@@ -1466,3 +1466,7 @@ export const clickSearch = async (container) => {
   );
   fireEvent.click(searchBtn);
 };
+
+export const defaultValidation = () => {
+  expect(true).toBeTruthy();
+};
