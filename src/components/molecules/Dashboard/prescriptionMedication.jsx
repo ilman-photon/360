@@ -27,7 +27,6 @@ import constants from "../../../utils/constants";
 import { colors } from "../../../styles/theme";
 import { useEffect } from "react";
 import FormMessage from "../FormMessage/formMessage";
-import moment from "moment";
 import { renderCTAIcon } from "./prescriptions";
 import { savePDF } from "@progress/kendo-react-pdf";
 
@@ -526,7 +525,7 @@ export default function PrescriptionMedication({
                 Take 2 times a day
               </Typography>
             </Stack>
-            {moment(data.expirationDate) < moment() && (
+            {data.isShowRequestRefill && (
               <>
                 {data.status !== "refill request" ? (
                   <StyledButton
