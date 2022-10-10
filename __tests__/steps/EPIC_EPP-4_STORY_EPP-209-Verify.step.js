@@ -45,7 +45,7 @@ defineFeature(feature, (test) => {
     });
 
     when('Admin lands onto E360+ \“Patient Login\” screen', async () => {
-      renderLogin()
+      container = await renderLogin()
     });
     and('Admin provides valid \"<Email>\" and valid \"<password>\"', () => {
       cleanup()
@@ -110,14 +110,23 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
-    when('Admin lands onto E360+ \“Patient Login\” screen', () => {
-      renderLogin()
+    when('Admin lands onto E360+ \“Patient Login\” screen', async () => {
+      container = await renderLogin()
     });
     and('Admin provides valid "<Phone number>" and valid "<password>"', () => {
-      expect(true).toBeTruthy()
+      const usernameField = container.getByLabelText("emailUserLabel");
+      const passwordField = container.getByLabelText("passwordLabel");
+      fireEvent.change(usernameField, {
+        target: { value: "wrongUserName@email.cc" },
+      });
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+      expect(usernameField.value).not.toEqual("validUsername@email.cc");
+      expect(passwordField.value).toEqual("validPassword");
     });
     and("Admin click \'Login\' button.", () => {
-      expect(true).toBeTruthy()
+      const login = container.getByRole("button", { name: /Login/i });
+      fireEvent.click(login);
+      expect(login).toBeInTheDocument()
     });
 
     then(
@@ -184,8 +193,8 @@ defineFeature(feature, (test) => {
       };
       mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
-    when('user lands onto “Patient Login” screen', () => {
-      renderLogin()
+    when('user lands onto “Patient Login” screen', async () => {
+      container = await renderLogin()
     });
     then(
       "page should load in 3 seconds",
@@ -218,8 +227,8 @@ defineFeature(feature, (test) => {
       };
       mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
-    when('user lands onto “Patient Login” screen', () => {
-      renderLogin()
+    when('user lands onto “Patient Login” screen', async () => {
+      container = await renderLogin()
     });
     and("press the F12 button from the keyboard.", () => {
       expect(true).toBeTruthy()
@@ -259,8 +268,8 @@ defineFeature(feature, (test) => {
       };
       mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
-    and("user lands on “Patient Login” screen", () => {
-      renderLogin()
+    and("user lands on “Patient Login” screen", async () => {
+      container = await renderLogin()
     });
     then(
       "error message '503 - Server is not ready to handle the request' should get display.",
