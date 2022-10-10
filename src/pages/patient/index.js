@@ -48,7 +48,6 @@ export default function HomePage({ googleApiKey }) {
   const [isOpenCancel, setIsOpenCancel] = React.useState(false);
   const [isAuthenticated, setIsAuthenticated] = React.useState(true);
   const [currentCity, setCurrentCity] = React.useState("");
-  const [locationChange, setLocationChange] = React.useState(false);
   const [modalSuccessCancel, setModalSuccessCancel] = React.useState(false);
 
   const insuranceCarrierList = useSelector((state) => state.provider.list);
@@ -180,12 +179,12 @@ export default function HomePage({ googleApiKey }) {
     router.push(`/patient/prescription`);
   }
 
-  useEffect(() => {
+  const fetchCurrentLocation = () => {
     if (coords) {
+      setCurrentCity("");
       getCity(googleApiKey, coords, setCurrentCity);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [coords, locationChange]);
+  };
 
   useEffect(() => {
     const cookies = new Cookies();
@@ -274,7 +273,7 @@ export default function HomePage({ googleApiKey }) {
               subtitle={"Search for a doctor"}
               isFixed={false}
               currentCity={currentCity}
-              onChangeLocation={() => setLocationChange(true)}
+              onChangeLocation={fetchCurrentLocation}
             />
           ) : (
             <Box

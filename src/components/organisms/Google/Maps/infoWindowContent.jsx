@@ -141,8 +141,12 @@ const InfoWindowContent = ({
                             mode={constants.PRIMARY}
                             size={constants.SMALL}
                             gradient={false}
+                            data-testId={
+                              constants.TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID
+                                .MAPS.infoWindow.timeslot
+                            }
                             onClick={() => {
-                              console.log({ dats: data[counter - 1] });
+                              // console.log({ dats: data[counter - 1] });
                               if (!item) return;
                               OnTimeClicked(
                                 new Date(

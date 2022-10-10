@@ -233,8 +233,9 @@ Object {
                               <div
                                 class="phoneContainer MuiBox-root css-qbubgm"
                               >
-                                <a
-                                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways phoneLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                                <p
+                                  class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
+                                  role="text"
                                   tabindex="0"
                                 />
                               </div>
@@ -570,8 +571,9 @@ Object {
                             <div
                               class="phoneContainer MuiBox-root css-qbubgm"
                             >
-                              <a
-                                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways phoneLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                              <p
+                                class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
+                                role="text"
                                 tabindex="0"
                               />
                             </div>

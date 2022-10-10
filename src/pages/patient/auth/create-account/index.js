@@ -52,7 +52,7 @@ export default function CreateAccountPage() {
   };
 
   return (
-    <Box className={globalStyles.contanierPage}>
+    <Box className={globalStyles.containerStyledPage}>
       <Register
         formMessage={formMessage}
         OnRegisterClicked={OnRegisterClicked}
