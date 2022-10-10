@@ -17,6 +17,7 @@ export default function AuthLayout({
   theme = "patient",
   imageSrc,
   title,
+  customImageBg = false,
   isReverseFlex = true,
 }) {
   const isPatient = theme === "patient";
@@ -86,7 +87,12 @@ export default function AuthLayout({
                 padding: 0,
               }}
             >
-              <div className={styles.imageBannerContainer}>
+              <div
+                className={[
+                  styles.imageBannerContainer,
+                  customImageBg ? styles.objPositionB : styles.objPositionA,
+                ].join(" ")}
+              >
                 {hasImage && <Image alt="" src={imageSrcState} layout="fill" />}
               </div>
             </Container>

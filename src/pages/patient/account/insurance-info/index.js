@@ -192,7 +192,7 @@ export default function InsuranceInfoPage() {
           behavior: "smooth",
           block: "start",
         });
-      }, 300);
+      }, 5000);
     }
   }, [openNewInsuranceForm, focusToNewInsurance]);
 

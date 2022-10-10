@@ -78,7 +78,6 @@
   max-width: unset !important;
   min-height: unset !important;
   max-height: unset !important;
-  object-position: center -4vh;
   @media (max-width: 992px) {
     width: 105vw !important;
     height: 29vh !important;
@@ -92,4 +91,12 @@
     border-bottom-right-radius: 80%;
     object-position: center -10vh;
   }
+}
+
+.objPositionA > span > img {
+  object-position: center -4vh;
+}
+
+.objPositionB > span > img {
+  object-position: center 7vh;
 }
