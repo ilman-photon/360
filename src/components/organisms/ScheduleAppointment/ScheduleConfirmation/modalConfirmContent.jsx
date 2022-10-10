@@ -241,7 +241,6 @@ export default function ModalConfirmContent({
                   <ProviderProfile
                     variant={"appointment"}
                     showPosition
-                    phoneLink={true}
                     providerData={providerData}
                     isDayAvailableView={true}
                   />
