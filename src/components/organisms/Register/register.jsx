@@ -18,7 +18,7 @@ import { HeadingTitle } from "../../atoms/Heading";
 import { colors } from "../../../styles/theme";
 export default function Register({ OnRegisterClicked, formMessage = null }) {
   const router = useRouter();
-  const { handleSubmit, control, watch } = useForm({
+  const { handleSubmit, control, watch, setValue } = useForm({
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -125,6 +125,18 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
       OnRegisterClicked(data, router);
     }
   };
+
+  useEffect(() => {
+    if (!!watchedEmail && !!watchedMobile) {
+      setValue("preferredCommunication", "both");
+    } else if (!!watchedMobile) {
+      setValue("preferredCommunication", "phone");
+    } else if (!!watchedEmail) {
+      setValue("preferredCommunication", "email");
+    } else {
+      setValue("preferredCommunication", "both");
+    }
+  }, [watchedEmail, watchedMobile]);
 
   const formMessageComp = useRef(null);
   useEffect(() => {
