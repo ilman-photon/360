@@ -4,6 +4,7 @@ import {
   Divider,
   Fade,
   Grid,
+  MenuItem,
   Stack,
   useMediaQuery,
 } from "@mui/material";
@@ -20,7 +21,6 @@ import { Regex } from "../../../utils/regex";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import dynamic from "next/dynamic";
-import { StyledSelect } from "../../atoms/Select/select";
 
 let ClientAddressAutofill;
 
@@ -96,6 +96,7 @@ export default function ContactInformation({
   };
 
   const onSubmit = (data) => {
+    // console.log({data})
     OnSaveClicked(data);
   };
 
@@ -390,14 +391,11 @@ export default function ContactInformation({
                     fieldState: { error },
                   }) => {
                     return (
-                      <StyledSelect
-                        id="state"
+                      <StyledInput
+                        select
                         label="State"
-                        inputProps={{
-                          "aria-label": "State drop down menu",
-                        }}
                         autoComplete="address-level1"
-                        options={usStatesList}
+                        data-testid="styled-select-state"
                         value={value}
                         onChange={onChange}
                         error={!!error}
@@ -412,7 +410,13 @@ export default function ContactInformation({
                             backgroundColor: "#FFF",
                           },
                         }}
-                      />
+                      >
+                        {usStatesList.map((item, idx) => (
+                          <MenuItem key={idx} value={item.value}>
+                            {item.label}
+                          </MenuItem>
+                        ))}
+                      </StyledInput>
                     );
                   }}
                 />

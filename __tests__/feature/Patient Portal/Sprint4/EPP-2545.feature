@@ -62,8 +62,6 @@ Feature: Patient Portal : Schedule appointment from Patient Portal - Select time
   @Regression
   @Sprint4
   Scenario: EPIC_EPP-44_STORY_EPP-2545-Verify if user able to navigate to review appointment details
-    Feature: Schedule appointment from Patient Portal - Select time slot for appointment in map view
-    Scenario: EPIC_EPP-44_STORY_EPP-2545-Verify if user able to navigate to review appointment details
 
     Given user launch the Patient Portal url	
     When user provides valid Email or Phone Number and password 

@@ -108,7 +108,6 @@ export default function AccountDocumentsPage() {
   };
 
   const rows = useSelector((state) => {
-    console.log({ watchedCategory });
     switch (watchedCategory) {
       case "intake-forms":
         return state.document.intakeFormsData;

@@ -1,15 +1,388 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import moment from "moment";
+import { Api } from "../pages/api/api";
+import {
+  GENDER_LIST,
+  RELATIONSHIP_LIST,
+  TITLE_LIST,
+} from "../utils/constantData";
 
-export const fetchUser = createAsyncThunk("user/fetchUser", async () => {
-  return fetch("/api/dummy/user").then((res) => res.json());
-});
+let url;
+
+/**
+ * This is parser for request API body user data
+ * @param {*} postBody
+ * @param {*} payload
+ * @returns
+ */
+const buildProfilePostBody = (postBody, payload) => {
+  let emailData = postBody.contactInformation.emails;
+  emailData[0] = {
+    ...emailData[0],
+    email: payload.email,
+  };
+
+  let phoneData = postBody.contactInformation.phones;
+  phoneData[0] = {
+    ...phoneData[0],
+    number: payload.mobile,
+  };
+
+  let addressData = postBody.address;
+  if (payload.address) {
+    addressData[0] = {
+      ...addressData[0],
+      addressLine1: payload.address,
+      city: payload.city,
+      state: payload.state,
+      zip: payload.zip,
+    };
+  }
+
+  let contactPreferenceDetailData = {
+    ...postBody.contactPreferenceDetail,
+    email:
+      payload.preferredCommunication === "both" ||
+      payload.preferredCommunication === "email",
+    phone:
+      payload.preferredCommunication === "both" ||
+      payload.preferredCommunication === "phone",
+  };
+
+  let patientDetailsData = {
+    ...postBody.patientDetails,
+    profilePhoto: payload.profilePhoto
+      ? {
+          digitalAsset: buildDigitalAssetObject(
+            payload.profilePhoto,
+            "profile"
+          ),
+        }
+      : null,
+    stateIssuedId: payload.issuedCardFront?.uid
+      ? { digitalAsset: payload.issuedCardFront }
+      : payload.issuedCardFront
+      ? {
+          digitalAsset: buildDigitalAssetObject(
+            payload.issuedCardFront,
+            "profile"
+          ),
+        }
+      : null,
+    stateIssuedIdBack: payload.issuedCardBack?.uid
+      ? { digitalAsset: payload.issuedCardBack }
+      : payload.issuedCardBack
+      ? {
+          digitalAsset: buildDigitalAssetObject(
+            payload.issuedCardBack,
+            "profile"
+          ),
+        }
+      : null,
+  };
+
+  const getGenderCode = (gender) => {
+    return GENDER_LIST.findIndex((v) => v === gender) + 1;
+  };
+
+  const getTitleCode = (title) => {
+    return TITLE_LIST.findIndex((v) => v === title) + 1;
+  };
+
+  return {
+    ...postBody,
+    nickName: payload.preferredName,
+    contactInformation: {
+      ...postBody.contactInformation,
+      emails: emailData,
+      phones: phoneData,
+    },
+    address: addressData,
+    sex: getGenderCode(payload.gender),
+    title: getTitleCode(payload.title),
+    contactPreferenceDetail: contactPreferenceDetailData,
+    patientDetails: patientDetailsData,
+  };
+};
+
+/**
+ * This is a parser for building digital asset object for request Body based on API endpoint
+ * @param {*} payload
+ * @param {*} type
+ * @returns
+ */
+const buildDigitalAssetObject = (payload, type) => {
+  console.log("build DA", payload, type);
+  if (!payload) return null;
+  if (!payload._id) return null;
+  switch (type) {
+    case "profile":
+      return {
+        uid: payload._id,
+        fileName: payload.name,
+        assetUrl: "/v1/patient",
+        _version: payload._version,
+      };
+    case "insurance":
+      return {
+        uid: payload._id,
+        fileName: payload.name,
+        metaInfo: {},
+        _version: payload._version,
+      };
+  }
+};
+
+/**
+ * This is parser for request API body insurance data
+ * @param {*} postBody
+ * @param {*} payload
+ * @returns
+ */
+const buildInsurancePostBody = (postBody = {}, payload = {}) => {
+  const subscriberData = payload.subscriberData;
+  const subscriberDob = subscriberData.dob
+    ? new moment(subscriberData.dob).format("MM/DD/YYYY")
+    : null;
+
+  const payloadPlanData = payload.plan;
+
+  const frontCardData = payload.frontCard;
+  const backCardData = payload.backCard;
+  return {
+    _version: postBody._version,
+    insuranceType: "VISION",
+    group: payload.groupID,
+    isPatientSubscriber: payload.isSubscriber === "Yes",
+    priority: payload.priority,
+    subscriberRelation:
+      RELATIONSHIP_LIST.findIndex((v) => v === subscriberData.relationship) +
+        1 || 1,
+    payer: {
+      _id: payload.provider.id,
+    },
+    plan: {
+      _id: payloadPlanData._id || payloadPlanData.id,
+    },
+    planAddress: payloadPlanData.address || postBody.planAddress,
+    planCity: payloadPlanData.city || postBody.planCity,
+    planState: payloadPlanData.state || postBody.planState,
+    planZip: payloadPlanData.zip || postBody.planZip,
+    planName: payloadPlanData.name || postBody.planName,
+    planPhone: payloadPlanData.phone1 || postBody.planPhone,
+    subscriber: {
+      // ...postBody.subscriber,
+      firstName: subscriberData.firstName,
+      lastName: subscriberData.lastName,
+      dob: subscriberDob, // MM/DD/YYYY,
+      _id: payload.memberID,
+    },
+    digitalAssets: {
+      master_front: frontCardData?.uid
+        ? payload.frontCard
+        : buildDigitalAssetObject(payload.frontCard, "insurance"),
+      master_back: backCardData?.uid
+        ? payload.backCard
+        : buildDigitalAssetObject(payload.backCard, "insurance"),
+    },
+  };
+};
+
+export const fetchUser = createAsyncThunk(
+  "user/fetchUser",
+  async ({ patientId }) => {
+    const api = new Api();
+    return api.getResponse(`/ecp/patient/getPatient/${patientId}`, null, "get");
+  }
+);
+
+export const updateUser = createAsyncThunk(
+  "user/updateUser",
+  async ({ patientId, payload }) => {
+    const api = new Api();
+    try {
+      // get the userData first, just to make sure
+      const res = await api.getResponse(
+        `/ecp/patient/getPatient/${patientId}`,
+        null,
+        "get"
+      );
+      // then apply changes from our side with response body from "res" and do a PUT request
+      const postBody = buildProfilePostBody(res, payload);
+      const response = await api.getResponse(
+        `/ecp/patient/editPatient/${patientId}`,
+        postBody,
+        "put"
+      );
+      return {
+        success: true,
+        response,
+      };
+    } catch (error) {
+      console.error({ error });
+      return {
+        success: false,
+        response: error,
+      };
+    }
+  }
+);
 
 export const fetchInsurance = createAsyncThunk(
   "user/fetchInsurance",
-  async () => {
-    return fetch("/api/dummy/insurance").then((res) => res.json());
+  async ({ patientId }) => {
+    const api = new Api();
+    url = `/ecp/insurance/beneficiaries/${patientId}/coverages`;
+    return api.getResponse(url, null, "get");
   }
 );
+
+export const updateInsurance = createAsyncThunk(
+  "user/updateInsurance",
+  async ({ payload, patientId, coverageId }, { getState }) => {
+    const api = new Api();
+    const state = getState();
+    const foundIndex = state.user.rawUserInsuranceData.findIndex(
+      (v) => v._id === coverageId
+    );
+    try {
+      const postBody = buildInsurancePostBody(
+        state.user.rawUserInsuranceData[foundIndex],
+        payload
+      );
+      const response = await api.getResponse(
+        `/ecp/insurance/beneficiaries/${patientId}/coverages/${coverageId}`,
+        postBody,
+        "put"
+      );
+      return {
+        success: true,
+        response,
+      };
+    } catch (error) {
+      console.error({ error });
+      return {
+        success: false,
+        response: error,
+      };
+    }
+  }
+);
+
+export const postInsurance = createAsyncThunk(
+  "user/postInsurance",
+  async ({ payload, patientId }) => {
+    const api = new Api();
+    try {
+      const postBody = buildInsurancePostBody(
+        {
+          insuranceType: "VISION",
+        },
+        payload
+      );
+      const response = await api.getResponse(
+        `/ecp/insurance/beneficiaries/${patientId}/coverages/`,
+        postBody,
+        "post"
+      );
+      return {
+        success: true,
+        response,
+      };
+    } catch (error) {
+      console.error({ error });
+      return {
+        success: false,
+        response: error,
+      };
+    }
+  }
+);
+
+export const deleteInsurance = createAsyncThunk(
+  "user/deleteInsurance",
+  async ({ patientId, coverageId }) => {
+    const api = new Api();
+    url = `/ecp/insurance/beneficiaries/${patientId}/coverages`;
+
+    try {
+      const response = await api.getResponse(
+        url,
+        {
+          op: "replace",
+          path: "/archive",
+          value: [
+            {
+              _id: coverageId,
+              archive: true,
+            },
+          ],
+        },
+        "patch"
+      );
+
+      return {
+        success: true,
+        response,
+      };
+    } catch (error) {
+      console.error({ error });
+      return {
+        success: false,
+        response: error,
+      };
+    }
+  }
+);
+
+/**
+ * This is parser for user data to be populated in browser view
+ * @param {*} payload
+ * @returns
+ */
+const buildUserData = (payload) => {
+  const userAddress = payload.address[0] || {};
+  const patientDetails = payload.patientDetails || {};
+
+  let userPreferredCommunication = "";
+  if (payload.contactInformation) {
+    if (payload.contactInformation.contactPreferenceDetail) {
+      if (payload.contactInformation.contactPreferenceDetail.phone) {
+        if (payload.contactInformation.contactPreferenceDetail.email) {
+          userPreferredCommunication = "both";
+        } else {
+          userPreferredCommunication = "email";
+        }
+      } else userPreferredCommunication = "phone";
+    }
+  }
+
+  return {
+    firstName: payload.firstName,
+    lastName: payload.lastName,
+    name: `${payload.firstName} ${payload.lastName}`,
+    preferredName: payload.nickName || "",
+    profilePhoto: patientDetails.profilePhoto?.digitalAsset || null,
+    issuedCardFront: patientDetails.stateIssuedId?.digitalAsset || null,
+    issuedCardBack: patientDetails.stateIssuedIdBack?.digitalAsset || null,
+    dob: payload.dob,
+    title: TITLE_LIST[payload.title - 1] || "",
+    ssn: payload.ssn,
+    email: payload.contactInformation.emails[0]
+      ? payload.contactInformation.emails[0].email
+      : "-",
+    mobile: payload.contactInformation.phones[0]
+      ? payload.contactInformation.phones[0].number
+      : "-",
+    address: userAddress.addressLine1 || "",
+    city: userAddress.city || "",
+    state: userAddress.state || "",
+    zip: userAddress.zip || "",
+    preferredCommunication: userPreferredCommunication,
+    age: payload.age,
+    gender: GENDER_LIST[payload.sex - 1] || "",
+  };
+};
 
 const DEFAULT_USER_DATA = {
   firstName: "",
@@ -17,8 +390,8 @@ const DEFAULT_USER_DATA = {
   name: "Eyecare User",
   preferredName: "---",
   profilePhoto: null,
-  issuedCardFront: "/transparent.png",
-  issuedCardBack: "/transparent.png",
+  issuedCardFront: null,
+  issuedCardBack: null,
   dob: new Date(),
   title: "Mr.",
   ssn: 1234567,
@@ -39,6 +412,44 @@ const DEFAULT_USER_DATA = {
   isSubscriber: "",
 };
 
+/**
+ * This is parser for user insurance data to be populated in browser view
+ * @param {*} payload
+ * @returns
+ */
+const buildUserInsuranceData = (payload) => {
+  const insurances = payload;
+  return insurances.map((insurance) => {
+    const subscriberData = insurance.subscriber;
+    const digitalAssets = insurance.digitalAssets;
+    return {
+      id: insurance._id,
+      provider: {
+        id: insurance.payer._id,
+        label: insurance.payer.name,
+        value: insurance.payer.name,
+      },
+      plan: {
+        id: insurance.plan._id,
+        label: insurance.plan.name,
+        value: insurance.plan.name,
+      },
+      memberID: subscriberData._id,
+      groupID: insurance.group,
+      isSubscriber: insurance.isPatientSubscriber ? "Yes" : "No",
+      subscriberData: {
+        firstName: subscriberData.firstName,
+        lastName: subscriberData.lastName,
+        dob: new Date(subscriberData.dob),
+        relationship: RELATIONSHIP_LIST[insurance.subscriberRelation - 1],
+      },
+      priority: insurance.priority,
+      frontCard: digitalAssets ? digitalAssets.master_front : {},
+      backCard: digitalAssets ? digitalAssets.master_back : {},
+    };
+  });
+};
+
 export const DEFAULT_INSURANCE_DATA = {
   id: 0,
   provider: null,
@@ -52,9 +463,9 @@ export const DEFAULT_INSURANCE_DATA = {
     dob: null,
     relationship: "",
   },
-  priority: null,
-  frontCard: "",
-  backCard: "",
+  priority: "PRIMARY",
+  frontCard: null,
+  backCard: null,
 };
 
 const DEFAULT_USER_APPOINTMENT_DATA = {
@@ -100,35 +511,50 @@ const userSlice = createSlice({
   initialState: {
     userData: DEFAULT_USER_DATA,
     userInsuranceData: [],
+    rawUserInsuranceData: [],
     userAppointmentData: [],
-    status: null,
+    status: "loading",
   },
   reducers: {
-    resetUserData: (state, action) => {
-      state.loading = action.payload;
+    setStatus: (state, { payload }) => {
+      state.status = payload;
+    },
+    resetUserData: (state) => {
+      state.userData = DEFAULT_USER_DATA;
     },
     setUserData: (state, { payload }) => {
       state.userData = payload;
     },
-    resetUserInsuranceData: (state, action) => {
-      state.loading = action.payload;
+    resetUserInsuranceData: (state, { payload }) => {
+      state.userInsuranceData = [];
     },
     setUserInsuranceData: (state, { payload }) => {
       state.userInsuranceData = payload;
     },
-    setUserInsuranceDataByIndex: (state, { payload }) => {
-      state.userInsuranceData = state.userInsuranceData.map((item, idx) => {
-        if (payload.id === idx) {
+    setUserInsuranceDataById: (state, { payload }) => {
+      const statePayload = state.rawUserInsuranceData.map((item, idx) => {
+        if (payload._id === item._id) {
           item = payload;
         }
         return item;
       });
+      state.userInsuranceData = buildUserInsuranceData(statePayload);
     },
     addUserInsuranceData: (state, { payload }) => {
-      state.userInsuranceData.push(payload);
+      state.rawUserInsuranceData.push(payload);
+      state.userInsuranceData = buildUserInsuranceData(
+        state.rawUserInsuranceData
+      );
     },
     removeUserInsuranceData: (state, { payload }) => {
-      state.userInsuranceData.splice(payload, 1);
+      const foundIndex = state.userInsuranceData.findIndex(
+        (v) => v.id === payload.id
+      );
+      const foundRawIndex = state.rawUserInsuranceData.findIndex(
+        (v) => v._id === payload.id
+      );
+      state.userInsuranceData.splice(foundIndex, 1);
+      state.rawUserInsuranceData.splice(foundRawIndex, 1);
     },
     resetUserAppointmentData: (state) => {
       state.userAppointmentData = [];
@@ -151,14 +577,38 @@ const userSlice = createSlice({
     },
   },
   extraReducers: {
+    // profile
     [fetchUser.pending]: (state) => {
       state.status = "loading";
     },
     [fetchUser.fulfilled]: (state, { payload }) => {
-      state.userData = payload;
+      if (payload) {
+        state.userData = buildUserData(payload);
+      }
       state.status = "success";
     },
     [fetchUser.rejected]: (state) => {
+      state.status = "failed";
+    },
+    [updateUser.fulfilled]: (state, { payload }) => {
+      if (payload.response._id) {
+        state.userData = buildUserData(payload.response);
+        state.status = "success";
+      }
+    },
+    // insurance
+    [fetchInsurance.pending]: (state) => {
+      state.status = "loading";
+    },
+    [fetchInsurance.fulfilled]: (state, { payload }) => {
+      if (payload) {
+        const entities = payload.entities.filter((v) => !v.archive);
+        state.rawUserInsuranceData = entities;
+        state.userInsuranceData = buildUserInsuranceData(entities);
+      }
+      state.status = "success";
+    },
+    [fetchInsurance.rejected]: (state) => {
       state.status = "failed";
     },
   },
@@ -166,11 +616,13 @@ const userSlice = createSlice({
 
 // Action creators are generated for each case reducer function
 export const {
+  setStatus,
   setUserData,
   setUserInsuranceData,
   addUserInsuranceData,
+  resetUserInsuranceData,
   removeUserInsuranceData,
-  setUserInsuranceDataByIndex,
+  setUserInsuranceDataById,
   resetUserAppointmentData,
   setUserAppointmentData,
   setUserAppointmentDataByIndex,

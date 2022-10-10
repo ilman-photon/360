@@ -472,7 +472,7 @@ export default function submitFilter(req, res) {
       ],
     });
   } else if (req.method === "POST") {
-    const time = moment(reqDate).day(1).toDate().getTime();
+    const time = new moment(reqDate).day(1).toDate().getTime();
 
     const days = (i, time) => {
       return new Date(time + i * 60 * 60 * 24 * 1000);

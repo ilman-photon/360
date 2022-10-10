@@ -22,23 +22,19 @@ import SubNavigation from "../../molecules/SubNavigation/subNavigation";
 import { logoutProps } from "../../../utils/authetication";
 import { useSelector } from "react-redux";
 import MobileNavMenu from "../../molecules/Navbar/MobileNavMenu";
+import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+import { colors } from "../../../styles/theme";
 
 export default function BaseHeader({
-  OnLogoutClicked = (router) => {
-    logoutProps.OnLogoutClicked(router);
+  OnLogoutClicked = (routerInstance) => {
+    logoutProps.OnLogoutClicked(routerInstance);
   },
   backTitle,
   onBackClicked,
   isPrescription = false,
 }) {
   const { HOME_TEST_ID } = constants.TEST_ID;
-  const pages = [
-    {
-      page: "Appointments",
-      testId: HOME_TEST_ID.appoinments,
-      href: "/patient/appointments",
-    },
-  ];
+  const pages = [];
   const [isUserLoged, setUserLoged] = React.useState(false);
   const router = useRouter();
   const logo = "/eyecarelogo.png";
@@ -126,6 +122,36 @@ export default function BaseHeader({
                     {page}
                   </Button>
                 ))}
+
+                <IconButton
+                  sx={{
+                    display: "flex",
+                    px: "20px",
+                    py: "8px",
+                    mr: 5,
+                    backgroundColor: colors.teal15,
+                    borderRadius: "30px",
+                  }}
+                >
+                  <Image
+                    src="/contact-shop-icon.png"
+                    alt={"marketplace"}
+                    width={16}
+                    height={16}
+                  />
+                  <Typography
+                    sx={{
+                      fontSize: 14,
+                      fontWeight: 600,
+                      lineHeight: "18px",
+                      ml: 1,
+                      mr: "12px",
+                    }}
+                  >
+                    Shop for Contacts
+                  </Typography>
+                  <ArrowRightAltIcon />
+                </IconButton>
               </Box>
 
               {/* Menu Mobile*/}
@@ -159,7 +185,6 @@ export default function BaseHeader({
                     setAnchorElNav(false);
                   }}
                   onLogoutClicked={() => {
-                    console.log("sini", router);
                     OnLogoutClicked(router);
                   }}
                 />

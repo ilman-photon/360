@@ -68,6 +68,7 @@ const InfoWindowContent = ({
               imageSize={"medium"}
               bioContainerClass={styles.customBioContainer}
               addressClass={styles.customAddress}
+              isShownPhoneAndRating={true}
             />
           </Stack>
         </Grid>
@@ -100,8 +101,8 @@ const InfoWindowContent = ({
               />
             </Stack>
             <Typography
-              variant="bodySmallMedium"
-              sx={{ textAlign: "right", pt: 2, fontWeight: "400" }}
+              variant="smallMediumRoboto"
+              sx={{ textAlign: "right", pt: "10px" }}
             >
               {data[counter - 1] ? data[counter - 1].distance : "-"}
             </Typography>

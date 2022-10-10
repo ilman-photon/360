@@ -420,7 +420,7 @@ defineFeature(feature, (test) => {
       fireEvent.click(filterBtn);
       await waitFor(() => container.getByText(/See more/i));
       fireEvent.click(container.getByLabelText(/Refill Requested/i));
-      fireEvent.click(container.getByLabelText(/Active/i));
+      fireEvent.click(container.getAllByText(/Active/i)[0]);
       fireEvent.click(container.getByText(/Done/i));
     });
 

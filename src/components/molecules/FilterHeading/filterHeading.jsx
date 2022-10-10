@@ -361,8 +361,8 @@ export function onRenderInputInsurance(
         variant="filled"
         {...params}
         label="Insurance Carrier"
+        aria-label="Insurance carrier field"
         InputProps={{
-          "aria-label": "Insurace Carrier field",
           ...params.InputProps,
         }}
         sx={{
@@ -608,8 +608,8 @@ const FilterHeading = ({
                     variant="filled"
                     {...params}
                     label="City, state, or zip code"
+                    aria-label="City, state, or zip code field"
                     InputProps={{
-                      "aria-label": "City, state, or zip code field",
                       ...params.InputProps,
                       endAdornment: (
                         <InputAdornment position="end">
@@ -681,7 +681,7 @@ const FilterHeading = ({
               />
               <StyledInput
                 open={open}
-                minDate={minDate}
+                // minDate={minDate}
                 maxDate={maxDate}
                 data-testid={APPOINTMENT_TEST_ID.dateInput}
                 onOpen={() => setOpen(true)}

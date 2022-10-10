@@ -77,7 +77,7 @@ const nextConfig = {
   },
   // temporary fixing for next/image
   images: {
-    domains: ['c4.wallpaperflare.com', 'loremflickr.com']
+    domains: ['c4.wallpaperflare.com', 'loremflickr.com', 'dgassets-bucket1.s3.amazonaws.com']
   },
   i18n
 };

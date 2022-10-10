@@ -197,8 +197,9 @@ test('EPIC_EPP-44_STORY_EPP-1545- Verify whether the error message No results fo
         };
 
         const domain = window.location.origin;
-        mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGGESTION_DATA);
-        mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(400, {});
+        mock.onGet(`/ecp/appointments/appointment-types`).reply(200, MOCK_SUGGESTION_DATA);
+        mock.onPut(`/ecp/appointments/available-slot?searchText=999999`).reply(400, {});
+        
         global.navigator.geolocation = mockGeolocation;
         container = render(
         <Provider store={store}>
@@ -250,8 +251,8 @@ test('EPIC_EPP-44_STORY_EPP-1545- Verify whether the error message No results fo
             };
 
             const domain = window.location.origin;
-            mock.onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`).reply(200, MOCK_SUGGESTION_DATA);
-            mock.onPost(`${domain}/api/dummy/appointment/create-appointment/submitFilter`).reply(400, {});
+            mock.onGet(`/ecp/appointments/appointment-types`).reply(200, MOCK_SUGGESTION_DATA);
+            mock.onPut(`/ecp/appointments/available-slot?searchText=Texas`).reply(400, {});
             window = Object.assign(window, { innerWidth: 1500 });
             global.navigator.geolocation = mockGeolocation;
             container = render(

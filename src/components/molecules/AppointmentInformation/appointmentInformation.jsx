@@ -26,19 +26,23 @@ export default function AppointmentInformation({ data }) {
         <Typography
           tabIndex={0}
           ariaLabel={data.providerInfo.name}
-          variant="subtitle1"
-          className={styles.doctorName}
+          className={[styles.doctorName, styles.subtitleStyle].join(" ")}
         >
           {data.providerInfo.name}
         </Typography>
         <Box className={styles.subTitleWrapper}>
-          <Typography tabIndex={0} ariaLabel={"Patient"} variant="subtitle1">
+          <Typography
+            tabIndex={0}
+            ariaLabel={"Patient"}
+            className={styles.subtitleStyle}
+          >
             Patient:{" "}
           </Typography>
           <Typography
             tabIndex={0}
             ariaLabel={data.patientInfo.name}
             variant="body2"
+            className={styles.patientSubtitleStyle}
           >
             {data.patientInfo.name}
           </Typography>

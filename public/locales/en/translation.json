@@ -40,6 +40,7 @@
     "backSignIn": "Back to Sign-In",
     "syncButton": "Sync",
     "syncTitle" : "Sync your appointment",
+    "syncContent": "Enter the email or phone number you provided when you scheduled your appointment.",
     "syncTextContent" : "Enter the email or phone number you provided when you scheduled your appointment",
     "syncErrorTitle" : "Existing User",
     "syncError" : "You are already a registered user. Please login to the application using your username and password.  Login"
