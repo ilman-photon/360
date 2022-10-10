@@ -184,6 +184,12 @@ module.exports = {
         confirmBtn: "schedule_appointment_dialog_reschedule_confirm_button",
         denyBtn: "schedule_appointment_dialog_reschedule_deny_button",
       },
+      MAPS: {
+        pinMarker: "schedule_appointment_maps_pin_marker",
+        infoWindow: {
+          timeslot: "schedule_appointment_maps_info_window_timeslot",
+        },
+      },
     },
     APPOINTMENTS_TEST_ID: {
       upcomingAppointmentsHeader: "appointments_upcoming_appointments_header",
