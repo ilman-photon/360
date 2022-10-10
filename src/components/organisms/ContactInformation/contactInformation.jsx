@@ -21,6 +21,7 @@ import { Regex } from "../../../utils/regex";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import dynamic from "next/dynamic";
+import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 
 let ClientAddressAutofill;
 
@@ -157,14 +158,7 @@ export default function ContactInformation({
             ariaLabel="Phone Number"
             label="Phone Number"
           >
-            <div
-              tabIndex={0}
-              aria-label={
-                userData.mobile ? formatPhoneNumber(userData.mobile) : ""
-              }
-            >
-              {userData.mobile ? formatPhoneNumber(userData.mobile) : ""}
-            </div>
+            {userData.mobile && <PhoneNumber phone={userData.mobile} />}
           </LabelWithInfo>
 
           <LabelWithInfo tabIndex={0} ariaLabel="Email ID" label="Email ID">

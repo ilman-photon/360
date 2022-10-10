@@ -21,6 +21,7 @@ import TableRow from "@mui/material/TableRow";
 import React, { useEffect, useState } from "react";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import { TEST_ID } from "../../../utils/constants";
+import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 
 function AppointmentDetailTable(alergies, isExpandAll) {
   const [openAllergies, setOpenAllergies] = useState(isExpandAll);
@@ -282,24 +283,15 @@ export default function DetailAppointment({ data }) {
                       ", " +
                       providerInfo.address.zipcode}
                 </Typography>
-                <Link
-                  tabIndex={0}
-                  ariaLabel={formatPhoneNumber(providerInfo.phoneNumber)}
+                <PhoneNumber
+                  phone={providerInfo.phoneNumber}
                   sx={{
-                    color: "teal",
                     display: "flex",
                     alignContent: "center",
                     justifyContent: "flex-start",
                     pt: 1,
                   }}
-                >
-                  <Typography
-                    variant="body2"
-                    className={styles.getDirectionLinkText}
-                  >
-                    {formatPhoneNumber(providerInfo.phoneNumber)}
-                  </Typography>
-                </Link>
+                />
               </Grid>
               <Grid item xs={8}>
                 <Box
@@ -536,28 +528,17 @@ export default function DetailAppointment({ data }) {
                     >
                       {appointmentInfo.documentDetails.address.country}
                     </Typography>
-                    <Link
-                      tabIndex={0}
-                      ariaLabel={formatPhoneNumber(
+                    <PhoneNumber
+                      phone={
                         appointmentInfo.documentDetails.address.mobileNumber
-                      )}
+                      }
                       sx={{
-                        color: "teal",
-                        display: "flex",
                         alignContent: "center",
+                        display: "flex",
                         justifyContent: "flex-start",
                         pt: 1,
                       }}
-                    >
-                      <Typography
-                        variant="body2"
-                        className={styles.getDirectionLinkText}
-                      >
-                        {formatPhoneNumber(
-                          appointmentInfo.documentDetails.address.mobileNumber
-                        )}
-                      </Typography>
-                    </Link>
+                    />
                   </TableCell>
                 </TableRow>
               </TableBody>
@@ -626,30 +607,16 @@ export default function DetailAppointment({ data }) {
               >
                 {appointmentInfo.documentDetails.address.country}
               </Typography>
-
-              <Link
-                tabIndex={0}
-                ariaLabel={formatPhoneNumber(
-                  appointmentInfo.documentDetails.address.mobileNumber
-                )}
+              <PhoneNumber
+                phone={appointmentInfo.documentDetails.address.mobileNumber}
                 sx={{
-                  color: "teal",
                   display: "flex",
                   alignContent: "center",
                   justifyContent: "flex-start",
                   pt: 1,
                   mb: 1,
                 }}
-              >
-                <Typography
-                  variant="body2"
-                  className={styles.getDirectionLinkText}
-                >
-                  {formatPhoneNumber(
-                    appointmentInfo.documentDetails.address.mobileNumber
-                  )}
-                </Typography>
-              </Link>
+              />
             </Grid>
           </Grid>
 
@@ -887,29 +854,16 @@ export default function DetailAppointment({ data }) {
                     {item.contactPerformance.country}
                   </Typography>
 
-                  <Link
-                    tabIndex={0}
-                    ariaLabel={formatPhoneNumber(
-                      appointmentInfo.documentDetails.address.mobileNumber
-                    )}
+                  <PhoneNumber
+                    phone={appointmentInfo.documentDetails.address.mobileNumber}
                     sx={{
-                      color: "teal",
                       display: "flex",
-                      alignContent: "center",
                       justifyContent: "flex-start",
+                      alignContent: "center",
                       pt: 1,
                       mb: 1,
                     }}
-                  >
-                    <Typography
-                      variant="body2"
-                      className={styles.getDirectionLinkText}
-                    >
-                      {formatPhoneNumber(
-                        appointmentInfo.documentDetails.address.mobileNumber
-                      )}
-                    </Typography>
-                  </Link>
+                  />
                 </Grid>
               </>
             ))}
@@ -1014,24 +968,15 @@ export default function DetailAppointment({ data }) {
                           ", " +
                           providerInfo.address.zipcode}
                     </Typography>
-                    <Link
-                      tabIndex={0}
-                      ariaLabel={formatPhoneNumber(providerInfo.phoneNumber)}
+                    <PhoneNumber
+                      phone={providerInfo.phoneNumber}
                       sx={{
-                        color: "teal",
                         display: "flex",
-                        alignContent: "center",
                         justifyContent: "flex-start",
                         pt: 1,
+                        alignContent: "center",
                       }}
-                    >
-                      <Typography
-                        variant="body2"
-                        className={styles.getDirectionLinkText}
-                      >
-                        {formatPhoneNumber(providerInfo.phoneNumber)}
-                      </Typography>
-                    </Link>
+                    />
                   </TableCell>
                 </TableCell>
                 <TableCell>
@@ -1083,24 +1028,15 @@ export default function DetailAppointment({ data }) {
                           ", " +
                           providerInfo.address.zipcode}
                     </Typography>
-                    <Link
-                      tabIndex={0}
-                      ariaLabel={formatPhoneNumber(providerInfo.phoneNumber)}
+                    <PhoneNumber
+                      phone={providerInfo.phoneNumber}
                       sx={{
-                        color: "teal",
-                        display: "flex",
                         alignContent: "center",
+                        display: "flex",
                         justifyContent: "flex-start",
                         pt: 1,
                       }}
-                    >
-                      <Typography
-                        variant="body2"
-                        className={styles.getDirectionLinkText}
-                      >
-                        {formatPhoneNumber(providerInfo.phoneNumber)}
-                      </Typography>
-                    </Link>
+                    />
                   </TableCell>
                 </TableCell>
               </TableRow>

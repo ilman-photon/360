@@ -315,7 +315,7 @@ Object {
                             </span>
                           </span>
                           <p
-                            aria-label="phone number (123) 123-4567"
+                            arialabel="(123) 123-4567"
                             class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
                             role="text"
                             tabindex="0"
@@ -992,7 +992,7 @@ Object {
                           </span>
                         </span>
                         <p
-                          aria-label="phone number (123) 123-4567"
+                          arialabel="(123) 123-4567"
                           class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
                           role="text"
                           tabindex="0"

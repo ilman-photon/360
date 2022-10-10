@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import { TEST_ID } from "../../../utils/constants";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 
 const renderSpecialistList = (providerData) => {
   return (
@@ -40,7 +41,6 @@ const renderSpecialistList = (providerData) => {
 export default function ProviderProfile({
   variant,
   showPosition,
-  phoneLink,
   isShownPhoneAndRating = true,
   isShownRating = true,
   providerData = {},
@@ -194,26 +194,7 @@ export default function ProviderProfile({
                   {(isBio || isMap || (isViewSchedule && isShownRating)) && (
                     <StyledRating value={parseInt(providerData.rating)} />
                   )}
-                  {!phoneLink ? (
-                    <Typography
-                      variant="body2"
-                      className={styles.phone}
-                      tabIndex={"0"}
-                      aria-label={`phone number ${formatPhoneNumber(
-                        phoneNumber
-                      )}`}
-                      role={isMobile ? "link" : "text"}
-                      onClick={() => {
-                        isMobile && window.open(`tel:${phoneNumber}`);
-                      }}
-                    >
-                      {formatPhoneNumber(phoneNumber)}
-                    </Typography>
-                  ) : (
-                    <Link className={styles.phoneLink} tabindex={"0"}>
-                      {formatPhoneNumber(phoneNumber)}
-                    </Link>
-                  )}
+                  <PhoneNumber phone={phoneNumber} />
                 </Box>
               )}
             </Box>
