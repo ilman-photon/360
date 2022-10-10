@@ -15,6 +15,7 @@ export default function InsuranceInformationNew({
   providerList = [],
   planList = [],
   isAutocompleteLoading = false,
+  patientId,
   OnProviderChanged,
 }) {
   return (
@@ -36,6 +37,7 @@ export default function InsuranceInformationNew({
           <InsuranceForm
             providerList={providerList}
             planList={planList}
+            memberId={patientId}
             isAutocompleteLoading={isAutocompleteLoading}
             OnProviderChanged={OnProviderChanged}
             OnCancelEditClicked={(_) => OnCancelEditClicked(false)}
