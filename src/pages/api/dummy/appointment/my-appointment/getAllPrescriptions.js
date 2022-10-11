@@ -107,7 +107,6 @@ export default function getAllPrescriptions(req, res) {
             id: "2",
             prescription: "Aspirint 0.1% Ointmanet",
             date: "2022-09-02T11:18:47.229Z",
-            expiredDate: "2022-10-02T11:18:47.229Z",
           },
           {
             id: "3",
