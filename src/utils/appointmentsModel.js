@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export function appointmentParser(data = {}) {
   const firstname = data.provider?.firstName || "";
   const lastName = data.provider?.lastName ? ` ${data.provider?.lastName}` : "";
@@ -5,6 +7,11 @@ export function appointmentParser(data = {}) {
     ? `, ${data.provider?.designation}`
     : "";
   const name = `${firstname}${lastName}${designation}`;
+
+  const momentDate = new moment(
+    `${data.appointmentDate} ${data.appointmentTime}`
+  );
+  const year = momentDate.format("YYYY");
 
   return {
     appointmentId: data.appointmentNo,
@@ -34,5 +41,19 @@ export function appointmentParser(data = {}) {
       date: `${data.appointmentDate} ${data.appointmentTime}`,
       insuranceCarrier: [],
     },
+    year,
   };
+}
+
+export function groupBy(list, keyGetter) {
+  const map = new Map();
+  list.forEach((item) => {
+    const key = keyGetter(item);
+    if (!map.has(key)) {
+      map.set(key, [item]);
+    } else {
+      map.get(key).push(item);
+    }
+  });
+  return map;
 }
