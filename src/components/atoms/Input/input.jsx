@@ -127,6 +127,7 @@ export const RedditTextField = styled((props) => (
           </IconButton>
         </InputAdornment>
       ) : null,
+      ...props.InputProps,
     }}
     {...props}
   />

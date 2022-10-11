@@ -24,4 +24,5 @@ export class Regex {
   static usernameValidation =
     /(^[\w%\+\-]+(\.[\w%\+\-]+)*@[\w%\+\-]+(\.[\w%\+\-]+)+$)|(^\d*$)/g;
   static maskingEmail = /^(..)(.*)(@.*)$/;
+  static isZip = /^\s?\d{5}\s?$/;
 }
