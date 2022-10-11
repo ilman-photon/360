@@ -435,7 +435,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -444,12 +444,12 @@ defineFeature(feature, (test) => {
     });
 
     and(/^User should see on "(.*)" button$/, (arg0) => {
-      const getDirection = container.getByText("Get Direction");
+      const getDirection = container.getByText("Get Directions");
       expect(getDirection).toBeInTheDocument();
     });
 
     when(/^User clicks on "(.*)" button$/, (arg0) => {
-      const getDirection = container.getByText("Get Direction");
+      const getDirection = container.getByText("Get Directions");
       fireEvent.click(getDirection);
     });
 

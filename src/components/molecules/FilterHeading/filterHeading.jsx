@@ -258,14 +258,17 @@ export const insuraceIcon = (
 export function getMenuList(title, subtitle) {
   return (
     <Box className={styles.selectMenuContainer}>
-      <Typography tabindex={0}>
+      <Typography tabindex={0} sx={{ lineHeight: "1" }}>
         <Typography
           variant="bodySmallRegular"
-          sx={{ display: "block", color: colors.darkGreen }}
+          sx={{ display: "block", color: colors.darkGreen, lineHeight: "18px" }}
         >
           {title}
         </Typography>
-        <Typography variant="bodySmallMedium" sx={{ color: colors.darkGreen }}>
+        <Typography
+          variant="bodySmallMedium"
+          sx={{ color: colors.darkGreen, fontWeight: "400" }}
+        >
           {subtitle}
         </Typography>
       </Typography>
@@ -1085,7 +1088,10 @@ const FilterHeading = ({
     return (
       <Box className={styles.mobileFilterContainer}>
         <Box className={styles.mobileContainer}>
-          <Typography variant={"h2"} className={styles.mobileTitle}>
+          <Typography
+            variant={"titleScheduleMobile"}
+            className={styles.mobileTitle}
+          >
             Schedule an eye exam
           </Typography>
           <form onSubmit={handleSubmit(onSubmit)}>

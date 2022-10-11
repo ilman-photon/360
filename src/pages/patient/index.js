@@ -308,19 +308,36 @@ export default function HomePage({ googleApiKey }) {
             p={3}
             sx={{
               paddingTop: isDesktop ? "30px" : "46px",
+              paddingRight: { xs: "16px !important", md: "24px !important" },
               flexDirection: !isDesktop ? "column-reverse" : "unset",
               "@media print": {
                 paddingTop: "30px !important",
               },
             }}
           >
-            <Grid item xs={5} sm={5} md={2}>
+            <Grid
+              item
+              xs={5}
+              sm={5}
+              md={2}
+              sx={{
+                paddingLeft: { xs: "16px !important", md: "24px !important" },
+              }}
+            >
               <Prescriptions
                 prescriptionData={prescriptionData}
                 onViewPrescriptions={onViewPrescriptions}
               />
             </Grid>
-            <Grid item xs={5} sm={5} md={3}>
+            <Grid
+              item
+              xs={5}
+              sm={5}
+              md={3}
+              sx={{
+                paddingLeft: { xs: "16px !important", md: "24px !important" },
+              }}
+            >
               <AppointmentCard
                 appointmentData={appointmentData}
                 OnClickCancel={handleClickCancel}

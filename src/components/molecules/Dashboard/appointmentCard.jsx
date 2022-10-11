@@ -26,6 +26,7 @@ import {
 import { fullDateFormat } from "../../../utils/dateFormatter";
 import { useEffect } from "react";
 import Image from "next/image";
+import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import { getLinkAria } from "../../../utils/viewUtil";
 
 export default function AppointmentCard({
@@ -116,7 +117,7 @@ export default function AppointmentCard({
               getDirection(location);
             }}
           >
-            Get Direction
+            Get Directions
           </Typography>
         </Box>
       )
@@ -200,7 +201,7 @@ export default function AppointmentCard({
                       )
                     }
                   >
-                    {appointment.providerInfo?.phoneNumber}{" "}
+                    {formatPhoneNumber(appointment.providerInfo?.phoneNumber)}{" "}
                   </a>
                 </Typography>
                 {renderGetDirection()}
@@ -356,6 +357,9 @@ export default function AppointmentCard({
           ".MuiCardContent-root": {
             p: 0,
             position: "relative",
+          },
+          ".MuiCardContent-root .MuiBox-root .MuiGrid-container": {
+            p: { xs: "24px 15.5px", md: "24px" },
           },
         }}
       >

@@ -31,6 +31,10 @@
     color: #424747;
     text-align: center;
     margin: 24px;
+    font-size: 14px;
+    @media (max-width: 768px) {
+      margin-left: 0;
+    }
   }
 
   .medicLink {

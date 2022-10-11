@@ -287,10 +287,6 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test("EPIC_EPP-44_STORY_EPP-2543-Verify User should be able to selects a time slot of the provider within 3 seconds", ({}) => {
-    defaultValidation();
-  });
-
   test("EPIC_EPP-44_STORY_EPP-2543-Verify User should be able to selects a time slot of the provider within 3 seconds", ({
     given,
     when,

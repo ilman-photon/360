@@ -370,7 +370,7 @@ exports[`App renders App unchanged 1`] = `
               >
                 <span
                   aria-label="Already have an account? Sign in"
-                  class="MuiTypography-root MuiTypography-caption css-18ywxbx-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-caption css-sg0sdn-MuiTypography-root"
                   tabindex="0"
                 >
                   Already have an account?
