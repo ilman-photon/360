@@ -1,4 +1,5 @@
 import axios from "axios";
+import moment from "moment";
 import { setGenericErrorMessage } from "../../store";
 import constants from "../../utils/constants";
 
@@ -260,6 +261,34 @@ export class Api {
       userData?.patientId ? patientId : ""
     }`;
     return this.getResponse(url, {}, "get");
+  }
+
+  getUpcomingAppointment() {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const patientId = `/${userData?.patientId}`;
+    const params = {
+      currentDate: new moment().format("MM/DD/YYYY"),
+      time: new moment().format("hh:mm"),
+    };
+    const url = `/ecp/appointments${
+      userData?.patientId ? patientId : ""
+    }/upcoming`;
+    return this.getResponse(url, { params }, "get");
+  }
+
+  getPastAppointment() {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const patientId = `/${userData?.patientId}`;
+    const url = `/ecp/appointments${
+      userData?.patientId ? patientId : ""
+    }/history`;
+    const params = {
+      currentDate: new moment().format("MM/DD/YYYY"),
+      time: new moment().format("hh:mm"),
+      pageSize: 999,
+      pageNo: 0,
+    };
+    return this.getResponse(url, { params }, "get");
   }
 
   getAppointmentDetails() {
