@@ -237,6 +237,7 @@ export default function TableWithSort({
                                 >
                                   <div
                                     role="button"
+                                    aria-label={`download`}
                                     onClick={() =>
                                       onAssetDownload(row[cell.valueKey])
                                     }

@@ -8,6 +8,7 @@ import { StyledButton } from "../../atoms/Button/button";
 import { Box } from "@mui/material";
 import { styles } from "../../organisms/SessionExpiredModal/styles";
 import genericStyles from "./genericErrorModal.module.scss";
+import { setGenericErrorMessage } from "../../../store";
 
 function GenericErrorModal({ storeContext = {} }) {
   const [modalError, setModalError] = useState(null);
@@ -59,6 +60,7 @@ function GenericErrorModal({ storeContext = {} }) {
             style={styles.buttonStyle}
             onClick={() => {
               setModalError(null);
+              storeContext.dispatch(setGenericErrorMessage(""));
             }}
             aria-label={"Ok button"}
             className={genericStyles.buttonCTA}

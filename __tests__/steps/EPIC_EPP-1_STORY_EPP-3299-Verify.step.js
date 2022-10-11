@@ -1015,7 +1015,7 @@ defineFeature(feature, (test) => {
         fireEvent.click(contactMenu);
       });
 
-      await waitFor(() => container.getAllByText(/Contacts Prescriptions/i)[0]);
+      await waitFor(() => container.getAllByText(/Contacts Prescription/i)[0]);
     });
 
     when("User clicks on the widget with prescriptions", () => {

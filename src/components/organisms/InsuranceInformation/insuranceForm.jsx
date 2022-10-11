@@ -22,10 +22,18 @@ import FormMessage from "../../molecules/FormMessage/formMessage";
 import { AutoCompleteCreatable } from "../../molecules/AutoCompleteCreatable";
 import constants from "../../../utils/constants";
 import { Regex } from "../../../utils/regex";
+import { RELATIONSHIP_LIST } from "../../../utils/constantData";
 
 export default function InsuranceForm({
-  formData = null,
+  formData = DEFAULT_INSURANCE_DATA,
+  providerList = [],
+  planList = [],
   isEditing = true,
+  isAutocompleteLoading = false,
+  memberId,
+  OnProviderChanged = () => {
+    // this is intended
+  },
   OnSaveClicked = () => {
     // This is intended
   },
@@ -35,7 +43,7 @@ export default function InsuranceForm({
   testIds = constants.TEST_ID.INSURANCE_TEST_ID,
   isError,
 }) {
-  const { handleSubmit, control, watch, reset } = useForm({
+  const { handleSubmit, control, watch, reset, setValue } = useForm({
     defaultValues: DEFAULT_INSURANCE_DATA,
   });
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -49,28 +57,16 @@ export default function InsuranceForm({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
 
-  const providerList = [
-    { id: 0, label: "Provider 1", value: "Provider 1" },
-    { id: 1, label: "Provider 2", value: "Provider 2" },
-  ];
-
-  const planList = [
-    { id: 0, label: "Plan 1", value: "Plan 1" },
-    { id: 1, label: "Plan 2", value: "Plan 2" },
-  ];
-
   const isSubscriberOptions = [
     { label: "Yes", value: "Yes" },
     { label: "No", value: "No" },
   ];
 
   const priorityOptions = [
-    { label: "Primary", value: "Primary" },
-    { label: "Secondary", value: "Secondary" },
-    { label: "Tertiary", value: "Tertiary" },
+    { label: "Primary", value: "PRIMARY" },
+    { label: "Secondary", value: "SECONDARY" },
+    { label: "Tertiary", value: "TERTIARY" },
   ];
-
-  const relationshipList = ["Spouse", "Father", "Mother", "Self", "Son"];
 
   const DEFAULT_FORM_FIELD_STATE = {
     success: false,
@@ -98,21 +94,33 @@ export default function InsuranceForm({
     }
   };
 
+  const watchedProvider = watch("provider", "");
+  useEffect(() => {
+    if (watchedProvider) {
+      OnProviderChanged(watchedProvider.id);
+      if (watchedProvider.id !== formData?.provider?.id) {
+        setValue("plan", null);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [watchedProvider]);
+
+  useEffect(() => {
+    setValue("memberID", memberId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [memberId]);
+
   const handleCancel = () => {
     OnCancelClicked();
-    reset(DEFAULT_INSURANCE_DATA);
+    reset(formData);
     setFormCardFrontState(DEFAULT_FORM_FIELD_STATE);
     setFormCardBackState(DEFAULT_FORM_FIELD_STATE);
   };
 
   const onSubmit = (data) => {
     OnSaveClicked(data);
-    if (isError !== false) reset(DEFAULT_INSURANCE_DATA);
+    if (isError !== false) reset(formData);
   };
-
-  const EmptyGrid = () => (
-    <Grid item xs={12} md={4} sx={{ display: { xs: "none", md: "flex" } }} />
-  );
 
   const DisclaimerText = (data) => {
     return (
@@ -126,7 +134,7 @@ export default function InsuranceForm({
           paddingLeft: 2,
           display: "inline-flex",
           alignItems: "center",
-          color: "#49454F",
+          color: "#424747",
         }}
       >
         {data.label}
@@ -149,12 +157,7 @@ export default function InsuranceForm({
                 }) => {
                   return (
                     <AutoCompleteCreatable
-                      onFetch={(e) => {
-                        console.log(e);
-                      }}
-                      onInputEmpty={(e) => {
-                        console.log(e);
-                      }}
+                      isLoading={isAutocompleteLoading}
                       options={providerList}
                       testId={testIds.provider}
                       inputLabel="Insurance Provider"
@@ -181,12 +184,7 @@ export default function InsuranceForm({
                 }) => {
                   return (
                     <AutoCompleteCreatable
-                      onFetch={(e) => {
-                        console.log(e);
-                      }}
-                      // onInputEmpty={(e) => {
-                      //   console.log(e);
-                      // }}
+                      isLoading={isAutocompleteLoading}
                       options={planList}
                       testId={testIds.planName}
                       inputLabel="Plan Name"
@@ -198,7 +196,6 @@ export default function InsuranceForm({
                   );
                 }}
               />
-              <DisclaimerText label="(Optional)" />
             </Grid>
 
             <Grid item xs={12} sm={6} lg={4}>
@@ -226,10 +223,12 @@ export default function InsuranceForm({
                 }}
                 rules={{
                   required: "This field is required",
-                  validate: {
-                    isNumber: (v) =>
-                      Regex.numberOnly.test(v) || "Invalid format",
-                  },
+                  // REMINDER !! this validation is disabled for testing integration purpose, not based on story
+                  // change back after solution are found
+                  // validate: {
+                  //   isNumber: (v) =>
+                  //     Regex.numberOnly.test(v) || "Invalid format",
+                  // },
                 }}
               />
             </Grid>
@@ -378,7 +377,7 @@ export default function InsuranceForm({
                     />
                   </Grid>
 
-                  <EmptyGrid />
+                  <Grid item xs={12} md={4} sx={{ visibility: "hidden" }} />
 
                   <Grid
                     item
@@ -397,9 +396,8 @@ export default function InsuranceForm({
                           <>
                             <StyledInput
                               disableFuture
-                              tabIndex={0}
                               type="dob"
-                              label="Subscriber Date of Birth field"
+                              label="Subscriber Date of Birth"
                               value={value}
                               onChange={onChange}
                               error={!!error}
@@ -427,8 +425,8 @@ export default function InsuranceForm({
                     />
                   </Grid>
 
-                  <EmptyGrid />
-                  <EmptyGrid />
+                  <Grid item xs={12} md={4} sx={{ visibility: "hidden" }} />
+                  <Grid item xs={12} md={4} sx={{ visibility: "hidden" }} />
 
                   <Grid
                     item
@@ -453,7 +451,7 @@ export default function InsuranceForm({
                               },
                             }}
                             label="Relationship"
-                            options={relationshipList}
+                            options={RELATIONSHIP_LIST}
                             value={value}
                             onChange={(event) => {
                               onChange(event);
@@ -472,12 +470,8 @@ export default function InsuranceForm({
             </Stack>
           </Collapse>
 
-          <Typography
-            variant="bodyLarge"
-            component="div"
-            sx={{ lineHeight: "28px", color: "#292929" }}
-          >
-            Upload images of your insurance
+          <Typography variant="bodyRegular" component="div">
+            Upload images of your insurance.
           </Typography>
 
           <Grid
@@ -521,14 +515,10 @@ export default function InsuranceForm({
                     <ImageUploader
                       OnUpload={onChange}
                       OnInputError={onFormCardFrontError}
-                      source={formData ? formData.frontCard : null}
                       testIds={testIds.uploadFrontImage}
-                      preview={value}
+                      source={value}
+                      // preview={value?.presignedUrl}
                       label="Upload Front"
-                      width="100%"
-                      src="/login-bg.png"
-                      alt=""
-                      labelVariant="mediumBlueNavy"
                       helperText={
                         isMobile
                           ? "*JPG or PNG file formats only. (File size limit is 4 MB)"
@@ -567,14 +557,10 @@ export default function InsuranceForm({
                     <ImageUploader
                       OnUpload={onChange}
                       OnInputError={onFormCardBackError}
-                      source={formData ? formData.backCard : null}
+                      source={value}
+                      // preview={value?.presignedUrl}
                       testIds={testIds.uploadBackImage}
-                      preview={value}
                       label="Upload Back"
-                      width="100%"
-                      src="/login-bg.png"
-                      alt=""
-                      labelVariant="mediumBlueNavy"
                       helperText={
                         isMobile
                           ? "*JPG or PNG file formats only. (File size limit is 4 MB)"
@@ -588,9 +574,10 @@ export default function InsuranceForm({
             {isDesktop ? (
               <Grid item xs={12} sm={10} lg={8}>
                 <Typography
-                  variant="bodySmallItalic"
+                  variant="bodySmallMedium"
                   component="div"
                   sx={{
+                    fontStyle: "italic",
                     textAlign: "right",
                     marginLeft: "auto",
                   }}

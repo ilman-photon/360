@@ -5,9 +5,12 @@ import { useEffect, useRef, useState } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
 import {
   addUserInsuranceData,
+  deleteInsurance,
   fetchInsurance,
+  postInsurance,
   removeUserInsuranceData,
-  setUserInsuranceDataByIndex,
+  setUserInsuranceDataById,
+  updateInsurance,
 } from "../../../../store/user";
 import FormMessage from "../../../../components/molecules/FormMessage/formMessage";
 import { closePageMessage, setPageMessage } from "../../../../store";
@@ -17,6 +20,7 @@ import {
   AccordionDetails,
   AccordionSummary,
   Box,
+  CircularProgress,
   Collapse,
   Dialog,
   DialogActions,
@@ -35,6 +39,9 @@ import InsuranceForm from "../../../../components/organisms/InsuranceInformation
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import AccountCircleOutlined from "@mui/icons-material/AccountCircleOutlined";
 import constants from "../../../../utils/constants";
+import { fetchAllPayers, fetchPlans } from "../../../../store/provider";
+import Cookies from "universal-cookie";
+import { useRouter } from "next/router";
 
 export default function InsuranceInfoPage() {
   const [openNewInsuranceForm, setOpenNewInsuranceForm] = useState(false);
@@ -45,8 +52,15 @@ export default function InsuranceInfoPage() {
   const [formDeleteInsurance, setFormDeleteInsurance] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [editForm, setEditForm] = useState(null);
+  const [patientId, setPatientId] = useState(null);
 
   const pageMessage = useSelector((state) => state.index.pageMessage);
+  const loadingInsurance = useSelector((state) => state.user.status);
+  const providerList = useSelector((state) => state.provider.list);
+  const planList = useSelector((state) => state.provider.planList);
+  const isAutocompleteLoading = useSelector(
+    (state) => state.provider.status === "loading"
+  );
 
   const userInsuranceData = useSelector(
     (state) => state.user.userInsuranceData
@@ -57,11 +71,25 @@ export default function InsuranceInfoPage() {
   const dispatch = useDispatch();
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
+  const cookies = new Cookies();
+  const router = useRouter();
 
-  const newInsuraceComp = useRef(null);
+  const newInsuranceComp = useRef(null);
 
-  const OnCreateInsurance = (payload) => {
-    const { backCard, frontCard } = payload;
+  const showSuccessMessage = (message) => {
+    dispatch(
+      setPageMessage({
+        isShow: true,
+        content: message || "Your changes were saved",
+      })
+    );
+    setTimeout(() => {
+      dispatch(closePageMessage());
+    }, 5000);
+  };
+
+  const OnCreateInsurance = async (postBody) => {
+    const { backCard, frontCard } = postBody;
     if (
       (backCard !== "" && frontCard === "") ||
       (backCard === "" && frontCard !== "")
@@ -69,16 +97,23 @@ export default function InsuranceInfoPage() {
       setIsShowErrorNew(true);
       setIsShowError(true);
     } else {
-      dispatch(addUserInsuranceData(payload));
-      dispatch(
-        setPageMessage({
-          isShow: true,
-          content: "Insurance successfully added",
-        })
+      const { payload } = await dispatch(
+        postInsurance({ patientId, payload: postBody })
       );
-      setIsShowErrorNew(false);
-      setIsShowError(false);
-      setOpenNewInsuranceForm(false);
+
+      if (payload.success) {
+        // after effect to add state of rawuserinsuranceData manually and rebuild
+        dispatch(addUserInsuranceData(payload.response));
+        dispatch(
+          setPageMessage({
+            isShow: true,
+            content: "Insurance successfully added",
+          })
+        );
+        setOpenNewInsuranceForm(false);
+        setIsShowErrorNew(false);
+        setIsShowError(false);
+      }
     }
   };
 
@@ -87,15 +122,25 @@ export default function InsuranceInfoPage() {
     setConfirmationDeleteDialog(true);
   };
 
-  const OnConfirmRemoveInsurance = () => {
-    dispatch(removeUserInsuranceData(formDeleteInsurance));
-    setConfirmationDeleteDialog(false);
-    dispatch(
-      setPageMessage({
-        isShow: true,
-        content: "Insurance successfully removed",
-      })
+  const OnConfirmRemoveInsurance = async () => {
+    const { payload } = await dispatch(
+      deleteInsurance({ patientId, coverageId: formDeleteInsurance.id })
     );
+
+    if (payload.success) {
+      // after effect to add state of rawuserinsuranceData manually and rebuild
+      dispatch(removeUserInsuranceData(formDeleteInsurance));
+      setConfirmationDeleteDialog(false);
+      dispatch(
+        setPageMessage({
+          isShow: true,
+          content: "Insurance successfully removed",
+        })
+      );
+      setTimeout(() => {
+        dispatch(closePageMessage());
+      }, 5000);
+    }
   };
 
   const OnOpenEditInsuranceForm = (payload) => {
@@ -103,13 +148,26 @@ export default function InsuranceInfoPage() {
     setIsEditing(true);
   };
 
-  const OnEditInsurance = (payload) => {
-    if (!payload) {
+  const OnEditInsurance = async (postBody) => {
+    if (!postBody) {
       return;
     }
-    dispatch(setUserInsuranceDataByIndex(payload));
-    setEditForm(null);
-    setIsEditing(false);
+    const { payload } = await dispatch(
+      updateInsurance({
+        patientId: patientId,
+        coverageId: postBody.id,
+        payload: postBody,
+      })
+    );
+    if (payload.success) {
+      // after effect to edit state of rawuserinsuranceData manually and rebuild
+      dispatch(setUserInsuranceDataById(payload.response));
+
+      // show messages or anything
+      showSuccessMessage("Your changes were saved");
+      setEditForm(null);
+      setIsEditing(false);
+    }
   };
 
   const OnAddNewInsurance = () => {
@@ -128,19 +186,34 @@ export default function InsuranceInfoPage() {
     }
   };
   useEffect(() => {
-    if (newInsuraceComp.current && focusToNewInsurance) {
+    if (newInsuranceComp.current && focusToNewInsurance) {
       setTimeout(() => {
-        newInsuraceComp.current.scrollIntoView({
+        newInsuranceComp.current.scrollIntoView({
           behavior: "smooth",
           block: "start",
         });
-      }, 300);
+      }, 5000);
     }
   }, [openNewInsuranceForm, focusToNewInsurance]);
 
   useEffect(() => {
-    dispatch(fetchInsurance());
-  }, [dispatch]);
+    const userStorageData = JSON.parse(localStorage.getItem("userData"));
+    if (userStorageData) {
+      dispatch(fetchInsurance({ patientId: userStorageData.patientId }));
+      setPatientId(userStorageData.patientId);
+    } else {
+      router.replace("/patient/login");
+    }
+
+    dispatch(fetchAllPayers());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleFetchPlans = (payerId) => {
+    if (payerId) {
+      dispatch(fetchPlans({ token: cookies.get("accessToken"), payerId }));
+    }
+  };
 
   const uploadBothError = (style, onClose) => {
     return (
@@ -162,8 +235,8 @@ export default function InsuranceInfoPage() {
           borderRadius: "0px",
           justifyContent: "center",
           position: "absolute",
+          top: "-48px",
           zIndex: "1",
-          top: "-40px",
           left: 0,
           width: "100%",
           transition: "0.3 s ease-in-out",
@@ -172,146 +245,164 @@ export default function InsuranceInfoPage() {
       >
         {pageMessage.content}
       </FormMessage>
-      <Fade in={userInsuranceData.length > 0} unmountOnExit>
-        <Stack>
-          <AccountCard
-            titleIcon={<AccountCircleOutlined />}
-            title="Insurance Document"
-            // OnEditClicked={OnEditClicked}
-            sx={{ px: 3, py: 5 }}
-            actionContent={
-              isDesktop ? (
-                <StyledButton
-                  mode="primary"
-                  size="small"
-                  sx={{
-                    borderRadius: "30px",
-                    fontSize: "14px",
-                    textTransform: "none",
-                    fontWeight: 600,
-                    padding: "8px 20px",
-                  }}
-                  disabled={openNewInsuranceForm}
-                  data-testid={INSURANCE_TEST_ID.addButton}
-                  onClick={OnAddNewInsurance}
-                  aria-label={"Add Insurance button"}
-                >
-                  <Stack
-                    direction="row"
-                    alignItems="center"
-                    sx={{ color: "white" }}
-                    component="span"
-                  >
-                    <AddIcon />
-                    Add Insurance
-                  </Stack>
-                </StyledButton>
-              ) : (
-                <></>
-              )
-            }
-          >
-            {isShowError &&
-              uploadBothError({ marginBottom: "16px" }, () =>
-                setIsShowError(false)
-              )}
-            <Collapse in={isEditing}>
-              <Box>
-                <InsuranceForm
-                  testIds={INSURANCE_TEST_ID}
-                  formData={editForm}
-                  OnSaveClicked={OnEditInsurance}
-                  OnCancelClicked={() => {
-                    setIsEditing(false);
-                  }}
-                  isError={isShowError}
-                />
-              </Box>
-            </Collapse>
-            <Collapse in={!isEditing}>
-              <Stack spacing={3}>
-                {!isDesktop ? (
-                  <StyledButton
-                    className={styles.addButton}
-                    disabled={openNewInsuranceForm}
-                    onClick={OnAddNewInsurance}
-                    data-testid={INSURANCE_TEST_ID.addButton}
-                    aria-label={"Add Insurance button"}
-                  >
-                    <Stack
-                      direction="row"
-                      alignItems="center"
-                      sx={{ color: "white" }}
-                      component="span"
+      {loadingInsurance === "loading" ? (
+        <CircularProgress />
+      ) : (
+        <>
+          <Fade in={userInsuranceData.length > 0} unmountOnExit>
+            <Stack>
+              <AccountCard
+                titleIcon={<AccountCircleOutlined />}
+                title="Insurance Document"
+                sx={{
+                  border: "2px solid #F3F3F3",
+                }}
+                actionContent={
+                  isDesktop ? (
+                    <StyledButton
+                      mode="primary"
+                      size="small"
+                      className={styles.addButton}
+                      disabled={openNewInsuranceForm}
+                      data-testid={INSURANCE_TEST_ID.addButton}
+                      onClick={OnAddNewInsurance}
+                      aria-label={"Add Insurance button"}
                     >
-                      <AddIcon />
-                      Add Insurance
-                    </Stack>
-                  </StyledButton>
-                ) : (
-                  <></>
-                )}
-
-                {/* {view user insurance data} */}
-                <InsuranceView
-                  insuranceData={userInsuranceData}
-                  OnRemoveClicked={OnRemoveInsurance}
-                  OnEditClicked={OnOpenEditInsuranceForm}
-                />
-
-                {/* add more insurance data */}
-                <Collapse in={openNewInsuranceForm}>
-                  <Accordion
-                    defaultExpanded
-                    sx={{
-                      ".MuiAccordionSummary-root": {
-                        pointerEvents: "none",
-                      },
-                    }}
-                  >
-                    <AccordionSummary
-                      expandIcon={<ExpandMoreIcon />}
-                      aria-controls="panel1a-content"
-                      sx={{ background: "#FAFAFA" }}
-                      ref={newInsuraceComp}
-                    >
-                      <Stack spacing={1} direction="row" alignItems="center">
-                        <Typography variant="h4">New Insurance</Typography>
+                      <Stack
+                        direction="row"
+                        alignItems="center"
+                        sx={{ color: "white" }}
+                        component="span"
+                      >
+                        <AddIcon />
+                        Add Insurance
                       </Stack>
-                    </AccordionSummary>
-                    <AccordionDetails>
-                      <InsuranceForm
-                        testIds={INSURANCE_TEST_ID}
-                        OnSaveClicked={OnCreateInsurance}
-                        OnCancelClicked={() => {
-                          setOpenNewInsuranceForm(false);
-                          setFocusToNewInsurance(false);
-                        }}
-                        isError={isShowError}
-                      />
-                    </AccordionDetails>
-                  </Accordion>
+                    </StyledButton>
+                  ) : (
+                    <></>
+                  )
+                }
+              >
+                {isShowError &&
+                  uploadBothError({ marginBottom: "16px" }, () =>
+                    setIsShowError(false)
+                  )}
+                <Collapse in={isEditing}>
+                  <Box>
+                    <InsuranceForm
+                      testIds={INSURANCE_TEST_ID}
+                      memberId={patientId}
+                      providerList={providerList}
+                      planList={planList}
+                      formData={editForm}
+                      isAutocompleteLoading={isAutocompleteLoading}
+                      OnProviderChanged={handleFetchPlans}
+                      OnSaveClicked={OnEditInsurance}
+                      OnCancelClicked={() => {
+                        setIsEditing(false);
+                      }}
+                      isError={isShowError}
+                    />
+                  </Box>
                 </Collapse>
-              </Stack>
-            </Collapse>
-          </AccountCard>
-        </Stack>
-      </Fade>
+                <Collapse in={!isEditing}>
+                  <Stack spacing={3}>
+                    {!isDesktop ? (
+                      <StyledButton
+                        className={styles.addButton}
+                        disabled={openNewInsuranceForm}
+                        onClick={OnAddNewInsurance}
+                        data-testid={INSURANCE_TEST_ID.addButton}
+                        aria-label={"Add Insurance button"}
+                      >
+                        <Stack
+                          direction="row"
+                          alignItems="center"
+                          sx={{ color: "white" }}
+                          component="span"
+                        >
+                          <AddIcon />
+                          Add Insurance
+                        </Stack>
+                      </StyledButton>
+                    ) : (
+                      <></>
+                    )}
 
-      {/* create new insurance data */}
-      <Fade in={userInsuranceData.length === 0} unmountOnExit>
-        <Box>
-          <InsuranceInformationNew
-            insuranceData={userInsuranceData}
-            OnCreateInsurance={OnCreateInsurance}
-            FormMessageEl={uploadBothError(null, () =>
-              setIsShowErrorNew(false)
-            )}
-            isShowError={isShowErrorNew}
-          />
-        </Box>
-      </Fade>
+                    {/* {view user insurance data} */}
+                    <InsuranceView
+                      insuranceData={userInsuranceData}
+                      OnRemoveClicked={OnRemoveInsurance}
+                      OnEditClicked={OnOpenEditInsuranceForm}
+                    />
 
+                    {/* add more insurance data */}
+                    <Collapse in={openNewInsuranceForm}>
+                      <Accordion
+                        defaultExpanded
+                        sx={{
+                          ".MuiAccordionSummary-root": {
+                            pointerEvents: "none",
+                          },
+                        }}
+                      >
+                        <AccordionSummary
+                          expandIcon={<ExpandMoreIcon />}
+                          aria-controls="panel1a-content"
+                          sx={{ background: "#FAFAFA" }}
+                          ref={newInsuranceComp}
+                        >
+                          <Stack
+                            spacing={1}
+                            direction="row"
+                            alignItems="center"
+                          >
+                            <Typography variant="h4">New Insurance</Typography>
+                          </Stack>
+                        </AccordionSummary>
+                        <AccordionDetails>
+                          <InsuranceForm
+                            testIds={INSURANCE_TEST_ID}
+                            memberId={patientId}
+                            providerList={providerList}
+                            planList={planList}
+                            isAutocompleteLoading={isAutocompleteLoading}
+                            OnProviderChanged={handleFetchPlans}
+                            OnSaveClicked={OnCreateInsurance}
+                            OnCancelClicked={() => {
+                              setOpenNewInsuranceForm(false);
+                              setFocusToNewInsurance(false);
+                            }}
+                            isError={isShowError}
+                          />
+                        </AccordionDetails>
+                      </Accordion>
+                    </Collapse>
+                  </Stack>
+                </Collapse>
+              </AccountCard>
+            </Stack>
+          </Fade>
+
+          {/* create new insurance data */}
+          <Fade in={userInsuranceData.length === 0} unmountOnExit>
+            <Box>
+              <InsuranceInformationNew
+                providerList={providerList}
+                planList={planList}
+                patientId={patientId}
+                isAutocompleteLoading={isAutocompleteLoading}
+                OnProviderChanged={handleFetchPlans}
+                OnCreateInsurance={OnCreateInsurance}
+                FormMessageEl={uploadBothError(null, () =>
+                  setIsShowErrorNew(false)
+                )}
+                isShowError={isShowErrorNew}
+              />
+            </Box>
+          </Fade>
+        </>
+      )}
       {/* delete dialog */}
       <Dialog
         onClose={() => setConfirmationDeleteDialog(false)}
@@ -325,10 +416,18 @@ export default function InsuranceInfoPage() {
           },
         }}
       >
-        <DialogTitle sx={{ color: "#003B4A", fontSize: "22px" }}>
+        <DialogTitle
+          tabIndex={0}
+          aria-label={"Remove Insurance"}
+          sx={{ color: "#003B4A", fontSize: "22px" }}
+        >
           Remove Insurance
         </DialogTitle>
-        <DialogContent sx={{ color: "#6C757D" }}>
+        <DialogContent
+          tabIndex={0}
+          aria-label={"Are you sure you want to remove insurance?"}
+          sx={{ color: "#6C757D" }}
+        >
           Are you sure you want to remove insurance?
         </DialogContent>
         <DialogActions>

@@ -87,11 +87,10 @@ export default function MedicalRecordPage() {
   };
 
   const { control, setValue, watch } = useForm({
-    defaultValues: { category: "" },
+    defaultValues: { category: "test-lab-result" },
   });
 
-  const watchedCategory = watch("category", "");
-  console.log({ watchedCategory });
+  const watchedCategory = watch("category");
 
   const tableDesktopTestLab = {
     header: [
@@ -293,6 +292,10 @@ export default function MedicalRecordPage() {
     }
   });
 
+  const status = useSelector((state) => {
+    return state.medicalResult.status;
+  });
+
   useEffect(() => {
     const category = router.query.type;
     if (category) setValue("category", category);
@@ -310,7 +313,7 @@ export default function MedicalRecordPage() {
           break;
       }
     } else
-      router.push({
+      router.replace({
         pathname: router.pathname,
         query: { type: "test-lab-result" },
       });
@@ -319,76 +322,76 @@ export default function MedicalRecordPage() {
 
   return (
     <>
-      <div className={styles.documentPageWrapper}>
-        <Controller
-          name="category"
-          control={control}
-          render={({ field: { onChange, value }, fieldState: { error } }) => {
-            return (
-              <StyledSelect
-                options={categories}
-                onChange={(v) =>
-                  router.push(
-                    `/patient/account/medical-record?type=${v.target.value}`
-                  )
-                }
-                value={value}
-                label="Choose a category"
-                sx={{ m: 0, display: isDesktop ? "none" : "" }}
-              />
-            );
-          }}
-        />
+      {status === "success" && (
+        <div className={styles.documentPageWrapper}>
+          <Controller
+            name="category"
+            control={control}
+            render={({ field: { onChange, value }, fieldState: { error } }) => {
+              return (
+                <StyledSelect
+                  options={categories}
+                  onChange={(v) =>
+                    router.push(
+                      `/patient/account/medical-record?type=${v.target.value}`
+                    )
+                  }
+                  value={value}
+                  label="Choose a category"
+                  sx={{ m: 0, display: isDesktop ? "none" : "" }}
+                />
+              );
+            }}
+          />
 
-        {!isHideDisclaimer ? (
-          <div className={styles.disclaimerWrapper}>
-            <div className={styles.disclaimerText}>
-              <span className={styles.infoLabel}>
-                <InfoOutlinedIcon
-                  sx={{
-                    width: "18px",
-                    height: "18px",
-                    color: "#080707",
-                    marginRight: "12px",
-                  }}
-                />{" "}
-                Your lab results are available. Please reach out to your
-                provider.
-              </span>
-              <Button
-                p={0}
-                data-testid={"close-disclaimer-icon"}
-                onClick={() => setIsHideDisclaimer(true)}
-                sx={{ color: "#003B4A", display: "contents" }}
-              >
-                <CloseIcon sx={styles.closeIcon} />
-              </Button>
+          {!isHideDisclaimer ? (
+            <div className={styles.disclaimerWrapper}>
+              <div className={styles.disclaimerText}>
+                <span className={styles.infoLabel}>
+                  <InfoOutlinedIcon
+                    sx={{
+                      width: "18px",
+                      height: "18px",
+                      color: "#080707",
+                      marginRight: "12px",
+                    }}
+                  />{" "}
+                  Your lab results are available. Please reach out to your
+                  provider.
+                </span>
+                <Button
+                  p={0}
+                  data-testid={"close-disclaimer-icon"}
+                  onClick={() => setIsHideDisclaimer(true)}
+                  sx={{ color: "#003B4A", display: "contents" }}
+                >
+                  <CloseIcon sx={styles.closeIcon} />
+                </Button>
+              </div>
             </div>
-          </div>
-        ) : null}
+          ) : null}
 
-        <Stack spacing={3} sx={{ mt: 1 }}>
-          {rows?.length > 0 ? (
-            <TableWithSort
-              config={
-                watchedCategory === "care-plan-overview"
-                  ? tableCarePlan
-                  : isDesktop
-                  ? tableDesktopTestLab
-                  : tableMobileTestLab
-              }
-              rows={rows}
-              // isDesktop={isDesktop}
-              mobileTestLab={
-                watchedCategory === "test-lab-result" && !isDesktop
-              }
-            />
-          ) : (
-            // <TableEmpty text="There are no tests or lab results." />
-            <TableEmpty text={`There are no ${watchedCategory}.`} />
-          )}
-        </Stack>
-      </div>
+          <Stack spacing={3} sx={{ mt: 1 }}>
+            {rows?.length > 0 ? (
+              <TableWithSort
+                config={
+                  watchedCategory === "care-plan-overview"
+                    ? tableCarePlan
+                    : isDesktop
+                    ? tableDesktopTestLab
+                    : tableMobileTestLab
+                }
+                rows={rows}
+                mobileTestLab={
+                  watchedCategory === "test-lab-result" && !isDesktop
+                }
+              />
+            ) : (
+              <TableEmpty text={`There are no ${watchedCategory}.`} />
+            )}
+          </Stack>
+        </div>
+      )}
     </>
   );
 }

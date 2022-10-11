@@ -151,11 +151,13 @@ export default function ModalConfirmContent({
               textAlign: { xs: "center", md: "left" },
               padding: { xs: "8px", md: "12px 100px" },
             }}
-            aria-label={t("thanksBar")}
+            aria-label={
+              isReschedule ? t("thanksBarReschedule") : t("thanksBar")
+            }
             tabIndex={0}
           >
             <MailOutlineIcon sx={{ mr: 1, height: "35px", width: "28px" }} />{" "}
-            {t("thanksBar")}
+            {isReschedule ? t("thanksBarReschedule") : t("thanksBar")}
           </Box>
         </div>
 
@@ -239,7 +241,6 @@ export default function ModalConfirmContent({
                   <ProviderProfile
                     variant={"appointment"}
                     showPosition
-                    phoneLink={true}
                     providerData={providerData}
                     isDayAvailableView={true}
                   />

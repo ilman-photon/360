@@ -18,10 +18,17 @@ import {
   setIsFilterApplied,
   setProviderListData,
 } from "../../store/appointment";
-import { parseSuggestionData } from "../../utils/appointment";
+import {
+  parseInsuranceCarrier,
+  parsePurposeOfVisit,
+  getMondayOfCurrentWeek,
+  getSaturdayOfCurrentWeek,
+  parseProviderListData,
+} from "../../utils/appointment";
 import FilterResultHeading from "../../components/molecules/FilterResultHeading/filterResultHeading";
 import { Box } from "@mui/system";
 import ModalCancelScheduling from "../../components/organisms/ScheduleAppointment/ModalCancelScheduling/modalCancelScheduling";
+import { fetchAllPayers } from "../../store/provider";
 import { getCity } from "../../utils/getCity";
 import CustomModal from "../../components/molecules/CustomModal/customModal";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
@@ -41,9 +48,9 @@ export default function HomePage({ googleApiKey }) {
   const [isOpenCancel, setIsOpenCancel] = React.useState(false);
   const [isAuthenticated, setIsAuthenticated] = React.useState(true);
   const [currentCity, setCurrentCity] = React.useState("");
-  const [locationChange, setLocationChange] = React.useState(false);
   const [modalSuccessCancel, setModalSuccessCancel] = React.useState(false);
 
+  const insuranceCarrierList = useSelector((state) => state.provider.list);
   const filterData = useSelector((state) => state.appointment.filterData);
   const userData = useSelector((state) => state.user.userData);
   const isDesktop = useMediaQuery("(min-width: 900px)");
@@ -56,16 +63,16 @@ export default function HomePage({ googleApiKey }) {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  //Call API for getSuggestion
-  function onCalledgetSugestionAPI() {
+  function onCalledGetAppointmentTypesAPI() {
     const api = new Api();
     api
-      .getSugestion()
+      .getAppointmentTypes()
       .then(function (response) {
         const filterSuggestion = {
-          ...filterSuggestionData,
-          ...parseSuggestionData(response),
+          purposeOfVisit: parsePurposeOfVisit(response?.entities || []),
+          insuranceCarrier: parseInsuranceCarrier(insuranceCarrierList),
         };
+        console.log(filterSuggestion);
         setFilterSuggestionData(filterSuggestion);
       })
       .catch(function () {
@@ -75,29 +82,35 @@ export default function HomePage({ googleApiKey }) {
 
   //Call API for submitFilter
   function onCallSubmitFilterAPI(requestData) {
+    const selectedAppointmentType = filterSuggestionData?.purposeOfVisit?.find(
+      (element) => element.title === requestData.purposeOfVisit
+    );
+    const startDateRequest = getMondayOfCurrentWeek(requestData.date);
+    const endDateRequest = getSaturdayOfCurrentWeek(requestData.date);
     const postBody = {
-      location: {
-        latitude: coords?.latitude,
-        longitude: coords?.longitude,
+      appointmentType: {
+        code: selectedAppointmentType?.id || " ",
       },
-      locationName: requestData.location,
-      date: requestData.date,
-      appointmentType: requestData.purposeOfVisit,
-      insuranceCarrier: requestData.insuranceCarrier,
+      currentDate: startDateRequest,
+      numDays: 6,
+      days: ["ALL"],
+      prefTime: "ALL",
     };
     const api = new Api();
     api
-      .submitFilter(postBody)
+      .submitFilter(requestData.location, postBody)
       .then(function (response) {
-        if (
-          response?.listOfProvider.length > 0 &&
-          postBody.locationName !== "Jakarta"
-        ) {
-          dispatch(setProviderListData(response?.listOfProvider));
+        const parseProviderData = parseProviderListData(
+          response,
+          postBody.currentDate,
+          endDateRequest
+        );
+        if (response?.offices?.length > 0) {
+          dispatch(setProviderListData(parseProviderData?.listOfProvider));
         } else {
           dispatch(setProviderListData([]));
         }
-        dispatch(setFilterBy(response.filterbyData));
+        dispatch(setFilterBy(parseProviderData.filterbyData));
       })
       .catch(function () {
         dispatch(setProviderListData([]));
@@ -166,12 +179,12 @@ export default function HomePage({ googleApiKey }) {
     router.push(`/patient/prescription`);
   }
 
-  useEffect(() => {
+  const fetchCurrentLocation = () => {
     if (coords) {
+      setCurrentCity("");
       getCity(googleApiKey, coords, setCurrentCity);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [coords, locationChange]);
+  };
 
   useEffect(() => {
     const cookies = new Cookies();
@@ -184,11 +197,16 @@ export default function HomePage({ googleApiKey }) {
   }, [setIsAuthenticated, router]);
 
   useEffect(() => {
-    onCalledgetSugestionAPI();
     onCalledGetAllPrescriptionsAPI();
     onCalledGetAllAppointment();
+    dispatch(fetchAllPayers());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    onCalledGetAppointmentTypesAPI();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [insuranceCarrierList]);
 
   function onSearchProvider(data) {
     dispatch(setFilterData(data));
@@ -255,7 +273,7 @@ export default function HomePage({ googleApiKey }) {
               subtitle={"Search for a doctor"}
               isFixed={false}
               currentCity={currentCity}
-              onChangeLocation={() => setLocationChange(true)}
+              onChangeLocation={fetchCurrentLocation}
             />
           ) : (
             <Box

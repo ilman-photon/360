@@ -4,6 +4,7 @@ import {
   Divider,
   Fade,
   Grid,
+  MenuItem,
   Stack,
   useMediaQuery,
 } from "@mui/material";
@@ -20,7 +21,7 @@ import { Regex } from "../../../utils/regex";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import dynamic from "next/dynamic";
-import { StyledSelect } from "../../atoms/Select/select";
+import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 
 let ClientAddressAutofill;
 
@@ -96,6 +97,7 @@ export default function ContactInformation({
   };
 
   const onSubmit = (data) => {
+    // console.log({data})
     OnSaveClicked(data);
   };
 
@@ -156,14 +158,7 @@ export default function ContactInformation({
             ariaLabel="Phone Number"
             label="Phone Number"
           >
-            <div
-              tabIndex={0}
-              aria-label={
-                userData.mobile ? formatPhoneNumber(userData.mobile) : ""
-              }
-            >
-              {userData.mobile ? formatPhoneNumber(userData.mobile) : ""}
-            </div>
+            {userData.mobile && <PhoneNumber phone={userData.mobile} />}
           </LabelWithInfo>
 
           <LabelWithInfo tabIndex={0} ariaLabel="Email ID" label="Email ID">
@@ -390,14 +385,11 @@ export default function ContactInformation({
                     fieldState: { error },
                   }) => {
                     return (
-                      <StyledSelect
-                        id="state"
+                      <StyledInput
+                        select
                         label="State"
-                        inputProps={{
-                          "aria-label": "State drop down menu",
-                        }}
                         autoComplete="address-level1"
-                        options={usStatesList}
+                        data-testid="styled-select-state"
                         value={value}
                         onChange={onChange}
                         error={!!error}
@@ -412,7 +404,13 @@ export default function ContactInformation({
                             backgroundColor: "#FFF",
                           },
                         }}
-                      />
+                      >
+                        {usStatesList.map((item, idx) => (
+                          <MenuItem key={idx} value={item.value}>
+                            {item.label}
+                          </MenuItem>
+                        ))}
+                      </StyledInput>
                     );
                   }}
                 />

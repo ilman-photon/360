@@ -68,7 +68,7 @@ defineFeature(feature, (test) => {
 
     then(
       "Admin should view Home/Dashboard page",
-      async() => {
+      async () => {
         cleanup()
         const mockGeolocation = {
           getCurrentPosition: jest.fn(),
@@ -135,7 +135,12 @@ defineFeature(feature, (test) => {
   }) => {
     let container;
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy()
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "sucsess",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
     when('user navigates to the Patient Portal application', () => {
       const expectedResult = {
@@ -163,7 +168,12 @@ defineFeature(feature, (test) => {
   }) => {
     let container;
     given("user user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy()
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "sucsess",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -192,7 +202,12 @@ defineFeature(feature, (test) => {
   }) => {
     let container;
     given("user user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy()
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "sucsess",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -224,7 +239,12 @@ defineFeature(feature, (test) => {
   }) => {
     let container;
     given("user user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy()
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "sucsess",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
 
