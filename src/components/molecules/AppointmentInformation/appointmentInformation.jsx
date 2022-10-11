@@ -117,13 +117,16 @@ export default function AppointmentInformation({ data }) {
               {data.providerInfo.position}
             </Typography>
             {data.providerInfo?.address !== "" && (
-              <Typography variant="body2">
-                {data.providerInfo?.address?.addressLine1 ||
-                  "" + `\n` + data.providerInfo?.address?.addressLine2 ||
-                  "" + `\n` + data.providerInfo?.address?.city ||
-                  "" + "\n" + data.providerInfo?.address?.state ||
-                  "" + `\n` + data.providerInfo?.address?.zipcode ||
-                  ""}
+              <Typography variant="body2" sx={{ color: "#191919" }}>
+                {data.providerInfo.address.addressLine1 +
+                  `\n` +
+                  data.providerInfo.address.addressLine2 +
+                  `\n` +
+                  data.providerInfo.address.city +
+                  "\n" +
+                  data.providerInfo.address.state +
+                  `\n` +
+                  data.providerInfo.address.zipcode}
               </Typography>
             )}
           </div>
@@ -155,6 +158,7 @@ export default function AppointmentInformation({ data }) {
                 ariaLabel={item}
                 variant="body2"
                 key={index}
+                sx={{ color: "#191919" }}
               >
                 {item}
               </Typography>

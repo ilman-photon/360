@@ -106,6 +106,7 @@ exports[`App renders App unchanged 1`] = `
             </h2>
             <div
               class="MuiDialogContent-root css-1phsj2c-MuiDialogContent-root"
+              tabindex="0"
             >
               <div
                 aria-label="nono button"
