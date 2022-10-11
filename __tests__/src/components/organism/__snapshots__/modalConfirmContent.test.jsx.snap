@@ -56,6 +56,7 @@ Object {
         </h2>
         <div
           class="MuiDialogContent-root css-1phsj2c-MuiDialogContent-root"
+          tabindex="0"
         >
           <div
             aria-label="nono button"
@@ -394,6 +395,7 @@ Object {
       </h2>
       <div
         class="MuiDialogContent-root css-1phsj2c-MuiDialogContent-root"
+        tabindex="0"
       >
         <div
           aria-label="nono button"

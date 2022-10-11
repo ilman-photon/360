@@ -344,7 +344,7 @@ export default function MedicalRecordPage() {
             }}
           />
 
-          {!isHideDisclaimer ? (
+          {!isHideDisclaimer && watchedCategory === "test-lab-result" ? (
             <div className={styles.disclaimerWrapper}>
               <div className={styles.disclaimerText}>
                 <span className={styles.infoLabel}>

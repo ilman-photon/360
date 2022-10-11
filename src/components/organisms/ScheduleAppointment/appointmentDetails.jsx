@@ -61,6 +61,8 @@ export default function AppointmentDetails({
                 src={"/icon-calendar.png"}
                 alt="date and time"
                 aria-label={"Calendar icon"}
+                aria-hidden={"false"}
+                sx={{ color: colors.darkGreen }}
               />
             }
             sxRow={{ justifyContent: "unset" }}
@@ -124,6 +126,7 @@ export default function AppointmentDetails({
                 alt="purpose of visit"
                 aria-label={"Building icon"}
                 aria-hidden={"false"}
+                sx={{ color: colors.darkGreen }}
               />
             }
             sxRow={{ justifyContent: "unset" }}

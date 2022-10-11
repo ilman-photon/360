@@ -140,6 +140,7 @@ export default function ModalConfirmContent({
             pb: { xs: 2, md: 3 },
           },
         }}
+        tabIndex={0}
       >
         <div
           className={styles.registeredUsernameWrapper}
