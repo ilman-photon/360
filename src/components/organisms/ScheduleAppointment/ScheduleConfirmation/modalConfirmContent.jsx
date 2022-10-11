@@ -28,6 +28,7 @@ import {
   Button,
   Grid,
   Tooltip,
+  useMediaQuery,
 } from "@mui/material";
 import { getDirection } from "../../../../utils/appointment";
 import { formatAppointmentDate } from "../../../../utils/dateFormatter";
@@ -76,6 +77,7 @@ export default function ModalConfirmContent({
   },
   isPage = false,
 }) {
+  const isMobile = useMediaQuery("(max-width: 768px)");
   const { REGISTER_TEST_ID } = constants.TEST_ID;
 
   const { t } = useTranslation("translation", {
@@ -291,7 +293,11 @@ export default function ModalConfirmContent({
           <div className={styles.bottomParagraph}>
             <Typography
               variant="caption"
-              sx={{ fontSize: "16px", fontFamily: "Libre Franklin" }}
+              sx={{
+                fontSize: "16px",
+                fontFamily: "Libre Franklin",
+                float: isMobile ? "left" : "unset",
+              }}
               aria-label={"Already have an account? Sign in"}
               tabIndex={0}
             >

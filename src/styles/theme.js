@@ -250,6 +250,11 @@ export const patientTypography = createTheme({
       lineHeight: "28px",
       color: "#003B4A",
     },
+    titleScheduleMobile: {
+      fontFamily: "Inter",
+      fontWeight: 500,
+      fontSize: "26px",
+    },
   },
 });
 

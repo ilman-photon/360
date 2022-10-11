@@ -609,7 +609,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -788,7 +788,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -809,8 +809,8 @@ defineFeature(feature, (test) => {
 
     and("user should see reschedule and cancel each of them", async () => {
       await waitFor(() => {
-        container.getAllByText("Cancel")[0];
-        container.getAllByText("Reschedule")[0];
+        container.getAllByText("Cancel Appointment")[0];
+        container.getAllByText("Reschedule Appointment")[0];
       });
     });
 
@@ -977,7 +977,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -998,8 +998,8 @@ defineFeature(feature, (test) => {
 
     and("user should see reschedule and cancel each of them", async () => {
       await waitFor(() => {
-        container.getAllByText("Cancel")[0];
-        container.getAllByText("Reschedule")[0];
+        container.getAllByText("Cancel Appointment")[0];
+        container.getAllByText("Reschedule Appointment")[0];
       });
     });
 
@@ -1095,7 +1095,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -1116,8 +1116,8 @@ defineFeature(feature, (test) => {
 
     and("user should see reschedule and cancel each of them", async () => {
       await waitFor(() => {
-        container.getAllByText("Cancel")[0];
-        container.getAllByText("Reschedule")[0];
+        container.getAllByText("Cancel Appointment")[0];
+        container.getAllByText("Reschedule Appointment")[0];
       });
     });
 
@@ -1213,7 +1213,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -1234,8 +1234,8 @@ defineFeature(feature, (test) => {
 
     and("user should see reschedule and cancel each of them", async () => {
       await waitFor(() => {
-        container.getAllByText("Cancel")[0];
-        container.getAllByText("Reschedule")[0];
+        container.getAllByText("Cancel Appointment")[0];
+        container.getAllByText("Reschedule Appointment")[0];
       });
     });
 
@@ -1323,7 +1323,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -1344,8 +1344,8 @@ defineFeature(feature, (test) => {
 
     and("user should see reschedule and cancel each of them", async () => {
       await waitFor(() => {
-        container.getAllByText("Cancel")[0];
-        container.getAllByText("Reschedule")[0];
+        container.getAllByText("Cancel Appointment")[0];
+        container.getAllByText("Reschedule Appointment")[0];
       });
     });
 
@@ -1433,7 +1433,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -1454,8 +1454,8 @@ defineFeature(feature, (test) => {
 
     and("user should see reschedule and cancel each of them", async () => {
       await waitFor(() => {
-        container.getAllByText("Cancel")[0];
-        container.getAllByText("Reschedule")[0];
+        container.getAllByText("Cancel Appointment")[0];
+        container.getAllByText("Reschedule Appointment")[0];
       });
     });
 
@@ -1558,7 +1558,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -1579,8 +1579,8 @@ defineFeature(feature, (test) => {
 
     and("user should see reschedule and cancel each of them", async () => {
       await waitFor(() => {
-        container.getAllByText("Cancel")[0];
-        container.getAllByText("Reschedule")[0];
+        container.getAllByText("Cancel Appointment")[0];
+        container.getAllByText("Reschedule Appointment")[0];
       });
     });
 

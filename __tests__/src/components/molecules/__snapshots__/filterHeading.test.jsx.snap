@@ -1027,11 +1027,11 @@ Object {
         <div
           class="mobileContainer MuiBox-root css-0"
         >
-          <h2
-            class="MuiTypography-root MuiTypography-h2 mobileTitle css-1sra7t5-MuiTypography-root"
+          <span
+            class="MuiTypography-root MuiTypography-titleScheduleMobile mobileTitle css-37jdci-MuiTypography-root"
           >
             Schedule an eye exam
-          </h2>
+          </span>
           <form>
             <div
               class="MuiBox-root css-0"
@@ -1286,11 +1286,11 @@ Object {
       <div
         class="mobileContainer MuiBox-root css-0"
       >
-        <h2
-          class="MuiTypography-root MuiTypography-h2 mobileTitle css-1sra7t5-MuiTypography-root"
+        <span
+          class="MuiTypography-root MuiTypography-titleScheduleMobile mobileTitle css-37jdci-MuiTypography-root"
         >
           Schedule an eye exam
-        </h2>
+        </span>
         <form>
           <div
             class="MuiBox-root css-0"

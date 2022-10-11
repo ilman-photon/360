@@ -24,8 +24,6 @@ export default function AppointmentDetails({
     keyPrefix: "scheduleAppoinment",
   });
 
-  const iconCardinsuranceCard = "/iconCardinsuranceCard.png";
-
   return (
     <Box>
       <AccountCard
@@ -55,10 +53,14 @@ export default function AppointmentDetails({
         <Stack spacing={2}>
           <LabelWithInfo
             label="Date and time"
+            iconWidth={"24px"}
             titleIcon={
-              <CalendarTodayIcon
+              <Image
+                width="20"
+                height="20"
+                src={"/icon-calendar.png"}
+                alt="date and time"
                 aria-label={"Calendar icon"}
-                aria-hidden={"false"}
               />
             }
             sxRow={{ justifyContent: "unset" }}
@@ -82,15 +84,17 @@ export default function AppointmentDetails({
 
           <LabelWithInfo
             label="Insurance"
+            iconWidth={"24px"}
             titleIcon={
               <Image
-                alt=""
-                src={iconCardinsuranceCard}
-                width={"24px"}
-                height={"24px"}
+                width="24"
+                height="24"
+                src={"/icon-profile.png"}
+                alt="insurance"
+                aria-label={"Mail icon"}
+                aria-hidden={"false"}
               />
             }
-            iconWidth={"24px"}
             sxRow={{ justifyContent: "unset" }}
             sxText={{
               paddingLeft: "4px",
@@ -111,9 +115,14 @@ export default function AppointmentDetails({
 
           <LabelWithInfo
             label="Purpose of visit"
+            iconWidth={"24px"}
             titleIcon={
-              <VisibilityOutlinedIcon
-                aria-label={"Visibility icon"}
+              <Image
+                width="24"
+                height="24"
+                src={"/icon-building.png"}
+                alt="purpose of visit"
+                aria-label={"Building icon"}
                 aria-hidden={"false"}
               />
             }
