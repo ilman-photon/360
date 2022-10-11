@@ -13,7 +13,6 @@ import {
   setAppointmentSchedule,
   setFilterData,
 } from "../../../store/appointment";
-import { setUserAppointmentData } from "../../../store/user";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CustomModal from "../../../components/molecules/CustomModal/customModal";
 import FormMessage from "../../../components/molecules/FormMessage/formMessage";
@@ -34,7 +33,6 @@ export default function Appointments() {
   const [upcomingAppointment, setUpcomingAppointment] = useState([]);
   const [pastAppointment, setPastAppointment] = useState([]);
 
-  //const appointments = useSelector((state) => state.user.userAppointmentData);
   const userData = useSelector((state) => state.user.userData);
 
   const router = useRouter();

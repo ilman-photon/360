@@ -19,7 +19,6 @@ import { colors } from "../../../styles/theme";
 import { startTransition, Suspense, useEffect } from "react";
 import { Regex } from "../../../utils/regex";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
-import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import dynamic from "next/dynamic";
 import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 
@@ -100,7 +99,6 @@ export default function ContactInformation({
     OnSaveClicked(data);
   };
 
-  const invalidChars = ["e", "-", "+"];
   const buttonWidth = isDesktop ? {} : { width: "100%" };
 
   return (

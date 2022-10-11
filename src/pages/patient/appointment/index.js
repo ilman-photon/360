@@ -31,7 +31,6 @@ import {
 } from "../../../store/appointment";
 import { useRouter } from "next/router";
 import {
-  parseSuggestionData,
   setRangeDateData,
   getProvideOverlay,
   parsePurposeOfVisit,

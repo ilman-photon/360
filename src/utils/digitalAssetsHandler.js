@@ -27,11 +27,15 @@ export default class DigitalAssetHandler {
   };
 
   fetchURLFromDigitalAsset = () => {
-    if (!this.source._id && !this.source.uid) return;
+    if (!this.source._id && !this.source.uid) {
+      return;
+    }
     return api.getURLDigitalAsset(this.source._id || this.source.uid);
   };
   fetchSourceURL = () => {
-    if (!this.source) return;
+    if (!this.source) {
+      return;
+    }
     return this.fetchURLFromDigitalAsset();
   };
 
@@ -43,7 +47,6 @@ export default class DigitalAssetHandler {
       console.error(`Error reading file:`, error);
     });
     this.source = await this.createDigitalAsset();
-    console.log("source digital", { source: this.source });
     if (this.source) {
       const { success } = await api.uploadFile(
         this.source.presignedUrl,
@@ -51,7 +54,6 @@ export default class DigitalAssetHandler {
       );
       this.status = success ? "success" : "failed";
       this.source = await this.fetchSourceURL();
-      console.log("source fetch", { status: this.status, source: this.source });
     }
   };
 }

@@ -68,8 +68,4 @@ export const providerStore = createSlice({
   },
 });
 
-// Action creators are generated for each case reducer function
-// export const {
-// } = providerStore.actions;
-
 export default providerStore.reducer;
