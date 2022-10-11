@@ -346,7 +346,6 @@ export default function ScheduleAppointmentPage({ query }) {
       .getPatientId(post)
       .then((response) => {
         setPatientId(response.ecpPatientId || "");
-        console.log("response", response);
       })
       .catch(() => {
         console.log("catch");
@@ -383,7 +382,6 @@ export default function ScheduleAppointmentPage({ query }) {
   const handleCreateAppointment = (payload, isPage) => {
     const api = new Api();
     const dateNow = new Date();
-    console.log(payload, "postBody");
     const postBody = [
       {
         appointmentDate: mmddyyDateFormat(

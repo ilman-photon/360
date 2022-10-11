@@ -207,7 +207,6 @@ export default function HomePage({ googleApiKey }) {
   }
 
   const handleClickCancel = () => {
-    console.log(isOpenCancel, "vs");
     setIsOpenCancel(true);
   };
 
@@ -216,10 +215,9 @@ export default function HomePage({ googleApiKey }) {
   };
 
   const handleCancelSchedule = (data) => {
-    setIsOpenCancel(false);
-    console.log(data, "data");
     const api = new Api();
-    const cancelReason = data.cancelSchedule === "other" ? data.cancelOther : data.cancelSchedule;
+    const cancelReason =
+      data.cancelSchedule === "other" ? data.cancelOther : data.cancelSchedule;
     const postBody = {
       current: {
         state: "CONFIRMED",
@@ -233,11 +231,13 @@ export default function HomePage({ googleApiKey }) {
       code: 2,
     };
     api
-      .cancelAppointment("5b449b02-fa41-43e0-bdec-e46e6bc7696b", postBody)
+      .cancelAppointment(appointmentData[0].appointmentId, postBody)
       .then(() => {
         setModalSuccessCancel(true);
+        setIsOpenCancel(false);
       })
       .catch(() => {
+        setModalCancel(false);
         //Handle error cancelAppointment
       });
   };

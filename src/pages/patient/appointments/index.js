@@ -108,7 +108,6 @@ export default function Appointments() {
   };
 
   const handleCancelSchedule = (data) => {
-    setModalCancel(false);
     const api = new Api();
     const cancelReason =
       data.cancelSchedule === "other" ? data.cancelOther : data.cancelSchedule;
@@ -125,11 +124,13 @@ export default function Appointments() {
       code: 2,
     };
     api
-      .cancelAppointment("5b449b02-fa41-43e0-bdec-e46e6bc7696b", postBody)
+      .cancelAppointment(appointments[0].appointmentId, postBody)
       .then(() => {
         setModalSuccessCancel(true);
+        setModalCancel(false);
       })
       .catch(() => {
+        setModalCancel(false);
         //Handle error cancelAppointment
       });
   };
