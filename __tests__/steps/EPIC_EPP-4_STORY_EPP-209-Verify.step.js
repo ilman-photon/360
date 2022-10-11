@@ -117,10 +117,10 @@ defineFeature(feature, (test) => {
       const usernameField = container.getByLabelText("emailUserLabel");
       const passwordField = container.getByLabelText("passwordLabel");
       fireEvent.change(usernameField, {
-        target: { value: "wrongUserName@email.cc" },
+        target: { value: "validUsername@mail.com" },
       });
       fireEvent.change(passwordField, { target: { value: "validPassword" } });
-      expect(usernameField.value).not.toEqual("validUsername@email.cc");
+      expect(usernameField.value).toEqual("validUsername@mail.com");
       expect(passwordField.value).toEqual("validPassword");
     });
     and("Admin click \'Login\' button.", () => {
