@@ -8,11 +8,10 @@ import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import Button from "@mui/material/Button";
 import AppointmentInformation from "../../molecules/AppointmentInformation/appointmentInformation";
 import { upcomingAppointmentDate } from "../../../utils/dateFormatter";
+import { groupBy } from "../../../utils/appointmentsModel";
 
 export function PastAppointmentCard({ data, threshold }) {
-  const date = data.appointmentInfo.date;
-  const momentDate = new moment(new Date(date));
-  const year = momentDate.format("YYYY");
+  const year = data[0];
   const [open, setOpen] = useState(false);
   const [openAlt, setOpenAlt] = useState(true);
   const handleClick = () => {
@@ -58,9 +57,9 @@ export function PastAppointmentCard({ data, threshold }) {
             onClick={() => (threshold == 0 ? handleClickAlt() : handleClick())}
           >
             {(threshold == 0 ? openAlt : open) ? (
-              <ExpandLessIcon />
+              <ExpandLessIcon sx={{ color: "#000000" }} />
             ) : (
-              <ExpandMoreIcon />
+              <ExpandMoreIcon sx={{ color: "#000000" }} />
             )}
           </Button>
         </Box>
@@ -70,45 +69,49 @@ export function PastAppointmentCard({ data, threshold }) {
         timeout="auto"
         unmountOnExit
       >
-        <Box className={styles.pastAppointmentDetail}>
-          <Box className={styles.dateContainer}>
-            <Typography
-              tabIndex={0}
-              ariaLabel={upcomingAppointmentDate(data.appointmentInfo.date)}
-              variant="subtitle1"
-              className={styles.date}
-            >
-              {upcomingAppointmentDate(data.appointmentInfo.date)}
-            </Typography>
-            <Box className={styles.subTitleWrapper}>
-              <Typography
-                tabIndex={0}
-                ariaLabel={"Visit Purpose:"}
-                variant="subtitle1"
-              >
-                Visit Purpose:{" "}
-              </Typography>
-              <Typography
-                tabIndex={0}
-                ariaLabel={data.appointmentInfo.appointmentType}
-                variant="body2"
-              >
-                {data.appointmentInfo.appointmentType}
-              </Typography>
+        {data[1].map((item, idx) => {
+          return (
+            <Box className={styles.pastAppointmentDetail} key={idx}>
+              <Box className={styles.dateContainer}>
+                <Typography
+                  tabIndex={0}
+                  ariaLabel={upcomingAppointmentDate(item.appointmentInfo.date)}
+                  variant="subtitle1"
+                  className={styles.date}
+                >
+                  {upcomingAppointmentDate(item.appointmentInfo.date)}
+                </Typography>
+                <Box className={styles.subTitleWrapper}>
+                  <Typography
+                    tabIndex={0}
+                    ariaLabel={"Visit Purpose:"}
+                    variant="subtitle1"
+                  >
+                    Visit Purpose:{" "}
+                  </Typography>
+                  <Typography
+                    tabIndex={0}
+                    ariaLabel={item.appointmentInfo.appointmentType}
+                    variant="body2"
+                  >
+                    {item.appointmentInfo.appointmentType}
+                  </Typography>
+                </Box>
+              </Box>
+              <AppointmentInformation data={item}></AppointmentInformation>
+              <Box className={styles.viewDetails}>
+                <Link
+                  tabIndex={0}
+                  ariaLabel={"View appointment details"}
+                  href={`/patient/appointments/detail-appoiments/${item.appointmentId}`}
+                  className={styles.link}
+                >
+                  View appointment details
+                </Link>
+              </Box>
             </Box>
-          </Box>
-          <AppointmentInformation data={data}></AppointmentInformation>
-          <Box className={styles.viewDetails}>
-            <Link
-              tabIndex={0}
-              ariaLabel={"View appointment details"}
-              href={`/patient/appointments/detail-appoiments/${data.appointmentId}`}
-              className={styles.link}
-            >
-              View appointment details
-            </Link>
-          </Box>
-        </Box>
+          );
+        })}
         <Box
           className={styles.dateContainer}
           sx={{ p: 2, backgroundColor: "white" }}
@@ -128,6 +131,12 @@ export default function PastAppointment({ data }) {
       appointments.push(appointment);
     }
   }
+
+  const groupAppointments = groupBy(
+    appointments,
+    (appointments) => appointments.year
+  );
+  const groupedAppointments = Array.from(groupAppointments);
   const isData =
     appointments.length == 0 ? (
       <Box className={styles.noAppointments}>
@@ -141,7 +150,7 @@ export default function PastAppointment({ data }) {
         </Typography>
       </Box>
     ) : (
-      appointments
+      groupedAppointments
         .map((item, index) => {
           return (
             <PastAppointmentCard data={item} threshold={index} key={index} />

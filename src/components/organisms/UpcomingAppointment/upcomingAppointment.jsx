@@ -186,7 +186,7 @@ export default function UpcomingAppointment({
               onCancelClicked={onCancelClicked}
               onAddToCalendarClicked={onAddToCalendarClicked}
             />
-          )
+          );
         })
       ) : (
         <NoAppointment
