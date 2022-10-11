@@ -82,7 +82,6 @@ export default function Appointment({ googleApiKey }) {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
   const [isReschedule, setIsReschedule] = useState(false);
   const [currentCity, setCurrentCity] = useState("");
-  const [locationChange, setLocationChange] = useState(false);
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -185,7 +184,7 @@ export default function Appointment({ googleApiKey }) {
     const endDateRequest = getSaturdayOfCurrentWeek(requestData.date);
     const postBody = {
       appointmentType: {
-        code: selectedAppointmentType?.id || "",
+        code: selectedAppointmentType?.id || " ",
       },
       currentDate: startDateRequest,
       numDays: 6,
@@ -319,12 +318,12 @@ export default function Appointment({ googleApiKey }) {
     }
   }, [dataFilter, coords]);
 
-  useEffect(() => {
+  const fetchCurrentLocation = () => {
     if (coords) {
+      setCurrentCity("");
       getCity(googleApiKey, coords, setCurrentCity);
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [coords, locationChange]);
+  };
 
   React.useEffect(() => {
     const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
@@ -381,7 +380,7 @@ export default function Appointment({ googleApiKey }) {
                 position: "absolute",
                 right: 8,
                 top: 8,
-                color: (theme) => theme.palette.grey[500],
+                color: "#000000",
               }}
             >
               <CloseIcon />
@@ -640,7 +639,7 @@ export default function Appointment({ googleApiKey }) {
             insuranceCarrierData={filterSuggestionData.insuranceCarrier}
             isFixed={false}
             currentCity={currentCity}
-            onChangeLocation={() => setLocationChange(true)}
+            onChangeLocation={fetchCurrentLocation}
           />
         </>
       ) : (

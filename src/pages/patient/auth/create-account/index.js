@@ -52,7 +52,7 @@ export default function CreateAccountPage() {
   };
 
   return (
-    <Box className={globalStyles.contanierPage}>
+    <Box className={globalStyles.containerStyledPage}>
       <Register
         formMessage={formMessage}
         OnRegisterClicked={OnRegisterClicked}
@@ -68,6 +68,7 @@ CreateAccountPage.getLayout = function getLayout(page) {
       showMobileImage={false}
       imageSrc={backgroundImage}
       title={"User Registration"}
+      customImageBg={true}
     >
       {page}
     </AuthLayout>

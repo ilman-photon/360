@@ -26,6 +26,7 @@ import {
 import { fullDateFormat } from "../../../utils/dateFormatter";
 import { useEffect } from "react";
 import Image from "next/image";
+import { getLinkAria } from "../../../utils/viewUtil";
 
 export default function AppointmentCard({
   appointmentData = [],
@@ -46,7 +47,11 @@ export default function AppointmentCard({
     appointmentInfo: {},
   });
   const [appointmentCount, setAppointmentCount] = React.useState(0);
-
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      console.log("enter press here! ");
+    }
+  };
   useEffect(() => {
     setAppointment(parseAppointmentCardData(appointmentData));
     setAppointmentCount(appointmentData.length);
@@ -180,8 +185,23 @@ export default function AppointmentCard({
                   {appointment.providerInfo?.position}
                 </Typography>
                 {renderAddressUI()}
-                <Typography variant="bodyLinkRegular" tabIndex={0}>
-                  {appointment.providerInfo?.phoneNumber}
+                <Typography
+                  variant="bodyLinkRegular"
+                  tabIndex={0}
+                  onKeyPress={() =>
+                    window.open(`tel:${appointment.providerInfo?.phoneNumber}`)
+                  }
+                  aria-label={`phone number ${appointment.providerInfo?.phoneNumber}`}
+                >
+                  <a
+                    onKeyPress={() =>
+                      window.open(
+                        `tel:${appointment.providerInfo?.phoneNumber}`
+                      )
+                    }
+                  >
+                    {appointment.providerInfo?.phoneNumber}{" "}
+                  </a>
                 </Typography>
                 {renderGetDirection()}
               </Box>
@@ -191,7 +211,7 @@ export default function AppointmentCard({
                 <Image
                   src={appointment.providerInfo.image}
                   style={{ borderRadius: "50%" }}
-                  alt="Doctor Image"
+                  alt={`${appointment.providerInfo?.name} image`}
                   width="90px"
                   height="90px"
                   tabIndex={0}
@@ -354,7 +374,12 @@ export default function AppointmentCard({
             onClick={() => {
               onViewAppointment();
             }}
-            aria-label="View appointments option"
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                onViewAppointment();
+              }
+            }}
+            {...getLinkAria("View appointments option")}
             tabIndex={0}
           >
             View Appointments

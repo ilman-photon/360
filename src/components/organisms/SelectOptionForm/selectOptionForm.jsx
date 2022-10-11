@@ -11,6 +11,7 @@ import constants from "../../../utils/constants";
 import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
 import { colors } from "../../../styles/theme";
+import Head from "next/head";
 
 const SelectOptionForm = ({
   onBackToLoginClicked,
@@ -22,6 +23,7 @@ const SelectOptionForm = ({
     keyPrefix: "SetOption",
   });
   const { FORGOT_TEST_ID } = constants.TEST_ID;
+  const pageTitle = `EyeCare Patient Portal - ${t("title")}`;
 
   return (
     <>

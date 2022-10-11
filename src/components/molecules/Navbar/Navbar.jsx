@@ -68,7 +68,7 @@ const Navbar = () => {
   const router = useRouter();
 
   const isCurrentPath = (href) => {
-    return router.pathname.includes(href);
+    return router.pathname === href;
   };
   (function prefetchPages() {
     if (typeof window !== "undefined") router.prefetch(router.pathname);
@@ -92,7 +92,11 @@ const Navbar = () => {
 
   const MenuItemLabel = (doc, docIdx) => {
     return (
-      <MenuItem key={docIdx} onClick={() => handleCloseUserMenu(doc.href)}>
+      <MenuItem
+        key={docIdx}
+        onClick={() => handleCloseUserMenu(doc.href)}
+        aria-label={`${doc.label} menu`}
+      >
         <Image alt="" src={doc.icon} width={"16px"} height={"16px"} />
         <Typography
           textAlign="center"
@@ -128,6 +132,7 @@ const Navbar = () => {
               <Button
                 key={pageIdx}
                 onClick={() => router.push(page.href)}
+                aria-label={`${page.label} menu`}
                 sx={{
                   my: 2,
                   color: "white",
@@ -148,6 +153,7 @@ const Navbar = () => {
               <Button
                 key={"Medical Record"}
                 onClick={handleOpenNavMenu}
+                aria-label={`Medical Record menu`}
                 sx={{
                   my: 2,
                   color: "white",
@@ -156,7 +162,7 @@ const Navbar = () => {
                   margin: "0 !important",
                   borderRadius: "2px 2px 0px 0px",
                   borderTop: "solid 4px transparent",
-                  borderBottom: isCurrentPath("medical-record")
+                  borderBottom: isCurrentPath("/patient/account/medical-record")
                     ? "solid 4px #D9D9D9"
                     : "solid 4px transparent",
                 }}
@@ -186,6 +192,7 @@ const Navbar = () => {
             <Box>
               <Button
                 key={"Documents"}
+                aria-label={`Documents menu`}
                 onClick={handleOpenUserMenu}
                 sx={{
                   my: 2,
@@ -195,7 +202,7 @@ const Navbar = () => {
                   margin: "0 !important",
                   borderRadius: "2px 2px 0px 0px",
                   borderTop: "solid 4px transparent",
-                  borderBottom: isCurrentPath("documents")
+                  borderBottom: isCurrentPath("/patient/account/documents")
                     ? "solid 4px #D9D9D9"
                     : "solid 4px transparent",
                 }}

@@ -306,7 +306,7 @@ export const deleteInsurance = createAsyncThunk(
     url = `/ecp/insurance/beneficiaries/${patientId}/coverages`;
 
     try {
-      const response = api.getResponse(
+      const response = await api.getResponse(
         url,
         {
           op: "replace",

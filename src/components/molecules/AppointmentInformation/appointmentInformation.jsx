@@ -1,10 +1,12 @@
-import { Box, Typography, Link } from "@mui/material";
+import { Box, Typography, Link, useMediaQuery } from "@mui/material";
 import styles from "./styles.module.scss";
 import Image from "next/image";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
+import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 
 export default function AppointmentInformation({ data }) {
+  const isMobile = useMediaQuery("(max-width: 992px)");
   const getProviderLocation = () => {
     if (!data.providerInfo.location) return "#";
     return `https://www.google.com/maps/search/?api=1&query=${data.providerInfo.location.latitude},${data.providerInfo.location.longitude}`;
@@ -26,19 +28,23 @@ export default function AppointmentInformation({ data }) {
         <Typography
           tabIndex={0}
           ariaLabel={data.providerInfo.name}
-          variant="subtitle1"
-          className={styles.doctorName}
+          className={[styles.doctorName, styles.subtitleStyle].join(" ")}
         >
           {data.providerInfo.name}
         </Typography>
         <Box className={styles.subTitleWrapper}>
-          <Typography tabIndex={0} ariaLabel={"Patient"} variant="subtitle1">
+          <Typography
+            tabIndex={0}
+            ariaLabel={"Patient"}
+            className={styles.subtitleStyle}
+          >
             Patient:{" "}
           </Typography>
           <Typography
             tabIndex={0}
             ariaLabel={data.patientInfo.name}
             variant="body2"
+            className={styles.patientSubtitleStyle}
           >
             {data.patientInfo.name}
           </Typography>
@@ -86,13 +92,7 @@ export default function AppointmentInformation({ data }) {
                 data.providerInfo.address.zipcode}
             </Typography>
           </div>
-          <Link
-            tabIndex={0}
-            ariaLabel={formatPhoneNumber(data.providerInfo.phoneNumber)}
-            className={styles.link}
-          >
-            {formatPhoneNumber(data.providerInfo.phoneNumber)}
-          </Link>
+          <PhoneNumber phone={data.providerInfo.phoneNumber} />
           <Box className={styles.getDirectionLink}>
             <DirectionsOutlinedIcon></DirectionsOutlinedIcon>
             <Link

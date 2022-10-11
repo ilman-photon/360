@@ -1,6 +1,5 @@
 import axios from "axios";
 import { setGenericErrorMessage } from "../../store";
-import { fetchUser } from "../../store/user";
 import constants from "../../utils/constants";
 
 let store;
@@ -349,7 +348,6 @@ export class Api {
   }
 
   submitFilter(locationName, postBody) {
-    const domain = window.location.origin;
     const url = `/ecp/appointments/available-slot?searchText=${locationName}`;
     return this.getResponse(url, postBody, "put");
   }

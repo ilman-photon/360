@@ -324,15 +324,16 @@ function parsePrescriptionItemMedication(medications) {
   let latestDateMedic = "";
   for (let index = 0; index < medications.length; index++) {
     const date = medications[index].date;
+    const expiratedDate =
+      medications[index].expiredDate || "2022-12-02T11:18:47.229Z";
 
     const medicationData = {};
     medicationData.id = medications[index].id;
     medicationData.prescription = medications[index].prescription;
     medicationData.date = ddmmyyDateFormat(date);
     medicationData.prescribedBy = "Dr. Philip Morris";
-    medicationData.expirationDate = ddmmyyDateFormat(
-      medications[index].expiredDate || "2022-10-02T11:18:47.229Z"
-    );
+    medicationData.isShowRequestRefill = moment().isSameOrBefore(expiratedDate);
+    medicationData.expirationDate = ddmmyyDateFormat(expiratedDate);
     medicationData.fillRequestDate = ddmmyyDateFormat(
       "2022-09-02T11:18:47.229Z"
     );

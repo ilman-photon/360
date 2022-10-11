@@ -68,6 +68,7 @@ const InfoWindowContent = ({
               imageSize={"medium"}
               bioContainerClass={styles.customBioContainer}
               addressClass={styles.customAddress}
+              isShownPhoneAndRating={true}
             />
           </Stack>
         </Grid>
@@ -100,8 +101,8 @@ const InfoWindowContent = ({
               />
             </Stack>
             <Typography
-              variant="bodySmallMedium"
-              sx={{ textAlign: "right", pt: 2, fontWeight: "400" }}
+              variant="smallMediumRoboto"
+              sx={{ textAlign: "right", pt: "10px" }}
             >
               {data[counter - 1] ? data[counter - 1].distance : "-"}
             </Typography>
@@ -140,8 +141,12 @@ const InfoWindowContent = ({
                             mode={constants.PRIMARY}
                             size={constants.SMALL}
                             gradient={false}
+                            data-testId={
+                              constants.TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID
+                                .MAPS.infoWindow.timeslot
+                            }
                             onClick={() => {
-                              console.log({ dats: data[counter - 1] });
+                              // console.log({ dats: data[counter - 1] });
                               if (!item) return;
                               OnTimeClicked(
                                 new Date(

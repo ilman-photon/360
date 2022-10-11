@@ -23,7 +23,6 @@ import { AutoCompleteCreatable } from "../../molecules/AutoCompleteCreatable";
 import constants from "../../../utils/constants";
 import { Regex } from "../../../utils/regex";
 import { RELATIONSHIP_LIST } from "../../../utils/constantData";
-import { colors } from "../../../styles/theme";
 
 export default function InsuranceForm({
   formData = DEFAULT_INSURANCE_DATA,
@@ -197,7 +196,6 @@ export default function InsuranceForm({
                   );
                 }}
               />
-              <DisclaimerText label="(Optional)" />
             </Grid>
 
             <Grid item xs={12} sm={6} lg={4}>

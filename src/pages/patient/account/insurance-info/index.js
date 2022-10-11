@@ -192,7 +192,7 @@ export default function InsuranceInfoPage() {
           behavior: "smooth",
           block: "start",
         });
-      }, 300);
+      }, 5000);
     }
   }, [openNewInsuranceForm, focusToNewInsurance]);
 
@@ -390,6 +390,7 @@ export default function InsuranceInfoPage() {
               <InsuranceInformationNew
                 providerList={providerList}
                 planList={planList}
+                patientId={patientId}
                 isAutocompleteLoading={isAutocompleteLoading}
                 OnProviderChanged={handleFetchPlans}
                 OnCreateInsurance={OnCreateInsurance}
@@ -415,10 +416,18 @@ export default function InsuranceInfoPage() {
           },
         }}
       >
-        <DialogTitle sx={{ color: "#003B4A", fontSize: "22px" }}>
+        <DialogTitle
+          tabIndex={0}
+          aria-label={"Remove Insurance"}
+          sx={{ color: "#003B4A", fontSize: "22px" }}
+        >
           Remove Insurance
         </DialogTitle>
-        <DialogContent sx={{ color: "#6C757D" }}>
+        <DialogContent
+          tabIndex={0}
+          aria-label={"Are you sure you want to remove insurance?"}
+          sx={{ color: "#6C757D" }}
+        >
           Are you sure you want to remove insurance?
         </DialogContent>
         <DialogActions>

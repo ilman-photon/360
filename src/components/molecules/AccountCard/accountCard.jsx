@@ -4,6 +4,7 @@ import styles from "./accountCard.module.scss";
 export const AccountCard = ({
   title,
   titleIcon,
+  ariaLabel,
   children,
   isEditing,
   actionContent,
@@ -52,7 +53,7 @@ export const AccountCard = ({
                 <div
                   className={styles.title}
                   style={textStyle}
-                  aria-label={`${title} heading`}
+                  aria-label={ariaLabel ? ariaLabel : `${title} heading`}
                   tabIndex={0}
                 >
                   {title}

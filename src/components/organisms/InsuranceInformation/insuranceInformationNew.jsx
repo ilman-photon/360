@@ -15,6 +15,7 @@ export default function InsuranceInformationNew({
   providerList = [],
   planList = [],
   isAutocompleteLoading = false,
+  patientId,
   OnProviderChanged,
 }) {
   return (
@@ -26,6 +27,7 @@ export default function InsuranceInformationNew({
       <AccountCard
         titleIcon={<AccountCircleOutlinedIcon aria-hidden="false" />}
         title="Insurance Documents"
+        textStyle={{ fontWeight: "700" }}
       >
         <Stack spacing={2}>
           {isShowError && FormMessageEl}
@@ -35,6 +37,7 @@ export default function InsuranceInformationNew({
           <InsuranceForm
             providerList={providerList}
             planList={planList}
+            memberId={patientId}
             isAutocompleteLoading={isAutocompleteLoading}
             OnProviderChanged={OnProviderChanged}
             OnCancelEditClicked={(_) => OnCancelEditClicked(false)}
