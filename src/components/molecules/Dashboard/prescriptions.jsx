@@ -509,14 +509,15 @@ export default function Prescriptions({
                 styles.margin,
                 styles.marginBottom,
               ]}
+              tabIndex={0}
+              aria-label={`Glasses Prescription ${prescription?.glasses?.length} Heading`}
             >
               <Typography
                 className={[
                   styles.titleText,
                   isViewAll && !isMobile ? styles.paddingTop22 : {},
                 ].join(" ")}
-                tabIndex={0}
-                aria-label={"Glasses Prescription Heading"}
+                aria-hidden={true}
               >
                 {"Glasses Prescription"}{" "}
                 {prescription?.glasses?.length > 0
@@ -563,14 +564,15 @@ export default function Prescriptions({
                 styles.margin,
                 styles.marginBottom,
               ]}
+              tabIndex={0}
+              aria-label={`Contacts Prescription ${prescription?.glasses?.length} Heading`}
             >
               <Typography
                 className={[
                   styles.titleText,
                   isViewAll && !isMobile ? styles.paddingTop22 : {},
                 ].join(" ")}
-                tabIndex={0}
-                aria-label={"Contacts Prescription Heading"}
+                aria-hidden={true}
               >
                 {"Contacts Prescription"}{" "}
                 {prescription?.contacts?.length > 0
@@ -751,7 +753,7 @@ export default function Prescriptions({
           <Image alt="" src={iconPrescription} width={32} height={32} />
         }
         title={`Prescriptions`}
-        ariaLabel={`Prescriptions subtitle`}
+        ariaLabel={`Prescriptions Title`}
         sx={{
           ".MuiCardContent-root": {
             p: 0,
