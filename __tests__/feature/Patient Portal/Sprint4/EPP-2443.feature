@@ -85,7 +85,6 @@ Scenario: EPIC_EPP-44_STORY_EPP-2543-Verify User should navigated to review the 
 @Patient_Portal
 @Sprint4
 Scenario: EPIC_EPP-44_STORY_EPP-2543-Verify User should be able to selects a time slot of the provider within 3 seconds
-Scenario: EPIC_EPP-44_STORY_EPP-2543-Verify User should be able to selects a time slot of the provider within 3 seconds
 
   Given User launch the "Marketing Site" url
    When User clicks on the "Schedule your Eye Exam" button

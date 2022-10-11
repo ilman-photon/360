@@ -33,6 +33,9 @@ export const CustomFormControl = styled((props) => <FormControl {...props} />)(
         borderColor: "transparent",
       },
     },
+    ".Mui-disabled input": {
+      backgroundColor: "#efefef",
+    },
   })
 );
 
@@ -184,6 +187,9 @@ export const RedditTextField = styled((props) => (
     "&.Mui-error": {
       color: "#B93632",
     },
+  },
+  ".Mui-disabled input": {
+    backgroundColor: "#efefef",
   },
 }));
 
