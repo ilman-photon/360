@@ -23,14 +23,18 @@ import ModalCancelScheduling from "../../../components/organisms/ScheduleAppoint
 import Cookies from "universal-cookie";
 import moment from "moment";
 import { addToCalendar } from "../../../utils/addToCalendar";
+import { appointmentParser } from "../../../utils/appointmentsModel";
 export default function Appointments() {
   const [modalErrorRequest, setModalErrorRequest] = useState(false);
   const [modalSuccessCancel, setModalSuccessCancel] = useState(false);
   const [modalCancel, setModalCancel] = useState(false);
-  const [isRequested, setIsRequested] = useState(false);
+  const [isRequestedUpcoming, setIsRequestedUpcoming] = useState(false);
+  const [isRequestedPast, setIsRequestedPast] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [upcomingAppointment, setUpcomingAppointment] = useState([]);
+  const [pastAppointment, setPastAppointment] = useState([]);
 
-  const appointments = useSelector((state) => state.user.userAppointmentData);
+  //const appointments = useSelector((state) => state.user.userAppointmentData);
   const userData = useSelector((state) => state.user.userData);
 
   const router = useRouter();
@@ -39,18 +43,41 @@ export default function Appointments() {
 
   const getAppointments = () => {
     const api = new Api();
-    !appointments.length > 0 &&
-      api
-        .getAllAppointment()
-        .then((response) => {
-          setIsRequested(true);
-          dispatch(setUserAppointmentData(response.appointmentList));
-        })
-        .catch(function () {
-          setIsRequested(true);
-          setModalErrorRequest(true);
-          //Handle error getAppointments
-        });
+    api
+      .getUpcomingAppointment()
+      .then((response) => {
+        if (response.count !== 0) {
+          const upcomingAppointment = [];
+          response.entities.map((data) => {
+            const mappedData = appointmentParser(data);
+            upcomingAppointment.push(mappedData);
+          });
+          setUpcomingAppointment(upcomingAppointment);
+        }
+        setIsRequestedUpcoming(true);
+      })
+      .catch(function () {
+        setIsRequestedUpcoming(true);
+        setModalErrorRequest(true);
+      });
+
+    api
+      .getPastAppointment()
+      .then((response) => {
+        if (response.count !== 0) {
+          const pastAppointment = [];
+          response.entities.map((data) => {
+            const mappedData = appointmentParser(data);
+            pastAppointment.push(mappedData);
+          });
+          setPastAppointment(pastAppointment);
+        }
+        setIsRequestedPast(true);
+      })
+      .catch(function () {
+        setIsRequestedPast(true);
+        setModalErrorRequest(true);
+      });
   };
 
   useEffect(() => {
@@ -64,11 +91,11 @@ export default function Appointments() {
   }, [setIsAuthenticated, router]);
 
   useEffect(() => {
-    if (!isRequested && appointments.length === 0) {
+    if (!isRequestedPast && !isRequestedUpcoming) {
       getAppointments();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [appointments]);
+  }, [upcomingAppointment, pastAppointment]);
 
   const onRescheduleClicked = ({
     appointmentInfo,
@@ -98,7 +125,9 @@ export default function Appointments() {
       dispatch(setFilterData(filterData));
       dispatch(setAppointmentSchedule(appointmentSchedule));
 
-      router.push("/patient/appointments/1/reschedule");
+      router.push(
+        `/patient/appointments/${providerInfo.providerId}/reschedule`
+      );
     } else {
       router.push("/patient");
     }
@@ -126,9 +155,9 @@ export default function Appointments() {
               }
             }
           />
-          {appointments && (
+          {isRequestedUpcoming && (
             <UpcomingAppointment
-              data={appointments}
+              data={upcomingAppointment}
               onRescheduleClicked={onRescheduleClicked}
               onCancelClicked={() => {
                 setModalCancel(true);
@@ -136,7 +165,9 @@ export default function Appointments() {
               onAddToCalendarClicked={addToCalendar}
             />
           )}
-          {appointments && <PastAppointment data={appointments} />}
+          {isRequestedUpcoming && isRequestedPast && (
+            <PastAppointment data={pastAppointment} />
+          )}
         </Box>
       )}
 

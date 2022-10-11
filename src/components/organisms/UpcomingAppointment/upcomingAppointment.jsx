@@ -160,13 +160,7 @@ export default function UpcomingAppointment({
   onCancelClicked,
   onAddToCalendarClicked,
 }) {
-  const appointments = [];
-  for (const appointment of data) {
-    if (new Date(appointment.appointmentInfo.date) > new Date()) {
-      appointments.push(appointment);
-    }
-  }
-  const isHasValue = appointments.length !== 0;
+  const isHasValue = data.length !== 0;
   return (
     <Box className={styles.upcomingAppointment}>
       <Box className={styles.upcomingAppointmentHeader}>
@@ -183,9 +177,8 @@ export default function UpcomingAppointment({
       </Box>
 
       {isHasValue ? (
-        appointments.map((item, index) => {
-          const isUpcoming = new Date(item.appointmentInfo.date) > new Date();
-          return isUpcoming ? (
+        data.map((item, index) => {
+          return (
             <UpcomingAppointmentCard
               data={item}
               key={index}
@@ -193,7 +186,7 @@ export default function UpcomingAppointment({
               onCancelClicked={onCancelClicked}
               onAddToCalendarClicked={onAddToCalendarClicked}
             />
-          ) : null;
+          )
         })
       ) : (
         <NoAppointment
