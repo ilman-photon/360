@@ -394,7 +394,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -489,7 +489,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -593,7 +593,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -719,7 +719,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -841,7 +841,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -958,7 +958,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -1092,7 +1092,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -1226,7 +1226,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -1368,7 +1368,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,

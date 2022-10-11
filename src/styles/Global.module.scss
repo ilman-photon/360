@@ -11,6 +11,11 @@
     width: 90vw !important;
     margin: auto;
   }
+
+  @media only screen and (min-width: 768px) and (max-width: 1024px) {
+    margin: unset;
+  }
+
   font-family: "Libre Franklin", sans-serif;
 }
 

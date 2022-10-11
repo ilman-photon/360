@@ -97,7 +97,6 @@ export default function ContactInformation({
   };
 
   const onSubmit = (data) => {
-    // console.log({data})
     OnSaveClicked(data);
   };
 
@@ -426,14 +425,20 @@ export default function ContactInformation({
                   }) => {
                     return (
                       <StyledInput
-                        type="number"
+                        type="text"
                         onKeyDown={(e) => {
-                          if (invalidChars.includes(e.key)) e.preventDefault();
+                          if (
+                            !Regex.numberOnly.test(e.key) &&
+                            e.key != "Backspace"
+                          ) {
+                            e.preventDefault();
+                          }
                         }}
                         id="zip"
                         label="Zip"
                         inputProps={{
                           "aria-label": "Zip field",
+                          maxLength: 5,
                         }}
                         autoComplete="postal-code"
                         value={value}
@@ -456,7 +461,7 @@ export default function ContactInformation({
                   }}
                   rules={{
                     pattern: {
-                      value: /^\s?\d{5}\s?$/,
+                      value: Regex.isZip,
                       message: "Incorrect format",
                     },
                   }}

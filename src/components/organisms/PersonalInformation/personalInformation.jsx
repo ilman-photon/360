@@ -164,7 +164,7 @@ export default function PersonalInformation({
             tooltipContent={tooltipContentDefault}
           >
             <div tabIndex={0} aria-label={userData.name}>
-              {userData.name}
+              {userData.name || "-"}
             </div>
           </LabelWithInfo>
 
@@ -176,7 +176,7 @@ export default function PersonalInformation({
 
           <LabelWithInfo label="Title" ariaLabel={"Title"}>
             <div tabIndex={0} aria-label={userData.preferredName}>
-              {userData.title}
+              {userData.title || "-"}
             </div>
           </LabelWithInfo>
 
@@ -187,9 +187,11 @@ export default function PersonalInformation({
           >
             <div
               tabIndex={0}
-              aria-label={new Date(userData.dob).toLocaleDateString()}
+              aria-label={
+                userData.dob ? new Date(userData.dob).toLocaleDateString() : ""
+              }
             >
-              {new Date(userData.dob).toLocaleDateString()}
+              {userData.dob ? new Date(userData.dob).toLocaleDateString() : "-"}
             </div>
           </LabelWithInfo>
 
@@ -199,7 +201,7 @@ export default function PersonalInformation({
             tooltipContent={tooltipContentDefault}
           >
             <div tabIndex={0} aria-label={userData.age}>
-              {userData.age}
+              {userData.age || "-"}
             </div>
           </LabelWithInfo>
 

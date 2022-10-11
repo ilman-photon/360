@@ -30,6 +30,7 @@ export default function StepperAppoinment({ ...props }) {
           <Step
             aria-label={`${label} stage in progress bar`}
             sx={{
+              marginBottom: { xs: "40px", md: "0" },
               "& .MuiStepLabel-root .Mui-completed": {
                 color: "#D5F1D4", // circle color (COMPLETED)
                 stroke: "#00B88C",
@@ -41,12 +42,24 @@ export default function StepperAppoinment({ ...props }) {
                   color: "black", // Just text label (COMPLETED)
                   background: "transparent",
                 },
-              "& .MuiStepLabel-root .Mui-active": {
-                color: "#0095A9", // circle color (ACTIVE)
+              "& .MuiStepLabel-root .MuiStepLabel-iconContainer .Mui-active": {
+                color: "#99d5dd", // circle color (ACTIVE)
+                border: "#CFEAED 1px solid",
+                borderRadius: "50%",
+              },
+              "& .MuiStepLabel-root .Mui-active text": {
+                fill: "black", // active label text
+                fontFamily: "Libre Franklin",
+                fontWeight: "700",
+                fontSize: "14px",
               },
               "& .MuiStepLabel-label.Mui-active.MuiStepLabel-alternativeLabel":
                 {
                   color: "black", // Just text label (ACTIVE)
+                  whiteSpace: "nowrap",
+                  position: "absolute",
+                  left: "-50%",
+                  right: "-50%",
                 },
               "& .Mui-disabled .MuiStepIcon-root": {
                 color: "transparent", // Hollow icon (INCOMPLETE)
