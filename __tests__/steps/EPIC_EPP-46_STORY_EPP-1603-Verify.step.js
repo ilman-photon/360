@@ -617,21 +617,28 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and("user should see list of upcoming appointment", () => {
-      defaultValidation();
+    and("user should see list of upcoming appointment", async () => {
+      const editButton = container.getByText("View Appointments");
+      fireEvent.click(editButton);
+
+      renderUpcoming();
+
+      await waitFor(() => {
+        container.getByText(/Upcoming appointments/i);
+      });
     });
 
     and("user should see reschedule and cancel each of them", async () => {
       await waitFor(() => {
-        container.getAllByText("Cancel")[0];
-        container.getAllByText("Reschedule")[0];
+        container.getAllByText("Cancel Appointment")[0];
+        container.getAllByText("Reschedule Appointment")[0];
       });
     });
 
     and("user clicks on the reschedule an appointment", async () => {
-      const rescheduleButton = container.getByRole("button", {
-        name: "Reschedule",
-      });
+      const rescheduleButton = container.getAllByTestId(
+        TEST_ID.APPOINTMENTS_TEST_ID.cancelAppointmentButton
+      )[0];
       fireEvent.click(rescheduleButton);
 
       renderReschedule();

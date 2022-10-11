@@ -158,6 +158,7 @@ export default function Appointments() {
           {isRequestedUpcoming && (
             <UpcomingAppointment
               data={upcomingAppointment}
+              isMobile={isMobile}
               onRescheduleClicked={onRescheduleClicked}
               onCancelClicked={() => {
                 setModalCancel(true);

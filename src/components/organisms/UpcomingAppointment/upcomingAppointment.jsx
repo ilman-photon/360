@@ -161,6 +161,7 @@ export default function UpcomingAppointment({
   onRescheduleClicked,
   onCancelClicked,
   onAddToCalendarClicked,
+  isMobile,
 }) {
   const isHasValue = data.length !== 0;
   return (
@@ -187,6 +188,7 @@ export default function UpcomingAppointment({
               onRescheduleClicked={onRescheduleClicked}
               onCancelClicked={onCancelClicked}
               onAddToCalendarClicked={onAddToCalendarClicked}
+              isMobile={isMobile}
             />
           );
         })
