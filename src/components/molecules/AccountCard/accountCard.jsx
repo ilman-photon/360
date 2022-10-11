@@ -40,7 +40,10 @@ export const AccountCard = ({
               },
             }}
             title={
-              <div>
+              <div
+                tabIndex={0}
+                aria-label={ariaLabel ? `${ariaLabel}` : `${title} heading`}
+              >
                 <span
                   style={{
                     marginRight: 8,
@@ -53,8 +56,7 @@ export const AccountCard = ({
                 <div
                   className={styles.title}
                   style={textStyle}
-                  aria-label={ariaLabel ? ariaLabel : `${title} heading`}
-                  tabIndex={0}
+                  aria-hidden={true}
                 >
                   {title}
                 </div>
