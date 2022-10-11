@@ -185,6 +185,9 @@ export default function AccountDocumentsPage() {
                 config={tableConfiguration}
                 rows={rows}
                 onAssetDownload={handleAssetDownload}
+                additionalProps={{
+                  tableProps: { "aria-label": `${watchedCategory}` },
+                }}
               />
             ) : (
               <TableEmpty text={`There are no ${watchedCategory}.`} />

@@ -50,7 +50,7 @@ const EnhancedTableHead = (props) => {
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
-
+  const isDesc = order === "desc";
   return (
     <TableHead sx={{ backgroundColor: "#F3F5F6" }}>
       <TableRow sx={{ whiteSpace: "nowrap" }}>
@@ -72,19 +72,19 @@ const EnhancedTableHead = (props) => {
                   padding={headCell.disablePadding ? "none" : "normal"}
                   sortDirection={orderBy === headCell.id ? order : false}
                   width={headCell.width}
+                  role={"rowheader"}
                   sx={{ py: "15px", ...headCell.sx }}
                 >
                   <TableSortLabel
                     active={orderBy === headCell.id}
                     direction={orderBy === headCell.id ? order : "asc"}
                     onClick={createSortHandler(headCell.id)}
+                    aria-live={"polite"}
                   >
                     <b>{headCell.label}</b>
                     {orderBy === headCell.id ? (
                       <Box component="span" sx={visuallyHidden}>
-                        {order === "desc"
-                          ? "sorted descending"
-                          : "sorted ascending"}
+                        {isDesc ? "sorted descending" : "sorted ascending"}
                       </Box>
                     ) : null}
                   </TableSortLabel>
@@ -105,6 +105,7 @@ export default function TableWithSort({
   onAssetDownload = () => {
     // This is intentional
   },
+  additionalProps = {},
 }) {
   const [order, setOrder] = React.useState("asc");
   const [orderBy, setOrderBy] = React.useState("calories");
@@ -158,7 +159,7 @@ export default function TableWithSort({
     <>
       <TableContainer sx={{ boxShadow: "none" }}>
         <Table
-          aria-labelledby="tableTitle"
+          tabIndex={0}
           size={dense ? "small" : "medium"}
           sx={{
             minWidth: isDesktop ? 750 : "none",
@@ -178,6 +179,7 @@ export default function TableWithSort({
               borderRight: "2px solid #F3F3F3",
             },
           }}
+          {...additionalProps?.tableProps}
         >
           <EnhancedTableHead
             config={config.header}
@@ -201,8 +203,7 @@ export default function TableWithSort({
                     <TableRow
                       hover
                       onClick={(event) => handleClick(event, row.id)}
-                      role="checkbox"
-                      aria-checked={isItemSelected}
+                      role={"row"}
                       tabIndex={-1}
                       key={rowIdx}
                       selected={isItemSelected}
@@ -284,6 +285,10 @@ export default function TableWithSort({
                               <TableCell key={cellIdx} {...cell.cellProps}>
                                 <div
                                   style={cell.contentStyle}
+                                  tabIndex={0}
+                                  aria-label={`${cell.valueKey}. ${
+                                    row[cell.valueKey]
+                                  }`}
                                   className={[
                                     styles.tableCell,
                                     cell.contentClass,

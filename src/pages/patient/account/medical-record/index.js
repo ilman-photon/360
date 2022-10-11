@@ -47,18 +47,21 @@ export default function MedicalRecordPage() {
       icon: <FileDownloadOutlinedIcon />,
       label: "Download",
       dataTestId: "download-menu",
+      ariaLabel: "download option",
     },
     {
       id: "share",
       icon: <ReplyIcon />,
       label: "Share",
       dataTestId: "share-menu",
+      ariaLabel: "share option",
     },
     {
       id: "print",
       icon: <PrintOutlinedIcon />,
       label: "Print",
       dataTestId: "print-menu",
+      ariaLabel: "print option",
     },
   ];
 
@@ -242,10 +245,10 @@ export default function MedicalRecordPage() {
           <>
             <IconButton
               sx={{ width: 24, height: 24, p: 0 }}
-              aria-label="more"
+              aria-label="more option"
               onClick={handleClick}
               aria-haspopup="true"
-              aria-controls="long-menu"
+              aria-controls="menu-appbar"
               data-testid="more-vert-button"
             >
               <MoreVertIcon />
@@ -258,10 +261,19 @@ export default function MedicalRecordPage() {
               open={open}
             >
               {MyOptions.map((more, moreIdx) => (
-                <MenuItem key={moreIdx} onClick={() => handleMoreMenu(more.id)}>
+                <MenuItem
+                  key={moreIdx}
+                  onClick={() => handleMoreMenu(more.id)}
+                  aria-label={`${more.ariaLabel}`}
+                  inputProps={{
+                    "aria-label": `${more.ariaLabel}`,
+                    "aria-live": "polite",
+                  }}
+                >
                   {more.icon}
                   <Typography
                     textAlign="center"
+                    tabIndex={0}
                     sx={{
                       margin: "0 8px",
                       fontFamily: "Libre Franklin",
@@ -355,12 +367,12 @@ export default function MedicalRecordPage() {
                       color: "#080707",
                       marginRight: "12px",
                     }}
+                    role={"alert"}
                   />{" "}
                   Your lab results are available. Please reach out to your
                   provider.
                 </span>
                 <Button
-                  p={0}
                   data-testid={"close-disclaimer-icon"}
                   onClick={() => setIsHideDisclaimer(true)}
                   sx={{ color: "#003B4A", display: "contents" }}
@@ -385,6 +397,9 @@ export default function MedicalRecordPage() {
                 mobileTestLab={
                   watchedCategory === "test-lab-result" && !isDesktop
                 }
+                additionalProps={{
+                  tableProps: { "aria-label": `${watchedCategory}` },
+                }}
               />
             ) : (
               <TableEmpty text={`There are no ${watchedCategory}.`} />
