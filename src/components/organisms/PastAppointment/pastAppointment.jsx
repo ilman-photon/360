@@ -7,13 +7,12 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import Button from "@mui/material/Button";
 import AppointmentInformation from "../../molecules/AppointmentInformation/appointmentInformation";
+import { upcomingAppointmentDate } from "../../../utils/dateFormatter";
+
 export function PastAppointmentCard({ data, threshold }) {
   const date = data.appointmentInfo.date;
-  const timezone = date.substring(date.length - 3);
   const momentDate = new moment(new Date(date));
   const year = momentDate.format("YYYY");
-  const formatedDate = momentDate.format("dddd, MMM DD - h:mmA");
-  const fullDate = `${formatedDate} ${timezone}`;
   const [open, setOpen] = useState(false);
   const [openAlt, setOpenAlt] = useState(true);
   const handleClick = () => {
@@ -58,7 +57,11 @@ export function PastAppointmentCard({ data, threshold }) {
           <Button
             onClick={() => (threshold == 0 ? handleClickAlt() : handleClick())}
           >
-            {openAlt ? <ExpandLessIcon /> : <ExpandMoreIcon />}
+            {(threshold == 0 ? openAlt : open) ? (
+              <ExpandLessIcon />
+            ) : (
+              <ExpandMoreIcon />
+            )}
           </Button>
         </Box>
       </Box>
@@ -71,11 +74,11 @@ export function PastAppointmentCard({ data, threshold }) {
           <Box className={styles.dateContainer}>
             <Typography
               tabIndex={0}
-              ariaLabel={fullDate}
+              ariaLabel={upcomingAppointmentDate(data.appointmentInfo.date)}
               variant="subtitle1"
               className={styles.date}
             >
-              {fullDate}
+              {upcomingAppointmentDate(data.appointmentInfo.date)}
             </Typography>
             <Box className={styles.subTitleWrapper}>
               <Typography
