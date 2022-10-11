@@ -24,6 +24,9 @@ import {
   getMondayOfCurrentWeek,
   getSaturdayOfCurrentWeek,
   parseProviderListData,
+  TEMP_DATA_GLASSES,
+  TEMP_DATA_CONTACTS,
+  TEMP_DATA_MEDICATION,
 } from "../../utils/appointment";
 import FilterResultHeading from "../../components/molecules/FilterResultHeading/filterResultHeading";
 import { Box } from "@mui/system";
@@ -33,6 +36,7 @@ import { getCity } from "../../utils/getCity";
 import CustomModal from "../../components/molecules/CustomModal/customModal";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { colors } from "../../styles/theme";
+import { parsePrescriptions } from "../../utils/prescription";
 
 export async function getStaticProps() {
   return {
@@ -72,7 +76,6 @@ export default function HomePage({ googleApiKey }) {
           purposeOfVisit: parsePurposeOfVisit(response?.entities || []),
           insuranceCarrier: parseInsuranceCarrier(insuranceCarrierList),
         };
-        console.log(filterSuggestion);
         setFilterSuggestionData(filterSuggestion);
       })
       .catch(function () {
@@ -120,13 +123,54 @@ export default function HomePage({ googleApiKey }) {
       });
   }
 
-  //Call API for getAllPrescriptions
-  function onCalledGetAllPrescriptionsAPI() {
+  function onCalledMedicationAPI() {
+    let medicationData = [];
     const api = new Api();
     api
-      .getAllPrescriptions()
+      .getPrescriptionMedication()
       .then(function (response) {
-        setPrescriptionData(response.prescriptions);
+        medicationData = response;
+      })
+      .catch(function () {
+        medicationData = [];
+      })
+      .finally(function () {
+        onCalledGlassesAPI(medicationData);
+      });
+  }
+
+  function onCalledGlassesAPI(medicationData) {
+    let glassesData = [];
+    const api = new Api();
+    api
+      .getPrescriptionGlasses()
+      .then(function (response) {
+        glassesData = response?.entities || [];
+      })
+      .catch(function () {
+        glassesData = [];
+      })
+      .finally(function () {
+        onCalledContactsAPI(medicationData, glassesData);
+      });
+  }
+
+  function onCalledContactsAPI(medicationData, glassesData) {
+    const api = new Api();
+    api
+      .getPrescriptionContacts()
+      .then(function (response) {
+        let prescriptionDataTemp = parsePrescriptions(
+          glassesData,
+          TEMP_DATA_CONTACTS.entities,
+          medicationData
+        );
+        prescriptionDataTemp = {
+          ...prescriptionDataTemp,
+          glasses: [prescriptionDataTemp.glasses[0]],
+          contacts: [prescriptionDataTemp.contacts[0]],
+        };
+        setPrescriptionData(prescriptionDataTemp);
       })
       .catch(function () {
         //Handle error getAllPrescriptions
@@ -180,7 +224,7 @@ export default function HomePage({ googleApiKey }) {
   }, [setIsAuthenticated, router]);
 
   useEffect(() => {
-    onCalledGetAllPrescriptionsAPI();
+    onCalledMedicationAPI();
     onCalledGetAllAppointment();
     dispatch(fetchAllPayers());
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -198,7 +242,6 @@ export default function HomePage({ googleApiKey }) {
   }
 
   const handleClickCancel = () => {
-    console.log(isOpenCancel, "vs");
     setIsOpenCancel(true);
   };
 
