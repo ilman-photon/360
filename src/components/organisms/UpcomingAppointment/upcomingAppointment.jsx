@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import styles from "./styles.module.scss";
 import AppointmentButton from "../../atoms/AppointmentButton/appointmentButton";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
@@ -21,6 +21,8 @@ export function UpcomingAppointmentCard({
 
     return date;
   }
+
+  const isDesktop = useMediaQuery("(min-width: 993px)");
 
   const visitDate = new Date(data.appointmentInfo.date);
   let hideHour = 0;
@@ -104,7 +106,7 @@ export function UpcomingAppointmentCard({
                 icon={<CancelOutlinedIcon />}
                 onClick={() => onCancelClicked(data)}
               >
-                Cancel
+                {isDesktop ? "Cancel" : "Cancel Appointment"}
               </AppointmentButton>
               <AppointmentButton
                 icon={<CalendarTodayIcon />}
@@ -113,7 +115,7 @@ export function UpcomingAppointmentCard({
                 }
                 onClick={() => onRescheduleClicked(data)}
               >
-                Reschedule
+                {isDesktop ? "Reschedule" : "Reschedule Appointment"}
               </AppointmentButton>
             </Box>
           </Box>
