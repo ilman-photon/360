@@ -1,3 +1,60 @@
+import { Api } from "../pages/api/api";
+
+function onCalledMedicationAPI(resolve, reject) {
+  let medicationData = [];
+  const api = new Api();
+  api
+    .getPrescriptionMedication()
+    .then(function (response) {
+      medicationData = response;
+    })
+    .catch(function () {
+      medicationData = [];
+    })
+    .finally(function () {
+      onCalledGlassesAPI(medicationData, resolve, reject);
+    });
+}
+
+function onCalledGlassesAPI(medicationData, resolve, reject) {
+  let glassesData = [];
+  const api = new Api();
+  api
+    .getPrescriptionGlasses()
+    .then(function (response) {
+      glassesData = response?.entities || [];
+    })
+    .catch(function () {
+      glassesData = [];
+    })
+    .finally(function () {
+      onCalledContactsAPI(medicationData, glassesData, resolve, reject);
+    });
+}
+
+function onCalledContactsAPI(medicationData, glassesData, resolve, reject) {
+  const api = new Api();
+  api
+    .getPrescriptionContacts()
+    .then(function (response) {
+      let prescriptionDataTemp = parsePrescriptions(
+        glassesData,
+        response?.entities || [],
+        medicationData
+      );
+      resolve(prescriptionDataTemp);
+    })
+    .catch(function () {
+      reject({});
+    });
+}
+
+export function onCallGetPrescriptionData() {
+  return new Promise((resolve, reject) => {
+    onCalledMedicationAPI(resolve, reject);
+  });
+}
+
 function setPrescriptionDetails(tableData, type) {
   const prescriptionDetails = [];
   for (const property in tableData) {

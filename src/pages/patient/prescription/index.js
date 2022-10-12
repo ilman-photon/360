@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import Prescriptions from "../../../components/molecules/Dashboard/prescriptions";
 import PrescriptionLayout from "../../../components/templates/prescriptionLayout";
 import store from "../../../store/store";
-import { Api } from "../../api/api";
+import { onCallGetPrescriptionData } from "../../../utils/prescription";
 
 export default function PrescriptionPage() {
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -15,11 +15,10 @@ export default function PrescriptionPage() {
 
   //Call API for getAllPrescriptions
   function onCalledGetAllPrescriptionsAPI() {
-    const api = new Api();
-    api
-      .getAllPrescriptions()
-      .then(function (response) {
-        setPrescriptionData(response.prescriptions);
+    // const api = new Api();
+    onCallGetPrescriptionData()
+      .then(function (prescriptionData) {
+        setPrescriptionData(prescriptionData);
       })
       .catch(function () {
         //Handle error getAllPrescriptions
