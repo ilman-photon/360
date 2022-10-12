@@ -78,6 +78,81 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
     );
   };
 
+  const getAddressQuery = (address) => {
+    const addressLine1 = address.addressLine1 || "";
+    const addressLine2 = address.addressLine2 || "";
+    const city = address.city || "";
+    const state = address.state || "";
+    const zipcode = address.zipcode || address.zip || "";
+
+    return `${addressLine1}${addressLine2}${city}${state}${zipcode}`.replace(
+      / /g,
+      "+"
+    );
+  };
+
+  const renderAddress = (newAddressArray) => {
+    return (
+      <Box>
+        {newAddressArray.map((newAddress, idx) => {
+          const addressQuery = getAddressQuery(newAddress);
+          return (
+            <Box
+              className={styles.mapAddressContainer}
+              aria-label="Address"
+              key={idx}
+              sx={
+                idx !== 0
+                  ? {
+                      borderTop: "1px solid rgba(0, 59, 74, 0.25)",
+                      marginTop: "26px",
+                      paddingTop: "24px",
+                    }
+                  : {}
+              }
+            >
+              <Typography className={styles.addressTitle}>
+                {idx === 0 ? "Primary Address" : "Secondary Address"}
+              </Typography>
+              <Typography
+                variant="body2"
+                className={styles.mapAddress}
+                tabIndex={0}
+              >
+                {newAddress && (
+                  <>
+                    {newAddress.addressLine1}
+                    <br />
+                    {newAddress.addressLine2 && (
+                      <>
+                        {newAddress.addressLine2}
+                        <br />
+                      </>
+                    )}
+                    {newAddress.city && `${newAddress.city},`}{" "}
+                    {newAddress.state && `${newAddress.state},`}{" "}
+                    {newAddress.zip}
+                  </>
+                )}
+              </Typography>
+              <Box className={styles.getDirectionLinkContainer}>
+                <DirectionsOutlinedIcon></DirectionsOutlinedIcon>
+                <Link
+                  className={styles.getDirectionLink}
+                  href={`https://www.google.com/maps/search/?api=1&query=${addressQuery}`}
+                  target="_blank"
+                  rel="noopener"
+                >
+                  Get directions
+                </Link>
+              </Box>
+            </Box>
+          );
+        })}
+      </Box>
+    );
+  };
+
   const resetMenuStyle = () => {
     aboutMenuRef.current.className = styles.menuText;
     locationMenuRef.current.className = styles.menuText;
@@ -125,12 +200,7 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
   const { BIOGRAPHY_TEST_ID } = constants.TEST_ID;
 
   const address = providerData.address;
-  const addressQuery =
-    address &&
-    `${address.addressLine1} ${address.addressLine2} ${address.city} ${address.state} ${address.zipcode}`.replace(
-      / /g,
-      "+"
-    );
+  const addressQuery = getAddressQuery(address[0]);
 
   return (
     <Box className={styles.detailedBio}>
@@ -237,34 +307,7 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
               aria-label="Map"
             ></iframe>
           </Box>
-          <Box className={styles.mapAddressContainer} aria-label="Address">
-            <Typography
-              variant="body2"
-              className={styles.mapAddress}
-              tabIndex={0}
-            >
-              {address && (
-                <>
-                  {address.addressLine1}
-                  <br />
-                  {address.addressLine2}
-                  <br />
-                  {address.city}, {address.state}, {address.zipcode}
-                </>
-              )}
-            </Typography>
-            <Box className={styles.getDirectionLinkContainer}>
-              <DirectionsOutlinedIcon></DirectionsOutlinedIcon>
-              <Link
-                className={styles.getDirectionLink}
-                href={`https://www.google.com/maps/search/?api=1&query=${addressQuery}`}
-                target="_blank"
-                rel="noopener"
-              >
-                Get directions
-              </Link>
-            </Box>
-          </Box>
+          {renderAddress(address)}
         </Box>
 
         <Typography variant="h3" tabIndex={0}>
@@ -274,7 +317,7 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
           {providerData.language &&
             providerData.language.map((item, index) => {
               const isLastIndex = providerData.language.length - 1 === index;
-              if (!isLastIndex) {
+              if (!isLastIndex && item !== "") {
                 return `${item}, `;
               } else {
                 return item;

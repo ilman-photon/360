@@ -64,6 +64,10 @@ export default function PrescriptionPage() {
   }
 
   function resetRequestRefillResponse() {
+    window.scrollTo({
+      left: 0,
+      top: 0,
+    });
     setTimeout(() => {
       setRequestRefillResponse(null);
     }, 2000);
@@ -78,7 +82,7 @@ export default function PrescriptionPage() {
     <Stack sx={{ width: "100%", backgroundColor: "#F4F4F4" }}>
       <Stack
         sx={{
-          padding: isMobile ? "16px" : "24px",
+          padding: isMobile ? "16px" : "44px 24px 24px 24px",
           marginBottom: "32px",
           maxWidth: "1440px",
           backgroundColor: isMobile ? "#F4F4F4" : "#fff",

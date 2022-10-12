@@ -2,7 +2,7 @@ import * as React from "react";
 import { Stack, Typography, Button, Link, Box } from "@mui/material";
 import { useTranslation } from "next-i18next";
 import AccountCard from "../../molecules/AccountCard/accountCard";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
+import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import Image from "next/image";
 import { styles } from "./style";
@@ -35,7 +35,10 @@ export default function AppointmentLocation({
     <Box mb={2}>
       <AccountCard
         titleIcon={
-          <LocationOnIcon aria-label={"calendar icon"} aria-hidden={"false"} />
+          <LocationOnOutlinedIcon
+            aria-label={"calendar icon"}
+            aria-hidden={"false"}
+          />
         }
         title={t("location")}
         isAppoinment={true}
@@ -68,7 +71,7 @@ export default function AppointmentLocation({
               height={105}
               style={{ borderRadius: "50%" }}
               alt="Doctors image"
-              tabindex={"0"}
+              tabIndex={"0"}
             />
           </div>
 
@@ -76,7 +79,7 @@ export default function AppointmentLocation({
             <Typography
               variant="h4"
               style={{ ...styles.detailText, ...styles.boldText }}
-              tabindex={"0"}
+              tabIndex={"0"}
             >
               {providerData.name}
             </Typography>
@@ -90,15 +93,19 @@ export default function AppointmentLocation({
               }
             >
               {getAddress(providerData.address)}
-              <br />
             </Typography>
             <Typography
               variant="h4"
               style={styles.detailText}
               aria-label={`provider phone number ${providerData.phoneNumber}`}
-              tabindex={"0"}
+              tabIndex={"0"}
             >
-              <Link style={styles.linkText}>{providerData.phoneNumber}</Link>
+              <Link
+                style={styles.linkText}
+                href={`tel:${providerData.phoneNumber}`}
+              >
+                {providerData.phoneNumber}
+              </Link>
             </Typography>
           </Box>
         </Stack>

@@ -4,6 +4,7 @@ import {
   Divider,
   Fade,
   Grid,
+  MenuItem,
   Stack,
   useMediaQuery,
 } from "@mui/material";
@@ -20,7 +21,7 @@ import { Regex } from "../../../utils/regex";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import dynamic from "next/dynamic";
-import { StyledSelect } from "../../atoms/Select/select";
+import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 
 let ClientAddressAutofill;
 
@@ -108,6 +109,9 @@ export default function ContactInformation({
       title="Contact Information"
       titleIcon={<PermContactCalendarOutlinedIcon />}
       isEditing={isEditing}
+      textStyle={{
+        fontWeight: "700",
+      }}
       // OnEditClicked={OnEditClicked}
       actionContent={
         isDesktop ? (
@@ -153,14 +157,7 @@ export default function ContactInformation({
             ariaLabel="Phone Number"
             label="Phone Number"
           >
-            <div
-              tabIndex={0}
-              aria-label={
-                userData.mobile ? formatPhoneNumber(userData.mobile) : ""
-              }
-            >
-              {userData.mobile ? formatPhoneNumber(userData.mobile) : ""}
-            </div>
+            {userData.mobile && <PhoneNumber phone={userData.mobile} />}
           </LabelWithInfo>
 
           <LabelWithInfo tabIndex={0} ariaLabel="Email ID" label="Email ID">
@@ -182,7 +179,7 @@ export default function ContactInformation({
           </LabelWithInfo>
 
           <Grid container>
-            <Grid item xs={6} p={0}>
+            <Grid item xs={6} sm={4} lg={6} p={0}>
               <LabelWithInfo tabIndex={0} ariaLabel="State" label="State">
                 <div tabIndex={0} aria-label={userData.state || "-"}>
                   {userData.state || "-"}
@@ -190,7 +187,7 @@ export default function ContactInformation({
               </LabelWithInfo>
             </Grid>
 
-            <Grid item xs={6} p={0}>
+            <Grid item xs={6} sm={4} lg={6} p={0}>
               <LabelWithInfo label="Zip" tabIndex={0} ariaLabel="Zip">
                 <div tabIndex={0} aria-label={userData.zip || "-"}>
                   {userData.zip || "-"}
@@ -209,12 +206,12 @@ export default function ContactInformation({
                 tabIndex={0}
                 aria-label={
                   userData.preferredCommunication === "both"
-                    ? "Mobile,Email"
+                    ? "Mobile, Email"
                     : userData.preferredCommunication || "-"
                 }
               >
                 {userData.preferredCommunication === "both"
-                  ? "Mobile,Email"
+                  ? "Mobile, Email"
                   : userData.preferredCommunication || "-"}
               </div>
             </span>
@@ -246,6 +243,11 @@ export default function ContactInformation({
                     variant="filled"
                     helperText={error ? error.message : null}
                     xs={{ margin: 0 }}
+                    sx={{
+                      ".MuiFilledInput-root": {
+                        backgroundColor: "#FFF",
+                      },
+                    }}
                   />
                 );
               }}
@@ -283,6 +285,11 @@ export default function ContactInformation({
                     size="small"
                     variant="filled"
                     helperText={error ? error.message : null}
+                    sx={{
+                      ".MuiFilledInput-root": {
+                        backgroundColor: "#FFF",
+                      },
+                    }}
                   />
                 );
               }}
@@ -316,7 +323,12 @@ export default function ContactInformation({
                         label="Address"
                         autoComplete="address-line1"
                         placeholder="Start typing your address, e.g. 123 United States..."
-                        sx={{ width: "100%" }}
+                        sx={{
+                          width: "100%",
+                          ".MuiFilledInput-root": {
+                            backgroundColor: "#FFF",
+                          },
+                        }}
                         value={value}
                         onChange={onChange}
                         error={!!error}
@@ -352,6 +364,11 @@ export default function ContactInformation({
                     size="small"
                     variant="filled"
                     helperText={error ? error.message : null}
+                    sx={{
+                      ".MuiFilledInput-root": {
+                        backgroundColor: "#FFF",
+                      },
+                    }}
                   />
                 );
               }}
@@ -367,14 +384,11 @@ export default function ContactInformation({
                     fieldState: { error },
                   }) => {
                     return (
-                      <StyledSelect
-                        id="state"
+                      <StyledInput
+                        select
                         label="State"
-                        inputProps={{
-                          "aria-label": "State drop down menu",
-                        }}
                         autoComplete="address-level1"
-                        options={usStatesList}
+                        data-testid="styled-select-state"
                         value={value}
                         onChange={onChange}
                         error={!!error}
@@ -384,8 +398,18 @@ export default function ContactInformation({
                           "&.MuiFormControl-root": {
                             m: 0,
                           },
+
+                          ".MuiFilledInput-root": {
+                            backgroundColor: "#FFF",
+                          },
                         }}
-                      />
+                      >
+                        {usStatesList.map((item, idx) => (
+                          <MenuItem key={idx} value={item.value}>
+                            {item.label}
+                          </MenuItem>
+                        ))}
+                      </StyledInput>
                     );
                   }}
                 />
@@ -401,14 +425,20 @@ export default function ContactInformation({
                   }) => {
                     return (
                       <StyledInput
-                        type="number"
+                        type="text"
                         onKeyDown={(e) => {
-                          if (invalidChars.includes(e.key)) e.preventDefault();
+                          if (
+                            !Regex.numberOnly.test(e.key) &&
+                            e.key != "Backspace"
+                          ) {
+                            e.preventDefault();
+                          }
                         }}
                         id="zip"
                         label="Zip"
                         inputProps={{
                           "aria-label": "Zip field",
+                          maxLength: 5,
                         }}
                         autoComplete="postal-code"
                         value={value}
@@ -423,6 +453,7 @@ export default function ContactInformation({
                           },
                           ".MuiFilledInput-root": {
                             height: "100%",
+                            backgroundColor: "#FFF",
                           },
                         }}
                       />
@@ -430,7 +461,7 @@ export default function ContactInformation({
                   }}
                   rules={{
                     pattern: {
-                      value: /^\s?\d{5}\s?$/,
+                      value: Regex.isZip,
                       message: "Incorrect format",
                     },
                   }}
@@ -451,9 +482,10 @@ export default function ContactInformation({
                       error={!!error}
                       value={value}
                       onChange={onChange}
-                      label="Preferred mode of Communication"
+                      label="Preferred mode(s) of Communication"
                       options={communicationOptions}
                       helperText={error ? error.message : null}
+                      textSx={{ justifyContent: "space-between" }}
                       isCancelSchedule={true}
                     />
                   </>

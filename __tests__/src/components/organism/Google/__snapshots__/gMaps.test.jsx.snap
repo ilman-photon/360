@@ -14,10 +14,12 @@ exports[`GMaps GMaps render 1`] = `
       "width": "100%",
     }
   }
+  onClick={[Function]}
   onLoad={[Function]}
   zoom={6}
 >
   <UNDEFINED
+    data-testid="schedule_appointment_maps_pin_marker"
     icon={
       Object {
         "url": "/provider-pin.svg",

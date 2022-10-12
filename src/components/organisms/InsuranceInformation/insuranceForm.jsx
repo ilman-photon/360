@@ -12,7 +12,6 @@ import {
 import styles from "./InsuranceInformationNew.module.scss";
 import { useForm, Controller } from "react-hook-form";
 import { StyledInput } from "../../atoms/Input/input";
-import { colors } from "../../../styles/theme";
 import FormLabel from "@mui/material/FormLabel";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import SelectOptionButton from "../../atoms/SelectOptionButton/selectOptionButton";
@@ -23,10 +22,18 @@ import FormMessage from "../../molecules/FormMessage/formMessage";
 import { AutoCompleteCreatable } from "../../molecules/AutoCompleteCreatable";
 import constants from "../../../utils/constants";
 import { Regex } from "../../../utils/regex";
+import { RELATIONSHIP_LIST } from "../../../utils/constantData";
 
 export default function InsuranceForm({
-  formData = null,
+  formData = DEFAULT_INSURANCE_DATA,
+  providerList = [],
+  planList = [],
   isEditing = true,
+  isAutocompleteLoading = false,
+  memberId,
+  OnProviderChanged = () => {
+    // this is intended
+  },
   OnSaveClicked = () => {
     // This is intended
   },
@@ -36,7 +43,7 @@ export default function InsuranceForm({
   testIds = constants.TEST_ID.INSURANCE_TEST_ID,
   isError,
 }) {
-  const { handleSubmit, control, watch, reset } = useForm({
+  const { handleSubmit, control, watch, reset, setValue } = useForm({
     defaultValues: DEFAULT_INSURANCE_DATA,
   });
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -50,28 +57,16 @@ export default function InsuranceForm({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [formData]);
 
-  const providerList = [
-    { id: 0, label: "Provider 1", value: "Provider 1" },
-    { id: 1, label: "Provider 2", value: "Provider 2" },
-  ];
-
-  const planList = [
-    { id: 0, label: "Plan 1", value: "Plan 1" },
-    { id: 1, label: "Plan 2", value: "Plan 2" },
-  ];
-
   const isSubscriberOptions = [
     { label: "Yes", value: "Yes" },
     { label: "No", value: "No" },
   ];
 
   const priorityOptions = [
-    { label: "Primary", value: "Primary" },
-    { label: "Secondary", value: "Secondary" },
-    { label: "Tertiary", value: "Tertiary" },
+    { label: "Primary", value: "PRIMARY" },
+    { label: "Secondary", value: "SECONDARY" },
+    { label: "Tertiary", value: "TERTIARY" },
   ];
-
-  const relationshipList = ["Spouse", "Father", "Mother", "Self", "Son"];
 
   const DEFAULT_FORM_FIELD_STATE = {
     success: false,
@@ -99,16 +94,32 @@ export default function InsuranceForm({
     }
   };
 
+  const watchedProvider = watch("provider", "");
+  useEffect(() => {
+    if (watchedProvider) {
+      OnProviderChanged(watchedProvider.id);
+      if (watchedProvider.id !== formData?.provider?.id) {
+        setValue("plan", null);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [watchedProvider]);
+
+  useEffect(() => {
+    setValue("memberID", memberId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [memberId]);
+
   const handleCancel = () => {
     OnCancelClicked();
-    reset(DEFAULT_INSURANCE_DATA);
+    reset(formData);
     setFormCardFrontState(DEFAULT_FORM_FIELD_STATE);
     setFormCardBackState(DEFAULT_FORM_FIELD_STATE);
   };
 
   const onSubmit = (data) => {
     OnSaveClicked(data);
-    if (isError !== false) reset(DEFAULT_INSURANCE_DATA);
+    if (isError !== false) reset(formData);
   };
 
   const DisclaimerText = (data) => {
@@ -136,7 +147,7 @@ export default function InsuranceForm({
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={3}>
           <Grid container spacing={2}>
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} sm={6} lg={4}>
               <Controller
                 name="provider"
                 control={control}
@@ -146,12 +157,7 @@ export default function InsuranceForm({
                 }) => {
                   return (
                     <AutoCompleteCreatable
-                      onFetch={(e) => {
-                        console.log(e);
-                      }}
-                      onInputEmpty={(e) => {
-                        console.log(e);
-                      }}
+                      isLoading={isAutocompleteLoading}
                       options={providerList}
                       testId={testIds.provider}
                       inputLabel="Insurance Provider"
@@ -168,7 +174,7 @@ export default function InsuranceForm({
               />
             </Grid>
 
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} sm={6} lg={4}>
               <Controller
                 name="plan"
                 control={control}
@@ -178,12 +184,7 @@ export default function InsuranceForm({
                 }) => {
                   return (
                     <AutoCompleteCreatable
-                      onFetch={(e) => {
-                        console.log(e);
-                      }}
-                      // onInputEmpty={(e) => {
-                      //   console.log(e);
-                      // }}
+                      isLoading={isAutocompleteLoading}
                       options={planList}
                       testId={testIds.planName}
                       inputLabel="Plan Name"
@@ -195,10 +196,9 @@ export default function InsuranceForm({
                   );
                 }}
               />
-              <DisclaimerText label="(Optional)" />
             </Grid>
 
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} sm={6} lg={4}>
               <Controller
                 name="memberID"
                 control={control}
@@ -223,15 +223,17 @@ export default function InsuranceForm({
                 }}
                 rules={{
                   required: "This field is required",
-                  validate: {
-                    isNumber: (v) =>
-                      Regex.numberOnly.test(v) || "Invalid format",
-                  },
+                  // REMINDER !! this validation is disabled for testing integration purpose, not based on story
+                  // change back after solution are found
+                  // validate: {
+                  //   isNumber: (v) =>
+                  //     Regex.numberOnly.test(v) || "Invalid format",
+                  // },
                 }}
               />
             </Grid>
 
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} sm={6} lg={4}>
               <Controller
                 name="groupID"
                 control={control}
@@ -267,7 +269,11 @@ export default function InsuranceForm({
 
           <Divider />
 
-          <Typography variant="h3" sx={{ pb: 2, color: colors.black }}>
+          <Typography
+            tabIndex={0}
+            aria-label={"Policy Holder"}
+            variant="grayscaleBlack"
+          >
             Policy Holder
           </Typography>
 
@@ -445,7 +451,7 @@ export default function InsuranceForm({
                               },
                             }}
                             label="Relationship"
-                            options={relationshipList}
+                            options={RELATIONSHIP_LIST}
                             value={value}
                             onChange={(event) => {
                               onChange(event);
@@ -470,13 +476,22 @@ export default function InsuranceForm({
 
           <Grid
             container
-            spacing={{ xs: 0, md: 2 }}
-            rowSpacing={2}
+            rowSpacing={{ sx: 2, md: 0 }}
             sx={{
-              ".MuiGrid-item:first-of-type": { pt: { xs: 0, md: 2 }, pl: 0 },
+              ".MuiGrid-item:first-of-type": {
+                pt: 0,
+                pl: 0,
+                pr: { xs: 0, sm: 2 },
+              },
             }}
           >
-            <Grid item xs={12} md={4} sx={{ position: "relative", pl: "-8px" }}>
+            <Grid
+              item
+              xs={12}
+              sm={5}
+              lg={4}
+              sx={{ position: "relative", pl: "-8px" }}
+            >
               <div
                 style={{ position: "absolute", width: "100%", top: "-25px" }}
               >
@@ -496,20 +511,14 @@ export default function InsuranceForm({
                   field: { onChange, value },
                   fieldState: { _error },
                 }) => {
-                  {
-                    JSON.stringify(value);
-                  }
                   return (
                     <ImageUploader
                       OnUpload={onChange}
                       OnInputError={onFormCardFrontError}
-                      source={formData ? formData.frontCard : null}
                       testIds={testIds.uploadFrontImage}
-                      preview={value}
+                      source={value}
+                      // preview={value?.presignedUrl}
                       label="Upload Front"
-                      width="100%"
-                      src="/login-bg.png"
-                      alt=""
                       helperText={
                         isMobile
                           ? "*JPG or PNG file formats only. (File size limit is 4 MB)"
@@ -520,7 +529,7 @@ export default function InsuranceForm({
                 }}
               />
             </Grid>
-            <Grid item xs={12} md={4} sx={{ position: "relative" }}>
+            <Grid item xs={12} sm={5} lg={4} sx={{ position: "relative" }}>
               <div
                 style={{
                   position: "absolute",
@@ -548,13 +557,10 @@ export default function InsuranceForm({
                     <ImageUploader
                       OnUpload={onChange}
                       OnInputError={onFormCardBackError}
-                      source={formData ? formData.backCard : null}
+                      source={value}
+                      // preview={value?.presignedUrl}
                       testIds={testIds.uploadBackImage}
-                      preview={value}
                       label="Upload Back"
-                      width="100%"
-                      src="/login-bg.png"
-                      alt=""
                       helperText={
                         isMobile
                           ? "*JPG or PNG file formats only. (File size limit is 4 MB)"
@@ -566,7 +572,7 @@ export default function InsuranceForm({
               />
             </Grid>
             {isDesktop ? (
-              <Grid item xs={12} md={8}>
+              <Grid item xs={12} sm={10} lg={8}>
                 <Typography
                   variant="bodySmallMedium"
                   component="div"

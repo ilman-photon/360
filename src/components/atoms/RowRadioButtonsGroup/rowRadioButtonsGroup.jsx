@@ -4,9 +4,19 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
-import { FormHelperText, Tooltip } from "@mui/material";
+import { Box, FormHelperText } from "@mui/material";
 import { colors } from "../../../styles/theme";
-import ErrorOutlineOutlinedIcon from "@mui/icons-material/ErrorOutlineOutlined";
+import { styled } from "@mui/material/styles";
+import Tooltip, { tooltipClasses } from "@mui/material/Tooltip";
+import Image from "next/image";
+
+const CustomWidthTooltip = styled(({ className, ...props }) => (
+  <Tooltip {...props} classes={{ popper: className }} />
+))({
+  [`& .${tooltipClasses.tooltip}`]: {
+    maxWidth: 221,
+  },
+});
 
 export default function RowRadioButtonsGroup({
   row = true,
@@ -14,6 +24,8 @@ export default function RowRadioButtonsGroup({
   tooltipContent,
   textSx = {},
   isCancelSchedule = false,
+  isInsuranceForm = false,
+  isRegistrationForm = false,
   ...props
 }) {
   const options = props.options || [];
@@ -34,25 +46,28 @@ export default function RowRadioButtonsGroup({
           alignItems: "center",
           ...textSx,
         }}
-        tabindex={0}
+        tabIndex={0}
       >
         {props.label}
         {tooltipContent ? (
           <>
-            <Tooltip
+            <CustomWidthTooltip
               title={tooltipContent}
               tabindex="0"
               aria-hidden="true"
               placement="top"
+              arrow
             >
-              <ErrorOutlineOutlinedIcon
-                sx={{
-                  width: 16,
-                  height: 16,
-                  marginLeft: "4px",
-                }}
-              />
-            </Tooltip>
+              <Box sx={{ marginLeft: "7px", lineHeight: "10px" }}>
+                <Image
+                  alt=""
+                  src={"/tooltipIcon.png"}
+                  width={18}
+                  height={18}
+                  style={{ cursor: "pointer", paddingLeft: "10px" }}
+                />
+              </Box>
+            </CustomWidthTooltip>
           </>
         ) : (
           ""
@@ -62,7 +77,7 @@ export default function RowRadioButtonsGroup({
         row={row}
         aria-labelledby="row-radio-buttons-group-label"
         name="row-radio-buttons-group"
-        sx={textSx}
+        sx={{ ...textSx, marginTop: isCancelSchedule ? "16px" : "unset" }}
       >
         {options.map((option, idx) => {
           return (
@@ -70,6 +85,7 @@ export default function RowRadioButtonsGroup({
               key={idx}
               value={option.value}
               aria-label={`${option.label} Radio Button`}
+              tabindex={0}
               control={
                 <Radio
                   checked={props.value === option.value}
@@ -86,8 +102,13 @@ export default function RowRadioButtonsGroup({
               }
               label={option.label}
               sx={{
+                "& .MuiRadio-root": {
+                  padding: isCancelSchedule ? "2px 9px 2px 16px" : "9px",
+                },
                 ".MuiTypography-root":
-                  props.isInsuranceForm || props.isRegistrationForm
+                  props.isInsuranceForm ||
+                  isRegistrationForm ||
+                  isCancelSchedule
                     ? { fontSize: 16, color: "#242526" }
                     : { fontSize: 14 },
               }}

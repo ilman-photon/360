@@ -33,6 +33,9 @@ export const CustomFormControl = styled((props) => <FormControl {...props} />)(
         borderColor: "transparent",
       },
     },
+    ".Mui-disabled input": {
+      backgroundColor: "#efefef",
+    },
   })
 );
 
@@ -42,31 +45,27 @@ export const CustomPasswordInput = styled((props) => (
       disableUnderline: true,
       endAdornment: (
         <InputAdornment position="end">
-          {props.value ? (
-            <Tooltip
-              title={`${
-                props.type !== "password" ? "Hide Password" : "Show Password"
+          <Tooltip
+            title={`${
+              props.type !== "password" ? "Hide Password" : "Show Password"
+            }`}
+          >
+            <IconButton
+              aria-label={`${
+                props.type !== "password"
+                  ? "Password hide icon"
+                  : "Password unhide icon"
               }`}
+              {...props.customevent}
+              edge="end"
             >
-              <IconButton
-                aria-label={`${
-                  props.type !== "password"
-                    ? "Password hide icon"
-                    : "Password unhide icon"
-                }`}
-                {...props.customevent}
-                edge="end"
-              >
-                {props.type !== "password" ? (
-                  <VisibilityOutlinedIcon />
-                ) : (
-                  <VisibilityOffOutlinedIcon sx={{ transform: "scaleX(-1)" }} />
-                )}
-              </IconButton>
-            </Tooltip>
-          ) : (
-            ""
-          )}
+              {props.type !== "password" ? (
+                <VisibilityOutlinedIcon />
+              ) : (
+                <VisibilityOffOutlinedIcon sx={{ transform: "scaleX(-1)" }} />
+              )}
+            </IconButton>
+          </Tooltip>
         </InputAdornment>
       ),
     }}
@@ -124,7 +123,6 @@ export const RedditTextField = styled((props) => (
         .slice(0, props.maxLength || 1000);
     }}
     InputProps={{
-      disableUnderline: true,
       endAdornment: props.adorment ? (
         <InputAdornment position="end">
           <IconButton aria-label="toggle password visibility" edge="end">
@@ -132,6 +130,7 @@ export const RedditTextField = styled((props) => (
           </IconButton>
         </InputAdornment>
       ) : null,
+      ...props.InputProps,
     }}
     {...props}
   />
@@ -147,7 +146,7 @@ export const RedditTextField = styled((props) => (
     },
   },
   "& .MuiFilledInput-root": {
-    border: "1px solid #e2e2e1",
+    border: "1px solid #BDBDBD",
     overflow: "hidden",
     borderRadius: 4,
     height: 52,
@@ -189,6 +188,9 @@ export const RedditTextField = styled((props) => (
       color: "#B93632",
     },
   },
+  ".Mui-disabled input": {
+    backgroundColor: "#efefef",
+  },
 }));
 
 export const CustomInput = styled(({ ...props }) => {
@@ -207,6 +209,10 @@ export const CustomInput = styled(({ ...props }) => {
   const showPassword = values.showPassword ? "text" : "password";
 
   const handleMouseDownPassword = (event) => {
+    event.preventDefault();
+  };
+
+  const preventPasteHandler = (event) => {
     event.preventDefault();
   };
 
@@ -245,14 +251,16 @@ export const CustomInput = styled(({ ...props }) => {
               disabled={props.disabled}
               disableFuture={props.disableFuture}
               disablePast={props.disablePast}
+              ariaLabel={props.label}
+              ariaLive={props.label}
               label={props.label}
               onChange={props.onChange}
               value={props.value}
-              components={{
-                OpenPickerIcon: function () {
-                  return null;
-                },
-              }}
+              // components={{
+              //   OpenPickerIcon: function () {
+              //     return null;
+              //   },
+              // }}
               renderInput={(params) => (
                 <RedditTextField
                   variant="filled"
@@ -263,7 +271,7 @@ export const CustomInput = styled(({ ...props }) => {
                     ["& .MuiFilledInput-root"]: {
                       border: props.isFilter
                         ? "0px solid #ffff"
-                        : "1px solid #e2e2e1",
+                        : "1px solid #BDBDBD",
                       ["& .MuiInputBase-input"]: {
                         cursor: props.isFilter ? "pointer" : "inherit",
                       },
@@ -274,6 +282,7 @@ export const CustomInput = styled(({ ...props }) => {
                   error={props.error || params.error}
                   helperText={props.helperText}
                   InputProps={props.InputProps || {}}
+                  onPaste={preventPasteHandler}
                 />
               )}
               inputProps={props.inputProps}
@@ -305,6 +314,7 @@ export const CustomInput = styled(({ ...props }) => {
               ...props.sx,
             }}
             {...props}
+            onPaste={preventPasteHandler}
           />
         </>
       );

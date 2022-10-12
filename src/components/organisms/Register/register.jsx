@@ -16,10 +16,9 @@ import { useRouter } from "next/router";
 import constants from "../../../utils/constants";
 import { HeadingTitle } from "../../atoms/Heading";
 import { colors } from "../../../styles/theme";
-import { fontSize } from "@mui/system";
 export default function Register({ OnRegisterClicked, formMessage = null }) {
   const router = useRouter();
-  const { handleSubmit, control, watch } = useForm({
+  const { handleSubmit, control, watch, setValue } = useForm({
     defaultValues: {
       firstName: "",
       lastName: "",
@@ -127,6 +126,18 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
     }
   };
 
+  useEffect(() => {
+    if (!!watchedEmail && !!watchedMobile) {
+      setValue("preferredCommunication", "both");
+    } else if (!!watchedMobile) {
+      setValue("preferredCommunication", "phone");
+    } else if (!!watchedEmail) {
+      setValue("preferredCommunication", "email");
+    } else {
+      setValue("preferredCommunication", "both");
+    }
+  }, [watchedEmail, watchedMobile]);
+
   const formMessageComp = useRef(null);
   useEffect(() => {
     if (formMessageComp.current)
@@ -165,7 +176,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
     }
   };
   return (
-    <Box className={globalStyles.container}>
+    <Box className={globalStyles.container} sx={{ ...styles.overideContainer }}>
       <Stack spacing={3}>
         <HeadingTitle
           variant={constants.H1}

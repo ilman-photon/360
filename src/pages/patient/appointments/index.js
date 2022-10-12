@@ -21,30 +21,20 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { colors } from "../../../styles/theme";
 import ModalCancelScheduling from "../../../components/organisms/ScheduleAppointment/ModalCancelScheduling/modalCancelScheduling";
 import Cookies from "universal-cookie";
-
-export async function getServerSideProps({ req }) {
-  const cookies = new Cookies(req.headers.cookie);
-
-  if (!cookies.get("authorized")) {
-    return {
-      redirect: {
-        destination: "/patient/login",
-        permanent: false,
-      },
-    };
-  }
-  return {
-    props: {},
-  };
-}
-
+import moment from "moment";
+import { addToCalendar } from "../../../utils/addToCalendar";
+import { appointmentParser } from "../../../utils/appointmentsModel";
 export default function Appointments() {
   const [modalErrorRequest, setModalErrorRequest] = useState(false);
   const [modalSuccessCancel, setModalSuccessCancel] = useState(false);
   const [modalCancel, setModalCancel] = useState(false);
-  const [isRequested, setIsRequested] = useState(false);
+  const [isRequestedUpcoming, setIsRequestedUpcoming] = useState(false);
+  const [isRequestedPast, setIsRequestedPast] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [upcomingAppointment, setUpcomingAppointment] = useState([]);
+  const [pastAppointment, setPastAppointment] = useState([]);
 
-  const appointments = useSelector((state) => state.user.userAppointmentData);
+  //const appointments = useSelector((state) => state.user.userAppointmentData);
   const userData = useSelector((state) => state.user.userData);
 
   const router = useRouter();
@@ -53,49 +43,94 @@ export default function Appointments() {
 
   const getAppointments = () => {
     const api = new Api();
-    !appointments.length > 0 &&
-      api
-        .getAllAppointment()
-        .then((response) => {
-          setIsRequested(true);
-          dispatch(setUserAppointmentData(response.appointmentList));
-        })
-        .catch(function () {
-          setIsRequested(true);
-          setModalErrorRequest(true);
-          //Handle error getAppointments
-        });
+    api
+      .getUpcomingAppointment()
+      .then((response) => {
+        if (response.count !== 0) {
+          const upcomingAppointment = [];
+          response.entities.map((data) => {
+            const mappedData = appointmentParser(data);
+            upcomingAppointment.push(mappedData);
+          });
+          setUpcomingAppointment(upcomingAppointment);
+        }
+        setIsRequestedUpcoming(true);
+      })
+      .catch(function () {
+        setIsRequestedUpcoming(true);
+        setModalErrorRequest(true);
+      });
+
+    api
+      .getPastAppointment()
+      .then((response) => {
+        if (response.count !== 0) {
+          const pastAppointment = [];
+          response.entities.map((data) => {
+            const mappedData = appointmentParser(data);
+            pastAppointment.push(mappedData);
+          });
+          setPastAppointment(pastAppointment);
+        }
+        setIsRequestedPast(true);
+      })
+      .catch(function () {
+        setIsRequestedPast(true);
+        setModalErrorRequest(true);
+      });
   };
 
   useEffect(() => {
-    if (!isRequested && appointments.length === 0) {
+    const cookies = new Cookies();
+    if (!cookies.get("authorized")) {
+      router.push("/patient/login");
+      setIsAuthenticated(true);
+    } else {
+      setIsAuthenticated(false);
+    }
+  }, [setIsAuthenticated, router]);
+
+  useEffect(() => {
+    if (!isRequestedPast && !isRequestedUpcoming) {
       getAppointments();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [appointments]);
+  }, [upcomingAppointment, pastAppointment]);
 
   const onRescheduleClicked = ({
     appointmentInfo,
     providerInfo = { address: {} },
   }) => {
-    const filterData = {
-      purposeOfVisit: appointmentInfo.appointmentType,
-      date: new Date(appointmentInfo.date),
-      insuranceCarrier: Array.isArray(appointmentInfo.insuranceCarrier)
-        ? appointmentInfo.insuranceCarrier[0]
-        : appointmentInfo.insuranceCarrier,
-      location: providerInfo.address ? providerInfo.address.city : "-",
-    };
+    if (appointmentInfo) {
+      const filterData = {
+        purposeOfVisit: appointmentInfo.appointmentType,
+        date: new Date(appointmentInfo.date),
+        insuranceCarrier: Array.isArray(appointmentInfo.insuranceCarrier)
+          ? appointmentInfo.insuranceCarrier[0]
+          : appointmentInfo.insuranceCarrier,
+        location: providerInfo.address ? providerInfo.address.city : "-",
+      };
 
-    const appointmentSchedule = {
-      providerInfo: providerInfo,
-      patientInfo: userData,
-      appointmentInfo: appointmentInfo,
-    };
-    dispatch(setFilterData(filterData));
-    dispatch(setAppointmentSchedule(appointmentSchedule));
+      const parseDate = new moment(new Date(appointmentInfo.date)).format(
+        "YYYY-MM-DD[T]hh:mm:ss"
+      );
+      const appointmentSchedule = {
+        providerInfo: providerInfo,
+        patientInfo: userData,
+        appointmentInfo: {
+          ...appointmentInfo,
+          date: parseDate,
+        },
+      };
+      dispatch(setFilterData(filterData));
+      dispatch(setAppointmentSchedule(appointmentSchedule));
 
-    router.push("/patient/appointments/1/reschedule");
+      router.push(
+        `/patient/appointments/${providerInfo.providerId}/reschedule`
+      );
+    } else {
+      router.push("/patient");
+    }
   };
 
   const handleClose = () => {
@@ -109,26 +144,33 @@ export default function Appointments() {
 
   return (
     <>
-      <Box ariaLabel={"Appointments page"} className={styles.container}>
-        <AccountTitleHeading
-          title={"Appointments"}
-          sx={
-            isMobile && {
-              padding: "27px 10px",
+      {!isAuthenticated && (
+        <Box ariaLabel={"Appointments page"} className={styles.container}>
+          <AccountTitleHeading
+            title={"Appointments"}
+            isFixed={false}
+            sx={
+              isMobile && {
+                padding: "27px 10px",
+              }
             }
-          }
-        />
-        {appointments && (
-          <UpcomingAppointment
-            data={appointments}
-            onRescheduleClicked={onRescheduleClicked}
-            onCancelClicked={() => {
-              setModalCancel(true);
-            }}
           />
-        )}
-        {appointments && <PastAppointment data={appointments} />}
-      </Box>
+          {isRequestedUpcoming && (
+            <UpcomingAppointment
+              data={upcomingAppointment}
+              isMobile={isMobile}
+              onRescheduleClicked={onRescheduleClicked}
+              onCancelClicked={() => {
+                setModalCancel(true);
+              }}
+              onAddToCalendarClicked={addToCalendar}
+            />
+          )}
+          {isRequestedUpcoming && isRequestedPast && (
+            <PastAppointment data={pastAppointment} />
+          )}
+        </Box>
+      )}
 
       <CustomModal
         buttonText={"OK"}

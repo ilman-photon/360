@@ -26,6 +26,8 @@ import {
 import { fullDateFormat } from "../../../utils/dateFormatter";
 import { useEffect } from "react";
 import Image from "next/image";
+import { formatPhoneNumber } from "../../../utils/phoneFormatter";
+import { getLinkAria } from "../../../utils/viewUtil";
 
 export default function AppointmentCard({
   appointmentData = [],
@@ -46,7 +48,11 @@ export default function AppointmentCard({
     appointmentInfo: {},
   });
   const [appointmentCount, setAppointmentCount] = React.useState(0);
-
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      console.log("enter press here! ");
+    }
+  };
   useEffect(() => {
     setAppointment(parseAppointmentCardData(appointmentData));
     setAppointmentCount(appointmentData.length);
@@ -55,7 +61,7 @@ export default function AppointmentCard({
   function renderAddressUI() {
     const address = appointment.providerInfo?.address || {};
     return (
-      <Box>
+      <Box tabIndex={0}>
         {address.addressLine1 && (
           <Box>
             <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
@@ -94,10 +100,7 @@ export default function AppointmentCard({
         <Box
           className={styles.flexDisplay}
           pt={3}
-          onClick={() => {
-            getDirection(location);
-          }}
-          sx={{ cursor: "pointer", alignItems: "center" }}
+          sx={{ alignItems: "center" }}
         >
           <Box pr={1}>
             <DirectionsOutlinedIcon sx={{ color: colors.darkGreen }} />
@@ -106,9 +109,15 @@ export default function AppointmentCard({
             variant="bodyLinkRegular"
             sx={{
               paddingBottom: "2px",
+              cursor: "pointer",
+            }}
+            aria-label="Get Direction link"
+            tabIndex={0}
+            onClick={() => {
+              getDirection(location);
             }}
           >
-            Get Direction
+            Get Directions
           </Typography>
         </Box>
       )
@@ -135,7 +144,11 @@ export default function AppointmentCard({
       const isHideButtons = visitDate < addHours(hideHour);
       const daysAway = visitDate.getTime() - today.getTime();
       const TotalDays = Math.ceil(daysAway / (1000 * 3600 * 24));
-
+      let estimationTime = `${TotalDays} days`;
+      if (isHideButtons) {
+        const totalHours = Math.ceil(daysAway / (1000 * 3600));
+        estimationTime = `${totalHours} Hours`;
+      }
       return (
         <Box>
           <Grid container columns={5} spacing={2} p={3}>
@@ -144,7 +157,11 @@ export default function AppointmentCard({
                 <Box pr={1}>
                   <CalendarTodayRoundedIcon sx={{ color: colors.darkGreen }} />
                 </Box>
-                <Typography variant="bodyLarge" sx={{ color: colors.darkBlue }}>
+                <Typography
+                  variant="bodyLarge"
+                  sx={{ color: colors.darkBlue }}
+                  tabIndex={0}
+                >
                   {fullDateFormat(appointment.appointmentInfo.date)}
                 </Typography>
               </Box>
@@ -155,6 +172,7 @@ export default function AppointmentCard({
                 <Typography
                   variant="bodyLarge"
                   sx={{ color: colors.darkGreen }}
+                  tabIndex={0}
                 >
                   {appointment.providerInfo?.name}
                 </Typography>
@@ -163,12 +181,28 @@ export default function AppointmentCard({
                 <Typography
                   variant="bodyLarge"
                   sx={{ color: colors.darkGreen }}
+                  tabIndex={0}
                 >
                   {appointment.providerInfo?.position}
                 </Typography>
                 {renderAddressUI()}
-                <Typography variant="bodyLinkRegular">
-                  {appointment.providerInfo?.phoneNumber}
+                <Typography
+                  variant="bodyLinkRegular"
+                  tabIndex={0}
+                  onKeyPress={() =>
+                    window.open(`tel:${appointment.providerInfo?.phoneNumber}`)
+                  }
+                  aria-label={`phone number ${appointment.providerInfo?.phoneNumber}`}
+                >
+                  <a
+                    onKeyPress={() =>
+                      window.open(
+                        `tel:${appointment.providerInfo?.phoneNumber}`
+                      )
+                    }
+                  >
+                    {formatPhoneNumber(appointment.providerInfo?.phoneNumber)}{" "}
+                  </a>
                 </Typography>
                 {renderGetDirection()}
               </Box>
@@ -178,29 +212,30 @@ export default function AppointmentCard({
                 <Image
                   src={appointment.providerInfo.image}
                   style={{ borderRadius: "50%" }}
-                  alt="Doctor Image"
+                  alt={`${appointment.providerInfo?.name} image`}
                   width="90px"
                   height="90px"
+                  tabIndex={0}
                 />
               </Box>
-              <Box className={styles.flexDisplay}>
+              <Box className={styles.flexDisplay} tabIndex={0}>
                 <Box pr={1}>
                   <RemoveRedEyeOutlinedIcon sx={{ color: colors.darkGreen }} />
                 </Box>
                 <Typography variant="bodyLarge">Purpose of Visit</Typography>
               </Box>
-              <Box pl={4.5}>
+              <Box pl={4.5} tabIndex={0}>
                 <Typography variant="bodyMedium">
                   {appointment.appointmentInfo?.appointmentType}
                 </Typography>
               </Box>
-              <Box className={styles.flexDisplay} pt={3}>
+              <Box className={styles.flexDisplay} pt={3} tabIndex={0}>
                 <Box pr={1}>
                   <PortraitOutlinedIcon sx={{ color: colors.darkGreen }} />
                 </Box>
                 <Typography variant="bodyLarge">Patient Information</Typography>
               </Box>
-              <Box pl={4.5}>
+              <Box pl={4.5} tabIndex={0}>
                 <Typography variant="bodyMedium">
                   {appointment.patientInfo?.name}
                 </Typography>
@@ -228,6 +263,7 @@ export default function AppointmentCard({
                   borderRadius: "5px",
                   marginRight: "15px",
                 }}
+                tabIndex={0}
               >
                 <Stack direction="row" alignItems="center">
                   <CancelOutlinedIcon
@@ -253,6 +289,7 @@ export default function AppointmentCard({
                   height: "40px !important",
                   borderRadius: "5px",
                 }}
+                tabIndex={0}
               >
                 <Stack direction="row" alignItems="center">
                   <CalendarTodayRoundedIcon
@@ -272,10 +309,14 @@ export default function AppointmentCard({
           ) : null}
           <Box className={styles.noPrescription}>
             {/* <Typography>Your appointment is 15 days away.</Typography> */}
-            <Typography component="div" className={styles.normalText}>
+            <Typography
+              component="div"
+              className={styles.normalText}
+              tabIndex={0}
+            >
               Your appointment is{" "}
               <Box className={styles.boldText} display="inline">
-                {TotalDays} days
+                {estimationTime}
               </Box>{" "}
               away.
             </Typography>
@@ -284,7 +325,11 @@ export default function AppointmentCard({
       );
     } else {
       return (
-        <Box className={styles.noPrescription} sx={{ marginTop: "32px" }}>
+        <Box
+          className={styles.noPrescription}
+          sx={{ marginTop: "32px" }}
+          tabIndex={0}
+        >
           <Typography>{`There are no upcoming appointments`}</Typography>
         </Box>
       );
@@ -313,6 +358,9 @@ export default function AppointmentCard({
             p: 0,
             position: "relative",
           },
+          ".MuiCardContent-root .MuiBox-root .MuiGrid-container": {
+            p: { xs: "24px 15.5px", md: "24px" },
+          },
         }}
       >
         {renderAppointmentUI()}
@@ -330,6 +378,13 @@ export default function AppointmentCard({
             onClick={() => {
               onViewAppointment();
             }}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                onViewAppointment();
+              }
+            }}
+            {...getLinkAria("View appointments option")}
+            tabIndex={0}
           >
             View Appointments
           </Link>

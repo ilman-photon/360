@@ -13,6 +13,7 @@ import Appointments from "../../src/pages/patient/appointments";
 import RescheduleAppointments from "../../src/pages/patient/appointments/[appointmentId]/reschedule";
 
 import { getServerSideProps } from "../../src/pages/patient/mfa";
+import { TEST_ID } from "../../src/utils/constants";
 
 const MOCK_APPOINTMENT = {
   appointmentList: [
@@ -304,6 +305,173 @@ const MOCK_SUGESTION = {
   ],
 };
 
+const upcoming = {
+  "count": 1,
+  "entities": [
+    {
+      "appointmentType": {
+        "code": "Retina_checkup",
+        "name": "Retina checkup"
+      },
+      "patient": {
+        "firstName": "demo",
+        "lastName": "nikita",
+        "dob": "11/25/1992",
+        "age": "29",
+        "sex": "1",
+        "patientDetails": {
+          "isFlagNew": false,
+          "isFlagInCollection": false,
+          "isFlagBadCheck": false,
+          "isFlagDeceased": false,
+          "isFlagChartless": false,
+          "_id": "bc5335d3-e802-47bc-afb5-d30241b4ea66",
+          "_version": "209451a6-2b8b-4729-8c0a-2859beeef5b5",
+          "_created": "Jul 4, 2022, 4:42:40 AM",
+          "_updated": "Aug 25, 2022, 10:31:54 AM",
+          "_createdBy": {
+            "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+            "_links": {
+              "self": {
+                "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+              }
+            }
+          },
+          "_updatedBy": {
+            "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+            "_links": {
+              "self": {
+                "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+              }
+            }
+          }
+        },
+        "isEmergencyContactAvailable": false,
+        "contactPrefrence": false,
+        "status": "UPDATED",
+        "_id": "fd7beec7-1a6a-49f2-afd9-ebca6fb78568",
+        "_version": "22dc0908-8d27-46e4-b5ec-6035e7e11f33",
+        "_created": "Jul 4, 2022, 4:42:40 AM",
+        "_updated": "Aug 25, 2022, 10:31:54 AM",
+        "_createdBy": {
+          "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          "_links": {
+            "self": {
+              "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+            }
+          }
+        },
+        "_updatedBy": {
+          "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          "_links": {
+            "self": {
+              "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+            }
+          }
+        }
+      },
+      "provider": {
+        "firstName": "Todd",
+        "lastName": "Bellamy",
+        "designation": "MBBS, MD",
+        "inHouse": false,
+        "_id": "c68ced42-dfad-452a-acf0-0cee3a066157",
+        "_version": "585d1501-cfad-4123-b2c8-950a32403563",
+        "_updated": "Feb 15, 2022, 7:07:35 AM"
+      },
+      "office": {
+        "name": "Ballwin",
+        "_id": "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+        "_version": "0c381712-420e-4705-bb6d-f0226ceb5b12",
+        "_updated": "Sep 17, 2022, 10:14:52 AM",
+        "_updatedBy": {
+          "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          "_links": {
+            "self": {
+              "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+            }
+          }
+        }
+      },
+      "appointmentDate": "09/15/2022",
+      "appointmentTime": "11:10",
+      "appointmentEndTime": "11:15",
+      "appointmentLength": 5,
+      "confirmationDetail": {
+        "confirmationDate": "09/15/2022",
+        "confirmationTime": "15:32",
+        "confirmationBy": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
+      },
+      "appointmentHistory": [],
+      "state": {
+        "subState": {
+          "subState": "WAITING_FOR_TECHNICIAN",
+          "_id": "dbc73dfa-95c9-48dc-84e8-094ec1d98c6e",
+          "_version": "d7596191-7ca5-4b72-9a61-a65923b349ca",
+          "_created": "Sep 15, 2022, 10:02:54 AM",
+          "_updated": "Sep 15, 2022, 10:02:54 AM",
+          "_createdBy": {
+            "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            "_links": {
+              "self": {
+                "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
+              }
+            }
+          }
+        },
+        "state": "CHECK_IN",
+        "_id": "4fd867ef-5344-46df-9d0b-8467bc34a076",
+        "_version": "348aac2a-180b-486d-858b-16edab665b5a",
+        "_created": "Sep 15, 2022, 10:02:54 AM",
+        "_updated": "Sep 15, 2022, 10:02:54 AM",
+        "_createdBy": {
+          "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          "_links": {
+            "self": {
+              "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
+            }
+          }
+        }
+      },
+      "newPatient": false,
+      "insurancePayers": [],
+      "override": false,
+      "quickAppointmentflag": false,
+      "status": "CREATED",
+      "primaryMember": false,
+      "confirmed": false,
+      "_links": {
+        "self": {
+          "href": "/v1/appointments/ba852d09-da44-4b8d-8e83-63a27f5f540e"
+        }
+      },
+      "_id": "ba852d09-da44-4b8d-8e83-63a27f5f540e",
+      "_version": "03a4a6d7-2f14-4f6c-96b0-b8a67fa26505",
+      "_created": "Sep 15, 2022, 10:02:54 AM",
+      "_updated": "Sep 15, 2022, 10:02:54 AM",
+      "_createdBy": {
+        "_id": "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        "_links": {
+          "self": {
+            "href": "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f"
+          }
+        }
+      },
+      "_updatedBy": null
+    }
+  ],
+  "_links": {
+    "self": {
+      "href": "/appointments?pageNo=0&pageSize=100"
+    }
+  }
+};
+
+const history = {
+  "count": 0,
+  "entities": []
+}
+
 jest.mock("universal-cookie", () => {
   class MockCookies {
     static result = {};
@@ -320,8 +488,8 @@ jest.mock("universal-cookie", () => {
 function createMatchMedia(width) {
   return (query) => ({
     matches: mediaQuery.match(query, { width }),
-    addListener: () => {},
-    removeListener: () => {},
+    addListener: () => { },
+    removeListener: () => { },
   });
 }
 
@@ -360,6 +528,15 @@ defineFeature(feature, (test) => {
     );
   };
 
+  beforeAll(() => {
+    jest.useFakeTimers('modern');
+    jest.setSystemTime(new Date(2020, 3, 1));
+  });
+
+  afterAll(() => {
+    jest.useRealTimers();
+  });
+
   test("EPIC_EPP-45_STORY_EPP-1603 - Verify user should receive an text message based on their registered phone number when user reshedule upcoming appointment list", ({
     given,
     when,
@@ -383,7 +560,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user lands on 'Appointments' screen", async () => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -403,9 +580,19 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_APPOINTMENT);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, upcoming);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`
+        )
+        .reply(200, history);
       window.matchMedia = createMatchMedia("700px");
       const response = await getServerSideProps({
         req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
@@ -416,13 +603,13 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -430,21 +617,28 @@ defineFeature(feature, (test) => {
       });
     });
 
-    and("user should see list of upcoming appointment", () => {
-      defaultValidation();
+    and("user should see list of upcoming appointment", async () => {
+      const editButton = container.getByText("View Appointments");
+      fireEvent.click(editButton);
+
+      renderUpcoming();
+
+      await waitFor(() => {
+        container.getByText(/Upcoming appointments/i);
+      });
     });
 
     and("user should see reschedule and cancel each of them", async () => {
       await waitFor(() => {
-        container.getAllByText("Cancel")[0];
-        container.getAllByText("Reschedule")[0];
+        container.getAllByText("Cancel Appointment")[0];
+        container.getAllByText("Reschedule Appointment")[0];
       });
     });
 
     and("user clicks on the reschedule an appointment", async () => {
-      const rescheduleButton = container.getByRole("button", {
-        name: "Reschedule",
-      });
+      const rescheduleButton = container.getAllByTestId(
+        TEST_ID.APPOINTMENTS_TEST_ID.cancelAppointmentButton
+      )[0];
       fireEvent.click(rescheduleButton);
 
       renderReschedule();
@@ -552,7 +746,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user lands on 'Appointments' screen", async () => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -572,9 +766,19 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_APPOINTMENT);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, upcoming);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`
+        )
+        .reply(200, history);
       window.matchMedia = createMatchMedia("700px");
       const response = await getServerSideProps({
         req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
@@ -585,13 +789,13 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -612,15 +816,15 @@ defineFeature(feature, (test) => {
 
     and("user should see reschedule and cancel each of them", async () => {
       await waitFor(() => {
-        container.getAllByText("Cancel")[0];
-        container.getAllByText("Reschedule")[0];
+        container.getAllByText("Cancel Appointment")[0];
+        container.getAllByText("Reschedule Appointment")[0];
       });
     });
 
     and("user clicks on the reschedule an appointment", async () => {
-      const rescheduleButton = container.getAllByRole("button", {
-        name: "Reschedule",
-      })[0];
+      const rescheduleButton = container.getAllByTestId(
+        TEST_ID.APPOINTMENTS_TEST_ID.cancelAppointmentButton
+      )[0];
       fireEvent.click(rescheduleButton);
 
       renderReschedule();
@@ -731,7 +935,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user lands on 'Appointments' screen", async () => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -751,9 +955,19 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_APPOINTMENT);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, upcoming);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`
+        )
+        .reply(200, history);
       window.matchMedia = createMatchMedia("700px");
       const response = await getServerSideProps({
         req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
@@ -764,13 +978,13 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -791,8 +1005,8 @@ defineFeature(feature, (test) => {
 
     and("user should see reschedule and cancel each of them", async () => {
       await waitFor(() => {
-        container.getAllByText("Cancel")[0];
-        container.getAllByText("Reschedule")[0];
+        container.getAllByText("Cancel Appointment")[0];
+        container.getAllByText("Reschedule Appointment")[0];
       });
     });
 
@@ -839,7 +1053,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user lands on 'Appointments' screen", async () => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -859,9 +1073,19 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_APPOINTMENT);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, upcoming);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`
+        )
+        .reply(200, history);
       window.matchMedia = createMatchMedia("700px");
       const response = await getServerSideProps({
         req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
@@ -872,13 +1096,13 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -899,8 +1123,8 @@ defineFeature(feature, (test) => {
 
     and("user should see reschedule and cancel each of them", async () => {
       await waitFor(() => {
-        container.getAllByText("Cancel")[0];
-        container.getAllByText("Reschedule")[0];
+        container.getAllByText("Cancel Appointment")[0];
+        container.getAllByText("Reschedule Appointment")[0];
       });
     });
 
@@ -947,7 +1171,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user lands on 'Appointments' screen", async () => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -967,9 +1191,19 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_APPOINTMENT);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, upcoming);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`
+        )
+        .reply(200, history);
       window.matchMedia = createMatchMedia("700px");
       const response = await getServerSideProps({
         req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
@@ -980,13 +1214,13 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -1007,8 +1241,8 @@ defineFeature(feature, (test) => {
 
     and("user should see reschedule and cancel each of them", async () => {
       await waitFor(() => {
-        container.getAllByText("Cancel")[0];
-        container.getAllByText("Reschedule")[0];
+        container.getAllByText("Cancel Appointment")[0];
+        container.getAllByText("Reschedule Appointment")[0];
       });
     });
 
@@ -1047,7 +1281,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user lands on 'Appointments' screen", async () => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -1067,9 +1301,19 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_APPOINTMENT);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, upcoming);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`
+        )
+        .reply(200, history);
       window.matchMedia = createMatchMedia("700px");
       const response = await getServerSideProps({
         req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
@@ -1080,13 +1324,13 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -1107,8 +1351,8 @@ defineFeature(feature, (test) => {
 
     and("user should see reschedule and cancel each of them", async () => {
       await waitFor(() => {
-        container.getAllByText("Cancel")[0];
-        container.getAllByText("Reschedule")[0];
+        container.getAllByText("Cancel Appointment")[0];
+        container.getAllByText("Reschedule Appointment")[0];
       });
     });
 
@@ -1147,7 +1391,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user lands on 'Appointments' screen", async () => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -1167,9 +1411,19 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_APPOINTMENT);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, upcoming);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`
+        )
+        .reply(200, history);
       window.matchMedia = createMatchMedia("700px");
       const response = await getServerSideProps({
         req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
@@ -1180,13 +1434,13 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -1207,15 +1461,15 @@ defineFeature(feature, (test) => {
 
     and("user should see reschedule and cancel each of them", async () => {
       await waitFor(() => {
-        container.getAllByText("Cancel")[0];
-        container.getAllByText("Reschedule")[0];
+        container.getAllByText("Cancel Appointment")[0];
+        container.getAllByText("Reschedule Appointment")[0];
       });
     });
 
     and("user clicks on the reschedule the appointment", async () => {
-      const rescheduleButton = container.getAllByRole("button", {
-        name: "Reschedule",
-      })[0];
+      const rescheduleButton = container.getAllByTestId(
+        TEST_ID.APPOINTMENTS_TEST_ID.cancelAppointmentButton
+      )[0];
       fireEvent.click(rescheduleButton);
 
       renderReschedule();
@@ -1262,7 +1516,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user lands on 'Appointments' screen", async () => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -1282,9 +1536,19 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_APPOINTMENT);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/upcoming`
+        )
+        .reply(200, upcoming);
+      mock
+        .onGet(
+          `/ecp/appointments/98f9404b-6ea8-4732-b14f-9c1a168d8066/history`
+        )
+        .reply(200, history);
       window.matchMedia = createMatchMedia("700px");
       const response = await getServerSideProps({
         req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
@@ -1295,13 +1559,13 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -1322,15 +1586,15 @@ defineFeature(feature, (test) => {
 
     and("user should see reschedule and cancel each of them", async () => {
       await waitFor(() => {
-        container.getAllByText("Cancel")[0];
-        container.getAllByText("Reschedule")[0];
+        container.getAllByText("Cancel Appointment")[0];
+        container.getAllByText("Reschedule Appointment")[0];
       });
     });
 
     and("user clicks on the reschedule the appointment", async () => {
-      const rescheduleButton = container.getAllByRole("button", {
-        name: "Reschedule",
-      })[0];
+      const rescheduleButton = container.getAllByTestId(
+        TEST_ID.APPOINTMENTS_TEST_ID.cancelAppointmentButton
+      )[0];
       fireEvent.click(rescheduleButton);
 
       renderReschedule();

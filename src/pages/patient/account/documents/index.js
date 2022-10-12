@@ -97,7 +97,7 @@ export default function AccountDocumentsPage() {
       {
         type: "download-asset",
         valueKey: "digitalId",
-        cellProps: { padding: "none" },
+        cellProps: { padding: "16px" },
         icon: (
           <IconButton sx={{ width: 24, height: 24, p: 0 }}>
             <FileDownloadIcon />
@@ -108,7 +108,6 @@ export default function AccountDocumentsPage() {
   };
 
   const rows = useSelector((state) => {
-    console.log({ watchedCategory });
     switch (watchedCategory) {
       case "intake-forms":
         return state.document.intakeFormsData;
@@ -119,6 +118,10 @@ export default function AccountDocumentsPage() {
       default:
         return [];
     }
+  });
+
+  const status = useSelector((state) => {
+    return state.document.status;
   });
 
   const handleAssetDownload = (id) => {
@@ -154,39 +157,44 @@ export default function AccountDocumentsPage() {
 
   return (
     <>
-      <div className={styles.documentPageWrapper}>
-        <Controller
-          name="category"
-          control={control}
-          render={({ field: { onChange, value }, fieldState: { error } }) => {
-            return (
-              <StyledSelect
-                options={categories}
-                onChange={(v) =>
-                  router.push(
-                    `/patient/account/documents?type=${v.target.value}`
-                  )
-                }
-                value={value}
-                label="Choose a category"
-                sx={{ m: 0, display: isDesktop ? "none" : "" }}
-              />
-            );
-          }}
-        />
+      {status === "success" && (
+        <div className={styles.documentPageWrapper}>
+          <Controller
+            name="category"
+            control={control}
+            render={({ field: { onChange, value }, fieldState: { error } }) => {
+              return (
+                <StyledSelect
+                  options={categories}
+                  onChange={(v) =>
+                    router.push(
+                      `/patient/account/documents?type=${v.target.value}`
+                    )
+                  }
+                  value={value}
+                  label="Choose a category"
+                  sx={{ m: 0, display: isDesktop ? "none" : "" }}
+                />
+              );
+            }}
+          />
 
-        <Stack spacing={3} sx={{ mt: 1 }}>
-          {rows.length > 0 ? (
-            <TableWithSort
-              config={tableConfiguration}
-              rows={rows}
-              onAssetDownload={handleAssetDownload}
-            />
-          ) : (
-            <TableEmpty text={`There are no ${watchedCategory}.`} />
-          )}
-        </Stack>
-      </div>
+          <Stack spacing={3} sx={{ mt: 1 }}>
+            {rows.length > 0 ? (
+              <TableWithSort
+                config={tableConfiguration}
+                rows={rows}
+                onAssetDownload={handleAssetDownload}
+                additionalProps={{
+                  tableProps: { "aria-label": `${watchedCategory}` },
+                }}
+              />
+            ) : (
+              <TableEmpty text={`There are no ${watchedCategory}.`} />
+            )}
+          </Stack>
+        </div>
+      )}
     </>
   );
 }

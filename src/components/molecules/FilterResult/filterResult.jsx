@@ -51,6 +51,7 @@ export const FilterResult = ({
   filter = [],
   onActivFilter,
   appliedFilter,
+  isLoading = false,
 }) => {
   const [dateList, setDateList] = useState({
     dateRange: [],
@@ -59,6 +60,7 @@ export const FilterResult = ({
   const [currentDateIndex, setCurrentDateIndex] = useState(0);
 
   useEffect(() => {
+    console.log("Comp rangeDate: ", rangeDate);
     const dates = getDates(
       new Date(rangeDate.startDate),
       new Date(rangeDate.endDate),
@@ -108,9 +110,7 @@ export const FilterResult = ({
         </Box>
         <div
           style={{
-            overflow: "auto",
             marginTop: 8,
-            maxHeight: "calc(100vh - 151px - 64px - 141px)",
           }}
           className="hide-scrollbar"
         >
@@ -157,6 +157,10 @@ export const FilterResult = ({
             <Button
               role={"button"}
               onClick={() => {
+                if (isLoading) {
+                  return;
+                }
+
                 if (
                   !isPrevArrowDisable(
                     dateList,
@@ -225,6 +229,10 @@ export const FilterResult = ({
             <Button
               role={"button"}
               onClick={() => {
+                if (isLoading) {
+                  return;
+                }
+
                 if (currentDateIndex >= 5) {
                   const date = new Date(dateList.dateRange[5]);
                   date.setDate(date.getDate() + 7);

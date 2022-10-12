@@ -59,6 +59,14 @@ input[type="number"] {
     max-height: 300px !important;
   }
 }
+.gm-ui-hover-effect {
+  display: none !important;
+}
+.gm-style .gm-style-iw-c {
+  @media (max-width: 768px) {
+    max-width: unset !important;
+  }
+}
 
 //Hide show password button of Edge browser
 input::-ms-reveal,
@@ -122,4 +130,74 @@ input::-ms-clear {
   .clipped::after {
     display: none !important;
   }
+}
+
+#atcb-bgoverlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  overflow: hidden;
+}
+
+.atcb-list {
+  height: auto;
+  width: fit-content;
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  margin: 50vh auto auto;
+  padding: 16px;
+  border-radius: 10px;
+  gap: 10px;
+
+  @media (max-width: 992px) {
+    max-width: 310px;
+    flex-wrap: wrap;
+    margin: 40vh auto auto;
+    flex: 1;
+  }
+}
+
+.atcb-icon {
+  display: flex;
+  justify-content: center;
+  svg {
+    height: 48px;
+    width: auto;
+  }
+}
+
+.atcb-icon-close {
+  height: 48px;
+  display: flex;
+  align-items: center;
+  svg {
+    height: 32px;
+  }
+}
+
+.atcb-list-item {
+  display: flex;
+  flex-direction: column;
+  width: 85px;
+  cursor: pointer;
+}
+
+.atcb-text {
+  margin-top: 10px;
+  text-align: center;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  font-family: Libre Franklin, sans-serif;
+  color: #292929;
+}
+
+.atcb-icon .atcb-icon-yahoo svg {
+  fill: #5f01d1;
+}
+
+.atcb-icon .atcb-icon-ms365 svg {
+  fill: #ea3e23;
 }

@@ -4,6 +4,7 @@ import styles from "./accountCard.module.scss";
 export const AccountCard = ({
   title,
   titleIcon,
+  ariaLabel,
   children,
   isEditing,
   actionContent,
@@ -18,7 +19,13 @@ export const AccountCard = ({
       <Card
         variant="outlined"
         className={[styles.card, props.className].join(" ")}
-        sx={props.sx}
+        sx={{
+          ...props.sx,
+          border: isDesktop ? 0 : "1px solidrgba(0, 0, 0, 0.12)",
+          boxShadow: isDesktop
+            ? "0px 1.65922px 3.31845px rgb(0 51 89 / 10%)"
+            : "none",
+        }}
       >
         {(isDesktop || isAppoinment) && (
           <CardHeader
@@ -33,7 +40,10 @@ export const AccountCard = ({
               },
             }}
             title={
-              <div>
+              <div
+                tabIndex={0}
+                aria-label={ariaLabel ? `${ariaLabel}` : `${title} heading`}
+              >
                 <span
                   style={{
                     marginRight: 8,
@@ -46,8 +56,7 @@ export const AccountCard = ({
                 <div
                   className={styles.title}
                   style={textStyle}
-                  aria-label={`${title} heading`}
-                  tabIndex={0}
+                  aria-hidden={true}
                 >
                   {title}
                 </div>

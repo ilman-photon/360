@@ -22,6 +22,7 @@ export const LocationDistance = ({
         gridTemplateColumns: isDesktop ? "repeat(2, 1fr)" : "none",
         width: isDesktop ? "auto" : "80px",
         marginLeft: isDesktop ? "0px" : "15px",
+        marginTop: isDesktop ? "10px" : "0px",
         justifyContent: "center",
         alignContent: "center",
         gridTemplateRows: "auto",
@@ -47,7 +48,7 @@ export const LocationDistance = ({
           variant="body2"
           color="text.primary"
           className={styles.distanceLabel}
-          tabindex={"0"}
+          tabIndex={"0"}
           aria-label={`provider distance is ${distance}`}
         >
           {distance}

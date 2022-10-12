@@ -84,6 +84,7 @@ export default function ScheduleAppointmentConfirmationPage() {
               patientData={appointmentScheduleData.patientInfo}
               providerData={appointmentScheduleData.providerInfo}
               appointmentData={appointmentScheduleData.appointmentInfo}
+              isPage
             />
           </Grid>
         </div>

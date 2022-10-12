@@ -6,11 +6,10 @@ import { Api } from "../../../api/api";
 import RESPONSE_MESSAGES from "../../../../utils/responseCodes";
 import { Box } from "@mui/material";
 import globalStyles from "../../../../styles/Global.module.scss";
-import Cookies from "universal-cookie";
 import { mmddyyDateFormat } from "../../../../utils/dateFormatter";
+import { loginProps } from "../../login";
 export default function CreateAccountPage() {
   const dispatch = useDispatch();
-  const cookies = new Cookies();
   const api = new Api();
 
   const formMessage = useSelector((state) => state.index.formMessage);
@@ -23,14 +22,22 @@ export default function CreateAccountPage() {
         { ...postbody, dob: mmddyyDateFormat(postbody.dob) },
         "post"
       );
-      cookies.set("authorized", true, { path: "/patient" });
 
-      const hostname = window.location.origin;
-      window.location.href = `${hostname}/patient`;
+      // after register handler
+      loginProps.OnLoginClicked(
+        {
+          username: postbody.email,
+          password: postbody.password,
+        },
+        null,
+        () => {
+          //this is intentional
+        }
+      );
     } catch (err) {
       console.error({ err });
       if (err.ResponseCode) {
-        const errorMessage = RESPONSE_MESSAGES[err.ResponseCode || 3500];
+        const errorMessage = RESPONSE_MESSAGES[err.ResponseCode || 3002];
 
         dispatch(
           setFormMessage({
@@ -45,7 +52,7 @@ export default function CreateAccountPage() {
   };
 
   return (
-    <Box className={globalStyles.contanierPage}>
+    <Box className={globalStyles.containerStyledPage}>
       <Register
         formMessage={formMessage}
         OnRegisterClicked={OnRegisterClicked}
@@ -61,6 +68,7 @@ CreateAccountPage.getLayout = function getLayout(page) {
       showMobileImage={false}
       imageSrc={backgroundImage}
       title={"User Registration"}
+      customImageBg={true}
     >
       {page}
     </AuthLayout>

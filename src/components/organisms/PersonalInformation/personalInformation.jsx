@@ -23,7 +23,7 @@ import { StyledSelect } from "../../atoms/Select/select";
 import { formatSocialSecurity } from "../../../utils/ssnFormatter";
 import { GENDER_LIST, TITLE_LIST } from "../../../utils/constantData";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import Image from "next/image";
+import ImageFallback from "../../atoms/Image/image";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 
 export default function PersonalInformation({
@@ -100,6 +100,9 @@ export default function PersonalInformation({
       titleIcon={<AccountCircleOutlinedIcon />}
       title="Personal Information"
       isEditing={isEditing}
+      textStyle={{
+        fontWeight: "700",
+      }}
       // OnEditClicked={OnEditClicked}
       actionContent={
         isDesktop ? (
@@ -140,14 +143,14 @@ export default function PersonalInformation({
             alignItems={isDesktop ? "unset" : "center"}
           >
             {userData.profilePhoto ? (
-              <Image
-                src={userData.profilePhoto.source}
+              <ImageFallback
+                source={userData.profilePhoto}
                 width={122}
                 height={122}
                 style={{ borderRadius: "50%" }}
                 alt="image"
                 aria-label="Image"
-              ></Image>
+              />
             ) : (
               <Avatar
                 {...stringAvatar(userData.name)}
@@ -161,7 +164,7 @@ export default function PersonalInformation({
             tooltipContent={tooltipContentDefault}
           >
             <div tabIndex={0} aria-label={userData.name}>
-              {userData.name}
+              {userData.name || "-"}
             </div>
           </LabelWithInfo>
 
@@ -173,7 +176,7 @@ export default function PersonalInformation({
 
           <LabelWithInfo label="Title" ariaLabel={"Title"}>
             <div tabIndex={0} aria-label={userData.preferredName}>
-              {userData.title}
+              {userData.title || "-"}
             </div>
           </LabelWithInfo>
 
@@ -184,9 +187,11 @@ export default function PersonalInformation({
           >
             <div
               tabIndex={0}
-              aria-label={new Date(userData.dob).toLocaleDateString()}
+              aria-label={
+                userData.dob ? new Date(userData.dob).toLocaleDateString() : ""
+              }
             >
-              {new Date(userData.dob).toLocaleDateString()}
+              {userData.dob ? new Date(userData.dob).toLocaleDateString() : "-"}
             </div>
           </LabelWithInfo>
 
@@ -196,13 +201,13 @@ export default function PersonalInformation({
             tooltipContent={tooltipContentDefault}
           >
             <div tabIndex={0} aria-label={userData.age}>
-              {userData.age}
+              {userData.age || "-"}
             </div>
           </LabelWithInfo>
 
           <LabelWithInfo label="Gender" ariaLabel={"Gender"}>
             <div tabIndex={0} aria-label={userData.gender}>
-              {userData.gender}
+              {userData.gender || "-"}
             </div>
           </LabelWithInfo>
 
@@ -220,7 +225,10 @@ export default function PersonalInformation({
           </LabelWithInfo>
 
           <div>
-            <Typography variant="h3" sx={{ pb: 2, color: colors.black }}>
+            <Typography
+              variant="h3"
+              sx={{ pb: 2, color: colors.black, fontSize: "26px" }}
+            >
               State Issued ID
             </Typography>
             <Typography
@@ -234,7 +242,7 @@ export default function PersonalInformation({
               License or State-issued ID.
             </Typography>
 
-            <Stack spacing={6}>
+            <Stack spacing={6} sx={{ maxWidth: { sm: "415px" } }}>
               <LabelWithInfo
                 label="Front Card"
                 tabIndex={0}
@@ -242,10 +250,10 @@ export default function PersonalInformation({
                 helperText="JPG or PNG file formats only. (File size limit is 4 MB)"
               >
                 <div className={styles.issuedCardContainer}>
-                  <Image
+                  <ImageFallback
                     width={267}
                     height={175}
-                    src={userData.issuedCardFront || "/transparent.png"}
+                    source={userData.issuedCardFront}
                     tabIndex={0}
                     alt="Front image"
                     aria-label="Front image"
@@ -259,11 +267,11 @@ export default function PersonalInformation({
                 helperText="JPG or PNG file formats only. (File size limit is 4 MB)"
               >
                 <div className={styles.issuedCardContainer}>
-                  <Image
+                  <ImageFallback
                     tabIndex={0}
                     width={267}
                     height={175}
-                    src={userData.issuedCardBack || "/transparent.png"}
+                    source={userData.issuedCardBack}
                     alt="Back image"
                     aria-label="Back Image"
                   />
@@ -291,14 +299,14 @@ export default function PersonalInformation({
               name="profilePhoto"
               control={control}
               render={({
-                field: { onChange, _value },
+                field: { onChange, value },
                 fieldState: { _error },
               }) => {
                 return (
                   <>
                     <ProfilePhotoUploader
                       username={userData.name}
-                      source={userData.profilePhoto}
+                      source={value}
                       OnPhotoChange={onChange}
                       OnInputError={onFormProfilePhotoError}
                     />
@@ -349,7 +357,7 @@ export default function PersonalInformation({
                     id="preferredName"
                     label="Preferred Name"
                     inputProps={{
-                      "aria-label": "Prefered Name field",
+                      "aria-label": "Preferred Name field",
                     }}
                     value={value}
                     onChange={onChange}
@@ -496,7 +504,10 @@ export default function PersonalInformation({
               }}
             />
 
-            <Typography variant="h3" sx={{ mb: 2, color: colors.black }}>
+            <Typography
+              variant="h3"
+              sx={{ mb: 2, color: colors.black, fontSize: "26px" }}
+            >
               State Issued ID
             </Typography>
             <Typography variant="regularBold" sx={{ mb: 3 }}>
@@ -508,7 +519,11 @@ export default function PersonalInformation({
               <Stack spacing={2}>
                 <Typography
                   variant="regularBold"
-                  sx={{ color: colors.black, fontWeight: 600 }}
+                  sx={{
+                    color: colors.black,
+                    fontSize: "18px",
+                    fontWeight: 700,
+                  }}
                 >
                   Front Card
                 </Typography>
@@ -541,12 +556,8 @@ export default function PersonalInformation({
                           }
                           OnUpload={onChange}
                           OnInputError={onFormIssuedFrontError}
-                          source={userData.issuedCardFront}
-                          preview={value}
+                          source={value}
                           label="Upload Front"
-                          width="100%"
-                          src="/login-bg.png"
-                          alt=""
                         />
                       </>
                     );
@@ -556,7 +567,11 @@ export default function PersonalInformation({
               <Stack spacing={2}>
                 <Typography
                   variant="regularBold"
-                  sx={{ color: colors.black, fontWeight: 600 }}
+                  sx={{
+                    color: colors.black,
+                    fontSize: "18px",
+                    fontWeight: 700,
+                  }}
                 >
                   Back Card
                 </Typography>
@@ -589,11 +604,8 @@ export default function PersonalInformation({
                           }
                           OnUpload={onChange}
                           OnInputError={onFormIssuedBackError}
-                          source={userData.issuedCardBack}
-                          preview={value}
+                          source={value}
                           label="Upload Back"
-                          width="100%"
-                          alt=""
                         />
                       </>
                     );

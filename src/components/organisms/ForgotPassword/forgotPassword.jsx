@@ -16,7 +16,7 @@ import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
 import Head from "next/head";
 import { colors } from "../../../styles/theme";
-
+import { useMediaQuery } from "@mui/material";
 const ForgotPassword = ({
   onBackToLoginClicked,
   showPostMessage,
@@ -26,8 +26,12 @@ const ForgotPassword = ({
   title = "",
   isAppointment = true,
 }) => {
+  const isMobile = useMediaQuery("(max-width: 833px)");
   const router = useRouter();
-  const { t } = useTranslation("translation", { keyPrefix: "ForgotPassword" });
+  const { t, ready } = useTranslation("translation", {
+    keyPrefix: "ForgotPassword",
+    useSuspense: false,
+  });
   const { handleSubmit, control, setError } = useForm();
   const { FORGOT_TEST_ID } = constants.TEST_ID;
   const onSubmit = ({ username }) => {
@@ -60,94 +64,121 @@ const ForgotPassword = ({
       });
     }
   };
-
+  const errorMessage = isAppointment ? "syncError" : "errorUsernameNotFound";
   return (
     <>
       <Head>
         <title>{`EyeCare Patient Portal - ${title}`}</title>
       </Head>
-      <Card
-        className={globalStyles.container}
-        sx={{ minWidth: 275, padding: "16px" }}
-      >
-        <CardContent style={styles.cardContentStyle}>
-          <HeadingTitle
-            variant={constants.H2}
-            title={isAppointment ? t("syncTitle") : t("title")}
-            sx={{ fontSize: "32px" }}
-          />
-          {showPostMessage ? (
-            <FormMessage
-              success={false}
-              sx={styles.postMessage}
-              title={isAppointment && t("syncErrorTitle")}
-            >
-              {isAppointment ? t("syncError") : t("errorUsernameNotFound")}
-            </FormMessage>
-          ) : (
-            <></>
-          )}
-          <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
-            <Controller
-              name="username"
-              control={control}
-              defaultValue=""
-              render={({
-                field: { onChange, value },
-                fieldState: { error },
-              }) => {
-                return (
-                  <StyledInput
-                    label={t("usernamePlaceHolder")}
-                    id="username"
-                    maxLength={254}
-                    variant="filled"
-                    value={value}
-                    data-testid={FORGOT_TEST_ID.email}
-                    onChange={(event) => {
-                      onChange(event);
-                      if (showPostMessage) {
-                        setShowPostMessage(false);
-                      }
-                    }}
-                    error={!!error}
-                    helperText={error ? error.message : null}
-                  />
-                );
+      {ready && (
+        <Card
+          className={globalStyles.container}
+          sx={{ minWidth: 275, padding: "16px" }}
+        >
+          <CardContent style={styles.cardContentStyle}>
+            <HeadingTitle
+              variant={isMobile ? constants.h1 : constants.H2}
+              title={isAppointment ? t("syncTitle") : t("title")}
+              sx={{
+                fontSize: "32px",
+                pb: 1,
+                color: "#003B4A",
+                /* or 138% */
               }}
             />
-
-            <StyledButton
-              type="submit"
-              theme="patient"
-              mode="primary"
-              size="small"
-              gradient={false}
-              style={styles.margin}
-              data-testid={FORGOT_TEST_ID.continueBtn}
-            >
-              {isAppointment ? t("syncButton") : t("resetPasswordText")}
-            </StyledButton>
-          </form>
-          <Typography
-            variant="bodyMedium"
-            style={{ ...styles.margin, ...styles.link }}
-          >
-            <Link
-              color={colors.link}
-              data-testid={FORGOT_TEST_ID.loginLink}
-              onClick={function () {
-                onBackToLoginClicked(router);
+            <Typography
+              variant="bodyMedium"
+              sx={{
+                pb: 2,
+                color: "#191919",
               }}
-              {...getLinkAria(
-                isAppointment ? t("backSignIn") : t("backButtonLink")
-              )}
             >
-              {isAppointment ? t("backSignIn") : t("backButtonLink")}
-            </Link>
-          </Typography>
-        </CardContent>
-      </Card>
+              {t("syncContent")}
+            </Typography>
+            {showPostMessage ? (
+              <FormMessage
+                success={false}
+                sx={styles.postMessage}
+                title={isAppointment && t("syncErrorTitle")}
+              >
+                {t(errorMessage)}
+              </FormMessage>
+            ) : (
+              <></>
+            )}
+            <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
+              <Controller
+                name="username"
+                control={control}
+                defaultValue=""
+                render={({
+                  field: { onChange, value },
+                  fieldState: { error },
+                }) => {
+                  return (
+                    <StyledInput
+                      label={t("usernamePlaceHolder")}
+                      id="username"
+                      maxLength={254}
+                      variant="filled"
+                      value={value}
+                      data-testid={FORGOT_TEST_ID.email}
+                      onChange={(event) => {
+                        onChange(event);
+                        if (showPostMessage) {
+                          setShowPostMessage(false);
+                        }
+                      }}
+                      sx={{
+                        ".MuiFilledInput-input": {
+                          fontFamily: "Libre Franklin",
+                          color: "#6C6C6C !important",
+                          fontSize: "16px",
+                          lineHeight: "12px",
+                        },
+                        ".MuiInputLabel-root": {
+                          fontSize: "12px",
+                        },
+                      }}
+                      error={!!error}
+                      helperText={error ? error.message : null}
+                    />
+                  );
+                }}
+              />
+
+              <StyledButton
+                type="submit"
+                theme="patient"
+                mode="primary"
+                size="small"
+                gradient={false}
+                style={styles.margin}
+                data-testid={FORGOT_TEST_ID.continueBtn}
+              >
+                {isAppointment ? t("syncButton") : t("resetPasswordText")}
+              </StyledButton>
+            </form>
+            <Typography
+              variant="bodyMedium"
+              style={{ ...styles.margin, ...styles.link }}
+            >
+              <Link
+                color={colors.link}
+                data-testid={FORGOT_TEST_ID.loginLink}
+                onClick={function () {
+                  onBackToLoginClicked(router);
+                }}
+                {...getLinkAria(
+                  isAppointment ? t("backSignIn") : t("backButtonLink")
+                )}
+              >
+                {isAppointment ? t("backSignIn") : t("backButtonLink")}
+              </Link>
+            </Typography>
+          </CardContent>
+        </Card>
+      )}
     </>
   );
 };

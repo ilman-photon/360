@@ -9,7 +9,7 @@ Object {
         class="MuiBox-root css-1qm1lh"
       >
         <div
-          class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1v5z4dq-MuiPaper-root-MuiCard-root"
+          class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1yepo06-MuiPaper-root-MuiCard-root"
         >
           <div
             class="MuiCardHeader-root cardHeader css-1ele1k2-MuiCardHeader-root"
@@ -20,7 +20,10 @@ Object {
               <span
                 class="MuiTypography-root MuiTypography-h5 MuiCardHeader-title css-1qvr50w-MuiTypography-root"
               >
-                <div>
+                <div
+                  aria-label="location heading"
+                  tabindex="0"
+                >
                   <span
                     style="margin-right: 8px; display: flex; align-items: center;"
                   >
@@ -28,19 +31,23 @@ Object {
                       aria-hidden="false"
                       aria-label="calendar icon"
                       class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-                      data-testid="LocationOnIcon"
+                      data-testid="LocationOnOutlinedIcon"
                       focusable="false"
                       viewBox="0 0 24 24"
                     >
                       <path
-                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                        d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 2.88-2.88 7.19-5 9.88C9.92 16.21 7 11.85 7 9z"
+                      />
+                      <circle
+                        cx="12"
+                        cy="9"
+                        r="2.5"
                       />
                     </svg>
                   </span>
                   <div
-                    aria-label="location heading"
+                    aria-hidden="true"
                     class="title"
-                    tabindex="0"
                   >
                     location
                   </div>
@@ -69,7 +76,7 @@ Object {
                   />
                 </svg>
                 <div
-                  style="margin-left: 4px; color: rgb(0, 130, 148); text-decoration-line: underline; text-transform: capitalize; font-size: 18px;"
+                  style="margin-left: 4px; color: rgb(0, 130, 148); text-decoration-line: underline; text-transform: capitalize; font-size: 15px;"
                   type="link"
                 >
                   Edit
@@ -116,25 +123,24 @@ Object {
               >
                 <h4
                   class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
-                  style="color: rgb(0, 59, 74); font-size: 18px; font-weight: 700;"
+                  style="color: rgb(0, 59, 74); font-size: 18px; margin-top: 2px; font-weight: 700;"
                   tabindex="0"
                 />
                 <span
                   aria-label="Myself"
                   class="MuiTypography-root MuiTypography-regularBold css-37jdci-MuiTypography-root"
                   data-testid="schedule_appointment_location_address"
-                  style="color: rgb(0, 59, 74); font-size: 16px;"
-                >
-                  <br />
-                </span>
+                  style="color: rgb(0, 59, 74); font-size: 16px; margin-top: 2px;"
+                />
                 <h4
                   aria-label="provider phone number undefined"
                   class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
-                  style="color: rgb(0, 59, 74); font-size: 16px;"
+                  style="color: rgb(0, 59, 74); font-size: 16px; margin-top: 2px;"
                   tabindex="0"
                 >
                   <a
                     class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
+                    href="tel:undefined"
                     style="color: rgb(0, 130, 148);"
                   />
                 </h4>
@@ -150,7 +156,7 @@ Object {
       class="MuiBox-root css-1qm1lh"
     >
       <div
-        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1v5z4dq-MuiPaper-root-MuiCard-root"
+        class="MuiPaper-root MuiPaper-outlined MuiPaper-rounded MuiCard-root card  css-1yepo06-MuiPaper-root-MuiCard-root"
       >
         <div
           class="MuiCardHeader-root cardHeader css-1ele1k2-MuiCardHeader-root"
@@ -161,7 +167,10 @@ Object {
             <span
               class="MuiTypography-root MuiTypography-h5 MuiCardHeader-title css-1qvr50w-MuiTypography-root"
             >
-              <div>
+              <div
+                aria-label="location heading"
+                tabindex="0"
+              >
                 <span
                   style="margin-right: 8px; display: flex; align-items: center;"
                 >
@@ -169,19 +178,23 @@ Object {
                     aria-hidden="false"
                     aria-label="calendar icon"
                     class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-i4bv87-MuiSvgIcon-root"
-                    data-testid="LocationOnIcon"
+                    data-testid="LocationOnOutlinedIcon"
                     focusable="false"
                     viewBox="0 0 24 24"
                   >
                     <path
-                      d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                      d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zM7 9c0-2.76 2.24-5 5-5s5 2.24 5 5c0 2.88-2.88 7.19-5 9.88C9.92 16.21 7 11.85 7 9z"
+                    />
+                    <circle
+                      cx="12"
+                      cy="9"
+                      r="2.5"
                     />
                   </svg>
                 </span>
                 <div
-                  aria-label="location heading"
+                  aria-hidden="true"
                   class="title"
-                  tabindex="0"
                 >
                   location
                 </div>
@@ -210,7 +223,7 @@ Object {
                 />
               </svg>
               <div
-                style="margin-left: 4px; color: rgb(0, 130, 148); text-decoration-line: underline; text-transform: capitalize; font-size: 18px;"
+                style="margin-left: 4px; color: rgb(0, 130, 148); text-decoration-line: underline; text-transform: capitalize; font-size: 15px;"
                 type="link"
               >
                 Edit
@@ -257,25 +270,24 @@ Object {
             >
               <h4
                 class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
-                style="color: rgb(0, 59, 74); font-size: 18px; font-weight: 700;"
+                style="color: rgb(0, 59, 74); font-size: 18px; margin-top: 2px; font-weight: 700;"
                 tabindex="0"
               />
               <span
                 aria-label="Myself"
                 class="MuiTypography-root MuiTypography-regularBold css-37jdci-MuiTypography-root"
                 data-testid="schedule_appointment_location_address"
-                style="color: rgb(0, 59, 74); font-size: 16px;"
-              >
-                <br />
-              </span>
+                style="color: rgb(0, 59, 74); font-size: 16px; margin-top: 2px;"
+              />
               <h4
                 aria-label="provider phone number undefined"
                 class="MuiTypography-root MuiTypography-h4 css-5lbw0b-MuiTypography-root"
-                style="color: rgb(0, 59, 74); font-size: 16px;"
+                style="color: rgb(0, 59, 74); font-size: 16px; margin-top: 2px;"
                 tabindex="0"
               >
                 <a
                   class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
+                  href="tel:undefined"
                   style="color: rgb(0, 130, 148);"
                 />
               </h4>

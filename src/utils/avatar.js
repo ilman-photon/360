@@ -3,10 +3,12 @@ export function stringToColor() {
 }
 
 export function stringAvatar(name = "EyeCare User") {
+  const firstCharName = name.split(" ")[0] ? name.split(" ")[0][0] : "";
+  const lastCharName = name.split(" ")[1] ? name.split(" ")[1][0] : "";
   return {
     sx: {
       bgcolor: stringToColor(),
     },
-    children: `${name.split(" ")[0][0]}${name.split(" ")[1][0]}`,
+    children: `${firstCharName}${lastCharName}`,
   };
 }

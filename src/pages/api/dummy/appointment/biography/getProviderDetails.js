@@ -10,13 +10,22 @@ export default function getProviderDetails(req, res) {
       about:
         "Dr. Esfandiari’s current areas of emphasis include primary eye care, specialty contact lenses, refractive surgery consultation, surgical co-management. Dr. Esfandiari’s knowledge and experience in ophthalmic optics has continually helped patients obtain optimal and healthy vision.show more",
       gender: "Male",
-      address: {
-        addressLine1: "51 West 51st Street",
-        addressLine2: "Floor 3, Suite 320 Midtown",
-        city: "Florida",
-        state: "FR",
-        zipcode: "54231",
-      },
+      address: [
+        {
+          addressLine1: "51 West 51st Street",
+          addressLine2: "Floor 3, Suite 320 Midtown",
+          city: "Florida",
+          state: "FR",
+          zipcode: "54231",
+        },
+        {
+          addressLine1: "5755 Burke Centre Parkway",
+          addressLine2: "Burke, VA 22015-2264 Midtown",
+          city: "New York",
+          state: "NY",
+          zipcode: "10019",
+        },
+      ],
       distance: "10 mi",
       language: ["English", "Spanish"],
       networkInsurance: [

@@ -13,9 +13,6 @@ describe("Register", () => {
       </Provider>
     );
   });
-  test("renders Register", () => {
-    expect(container).toMatchSnapshot();
-  });
 
   test("check valid email", () => {
     setTimeout(() => {

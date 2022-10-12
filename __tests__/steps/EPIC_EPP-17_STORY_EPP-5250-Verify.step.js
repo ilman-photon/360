@@ -333,23 +333,31 @@ defineFeature(feature, (test) => {
     expect(true).toBeTruthy();
   };
 
-  test('EPIC_EPP-17_STORY_EPP-5250- To verify whether the patient is able navigate to Prescription screen.', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {
+  test("EPIC_EPP-17_STORY_EPP-5250- To verify whether the patient is able navigate to Prescription screen.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {
         defaultValidation();
-    });
+      }
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
-        defaultValidation();
+      defaultValidation();
     });
 
-    and('clicks  on login button.', () => {
-        defaultValidation();
+    and("clicks  on login button.", () => {
+      defaultValidation();
     });
 
-    and('the dashboard should be displayed.', async () => {
-    const mock = new MockAdapter(axios);
-    const domain = window.location.origin;
-        mock
+    and("the dashboard should be displayed.", async () => {
+      const mock = new MockAdapter(axios);
+      const domain = window.location.origin;
+      mock
         .onGet(
           `${domain}/api/dummy/appointment/create-appointment/getSugestion`
         )
@@ -361,10 +369,10 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_APPOINTMENT);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
-        window.matchMedia = createMatchMedia("1400px");
+      window.matchMedia = createMatchMedia("1400px");
       const response = await getServerSideProps({
         req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
         res: jest.fn(),
@@ -374,29 +382,30 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
       await waitFor(() => container.getByText(/View Prescription/i));
-
     });
 
-    and('click the View Prescription from the Prescription widget.', () => {
-        const button = container.getByText(/View prescription/i)
-        expect(button).toBeInTheDocument()
-        fireEvent.click(button)
+    and("click the View Prescription from the Prescription widget.", () => {
+      const button = container.getByText(/View prescription/i);
+      expect(button).toBeInTheDocument();
+      fireEvent.click(button);
     });
 
-    then('patient should see the Prescription page.', async() => {
-        act(() => {
-            container = render(
-              <Provider store={store}>{PrescriptionPage.getLayout(<PrescriptionPage />)}</Provider>
-            );
-          });
-        await waitFor(() => container.getAllByText(/Prescriptions/i)[0]);
+    then("patient should see the Prescription page.", async () => {
+      act(() => {
+        container = render(
+          <Provider store={store}>
+            {PrescriptionPage.getLayout(<PrescriptionPage />)}
+          </Provider>
+        );
+      });
+      await waitFor(() => container.getAllByText(/Prescriptions/i)[0]);
     });
-    });
+  });
 });

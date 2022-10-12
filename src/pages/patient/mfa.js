@@ -46,18 +46,26 @@ export default function MfaPage({ isStepTwo }) {
   const [otpValidation, setOTPValidation] = React.useState("");
   const [securityQuestionList, setSecurityQuestionList] = React.useState([]);
   const [communicationMethod, setCommunicationMethod] = React.useState({});
-  const { t } = useTranslation("translation", { keyPrefix: "mfaPage" });
+  const [isLoading, setIsLoading] = React.useState(true);
+  const { t, ready } = useTranslation("translation", {
+    keyPrefix: "mfaPage",
+    useSuspense: false,
+  });
   const { MFA_TEST_ID } = constants.TEST_ID;
+  const isStepThree =
+    cookies.get("isSecurityQuestionStep", { path: "/patient" }) == "true";
   const onBackButtonEvent = (e) => {
     e.preventDefault();
     onBackToLoginClicked();
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   React.useEffect(() => {
     if (Object.keys(communicationMethod).length == 0) {
       const userData = JSON.parse(localStorage.getItem("userData"));
-      const communicationMethods = userData.communicationMethod;
-      setCommunicationMethod(communicationMethods);
+      const newCommunicationMethod = userData.communicationMethod;
+      setCommunicationMethod(newCommunicationMethod);
+      setIsLoading(false);
     }
     window.history.pushState(null, null, window.location.pathname);
     window.addEventListener("popstate", onBackButtonEvent);
@@ -65,6 +73,15 @@ export default function MfaPage({ isStepTwo }) {
       window.removeEventListener("popstate", onBackButtonEvent);
     };
   });
+
+  React.useEffect(() => {
+    const securityQuestions = cookies.get("securityQuestions") === "true";
+
+    if (isStepThree && !securityQuestions) {
+      onShowSecurityQuestionForm();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const setTempValidation = (response) => {
     if (process.env.ENV_NAME !== "prod" && response && response.mfaCode) {
@@ -110,6 +127,8 @@ export default function MfaPage({ isStepTwo }) {
 
     cookies.set("authorized", true, { path: "/patient" });
     cookies.remove("mfa", { path: "/patient" });
+    cookies.remove("isStay", { path: "/patient" });
+    cookies.remove("isSecurityQuestionStep", { path: "/patient" });
     !rememberMe && cookies.remove("mfaAccessToken", { path: "/patient" });
   }
 
@@ -132,7 +151,7 @@ export default function MfaPage({ isStepTwo }) {
             maxAge,
           });
         }
-
+        cookies.set("isSecurityQuestionStep", true, { path: "/patient" });
         const securityQuestions = cookies.get("securityQuestions") === "true";
         if (!securityQuestions) {
           onShowSecurityQuestionForm();
@@ -235,7 +254,7 @@ export default function MfaPage({ isStepTwo }) {
         if (err.ResponseCode !== constants.ERROR_CODE.NETWORK_ERR) {
           callback({
             status: "failed",
-            message: "Failed to sumbit the security question.",
+            message: "Failed to submit the security question.",
           });
         }
       });
@@ -252,7 +271,7 @@ export default function MfaPage({ isStepTwo }) {
     return questionList;
   }
 
-  if (componentName === constants.MFA_COMPONENT_NAME || isStepTwo) {
+  if ((componentName === constants.MFA_COMPONENT_NAME || isStepTwo) && ready) {
     return (
       <>
         <MultiFactorAuthentication
@@ -280,7 +299,7 @@ export default function MfaPage({ isStepTwo }) {
         ) : null}
       </>
     );
-  } else if (componentName === constants.SQ_COMPONENT_NAME) {
+  } else if (componentName === constants.SQ_COMPONENT_NAME && ready) {
     return (
       <Box
         sx={{
@@ -334,14 +353,18 @@ export default function MfaPage({ isStepTwo }) {
     );
   } else {
     return (
-      <SetMultiFactorAuthentication
-        onConfirmClicked={onConfirmClicked}
-        onBackToLoginClicked={onBackToLoginClicked}
-        rememberMe={rememberMe}
-        setRememberMe={onSetRememberMe}
-        data={communicationMethod}
-        testIds={MFA_TEST_ID}
-      />
+      <>
+        {!isLoading && ready && !isStepThree && (
+          <SetMultiFactorAuthentication
+            onConfirmClicked={onConfirmClicked}
+            onBackToLoginClicked={onBackToLoginClicked}
+            rememberMe={rememberMe}
+            setRememberMe={onSetRememberMe}
+            data={communicationMethod}
+            testIds={MFA_TEST_ID}
+          />
+        )}
+      </>
     );
   }
 }

@@ -8,7 +8,7 @@ import PrescriptionPage from "../../src/pages/patient/prescription";
 import { Provider } from "react-redux";
 import { getServerSideProps } from "../../src/pages/patient/mfa";
 import store from "../../src/store/store";
-import mediaQuery from 'css-mediaquery';
+import mediaQuery from "css-mediaquery";
 
 function createMatchMedia(width) {
   return (query) => ({
@@ -18,13 +18,11 @@ function createMatchMedia(width) {
   });
 }
 
-
-
 jest.mock("universal-cookie", () => {
   class MockCookies {
     static result = {};
     get(param) {
-      if (param === "username") return "user1@photon.com"
+      if (param === "username") return "user1@photon.com";
 
       return MockCookies.result;
     }
@@ -92,12 +90,12 @@ const MOCK_PRESCRIPTION = {
     ],
     medications: [
       {
-        id:"0",
+        id: "0",
         prescription: "Aspirint 0.1% Ointmanet",
         date: "2022-09-01T11:18:47.229Z",
       },
       {
-        id:"0",
+        id: "0",
         prescription: "Aspirint 0.1% Ointmanet",
         date: "2022-09-01T11:18:47.229Z",
       },
@@ -113,271 +111,321 @@ defineFeature(feature, (test) => {
   let container;
   const mock = new MockAdapter(axios);
 
-  test('EPIC_EPP-17_STORY_EPP-2705 - Verify whether the Refill status is filtering correctly.', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {
+  test("EPIC_EPP-17_STORY_EPP-2705 - Verify whether the Refill status is filtering correctly.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {
         defaultValidation();
-    });
+      }
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
-        defaultValidation();
+      defaultValidation();
     });
 
-    and('clicks  on login button.', () => {
-        defaultValidation();
+    and("clicks  on login button.", () => {
+      defaultValidation();
     });
 
-    and('navigate to the View Prescription page.', async() => {
+    and("navigate to the View Prescription page.", async () => {
       Cookies.result = "true";
       const expectedResult = {
-      ResponseCode: 2005,
-      ResponseType: "success",
+        ResponseCode: 2005,
+        ResponseType: "success",
       };
       const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
-      mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`).reply(200, MOCK_PRESCRIPTION);
-      window.matchMedia = createMatchMedia('1440px');
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, MOCK_PRESCRIPTION);
+      window.matchMedia = createMatchMedia("1440px");
       const response = await getServerSideProps({
-          req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-          res: jest.fn(),
+        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
+        res: jest.fn(),
       });
       const mockGeolocation = {
-      getCurrentPosition: jest.fn(),
-      watchPosition: jest.fn()
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
       Cookies.result = false;
-      act(()=>{
-      container = render(
+      act(() => {
+        container = render(
           <Provider store={store}>
-              {PrescriptionPage.getLayout(<PrescriptionPage />)}
+            {PrescriptionPage.getLayout(<PrescriptionPage />)}
           </Provider>
-          );
-      })
-      await waitFor(()=> container.getByText(/Filter/i))
+        );
+      });
+      await waitFor(() => container.getByText(/Filter/i));
       expect(response).toEqual({
         props: { isStepTwo: false },
       });
     });
 
-    and('filter the Refill status', async() => {
+    and("filter the Refill status", async () => {
       const filterBtn = container.getByText(/Filter/i);
-      const medicationMenu = container.getByTestId("menu-medication")
+      const medicationMenu = container.getByTestId("menu-medication");
       expect(filterBtn).toBeInTheDocument();
-      act(()=>{
-          fireEvent.click(medicationMenu)
-      })
-      
-      await waitFor(()=> container.getByText(/Active Medications/i))
-      fireEvent.click(filterBtn);    
-      await waitFor(()=> container.getByText(/All/i))
-      fireEvent.click(container.getByLabelText(/All/i));    
+      act(() => {
+        fireEvent.click(medicationMenu);
+      });
+
+      await waitFor(() => container.getByText(/Active Medications/i));
+      fireEvent.click(filterBtn);
+      await waitFor(() => container.getByText(/All/i));
+      fireEvent.click(container.getByLabelText(/All/i));
       fireEvent.click(container.getByText(/Done/i));
     });
 
-    then('patient should able to see the correct filter result.', () => {
+    then("patient should able to see the correct filter result.", () => {
+      defaultValidation();
+    });
+  });
+
+  test("EPIC_EPP-17_STORY_EPP-2705 - Verify whether the Provider is filtering correctly.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {
         defaultValidation();
+      }
+    );
+
+    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
+      defaultValidation();
     });
-});
 
-test('EPIC_EPP-17_STORY_EPP-2705 - Verify whether the Provider is filtering correctly.', ({ given, when, and, then }) => {
-  given('Patient Launch  the browser and enter the Patient portal URL', () => {
-    defaultValidation();
-  });
+    and("clicks  on login button.", () => {
+      defaultValidation();
+    });
 
-  when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
-    defaultValidation();
-  });
-
-  and('clicks  on login button.', () => {
-    defaultValidation();
-  });
-
-  and('navigate to the View Prescription page.', async() => {
-    Cookies.result = "true";
-    const expectedResult = {
-    ResponseCode: 2005,
-    ResponseType: "success",
-    };
-    const domain = window.location.origin;
-    mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
-    mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`).reply(200, MOCK_PRESCRIPTION);
-    window.matchMedia = createMatchMedia('1024px');
-    const response = await getServerSideProps({
+    and("navigate to the View Prescription page.", async () => {
+      Cookies.result = "true";
+      const expectedResult = {
+        ResponseCode: 2005,
+        ResponseType: "success",
+      };
+      const domain = window.location.origin;
+      mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, MOCK_PRESCRIPTION);
+      window.matchMedia = createMatchMedia("1024px");
+      const response = await getServerSideProps({
         req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
         res: jest.fn(),
-    });
-    const mockGeolocation = {
-    getCurrentPosition: jest.fn(),
-    watchPosition: jest.fn()
-    };
-    global.navigator.geolocation = mockGeolocation;
-    Cookies.result = false;
-    act(()=>{
-    container = render(
-        <Provider store={store}>
+      });
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn(),
+      };
+      global.navigator.geolocation = mockGeolocation;
+      Cookies.result = false;
+      act(() => {
+        container = render(
+          <Provider store={store}>
             {PrescriptionPage.getLayout(<PrescriptionPage />)}
-        </Provider>
+          </Provider>
         );
-    })
-    await waitFor(()=> container.getByText(/Filters/i))
-    expect(response).toEqual({
-      props: { isStepTwo: false },
+      });
+      await waitFor(() => container.getByText(/Filters/i));
+      expect(response).toEqual({
+        props: { isStepTwo: false },
+      });
+    });
+
+    and("filter the Provider", async () => {
+      const filterBtn = container.getByText(/Filter/i);
+      const medicationMenu = container.getByTestId("menu-medication");
+      expect(filterBtn).toBeInTheDocument();
+      act(() => {
+        fireEvent.click(medicationMenu);
+      });
+
+      await waitFor(() => container.getByText(/Active Medications/i));
+      fireEvent.click(filterBtn);
+      await waitFor(() => container.getByText(/Phillip Morries, M.D./i));
+      fireEvent.click(container.getByLabelText(/Phillip Morries, M.D./i));
+      fireEvent.click(container.getByText(/Done/i));
+    });
+
+    then("patient should able to see the correct filter result.", () => {
+      defaultValidation();
     });
   });
 
-  and('filter the Provider', async() => {
-    const filterBtn = container.getByText(/Filter/i);
-    const medicationMenu = container.getByTestId("menu-medication")
-    expect(filterBtn).toBeInTheDocument();
-    act(()=>{
-        fireEvent.click(medicationMenu)
-    })
-    
-    await waitFor(()=> container.getByText(/Active Medications/i))
-    fireEvent.click(filterBtn);    
-    await waitFor(()=> container.getByText(/Phillip Morries, M.D./i))
-    fireEvent.click(container.getByLabelText(/Phillip Morries, M.D./i));    
-    fireEvent.click(container.getByText(/Done/i));
-  });
+  test("EPIC_EPP-17_STORY_EPP-2705 - Verify whether the Prescription type(Glass, Lens, Medications) is filtering correctly.", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {
+        defaultValidation();
+      }
+    );
 
-  then('patient should able to see the correct filter result.', () => {
-    defaultValidation();
-  });
-});
+    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
+      defaultValidation();
+    });
 
-test('EPIC_EPP-17_STORY_EPP-2705 - Verify whether the Prescription type(Glass, Lens, Medications) is filtering correctly.', ({ given, when, and, then }) => {
-  given('Patient Launch  the browser and enter the Patient portal URL', () => {
-    defaultValidation();
-  });
+    and("clicks  on login button.", () => {
+      defaultValidation();
+    });
 
-  when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
-    defaultValidation();
-  });
-
-  and('clicks  on login button.', () => {
-    defaultValidation();
-  });
-
-  and('navigate to the View Prescription page.', async() => {
-    Cookies.result = "true";
-    const expectedResult = {
-    ResponseCode: 2005,
-    ResponseType: "success",
-    };
-    const domain = window.location.origin;
-    mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
-    mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`).reply(200, MOCK_PRESCRIPTION);
-    window.matchMedia = createMatchMedia('1920px');
-    const response = await getServerSideProps({
+    and("navigate to the View Prescription page.", async () => {
+      Cookies.result = "true";
+      const expectedResult = {
+        ResponseCode: 2005,
+        ResponseType: "success",
+      };
+      const domain = window.location.origin;
+      mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, MOCK_PRESCRIPTION);
+      window.matchMedia = createMatchMedia("1920px");
+      const response = await getServerSideProps({
         req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
         res: jest.fn(),
-    });
-    const mockGeolocation = {
-    getCurrentPosition: jest.fn(),
-    watchPosition: jest.fn()
-    };
-    global.navigator.geolocation = mockGeolocation;
-    Cookies.result = false;
-    act(()=>{
-    container = render(
-        <Provider store={store}>
+      });
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn(),
+      };
+      global.navigator.geolocation = mockGeolocation;
+      Cookies.result = false;
+      act(() => {
+        container = render(
+          <Provider store={store}>
             {PrescriptionPage.getLayout(<PrescriptionPage />)}
-        </Provider>
+          </Provider>
         );
-    })
-    await waitFor(()=> container.getByText(/Filter/i))
-    expect(response).toEqual({
-      props: { isStepTwo: false },
+      });
+      await waitFor(() => container.getByText(/Filter/i));
+      expect(response).toEqual({
+        props: { isStepTwo: false },
+      });
+    });
+
+    and(
+      "filter the Prescription type such as Glass/Lens/ Medications",
+      async () => {
+        const filterBtn = container.getByText(/Filter/i);
+        const medicationMenu = container.getByTestId("menu-medication");
+        expect(filterBtn).toBeInTheDocument();
+        act(() => {
+          fireEvent.click(medicationMenu);
+        });
+
+        await waitFor(() => container.getByText(/Active Medications/i));
+        fireEvent.click(filterBtn);
+        await waitFor(() => container.getByText(/See more/i));
+        fireEvent.click(container.getByText(/See more/i));
+        fireEvent.click(container.getByText(/See Less/i));
+        fireEvent.click(container.getByLabelText(/Phillip Morries, M.D./i));
+        fireEvent.click(container.getByText(/Done/i));
+      }
+    );
+
+    then("patient should able to see the correct filter result.", () => {
+      defaultValidation();
     });
   });
 
-  and('filter the Prescription type such as Glass/Lens/ Medications', async() => {
-    const filterBtn = container.getByText(/Filter/i);
-    const medicationMenu = container.getByTestId("menu-medication")
-    expect(filterBtn).toBeInTheDocument();
-    act(()=>{
-        fireEvent.click(medicationMenu)
-    })
-    
-    await waitFor(()=> container.getByText(/Active Medications/i))
-    fireEvent.click(filterBtn);    
-    await waitFor(()=> container.getByText(/See more/i))
-    fireEvent.click(container.getByText(/See more/i));    
-    fireEvent.click(container.getByText(/See Less/i));    
-    fireEvent.click(container.getByLabelText(/Phillip Morries, M.D./i));    
-    fireEvent.click(container.getByText(/Done/i));
-  });
+  test("EPIC_EPP-17_STORY_EPP-2705 - Verify whether the clear option is available once applied the filter", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {
+        defaultValidation();
+      }
+    );
 
-  then('patient should able to see the correct filter result.', () => {
-    defaultValidation();
-  });
-});
+    when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
+      defaultValidation();
+    });
 
-test('EPIC_EPP-17_STORY_EPP-2705 - Verify whether the clear option is available once applied the filter', ({ given, when, and, then }) => {
-  given('Patient Launch  the browser and enter the Patient portal URL', () => {
-    defaultValidation();
-  });
+    and("clicks  on login button.", () => {
+      defaultValidation();
+    });
 
-  when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {
-    defaultValidation();
-  });
-
-  and('clicks  on login button.', () => {
-    defaultValidation();
-  });
-
-  and('navigate to the View Prescription page.', async() => {
-    Cookies.result = "true";
-    const expectedResult = {
-    ResponseCode: 2005,
-    ResponseType: "success",
-    };
-    const domain = window.location.origin;
-    mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
-    mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`).reply(200, MOCK_PRESCRIPTION);
-    window.matchMedia = createMatchMedia('1920px');
-    const response = await getServerSideProps({
+    and("navigate to the View Prescription page.", async () => {
+      Cookies.result = "true";
+      const expectedResult = {
+        ResponseCode: 2005,
+        ResponseType: "success",
+      };
+      const domain = window.location.origin;
+      mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, MOCK_PRESCRIPTION);
+      window.matchMedia = createMatchMedia("1920px");
+      const response = await getServerSideProps({
         req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
         res: jest.fn(),
-    });
-    const mockGeolocation = {
-    getCurrentPosition: jest.fn(),
-    watchPosition: jest.fn()
-    };
-    global.navigator.geolocation = mockGeolocation;
-    Cookies.result = false;
-    act(()=>{
-    container = render(
-        <Provider store={store}>
+      });
+      const mockGeolocation = {
+        getCurrentPosition: jest.fn(),
+        watchPosition: jest.fn(),
+      };
+      global.navigator.geolocation = mockGeolocation;
+      Cookies.result = false;
+      act(() => {
+        container = render(
+          <Provider store={store}>
             {PrescriptionPage.getLayout(<PrescriptionPage />)}
-        </Provider>
+          </Provider>
         );
-    })
-    await waitFor(()=> container.getByText(/Filter/i))
-    expect(response).toEqual({
-      props: { isStepTwo: false },
+      });
+      await waitFor(() => container.getByText(/Filter/i));
+      expect(response).toEqual({
+        props: { isStepTwo: false },
+      });
+    });
+
+    and("filter the Refill status.", async () => {
+      const filterBtn = container.getByText(/Filter/i);
+      const medicationMenu = container.getByTestId("menu-medication");
+      expect(filterBtn).toBeInTheDocument();
+      act(() => {
+        fireEvent.click(medicationMenu);
+      });
+
+      await waitFor(() => container.getByText(/Active Medications/i));
+      fireEvent.click(filterBtn);
+      await waitFor(() => container.getByText(/See more/i));
+      fireEvent.click(container.getByLabelText(/Refill Requested/i));
+      fireEvent.click(container.getAllByText(/Active/i)[0]);
+      fireEvent.click(container.getByText(/Done/i));
+    });
+
+    then("Patient should view the Clear option.", () => {
+      defaultValidation();
     });
   });
-
-  and('filter the Refill status.', async() => {
-    const filterBtn = container.getByText(/Filter/i);
-    const medicationMenu = container.getByTestId("menu-medication")
-    expect(filterBtn).toBeInTheDocument();
-    act(()=>{
-        fireEvent.click(medicationMenu)
-    })
-    
-    await waitFor(()=> container.getByText(/Active Medications/i))
-    fireEvent.click(filterBtn);    
-    await waitFor(()=> container.getByText(/See more/i))
-    fireEvent.click(container.getByLabelText(/Refill Requested/i));    
-    fireEvent.click(container.getByLabelText(/Active/i));    
-    fireEvent.click(container.getByText(/Done/i));
-  });
-
-  then('Patient should view the Clear option.', () => {
-    defaultValidation();
-  });
-});
-
 });

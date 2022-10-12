@@ -233,14 +233,14 @@ export const FilterResultHeading = ({
                     <Typography
                       className={styles.calenderDay}
                       aria-label={`${option.slice(0, -8)}`}
-                      tabindex={"0"}
+                      tabIndex={"0"}
                     >
                       {option.slice(0, 3)}
                     </Typography>
                     <Typography
                       className={styles.calenderMonth}
                       aria-label={`${dateList.dateListName[idx]}`}
-                      tabindex={"0"}
+                      tabIndex={"0"}
                     >
                       {dateList.dateListName[idx]}
                     </Typography>
@@ -307,8 +307,10 @@ export const FilterResultHeading = ({
         >
           {title && subtitle && (
             <Stack className={styles.subtitleContainer}>
-              <Typography className={styles.titleElement}>{title}</Typography>
-              <Typography className={styles.subtitleElement}>
+              <Typography className={styles.titleElement} tabindex={0}>
+                {title}
+              </Typography>
+              <Typography className={styles.subtitleElement} tabindex={0}>
                 {subtitle}
               </Typography>
             </Stack>

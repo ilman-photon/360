@@ -176,6 +176,7 @@ export function getDialogContents(
                   autoFocus
                   value={value}
                   onChange={onChange}
+                  maxLength={50}
                   type="default"
                   variant="filled"
                   label="City, state, or zip code"
@@ -257,14 +258,17 @@ export const insuraceIcon = (
 export function getMenuList(title, subtitle) {
   return (
     <Box className={styles.selectMenuContainer}>
-      <Typography tabindex={0}>
+      <Typography tabindex={0} sx={{ lineHeight: "1" }}>
         <Typography
           variant="bodySmallRegular"
-          sx={{ display: "block", color: colors.darkGreen }}
+          sx={{ display: "block", color: colors.darkGreen, lineHeight: "18px" }}
         >
           {title}
         </Typography>
-        <Typography variant="bodySmallMedium" sx={{ color: colors.darkGreen }}>
+        <Typography
+          variant="bodySmallMedium"
+          sx={{ color: colors.darkGreen, fontWeight: "400" }}
+        >
           {subtitle}
         </Typography>
       </Typography>
@@ -360,6 +364,7 @@ export function onRenderInputInsurance(
         variant="filled"
         {...params}
         label="Insurance Carrier"
+        aria-label="Insurance carrier field"
         InputProps={{
           ...params.InputProps,
         }}
@@ -485,14 +490,19 @@ const FilterHeading = ({
   onSwapButtonClicked = () => {
     // This is intentional
   },
+  onChangeLocation = () => {
+    // This is intentional
+  },
   isGeolocationEnabled,
   purposeOfVisitData = [],
   insuranceCarrierData = [],
   title = "",
   subtitle = "",
+  isFixed = true,
+  currentCity = "",
 }) => {
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
-  const { handleSubmit, control } = useForm({
+  const { handleSubmit, control, setValue } = useForm({
     defaultValues: { ...filterData },
   });
 
@@ -509,6 +519,10 @@ const FilterHeading = ({
       onSearchProvider(data);
     }
   };
+
+  React.useEffect(() => {
+    if (currentCity) setValue("location", currentCity);
+  }, [currentCity]);
 
   const minDate = new Date();
   const maxDate = new Date(); // add arguments as needed
@@ -565,12 +579,15 @@ const FilterHeading = ({
               data-testid={APPOINTMENT_TEST_ID.locationInput}
               value={value}
               onChange={(_e, data) => {
-                onHideMandatoryFieldError();
                 onChange(data);
               }}
               onInputChange={(_e, newInputValue) => {
                 onHideMandatoryFieldError();
                 onChange(newInputValue);
+                if (newInputValue === "Use my current location") {
+                  onChange("");
+                  onChangeLocation();
+                }
               }}
               onKeyDown={(e) => {
                 if (Regex.specialRegex.test(e.key)) e.preventDefault();
@@ -597,8 +614,8 @@ const FilterHeading = ({
                     variant="filled"
                     {...params}
                     label="City, state, or zip code"
+                    aria-label="City, state, or zip code field"
                     InputProps={{
-                      "aria-label": "City, state, or zip code field",
                       ...params.InputProps,
                       endAdornment: (
                         <InputAdornment position="end">
@@ -630,6 +647,7 @@ const FilterHeading = ({
                         color: "#303030",
                       },
                     }}
+                    maxLength={50}
                   />
                 </Box>
               )}
@@ -669,7 +687,7 @@ const FilterHeading = ({
               />
               <StyledInput
                 open={open}
-                minDate={minDate}
+                // minDate={minDate}
                 maxDate={maxDate}
                 data-testid={APPOINTMENT_TEST_ID.dateInput}
                 onOpen={() => setOpen(true)}
@@ -682,6 +700,7 @@ const FilterHeading = ({
                 onChange={onChange}
                 inputProps={{
                   "aria-label": "Date field",
+                  readOnly: true,
                 }}
                 sx={{
                   margin: 0,
@@ -705,9 +724,6 @@ const FilterHeading = ({
                   },
                 }}
                 inputFormat={"MMM dd, yyyy"}
-                InputProps={{
-                  readOnly: true,
-                }}
                 disableMaskedInput
               />
             </Box>
@@ -761,7 +777,7 @@ const FilterHeading = ({
                   },
                 }}
                 label={"Purpose of Visit"}
-                ariaLabel={"Purpose of Visit field"}
+                ariaLabel={"Purpose of Visit dropdown menu"}
                 labelId={`purposes-of-visit`}
                 id={`purposes-of-visit`}
                 options={purposeOfVisitData}
@@ -784,7 +800,10 @@ const FilterHeading = ({
     return (
       <Box
         className={styles.titleHeadingWrapper}
-        sx={{ height: title && subtitle ? "200px" : "151px" }}
+        sx={{
+          height: title && subtitle ? "200px" : "151px",
+          position: isFixed ? "fixed" : "relative",
+        }}
       >
         <Box
           className={styles.centeredElement}
@@ -792,8 +811,10 @@ const FilterHeading = ({
         >
           {title && subtitle && (
             <Stack>
-              <Typography className={styles.titleElement}>{title}</Typography>
-              <Typography className={styles.subtitleElement}>
+              <Typography tabIndex={0} className={styles.titleElement}>
+                {title}
+              </Typography>
+              <Typography tabIndex={0} className={styles.subtitleElement}>
                 {subtitle}
               </Typography>
             </Stack>
@@ -848,7 +869,7 @@ const FilterHeading = ({
                 justifyContent={"center"}
                 className={styles.swapButtonContainer}
                 onClick={onSwapButtonClicked}
-                tabindex={0}
+                tabIndex={0}
               >
                 <SwapHorizIcon className={styles.swapIcon} />
                 <Typography className={styles.swapLabel}>Map</Typography>
@@ -1067,7 +1088,10 @@ const FilterHeading = ({
     return (
       <Box className={styles.mobileFilterContainer}>
         <Box className={styles.mobileContainer}>
-          <Typography variant={"h2"} className={styles.mobileTitle}>
+          <Typography
+            variant={"titleScheduleMobile"}
+            className={styles.mobileTitle}
+          >
             Schedule an eye exam
           </Typography>
           <form onSubmit={handleSubmit(onSubmit)}>

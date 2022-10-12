@@ -16,6 +16,7 @@ export const styles = {
   detailText: {
     color: "#003B4A",
     fontSize: "16px",
+    marginTop: "2px",
   },
   boldText: {
     fontWeight: "700",
@@ -41,7 +42,7 @@ export const styles = {
   sigInInfoLabel: {
     fontFamily: "Libre Franklin",
     fontWeight: "600",
-    fontSize: "18px",
+    fontSize: "16px",
     color: "#000000",
   },
   link: {
@@ -82,7 +83,7 @@ export const styles = {
     color: "#008294",
     textDecorationLine: "underline",
     textTransform: "capitalize",
-    fontSize: "18px",
+    fontSize: "15px",
   },
   scheduledText: {
     color: colors.darkGreen,

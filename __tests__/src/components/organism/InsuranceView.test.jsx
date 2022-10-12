@@ -24,7 +24,7 @@ describe("InsuranceView Components", () => {
         dob: null,
         relationship: "",
       },
-      priority: "Primary",
+      priority: "PRIMARY",
       frontCard: "",
       backCard: "",
     },
@@ -33,10 +33,6 @@ describe("InsuranceView Components", () => {
     container = render(
       <InsuranceView insuranceData={DEFAULT_INSURANCE_DATA} />
     );
-  });
-
-  it("InsuranceView render", () => {
-    expect(container).toMatchSnapshot();
   });
 
   it("InsuranceView render field", () => {

@@ -266,12 +266,15 @@ describe("Api test", () => {
           },
         })
         .catch((response) => {
-          expect(response.message).toEqual("timeout of 10000ms exceeded");
+          expect(response.message).toEqual("timeout of 20000ms exceeded");
         });
     });
 
     it("timeout error", async () => {
-      const expectedResult = { response: { data: {} } };
+      const expectedResult = {
+        ResponseCode: 500,
+        description: "Something went wrong. Please try again after sometime.",
+      };
       mock.onPost(`/ecp/patient/resetPasswordToken`).reply(500, expectedResult);
       const api = new Api();
       api
@@ -289,7 +292,7 @@ describe("Api test", () => {
     it("create client error", async () => {
       const expectedResult = new Error("Request failed with status code 404");
       const api = new Api();
-      console.log({api})
+      console.log({ api });
       api
         .getResponse(
           `/ecp/patient/resetPasswordToken`,

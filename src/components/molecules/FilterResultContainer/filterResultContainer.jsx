@@ -61,7 +61,7 @@ export const FilterResultContainer = ({
 
   function renderItemResult() {
     const indents = [];
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < providerList.length; i++) {
       indents.push(
         <Box key={i}>
           <ItemResult
@@ -96,6 +96,7 @@ export const FilterResultContainer = ({
           fontSize: "14px",
           lineHeight: "22px",
           letterSpacing: "0.0016em",
+          paddingBottom: "16px",
           color: colors.darkGreen,
         }}
         value={activeTabs}
@@ -126,13 +127,9 @@ export const FilterResultContainer = ({
           tabIndex={"0"}
         />
       </Tabs>
-      <Grid
-        container
-        spacing={0}
-        sx={{ backgroundColor: "#fff", flex: 1, overflow: "auto" }}
-      >
+      <Grid container spacing={0} sx={{ flex: 1, overflow: "auto" }}>
         {activeTabs === 0 ? (
-          <Grid item xs={12} md={6} paddingTop={"16px"}>
+          <Grid item xs={12} md={6}>
             <>
               {/* Handle the empty result after integrate services */}
               {providerList.length > 0 ? (
@@ -146,6 +143,7 @@ export const FilterResultContainer = ({
                   }}
                 >
                   <EmptyResult
+                    isEmpty={true}
                     message={
                       "No results found. Please try again with a different search criteria."
                     }
@@ -156,7 +154,11 @@ export const FilterResultContainer = ({
           </Grid>
         ) : (
           <Grid item xs={12} md={6} paddingTop={"16px"}>
-            <GMaps apiKey={googleApiKey} providerListData={providerList} />
+            <GMaps
+              apiKey={googleApiKey}
+              providerListData={providerList}
+              OnTimeClicked={OnDayClicked}
+            />
           </Grid>
         )}
       </Grid>

@@ -6,13 +6,13 @@ import LabelWithInfo from "../../atoms/LabelWithInfo/labelWithInfo";
 
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import ContactMailIcon from "@mui/icons-material/ContactMail";
-import BusinessIcon from "@mui/icons-material/Business";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 
 import { styles } from "./style";
 import { formatAppointmentDate } from "../../../utils/dateFormatter";
 import { colors } from "../../../styles/theme";
 import { TEST_ID } from "../../../utils/constants";
+import Image from "next/image";
 
 export default function AppointmentDetails({
   appointmentData = {},
@@ -53,10 +53,16 @@ export default function AppointmentDetails({
         <Stack spacing={2}>
           <LabelWithInfo
             label="Date and time"
+            iconWidth={"24px"}
             titleIcon={
-              <CalendarTodayIcon
+              <Image
+                width="20"
+                height="20"
+                src={"/icon-calendar.png"}
+                alt="date and time"
                 aria-label={"Calendar icon"}
                 aria-hidden={"false"}
+                sx={{ color: colors.darkGreen }}
               />
             }
             sxRow={{ justifyContent: "unset" }}
@@ -69,7 +75,7 @@ export default function AppointmentDetails({
             <Typography
               variant="bodyMedium"
               sx={{ color: colors.darkGreen }}
-              tabindex={"0"}
+              tabIndex={"0"}
               data-testid={
                 TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.APPOINTMENT_DETAILS.date
               }
@@ -80,32 +86,14 @@ export default function AppointmentDetails({
 
           <LabelWithInfo
             label="Insurance"
+            iconWidth={"24px"}
             titleIcon={
-              <ContactMailIcon aria-label={"Mail icon"} aria-hidden={"false"} />
-            }
-            sxRow={{ justifyContent: "unset" }}
-            sxText={{
-              paddingLeft: "4px",
-              color: colors.darkGreen,
-              fontWeight: "500",
-            }}
-          >
-            <Typography
-              variant="bodyMedium"
-              sx={{ color: colors.darkGreen }}
-              tabindex={"0"}
-            >
-              {appointmentData.insuranceCarrier
-                ? appointmentData.insuranceCarrier
-                : "No Insurance provided"}
-            </Typography>
-          </LabelWithInfo>
-
-          <LabelWithInfo
-            label="Purpose of visit"
-            titleIcon={
-              <BusinessIcon
-                aria-label={"Business icon"}
+              <Image
+                width="24"
+                height="24"
+                src={"/icon-profile.png"}
+                alt="insurance"
+                aria-label={"Mail icon"}
                 aria-hidden={"false"}
               />
             }
@@ -119,7 +107,39 @@ export default function AppointmentDetails({
             <Typography
               variant="bodyMedium"
               sx={{ color: colors.darkGreen }}
-              tabindex={"0"}
+              tabIndex={"0"}
+            >
+              {appointmentData.insuranceCarrier
+                ? appointmentData.insuranceCarrier
+                : "No Insurance provided"}
+            </Typography>
+          </LabelWithInfo>
+
+          <LabelWithInfo
+            label="Purpose of visit"
+            iconWidth={"24px"}
+            titleIcon={
+              <Image
+                width="24"
+                height="24"
+                src={"/icon-building.png"}
+                alt="purpose of visit"
+                aria-label={"Building icon"}
+                aria-hidden={"false"}
+                sx={{ color: colors.darkGreen }}
+              />
+            }
+            sxRow={{ justifyContent: "unset" }}
+            sxText={{
+              paddingLeft: "4px",
+              color: colors.darkGreen,
+              fontWeight: "500",
+            }}
+          >
+            <Typography
+              variant="bodyMedium"
+              sx={{ color: colors.darkGreen }}
+              tabIndex={"0"}
               aria-label={
                 appointmentData.appointmentType ||
                 "no purpose of visit provided"

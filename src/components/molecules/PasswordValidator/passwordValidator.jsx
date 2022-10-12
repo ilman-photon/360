@@ -45,6 +45,7 @@ export const PasswordValidator = ({ ...props }) => {
                   ...styles.childrenStyles,
                   color: value.validate ? colors.green : colors.grey75,
                 }}
+                tabIndex="0"
               >
                 {value.label}
               </Typography>

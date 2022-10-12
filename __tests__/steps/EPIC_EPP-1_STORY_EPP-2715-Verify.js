@@ -158,155 +158,111 @@ const MOCK_PRESCRIPTION = {
   },
 };
 
-const MOCK_SUGESTION = {
-  appointmentType: [
+const mockSuggestionReal = {
+  "count": 5,
+  "entities": [
     {
-      id: "1",
-      name: "Eye Exam",
-      description: "Test the health of your eye",
+      "code": "Clinical_Diagnosis",
+      "name": "Clinical_Diagnosis",
+      "key": 4,
+      "order": 4,
+      "category": {
+        "code": "Vision",
+        "description": "Vision"
+      },
+      "acronym": "CAD",
+      "color": "#6fc77b",
+      "slotLength": 5,
+      "notes": "",
+      "_links": {
+        "self": {
+          "href": "/v1/appointment-types/Clinical_Diagnosis"
+        }
+      }
     },
     {
-      id: "2",
-      name: "Follow up",
-      description: "See your doctor today",
+      "code": "NO_APPOINTMENT",
+      "name": "NO APPOINTMENT",
+      "key": 1,
+      "order": 1,
+      "category": {
+        "code": "Medical",
+        "description": "Medical"
+      },
+      "acronym": "NA",
+      "color": "#8F8F8F",
+      "slotLength": 5,
+      "notes": "NO_APPOINTMENT is a default appointment type",
+      "_links": {
+        "self": {
+          "href": "/v1/appointment-types/NO_APPOINTMENT"
+        }
+      }
     },
     {
-      id: "3",
-      name: "Comprehensive",
-      description: "Get detailed eye exam",
+      "code": "Comprehensive",
+      "name": "Comprehensive",
+      "key": 2,
+      "order": 2,
+      "category": {
+        "code": "Medical",
+        "description": "Medical"
+      },
+      "acronym": "CP",
+      "color": "#f2ee74",
+      "slotLength": 5,
+      "notes": "",
+      "_links": {
+        "self": {
+          "href": "/v1/appointment-types/Comprehensive"
+        }
+      }
     },
     {
-      id: "4",
-      name: "Contacts Only",
-      description: "Get fitted for the right contacts",
+      "code": "Glaucome_Appointment",
+      "name": "Glaucoma_Appointment",
+      "key": 3,
+      "order": 3,
+      "category": {
+        "code": "Vision",
+        "description": "Vision"
+      },
+      "acronym": "GPA",
+      "color": "#528aa8",
+      "slotLength": 5,
+      "notes": "",
+      "_links": {
+        "self": {
+          "href": "/v1/appointment-types/Glaucome_Appointment"
+        }
+      }
     },
+    {
+      "code": "Retina_checkup",
+      "name": "Retina checkup",
+      "key": 5,
+      "order": 5,
+      "category": {
+        "code": "Vision",
+        "description": "Vision"
+      },
+      "acronym": "RET",
+      "color": "#db8686",
+      "slotLength": 5,
+      "notes": "",
+      "_links": {
+        "self": {
+          "href": "/v1/appointment-types/Retina_checkup"
+        }
+      }
+    }
   ],
-  insuranceCarrier: {
-    general: [
-      {
-        id: "1",
-        name: "I'm paying out of my pocket",
-      },
-      {
-        id: "2",
-        name: "skip and choose insurance later",
-      },
-      {
-        id: "3",
-        name: "Other Insurance",
-      },
-    ],
-    popular: [
-      {
-        id: "4",
-        name: "Aetna",
-      },
-      {
-        id: "5",
-        name: "Aetna",
-      },
-      {
-        id: "6",
-        name: "Blue Cross Blue Shield",
-      },
-      {
-        id: "7",
-        name: "Cigna",
-      },
-    ],
-    all: [
-      {
-        id: "8",
-        name: "Kaiser",
-      },
-    ],
-  },
-  filterbyData: [
-    {
-      name: "Available Today",
-      checked: false,
-    },
-    {
-      name: "language",
-      checklist: [
-        {
-          name: "Arabic",
-          checked: false,
-        },
-        {
-          name: "Chinese",
-          checked: false,
-        },
-        {
-          name: "English",
-          checked: false,
-        },
-        {
-          name: "Farsi",
-          checked: false,
-        },
-        {
-          name: "French",
-          checked: false,
-        },
-        {
-          name: "Spanish",
-          checked: false,
-        },
-        {
-          name: "Portuguese",
-          checked: false,
-        },
-        {
-          name: "Korean",
-          checked: false,
-        },
-        {
-          name: "German",
-          checked: false,
-        },
-        {
-          name: "Italian",
-          checked: false,
-        },
-        {
-          name: "Indonesian",
-          checked: false,
-        },
-      ],
-    },
-    {
-      name: "Insurance",
-      checklist: [
-        {
-          name: "In Network",
-          checked: false,
-        },
-        {
-          name: "Out of Network",
-          checked: false,
-        },
-      ],
-    },
-    {
-      name: "Gender",
-      checklist: [
-        {
-          name: "Male",
-          checked: false,
-        },
-        {
-          name: "Female",
-          checked: false,
-        },
-        {
-          name: "Non-Binary",
-          checked: false,
-        },
-      ],
-    },
-  ],
-};
+  "_links": {
+    "self": {
+      "href": "/appointments?pageNo=0&pageSize=100"
+    }
+  }
+}
 
 jest.mock("universal-cookie", () => {
   class MockCookies {
@@ -357,7 +313,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User lands to the "(.*)" screen$/, async (arg0) => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -365,11 +321,7 @@ defineFeature(feature, (test) => {
       const mock = new MockAdapter(axios);
       const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-        )
-        .reply(200, MOCK_SUGESTION);
+      mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
       mock
         .onGet(
           `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
@@ -377,7 +329,7 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_APPOINTMENT);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
       const response = await getServerSideProps({
@@ -389,7 +341,7 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
@@ -448,7 +400,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -456,11 +408,7 @@ defineFeature(feature, (test) => {
       const mock = new MockAdapter(axios);
       const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-        )
-        .reply(200, MOCK_SUGESTION);
+      mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
       mock
         .onGet(
           `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
@@ -468,7 +416,7 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_APPOINTMENT);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
@@ -481,13 +429,13 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Get Direction"));
+      await waitFor(() => container.getByText("Get Directions"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -496,12 +444,12 @@ defineFeature(feature, (test) => {
     });
 
     and(/^User should see on "(.*)" button$/, (arg0) => {
-      const getDirection = container.getByText("Get Direction");
+      const getDirection = container.getByText("Get Directions");
       expect(getDirection).toBeInTheDocument();
     });
 
     when(/^User clicks on "(.*)" button$/, (arg0) => {
-      const getDirection = container.getByText("Get Direction");
+      const getDirection = container.getByText("Get Directions");
       fireEvent.click(getDirection);
     });
 
@@ -548,7 +496,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -556,11 +504,7 @@ defineFeature(feature, (test) => {
       const mock = new MockAdapter(axios);
       const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-        )
-        .reply(200, MOCK_SUGESTION);
+      mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
       mock
         .onGet(
           `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
@@ -568,7 +512,7 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_APPOINTMENT);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
       const response = await getServerSideProps({
@@ -580,7 +524,7 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
@@ -641,7 +585,7 @@ defineFeature(feature, (test) => {
     });
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
-      Cookies.result = "true";
+      Cookies.result = { authorized: true };
       const expectedResult = {
         ResponseCode: 2005,
         ResponseType: "success",
@@ -649,11 +593,7 @@ defineFeature(feature, (test) => {
       const mock = new MockAdapter(axios);
       const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
-      mock
-        .onGet(
-          `${domain}/api/dummy/appointment/create-appointment/getSugestion`
-        )
-        .reply(200, MOCK_SUGESTION);
+      mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
       mock
         .onGet(
           `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
@@ -661,7 +601,7 @@ defineFeature(feature, (test) => {
         .reply(200, MOCK_APPOINTMENT);
       mock
         .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
       const response = await getServerSideProps({
@@ -673,13 +613,13 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      Cookies.result = false;
+      Cookies.result = { authorized: true };
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByLabelText(/Appointments/i));
+      await waitFor(() => container.getByText("Patient Information"));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -688,7 +628,7 @@ defineFeature(feature, (test) => {
     });
 
     and("User should see the widget with upcoming test/ procedure", () => {
-      const titleAppointment = container.getByLabelText(/Appointments/i);
+      const titleAppointment = container.getByText("Patient Information");
       const patientName = container.getByText("Rebecca Chan");
       expect(titleAppointment).toBeInTheDocument();
       expect(patientName).toBeInTheDocument();

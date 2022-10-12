@@ -8,25 +8,12 @@ import { useEffect, useState } from "react";
 import DetailAppointment from "../../../../../components/organisms/DetailAppointment/detailAppointment";
 import { parseAppointmentDetails } from "../../../../../utils/appointment";
 import Cookies from "universal-cookie";
-
-export async function getServerSideProps({ req }) {
-  const cookies = new Cookies(req.headers.cookie);
-
-  if (!cookies.get("authorized")) {
-    return {
-      redirect: {
-        destination: "/patient/login",
-        permanent: false,
-      },
-    };
-  }
-  return {
-    props: {},
-  };
-}
-
+import { useRouter } from "next/router";
 export default function AppointmentDetails() {
   const [appointments, setAppointments] = useState();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  const router = useRouter();
 
   const getAppointmentDetails = () => {
     const api = new Api();
@@ -42,16 +29,30 @@ export default function AppointmentDetails() {
   };
 
   useEffect(() => {
+    const cookies = new Cookies();
+    if (!cookies.get("authorized")) {
+      router.push("/patient/login");
+      setIsAuthenticated(false);
+    } else {
+      setIsAuthenticated(true);
+    }
+  }, [setIsAuthenticated, router]);
+
+  useEffect(() => {
     getAppointmentDetails();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appointments]);
 
   return (
-    <Box className={styles.container}>
-      {appointments && (
-        <DetailAppointment data={parseAppointmentDetails(appointments)} />
+    <>
+      {isAuthenticated && (
+        <Box className={styles.container}>
+          {appointments && (
+            <DetailAppointment data={parseAppointmentDetails(appointments)} />
+          )}
+        </Box>
       )}
-    </Box>
+    </>
   );
 }
 
@@ -61,6 +62,7 @@ AppointmentDetails.getLayout = function getLayout(page) {
       <AppointmentLayout
         currentActivePage={"appointments"}
         backTitle={"Back to Appointments"}
+        onBackClicked={"/patient/appointments"}
       >
         {page}
       </AppointmentLayout>

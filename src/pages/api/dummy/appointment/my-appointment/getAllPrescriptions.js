@@ -1,6 +1,7 @@
 export default function getAllPrescriptions(req, res) {
+  const { patientId } = req.query;
   if (req.method === "GET") {
-    res.status(200).json({
+    let data = {
       prescriptions: {
         glasses: [
           {
@@ -100,6 +101,7 @@ export default function getAllPrescriptions(req, res) {
             id: "1",
             prescription: "Aspirint 0.1% Ointmanet",
             date: "2022-09-02T11:18:47.229Z",
+            expiredDate: "2022-10-02T11:18:47.229Z",
           },
           {
             id: "2",
@@ -109,11 +111,27 @@ export default function getAllPrescriptions(req, res) {
           {
             id: "3",
             prescription: "Aspirint 0.1% Ointmanet",
+            date: "2022-09-02T11:18:47.229Z",
+            expiredDate: "2022-10-02T11:18:47.229Z",
+          },
+          {
+            id: "4",
+            prescription: "Aspirint 0.1% Ointmanet",
             date: "2022-08-02T11:18:47.229Z",
             expiredDate: "2022-08-10T11:18:47.229Z",
           },
         ],
       },
-    });
+    };
+    if (patientId == "3b7c741a-8772-48fe-a414-90ea5b68d12a") {
+      data = {
+        prescriptions: {
+          glasses: [],
+          contacts: [],
+          medications: [],
+        },
+      };
+    }
+    res.status(200).json(data);
   }
 }

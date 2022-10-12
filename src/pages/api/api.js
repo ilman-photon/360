@@ -1,4 +1,5 @@
 import axios from "axios";
+import moment from "moment";
 import { setGenericErrorMessage } from "../../store";
 import constants from "../../utils/constants";
 
@@ -17,11 +18,31 @@ export class Api {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
-      timeout: 10000,
+      timeout: 20000,
     });
+
+    this.requestCounter = 0;
+    this.maxRequestCounter = 3;
   }
 
-  getResponse(url, postbody, method) {
+  errorGenericValidation = (err) => {
+    return (
+      err &&
+      ((err.code === constants.ERROR_CODE.BAD_REQUEST &&
+        err?.response?.data?.ResponseCode === undefined) ||
+        err.code === constants.ERROR_CODE.NETWORK_ERR ||
+        [500].indexOf(err.response?.status) !== -1)
+    );
+  };
+
+  responseCodeValidation = (err) => {
+    return (
+      [constants.ERROR_CODE.NETWORK_ERR, 500].indexOf(err.ResponseCode) === -1
+    );
+  };
+
+  getResponse(url, postbody, method, showError = true) {
+    const api = new Api();
     return new Promise((resolve, reject) => {
       const resolver = function (response) {
         if (response && response.data) {
@@ -31,19 +52,14 @@ export class Api {
         }
       };
       const rejecter = function (err) {
-        if (
-          err &&
-          ((err.code === constants.ERROR_CODE.BAD_REQUEST &&
-            err?.response?.data?.ResponseCode === undefined) ||
-            err.code === constants.ERROR_CODE.NETWORK_ERR)
-        ) {
+        if (api.errorGenericValidation(err) && showError) {
           store.dispatch(
             setGenericErrorMessage("Please try again after sometime.")
           );
           reject({
             description:
               "Something went wrong. Please try again after sometime.",
-            ResponseCode: err.code,
+            ResponseCode: err.response.status || err.code,
           });
         } else if (err && err.response && err.response.data) {
           reject(err.response.data);
@@ -54,11 +70,15 @@ export class Api {
 
       switch (method) {
         case "get":
-          return this.client.get(url, postbody).then(resolver).catch(rejecter);
+          return api.client.get(url, postbody).then(resolver).catch(rejecter);
         case "post":
-          return this.client.post(url, postbody).then(resolver).catch(rejecter);
+          return api.client.post(url, postbody).then(resolver).catch(rejecter);
+        case "put":
+          return api.client.put(url, postbody).then(resolver).catch(rejecter);
+        case "patch":
+          return api.client.patch(url, postbody).then(resolver).catch(rejecter);
         default:
-          return this.client.get(url, postbody).then(resolver).catch(rejecter);
+          return api.client.get(url, postbody).then(resolver).catch(rejecter);
       }
     });
   }
@@ -207,8 +227,8 @@ export class Api {
       return response.records.map((record) => {
         return {
           id: record.datasetid,
-          label: record.fields.ste_name,
-          value: record.fields.ste_name,
+          label: record.fields.ste_stusps_code,
+          value: record.fields.ste_stusps_code,
         };
       });
     } catch (error) {
@@ -216,10 +236,9 @@ export class Api {
     }
   }
 
-  getProviderDetails() {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/biography/getProviderDetails`;
-    return this.getResponse(url, {}, "post");
+  getProviderDetails(providerId) {
+    const url = `/ecp/appointments/getprovider/${providerId}`;
+    return this.getResponse(url, {}, "get");
   }
 
   getProviderAvailibility() {
@@ -234,20 +253,42 @@ export class Api {
     return this.getResponse(url, {}, "get");
   }
 
-  submitFilter(postBody) {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/create-appointment/submitFilter`;
-    return this.getResponse(url, postBody, "post");
-  }
-
   getAllAppointment() {
     const domain = window.location.origin;
     const userData = JSON.parse(localStorage.getItem("userData"));
-    const patientId = `/${userData.patientId}`;
+    const patientId = `/${userData?.patientId}`;
     const url = `${domain}/api/dummy/appointment/my-appointment/getAllAppointment${
-      userData.patientId ? patientId : ""
+      userData?.patientId ? patientId : ""
     }`;
     return this.getResponse(url, {}, "get");
+  }
+
+  getUpcomingAppointment() {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const patientId = `/${userData?.patientId}`;
+    const params = {
+      currentDate: new moment().format("MM/DD/YYYY"),
+      time: new moment().format("hh:mm"),
+    };
+    const url = `/ecp/appointments${
+      userData?.patientId ? patientId : ""
+    }/upcoming`;
+    return this.getResponse(url, { params }, "get");
+  }
+
+  getPastAppointment() {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const patientId = `/${userData?.patientId}`;
+    const url = `/ecp/appointments${
+      userData?.patientId ? patientId : ""
+    }/history`;
+    const params = {
+      currentDate: new moment().format("MM/DD/YYYY"),
+      time: new moment().format("hh:mm"),
+      pageSize: 999,
+      pageNo: 0,
+    };
+    return this.getResponse(url, { params }, "get");
   }
 
   getAppointmentDetails() {
@@ -270,7 +311,11 @@ export class Api {
 
   getAllPrescriptions() {
     const domain = window.location.origin;
-    const url = `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`;
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const patientId = `?patientId=${userData?.patientId}`;
+    const url = `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions${
+      userData && userData.patientId ? patientId : ""
+    }`;
     return this.getResponse(url, {}, "get");
   }
 
@@ -295,10 +340,60 @@ export class Api {
   async getURLDigitalAsset(id) {
     const url = `/ecp/digital-asset/v1/asset/${id}`;
     try {
-      const response = await this.getResponse(url, null, "get");
-      if (response.data) {
-        return response.data.presignedUrl;
+      const response = await this.getResponse(url, null, "get", false);
+      if (response) {
+        return response;
       }
+    } catch (error) {
+      console.error({ error });
+    }
+  }
+
+  async createURLDigitalAsset(file) {
+    const url = `/ecp/digital-asset/v1/asset`;
+    const splitted = file.type.split("/");
+    const subType = splitted[0];
+    const type = splitted[1];
+    const postBody = {
+      description: file.name,
+      name: file.name,
+      originalFileName: file.name,
+      subType,
+      type,
+    };
+    try {
+      const response = await this.getResponse(url, postBody, "post");
+      if (response) {
+        return response;
+      }
+    } catch (error) {
+      console.error({ error });
+    }
+  }
+
+  getAppointmentTypes() {
+    const url = "/ecp/appointments/appointment-types";
+    return this.getResponse(url, {}, "get");
+  }
+
+  submitFilter(locationName, postBody) {
+    const url = `/ecp/appointments/available-slot?searchText=${locationName}`;
+    return this.getResponse(url, postBody, "put");
+  }
+
+  async uploadFile(url, file) {
+    try {
+      const response = await axios({
+        method: "put",
+        url: url, //API url
+        data: file, // Buffer
+        maxContentLength: Infinity,
+        maxBodyLength: Infinity,
+        headers: {
+          "Content-Type": "image/png",
+        },
+      });
+      if (response.status === 200) return { success: true };
     } catch (error) {
       console.error({ error });
     }
