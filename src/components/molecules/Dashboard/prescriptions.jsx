@@ -94,6 +94,7 @@ export default function Prescriptions({
     //this is intentional
   },
   requestRefillResponseData = null,
+  renderRirstOnly = false,
 }) {
   const isMobile = useMediaQuery("(max-width: 768px)");
   const containerGlasses = React.useRef(null);
@@ -376,32 +377,37 @@ export default function Prescriptions({
 
   function renderMedicationUI(data) {
     if (data && data.length > 0) {
-      return data.map((row, idx) => (
-        <Box
-          key={idx}
-          sx={{
-            borderBottom: 1,
-            borderColor: "divider",
-          }}
-        >
-          <Box className={[styles.flexDisplay, styles.margin]} tabIndex={0}>
-            <Typography variant="medication">{row.prescription}</Typography>
-          </Box>
+      return data.map((row, idx) => {
+        if (renderRirstOnly && idx > 0) {
+          return null;
+        }
+        return (
           <Box
-            className={[styles.flexDisplay]}
+            key={idx}
             sx={{
-              margin: "10px 16px",
-              marginBottom: data.length == idx + 1 ? "26px" : "16px",
+              borderBottom: 1,
+              borderColor: "divider",
             }}
-            tabIndex={0}
           >
-            <Typography variant="customBodyRegular">
-              Prescribed on: &nbsp;
-            </Typography>
-            <Typography variant="bodyMedium">{row.date}</Typography>
+            <Box className={[styles.flexDisplay, styles.margin]} tabIndex={0}>
+              <Typography variant="medication">{row.prescription}</Typography>
+            </Box>
+            <Box
+              className={[styles.flexDisplay]}
+              sx={{
+                margin: "10px 16px",
+                marginBottom: data.length == idx + 1 ? "26px" : "16px",
+              }}
+              tabIndex={0}
+            >
+              <Typography variant="customBodyRegular">
+                Prescribed on: &nbsp;
+              </Typography>
+              <Typography variant="bodyMedium">{row.date}</Typography>
+            </Box>
           </Box>
-        </Box>
-      ));
+        );
+      });
     } else {
       return (
         <Box className={styles.noPrescription} tabIndex={0}>
@@ -420,6 +426,9 @@ export default function Prescriptions({
     const contentUI = [];
     if (data && data.length > 0) {
       data.map((row, idx) => {
+        if (renderRirstOnly && idx > 0) {
+          return null;
+        }
         contentUI.push(
           renderPrescriptionTable(row, type, idx, data.length === idx + 1)
         );
