@@ -34,22 +34,22 @@ export const AccountDrawer = ({
     {
       label: "Dashboard",
       value: "dashboard",
-      icon: <AutoAwesomeMosaicOutlinedIcon />,
+      icon: <AutoAwesomeMosaicOutlinedIcon sx={{ fill: colors.darkGreen }} />,
     },
     {
       label: "Appointments",
       value: "appointments",
-      icon: <CalendarTodayOutlinedIcon />,
+      icon: <CalendarTodayOutlinedIcon sx={{ fill: colors.darkGreen }} />,
     },
     {
       label: "Medical Record",
       value: "medical",
-      icon: <CreateNewFolderOutlinedIcon />,
+      icon: <CreateNewFolderOutlinedIcon sx={{ fill: colors.darkGreen }} />,
     },
     {
       label: "Documents",
       value: "documents",
-      icon: <DescriptionOutlinedIcon />,
+      icon: <DescriptionOutlinedIcon sx={{ fill: colors.darkGreen }} />,
     },
   ],
   linkObject = {
@@ -162,6 +162,7 @@ export const AccountDrawer = ({
                   <ListItemButton
                     data-testid="outer-menu-nav-close"
                     onClick={() => setActiveMenu(menu.value)}
+                    color={colors}
                   >
                     <>
                       {menu.icon}

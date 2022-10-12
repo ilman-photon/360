@@ -52,6 +52,11 @@ export default function AccountDocumentsPage() {
             xs: 14,
             md: 16,
           },
+          ".MuiTableSortLabel-root": {
+            "&.Mui-active": {
+              color: colors.darkGreen,
+            },
+          },
         },
       },
       {
