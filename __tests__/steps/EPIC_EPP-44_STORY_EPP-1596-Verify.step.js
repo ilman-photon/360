@@ -72,10 +72,10 @@ const clickSearch = async (container, mock, domain) => {
     fireEvent.click(searchBtn);
   });
   await waitFor(() =>
-    container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.hourButton)
+    container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)
   );
   expect(
-    container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.hourButton)[0]
+    container.getAllByTestId(TEST_ID.SEARCH_PROVIDER_TEST_ID.viewAll)[0]
   ).toBeInTheDocument();
 };
 

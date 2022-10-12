@@ -192,7 +192,7 @@ export default function InsuranceInfoPage() {
           behavior: "smooth",
           block: "start",
         });
-      }, 300);
+      }, 5000);
     }
   }, [openNewInsuranceForm, focusToNewInsurance]);
 
@@ -390,6 +390,7 @@ export default function InsuranceInfoPage() {
               <InsuranceInformationNew
                 providerList={providerList}
                 planList={planList}
+                patientId={patientId}
                 isAutocompleteLoading={isAutocompleteLoading}
                 OnProviderChanged={handleFetchPlans}
                 OnCreateInsurance={OnCreateInsurance}

@@ -71,7 +71,7 @@ Object {
                   >
                     <label
                       aria-label="Appointment no longer needed Radio Button"
-                      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1fot7fg-MuiFormControlLabel-root"
+                      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hg8x3x-MuiFormControlLabel-root"
                       tabindex="0"
                     >
                       <span
@@ -121,7 +121,7 @@ Object {
                     </label>
                     <label
                       aria-label="Patient passed away Radio Button"
-                      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1fot7fg-MuiFormControlLabel-root"
+                      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hg8x3x-MuiFormControlLabel-root"
                       tabindex="0"
                     >
                       <span
@@ -171,7 +171,7 @@ Object {
                     </label>
                     <label
                       aria-label="Family emergency Radio Button"
-                      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1fot7fg-MuiFormControlLabel-root"
+                      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hg8x3x-MuiFormControlLabel-root"
                       tabindex="0"
                     >
                       <span
@@ -221,7 +221,7 @@ Object {
                     </label>
                     <label
                       aria-label="Not covered by insurance Radio Button"
-                      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1fot7fg-MuiFormControlLabel-root"
+                      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hg8x3x-MuiFormControlLabel-root"
                       tabindex="0"
                     >
                       <span
@@ -271,7 +271,7 @@ Object {
                     </label>
                     <label
                       aria-label="Rescheduled appointment Radio Button"
-                      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1fot7fg-MuiFormControlLabel-root"
+                      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hg8x3x-MuiFormControlLabel-root"
                       tabindex="0"
                     >
                       <span
@@ -321,7 +321,7 @@ Object {
                     </label>
                     <label
                       aria-label="Patient hospitalized Radio Button"
-                      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1fot7fg-MuiFormControlLabel-root"
+                      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hg8x3x-MuiFormControlLabel-root"
                       tabindex="0"
                     >
                       <span
@@ -371,7 +371,7 @@ Object {
                     </label>
                     <label
                       aria-label="Patient illness Radio Button"
-                      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1fot7fg-MuiFormControlLabel-root"
+                      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hg8x3x-MuiFormControlLabel-root"
                       tabindex="0"
                     >
                       <span
@@ -421,7 +421,7 @@ Object {
                     </label>
                     <label
                       aria-label="Transportation issues Radio Button"
-                      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1fot7fg-MuiFormControlLabel-root"
+                      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hg8x3x-MuiFormControlLabel-root"
                       tabindex="0"
                     >
                       <span
@@ -471,7 +471,7 @@ Object {
                     </label>
                     <label
                       aria-label="Weather Radio Button"
-                      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1fot7fg-MuiFormControlLabel-root"
+                      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hg8x3x-MuiFormControlLabel-root"
                       tabindex="0"
                     >
                       <span
@@ -521,7 +521,7 @@ Object {
                     </label>
                     <label
                       aria-label="Homebound Radio Button"
-                      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1fot7fg-MuiFormControlLabel-root"
+                      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hg8x3x-MuiFormControlLabel-root"
                       tabindex="0"
                     >
                       <span
@@ -571,7 +571,7 @@ Object {
                     </label>
                     <label
                       aria-label="Other Radio Button"
-                      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1fot7fg-MuiFormControlLabel-root"
+                      class="MuiFormControlLabel-root MuiFormControlLabel-labelPlacementEnd css-1hg8x3x-MuiFormControlLabel-root"
                       tabindex="0"
                     >
                       <span

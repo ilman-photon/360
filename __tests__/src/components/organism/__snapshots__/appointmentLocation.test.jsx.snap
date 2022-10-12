@@ -20,7 +20,10 @@ Object {
               <span
                 class="MuiTypography-root MuiTypography-h5 MuiCardHeader-title css-1qvr50w-MuiTypography-root"
               >
-                <div>
+                <div
+                  aria-label="location heading"
+                  tabindex="0"
+                >
                   <span
                     style="margin-right: 8px; display: flex; align-items: center;"
                   >
@@ -43,9 +46,8 @@ Object {
                     </svg>
                   </span>
                   <div
-                    aria-label="location heading"
+                    aria-hidden="true"
                     class="title"
-                    tabindex="0"
                   >
                     location
                   </div>
@@ -165,7 +167,10 @@ Object {
             <span
               class="MuiTypography-root MuiTypography-h5 MuiCardHeader-title css-1qvr50w-MuiTypography-root"
             >
-              <div>
+              <div
+                aria-label="location heading"
+                tabindex="0"
+              >
                 <span
                   style="margin-right: 8px; display: flex; align-items: center;"
                 >
@@ -188,9 +193,8 @@ Object {
                   </svg>
                 </span>
                 <div
-                  aria-label="location heading"
+                  aria-hidden="true"
                   class="title"
-                  tabindex="0"
                 >
                   location
                 </div>

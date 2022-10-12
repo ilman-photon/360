@@ -254,7 +254,7 @@ export default function MfaPage({ isStepTwo }) {
         if (err.ResponseCode !== constants.ERROR_CODE.NETWORK_ERR) {
           callback({
             status: "failed",
-            message: "Failed to sumbit the security question.",
+            message: "Failed to submit the security question.",
           });
         }
       });

@@ -66,7 +66,7 @@ const Navbar = () => {
   const router = useRouter();
 
   const isCurrentPath = (href) => {
-    return router.pathname.includes(href);
+    return router.pathname === href;
   };
   (function prefetchPages() {
     if (typeof window !== "undefined") router.prefetch(router.pathname);
@@ -160,7 +160,7 @@ const Navbar = () => {
                   margin: "0 !important",
                   borderRadius: "2px 2px 0px 0px",
                   borderTop: "solid 4px transparent",
-                  borderBottom: isCurrentPath("medical-record")
+                  borderBottom: isCurrentPath("/patient/account/medical-record")
                     ? "solid 4px #D9D9D9"
                     : "solid 4px transparent",
                 }}
@@ -200,7 +200,7 @@ const Navbar = () => {
                   margin: "0 !important",
                   borderRadius: "2px 2px 0px 0px",
                   borderTop: "solid 4px transparent",
-                  borderBottom: isCurrentPath("documents")
+                  borderBottom: isCurrentPath("/patient/account/documents")
                     ? "solid 4px #D9D9D9"
                     : "solid 4px transparent",
                 }}

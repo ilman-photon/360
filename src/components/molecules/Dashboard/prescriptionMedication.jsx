@@ -27,7 +27,6 @@ import constants from "../../../utils/constants";
 import { colors } from "../../../styles/theme";
 import { useEffect } from "react";
 import FormMessage from "../FormMessage/formMessage";
-import moment from "moment";
 import { renderCTAIcon } from "./prescriptions";
 import { savePDF } from "@progress/kendo-react-pdf";
 
@@ -349,7 +348,7 @@ export default function PrescriptionMedication({
     } else {
       intentUI.push(
         <Typography className={styles.medicationViewAllStatus}>
-          Status: {status}
+          Status: {status === "refill request" ? `${status}ed` : status}
         </Typography>
       );
     }
@@ -526,7 +525,7 @@ export default function PrescriptionMedication({
                 Take 2 times a day
               </Typography>
             </Stack>
-            {moment(data.expirationDate) < moment() && (
+            {data.isShowRequestRefill && (
               <>
                 {data.status !== "refill request" ? (
                   <StyledButton
@@ -569,7 +568,12 @@ export default function PrescriptionMedication({
   function renderUIFilter() {
     if (medications?.active?.length > 0) {
       return (
-        <Box className={[styles.filterButtonContainer, styles.paddingTop22]}>
+        <Box
+          className={[
+            styles.filterButtonContainer,
+            !isMobile ? styles.paddingTop22 : {},
+          ]}
+        >
           <FilterBy
             activedFilter={[...activeFilter]}
             filter={testFilterData}
@@ -583,15 +587,17 @@ export default function PrescriptionMedication({
             isPrescription={true}
           ></FilterBy>
           {isMobile ? (
-            <Image
-              alt=""
-              src={isFilterApplied ? imageSrcFilled : imageSrcState}
-              width={"26px"}
-              height={isFilterApplied ? "28px" : "26px"}
-              onClick={() => {
-                setFilterOpen(!filterOpen);
-              }}
-            />
+            <Box sx={{ width: "26px", height: "26px" }}>
+              <Image
+                alt=""
+                src={isFilterApplied ? imageSrcFilled : imageSrcState}
+                width={"26px"}
+                height={isFilterApplied ? "28px" : "26px"}
+                onClick={() => {
+                  setFilterOpen(!filterOpen);
+                }}
+              />
+            </Box>
           ) : (
             <>
               <StyledButton
@@ -682,6 +688,7 @@ export default function PrescriptionMedication({
               variant="titleCard"
               aria-label={`Past Medications (${medications?.past?.length} medications)`}
               tabIndex={"0"}
+              className={styles.titleText}
             >
               Past Medications{` (${medications?.past?.length})`}
             </Typography>

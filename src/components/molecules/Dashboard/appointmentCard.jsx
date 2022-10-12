@@ -26,6 +26,7 @@ import {
 import { fullDateFormat } from "../../../utils/dateFormatter";
 import { useEffect } from "react";
 import Image from "next/image";
+import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import { getLinkAria } from "../../../utils/viewUtil";
 
 export default function AppointmentCard({
@@ -47,7 +48,11 @@ export default function AppointmentCard({
     appointmentInfo: {},
   });
   const [appointmentCount, setAppointmentCount] = React.useState(0);
-
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      console.log("enter press here! ");
+    }
+  };
   useEffect(() => {
     setAppointment(parseAppointmentCardData(appointmentData));
     setAppointmentCount(appointmentData.length);
@@ -112,7 +117,7 @@ export default function AppointmentCard({
               getDirection(location);
             }}
           >
-            Get Direction
+            Get Directions
           </Typography>
         </Box>
       )
@@ -184,9 +189,20 @@ export default function AppointmentCard({
                 <Typography
                   variant="bodyLinkRegular"
                   tabIndex={0}
+                  onKeyPress={() =>
+                    window.open(`tel:${appointment.providerInfo?.phoneNumber}`)
+                  }
                   aria-label={`phone number ${appointment.providerInfo?.phoneNumber}`}
                 >
-                  {appointment.providerInfo?.phoneNumber}
+                  <a
+                    onKeyPress={() =>
+                      window.open(
+                        `tel:${appointment.providerInfo?.phoneNumber}`
+                      )
+                    }
+                  >
+                    {formatPhoneNumber(appointment.providerInfo?.phoneNumber)}{" "}
+                  </a>
                 </Typography>
                 {renderGetDirection()}
               </Box>
@@ -341,6 +357,9 @@ export default function AppointmentCard({
           ".MuiCardContent-root": {
             p: 0,
             position: "relative",
+          },
+          ".MuiCardContent-root .MuiBox-root .MuiGrid-container": {
+            p: { xs: "24px 15.5px", md: "24px" },
           },
         }}
       >

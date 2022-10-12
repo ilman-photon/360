@@ -36,7 +36,6 @@
     font-weight: 400 !important;
     font-size: 18px !important;
     line-height: 28px !important;
-    color: #191919;
   }
 
   h6 {
@@ -93,13 +92,13 @@
   line-height: 19px !important;
 }
 
-.bodyTitle {
+.appointmentInformation .bodyTitle {
   font-weight: 500 !important;
+  color: #191919;
 }
 
 .appointmentInformation p {
   font-style: normal;
-  font-weight: 400 !important;
   font-size: 16px !important;
   line-height: 19px !important;
 }
@@ -132,17 +131,6 @@
   }
 }
 
-.link {
-  font-family: "Libre Franklin", sans-serif !important;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 16px;
-  line-height: 20px;
-  color: #008294 !important;
-  text-decoration-color: inherit !important;
-  cursor: pointer;
-}
-
 .getDirectionLink {
   display: flex;
   align-items: center;
@@ -164,4 +152,10 @@
   color: #008294 !important;
   cursor: pointer;
   text-decoration-color: inherit !important;
+}
+
+.phone {
+  letter-spacing: 0.0016em;
+  color: #003b4a !important;
+  line-height: 24px !important;
 }

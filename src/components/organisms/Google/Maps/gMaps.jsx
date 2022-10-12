@@ -1,6 +1,7 @@
 import React from "react";
 import { GoogleMap, MarkerF, InfoWindowF } from "@react-google-maps/api";
 import InfoWindowContent from "./infoWindowContent";
+import { TEST_ID } from "../../../../utils/constants";
 
 const containerStyle = {
   width: "100%",
@@ -76,6 +77,7 @@ function GMaps({
         <MarkerF
           key={idx}
           position={marker.position}
+          data-testid={TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.MAPS.pinMarker}
           onClick={() => handleActiveMarker(idx)}
           icon={{
             url: "/provider-pin.svg",

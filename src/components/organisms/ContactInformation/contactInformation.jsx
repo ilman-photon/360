@@ -21,6 +21,7 @@ import { Regex } from "../../../utils/regex";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import dynamic from "next/dynamic";
+import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 
 let ClientAddressAutofill;
 
@@ -96,7 +97,6 @@ export default function ContactInformation({
   };
 
   const onSubmit = (data) => {
-    // console.log({data})
     OnSaveClicked(data);
   };
 
@@ -157,14 +157,7 @@ export default function ContactInformation({
             ariaLabel="Phone Number"
             label="Phone Number"
           >
-            <div
-              tabIndex={0}
-              aria-label={
-                userData.mobile ? formatPhoneNumber(userData.mobile) : ""
-              }
-            >
-              {userData.mobile ? formatPhoneNumber(userData.mobile) : ""}
-            </div>
+            {userData.mobile && <PhoneNumber phone={userData.mobile} />}
           </LabelWithInfo>
 
           <LabelWithInfo tabIndex={0} ariaLabel="Email ID" label="Email ID">
@@ -432,14 +425,20 @@ export default function ContactInformation({
                   }) => {
                     return (
                       <StyledInput
-                        type="number"
+                        type="text"
                         onKeyDown={(e) => {
-                          if (invalidChars.includes(e.key)) e.preventDefault();
+                          if (
+                            !Regex.numberOnly.test(e.key) &&
+                            e.key != "Backspace"
+                          ) {
+                            e.preventDefault();
+                          }
                         }}
                         id="zip"
                         label="Zip"
                         inputProps={{
                           "aria-label": "Zip field",
+                          maxLength: 5,
                         }}
                         autoComplete="postal-code"
                         value={value}
@@ -462,7 +461,7 @@ export default function ContactInformation({
                   }}
                   rules={{
                     pattern: {
-                      value: /^\s?\d{5}\s?$/,
+                      value: Regex.isZip,
                       message: "Incorrect format",
                     },
                   }}

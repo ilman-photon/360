@@ -14,14 +14,15 @@ const AccountTitleHeading = ({
         position: isFixed ? "fixed" : "relative",
         ...sxContainer,
       }}
+      aria-label={`${title} heading`}
+      tabIndex={"0"}
     >
       <div
         className={styles.title}
         style={{
           ...sx,
         }}
-        aria-label={`${title} heading`}
-        tabIndex={"0"}
+        aria-hidden={true}
       >
         {title}
       </div>
