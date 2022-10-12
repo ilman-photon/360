@@ -81,12 +81,12 @@ export default function getAllAppointment(req, res) {
         },
       ],
     };
-    if (patientId == "4041087c-c000-4f20-9844-3e43a2ab96d2") {
+    if (patientId == "3b7c741a-8772-48fe-a414-90ea5b68d12a") {
       //patient2@gmail.com: 0 appointments
       responseData = {
         appointmentList: [],
       };
-    } else if (patientId == "064b8897-4227-4b37-a0ed-a3c84dc97054") {
+    } else if (patientId == "9496a63c-3f61-4af0-8c82-c7c139c04bd9") {
       //patient3@gmail.com: 10 appointments
       const mockData = {
         appointmentId: "1",
@@ -152,7 +152,7 @@ export default function getAllAppointment(req, res) {
           ...mockData,
         });
       }
-    } else if (patientId == "e8b1d282-584d-4304-b220-f719365ee0c2") {
+    } else if (patientId == "130708ca-ca3c-4abf-95f7-db7162b95474") {
       //patient4@gmail.com: can't reschedule
       const dateMock = new Date();
       const eyeCare = new Date(dateMock.setHours(dateMock.getHours() + 2));
@@ -237,7 +237,7 @@ export default function getAllAppointment(req, res) {
           },
         ],
       };
-    } else if (patientId == "c37c6f60-f8f0-40ff-89f2-cf77b69555e9") {
+    } else if (patientId == "a86a757f-62ec-4a86-8b5b-85df1d0a421d") {
       const cookie = new Cookies(req.headers.cookie);
       //ppatient5@gmail.com: can't reschedule
       const dateMock = new Date();
@@ -253,6 +253,43 @@ export default function getAllAppointment(req, res) {
       );
       responseData = {
         appointmentList: [
+          {
+            appointmentId: "2",
+            providerInfo: {
+              providerId: "1",
+              name: "Iori Blaze Md",
+              position: "Scripps Eyecare",
+              address: {
+                addressLine1: "51 West 51st Street",
+                addressLine2: "Floor 3, Suite 320 Midtown",
+                city: "California",
+                state: "CA",
+                zipcode: "90210",
+              },
+              rating: "4",
+              phoneNumber: "8572222289",
+              distance: "15 mi",
+              image: "/doctor.png",
+              from: "2022-07-18",
+              to: "2022-07-23",
+              location: {
+                latitude: 32.751204,
+                longitude: -117.1641166,
+              },
+            },
+            patientInfo: {
+              name: "Jessica Chan",
+              firstname: "Jessica",
+              lastname: "Chan",
+              dob: "12/12/2000",
+              phoneNumber: "1234567890",
+            },
+            appointmentInfo: {
+              appointmentType: "Test or Procedure",
+              date: comprehensive.toUTCString(),
+              insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+            },
+          },
           {
             appointmentId: "1",
             providerInfo: {

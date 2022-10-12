@@ -60,15 +60,15 @@ export default function Container({
           </Box>
           <Stack spacing={2}>
             <Box className={styles.contentContainer}>
-              <Typography
-                variant={constants.H1}
-                className={styles.title}
-                aria-live={"polite"}
-              >
+              <Typography variant={constants.H1} className={styles.title}>
                 {title}
               </Typography>
               {renderFromMessage()}
-              <Typography variant="body2" className={styles.description}>
+              <Typography
+                variant="body2"
+                className={styles.description}
+                aria-live={"polite"}
+              >
                 {description}
               </Typography>
               {content}
@@ -102,7 +102,11 @@ export default function Container({
                       {t("rememberMeLabel")}
                     </Typography>
                   </Box>
-                  <Typography variant="body2" className={styles.checkBoxText}>
+                  <Typography
+                    variant="body2"
+                    className={styles.checkBoxText}
+                    sx={{ fontSize: "14px !important" }}
+                  >
                     {t("rememberMeDescription")}
                   </Typography>
                 </Box>

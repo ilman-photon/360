@@ -798,13 +798,20 @@ const feature = loadFeature(
 );
 
 defineFeature(feature, (test) => {
-  let container;
+  let container, mock;
 
   const defaultValidation = () => {
     expect(true).toBeTruthy();
   };
 
-  afterEach(cleanup);
+  beforeEach(() => {
+    mock = new MockAdapter(axios);
+  });
+
+  afterEach(() => {
+    mock.reset();
+    cleanup();
+  });
 
   test("EPIC_EPP-1_STORY_EPP-3299 - Verify User should see the following details as part of each prescriptions", ({
     given,
@@ -850,7 +857,7 @@ defineFeature(feature, (test) => {
         ResponseCode: 2005,
         ResponseType: "success",
       };
-      const mock = new MockAdapter(axios);
+
       const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock
@@ -873,26 +880,26 @@ defineFeature(feature, (test) => {
           `${domain}/api/dummy/appointment/create-appointment/submitFilter`
         )
         .reply(400, {});
-      window.matchMedia = createMatchMedia("1920px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
-      const mockGeolocation = {
-        getCurrentPosition: jest.fn(),
-        watchPosition: jest.fn(),
-      };
-      global.navigator.geolocation = mockGeolocation;
-      Cookies.result = { authorized: true };
-      act(() => {
-        container = render(
-          <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
-        );
-      });
-      await waitFor(() => container.getAllByLabelText(/Prescriptions/i)[0]);
-      expect(response).toEqual({
-        props: { isStepTwo: false },
-      });
+        window.matchMedia = createMatchMedia("1920px");
+        const response = await getServerSideProps({
+          req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
+          res: jest.fn(),
+        });
+        const mockGeolocation = {
+          getCurrentPosition: jest.fn(),
+          watchPosition: jest.fn(),
+        };
+        global.navigator.geolocation = mockGeolocation;
+        Cookies.result = { authorized: true };
+        act(() => {
+          container = render(
+            <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
+          );
+        });
+        await waitFor(() => container.getAllByLabelText(/Prescriptions/i)[0]);
+        expect(response).toEqual({
+          props: { isStepTwo: false },
+        });
     });
 
     and("User should see the widget with prescriptions", () => {
@@ -969,7 +976,6 @@ defineFeature(feature, (test) => {
         ResponseCode: 2005,
         ResponseType: "success",
       };
-      const mock = new MockAdapter(axios);
       const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock
@@ -988,10 +994,6 @@ defineFeature(feature, (test) => {
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -1004,10 +1006,7 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByTestId("menu-contact"));
-      console.log(response);
-      // expect(response).toEqual({
-      //   props: {},
-      // });
+      expect(container.getByTestId("menu-contact")).toBeInTheDocument();
     });
 
     and("User should see the widget with prescriptions", async () => {
@@ -1016,7 +1015,7 @@ defineFeature(feature, (test) => {
         fireEvent.click(contactMenu);
       });
 
-      await waitFor(() => container.getAllByText(/Contacts Prescriptions/i)[0]);
+      await waitFor(() => container.getAllByText(/Contacts Prescription/i)[0]);
     });
 
     when("User clicks on the widget with prescriptions", () => {
@@ -1075,7 +1074,7 @@ defineFeature(feature, (test) => {
         ResponseCode: 2005,
         ResponseType: "success",
       };
-      const mock = new MockAdapter(axios);
+
       const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock
@@ -1094,10 +1093,6 @@ defineFeature(feature, (test) => {
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -1110,10 +1105,7 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByText(/Purpose of Visit/i));
-
-      expect(response).toEqual({
-        props: { isStepTwo: false },
-      });
+      expect(container.getByText(/Purpose of Visit/i)).toBeInTheDocument();
     });
 
     and("User should see the widget with prescriptions", async () => {
@@ -1192,7 +1184,7 @@ defineFeature(feature, (test) => {
         ResponseCode: 2005,
         ResponseType: "success",
       };
-      const mock = new MockAdapter(axios);
+
       const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock
@@ -1216,10 +1208,6 @@ defineFeature(feature, (test) => {
         )
         .reply(200, MOCK_SUBMIT);
       window.matchMedia = createMatchMedia("1920px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -1232,9 +1220,7 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByText(/Purpose of Visit/i));
-      expect(response).toEqual({
-        props: { isStepTwo: false },
-      });
+      expect(container.getByText(/Purpose of Visit/i)).toBeInTheDocument();
     });
 
     and("User should see the widget with prescriptions", async () => {

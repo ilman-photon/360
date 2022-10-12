@@ -33,6 +33,9 @@ export const CustomFormControl = styled((props) => <FormControl {...props} />)(
         borderColor: "transparent",
       },
     },
+    ".Mui-disabled input": {
+      backgroundColor: "#efefef",
+    },
   })
 );
 
@@ -120,7 +123,6 @@ export const RedditTextField = styled((props) => (
         .slice(0, props.maxLength || 1000);
     }}
     InputProps={{
-      disableUnderline: true,
       endAdornment: props.adorment ? (
         <InputAdornment position="end">
           <IconButton aria-label="toggle password visibility" edge="end">
@@ -128,6 +130,7 @@ export const RedditTextField = styled((props) => (
           </IconButton>
         </InputAdornment>
       ) : null,
+      ...props.InputProps,
     }}
     {...props}
   />
@@ -184,6 +187,9 @@ export const RedditTextField = styled((props) => (
     "&.Mui-error": {
       color: "#B93632",
     },
+  },
+  ".Mui-disabled input": {
+    backgroundColor: "#efefef",
   },
 }));
 

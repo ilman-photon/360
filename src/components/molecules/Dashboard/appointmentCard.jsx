@@ -26,6 +26,8 @@ import {
 import { fullDateFormat } from "../../../utils/dateFormatter";
 import { useEffect } from "react";
 import Image from "next/image";
+import { formatPhoneNumber } from "../../../utils/phoneFormatter";
+import { getLinkAria } from "../../../utils/viewUtil";
 
 export default function AppointmentCard({
   appointmentData = [],
@@ -46,7 +48,11 @@ export default function AppointmentCard({
     appointmentInfo: {},
   });
   const [appointmentCount, setAppointmentCount] = React.useState(0);
-
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      console.log("enter press here! ");
+    }
+  };
   useEffect(() => {
     setAppointment(parseAppointmentCardData(appointmentData));
     setAppointmentCount(appointmentData.length);
@@ -94,12 +100,7 @@ export default function AppointmentCard({
         <Box
           className={styles.flexDisplay}
           pt={3}
-          onClick={() => {
-            getDirection(location);
-          }}
-          sx={{ cursor: "pointer", alignItems: "center" }}
-          aria-label="Get Direction link"
-          tabIndex={0}
+          sx={{ alignItems: "center" }}
         >
           <Box pr={1}>
             <DirectionsOutlinedIcon sx={{ color: colors.darkGreen }} />
@@ -108,9 +109,15 @@ export default function AppointmentCard({
             variant="bodyLinkRegular"
             sx={{
               paddingBottom: "2px",
+              cursor: "pointer",
+            }}
+            aria-label="Get Direction link"
+            tabIndex={0}
+            onClick={() => {
+              getDirection(location);
             }}
           >
-            Get Direction
+            Get Directions
           </Typography>
         </Box>
       )
@@ -137,7 +144,11 @@ export default function AppointmentCard({
       const isHideButtons = visitDate < addHours(hideHour);
       const daysAway = visitDate.getTime() - today.getTime();
       const TotalDays = Math.ceil(daysAway / (1000 * 3600 * 24));
-
+      let estimationTime = `${TotalDays} days`;
+      if (isHideButtons) {
+        const totalHours = Math.ceil(daysAway / (1000 * 3600));
+        estimationTime = `${totalHours} Hours`;
+      }
       return (
         <Box>
           <Grid container columns={5} spacing={2} p={3}>
@@ -175,8 +186,23 @@ export default function AppointmentCard({
                   {appointment.providerInfo?.position}
                 </Typography>
                 {renderAddressUI()}
-                <Typography variant="bodyLinkRegular" tabIndex={0}>
-                  {appointment.providerInfo?.phoneNumber}
+                <Typography
+                  variant="bodyLinkRegular"
+                  tabIndex={0}
+                  onKeyPress={() =>
+                    window.open(`tel:${appointment.providerInfo?.phoneNumber}`)
+                  }
+                  aria-label={`phone number ${appointment.providerInfo?.phoneNumber}`}
+                >
+                  <a
+                    onKeyPress={() =>
+                      window.open(
+                        `tel:${appointment.providerInfo?.phoneNumber}`
+                      )
+                    }
+                  >
+                    {formatPhoneNumber(appointment.providerInfo?.phoneNumber)}{" "}
+                  </a>
                 </Typography>
                 {renderGetDirection()}
               </Box>
@@ -186,7 +212,7 @@ export default function AppointmentCard({
                 <Image
                   src={appointment.providerInfo.image}
                   style={{ borderRadius: "50%" }}
-                  alt="Doctor Image"
+                  alt={`${appointment.providerInfo?.name} image`}
                   width="90px"
                   height="90px"
                   tabIndex={0}
@@ -290,7 +316,7 @@ export default function AppointmentCard({
             >
               Your appointment is{" "}
               <Box className={styles.boldText} display="inline">
-                {TotalDays} days
+                {estimationTime}
               </Box>{" "}
               away.
             </Typography>
@@ -332,6 +358,9 @@ export default function AppointmentCard({
             p: 0,
             position: "relative",
           },
+          ".MuiCardContent-root .MuiBox-root .MuiGrid-container": {
+            p: { xs: "24px 15.5px", md: "24px" },
+          },
         }}
       >
         {renderAppointmentUI()}
@@ -349,7 +378,12 @@ export default function AppointmentCard({
             onClick={() => {
               onViewAppointment();
             }}
-            aria-label="View appointments option"
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                onViewAppointment();
+              }
+            }}
+            {...getLinkAria("View appointments option")}
             tabIndex={0}
           >
             View Appointments

@@ -6,13 +6,13 @@ import LabelWithInfo from "../../atoms/LabelWithInfo/labelWithInfo";
 
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import ContactMailIcon from "@mui/icons-material/ContactMail";
-import BusinessIcon from "@mui/icons-material/Business";
+import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 
 import { styles } from "./style";
 import { formatAppointmentDate } from "../../../utils/dateFormatter";
 import { colors } from "../../../styles/theme";
 import { TEST_ID } from "../../../utils/constants";
+import Image from "next/image";
 
 export default function AppointmentDetails({
   appointmentData = {},
@@ -53,10 +53,16 @@ export default function AppointmentDetails({
         <Stack spacing={2}>
           <LabelWithInfo
             label="Date and time"
+            iconWidth={"24px"}
             titleIcon={
-              <CalendarTodayIcon
+              <Image
+                width="20"
+                height="20"
+                src={"/icon-calendar.png"}
+                alt="date and time"
                 aria-label={"Calendar icon"}
                 aria-hidden={"false"}
+                sx={{ color: colors.darkGreen }}
               />
             }
             sxRow={{ justifyContent: "unset" }}
@@ -80,8 +86,16 @@ export default function AppointmentDetails({
 
           <LabelWithInfo
             label="Insurance"
+            iconWidth={"24px"}
             titleIcon={
-              <ContactMailIcon aria-label={"Mail icon"} aria-hidden={"false"} />
+              <Image
+                width="24"
+                height="24"
+                src={"/icon-profile.png"}
+                alt="insurance"
+                aria-label={"Mail icon"}
+                aria-hidden={"false"}
+              />
             }
             sxRow={{ justifyContent: "unset" }}
             sxText={{
@@ -103,10 +117,16 @@ export default function AppointmentDetails({
 
           <LabelWithInfo
             label="Purpose of visit"
+            iconWidth={"24px"}
             titleIcon={
-              <BusinessIcon
-                aria-label={"Business icon"}
+              <Image
+                width="24"
+                height="24"
+                src={"/icon-building.png"}
+                alt="purpose of visit"
+                aria-label={"Building icon"}
                 aria-hidden={"false"}
+                sx={{ color: colors.darkGreen }}
               />
             }
             sxRow={{ justifyContent: "unset" }}

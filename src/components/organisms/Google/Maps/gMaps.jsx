@@ -1,6 +1,7 @@
 import React from "react";
 import { GoogleMap, MarkerF, InfoWindowF } from "@react-google-maps/api";
 import InfoWindowContent from "./infoWindowContent";
+import { TEST_ID } from "../../../../utils/constants";
 
 const containerStyle = {
   width: "100%",
@@ -21,29 +22,31 @@ function GMaps({
   const [activeMarker, setActiveMarker] = React.useState(null);
   const markers = [];
   providerListData.forEach((provider) => {
-    const foundIndex = markers.findIndex((v) => {
-      console.log(v.coordinate.latitude, provider.coordinate.latitude);
-      return (
-        v.coordinate.latitude === provider.coordinate.latitude &&
-        v.coordinate.longitude === provider.coordinate.longitude
-      );
-    });
-    const latlngObj = {
-      lat: provider.coordinate.latitude,
-      lng: provider.coordinate.longitude,
-    };
-    const obj = {
-      ...provider,
-      position: latlngObj,
-    };
-    if (foundIndex > -1) {
-      markers[foundIndex].providerData.push(obj);
-    } else {
-      markers.push({
-        coordinate: provider.coordinate,
-        position: latlngObj,
-        providerData: [obj],
+    if (provider?.coordinate?.latitude && provider?.coordinate?.longitude) {
+      const foundIndex = markers.findIndex((v) => {
+        console.log(v.coordinate.latitude, provider.coordinate.latitude);
+        return (
+          v.coordinate.latitude === provider.coordinate.latitude &&
+          v.coordinate.longitude === provider.coordinate.longitude
+        );
       });
+      const latlngObj = {
+        lat: provider.coordinate.latitude,
+        lng: provider.coordinate.longitude,
+      };
+      const obj = {
+        ...provider,
+        position: latlngObj,
+      };
+      if (foundIndex > -1) {
+        markers[foundIndex].providerData.push(obj);
+      } else {
+        markers.push({
+          coordinate: provider.coordinate,
+          position: latlngObj,
+          providerData: [obj],
+        });
+      }
     }
   });
 
@@ -74,6 +77,7 @@ function GMaps({
         <MarkerF
           key={idx}
           position={marker.position}
+          data-testid={TEST_ID.SCHEDULE_APPOINTMENT_TEST_ID.MAPS.pinMarker}
           onClick={() => handleActiveMarker(idx)}
           icon={{
             url: "/provider-pin.svg",

@@ -11,29 +11,21 @@ export const LabelWithIcon = ({
   label = "",
   style = {},
   primaryColor = false,
-}) => (
-  <Box style={{ ...styles.boxContainer, ...style }}>
-    {error ? (
-      <CancelIcon sx={{ color: styles.errorColor }} />
-    ) : (
-      <CheckCircleRoundedIcon
-        sx={
-          primaryColor
-            ? { color: styles.primaryColor }
-            : { color: styles.successColor }
-        }
-      />
-    )}
-    <span
-      style={
-        error
-          ? styles.errorTextStyle
-          : primaryColor
-          ? styles.primaryTextStyle
-          : styles.successTextColor
-      }
-    >
-      {label}
-    </span>
-  </Box>
-);
+}) => {
+  const labelStyles = primaryColor
+    ? styles.primaryTextStyle
+    : styles.successTextColor;
+  const checkCircleRoundedIconStyle = primaryColor
+    ? { color: styles.primaryColor }
+    : { color: styles.successColor };
+  return (
+    <Box style={{ ...styles.boxContainer, ...style }} tabIndex="0">
+      {error ? (
+        <CancelIcon sx={{ color: styles.errorColor }} />
+      ) : (
+        <CheckCircleRoundedIcon sx={checkCircleRoundedIconStyle} />
+      )}
+      <span style={error ? styles.errorTextStyle : labelStyles}>{label}</span>
+    </Box>
+  );
+};

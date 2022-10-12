@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import styles from "./styles.module.scss";
 import AppointmentButton from "../../atoms/AppointmentButton/appointmentButton";
 import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
@@ -14,12 +14,15 @@ export function UpcomingAppointmentCard({
   data,
   onRescheduleClicked,
   onCancelClicked,
+  onAddToCalendarClicked,
 }) {
   function addHours(numOfHours, date = new Date()) {
     date.setTime(date.getTime() + numOfHours * 60 * 60 * 1000);
 
     return date;
   }
+
+  const isDesktop = useMediaQuery("(min-width: 993px)");
 
   const visitDate = new Date(data.appointmentInfo.date);
   let hideHour = 0;
@@ -40,7 +43,7 @@ export function UpcomingAppointmentCard({
           className={styles.appointmentTitle}
           variant="h3"
         >
-          Eye Exam
+          {data.appointmentInfo.appointmentType}
         </Typography>
         <Box className={styles.dateContainer}>
           <Typography
@@ -69,7 +72,26 @@ export function UpcomingAppointmentCard({
           </Box>
         </Box>
         <Box className={styles.addToCalendarContainer}>
-          <AppointmentButton icon={<CalendarTodayIcon />}>
+          <AppointmentButton
+            icon={<CalendarTodayIcon />}
+            onClick={() =>
+              onAddToCalendarClicked({
+                name: "ECP Appointment",
+                description: `Patient: ${data.patientInfo.name}, Purpose of Visit: ${data.appointmentInfo.appointmentType}`,
+                date: data.appointmentInfo.date,
+                location:
+                  data.providerInfo.address.addressLine1 +
+                  ` ` +
+                  data.providerInfo.address.addressLine2 +
+                  ` ` +
+                  data.providerInfo.address.city +
+                  ` ` +
+                  data.providerInfo.address.state +
+                  ` ` +
+                  data.providerInfo.address.zipcode,
+              })
+            }
+          >
             Add to calendar
           </AppointmentButton>
         </Box>
@@ -84,7 +106,7 @@ export function UpcomingAppointmentCard({
                 icon={<CancelOutlinedIcon />}
                 onClick={() => onCancelClicked(data)}
               >
-                Cancel
+                {isDesktop ? "Cancel" : "Cancel Appointment"}
               </AppointmentButton>
               <AppointmentButton
                 icon={<CalendarTodayIcon />}
@@ -93,7 +115,7 @@ export function UpcomingAppointmentCard({
                 }
                 onClick={() => onRescheduleClicked(data)}
               >
-                Reschedule
+                {isDesktop ? "Reschedule" : "Reschedule Appointment"}
               </AppointmentButton>
             </Box>
           </Box>
@@ -103,7 +125,23 @@ export function UpcomingAppointmentCard({
   );
 }
 
-export function NoAppointment() {
+export function scheduleAppointmentButton(onScheduleClicked) {
+  return (
+    <StyledButton
+      theme={constants.PATIENT}
+      mode={constants.PRIMARY}
+      type="button"
+      size={constants.SMALL}
+      className={styles.scheduleButton}
+      gradient={false}
+      onClick={onScheduleClicked}
+    >
+      Schedule New Appointment
+    </StyledButton>
+  );
+}
+
+export function NoAppointment({ onRescheduleClicked }) {
   return (
     <Box>
       <Box className={styles.noAppointmentTitle}>
@@ -112,15 +150,7 @@ export function NoAppointment() {
         </Typography>
       </Box>
       <Box className={styles.noAppointmentButtonContainer}>
-        <StyledButton
-          theme={constants.PATIENT}
-          mode={constants.PRIMARY}
-          type="button"
-          size={constants.SMALL}
-          gradient={false}
-        >
-          Schedule Appointment Now
-        </StyledButton>
+        {scheduleAppointmentButton(onRescheduleClicked)}
       </Box>
     </Box>
   );
@@ -130,40 +160,42 @@ export default function UpcomingAppointment({
   data,
   onRescheduleClicked,
   onCancelClicked,
+  onAddToCalendarClicked,
+  isMobile,
 }) {
-  const appointments = [];
-  for (const appointment of data) {
-    if (new Date(appointment.appointmentInfo.date) > new Date()) {
-      appointments.push(appointment);
-    }
-  }
-  const isHasValue = appointments.length !== 0;
+  const isHasValue = data.length !== 0;
   return (
     <Box className={styles.upcomingAppointment}>
-      <Typography
-        variant="h2"
-        tabIndex={0}
-        label={"Upcoming appointments heading"}
-        className={styles.title}
-        data-testid={TEST_ID.APPOINTMENTS_TEST_ID.upcomingAppointmentsHeader}
-      >
-        Upcoming Appointments
-      </Typography>
+      <Box className={styles.upcomingAppointmentHeader}>
+        <Typography
+          variant="h2"
+          tabIndex={0}
+          label={"Upcoming appointments heading"}
+          className={styles.title}
+          data-testid={TEST_ID.APPOINTMENTS_TEST_ID.upcomingAppointmentsHeader}
+        >
+          Upcoming Appointments
+        </Typography>
+        {isHasValue ? scheduleAppointmentButton(onRescheduleClicked) : null}
+      </Box>
 
       {isHasValue ? (
-        appointments.map((item, index) => {
-          const isUpcoming = new Date(item.appointmentInfo.date) > new Date();
-          return isUpcoming ? (
+        data.map((item, index) => {
+          return (
             <UpcomingAppointmentCard
               data={item}
               key={index}
               onRescheduleClicked={onRescheduleClicked}
               onCancelClicked={onCancelClicked}
+              onAddToCalendarClicked={onAddToCalendarClicked}
+              isMobile={isMobile}
             />
-          ) : null;
+          );
         })
       ) : (
-        <NoAppointment></NoAppointment>
+        <NoAppointment
+          onRescheduleClicked={onRescheduleClicked}
+        ></NoAppointment>
       )}
     </Box>
   );

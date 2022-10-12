@@ -5,6 +5,8 @@ import StyledRating from "../../atoms/Rating/styledRating";
 import { useRouter } from "next/router";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import { TEST_ID } from "../../../utils/constants";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 
 const renderSpecialistList = (providerData) => {
   return (
@@ -39,7 +41,6 @@ const renderSpecialistList = (providerData) => {
 export default function ProviderProfile({
   variant,
   showPosition,
-  phoneLink,
   isShownPhoneAndRating = true,
   isShownRating = true,
   providerData = {},
@@ -64,9 +65,14 @@ export default function ProviderProfile({
       <>
         {addressData.addressLine1}
         <br />
-        {addressData.addressLine2}
-        <br />
-        {addressData.city}, {addressData.state}, {addressData.zipcode}
+        {address.addressLine2 && (
+          <>
+            {address.addressLine2}
+            <br />
+          </>
+        )}
+        {addressData.city}, {addressData.state},{" "}
+        {addressData.zipcode || addressData.zip}
       </>
     );
   };
@@ -95,18 +101,20 @@ export default function ProviderProfile({
   }
 
   function getDoctorNameStyle() {
-    if (isAppointment || isViewSchedule) {
+    if (isViewSchedule) {
+      return styles.doctorNameViewSchedule;
+    } else if (isAppointment) {
       return styles.doctorNameAppointment;
     } else if (isMap) {
       return styles.doctorMap;
     } else {
-      return "";
+      return styles.doctorName;
     }
   }
 
   function getWidtBioContainer() {
     const isNotBio = isMap || isAppointment || imageSize === "small";
-    const bioWidth = !isMobile ? "20vw" : "auto";
+    const bioWidth = "auto";
     return isNotBio ? "unset" : bioWidth;
   }
 
@@ -117,15 +125,29 @@ export default function ProviderProfile({
     >
       <Box className={styles.displayFlex}>
         <Box className={getImageContainerStyle()}>
-          <Image
-            src={providerData.image || "/transparent.png"}
-            data-testid={TEST_ID.APPOINTMENT_TEST_ID.PROVIDER_PROFILE.image}
-            width={100}
-            height={100}
-            className={styles.profilePhoto}
-            alt="Doctor Image"
-            tabIndex={0}
-          ></Image>
+          {providerData.image ? (
+            <Image
+              src={providerData.image || "/transparent.png"}
+              data-testid={TEST_ID.APPOINTMENT_TEST_ID.PROVIDER_PROFILE.image}
+              width={100}
+              height={100}
+              className={styles.profilePhoto}
+              alt="Doctor Image"
+              tabIndex={0}
+            />
+          ) : (
+            <AccountCircleIcon
+              sx={{
+                width: { xs: "70px", md: "100px" },
+                height: { xs: "70px", md: "100px" },
+                color: "#b5b5b5",
+              }}
+              data-testid={TEST_ID.APPOINTMENT_TEST_ID.PROVIDER_PROFILE.image}
+              className={styles.profilePhoto}
+              alt="Doctor Image"
+              tabIndex={0}
+            />
+          )}
         </Box>
         <Box
           className={[styles.bioContainer, bioContainerClass].join(" ")}
@@ -134,16 +156,16 @@ export default function ProviderProfile({
           }}
         >
           <Typography
-            variant={isMap ? "h4" : "h2"}
+            variant={isMap ? "cutomH4" : "h2"}
             fontSize={getNameFontSize()}
             data-testid={TEST_ID.APPOINTMENT_TEST_ID.PROVIDER_PROFILE.name}
             onClick={() => {
-              router.push("/patient/bio");
+              router.push(`/patient/bio/${providerData.providerId}`);
             }}
             className={getDoctorNameStyle()}
-            tabindex={"0"}
+            tabIndex={"0"}
           >
-            {providerData.name}
+            <span className={styles.doctorName}>{providerData.name} </span>
           </Typography>
           {showPosition && (
             <Typography variant="h3" tabIndex={0}>
@@ -157,7 +179,7 @@ export default function ProviderProfile({
                   variant="body2"
                   className={[styles.address, addressClass].join(" ")}
                   fontSize={isViewSchedule || isMap ? "14px" : "16px"}
-                  tabindex={"0"}
+                  tabIndex={"0"}
                 >
                   {getAddress(providerData.address)}
                 </Typography>
@@ -167,30 +189,12 @@ export default function ProviderProfile({
                   className={
                     isBio ? styles.ratingContainer : styles.phoneContainer
                   }
+                  sx={{ marginLeft: isMap ? "-67px" : "0" }}
                 >
-                  {(isBio || (isViewSchedule && isShownRating)) && (
+                  {(isBio || isMap || (isViewSchedule && isShownRating)) && (
                     <StyledRating value={parseInt(providerData.rating)} />
                   )}
-                  {!phoneLink ? (
-                    <Typography
-                      variant="body2"
-                      className={styles.phone}
-                      tabIndex={"0"}
-                      aria-label={`phone number ${formatPhoneNumber(
-                        phoneNumber
-                      )}`}
-                      role={isMobile && "link"}
-                      onClick={() => {
-                        isMobile && window.open(`tel:${phoneNumber}`);
-                      }}
-                    >
-                      {formatPhoneNumber(phoneNumber)}
-                    </Typography>
-                  ) : (
-                    <Link className={styles.phoneLink} tabindex={"0"}>
-                      {formatPhoneNumber(phoneNumber)}
-                    </Link>
-                  )}
+                  <PhoneNumber phone={phoneNumber} />
                 </Box>
               )}
             </Box>

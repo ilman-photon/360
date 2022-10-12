@@ -7,7 +7,6 @@ export function formatPhoneNumber(
 ) {
   const cleaned = ("" + phoneNumberString).replace(/\D/g, "");
   const match = cleaned.match(Regex.isTenDigitPhone);
-
   if (match) {
     let first = match[1];
     let middle = match[2];

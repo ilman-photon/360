@@ -3,10 +3,12 @@ import { styled, alpha } from "@mui/material/styles";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlined";
-import GetAppOutlinedIcon from "@mui/icons-material/GetAppOutlined";
-import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import styles from "./styles.module.scss";
+import Image from "next/image";
+import { colors } from "../../../styles/theme";
+import { Box } from "@mui/material";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -41,7 +43,6 @@ const StyledMenu = styled((props) => (
       color: "#323338",
       "& .MuiSvgIcon-root": {
         fontSize: 18,
-        color: theme.palette.text.secondary,
         marginRight: theme.spacing(1.5),
       },
       "&:active": {
@@ -54,18 +55,36 @@ const StyledMenu = styled((props) => (
   },
 }));
 
-export default function MenuList({ pdfFile = "" }) {
+export default function MenuList({
+  pdfFile = "",
+  onClickDownloadButton = () => {
+    //this is intentional
+  },
+  onClickPrintButton = () => {
+    //this is intentional
+  },
+  onClickShareButton = () => {
+    //this is intentional
+  },
+}) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  const onEnter = (event) => {
+    if (event.key == "Enter") {
+      handleClick(event);
+    }
+  };
   const handleClose = (callback) => {
     setAnchorEl(null);
   };
+  const iconShare = "/icon-share.png";
+  const iconDownload = "/icon-download.png";
 
   return (
-    <div aria-label={"More option"} tabIndex={0}>
+    <div aria-label="More option" tabIndex={0} onKeyPress={onEnter}>
       <MoreHorizIcon
         id="demo-customized-button"
         aria-controls={open ? "demo-customized-menu" : undefined}
@@ -75,6 +94,7 @@ export default function MenuList({ pdfFile = "" }) {
         onClick={handleClick}
         endicon={<KeyboardArrowDownIcon />}
         sx={{
+          cursor: "pointer",
           "@media print": {
             display: "none !important",
           },
@@ -90,36 +110,43 @@ export default function MenuList({ pdfFile = "" }) {
         onClose={handleClose}
         sx={{ top: "-15px" }}
       >
-        <MenuItem onClick={handleClose} disableRipple>
-          <a
-            href={pdfFile}
-            style={{
-              display: "flex",
-              alignItems: "center",
-              fontSize: "14px",
-              fontWeight: "400",
-              color: "#323338",
-            }}
-            download
-          >
-            <GetAppOutlinedIcon />
-            Download
-          </a>
+        <MenuItem
+          className={styles.menuItem}
+          disableRipple
+          onClick={() => {
+            onClickDownloadButton();
+            handleClose();
+          }}
+          tabIndex={0}
+        >
+          <Box className={"MuiSvgIcon-root"}>
+            <Image alt="" src={iconDownload} width={15} height={15} />
+          </Box>
+          Download
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
-          <ShareOutlinedIcon />
+        <MenuItem
+          onClick={() => {
+            onClickShareButton();
+            handleClose();
+          }}
+          className={styles.menuItem}
+          disableRipple
+          tabIndex={0}
+        >
+          <Box className={"MuiSvgIcon-root"}>
+            <Image alt="" src={iconShare} width={15} height={15} />
+          </Box>
           Share
         </MenuItem>
         <MenuItem
           onClick={() => {
+            onClickPrintButton();
             handleClose();
-            setTimeout(() => {
-              window.print();
-            }, 300);
           }}
+          className={styles.menuItem}
           disableRipple
         >
-          <LocalPrintshopOutlinedIcon />
+          <LocalPrintshopOutlinedIcon sx={{ color: colors.darkGreen }} />
           Print
         </MenuItem>
       </StyledMenu>

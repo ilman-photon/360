@@ -28,12 +28,13 @@ import {
   Button,
   Grid,
   Tooltip,
+  useMediaQuery,
 } from "@mui/material";
 import { getDirection } from "../../../../utils/appointment";
 import { formatAppointmentDate } from "../../../../utils/dateFormatter";
 
 const BootstrapDialogTitle = (props) => {
-  const { children, onClose, ...other } = props;
+  const { children, onClose, isPage, ...other } = props;
 
   return (
     <DialogTitle
@@ -42,7 +43,7 @@ const BootstrapDialogTitle = (props) => {
       aria-label="Appointment confirmation page"
     >
       {children}
-      {onClose ? (
+      {onClose && !isPage ? (
         <IconButton
           aria-label="close option"
           onClick={onClose}
@@ -74,7 +75,9 @@ export default function ModalConfirmContent({
   OnOkClicked = () => {
     // This is intended
   },
+  isPage = false,
 }) {
+  const isMobile = useMediaQuery("(max-width: 768px)");
   const { REGISTER_TEST_ID } = constants.TEST_ID;
 
   const { t } = useTranslation("translation", {
@@ -110,7 +113,8 @@ export default function ModalConfirmContent({
       <BootstrapDialogTitle
         id="customized-dialog-title"
         onClose={handleClose}
-        sx={{ textAlign: "center" }}
+        sx={{ textAlign: "center", fontSize: "22px" }}
+        isPage={isPage}
       >
         <Typography
           tabIndex={0}
@@ -136,10 +140,12 @@ export default function ModalConfirmContent({
             pb: { xs: 2, md: 3 },
           },
         }}
+        tabIndex={0}
       >
         <div
           className={styles.registeredUsernameWrapper}
           sx={{ m: { xs: 0, md: 2 } }}
+          aria-label={"nono button"}
         >
           <Box
             className={styles.thanksBar}
@@ -148,14 +154,22 @@ export default function ModalConfirmContent({
               textAlign: { xs: "center", md: "left" },
               padding: { xs: "8px", md: "12px 100px" },
             }}
+            aria-label={
+              isReschedule ? t("thanksBarReschedule") : t("thanksBar")
+            }
+            tabIndex={0}
           >
             <MailOutlineIcon sx={{ mr: 1, height: "35px", width: "28px" }} />{" "}
-            {t("thanksBar")}
+            {isReschedule ? t("thanksBarReschedule") : t("thanksBar")}
           </Box>
         </div>
 
         <div className={styles.bottomParagraph}>
-          <Tooltip title="If this is a medical emergency, please call 911">
+          <Tooltip
+            title="If this is a medical emergency, please call 911"
+            ariaLabel={"sIf this is a medical emergency, please call 911"}
+            tabIndex={0}
+          >
             <Link
               data-testid={REGISTER_TEST_ID.loginlink}
               {...getLinkAria(t("isEmergency"))}
@@ -195,6 +209,7 @@ export default function ModalConfirmContent({
                     display: "contents",
                     fontWeight: "600",
                     fontSize: "14px",
+                    fontFamily: "Libre Franklin",
                   }}
                   aria-label={"Add to calendar"}
                 >
@@ -229,7 +244,6 @@ export default function ModalConfirmContent({
                   <ProviderProfile
                     variant={"appointment"}
                     showPosition
-                    phoneLink={true}
                     providerData={providerData}
                     isDayAvailableView={true}
                   />
@@ -280,7 +294,13 @@ export default function ModalConfirmContent({
           <div className={styles.bottomParagraph}>
             <Typography
               variant="caption"
-              sx={{ fontSize: "16px", fontFamily: "Libre Franklin" }}
+              sx={{
+                fontSize: "16px",
+                fontFamily: "Libre Franklin",
+                float: isMobile ? "left" : "unset",
+              }}
+              aria-label={"Already have an account? Sign in"}
+              tabIndex={0}
             >
               Already have an account?{" "}
               <Link

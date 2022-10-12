@@ -53,9 +53,9 @@ export const FormMessage = (
         <div
           style={{
             color: "#fff",
-            fontSize: "16px",
-            lineHeight: "24px",
-            letterSpacing: "0.0016em",
+            fontSize: "14px",
+            lineHeight: "20.02px",
+            letterSpacing: "0.17px",
           }}
           data-testid="submission-message"
           aria-live="polite"
@@ -63,11 +63,17 @@ export const FormMessage = (
           {...accessibility}
         >
           {props.title ? (
-            <div style={{ fontWeight: "bold" }}>{props.title}</div>
+            <div style={{ fontWeight: "600" }} role="alert" tabIndex={"0"}>
+              {props.title}
+            </div>
           ) : (
             <></>
           )}
-          <div style={{ fontSize: props.fontTitle || 14 }}>
+          <div
+            style={{ fontSize: props.fontTitle || 14, fontWeight: "400" }}
+            role="alert"
+            tabIndex={"0"}
+          >
             {props.children}
             {props.isBackToLogin ? (
               <Link href="/patient/login">

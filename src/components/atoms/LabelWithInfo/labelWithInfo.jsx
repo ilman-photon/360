@@ -12,6 +12,7 @@ export const LabelWithInfo = ({
   titleIcon,
   sxRow,
   sxText,
+  iconWidth,
   alignItems = "unset",
 }) => (
   <Stack>
@@ -19,10 +20,10 @@ export const LabelWithInfo = ({
       {titleIcon && (
         <span
           style={{
-            marginRight: 8,
+            marginRight: iconWidth ? 2 : 8,
             display: "flex",
             alignItems: "center",
-            width: "18px",
+            width: iconWidth || "18px",
           }}
         >
           {titleIcon}
@@ -38,7 +39,7 @@ export const LabelWithInfo = ({
       >
         {label}
       </div>
-      {tooltipContent ? (
+      {tooltipContent && (
         <>
           <Tooltip
             title={tooltipContent}
@@ -47,23 +48,19 @@ export const LabelWithInfo = ({
           >
             <IconButton sx={{ p: 0 }}>
               <ErrorOutlineOutlinedIcon
-                sx={{ width: 24, height: 24, color: "#00000080" }}
+                sx={{ width: "19.21px", height: "19.21px", color: "#00000080" }}
               />
             </IconButton>
           </Tooltip>
         </>
-      ) : (
-        ""
       )}
     </div>
     <Stack spacing={1} sx={{ mt: "10px", alignItems: alignItems }}>
       <div>{children}</div>
-      {helperText ? (
-        <Typography variant="bodySmallRegular" sx={{ mt: 1, fontWeight: 500 }}>
+      {helperText && (
+        <Typography variant="bodySmallRegular" sx={{ mt: 1, fontWeight: 400 }}>
           {helperText}
         </Typography>
-      ) : (
-        ""
       )}
     </Stack>
   </Stack>

@@ -46,17 +46,17 @@ const documents = [
 const medical = [
   {
     icon: iconCarePlan,
-    href: "/patient/account/medical-record/test-lab-result",
+    href: "/patient/account/medical-record?type=care-plan-overview",
     label: "Care Plan",
   },
   {
     icon: iconPrescription2,
-    href: "/patient/prescription",
+    href: "/patient/account/medical-record?type=care-plan-overview",
     label: "Prescriptions",
   },
   {
     icon: iconTestLabResults,
-    href: "/patient/account/medical-record/test-lab-result",
+    href: "/patient/account/medical-record?type=test-lab-result",
     label: "Test & Lab Results",
   },
 ];
@@ -68,7 +68,7 @@ const Navbar = () => {
   const router = useRouter();
 
   const isCurrentPath = (href) => {
-    return router.pathname.includes(href);
+    return router.pathname === href;
   };
   (function prefetchPages() {
     if (typeof window !== "undefined") router.prefetch(router.pathname);
@@ -90,6 +90,29 @@ const Navbar = () => {
     if (typeof href === "string") router.push(href);
   };
 
+  const MenuItemLabel = (doc, docIdx) => {
+    return (
+      <MenuItem
+        key={docIdx}
+        onClick={() => handleCloseUserMenu(doc.href)}
+        aria-label={`${doc.label} menu`}
+      >
+        <Image alt="" src={doc.icon} width={"16px"} height={"16px"} />
+        <Typography
+          textAlign="center"
+          sx={{
+            margin: "0 10px",
+            fontFamily: "Libre Franklin",
+            fontWeight: "400",
+            fontSize: "14px",
+          }}
+        >
+          {doc.label}
+        </Typography>
+      </MenuItem>
+    );
+  };
+
   return (
     <AppBar
       position="static"
@@ -109,6 +132,7 @@ const Navbar = () => {
               <Button
                 key={pageIdx}
                 onClick={() => router.push(page.href)}
+                aria-label={`${page.label} menu`}
                 sx={{
                   my: 2,
                   color: "white",
@@ -129,6 +153,7 @@ const Navbar = () => {
               <Button
                 key={"Medical Record"}
                 onClick={handleOpenNavMenu}
+                aria-label={`Medical Record menu`}
                 sx={{
                   my: 2,
                   color: "white",
@@ -137,7 +162,7 @@ const Navbar = () => {
                   margin: "0 !important",
                   borderRadius: "2px 2px 0px 0px",
                   borderTop: "solid 4px transparent",
-                  borderBottom: isCurrentPath("medical-record")
+                  borderBottom: isCurrentPath("/patient/account/medical-record")
                     ? "solid 4px #D9D9D9"
                     : "solid 4px transparent",
                 }}
@@ -161,37 +186,13 @@ const Navbar = () => {
                 open={Boolean(anchorElNav)}
                 onClose={handleCloseNavMenu}
               >
-                {medical.map((doc, docIdx) => {
-                  return (
-                    <MenuItem
-                      key={docIdx}
-                      onClick={() => handleCloseUserMenu(doc.href)}
-                    >
-                      <Image
-                        alt=""
-                        src={doc.icon}
-                        width={"16px"}
-                        height={"16px"}
-                      />
-                      <Typography
-                        textAlign="center"
-                        sx={{
-                          margin: "0 10px",
-                          fontFamily: "Libre Franklin",
-                          fontWeight: "400",
-                          fontSize: "14px",
-                        }}
-                      >
-                        {doc.label}
-                      </Typography>
-                    </MenuItem>
-                  );
-                })}
+                {medical.map((doc, docIdx) => MenuItemLabel(doc, docIdx))}
               </Menu>
             </Box>
             <Box>
               <Button
                 key={"Documents"}
+                aria-label={`Documents menu`}
                 onClick={handleOpenUserMenu}
                 sx={{
                   my: 2,
@@ -201,7 +202,7 @@ const Navbar = () => {
                   margin: "0 !important",
                   borderRadius: "2px 2px 0px 0px",
                   borderTop: "solid 4px transparent",
-                  borderBottom: isCurrentPath("documents")
+                  borderBottom: isCurrentPath("/patient/account/documents")
                     ? "solid 4px #D9D9D9"
                     : "solid 4px transparent",
                 }}
@@ -225,32 +226,7 @@ const Navbar = () => {
                 open={Boolean(anchorElUser)}
                 onClose={handleCloseUserMenu}
               >
-                {documents.map((doc, docIdx) => {
-                  return (
-                    <MenuItem
-                      key={docIdx}
-                      onClick={() => handleCloseUserMenu(doc.href)}
-                    >
-                      <Image
-                        alt=""
-                        src={doc.icon}
-                        width={"16px"}
-                        height={"16px"}
-                      />
-                      <Typography
-                        textAlign="center"
-                        sx={{
-                          margin: "0 10px",
-                          fontFamily: "Libre Franklin",
-                          fontWeight: "400",
-                          fontSize: "14px",
-                        }}
-                      >
-                        {doc.label}
-                      </Typography>
-                    </MenuItem>
-                  );
-                })}
+                {documents.map((doc, docIdx) => MenuItemLabel(doc, docIdx))}
               </Menu>
             </Box>
           </Box>

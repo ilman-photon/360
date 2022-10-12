@@ -1,45 +1,60 @@
+import moment from "moment";
 import constants from "./constants";
-import { ddmmyyDateFormat } from "./dateFormatter";
+import {
+  convertTime24to12,
+  ddmmyyDateFormat,
+  mmddyyDateFormat,
+  yyyymmddDateFormat,
+} from "./dateFormatter";
 
-export function parseSuggestionData(suggestionData) {
-  return {
-    purposeOfVisit: parsePurposeOfVisit(suggestionData.appointmentType),
-    insuranceCarrier: parseInsuranceCarrier(suggestionData.insuranceCarrier),
-  };
-}
+export function parseInsuranceCarrier(insuranceCarrierData) {
+  if (insuranceCarrierData && insuranceCarrierData.length > 0) {
+    const defaultInsurance = [
+      {
+        id: "1",
+        label: "I'm paying out of my pocket",
+        category: "general",
+      },
+      {
+        id: "2",
+        label: "skip and choose insurance later",
+        category: "general",
+      },
+      {
+        id: "3",
+        label: "Other Insurance",
+        category: "general",
+      },
+    ];
 
-function parsePurposeOfVisit(appointmentData) {
-  if (appointmentData && appointmentData.length > 0) {
+    const allInsuranceData = [...defaultInsurance, ...insuranceCarrierData];
     const data = [];
-    for (const item of appointmentData) {
-      const purposeOfVisitItem = {
-        id: item.id,
-        title: item.name,
-        subtitle: item.description,
+    for (let index = 0; index < allInsuranceData.length; index++) {
+      const insuranceItem = {
+        id: allInsuranceData[index].id,
+        name: allInsuranceData[index].label,
+        category: allInsuranceData[index].category !== "general" ? `all` : "",
+        divider:
+          allInsuranceData[index].category === "general" &&
+          index === defaultInsurance.length - 1,
       };
-      data.push(purposeOfVisitItem);
+      data.push(insuranceItem);
     }
     return data;
   }
   return [];
 }
 
-function parseInsuranceCarrier(insuranceCarrierData) {
-  if (insuranceCarrierData) {
+export function parsePurposeOfVisit(appointmentType) {
+  if (appointmentType && appointmentType.length > 0) {
     const data = [];
-    for (const [category, insuranceCarrierList] of Object.entries(
-      insuranceCarrierData
-    )) {
-      for (let i = 0; i < insuranceCarrierList.length; i++) {
-        const itemData = {
-          id: insuranceCarrierList[i].id,
-          name: insuranceCarrierList[i].name,
-          category: category !== "general" ? `${category} carriers` : "",
-          divider:
-            category === "general" && i === insuranceCarrierList.length - 1,
-        };
-        data.push(itemData);
-      }
+    for (const item of appointmentType) {
+      const purposeOfVisitItem = {
+        id: item.code,
+        title: item.name,
+        subtitle: item.category?.description || "",
+      };
+      data.push(purposeOfVisitItem);
     }
     return data;
   }
@@ -108,7 +123,7 @@ function getScheduleData(availabilityData) {
 
 export function parseScheduleDataDay(availability, currentDateIndex) {
   const scheduleData = [];
-  if (availability[currentDateIndex].list.length > 0) {
+  if (availability[currentDateIndex]?.list.length > 0) {
     const maxLength =
       availability[currentDateIndex].list.length <= 4
         ? availability[currentDateIndex].list.length
@@ -231,14 +246,32 @@ function getDayName(date) {
   return `${dayName}, ${month} ${date.getDate()}`;
 }
 
-export function getProvideOverlay(providerId, listOfProvider) {
-  let providerOverlay = {};
+export function getProvideOverlay(
+  providerDataOverview,
+  listOfProvider,
+  startDate,
+  endDate
+) {
+  const providerDataTmp = { ...providerDataOverview };
   for (let index = 0; index < listOfProvider.length; index++) {
-    if (providerId === listOfProvider[index].providerId) {
-      providerOverlay = listOfProvider[index];
+    if (providerDataTmp.providerId === listOfProvider[index].providerId) {
+      providerDataTmp.availability = listOfProvider[index].availability;
+      break;
     }
   }
-  return providerOverlay;
+
+  if (listOfProvider?.length === 0) {
+    const getRangeDate = getDates(
+      new Date(startDate),
+      new Date(endDate),
+      false
+    );
+    providerDataTmp.availability = createAvailableTimeSlot(
+      providerDataTmp,
+      getRangeDate
+    );
+  }
+  return providerDataTmp;
 }
 
 function parsePrescriptionItemData(prescriptionData, key) {
@@ -291,15 +324,16 @@ function parsePrescriptionItemMedication(medications) {
   let latestDateMedic = "";
   for (let index = 0; index < medications.length; index++) {
     const date = medications[index].date;
+    const expiratedDate =
+      medications[index].expiredDate || "2022-12-02T11:18:47.229Z";
 
     const medicationData = {};
     medicationData.id = medications[index].id;
     medicationData.prescription = medications[index].prescription;
     medicationData.date = ddmmyyDateFormat(date);
     medicationData.prescribedBy = "Dr. Philip Morris";
-    medicationData.expirationDate = ddmmyyDateFormat(
-      medications[index].expiredDate || "2022-10-02T11:18:47.229Z"
-    );
+    medicationData.isShowRequestRefill = moment().isSameOrBefore(expiratedDate);
+    medicationData.expirationDate = ddmmyyDateFormat(expiratedDate);
     medicationData.fillRequestDate = ddmmyyDateFormat(
       "2022-09-02T11:18:47.229Z"
     );
@@ -372,21 +406,21 @@ function parsePrescriptionDetailsData(prescriptionDetails, type) {
     if (type === "glasses") {
       data.push(
         createGlassesDataTable({
-          eye: prescription.Eye,
-          sph: prescription.Sph,
-          cyl: prescription.Cyl,
-          axis: prescription.Axis,
-          add: prescription.Add,
+          eye: prescription.Eye || prescription.eye,
+          sph: prescription.Sph || prescription.sph,
+          cyl: prescription.Cyl || prescription.cyl,
+          axis: prescription.Axis || prescription.axis,
+          add: prescription.Add || prescription.add,
         })
       );
     } else {
       data.push(
         createContactDataTable({
-          eye: prescription.Eye,
-          sph: prescription.Sph,
-          bc: prescription.Bc,
-          cyl: prescription.Cyl,
-          axis: prescription.Axis,
+          eye: prescription.Eye || prescription.eye,
+          sph: prescription.Sph || prescription.eye,
+          bc: prescription.Bc || prescription.bc,
+          cyl: prescription.Cyl || prescription.cyl,
+          axis: prescription.Axis || prescription.axis,
         })
       );
     }
@@ -492,4 +526,133 @@ export function getDirection(providerCordinate) {
     "_blank",
     "noopener,noreferrer"
   );
+}
+
+export function getMondayOfCurrentWeek(date) {
+  const today = new Date(date);
+  const first = today.getDate() - today.getDay() + 1;
+
+  const monday = new Date(today.setDate(first));
+  return mmddyyDateFormat(monday);
+}
+
+export function getSaturdayOfCurrentWeek(date) {
+  const today = new Date(date);
+  const six = today.getDate() - today.getDay() + 6;
+
+  const saturday = new Date(today.setDate(six));
+  return mmddyyDateFormat(saturday);
+}
+
+function parseTimeSlotAppointment(timeSlotList) {
+  const list = [];
+  for (const timeSlot of timeSlotList) {
+    let slotTemp = {
+      time: convertTime24to12(`${timeSlot.startHHMM}`),
+      key: timeSlot._id,
+    };
+    list.push(slotTemp);
+  }
+  return list;
+}
+
+function createAvailableTimeSlot(providerData, getRangeDate) {
+  const availabilityList = [];
+  for (const dateItem of getRangeDate.dateRange) {
+    const availability = {
+      date: yyyymmddDateFormat(dateItem),
+      list: [],
+    };
+    const isSameAvailability =
+      providerData?.availability?.find(
+        (item) => new Date(item.date).getDate() === dateItem.getDate()
+      ) || null;
+    if (isSameAvailability) {
+      availability.list = isSameAvailability.list;
+    }
+    availabilityList.push(availability);
+  }
+  return availabilityList;
+}
+
+export function parseProviderListData(response, startDate, endDate) {
+  startDate = yyyymmddDateFormat(startDate);
+  endDate = yyyymmddDateFormat(endDate);
+  const data = {
+    listOfProvider: [],
+    filterbyData: [
+      {
+        name: "Available Today",
+        checked: false,
+      },
+    ],
+  };
+  const offices = response.offices || [];
+  for (const item of offices) {
+    const office = item.office;
+    for (const providerTempItem of item.providerTemplate) {
+      const provider = providerTempItem.provider;
+      const providerId = provider._id;
+      const dateSchedule = new Date(providerTempItem.scheduleDate);
+      const availabilityDate = {
+        date: new moment(dateSchedule).format("YYYY-MM-DD"),
+        list: parseTimeSlotAppointment(providerTempItem.slots),
+      };
+      const currentProvider = data.listOfProvider
+        ? data.listOfProvider.find((item) => item.providerId === providerId)
+        : [];
+      if (data.listOfProvider.length === 0 || !currentProvider) {
+        const providerTemp = {
+          providerId: "",
+          providerTemplateId: "",
+          office: {
+            name: office.name,
+            id: office._id,
+          },
+          address: {
+            addressLine1: "",
+            addressLine2: "",
+            city: "",
+            state: "",
+            zipcode: "",
+          },
+          rating: "",
+          name: "",
+          phoneNumber: "",
+          distance: "",
+          image: "",
+          from: startDate,
+          to: endDate,
+          availability: [],
+          coordinate: {
+            latitude: "",
+            longitude: "",
+          },
+        };
+
+        providerTemp.providerId = providerId;
+        providerTemp.providerTemplateId = providerTempItem._id;
+        providerTemp.name = `${provider.designation} ${provider.firstName} ${provider.lastName}`;
+        providerTemp.availability.push(availabilityDate);
+        data.listOfProvider.push(providerTemp);
+      } else if (data.listOfProvider.length > 0 && currentProvider) {
+        const isSameDate = currentProvider.availability.find(
+          (item) => item.date === availabilityDate.date
+        );
+        if (!isSameDate) {
+          currentProvider.availability.push(availabilityDate);
+        }
+      }
+    }
+  }
+
+  const getRangeDate = getDates(new Date(startDate), new Date(endDate), false);
+  for (const providerData of data.listOfProvider) {
+    providerData.availability = createAvailableTimeSlot(
+      providerData,
+      getRangeDate
+    );
+  }
+
+  return data;
 }

@@ -79,28 +79,36 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
   };
 
   const getAddressQuery = (address) => {
-    return `${address.addressLine1} ${address.addressLine2} ${address.city} ${address.state} ${address.zipcode}`.replace(
+    const addressLine1 = address.addressLine1 || "";
+    const addressLine2 = address.addressLine2 || "";
+    const city = address.city || "";
+    const state = address.state || "";
+    const zipcode = address.zipcode || address.zip || "";
+
+    return `${addressLine1}${addressLine2}${city}${state}${zipcode}`.replace(
       / /g,
       "+"
     );
   };
 
-  const renderAddress = (addressArray) => {
+  const renderAddress = (newAddressArray) => {
     return (
       <Box>
-        {addressArray.map((address, idx) => {
-          const addressQuery = getAddressQuery(address);
+        {newAddressArray.map((newAddress, idx) => {
+          const addressQuery = getAddressQuery(newAddress);
           return (
             <Box
               className={styles.mapAddressContainer}
               aria-label="Address"
               key={idx}
               sx={
-                idx !== 0 && {
-                  borderTop: "1px solid rgba(0, 59, 74, 0.25)",
-                  marginTop: "26px",
-                  paddingTop: "24px",
-                }
+                idx !== 0
+                  ? {
+                      borderTop: "1px solid rgba(0, 59, 74, 0.25)",
+                      marginTop: "26px",
+                      paddingTop: "24px",
+                    }
+                  : {}
               }
             >
               <Typography className={styles.addressTitle}>
@@ -111,13 +119,19 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
                 className={styles.mapAddress}
                 tabIndex={0}
               >
-                {address && (
+                {newAddress && (
                   <>
-                    {address.addressLine1}
+                    {newAddress.addressLine1}
                     <br />
-                    {address.addressLine2}
-                    <br />
-                    {address.city}, {address.state}, {address.zipcode}
+                    {newAddress.addressLine2 && (
+                      <>
+                        {newAddress.addressLine2}
+                        <br />
+                      </>
+                    )}
+                    {newAddress.city && `${newAddress.city},`}{" "}
+                    {newAddress.state && `${newAddress.state},`}{" "}
+                    {newAddress.zip}
                   </>
                 )}
               </Typography>
@@ -303,7 +317,7 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
           {providerData.language &&
             providerData.language.map((item, index) => {
               const isLastIndex = providerData.language.length - 1 === index;
-              if (!isLastIndex) {
+              if (!isLastIndex && item !== "") {
                 return `${item}, `;
               } else {
                 return item;

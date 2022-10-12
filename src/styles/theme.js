@@ -9,6 +9,7 @@ export const colors = {
   darkGreen25: "#507A7D",
   green: "#168845",
   teal: "#0095A9", //'#E5EDF8',
+  teal15: "#DDF1F3",
   teal75: "#3EAFBD",
   teal50: "#7FCAD3",
   teal25: "#BFE$E8",
@@ -90,6 +91,13 @@ export const patientTypography = createTheme({
       fontSize: 18,
       lineHeight: "24px",
     },
+    cutomH4: {
+      fontFamily: "Roboto",
+      color: "#003B4A",
+      fontWeight: "600",
+      fontSize: 18,
+      lineHeight: "24px",
+    },
     bodyLarge: {
       fontFamily: "Libre Franklin",
       fontWeight: "bold",
@@ -130,6 +138,11 @@ export const patientTypography = createTheme({
     bodySmallMedium: {
       fontFamily: "Libre Franklin",
       fontWeight: 500,
+      fontSize: 14,
+    },
+    smallMediumRoboto: {
+      fontFamily: "Roboto",
+      fontWeight: 400,
       fontSize: 14,
     },
     bodySmallLightMedium: {
@@ -236,6 +249,11 @@ export const patientTypography = createTheme({
       fontSize: "18px",
       lineHeight: "28px",
       color: "#003B4A",
+    },
+    titleScheduleMobile: {
+      fontFamily: "Inter",
+      fontWeight: 500,
+      fontSize: "26px",
     },
   },
 });

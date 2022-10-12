@@ -41,7 +41,8 @@ Object {
                     />
                   </svg>
                   <div
-                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-igydhl-MuiFormControl-root-MuiTextField-root"
+                    aria-label="City, state, or zip code field"
+                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-12gzqbr-MuiFormControl-root-MuiTextField-root"
                     maxlength="50"
                     tabindex="0"
                     withicon="true"
@@ -55,7 +56,6 @@ Object {
                       City, state, or zip code
                     </label>
                     <div
-                      aria-label="City, state, or zip code field"
                       class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1b3xhxz-MuiInputBase-root-MuiFilledInput-root"
                     >
                       <input
@@ -109,7 +109,7 @@ Object {
                   />
                 </svg>
                 <div
-                  class="MuiFormControl-root MuiTextField-root css-os9yej-MuiFormControl-root-MuiTextField-root"
+                  class="MuiFormControl-root MuiTextField-root css-1rewi5w-MuiFormControl-root-MuiTextField-root"
                 >
                   <label
                     class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
@@ -243,7 +243,8 @@ Object {
                     </span>
                   </div>
                   <div
-                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-u75lu1-MuiFormControl-root-MuiTextField-root"
+                    aria-label="Insurance carrier field"
+                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-2jj51j-MuiFormControl-root-MuiTextField-root"
                     tabindex="0"
                     withicon="true"
                   >
@@ -256,7 +257,6 @@ Object {
                       Insurance Carrier
                     </label>
                     <div
-                      aria-label="Insurace Carrier field"
                       class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiAutocomplete-inputRoot css-4q3q16-MuiInputBase-root-MuiFilledInput-root"
                     >
                       <input
@@ -361,7 +361,8 @@ Object {
                   />
                 </svg>
                 <div
-                  class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-igydhl-MuiFormControl-root-MuiTextField-root"
+                  aria-label="City, state, or zip code field"
+                  class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-12gzqbr-MuiFormControl-root-MuiTextField-root"
                   maxlength="50"
                   tabindex="0"
                   withicon="true"
@@ -375,7 +376,6 @@ Object {
                     City, state, or zip code
                   </label>
                   <div
-                    aria-label="City, state, or zip code field"
                     class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1b3xhxz-MuiInputBase-root-MuiFilledInput-root"
                   >
                     <input
@@ -429,7 +429,7 @@ Object {
                 />
               </svg>
               <div
-                class="MuiFormControl-root MuiTextField-root css-os9yej-MuiFormControl-root-MuiTextField-root"
+                class="MuiFormControl-root MuiTextField-root css-1rewi5w-MuiFormControl-root-MuiTextField-root"
               >
                 <label
                   class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
@@ -563,7 +563,8 @@ Object {
                   </span>
                 </div>
                 <div
-                  class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-u75lu1-MuiFormControl-root-MuiTextField-root"
+                  aria-label="Insurance carrier field"
+                  class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-2jj51j-MuiFormControl-root-MuiTextField-root"
                   tabindex="0"
                   withicon="true"
                 >
@@ -576,7 +577,6 @@ Object {
                     Insurance Carrier
                   </label>
                   <div
-                    aria-label="Insurace Carrier field"
                     class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiAutocomplete-inputRoot css-4q3q16-MuiInputBase-root-MuiFilledInput-root"
                   >
                     <input
@@ -738,7 +738,8 @@ Object {
                     />
                   </svg>
                   <div
-                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-igydhl-MuiFormControl-root-MuiTextField-root"
+                    aria-label="City, state, or zip code field"
+                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-12gzqbr-MuiFormControl-root-MuiTextField-root"
                     maxlength="50"
                     tabindex="0"
                     withicon="true"
@@ -752,7 +753,6 @@ Object {
                       City, state, or zip code
                     </label>
                     <div
-                      aria-label="City, state, or zip code field"
                       class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1b3xhxz-MuiInputBase-root-MuiFilledInput-root"
                     >
                       <input
@@ -806,7 +806,7 @@ Object {
                   />
                 </svg>
                 <div
-                  class="MuiFormControl-root MuiTextField-root css-os9yej-MuiFormControl-root-MuiTextField-root"
+                  class="MuiFormControl-root MuiTextField-root css-1rewi5w-MuiFormControl-root-MuiTextField-root"
                 >
                   <label
                     class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-shrink MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary MuiFormLabel-filled css-11l7838-MuiFormLabel-root-MuiInputLabel-root"
@@ -940,7 +940,8 @@ Object {
                     </span>
                   </div>
                   <div
-                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-u75lu1-MuiFormControl-root-MuiTextField-root"
+                    aria-label="Insurance carrier field"
+                    class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-2jj51j-MuiFormControl-root-MuiTextField-root"
                     tabindex="0"
                     withicon="true"
                   >
@@ -953,7 +954,6 @@ Object {
                       Insurance Carrier
                     </label>
                     <div
-                      aria-label="Insurace Carrier field"
                       class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiAutocomplete-inputRoot css-4q3q16-MuiInputBase-root-MuiFilledInput-root"
                     >
                       <input
@@ -1027,11 +1027,11 @@ Object {
         <div
           class="mobileContainer MuiBox-root css-0"
         >
-          <h2
-            class="MuiTypography-root MuiTypography-h2 mobileTitle css-1sra7t5-MuiTypography-root"
+          <span
+            class="MuiTypography-root MuiTypography-titleScheduleMobile mobileTitle css-37jdci-MuiTypography-root"
           >
             Schedule an eye exam
-          </h2>
+          </span>
           <form>
             <div
               class="MuiBox-root css-0"
@@ -1056,7 +1056,7 @@ Object {
                   />
                 </svg>
                 <div
-                  class="MuiFormControl-root MuiTextField-root custom-input css-davm3l-MuiFormControl-root-MuiTextField-root"
+                  class="MuiFormControl-root MuiTextField-root custom-input css-43wkct-MuiFormControl-root-MuiTextField-root"
                   tabindex="0"
                   withicon="true"
                 >
@@ -1117,7 +1117,7 @@ Object {
                   />
                 </svg>
                 <div
-                  class="MuiFormControl-root MuiTextField-root custom-input css-davm3l-MuiFormControl-root-MuiTextField-root"
+                  class="MuiFormControl-root MuiTextField-root custom-input css-43wkct-MuiFormControl-root-MuiTextField-root"
                   tabindex="0"
                   withicon="true"
                 >
@@ -1163,7 +1163,7 @@ Object {
                   />
                 </svg>
                 <div
-                  class="MuiFormControl-root MuiTextField-root custom-input css-davm3l-MuiFormControl-root-MuiTextField-root"
+                  class="MuiFormControl-root MuiTextField-root custom-input css-43wkct-MuiFormControl-root-MuiTextField-root"
                   tabindex="0"
                   withicon="true"
                 >
@@ -1229,7 +1229,7 @@ Object {
                   </span>
                 </div>
                 <div
-                  class="MuiFormControl-root MuiTextField-root custom-input css-davm3l-MuiFormControl-root-MuiTextField-root"
+                  class="MuiFormControl-root MuiTextField-root custom-input css-43wkct-MuiFormControl-root-MuiTextField-root"
                   tabindex="0"
                   withicon="true"
                 >
@@ -1286,11 +1286,11 @@ Object {
       <div
         class="mobileContainer MuiBox-root css-0"
       >
-        <h2
-          class="MuiTypography-root MuiTypography-h2 mobileTitle css-1sra7t5-MuiTypography-root"
+        <span
+          class="MuiTypography-root MuiTypography-titleScheduleMobile mobileTitle css-37jdci-MuiTypography-root"
         >
           Schedule an eye exam
-        </h2>
+        </span>
         <form>
           <div
             class="MuiBox-root css-0"
@@ -1315,7 +1315,7 @@ Object {
                 />
               </svg>
               <div
-                class="MuiFormControl-root MuiTextField-root custom-input css-davm3l-MuiFormControl-root-MuiTextField-root"
+                class="MuiFormControl-root MuiTextField-root custom-input css-43wkct-MuiFormControl-root-MuiTextField-root"
                 tabindex="0"
                 withicon="true"
               >
@@ -1376,7 +1376,7 @@ Object {
                 />
               </svg>
               <div
-                class="MuiFormControl-root MuiTextField-root custom-input css-davm3l-MuiFormControl-root-MuiTextField-root"
+                class="MuiFormControl-root MuiTextField-root custom-input css-43wkct-MuiFormControl-root-MuiTextField-root"
                 tabindex="0"
                 withicon="true"
               >
@@ -1422,7 +1422,7 @@ Object {
                 />
               </svg>
               <div
-                class="MuiFormControl-root MuiTextField-root custom-input css-davm3l-MuiFormControl-root-MuiTextField-root"
+                class="MuiFormControl-root MuiTextField-root custom-input css-43wkct-MuiFormControl-root-MuiTextField-root"
                 tabindex="0"
                 withicon="true"
               >
@@ -1488,7 +1488,7 @@ Object {
                 </span>
               </div>
               <div
-                class="MuiFormControl-root MuiTextField-root custom-input css-davm3l-MuiFormControl-root-MuiTextField-root"
+                class="MuiFormControl-root MuiTextField-root custom-input css-43wkct-MuiFormControl-root-MuiTextField-root"
                 tabindex="0"
                 withicon="true"
               >

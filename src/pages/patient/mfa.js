@@ -59,6 +59,7 @@ export default function MfaPage({ isStepTwo }) {
     onBackToLoginClicked();
   };
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   React.useEffect(() => {
     if (Object.keys(communicationMethod).length == 0) {
       const userData = JSON.parse(localStorage.getItem("userData"));
@@ -253,7 +254,7 @@ export default function MfaPage({ isStepTwo }) {
         if (err.ResponseCode !== constants.ERROR_CODE.NETWORK_ERR) {
           callback({
             status: "failed",
-            message: "Failed to sumbit the security question.",
+            message: "Failed to submit the security question.",
           });
         }
       });

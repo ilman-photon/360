@@ -5,6 +5,9 @@ import {
   AccordionDetails,
   AccordionSummary,
   Box,
+  Dialog,
+  DialogActions,
+  DialogContent,
   Divider,
   Stack,
   Typography,
@@ -18,14 +21,14 @@ import CloseIcon from "@mui/icons-material/Close";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlined";
 import MenuList from "./menuList";
 import styles from "./styles.module.scss";
 import constants from "../../../utils/constants";
 import { colors } from "../../../styles/theme";
 import { useEffect } from "react";
 import FormMessage from "../FormMessage/formMessage";
-import moment from "moment";
+import { renderCTAIcon } from "./prescriptions";
+import { savePDF } from "@progress/kendo-react-pdf";
 
 export default function PrescriptionMedication({
   medications = {
@@ -37,8 +40,12 @@ export default function PrescriptionMedication({
   },
   requestRefillResponseData = null,
 }) {
+  const [showModal, setShowModal] = React.useState(false);
+  const containerActive = React.useRef(null);
+  const containerPast = React.useRef(null);
   const [filterOpen, setFilterOpen] = React.useState(false);
   const [activeFilter, setActiveFilter] = React.useState([]);
+  const [selectedData, setSelectedData] = React.useState({});
   const [requestRefillResponse, setRequestRefillResponse] =
     React.useState(null);
   const isFilterApplied = activeFilter.length > 0;
@@ -115,8 +122,54 @@ export default function PrescriptionMedication({
   ];
   const isMobile = useMediaQuery("(max-width: 768px)");
   const iconMedication = "/icon-medication.png";
-  const iconShare = "/icon-share.png";
-  const iconDownload = "/icon-download.png";
+
+  const downloadPDF = (medicationType, index = -1) => {
+    let containerSelector = null;
+    if (medicationType === "past") {
+      containerSelector = containerPast;
+    } else {
+      containerSelector = containerActive;
+    }
+
+    let element =
+      containerSelector.current.querySelector(
+        `[data-testid=medication-${medicationType}-container-${index}]`
+      ) || document.body;
+    savePDF(element, {
+      paperSize: "auto",
+      margin: 40,
+      fileName: `Prescription Medication Don John`,
+    });
+  };
+
+  const printHTML = (medicationType, index = -1) => {
+    let containerSelector = null;
+    if (medicationType === "past") {
+      containerSelector = containerPast;
+    } else {
+      containerSelector = containerActive;
+    }
+    let element =
+      containerSelector.current.querySelector(
+        `[data-testid=medication-${medicationType}-container-${index}]`
+      ) || document.body;
+    const headStyles = Array.from(document.head.querySelectorAll("style"));
+    var WinPrint = window.open(
+      "",
+      "",
+      "left=0,top=0,width=1000,height=900,toolbar=0,scrollbars=0,status=0"
+    );
+    WinPrint.document.write(element.innerHTML);
+    headStyles.forEach((st) => {
+      WinPrint.document.head.appendChild(st.cloneNode(true));
+    });
+    WinPrint.document.close();
+    WinPrint.focus();
+    WinPrint.print();
+    setTimeout(() => {
+      WinPrint.close();
+    }, 500);
+  };
 
   const onSetFilter = (newFilterData) => {
     setFilterOpen(!filterOpen);
@@ -134,18 +187,102 @@ export default function PrescriptionMedication({
    * @param {Boolean} isCancel as request type (request or cancel refill)
    * @param {Integer} index as selected index
    */
-  const onRequestCancelRefill = (data, isCancel) => {
-    const postBody = {
-      medicationId: data.id,
-    };
-    onMedicationRequestRefill(postBody, isCancel);
+  const onRequestCancelRefill = (
+    data,
+    isCancel,
+    callback = () => {
+      //this is intentional
+    }
+  ) => {
+    if (isCancel && !showModal) {
+      setSelectedData(data);
+      setShowModal(true);
+    } else {
+      const postBody = {
+        medicationId: data.id,
+      };
+      onMedicationRequestRefill(postBody, isCancel);
+    }
+    callback();
   };
+
+  function renderDialogConfirmation() {
+    return (
+      <Dialog
+        class={styles.dialog}
+        open={showModal}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        sx={{
+          ".MuiDialog-container .MuiPaper-root": {
+            marginTop: "70px",
+            marginBottom: "auto",
+          },
+        }}
+      >
+        <DialogContent
+          className={styles.dialogContent}
+          style={{ padding: "16px" }}
+          aria-live={"assertive"}
+          sx={{
+            width: "500px",
+            "@media (max-width: 992px)": {
+              width: "auto",
+            },
+          }}
+        >
+          <Typography className={styles.dialogTypo}>
+            Are you sure you want to cancel?
+          </Typography>
+        </DialogContent>
+        <DialogActions
+          className={styles.dialogActionContainer}
+          style={{ padding: "16px" }}
+        >
+          <Box class={styles.dialogContainer}>
+            <StyledButton
+              theme="patient"
+              mode="secondary"
+              size="small"
+              gradient={false}
+              data-testid="close-refill-btn"
+              onClick={() => {
+                setShowModal(false);
+                setSelectedData({});
+              }}
+              aria-label={"Close"}
+              className={styles.closeButton}
+            >
+              Close
+            </StyledButton>
+            <StyledButton
+              theme="patient"
+              mode="primary"
+              size="small"
+              gradient={false}
+              data-testid="cancel-refill-btn"
+              onClick={() => {
+                onRequestCancelRefill(selectedData, true, () => {
+                  setShowModal(false);
+                  setSelectedData({});
+                });
+              }}
+              aria-label={"Cancel Refill"}
+              className={styles.cancelButton}
+            >
+              Cancel Refill
+            </StyledButton>
+          </Box>
+        </DialogActions>
+      </Dialog>
+    );
+  }
 
   function renderAppliedFilter() {
     return activeFilter.map((option, idx) => {
       return (
         <Box className={styles.filterChildButton} key={idx}>
-          {option.name}
+          <Box className={styles.filterText}>{option.name}</Box>
           <CloseIcon
             className={styles.closeIcon}
             onClick={() => {
@@ -160,41 +297,6 @@ export default function PrescriptionMedication({
         </Box>
       );
     });
-  }
-
-  function renderCTAIcon() {
-    return (
-      <Stack direction={"row"} alignSelf={"center"} sx={{ marginLeft: "auto" }}>
-        <Box
-          sx={{
-            width: "15px",
-            height: "15px",
-          }}
-          data-testid={"download-icon"}
-        >
-          <Image alt="" src={iconDownload} width={15} height={15} />
-        </Box>
-        <Box
-          sx={{
-            width: "15px",
-            height: "15px",
-            margin: "0px 15px",
-          }}
-          data-testid={"shared-icon"}
-        >
-          <Image alt="" src={iconShare} width={15} height={15} />
-        </Box>
-
-        <LocalPrintshopOutlinedIcon
-          sx={{
-            width: "18px",
-            height: "18px",
-            color: colors.darkGreen,
-          }}
-          data-testid={"print-icon"}
-        />
-      </Stack>
-    );
   }
 
   function renderStatusMedication(status, statusDescription) {
@@ -226,13 +328,17 @@ export default function PrescriptionMedication({
             </Typography>
           </AccordionSummary>
           <AccordionDetails sx={{ paddingTop: "0px" }}>
-            <Typography className={styles.medicationStatusDescription}>
+            <Typography
+              className={styles.medicationStatusDescription}
+              tabIndex={"0"}
+            >
               You can now go to your preferred pharmacy to pick-up your
               medication.
             </Typography>
             <Typography
               className={styles.medicationStatusDescription}
               sx={{ fontWeight: "500" }}
+              tabIndex={"0"}
             >
               {statusDescription}
             </Typography>
@@ -242,20 +348,20 @@ export default function PrescriptionMedication({
     } else {
       intentUI.push(
         <Typography className={styles.medicationViewAllStatus}>
-          Status: {status}
+          Status: {status === "refill request" ? `${status}ed` : status}
         </Typography>
       );
     }
     return intentUI;
   }
 
-  function renderMedicationViewAllUI(data, idx) {
+  function renderMedicationViewAllUI(data, idx, medicationType) {
     return (
       <Stack
         direction={"row"}
         className={styles.medicationViewAllContainer}
         key={`${idx}-madication-prescription`}
-        data-testid={`medication-container-${idx}`}
+        data-testid={`medication-${medicationType}-container-${idx}`}
       >
         {!isMobile && (
           <Box>
@@ -273,10 +379,31 @@ export default function PrescriptionMedication({
             className={styles.medicationViewAllTitleContainer}
             sx={{ marginBottom: "8px" }}
           >
-            <Typography className={styles.medicationViewAllTitle}>
+            <Typography
+              className={styles.medicationViewAllTitle}
+              tabIndex={"0"}
+            >
               {data.prescription}
             </Typography>
-            {!isMobile ? renderCTAIcon() : <MenuList />}
+            {!isMobile ? (
+              renderCTAIcon(
+                () => {
+                  downloadPDF(medicationType, idx);
+                },
+                () => {
+                  printHTML(medicationType, idx);
+                }
+              )
+            ) : (
+              <MenuList
+                onClickDownloadButton={() => {
+                  downloadPDF(medicationType, idx);
+                }}
+                onClickPrintButton={() => {
+                  printHTML(medicationType, idx);
+                }}
+              />
+            )}
           </Stack>
           <Stack sx={{ width: "100%" }}>
             {(data.status === "refill request" ||
@@ -291,10 +418,15 @@ export default function PrescriptionMedication({
                   <Typography
                     variant="customBodyRegular"
                     className={styles.gridText}
+                    tabIndex={"0"}
                   >
                     Fill request date: &nbsp;
                   </Typography>
-                  <Typography variant="bodyMedium" className={styles.gridText}>
+                  <Typography
+                    variant="bodyMedium"
+                    className={styles.gridText}
+                    tabIndex={"0"}
+                  >
                     {data.fillRequestDate}
                   </Typography>
                 </Stack>
@@ -309,10 +441,15 @@ export default function PrescriptionMedication({
                 <Typography
                   variant="customBodyRegular"
                   className={styles.gridText}
+                  tabIndex={"0"}
                 >
                   Prescribed on: &nbsp;
                 </Typography>
-                <Typography variant="bodyMedium" className={styles.gridText}>
+                <Typography
+                  variant="bodyMedium"
+                  className={styles.gridText}
+                  tabIndex={"0"}
+                >
                   {data.date}
                 </Typography>
               </Stack>
@@ -324,10 +461,15 @@ export default function PrescriptionMedication({
                 <Typography
                   variant="customBodyRegular"
                   className={styles.gridText}
+                  tabIndex={"0"}
                 >
                   Prescribed by: &nbsp;
                 </Typography>
-                <Typography variant="bodyMedium" className={styles.gridText}>
+                <Typography
+                  variant="bodyMedium"
+                  className={styles.gridText}
+                  tabIndex={"0"}
+                >
                   {data.prescribedBy}
                 </Typography>
               </Stack>
@@ -339,10 +481,15 @@ export default function PrescriptionMedication({
                 <Typography
                   variant="customBodyRegular"
                   className={styles.gridText}
+                  tabIndex={"0"}
                 >
                   Dose: &nbsp;
                 </Typography>
-                <Typography variant="bodyMedium" className={styles.gridText}>
+                <Typography
+                  variant="bodyMedium"
+                  className={styles.gridText}
+                  tabIndex={"0"}
+                >
                   {data.dose}
                 </Typography>
               </Stack>
@@ -356,10 +503,15 @@ export default function PrescriptionMedication({
                 <Typography
                   variant="customBodyRegular"
                   className={styles.gridText}
+                  tabIndex={"0"}
                 >
                   Expires on: &nbsp;
                 </Typography>
-                <Typography variant="bodyMedium" className={styles.gridText}>
+                <Typography
+                  variant="bodyMedium"
+                  className={styles.gridText}
+                  tabIndex={"0"}
+                >
                   {data.expirationDate}
                 </Typography>
               </Stack>
@@ -369,11 +521,11 @@ export default function PrescriptionMedication({
           <Stack direction={"row"} sx={{ marginTop: "24px", flexWrap: "wrap" }}>
             <Stack direction={"row"} className={styles.remainingTimeContainer}>
               <AccessTimeIcon sx={{ color: colors.darkGreen }} />
-              <Typography className={styles.remainingTimeText}>
+              <Typography className={styles.remainingTimeText} tabIndex={"0"}>
                 Take 2 times a day
               </Typography>
             </Stack>
-            {moment(data.expirationDate) < moment() && (
+            {data.isShowRequestRefill && (
               <>
                 {data.status !== "refill request" ? (
                   <StyledButton
@@ -402,13 +554,13 @@ export default function PrescriptionMedication({
     );
   }
 
-  function renderPrescriptionTabUI(data) {
+  function renderPrescriptionTabUI(data, medicationType) {
     if (!data) {
       return <></>;
     }
     const contentUI = [];
     data.map((row, idx) => {
-      contentUI.push(renderMedicationViewAllUI(row, idx));
+      contentUI.push(renderMedicationViewAllUI(row, idx, medicationType));
     });
     return contentUI;
   }
@@ -416,7 +568,12 @@ export default function PrescriptionMedication({
   function renderUIFilter() {
     if (medications?.active?.length > 0) {
       return (
-        <Box className={styles.filterButtonContainer}>
+        <Box
+          className={[
+            styles.filterButtonContainer,
+            !isMobile ? styles.paddingTop22 : {},
+          ]}
+        >
           <FilterBy
             activedFilter={[...activeFilter]}
             filter={testFilterData}
@@ -430,15 +587,17 @@ export default function PrescriptionMedication({
             isPrescription={true}
           ></FilterBy>
           {isMobile ? (
-            <Image
-              alt=""
-              src={isFilterApplied ? imageSrcFilled : imageSrcState}
-              width={"26px"}
-              height={isFilterApplied ? "28px" : "26px"}
-              onClick={() => {
-                setFilterOpen(!filterOpen);
-              }}
-            />
+            <Box sx={{ width: "26px", height: "26px" }}>
+              <Image
+                alt=""
+                src={isFilterApplied ? imageSrcFilled : imageSrcState}
+                width={"26px"}
+                height={isFilterApplied ? "28px" : "26px"}
+                onClick={() => {
+                  setFilterOpen(!filterOpen);
+                }}
+              />
+            </Box>
           ) : (
             <>
               <StyledButton
@@ -450,6 +609,7 @@ export default function PrescriptionMedication({
                   setFilterOpen(!filterOpen);
                 }}
                 data-testid={"medication-filter-button"}
+                aria-label={"Filter option"}
               >
                 <TuneIcon className={styles.tuneIcon} />
                 Filters
@@ -481,8 +641,17 @@ export default function PrescriptionMedication({
         ]}
       >
         <Typography
+          tabIndex={"0"}
           variant="titleCard"
-          className={!isMobile ? styles.paddingTop22 : {}}
+          className={[
+            styles.titleText,
+            !isMobile ? styles.paddingTop22 : {},
+          ].join(" ")}
+          aria-label={`Active Medications ${
+            medications?.active?.length > 0
+              ? `(${medications?.active?.length} medications)`
+              : "No of medications"
+          } heading`}
         >
           {isFilterApplied ? "Medications" : "Active Medications"}{" "}
           {medications?.active?.length > 0
@@ -492,9 +661,14 @@ export default function PrescriptionMedication({
         {renderUIFilter()}
       </Box>
       {medications?.active?.length > 0 ? (
-        renderPrescriptionTabUI(medications.active)
+        <Box ref={containerActive}>
+          {renderPrescriptionTabUI(medications.active, "active")}
+        </Box>
       ) : (
-        <Box className={[styles.noPrescription, styles.margin].join(" ")}>
+        <Box
+          className={[styles.noPrescription, styles.margin].join(" ")}
+          tabIndex={0}
+        >
           <Typography
             className={styles.normalText}
           >{`There are no active medications`}</Typography>
@@ -510,13 +684,21 @@ export default function PrescriptionMedication({
               styles.marginTop,
             ]}
           >
-            <Typography variant="titleCard">
+            <Typography
+              variant="titleCard"
+              aria-label={`Past Medications (${medications?.past?.length} medications)`}
+              tabIndex={"0"}
+              className={styles.titleText}
+            >
               Past Medications{` (${medications?.past?.length})`}
             </Typography>
           </Box>
-          {renderPrescriptionTabUI(medications.past)}
+          <Box ref={containerPast}>
+            {renderPrescriptionTabUI(medications.past, "past")}
+          </Box>
         </>
       )}
+      {renderDialogConfirmation()}
     </Box>
   );
 }

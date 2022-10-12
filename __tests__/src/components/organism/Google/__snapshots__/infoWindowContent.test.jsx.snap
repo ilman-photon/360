@@ -66,13 +66,18 @@ Object {
                   <div
                     class="bioContainer customBioContainer MuiBox-root css-1oovyp6"
                   >
-                    <h4
-                      class="MuiTypography-root MuiTypography-h4 doctorMap css-36gbox-MuiTypography-root"
+                    <span
+                      class="MuiTypography-root MuiTypography-cutomH4 doctorMap css-11nuykg-MuiTypography-root"
                       data-testid="appointment_provider_profile_name"
                       tabindex="0"
                     >
-                      Paul Wagner Md
-                    </h4>
+                      <span
+                        class="doctorName"
+                      >
+                        Paul Wagner Md
+                         
+                      </span>
+                    </span>
                     <div
                       class="detailContainer MuiBox-root css-0"
                     >
@@ -94,16 +99,225 @@ Object {
                             Florida
                             , 
                             FR
-                            , 
+                            ,
+                             
                             54231
                           </p>
                         </div>
                         <div
-                          class="phoneContainer MuiBox-root css-0"
+                          class="phoneContainer MuiBox-root css-1e04n2w"
                         >
+                          <span
+                            aria-label="Doctor Rating: 5"
+                            class="MuiRating-root MuiRating-sizeSmall MuiRating-readyOnly css-x48yct-MuiRating-root"
+                            role="img"
+                            tabindex="0"
+                          >
+                            <span
+                              class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                            >
+                              <span
+                                style="width: 0%; overflow: hidden; position: absolute;"
+                              >
+                                <span
+                                  class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                    data-testid="StarIcon"
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                    />
+                                  </svg>
+                                </span>
+                              </span>
+                              <span>
+                                <span
+                                  class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                    data-testid="StarIcon"
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                    />
+                                  </svg>
+                                </span>
+                              </span>
+                            </span>
+                            <span
+                              class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                            >
+                              <span
+                                style="width: 0%; overflow: hidden; position: absolute;"
+                              >
+                                <span
+                                  class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                    data-testid="StarIcon"
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                    />
+                                  </svg>
+                                </span>
+                              </span>
+                              <span>
+                                <span
+                                  class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                    data-testid="StarIcon"
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                    />
+                                  </svg>
+                                </span>
+                              </span>
+                            </span>
+                            <span
+                              class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                            >
+                              <span
+                                style="width: 0%; overflow: hidden; position: absolute;"
+                              >
+                                <span
+                                  class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                    data-testid="StarIcon"
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                    />
+                                  </svg>
+                                </span>
+                              </span>
+                              <span>
+                                <span
+                                  class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                    data-testid="StarIcon"
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                    />
+                                  </svg>
+                                </span>
+                              </span>
+                            </span>
+                            <span
+                              class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                            >
+                              <span
+                                style="width: 0%; overflow: hidden; position: absolute;"
+                              >
+                                <span
+                                  class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                    data-testid="StarIcon"
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                    />
+                                  </svg>
+                                </span>
+                              </span>
+                              <span>
+                                <span
+                                  class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                    data-testid="StarIcon"
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                    />
+                                  </svg>
+                                </span>
+                              </span>
+                            </span>
+                            <span
+                              class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                            >
+                              <span
+                                style="width: 0%; overflow: hidden; position: absolute;"
+                              >
+                                <span
+                                  class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                    data-testid="StarIcon"
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                    />
+                                  </svg>
+                                </span>
+                              </span>
+                              <span>
+                                <span
+                                  class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                    data-testid="StarIcon"
+                                    focusable="false"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                    />
+                                  </svg>
+                                </span>
+                              </span>
+                            </span>
+                          </span>
                           <p
-                            aria-label="phone number (123) 123-4567"
+                            arialabel="(123) 123-4567"
                             class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
+                            role="text"
                             tabindex="0"
                           >
                             (123) 123-4567
@@ -151,7 +365,7 @@ Object {
                 </svg>
               </div>
               <span
-                class="MuiTypography-root MuiTypography-bodySmallMedium css-1bhtu6j-MuiTypography-root"
+                class="MuiTypography-root MuiTypography-smallMediumRoboto css-137vquw-MuiTypography-root"
               >
                 10 mi
               </span>
@@ -178,6 +392,7 @@ Object {
               >
                 <button
                   class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                  data-testid="schedule_appointment_maps_info_window_timeslot"
                   tabindex="0"
                   type="button"
                 >
@@ -203,6 +418,7 @@ Object {
               >
                 <button
                   class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                  data-testid="schedule_appointment_maps_info_window_timeslot"
                   tabindex="0"
                   type="button"
                 >
@@ -214,6 +430,7 @@ Object {
                 </button>
                 <button
                   class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                  data-testid="schedule_appointment_maps_info_window_timeslot"
                   tabindex="0"
                   type="button"
                 >
@@ -225,6 +442,7 @@ Object {
                 </button>
                 <button
                   class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                  data-testid="schedule_appointment_maps_info_window_timeslot"
                   tabindex="0"
                   type="button"
                 >
@@ -236,6 +454,7 @@ Object {
                 </button>
                 <button
                   class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                  data-testid="schedule_appointment_maps_info_window_timeslot"
                   tabindex="0"
                   type="button"
                 >
@@ -247,6 +466,7 @@ Object {
                 </button>
                 <button
                   class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                  data-testid="schedule_appointment_maps_info_window_timeslot"
                   tabindex="0"
                   type="button"
                 >
@@ -258,6 +478,7 @@ Object {
                 </button>
                 <button
                   class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                  data-testid="schedule_appointment_maps_info_window_timeslot"
                   tabindex="0"
                   type="button"
                 >
@@ -283,6 +504,7 @@ Object {
               >
                 <button
                   class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                  data-testid="schedule_appointment_maps_info_window_timeslot"
                   tabindex="0"
                   type="button"
                 >
@@ -294,6 +516,7 @@ Object {
                 </button>
                 <button
                   class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                  data-testid="schedule_appointment_maps_info_window_timeslot"
                   tabindex="0"
                   type="button"
                 >
@@ -305,6 +528,7 @@ Object {
                 </button>
                 <button
                   class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                  data-testid="schedule_appointment_maps_info_window_timeslot"
                   tabindex="0"
                   type="button"
                 >
@@ -316,6 +540,7 @@ Object {
                 </button>
                 <button
                   class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                  data-testid="schedule_appointment_maps_info_window_timeslot"
                   tabindex="0"
                   type="button"
                 >
@@ -327,6 +552,7 @@ Object {
                 </button>
                 <button
                   class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                  data-testid="schedule_appointment_maps_info_window_timeslot"
                   tabindex="0"
                   type="button"
                 >
@@ -338,6 +564,7 @@ Object {
                 </button>
                 <button
                   class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                  data-testid="schedule_appointment_maps_info_window_timeslot"
                   tabindex="0"
                   type="button"
                 >
@@ -349,6 +576,7 @@ Object {
                 </button>
                 <button
                   class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                  data-testid="schedule_appointment_maps_info_window_timeslot"
                   tabindex="0"
                   type="button"
                 >
@@ -360,6 +588,7 @@ Object {
                 </button>
                 <button
                   class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                  data-testid="schedule_appointment_maps_info_window_timeslot"
                   tabindex="0"
                   type="button"
                 >
@@ -385,6 +614,7 @@ Object {
               >
                 <button
                   class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                  data-testid="schedule_appointment_maps_info_window_timeslot"
                   tabindex="0"
                   type="button"
                 >
@@ -396,6 +626,7 @@ Object {
                 </button>
                 <button
                   class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                  data-testid="schedule_appointment_maps_info_window_timeslot"
                   tabindex="0"
                   type="button"
                 >
@@ -421,6 +652,7 @@ Object {
               >
                 <button
                   class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                  data-testid="schedule_appointment_maps_info_window_timeslot"
                   tabindex="0"
                   type="button"
                 >
@@ -446,6 +678,7 @@ Object {
               >
                 <button
                   class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                  data-testid="schedule_appointment_maps_info_window_timeslot"
                   tabindex="0"
                   type="button"
                 >
@@ -529,13 +762,18 @@ Object {
                 <div
                   class="bioContainer customBioContainer MuiBox-root css-1oovyp6"
                 >
-                  <h4
-                    class="MuiTypography-root MuiTypography-h4 doctorMap css-36gbox-MuiTypography-root"
+                  <span
+                    class="MuiTypography-root MuiTypography-cutomH4 doctorMap css-11nuykg-MuiTypography-root"
                     data-testid="appointment_provider_profile_name"
                     tabindex="0"
                   >
-                    Paul Wagner Md
-                  </h4>
+                    <span
+                      class="doctorName"
+                    >
+                      Paul Wagner Md
+                       
+                    </span>
+                  </span>
                   <div
                     class="detailContainer MuiBox-root css-0"
                   >
@@ -557,16 +795,225 @@ Object {
                           Florida
                           , 
                           FR
-                          , 
+                          ,
+                           
                           54231
                         </p>
                       </div>
                       <div
-                        class="phoneContainer MuiBox-root css-0"
+                        class="phoneContainer MuiBox-root css-1e04n2w"
                       >
+                        <span
+                          aria-label="Doctor Rating: 5"
+                          class="MuiRating-root MuiRating-sizeSmall MuiRating-readyOnly css-x48yct-MuiRating-root"
+                          role="img"
+                          tabindex="0"
+                        >
+                          <span
+                            class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                          >
+                            <span
+                              style="width: 0%; overflow: hidden; position: absolute;"
+                            >
+                              <span
+                                class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                  data-testid="StarIcon"
+                                  focusable="false"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                  />
+                                </svg>
+                              </span>
+                            </span>
+                            <span>
+                              <span
+                                class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                  data-testid="StarIcon"
+                                  focusable="false"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                  />
+                                </svg>
+                              </span>
+                            </span>
+                          </span>
+                          <span
+                            class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                          >
+                            <span
+                              style="width: 0%; overflow: hidden; position: absolute;"
+                            >
+                              <span
+                                class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                  data-testid="StarIcon"
+                                  focusable="false"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                  />
+                                </svg>
+                              </span>
+                            </span>
+                            <span>
+                              <span
+                                class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                  data-testid="StarIcon"
+                                  focusable="false"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                  />
+                                </svg>
+                              </span>
+                            </span>
+                          </span>
+                          <span
+                            class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                          >
+                            <span
+                              style="width: 0%; overflow: hidden; position: absolute;"
+                            >
+                              <span
+                                class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                  data-testid="StarIcon"
+                                  focusable="false"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                  />
+                                </svg>
+                              </span>
+                            </span>
+                            <span>
+                              <span
+                                class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                  data-testid="StarIcon"
+                                  focusable="false"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                  />
+                                </svg>
+                              </span>
+                            </span>
+                          </span>
+                          <span
+                            class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                          >
+                            <span
+                              style="width: 0%; overflow: hidden; position: absolute;"
+                            >
+                              <span
+                                class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                  data-testid="StarIcon"
+                                  focusable="false"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                  />
+                                </svg>
+                              </span>
+                            </span>
+                            <span>
+                              <span
+                                class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                  data-testid="StarIcon"
+                                  focusable="false"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                  />
+                                </svg>
+                              </span>
+                            </span>
+                          </span>
+                          <span
+                            class="MuiRating-decimal css-34he1w-MuiRating-decimal"
+                          >
+                            <span
+                              style="width: 0%; overflow: hidden; position: absolute;"
+                            >
+                              <span
+                                class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                  data-testid="StarIcon"
+                                  focusable="false"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                  />
+                                </svg>
+                              </span>
+                            </span>
+                            <span>
+                              <span
+                                class="MuiRating-icon MuiRating-iconFilled css-7qmtgc-MuiRating-icon"
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  class="MuiSvgIcon-root MuiSvgIcon-fontSizeInherit css-1vooibu-MuiSvgIcon-root"
+                                  data-testid="StarIcon"
+                                  focusable="false"
+                                  viewBox="0 0 24 24"
+                                >
+                                  <path
+                                    d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                                  />
+                                </svg>
+                              </span>
+                            </span>
+                          </span>
+                        </span>
                         <p
-                          aria-label="phone number (123) 123-4567"
+                          arialabel="(123) 123-4567"
                           class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
+                          role="text"
                           tabindex="0"
                         >
                           (123) 123-4567
@@ -614,7 +1061,7 @@ Object {
               </svg>
             </div>
             <span
-              class="MuiTypography-root MuiTypography-bodySmallMedium css-1bhtu6j-MuiTypography-root"
+              class="MuiTypography-root MuiTypography-smallMediumRoboto css-137vquw-MuiTypography-root"
             >
               10 mi
             </span>
@@ -641,6 +1088,7 @@ Object {
             >
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                data-testid="schedule_appointment_maps_info_window_timeslot"
                 tabindex="0"
                 type="button"
               >
@@ -666,6 +1114,7 @@ Object {
             >
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                data-testid="schedule_appointment_maps_info_window_timeslot"
                 tabindex="0"
                 type="button"
               >
@@ -677,6 +1126,7 @@ Object {
               </button>
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                data-testid="schedule_appointment_maps_info_window_timeslot"
                 tabindex="0"
                 type="button"
               >
@@ -688,6 +1138,7 @@ Object {
               </button>
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                data-testid="schedule_appointment_maps_info_window_timeslot"
                 tabindex="0"
                 type="button"
               >
@@ -699,6 +1150,7 @@ Object {
               </button>
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                data-testid="schedule_appointment_maps_info_window_timeslot"
                 tabindex="0"
                 type="button"
               >
@@ -710,6 +1162,7 @@ Object {
               </button>
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                data-testid="schedule_appointment_maps_info_window_timeslot"
                 tabindex="0"
                 type="button"
               >
@@ -721,6 +1174,7 @@ Object {
               </button>
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                data-testid="schedule_appointment_maps_info_window_timeslot"
                 tabindex="0"
                 type="button"
               >
@@ -746,6 +1200,7 @@ Object {
             >
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                data-testid="schedule_appointment_maps_info_window_timeslot"
                 tabindex="0"
                 type="button"
               >
@@ -757,6 +1212,7 @@ Object {
               </button>
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                data-testid="schedule_appointment_maps_info_window_timeslot"
                 tabindex="0"
                 type="button"
               >
@@ -768,6 +1224,7 @@ Object {
               </button>
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                data-testid="schedule_appointment_maps_info_window_timeslot"
                 tabindex="0"
                 type="button"
               >
@@ -779,6 +1236,7 @@ Object {
               </button>
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                data-testid="schedule_appointment_maps_info_window_timeslot"
                 tabindex="0"
                 type="button"
               >
@@ -790,6 +1248,7 @@ Object {
               </button>
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                data-testid="schedule_appointment_maps_info_window_timeslot"
                 tabindex="0"
                 type="button"
               >
@@ -801,6 +1260,7 @@ Object {
               </button>
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                data-testid="schedule_appointment_maps_info_window_timeslot"
                 tabindex="0"
                 type="button"
               >
@@ -812,6 +1272,7 @@ Object {
               </button>
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                data-testid="schedule_appointment_maps_info_window_timeslot"
                 tabindex="0"
                 type="button"
               >
@@ -823,6 +1284,7 @@ Object {
               </button>
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                data-testid="schedule_appointment_maps_info_window_timeslot"
                 tabindex="0"
                 type="button"
               >
@@ -848,6 +1310,7 @@ Object {
             >
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                data-testid="schedule_appointment_maps_info_window_timeslot"
                 tabindex="0"
                 type="button"
               >
@@ -859,6 +1322,7 @@ Object {
               </button>
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                data-testid="schedule_appointment_maps_info_window_timeslot"
                 tabindex="0"
                 type="button"
               >
@@ -884,6 +1348,7 @@ Object {
             >
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                data-testid="schedule_appointment_maps_info_window_timeslot"
                 tabindex="0"
                 type="button"
               >
@@ -909,6 +1374,7 @@ Object {
             >
               <button
                 class="MuiButton-root MuiButton-contained MuiButton-containedPrimary MuiButton-sizeMedium MuiButton-containedSizeMedium MuiButtonBase-root customButton customButtonSmall   sxButton css-1jo2w6j-MuiButtonBase-root-MuiButton-root"
+                data-testid="schedule_appointment_maps_info_window_timeslot"
                 tabindex="0"
                 type="button"
               >

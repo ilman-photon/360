@@ -5,7 +5,7 @@ Feature:  As a user, I should be able to initiate password reset by answering t
   @Patient_Portal
   @Automation
   @Sprint2
-@excluded
+@included
   Scenario: EPIC_EPP-7_STORY_EPP-217 - Verify user should be able to reset the old password by answering the security questions if  "one-time link" is not received
     Given use launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -91,7 +91,7 @@ Feature:  As a user, I should be able to initiate password reset by answering t
   @Automation
   @Regression
   @Sprint2
-@excluded
+@included
   Scenario: EPIC_EPP-7_STORY_EPP-217 - Verify the error message if user does not answer the security questions via "Answer security questions" mode
     Given use launch the 'XXX' url
     And user navigates to the Patient Portal application
@@ -120,7 +120,7 @@ Feature:  As a user, I should be able to initiate password reset by answering t
   @Patient_Portal
   @Automation
   @Sprint2
-@excluded
+@included
   Scenario: EPIC_EPP-7_STORY_EPP-217 - Verify user should be able to reset the old password using "one-time link"
     Given use launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -156,7 +156,7 @@ Feature:  As a user, I should be able to initiate password reset by answering t
   @Authentication
   @Patient_Portal
   @Sprint2
-@excluded
+@included
   Scenario: EPIC_EPP-7_STORY_EPP-217  - Verify user  is not able to view "Password Recovery Security Questions" page on clicking "Answer security question" when Internet connection is unavailable
     Given use launch the 'XXX' url	
     And user navigates to the Patient Portal application
@@ -180,7 +180,7 @@ Feature:  As a user, I should be able to initiate password reset by answering t
   @Authentication
   @Patient_Portal
   @Sprint2
-@excluded
+@included
   Scenario: EPIC_EPP-7_STORY_EPP-217  - Verify user  is not able to view "Password Recovery Security Questions" page on clicking "Answer security question" when service is unavailable
     Given use launch the "XXX" url	
     And user navigates to the Patient Portal application
@@ -204,7 +204,7 @@ Feature:  As a user, I should be able to initiate password reset by answering t
   @Authentication
   @Patient_Portal
   @Sprint2
-@excluded
+@included
   Scenario: EPIC_EPP-7_STORY_EPP-217 - Verify user should see And user should see update password screen with blank field when user refresh the screen
 
     Given use launch the 'XXX' url	
@@ -237,7 +237,7 @@ Feature:  As a user, I should be able to initiate password reset by answering t
   @Authentication
   @Patient_Portal
   @Sprint2
-@excluded
+@included
   Scenario: EPIC_EPP-7_STORY_EPP-216 - Verify user should see Update Password screen loaded within 3 seconds
 
     Given use launch the 'XXX' url	
@@ -264,7 +264,7 @@ Feature:  As a user, I should be able to initiate password reset by answering t
   @Authentication
   @Patient_Portal
   @Sprint2
-@excluded
+@included
   Scenario: EPIC_EPP-7 _STORY_EPP-217 - Verify user should not see any error after click on F12
 
     Given use launch the 'XXX' url	

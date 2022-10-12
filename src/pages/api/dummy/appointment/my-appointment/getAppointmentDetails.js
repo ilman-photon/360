@@ -35,6 +35,74 @@ export default function getAppointmentDetails(req, res) {
         appointmentType: "Eye Exam",
         date: "Fri, 14 Oct 2022 04:30:00 EST",
         insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+        documentDetails: {
+          documentID: "6c6bc10990uq09.1231.1239.01.0921.(2.129.91.0.102) ",
+          createdOn: "July 26, 2022, 2:54 : 10PM -0500",
+          custodian: "EYECARE CENTERS",
+          address: {
+            typePlace: "Workplace",
+            addressLine1: "15933 CLAYTON RD, SUITE 201 BALLWIN, MO 63011",
+            country: "USA",
+            mobileNumber: "(314) 227-2600",
+          },
+        },
+        patientDetail: {
+          patientName: "JONES_ECC INDIANA",
+          address: {
+            typePlace: "Workplace",
+            addressLine1: "15933 CLAYTON RD, SUITE 201 BALLWIN, MO 63011",
+            country: "USA",
+            mobileNumber: "(314) 227-2600",
+          },
+          dateBirth: "July 11, 1990 (32yr)",
+          gender: "Male",
+          race: "",
+          ethnicity: "",
+          patientId:
+            "1EBH9187391283981J391J82391ASKDLKJ9 (2.61.1231.314132131.14564.7534535)",
+          languageCommunication: "English",
+        },
+        documentOfCareDetail: {
+          DocumentationCareProcisionDate: "from July 11, 1990 to July 26, 2022",
+          performers: [
+            {
+              performerName: "ADAMS HOLLY of EYECARE CENTERS",
+              contactPerformance: {
+                typePlace: "Workplace",
+                addressLine1: "15933 CLAYTON RD, SUITE 201 BALLWIN, MO 63011",
+                country: "USA",
+                mobileNumber: "(314) 227-2600",
+              },
+            },
+            {
+              performerName: "ADAMS HOLLY of EYECARE CENTERS",
+              contactPerformance: {
+                typePlace: "Workplace",
+                addressLine1: "15933 CLAYTON RD, SUITE 201 BALLWIN, MO 63011",
+                country: "USA",
+                mobileNumber: "(314) 227-2600",
+              },
+            },
+            {
+              performerName: "ADAMS HOLLY of EYECARE CENTERS",
+              contactPerformance: {
+                typePlace: "Workplace",
+                addressLine1: "15933 CLAYTON RD, SUITE 201 BALLWIN, MO 63011",
+                country: "USA",
+                mobileNumber: "(314) 227-2600",
+              },
+            },
+            {
+              performerName: "ADAMS HOLLY of EYECARE CENTERS",
+              contactPerformance: {
+                typePlace: "Workplace",
+                addressLine1: "15933 CLAYTON RD, SUITE 201 BALLWIN, MO 63011",
+                country: "USA",
+                mobileNumber: "(314) 227-2600",
+              },
+            },
+          ],
+        },
         contents: [
           {
             type: "Allergies",

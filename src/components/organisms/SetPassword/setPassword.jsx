@@ -122,9 +122,9 @@ const SetPasswordComponent = ({
     {
       label: "Password should not contain your username",
       validate:
-        watchedPassword.length < 1
+        watchedPassword?.length < 1
           ? true
-          : watchedPassword.indexOf(
+          : watchedPassword?.indexOf(
               !isUpdatePassword ? watchedEmail : username
             ) > -1,
       mandatory: true,
@@ -132,7 +132,7 @@ const SetPasswordComponent = ({
     {
       label: "New password must not match current password",
       validate:
-        watchedPassword.length < 1
+        watchedPassword?.length < 1
           ? true
           : Regex.hasTripleRegex.test(watchedPassword),
       mandatory: true,
@@ -140,7 +140,7 @@ const SetPasswordComponent = ({
   ];
   const isPasswordError = isUpdatePassword
     ? showValidation
-    : watchedPassword.length > 0;
+    : watchedPassword?.length > 0;
 
   const is3of4 = (pass) => {
     let passes = 0;
@@ -234,7 +234,7 @@ const SetPasswordComponent = ({
 
   const formMessageComp = useRef(null);
   useEffect(() => {
-    if (formMessageComp.current)
+    if (formMessageComp?.current?.scrollIntoView)
       formMessageComp.current.scrollIntoView({
         behavior: "smooth",
         block: "end",
@@ -263,9 +263,10 @@ const SetPasswordComponent = ({
               variant={constants.H2}
               sx={{ marginLeft: "8px" }}
               title={title}
+              tabIndex="0"
             />
             {subtitle ? (
-              <Typography variant="h4" sx={styles.titleStyles2}>
+              <Typography variant="h4" sx={styles.titleStyles2} tabIndex="0">
                 {subtitle}
               </Typography>
             ) : (

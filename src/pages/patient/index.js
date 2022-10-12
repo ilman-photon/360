@@ -1,4 +1,4 @@
-import { Grid, Stack, useMediaQuery } from "@mui/material";
+import { Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 import * as React from "react";
 import { useEffect } from "react";
 import { useGeolocated } from "react-geolocated";
@@ -18,18 +18,39 @@ import {
   setIsFilterApplied,
   setProviderListData,
 } from "../../store/appointment";
-import { parseSuggestionData } from "../../utils/appointment";
+import {
+  parseInsuranceCarrier,
+  parsePurposeOfVisit,
+  getMondayOfCurrentWeek,
+  getSaturdayOfCurrentWeek,
+  parseProviderListData,
+} from "../../utils/appointment";
 import FilterResultHeading from "../../components/molecules/FilterResultHeading/filterResultHeading";
 import { Box } from "@mui/system";
 import ModalCancelScheduling from "../../components/organisms/ScheduleAppointment/ModalCancelScheduling/modalCancelScheduling";
+import { fetchAllPayers } from "../../store/provider";
+import { getCity } from "../../utils/getCity";
+import CustomModal from "../../components/molecules/CustomModal/customModal";
+import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import { colors } from "../../styles/theme";
 
-export default function HomePage() {
+export async function getStaticProps() {
+  return {
+    props: {
+      googleApiKey: process.env.GOOGLE_API_KEY,
+    },
+  };
+}
+export default function HomePage({ googleApiKey }) {
   const [filterSuggestionData, setFilterSuggestionData] = React.useState({});
   const [prescriptionData, setPrescriptionData] = React.useState({});
   const [appointmentData, setAppointmentData] = React.useState({});
   const [isOpenCancel, setIsOpenCancel] = React.useState(false);
   const [isAuthenticated, setIsAuthenticated] = React.useState(true);
+  const [currentCity, setCurrentCity] = React.useState("");
+  const [modalSuccessCancel, setModalSuccessCancel] = React.useState(false);
 
+  const insuranceCarrierList = useSelector((state) => state.provider.list);
   const filterData = useSelector((state) => state.appointment.filterData);
   const userData = useSelector((state) => state.user.userData);
   const isDesktop = useMediaQuery("(min-width: 900px)");
@@ -42,16 +63,16 @@ export default function HomePage() {
   const router = useRouter();
   const dispatch = useDispatch();
 
-  //Call API for getSuggestion
-  function onCalledgetSugestionAPI() {
+  function onCalledGetAppointmentTypesAPI() {
     const api = new Api();
     api
-      .getSugestion()
+      .getAppointmentTypes()
       .then(function (response) {
         const filterSuggestion = {
-          ...filterSuggestionData,
-          ...parseSuggestionData(response),
+          purposeOfVisit: parsePurposeOfVisit(response?.entities || []),
+          insuranceCarrier: parseInsuranceCarrier(insuranceCarrierList),
         };
+        console.log(filterSuggestion);
         setFilterSuggestionData(filterSuggestion);
       })
       .catch(function () {
@@ -61,29 +82,35 @@ export default function HomePage() {
 
   //Call API for submitFilter
   function onCallSubmitFilterAPI(requestData) {
+    const selectedAppointmentType = filterSuggestionData?.purposeOfVisit?.find(
+      (element) => element.title === requestData.purposeOfVisit
+    );
+    const startDateRequest = getMondayOfCurrentWeek(requestData.date);
+    const endDateRequest = getSaturdayOfCurrentWeek(requestData.date);
     const postBody = {
-      location: {
-        latitude: coords?.latitude,
-        longitude: coords?.longitude,
+      appointmentType: {
+        code: selectedAppointmentType?.id || " ",
       },
-      locationName: requestData.location,
-      date: requestData.date,
-      appointmentType: requestData.purposeOfVisit,
-      insuranceCarrier: requestData.insuranceCarrier,
+      currentDate: startDateRequest,
+      numDays: 6,
+      days: ["ALL"],
+      prefTime: "ALL",
     };
     const api = new Api();
     api
-      .submitFilter(postBody)
+      .submitFilter(requestData.location, postBody)
       .then(function (response) {
-        if (
-          response?.listOfProvider.length > 0 &&
-          postBody.locationName !== "Jakarta"
-        ) {
-          dispatch(setProviderListData(response?.listOfProvider));
+        const parseProviderData = parseProviderListData(
+          response,
+          postBody.currentDate,
+          endDateRequest
+        );
+        if (response?.offices?.length > 0) {
+          dispatch(setProviderListData(parseProviderData?.listOfProvider));
         } else {
           dispatch(setProviderListData([]));
         }
-        dispatch(setFilterBy(response.filterbyData));
+        dispatch(setFilterBy(parseProviderData.filterbyData));
       })
       .catch(function () {
         dispatch(setProviderListData([]));
@@ -99,24 +126,7 @@ export default function HomePage() {
     api
       .getAllPrescriptions()
       .then(function (response) {
-        const prescriptionDataTemp = {
-          glasses:
-            response.prescriptions?.glasses &&
-            response.prescriptions?.glasses.length > 0
-              ? [response.prescriptions?.glasses[0]]
-              : [],
-          contacts:
-            response.prescriptions?.contacts &&
-            response.prescriptions?.contacts.length > 0
-              ? [response.prescriptions?.contacts[0]]
-              : [],
-          medications:
-            response.prescriptions?.medications &&
-            response.prescriptions?.medications.length > 0
-              ? response.prescriptions?.medications
-              : [],
-        };
-        setPrescriptionData(prescriptionDataTemp);
+        setPrescriptionData(response.prescriptions);
       })
       .catch(function () {
         //Handle error getAllPrescriptions
@@ -131,8 +141,8 @@ export default function HomePage() {
       .then(function (response) {
         const today = new Date();
         const upcomingAppointments = [];
-        for (let index = 0; index < response.appointmentList.length; index++) {
-          const appointment = response.appointmentList[index];
+        const appointmentList = response.appointmentList || [];
+        for (const appointment of appointmentList) {
           const visitDate = new Date(appointment.appointmentInfo.date);
 
           const daysAway = visitDate.getTime() - today.getTime();
@@ -152,6 +162,13 @@ export default function HomePage() {
     router.push(`/patient/prescription`);
   }
 
+  const fetchCurrentLocation = () => {
+    if (coords) {
+      setCurrentCity("");
+      getCity(googleApiKey, coords, setCurrentCity);
+    }
+  };
+
   useEffect(() => {
     const cookies = new Cookies();
     if (!cookies.get("authorized")) {
@@ -163,11 +180,16 @@ export default function HomePage() {
   }, [setIsAuthenticated, router]);
 
   useEffect(() => {
-    onCalledgetSugestionAPI();
     onCalledGetAllPrescriptionsAPI();
     onCalledGetAllAppointment();
+    dispatch(fetchAllPayers());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    onCalledGetAppointmentTypesAPI();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [insuranceCarrierList]);
 
   function onSearchProvider(data) {
     dispatch(setFilterData(data));
@@ -186,6 +208,7 @@ export default function HomePage() {
 
   const handleCancelSchedule = () => {
     setIsOpenCancel(false);
+    setModalSuccessCancel(true);
   };
 
   const onViewAppointment = () => {
@@ -232,6 +255,8 @@ export default function HomePage() {
               title={"John, Welcome to your dashboard"}
               subtitle={"Search for a doctor"}
               isFixed={false}
+              currentCity={currentCity}
+              onChangeLocation={fetchCurrentLocation}
             />
           ) : (
             <Box
@@ -266,19 +291,37 @@ export default function HomePage() {
             p={3}
             sx={{
               paddingTop: isDesktop ? "30px" : "46px",
+              paddingRight: { xs: "16px !important", md: "24px !important" },
               flexDirection: !isDesktop ? "column-reverse" : "unset",
               "@media print": {
                 paddingTop: "30px !important",
               },
             }}
           >
-            <Grid item xs={5} sm={5} md={2}>
+            <Grid
+              item
+              xs={5}
+              sm={5}
+              md={2}
+              sx={{
+                paddingLeft: { xs: "16px !important", md: "24px !important" },
+              }}
+            >
               <Prescriptions
                 prescriptionData={prescriptionData}
                 onViewPrescriptions={onViewPrescriptions}
+                renderRirstOnly={true}
               />
             </Grid>
-            <Grid item xs={5} sm={5} md={3}>
+            <Grid
+              item
+              xs={5}
+              sm={5}
+              md={3}
+              sx={{
+                paddingLeft: { xs: "16px !important", md: "24px !important" },
+              }}
+            >
               <AppointmentCard
                 appointmentData={appointmentData}
                 OnClickCancel={handleClickCancel}
@@ -287,6 +330,26 @@ export default function HomePage() {
               />
             </Grid>
           </Grid>
+          <CustomModal
+            buttonText={"OK"}
+            onClickButton={() => {
+              setModalSuccessCancel(false);
+            }}
+            open={modalSuccessCancel}
+            sx={{
+              "& .MuiPaper-root": {
+                top: { xs: "0", md: "87px" },
+                position: { xs: "relative", md: "absolute" },
+              },
+            }}
+          >
+            <Box display={"flex"} gap={"12px"}>
+              <CheckCircleIcon sx={{ color: colors.green }}></CheckCircleIcon>
+              <Typography sx={{ color: colors.darkGreen, fontSize: "22px" }}>
+                You’ve successfully cancelled this appointment
+              </Typography>
+            </Box>
+          </CustomModal>
           <ModalCancelScheduling
             isOpen={isOpenCancel}
             OnClickCancel={handleClose}

@@ -10,7 +10,7 @@ Object {
       >
         <h2
           aria-label="Appointment confirmation page"
-          class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-aw0cy1-MuiTypography-root-MuiDialogTitle-root"
+          class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-j0ed6i-MuiTypography-root-MuiDialogTitle-root"
           id="customized-dialog-title"
         >
           <span
@@ -56,13 +56,17 @@ Object {
         </h2>
         <div
           class="MuiDialogContent-root css-1phsj2c-MuiDialogContent-root"
+          tabindex="0"
         >
           <div
+            aria-label="nono button"
             class="registeredUsernameWrapper"
             sx="[object Object]"
           >
             <div
+              aria-label="thanksBar"
               class="thanksBar MuiBox-root css-1bwq3er"
+              tabindex="0"
             >
               <svg
                 aria-hidden="true"
@@ -84,6 +88,7 @@ Object {
           >
             <a
               aria-label="isEmergency"
+              arialabel="sIf this is a medical emergency, please call 911"
               class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
               data-mui-internal-clone-element="true"
               data-testid="loginlink"
@@ -118,7 +123,7 @@ Object {
                 >
                   <p
                     aria-label="Add to calendar"
-                    class="MuiTypography-root MuiTypography-body1 css-v8btcj-MuiTypography-root"
+                    class="MuiTypography-root MuiTypography-body1 css-1m0h8sf-MuiTypography-root"
                   >
                     <svg
                       aria-hidden="false"
@@ -177,31 +182,19 @@ Object {
                         <div
                           class="imageContainer MuiBox-root css-0"
                         >
-                          <span
-                            style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                          <svg
+                            alt="Doctor Image"
+                            aria-hidden="true"
+                            class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium profilePhoto css-epjost-MuiSvgIcon-root"
+                            data-testid="appointment_provider_profile_image"
+                            focusable="false"
+                            tabindex="0"
+                            viewBox="0 0 24 24"
                           >
-                            <span
-                              style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-                            >
-                              <img
-                                alt=""
-                                aria-hidden="true"
-                                src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27100%27%20height=%27100%27/%3e"
-                                style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-                              />
-                            </span>
-                            <img
-                              alt="Doctor Image"
-                              class="profilePhoto"
-                              data-nimg="intrinsic"
-                              data-testid="appointment_provider_profile_image"
-                              decoding="async"
-                              src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                              style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                              tabindex="0"
+                            <path
+                              d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"
                             />
-                            <noscript />
-                          </span>
+                          </svg>
                         </div>
                         <div
                           class="bioContainer  MuiBox-root css-1oovyp6"
@@ -210,7 +203,13 @@ Object {
                             class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-1i5ehwd-MuiTypography-root"
                             data-testid="appointment_provider_profile_name"
                             tabindex="0"
-                          />
+                          >
+                            <span
+                              class="doctorName"
+                            >
+                               
+                            </span>
+                          </h2>
                           <h3
                             class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
                             tabindex="0"
@@ -233,10 +232,11 @@ Object {
                                 />
                               </div>
                               <div
-                                class="phoneContainer MuiBox-root css-0"
+                                class="phoneContainer MuiBox-root css-qbubgm"
                               >
-                                <a
-                                  class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways phoneLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                                <p
+                                  class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
+                                  role="text"
                                   tabindex="0"
                                 />
                               </div>
@@ -320,7 +320,9 @@ Object {
             class="bottomParagraph"
           >
             <span
-              class="MuiTypography-root MuiTypography-caption css-18ywxbx-MuiTypography-root"
+              aria-label="Already have an account? Sign in"
+              class="MuiTypography-root MuiTypography-caption css-sg0sdn-MuiTypography-root"
+              tabindex="0"
             >
               Already have an account?
                
@@ -347,7 +349,7 @@ Object {
     >
       <h2
         aria-label="Appointment confirmation page"
-        class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-aw0cy1-MuiTypography-root-MuiDialogTitle-root"
+        class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-j0ed6i-MuiTypography-root-MuiDialogTitle-root"
         id="customized-dialog-title"
       >
         <span
@@ -393,13 +395,17 @@ Object {
       </h2>
       <div
         class="MuiDialogContent-root css-1phsj2c-MuiDialogContent-root"
+        tabindex="0"
       >
         <div
+          aria-label="nono button"
           class="registeredUsernameWrapper"
           sx="[object Object]"
         >
           <div
+            aria-label="thanksBar"
             class="thanksBar MuiBox-root css-1bwq3er"
+            tabindex="0"
           >
             <svg
               aria-hidden="true"
@@ -421,6 +427,7 @@ Object {
         >
           <a
             aria-label="isEmergency"
+            arialabel="sIf this is a medical emergency, please call 911"
             class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
             data-mui-internal-clone-element="true"
             data-testid="loginlink"
@@ -455,7 +462,7 @@ Object {
               >
                 <p
                   aria-label="Add to calendar"
-                  class="MuiTypography-root MuiTypography-body1 css-v8btcj-MuiTypography-root"
+                  class="MuiTypography-root MuiTypography-body1 css-1m0h8sf-MuiTypography-root"
                 >
                   <svg
                     aria-hidden="false"
@@ -514,31 +521,19 @@ Object {
                       <div
                         class="imageContainer MuiBox-root css-0"
                       >
-                        <span
-                          style="box-sizing: border-box; display: inline-block; overflow: hidden; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; position: relative; max-width: 100%;"
+                        <svg
+                          alt="Doctor Image"
+                          aria-hidden="true"
+                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium profilePhoto css-epjost-MuiSvgIcon-root"
+                          data-testid="appointment_provider_profile_image"
+                          focusable="false"
+                          tabindex="0"
+                          viewBox="0 0 24 24"
                         >
-                          <span
-                            style="box-sizing: border-box; display: block; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px; max-width: 100%;"
-                          >
-                            <img
-                              alt=""
-                              aria-hidden="true"
-                              src="data:image/svg+xml,%3csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20version=%271.1%27%20width=%27100%27%20height=%27100%27/%3e"
-                              style="display: block; max-width: 100%; background: none; opacity: 1; border: 0px; margin: 0px; padding: 0px;"
-                            />
-                          </span>
-                          <img
-                            alt="Doctor Image"
-                            class="profilePhoto"
-                            data-nimg="intrinsic"
-                            data-testid="appointment_provider_profile_image"
-                            decoding="async"
-                            src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-                            style="position: absolute; top: 0px; left: 0px; bottom: 0px; right: 0px; box-sizing: border-box; padding: 0px; margin: auto; display: block; width: 0px; height: 0px; min-width: 100%; max-width: 100%; min-height: 100%; max-height: 100%;"
-                            tabindex="0"
+                          <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z"
                           />
-                          <noscript />
-                        </span>
+                        </svg>
                       </div>
                       <div
                         class="bioContainer  MuiBox-root css-1oovyp6"
@@ -547,7 +542,13 @@ Object {
                           class="MuiTypography-root MuiTypography-h2 doctorNameAppointment css-1i5ehwd-MuiTypography-root"
                           data-testid="appointment_provider_profile_name"
                           tabindex="0"
-                        />
+                        >
+                          <span
+                            class="doctorName"
+                          >
+                             
+                          </span>
+                        </h2>
                         <h3
                           class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
                           tabindex="0"
@@ -570,10 +571,11 @@ Object {
                               />
                             </div>
                             <div
-                              class="phoneContainer MuiBox-root css-0"
+                              class="phoneContainer MuiBox-root css-qbubgm"
                             >
-                              <a
-                                class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways phoneLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                              <p
+                                class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
+                                role="text"
                                 tabindex="0"
                               />
                             </div>
@@ -657,7 +659,9 @@ Object {
           class="bottomParagraph"
         >
           <span
-            class="MuiTypography-root MuiTypography-caption css-18ywxbx-MuiTypography-root"
+            aria-label="Already have an account? Sign in"
+            class="MuiTypography-root MuiTypography-caption css-sg0sdn-MuiTypography-root"
+            tabindex="0"
           >
             Already have an account?
              

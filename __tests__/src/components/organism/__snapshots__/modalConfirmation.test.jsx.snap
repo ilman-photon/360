@@ -42,7 +42,7 @@ Object {
           >
             <h2
               aria-label="Appointment confirmation page"
-              class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-aw0cy1-MuiTypography-root-MuiDialogTitle-root"
+              class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-j0ed6i-MuiTypography-root-MuiDialogTitle-root"
               id=":r0:"
             >
               <span
@@ -88,13 +88,17 @@ Object {
             </h2>
             <div
               class="MuiDialogContent-root css-1phsj2c-MuiDialogContent-root"
+              tabindex="0"
             >
               <div
+                aria-label="nono button"
                 class="registeredUsernameWrapper"
                 sx="[object Object]"
               >
                 <div
+                  aria-label="thanksBar"
                   class="thanksBar MuiBox-root css-1bwq3er"
+                  tabindex="0"
                 >
                   <svg
                     aria-hidden="true"
@@ -116,6 +120,7 @@ Object {
               >
                 <a
                   aria-label="isEmergency"
+                  arialabel="sIf this is a medical emergency, please call 911"
                   class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
                   data-mui-internal-clone-element="true"
                   data-testid="loginlink"
@@ -150,7 +155,7 @@ Object {
                     >
                       <p
                         aria-label="Add to calendar"
-                        class="MuiTypography-root MuiTypography-body1 css-v8btcj-MuiTypography-root"
+                        class="MuiTypography-root MuiTypography-body1 css-1m0h8sf-MuiTypography-root"
                       >
                         <svg
                           aria-hidden="false"
@@ -243,7 +248,12 @@ Object {
                                 data-testid="appointment_provider_profile_name"
                                 tabindex="0"
                               >
-                                Paul Wagner Md
+                                <span
+                                  class="doctorName"
+                                >
+                                  Paul Wagner Md
+                                   
+                                </span>
                               </h2>
                               <h3
                                 class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
@@ -272,19 +282,22 @@ Object {
                                       Florida
                                       , 
                                       FR
-                                      , 
+                                      ,
+                                       
                                       54231
                                     </p>
                                   </div>
                                   <div
-                                    class="phoneContainer MuiBox-root css-0"
+                                    class="phoneContainer MuiBox-root css-qbubgm"
                                   >
-                                    <a
-                                      class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways phoneLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                                    <p
+                                      arialabel="(123) 123-4567"
+                                      class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
+                                      role="text"
                                       tabindex="0"
                                     >
                                       (123) 123-4567
-                                    </a>
+                                    </p>
                                   </div>
                                 </div>
                               </div>
@@ -482,7 +495,7 @@ Object {
           >
             <h2
               aria-label="Appointment confirmation page"
-              class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-aw0cy1-MuiTypography-root-MuiDialogTitle-root"
+              class="MuiTypography-root MuiTypography-h6 MuiDialogTitle-root css-j0ed6i-MuiTypography-root-MuiDialogTitle-root"
               id="customized-dialog-title"
             >
               <span
@@ -528,13 +541,17 @@ Object {
             </h2>
             <div
               class="MuiDialogContent-root css-1phsj2c-MuiDialogContent-root"
+              tabindex="0"
             >
               <div
+                aria-label="nono button"
                 class="registeredUsernameWrapper"
                 sx="[object Object]"
               >
                 <div
+                  aria-label="thanksBar"
                   class="thanksBar MuiBox-root css-1bwq3er"
+                  tabindex="0"
                 >
                   <svg
                     aria-hidden="true"
@@ -556,6 +573,7 @@ Object {
               >
                 <a
                   aria-label="isEmergency"
+                  arialabel="sIf this is a medical emergency, please call 911"
                   class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways css-1ps4owl-MuiTypography-root-MuiLink-root"
                   data-mui-internal-clone-element="true"
                   data-testid="loginlink"
@@ -590,7 +608,7 @@ Object {
                     >
                       <p
                         aria-label="Add to calendar"
-                        class="MuiTypography-root MuiTypography-body1 css-v8btcj-MuiTypography-root"
+                        class="MuiTypography-root MuiTypography-body1 css-1m0h8sf-MuiTypography-root"
                       >
                         <svg
                           aria-hidden="false"
@@ -683,7 +701,12 @@ Object {
                                 data-testid="appointment_provider_profile_name"
                                 tabindex="0"
                               >
-                                Paul Wagner Md
+                                <span
+                                  class="doctorName"
+                                >
+                                  Paul Wagner Md
+                                   
+                                </span>
                               </h2>
                               <h3
                                 class="MuiTypography-root MuiTypography-h3 css-gepadz-MuiTypography-root"
@@ -712,19 +735,22 @@ Object {
                                       Florida
                                       , 
                                       FR
-                                      , 
+                                      ,
+                                       
                                       54231
                                     </p>
                                   </div>
                                   <div
-                                    class="phoneContainer MuiBox-root css-0"
+                                    class="phoneContainer MuiBox-root css-qbubgm"
                                   >
-                                    <a
-                                      class="MuiTypography-root MuiTypography-inherit MuiLink-root MuiLink-underlineAlways phoneLink css-1ps4owl-MuiTypography-root-MuiLink-root"
+                                    <p
+                                      arialabel="(123) 123-4567"
+                                      class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
+                                      role="text"
                                       tabindex="0"
                                     >
                                       (123) 123-4567
-                                    </a>
+                                    </p>
                                   </div>
                                 </div>
                               </div>
