@@ -64,6 +64,10 @@ export default function PrescriptionPage() {
   }
 
   function resetRequestRefillResponse() {
+    window.scrollTo({
+      left: 0,
+      top: 0,
+    });
     setTimeout(() => {
       setRequestRefillResponse(null);
     }, 2000);
