@@ -45,7 +45,11 @@ function onCalledContactsAPI(medicationData, glassesData, resolve, reject) {
       resolve(prescriptionDataTemp);
     })
     .catch(function () {
-      reject({});
+      reject({
+        glasses: [],
+        contacts: [],
+        medications: [],
+      });
     });
 }
 

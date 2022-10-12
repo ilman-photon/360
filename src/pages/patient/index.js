@@ -36,7 +36,10 @@ import { getCity } from "../../utils/getCity";
 import CustomModal from "../../components/molecules/CustomModal/customModal";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { colors } from "../../styles/theme";
-import { parsePrescriptions } from "../../utils/prescription";
+import {
+  onCallGetPrescriptionData,
+  parsePrescriptions,
+} from "../../utils/prescription";
 
 export async function getStaticProps() {
   return {
@@ -123,52 +126,13 @@ export default function HomePage({ googleApiKey }) {
       });
   }
 
-  function onCalledMedicationAPI() {
-    let medicationData = [];
-    const api = new Api();
-    api
-      .getPrescriptionMedication()
+  function onCalledAllPrescription() {
+    onCallGetPrescriptionData()
       .then(function (response) {
-        medicationData = response;
-      })
-      .catch(function () {
-        medicationData = [];
-      })
-      .finally(function () {
-        onCalledGlassesAPI(medicationData);
-      });
-  }
-
-  function onCalledGlassesAPI(medicationData) {
-    let glassesData = [];
-    const api = new Api();
-    api
-      .getPrescriptionGlasses()
-      .then(function (response) {
-        glassesData = response?.entities || [];
-      })
-      .catch(function () {
-        glassesData = [];
-      })
-      .finally(function () {
-        onCalledContactsAPI(medicationData, glassesData);
-      });
-  }
-
-  function onCalledContactsAPI(medicationData, glassesData) {
-    const api = new Api();
-    api
-      .getPrescriptionContacts()
-      .then(function (response) {
-        let prescriptionDataTemp = parsePrescriptions(
-          glassesData,
-          TEMP_DATA_CONTACTS.entities,
-          medicationData
-        );
         prescriptionDataTemp = {
-          ...prescriptionDataTemp,
-          glasses: [prescriptionDataTemp.glasses[0]],
-          contacts: [prescriptionDataTemp.contacts[0]],
+          ...response,
+          glasses: [response.glasses[0]],
+          contacts: [response.contacts[0]],
         };
         setPrescriptionData(prescriptionDataTemp);
       })
@@ -224,7 +188,7 @@ export default function HomePage({ googleApiKey }) {
   }, [setIsAuthenticated, router]);
 
   useEffect(() => {
-    onCalledMedicationAPI();
+    onCalledAllPrescription();
     onCalledGetAllAppointment();
     dispatch(fetchAllPayers());
     // eslint-disable-next-line react-hooks/exhaustive-deps
