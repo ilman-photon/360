@@ -54,6 +54,7 @@ export default function AuthLayout({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [title, imageSrc]);
+
   return (
     <>
       <Provider store={store}>
@@ -71,8 +72,7 @@ export default function AuthLayout({
                 sx={{
                   paddingTop: {
                     xs: showMobileImage ? "16px!important" : "75px!important",
-                    md: "100px!important",
-                    lg: "146px!important",
+                    sm: "146px!important",
                   },
                   padding: 0,
                 }}
