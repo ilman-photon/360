@@ -6,12 +6,12 @@ export const fetchDocuments = createAsyncThunk(
   async ({ patientId, category }) => {
     let categoryId;
     switch (category) {
-      case "intake-forms":
-        categoryId = "Intake-Forms";
-        break;
       case "insurance-documents":
         break;
       case "health-record":
+        break;
+      default:
+        categoryId = "Intake-Forms";
         break;
     }
     const url = `/ecp/patient/getPatientDocumentByCategory/${patientId}/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=${categoryId}))`;

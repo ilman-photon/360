@@ -96,10 +96,7 @@ defineFeature(feature, (test) => {
   };
 
   const userSeeEmptyDocumentTable = () => {
-    expect(container).toMatchSnapshot()
-    const emptyTable = container.getByText(
-      "There are no intake forms."
-    );
+    const emptyTable = container.getByText("There are no intake forms.");
     expect(emptyTable).toBeInTheDocument();
   };
 

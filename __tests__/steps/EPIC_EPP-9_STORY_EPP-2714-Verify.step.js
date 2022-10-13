@@ -89,22 +89,19 @@ defineFeature(feature, (test) => {
     //   </Provider>
     // )
     // act(() => {
-      container.rerender(
-        <Provider store={store}>
-          <DocumentsPage />
-        </Provider>
-      );
+    container.rerender(
+      <Provider store={store}>
+        <DocumentsPage />
+      </Provider>
+    );
     // });
-    expect(container).toMatchSnapshot()
     await waitFor(() => container.getByText("Choose a category"));
     const categorySelector = container.getByText("Choose a category");
     expect(categorySelector).toBeInTheDocument();
   };
 
   const userSeeEmptyDocumentTable = () => {
-    const emptyTable = container.getByText(
-      "There are no intake forms."
-    );
+    const emptyTable = container.getByText("There are no intake forms.");
     expect(emptyTable).toBeInTheDocument();
   };
 
