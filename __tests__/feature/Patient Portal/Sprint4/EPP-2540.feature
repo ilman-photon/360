@@ -64,9 +64,6 @@ Feature: Patient Portal : Schedule appointment from Patient Portal  - Select/ Up
   @Regression
   @Sprint4
   Scenario: EPIC_EPP-44_STORY_EPP-2540 - Verify user able to update the purpose of visit in schedule appointment screen from patient portal and already user selected then user can remove.
-    Feature: Schedule appointment from Patient Portal - View filters in schedule appointment screen
-    Scenario: "EPIC_EPP-44_STORY_EPP-2537 - Verify user able to view the filters in the schedule appointment screen from the patient portal and user apply the filter and getting result accordingly."
-
     Given user launch Patient Portal url		
     When user is logged in to the application
     And user clicks on the schedule new appointments search button 
@@ -88,9 +85,6 @@ Feature: Patient Portal : Schedule appointment from Patient Portal  - Select/ Up
   @Regression
   @Sprint4
   Scenario: EPIC_EPP-44_STORY_EPP-2540 - Verify user able to update the purpose of visit in schedule appointment screen from patient portal and already user selected then user can edit.
-    Feature: Schedule appointment from Patient Portal - View filters in schedule appointment screen
-    Scenario: "EPIC_EPP-44_STORY_EPP-2537 - Verify user able to view the filters in the schedule appointment screen from the patient portal and the user clears the filter."
-
     Given user launch Patient Portal url		
     When user is logged in to the application
     And user clicks on the schedule new appointments search button 
@@ -112,8 +106,6 @@ Feature: Patient Portal : Schedule appointment from Patient Portal  - Select/ Up
   @Regression
   @Sprint4
   Scenario: EPIC_EPP-44_STORY_EPP-2540 - Verify user not selected the purpose of visit in schedule appointment screen from patient portal and user add the purpose of visit
-    Scenario: "EPIC_EPP-44_STORY_EPP-2537 - Verify user able to view the filters in the schedule appointment screen from the patient portal and the user clears the filter."
-
     Given user launch Patient Portal url		
     When user is logged in to the application
     And user clicks on the schedule new appointments search button  without selecting the purpose of visit
