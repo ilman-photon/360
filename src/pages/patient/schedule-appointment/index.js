@@ -31,6 +31,7 @@ import store from "../../../store/store";
 import { useTranslation } from "next-i18next";
 import { useRouter } from "next/router";
 import {
+  DEFAULT_PATIENT_INFO_DATA,
   editAppointmentScheduleData,
   rescheduleAppointment,
   resetAppointmentSchedule,
