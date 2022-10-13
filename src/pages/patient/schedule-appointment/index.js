@@ -320,7 +320,6 @@ export default function ScheduleAppointmentPage() {
   };
 
   const handleClickSchedule = (data) => {
-    console.log("handleClickSchedule", data);
     if (activeStep === 2 || !data?.password) {
       router.push("/patient/schedule-appointment-confirmation");
     } else {
