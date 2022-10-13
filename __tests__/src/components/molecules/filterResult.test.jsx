@@ -410,7 +410,7 @@ describe("FilterResult Components", () => {
   });
 
   it("FilterResult render", () => {
-    expect(container.getByText("30 In-network providers")).toBeInTheDocument();
+    expect(container.getByText("3 In-network providers")).toBeInTheDocument();
   });
 
   it("FilterHeading render", () => {
@@ -431,6 +431,6 @@ describe("FilterResult Components", () => {
         }}
       />
     );
-    expect(container.getByText("30 In-network providers")).toBeInTheDocument();
+    expect(container.getByText("3 In-network providers")).toBeInTheDocument();
   });
 });

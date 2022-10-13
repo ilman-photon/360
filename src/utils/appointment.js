@@ -620,6 +620,36 @@ export function getProvideOverlay(
   return providerDataTmp;
 }
 
+export function updateProviderTimeSchedule(
+  providerList,
+  listOfProvider,
+  startDate,
+  endDate
+) {
+  const updateProviderList = [];
+  for (let index = 0; index < providerList.length; index++) {
+    const currentProvider = listOfProvider.find(
+      (item) => item.providerId === providerList[index].providerId
+    );
+    const providerDataTmp = { ...providerList[index] };
+    if (currentProvider) {
+      providerDataTmp.availability = currentProvider.availability;
+    } else {
+      const getRangeDate = getDates(
+        new Date(startDate),
+        new Date(endDate),
+        false
+      );
+      providerDataTmp.availability = createAvailableTimeSlot(
+        providerDataTmp,
+        getRangeDate
+      );
+    }
+    updateProviderList.push(providerDataTmp);
+  }
+  return updateProviderList;
+}
+
 function parsePrescriptionItemData(prescriptionData, key) {
   const data = [];
   let latestDate = "";
@@ -921,6 +951,11 @@ function createAvailableTimeSlot(providerData, getRangeDate) {
   return availabilityList;
 }
 
+function setAvailableToday(dateSchedule) {
+  const newDate = new moment().format("YYYY-MM-DD");
+  return dateSchedule === newDate;
+}
+
 export function parseProviderListData(response, startDate, endDate) {
   startDate = yyyymmddDateFormat(startDate);
   endDate = yyyymmddDateFormat(endDate);
@@ -974,12 +1009,16 @@ export function parseProviderListData(response, startDate, endDate) {
             latitude: "",
             longitude: "",
           },
+          filters: {},
         };
 
         providerTemp.providerId = providerId;
         providerTemp.providerTemplateId = providerTempItem._id;
         providerTemp.name = `${provider.designation} ${provider.firstName} ${provider.lastName}`;
         providerTemp.availability.push(availabilityDate);
+        providerTemp.filters["isAvailableToday"] = setAvailableToday(
+          availabilityDate.date
+        );
         data.listOfProvider.push(providerTemp);
       } else if (data.listOfProvider.length > 0 && currentProvider) {
         const isSameDate = currentProvider.availability.find(
@@ -987,6 +1026,11 @@ export function parseProviderListData(response, startDate, endDate) {
         );
         if (!isSameDate) {
           currentProvider.availability.push(availabilityDate);
+          for (const [key, value] of Object.entries(currentProvider.filters)) {
+            if (!currentProvider[key]) {
+              currentProvider[key] = setAvailableToday(availabilityDate.date);
+            }
+          }
         }
       }
     }

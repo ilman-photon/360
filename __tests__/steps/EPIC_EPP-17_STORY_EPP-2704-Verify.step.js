@@ -6,7 +6,6 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 import Cookies from "universal-cookie";
 import PrescriptionPage from "../../src/pages/patient/prescription";
 import { Provider } from "react-redux";
-import { getServerSideProps } from "../../src/pages/patient/mfa";
 import store from "../../src/store/store";
 import mediaQuery from "css-mediaquery";
 
@@ -146,10 +145,6 @@ defineFeature(feature, (test) => {
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("1920px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -163,16 +158,13 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByText(/Filter/i));
-      expect(response).toEqual({
-        props: { isStepTwo: false },
-      });
+      await waitFor(() => container.getByText(/Filters/i));
     });
 
     then(
       "the Patient should see the filters for the below mentioned details",
       async (table) => {
-        const filterBtn = container.getByText(/Filter/i);
+        const filterBtn = container.getByText(/Filters/i);
         const medicationMenu = container.getByTestId("menu-medication");
         expect(filterBtn).toBeInTheDocument();
         act(() => {

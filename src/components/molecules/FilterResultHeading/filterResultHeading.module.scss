@@ -157,6 +157,16 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
+  .mobileFilterButton {
+    padding: 0;
+    text-transform: none;
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    align-items: flex-start;
+    color: #898989;
+  }
 }
 .mobileFilterImageContainer {
   position: relative;
