@@ -97,6 +97,7 @@ export default function RowRadioButtonsGroup({
                     "&.Mui-checked": {
                       color: colors.teal,
                     },
+                    height: isCancelSchedule ? "40px" : "auto",
                   }}
                 />
               }
