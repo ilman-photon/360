@@ -90,8 +90,6 @@ export default function Appointments() {
   const onRescheduleClicked = ({ appointmentId }) => {
     if (appointmentId) {
       router.push(`/patient/appointments/${appointmentId}/reschedule`);
-    } else {
-      router.push("/patient");
     }
   };
 
