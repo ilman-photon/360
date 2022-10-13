@@ -291,6 +291,7 @@ export default function InsuranceForm({
                   helperText={error ? error.message : null}
                   isInsuranceForm={true}
                   tooltipContent="The person who pays for health insurance premiums. For example, if you have health insurance through your spouse’s health insurance plan, he or she is the primary subscriber."
+                  customTooltipWidth="210px"
                 />
               );
             }}
