@@ -1,7 +1,7 @@
 import { Api } from "../pages/api/api";
 const api = new Api();
 
-export default class DigitalAssetHandler {
+export default class DigitalAssetsHandler {
   file;
   source;
   status;
@@ -43,7 +43,6 @@ export default class DigitalAssetHandler {
       console.error(`Error reading file:`, error);
     });
     this.source = await this.createDigitalAsset();
-    console.log("source digital", { source: this.source });
     if (this.source) {
       const { success } = await api.uploadFile(
         this.source.presignedUrl,
@@ -51,7 +50,6 @@ export default class DigitalAssetHandler {
       );
       this.status = success ? "success" : "failed";
       this.source = await this.fetchSourceURL();
-      console.log("source fetch", { status: this.status, source: this.source });
     }
   };
 }
