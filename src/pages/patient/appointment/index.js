@@ -31,7 +31,6 @@ import {
 } from "../../../store/appointment";
 import { useRouter } from "next/router";
 import {
-  parseSuggestionData,
   setRangeDateData,
   getProvideOverlay,
   parsePurposeOfVisit,
@@ -276,6 +275,10 @@ export default function Appointment({ googleApiKey }) {
     const appointmentInfoObj = {
       ...appointmentInfo,
       date: appointmentDate,
+      providerTemplate: {
+        _id: providerData.providerTemplateId,
+      },
+      office: providerData.office,
     };
     const providerInfoObj = {
       ...providerInfo,

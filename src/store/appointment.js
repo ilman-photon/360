@@ -1,5 +1,7 @@
 import { faker } from "@faker-js/faker";
-import { createSlice } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import moment from "moment";
+import { Api } from "../pages/api/api";
 
 const DEFAULT_PROVIDER_INFO_DATA = {
   providerId: 0,
@@ -18,6 +20,7 @@ const DEFAULT_PROVIDER_INFO_DATA = {
 };
 
 export const DEFAULT_PATIENT_INFO_DATA = {
+  id: 0,
   name: null,
   firstName: "",
   lastName: "",
@@ -48,6 +51,108 @@ const DEFAULT_FILTER_DATA = {
   purposeOfVisit: "",
 };
 
+// parser
+/**
+ * This is parser for appointment data to be populated in browser view
+ * @param {*} payload
+ */
+const buildAppointmentData = (payload) => {
+  const providerData = payload.provider || {};
+  const patientData = payload.patient || {};
+  return {
+    providerInfo: providerData,
+    patientInfo: patientData,
+    appointmentInfo: {
+      appointmentType: payload.appointmentType.code,
+      date: new Date(`${payload.appointmentDate} ${payload.appointmentTime}`),
+      insuranceCarrier: payload.insurancePayers,
+      id: payload._id,
+      providerTemplate: payload.providerTemplate,
+      office: payload.office,
+    },
+  };
+};
+
+/**
+ * This is parser for request API body appointment data
+ * @param {*} payload
+ */
+const buildAppointmentPostBody = (payload) => {
+  console.log("app post body", { payload });
+  const patientInfoData = payload.patientInfo;
+  const providerInfoData = payload.providerInfo;
+  const appointmentInfoData = payload.appointmentInfo;
+  const appointmentDate = new moment(appointmentInfoData.date);
+  const today = new moment();
+  return {
+    appointmentDate: appointmentDate.format("MM/DD/YYYY"),
+    appointmentLength: 1,
+    appointmentRescheduleDetails: {
+      reason: "reschedule",
+    },
+    appointmentTime: appointmentDate.format("hh:mm"),
+    appointmentType: {
+      code: appointmentInfoData.appointmentType,
+    },
+    confirmationDetail: {
+      confirmationBy: patientInfoData._id,
+      confirmationDate: today.format("MM/DD/YYYY"),
+      confirmationTime: today.format("hh:mm"),
+    },
+    appointmentLength: 1,
+    office: {
+      _id: appointmentInfoData.office?.id || null,
+    },
+    providerTemplate: {
+      _id: appointmentInfoData.providerTemplate?._id || null,
+    },
+    provider: {
+      _id: providerInfoData._id,
+    },
+    patient: {
+      _id: patientInfoData._id,
+    },
+    patientDob: patientInfoData.dob,
+    allowCreate: true,
+  };
+};
+
+// async-thunk(s)
+export const fetchAppointmentById = createAsyncThunk(
+  "appointment/fetchAppointmentById",
+  async ({ appointmentId }) => {
+    const api = new Api();
+    return api.getResponse(`/ecp/appointments/${appointmentId}`, null, "get");
+  }
+);
+
+export const rescheduleAppointment = createAsyncThunk(
+  "appointment/rescheduleAppointment",
+  async ({ appointmentId, payload }) => {
+    const api = new Api();
+    try {
+      const postBody = buildAppointmentPostBody(payload);
+      console.log("postbody to be sent to API", postBody);
+      const response = await api.getResponse(
+        `/ecp/appointments/reschedule/${appointmentId}`,
+        postBody,
+        "put"
+      );
+
+      return {
+        success: true,
+        response,
+      };
+    } catch (error) {
+      console.error({ error });
+      return {
+        success: false,
+        response: error,
+      };
+    }
+  }
+);
+
 const appointmentSlice = createSlice({
   name: "appointment",
   initialState: {
@@ -60,7 +165,7 @@ const appointmentSlice = createSlice({
   },
   reducers: {
     setAppointmentSchedule: (state, { payload }) => {
-      state.appointmentSchedule = payload;
+      state.appointmentSchedule = buildAppointmentData(payload);
     },
     resetAppointmentSchedule: (state) => {
       state.appointmentSchedule = DEFAULT_USER_SCHEDULE_APPOINTMENT_DATA;
@@ -124,6 +229,21 @@ const appointmentSlice = createSlice({
     },
     setFilterBy: (state, { payload }) => {
       state.filterBy = payload;
+    },
+  },
+  extraReducers: {
+    // fetchAppointmentById
+    [fetchAppointmentById.pending]: (state) => {
+      state.status = "loading";
+    },
+    [fetchAppointmentById.fulfilled]: (state, { payload }) => {
+      if (payload) {
+        state.appointmentSchedule = buildAppointmentData(payload);
+      }
+      state.status = "success";
+    },
+    [fetchAppointmentById.rejected]: (state) => {
+      state.status = "failed";
     },
   },
 });
