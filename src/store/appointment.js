@@ -63,7 +63,7 @@ const buildAppointmentData = (payload) => {
     providerInfo: providerData,
     patientInfo: patientData,
     appointmentInfo: {
-      appointmentType: payload.appointmentType.code,
+      appointmentType: payload.appointmentType?.code || null,
       date: new Date(`${payload.appointmentDate} ${payload.appointmentTime}`),
       insuranceCarrier: payload.insurancePayers,
       id: payload._id,
