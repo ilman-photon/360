@@ -8,7 +8,7 @@ export default function PhoneNumber({ phone, sx = {} }) {
     <Typography
       variant="body2"
       tabIndex={0}
-      ariaLabel={formatPhoneNumber(phone)}
+      aria-label={`Phone Number ${formatPhoneNumber(phone)}`}
       className={isMobile ? styles.phoneLink : styles.phone}
       onClick={() => {
         isMobile && window.open(`tel:${phone}`);

@@ -124,11 +124,13 @@ export default function HomePage({ googleApiKey }) {
   function onCalledAllPrescription() {
     onCallGetPrescriptionData()
       .then(function (response) {
-        const prescriptionDataTemp = {
-          ...response,
-          glasses: [response.glasses[0]],
-          contacts: [response.contacts[0]],
-        };
+        const prescriptionDataTemp = { ...response };
+        if (response?.glasses?.length > 0) {
+          prescriptionDataTemp["glasses"] = [response.glasses[0]];
+        }
+        if (response?.contacts?.length > 0) {
+          prescriptionDataTemp["contacts"] = [response.contacts[0]];
+        }
         setPrescriptionData(prescriptionDataTemp);
       })
       .catch(function () {

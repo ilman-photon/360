@@ -285,6 +285,7 @@ exports[`App renders App unchanged 1`] = `
                                     class="phoneContainer MuiBox-root css-qbubgm"
                                   >
                                     <p
+                                      aria-label="Phone Number null"
                                       class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
                                       role="text"
                                       tabindex="0"
