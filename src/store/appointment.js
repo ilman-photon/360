@@ -86,7 +86,6 @@ const buildAppointmentPostBody = (payload) => {
   const today = new moment();
   return {
     appointmentDate: appointmentDate.format("MM/DD/YYYY"),
-    appointmentLength: 1,
     appointmentRescheduleDetails: {
       reason: "reschedule",
     },

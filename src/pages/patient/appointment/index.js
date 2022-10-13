@@ -140,7 +140,7 @@ export default function Appointment({ googleApiKey }) {
         avoidTolls: false,
       },
       (response, status) => {
-        if (status !== "OK") {
+        if (status != "OK") {
           alert("Error was: " + status);
         } else {
           const origins = response.originAddresses;
