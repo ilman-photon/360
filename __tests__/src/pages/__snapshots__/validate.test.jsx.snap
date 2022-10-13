@@ -48,7 +48,7 @@ Object {
           class="authContainer"
         >
           <div
-            class="authComponentContainer MuiBox-root css-1h4hxqr"
+            class="authComponentContainer MuiBox-root css-1gicxqy"
           >
             <div
               class="containerPage MuiBox-root css-0"
@@ -122,7 +122,7 @@ Object {
         class="authContainer"
       >
         <div
-          class="authComponentContainer MuiBox-root css-1h4hxqr"
+          class="authComponentContainer MuiBox-root css-1gicxqy"
         >
           <div
             class="containerPage MuiBox-root css-0"
