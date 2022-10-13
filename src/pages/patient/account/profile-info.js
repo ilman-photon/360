@@ -48,10 +48,14 @@ export async function getStaticProps() {
   return {
     props: {
       autoFillAPIToken: process.env.MAPBOX_API_TOKEN,
+      googleAPIKey: process.env.GOOGLE_API_KEY,
     },
   };
 }
-export default function ProfileInformationPage({ autoFillAPIToken }) {
+export default function ProfileInformationPage({
+  googleAPIKey,
+  autoFillAPIToken,
+}) {
   const [contactEditing, setContactEditing] = useState(false);
   const [personalEditing, setPersonalEditing] = useState(false);
   const [activeTabs, setActiveTabs] = useState(0);
@@ -161,26 +165,25 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
       >
         {pageMessage.content}
       </FormMessage>
-      <Tabs
-        sx={{
-          display: {
-            sm: "none",
-          },
-          backgroundColor: "#F4F4F4",
-        }}
-        value={activeTabs}
-        onChange={(_evt, val) => {
-          setActiveTabs(Number(val));
-        }}
-        textColor="inherit"
-        variant="fullWidth"
-        TabIndicatorProps={{
-          style: { background: "#0095A9", color: "red" },
-        }}
-      >
-        <StyledTab value={0} label="Profile" {...a11yProps(0)} />
-        <StyledTab value={1} label="Contact" {...a11yProps(1)} />
-      </Tabs>
+      {!isDesktop && (
+        <Tabs
+          sx={{
+            backgroundColor: "#F4F4F4",
+          }}
+          value={activeTabs}
+          onChange={(_evt, val) => {
+            setActiveTabs(Number(val));
+          }}
+          textColor="inherit"
+          variant="fullWidth"
+          TabIndicatorProps={{
+            style: { background: "#0095A9", color: "red" },
+          }}
+        >
+          <StyledTab value={0} label="Profile" {...a11yProps(0)} />
+          <StyledTab value={1} label="Contact" {...a11yProps(1)} />
+        </Tabs>
+      )}
       <Grid container spacing={isDesktop ? 2 : 0}>
         <Grid item xs={12} sm={12} lg={6}>
           {isDesktop || activeTabs === 0 ? (
@@ -208,6 +211,7 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
                 OnCancelEditClicked={(_) => setContactEditing(false)}
                 OnSaveClicked={onSaveContactData}
                 autoFillAPIToken={autoFillAPIToken}
+                googleAPIKey={googleAPIKey}
                 usStatesList={usStatesList}
               />
             </>
