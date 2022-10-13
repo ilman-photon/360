@@ -291,7 +291,7 @@ Object {
                                     class="phoneContainer MuiBox-root css-qbubgm"
                                   >
                                     <p
-                                      arialabel="(123) 123-4567"
+                                      aria-label="Phone Number (123) 123-4567"
                                       class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
                                       role="text"
                                       tabindex="0"
@@ -744,7 +744,7 @@ Object {
                                     class="phoneContainer MuiBox-root css-qbubgm"
                                   >
                                     <p
-                                      arialabel="(123) 123-4567"
+                                      aria-label="Phone Number (123) 123-4567"
                                       class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
                                       role="text"
                                       tabindex="0"

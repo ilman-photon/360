@@ -33,6 +33,8 @@ import { getCity } from "../../utils/getCity";
 import CustomModal from "../../components/molecules/CustomModal/customModal";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { colors } from "../../styles/theme";
+import { onCallGetPrescriptionData } from "../../utils/prescription";
+import Navbar from "../../components/molecules/Navbar/Navbar";
 
 export async function getStaticProps() {
   return {
@@ -72,7 +74,6 @@ export default function HomePage({ googleApiKey }) {
           purposeOfVisit: parsePurposeOfVisit(response?.entities || []),
           insuranceCarrier: parseInsuranceCarrier(insuranceCarrierList),
         };
-        console.log(filterSuggestion);
         setFilterSuggestionData(filterSuggestion);
       })
       .catch(function () {
@@ -120,13 +121,17 @@ export default function HomePage({ googleApiKey }) {
       });
   }
 
-  //Call API for getAllPrescriptions
-  function onCalledGetAllPrescriptionsAPI() {
-    const api = new Api();
-    api
-      .getAllPrescriptions()
+  function onCalledAllPrescription() {
+    onCallGetPrescriptionData()
       .then(function (response) {
-        setPrescriptionData(response.prescriptions);
+        const prescriptionDataTemp = { ...response };
+        if (response?.glasses?.length > 0) {
+          prescriptionDataTemp["glasses"] = [response.glasses[0]];
+        }
+        if (response?.contacts?.length > 0) {
+          prescriptionDataTemp["contacts"] = [response.contacts[0]];
+        }
+        setPrescriptionData(prescriptionDataTemp);
       })
       .catch(function () {
         //Handle error getAllPrescriptions
@@ -180,7 +185,7 @@ export default function HomePage({ googleApiKey }) {
   }, [setIsAuthenticated, router]);
 
   useEffect(() => {
-    onCalledGetAllPrescriptionsAPI();
+    onCalledAllPrescription();
     onCalledGetAllAppointment();
     dispatch(fetchAllPayers());
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -198,7 +203,6 @@ export default function HomePage({ googleApiKey }) {
   }
 
   const handleClickCancel = () => {
-    console.log(isOpenCancel, "vs");
     setIsOpenCancel(true);
   };
 
@@ -244,20 +248,24 @@ export default function HomePage({ googleApiKey }) {
       {!isAuthenticated && (
         <Stack sx={{ width: "100%" }}>
           {isDesktop ? (
-            <FilterHeading
-              isDesktop={isDesktop}
-              isTablet={false}
-              onSearchProvider={onSearchProvider}
-              isGeolocationEnabled={isGeolocationEnabled}
-              filterData={filterData}
-              purposeOfVisitData={filterSuggestionData.purposeOfVisit}
-              insuranceCarrierData={filterSuggestionData.insuranceCarrier}
-              title={"John, Welcome to your dashboard"}
-              subtitle={"Search for a doctor"}
-              isFixed={false}
-              currentCity={currentCity}
-              onChangeLocation={fetchCurrentLocation}
-            />
+            <>
+              <Navbar isDashboard={true} />
+              <FilterHeading
+                isDesktop={isDesktop}
+                isTablet={false}
+                onSearchProvider={onSearchProvider}
+                isGeolocationEnabled={isGeolocationEnabled}
+                filterData={filterData}
+                purposeOfVisitData={filterSuggestionData.purposeOfVisit}
+                insuranceCarrierData={filterSuggestionData.insuranceCarrier}
+                title={"John, Welcome to your dashboard"}
+                subtitle={"Search for a doctor"}
+                isFixed={false}
+                currentCity={currentCity}
+                onChangeLocation={fetchCurrentLocation}
+                isDashboard={true}
+              />
+            </>
           ) : (
             <Box
               sx={{

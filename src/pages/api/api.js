@@ -26,6 +26,7 @@ export class Api {
   }
 
   errorGenericValidation = (err) => {
+    console.log("err : ", err);
     return (
       err &&
       ((err.code === constants.ERROR_CODE.BAD_REQUEST &&
@@ -384,6 +385,27 @@ export class Api {
   submitFilter(locationName, postBody) {
     const url = `/ecp/appointments/available-slot?searchText=${locationName}`;
     return this.getResponse(url, postBody, "put");
+  }
+
+  getPrescriptionMedication() {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const patientId = `/${userData?.patientId}`;
+    const url = `/ecp/prescriptions/patient${patientId}`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  getPrescriptionGlasses() {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const patientId = `/${userData?.patientId}`;
+    const url = `/ecp/prescriptions/patient${patientId}/getGlassesData`;
+    return this.getResponse(url, {}, "get");
+  }
+
+  getPrescriptionContacts() {
+    const userData = JSON.parse(localStorage.getItem("userData"));
+    const patientId = `/${userData?.patientId}`;
+    const url = `/ecp/prescriptions/patient${patientId}/getContactsData`;
+    return this.getResponse(url, {}, "get");
   }
 
   async uploadFile(url, file) {
