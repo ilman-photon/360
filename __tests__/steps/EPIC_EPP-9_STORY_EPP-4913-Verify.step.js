@@ -96,8 +96,9 @@ defineFeature(feature, (test) => {
   };
 
   const userSeeEmptyDocumentTable = () => {
+    expect(container).toMatchSnapshot()
     const emptyTable = container.getByText(
-      "Consent to Treat - Patient Financial Responsibility - Assigment of Benefits"
+      "There are no intake forms."
     );
     expect(emptyTable).toBeInTheDocument();
   };

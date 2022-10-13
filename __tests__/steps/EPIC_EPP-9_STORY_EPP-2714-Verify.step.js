@@ -83,21 +83,28 @@ defineFeature(feature, (test) => {
   };
 
   const navigateToDocumentsPage = async () => {
-    act(() => {
+    // container = render(
+    //   <Provider store={store}>
+    //     <DocumentsPage />
+    //   </Provider>
+    // )
+    // act(() => {
       container.rerender(
         <Provider store={store}>
           <DocumentsPage />
         </Provider>
       );
-    });
+    // });
+    expect(container).toMatchSnapshot()
     await waitFor(() => container.getByText("Choose a category"));
     const categorySelector = container.getByText("Choose a category");
     expect(categorySelector).toBeInTheDocument();
   };
 
   const userSeeEmptyDocumentTable = () => {
+    expect(container).toMatchSnapshot()
     const emptyTable = container.getByText(
-      "Consent to Treat - Patient Financial Responsibility - Assigment of Benefits"
+      "There are no intake forms."
     );
     expect(emptyTable).toBeInTheDocument();
   };
