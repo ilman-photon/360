@@ -33,7 +33,7 @@ export class Api {
         err?.response?.data?.ResponseCode === undefined) ||
         err.code === constants.ERROR_CODE.NETWORK_ERR ||
         [500].indexOf(err.response?.status) !== -1) &&
-      [404].indexOf(err.response?.status) === -1
+      [400].indexOf(err.response?.status) === -1
     );
   };
 
@@ -65,6 +65,10 @@ export class Api {
           });
         } else if (err && err.response && err.response.data) {
           reject(err.response.data);
+          const errors = err.response.data._errors;
+          if (errors) {
+            store.dispatch(setGenericErrorMessage(errors[0].description));
+          }
         } else {
           reject(err);
         }

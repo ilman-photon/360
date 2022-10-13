@@ -143,8 +143,6 @@ export default function ProfileInformationPage({
   }
   const { PERSONAL_INFO_TEST_ID } = constants.TEST_ID;
 
-  console.log({ userData });
-
   return (
     <section>
       <FormMessage

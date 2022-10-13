@@ -137,9 +137,13 @@ export default function ProviderProfile({
           ) : (
             <AccountCircleIcon
               sx={{
-                width: { xs: "70px", md: "100px" },
-                height: { xs: "70px", md: "100px" },
+                width: { xs: "70px", sm: "100px", md: "unset" },
+                height: { xs: "70px", sm: "100px", md: "unset" },
                 color: "#b5b5b5",
+                "@media (max-width: 767px)": {
+                  width: { xs: "50px" },
+                  height: { xs: "50px" },
+                },
               }}
               data-testid={TEST_ID.APPOINTMENT_TEST_ID.PROVIDER_PROFILE.image}
               className={styles.profilePhoto}

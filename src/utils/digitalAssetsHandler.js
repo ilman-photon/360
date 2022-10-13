@@ -1,7 +1,7 @@
 import { Api } from "../pages/api/api";
 const api = new Api();
 
-export default class DigitalAssetHandler {
+export default class DigitalAssetsHandler {
   file;
   source;
   status;

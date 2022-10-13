@@ -8,6 +8,7 @@ import DocumentsPage from "../../src/pages/patient/account/documents/index";
 import axios from "axios";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
+import { mockDocument } from "../../__mocks__/mockResponse";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
 const feature = loadFeature(
@@ -17,7 +18,7 @@ const feature = loadFeature(
 defineFeature(feature, (test) => {
   const mockRouter = {
     back: jest.fn(),
-    query: { type: "insurance-documents" },
+    query: { type: "intake-forms" },
     push: jest.fn(),
     replace: jest.fn(),
     prefetch: jest.fn(),
@@ -27,19 +28,19 @@ defineFeature(feature, (test) => {
   const mock = new MockAdapter(axios);
   const element = document.createElement("div");
   beforeEach(async () => {
-    const expectedResult = [
-      {
-        id: 1,
-        name: "Consent to Treat - Patient Financial Responsibility - Assigment of Benefits",
-        modifiedAt: "09/09/2022 12:00PM",
-        source: "/doctor.png",
-      },
-    ];
     global.fetch = jest.fn(() =>
       Promise.resolve({
         json: () => Promise.resolve(expectedResult),
       })
     );
+    const categoryId = "Intake-Forms";
+    const patientId = "8a94c00a-1bf6-47b7-8ff1-485fd469937f";
+    mock
+      .onGet(
+        `/ecp/patient/getPatientDocumentByCategory/${patientId}/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=${categoryId}))`
+      )
+      .reply(200, mockDocument);
+
     useRouter.mockReturnValue(mockRouter);
   });
 
@@ -97,12 +98,10 @@ defineFeature(feature, (test) => {
 
   const userSeeDocumentTable = async () => {
     await waitFor(() =>
-      container.getByText(
-        "Consent to Treat - Patient Financial Responsibility - Assigment of Benefits"
-      )
+      container.getByText("MEDICAL_CERTIFICATE_OF_FITNESS1 - Copy - Copy")
     );
     const emptyTable = container.getByText(
-      "Consent to Treat - Patient Financial Responsibility - Assigment of Benefits"
+      "MEDICAL_CERTIFICATE_OF_FITNESS1 - Copy - Copy"
     );
     expect(emptyTable).toBeInTheDocument();
   };
@@ -316,7 +315,7 @@ defineFeature(feature, (test) => {
 
     and(
       "System should bring the list of documents from a folder in the backend",
-      () => { }
+      () => {}
     );
   });
 

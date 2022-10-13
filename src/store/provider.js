@@ -34,6 +34,15 @@ export const fetchPlans = createAsyncThunk(
   }
 );
 
+export const fetchProviderById = createAsyncThunk(
+  "provider/fetchProviderById",
+  async ({ providerId }) => {
+    const api = new Api();
+    url = `/ecp/appointments/getprovider/${providerId}`;
+    return api.getResponse(url, null, "get");
+  }
+);
+
 const INITIAL_STATE = {
   list: [],
   planList: [],

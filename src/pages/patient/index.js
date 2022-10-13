@@ -19,11 +19,11 @@ import {
   setProviderListData,
 } from "../../store/appointment";
 import {
-  parseInsuranceCarrier,
-  parsePurposeOfVisit,
   getMondayOfCurrentWeek,
   getSaturdayOfCurrentWeek,
+  parseInsuranceCarrier,
   parseProviderListData,
+  parsePurposeOfVisit,
 } from "../../utils/appointment";
 import FilterResultHeading from "../../components/molecules/FilterResultHeading/filterResultHeading";
 import { Box } from "@mui/system";
@@ -33,6 +33,7 @@ import { getCity } from "../../utils/getCity";
 import CustomModal from "../../components/molecules/CustomModal/customModal";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { colors } from "../../styles/theme";
+import { appointmentParser } from "../../utils/appointmentsModel";
 import { onCallGetPrescriptionData } from "../../utils/prescription";
 import Navbar from "../../components/molecules/Navbar/Navbar";
 
@@ -142,21 +143,14 @@ export default function HomePage({ googleApiKey }) {
   function onCalledGetAllAppointment() {
     const api = new Api();
     api
-      .getAllAppointment()
+      .getUpcomingAppointment()
       .then(function (response) {
-        const today = new Date();
-        const upcomingAppointments = [];
-        const appointmentList = response.appointmentList || [];
-        for (const appointment of appointmentList) {
-          const visitDate = new Date(appointment.appointmentInfo.date);
-
-          const daysAway = visitDate.getTime() - today.getTime();
-          const totalDays = Math.ceil(daysAway / (1000 * 3600 * 24));
-          if (totalDays >= 0) {
-            upcomingAppointments.push(appointment);
-          }
-        }
-        setAppointmentData(upcomingAppointments);
+        const upcomingAppointment = [];
+        response.entities.map((data) => {
+          const mappedData = appointmentParser(data);
+          upcomingAppointment.push(mappedData);
+        });
+        setAppointmentData(upcomingAppointment);
       })
       .catch(function () {
         //Handle error getAllAppointment
@@ -222,25 +216,11 @@ export default function HomePage({ googleApiKey }) {
   const onClickReschedule = ({
     appointmentInfo,
     providerInfo = { address: {} },
+    appointmentId,
   }) => {
-    const dataFilter = {
-      purposeOfVisit: appointmentInfo.appointmentType,
-      date: new Date(appointmentInfo.date),
-      insuranceCarrier: Array.isArray(appointmentInfo.insuranceCarrier)
-        ? appointmentInfo.insuranceCarrier[0]
-        : appointmentInfo.insuranceCarrier,
-      location: providerInfo.address.city,
-    };
-
-    const appointmentSchedule = {
-      providerInfo: providerInfo,
-      patientInfo: userData,
-      appointmentInfo: appointmentInfo,
-    };
-    dispatch(setFilterData(dataFilter));
-    dispatch(setAppointmentSchedule(appointmentSchedule));
-
-    router.push("/patient/appointments/1/reschedule");
+    if (appointmentId) {
+      router.push(`/patient/appointments/${appointmentId}/reschedule`);
+    }
   };
 
   return (

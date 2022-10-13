@@ -100,6 +100,7 @@ export const FilterResult = ({
           <FilterResultHeading
             isDesktop={isDesktop}
             isTablet={isTablet}
+            numberFilter={providerList?.length || 0}
             onNextScheduleClicked={onNextScheduleClicked}
             onPrevScheduleClicked={onPrevScheduleClicked}
             rangeDate={rangeDate}
