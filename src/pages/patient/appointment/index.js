@@ -119,6 +119,47 @@ export default function Appointment({ googleApiKey }) {
   );
 
   useEffect(() => {
+    console.log("maps is loaded");
+    if (!window.google) return;
+    const distanceService = new google.maps.DistanceMatrixService();
+    console.log({ distanceService });
+    const orig = { lat: -6.8770974, lng: 107.6108204 };
+    const dest = { lat: -6.8769662, lng: 107.6109715 };
+    distanceService.getDistanceMatrix(
+      {
+        origins: [orig],
+        destinations: [dest],
+        travelMode: "DRIVING",
+        unitSystem: google.maps.UnitSystem.METRIC,
+        avoidHighways: false,
+        avoidTolls: false,
+      },
+      (response, status) => {
+        if (status !== "OK") {
+          alert("Error was: " + status);
+        } else {
+          const origins = response.originAddresses;
+
+          //Loop through the elements row to get the value of duration and distance
+          for (let i = 0; i < origins.length; i++) {
+            const results = response.rows[i].elements;
+            for (const element of results) {
+              const distanceString = element.distance.text;
+              const durationString = element.duration.text;
+              console.log({
+                dist: parseInt(distanceString, 10),
+                dur: {
+                  duration: parseInt(durationString, 10),
+                },
+              });
+            }
+          }
+        }
+      }
+    );
+  }, [isLoaded]);
+
+  useEffect(() => {
     if (router.query.reschedule) {
       setIsReschedule(true);
       onCallSubmitFilterAPI(filterData);

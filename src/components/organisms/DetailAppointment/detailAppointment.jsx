@@ -21,7 +21,6 @@ import TableRow from "@mui/material/TableRow";
 import React, { useEffect, useState } from "react";
 import { TEST_ID } from "../../../utils/constants";
 import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
-
 function AppointmentDetailTable(alergies, isExpandAll) {
   const [openAllergies, setOpenAllergies] = useState(isExpandAll);
   const handleClickAllergies = () => {
@@ -480,7 +479,7 @@ export default function DetailAppointment({ data }) {
                       variant="h4"
                       className={styles.mb14}
                     >
-                      {"Custodian "}
+                      {"Custodian"}
                     </Typography>
                     <Typography
                       tabIndex={0}
@@ -711,14 +710,13 @@ export default function DetailAppointment({ data }) {
               <TableBody>
                 <TableRow>
                   <TableCell
-                    tabindex={0}
                     component="th"
                     scope="row"
                     sx={{ textTransform: "capitalize" }}
                   >
                     <Typography
                       tabIndex={0}
-                      aria-label={"Patient"}
+                      aria-label={"Patient IDs"}
                       variant="h4"
                       className={styles.mb14}
                     >
@@ -763,10 +761,7 @@ export default function DetailAppointment({ data }) {
 
       {/* Document Of Care problem */}
       <Box sx={{ p: 2, backgroundColor: grey[50] }}>
-        <Box
-          className={styles.dateContainer}
-          sx={{ p: 2, backgroundColor: "white" }}
-        >
+        <Box className={styles.dateContainer} sx={{ backgroundColor: "white" }}>
           <Table>
             <TableBody>
               <TableRow>
@@ -859,8 +854,8 @@ export default function DetailAppointment({ data }) {
                   >
                     {item.contactPerformance.country}
                   </Typography>
-
                   <PhoneNumber
+                    tabindex={0}
                     phone={appointmentInfo.documentDetails.address.mobileNumber}
                     sx={{
                       display: "flex",
@@ -881,10 +876,7 @@ export default function DetailAppointment({ data }) {
 
       {/* Autho Eyecare 360 */}
       <Box sx={{ p: 2, backgroundColor: grey[50] }}>
-        <Box
-          className={styles.dateContainer}
-          sx={{ p: 2, backgroundColor: "white" }}
-        >
+        <Box className={styles.dateContainer} sx={{ backgroundColor: "white" }}>
           <Grid container spacing={2} sx={{ p: 1 }}>
             <Grid item xs={12}>
               <Box

@@ -310,6 +310,17 @@ export default function MedicalRecordPage() {
     return state.medicalResult.status;
   });
 
+  const noResultText = () => {
+    switch (watchedCategory) {
+      case "test-lab-result":
+        return "There are no tests or lab results for you now.";
+      case "care-plan-overview":
+        return "There is no care plan overview document";
+      default:
+        return "There are no tests or lab results for you now.";
+    }
+  };
+
   useEffect(() => {
     const category = router.query.type;
     if (category) setValue("category", category);
@@ -404,7 +415,7 @@ export default function MedicalRecordPage() {
                 }}
               />
             ) : (
-              <TableEmpty text={`There are no ${watchedCategory}.`} />
+              <TableEmpty text={noResultText()} />
             )}
           </Stack>
         </div>
