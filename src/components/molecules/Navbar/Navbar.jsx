@@ -51,7 +51,7 @@ const medical = [
   },
   {
     icon: iconPrescription2,
-    href: "/patient/account/medical-record?type=care-plan-overview",
+    href: "/patient/prescription",
     label: "Prescriptions",
   },
   {
@@ -162,9 +162,11 @@ const Navbar = () => {
                   margin: "0 !important",
                   borderRadius: "2px 2px 0px 0px",
                   borderTop: "solid 4px transparent",
-                  borderBottom: isCurrentPath("/patient/account/medical-record")
-                    ? "solid 4px #D9D9D9"
-                    : "solid 4px transparent",
+                  borderBottom:
+                    isCurrentPath("/patient/account/medical-record") ||
+                    isCurrentPath("/patient/prescription")
+                      ? "solid 4px #D9D9D9"
+                      : "solid 4px transparent",
                 }}
                 endIcon={<ExpandMoreIcon />}
               >
