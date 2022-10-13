@@ -33,6 +33,7 @@ import { getCity } from "../../utils/getCity";
 import CustomModal from "../../components/molecules/CustomModal/customModal";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { colors } from "../../styles/theme";
+import Navbar from "../../components/molecules/Navbar/Navbar";
 
 export async function getStaticProps() {
   return {
@@ -244,20 +245,24 @@ export default function HomePage({ googleApiKey }) {
       {!isAuthenticated && (
         <Stack sx={{ width: "100%" }}>
           {isDesktop ? (
-            <FilterHeading
-              isDesktop={isDesktop}
-              isTablet={false}
-              onSearchProvider={onSearchProvider}
-              isGeolocationEnabled={isGeolocationEnabled}
-              filterData={filterData}
-              purposeOfVisitData={filterSuggestionData.purposeOfVisit}
-              insuranceCarrierData={filterSuggestionData.insuranceCarrier}
-              title={"John, Welcome to your dashboard"}
-              subtitle={"Search for a doctor"}
-              isFixed={false}
-              currentCity={currentCity}
-              onChangeLocation={fetchCurrentLocation}
-            />
+            <>
+              <Navbar isDashboard={true} />
+              <FilterHeading
+                isDesktop={isDesktop}
+                isTablet={false}
+                onSearchProvider={onSearchProvider}
+                isGeolocationEnabled={isGeolocationEnabled}
+                filterData={filterData}
+                purposeOfVisitData={filterSuggestionData.purposeOfVisit}
+                insuranceCarrierData={filterSuggestionData.insuranceCarrier}
+                title={"John, Welcome to your dashboard"}
+                subtitle={"Search for a doctor"}
+                isFixed={false}
+                currentCity={currentCity}
+                onChangeLocation={fetchCurrentLocation}
+                isDashboard={true}
+              />
+            </>
           ) : (
             <Box
               sx={{

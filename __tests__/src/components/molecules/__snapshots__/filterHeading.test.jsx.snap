@@ -6,7 +6,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="titleHeadingWrapper MuiBox-root css-w1mo3z"
+        class="titleHeadingWrapper MuiBox-root css-1t74hqn"
       >
         <div
           class="centeredElement MuiBox-root css-4z08j"
@@ -326,7 +326,7 @@ Object {
   </body>,
   "container": <div>
     <div
-      class="titleHeadingWrapper MuiBox-root css-w1mo3z"
+      class="titleHeadingWrapper MuiBox-root css-1t74hqn"
     >
       <div
         class="centeredElement MuiBox-root css-4z08j"
@@ -703,7 +703,7 @@ Object {
   "baseElement": <body>
     <div>
       <div
-        class="titleHeadingWrapper MuiBox-root css-w1mo3z"
+        class="titleHeadingWrapper MuiBox-root css-1t74hqn"
       >
         <div
           class="centeredElement MuiBox-root css-4z08j"
