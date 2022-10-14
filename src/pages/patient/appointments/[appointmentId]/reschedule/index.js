@@ -3,24 +3,82 @@ import AppointmentLayout from "../../../../../components/templates/appointmentLa
 import styles from "./styles.module.scss";
 import AppointmentLocation from "../../../../../components/organisms/ScheduleAppointment/appointmentLocation";
 import AppointmentDetails from "../../../../../components/organisms/ScheduleAppointment/appointmentDetails";
-import { Provider, useSelector } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import store from "../../../../../store/store";
 import React from "react";
+import {
+  editAppointmentScheduleData,
+  fetchAppointmentById,
+  setFilterData,
+} from "../../../../../store/appointment";
+import { fetchProviderById } from "../../../../../store/provider";
 
 export default function RescheduleAppointments() {
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const appointmentScheduleData = useSelector((state) => {
     return state.appointment.appointmentSchedule;
   });
 
-  React.useEffect(() => {
-    if (!appointmentScheduleData.providerInfo.providerId) {
-      router.replace("/patient/appointment");
+  const fetchProviderData = async (id) => {
+    const providerResponse = await dispatch(
+      fetchProviderById({ providerId: id })
+    );
+    if (providerResponse.payload) {
+      dispatch(
+        editAppointmentScheduleData({
+          key: "providerInfo",
+          value: providerResponse.payload,
+        })
+      );
+    } else {
+      router.replace("/patient/appointments");
     }
+  };
+
+  React.useEffect(() => {
+    const appointmentInfo = appointmentScheduleData.appointmentInfo;
+    const providerInfo = appointmentScheduleData.providerInfo;
+    const filterData = {
+      purposeOfVisit: appointmentInfo.appointmentType,
+      date: new Date(appointmentInfo.date),
+      insuranceCarrier: Array.isArray(appointmentInfo.insuranceCarrier)
+        ? appointmentInfo.insuranceCarrier[0]
+        : appointmentInfo.insuranceCarrier,
+      location: providerInfo.address ? providerInfo.address.state : "-",
+    };
+
+    dispatch(setFilterData(filterData));
+  }, [appointmentScheduleData.providerInfo.address]);
+
+  React.useEffect(() => {
+    // set appointment scheduleData patientInfo
+    dispatch(
+      editAppointmentScheduleData({
+        key: "patientInfo",
+        value: appointmentScheduleData.patientInfo,
+      })
+    );
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appointmentScheduleData]);
+
+  React.useEffect(() => {
+    if (appointmentScheduleData.providerInfo._id) {
+      fetchProviderData(appointmentScheduleData.providerInfo._id);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [appointmentScheduleData.providerInfo._id]);
+
+  React.useEffect(() => {
+    if (router.query.appointmentId) {
+      dispatch(
+        fetchAppointmentById({ appointmentId: router.query.appointmentId })
+      );
+    }
+  }, [router.query]);
 
   const OnEditClicked = () => {
     router.push("/patient/appointment?reschedule=true");

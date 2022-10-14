@@ -688,7 +688,7 @@ const FilterHeading = ({
               />
               <StyledInput
                 open={open}
-                // minDate={minDate}
+                minDate={minDate}
                 maxDate={maxDate}
                 data-testid={APPOINTMENT_TEST_ID.dateInput}
                 onOpen={() => setOpen(true)}

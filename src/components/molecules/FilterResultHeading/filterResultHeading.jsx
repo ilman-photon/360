@@ -335,12 +335,7 @@ export const FilterResultHeading = ({
             >
               <Button
                 aria-label={filterData.location}
-                sx={{
-                  padding: 0,
-                  textTransform: "none",
-                  textAlign: "left",
-                  alignSelf: "flex-start",
-                }}
+                className={styles.mobileFilterButton}
               >
                 <Typography
                   variant={"bodyMedium"}

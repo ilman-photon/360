@@ -205,7 +205,7 @@ export default function TableWithSort({
                       onClick={(event) => handleClick(event, row.id)}
                       role={"row"}
                       tabIndex={-1}
-                      key={rowIdx}
+                      key={`row-${rowIdx}`}
                       selected={isItemSelected}
                       sx={{ border: "2px solid #F3F3F3" }}
                     >
@@ -213,13 +213,19 @@ export default function TableWithSort({
                         switch (cell.type) {
                           case "icon":
                             return (
-                              <TableCell key={cellIdx} {...cell.cellProps}>
+                              <TableCell
+                                key={`${rowIdx}-${cellIdx}`}
+                                {...cell.cellProps}
+                              >
                                 {cell.icon}
                               </TableCell>
                             );
                           case "download-asset":
                             return (
-                              <TableCell key={cellIdx} {...cell.cellProps}>
+                              <TableCell
+                                key={`${rowIdx}-${cellIdx}`}
+                                {...cell.cellProps}
+                              >
                                 <Tooltip
                                   title={
                                     <Typography
@@ -239,9 +245,19 @@ export default function TableWithSort({
                                   <div
                                     role="button"
                                     aria-label={`download`}
-                                    onClick={() =>
-                                      onAssetDownload(row[cell.valueKey])
-                                    }
+                                    onClick={() => {
+                                      function ref(row, key) {
+                                        key
+                                          .split(".")
+                                          .forEach((k) =>
+                                            row ? (row = row[k]) : undefined
+                                          );
+                                        return row;
+                                      }
+
+                                      const assetId = ref(row, cell.valueKey);
+                                      onAssetDownload(assetId);
+                                    }}
                                   >
                                     {cell.icon}
                                   </div>
@@ -250,7 +266,10 @@ export default function TableWithSort({
                             );
                           case "download-icon":
                             return (
-                              <TableCell key={cellIdx} {...cell.cellProps}>
+                              <TableCell
+                                key={`${rowIdx}-${cellIdx}`}
+                                {...cell.cellProps}
+                              >
                                 <Tooltip
                                   title={
                                     <Typography
@@ -282,7 +301,10 @@ export default function TableWithSort({
                           case "text":
                           default:
                             return (
-                              <TableCell key={cellIdx} {...cell.cellProps}>
+                              <TableCell
+                                key={`${rowIdx}-${cellIdx}`}
+                                {...cell.cellProps}
+                              >
                                 <div
                                   style={cell.contentStyle}
                                   tabIndex={0}
