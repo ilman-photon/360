@@ -12,7 +12,6 @@ import store from "../../store/store";
 import { useRouter } from "next/router";
 import { Api } from "../api/api";
 import {
-  setAppointmentSchedule,
   setFilterBy,
   setFilterData,
   setIsFilterApplied,
@@ -55,7 +54,6 @@ export default function HomePage({ googleApiKey }) {
 
   const insuranceCarrierList = useSelector((state) => state.provider.list);
   const filterData = useSelector((state) => state.appointment.filterData);
-  const userData = useSelector((state) => state.user.userData);
   const isDesktop = useMediaQuery("(min-width: 900px)");
   const { coords, isGeolocationEnabled } = useGeolocated({
     positionOptions: {

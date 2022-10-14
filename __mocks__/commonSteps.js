@@ -1304,9 +1304,13 @@ export async function renderScheduleAppointment() {
   };
   global.navigator.geolocation = mockGeolocation;
   window.matchMedia = createMatchMedia("1920px");
-  container = render(
-    <Provider store={store}>{Appointment.getLayout(<Appointment />)}</Provider>
-  );
+  act(() => {
+    container = render(
+      <Provider store={store}>
+        {Appointment.getLayout(<Appointment />)}
+      </Provider>
+    );
+  });
   await waitFor(() => container.getByText("Purpose of Visit"));
   expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
   return container;
@@ -1416,3 +1420,53 @@ export async function landOnCreateAccountPage() {
   );
   return container;
 }
+
+export async function doLogin(mock, container) {
+  const expectedResult = {
+    ResponseCode: 2000,
+    ResponseType: "success",
+    userType: "patient",
+  };
+  mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
+  const usernameField = container.getByLabelText("emailUserLabel");
+  const passwordField = container.getByLabelText("passwordLabel");
+  fireEvent.change(usernameField, {
+    target: { value: "patient1@email.com" },
+  });
+  fireEvent.change(passwordField, { target: { value: "Admin@123" } });
+  expect(usernameField.value).toEqual("patient1@email.com");
+  expect(passwordField.value).toEqual("Admin@123");
+}
+export const provideFilters = (container) => {
+  inputLocation(container);
+  inputPurpose(container);
+};
+
+export const inputLocation = async (container) => {
+  await waitFor(() => container.getByLabelText("City, state, or zip code"));
+  const locationInput = container.getByLabelText("City, state, or zip code");
+  act(() => {
+    fireEvent.change(locationInput, { target: { value: "Texas" } });
+  });
+};
+
+export const inputPurpose = async (container) => {
+  await waitFor(() => container.getByTestId("select-purposes-of-visit"));
+  const purposeInput = container.getByTestId("select-purposes-of-visit");
+  act(() => {
+    fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
+  });
+};
+export const clickSearch = async (container) => {
+  await waitFor(() =>
+    container.getByTestId(TEST_ID.APPOINTMENT_TEST_ID.searchbtn)
+  );
+  const searchBtn = container.getByTestId(
+    TEST_ID.APPOINTMENT_TEST_ID.searchbtn
+  );
+  fireEvent.click(searchBtn);
+};
+
+export const defaultValidation = () => {
+  expect(true).toBeTruthy();
+};

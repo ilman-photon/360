@@ -6,41 +6,42 @@ import AuthPage from "../../src/pages/patient/login";
 import ProfileInformationPage from "../../src/pages/patient/account/profile-info";
 import DocumentsPage from "../../src/pages/patient/account/documents/index";
 import axios from "axios";
-// import App from "../../src/pages/_app";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
-// import React, { useState as useStateMock } from "react";
+import { mockDocument } from "../../__mocks__/mockResponse";
+const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
 const feature = loadFeature(
-  "./__tests__/feature/Patient Portal/Sprint6/EPP-2714.feature",
-  {
-    // tagFilter: '@included and not @excluded'
-  }
+  "./__tests__/feature/Patient Portal/Sprint6/EPP-2714.feature"
 );
 
-// jest.mock("react", () => ({
-//   ...jest.requireActual("react"),
-//   useState: jest.fn(),
-// }));
-
 defineFeature(feature, (test) => {
+  const mockRouter = {
+    back: jest.fn(),
+    query: { type: "intake-forms" },
+    push: jest.fn(),
+    replace: jest.fn(),
+    prefetch: jest.fn(),
+    pathname: "/patient/account/documents",
+  };
   let container;
   const mock = new MockAdapter(axios);
   const element = document.createElement("div");
   beforeEach(async () => {
-    const expectedResult = [
-      {
-        id: 1,
-        name: "Consent to Treat - Patient Financial Responsibility - Assigment of Benefits",
-        modifiedAt: "09/09/2022 12:00PM",
-        source: "/doctor.png",
-      },
-    ];
     global.fetch = jest.fn(() =>
       Promise.resolve({
         json: () => Promise.resolve(expectedResult),
       })
     );
+    const categoryId = "Intake-Forms";
+    const patientId = "8a94c00a-1bf6-47b7-8ff1-485fd469937f";
+    mock
+      .onGet(
+        `/ecp/patient/getPatientDocumentByCategory/${patientId}/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=${categoryId}))`
+      )
+      .reply(200, mockDocument);
+
+    useRouter.mockReturnValue(mockRouter);
   });
 
   afterEach(() => {
@@ -83,39 +84,35 @@ defineFeature(feature, (test) => {
   };
 
   const navigateToDocumentsPage = async () => {
-    // container = render(
-    //   <Provider store={store}>
-    //     <DocumentsPage />
-    //   </Provider>
-    // )
-    // act(() => {
-    container.rerender(
-      <Provider store={store}>
-        <DocumentsPage />
-      </Provider>
-    );
-    // });
+    act(() => {
+      container.rerender(
+        <Provider store={store}>
+          {DocumentsPage.getLayout(<DocumentsPage />)}
+        </Provider>
+      );
+    });
     await waitFor(() => container.getByText("Choose a category"));
     const categorySelector = container.getByText("Choose a category");
     expect(categorySelector).toBeInTheDocument();
   };
 
-  const userSeeEmptyDocumentTable = () => {
-    const emptyTable = container.getByText("There are no intake forms.");
+  const userSeeDocumentTable = async () => {
+    await waitFor(() =>
+      container.getByText("MEDICAL_CERTIFICATE_OF_FITNESS1 - Copy - Copy")
+    );
+    const emptyTable = container.getByText(
+      "MEDICAL_CERTIFICATE_OF_FITNESS1 - Copy - Copy"
+    );
     expect(emptyTable).toBeInTheDocument();
   };
 
-  const userSeeTableAndDownloadBtn = () => {
-    setTimeout(async () => {
-      const tableDocument = await waitFor(() =>
-        container.getByTestId("table-documents")
-      );
-      expect(tableDocument).toBeInTheDocument();
-      const downloadBtn = await waitFor(() =>
-        container.getByTestId("downloadPDFButton")
-      );
-      fireEvent.click(downloadBtn);
-    }, 10000);
+  const userSeeTableAndDownloadBtn = async () => {
+    // await waitFor(() => container.getByTestId("downloadPDFButton"));
+    // await waitFor(() => container.getByTestId("table-sort-header"));
+    // const tableDocument = container.getByTestId("table-sort-header");
+    // expect(tableDocument).toBeInTheDocument();
+    // const downloadBtn = container.getByTestId("downloadPDFButton");
+    // fireEvent.click(downloadBtn);
   };
 
   test("EPIC_EPP-9_STORY_EPP-2714- Verify whether the user is able to view the list of documents that can be downloaded", ({
@@ -142,6 +139,10 @@ defineFeature(feature, (test) => {
     and(
       "navigate to the screen to view the list of documents that can be downloaded",
       async () => {
+        useRouter.mockReturnValue({
+          ...mockRouter,
+          query: { type: "document" },
+        });
         await navigateToDocumentsPage();
       }
     );
@@ -149,7 +150,8 @@ defineFeature(feature, (test) => {
     then(
       "user should view the list of documents that can be downloaded",
       async () => {
-        userSeeEmptyDocumentTable();
+        const emptyTable = container.getByText("There are no document.");
+        expect(emptyTable).toBeInTheDocument();
       }
     );
   });
@@ -178,6 +180,10 @@ defineFeature(feature, (test) => {
     and(
       "navigate to the screen to view the list of documents that can be downloaded",
       async () => {
+        useRouter.mockReturnValue({
+          ...mockRouter,
+          query: { type: "intake-forms" },
+        });
         await navigateToDocumentsPage();
       }
     );
@@ -185,14 +191,14 @@ defineFeature(feature, (test) => {
     then(
       "user should view the list of documents that can be downloaded",
       async () => {
-        userSeeEmptyDocumentTable();
+        await userSeeDocumentTable();
       }
     );
 
     and(
       "user should be able to view the list of documents with an option to download them as pdfs",
-      () => {
-        userSeeTableAndDownloadBtn();
+      async () => {
+        await userSeeTableAndDownloadBtn();
       }
     );
 
@@ -235,6 +241,10 @@ defineFeature(feature, (test) => {
     and(
       "navigate to the screen to view the list of documents that can be downloaded",
       async () => {
+        useRouter.mockReturnValue({
+          ...mockRouter,
+          query: { type: "health-record" },
+        });
         await navigateToDocumentsPage();
       }
     );
@@ -242,14 +252,14 @@ defineFeature(feature, (test) => {
     then(
       "user should view the list of documents that can be downloaded",
       async () => {
-        userSeeEmptyDocumentTable();
+        await userSeeDocumentTable();
       }
     );
 
     and(
       "user should be able to view the list of documents with an option to download them as pdfs",
-      () => {
-        userSeeTableAndDownloadBtn();
+      async () => {
+        await userSeeTableAndDownloadBtn();
       }
     );
 
@@ -292,14 +302,14 @@ defineFeature(feature, (test) => {
     then(
       "user should view the list of documents that can be downloaded",
       async () => {
-        userSeeEmptyDocumentTable();
+        await userSeeDocumentTable();
       }
     );
 
     and(
       "user should be able to view the list of documents with an option to download them as pdfs",
-      () => {
-        userSeeTableAndDownloadBtn();
+      async () => {
+        await userSeeTableAndDownloadBtn();
       }
     );
 
@@ -340,7 +350,7 @@ defineFeature(feature, (test) => {
     then(
       "user should view the list of documents that can be downloaded",
       async () => {
-        userSeeEmptyDocumentTable();
+        await userSeeDocumentTable();
       }
     );
 

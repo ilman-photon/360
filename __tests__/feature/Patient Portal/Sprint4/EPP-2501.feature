@@ -2,7 +2,7 @@
 @Appointments
 @P1
 @Patient_Portal
-@excluded
+
 Feature: Patient Portal : Schedule Appointment from marketing site -  View schedule appointment screen
   User Story: As a user, I should be able to view a screen to search for location and select the date of appointment as well as purpose of visit and insurance.
 
@@ -60,22 +60,12 @@ Feature: Patient Portal : Schedule Appointment from marketing site -  View sched
 
   User should be prompted with the inline validation error message “This field is required” if the mandatory fields are not filled
 
-  | Field Names         | Mandatory |
-  |---------------------|-----------|
-  | Location            | Yes       |
-  |---------------------|-----------|
-  | Date of Appointment | Yes       |
-  |---------------------|-----------|
-  | Purpose of Visit    | No        |
-  |---------------------|-----------|
-  | Insurance Carrier   | No        |
-
   @BDDTEST-EPP-3083
   @Appointments
   @P2
   @Patient_Portal
   @Sprint4
-  @excluded
+  
   Scenario: EPIC_EPP-44_STORY_EPP-2501-Verify whether the error message This field is required is displaying when Location is not filled.
     Scenario: Verify whether the error message This field is required is displaying when Location is not filled.
     
@@ -90,7 +80,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site -  View sched
   @P2
   @Patient_Portal
   @Sprint4
-  @excluded
+  
   Scenario: EPIC_EPP-44_STORY_EPP-2501-Verify whether the error message This field is required is displaying when Date of Appointment is not filled.
     Scenario: Verify whether the error message This field is required is displaying when Date of Appointment is not filled.
     
@@ -106,7 +96,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site -  View sched
   @P2
   @Patient_Portal
   @Sprint4
-  @excluded
+  
   Scenario: EPIC_EPP-44_STORY_EPP-2501- Verify whether the system is automatically taking the current location if enabled.
     Scenario: Verify whether the system is automatically taking the current location if enabled.
     
@@ -120,9 +110,8 @@ Feature: Patient Portal : Schedule Appointment from marketing site -  View sched
   @P2
   @Patient_Portal
   @Regression
-Appointments
   @Sprint4
-  @excluded
+  
   Scenario: EPIC_EPP-44_STORY_EPP-2501- Verify whether the user is able to search the location using City
     Scenario: Verify whether the user is able to search the location using City.
     
@@ -137,7 +126,7 @@ Appointments
   @P2
   @Patient_Portal
   @Sprint4
-  @excluded
+  
   Scenario: EPIC_EPP-44_STORY_EPP-2501-Verify whether the user is able to search the location using State
     Scenario: Verify whether the user is able to search the location using State.
     
@@ -152,7 +141,7 @@ Appointments
   @P2
   @Patient_Portal
   @Sprint4
-  @excluded
+  
   Scenario: EPIC_EPP-44_STORY_EPP-2501-Verify whether the user is able to search the location using Zipcode
     Scenario: Verify whether the user is able to search the location using Zipcode.
     
@@ -167,7 +156,7 @@ Appointments
   @P2
   @Patient_Portal
   @Sprint4
-  @excluded
+  
   Scenario: EPIC_EPP-44_STORY_EPP-2501-Verify whether the user is having the option to detect their location.
     Scenario: Verify whether the user is having the option to detect their location.
     
@@ -183,7 +172,7 @@ Appointments
   @Patient_Portal
   @Regression
   @Sprint4
-  @excluded
+  
   Scenario: EPIC_EPP-44_STORY_EPP-2501-Verify whether the list of Purpose of visit options are displaying.
     Scenario : Verify whether the list of Purpose of visit options are displaying.
     
@@ -198,7 +187,7 @@ Appointments
   @Patient_Portal
   @Regression
   @Sprint4
-  @excluded
+  
   Scenario: EPIC_EPP-44_STORY_EPP-2501-Verify whether the list of Insurance Carrier options are displaying.
     Scenario : Verify whether the list of Insurance Carrier options are displaying.
     
@@ -213,7 +202,7 @@ Appointments
   @Patient_Portal
   @Regression
   @Sprint4
-  @excluded
+  
   Scenario: EPIC_EPP-44_STORY_EPP-2501-Verify whether the 'Search' button is searching and displaying the result.
     Scenario: Verify whether the 'Search' button is searching and displaying the result.
     

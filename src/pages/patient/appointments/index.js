@@ -27,7 +27,6 @@ export default function Appointments() {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [upcomingAppointment, setUpcomingAppointment] = useState([]);
   const [pastAppointment, setPastAppointment] = useState([]);
-
   const router = useRouter();
   const isMobile = useMediaQuery("(max-width: 992px)");
 

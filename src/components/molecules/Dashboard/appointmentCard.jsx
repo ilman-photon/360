@@ -49,11 +49,6 @@ export default function AppointmentCard({
     appointmentInfo: {},
   });
   const [appointmentCount, setAppointmentCount] = React.useState(0);
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      console.log("enter press here! ");
-    }
-  };
   useEffect(() => {
     setAppointment(parseAppointmentCardData(appointmentData));
     setAppointmentCount(appointmentData.length);

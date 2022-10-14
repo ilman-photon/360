@@ -78,6 +78,7 @@ const EnhancedTableHead = (props) => {
                   <TableSortLabel
                     active={orderBy === headCell.id}
                     direction={orderBy === headCell.id ? order : "asc"}
+                    data-testid={"table-header-sort"}
                     onClick={createSortHandler(headCell.id)}
                     aria-live={"polite"}
                   >
@@ -203,6 +204,7 @@ export default function TableWithSort({
                     <TableRow
                       hover
                       onClick={(event) => handleClick(event, row.id)}
+                      data-testid={"table-sort-header"}
                       role={"row"}
                       tabIndex={-1}
                       key={`row-${rowIdx}`}

@@ -1,9 +1,8 @@
 import Image from "next/image";
-import { Typography, Box, Link, useMediaQuery } from "@mui/material";
+import { Typography, Box, useMediaQuery } from "@mui/material";
 import styles from "./styles.module.scss";
 import StyledRating from "../../atoms/Rating/styledRating";
 import { useRouter } from "next/router";
-import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import { TEST_ID } from "../../../utils/constants";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
