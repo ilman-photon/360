@@ -8,7 +8,9 @@ exports[`StyledInput renders input components with type text 1`] = `
     withicon="true"
   >
     <div
+      aria-hidden="true"
       class="MuiOutlinedInput-root MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-1ye1xzc-MuiInputBase-root-MuiOutlinedInput-root"
+      tabindex="-1"
     >
       <input
         aria-invalid="false"

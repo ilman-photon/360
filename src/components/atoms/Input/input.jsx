@@ -227,9 +227,18 @@ export const CustomInput = styled(({ ...props }) => {
     case "password":
       return (
         <>
-          <CustomFormControl sx={{ m: 1 }} variant="filled">
+          <CustomFormControl
+            sx={{ m: 1 }}
+            tabIndex={0}
+            aria-label={"Password Field"}
+            variant="filled"
+          >
             <CustomPasswordInput
               error={!Boolean(values.value) && props.error}
+              InputProps={{
+                tabIndex: -1,
+                "aria-hidden": true,
+              }}
               variant="filled"
               id={props.id}
               type={showPassword}
@@ -355,6 +364,10 @@ export const StyledInput = ({
         {...props}
         className={["custom-input"].join(" ")}
         adorment={adorment}
+        InputProps={{
+          tabIndex: -1,
+          "aria-hidden": true,
+        }}
       ></CustomInput>
     </ThemeProvider>
   );

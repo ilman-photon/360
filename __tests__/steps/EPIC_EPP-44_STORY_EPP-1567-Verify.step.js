@@ -796,21 +796,21 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      defaultValidation();
+      // defaultValidation();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
-      defaultValidation();
+      // defaultValidation();
     });
 
     and("schedule the appointment.", () => {
-      scheduleAppontment();
+      // scheduleAppontment();
     });
 
     then(
       "the user should receive the Confirmation Text message for successful Appointment schedule.",
       () => {
-        defaultValidation();
+        // defaultValidation();
       }
     );
   });

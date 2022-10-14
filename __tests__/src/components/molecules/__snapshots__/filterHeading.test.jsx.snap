@@ -56,7 +56,9 @@ Object {
                       City, state, or zip code
                     </label>
                     <div
-                      class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1b3xhxz-MuiInputBase-root-MuiFilledInput-root"
+                      aria-hidden="true"
+                      class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-4q3q16-MuiInputBase-root-MuiFilledInput-root"
+                      tabindex="-1"
                     >
                       <input
                         aria-autocomplete="list"
@@ -64,7 +66,7 @@ Object {
                         aria-invalid="false"
                         autocapitalize="none"
                         autocomplete="off"
-                        class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-1gctnaj-MuiInputBase-input-MuiFilledInput-input"
+                        class="MuiFilledInput-input MuiInputBase-input MuiAutocomplete-input MuiAutocomplete-inputFocused css-10botns-MuiInputBase-input-MuiFilledInput-input"
                         id="location"
                         placeholder=""
                         role="combobox"
@@ -72,21 +74,6 @@ Object {
                         type="default"
                         value=""
                       />
-                      <div
-                        class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-filled MuiInputAdornment-sizeMedium css-jv61v3-MuiInputAdornment-root"
-                      >
-                        <svg
-                          aria-hidden="true"
-                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1o8gxx6-MuiSvgIcon-root"
-                          data-testid="NearMeOutlinedIcon"
-                          focusable="false"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            d="m17.27 6.73-4.24 10.13-1.32-3.42-.32-.83-.82-.32-3.43-1.33 10.13-4.23M21 3 3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"
-                          />
-                        </svg>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -120,7 +107,9 @@ Object {
                     Date
                   </label>
                   <div
+                    aria-hidden="true"
                     class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
+                    tabindex="-1"
                   >
                     <input
                       aria-invalid="false"
@@ -257,7 +246,9 @@ Object {
                       Insurance Carrier
                     </label>
                     <div
-                      class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiAutocomplete-inputRoot css-4q3q16-MuiInputBase-root-MuiFilledInput-root"
+                      aria-hidden="true"
+                      class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-4q3q16-MuiInputBase-root-MuiFilledInput-root"
+                      tabindex="-1"
                     >
                       <input
                         aria-autocomplete="list"
@@ -376,7 +367,9 @@ Object {
                     City, state, or zip code
                   </label>
                   <div
-                    class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1b3xhxz-MuiInputBase-root-MuiFilledInput-root"
+                    aria-hidden="true"
+                    class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-4q3q16-MuiInputBase-root-MuiFilledInput-root"
+                    tabindex="-1"
                   >
                     <input
                       aria-autocomplete="list"
@@ -384,7 +377,7 @@ Object {
                       aria-invalid="false"
                       autocapitalize="none"
                       autocomplete="off"
-                      class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-1gctnaj-MuiInputBase-input-MuiFilledInput-input"
+                      class="MuiFilledInput-input MuiInputBase-input MuiAutocomplete-input MuiAutocomplete-inputFocused css-10botns-MuiInputBase-input-MuiFilledInput-input"
                       id="location"
                       placeholder=""
                       role="combobox"
@@ -392,21 +385,6 @@ Object {
                       type="default"
                       value=""
                     />
-                    <div
-                      class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-filled MuiInputAdornment-sizeMedium css-jv61v3-MuiInputAdornment-root"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1o8gxx6-MuiSvgIcon-root"
-                        data-testid="NearMeOutlinedIcon"
-                        focusable="false"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          d="m17.27 6.73-4.24 10.13-1.32-3.42-.32-.83-.82-.32-3.43-1.33 10.13-4.23M21 3 3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"
-                        />
-                      </svg>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -440,7 +418,9 @@ Object {
                   Date
                 </label>
                 <div
+                  aria-hidden="true"
                   class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
+                  tabindex="-1"
                 >
                   <input
                     aria-invalid="false"
@@ -577,7 +557,9 @@ Object {
                     Insurance Carrier
                   </label>
                   <div
-                    class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiAutocomplete-inputRoot css-4q3q16-MuiInputBase-root-MuiFilledInput-root"
+                    aria-hidden="true"
+                    class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-4q3q16-MuiInputBase-root-MuiFilledInput-root"
+                    tabindex="-1"
                   >
                     <input
                       aria-autocomplete="list"
@@ -753,7 +735,9 @@ Object {
                       City, state, or zip code
                     </label>
                     <div
-                      class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiInputBase-adornedEnd MuiAutocomplete-inputRoot css-1b3xhxz-MuiInputBase-root-MuiFilledInput-root"
+                      aria-hidden="true"
+                      class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-4q3q16-MuiInputBase-root-MuiFilledInput-root"
+                      tabindex="-1"
                     >
                       <input
                         aria-autocomplete="list"
@@ -761,7 +745,7 @@ Object {
                         aria-invalid="false"
                         autocapitalize="none"
                         autocomplete="off"
-                        class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd MuiAutocomplete-input MuiAutocomplete-inputFocused css-1gctnaj-MuiInputBase-input-MuiFilledInput-input"
+                        class="MuiFilledInput-input MuiInputBase-input MuiAutocomplete-input MuiAutocomplete-inputFocused css-10botns-MuiInputBase-input-MuiFilledInput-input"
                         id="location"
                         placeholder=""
                         role="combobox"
@@ -769,21 +753,6 @@ Object {
                         type="default"
                         value=""
                       />
-                      <div
-                        class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-filled MuiInputAdornment-sizeMedium css-jv61v3-MuiInputAdornment-root"
-                      >
-                        <svg
-                          aria-hidden="true"
-                          class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-1o8gxx6-MuiSvgIcon-root"
-                          data-testid="NearMeOutlinedIcon"
-                          focusable="false"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            d="m17.27 6.73-4.24 10.13-1.32-3.42-.32-.83-.82-.32-3.43-1.33 10.13-4.23M21 3 3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"
-                          />
-                        </svg>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -817,7 +786,9 @@ Object {
                     Date
                   </label>
                   <div
+                    aria-hidden="true"
                     class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
+                    tabindex="-1"
                   >
                     <input
                       aria-invalid="false"
@@ -954,7 +925,9 @@ Object {
                       Insurance Carrier
                     </label>
                     <div
-                      class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl MuiAutocomplete-inputRoot css-4q3q16-MuiInputBase-root-MuiFilledInput-root"
+                      aria-hidden="true"
+                      class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-fullWidth MuiInputBase-formControl css-4q3q16-MuiInputBase-root-MuiFilledInput-root"
+                      tabindex="-1"
                     >
                       <input
                         aria-autocomplete="list"
@@ -1069,32 +1042,18 @@ Object {
                     City, state, or zip code
                   </label>
                   <div
-                    class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-1r1rxmt-MuiInputBase-root-MuiFilledInput-root"
+                    aria-hidden="true"
+                    class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
+                    tabindex="-1"
                   >
                     <input
                       aria-invalid="false"
-                      class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd css-1gctnaj-MuiInputBase-input-MuiFilledInput-input"
+                      class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                       id=":rc:"
                       placeholder=""
-                      readonly=""
                       type="default"
                       value=""
                     />
-                    <div
-                      class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-filled MuiInputAdornment-sizeMedium css-jv61v3-MuiInputAdornment-root"
-                    >
-                      <svg
-                        aria-hidden="true"
-                        class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-q52vwa-MuiSvgIcon-root"
-                        data-testid="NearMeOutlinedIcon"
-                        focusable="false"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          d="m17.27 6.73-4.24 10.13-1.32-3.42-.32-.83-.82-.32-3.43-1.33 10.13-4.23M21 3 3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"
-                        />
-                      </svg>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -1130,14 +1089,15 @@ Object {
                     Date
                   </label>
                   <div
+                    aria-hidden="true"
                     class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
+                    tabindex="-1"
                   >
                     <input
                       aria-invalid="false"
                       class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                       id=":rd:"
                       placeholder=""
-                      readonly=""
                       type="default"
                       value=""
                     />
@@ -1176,14 +1136,15 @@ Object {
                     Purpose of Visit
                   </label>
                   <div
+                    aria-hidden="true"
                     class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
+                    tabindex="-1"
                   >
                     <input
                       aria-invalid="false"
                       class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                       id=":re:"
                       placeholder=""
-                      readonly=""
                       type="default"
                       value=""
                     />
@@ -1242,14 +1203,15 @@ Object {
                     Insurance Carrier
                   </label>
                   <div
+                    aria-hidden="true"
                     class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
+                    tabindex="-1"
                   >
                     <input
                       aria-invalid="false"
                       class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                       id=":rf:"
                       placeholder=""
-                      readonly=""
                       type="default"
                       value=""
                     />
@@ -1328,32 +1290,18 @@ Object {
                   City, state, or zip code
                 </label>
                 <div
-                  class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl MuiInputBase-adornedEnd css-1r1rxmt-MuiInputBase-root-MuiFilledInput-root"
+                  aria-hidden="true"
+                  class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
+                  tabindex="-1"
                 >
                   <input
                     aria-invalid="false"
-                    class="MuiFilledInput-input MuiInputBase-input MuiInputBase-inputAdornedEnd css-1gctnaj-MuiInputBase-input-MuiFilledInput-input"
+                    class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                     id=":rc:"
                     placeholder=""
-                    readonly=""
                     type="default"
                     value=""
                   />
-                  <div
-                    class="MuiInputAdornment-root MuiInputAdornment-positionEnd MuiInputAdornment-filled MuiInputAdornment-sizeMedium css-jv61v3-MuiInputAdornment-root"
-                  >
-                    <svg
-                      aria-hidden="true"
-                      class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-q52vwa-MuiSvgIcon-root"
-                      data-testid="NearMeOutlinedIcon"
-                      focusable="false"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        d="m17.27 6.73-4.24 10.13-1.32-3.42-.32-.83-.82-.32-3.43-1.33 10.13-4.23M21 3 3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"
-                      />
-                    </svg>
-                  </div>
                 </div>
               </div>
             </div>
@@ -1389,14 +1337,15 @@ Object {
                   Date
                 </label>
                 <div
+                  aria-hidden="true"
                   class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
+                  tabindex="-1"
                 >
                   <input
                     aria-invalid="false"
                     class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                     id=":rd:"
                     placeholder=""
-                    readonly=""
                     type="default"
                     value=""
                   />
@@ -1435,14 +1384,15 @@ Object {
                   Purpose of Visit
                 </label>
                 <div
+                  aria-hidden="true"
                   class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
+                  tabindex="-1"
                 >
                   <input
                     aria-invalid="false"
                     class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                     id=":re:"
                     placeholder=""
-                    readonly=""
                     type="default"
                     value=""
                   />
@@ -1501,14 +1451,15 @@ Object {
                   Insurance Carrier
                 </label>
                 <div
+                  aria-hidden="true"
                   class="MuiFilledInput-root MuiFilledInput-underline MuiInputBase-root MuiInputBase-colorPrimary MuiInputBase-formControl css-qax0ed-MuiInputBase-root-MuiFilledInput-root"
+                  tabindex="-1"
                 >
                   <input
                     aria-invalid="false"
                     class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                     id=":rf:"
                     placeholder=""
-                    readonly=""
                     type="default"
                     value=""
                   />
