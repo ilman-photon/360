@@ -1,9 +1,4 @@
-import {
-  act,
-  render,
-  waitFor,
-  fireEvent,
-} from "@testing-library/react";
+import { act, render, waitFor, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import Cookies from "universal-cookie";
@@ -12,7 +7,7 @@ import PrescriptionPage from "../../src/pages/patient/prescription";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import store from "../../src/store/store";
-import mediaQuery from 'css-mediaquery';
+import mediaQuery from "css-mediaquery";
 
 function createMatchMedia(width) {
   return (query) => ({
@@ -167,305 +162,422 @@ defineFeature(feature, (test) => {
   const domain = window.location.origin;
   const mock = new MockAdapter(axios);
 
-  test('EPIC_EPP-18_STORY_EPP-2707- Verify whether the system is sending the requested Refill to the Provider portal/E360+', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {});
+  test("EPIC_EPP-18_STORY_EPP-2707- Verify whether the system is sending the requested Refill to the Provider portal/E360+", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {}
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {});
 
-    and('clicks  on login button.', () => {
+    and("clicks  on login button.", () => {
       Cookies.result = { authorized: true };
     });
 
-    and('navigate to the View Prescription page.', async () => {
+    and("navigate to the View Prescription page.", async () => {
       Cookies.result = "true";
-      mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`).reply(200, MOCK_PRESCRIPTION);
-      window.matchMedia = createMatchMedia('1920px');
-      
-      act(()=>{
-      container = render(
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, MOCK_PRESCRIPTION);
+      window.matchMedia = createMatchMedia("1920px");
+
+      act(() => {
+        container = render(
           <Provider store={store}>
-              {PrescriptionPage.getLayout(<PrescriptionPage />)}
+            {PrescriptionPage.getLayout(<PrescriptionPage />)}
           </Provider>
-          );
-      })
-      await waitFor(()=> container.getByText(/Filter/i));
-      expect(container.getAllByText(/Active Medications/i)[0]).toBeInTheDocument();
+        );
+      });
+      await waitFor(() => container.getByText(/Filters/i));
+      expect(
+        container.getAllByText(/Active Medications/i)[0]
+      ).toBeInTheDocument();
     });
 
-    and('patient should see the option to Refill the Prescription.', () => {
+    and("patient should see the option to Refill the Prescription.", () => {
       expect(container.getAllByText(/Request Refill/i)[0]).toBeInTheDocument();
     });
 
-    and('request for the refill.', async () => {
+    and("request for the refill.", async () => {
       const mockResponse = {
         message: "Your refill request has been sumbitted",
       };
-      
-      mock.onPost(`${domain}/api/dummy/prescription/requestRefill`).reply(200, mockResponse);
-      
+
+      mock
+        .onPost(`${domain}/api/dummy/prescription/requestRefill`)
+        .reply(200, mockResponse);
+
       const requestRefill = container.getAllByText(/Request Refill/i)[0];
       expect(requestRefill).toBeInTheDocument();
-      
-      act(()=>{
+
+      act(() => {
         fireEvent.click(requestRefill);
       });
-      
-      await waitFor(()=> container.getByText(/Cancel Refill Request/i));
-      expect(container.getAllByText(/Cancel Refill Request/i)[0]).toBeInTheDocument();
+
+      await waitFor(() => container.getByText(/Cancel Refill Request/i));
+      expect(
+        container.getAllByText(/Cancel Refill Request/i)[0]
+      ).toBeInTheDocument();
     });
 
-    and('Login as Provider.', () => {
+    and("Login as Provider.", () => {
       defaultValidation();
     });
 
-    then('Patient requested refill should received for the Provider/E360+', (arg0) => {
-      defaultValidation();
-    });
+    then(
+      "Patient requested refill should received for the Provider/E360+",
+      (arg0) => {
+        defaultValidation();
+      }
+    );
   });
 
-  test('EPIC_EPP-18_STORY_EPP-2707- Verify whether the Patient is able to see his/her requested refill against the Prescription', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {});
+  test("EPIC_EPP-18_STORY_EPP-2707- Verify whether the Patient is able to see his/her requested refill against the Prescription", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {}
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {});
 
-    and('clicks  on login button.', () => {
+    and("clicks  on login button.", () => {
       Cookies.result = { authorized: true };
     });
 
-    and('navigate to the View Prescription page.', async () => {
+    and("navigate to the View Prescription page.", async () => {
       Cookies.result = "true";
-      mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`).reply(200, MOCK_PRESCRIPTION);
-      window.matchMedia = createMatchMedia('1920px');
-      
-      act(()=>{
-      container = render(
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, MOCK_PRESCRIPTION);
+      window.matchMedia = createMatchMedia("1920px");
+
+      act(() => {
+        container = render(
           <Provider store={store}>
-              {PrescriptionPage.getLayout(<PrescriptionPage />)}
+            {PrescriptionPage.getLayout(<PrescriptionPage />)}
           </Provider>
-          );
-      })
-      await waitFor(()=> container.getByText(/Filter/i));
-      expect(container.getAllByText(/Active Medications/i)[0]).toBeInTheDocument();
+        );
+      });
+      await waitFor(() => container.getByText(/Filters/i));
+      expect(
+        container.getAllByText(/Active Medications/i)[0]
+      ).toBeInTheDocument();
     });
 
-    and('patient should see the option to Refill the Prescription.', () => {
+    and("patient should see the option to Refill the Prescription.", () => {
       expect(container.getAllByText(/Request Refill/i)[0]).toBeInTheDocument();
     });
 
-    and('request for the refill.', async () => {
+    and("request for the refill.", async () => {
       const mockResponse = {
         message: "Your refill request has been sumbitted",
       };
-      
-      mock.onPost(`${domain}/api/dummy/prescription/requestRefill`).reply(200, mockResponse);
-      
+
+      mock
+        .onPost(`${domain}/api/dummy/prescription/requestRefill`)
+        .reply(200, mockResponse);
+
       const requestRefill = container.getAllByText(/Request Refill/i)[0];
       expect(requestRefill).toBeInTheDocument();
-      
-      act(()=>{
+
+      act(() => {
         fireEvent.click(requestRefill);
       });
-      
-      await waitFor(()=> container.getByText(/Cancel Refill Request/i));
+
+      await waitFor(() => container.getByText(/Cancel Refill Request/i));
     });
 
-    then('Patient should see the requested refill.', () => {
-      expect(container.getAllByText(/Cancel Refill Request/i)[0]).toBeInTheDocument();
+    then("Patient should see the requested refill.", () => {
+      expect(
+        container.getAllByText(/Cancel Refill Request/i)[0]
+      ).toBeInTheDocument();
     });
   });
 
-  test('EPIC_EPP-18_STORY_EPP-2707- Verify whether the Patient is able to see the option to Cancel the requested refill', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {});
+  test("EPIC_EPP-18_STORY_EPP-2707- Verify whether the Patient is able to see the option to Cancel the requested refill", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {}
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {});
 
-    and('clicks  on login button.', () => {
+    and("clicks  on login button.", () => {
       Cookies.result = { authorized: true };
     });
 
-    and('navigate to the View Prescription page.', async () => {
+    and("navigate to the View Prescription page.", async () => {
       Cookies.result = "true";
-      mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`).reply(200, MOCK_PRESCRIPTION);
-      window.matchMedia = createMatchMedia('1920px');
-      
-      act(()=>{
-      container = render(
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, MOCK_PRESCRIPTION);
+      window.matchMedia = createMatchMedia("1920px");
+
+      act(() => {
+        container = render(
           <Provider store={store}>
-              {PrescriptionPage.getLayout(<PrescriptionPage />)}
+            {PrescriptionPage.getLayout(<PrescriptionPage />)}
           </Provider>
-          );
-      })
-      await waitFor(()=> container.getByText(/Filter/i));
-      expect(container.getAllByText(/Active Medications/i)[0]).toBeInTheDocument();
+        );
+      });
+      await waitFor(() => container.getByText(/Filters/i));
+      expect(
+        container.getAllByText(/Active Medications/i)[0]
+      ).toBeInTheDocument();
     });
 
-    and('patient should see the option to Refill the Prescription.', () => {
+    and("patient should see the option to Refill the Prescription.", () => {
       expect(container.getAllByText(/Request Refill/i)[0]).toBeInTheDocument();
     });
 
-    and('request for the refill.', async () => {
+    and("request for the refill.", async () => {
       const mockResponse = {
         message: "Your refill request has been sumbitted",
       };
-      
-      mock.onPost(`${domain}/api/dummy/prescription/requestRefill`).reply(200, mockResponse);
-      
+
+      mock
+        .onPost(`${domain}/api/dummy/prescription/requestRefill`)
+        .reply(200, mockResponse);
+
       const requestRefill = container.getAllByText(/Request Refill/i)[0];
       expect(requestRefill).toBeInTheDocument();
-      
-      act(()=>{
+
+      act(() => {
         fireEvent.click(requestRefill);
       });
-      
-      await waitFor(()=> container.getByText(/Cancel Refill Request/i));
+
+      await waitFor(() => container.getByText(/Cancel Refill Request/i));
     });
 
-    then('Patient should see the Cancel option to cancel the requested refill.', () => {
-      expect(container.getAllByText(/Cancel Refill Request/i)[0]).toBeInTheDocument();
-    });
+    then(
+      "Patient should see the Cancel option to cancel the requested refill.",
+      () => {
+        expect(
+          container.getAllByText(/Cancel Refill Request/i)[0]
+        ).toBeInTheDocument();
+      }
+    );
   });
 
-  test('EPIC_EPP-18_STORY_EPP-2707- Verify whether the Patient is receiving the mail regarding refill request based on Preferred mode of communication - Email', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {});
+  test("EPIC_EPP-18_STORY_EPP-2707- Verify whether the Patient is receiving the mail regarding refill request based on Preferred mode of communication - Email", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {}
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {});
 
-    and('clicks  on login button.', () => {});
+    and("clicks  on login button.", () => {});
 
-    and('navigate to the View Prescription page.', async () => {
+    and("navigate to the View Prescription page.", async () => {
       Cookies.result = "true";
-      mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`).reply(200, MOCK_PRESCRIPTION);
-      window.matchMedia = createMatchMedia('1920px');
-      
-      act(()=>{
-      container = render(
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, MOCK_PRESCRIPTION);
+      window.matchMedia = createMatchMedia("1920px");
+
+      act(() => {
+        container = render(
           <Provider store={store}>
-              {PrescriptionPage.getLayout(<PrescriptionPage />)}
+            {PrescriptionPage.getLayout(<PrescriptionPage />)}
           </Provider>
-          );
-      })
-      await waitFor(()=> container.getByText(/Filter/i));
-      expect(container.getAllByText(/Active Medications/i)[0]).toBeInTheDocument();
+        );
+      });
+      await waitFor(() => container.getByText(/Filters/i));
+      expect(
+        container.getAllByText(/Active Medications/i)[0]
+      ).toBeInTheDocument();
     });
 
-    and('patient should see the option to Refill the Prescription.', () => {
+    and("patient should see the option to Refill the Prescription.", () => {
       expect(container.getAllByText(/Request Refill/i)[0]).toBeInTheDocument();
     });
 
-    and('request for the refill.', async () => {
+    and("request for the refill.", async () => {
       const mockResponse = {
         message: "Your refill request has been sumbitted",
       };
-      
-      mock.onPost(`${domain}/api/dummy/prescription/requestRefill`).reply(200, mockResponse);
-      
+
+      mock
+        .onPost(`${domain}/api/dummy/prescription/requestRefill`)
+        .reply(200, mockResponse);
+
       const requestRefill = container.getAllByText(/Request Refill/i)[0];
       expect(requestRefill).toBeInTheDocument();
-      
-      act(()=>{
+
+      act(() => {
         fireEvent.click(requestRefill);
       });
-      
-      await waitFor(()=> container.getByText(/Cancel Refill Request/i));
+
+      await waitFor(() => container.getByText(/Cancel Refill Request/i));
     });
 
-    then('patient should receive the Email regarding refill request.', () => {
-      expect(container.getAllByText(/Cancel Refill Request/i)[0]).toBeInTheDocument();
+    then("patient should receive the Email regarding refill request.", () => {
+      expect(
+        container.getAllByText(/Cancel Refill Request/i)[0]
+      ).toBeInTheDocument();
     });
   });
 
-  test('EPIC_EPP-18_STORY_EPP-2707- Verify whether the Patient is receiving the Text message regarding refill request based on Preferred mode of communication - Phone number', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {});
+  test("EPIC_EPP-18_STORY_EPP-2707- Verify whether the Patient is receiving the Text message regarding refill request based on Preferred mode of communication - Phone number", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {}
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {});
 
-    and('clicks  on login button.', () => {});
+    and("clicks  on login button.", () => {});
 
-    and('navigate to the View Prescription page.', async () => {
+    and("navigate to the View Prescription page.", async () => {
       Cookies.result = "true";
-      mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`).reply(200, MOCK_PRESCRIPTION);
-      window.matchMedia = createMatchMedia('1920px');
-      
-      act(()=>{
-      container = render(
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, MOCK_PRESCRIPTION);
+      window.matchMedia = createMatchMedia("1920px");
+
+      act(() => {
+        container = render(
           <Provider store={store}>
-              {PrescriptionPage.getLayout(<PrescriptionPage />)}
+            {PrescriptionPage.getLayout(<PrescriptionPage />)}
           </Provider>
-          );
-      })
-      await waitFor(()=> container.getByText(/Filter/i));
-      expect(container.getAllByText(/Active Medications/i)[0]).toBeInTheDocument();
+        );
+      });
+      await waitFor(() => container.getByText(/Filters/i));
+      expect(
+        container.getAllByText(/Active Medications/i)[0]
+      ).toBeInTheDocument();
     });
 
-    and('patient should see the option to Refill the Prescription.', () => {
+    and("patient should see the option to Refill the Prescription.", () => {
       expect(container.getAllByText(/Request Refill/i)[0]).toBeInTheDocument();
     });
 
-    and('request for the refill.', async () => {
+    and("request for the refill.", async () => {
       const mockResponse = {
         message: "Your refill request has been sumbitted",
       };
-      
-      mock.onPost(`${domain}/api/dummy/prescription/requestRefill`).reply(200, mockResponse);
-      
+
+      mock
+        .onPost(`${domain}/api/dummy/prescription/requestRefill`)
+        .reply(200, mockResponse);
+
       const requestRefill = container.getAllByText(/Request Refill/i)[0];
       expect(requestRefill).toBeInTheDocument();
-      
-      act(()=>{
+
+      act(() => {
         fireEvent.click(requestRefill);
       });
-      
-      await waitFor(()=> container.getByText(/Cancel Refill Request/i));
+
+      await waitFor(() => container.getByText(/Cancel Refill Request/i));
     });
 
-    then('patient should receive the Text message regarding refill request.', () => {
-      expect(container.getAllByText(/Cancel Refill Request/i)[0]).toBeInTheDocument();
-    });
+    then(
+      "patient should receive the Text message regarding refill request.",
+      () => {
+        expect(
+          container.getAllByText(/Cancel Refill Request/i)[0]
+        ).toBeInTheDocument();
+      }
+    );
   });
 
-  test('EPIC_EPP-18_STORY_EPP-2707- Verify whether the Email regarding request refill is receiving to the E360+', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {});
+  test("EPIC_EPP-18_STORY_EPP-2707- Verify whether the Email regarding request refill is receiving to the E360+", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {}
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {});
 
-    and('clicks  on login button.', () => {});
+    and("clicks  on login button.", () => {});
 
-    and('navigate to the View Prescription page.', async () => {
+    and("navigate to the View Prescription page.", async () => {
       Cookies.result = "true";
-      mock.onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`).reply(200, MOCK_PRESCRIPTION);
-      window.matchMedia = createMatchMedia('1920px');
-      
-      act(()=>{
-      container = render(
+      mock
+        .onGet(
+          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, MOCK_PRESCRIPTION);
+      window.matchMedia = createMatchMedia("1920px");
+
+      act(() => {
+        container = render(
           <Provider store={store}>
-              {PrescriptionPage.getLayout(<PrescriptionPage />)}
+            {PrescriptionPage.getLayout(<PrescriptionPage />)}
           </Provider>
-          );
-      })
-      await waitFor(()=> container.getByText(/Filter/i));
-      expect(container.getAllByText(/Active Medications/i)[0]).toBeInTheDocument();
+        );
+      });
+      await waitFor(() => container.getByText(/Filters/i));
+      expect(
+        container.getAllByText(/Active Medications/i)[0]
+      ).toBeInTheDocument();
     });
 
-    and('patient should see the option to Refill the Prescription.', () => {
+    and("patient should see the option to Refill the Prescription.", () => {
       expect(container.getAllByText(/Request Refill/i)[0]).toBeInTheDocument();
     });
 
-    and('request for the refill.', async () => {
+    and("request for the refill.", async () => {
       const mockResponse = {
         message: "Your refill request has been sumbitted",
       };
-      
-      mock.onPost(`${domain}/api/dummy/prescription/requestRefill`).reply(200, mockResponse);
-      
+
+      mock
+        .onPost(`${domain}/api/dummy/prescription/requestRefill`)
+        .reply(200, mockResponse);
+
       const requestRefill = container.getAllByText(/Request Refill/i)[0];
       expect(requestRefill).toBeInTheDocument();
-      
-      act(()=>{
+
+      act(() => {
         fireEvent.click(requestRefill);
       });
-      
-      await waitFor(()=> container.getByText(/Cancel Refill Request/i));
-      expect(container.getAllByText(/Cancel Refill Request/i)[0]).toBeInTheDocument();
+
+      await waitFor(() => container.getByText(/Cancel Refill Request/i));
+      expect(
+        container.getAllByText(/Cancel Refill Request/i)[0]
+      ).toBeInTheDocument();
     });
 
     then("E360+ should receive the Email regarding refill request.", (arg0) => {
