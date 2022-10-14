@@ -29,7 +29,7 @@ Feature:  As a user/ admin user, I should be able to logout of the patient port
   @Authentication
   @Patient_Portal
   @Sprint2
-  @excluded 
+  @included 
   Scenario Outline: EPIC_EPP-4_STORY_EPP-289 - Verify user is not able to logout when Internet connection is unavailable
     Feature: Verify user is not able to logout when Internet connection/service is unavailable
 
@@ -57,7 +57,7 @@ Feature:  As a user/ admin user, I should be able to logout of the patient port
   @Patient_Portal
   @Regression
   @Sprint2
-  @excluded 
+  @included 
   Scenario Outline: EPIC_EPP-4_STORY_EPP-289 - Verify admin user  should be able to logout form patient portal
     Given admin user launch the 'XXX' url	
     And admin user navigates to the Patient Portal application
@@ -81,7 +81,7 @@ Feature:  As a user/ admin user, I should be able to logout of the patient port
   @Authentication
   @Patient_Portal
   @Sprint2
-  @excluded 
+  @included 
   Scenario Outline: EPIC_EPP-4_STORY_EPP-289 - Verify user is able to view the Logout screen loaded within 3 sec
     Feature: Verify user is not able to logout when Internet connection/service is unavailable
 
@@ -108,7 +108,7 @@ Feature:  As a user/ admin user, I should be able to logout of the patient port
   @Authentication
   @Patient_Portal
   @Sprint2
-  @excluded 
+  @included 
   Scenario Outline: EPIC_EPP-4_STORY_EPP-289 - Verify user is not able to logout when Service is unavailable
     Given user launch the 'XXX' url	
     And  user navigates to the Patient Portal application
@@ -133,7 +133,7 @@ Feature:  As a user/ admin user, I should be able to logout of the patient port
   @Authentication
   @Patient_Portal
   @Sprint2
-  @excluded 
+  @included 
   Scenario: EPIC_EPP-4_STORY_EPP-289 - Verify whether user is able to view Dev Tools without errors when F12 is clicked
     Given Admin launch the 'XXX' url
     When Admin provides  "<username>" and "<password>" 
@@ -144,7 +144,7 @@ Feature:  As a user/ admin user, I should be able to logout of the patient port
   @Authentication
   @Patient_Portal
   @Sprint2
-  @excluded 
+  @included 
   Scenario Outline: EPIC_EPP-4_STORY_EPP-289 - Verify admin user is not able to logout when Internet connection is unavailable
     Feature: Verify user is not able to logout when Internet connection/service is unavailable
 
@@ -171,7 +171,7 @@ Feature:  As a user/ admin user, I should be able to logout of the patient port
   @Authentication
   @Patient_Portal
   @Sprint2
-  @excluded 
+  @included 
   Scenario Outline: EPIC_EPP-4_STORY_EPP-289 - Verify admin user is not able to logout when Service is unavailable
     Given admin user launch the 'XXX' url	
     And  admin user navigates to the Patient Portal application
@@ -196,7 +196,7 @@ Feature:  As a user/ admin user, I should be able to logout of the patient port
   @Authentication
   @Patient_Portal
   @Sprint2
-  @excluded 
+  @included 
   Scenario Outline: EPIC_EPP-4_STORY_EPP-289 - Verify admin user is able to view the Logout screen loaded within 3 sec
     Feature: Verify user is not able to logout when Internet connection/service is unavailable
 
@@ -223,7 +223,7 @@ Feature:  As a user/ admin user, I should be able to logout of the patient port
   @Authentication
   @Patient_Portal
   @Sprint2
-  @excluded 
+  @included 
   Scenario: EPIC_EPP-4_STORY_EPP-289 - Verify whether admin user is able to view Dev Tools without errors when F12 is clicked
     Given Admin user launch the 'XXX' url
     When Admin user provides  "<username>" and "<password>" 

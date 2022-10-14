@@ -33,10 +33,10 @@ import { useRouter } from "next/router";
 import {
   DEFAULT_PATIENT_INFO_DATA,
   editAppointmentScheduleData,
+  rescheduleAppointment,
   resetAppointmentSchedule,
-  resetFilterData,
 } from "../../../store/appointment";
-import { fetchUser, setUserAppointmentDataByIndex } from "../../../store/user";
+import { fetchUser } from "../../../store/user";
 import { Api } from "../../api/api";
 import MESSAGES from "../../../utils/responseCodes";
 import { setFormMessage } from "../../../store";
@@ -314,13 +314,16 @@ export default function ScheduleAppointmentPage() {
     router.push({ pathname: "/patient/appointment", query: router.query });
   };
 
+  const goToFinalStep = () => {
+    setActiveStep(4);
+    setIsOpen(true);
+  };
+
   const handleClickSchedule = (data) => {
-    console.log("handleClickSchedule", data);
     if (activeStep === 2 || !data?.password) {
       router.push("/patient/schedule-appointment-confirmation");
     } else {
-      setActiveStep(4);
-      setIsOpen(true);
+      goToFinalStep();
     }
   };
 
@@ -338,7 +341,7 @@ export default function ScheduleAppointmentPage() {
   const userData = useSelector((state) => state.user.userData);
 
   React.useEffect(() => {
-    if (isLoggedIn) {
+    if (isLoggedIn && !appointmentScheduleData.patientInfo._id) {
       dispatch(
         editAppointmentScheduleData({
           key: "patientInfo",
@@ -381,24 +384,23 @@ export default function ScheduleAppointmentPage() {
   };
 
   const handleCancelReschedule = () => {
-    dispatch(resetFilterData());
+    // dispatch(resetFilterData()); // Forgot why is this here but will not delete this for now.
     setModalConfirmReschedule(false);
   };
 
-  const OnConfirmRescheduleAppointment = () => {
-    dispatch(
-      setUserAppointmentDataByIndex({
-        appointmentId: 0,
-        appointmentInfo: {
-          ...appointmentScheduleData.appointmentInfo,
-          date: appointmentScheduleData.appointmentInfo.date.toUTCString(),
-        },
-        providerInfo: appointmentScheduleData.providerInfo,
+  const OnConfirmRescheduleAppointment = async () => {
+    const { payload } = await dispatch(
+      rescheduleAppointment({
+        appointmentId: appointmentScheduleData.appointmentInfo.id,
+        payload: appointmentScheduleData,
       })
     );
+    if (payload.success) {
+      setActiveStep(4);
+      setIsOpen(true);
+    }
 
-    setActiveStep(4);
-    setIsOpen(true);
+    setModalConfirmReschedule(false);
   };
 
   const ModalConfirmSchedule = () => {

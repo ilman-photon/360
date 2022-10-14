@@ -26,6 +26,7 @@ import Typography from "@mui/material/Typography";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import ReplyIcon from "@mui/icons-material/Reply";
 import PrintOutlinedIcon from "@mui/icons-material/PrintOutlined";
+import { TEST_ID } from "../../../../utils/constants";
 
 export default function MedicalRecordPage() {
   const isDesktop = useMediaQuery("(min-width: 769px)");
@@ -258,6 +259,7 @@ export default function MedicalRecordPage() {
               anchorEl={anchorEl}
               keepMounted
               onClose={handleMoreMenu}
+              data-testid={TEST_ID.MEDICAL_RECORD.moreMenu}
               open={open}
             >
               {MyOptions.map((more, moreIdx) => (
@@ -307,6 +309,17 @@ export default function MedicalRecordPage() {
   const status = useSelector((state) => {
     return state.medicalResult.status;
   });
+
+  const noResultText = () => {
+    switch (watchedCategory) {
+      case "test-lab-result":
+        return "There are no tests or lab results for you now.";
+      case "care-plan-overview":
+        return "There is no care plan overview document";
+      default:
+        return "There are no tests or lab results for you now.";
+    }
+  };
 
   useEffect(() => {
     const category = router.query.type;
@@ -402,7 +415,7 @@ export default function MedicalRecordPage() {
                 }}
               />
             ) : (
-              <TableEmpty text={`There are no ${watchedCategory}.`} />
+              <TableEmpty text={noResultText()} />
             )}
           </Stack>
         </div>

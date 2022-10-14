@@ -1,6 +1,5 @@
 import { Box, Typography, Link } from "@mui/material";
 import styles from "./styles.module.scss";
-import moment from "moment";
 import React, { useState } from "react";
 import Collapse from "@mui/material/Collapse";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";

@@ -34,7 +34,6 @@ export default function BaseHeader({
   isPrescription = false,
 }) {
   const { HOME_TEST_ID } = constants.TEST_ID;
-  const pages = [];
   const [isUserLoged, setUserLoged] = React.useState(false);
   const router = useRouter();
   const logo = "/eyecarelogo.png";
@@ -110,19 +109,6 @@ export default function BaseHeader({
               ></Image>
               {/* Menu Desktop*/}
               <Box sx={styles.boxStyled}>
-                {pages.map(({ page, testId, href }) => (
-                  <Button
-                    key={page}
-                    onClick={() => {
-                      handleCloseNavMenu({ href });
-                    }}
-                    sx={styles.bottonStyledDesktop}
-                    data-testid={testId}
-                  >
-                    {page}
-                  </Button>
-                ))}
-
                 <IconButton
                   sx={{
                     display: "flex",

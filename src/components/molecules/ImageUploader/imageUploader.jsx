@@ -41,7 +41,6 @@ export const ImageUploader = ({
   const fetchImageURL = async () => {
     digitalAsset.setSource(source);
     const src = await digitalAsset.fetchSourceURL();
-    console.log("img src", { src });
     if (src) setImageSource(src.presignedUrl);
   };
 

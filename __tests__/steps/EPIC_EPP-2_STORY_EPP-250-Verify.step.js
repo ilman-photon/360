@@ -14,8 +14,8 @@ const feature = loadFeature(
 
 defineFeature(feature, (test) => {
   const mock = new MockAdapter(axios);
-  mock.onGet(`https://api.ipify.org?format=json`).reply(200, {ip: "10.10.10.10"});
-  test("EPIC_EPP-2_STORY_EPP-250 - Verify if user able to view the Registration screen", () => {});
+  mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+  test("EPIC_EPP-2_STORY_EPP-250 - Verify if user able to view the Registration screen", () => { });
   test("Verify if user able to view the Registration screen", ({
     given,
     when,
@@ -109,7 +109,7 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to Register the account when the "First Name" field not filled', () => {});
+  test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to Register the account when the "First Name" field not filled', () => { });
   test('Verify if user able to Register the account when the "First Name" field not filled', ({
     given,
     when,
@@ -243,7 +243,7 @@ defineFeature(feature, (test) => {
     );
   });
 
-  test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to Register the account when the "Last Name" field not filled', () => {});
+  test('EPIC_EPP-2_STORY_EPP-250 - Verify if user able to Register the account when the "Last Name" field not filled', () => { });
   test('Verify if user able to Register the account when the "Last Name" field not filled', ({
     given,
     when,
@@ -373,12 +373,11 @@ defineFeature(feature, (test) => {
             inputFieldError.textContent
           );
         }, 500);
-      }
-    );
+      });
   });
 
 
-  test("EPIC_EPP-2_STORY_EPP-250 - Verify if user able to see error message when incorrect format enter in \"Email\" field", () => {})
+  test("EPIC_EPP-2_STORY_EPP-250 - Verify if user able to see error message when incorrect format enter in \"Email\" field", () => { })
   test("Verify if user able to see error message when incorrect format enter in \"Email\" field", ({
     given,
     when,
@@ -389,7 +388,7 @@ defineFeature(feature, (test) => {
     given("user launch the 'XXX' url", () => {
       expect(true).toBeTruthy()
     });
-    
+
     and("user navigates to the Patient Portal application", () => {
       container = render(
         <Provider store={store}>
@@ -443,7 +442,7 @@ defineFeature(feature, (test) => {
 
 
     when("user enter invalid format in Email field", () => {
-      const emailField = container.getByRole('textbox', { name: 'Email'})
+      const emailField = container.getByRole('textbox', { name: 'Email' })
       fireEvent.change(emailField, { target: { value: "invalid@email" } });
       expect(emailField.value).toEqual("invalid@email");
 
@@ -458,6 +457,5 @@ defineFeature(feature, (test) => {
         expect(/Incorrect email format/i).toEqual(emailFieldError.textContent);
       }, 500);
     });
-
   });
 });

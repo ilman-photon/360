@@ -165,13 +165,15 @@ export default function ModalCancelScheduling({
                               onChange={onChange}
                               error={!!error}
                               helperText={error ? error.message : null}
-                              sx={{ pb: 2, width: "70%" }}
+                              sx={{ pb: 2, width: { xs: "100%", md: "70%" } }}
                             />
                           );
                         }}
                         rules={{ required: t("thisFieldRequired") }}
                       />
-                    ) : null}
+                    ) : (
+                      <Box sx={{ height: "68px" }} />
+                    )}
                   </>
                 );
               }}

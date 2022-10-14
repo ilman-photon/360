@@ -112,7 +112,6 @@ const buildProfilePostBody = (postBody, payload) => {
  * @returns
  */
 const buildDigitalAssetObject = (payload, type) => {
-  console.log("build DA", payload, type);
   if (!payload) return null;
   if (!payload._id) return null;
   switch (type) {

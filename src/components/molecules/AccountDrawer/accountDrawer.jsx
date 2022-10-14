@@ -68,14 +68,14 @@ export const AccountDrawer = ({
         label: "Intake Forms",
         href: "/patient/account/documents/intake-forms",
       },
-      {
-        label: "Insurance Documents",
-        href: "/patient/account/documents/insurance-documents",
-      },
-      {
-        label: "Health Record",
-        href: "/patient/account/documents/health-record",
-      },
+      // {
+      //   label: "Insurance Documents",
+      //   href: "/patient/account/documents/insurance-documents",
+      // },
+      // {
+      //   label: "Health Record",
+      //   href: "/patient/account/documents/health-record",
+      // },
     ],
   },
 }) => {

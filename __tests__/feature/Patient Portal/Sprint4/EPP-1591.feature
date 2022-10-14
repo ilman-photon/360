@@ -49,7 +49,7 @@ Feature: Patient Portal : Schedule Appointment from Patient Portal - Select date
   @P1
   @Patient_Portal
   @Regression
-  @excluded
+  @included
   @Sprint4
   Scenario Outline: EPIC_EPP-44_STORY_EPP-1591 - Verify if user not be able to select past dates (< today)
     Given user launch the Patient Portal URL	
@@ -72,7 +72,7 @@ Feature: Patient Portal : Schedule Appointment from Patient Portal - Select date
   @P1
   @Patient_Portal
   @Regression
-  @excluded
+  @included
   @Sprint4
   Scenario Outline: EPIC_EPP-44_STORY_EPP-1591-Verify if user not allow to select a date that  3 months greater than today’s date
     Given user launch the Patient Portal URL	
@@ -95,7 +95,7 @@ Feature: Patient Portal : Schedule Appointment from Patient Portal - Select date
   @P1
   @Patient_Portal
   @Regression
-  @excluded
+  @included
   @Sprint4
   Scenario Outline: EPIC_EPP-44_STORY_EPP-1591- -Verify if user able to select any date within 3 month
     Given user launch the Patient Portal URL	

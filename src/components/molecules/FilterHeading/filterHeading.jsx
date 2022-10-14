@@ -500,6 +500,7 @@ const FilterHeading = ({
   subtitle = "",
   isFixed = true,
   currentCity = "",
+  isDashboard = false,
 }) => {
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
   const { handleSubmit, control, setValue } = useForm({
@@ -687,7 +688,7 @@ const FilterHeading = ({
               />
               <StyledInput
                 open={open}
-                // minDate={minDate}
+                minDate={minDate}
                 maxDate={maxDate}
                 data-testid={APPOINTMENT_TEST_ID.dateInput}
                 onOpen={() => setOpen(true)}
@@ -803,6 +804,7 @@ const FilterHeading = ({
         sx={{
           height: title && subtitle ? "200px" : "151px",
           position: isFixed ? "fixed" : "relative",
+          marginTop: isDashboard ? "27px !important" : "-15px",
         }}
       >
         <Box

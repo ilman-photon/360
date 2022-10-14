@@ -12,6 +12,7 @@ export default function PrescriptionPage() {
   const [prescriptionData, setPrescriptionData] = React.useState({});
   const [requestRefillResponse, setRequestRefillResponse] =
     React.useState(null);
+  const [isLoaded, setIsLoaded] = React.useState(false);
 
   //Call API for getAllPrescriptions
   function onCalledGetAllPrescriptionsAPI() {
@@ -23,6 +24,11 @@ export default function PrescriptionPage() {
       })
       .catch(function () {
         //Handle error getAllPrescriptions
+      })
+      .finally(function () {
+        setTimeout(() => {
+          setIsLoaded(true);
+        }, 200);
       });
   }
 
@@ -80,23 +86,25 @@ export default function PrescriptionPage() {
 
   return (
     <Stack sx={{ width: "100%", backgroundColor: "#F4F4F4" }}>
-      <Stack
-        sx={{
-          padding: isMobile ? "16px" : "44px 24px 24px 24px",
-          marginBottom: "32px",
-          maxWidth: "1440px",
-          backgroundColor: isMobile ? "#F4F4F4" : "#fff",
-          alignSelf: "center",
-          width: "100%",
-        }}
-      >
-        <Prescriptions
-          prescriptionData={prescriptionData}
-          isViewAll={true}
-          onMedicationRequestRefill={onMedicationRequestRefill}
-          requestRefillResponseData={requestRefillResponse}
-        />
-      </Stack>
+      {isLoaded && (
+        <Stack
+          sx={{
+            padding: isMobile ? "16px" : "44px 24px 24px 24px",
+            marginBottom: "32px",
+            maxWidth: "1440px",
+            backgroundColor: isMobile ? "#F4F4F4" : "#fff",
+            alignSelf: "center",
+            width: "100%",
+          }}
+        >
+          <Prescriptions
+            prescriptionData={prescriptionData}
+            isViewAll={true}
+            onMedicationRequestRefill={onMedicationRequestRefill}
+            requestRefillResponseData={requestRefillResponse}
+          />
+        </Stack>
+      )}
     </Stack>
   );
 }

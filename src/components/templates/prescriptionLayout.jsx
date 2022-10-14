@@ -47,7 +47,7 @@ export default function PrescriptionLayout({
         <Navbar />
         <AccountTitleHeading
           title={headingTitle()}
-          sxContainer={{ marginTop: isDesktop ? "107px" : "56px" }}
+          sxContainer={{ marginTop: isDesktop ? "107px" : "64px" }}
           sx={{ fontWeight: "400", maxWidth: "1477px", margin: "0 auto" }}
         />
         <ThemeProvider theme={patientTypography}>

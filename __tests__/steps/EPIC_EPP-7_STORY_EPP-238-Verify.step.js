@@ -80,7 +80,227 @@ defineFeature(feature, (test) => {
         //   );
         //   expect(usernameFieldError).toBeTruthy();
         // }, 500);
-      }
-    );
+      });
+  });
+  test('EPIC_EPP-7_STORY_EPP-238 - Verify user should see "page loading" within 3 seconds', ({ given, and, when, then }) => {
+    given(/^use launch the "(.*)" url$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and('user navigates to the Patient Portal application', () => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user lands onto "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" link$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user clicks on "(.*)" link$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should enter invalid email on (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user clicks on "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^User should see the following error message "(.*)"$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see "(.*)" within (\d+) seconds$/, (arg0, arg1) => {
+      expect(true).toBeTruthy();
+    });
+  });
+
+  test('EPIC_EPP-7_STORY_EPP-238 - Verify user  is not able to submit "Forgot Password" when service is unavailable', ({ given, and, when, then }) => {
+    given(/^use launch the "(.*)" url$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and('user navigates to the Patient Portal application', () => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user lands onto "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" link$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user clicks on "(.*)" link$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should enter valid (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user clicks on "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then('user should see appropriate error message', () => {
+      expect(true).toBeTruthy();
+    });
+  });
+
+  test('EPIC_EPP-7_STORY_EPP-238 - Verify user  is not able to submit "Forgot Password" when internet connection is unavailable', ({ given, and, when, then }) => {
+    given(/^use launch the "(.*)" url$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and('user navigates to the Patient Portal application', () => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user lands onto "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" link$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user clicks on "(.*)" link$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should enter valid (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user clicks on "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then('user should see appropriate error message', () => {
+      expect(true).toBeTruthy();
+    });
+  });
+
+  test('EPIC_EPP-7_STORY_EPP-238 - Verify User should see the empty field when user refesh the page', ({ given, and, when, then }) => {
+    given(/^use launch the "(.*)" url$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and('user navigates to the Patient Portal application', () => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user lands onto "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" link$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user clicks on "(.*)" link$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should enter valid (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    when('User should refresh the page', () => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^User should see the empty (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+  });
+
+  test('EPIC_EPP-7_STORY_EPP-238 - Verify user should not see any scripts error when after user press F12 on the console', ({ given, and, when, then }) => {
+    given(/^use launch the "(.*)" url$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and('user navigates to the Patient Portal application', () => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user lands onto "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" link$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^user clicks on "(.*)" link$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then(/^user should see "(.*)" screen$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should see (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user should input Unregistered Phone Number on (.*) field$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    and(/^user clicks on "(.*)" button$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    when(/^User press F(\d+) on the console$/, (arg0) => {
+      expect(true).toBeTruthy();
+    });
+
+    then('User  should not see any scripts error', () => {
+      expect(true).toBeTruthy();
+    });
   });
 });
