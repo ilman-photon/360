@@ -1,4 +1,4 @@
-import { Box, Stack, Typography, Link } from "@mui/material";
+import { Box, Stack, Typography, Link, useMediaQuery } from "@mui/material";
 import styles from "./styles.module.scss";
 import AppointmentButton from "../../atoms/AppointmentButton/appointmentButton";
 import moment from "moment";
@@ -21,7 +21,7 @@ import TableRow from "@mui/material/TableRow";
 import React, { useEffect, useState } from "react";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import { TEST_ID } from "../../../utils/constants";
-
+import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 function AppointmentDetailTable(alergies, isExpandAll) {
   const [openAllergies, setOpenAllergies] = useState(isExpandAll);
   const handleClickAllergies = () => {
@@ -87,7 +87,7 @@ function AppointmentDetailTable(alergies, isExpandAll) {
                     aria-label={item}
                     component="th"
                     scope="row"
-                    sx={{ textTransform: "capitalize" }}
+                    sx={{ textTransform: "capitalize", minWidth: 130 }}
                   >
                     {item}
                   </TableCell>
@@ -125,6 +125,7 @@ function AppointmentDetailTable(alergies, isExpandAll) {
 
 export default function DetailAppointment({ data }) {
   const container = React.useRef(null);
+  const isDesktop = useMediaQuery("(min-width: 834px)");
   const { providerInfo, patientInfo, appointmentInfo } = data;
   const date = appointmentInfo.date;
   const timezone = date.substring(date.length - 3);
@@ -134,6 +135,7 @@ export default function DetailAppointment({ data }) {
   const fullDate = `${formatedDate}, AT ${time} ${timezone}`;
   const [isDownload, setIsDownload] = React.useState(false);
   const [isExpandAll, setIsExpandAll] = React.useState(true);
+  const chevronColor = "rgba(0, 0, 0, 0.54)";
 
   const downloadPDF = () => {
     let element = container.current || document.body;
@@ -178,7 +180,7 @@ export default function DetailAppointment({ data }) {
                 flexDirection={"row"}
               >
                 <Link
-                  className={styles.link}
+                  className={styles.downloadContainer}
                   tabIndex={0}
                   aria-label={"Download Option"}
                   data-testid={TEST_ID.APPOINTMENTS_DETAIL_TEST_ID.download}
@@ -187,6 +189,7 @@ export default function DetailAppointment({ data }) {
                     alignContent: "center",
                     justifyContent: "center",
                     cursor: "pointer",
+                    textDecoration: "none",
                   }}
                   onClick={() => {
                     setIsDownload(true);
@@ -282,24 +285,15 @@ export default function DetailAppointment({ data }) {
                       ", " +
                       providerInfo.address.zipcode}
                 </Typography>
-                <Link
-                  tabIndex={0}
-                  ariaLabel={formatPhoneNumber(providerInfo.phoneNumber)}
+                <PhoneNumber
+                  phone={providerInfo.phoneNumber}
                   sx={{
-                    color: "teal",
                     display: "flex",
                     alignContent: "center",
                     justifyContent: "flex-start",
                     pt: 1,
                   }}
-                >
-                  <Typography
-                    variant="body2"
-                    className={styles.getDirectionLinkText}
-                  >
-                    {formatPhoneNumber(providerInfo.phoneNumber)}
-                  </Typography>
-                </Link>
+                />
               </Grid>
               <Grid item xs={8}>
                 <Box
@@ -393,8 +387,13 @@ export default function DetailAppointment({ data }) {
             data-testid={TEST_ID.APPOINTMENTS_DETAIL_TEST_ID.expandCollapseAll}
             onClick={() => setIsExpandAll(!isExpandAll)}
           >
-            <AppointmentButton>
-              {`${isExpandAll ? "Collapse" : "Expand"} All`} <ExpandMoreIcon />
+            <AppointmentButton className={styles.collapseContainer}>
+              {`${isExpandAll ? "Collapse" : "Expand"} All`}
+              {isExpandAll ? (
+                <ExpandMoreIcon sx={{ color: chevronColor }} />
+              ) : (
+                <ExpandLessIcon sx={{ color: chevronColor }} />
+              )}
             </AppointmentButton>
           </Box>
 
@@ -482,7 +481,7 @@ export default function DetailAppointment({ data }) {
                       variant="h4"
                       className={styles.mb14}
                     >
-                      {"Custodian "}
+                      {"Custodian"}
                     </Typography>
                     <Typography
                       tabIndex={0}
@@ -536,28 +535,17 @@ export default function DetailAppointment({ data }) {
                     >
                       {appointmentInfo.documentDetails.address.country}
                     </Typography>
-                    <Link
-                      tabIndex={0}
-                      ariaLabel={formatPhoneNumber(
+                    <PhoneNumber
+                      phone={
                         appointmentInfo.documentDetails.address.mobileNumber
-                      )}
+                      }
                       sx={{
-                        color: "teal",
-                        display: "flex",
                         alignContent: "center",
+                        display: "flex",
                         justifyContent: "flex-start",
                         pt: 1,
                       }}
-                    >
-                      <Typography
-                        variant="body2"
-                        className={styles.getDirectionLinkText}
-                      >
-                        {formatPhoneNumber(
-                          appointmentInfo.documentDetails.address.mobileNumber
-                        )}
-                      </Typography>
-                    </Link>
+                    />
                   </TableCell>
                 </TableRow>
               </TableBody>
@@ -626,30 +614,16 @@ export default function DetailAppointment({ data }) {
               >
                 {appointmentInfo.documentDetails.address.country}
               </Typography>
-
-              <Link
-                tabIndex={0}
-                ariaLabel={formatPhoneNumber(
-                  appointmentInfo.documentDetails.address.mobileNumber
-                )}
+              <PhoneNumber
+                phone={appointmentInfo.documentDetails.address.mobileNumber}
                 sx={{
-                  color: "teal",
                   display: "flex",
                   alignContent: "center",
                   justifyContent: "flex-start",
                   pt: 1,
                   mb: 1,
                 }}
-              >
-                <Typography
-                  variant="body2"
-                  className={styles.getDirectionLinkText}
-                >
-                  {formatPhoneNumber(
-                    appointmentInfo.documentDetails.address.mobileNumber
-                  )}
-                </Typography>
-              </Link>
+              />
             </Grid>
           </Grid>
 
@@ -738,14 +712,13 @@ export default function DetailAppointment({ data }) {
               <TableBody>
                 <TableRow>
                   <TableCell
-                    tabindex={0}
                     component="th"
                     scope="row"
                     sx={{ textTransform: "capitalize" }}
                   >
                     <Typography
                       tabIndex={0}
-                      aria-label={"Patient"}
+                      aria-label={"Patient IDs"}
                       variant="h4"
                       className={styles.mb14}
                     >
@@ -790,10 +763,7 @@ export default function DetailAppointment({ data }) {
 
       {/* Document Of Care problem */}
       <Box sx={{ p: 2, backgroundColor: grey[50] }}>
-        <Box
-          className={styles.dateContainer}
-          sx={{ p: 2, backgroundColor: "white" }}
-        >
+        <Box className={styles.dateContainer} sx={{ backgroundColor: "white" }}>
           <Table>
             <TableBody>
               <TableRow>
@@ -886,30 +856,17 @@ export default function DetailAppointment({ data }) {
                   >
                     {item.contactPerformance.country}
                   </Typography>
-
-                  <Link
-                    tabIndex={0}
-                    ariaLabel={formatPhoneNumber(
-                      appointmentInfo.documentDetails.address.mobileNumber
-                    )}
+                  <PhoneNumber
+                    tabindex={0}
+                    phone={appointmentInfo.documentDetails.address.mobileNumber}
                     sx={{
-                      color: "teal",
                       display: "flex",
-                      alignContent: "center",
                       justifyContent: "flex-start",
+                      alignContent: "center",
                       pt: 1,
                       mb: 1,
                     }}
-                  >
-                    <Typography
-                      variant="body2"
-                      className={styles.getDirectionLinkText}
-                    >
-                      {formatPhoneNumber(
-                        appointmentInfo.documentDetails.address.mobileNumber
-                      )}
-                    </Typography>
-                  </Link>
+                  />
                 </Grid>
               </>
             ))}
@@ -921,10 +878,7 @@ export default function DetailAppointment({ data }) {
 
       {/* Autho Eyecare 360 */}
       <Box sx={{ p: 2, backgroundColor: grey[50] }}>
-        <Box
-          className={styles.dateContainer}
-          sx={{ p: 2, backgroundColor: "white" }}
-        >
+        <Box className={styles.dateContainer} sx={{ backgroundColor: "white" }}>
           <Grid container spacing={2} sx={{ p: 1 }}>
             <Grid item xs={12}>
               <Box
@@ -1014,24 +968,15 @@ export default function DetailAppointment({ data }) {
                           ", " +
                           providerInfo.address.zipcode}
                     </Typography>
-                    <Link
-                      tabIndex={0}
-                      ariaLabel={formatPhoneNumber(providerInfo.phoneNumber)}
+                    <PhoneNumber
+                      phone={providerInfo.phoneNumber}
                       sx={{
-                        color: "teal",
                         display: "flex",
-                        alignContent: "center",
                         justifyContent: "flex-start",
                         pt: 1,
+                        alignContent: "center",
                       }}
-                    >
-                      <Typography
-                        variant="body2"
-                        className={styles.getDirectionLinkText}
-                      >
-                        {formatPhoneNumber(providerInfo.phoneNumber)}
-                      </Typography>
-                    </Link>
+                    />
                   </TableCell>
                 </TableCell>
                 <TableCell>
@@ -1083,24 +1028,15 @@ export default function DetailAppointment({ data }) {
                           ", " +
                           providerInfo.address.zipcode}
                     </Typography>
-                    <Link
-                      tabIndex={0}
-                      ariaLabel={formatPhoneNumber(providerInfo.phoneNumber)}
+                    <PhoneNumber
+                      phone={providerInfo.phoneNumber}
                       sx={{
-                        color: "teal",
-                        display: "flex",
                         alignContent: "center",
+                        display: "flex",
                         justifyContent: "flex-start",
                         pt: 1,
                       }}
-                    >
-                      <Typography
-                        variant="body2"
-                        className={styles.getDirectionLinkText}
-                      >
-                        {formatPhoneNumber(providerInfo.phoneNumber)}
-                      </Typography>
-                    </Link>
+                    />
                   </TableCell>
                 </TableCell>
               </TableRow>

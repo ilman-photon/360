@@ -1,67 +1,40 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { Api } from "../pages/api/api";
 
-export const fetchIntakeForms = createAsyncThunk(
-  "document/fetchIntakeForms",
-  async () => {
-    return fetch("/api/dummy/document/intake-forms").then((res) => res.json());
-  }
-);
-
-export const fetchInsuranceDocuments = createAsyncThunk(
-  "document/fetchInsuranceDocuments",
-  async () => {
-    return fetch("/api/dummy/document/insurance-document").then((res) =>
-      res.json()
-    );
-  }
-);
-
-export const fetchHealthRecord = createAsyncThunk(
-  "document/fetchHealthRecord",
-  async () => {
-    return fetch("/api/dummy/document/insurance-document").then((res) =>
-      res.json()
-    );
+export const fetchDocuments = createAsyncThunk(
+  "document/fetchDocuments",
+  async ({ patientId, category }) => {
+    let categoryId;
+    switch (category) {
+      case "insurance-documents":
+        break;
+      case "health-record":
+        break;
+      default:
+        categoryId = "Intake-Forms";
+        break;
+    }
+    const url = `/ecp/patient/getPatientDocumentByCategory/${patientId}/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=${categoryId}))`;
+    const api = new Api();
+    return api.getResponse(url, null, "get");
   }
 );
 
 const documentSlice = createSlice({
   name: "document",
   initialState: {
-    intakeFormsData: [],
-    insuranceDocument: [],
-    healthRecordData: [],
+    documentList: [],
     status: null,
   },
   extraReducers: {
-    [fetchIntakeForms.pending]: (state) => {
+    [fetchDocuments.pending]: (state) => {
       state.status = "loading";
     },
-    [fetchIntakeForms.fulfilled]: (state, { payload }) => {
-      state.intakeFormsData = payload;
+    [fetchDocuments.fulfilled]: (state, { payload }) => {
+      state.documentList = payload.entities;
       state.status = "success";
     },
-    [fetchIntakeForms.rejected]: (state) => {
-      state.status = "failed";
-    },
-    [fetchInsuranceDocuments.pending]: (state) => {
-      state.status = "loading";
-    },
-    [fetchInsuranceDocuments.fulfilled]: (state, { payload }) => {
-      state.insuranceDocument = payload;
-      state.status = "success";
-    },
-    [fetchInsuranceDocuments.rejected]: (state) => {
-      state.status = "failed";
-    },
-    [fetchHealthRecord.pending]: (state) => {
-      state.status = "loading";
-    },
-    [fetchHealthRecord.fulfilled]: (state, { payload }) => {
-      state.healthRecordData = payload;
-      state.status = "success";
-    },
-    [fetchHealthRecord.rejected]: (state) => {
+    [fetchDocuments.rejected]: (state) => {
       state.status = "failed";
     },
   },

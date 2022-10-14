@@ -7,6 +7,8 @@ const buildList = (payload) => {
   const list = payload.entities;
   return list.map((item) => {
     return {
+      ...item,
+      // mandatory for select component
       id: item._id,
       label: item.name,
       value: item.name,
@@ -27,8 +29,17 @@ export const fetchPlans = createAsyncThunk(
   "user/fetchplans",
   async ({ token, payerId }) => {
     const api = new Api();
-    url = `/ecp/appointments/insurancepayers/${payerId}/plans?pageNo=1&pageSize=500`;
+    url = `/ecp/appointments/insurancepayers/${payerId}/plans?pageNo=0&pageSize=500`;
     return api.getResponse(url, null, "get", token);
+  }
+);
+
+export const fetchProviderById = createAsyncThunk(
+  "provider/fetchProviderById",
+  async ({ providerId }) => {
+    const api = new Api();
+    url = `/ecp/appointments/getprovider/${providerId}`;
+    return api.getResponse(url, null, "get");
   }
 );
 

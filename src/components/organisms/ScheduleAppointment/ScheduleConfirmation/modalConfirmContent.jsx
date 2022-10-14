@@ -28,6 +28,7 @@ import {
   Button,
   Grid,
   Tooltip,
+  useMediaQuery,
 } from "@mui/material";
 import { getDirection } from "../../../../utils/appointment";
 import { formatAppointmentDate } from "../../../../utils/dateFormatter";
@@ -76,6 +77,7 @@ export default function ModalConfirmContent({
   },
   isPage = false,
 }) {
+  const isMobile = useMediaQuery("(max-width: 768px)");
   const { REGISTER_TEST_ID } = constants.TEST_ID;
 
   const { t } = useTranslation("translation", {
@@ -111,7 +113,7 @@ export default function ModalConfirmContent({
       <BootstrapDialogTitle
         id="customized-dialog-title"
         onClose={handleClose}
-        sx={{ textAlign: "center" }}
+        sx={{ textAlign: "center", fontSize: "22px" }}
         isPage={isPage}
       >
         <Typography
@@ -138,6 +140,7 @@ export default function ModalConfirmContent({
             pb: { xs: 2, md: 3 },
           },
         }}
+        tabIndex={0}
       >
         <div
           className={styles.registeredUsernameWrapper}
@@ -151,11 +154,13 @@ export default function ModalConfirmContent({
               textAlign: { xs: "center", md: "left" },
               padding: { xs: "8px", md: "12px 100px" },
             }}
-            aria-label={t("thanksBar")}
+            aria-label={
+              isReschedule ? t("thanksBarReschedule") : t("thanksBar")
+            }
             tabIndex={0}
           >
             <MailOutlineIcon sx={{ mr: 1, height: "35px", width: "28px" }} />{" "}
-            {t("thanksBar")}
+            {isReschedule ? t("thanksBarReschedule") : t("thanksBar")}
           </Box>
         </div>
 
@@ -204,6 +209,7 @@ export default function ModalConfirmContent({
                     display: "contents",
                     fontWeight: "600",
                     fontSize: "14px",
+                    fontFamily: "Libre Franklin",
                   }}
                   aria-label={"Add to calendar"}
                 >
@@ -238,7 +244,6 @@ export default function ModalConfirmContent({
                   <ProviderProfile
                     variant={"appointment"}
                     showPosition
-                    phoneLink={true}
                     providerData={providerData}
                     isDayAvailableView={true}
                   />
@@ -289,7 +294,11 @@ export default function ModalConfirmContent({
           <div className={styles.bottomParagraph}>
             <Typography
               variant="caption"
-              sx={{ fontSize: "16px", fontFamily: "Libre Franklin" }}
+              sx={{
+                fontSize: "16px",
+                fontFamily: "Libre Franklin",
+                float: isMobile ? "left" : "unset",
+              }}
               aria-label={"Already have an account? Sign in"}
               tabIndex={0}
             >

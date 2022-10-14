@@ -17,6 +17,7 @@ export default function AuthLayout({
   theme = "patient",
   imageSrc,
   title,
+  customImageBg = false,
   isReverseFlex = true,
 }) {
   const isPatient = theme === "patient";
@@ -53,6 +54,7 @@ export default function AuthLayout({
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [title, imageSrc]);
+
   return (
     <>
       <Provider store={store}>
@@ -70,8 +72,7 @@ export default function AuthLayout({
                 sx={{
                   paddingTop: {
                     xs: showMobileImage ? "16px!important" : "75px!important",
-                    md: "100px!important",
-                    lg: "146px!important",
+                    sm: "146px!important",
                   },
                   padding: 0,
                 }}
@@ -86,7 +87,12 @@ export default function AuthLayout({
                 padding: 0,
               }}
             >
-              <div className={styles.imageBannerContainer}>
+              <div
+                className={[
+                  styles.imageBannerContainer,
+                  customImageBg ? styles.objPositionB : styles.objPositionA,
+                ].join(" ")}
+              >
                 {hasImage && <Image alt="" src={imageSrcState} layout="fill" />}
               </div>
             </Container>

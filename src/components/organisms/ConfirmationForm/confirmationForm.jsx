@@ -53,7 +53,12 @@ const ConfirmationForm = ({
       {ready && (
         <Card className={globalStyles.container} style={styles.cardStyle}>
           <CardContent style={styles.cardContentStyle}>
-            <HeadingTitle variant={constants.H2} title={title} tabIndex="0" />
+            <HeadingTitle
+              variant={constants.H2}
+              title={"Sync Your Appointment"}
+              tabIndex="0"
+              sx={{ fontSize: "32px" }}
+            />
             {showPostMessage ? (
               <FormMessage
                 success={isSuccessPostMessage}

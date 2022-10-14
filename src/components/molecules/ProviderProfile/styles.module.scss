@@ -30,18 +30,10 @@
   }
 }
 
-.phone {
-  color: #424747;
-  letter-spacing: 0.0016em;
-
-  @media (max-width: 992px) {
-    font-size: 14px;
-  }
-}
-
 .specialistTitle {
   font-weight: 700 !important;
   font-size: 16px !important;
+  min-width: 250px;
   @media (max-width: 992px) {
     margin-bottom: 12px;
     margin-top: 8px;
@@ -90,7 +82,7 @@
   }
 }
 
-.appointment h2.doctorNameAppointment {
+.appointment h2.doctorNameViewSchedule {
   font-weight: 700;
   line-height: 28px !important;
   margin-bottom: 4px;
@@ -103,6 +95,22 @@
   }
 }
 
+.appointment h2.doctorNameAppointment {
+  font-family: "Libre Franklin", sans-serif;
+  font-weight: 700;
+  line-height: 28px !important;
+  margin-bottom: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  color: #003b4a;
+  text-decoration: none;
+  @media (max-width: 992px) {
+    font-size: 18px;
+  }
+}
+.doctorName {
+  color: #003b4a;
+}
 .appointment h2.doctorMap {
   font-weight: 600;
   cursor: pointer;
@@ -124,31 +132,10 @@
   @media (max-width: 992px) {
     margin-top: 12px;
   }
-
-  .phoneLink {
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 20px;
-    letter-spacing: 0.0016em;
-    color: #008294 !important;
-    text-decoration-color: inherit !important;
-  }
 }
 
 .phoneContainer {
   margin-top: 5px;
-  .phoneLink {
-    font-family: "Roboto", sans-serif;
-    font-style: normal;
-    font-weight: 500;
-    font-size: 16px;
-    line-height: 20px;
-    letter-spacing: 0.0016em;
-    color: #008294 !important;
-    text-decoration-color: inherit !important;
-  }
 }
 
 .specialistList > li > p {

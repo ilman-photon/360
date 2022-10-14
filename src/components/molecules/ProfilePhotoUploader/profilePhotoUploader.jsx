@@ -1,15 +1,24 @@
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
-import { Avatar, Box, Button, Stack, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Button,
+  CircularProgress,
+  Stack,
+  Typography,
+} from "@mui/material";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { colors } from "../../../styles/theme";
 import { stringAvatar } from "../../../utils/avatar";
 import { Regex } from "../../../utils/regex";
 import SwapIcon from "../../../assets/icons/SwapIcon";
+import DigitalAssetsHandler from "../../../utils/digitalAssetsHandler";
 
 export const ProfilePhotoUploader = ({
   username = "",
-  source = null,
+  source,
+  // preview,
   OnPhotoChange = () => {
     // This is intended
   },
@@ -17,10 +26,28 @@ export const ProfilePhotoUploader = ({
     // This is intended
   },
 }) => {
-  const [previewPhoto, setPreviewPhoto] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [preview, setPreview] = useState(null);
+  const [imageSource, setImageSource] = useState(null);
   const inputImage = useRef(null);
+  const digitalAsset = new DigitalAssetsHandler();
 
-  const handleInputChange = (event) => {
+  useEffect(() => {
+    setImageSource(preview);
+  }, [preview]);
+
+  const fetchImageURL = async () => {
+    digitalAsset.setSource(source);
+    const src = await digitalAsset.fetchSourceURL();
+    if (src) setImageSource(src.presignedUrl);
+  };
+
+  useEffect(() => {
+    if (source) fetchImageURL();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [source]);
+
+  const handleInputChange = async (event) => {
     const max = 4;
     const maxSize = max * 1024 * 1024; // 4MB
     if (event.target.files && event.target.files[0]) {
@@ -48,27 +75,68 @@ export const ProfilePhotoUploader = ({
           content: "Invalid file type",
         };
       } else {
-        const blobFile = URL.createObjectURL(file);
-        setPreviewPhoto({ name: file.name, source: blobFile });
-        OnPhotoChange({ name: file.name, source: blobFile });
+        setLoading(true);
+
+        try {
+          digitalAsset.setFile(file);
+          await digitalAsset.upload();
+          if (digitalAsset.status === "success") {
+            OnPhotoChange(digitalAsset.source);
+            setPreview(digitalAsset.source.presignedUrl);
+          }
+        } catch (error) {
+          console.error("Error when uploading", error);
+        } finally {
+          setLoading(false);
+        }
       }
       OnInputError(error);
     }
   };
+
+  const renderImg = () => {
+    return loading ? (
+      <CircularProgress />
+    ) : (
+      <Image
+        src={imageSource}
+        width={80}
+        height={80}
+        style={{ borderRadius: "50%" }}
+        alt="photo"
+        placeholder="blur"
+        blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(700, 475))}`}
+      />
+    );
+  };
+
+  const shimmer = (w, h) => `
+    <svg width="${w}" height="${h}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+      <defs>
+        <linearGradient id="g">
+          <stop stop-color="#eee" offset="20%" />
+          <stop stop-color="#ddd" offset="50%" />
+          <stop stop-color="#eee" offset="70%" />
+        </linearGradient>
+      </defs>
+      <rect width="${w}" height="${h}" fill="#eee" />
+      <rect id="r" width="${w}" height="${h}" fill="url(#g)" />
+      <animate xlink:href="#r" attributeName="x" from="-${w}" to="${w}" dur="1s" repeatCount="indefinite"  />
+    </svg>`;
+
+  const toBase64 = (str) =>
+    typeof window === "undefined"
+      ? Buffer.from(str).toString("base64")
+      : window.btoa(str);
+
   return (
     <Stack spacing={1}>
       <Box
         sx={{ border: "1px dashed #DDDBDA", px: 2, py: 3, borderRadius: "4px" }}
       >
         <Stack direction="row" spacing={4} alignItems="center">
-          {previewPhoto || source ? (
-            <Image
-              src={previewPhoto.source || source.source}
-              width={80}
-              height={80}
-              style={{ borderRadius: "50%" }}
-              alt="photo"
-            />
+          {imageSource ? (
+            renderImg()
           ) : (
             <Avatar
               {...stringAvatar(username)}
@@ -77,11 +145,11 @@ export const ProfilePhotoUploader = ({
           )}
 
           <Stack spacing={1}>
-            {previewPhoto || source ? (
+            {imageSource ? (
               <Typography
                 sx={{ fontSize: "13px", fontWeight: 400, textAlign: "center" }}
               >
-                {previewPhoto.name || source.name}
+                {preview?.name || source?.name}
               </Typography>
             ) : (
               ""
@@ -100,7 +168,7 @@ export const ProfilePhotoUploader = ({
               }}
             >
               <Stack direction="row" alignItems="center" spacing={1}>
-                {previewPhoto || source ? (
+                {imageSource ? (
                   <SwapIcon style={{ width: 20, height: 20 }} />
                 ) : (
                   <FileUploadOutlinedIcon sx={{ width: 20, height: 20 }} />

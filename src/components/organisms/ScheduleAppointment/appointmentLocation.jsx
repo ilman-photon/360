@@ -2,9 +2,10 @@ import * as React from "react";
 import { Stack, Typography, Button, Link, Box } from "@mui/material";
 import { useTranslation } from "next-i18next";
 import AccountCard from "../../molecules/AccountCard/accountCard";
-import LocationOnIcon from "@mui/icons-material/LocationOn";
+import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import Image from "next/image";
+// import Image from "next/image";
+import ImageFallback from "../../atoms/Image/image";
 import { styles } from "./style";
 import { TEST_ID } from "../../../utils/constants";
 
@@ -26,16 +27,24 @@ export default function AppointmentLocation({
         <br />
         {address.addressLine2}
         <br />
-        {address.city}, {address.state}, {address.zipcode}
+        {address.city}, {address.state}, {address.zipcode || address.zip}
       </div>
     );
+  };
+
+  const getName = (payload) => {
+    if (payload.name) return payload.name;
+    return `${payload.firstName || ""} ${payload.lastName || "-"}`;
   };
 
   return (
     <Box mb={2}>
       <AccountCard
         titleIcon={
-          <LocationOnIcon aria-label={"calendar icon"} aria-hidden={"false"} />
+          <LocationOnOutlinedIcon
+            aria-label={"calendar icon"}
+            aria-hidden={"false"}
+          />
         }
         title={t("location")}
         isAppoinment={true}
@@ -62,8 +71,12 @@ export default function AppointmentLocation({
       >
         <Stack flexDirection="row" gap={2}>
           <div>
-            <Image
-              src={providerData.image || "/transparent.png"}
+            <ImageFallback
+              source={
+                providerData.image ||
+                providerData.profilePhoto ||
+                "/transparent.png"
+              }
               width={105}
               height={105}
               style={{ borderRadius: "50%" }}
@@ -78,7 +91,7 @@ export default function AppointmentLocation({
               style={{ ...styles.detailText, ...styles.boldText }}
               tabIndex={"0"}
             >
-              {providerData.name}
+              {getName(providerData)}
             </Typography>
             <Typography
               variant="regularBold"
@@ -90,19 +103,22 @@ export default function AppointmentLocation({
               }
             >
               {getAddress(providerData.address)}
-              <br />
             </Typography>
             <Typography
               variant="h4"
               style={styles.detailText}
-              aria-label={`provider phone number ${providerData.phoneNumber}`}
+              aria-label={`provider phone number ${
+                providerData.phoneNumber || providerData.cellPhone
+              }`}
               tabIndex={"0"}
             >
               <Link
                 style={styles.linkText}
-                href={`tel:${providerData.phoneNumber}`}
+                href={`tel:${
+                  providerData.phoneNumber || providerData.cellPhone
+                }`}
               >
-                {providerData.phoneNumber}
+                {providerData.phoneNumber || providerData.cellPhone}
               </Link>
             </Typography>
           </Box>

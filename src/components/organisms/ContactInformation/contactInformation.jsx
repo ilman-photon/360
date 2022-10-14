@@ -1,9 +1,11 @@
 import PermContactCalendarOutlinedIcon from "@mui/icons-material/PermContactCalendarOutlined";
 import {
+  Autocomplete,
   Button,
   Divider,
   Fade,
   Grid,
+  MenuItem,
   Stack,
   useMediaQuery,
 } from "@mui/material";
@@ -11,30 +13,18 @@ import LabelWithInfo from "../../atoms/LabelWithInfo/labelWithInfo";
 import AccountCard from "../../molecules/AccountCard/accountCard";
 import styles from "./contactInformation.module.scss";
 import { useForm, Controller } from "react-hook-form";
-import { StyledInput } from "../../atoms/Input/input";
+import { StyledInput, StyledRedditField } from "../../atoms/Input/input";
 import { StyledButton } from "../../atoms/Button/button";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { colors } from "../../../styles/theme";
-import { startTransition, Suspense, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Regex } from "../../../utils/regex";
 import RowRadioButtonsGroup from "../../atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
-import { formatPhoneNumber } from "../../../utils/phoneFormatter";
-import dynamic from "next/dynamic";
-import { StyledSelect } from "../../atoms/Select/select";
-
-let ClientAddressAutofill;
-
-startTransition(async () => {
-  ClientAddressAutofill = await dynamic(
-    () => import("@mapbox/search-js-react").then((mod) => mod.AddressAutofill),
-    { ssr: false }
-  );
-
-  ClientAddressAutofill.accessToken = process.env.MAPBOX_API_TOKEN;
-});
+import usePlacesService from "react-google-autocomplete/lib/usePlacesAutocompleteService";
+import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 
 export default function ContactInformation({
-  autoFillAPIToken = "",
+  googleAPIKey = " ",
   userData = {},
   isEditing = true,
   usStatesList = [],
@@ -48,7 +38,7 @@ export default function ContactInformation({
     // This is intended
   },
 }) {
-  const { handleSubmit, control, watch, reset } = useForm({
+  const { handleSubmit, control, watch, reset, setValue } = useForm({
     // defaultValues: DEFAULT_CONTACT_INFO,
     defaultValues: userData, // Object.assign({}, userData),
   });
@@ -99,8 +89,82 @@ export default function ContactInformation({
     OnSaveClicked(data);
   };
 
-  const invalidChars = ["e", "-", "+"];
   const buttonWidth = isDesktop ? {} : { width: "100%" };
+
+  // GAPI autocomplete
+  const { placesService, placePredictions, getPlacePredictions } =
+    usePlacesService({
+      apiKey: googleAPIKey,
+    });
+
+  const resetAddressForm = () => {
+    setValue("address", "");
+    setValue("city", "");
+    setValue("state", "");
+    setValue("zip", "");
+  };
+
+  const assignAddressFormValue = (oldValue) => {
+    if (!placeDetailsState) return;
+    console.log({ placeDetailsState });
+    const addressComponents = placeDetailsState.address_components;
+    if (addressComponents) {
+      resetAddressForm();
+      let address1 = "";
+      try {
+        for (const component of addressComponents) {
+          const componentType = component.types[0];
+          switch (componentType) {
+            case "street_number": {
+              address1 = component.long_name;
+              break;
+            }
+
+            case "route": {
+              address1 += component.short_name;
+              break;
+            }
+
+            case "postal_code": {
+              setValue("zip", component.long_name);
+              break;
+            }
+
+            case "administrative_area_level_1": {
+              setValue("state", component.short_name);
+              break;
+            }
+
+            case "administrative_area_level_2": {
+              setValue("city", component.long_name);
+              break;
+            }
+          }
+        }
+      } catch {
+      } finally {
+        if (address1) {
+          setValue("address", address1);
+        } else {
+          setValue("address", oldValue);
+        }
+      }
+    }
+  };
+
+  const [placeDetailsState, setPlaceDetailsState] = useState(null);
+  useEffect(() => {
+    // fetch place details for the first element in placePredictions array
+    if (placePredictions.length)
+      placesService?.getDetails(
+        {
+          placeId: placePredictions[0].place_id,
+        },
+        (placeDetails) => {
+          setPlaceDetailsState(placeDetails);
+        }
+      );
+  }, [placePredictions]);
 
   return (
     <AccountCard
@@ -156,14 +220,7 @@ export default function ContactInformation({
             ariaLabel="Phone Number"
             label="Phone Number"
           >
-            <div
-              tabIndex={0}
-              aria-label={
-                userData.mobile ? formatPhoneNumber(userData.mobile) : ""
-              }
-            >
-              {userData.mobile ? formatPhoneNumber(userData.mobile) : ""}
-            </div>
+            {userData.mobile && <PhoneNumber phone={userData.mobile} />}
           </LabelWithInfo>
 
           <LabelWithInfo tabIndex={0} ariaLabel="Email ID" label="Email ID">
@@ -313,22 +370,29 @@ export default function ContactInformation({
               }}
             />
 
-            <Suspense fallback={`Loading...`}>
-              <ClientAddressAutofill accessToken={autoFillAPIToken}>
-                <Controller
-                  name="address"
-                  control={control}
-                  render={({
-                    field: { onChange, value },
-                    fieldState: { error },
-                  }) => {
-                    return (
-                      <StyledInput
-                        type="text"
+            <Controller
+              name="address"
+              control={control}
+              render={({
+                field: { onChange, value },
+                fieldState: { error },
+              }) => {
+                return (
+                  <Autocomplete
+                    freeSolo
+                    options={placePredictions.map(
+                      (option) => option.description
+                    )}
+                    onChange={(e, value) => {
+                      assignAddressFormValue(value);
+                    }}
+                    value={value}
+                    autoComplete={false}
+                    renderInput={(params) => (
+                      <StyledRedditField
+                        {...params}
                         id="address"
                         label="Address"
-                        autoComplete="address-line1"
-                        placeholder="Start typing your address, e.g. 123 United States..."
                         sx={{
                           width: "100%",
                           ".MuiFilledInput-root": {
@@ -336,17 +400,21 @@ export default function ContactInformation({
                           },
                         }}
                         value={value}
-                        onChange={onChange}
+                        onChange={(event) => {
+                          onChange(event.target.value);
+                          getPlacePredictions({ input: event.target.value });
+                        }}
+                        placeholder="Start typing your address, e.g. 123 United States..."
                         error={!!error}
                         size="small"
                         variant="filled"
                         helperText={error ? error.message : null}
                       />
-                    );
-                  }}
-                />
-              </ClientAddressAutofill>
-            </Suspense>
+                    )}
+                  />
+                );
+              }}
+            />
 
             <Controller
               name="city"
@@ -390,14 +458,11 @@ export default function ContactInformation({
                     fieldState: { error },
                   }) => {
                     return (
-                      <StyledSelect
-                        id="state"
+                      <StyledInput
+                        select
                         label="State"
-                        inputProps={{
-                          "aria-label": "State drop down menu",
-                        }}
                         autoComplete="address-level1"
-                        options={usStatesList}
+                        data-testid="styled-select-state"
                         value={value}
                         onChange={onChange}
                         error={!!error}
@@ -412,7 +477,13 @@ export default function ContactInformation({
                             backgroundColor: "#FFF",
                           },
                         }}
-                      />
+                      >
+                        {usStatesList.map((item, idx) => (
+                          <MenuItem key={idx} value={item.value}>
+                            {item.label}
+                          </MenuItem>
+                        ))}
+                      </StyledInput>
                     );
                   }}
                 />
@@ -428,14 +499,20 @@ export default function ContactInformation({
                   }) => {
                     return (
                       <StyledInput
-                        type="number"
+                        type="text"
                         onKeyDown={(e) => {
-                          if (invalidChars.includes(e.key)) e.preventDefault();
+                          if (
+                            !Regex.numberOnly.test(e.key) &&
+                            e.key != "Backspace"
+                          ) {
+                            e.preventDefault();
+                          }
                         }}
                         id="zip"
                         label="Zip"
                         inputProps={{
                           "aria-label": "Zip field",
+                          maxLength: 5,
                         }}
                         autoComplete="postal-code"
                         value={value}
@@ -458,7 +535,7 @@ export default function ContactInformation({
                   }}
                   rules={{
                     pattern: {
-                      value: /^\s?\d{5}\s?$/,
+                      value: Regex.isZip,
                       message: "Incorrect format",
                     },
                   }}

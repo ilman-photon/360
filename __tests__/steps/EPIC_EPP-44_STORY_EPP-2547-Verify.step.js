@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import { Provider } from "react-redux";
-import Bio, { getStaticProps } from "../../src/pages/patient/bio";
+import Bio, { getServerSideProps } from "../../src/pages/patient/bio/[bio]";
 import store from "../../src/store/store";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 import constants from "../../src/utils/constants";

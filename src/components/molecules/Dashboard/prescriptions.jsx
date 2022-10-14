@@ -31,6 +31,7 @@ import { parsePrescriptionData } from "../../../utils/appointment";
 import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlined";
 import PrescriptionMedication from "./prescriptionMedication";
 import { savePDF } from "@progress/kendo-react-pdf";
+import { getLinkAria } from "../../../utils/viewUtil";
 
 export function renderCTAIcon(
   onClickDownload = () => {
@@ -53,16 +54,22 @@ export function renderCTAIcon(
         className={styles.butttonIconContainer}
         data-testid={"download-icon"}
         onClick={onClickDownload}
+        aria-label={"Download option"}
       >
         <Image alt="" src={iconDownload} width={15} height={15} />
       </Button>
       <Button
         className={styles.butttonIconContainer}
         data-testid={"shared-icon"}
+        aria-label={"Share option"}
       >
         <Image alt="" src={iconShare} width={15} height={15} />
       </Button>
-      <Button className={styles.butttonIconContainer} onClick={onClickPrint}>
+      <Button
+        className={styles.butttonIconContainer}
+        onClick={onClickPrint}
+        aria-label={"Print option"}
+      >
         <LocalPrintshopOutlinedIcon
           sx={{
             width: "18px",
@@ -87,6 +94,7 @@ export default function Prescriptions({
     //this is intentional
   },
   requestRefillResponseData = null,
+  renderRirstOnly = false,
 }) {
   const isMobile = useMediaQuery("(max-width: 768px)");
   const containerGlasses = React.useRef(null);
@@ -369,32 +377,37 @@ export default function Prescriptions({
 
   function renderMedicationUI(data) {
     if (data && data.length > 0) {
-      return data.map((row, idx) => (
-        <Box
-          key={idx}
-          sx={{
-            borderBottom: 1,
-            borderColor: "divider",
-          }}
-        >
-          <Box className={[styles.flexDisplay, styles.margin]} tabIndex={0}>
-            <Typography variant="medication">{row.prescription}</Typography>
-          </Box>
+      return data.map((row, idx) => {
+        if (renderRirstOnly && idx > 0) {
+          return null;
+        }
+        return (
           <Box
-            className={[styles.flexDisplay]}
+            key={idx}
             sx={{
-              margin: "10px 16px",
-              marginBottom: data.length == idx + 1 ? "26px" : "16px",
+              borderBottom: 1,
+              borderColor: "divider",
             }}
-            tabIndex={0}
           >
-            <Typography variant="customBodyRegular">
-              Prescribed on: &nbsp;
-            </Typography>
-            <Typography variant="bodyMedium">{row.date}</Typography>
+            <Box className={[styles.flexDisplay, styles.margin]} tabIndex={0}>
+              <Typography variant="medication">{row.prescription}</Typography>
+            </Box>
+            <Box
+              className={[styles.flexDisplay]}
+              sx={{
+                margin: "10px 16px",
+                marginBottom: data.length == idx + 1 ? "26px" : "16px",
+              }}
+              tabIndex={0}
+            >
+              <Typography variant="customBodyRegular">
+                Prescribed on: &nbsp;
+              </Typography>
+              <Typography variant="bodyMedium">{row.date}</Typography>
+            </Box>
           </Box>
-        </Box>
-      ));
+        );
+      });
     } else {
       return (
         <Box className={styles.noPrescription} tabIndex={0}>
@@ -413,6 +426,9 @@ export default function Prescriptions({
     const contentUI = [];
     if (data && data.length > 0) {
       data.map((row, idx) => {
+        if (renderRirstOnly && idx > 0) {
+          return null;
+        }
         contentUI.push(
           renderPrescriptionTable(row, type, idx, data.length === idx + 1)
         );
@@ -469,12 +485,17 @@ export default function Prescriptions({
               onViewPrescriptions(2);
             }}
             data-testid={"view-prescription-medication"}
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                onViewPrescriptions(2);
+              }
+            }}
           >
             <Link
               className={styles.viewPrescriptionText}
               sx={{ color: "#008294", fontFamily: "Inter" }}
               tabIndex={0}
-              aria-label="View prescriptions option"
+              {...getLinkAria("View prescriptions option")}
             >
               View prescriptions
             </Link>
@@ -497,14 +518,20 @@ export default function Prescriptions({
                 styles.margin,
                 styles.marginBottom,
               ]}
+              tabIndex={0}
+              aria-label={`Glasses Prescription ${prescription?.glasses?.length} Heading`}
             >
               <Typography
-                variant="titleCard"
-                className={isViewAll && !isMobile ? styles.paddingTop22 : {}}
-                tabIndex={0}
-                aria-label={"Glasses Prescription Heading"}
+                className={[
+                  styles.titleText,
+                  isViewAll && !isMobile ? styles.paddingTop22 : {},
+                ].join(" ")}
+                aria-hidden={true}
               >
-                Glasses Prescriptions
+                {"Glasses Prescription"}{" "}
+                {prescription?.glasses?.length > 0
+                  ? `(${prescription?.glasses?.length})`
+                  : ``}
               </Typography>
             </Box>
             <Box ref={containerGlasses}>
@@ -516,13 +543,18 @@ export default function Prescriptions({
                 onClick={() => {
                   onViewPrescriptions(0);
                 }}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    onViewPrescriptions(0);
+                  }
+                }}
                 data-testid={"view-prescription-glasses"}
               >
                 <Link
                   className={styles.viewPrescriptionText}
                   sx={{ color: "#008294", fontFamily: "Inter" }}
                   tabIndex={0}
-                  aria-label="View prescriptions option"
+                  {...getLinkAria("View prescriptions option")}
                 >
                   View prescriptions
                 </Link>
@@ -541,14 +573,20 @@ export default function Prescriptions({
                 styles.margin,
                 styles.marginBottom,
               ]}
+              tabIndex={0}
+              aria-label={`Contacts Prescription ${prescription?.glasses?.length} Heading`}
             >
               <Typography
-                variant="titleCard"
-                className={isViewAll && !isMobile ? styles.paddingTop22 : {}}
-                tabIndex={0}
-                aria-label={"Contacts Prescription Heading"}
+                className={[
+                  styles.titleText,
+                  isViewAll && !isMobile ? styles.paddingTop22 : {},
+                ].join(" ")}
+                aria-hidden={true}
               >
-                Contacts Prescriptions
+                {"Contacts Prescription"}{" "}
+                {prescription?.contacts?.length > 0
+                  ? `(${prescription?.contacts?.length})`
+                  : ``}
               </Typography>
             </Box>
             <Box ref={containerContact}>
@@ -561,13 +599,18 @@ export default function Prescriptions({
                 onClick={() => {
                   onViewPrescriptions(1);
                 }}
+                onKeyPress={(e) => {
+                  if (e.key === "Enter") {
+                    onViewPrescriptions(1);
+                  }
+                }}
                 data-testid={"view-prescription-contact"}
               >
                 <Link
                   className={styles.viewPrescriptionText}
                   sx={{ color: "#008294", fontFamily: "Inter" }}
                   tabIndex={0}
-                  aria-label="View prescriptions option"
+                  {...getLinkAria("View prescriptions option")}
                 >
                   View prescriptions
                 </Link>
@@ -596,7 +639,6 @@ export default function Prescriptions({
         onChange={handleChange}
         variant="scrollable"
         scrollButtons={false}
-        aria-label="scrollable prevent tabs example"
         textColor="unset"
         TabIndicatorProps={{
           style: {
@@ -720,6 +762,7 @@ export default function Prescriptions({
           <Image alt="" src={iconPrescription} width={32} height={32} />
         }
         title={`Prescriptions`}
+        ariaLabel={`Prescriptions Title`}
         sx={{
           ".MuiCardContent-root": {
             p: 0,

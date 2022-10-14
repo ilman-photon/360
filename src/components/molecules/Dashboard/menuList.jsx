@@ -3,10 +3,12 @@ import { styled, alpha } from "@mui/material/styles";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import LocalPrintshopOutlinedIcon from "@mui/icons-material/LocalPrintshopOutlined";
-import GetAppOutlinedIcon from "@mui/icons-material/GetAppOutlined";
-import ShareOutlinedIcon from "@mui/icons-material/ShareOutlined";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import styles from "./styles.module.scss";
+import Image from "next/image";
+import { colors } from "../../../styles/theme";
+import { Box } from "@mui/material";
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -41,7 +43,6 @@ const StyledMenu = styled((props) => (
       color: "#323338",
       "& .MuiSvgIcon-root": {
         fontSize: 18,
-        color: theme.palette.text.secondary,
         marginRight: theme.spacing(1.5),
       },
       "&:active": {
@@ -71,12 +72,19 @@ export default function MenuList({
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
+  const onEnter = (event) => {
+    if (event.key == "Enter") {
+      handleClick(event);
+    }
+  };
   const handleClose = (callback) => {
     setAnchorEl(null);
   };
+  const iconShare = "/icon-share.png";
+  const iconDownload = "/icon-download.png";
 
   return (
-    <div aria-label={"More option"} tabIndex={0}>
+    <div aria-label="More option" tabIndex={0} onKeyPress={onEnter}>
       <MoreHorizIcon
         id="demo-customized-button"
         aria-controls={open ? "demo-customized-menu" : undefined}
@@ -86,6 +94,7 @@ export default function MenuList({
         onClick={handleClick}
         endicon={<KeyboardArrowDownIcon />}
         sx={{
+          cursor: "pointer",
           "@media print": {
             display: "none !important",
           },
@@ -102,13 +111,17 @@ export default function MenuList({
         sx={{ top: "-15px" }}
       >
         <MenuItem
+          className={styles.menuItem}
+          disableRipple
           onClick={() => {
             onClickDownloadButton();
             handleClose();
           }}
-          disableRipple
+          tabIndex={0}
         >
-          <GetAppOutlinedIcon />
+          <Box className={"MuiSvgIcon-root"}>
+            <Image alt="" src={iconDownload} width={15} height={15} />
+          </Box>
           Download
         </MenuItem>
         <MenuItem
@@ -116,36 +129,25 @@ export default function MenuList({
             onClickShareButton();
             handleClose();
           }}
+          className={styles.menuItem}
           disableRipple
+          tabIndex={0}
         >
-          <ShareOutlinedIcon />
-          <a
-            style={{
-              display: "flex",
-              alignItems: "center",
-              fontSize: "14px",
-            }}
-          >
-            Share
-          </a>
+          <Box className={"MuiSvgIcon-root"}>
+            <Image alt="" src={iconShare} width={15} height={15} />
+          </Box>
+          Share
         </MenuItem>
         <MenuItem
           onClick={() => {
-            onClickShareButton();
+            onClickPrintButton();
             handleClose();
           }}
+          className={styles.menuItem}
           disableRipple
         >
-          <LocalPrintshopOutlinedIcon />
-          <a
-            style={{
-              display: "flex",
-              alignItems: "center",
-              fontSize: "14px",
-            }}
-          >
-            Print
-          </a>
+          <LocalPrintshopOutlinedIcon sx={{ color: colors.darkGreen }} />
+          Print
         </MenuItem>
       </StyledMenu>
     </div>

@@ -258,14 +258,17 @@ export const insuraceIcon = (
 export function getMenuList(title, subtitle) {
   return (
     <Box className={styles.selectMenuContainer}>
-      <Typography tabindex={0}>
+      <Typography tabindex={0} sx={{ lineHeight: "1" }}>
         <Typography
           variant="bodySmallRegular"
-          sx={{ display: "block", color: colors.darkGreen }}
+          sx={{ display: "block", color: colors.darkGreen, lineHeight: "18px" }}
         >
           {title}
         </Typography>
-        <Typography variant="bodySmallMedium" sx={{ color: colors.darkGreen }}>
+        <Typography
+          variant="bodySmallMedium"
+          sx={{ color: colors.darkGreen, fontWeight: "400" }}
+        >
           {subtitle}
         </Typography>
       </Typography>
@@ -361,8 +364,8 @@ export function onRenderInputInsurance(
         variant="filled"
         {...params}
         label="Insurance Carrier"
+        aria-label="Insurance carrier field"
         InputProps={{
-          "aria-label": "Insurace Carrier field",
           ...params.InputProps,
         }}
         sx={{
@@ -497,6 +500,7 @@ const FilterHeading = ({
   subtitle = "",
   isFixed = true,
   currentCity = "",
+  isDashboard = false,
 }) => {
   const { APPOINTMENT_TEST_ID } = constants.TEST_ID;
   const { handleSubmit, control, setValue } = useForm({
@@ -516,6 +520,10 @@ const FilterHeading = ({
       onSearchProvider(data);
     }
   };
+
+  React.useEffect(() => {
+    if (currentCity) setValue("location", currentCity);
+  }, [currentCity]);
 
   const minDate = new Date();
   const maxDate = new Date(); // add arguments as needed
@@ -565,7 +573,6 @@ const FilterHeading = ({
         name="location"
         control={control}
         render={({ field: { onChange, value }, fieldState: { _error } }) => {
-          onChangeLocation();
           return (
             <Autocomplete
               freeSolo
@@ -573,15 +580,15 @@ const FilterHeading = ({
               data-testid={APPOINTMENT_TEST_ID.locationInput}
               value={value}
               onChange={(_e, data) => {
-                onHideMandatoryFieldError();
                 onChange(data);
-                if (data === "Use my current location") {
-                  setValue("location", currentCity);
-                }
               }}
               onInputChange={(_e, newInputValue) => {
                 onHideMandatoryFieldError();
                 onChange(newInputValue);
+                if (newInputValue === "Use my current location") {
+                  onChange("");
+                  onChangeLocation();
+                }
               }}
               onKeyDown={(e) => {
                 if (Regex.specialRegex.test(e.key)) e.preventDefault();
@@ -608,8 +615,8 @@ const FilterHeading = ({
                     variant="filled"
                     {...params}
                     label="City, state, or zip code"
+                    aria-label="City, state, or zip code field"
                     InputProps={{
-                      "aria-label": "City, state, or zip code field",
                       ...params.InputProps,
                       endAdornment: (
                         <InputAdornment position="end">
@@ -681,7 +688,7 @@ const FilterHeading = ({
               />
               <StyledInput
                 open={open}
-                // minDate={minDate}
+                minDate={minDate}
                 maxDate={maxDate}
                 data-testid={APPOINTMENT_TEST_ID.dateInput}
                 onOpen={() => setOpen(true)}
@@ -797,6 +804,7 @@ const FilterHeading = ({
         sx={{
           height: title && subtitle ? "200px" : "151px",
           position: isFixed ? "fixed" : "relative",
+          marginTop: isDashboard ? "27px !important" : "-15px",
         }}
       >
         <Box
@@ -1082,7 +1090,10 @@ const FilterHeading = ({
     return (
       <Box className={styles.mobileFilterContainer}>
         <Box className={styles.mobileContainer}>
-          <Typography variant={"h2"} className={styles.mobileTitle}>
+          <Typography
+            variant={"titleScheduleMobile"}
+            className={styles.mobileTitle}
+          >
             Schedule an eye exam
           </Typography>
           <form onSubmit={handleSubmit(onSubmit)}>

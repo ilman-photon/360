@@ -8,6 +8,7 @@ import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import styles from "./styles.module.scss";
 import {
   Box,
@@ -26,6 +27,8 @@ import {
 import { fullDateFormat } from "../../../utils/dateFormatter";
 import { useEffect } from "react";
 import Image from "next/image";
+import { formatPhoneNumber } from "../../../utils/phoneFormatter";
+import { getLinkAria } from "../../../utils/viewUtil";
 
 export default function AppointmentCard({
   appointmentData = [],
@@ -46,7 +49,11 @@ export default function AppointmentCard({
     appointmentInfo: {},
   });
   const [appointmentCount, setAppointmentCount] = React.useState(0);
-
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      console.log("enter press here! ");
+    }
+  };
   useEffect(() => {
     setAppointment(parseAppointmentCardData(appointmentData));
     setAppointmentCount(appointmentData.length);
@@ -111,7 +118,7 @@ export default function AppointmentCard({
               getDirection(location);
             }}
           >
-            Get Direction
+            Get Directions
           </Typography>
         </Box>
       )
@@ -180,22 +187,56 @@ export default function AppointmentCard({
                   {appointment.providerInfo?.position}
                 </Typography>
                 {renderAddressUI()}
-                <Typography variant="bodyLinkRegular" tabIndex={0}>
-                  {appointment.providerInfo?.phoneNumber}
+                <Typography
+                  variant="bodyLinkRegular"
+                  tabIndex={0}
+                  onKeyPress={() =>
+                    window.open(`tel:${appointment.providerInfo?.phoneNumber}`)
+                  }
+                  aria-label={`phone number ${appointment.providerInfo?.phoneNumber}`}
+                >
+                  <a
+                    onKeyPress={() =>
+                      window.open(
+                        `tel:${appointment.providerInfo?.phoneNumber}`
+                      )
+                    }
+                  >
+                    {formatPhoneNumber(appointment.providerInfo?.phoneNumber)}{" "}
+                  </a>
                 </Typography>
                 {renderGetDirection()}
               </Box>
             </Grid>
             <Grid item xs={5} sm={5} md={2}>
-              <Box className={styles.containerImage}>
-                <Image
-                  src={appointment.providerInfo.image}
-                  style={{ borderRadius: "50%" }}
-                  alt="Doctor Image"
-                  width="90px"
-                  height="90px"
-                  tabIndex={0}
-                />
+              <Box
+                className={styles.containerImage}
+                sx={{
+                  border: appointment?.providerInfo?.image
+                    ? "1px solid #003b4a"
+                    : 0,
+                }}
+              >
+                {appointment?.providerInfo?.image ? (
+                  <Image
+                    src={appointment.providerInfo.image}
+                    style={{ borderRadius: "50%" }}
+                    alt={`${appointment.providerInfo?.name} image`}
+                    width="90px"
+                    height="90px"
+                    tabIndex={0}
+                  />
+                ) : (
+                  <AccountCircleIcon
+                    sx={{
+                      width: { xs: "100%" },
+                      height: { xs: "100%" },
+                      color: "#b5b5b5",
+                    }}
+                    alt="Doctor Image"
+                    tabIndex={0}
+                  />
+                )}
               </Box>
               <Box className={styles.flexDisplay} tabIndex={0}>
                 <Box pr={1}>
@@ -337,6 +378,9 @@ export default function AppointmentCard({
             p: 0,
             position: "relative",
           },
+          ".MuiCardContent-root .MuiBox-root .MuiGrid-container": {
+            p: { xs: "24px 15.5px", md: "24px" },
+          },
         }}
       >
         {renderAppointmentUI()}
@@ -354,7 +398,12 @@ export default function AppointmentCard({
             onClick={() => {
               onViewAppointment();
             }}
-            aria-label="View appointments option"
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                onViewAppointment();
+              }
+            }}
+            {...getLinkAria("View appointments option")}
             tabIndex={0}
           >
             View Appointments

@@ -33,10 +33,10 @@ import { useRouter } from "next/router";
 import {
   DEFAULT_PATIENT_INFO_DATA,
   editAppointmentScheduleData,
+  rescheduleAppointment,
   resetAppointmentSchedule,
-  resetFilterData,
 } from "../../../store/appointment";
-import { fetchUser, setUserAppointmentDataByIndex } from "../../../store/user";
+import { fetchUser } from "../../../store/user";
 import { Api } from "../../api/api";
 import MESSAGES from "../../../utils/responseCodes";
 import { setFormMessage } from "../../../store";
@@ -45,6 +45,7 @@ import { StyledButton } from "../../../components/atoms/Button/button";
 import { colors } from "../../../styles/theme";
 import { useLeavePageConfirm } from "../../../../hooks/useCallbackPrompt";
 import { mmddyyDateFormat, hourDateFormat } from "../../../utils/dateFormatter";
+import { TramRounded } from "@mui/icons-material";
 
 const MobileTopBar = (data) => {
   return (
@@ -91,7 +92,7 @@ export const PageContent = ({
   OnClickSchedule = () => {
     // This is intentional
   },
-  onCreateAppointment = () => {
+  guestRegister = () => {
     // This is intentional
   },
 }) => {
@@ -121,33 +122,7 @@ export const PageContent = ({
       })
     );
 
-    console.log("handleFormSubmit", payload);
-    if (activeStep === 2 || !payload?.password) {
-      onCreateAppointment(payload, true);
-    } else {
-      onCreateAppointment(payload, false);
-    }
-  };
-
-  const createAccount = async function (postbody) {
-    try {
-      await api.getResponse("/ecp/patient/userregistration", postbody, "post");
-      cookies.set("authorized", true, { path: "/patient" });
-    } catch (err) {
-      console.error({ err });
-      if (err.ResponseCode) {
-        const errorMessage = MESSAGES[err.ResponseCode || 3500];
-
-        dispatch(
-          setFormMessage({
-            success: false,
-            title: errorMessage.title,
-            content: errorMessage.content,
-            isBackToLogin: errorMessage.isBackToLogin,
-          })
-        );
-      }
-    }
+    guestRegister(payload);
   };
 
   switch (activeStep) {
@@ -238,7 +213,7 @@ export const PageContent = ({
               patientData={appointmentScheduleData.patientInfo}
               OnSubmit={(v) => {
                 handleFormSubmit(v);
-                createAccount(v);
+                // createAccount(v);
                 OnClickSchedule(v);
               }}
               OnClickSignIn={() => {
@@ -316,13 +291,6 @@ export default function ScheduleAppointmentPage({ query }) {
   });
 
   React.useEffect(() => {
-    if (!appointmentScheduleData.providerInfo.providerId) {
-      router.replace("/patient/appointment");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [appointmentScheduleData]);
-
-  React.useEffect(() => {
     if (router.query.reschedule) {
       setIsReschedule(true);
     }
@@ -338,18 +306,18 @@ export default function ScheduleAppointmentPage({ query }) {
     const cookies = new Cookies();
     const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
     setIsLoggedIn(isLogin);
+    console.log(appointmentScheduleData, "appointmentScheduleData");
 
     const post = {
       username: appointmentScheduleData.patientInfo.email,
     };
-    api
-      .getPatientId(post)
-      .then((response) => {
-        setPatientId(response.ecpPatientId || "");
-      })
-      .catch(() => {
-        console.log("catch");
-      });
+    {
+      isLogin &&
+        api.getPatientId(post).then((response) => {
+          setPatientId(response.ecpPatientId || "");
+        });
+    }
+    // console.log(patientId)
   }, []);
 
   React.useEffect(() => {
@@ -359,7 +327,7 @@ export default function ScheduleAppointmentPage({ query }) {
   const userData = useSelector((state) => state.user.userData);
 
   React.useEffect(() => {
-    if (isLoggedIn) {
+    if (isLoggedIn && !appointmentScheduleData.patientInfo._id) {
       dispatch(
         editAppointmentScheduleData({
           key: "patientInfo",
@@ -369,7 +337,6 @@ export default function ScheduleAppointmentPage({ query }) {
             lastName: userData.lastName,
             dob: userData.dob,
             phoneNumber: userData.mobile,
-
             email: userData.email,
             preferredCommunication: userData.preferredCommunication,
           },
@@ -379,7 +346,60 @@ export default function ScheduleAppointmentPage({ query }) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoggedIn]);
 
-  const handleCreateAppointment = (payload, isPage) => {
+  function getPatientId(postBody, patientDob) {
+    api
+      .getPatientId(postBody)
+      .then((response) => {
+        dispatch(fetchUser());
+        handleCreateAppointment(true, patientDob, response.ecpPatientId);
+      })
+      .catch((err) => {
+        console.error(err, "getPatientId error");
+      });
+  }
+
+  const handleGuestRegister = async function (data) {
+    const postBody = {
+      firstName: data.firstName,
+      lastName: data.lastName,
+      dob: mmddyyDateFormat(data.dob),
+      email: data.email,
+      mobileNumber: data.mobile,
+      password: data.password,
+      preferredCommunication: data.preferredCommunication,
+      userType: "G",
+    };
+
+    try {
+      await api
+        .getResponse("/ecp/patient/userregistration", postBody, "post")
+        .then(() => {
+          getPatientId(
+            {
+              username: postBody.email,
+            },
+            mmddyyDateFormat(data.dob)
+          );
+        });
+    } catch (err) {
+      console.error(err, "hsc");
+      if (err.ResponseCode) {
+        const errorMessage = MESSAGES[err.ResponseCode || 3500];
+        console.log(errorMessage, "errorMessage", err);
+
+        dispatch(
+          setFormMessage({
+            success: false,
+            title: errorMessage.title,
+            content: errorMessage.content,
+            isBackToLogin: errorMessage.isBackToLogin,
+          })
+        );
+      }
+    }
+  };
+
+  const handleCreateAppointment = (isGuest, patientDob, guestId) => {
     const api = new Api();
     const dateNow = new Date();
     const postBody = [
@@ -404,27 +424,25 @@ export default function ScheduleAppointmentPage({ query }) {
           code: appointmentScheduleData.appointmentInfo.appointmentType,
         },
         patient: {
-          _id: patientId,
+          _id: guestId || patientId,
         },
-        patientDob: payload
-          ? mmddyyDateFormat(payload.dob)
+        patientDob: patientDob
+          ? mmddyyDateFormat(patientDob)
           : mmddyyDateFormat(appointmentScheduleData.patientInfo.dob),
         confirmationDetail: {
           confirmationDate: mmddyyDateFormat(dateNow),
           confirmationTime: hourDateFormat(dateNow),
-          confirmationBy: patientId,
+          confirmationBy: guestId || patientId,
         },
         allowCreate: true,
       },
     ];
 
-    console.log(postBody);
-
     api
       .createAppointment(postBody)
       .then(() => {
         console.log("then");
-        if (isPage) {
+        if (isGuest) {
           router.push("/patient/schedule-appointment-confirmation");
         } else {
           setActiveStep(4);
@@ -448,15 +466,6 @@ export default function ScheduleAppointmentPage({ query }) {
     }
   };
 
-  const handleClickSchedule = (data) => {
-    console.log("handleClickSchedule", data);
-    if (activeStep === 2 || !data?.password) {
-      createAppointment(true);
-    } else {
-      createAppointment();
-    }
-  };
-
   const handleOkClicked = async () => {
     if (isReschedule) {
       await router.push("/patient/appointments");
@@ -467,24 +476,23 @@ export default function ScheduleAppointmentPage({ query }) {
   };
 
   const handleCancelReschedule = () => {
-    dispatch(resetFilterData());
+    // dispatch(resetFilterData()); // Forgot why is this here but will not delete this for now.
     setModalConfirmReschedule(false);
   };
 
-  const OnConfirmRescheduleAppointment = () => {
-    dispatch(
-      setUserAppointmentDataByIndex({
-        appointmentId: 0,
-        appointmentInfo: {
-          ...appointmentScheduleData.appointmentInfo,
-          date: appointmentScheduleData.appointmentInfo.date.toUTCString(),
-        },
-        providerInfo: appointmentScheduleData.providerInfo,
+  const OnConfirmRescheduleAppointment = async () => {
+    const { payload } = await dispatch(
+      rescheduleAppointment({
+        appointmentId: appointmentScheduleData.appointmentInfo.id,
+        payload: appointmentScheduleData,
       })
     );
+    if (payload.success) {
+      setActiveStep(4);
+      setIsOpen(true);
+    }
 
-    setActiveStep(4);
-    setIsOpen(true);
+    setModalConfirmReschedule(false);
   };
 
   const ModalConfirmSchedule = () => {
@@ -570,8 +578,7 @@ export default function ScheduleAppointmentPage({ query }) {
             OnsetActiveStep={handleSetActiveStep}
             appointmentScheduleData={appointmentScheduleData}
             OnEditClicked={handleEditSchedule}
-            onCreateAppointment={handleCreateAppointment}
-            // OnClickSchedule={handleClickSchedule}
+            guestRegister={handleGuestRegister}
           />
         </div>
       </Grid>

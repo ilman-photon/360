@@ -13,6 +13,7 @@ import ConfirmationForm from "../../../components/organisms/ConfirmationForm/con
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import { Regex } from "../../../utils/regex";
 import MESSAGES from "../../../utils/responseCodes";
+import { useRouter } from "next/router";
 
 export async function getServerSideProps({ query }) {
   return {
@@ -24,7 +25,7 @@ export async function getServerSideProps({ query }) {
 
 export default function SetPasswordPage({ username }) {
   const dispatch = useDispatch();
-
+  const router = useRouter();
   const isEmail = Regex.isEmailCorrect.test(username);
   const mailFormat =
     username &&
@@ -49,7 +50,7 @@ export default function SetPasswordPage({ username }) {
     buttonLabel: "Back to Login",
     butttonMode: constants.SECONDARY,
     onCTAButtonClicked: function () {
-      route.push(`/patient/login`);
+      router.push(`/patient/login`);
     },
     formStyle: { marginTop: "0px" },
   };
@@ -62,7 +63,7 @@ export default function SetPasswordPage({ username }) {
 
       await api.getResponse(
         "/ecp/patient/registrationsetpassword",
-        postbody,
+        { ...postbody, patientType: "G" },
         "post"
       );
       setShowPostMessage(true);
@@ -101,9 +102,6 @@ export default function SetPasswordPage({ username }) {
           username={maskedUsername}
           formMessage={formMessage}
           onSetPasswordClicked={OnSetPasswordClicked}
-          onBackToLoginClicked={function (router) {
-            router.push("/patient/login");
-          }}
           showBackToLogin={false}
         />
       ) : (
@@ -120,6 +118,7 @@ SetPasswordPage.getLayout = function getLayout(page) {
       showMobileImage={false}
       imageSrc={backgroundImage}
       title={"Set Password"}
+      customImageBg={true}
     >
       {page}
     </AuthLayout>

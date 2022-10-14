@@ -4,12 +4,13 @@ import ContactInformation from "../../../components/organisms/ContactInformation
 import { Box, Grid, Tab, Tabs, useMediaQuery } from "@mui/material";
 import { useEffect, useState } from "react";
 import { Provider, useDispatch, useSelector } from "react-redux";
-import { fetchUser, setUserData } from "../../../store/user";
+import { fetchUser, updateUser } from "../../../store/user";
 import store from "../../../store/store";
 import PropTypes from "prop-types";
+import { closePageMessage, setPageMessage } from "../../../store";
+import { useRouter } from "next/router";
 import { Api } from "../../api/api";
 import constants from "../../../utils/constants";
-import { closePageMessage, setPageMessage } from "../../../store";
 import FormMessage from "../../../components/molecules/FormMessage/formMessage";
 import { styled } from "@mui/material/styles";
 
@@ -47,14 +48,19 @@ export async function getStaticProps() {
   return {
     props: {
       autoFillAPIToken: process.env.MAPBOX_API_TOKEN,
+      googleAPIKey: process.env.GOOGLE_API_KEY,
     },
   };
 }
-export default function ProfileInformationPage({ autoFillAPIToken }) {
+export default function ProfileInformationPage({
+  googleAPIKey,
+  autoFillAPIToken,
+}) {
   const [contactEditing, setContactEditing] = useState(false);
   const [personalEditing, setPersonalEditing] = useState(false);
   const [activeTabs, setActiveTabs] = useState(0);
   const [usStatesList, setUsStatesList] = useState([]);
+  const [patientId, setPatientId] = useState(null);
 
   const userData = useSelector((state) => state.user.userData);
   const pageMessage = useSelector((state) => state.index.pageMessage);
@@ -62,6 +68,30 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
   const dispatch = useDispatch();
   const isDesktop = useMediaQuery("(min-width: 769px)");
   const api = new Api();
+  const router = useRouter();
+
+  const onBackButtonEvent = (e) => {
+    e.preventDefault();
+    router.push("/patient/login");
+  };
+
+  useEffect(() => {
+    window.addEventListener("popstate", onBackButtonEvent);
+
+    const userStorageData = JSON.parse(localStorage.getItem("userData"));
+    if (userStorageData) {
+      dispatch(fetchUser({ patientId: userStorageData.patientId }));
+      setPatientId(userStorageData.patientId);
+      fetchUSListOfStates();
+    } else {
+      router.replace("/patient/login");
+    }
+
+    return () => {
+      window.removeEventListener("popstate", onBackButtonEvent);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const showSuccessMessage = (message) => {
     dispatch(
@@ -75,26 +105,25 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
     }, 5000);
   };
 
-  const onSavePersonalData = (payload) => {
-    dispatch(setUserData(payload));
-    setPersonalEditing(false);
-    showSuccessMessage("Your changes were saved");
+  const onSavePersonalData = async (postBody) => {
+    const { payload } = await dispatch(
+      updateUser({ patientId, payload: postBody })
+    );
+    if (payload.success) {
+      showSuccessMessage("Your changes were saved");
+      setPersonalEditing(false);
+    }
   };
 
-  const onSaveContactData = (payload) => {
-    dispatch(setUserData(payload));
-    setContactEditing(false);
-    showSuccessMessage("Your changes were saved");
+  const onSaveContactData = async (postBody) => {
+    const { payload } = await dispatch(
+      updateUser({ patientId, payload: postBody })
+    );
+    if (payload.success) {
+      showSuccessMessage("Your changes were saved");
+      setContactEditing(false);
+    }
   };
-
-  useEffect(() => {
-    dispatch(fetchUser());
-  }, [dispatch]);
-
-  useEffect(() => {
-    fetchUSListOfStates();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const fetchUSListOfStates = async () => {
     const stateList = await api.getUSListOfStates();
@@ -127,7 +156,7 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
           borderRadius: "0px",
           justifyContent: "center",
           position: "absolute",
-          top: "-40px",
+          top: "-48px",
           left: 0,
           width: "100%",
           transition: "0.3 s ease-in-out",
@@ -136,26 +165,25 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
       >
         {pageMessage.content}
       </FormMessage>
-      <Tabs
-        sx={{
-          display: {
-            sm: "none",
-          },
-          backgroundColor: "#F4F4F4",
-        }}
-        value={activeTabs}
-        onChange={(_evt, val) => {
-          setActiveTabs(val);
-        }}
-        textColor="inherit"
-        variant="fullWidth"
-        TabIndicatorProps={{
-          style: { background: "#0095A9", color: "red" },
-        }}
-      >
-        <StyledTab value={0} label="Profile" {...a11yProps(0)} />
-        <StyledTab value={1} label="Contact" {...a11yProps(1)} />
-      </Tabs>
+      {!isDesktop && (
+        <Tabs
+          sx={{
+            backgroundColor: "#F4F4F4",
+          }}
+          value={activeTabs}
+          onChange={(_evt, val) => {
+            setActiveTabs(Number(val));
+          }}
+          textColor="inherit"
+          variant="fullWidth"
+          TabIndicatorProps={{
+            style: { background: "#0095A9", color: "red" },
+          }}
+        >
+          <StyledTab value={0} label="Profile" {...a11yProps(0)} />
+          <StyledTab value={1} label="Contact" {...a11yProps(1)} />
+        </Tabs>
+      )}
       <Grid container spacing={isDesktop ? 2 : 0}>
         <Grid item xs={12} sm={12} lg={6}>
           {isDesktop || activeTabs === 0 ? (
@@ -183,6 +211,7 @@ export default function ProfileInformationPage({ autoFillAPIToken }) {
                 OnCancelEditClicked={(_) => setContactEditing(false)}
                 OnSaveClicked={onSaveContactData}
                 autoFillAPIToken={autoFillAPIToken}
+                googleAPIKey={googleAPIKey}
                 usStatesList={usStatesList}
               />
             </>

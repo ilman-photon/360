@@ -155,16 +155,26 @@ export default function AppointmentForm({
     return passes >= 3 ? true : false;
   };
 
+  const getTitleStyle = () => {
+    if (isForMyself) {
+      return isDesktop
+        ? { fontSize: "32px", fontFamily: "Bw Nista Geometric DEMO" }
+        : { fontSize: "26px", fontFamily: "Bw Nista Geometric DEMO" };
+    } else {
+      return {
+        fontSize: isDesktop ? "26px" : "22px",
+        fontFamily: "Inter",
+        fontWeight: "500",
+      };
+    }
+  };
+
   return (
     <Stack spacing={2}>
       {/* <Stack spacing={2}> */}
       <Box sx={{ m: 1 }}>
         <Typography
-          sx={
-            isDesktop
-              ? { fontSize: "32px", fontFamily: "Bw Nista Geometric DEMO" }
-              : { fontSize: "26px", fontFamily: "Bw Nista Geometric DEMO" }
-          }
+          sx={getTitleStyle()}
           tabIndex={0}
           aria-label={
             isForMyself

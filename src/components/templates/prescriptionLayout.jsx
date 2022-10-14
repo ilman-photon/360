@@ -32,6 +32,7 @@ export default function PrescriptionLayout({
       case "prescriptions":
         return "Prescriptions";
       default:
+        if (router.pathname.includes("documents")) return "Intake Forms";
         return "Prescriptions";
     }
   };
@@ -39,14 +40,14 @@ export default function PrescriptionLayout({
   return (
     <>
       <Head>
-        <title>{pageTitle}</title>
+        <title>{pageTitle} Page</title>
       </Head>
       <div className={styles.defaultLayout}>
         <BaseHeader {...logoutProps} />
         <Navbar />
         <AccountTitleHeading
           title={headingTitle()}
-          sxContainer={{ marginTop: isDesktop ? "107px" : "56px" }}
+          sxContainer={{ marginTop: isDesktop ? "107px" : "64px" }}
           sx={{ fontWeight: "400", maxWidth: "1477px", margin: "0 auto" }}
         />
         <ThemeProvider theme={patientTypography}>
