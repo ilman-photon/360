@@ -5,6 +5,8 @@ import { Provider } from "react-redux";
 import Prescriptions from "../../../components/molecules/Dashboard/prescriptions";
 import PrescriptionLayout from "../../../components/templates/prescriptionLayout";
 import store from "../../../store/store";
+import { mmddyyDateFormat } from "../../../utils/dateFormatter";
+import { onCallGetPrescriptionData } from "../../../utils/prescription";
 import { Api } from "../../api/api";
 
 export default function PrescriptionPage() {
@@ -17,11 +19,9 @@ export default function PrescriptionPage() {
   //Call API for getAllPrescriptions
   function onCalledGetAllPrescriptionsAPI() {
     // const api = new Api();
-    const api = new Api();
-    api
-      .getAllPrescriptions()
+    onCallGetPrescriptionData()
       .then(function (response) {
-        setPrescriptionData(response.prescriptions);
+        setPrescriptionData(response);
       })
       .catch(function () {
         //Handle error getAllPrescriptions
@@ -39,6 +39,7 @@ export default function PrescriptionPage() {
       (x) => x.id === postBody.medicationId
     );
     const api = new Api();
+    const userData = JSON.parse(localStorage.getItem("userData"));
     if (isCancelRequest) {
       api
         .doMedicationCancelRequestRefill(postBody)
@@ -54,11 +55,30 @@ export default function PrescriptionPage() {
           resetRequestRefillResponse();
         });
     } else {
+      const refillRequestBody = {
+        subject: "PhotonTesting checking",
+        bodyNote: "Please refill the medicine",
+        bodyReferences: [
+          {
+            code: "PATIENT",
+            _id: "fdb0aba5-63b8-4c79-b5be-5b90d30088fa",
+          },
+        ],
+        messageStatus: "SENT",
+        priority: "HIGH",
+        deliveryDate: mmddyyDateFormat(new Date()),
+        senderIsPatient: true,
+        providerNPI: prescriptionData.medications[index].providerNPI,
+      };
+
       api
-        .doMedicationRequestRefill(postBody)
+        .doMedicationRequestRefill(refillRequestBody)
         .then(function (response) {
           const data = JSON.parse(JSON.stringify(prescriptionData));
           data.medications[index].status = "refill request";
+          data.medications[index].fillRequestDate = mmddyyDateFormat(
+            response.deliveryDate
+          );
           setPrescriptionData(data);
           setRequestRefillResponse(response);
           resetRequestRefillResponse();

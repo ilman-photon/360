@@ -89,6 +89,21 @@ function isValidDate(d) {
   return d instanceof Date && !isNaN(d);
 }
 
+function getStartDateAndExpiredDate(data) {
+  return {
+    startDate: data?.startDate || "",
+    expirationDate: data?.expirationDate || "",
+  };
+}
+
+function getTimeRemaining(sig) {
+  return `${sig?.Action} ${sig?.DoseTiming}`;
+}
+
+function getDoseMedication(sig) {
+  return `${sig?.Dose} ${sig?.DoseUnit}`;
+}
+
 export function parsePrescriptions(glassesData, contactsData, mediactionData) {
   const data = {
     glasses: [],
@@ -99,11 +114,12 @@ export function parsePrescriptions(glassesData, contactsData, mediactionData) {
     const providerName = glasses?.provider
       ? `${glasses?.provider.firstName} ${glasses?.provider.lastName}`
       : "";
-    const date = new Date(glasses?.startDate);
-    const expirationDate = new Date(glasses?.expirationDate);
-    const tempGlasses = {
+    const date = getStartDateAndExpiredDate(glasses.glrx);
+    const startdDate = new Date(date.startDate);
+    const expirationDate = new Date(date.expirationDate);
+    let tempGlasses = {
       prescribedBy: providerName,
-      date: isValidDate(date) ? date.toISOString() : "",
+      date: isValidDate(startdDate) ? startdDate.toISOString() : "",
       expirationDate: isValidDate(expirationDate)
         ? expirationDate.toISOString()
         : "",
@@ -136,11 +152,19 @@ export function parsePrescriptions(glassesData, contactsData, mediactionData) {
     const providerName = mediaction?.Provider
       ? `${mediaction?.Provider?.FirstName} ${mediaction?.Provider?.LastName}`
       : "";
+    const providerNPI = mediaction?.Provider
+      ? `${mediaction?.Provider?.NPI}`
+      : "";
     const tempContacts = {
-      prescribedBy: providerName,
+      id: mediaction._id,
+      providerName: providerName,
+      fillRequestDate: "-",
+      timeRemaining: getTimeRemaining(mediaction?.Sig),
+      dose: getDoseMedication(mediaction?.Sig),
       prescription: mediaction?.Sig?.Drug?.DrugDescription || "",
       date: mediaction?.CreatedDate,
       expiredDate: mediaction?.StopDate,
+      providerNPI,
     };
     data.medications.push(tempContacts);
   }

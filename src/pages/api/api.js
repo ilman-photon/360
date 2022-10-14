@@ -332,8 +332,7 @@ export class Api {
   }
 
   doMedicationRequestRefill(postBody) {
-    const domain = window.location.origin;
-    const url = `${domain}/api/dummy/prescription/requestRefill`;
+    const url = `/ecp/prescriptions/requestRefill`;
     return this.getResponse(url, postBody, "post");
   }
 
