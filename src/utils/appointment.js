@@ -316,13 +316,13 @@ function parsePrescriptionItemData(prescriptionData, key) {
       key
     );
 
-    if (!latestDate) {
-      latestDate = new Date(itemData.date);
-    } else {
-      latestDate =
-        latestDate < new Date(itemData.date)
-          ? latestDate
-          : new Date(itemData.date);
+    const itemDate = new Date(itemData.date);
+    if (isValidDate(itemDate)) {
+      if (!latestDate) {
+        latestDate = itemDate;
+      } else {
+        latestDate = latestDate > itemDate ? latestDate : itemDate;
+      }
     }
 
     itemData.date = mmddyyDateFormat(itemData.date);
@@ -334,21 +334,22 @@ function parsePrescriptionItemData(prescriptionData, key) {
 }
 
 function getLatestDate(glassesDate, contactDate, medicationDate) {
-  if (
-    (glassesDate &&
-      glassesDate <= contactDate &&
-      glassesDate <= medicationDate) ||
-    (glassesDate && !contactDate && !medicationDate)
-  ) {
-    return 0;
-  } else if (
-    (contactDate && contactDate <= medicationDate) ||
-    (!glassesDate && contactDate && !medicationDate)
-  ) {
-    return 1;
-  } else {
-    return 2;
-  }
+  const listDate = [
+    { name: "contact", date: contactDate, tab: 1 },
+    { name: "glasses", date: glassesDate, tab: 0 },
+    { name: "medication", date: medicationDate, tab: 2 },
+  ];
+  const result = listDate
+    .filter((item) => item.date !== null)
+    .map((v) => {
+      return v && v.date && v.date.getTime();
+    });
+  const getMinDate = Math.max(...result);
+  let activeTab = listDate.find(
+    (item) => item.date && item.date.getTime() === getMinDate
+  );
+
+  return activeTab?.tab !== undefined ? activeTab.tab : 1;
 }
 
 function parsePrescriptionItemMedication(medications) {
@@ -412,11 +413,14 @@ function parsePrescriptionItemMedication(medications) {
       past.push(medicationData);
     }
 
-    if (!latestDateMedic) {
-      latestDateMedic = new Date(date);
-    } else {
-      latestDateMedic =
-        latestDateMedic < new Date(date) ? latestDateMedic : new Date(date);
+    const itemDate = new Date(date);
+    if (isValidDate(itemDate)) {
+      if (!latestDateMedic) {
+        latestDateMedic = itemDate;
+      } else {
+        latestDateMedic =
+          latestDateMedic > itemDate ? latestDateMedic : itemDate;
+      }
     }
     filterProvider.push({
       name: medications[index].providerName,

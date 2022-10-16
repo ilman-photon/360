@@ -8,6 +8,7 @@ import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import store from "../../src/store/store";
 import mediaQuery from "css-mediaquery";
+import { TEMP_DATA_CONTACTS, TEMP_DATA_GLASSES, TEMP_DATA_MEDICATION } from "../setup/setup";
 
 function createMatchMedia(width) {
   return (query) => ({
@@ -156,7 +157,6 @@ const MOCK_PRESCRIPTION = {
 
 defineFeature(feature, (test) => {
   let container;
-  const domain = window.location.origin;
   const mock = new MockAdapter(axios);
 
   test("EPIC_EPP-18_STORY_EPP-2706- To verify whether the patient is able to view the option to Refill the Prescription.", ({
@@ -179,10 +179,19 @@ defineFeature(feature, (test) => {
     and("navigate to the View Prescription page.", async () => {
       Cookies.result = "true";
       mock
-        .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
-        )
-        .reply(200, MOCK_PRESCRIPTION);
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+      )
+      .reply(200, TEMP_DATA_MEDICATION);
+      mock
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+      )
+      .reply(200, TEMP_DATA_CONTACTS);
+      mock
+      .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+      )
+      .reply(200, TEMP_DATA_GLASSES);
       window.matchMedia = createMatchMedia("1920px");
 
       act(() => {
@@ -224,10 +233,19 @@ defineFeature(feature, (test) => {
       Cookies.result = "true";
       mock.reset();
       mock
-        .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
-        )
-        .reply(200, MOCK_PRESCRIPTION);
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+      )
+      .reply(200, TEMP_DATA_MEDICATION);
+      mock
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+      )
+      .reply(200, TEMP_DATA_CONTACTS);
+      mock
+      .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+      )
+      .reply(200, TEMP_DATA_GLASSES);
       window.matchMedia = createMatchMedia("1920px");
 
       act(() => {
@@ -253,8 +271,24 @@ defineFeature(feature, (test) => {
       };
 
       mock
-        .onPost(`${domain}/api/dummy/prescription/requestRefill`)
-        .reply(200, mockResponse);
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+      )
+      .reply(200, TEMP_DATA_MEDICATION);
+      mock
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+      )
+      .reply(200, TEMP_DATA_CONTACTS);
+      mock
+      .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+      )
+      .reply(200, TEMP_DATA_GLASSES);
+
+      mock
+      .onPost(`/ecp/prescriptions/requestRefill`
+      )
+      .reply(200, {});
 
       const requestRefill = container.getAllByText(/Request Refill/i)[0];
       expect(requestRefill).toBeInTheDocument();
@@ -289,10 +323,19 @@ defineFeature(feature, (test) => {
         const mockq = new MockAdapter(axios);
         mockq.reset();
         mockq
-          .onGet(
-            `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
-          )
-          .reply(200, mockResp);
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, TEMP_DATA_MEDICATION);
+        mockq
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+        )
+        .reply(200, {});
+        mockq
+        .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+        )
+        .reply(200, {});
         window.matchMedia = createMatchMedia("1920px");
 
         act(() => {

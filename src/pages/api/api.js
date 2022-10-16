@@ -66,7 +66,7 @@ export class Api {
         } else if (err && err.response && err.response.data) {
           reject(err.response.data);
           const errors = err.response.data._errors;
-          if (errors) {
+          if (errors && showError) {
             store.dispatch(setGenericErrorMessage(errors[0].description));
           }
         } else {

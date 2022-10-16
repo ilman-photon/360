@@ -107,25 +107,25 @@ export default function PrescriptionPage() {
 
   return (
     <Stack sx={{ width: "100%", backgroundColor: "#F4F4F4" }}>
-      {isLoaded && (
-        <Stack
-          sx={{
-            padding: isMobile ? "16px" : "44px 24px 24px 24px",
-            marginBottom: "32px",
-            maxWidth: "1440px",
-            backgroundColor: isMobile ? "#F4F4F4" : "#fff",
-            alignSelf: "center",
-            width: "100%",
-          }}
-        >
-          <Prescriptions
-            prescriptionData={prescriptionData}
-            isViewAll={true}
-            onMedicationRequestRefill={onMedicationRequestRefill}
-            requestRefillResponseData={requestRefillResponse}
-          />
-        </Stack>
-      )}
+      {/* {isLoaded && ( */}
+      <Stack
+        sx={{
+          padding: isMobile ? "16px" : "44px 24px 24px 24px",
+          marginBottom: "32px",
+          maxWidth: "1440px",
+          backgroundColor: isMobile ? "#F4F4F4" : "#fff",
+          alignSelf: "center",
+          width: "100%",
+        }}
+      >
+        <Prescriptions
+          prescriptionData={prescriptionData}
+          isViewAll={true}
+          onMedicationRequestRefill={onMedicationRequestRefill}
+          requestRefillResponseData={requestRefillResponse}
+        />
+      </Stack>
+      {/* )} */}
     </Stack>
   );
 }

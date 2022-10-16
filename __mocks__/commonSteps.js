@@ -22,6 +22,7 @@ import Cookies from "universal-cookie";
 import { getServerSideProps } from "../src/pages/patient/mfa";
 import App from "../src/pages/_app";
 import CreateAccountPage from "../src/pages/patient/auth/create-account";
+import { TEMP_DATA_CONTACTS, TEMP_DATA_GLASSES, TEMP_DATA_MEDICATION } from "./component-mock";
 
 const MOCK_APPOINTMENT = {
   appointmentList: [
@@ -1373,9 +1374,20 @@ export async function navigateToPatientPortalHome() {
   mock
     .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllAppointment`)
     .reply(200, MOCK_APPOINTMENT);
-  mock
-    .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`)
-    .reply(200, MOCK_PRESCRIPTION);
+    mock
+    .onGet(
+      `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+    )
+    .reply(200, TEMP_DATA_MEDICATION);
+    mock
+    .onGet(
+      `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+    )
+    .reply(200, TEMP_DATA_CONTACTS);
+    mock
+    .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+    )
+    .reply(200, TEMP_DATA_GLASSES);
   const response = await getServerSideProps({
     req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
     res: jest.fn(),

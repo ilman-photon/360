@@ -8,6 +8,7 @@ import PrescriptionPage from "../../src/pages/patient/prescription";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
 import mediaQuery from "css-mediaquery";
+import { TEMP_DATA_MEDICATION } from "../setup/setup";
 
 function createMatchMedia(width) {
   return (query) => ({
@@ -39,68 +40,6 @@ const defaultValidation = () => {
   expect(true).toBeTruthy();
 };
 
-const MOCK_PRESCRIPTION = {
-  prescriptions: {
-    glasses: [
-      {
-        prescribedBy: "Dr. Sonha Nguyen",
-        date: "2022-09-02T11:18:47.229Z",
-        expirationDate: "2022-10-02T11:18:47.229Z",
-        prescriptionDetails: [
-          {
-            Eye: "OD",
-            Sph: "+20.00",
-            Cyl: "-5.00",
-            Axis: "70",
-            Add: "x180",
-          },
-          {
-            Eye: "OS",
-            Sph: "+19.75",
-            Cyl: "-4.75",
-            Axis: "38",
-            Add: "x090",
-          },
-        ],
-      },
-    ],
-    contacts: [
-      {
-        prescribedBy: "Dr. Sonha Nguyen",
-        date: "2022-09-02T11:18:47.229Z",
-        expirationDate: "2022-10-02T11:18:47.229Z",
-        prescriptionDetails: [
-          {
-            Eye: "OD",
-            Sph: "+20.00",
-            Bc: "-5.00",
-            Cyl: "70",
-            Axis: "x180",
-          },
-          {
-            Eye: "OS",
-            Sph: "+19.75",
-            Bc: "-4.75",
-            Cyl: "38",
-            Axis: "x090",
-          },
-        ],
-      },
-    ],
-    medications: [
-      {
-        id: "0",
-        prescription: "Aspirint 0.1% Ointmanet",
-        date: "2022-09-01T11:18:47.229Z",
-      },
-      {
-        id: "0",
-        prescription: "Aspirint 0.1% Ointmanet",
-        date: "2022-09-01T11:18:47.229Z",
-      },
-    ],
-  },
-};
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint6/EPP-2704.feature"
@@ -140,10 +79,19 @@ defineFeature(feature, (test) => {
       const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock
-        .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
-        )
-        .reply(200, MOCK_PRESCRIPTION);
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+      )
+      .reply(200, TEMP_DATA_MEDICATION);
+      mock
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+      )
+      .reply(200, {});
+      mock
+      .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+      )
+      .reply(200, {});
       window.matchMedia = createMatchMedia("1920px");
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
