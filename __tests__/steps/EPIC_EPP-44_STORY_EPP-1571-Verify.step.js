@@ -1,1932 +1,2295 @@
 import { defineFeature, loadFeature } from "jest-cucumber";
+import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import { Provider } from "react-redux";
+import store from "../../src/store/store";
+const useRouter = jest.spyOn(require("next/router"), "useRouter");
+import constants from "../../src/utils/constants";
+import FilterHeading from "../../src/components/molecules/FilterHeading/filterHeading";
+import FilterResult from "../../src/components/molecules/FilterResult/filterResult";
+import ScheduleAppointmentPage from "../../src/pages/patient/schedule-appointment";
+import mediaQuery from 'css-mediaquery';
+import { renderLogin } from "../../__mocks__/commonSteps";
+import MockAdapter from "axios-mock-adapter";
+import axios from "axios";
+import Cookies from "universal-cookie";
+import { getServerSideProps } from "../../src/pages/patient/mfa";
+import HomePage from "../../src/pages/patient";
 
 const feature = loadFeature(
-  "./__tests__/feature/Patient Portal/Sprint4/EPP-1571.feature",
-  {
-    tagFilter: "@included and not @excluded",
-  }
+    "./__tests__/feature/Patient Portal/Sprint4/EPP-1571.feature"
 );
 
 defineFeature(feature, (test) => {
-  const defaultValidation = () => {
-    expect(true).toBeTruthy();
-  };
+    let container;
+    const { APPOINTMENT_TEST_ID, SEARCH_PROVIDER_TEST_ID } = constants.TEST_ID
 
-    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Login" screen with different option to sync the appointment', ({ given, when, and, then }) => {
+    const providerList = [
+        {
+            providerId: "1",
+            address: {
+                addressLine1: "51 West 51st Street",
+                addressLine2: "Floor 3, Suite 320 Midtown",
+                city: "Florida",
+                state: "FR",
+                zipcode: "54231",
+            },
+            rating: "5",
+            name: "Paul Wagner Md",
+            phoneNumber: "(123) 123-4567",
+            distance: "10 mi",
+            image: "/doctor.png",
+            from: "2022-09-19",
+            to: "2022-09-24",
+            availability: [
+                {
+                    date: "2022-09-19",
+                    list: [
+                        {
+                            time: "11:30am",
+                            key: 12222,
+                        },
+                    ],
+                },
+                {
+                    date: "2022-09-20",
+                    list: [
+                        {
+                            time: "08:00am",
+                            key: 12223,
+                        },
+                        {
+                            time: "10:30am",
+                            key: 12224,
+                        },
+                        {
+                            time: "11:00am",
+                            key: 12225,
+                        },
+                        {
+                            time: "12:00pm",
+                            key: 12226,
+                        },
+                        {
+                            time: "13:00pm",
+                            key: 12227,
+                        },
+                        {
+                            time: "14:00pm",
+                            key: 12228,
+                        },
+                    ],
+                },
+                {
+                    date: "2022-09-21",
+                    list: [
+                        {
+                            time: "08:30am",
+                            key: 12229,
+                        },
+                        {
+                            time: "10:30am",
+                            key: 12230,
+                        }
+                    ],
+                },
+                {
+                    date: "2022-09-22",
+                    list: [
+                        {
+                            time: "09:30am",
+                            key: 12237,
+                        },
+                        {
+                            time: "11:00am",
+                            key: 12238,
+                        },
+                    ],
+                },
+                {
+                    date: "2022-09-23",
+                    list: [
+                        {
+                            time: "09:30am",
+                            key: 12239,
+                        },
+                    ],
+                },
+                {
+                    date: "2022-09-24",
+                    list: [
+                        {
+                            time: "09:30am",
+                            key: 12240,
+                        },
+                    ],
+                },
+            ],
+            coordinate: {
+                latitude: 32.751204,
+                longitude: -117.1641166,
+            },
+        },
+        {
+            providerId: "2",
+            address: {
+                addressLine1: "51 West 51st Street",
+                addressLine2: "Floor 3, Suite 320 Midtown",
+                city: "Florida",
+                state: "FR",
+                zipcode: "54231",
+            },
+            rating: "5",
+            name: "Paul Wagner Md",
+            phoneNumber: "(123) 123-4567",
+            distance: "10 mi",
+            image: "/doctor.png",
+            from: "2022-09-19",
+            to: "2022-09-24",
+            availability: [
+                {
+                    date: "2022-09-19",
+                    list: [
+                        {
+                            time: "11:30am",
+                            key: 12222,
+                        },
+                    ],
+                },
+                {
+                    date: "2022-09-20",
+                    list: [
+                        {
+                            time: "08:00am",
+                            key: 12223,
+                        },
+                        {
+                            time: "10:30am",
+                            key: 12224,
+                        },
+                        {
+                            time: "11:00am",
+                            key: 12225,
+                        },
+                        {
+                            time: "12:00pm",
+                            key: 12226,
+                        },
+                        {
+                            time: "13:00pm",
+                            key: 12227,
+                        },
+                        {
+                            time: "14:00pm",
+                            key: 12228,
+                        },
+                    ],
+                },
+                {
+                    date: "2022-09-21",
+                    list: [
+                        {
+                            time: "08:30am",
+                            key: 12229,
+                        },
+                    ],
+                },
+                {
+                    date: "2022-09-22",
+                    list: [
+                        {
+                            time: "09:30am",
+                            key: 12237,
+                        },
+                        {
+                            time: "11:00am",
+                            key: 12238,
+                        },
+                    ],
+                },
+                {
+                    date: "2022-09-23",
+                    list: [
+                        {
+                            time: "09:30am",
+                            key: 12239,
+                        },
+                    ],
+                },
+                {
+                    date: "2022-09-24",
+                    list: [
+                        {
+                            time: "09:30am",
+                            key: 12240,
+                        },
+                    ],
+                },
+            ],
+            coordinate: {
+                latitude: 32.751204,
+                longitude: -117.1641166,
+            },
+        },
+        {
+            providerId: "3",
+            name: "Paul Wagner Md",
+            address: {
+                addressLine1: "51 West 51st Street",
+                addressLine2: "Floor 3, Suite 320 Midtown",
+                city: "Florida",
+                state: "FR",
+                zipcode: "54231",
+            },
+            rating: "5",
+            phoneNumber: "(123) 123-4567",
+            distance: "10 mi",
+            image: "/doctor.png",
+            from: "2022-09-19",
+            to: "2022-09-24",
+            availability: [
+                {
+                    date: "2022-09-19",
+                    list: [
+                        {
+                            time: "11:30am",
+                            key: 12222,
+                        },
+                    ],
+                },
+                {
+                    date: "2022-09-20",
+                    list: [
+                        {
+                            time: "08:00am",
+                            key: 12223,
+                        },
+                        {
+                            time: "10:30am",
+                            key: 12224,
+                        },
+                        {
+                            time: "11:00am",
+                            key: 12225,
+                        },
+                        {
+                            time: "12:00pm",
+                            key: 12226,
+                        },
+                        {
+                            time: "13:00pm",
+                            key: 12227,
+                        },
+                        {
+                            time: "14:00pm",
+                            key: 12228,
+                        },
+                    ],
+                },
+                {
+                    date: "2022-09-21",
+                    list: [
+                        {
+                            time: "08:30am",
+                            key: 12229,
+                        },
+                        {
+                            time: "10:30am",
+                            key: 12230,
+                        }
+                    ],
+                },
+                {
+                    date: "2022-09-22",
+                    list: [
+                        {
+                            time: "09:30am",
+                            key: 12237,
+                        },
+                        {
+                            time: "11:00am",
+                            key: 12238,
+                        },
+                    ],
+                },
+                {
+                    date: "2022-09-23",
+                    list: [
+                        {
+                            time: "09:30am",
+                            key: 12239,
+                        },
+                    ],
+                },
+                {
+                    date: "2022-09-24",
+                    list: [
+                        {
+                            time: "09:30am",
+                            key: 12240,
+                        },
+                    ],
+                },
+            ],
+            coordinate: {
+                latitude: 32.751204,
+                longitude: -117.1641166,
+            },
+        },
+    ]
+
+    const defaultValidation = () => {
+        expect(true).toBeTruthy();
+    };
+
+    function createMatchMedia(width) {
+        return query => ({
+            matches: mediaQuery.match(query, { width }),
+            addListener: () => { },
+            removeListener: () => { },
+        });
+    }
+
+    const searchScreen = () => {
+        window.matchMedia = createMatchMedia('1920px');
+        const mockFilterData = {
+            date: null,
+            location: "",
+            insuranceCarrier: "",
+            purposeOfVisit: "",
+        }
+        container = render(<FilterHeading
+            isDesktop={true}
+            isTablet={false}
+            onSearchProvider={() => {
+                jest.fn();
+            }}
+            onSwapButtonClicked={() => {
+                jest.fn();
+            }}
+            isGeolocationEnabled={false}
+            filterData={mockFilterData}
+            purposeOfVisitData={[]}
+            insuranceCarrierData={[]} />);
+    }
+
+    const inputLocation = async () => {
+        const locationInput = await waitFor(() => container.getByLabelText("City, state, or zip code"))
+        act(() => {
+            fireEvent.change(locationInput, { target: { value: "Texas" } });
+        });
+    }
+
+    const inputDate = async () => {
+        const dateInput = await waitFor(() => container.getByLabelText("Date"))
+        act(() => {
+            fireEvent.change(dateInput, { target: { value: "22-09-2022" } });
+        });
+    }
+
+    const inputPurpose = async () => {
+        const purposeInput = await waitFor(() => container.getByTestId("select-purposes-of-visit"))
+        act(() => {
+            fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
+        });
+    }
+
+    const inputInsurance = async () => {
+        const insuranceInput = await waitFor(() => container.getByLabelText("Insurance Carrier"))
+        act(() => {
+            fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
+        });
+    }
+
+    const clickSearch = async () => {
+        const searchBtn = await waitFor(() => container.getByTestId(APPOINTMENT_TEST_ID.searchbtn))
+        fireEvent.click(searchBtn)
+    }
+
+    const resultsScreen = async () => {
+        const rangeDate = { startDate: "2022-10-10", endDate: "2022-10-15" }
+        container.rerender(
+            <FilterResult isDesktop={true}
+                providerList={providerList}
+                rangeDate={rangeDate}
+                purposeOfVisitData={[]}
+                insuranceCarrierData={[]}
+                googleApiKey={"Test"}
+                filterData={{
+                    location: "",
+                    date: "",
+                    purposeOfVisit: "",
+                    insuranceCarrier: "",
+                }}
+            />
+        );
+        expect(await waitFor(() => container.getByTestId(APPOINTMENT_TEST_ID.FILTER_RESULT.container))).toBeInTheDocument()
+    }
+
+    const navigateToPatientPortalHome = async () => {
+        const element = document.createElement("div");
+        const mock = new MockAdapter(axios);
+        Cookies.result = "true";
+        const expectedResult = {
+            ResponseCode: 2005,
+            ResponseType: "success",
+        };
+        // const domain = window.location.origin;
+        // mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
+        // mock
+        //     .onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`)
+        //     .reply(200, MOCK_SUGESTION);
+        // mock
+        //     .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllAppointment`)
+        //     .reply(200, MOCK_APPOINTMENT);
+        // mock
+        //     .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`)
+        //     .reply(200, MOCK_PRESCRIPTION);
+        const response = await getServerSideProps({
+            req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
+            res: jest.fn(),
+        });
+        const mockGeolocation = {
+            getCurrentPosition: jest.fn(),
+            watchPosition: jest.fn(),
+        };
+        global.navigator.geolocation = mockGeolocation;
+        Cookies.result = false;
+        act(() => {
+            container = render(
+                <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
+            );
+        });
+        await waitFor(() => container.getByLabelText(/Appointments/i));
+        expect(response).toEqual({
+            redirect: {
+                destination: "/patient/login",
+                permanent: false,
+            },
+        });
+    };
+
+    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Forgot Password" screen with different option to sync the appointment - Without error script when user clicks on F12 on the console', ({ given, when, then, and }) => {
         given(/^User launch the "(.*)" url$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on the "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User should navigated to the search screen', () => {
-            defaultValidation();
+            searchScreen()
         });
 
         and('User should fill the location', () => {
-            defaultValidation();
+            inputLocation()
         });
 
         and('User should select the Date & Time with provider', () => {
-            defaultValidation();
+            inputDate()
         });
 
         and('User should select the purpose of the visit', () => {
-            defaultValidation();
+            inputPurpose()
         });
 
         and('User has reviewed the appointment details', () => {
-            defaultValidation();
+            resultsScreen()
         });
 
         when('User selects that the appointment is for Self', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User should navigated to the Patient Portal application', () => {
-            defaultValidation();
-        });
-
-        when(/^User fills valid (.*) and (.*)$/, (arg0, arg1) => {
-            defaultValidation();
-        });
-
-        and(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('User should navigated to Patient Dashboard', () => {
-            defaultValidation();
-        });
-
-        when('User selects that the appointment is for Someone Else', () => {
-            defaultValidation();
-        });
-
-        then('User provides the patient details', () => {
-            defaultValidation();
-        });
-
-        and('User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”', () => {
-            defaultValidation();
-        });
-
-        and('User should see this appointment under upcoming appointments', () => {
-            defaultValidation();
-        });
-
-        and('User should receive an email message regarding appointmnet confirmation as below:', (table) => {
-            defaultValidation();
-        });
-    });
-
-    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Create Account" screen with different option to sync the appointment', ({ given, when, and, then }) => {
-        given(/^User launch the "(.*)" url$/, (arg0) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on the "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('User should navigated to the search screen', () => {
-            defaultValidation();
-        });
-
-        and('User should fill the location', () => {
-            defaultValidation();
-        });
-
-        and('User should select the Date & Time with provider', () => {
-            defaultValidation();
-        });
-
-        and('User should select the purpose of the visit', () => {
-            defaultValidation();
-        });
-
-        and('User has reviewed the appointment details', () => {
-            defaultValidation();
-        });
-
-        when('User selects that the appointment is for Self', () => {
-            defaultValidation();
-        });
-
-        then('User should navigated to the Patient Portal application', () => {
-            defaultValidation();
+            renderLogin()
         });
 
         and(/^User should see the "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-            defaultValidation();
+            navigateToPatientPortalHome()
         });
 
         and('User should input the mandatory fields', () => {
-            defaultValidation();
-        });
-
-        and('User should setting the password', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('User should navigated to Patient Dashboard', () => {
-            defaultValidation();
-        });
-
-        when('User selects that the appointment is for Someone Else', () => {
-            defaultValidation();
-        });
-
-        then('User provides the patient details', () => {
-            defaultValidation();
-        });
-
-        and('User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”', () => {
-            defaultValidation();
-        });
-
-        and('User should see this appointment under upcoming appointments', () => {
-            defaultValidation();
-        });
-
-        and('And User should receive an email message regarding appointmnet confirmation as below:', (table) => {
-            defaultValidation();
-        });
-    });
-
-    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Forgot Password" screen with different option to sync the appointment', ({ given, when, and, then }) => {
-        given(/^User launch the "(.*)" url$/, (arg0) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on the "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('User should navigated to the search screen', () => {
-            defaultValidation();
-        });
-
-        and('User should fill the location', () => {
-            defaultValidation();
-        });
-
-        and('User should select the Date & Time with provider', () => {
-            defaultValidation();
-        });
-
-        and('User should select the purpose of the visit', () => {
-            defaultValidation();
-        });
-
-        and('User has reviewed the appointment details', () => {
-            defaultValidation();
-        });
-
-        when('User selects that the appointment is for Self', () => {
-            defaultValidation();
-        });
-
-        then('User should navigated to the Patient Portal application', () => {
-            defaultValidation();
-        });
-
-        and(/^User should see the "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-            defaultValidation();
-        });
-
-        and('User should input the mandatory fields', () => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then(/^User should navigated "(.*)"screen$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         and(/^User should see the "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then(/^User should navigated "(.*)"$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         and(/^User should fill (\d+) questions$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-            defaultValidation();
+            navigateToPatientPortalHome()
         });
 
         and(/^User should input valid (.*) and (.*) fields$/, (arg0, arg1) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then(/^User should see the sucessful message as "(.*)"$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         and(/^User shhould see "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-            defaultValidation();
+            navigateToPatientPortalHome()
         });
 
         and(/^User should fill valid (.*) and (.*) fields$/, (arg0, arg1) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User should navigated to Patient Dashboard', () => {
-            defaultValidation();
+            defaultValidation()
+        });
+
+        when(/^user clicks on F(\d+) on the console$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then('user should not to see any errors script', () => {
+            defaultValidation()
         });
 
         when('User selects that the appointment is for Someone Else', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User provides the patient details', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         and('User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         and('User should see this appointment under upcoming appointments', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
-        and('And User should receive an email message regarding appointmnet confirmation as below:', (table) => {
-            defaultValidation();
+        and('And User should receive an email message regarding appointmnet confirmation', () => {
+            defaultValidation()
         });
     });
 
-    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Continue as Guest" screen with different option to sync the appointment', ({ given, when, and, then }) => {
+    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Continue as Guest" screen with different option to sync the appointment - Without error script when user clicks on F12 on the console', ({ given, when, then, and }) => {
         given(/^User launch the "(.*)" url$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on the "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User should navigated to the search screen', () => {
-            defaultValidation();
+            searchScreen()
         });
 
         and('User should fill the location', () => {
-            defaultValidation();
+            inputLocation()
         });
 
         and('User should select the Date & Time with provider', () => {
-            defaultValidation();
+            inputDate()
         });
 
         and('User should select the purpose of the visit', () => {
-            defaultValidation();
+            inputPurpose()
         });
 
         and('User has reviewed the appointment details', () => {
-            defaultValidation();
+            resultsScreen()
         });
 
         when('User selects that the appointment is for Self', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User should navigated to the Patient Portal application', () => {
-            defaultValidation();
+            renderLogin()
         });
 
         and(/^User should see the "(.*)" option$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User select on "(.*)" option$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User should navigated to provide basic details', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
-        and('User should see the following fields as below:', (table) => {
-            defaultValidation();
+        and('User should see the fields', () => {
+            defaultValidation()
         });
 
         and('User should see the option to submit the same', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User selects on "(.*)" option$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User should navigated to Patient Dashboard', () => {
-            defaultValidation();
+            defaultValidation()
+        });
+
+        when(/^user clicks on F(\d+) on the console$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then('user should not to see any errors script', () => {
+            defaultValidation()
         });
 
         when('User selects that the appointment is for Someone Else', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User provides the patient details', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         and('User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         and('User should see this appointment under upcoming appointments', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
-        and('And User should receive an email message regarding appointmnet confirmation as below:', (table) => {
-            defaultValidation();
-        });   
+        and('And User should receive an email message regarding appointmnet confirmation', () => {
+            defaultValidation()
+        });
     });
 
-    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Login" screen with different option to sync the appointment - within 3 seconds', ({ given, when, and, then }) => {
+    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the Login screen with different option to sync the appointment - When the internet service is unavailable user should see the following error message', ({ given, when, then, and }) => {
         given(/^User launch the "(.*)" url$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on the "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User should navigated to the search screen', () => {
-            defaultValidation();
+            searchScreen()
         });
 
         and('User should fill the location', () => {
-            defaultValidation();
+            inputLocation()
         });
 
         and('User should select the Date & Time with provider', () => {
-            defaultValidation();
+            inputDate()
         });
 
         and('User should select the purpose of the visit', () => {
-            defaultValidation();
+            inputPurpose()
         });
 
         and('User has reviewed the appointment details', () => {
-            defaultValidation();
+            resultsScreen()
         });
 
         when('User selects that the appointment is for Self', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User should navigated to the Patient Portal application', () => {
-            defaultValidation();
+            renderLogin()
         });
 
         when(/^User fills valid (.*) and (.*)$/, (arg0, arg1) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         and(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        and(/^User should see page load within "(.*)"$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('User should navigated to Patient Dashboard', () => {
-            defaultValidation();
-        });
-
-        when('User selects that the appointment is for Someone Else', () => {
-            defaultValidation();
-        });
-
-        then('User provides the patient details', () => {
-            defaultValidation();
-        });
-
-        and('User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”', () => {
-            defaultValidation();
-        });
-
-        and('User should see this appointment under upcoming appointments', () => {
-            defaultValidation();
-        });
-
-        and('And User should receive an email message regarding appointmnet confirmation as below:', (table) => {
-            defaultValidation();
-        });
-    });
-
-    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Create Account" screen with different option to sync the appointment - within 3 seconds', ({ given, when, and, then }) => {
-        given(/^User launch the "(.*)" url$/, (arg0) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on the "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('User should navigated to the search screen', () => {
-            defaultValidation();
-        });
-
-        and('User should fill the location', () => {
-            defaultValidation();
-        });
-
-        and('User should select the Date & Time with provider', () => {
-            defaultValidation();
-        });
-
-        and('User should select the purpose of the visit', () => {
-            defaultValidation();
-        });
-
-        and('User has reviewed the appointment details', () => {
-            defaultValidation();
-        });
-
-        when('User selects that the appointment is for Self', () => {
-            defaultValidation();
-        });
-
-        then('User should navigated to the Patient Portal application', () => {
-            defaultValidation();
-        });
-
-        and(/^User should see the "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-            defaultValidation();
-        });
-
-        and('User should input the mandatory fields', () => {
-            defaultValidation();
-        });
-
-        and('User should setting the password', () => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        and(/^User should see page load within "(.*)"$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('User should navigated to Patient Dashboard', () => {
-            defaultValidation();
-        });
-
-        when('User selects that the appointment is for Someone Else', () => {
-            defaultValidation();
-        });
-
-        then('User provides the patient details', () => {
-            defaultValidation();
-        });
-
-        and('User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”', () => {
-            defaultValidation();
-        });
-
-        and('User should see this appointment under upcoming appointments', () => {
-            defaultValidation();
-        });
-
-        and('And User should receive an email message regarding appointmnet confirmation as below:', (table) => {
-            defaultValidation();
-        });
-    });
-
-    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Create Account" screen with different option to sync the appointment - within 3 seconds', ({ given, when, and, then }) => {
-        given(/^User launch the "(.*)" url$/, (arg0) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on the "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('User should navigated to the search screen', () => {
-            defaultValidation();
-        });
-
-        and('User should fill the location', () => {
-            defaultValidation();
-        });
-
-        and('User should select the Date & Time with provider', () => {
-            defaultValidation();
-        });
-
-        and('User should select the purpose of the visit', () => {
-            defaultValidation();
-        });
-
-        and('User has reviewed the appointment details', () => {
-            defaultValidation();
-        });
-
-        when('User selects that the appointment is for Self', () => {
-            defaultValidation();
-        });
-
-        then('User should navigated to the Patient Portal application', () => {
-            defaultValidation();
-        });
-
-        and(/^User should see the "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-            defaultValidation();
-        });
-
-        and('User should input the mandatory fields', () => {
-            defaultValidation();
-        });
-
-        and('User should setting the password', () => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        and(/^User should see page load within "(.*)"$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('User should navigated to Patient Dashboard', () => {
-            defaultValidation();
-        });
-
-        when('User selects that the appointment is for Someone Else', () => {
-            defaultValidation();
-        });
-
-        then('User provides the patient details', () => {
-            defaultValidation();
-        });
-
-        and('User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”', () => {
-            defaultValidation();
-        });
-
-        and('User should see this appointment under upcoming appointments', () => {
-            defaultValidation();
-        });
-
-        and('And User should receive an email message regarding appointmnet confirmation as below:', (table) => {
-            defaultValidation();
-        });
-    });
-
-    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Forgot Password" screen with different option to sync the appointment - within 3 seconds', ({ given, when, and, then }) => {
-        given(/^User launch the "(.*)" url$/, (arg0) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on the "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('User should navigated to the search screen', () => {
-            defaultValidation();
-        });
-
-        and('User should fill the location', () => {
-            defaultValidation();
-        });
-
-        and('User should select the Date & Time with provider', () => {
-            defaultValidation();
-        });
-
-        and('User should select the purpose of the visit', () => {
-            defaultValidation();
-        });
-
-        and('User has reviewed the appointment details', () => {
-            defaultValidation();
-        });
-
-        when('User selects that the appointment is for Self', () => {
-            defaultValidation();
-        });
-
-        then('User should navigated to the Patient Portal application', () => {
-            defaultValidation();
-        });
-
-        and(/^User should see the "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-            defaultValidation();
-        });
-
-        and('User should input the mandatory fields', () => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then(/^User should navigated "(.*)"screen$/, (arg0) => {
-            defaultValidation();
-        });
-
-        and(/^User should see the "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then(/^User should navigated "(.*)"$/, (arg0) => {
-            defaultValidation();
-        });
-
-        and(/^User should fill (\d+) questions$/, (arg0) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-            defaultValidation();
-        });
-
-        and(/^User should input valid (.*) and (.*) fields$/, (arg0, arg1) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then(/^User should see the sucessful message as "(.*)"$/, (arg0) => {
-            defaultValidation();
-        });
-
-        and(/^User shhould see "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-            defaultValidation();
-        });
-
-        and(/^User should fill valid (.*) and (.*) fields$/, (arg0, arg1) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        and(/^User should see page load within "(.*)"$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('User should navigated to Patient Dashboard', () => {
-            defaultValidation();
-        });
-
-        when('User selects that the appointment is for Someone Else', () => {
-            defaultValidation();
-        });
-
-        then('User provides the patient details', () => {
-            defaultValidation();
-        });
-
-        and('User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”', () => {
-            defaultValidation();
-        });
-
-        and('User should see this appointment under upcoming appointments', () => {
-            defaultValidation();
-        });
-
-        and('And User should receive an email message regarding appointmnet confirmation as below:', (table) => {
-            defaultValidation();
-        });
-    });
-
-    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Continue as Guest" screen with different option to sync the appointment - within 3 seconds', ({ given, when, and, then }) => {
-        given(/^User launch the "(.*)" url$/, (arg0) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on the "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('User should navigated to the search screen', () => {
-            defaultValidation();
-        });
-
-        and('User should fill the location', () => {
-            defaultValidation();
-        });
-
-        and('User should select the Date & Time with provider', () => {
-            defaultValidation();
-        });
-
-        and('User should select the purpose of the visit', () => {
-            defaultValidation();
-        });
-
-        and('User has reviewed the appointment details', () => {
-            defaultValidation();
-        });
-
-        when('User selects that the appointment is for Self', () => {
-            defaultValidation();
-        });
-
-        then('User should navigated to the Patient Portal application', () => {
-            defaultValidation();
-        });
-
-        and(/^User should see the "(.*)" option$/, (arg0) => {
-            defaultValidation();
-        });
-
-        when(/^User select on "(.*)" option$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('User should navigated to provide basic details', () => {
-            defaultValidation();
-        });
-
-        and('User should see the following fields as below:', (table) => {
-            defaultValidation();
-        });
-
-        and('User should see the option to submit the same', () => {
-            defaultValidation();
-        });
-
-        when(/^User selects on "(.*)" option$/, (arg0) => {
-            defaultValidation();
-        });
-
-        and(/^User should see page load within "(.*)"$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('User should navigated to Patient Dashboard', () => {
-            defaultValidation();
-        });
-
-        when('User selects that the appointment is for Someone Else', () => {
-            defaultValidation();
-        });
-
-        then('User provides the patient details', () => {
-            defaultValidation();
-        });
-
-        and('User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”', () => {
-            defaultValidation();
-        });
-
-        and('User should see this appointment under upcoming appointments', () => {
-            defaultValidation();
-        });
-
-        and('And User should receive an email message regarding appointmnet confirmation as below:', (table) => {
-            defaultValidation();
-        });
-    });
-
-    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Login" screen with different option to sync the appointment - Without error script when user clicks on F12 on the console', ({ given, when, and, then }) => {
-        given(/^User launch the "(.*)" url$/, (arg0) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on the "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('User should navigated to the search screen', () => {
-            defaultValidation();
-        });
-
-        and('User should fill the location', () => {
-            defaultValidation();
-        });
-
-        and('User should select the Date & Time with provider', () => {
-            defaultValidation();
-        });
-
-        and('User should select the purpose of the visit', () => {
-            defaultValidation();
-        });
-
-        and('User has reviewed the appointment details', () => {
-            defaultValidation();
-        });
-
-        when('User selects that the appointment is for Self', () => {
-            defaultValidation();
-        });
-
-        then('User should navigated to the Patient Portal application', () => {
-            defaultValidation();
-        });
-
-        when(/^User fills valid (.*) and (.*)$/, (arg0, arg1) => {
-            defaultValidation();
-        });
-
-        and(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('User should navigated to Patient Dashboard', () => {
-            defaultValidation();
-        });
-
-        when(/^user clicks on F(\d+) on the console$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('user should not to see any errors script', () => {
-            defaultValidation();
-        });
-
-        when('User selects that the appointment is for Someone Else', () => {
-            defaultValidation();
-        });
-
-        then('User provides the patient details', () => {
-            defaultValidation();
-        });
-
-        and('User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”', () => {
-            defaultValidation();
-        });
-
-        and('User should see this appointment under upcoming appointments', () => {
-            defaultValidation();
-        });
-
-        and('And User should receive an email message regarding appointmnet confirmation as below:', (table) => {
-            defaultValidation();
-        });
-    });
-
-    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Create Account" screen with different option to sync the appointment - Without error script when user clicks on F12 on the console', ({ given, when, and, then }) => {
-        given(/^User launch the "(.*)" url$/, (arg0) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on the "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('User should navigated to the search screen', () => {
-            defaultValidation();
-        });
-
-        and('User should fill the location', () => {
-            defaultValidation();
-        });
-
-        and('User should select the Date & Time with provider', () => {
-            defaultValidation();
-        });
-
-        and('User should select the purpose of the visit', () => {
-            defaultValidation();
-        });
-
-        and('User has reviewed the appointment details', () => {
-            defaultValidation();
-        });
-
-        when('User selects that the appointment is for Self', () => {
-            defaultValidation();
-        });
-
-        then('User should navigated to the Patient Portal application', () => {
-            defaultValidation();
-        });
-
-        and(/^User should see the "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-            defaultValidation();
-        });
-
-        and('User should input the mandatory fields', () => {
-            defaultValidation();
-        });
-
-        and('User should setting the password', () => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('User should navigated to Patient Dashboard', () => {
-            defaultValidation();
-        });
-
-        when(/^user clicks on F(\d+) on the console$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('user should not to see any errors script', () => {
-            defaultValidation();
-        });
-
-        when('User selects that the appointment is for Someone Else', () => {
-            defaultValidation();
-        });
-
-        then('User provides the patient details', () => {
-            defaultValidation();
-        });
-
-        and('User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”', () => {
-            defaultValidation();
-        });
-
-        and('User should see this appointment under upcoming appointments', () => {
-            defaultValidation();
-        });
-
-        and('And User should receive an email message regarding appointmnet confirmation as below:', (table) => {
-            defaultValidation();
-        });
-    });
-
-    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Forgot Password" screen with different option to sync the appointment - Without error script when user clicks on F12 on the console', ({ given, when, and, then }) => {
-        given(/^User launch the "(.*)" url$/, (arg0) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on the "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('User should navigated to the search screen', () => {
-            defaultValidation();
-        });
-
-        and('User should fill the location', () => {
-            defaultValidation();
-        });
-
-        and('User should select the Date & Time with provider', () => {
-            defaultValidation();
-        });
-
-        and('User should select the purpose of the visit', () => {
-            defaultValidation();
-        });
-
-        and('User has reviewed the appointment details', () => {
-            defaultValidation();
-        });
-
-        when('User selects that the appointment is for Self', () => {
-            defaultValidation();
-        });
-
-        then('User should navigated to the Patient Portal application', () => {
-            defaultValidation();
-        });
-
-        and(/^User should see the "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-            defaultValidation();
-        });
-
-        and('User should input the mandatory fields', () => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then(/^User should navigated "(.*)"screen$/, (arg0) => {
-            defaultValidation();
-        });
-
-        and(/^User should see the "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then(/^User should navigated "(.*)"$/, (arg0) => {
-            defaultValidation();
-        });
-
-        and(/^User should fill (\d+) questions$/, (arg0) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-            defaultValidation();
-        });
-
-        and(/^User should input valid (.*) and (.*) fields$/, (arg0, arg1) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then(/^User should see the sucessful message as "(.*)"$/, (arg0) => {
-            defaultValidation();
-        });
-
-        and(/^User shhould see "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-            defaultValidation();
-        });
-
-        and(/^User should fill valid (.*) and (.*) fields$/, (arg0, arg1) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('User should navigated to Patient Dashboard', () => {
-            defaultValidation();
-        });
-
-        when(/^user clicks on F(\d+) on the console$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('user should not to see any errors script', () => {
-            defaultValidation();
-        });
-
-        when('User selects that the appointment is for Someone Else', () => {
-            defaultValidation();
-        });
-
-        then('User provides the patient details', () => {
-            defaultValidation();
-        });
-
-        and('User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”', () => {
-            defaultValidation();
-        });
-
-        and('User should see this appointment under upcoming appointments', () => {
-            defaultValidation();
-        });
-
-        and('And User should receive an email message regarding appointmnet confirmation as below:', (table) => {
-            defaultValidation();
-        });
-    });
-
-    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Continue as Guest" screen with different option to sync the appointment - Without error script when user clicks on F12 on the console', ({ given, when, and, then }) => {
-        given(/^User launch the "(.*)" url$/, (arg0) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on the "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('User should navigated to the search screen', () => {
-            defaultValidation();
-        });
-
-        and('User should fill the location', () => {
-            defaultValidation();
-        });
-
-        and('User should select the Date & Time with provider', () => {
-            defaultValidation();
-        });
-
-        and('User should select the purpose of the visit', () => {
-            defaultValidation();
-        });
-
-        and('User has reviewed the appointment details', () => {
-            defaultValidation();
-        });
-
-        when('User selects that the appointment is for Self', () => {
-            defaultValidation();
-        });
-
-        then('User should navigated to the Patient Portal application', () => {
-            defaultValidation();
-        });
-
-        and(/^User should see the "(.*)" option$/, (arg0) => {
-            defaultValidation();
-        });
-
-        when(/^User select on "(.*)" option$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('User should navigated to provide basic details', () => {
-            defaultValidation();
-        });
-
-        and('User should see the following fields as below:', (table) => {
-            defaultValidation();
-        });
-
-        and('User should see the option to submit the same', () => {
-            defaultValidation();
-        });
-
-        when(/^User selects on "(.*)" option$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('User should navigated to Patient Dashboard', () => {
-            defaultValidation();
-        });
-
-        when(/^user clicks on F(\d+) on the console$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('user should not to see any errors script', () => {
-            defaultValidation();
-        });
-
-        when('User selects that the appointment is for Someone Else', () => {
-            defaultValidation();
-        });
-
-        then('User provides the patient details', () => {
-            defaultValidation();
-        });
-
-        and('User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”', () => {
-            defaultValidation();
-        });
-
-        and('User should see this appointment under upcoming appointments', () => {
-            defaultValidation();
-        });
-
-        and('And User should receive an email message regarding appointmnet confirmation as below:', (table) => {
-            defaultValidation();
-        });
-    });
-
-    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the Login screen with different option to sync the appointment - When the internet service is unavailable user should see the following error message', ({ given, when, and, then }) => {
-        given(/^User launch the "(.*)" url$/, (arg0) => {
-            defaultValidation();
-        });
-
-        when(/^User clicks on the "(.*)" button$/, (arg0) => {
-            defaultValidation();
-        });
-
-        then('User should navigated to the search screen', () => {
-            defaultValidation();
-        });
-
-        and('User should fill the location', () => {
-            defaultValidation();
-        });
-
-        and('User should select the Date & Time with provider', () => {
-            defaultValidation();
-        });
-
-        and('User should select the purpose of the visit', () => {
-            defaultValidation();
-        });
-
-        and('User has reviewed the appointment details', () => {
-            defaultValidation();
-        });
-
-        when('User selects that the appointment is for Self', () => {
-            defaultValidation();
-        });
-
-        then('User should navigated to the Patient Portal application', () => {
-            defaultValidation();
-        });
-
-        when(/^User fills valid (.*) and (.*)$/, (arg0, arg1) => {
-            defaultValidation();
-        });
-
-        and(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('The Internet service is unavailable', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         and('User should see the appropriate error message', () => {
-            defaultValidation();
+            defaultValidation()
         });
     });
 
-    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the Create Account screen with different option to sync the appointment - When the internet service is unavailable user should see the following error message', ({given, when, and, then}) => {
+    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the Create Account screen with different option to sync the appointment - When the internet service is unavailable user should see the following error message', ({ given, when, then, and }) => {
         given(/^User launch the "(.*)" url$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on the "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User should navigated to the search screen', () => {
-            defaultValidation();
+            searchScreen()
         });
 
         and('User should fill the location', () => {
-            defaultValidation();
+            inputLocation()
         });
 
         and('User should select the Date & Time with provider', () => {
-            defaultValidation();
+            inputDate()
         });
 
         and('User should select the purpose of the visit', () => {
-            defaultValidation();
+            inputPurpose()
         });
 
         and('User has reviewed the appointment details', () => {
-            defaultValidation();
+            resultsScreen()
         });
 
         when('User selects that the appointment is for Self', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User should navigated to the Patient Portal application', () => {
-            defaultValidation();
+            renderLogin()
         });
 
         and(/^User should see the "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-            defaultValidation();
+            navigateToPatientPortalHome()
         });
 
         and('User should input the mandatory fields', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         and('User should setting the password', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('The Internet service is unavailable', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         and('User should see the appropriate error message', () => {
-            defaultValidation();
+            defaultValidation()
         });
     });
 
-    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the Forgot Password screen with different option to sync the appointment - When the internet service is unavailable user should see the following error message', ({given, when, and, then}) => {
+    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the Forgot Password screen with different option to sync the appointment - When the internet service is unavailable user should see the following error message', ({ given, when, then, and }) => {
         given(/^User launch the "(.*)" url$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on the "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User should navigated to the search screen', () => {
-            defaultValidation();
+            searchScreen()
         });
 
         and('User should fill the location', () => {
-            defaultValidation();
+            inputLocation()
         });
 
         and('User should select the Date & Time with provider', () => {
-            defaultValidation();
+            inputDate()
         });
 
         and('User should select the purpose of the visit', () => {
-            defaultValidation();
+            inputPurpose()
         });
 
         and('User has reviewed the appointment details', () => {
-            defaultValidation();
+            resultsScreen()
         });
 
         when('User selects that the appointment is for Self', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User should navigated to the Patient Portal application', () => {
-            defaultValidation();
+            renderLogin()
         });
 
         and(/^User should see the "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-            defaultValidation();
+            navigateToPatientPortalHome()
         });
 
         and('User should input the mandatory fields', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then(/^User should navigated "(.*)"screen$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         and(/^User should see the "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then(/^User should navigated "(.*)"$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         and(/^User should fill (\d+) questions$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-            defaultValidation();
+            navigateToPatientPortalHome()
         });
 
         and(/^User should input valid (.*) and (.*) fields$/, (arg0, arg1) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then(/^User should see the sucessful message as "(.*)"$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         and(/^User shhould see "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-            defaultValidation();
+            navigateToPatientPortalHome()
         });
 
         and(/^User should fill valid (.*) and (.*) fields$/, (arg0, arg1) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on "(.*)" buttonThen The Internet service is unavailable$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         and('User should see the appropriate error message', () => {
-            defaultValidation();
+            defaultValidation()
         });
     });
 
-
-    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the Continue as Guest screen with different option to sync the appointment - When the internet service is unavailable user should see the following error message', ({given, when, and, then}) => {
+    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the Continue as Guest screen with different option to sync the appointment - When the internet service is unavailable user should see the following error message', ({ given, when, then, and }) => {
         given(/^User launch the "(.*)" url$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on the "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User should navigated to the search screen', () => {
-            defaultValidation();
+            searchScreen()
         });
 
         and('User should fill the location', () => {
-            defaultValidation();
+            inputLocation()
         });
 
         and('User should select the Date & Time with provider', () => {
-            defaultValidation();
+            inputDate()
         });
 
         and('User should select the purpose of the visit', () => {
-            defaultValidation();
+            inputPurpose()
         });
 
         and('User has reviewed the appointment details', () => {
-            defaultValidation();
+            resultsScreen()
         });
 
         when('User selects that the appointment is for Self', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User should navigated to the Patient Portal application', () => {
-            defaultValidation();
+            renderLogin()
         });
 
         and(/^User should see the "(.*)" option$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User select on "(.*)" option$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User should navigated to provide basic details', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
-        and('User should see the following fields as below:', (table) => {
-            defaultValidation();
+        and('User should see the fields', () => {
+            defaultValidation()
         });
 
         and('User should see the option to submit the same', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User selects on "(.*)" option$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('The Internet service is unavailable', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         and('User should see the appropriate error message', () => {
-            defaultValidation();
+            defaultValidation()
         });
     });
 
-    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the Login screen with different option to sync the appointment - When the service is unavailable user should see the following error message', ({given, when, and, then}) => {
+    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the Login screen with different option to sync the appointment - When the service is unavailable user should see the following error message', ({ given, when, then, and }) => {
         given(/^User launch the "(.*)" url$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on the "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User should navigated to the search screen', () => {
-            defaultValidation();
+            searchScreen()
         });
 
         and('User should fill the location', () => {
-            defaultValidation();
+            inputLocation()
         });
 
         and('User should select the Date & Time with provider', () => {
-            defaultValidation();
+            inputDate()
         });
 
         and('User should select the purpose of the visit', () => {
-            defaultValidation();
+            inputPurpose()
         });
 
         and('User has reviewed the appointment details', () => {
-            defaultValidation();
+            resultsScreen()
         });
 
         when('User selects that the appointment is for Self', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User should navigated to the Patient Portal application', () => {
-            defaultValidation();
+            renderLogin()
         });
 
         when(/^User fills valid (.*) and (.*)$/, (arg0, arg1) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         and(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('The Internet service is unavailable', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         and('User should see the appropriate error message', () => {
-            defaultValidation();
+            defaultValidation()
         });
     });
 
-    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the Create Account screen with different option to sync the appointment - When the service is unavailable user should see the following error message', ({given, when, and, then}) => {
+    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the Create Account screen with different option to sync the appointment - When the service is unavailable user should see the following error message', ({ given, when, then, and }) => {
         given(/^User launch the "(.*)" url$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on the "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User should navigated to the search screen', () => {
-            defaultValidation();
+            searchScreen()
         });
 
         and('User should fill the location', () => {
-            defaultValidation();
+            inputLocation()
         });
 
         and('User should select the Date & Time with provider', () => {
-            defaultValidation();
+            inputDate()
         });
 
         and('User should select the purpose of the visit', () => {
-            defaultValidation();
+            inputPurpose()
         });
 
         and('User has reviewed the appointment details', () => {
-            defaultValidation();
+            resultsScreen()
         });
 
         when('User selects that the appointment is for Self', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User should navigated to the Patient Portal application', () => {
-            defaultValidation();
+            renderLogin()
         });
 
         and(/^User should see the "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-            defaultValidation();
+            navigateToPatientPortalHome()
         });
 
         and('User should input the mandatory fields', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         and('User should setting the password', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on "(.*)" buttonThen The Internet service is unavailable$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         and('User should see the appropriate error message', () => {
-            defaultValidation();
+            defaultValidation()
         });
     });
 
-
-    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the Forgot Password screen with different option to sync the appointment - When the service is unavailable user should see the following error message', ({given, when, and, then}) => {
+    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the Forgot Password screen with different option to sync the appointment - When the service is unavailable user should see the following error message', ({ given, when, then, and }) => {
         given(/^User launch the "(.*)" url$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on the "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User should navigated to the search screen', () => {
-            defaultValidation();
+            searchScreen()
         });
 
         and('User should fill the location', () => {
-            defaultValidation();
+            inputLocation()
         });
 
         and('User should select the Date & Time with provider', () => {
-            defaultValidation();
+            inputDate()
         });
 
         and('User should select the purpose of the visit', () => {
-            defaultValidation();
+            inputPurpose()
         });
 
         and('User has reviewed the appointment details', () => {
-            defaultValidation();
+            resultsScreen()
         });
 
         when('User selects that the appointment is for Self', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User should navigated to the Patient Portal application', () => {
-            defaultValidation();
+            renderLogin()
         });
 
         and(/^User should see the "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-            defaultValidation();
+            navigateToPatientPortalHome()
         });
 
         and('User should input the mandatory fields', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then(/^User should navigated "(.*)"screen$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         and(/^User should see the "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then(/^User should navigated "(.*)"$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         and(/^User should fill (\d+) questions$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-            defaultValidation();
+            navigateToPatientPortalHome()
         });
 
         and(/^User should input valid (.*) and (.*) fields$/, (arg0, arg1) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then(/^User should see the sucessful message as "(.*)"$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         and(/^User shhould see "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then(/^User should navigated to "(.*)" screen$/, (arg0) => {
-            defaultValidation();
+            navigateToPatientPortalHome()
         });
 
         and(/^User should fill valid (.*) and (.*) fields$/, (arg0, arg1) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on "(.*)" buttonThen The Internet service is unavailable$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         and('User should see the appropriate error message', () => {
-            defaultValidation();
+            defaultValidation()
         });
     });
 
-
-    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the Continue as Guest screen with different option to sync the appointment - When the service is unavailable user should see the following error message', ({given, when, and, then}) => {
+    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the Continue as Guest screen with different option to sync the appointment - When the service is unavailable user should see the following error message', ({ given, when, then, and }) => {
         given(/^User launch the "(.*)" url$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User clicks on the "(.*)" button$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User should navigated to the search screen', () => {
-            defaultValidation();
+            searchScreen()
         });
 
         and('User should fill the location', () => {
-            defaultValidation();
+            inputLocation()
         });
 
         and('User should select the Date & Time with provider', () => {
-            defaultValidation();
+            inputDate()
         });
 
         and('User should select the purpose of the visit', () => {
-            defaultValidation();
+            inputPurpose()
         });
 
         and('User has reviewed the appointment details', () => {
-            defaultValidation();
+            resultsScreen()
         });
 
         when('User selects that the appointment is for Self', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User should navigated to the Patient Portal application', () => {
-            defaultValidation();
+            renderLogin()
         });
 
         and(/^User should see the "(.*)" option$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User select on "(.*)" option$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         then('User should navigated to provide basic details', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
-        and('User should see the following fields as below:', (table) => {
-            defaultValidation();
+        and('User should see the fields', () => {
+            defaultValidation()
         });
 
         and('User should see the option to submit the same', () => {
-            defaultValidation();
+            defaultValidation()
         });
 
         when(/^User selects on "(.*)" optionThen The Internet service is unavailable$/, (arg0) => {
-            defaultValidation();
+            defaultValidation()
         });
 
         and('User should see the appropriate error message', () => {
-            defaultValidation();
+            defaultValidation()
         });
     });
 
+    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Login" screen with different option to sync the appointment', ({ given, when, then, and }) => {
+        given(/^User launch the "(.*)" url$/, (arg0) => {
+            defaultValidation()
+        });
+
+        when(/^User clicks on the "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then('User should navigated to the search screen', () => {
+            searchScreen()
+        });
+
+        and('User should fill the location', () => {
+            inputLocation()
+        });
+
+        and('User should select the Date & Time with provider', () => {
+            inputDate()
+        });
+
+        and('User should select the purpose of the visit', () => {
+            inputPurpose()
+        });
+
+        and('User has reviewed the appointment details', () => {
+            resultsScreen()
+        });
+
+        when('User selects that the appointment is for Self', () => {
+            defaultValidation()
+        });
+
+        then('User should navigated to the Patient Portal application', () => {
+            renderLogin()
+        });
+
+        when(/^User fills valid (.*) and (.*)$/, (arg0, arg1) => {
+            defaultValidation()
+        });
+
+        and(/^User clicks on "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then('User should navigated to Patient Dashboard', () => {
+            defaultValidation()
+        });
+
+        when('User selects that the appointment is for Someone Else', () => {
+            defaultValidation()
+        });
+
+        then('User provides the patient details', () => {
+            defaultValidation()
+        });
+
+        and('User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”', () => {
+            defaultValidation()
+        });
+
+        and('User should see this appointment under upcoming appointments', () => {
+            defaultValidation()
+        });
+
+        and('User should receive an email message regarding appointmnet confirmation', () => {
+            defaultValidation()
+        });
+    });
+
+    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Create Account" screen with different option to sync the appointment', ({ given, when, then, and }) => {
+        given(/^User launch the "(.*)" url$/, (arg0) => {
+            defaultValidation()
+        });
+
+        when(/^User clicks on the "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then('User should navigated to the search screen', () => {
+            searchScreen()
+        });
+
+        and('User should fill the location', () => {
+            inputLocation()
+        });
+
+        and('User should select the Date & Time with provider', () => {
+            inputDate()
+        });
+
+        and('User should select the purpose of the visit', () => {
+            inputPurpose()
+        });
+
+        and('User has reviewed the appointment details', () => {
+            resultsScreen()
+        });
+
+        when('User selects that the appointment is for Self', () => {
+            defaultValidation()
+        });
+
+        then('User should navigated to the Patient Portal application', () => {
+            renderLogin()
+        });
+
+        and(/^User should see the "(.*)" button$/, (arg0) => {
+            expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
+        });
+
+        when(/^User clicks on "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then(/^User should navigated to "(.*)" screen$/, (arg0) => {
+            navigateToPatientPortalHome()
+        });
+
+        and('User should input the mandatory fields', () => {
+            defaultValidation()
+        });
+
+        and('User should setting the password', () => {
+            defaultValidation()
+        });
+
+        when(/^User clicks on "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then('User should navigated to Patient Dashboard', () => {
+            defaultValidation()
+        });
+
+        when('User selects that the appointment is for Someone Else', () => {
+            defaultValidation()
+        });
+
+        then('User provides the patient details', () => {
+            defaultValidation()
+        });
+
+        and('User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”', () => {
+            defaultValidation()
+        });
+
+        and('User should see this appointment under upcoming appointments', () => {
+            defaultValidation()
+        });
+
+        and('And User should receive an email message regarding appointmnet confirmation as below', () => {
+            defaultValidation()
+        });
+    });
+
+    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Forgot Password" screen with different option to sync the appointment', ({ given, when, then, and }) => {
+        given(/^User launch the "(.*)" url$/, (arg0) => {
+            defaultValidation()
+        });
+
+        when(/^User clicks on the "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then('User should navigated to the search screen', () => {
+            searchScreen()
+        });
+
+        and('User should fill the location', () => {
+            inputLocation()
+        });
+
+        and('User should select the Date & Time with provider', () => {
+            inputDate()
+        });
+
+        and('User should select the purpose of the visit', () => {
+            inputPurpose()
+        });
+
+        and('User has reviewed the appointment details', () => {
+            resultsScreen()
+        });
+
+        when('User selects that the appointment is for Self', () => {
+            defaultValidation()
+        });
+
+        then('User should navigated to the Patient Portal application', () => {
+            renderLogin()
+        });
+
+        and(/^User should see the "(.*)" button$/, (arg0) => {
+            expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
+        });
+
+        when(/^User clicks on "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then(/^User should navigated to "(.*)" screen$/, (arg0) => {
+            navigateToPatientPortalHome()
+        });
+
+        and('User should input the mandatory fields', () => {
+            defaultValidation()
+        });
+
+        when(/^User clicks on "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then(/^User should navigated "(.*)"screen$/, (arg0) => {
+            defaultValidation()
+        });
+
+        and(/^User should see the "(.*)" button$/, (arg0) => {
+            expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
+        });
+
+        when(/^User clicks on "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then(/^User should navigated "(.*)"$/, (arg0) => {
+            defaultValidation()
+        });
+
+        and(/^User should fill (\d+) questions$/, (arg0) => {
+            defaultValidation()
+        });
+
+        when(/^User clicks on "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then(/^User should navigated to "(.*)" screen$/, (arg0) => {
+            navigateToPatientPortalHome()
+        });
+
+        and(/^User should input valid (.*) and (.*) fields$/, (arg0, arg1) => {
+            defaultValidation()
+        });
+
+        when(/^User clicks on "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then(/^User should see the sucessful message as "(.*)"$/, (arg0) => {
+            defaultValidation()
+        });
+
+        and(/^User shhould see "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        when(/^User clicks on "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then(/^User should navigated to "(.*)" screen$/, (arg0) => {
+            navigateToPatientPortalHome()
+        });
+
+        and(/^User should fill valid (.*) and (.*) fields$/, (arg0, arg1) => {
+            defaultValidation()
+        });
+
+        when(/^User clicks on "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then('User should navigated to Patient Dashboard', () => {
+            defaultValidation()
+        });
+
+        when('User selects that the appointment is for Someone Else', () => {
+            defaultValidation()
+        });
+
+        then('User provides the patient details', () => {
+            defaultValidation()
+        });
+
+        and('User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”', () => {
+            defaultValidation()
+        });
+
+        and('User should see this appointment under upcoming appointments', () => {
+            defaultValidation()
+        });
+
+        and('And User should receive an email message regarding appointmnet confirmation', () => {
+            defaultValidation()
+        });
+    });
+
+    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Continue as Guest" screen with different option to sync the appointment', ({ given, when, then, and }) => {
+        given(/^User launch the "(.*)" url$/, (arg0) => {
+            defaultValidation()
+        });
+
+        when(/^User clicks on the "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then('User should navigated to the search screen', () => {
+            searchScreen()
+        });
+
+        and('User should fill the location', () => {
+            inputLocation()
+        });
+
+        and('User should select the Date & Time with provider', () => {
+            inputDate()
+        });
+
+        and('User should select the purpose of the visit', () => {
+            inputPurpose()
+        });
+
+        and('User has reviewed the appointment details', () => {
+            resultsScreen()
+        });
+
+        when('User selects that the appointment is for Self', () => {
+            defaultValidation()
+        });
+
+        then('User should navigated to the Patient Portal application', () => {
+            renderLogin()
+        });
+
+        and(/^User should see the "(.*)" option$/, (arg0) => {
+            defaultValidation()
+        });
+
+        when(/^User select on "(.*)" option$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then('User should navigated to provide basic details', () => {
+            defaultValidation()
+        });
+
+        and('User should see the fields', () => {
+            defaultValidation()
+        });
+
+        and('User should see the option to submit the same', () => {
+            defaultValidation()
+        });
+
+        when(/^User selects on "(.*)" option$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then('User should navigated to Patient Dashboard', () => {
+            defaultValidation()
+        });
+
+        when('User selects that the appointment is for Someone Else', () => {
+            defaultValidation()
+        });
+
+        then('User provides the patient details', () => {
+            defaultValidation()
+        });
+
+        and('User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”', () => {
+            defaultValidation()
+        });
+
+        and('User should see this appointment under upcoming appointments', () => {
+            defaultValidation()
+        });
+
+        and('And User should receive an email message regarding appointmnet confirmation as below:', (table) => {
+            defaultValidation()
+        });
+    });
+
+    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Login" screen with different option to sync the appointment - within 3 seconds', ({ given, when, then, and }) => {
+        given(/^User launch the "(.*)" url$/, (arg0) => {
+            defaultValidation()
+        });
+
+        when(/^User clicks on the "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then('User should navigated to the search screen', () => {
+            searchScreen()
+        });
+
+        and('User should fill the location', () => {
+            inputLocation()
+        });
+
+        and('User should select the Date & Time with provider', () => {
+            inputDate()
+        });
+
+        and('User should select the purpose of the visit', () => {
+            inputPurpose()
+        });
+
+        and('User has reviewed the appointment details', () => {
+            resultsScreen()
+        });
+
+        when('User selects that the appointment is for Self', () => {
+            defaultValidation()
+        });
+
+        then('User should navigated to the Patient Portal application', () => {
+            renderLogin()
+        });
+
+        when(/^User fills valid (.*) and (.*)$/, (arg0, arg1) => {
+            defaultValidation()
+        });
+
+        and(/^User clicks on "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        and(/^User should see page load within "(.*)"$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then('User should navigated to Patient Dashboard', () => {
+            defaultValidation()
+        });
+
+        when('User selects that the appointment is for Someone Else', () => {
+            defaultValidation()
+        });
+
+        then('User provides the patient details', () => {
+            defaultValidation()
+        });
+
+        and('User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”', () => {
+            defaultValidation()
+        });
+
+        and('User should see this appointment under upcoming appointments', () => {
+            defaultValidation()
+        });
+
+        and('And User should receive an email message regarding appointmnet confirmation', () => {
+            defaultValidation()
+        });
+    });
+
+    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Create Account" screen with different option to sync the appointment - within 3 seconds', ({ given, when, then, and }) => {
+        given(/^User launch the "(.*)" url$/, (arg0) => {
+            defaultValidation()
+        });
+
+        when(/^User clicks on the "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then('User should navigated to the search screen', () => {
+            searchScreen()
+        });
+
+        and('User should fill the location', () => {
+            inputLocation()
+        });
+
+        and('User should select the Date & Time with provider', () => {
+            inputDate()
+        });
+
+        and('User should select the purpose of the visit', () => {
+            inputPurpose()
+        });
+
+        and('User has reviewed the appointment details', () => {
+            resultsScreen()
+        });
+
+        when('User selects that the appointment is for Self', () => {
+            defaultValidation()
+        });
+
+        then('User should navigated to the Patient Portal application', () => {
+            renderLogin()
+        });
+
+        and(/^User should see the "(.*)" button$/, (arg0) => {
+            expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
+        });
+
+        when(/^User clicks on "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then(/^User should navigated to "(.*)" screen$/, (arg0) => {
+            navigateToPatientPortalHome()
+        });
+
+        and('User should input the mandatory fields', () => {
+            defaultValidation()
+        });
+
+        and('User should setting the password', () => {
+            defaultValidation()
+        });
+
+        when(/^User clicks on "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        and(/^User should see page load within "(.*)"$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then('User should navigated to Patient Dashboard', () => {
+            defaultValidation()
+        });
+
+        when('User selects that the appointment is for Someone Else', () => {
+            defaultValidation()
+        });
+
+        then('User provides the patient details', () => {
+            defaultValidation()
+        });
+
+        and('User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”', () => {
+            defaultValidation()
+        });
+
+        and('User should see this appointment under upcoming appointments', () => {
+            defaultValidation()
+        });
+
+        and('And User should receive an email message regarding appointmnet confirmation', () => {
+            defaultValidation()
+        });
+    });
+
+    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Forgot Password" screen with different option to sync the appointment - within 3 seconds', ({ given, when, then, and }) => {
+        given(/^User launch the "(.*)" url$/, (arg0) => {
+            defaultValidation()
+        });
+
+        when(/^User clicks on the "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then('User should navigated to the search screen', () => {
+            searchScreen()
+        });
+
+        and('User should fill the location', () => {
+            inputLocation()
+        });
+
+        and('User should select the Date & Time with provider', () => {
+            inputDate()
+        });
+
+        and('User should select the purpose of the visit', () => {
+            inputPurpose()
+        });
+
+        and('User has reviewed the appointment details', () => {
+            resultsScreen()
+        });
+
+        when('User selects that the appointment is for Self', () => {
+            defaultValidation()
+        });
+
+        then('User should navigated to the Patient Portal application', () => {
+            renderLogin()
+        });
+
+        and(/^User should see the "(.*)" button$/, (arg0) => {
+            expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
+        });
+
+        when(/^User clicks on "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then(/^User should navigated to "(.*)" screen$/, (arg0) => {
+            navigateToPatientPortalHome()
+        });
+
+        and('User should input the mandatory fields', () => {
+            defaultValidation()
+        });
+
+        when(/^User clicks on "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then(/^User should navigated "(.*)"screen$/, (arg0) => {
+            defaultValidation()
+        });
+
+        and(/^User should see the "(.*)" button$/, (arg0) => {
+            expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
+        });
+
+        when(/^User clicks on "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then(/^User should navigated "(.*)"$/, (arg0) => {
+            defaultValidation()
+        });
+
+        and(/^User should fill (\d+) questions$/, (arg0) => {
+            defaultValidation()
+        });
+
+        when(/^User clicks on "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then(/^User should navigated to "(.*)" screen$/, (arg0) => {
+            navigateToPatientPortalHome()
+        });
+
+        and(/^User should input valid (.*) and (.*) fields$/, (arg0, arg1) => {
+            defaultValidation()
+        });
+
+        when(/^User clicks on "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then(/^User should see the sucessful message as "(.*)"$/, (arg0) => {
+            defaultValidation()
+        });
+
+        and(/^User shhould see "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        when(/^User clicks on "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then(/^User should navigated to "(.*)" screen$/, (arg0) => {
+            navigateToPatientPortalHome()
+        });
+
+        and(/^User should fill valid (.*) and (.*) fields$/, (arg0, arg1) => {
+            defaultValidation()
+        });
+
+        when(/^User clicks on "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        and(/^User should see page load within "(.*)"$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then('User should navigated to Patient Dashboard', () => {
+            defaultValidation()
+        });
+
+        when('User selects that the appointment is for Someone Else', () => {
+            defaultValidation()
+        });
+
+        then('User provides the patient details', () => {
+            defaultValidation()
+        });
+
+        and('User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”', () => {
+            defaultValidation()
+        });
+
+        and('User should see this appointment under upcoming appointments', () => {
+            defaultValidation()
+        });
+
+        and('And User should receive an email message regarding appointmnet confirmation', () => {
+            defaultValidation()
+        });
+    });
+
+    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Continue as Guest" screen with different option to sync the appointment - within 3 seconds', ({ given, when, then, and }) => {
+        given(/^User launch the "(.*)" url$/, (arg0) => {
+            defaultValidation()
+        });
+
+        when(/^User clicks on the "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then('User should navigated to the search screen', () => {
+            searchScreen()
+        });
+
+        and('User should fill the location', () => {
+            inputLocation()
+        });
+
+        and('User should select the Date & Time with provider', () => {
+            inputDate()
+        });
+
+        and('User should select the purpose of the visit', () => {
+            inputPurpose()
+        });
+
+        and('User has reviewed the appointment details', () => {
+            resultsScreen()
+        });
+
+        when('User selects that the appointment is for Self', () => {
+            defaultValidation()
+        });
+
+        then('User should navigated to the Patient Portal application', () => {
+            renderLogin()
+        });
+
+        and(/^User should see the "(.*)" option$/, (arg0) => {
+            defaultValidation()
+        });
+
+        when(/^User select on "(.*)" option$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then('User should navigated to provide basic details', () => {
+            defaultValidation()
+        });
+
+        and('User should see the fields', () => {
+            defaultValidation()
+        });
+
+        and('User should see the option to submit the same', () => {
+            defaultValidation()
+        });
+
+        when(/^User selects on "(.*)" option$/, (arg0) => {
+            defaultValidation()
+        });
+
+        and(/^User should see page load within "(.*)"$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then('User should navigated to Patient Dashboard', () => {
+            defaultValidation()
+        });
+
+        when('User selects that the appointment is for Someone Else', () => {
+            defaultValidation()
+        });
+
+        then('User provides the patient details', () => {
+            defaultValidation()
+        });
+
+        and('User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”', () => {
+            defaultValidation()
+        });
+
+        and('User should see this appointment under upcoming appointments', () => {
+            defaultValidation()
+        });
+
+        and('And User should receive an email message regarding appointmnet confirmation', () => {
+            defaultValidation()
+        });
+    });
+
+    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Login" screen with different option to sync the appointment - Without error script when user clicks on F12 on the console', ({ given, when, then, and }) => {
+        given(/^User launch the "(.*)" url$/, (arg0) => {
+            defaultValidation()
+        });
+
+        when(/^User clicks on the "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then('User should navigated to the search screen', () => {
+            searchScreen()
+        });
+
+        and('User should fill the location', () => {
+            inputLocation()
+        });
+
+        and('User should select the Date & Time with provider', () => {
+            inputDate()
+        });
+
+        and('User should select the purpose of the visit', () => {
+            inputPurpose()
+        });
+
+        and('User has reviewed the appointment details', () => {
+            resultsScreen()
+        });
+
+        when('User selects that the appointment is for Self', () => {
+            defaultValidation()
+        });
+
+        then('User should navigated to the Patient Portal application', () => {
+            renderLogin()
+        });
+
+        when(/^User fills valid (.*) and (.*)$/, (arg0, arg1) => {
+            defaultValidation()
+        });
+
+        and(/^User clicks on "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then('User should navigated to Patient Dashboard', () => {
+            defaultValidation()
+        });
+
+        when(/^user clicks on F(\d+) on the console$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then('user should not to see any errors script', () => {
+            defaultValidation()
+        });
+
+        when('User selects that the appointment is for Someone Else', () => {
+            defaultValidation()
+        });
+
+        then('User provides the patient details', () => {
+            defaultValidation()
+        });
+
+        and('User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”', () => {
+            defaultValidation()
+        });
+
+        and('User should see this appointment under upcoming appointments', () => {
+            defaultValidation()
+        });
+
+        and('And User should receive an email message regarding appointmnet confirmation', () => {
+            defaultValidation()
+        });
+    });
+
+    test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Create Account" screen with different option to sync the appointment - Without error script when user clicks on F12 on the console', ({ given, when, then, and }) => {
+        given(/^User launch the "(.*)" url$/, (arg0) => {
+            defaultValidation()
+        });
+
+        when(/^User clicks on the "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then('User should navigated to the search screen', () => {
+            searchScreen()
+        });
+
+        and('User should fill the location', () => {
+            inputLocation()
+        });
+
+        and('User should select the Date & Time with provider', () => {
+            inputDate()
+        });
+
+        and('User should select the purpose of the visit', () => {
+            inputPurpose()
+        });
+
+        and('User has reviewed the appointment details', () => {
+            resultsScreen()
+        });
+
+        when('User selects that the appointment is for Self', () => {
+            defaultValidation()
+        });
+
+        then('User should navigated to the Patient Portal application', () => {
+            renderLogin()
+        });
+
+        and(/^User should see the "(.*)" button$/, (arg0) => {
+            expect(container.getByTestId(constants.TEST_ID.LOGIN_TEST_ID.loginBtn)).toBeInTheDocument();
+        });
+
+        when(/^User clicks on "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then(/^User should navigated to "(.*)" screen$/, (arg0) => {
+            navigateToPatientPortalHome()
+        });
+
+        and('User should input the mandatory fields', () => {
+            defaultValidation()
+        });
+
+        and('User should setting the password', () => {
+            defaultValidation()
+        });
+
+        when(/^User clicks on "(.*)" button$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then('User should navigated to Patient Dashboard', () => {
+            defaultValidation()
+        });
+
+        when(/^user clicks on F(\d+) on the console$/, (arg0) => {
+            defaultValidation()
+        });
+
+        then('user should not to see any errors script', () => {
+            defaultValidation()
+        });
+
+        when('User selects that the appointment is for Someone Else', () => {
+            defaultValidation()
+        });
+
+        then('User provides the patient details', () => {
+            defaultValidation()
+        });
+
+        and('User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”', () => {
+            defaultValidation()
+        });
+
+        and('User should see this appointment under upcoming appointments', () => {
+            defaultValidation()
+        });
+
+        and('And User should receive an email message regarding appointmnet confirmation', () => {
+            defaultValidation()
+        });
+    });
 });
