@@ -1,0 +1,23 @@
+@import "../../../../styles/colors.scss";
+
+.container {
+  background-color: #f2f7f7;
+  border: solid 1px $dark1;
+  border-radius: 4px;
+  padding: 8px 16px;
+
+  // display: flex;
+  align-items: center;
+  height: 100px;
+}
+
+.notificationTypeContainer {
+  background-color: $teal50;
+  padding: 10px;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

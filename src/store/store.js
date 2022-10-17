@@ -1,10 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
-import index from "../store/index";
-import user from "../store/user";
-import appointment from "../store/appointment";
-import provider from "../store/provider";
-import document from "../store/document";
-import medicalResult from "../store/medicalReport";
+import index from "./index";
+import user from "./user";
+import appointment from "./appointment";
+import provider from "./provider";
+import document from "./document";
+import medicalResult from "./medicalReport";
+import notification from "./notification";
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     provider,
     document,
     medicalResult,
+    notification,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({

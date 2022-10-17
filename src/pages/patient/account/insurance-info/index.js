@@ -246,7 +246,17 @@ export default function InsuranceInfoPage() {
         {pageMessage.content}
       </FormMessage>
       {loadingInsurance === "loading" ? (
-        <CircularProgress />
+        <div
+          style={{
+            flex: 1,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: 16,
+          }}
+        >
+          <CircularProgress />
+        </div>
       ) : (
         <>
           <Fade in={userInsuranceData.length > 0} unmountOnExit>
