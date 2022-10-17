@@ -89,6 +89,7 @@ const Navbar = ({ isDashboard = false }) => {
   };
 
   const handleCloseUserMenu = (href) => {
+    setAnchorElNav(null);
     setAnchorElUser(null);
     if (typeof href === "string") router.push(href);
   };

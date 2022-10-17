@@ -329,7 +329,7 @@ MedicalRecordPage.getLayout = function getLayout(page, store, router) {
       <PrescriptionLayout
         currentActivePage={"medical-record"}
         pageTitle={"EyeCare Patient Portal - Medical Records"}
-        title={"Intake Forms"}
+        title={"Test & Lab Result"}
       >
         {page}
       </PrescriptionLayout>
