@@ -1,4 +1,4 @@
-import { Box, Stack, Typography, Link, useMediaQuery } from "@mui/material";
+import { Box, Stack, Typography, Link } from "@mui/material";
 import styles from "./styles.module.scss";
 import AppointmentButton from "../../atoms/AppointmentButton/appointmentButton";
 import moment from "moment";
@@ -19,7 +19,6 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import React, { useEffect, useState } from "react";
-import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import { TEST_ID } from "../../../utils/constants";
 import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 function AppointmentDetailTable(alergies, isExpandAll) {
@@ -125,7 +124,6 @@ function AppointmentDetailTable(alergies, isExpandAll) {
 
 export default function DetailAppointment({ data }) {
   const container = React.useRef(null);
-  const isDesktop = useMediaQuery("(min-width: 834px)");
   const { providerInfo, patientInfo, appointmentInfo } = data;
   const date = appointmentInfo.date;
   const timezone = date.substring(date.length - 3);

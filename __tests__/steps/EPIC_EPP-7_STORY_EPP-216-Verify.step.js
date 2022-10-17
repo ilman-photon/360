@@ -1,4 +1,4 @@
-import { fireEvent, render, act } from "@testing-library/react";
+import { fireEvent, render, act, cleanup, waitFor } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import ConfirmationForm from "../../src/components/organisms/ConfirmationForm/confirmationForm";
 import RowRadioButtonsGroup from "../../src/components/atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
@@ -9,6 +9,8 @@ import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import AuthPage from "../../src/pages/patient/login";
 import { Login } from "../../src/components/organisms/Login/login";
+import { TEST_ID } from "../../src/utils/constants";
+import { renderLogin, renderForgotPassword, clickContinueForgot } from "../../__mocks__/commonSteps";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-216.feature",
@@ -46,6 +48,9 @@ const landOnPatientPortalScreen = () => {
 }
 
 defineFeature(feature, (test) => {
+  let container;
+  const mock = new MockAdapter(axios);
+  const element = document.createElement("div");
   test("EPIC_EPP-7_STORY_EPP-216 - Verify user should be able to login into the patient portal without username & password using the magic link received to my registered mail id.", ({
     given,
     and,
@@ -64,37 +69,54 @@ defineFeature(feature, (test) => {
       landOnPatientPortalScreen()
     });
 
-    and("user clicks on 'Forgot Password' link", () => {
-      expect(true).toBeTruthy();
+    and("user clicks on 'Forgot Password' link", async () => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(
+        container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)
+      ).toBeInTheDocument();
     });
 
-    and(/^user should enter valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user should enter valid (.*)$/, async (arg0) => {
+      cleanup();
+      container = await renderForgotPassword();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      fireEvent.change(usernameField, { target: { value: "user1@gmail.com" } });
+      expect(usernameField.value).toEqual("user1@gmail.com");
     });
 
-    and(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user clicks on "(.*)" button$/, async (arg0) => {
+      container = await clickContinueForgot(container, mock)
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(container.getByText("or")).toBeInTheDocument();
     });
 
     and(
       /^user should see "(.*)" button \(if security questions is set or not\)$/,
-      (arg0) => { }
+      (arg0) => {
+        expect(
+          container.getByTestId(TEST_ID.FORGOT_TEST_ID.answerQuestions)
+        ).toBeInTheDocument();
+      }
     );
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink)
+      ).toBeInTheDocument();
     });
 
     and(/^user should see "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      expect(
+        container.getByTestId(TEST_ID.FORGOT_TEST_ID.loginLink)
+      ).toBeInTheDocument();
     });
 
     when(/^user click on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      fireEvent.click(container.getByTestId(TEST_ID.FORGOT_TEST_ID.oneTimeLink));
     });
 
     then("user should see One-time link page", () => {
@@ -174,16 +196,25 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user clicks on \'Forgot Password\' link', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on \'Forgot Password\' link', async () => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(
+        container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)
+      ).toBeInTheDocument();
     });
 
-    and(/^user should enter valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user should enter valid (.*)$/, async (arg0) => {
+      cleanup();
+      container = await renderForgotPassword();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      fireEvent.change(usernameField, { target: { value: "user1@gmail.com" } });
+      expect(usernameField.value).toEqual("user1@gmail.com");
     });
 
-    and(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user clicks on "(.*)" button$/, async (arg0) => {
+      container = await clickContinueForgot(container, mock)
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
@@ -292,16 +323,25 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user clicks on \'Forgot Password\' link', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on \'Forgot Password\' link', async () => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(
+        container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)
+      ).toBeInTheDocument();
     });
 
-    and(/^user should enter valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user should enter valid (.*)$/, async (arg0) => {
+      cleanup();
+      container = await renderForgotPassword();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      fireEvent.change(usernameField, { target: { value: "user1@gmail.com" } });
+      expect(usernameField.value).toEqual("user1@gmail.com");
     });
 
-    and(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user clicks on "(.*)" button$/, async (arg0) => {
+      container = await clickContinueForgot(container, mock)
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
@@ -382,16 +422,25 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user clicks on \'Forgot Password\' link', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on \'Forgot Password\' link', async () => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(
+        container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)
+      ).toBeInTheDocument();
     });
 
-    and('user should enter valid Email or Phone Number', () => {
-      expect(true).toBeTruthy();
+    and('user should enter valid Email or Phone Number', async () => {
+      cleanup();
+      container = await renderForgotPassword();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      fireEvent.change(usernameField, { target: { value: "user1@gmail.com" } });
+      expect(usernameField.value).toEqual("user1@gmail.com");
     });
 
-    and(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user clicks on "(.*)" button$/, async (arg0) => {
+      container = await clickContinueForgot(container, mock)
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
@@ -452,16 +501,25 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user clicks on \'Forgot Password\' link', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on \'Forgot Password\' link', async () => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(
+        container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)
+      ).toBeInTheDocument();
     });
 
-    and(/^user should enter valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user should enter valid (.*)$/, async (arg0) => {
+      cleanup();
+      container = await renderForgotPassword();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      fireEvent.change(usernameField, { target: { value: "user1@gmail.com" } });
+      expect(usernameField.value).toEqual("user1@gmail.com");
     });
 
-    and(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user clicks on "(.*)" button$/, async (arg0) => {
+      container = await clickContinueForgot(container, mock)
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
@@ -522,16 +580,25 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user clicks on \'Forgot Password\' link', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on \'Forgot Password\' link', async () => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(
+        container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)
+      ).toBeInTheDocument();
     });
 
-    and(/^user should enter valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user should enter valid (.*)$/, async (arg0) => {
+      cleanup();
+      container = await renderForgotPassword();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      fireEvent.change(usernameField, { target: { value: "user1@gmail.com" } });
+      expect(usernameField.value).toEqual("user1@gmail.com");
     });
 
-    and(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user clicks on "(.*)" button$/, async (arg0) => {
+      container = await clickContinueForgot(container, mock)
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
@@ -608,16 +675,25 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user clicks on \'Forgot Password\' link', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on \'Forgot Password\' link', async () => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(
+        container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)
+      ).toBeInTheDocument();
     });
 
-    and('user should enter valid Email or Phone Number', () => {
-      expect(true).toBeTruthy();
+    and('user should enter valid Email or Phone Number', async () => {
+      cleanup();
+      container = await renderForgotPassword();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      fireEvent.change(usernameField, { target: { value: "user1@gmail.com" } });
+      expect(usernameField.value).toEqual("user1@gmail.com");
     });
 
-    and(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user clicks on "(.*)" button$/, async (arg0) => {
+      container = await clickContinueForgot(container, mock)
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
@@ -698,16 +774,25 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user clicks on \'Forgot Password\' link', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on \'Forgot Password\' link', async () => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(
+        container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)
+      ).toBeInTheDocument();
     });
 
-    and('user should enter valid Email or Phone Number', () => {
-      expect(true).toBeTruthy();
+    and('user should enter valid Email or Phone Number', async () => {
+      cleanup();
+      container = await renderForgotPassword();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      fireEvent.change(usernameField, { target: { value: "user1@gmail.com" } });
+      expect(usernameField.value).toEqual("user1@gmail.com");
     });
 
-    and(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user clicks on "(.*)" button$/, async (arg0) => {
+      container = await clickContinueForgot(container, mock)
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {
@@ -748,16 +833,25 @@ defineFeature(feature, (test) => {
       expect(true).toBeTruthy();
     });
 
-    and('user clicks on \'Forgot Password\' link', () => {
-      expect(true).toBeTruthy();
+    and('user clicks on \'Forgot Password\' link', async () => {
+      cleanup()
+      container = await renderLogin();
+      fireEvent.click(container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink));
+      expect(
+        container.getByTestId(TEST_ID.LOGIN_TEST_ID.forgotLink)
+      ).toBeInTheDocument();
     });
 
-    and('user should enter valid Email or Phone Number', () => {
-      expect(true).toBeTruthy();
+    and('user should enter valid Email or Phone Number', async () => {
+      cleanup();
+      container = await renderForgotPassword();
+      const usernameField = container.getByLabelText(/usernamePlaceHolder/i);
+      fireEvent.change(usernameField, { target: { value: "user1@gmail.com" } });
+      expect(usernameField.value).toEqual("user1@gmail.com");
     });
 
-    and(/^user clicks on "(.*)" button$/, (arg0) => {
-      expect(true).toBeTruthy();
+    and(/^user clicks on "(.*)" button$/, async (arg0) => {
+      container = await clickContinueForgot(container, mock)
     });
 
     then(/^user should see "(.*)" screen$/, (arg0) => {

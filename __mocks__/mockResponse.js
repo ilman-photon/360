@@ -6923,3 +6923,100 @@ export const submitFilter = {
     },
   ],
 };
+
+export const testLab = [
+  {
+    id: 1,
+    name: "Eye Surgery",
+    orderBy: "Hopkins, D.M.",
+    date: "09/09/2022 12:00PM",
+    status: "Completed",
+  },
+  {
+    id: 2,
+    name: "Eye Surgery",
+    orderBy: "Hopkins, D.M.",
+    date: "09/09/2022 12:00PM",
+    status: "Completed",
+  },
+  {
+    id: 3,
+    name: "Eye Surgery",
+    orderBy: "Hopkins, D.M.",
+    date: "09/09/2022 12:00PM",
+    status: "Completed",
+  },
+  {
+    id: 4,
+    name: "Eye Surgery",
+    orderBy: "Hopkins, D.M.",
+    date: "08/08/2022 12:00PM",
+    status: "Completed",
+  },
+];
+export const carePlan = [
+  { id: 1, name: "Eye Surgery", date: "09/09/2022 12:00PM" },
+  { id: 2, name: "Eye Surgery", date: "09/09/2022 12:00PM" },
+  { id: 3, name: "Eye Surgery", date: "09/09/2022 12:00PM" },
+  { id: 4, name: "Eye Surgery", date: "08/08/2022 12:00PM" },
+];
+
+export const mockDocument = {
+  count: 1,
+  entities: [
+    {
+      name: "MEDICAL_CERTIFICATE_OF_FITNESS1 - Copy - Copy",
+      documentType: "application/pdf",
+      category: "Intake-Forms",
+      uploadedBy: {
+        uid: "2818ef11-208b-4f43-b471-06ad495381f1",
+        firstName: "indraku",
+        lastName: "kumar",
+        designation: "Mr",
+        _createdBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      patientId: "95090352-de7b-485b-8a7b-9c1255a15070",
+      status: "CREATED",
+      digital_assets: {
+        _id: "62591396-3890-4cc3-b38a-96788430769d",
+      },
+      _id: "38762e58-0cbf-47b6-9580-2f7c336f5bdc",
+      _version: "9ba1234d-9857-4a9c-9147-e1e257377a39",
+      _created: "Oct 7, 2022, 10:00:20 AM",
+      _updated: "Oct 7, 2022, 10:00:20 AM",
+      _createdBy: {
+        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+        _links: {
+          self: {
+            href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+          },
+        },
+      },
+      _links: {
+        self: {
+          href: "/v1/patients/38762e58-0cbf-47b6-9580-2f7c336f5bdc",
+        },
+      },
+    },
+  ],
+  _links: {
+    self: {
+      href: "/patient-management?pageNo=0&pageSize=10",
+    },
+  },
+};

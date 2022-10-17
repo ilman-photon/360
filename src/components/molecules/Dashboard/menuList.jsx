@@ -72,11 +72,6 @@ export default function MenuList({
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const onEnter = (event) => {
-    if (event.key == "Enter") {
-      handleClick(event);
-    }
-  };
   const handleClose = (callback) => {
     setAnchorEl(null);
   };
@@ -84,22 +79,23 @@ export default function MenuList({
   const iconDownload = "/icon-download.png";
 
   return (
-    <div aria-label="More option" tabIndex={0} onKeyPress={onEnter}>
-      <MoreHorizIcon
-        id="demo-customized-button"
-        aria-controls={open ? "demo-customized-menu" : undefined}
-        aria-haspopup="true"
-        aria-expanded={open ? "true" : undefined}
-        variant="contained"
-        onClick={handleClick}
-        endicon={<KeyboardArrowDownIcon />}
-        sx={{
-          cursor: "pointer",
-          "@media print": {
-            display: "none !important",
-          },
-        }}
-      />
+    <div>
+      <Box aria-label="More option" onClick={handleClick} tabIndex={0}>
+        <MoreHorizIcon
+          id="demo-customized-button"
+          aria-controls={open ? "demo-customized-menu" : undefined}
+          aria-haspopup="true"
+          aria-expanded={open ? "true" : undefined}
+          variant="contained"
+          endicon={<KeyboardArrowDownIcon />}
+          sx={{
+            cursor: "pointer",
+            "@media print": {
+              display: "none !important",
+            },
+          }}
+        />
+      </Box>
       <StyledMenu
         id="demo-customized-menu"
         MenuListProps={{
@@ -117,7 +113,6 @@ export default function MenuList({
             onClickDownloadButton();
             handleClose();
           }}
-          tabIndex={0}
         >
           <Box className={"MuiSvgIcon-root"}>
             <Image alt="" src={iconDownload} width={15} height={15} />
@@ -131,7 +126,6 @@ export default function MenuList({
           }}
           className={styles.menuItem}
           disableRipple
-          tabIndex={0}
         >
           <Box className={"MuiSvgIcon-root"}>
             <Image alt="" src={iconShare} width={15} height={15} />
