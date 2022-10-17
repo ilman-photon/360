@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import store from "../../src/store/store";
 import mediaQuery from "css-mediaquery";
 import PrescriptionPage from "../../src/pages/patient/prescription";
-import { TEMP_DATA_CONTACTS, TEMP_DATA_GLASSES } from "../setup/setup";
+import { TEMP_DATA_GLASSES, TEMP_DATA_CONTACTS } from "../../__mocks__/mockResponse";
 
 function createMatchMedia(width) {
   return (query) => ({

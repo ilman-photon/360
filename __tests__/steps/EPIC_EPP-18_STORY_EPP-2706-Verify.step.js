@@ -8,7 +8,7 @@ import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import store from "../../src/store/store";
 import mediaQuery from "css-mediaquery";
-import { TEMP_DATA_CONTACTS, TEMP_DATA_GLASSES, TEMP_DATA_MEDICATION } from "../setup/setup";
+import { TEMP_DATA_CONTACTS, TEMP_DATA_GLASSES, TEMP_DATA_MEDICATION } from "../../__mocks__/mockResponse";
 
 function createMatchMedia(width) {
   return (query) => ({
@@ -39,126 +39,11 @@ const defaultValidation = () => {
   expect(true).toBeTruthy();
 };
 
-const MOCK_PRESCRIPTION = {
-  prescriptions: {
-    glasses: [
-      {
-        prescribedBy: "Dr. Sonha Nguyen",
-        date: "2022-09-02T11:18:47.229Z",
-        expirationDate: "2022-10-02T11:18:47.229Z",
-        prescriptionDetails: [
-          {
-            Eye: "OD",
-            Sph: "+20.00",
-            Cyl: "-5.00",
-            Axis: "70",
-            Add: "x180",
-          },
-          {
-            Eye: "OS",
-            Sph: "+19.75",
-            Cyl: "-4.75",
-            Axis: "38",
-            Add: "x090",
-          },
-        ],
-      },
-      {
-        prescribedBy: "Dr. Sonha Nguyen",
-        date: "2022-09-02T11:18:47.229Z",
-        expirationDate: "2022-10-02T11:18:47.229Z",
-        prescriptionDetails: [
-          {
-            Eye: "OD",
-            Sph: "+20.00",
-            Cyl: "-5.00",
-            Axis: "70",
-            Add: "x180",
-          },
-          {
-            Eye: "OS",
-            Sph: "+19.75",
-            Cyl: "-4.75",
-            Axis: "38",
-            Add: "x090",
-          },
-        ],
-      },
-    ],
-    contacts: [
-      {
-        prescribedBy: "Dr. Sonha Nguyen",
-        date: "2022-09-01T11:18:47.229Z",
-        expirationDate: "2022-10-02T11:18:47.229Z",
-        prescriptionDetails: [
-          {
-            Eye: "OD",
-            Sph: "+20.00",
-            Bc: "-5.00",
-            Cyl: "70",
-            Axis: "x180",
-          },
-          {
-            Eye: "OS",
-            Sph: "+19.75",
-            Bc: "-4.75",
-            Cyl: "38",
-            Axis: "x090",
-          },
-        ],
-      },
-      {
-        prescribedBy: "Dr. Sonha Nguyen",
-        date: "2022-09-02T11:18:47.229Z",
-        expirationDate: "2022-10-02T11:18:47.229Z",
-        prescriptionDetails: [
-          {
-            Eye: "OD",
-            Sph: "+20.00",
-            Bc: "-5.00",
-            Cyl: "70",
-            Axis: "x180",
-          },
-          {
-            Eye: "OS",
-            Sph: "+19.75",
-            Bc: "-4.75",
-            Cyl: "38",
-            Axis: "x090",
-          },
-        ],
-      },
-    ],
-    medications: [
-      {
-        id: "0",
-        prescription: "Aspirint 0.1% Ointmanet",
-        date: "2022-09-02T11:18:47.229Z",
-      },
-      {
-        id: "1",
-        prescription: "Aspirint 0.1% Ointmanet",
-        date: "2022-09-02T11:18:47.229Z",
-      },
-      {
-        id: "2",
-        prescription: "Aspirint 0.1% Ointmanet",
-        date: "2022-09-02T11:18:47.229Z",
-      },
-      {
-        id: "3",
-        prescription: "Aspirint 0.1% Ointmanet",
-        date: "2022-08-02T11:18:47.229Z",
-        expiredDate: "2022-08-10T11:18:47.229Z",
-      },
-    ],
-  },
-};
 
 defineFeature(feature, (test) => {
   let container;
   const mock = new MockAdapter(axios);
-
+  
   test("EPIC_EPP-18_STORY_EPP-2706- To verify whether the patient is able to view the option to Refill the Prescription.", ({
     given,
     when,
@@ -347,15 +232,15 @@ defineFeature(feature, (test) => {
             </Provider>
           );
         });
-        await waitFor(() => container.getByText("Medications"));
-        expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
+        await waitFor(() => container.getByText(/Active Medications/i));
+        expect(container.getAllByText(/Medications/i)[0]).toBeInTheDocument();
 
-        const medicationMenu = container.getByTestId("menu-medication");
+        const medicationMenu = container.getAllByTestId("menu-medication")[0];
         fireEvent.click(medicationMenu)
         await waitFor(()=> container.getByText(/Active Medications/i));
 
         await waitFor(() => expiredContainer.getByText(/Past Medications/i));
-        //expect(expiredContainer.getAllByText(/Request Refill/i)[0]).not.toBeInTheDocument();
+        // expect(expiredContainer.getAllByText(/Request Refill/i)[0]).not.toBeInTheDocument();
       }
     );
   });

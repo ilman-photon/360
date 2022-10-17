@@ -8,7 +8,7 @@ import PrescriptionPage from "../../src/pages/patient/prescription";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
 import mediaQuery from "css-mediaquery";
-import { TEMP_DATA_MEDICATION } from "../setup/setup";
+import { TEMP_DATA_MEDICATION } from "../../__mocks__/mockResponse";
 
 function createMatchMedia(width) {
   return (query) => ({
@@ -48,6 +48,11 @@ const feature = loadFeature(
 defineFeature(feature, (test) => {
   let container;
   const mock = new MockAdapter(axios);
+
+  beforeEach(() => {
+    jest.useFakeTimers("modern");
+    jest.setSystemTime(new Date(2022, 3, 1));
+  });
 
   test("EPIC_EPP-17_STORY_EPP-2704 - To verify whether the patient is able to view the below mentioned filters in the Prescription page", ({
     given,

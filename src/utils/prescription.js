@@ -165,6 +165,11 @@ export function parsePrescriptions(glassesData, contactsData, mediactionData) {
       date: mediaction?.CreatedDate,
       expiredDate: mediaction?.StopDate,
       providerNPI,
+      type:
+        isValidDate(new Date(mediaction?.StopDate)) &&
+        new Date(mediaction?.StopDate) > new Date()
+          ? "active"
+          : "past",
     };
     data.medications.push(tempContacts);
   }

@@ -257,7 +257,7 @@ export const TEMP_DATA_GLASSES = {
               "type": "",
               "notes": "test notes",
               "startDate": "01/10/2022",
-              "expirationDate": "25/06/2023"
+              "expirationDate": "06/25/2023"
           },
           "provider": {
               "firstName": "indraku",
@@ -379,7 +379,7 @@ export const TEMP_DATA_MEDICATION = [
     CreatedDate: "12/05/2022 03:40:57 EDT",
     CompletedDate: "",
     SignedDate: "",
-    StopDate: "",
+    StopDate: "10/05/2022",
     LastModifiedBy: "pclarksoneyecare",
     LastModifiedDate: "10/05/2022 03:41:00 EDT",
     Height: "",
@@ -406,6 +406,11 @@ defineFeature(feature, (test) => {
   let container;
   const domain = window.location.origin;
   const mock = new MockAdapter(axios);
+
+  beforeEach(() => {
+    jest.useFakeTimers("modern");
+    jest.setSystemTime(new Date(2022, 3, 1));
+  });
 
   test('EPIC_EPP-18_STORY_EPP-2707- Verify whether the system is sending the requested Refill to the Provider portal/E360+', ({ given, when, and, then }) => {
     given('Patient Launch  the browser and enter the Patient portal URL', () => {});

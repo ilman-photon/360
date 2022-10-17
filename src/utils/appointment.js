@@ -383,29 +383,27 @@ function parsePrescriptionItemMedication(medications) {
   const past = [];
   const active = [];
   let latestDateMedic = "";
-  for (let index = 0; index < medications.length; index++) {
-    const date = medications[index].date;
-    const expiratedDate = medications[index].expiredDate || "-";
+  for (const element of medications) {
+    const date = element.date;
+    const expiratedDate = element.expiredDate || "-";
 
     const medicationData = {};
-    medicationData.id = medications[index].id;
-    medicationData.prescription = medications[index].prescription;
+    medicationData.id = element.id;
+    medicationData.prescription = element.prescription;
     medicationData.date = mmddyyDateFormat(date);
-    medicationData.prescribedBy = medications[index].providerName;
+    medicationData.prescribedBy = element.providerName;
     medicationData.isShowRequestRefill = isValidDate(new Date(expiratedDate))
       ? moment().isSameOrBefore(expiratedDate)
       : "-";
     medicationData.expirationDate = mmddyyDateFormat(expiratedDate);
-    medicationData.fillRequestDate = mmddyyDateFormat(
-      medications[index].fillRequestDate
-    );
-    medicationData.timeRemaining = medications[index].timeRemaining;
-    medicationData.dose = medications[index].dose;
-    medicationData.status = medications[index].status || "";
+    medicationData.fillRequestDate = mmddyyDateFormat(element.fillRequestDate);
+    medicationData.timeRemaining = element.timeRemaining;
+    medicationData.dose = element.dose;
+    medicationData.status = element.status || "";
     medicationData.statusDetails =
       "CVS Pharmacy, 123 Broadway Blvd, New Jersey, NY 12889";
-    medicationData.type = index % 2 == 0 ? "active" : "past";
-    medicationData.providerNPI = medications[index].providerNPI;
+    medicationData.type = element.type;
+    medicationData.providerNPI = element.providerNPI;
 
     if (medicationData.type === "active") {
       active.push(medicationData);
@@ -423,7 +421,7 @@ function parsePrescriptionItemMedication(medications) {
       }
     }
     filterProvider.push({
-      name: medications[index].providerName,
+      name: element.providerName,
       checked: false,
       type: "provider",
     });

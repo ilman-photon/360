@@ -13,7 +13,7 @@ import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import store from "../../src/store/store";
 import mediaQuery from 'css-mediaquery';
-import { TEMP_DATA_CONTACTS, TEMP_DATA_GLASSES, TEMP_DATA_MEDICATION } from "../setup/setup";
+import { TEMP_DATA_GLASSES, TEMP_DATA_CONTACTS, TEMP_DATA_MEDICATION } from "../../__mocks__/mockResponse";
 
 function createMatchMedia(width) {
   return (query) => ({
@@ -51,6 +51,11 @@ defineFeature(feature, (test) => {
   let container;
   const domain = window.location.origin;
   const mock = new MockAdapter(axios);
+
+  beforeEach(() => {
+    jest.useFakeTimers("modern");
+    jest.setSystemTime(new Date(2022, 3, 1));
+  });
 
   test('EPIC_EPP-19_STORY_EPP-2710 - Verify User should be able to click the option to cancel refill against a prescription', ({ given, when, then, and }) => {
     given('User launch Patient Portal url', () => {});

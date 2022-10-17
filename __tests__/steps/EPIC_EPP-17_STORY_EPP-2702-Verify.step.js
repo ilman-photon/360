@@ -9,7 +9,7 @@ import Cookies from "universal-cookie";
 import mediaQuery from "css-mediaquery";
 import HomePage from "../../src/pages/patient";
 import PrescriptionPage from "../../src/pages/patient/prescription";
-import { TEMP_DATA_GLASSES, TEMP_DATA_MEDICATION } from "../setup/setup";
+import { TEMP_DATA_GLASSES, TEMP_DATA_MEDICATION } from "../../__mocks__/mockResponse";
 
 
 
@@ -79,8 +79,7 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByText("Medications"));
-      expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
+      await waitFor(() => container.getByText(/Glasses/i));
     });
 
     then("patient should view the list of Prescriptions.", () => {
@@ -111,20 +110,6 @@ defineFeature(feature, (test) => {
     });
 
     and("navigate to the View Prescription page.", async () => {
-      const MOCK_DATA_MEDICATION = {
-        prescriptions: {
-          glasses: [],
-          contacts: [],
-          medications: [
-            {
-              id: "0",
-              prescription: "Aspirint 0.1% Ointmanet",
-              date: "2022-09-01T11:18:47.229Z",
-              status: "",
-            },
-          ],
-        },
-      };
 
       const mock = new MockAdapter(axios);
       const domain = window.location.origin;
@@ -182,20 +167,6 @@ defineFeature(feature, (test) => {
     });
 
     and("navigate to the View Prescription page.", async () => {
-      const MOCK_DATA_MEDICATION = {
-        prescriptions: {
-          glasses: [],
-          contacts: [],
-          medications: [
-            {
-              id: "0",
-              prescription: "Aspirint 0.1% Ointmanet",
-              date: "2022-09-01T11:18:47.229Z",
-              status: "refill request",
-            },
-          ],
-        },
-      };
 
       const mock = new MockAdapter(axios);
       mock.reset();
@@ -255,20 +226,6 @@ defineFeature(feature, (test) => {
     });
 
     and("navigate to the View Prescription page.", async () => {
-      const MOCK_DATA_MEDICATION = {
-        prescriptions: {
-          glasses: [],
-          contacts: [],
-          medications: [
-            {
-              id: "0",
-              prescription: "Aspirint 0.1% Ointmanet",
-              date: "2022-09-01T11:18:47.229Z",
-              status: "refill request",
-            },
-          ],
-        },
-      };
 
       const mock = new MockAdapter(axios);
       mock.reset();
@@ -364,7 +321,7 @@ defineFeature(feature, (test) => {
     });
 
     then("patient should see the verbiage There are no prescriptions.", async() => {
-      await waitFor(() => container.getByText(/There are no active/i));
+      // await waitFor(() => container.getByText(/There are no active/i));
       const button = container.getByText(/There are no active/i);
       expect(button).toBeInTheDocument();
     });
