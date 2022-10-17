@@ -64,8 +64,8 @@ export default function SetPasswordPage({ username }) {
         username: username,
         password: data.password,
         confirmPassword: data.confirmPassword,
-        patientType: "G"
-    }
+        patientType: "G",
+      };
 
       await api.getResponse(
         "/ecp/patient/registrationsetpassword",

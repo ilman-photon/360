@@ -16,7 +16,7 @@ import {
   setFilterData,
   setIsFilterApplied,
   setProviderListData,
-  fetchAppointmentById
+  fetchAppointmentById,
 } from "../../store/appointment";
 import {
   getMondayOfCurrentWeek,

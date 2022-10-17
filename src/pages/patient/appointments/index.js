@@ -1,5 +1,5 @@
 import AppointmentLayout from "../../../components/templates/appointmentLayout";
-import { Provider } from "react-redux";
+import { Provider, useDispatch, useSelector } from "react-redux";
 import store from "../../../store/store";
 import UpcomingAppointment from "../../../components/organisms/UpcomingAppointment/upcomingAppointment";
 import { Typography, Box } from "@mui/material";
@@ -18,6 +18,7 @@ import ModalCancelScheduling from "../../../components/organisms/ScheduleAppoint
 import Cookies from "universal-cookie";
 import { addToCalendar } from "../../../utils/addToCalendar";
 import { appointmentParser } from "../../../utils/appointmentsModel";
+import { fetchAppointmentById } from "../../../store/appointment";
 export default function Appointments() {
   const [modalErrorRequest, setModalErrorRequest] = useState(false);
   const [modalSuccessCancel, setModalSuccessCancel] = useState(false);
@@ -29,8 +30,13 @@ export default function Appointments() {
   const [pastAppointment, setPastAppointment] = useState([]);
   const [appointmentId, setAppointmentId] = useState("");
 
+  const dispatch = useDispatch();
   const router = useRouter();
   const isMobile = useMediaQuery("(max-width: 992px)");
+
+  const appointmentStatus = useSelector((state) => {
+    return state.appointment.appointmentSchedule.patientInfo.status;
+  });
 
   const getAppointments = () => {
     const api = new Api();
@@ -96,6 +102,7 @@ export default function Appointments() {
 
   const onCancelClicked = (data) => {
     setAppointmentId(data.appointmentId);
+    dispatch(fetchAppointmentById({ appointmentId: data.appointmentId }));
     setModalCancel(true);
   };
 
@@ -109,8 +116,8 @@ export default function Appointments() {
       data.cancelSchedule === "other" ? data.cancelOther : data.cancelSchedule;
     const postBody = {
       current: {
-        state: "CREATED",
-        subState: "CREATED",
+        state: appointmentStatus,
+        subState: appointmentStatus,
       },
       target: {
         state: "CANCELLED",
