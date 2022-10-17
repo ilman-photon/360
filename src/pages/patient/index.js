@@ -16,6 +16,7 @@ import {
   setFilterData,
   setIsFilterApplied,
   setProviderListData,
+  fetchAppointmentById
 } from "../../store/appointment";
 import {
   getMondayOfCurrentWeek,
@@ -55,6 +56,11 @@ export default function HomePage({ googleApiKey }) {
 
   const insuranceCarrierList = useSelector((state) => state.provider.list);
   const filterData = useSelector((state) => state.appointment.filterData);
+
+  const appointmentStatus = useSelector((state) => {
+    return state.appointment.appointmentSchedule.patientInfo.status;
+  });
+
   const isDesktop = useMediaQuery("(min-width: 900px)");
   const { coords, isGeolocationEnabled } = useGeolocated({
     positionOptions: {
@@ -196,6 +202,10 @@ export default function HomePage({ googleApiKey }) {
   }
 
   const handleClickCancel = () => {
+    setAppointmentId(appointmentData[0].appointmentId);
+    dispatch(
+      fetchAppointmentById({ appointmentId: appointmentData[0].appointmentId })
+    );
     setIsOpenCancel(true);
   };
 
@@ -209,8 +219,8 @@ export default function HomePage({ googleApiKey }) {
       data.cancelSchedule === "other" ? data.cancelOther : data.cancelSchedule;
     const postBody = {
       current: {
-        state: "CREATED",
-        subState: "CREATED",
+        state: appointmentStatus,
+        subState: appointmentStatus,
       },
       target: {
         state: "CANCELLED",
@@ -226,7 +236,7 @@ export default function HomePage({ googleApiKey }) {
         setIsOpenCancel(false);
       })
       .catch(() => {
-        setModalCancel(false);
+        setIsOpenCancel(false);
         //Handle error cancelAppointment
       });
   };

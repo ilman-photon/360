@@ -462,8 +462,6 @@ export default function ScheduleAppointmentPage({ query }) {
     if (isLoggedIn) {
       if (isReschedule) {
         setModalConfirmReschedule(true);
-      } else {
-        handleCreateAppointment();
       }
     } else {
       setActiveStep(idx);

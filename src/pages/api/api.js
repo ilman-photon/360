@@ -111,7 +111,7 @@ export class Api {
 
   validateUserType(postbody) {
     const url = "/ecp/patient/getPatientType";
-    return this.forgotFeatureValidation(url, postbody, "post");
+    return this.getResponse(url, postbody, "post", false);
   }
 
   validateUserName(postbody) {

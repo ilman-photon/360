@@ -55,15 +55,21 @@ export default function SetPasswordPage({ username }) {
     formStyle: { marginTop: "0px" },
   };
 
-  const OnSetPasswordClicked = async function (postbody, _router) {
+  const OnSetPasswordClicked = async function (data, _router) {
     try {
       dispatch(resetFormMessage());
       const cookies = new Cookies();
       const api = new Api();
+      const postbody = {
+        username: username,
+        password: data.password,
+        confirmPassword: data.confirmPassword,
+        patientType: "G"
+    }
 
       await api.getResponse(
         "/ecp/patient/registrationsetpassword",
-        { ...postbody, patientType: "G" },
+        postbody,
         "post"
       );
       setShowPostMessage(true);
