@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import store from "../../src/store/store";
 import mediaQuery from "css-mediaquery";
 import PrescriptionPage from "../../src/pages/patient/prescription";
+import { TEMP_DATA_GLASSES, TEMP_DATA_CONTACTS } from "../../__mocks__/mockResponse";
 
 function createMatchMedia(width) {
   return (query) => ({
@@ -51,42 +52,21 @@ defineFeature(feature, (test) => {
     });
 
     and("navigate to the View Prescription page.", async () => {
-      const MOCK_PRESCRIPTION = {
-        prescriptions: {
-          glasses: [
-            {
-              prescribedBy: "Dr. Sonha Nguyen",
-              date: "2022-09-02T11:18:47.229Z",
-              expirationDate: "2022-10-02T11:18:47.229Z",
-              prescriptionDetails: [
-                {
-                  Eye: "OD",
-                  Sph: "+20.00",
-                  Cyl: "-5.00",
-                  Axis: "70",
-                  Add: "x180",
-                },
-                {
-                  Eye: "OS",
-                  Sph: "+19.75",
-                  Cyl: "-4.75",
-                  Axis: "38",
-                  Add: "x090",
-                },
-              ],
-            },
-          ],
-          contacts: [],
-          medications: [],
-        },
-      };
       const mock = new MockAdapter(axios);
-      const domain = window.location.origin;
       mock
-        .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
-        )
-        .reply(200, MOCK_PRESCRIPTION);
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+      )
+      .reply(200, []);
+      mock
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+      )
+      .reply(200, {});
+      mock
+      .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+      )
+      .reply(200, TEMP_DATA_GLASSES);
       window.matchMedia = createMatchMedia("1400px");
       act(() => {
         container = render(
@@ -126,42 +106,21 @@ defineFeature(feature, (test) => {
     });
 
     and("navigate to the View Prescription page.", async () => {
-      const MOCK_PRESCRIPTION = {
-        prescriptions: {
-          glasses: [],
-          contacts: [
-            {
-              prescribedBy: "Dr. Sonha Nguyen",
-              date: "2022-09-02T11:18:47.229Z",
-              expirationDate: "2022-10-02T11:18:47.229Z",
-              prescriptionDetails: [
-                {
-                  Eye: "OD",
-                  Sph: "+20.00",
-                  Bc: "-5.00",
-                  Cyl: "70",
-                  Axis: "x180",
-                },
-                {
-                  Eye: "OS",
-                  Sph: "+19.75",
-                  Bc: "-4.75",
-                  Cyl: "38",
-                  Axis: "x090",
-                },
-              ],
-            },
-          ],
-          medications: [],
-        },
-      };
       const mock = new MockAdapter(axios);
-      const domain = window.location.origin;
       mock
-        .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
-        )
-        .reply(200, MOCK_PRESCRIPTION);
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+      )
+      .reply(200, []);
+      mock
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+      )
+      .reply(200, TEMP_DATA_CONTACTS);
+      mock
+      .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+      )
+      .reply(200, {});
       window.matchMedia = createMatchMedia("1400px");
       act(() => {
         container = render(
@@ -174,7 +133,7 @@ defineFeature(feature, (test) => {
     });
 
     then("the Patient should see the correct date of prescription.", () => {
-      const date = container.getByText("02/09/2022");
+      const date = container.getByText("01/10/2022");
       expect(date).toBeInTheDocument();
     });
   });
@@ -201,42 +160,21 @@ defineFeature(feature, (test) => {
     });
 
     and("navigate to the View Prescription page.", async () => {
-      const MOCK_PRESCRIPTION = {
-        prescriptions: {
-          glasses: [
-            {
-              prescribedBy: "Dr. Sonha Nguyen",
-              date: "2022-09-02T11:18:47.229Z",
-              expirationDate: "2022-10-02T11:18:47.229Z",
-              prescriptionDetails: [
-                {
-                  Eye: "OD",
-                  Sph: "+20.00",
-                  Cyl: "-5.00",
-                  Axis: "70",
-                  Add: "x180",
-                },
-                {
-                  Eye: "OS",
-                  Sph: "+19.75",
-                  Cyl: "-4.75",
-                  Axis: "38",
-                  Add: "x090",
-                },
-              ],
-            },
-          ],
-          contacts: [],
-          medications: [],
-        },
-      };
       const mock = new MockAdapter(axios);
-      const domain = window.location.origin;
       mock
-        .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
-        )
-        .reply(200, MOCK_PRESCRIPTION);
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+      )
+      .reply(200, []);
+      mock
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+      )
+      .reply(200, {});
+      mock
+      .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+      )
+      .reply(200, TEMP_DATA_GLASSES);
       window.matchMedia = createMatchMedia("1400px");
       act(() => {
         container = render(
@@ -251,11 +189,9 @@ defineFeature(feature, (test) => {
     then(
       "the Patient should see the correct expiry date of Glass prescription.",
       async () => {
-        const conta = container.getByTestId("menu-glasses");
-        fireEvent.click(conta);
-        await waitFor(()=> container.getByText(/Glasses Prescription/i));
-        const expired = container.getByText(/Expires on/i);
-        const date = container.getByText("02/10/2022");
+        await waitFor(() => container.getAllByText(/Expires on/i)[0]);
+        const expired = container.getAllByText(/Expires on/i)[0];
+        const date = container.getByText("01/10/2022");
 
         expect(expired).toBeInTheDocument();
         expect(date).toBeInTheDocument();
@@ -285,42 +221,21 @@ defineFeature(feature, (test) => {
     });
 
     and("navigate to the View Prescription page.", async () => {
-      const MOCK_PRESCRIPTION = {
-        prescriptions: {
-          glasses: [],
-          contacts: [
-            {
-              prescribedBy: "Dr. Sonha Nguyen",
-              date: "2022-09-01T11:18:47.229Z",
-              expirationDate: "2022-10-02T11:18:47.229Z",
-              prescriptionDetails: [
-                {
-                  Eye: "OD",
-                  Sph: "+20.00",
-                  Bc: "-5.00",
-                  Cyl: "70",
-                  Axis: "x180",
-                },
-                {
-                  Eye: "OS",
-                  Sph: "+19.75",
-                  Bc: "-4.75",
-                  Cyl: "38",
-                  Axis: "x090",
-                },
-              ],
-            },
-          ],
-          medications: [],
-        },
-      };
       const mock = new MockAdapter(axios);
-      const domain = window.location.origin;
       mock
-        .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
-        )
-        .reply(200, MOCK_PRESCRIPTION);
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+      )
+      .reply(200, []);
+      mock
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+      )
+      .reply(200, TEMP_DATA_CONTACTS);
+      mock
+      .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+      )
+      .reply(200, {});
       window.matchMedia = createMatchMedia("1400px");
       act(() => {
         container = render(
@@ -335,8 +250,8 @@ defineFeature(feature, (test) => {
     then(
       "the Patient should see the correct prescribed Doctor's name in the Prescribed by.",
       () => {
-        const expired = container.getAllByText(/Prescribed by/i)[0];
-        const date = container.getAllByText("Dr. Sonha Nguyen")[0];
+        const expired = container.getByText(/Prescribed by/i);
+        const date = container.getByText(/indraku/i);
 
         expect(expired).toBeInTheDocument();
         expect(date).toBeInTheDocument();
@@ -366,42 +281,21 @@ defineFeature(feature, (test) => {
     });
 
     and("navigate to the View Prescription page.", async () => {
-      const MOCK_PRESCRIPTION = {
-        prescriptions: {
-          glasses: [
-            {
-              prescribedBy: "Dr. Sonha Nguyen",
-              date: "2022-09-02T11:18:47.229Z",
-              expirationDate: "2022-10-02T11:18:47.229Z",
-              prescriptionDetails: [
-                {
-                  Eye: "OD",
-                  Sph: "+20.00",
-                  Cyl: "-5.00",
-                  Axis: "70",
-                  Add: "x180",
-                },
-                {
-                  Eye: "OS",
-                  Sph: "+19.75",
-                  Cyl: "-4.75",
-                  Axis: "38",
-                  Add: "x090",
-                },
-              ],
-            },
-          ],
-          contacts: [],
-          medications: [],
-        },
-      };
       const mock = new MockAdapter(axios);
-      const domain = window.location.origin;
       mock
-        .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
-        )
-        .reply(200, MOCK_PRESCRIPTION);
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+      )
+      .reply(200, []);
+      mock
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+      )
+      .reply(200, {});
+      mock
+      .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+      )
+      .reply(200, TEMP_DATA_GLASSES);
       window.matchMedia = createMatchMedia("1400px");
       act(() => {
         container = render(
@@ -420,11 +314,11 @@ defineFeature(feature, (test) => {
     });
 
     then("below mentioned details should see by the user", () => {
-      const eye = container.getByText(/Eye/i);
-      const sph = container.getByText(/Sph/i);
-      const cyl = container.getByText(/Cyl/i);
-      const axis = container.getByText(/Axis/i);
-      const add = container.getByText(/Add/i);
+      const eye = container.getAllByText(/Eye/i)[0];
+      const sph = container.getAllByText(/Sph/i)[0];
+      const cyl = container.getAllByText(/Cyl/i)[0];
+      const axis = container.getAllByText(/Axis/i)[0];
+      const add = container.getAllByText(/Add/i)[0];
 
       expect(eye).toBeInTheDocument();
       expect(sph).toBeInTheDocument();
@@ -456,42 +350,21 @@ defineFeature(feature, (test) => {
     });
 
     and("navigate to the View Prescription page.", async () => {
-      const MOCK_PRESCRIPTION = {
-        prescriptions: {
-          glasses: [
-            {
-              prescribedBy: "Dr. Sonha Nguyen",
-              date: "2022-09-02T11:18:47.229Z",
-              expirationDate: "2022-10-02T11:18:47.229Z",
-              prescriptionDetails: [
-                {
-                  Eye: "OD",
-                  Sph: "+20.00",
-                  Cyl: "-5.00",
-                  Axis: "70",
-                  Add: "x180",
-                },
-                {
-                  Eye: "OS",
-                  Sph: "+19.75",
-                  Cyl: "-4.75",
-                  Axis: "38",
-                  Add: "x090",
-                },
-              ],
-            },
-          ],
-          contacts: [],
-          medications: [],
-        },
-      };
       const mock = new MockAdapter(axios);
-      const domain = window.location.origin;
       mock
-        .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
-        )
-        .reply(200, MOCK_PRESCRIPTION);
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+      )
+      .reply(200, []);
+      mock
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+      )
+      .reply(200, {});
+      mock
+      .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+      )
+      .reply(200, TEMP_DATA_GLASSES);
       window.matchMedia = createMatchMedia("1400px");
       act(() => {
         container = render(
@@ -510,11 +383,11 @@ defineFeature(feature, (test) => {
     });
 
     then("below mentioned details should see by the user", () => {
-      const eye = container.getByText(/Eye/i);
-      const sph = container.getByText(/Sph/i);
-      const cyl = container.getByText(/Cyl/i);
-      const axis = container.getByText(/Axis/i);
-      const add = container.getByText(/Add/i);
+      const eye = container.getAllByText(/Eye/i)[0];
+      const sph = container.getAllByText(/Sph/i)[0];
+      const cyl = container.getAllByText(/Cyl/i)[0];
+      const axis = container.getAllByText(/Axis/i)[0];
+      const add = container.getAllByText(/Add/i)[0];
 
       expect(eye).toBeInTheDocument();
       expect(sph).toBeInTheDocument();

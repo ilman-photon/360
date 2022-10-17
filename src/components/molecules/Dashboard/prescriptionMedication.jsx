@@ -39,6 +39,7 @@ export default function PrescriptionMedication({
     //this is intentional
   },
   requestRefillResponseData = null,
+  filterProvider = [],
 }) {
   const [showModal, setShowModal] = React.useState(false);
   const containerActive = React.useRef(null);
@@ -46,80 +47,13 @@ export default function PrescriptionMedication({
   const [filterOpen, setFilterOpen] = React.useState(false);
   const [activeFilter, setActiveFilter] = React.useState([]);
   const [selectedData, setSelectedData] = React.useState({});
+  const [filterData, setFilterData] = React.useState([]);
+  const [filterMedicationData, setFilterMedicationData] = React.useState([]);
   const [requestRefillResponse, setRequestRefillResponse] =
     React.useState(null);
   const isFilterApplied = activeFilter.length > 0;
   const imageSrcState = "/mobileFilter.png";
   const imageSrcFilled = "/appliedMobileFilter.png";
-
-  const testFilterData = [
-    {
-      name: "Filter By",
-      checklist: [
-        {
-          name: "All",
-          checked: false,
-        },
-        {
-          name: "Refill Requested",
-          checked: false,
-        },
-        {
-          name: "Active",
-          checked: false,
-        },
-      ],
-    },
-    {
-      name: "Providers",
-      checklist: [
-        {
-          name: "Phillip Morries, M.D.",
-          checked: false,
-        },
-        {
-          name: "Melsanie Chantal, M.D. ",
-          checked: false,
-        },
-        {
-          name: "Jonathan P Chan, M.D.",
-          checked: false,
-        },
-        {
-          name: "Adriane Moore, M.D.",
-          checked: false,
-        },
-        {
-          name: "John D More, M.D.",
-          checked: false,
-        },
-        {
-          name: "John E More, M.D.",
-          checked: false,
-        },
-        {
-          name: "John F More, M.D.",
-          checked: false,
-        },
-        {
-          name: "John G More, M.D.",
-          checked: false,
-        },
-        {
-          name: "John H More, M.D.",
-          checked: false,
-        },
-        {
-          name: "John I More, M.D.",
-          checked: false,
-        },
-        {
-          name: "John D More, M.D.",
-          checked: false,
-        },
-      ],
-    },
-  ];
   const isMobile = useMediaQuery("(max-width: 768px)");
   const iconMedication = "/icon-medication.png";
 
@@ -174,12 +108,46 @@ export default function PrescriptionMedication({
   const onSetFilter = (newFilterData) => {
     setFilterOpen(!filterOpen);
     setActiveFilter([...newFilterData]);
+
+    if (newFilterData.length > 0) {
+      const tempMedicationData = { ...medications };
+      let filterResult = tempMedicationData.active.concat(
+        tempMedicationData.past
+      );
+      for (const filter of newFilterData) {
+        if (filter.name === "All" && filter.checked) {
+          filterResult = filterResult;
+        }
+        if (filter.name === "Refill Requested" && filter.checked) {
+          filterResult = filterResult.filter(
+            (v) => v.type === "refill request"
+          );
+        }
+        if (filter.name === "Active" && filter.checked) {
+          filterResult = filterResult.filter((v) => v.type === "active");
+        }
+
+        if (filter.type === "provider") {
+          filterResult = filterResult.filter(
+            (v) => v.prescribedBy === filter.name
+          );
+        }
+      }
+      setFilterMedicationData(filterResult);
+    } else {
+      setFilterMedicationData([]);
+    }
   };
 
   useEffect(() => {
     setRequestRefillResponse(requestRefillResponseData);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [requestRefillResponseData]);
+
+  useEffect(() => {
+    if (filterProvider.length && filterProvider.length > 0)
+      setFilterData(filterProvider);
+  }, [filterProvider]);
 
   /**
    * Handle medication request refill or cancel request refill
@@ -522,7 +490,7 @@ export default function PrescriptionMedication({
             <Stack direction={"row"} className={styles.remainingTimeContainer}>
               <AccessTimeIcon sx={{ color: colors.darkGreen }} />
               <Typography className={styles.remainingTimeText} tabIndex={"0"}>
-                Take 2 times a day
+                {data.timeRemaining}
               </Typography>
             </Stack>
             {data.status !== "refill request" ? (
@@ -572,7 +540,7 @@ export default function PrescriptionMedication({
         >
           <FilterBy
             activedFilter={[...activeFilter]}
-            filter={testFilterData}
+            filter={filterData}
             isOpen={filterOpen}
             onClose={() => {
               setFilterOpen(!filterOpen);
@@ -619,6 +587,53 @@ export default function PrescriptionMedication({
     }
   }
 
+  function renderMedication(medicationList, medicationType) {
+    return medications?.active?.length > 0 ? (
+      <Box ref={containerActive}>
+        {renderPrescriptionTabUI(medications.active, medicationType)}
+      </Box>
+    ) : (
+      <Box
+        className={[styles.noPrescription, styles.margin].join(" ")}
+        tabIndex={0}
+      >
+        <Typography
+          className={styles.normalText}
+        >{`There are no active medications`}</Typography>
+      </Box>
+    );
+  }
+
+  function renderPastMedication() {
+    return (
+      medications?.past?.length > 0 &&
+      !isFilterApplied && (
+        <>
+          <Box
+            className={[
+              styles.flexDisplay,
+              styles.spaceBetween,
+              styles.margin,
+              styles.marginTop,
+            ]}
+          >
+            <Typography
+              variant="titleCard"
+              aria-label={`Past Medications (${medications?.past?.length} medications)`}
+              tabIndex={"0"}
+              className={styles.titleText}
+            >
+              Past Medications{` (${medications?.past?.length})`}
+            </Typography>
+          </Box>
+          <Box ref={containerPast}>
+            {renderPrescriptionTabUI(medications.past, "past")}
+          </Box>
+        </>
+      )
+    );
+  }
+
   return (
     <Box className={styles.medicationDetailContainer}>
       {requestRefillResponseData && (
@@ -656,42 +671,12 @@ export default function PrescriptionMedication({
         </Typography>
         {renderUIFilter()}
       </Box>
-      {medications?.active?.length > 0 ? (
-        <Box ref={containerActive}>
-          {renderPrescriptionTabUI(medications.active, "active")}
-        </Box>
+      {isFilterApplied ? (
+        renderMedication(filterMedicationData, "filter")
       ) : (
-        <Box
-          className={[styles.noPrescription, styles.margin].join(" ")}
-          tabIndex={0}
-        >
-          <Typography
-            className={styles.normalText}
-          >{`There are no active medications`}</Typography>
-        </Box>
-      )}
-      {medications?.past?.length > 0 && !isFilterApplied && (
         <>
-          <Box
-            className={[
-              styles.flexDisplay,
-              styles.spaceBetween,
-              styles.margin,
-              styles.marginTop,
-            ]}
-          >
-            <Typography
-              variant="titleCard"
-              aria-label={`Past Medications (${medications?.past?.length} medications)`}
-              tabIndex={"0"}
-              className={styles.titleText}
-            >
-              Past Medications{` (${medications?.past?.length})`}
-            </Typography>
-          </Box>
-          <Box ref={containerPast}>
-            {renderPrescriptionTabUI(medications.past, "past")}
-          </Box>
+          {renderMedication(medications.active, "active")}
+          {renderPastMedication()}
         </>
       )}
       {renderDialogConfirmation()}
