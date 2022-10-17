@@ -63,6 +63,7 @@ const InfoWindowContent = ({
               {counter} of {data.length} doctors at this location
             </Typography>
             <ProviderProfile
+              isCard
               variant={"map"}
               providerData={data[counter - 1]}
               imageSize={"medium"}

@@ -182,24 +182,30 @@ export default function AppointmentCard({
                   {appointment.providerInfo?.position}
                 </Typography>
                 {renderAddressUI()}
-                <Typography
-                  variant="bodyLinkRegular"
-                  tabIndex={0}
-                  onKeyPress={() =>
-                    window.open(`tel:${appointment.providerInfo?.phoneNumber}`)
-                  }
+                <Box
                   aria-label={`phone number ${appointment.providerInfo?.phoneNumber}`}
+                  tabIndex={0}
                 >
-                  <a
+                  <Typography
+                    variant="bodyLinkRegular"
+                    aria-hidden={true}
                     onKeyPress={() =>
                       window.open(
                         `tel:${appointment.providerInfo?.phoneNumber}`
                       )
                     }
                   >
-                    {formatPhoneNumber(appointment.providerInfo?.phoneNumber)}{" "}
-                  </a>
-                </Typography>
+                    <a
+                      onKeyPress={() =>
+                        window.open(
+                          `tel:${appointment.providerInfo?.phoneNumber}`
+                        )
+                      }
+                    >
+                      {formatPhoneNumber(appointment.providerInfo?.phoneNumber)}{" "}
+                    </a>
+                  </Typography>
+                </Box>
                 {renderGetDirection()}
               </Box>
             </Grid>
