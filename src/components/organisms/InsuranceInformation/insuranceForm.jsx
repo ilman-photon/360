@@ -290,6 +290,11 @@ export default function InsuranceForm({
                   label="Are you the Subscriber?"
                   options={isSubscriberOptions}
                   helperText={error ? error.message : null}
+                  sx={{
+                    ".MuiFormControlLabel-label": {
+                      fontSize: "16px",
+                    },
+                  }}
                   isInsuranceForm={true}
                   tooltipContent="The person who pays for health insurance premiums. For example, if you have health insurance through your spouse’s health insurance plan, he or she is the primary subscriber."
                   customTooltipWidth="210px"
@@ -450,6 +455,8 @@ export default function InsuranceForm({
                                 border: "1px solid #bbb",
                                 backgroundColor: "#fff",
                                 fontSize: "16px",
+                                fontWeight: 400,
+                                color: colors.darkGreen,
                               },
                             }}
                             label="Relationship"
