@@ -26,6 +26,7 @@ export default function RowRadioButtonsGroup({
   isCancelSchedule = false,
   isInsuranceForm = false,
   isRegistrationForm = false,
+  customTooltipWidth,
   ...props
 }) {
   const options = props.options || [];
@@ -51,7 +52,12 @@ export default function RowRadioButtonsGroup({
         {props.label}
         {tooltipContent ? (
           <>
-            <CustomWidthTooltip title={tooltipContent} placement="top" arrow>
+            <CustomWidthTooltip
+              title={tooltipContent}
+              placement="top"
+              arrow
+              sx={{ width: customTooltipWidth || "unset" }}
+            >
               <Box sx={{ marginLeft: "7px", lineHeight: "10px" }}>
                 <Image
                   alt=""
@@ -91,6 +97,7 @@ export default function RowRadioButtonsGroup({
                     "&.Mui-checked": {
                       color: colors.teal,
                     },
+                    height: isCancelSchedule ? "40px" : "auto",
                   }}
                 />
               }

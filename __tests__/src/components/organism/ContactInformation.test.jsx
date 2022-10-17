@@ -7,9 +7,9 @@ window.scrollTo = jest.fn();
 describe("ContactInformation Components", () => {
   let container;
   const mockUserdata = {
-    address: "645 Benedict Cliff",
+    address: "100 River Road",
     age: 63,
-    city: "Daphneeshire",
+    city: "Banora Point",
     dob: "2022-08-18T13:08:18.012Z",
     email: "Justus4@gmail.com",
     firstName: "Karlie",
@@ -26,9 +26,9 @@ describe("ContactInformation Components", () => {
       source: "https://loremflickr.com/640/480",
     },
     ssn: 3777306119,
-    state: "South Dakota",
+    state: "FL",
     title: "Mrs.",
-    zip: "03245",
+    zip: "24861",
   };
 
   beforeEach(async () => {
@@ -58,10 +58,10 @@ describe("ContactInformation Components", () => {
     ).toBeInTheDocument();
 
     expect(container.getByText("Justus4@gmail.com")).toBeInTheDocument();
-    expect(container.getByText("645 Benedict Cliff")).toBeInTheDocument();
-    expect(container.getByText("Daphneeshire")).toBeInTheDocument();
-    expect(container.getByText("South Dakota")).toBeInTheDocument();
-    expect(container.getByText("03245")).toBeInTheDocument();
+    expect(container.getByText("100 River Road")).toBeInTheDocument();
+    expect(container.getByText("Banora Point")).toBeInTheDocument();
+    expect(container.getByText("FL")).toBeInTheDocument();
+    expect(container.getByText("24861")).toBeInTheDocument();
   });
 
   test("is edit button clicked", async () => {
@@ -79,11 +79,11 @@ describe("ContactInformation Components", () => {
     fireEvent.change(field2, { target: { value: "aa@aa.aa" } });
     expect(field2.value).toEqual("aa@aa.aa");
 
-    await waitFor(() => container.getByText("Address"));
-    await waitFor(() => container.getByText("645 Benedict Cliff"));
+    const addressField =  await waitFor(() => container.getByLabelText("Address"));
+    expect(addressField).toHaveValue("100 River Road")
 
     const field4 = container.getByLabelText("City field");
-    expect(field4.value).toEqual("Daphneeshire");
+    expect(field4.value).toEqual("Banora Point");
     fireEvent.change(field4, { target: { value: "Cities" } });
     expect(field4.value).toEqual("Cities");
 
@@ -93,7 +93,7 @@ describe("ContactInformation Components", () => {
     expect(field5).toBeTruthy();
 
     const field6 = container.getByLabelText("Zip field");
-    expect(field6.value).toEqual("03245");
+    expect(field6.value).toEqual("24861");
     fireEvent.change(field6, { target: { value: "12345" } });
     expect(field6.value).toEqual("12345");
 
@@ -123,14 +123,14 @@ describe("ContactInformation Components", () => {
     );
 
     const field = container.container.querySelector("#zip");
-    //expect(field.value).toEqual("03245");
+    //expect(field.value).toEqual("24861");
     fireEvent.change(field, { target: { value: "12345" } });
     expect(field.value).toEqual("12345");
 
     const cancelButton = container.getByRole("button", { name: "Cancel" });
     fireEvent.click(cancelButton);
 
-    expect(field.value).toEqual("03245");
+    expect(field.value).toEqual("24861");
   });
 
   test("is save button clicked", () => {

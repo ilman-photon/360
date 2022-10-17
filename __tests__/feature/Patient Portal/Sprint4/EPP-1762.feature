@@ -1,35 +1,7 @@
-@BDDSTORY-EPP-1762
-@Appointments
-@P1
-@Patient_Portal
 Feature: Patient Portal : Patient Login Page - Provide existing user's email or phone number in 'Already have an appointment? Sync your appointment information' screen
   User Story: As a registered user, I should be able to view error message when I provide my registered email or phone number to sync appointment information
 
-  Acceptance Criteria:
-
-  GIVEN
-
-  User is a registered user i.e already have an account
-
-  And
-
-  User is on the “Patient Login” screen
-
-  And
-
-  User clicks on  'Already have an appointment? Sync your appointment information' CTA from the login page
-
-  And
-
-  User lands on that screen to enter email or phone number
-
-  WHEN
-
-  User provides their already registered email or phone number
-
-  THEN
-
-  User should be able to see the error message as mentioned in  
+ 
 
   @BDDTEST-EPP-2929
   @Appointments

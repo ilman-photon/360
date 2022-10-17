@@ -127,11 +127,12 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByTestId("glasses-container-0"));
+      await waitFor(() => container.getByText("Medications"));
+      expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
     });
 
     then("patient should view the list of Prescriptions.", () => {
-      const conta = container.getByTestId("glasses-container-0");
+      const conta = container.getByTestId("menu-glasses");
       expect(conta).toBeInTheDocument();
     });
   });
@@ -377,8 +378,9 @@ defineFeature(feature, (test) => {
       await waitFor(() => container.getAllByText(/Active Medications/i))[0];
     });
 
-    then("patient should see the verbiage There are no prescriptions.", () => {
-      const button = container.getByText(/There are no active medications/i);
+    then("patient should see the verbiage There are no prescriptions.", async() => {
+      await waitFor(() => container.getByText(/There are no active/i));
+      const button = container.getByText(/There are no active/i);
       expect(button).toBeInTheDocument();
     });
   });

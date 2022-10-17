@@ -47,7 +47,14 @@ defineFeature(feature, (test) => {
       });
 
       and(/^user provides (.*) and Invalid (.*) for (\d+)st time$/, (arg0, arg1, arg2) => {
-        expect(true).toBeTruthy()
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "validUsername@mail.com" },
+        });
+        fireEvent.change(passwordField, { target: { value: "1" } });
+        expect(usernameField.value).toEqual("validUsername@mail.com");
+        expect(passwordField.value).not.toEqual("1");
       });
 
       and(/^user clicks on "(.*)" button$/, (arg0) => {
@@ -61,7 +68,14 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)nd time$/, (arg0, arg1, arg2) => {
-        expect(true).toBeTruthy()
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "validUsername@mail.com" },
+        });
+        fireEvent.change(passwordField, { target: { value: "1" } });
+        expect(usernameField.value).toEqual("validUsername@mail.com");
+        expect(passwordField.value).not.toEqual("1");
       });
 
       and(/^user clicks on "(.*)" button$/, (arg0) => {
@@ -74,7 +88,14 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)rd time$/, (arg0, arg1, arg2) => {
-        expect(true).toBeTruthy()
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "validUsername@mail.com" },
+        });
+        fireEvent.change(passwordField, { target: { value: "1" } });
+        expect(usernameField.value).toEqual("validUsername@mail.com");
+        expect(passwordField.value).not.toEqual("1");
       });
 
       and(/^user clicks on "(.*)" button$/, (arg0) => {
@@ -88,7 +109,14 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)st time$/, (arg0, arg1, arg2) => {
-        expect(true).toBeTruthy()
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "validUsername@mail.com" },
+        });
+        fireEvent.change(passwordField, { target: { value: "1" } });
+        expect(usernameField.value).toEqual("validUsername@mail.com");
+        expect(passwordField.value).not.toEqual("1");
       });
 
       and(/^user clicks on "(.*)" button$/, (arg0) => {
@@ -171,7 +199,14 @@ defineFeature(feature, (test) => {
       });
 
       and(/^user provides (.*) and Invalid (.*) for (\d+)st time$/, (arg0, arg1, arg2) => {
-        expect(true).toBeTruthy()
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "validUsername@mail.com" },
+        });
+        fireEvent.change(passwordField, { target: { value: "1" } });
+        expect(usernameField.value).toEqual("validUsername@mail.com");
+        expect(passwordField.value).not.toEqual("1");
       });
 
       and(/^user clicks on "(.*)" button$/, (arg0) => {
@@ -183,11 +218,19 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)nd time$/, (arg0, arg1, arg2) => {
-        expect(true).toBeTruthy()
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "validUsername@mail.com" },
+        });
+        fireEvent.change(passwordField, { target: { value: "1" } });
+        expect(usernameField.value).toEqual("validUsername@mail.com");
+        expect(passwordField.value).not.toEqual("1");
       });
 
       and(/^user clicks on "(.*)" button$/, (arg0) => {
-        expect(true).toBeTruthy()
+        const login = container.getByRole("button", { name: /Login/i });
+        fireEvent.click(login);
       });
 
       then(/^user should see the message "(.*)"$/, (arg0) => {
@@ -195,11 +238,19 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)rd time$/, (arg0, arg1, arg2) => {
-        expect(true).toBeTruthy()
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "validUsername@mail.com" },
+        });
+        fireEvent.change(passwordField, { target: { value: "1" } });
+        expect(usernameField.value).toEqual("validUsername@mail.com");
+        expect(passwordField.value).not.toEqual("1");
       });
 
       and(/^user clicks on "(.*)" button$/, (arg0) => {
-        expect(true).toBeTruthy()
+        const login = container.getByRole("button", { name: /Login/i });
+        fireEvent.click(login);
       });
 
       then(/^user should see the message "(.*)"$/, (arg0) => {
@@ -207,11 +258,19 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)st time$/, (arg0, arg1, arg2) => {
-        expect(true).toBeTruthy()
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "validUsername@mail.com" },
+        });
+        fireEvent.change(passwordField, { target: { value: "1" } });
+        expect(usernameField.value).toEqual("validUsername@mail.com");
+        expect(passwordField.value).not.toEqual("1");
       });
 
       and(/^user clicks on "(.*)" button$/, (arg0) => {
-        expect(true).toBeTruthy()
+        const login = container.getByRole("button", { name: /Login/i });
+        fireEvent.click(login);
       });
 
       then(/^user should see the message "(.*)"$/, (arg0) => {
@@ -219,11 +278,19 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)nd time$/, (arg0, arg1, arg2) => {
-        expect(true).toBeTruthy()
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "validUsername@mail.com" },
+        });
+        fireEvent.change(passwordField, { target: { value: "1" } });
+        expect(usernameField.value).toEqual("validUsername@mail.com");
+        expect(passwordField.value).not.toEqual("1");
       });
 
       and(/^user clicks on "(.*)" button$/, (arg0) => {
-        expect(true).toBeTruthy()
+        const login = container.getByRole("button", { name: /Login/i });
+        fireEvent.click(login);
       });
 
       then('user account should get locked', () => {
@@ -235,11 +302,19 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides invalid  (.*) and (.*)$/, (arg0, arg1) => {
-        expect(true).toBeTruthy()
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "wrongUsername.cc" },
+        });
+        fireEvent.change(passwordField, { target: { value: "1" } });
+        expect(usernameField.value).not.toEqual("wrongUsername.cc");
+        expect(passwordField.value).not.toEqual("1");
       });
 
       and(/^user clicks on "(.*)" button$/, (arg0) => {
-        expect(true).toBeTruthy()
+        const login = container.getByRole("button", { name: /Login/i });
+        fireEvent.click(login);
       });
 
       then('user should not able to login', () => {
@@ -278,11 +353,19 @@ defineFeature(feature, (test) => {
       });
 
       and(/^user provides (.*) and Invalid (.*) for (\d+)st time$/, (arg0, arg1, arg2) => {
-        expect(true).toBeTruthy()
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "validUsername@mail.com" },
+        });
+        fireEvent.change(passwordField, { target: { value: "1" } });
+        expect(usernameField.value).toEqual("validUsername@mail.com");
+        expect(passwordField.value).not.toEqual("1");
       });
 
       and(/^user clicks on "(.*)" button$/, (arg0) => {
-        expect(true).toBeTruthy()
+        const login = container.getByRole("button", { name: /Login/i });
+        fireEvent.click(login);
       });
 
       then(/^user should be able to see the message "(.*)"$/, (arg0) => {
@@ -290,7 +373,14 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)nd time$/, (arg0, arg1, arg2) => {
-        expect(true).toBeTruthy()
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "validUsername@mail.com" },
+        });
+        fireEvent.change(passwordField, { target: { value: "1" } });
+        expect(usernameField.value).toEqual("validUsername@mail.com");
+        expect(passwordField.value).not.toEqual("1");
       });
 
       and(/^user clicks on "(.*)" button$/, (arg0) => {
@@ -302,7 +392,14 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)rd time$/, (arg0, arg1, arg2) => {
-        expect(true).toBeTruthy()
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "validUsername@mail.com" },
+        });
+        fireEvent.change(passwordField, { target: { value: "1" } });
+        expect(usernameField.value).toEqual("validUsername@mail.com");
+        expect(passwordField.value).not.toEqual("1");
       });
 
       then(/^user should  see the message "(.*)"$/, (arg0) => {
@@ -310,11 +407,19 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)rd time$/, (arg0, arg1, arg2) => {
-        expect(true).toBeTruthy()
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "validUsername@mail.com" },
+        });
+        fireEvent.change(passwordField, { target: { value: "1" } });
+        expect(usernameField.value).toEqual("validUsername@mail.com");
+        expect(passwordField.value).not.toEqual("1");
       });
 
       and(/^user clicks on "(.*)" button$/, (arg0) => {
-        expect(true).toBeTruthy()
+        const login = container.getByRole("button", { name: /Login/i });
+        fireEvent.click(login);
       });
 
       then(/^user should  see the message "(.*)"$/, (arg0) => {
@@ -322,11 +427,19 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)rd time$/, (arg0, arg1, arg2) => {
-        expect(true).toBeTruthy()
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "validUsername@mail.com" },
+        });
+        fireEvent.change(passwordField, { target: { value: "1" } });
+        expect(usernameField.value).toEqual("validUsername@mail.com");
+        expect(passwordField.value).not.toEqual("1");
       });
 
       and(/^user clicks on "(.*)" button$/, (arg0) => {
-        expect(true).toBeTruthy()
+        const login = container.getByRole("button", { name: /Login/i });
+        fireEvent.click(login);
       });
 
       then('user account should get locked', () => {
@@ -338,11 +451,19 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides Invalid  (.*) and valid (.*)$/, (arg0, arg1) => {
-        expect(true).toBeTruthy()
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "wrongdUsername.cc" },
+        });
+        fireEvent.change(passwordField, { target: { value: "1" } });
+        expect(usernameField.value).not.toEqual("wrongdUsername.cc");
+        expect(passwordField.value).not.toEqual("1");
       });
 
       and(/^user clicks on "(.*)" button$/, (arg0) => {
-        expect(true).toBeTruthy()
+        const login = container.getByRole("button", { name: /Login/i });
+        fireEvent.click(login);
       });
 
       then('user should not able to login', () => {
@@ -381,11 +502,19 @@ defineFeature(feature, (test) => {
       });
 
       and(/^user provides (.*) and Invalid (.*) for (\d+)st time$/, (arg0, arg1, arg2) => {
-        expect(true).toBeTruthy()
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "validUsername@mail.com" },
+        });
+        fireEvent.change(passwordField, { target: { value: "1" } });
+        expect(usernameField.value).toEqual("validUsername@mail.com");
+        expect(passwordField.value).not.toEqual("1");
       });
 
       and(/^user clicks on "(.*)" button$/, (arg0) => {
-        expect(true).toBeTruthy()
+        const login = container.getByRole("button", { name: /Login/i });
+        fireEvent.click(login);
       });
 
       then(/^user should  to see the message "(.*)"$/, (arg0) => {
@@ -393,11 +522,19 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)nd time$/, (arg0, arg1, arg2) => {
-        expect(true).toBeTruthy()
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "validUsername@mail.com" },
+        });
+        fireEvent.change(passwordField, { target: { value: "1" } });
+        expect(usernameField.value).toEqual("validUsername@mail.com");
+        expect(passwordField.value).not.toEqual("1");
       });
 
       and(/^user clicks on "(.*)" button$/, (arg0) => {
-        expect(true).toBeTruthy()
+        const login = container.getByRole("button", { name: /Login/i });
+        fireEvent.click(login);
       });
 
       then(/^user should  see the message "(.*)"$/, (arg0) => {
@@ -405,11 +542,19 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)rd time$/, (arg0, arg1, arg2) => {
-        expect(true).toBeTruthy()
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "validUsername@mail.com" },
+        });
+        fireEvent.change(passwordField, { target: { value: "1" } });
+        expect(usernameField.value).toEqual("validUsername@mail.com");
+        expect(passwordField.value).not.toEqual("1");
       });
 
       and(/^user clicks on "(.*)" button$/, (arg0) => {
-        expect(true).toBeTruthy()
+        const login = container.getByRole("button", { name: /Login/i });
+        fireEvent.click(login);
       });
 
       then(/^user should  see the message "(.*)"$/, (arg0) => {
@@ -417,11 +562,19 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)rd time$/, (arg0, arg1, arg2) => {
-        expect(true).toBeTruthy()
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "validUsername@mail.com" },
+        });
+        fireEvent.change(passwordField, { target: { value: "1" } });
+        expect(usernameField.value).toEqual("validUsername@mail.com");
+        expect(passwordField.value).not.toEqual("1");
       });
 
       and(/^user clicks on "(.*)" button$/, (arg0) => {
-        expect(true).toBeTruthy()
+        const login = container.getByRole("button", { name: /Login/i });
+        fireEvent.click(login);
       });
 
       then(/^user should  see the message "(.*)"$/, (arg0) => {
@@ -429,11 +582,19 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides (.*) and Invalid (.*) for (\d+)rd time$/, (arg0, arg1, arg2) => {
-        expect(true).toBeTruthy()
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "validUsername@mail.com" },
+        });
+        fireEvent.change(passwordField, { target: { value: "1" } });
+        expect(usernameField.value).toEqual("validUsername@mail.com");
+        expect(passwordField.value).not.toEqual("1");
       });
 
       and(/^user clicks on "(.*)" button$/, (arg0) => {
-        expect(true).toBeTruthy()
+        const login = container.getByRole("button", { name: /Login/i });
+        fireEvent.click(login);
       });
 
       then('user account should get locked', () => {
@@ -445,11 +606,19 @@ defineFeature(feature, (test) => {
       });
 
       when(/^user provides valid  (.*) and invalid (.*)$/, (arg0, arg1) => {
-        expect(true).toBeTruthy()
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "validUsername@mail.com" },
+        });
+        fireEvent.change(passwordField, { target: { value: "1" } });
+        expect(usernameField.value).toEqual("validUsername@mail.com");
+        expect(passwordField.value).not.toEqual("1");
       });
 
       and(/^user clicks on "(.*)" button$/, (arg0) => {
-        expect(true).toBeTruthy()
+        const login = container.getByRole("button", { name: /Login/i });
+        fireEvent.click(login);
       });
 
       then('user should not able to login', () => {

@@ -525,28 +525,24 @@ export default function PrescriptionMedication({
                 Take 2 times a day
               </Typography>
             </Stack>
-            {data.isShowRequestRefill && (
-              <>
-                {data.status !== "refill request" ? (
-                  <StyledButton
-                    mode={constants.PRIMARY}
-                    gradient={false}
-                    onClick={() => onRequestCancelRefill(data, false)}
-                    className={styles.requestButton}
-                    data-testid={"request-refill-button"}
-                  >
-                    Request Refill
-                  </StyledButton>
-                ) : (
-                  <StyledButton
-                    mode={constants.SECONDARY}
-                    onClick={() => onRequestCancelRefill(data, true)}
-                    className={styles.requestButton}
-                  >
-                    Cancel Refill Request
-                  </StyledButton>
-                )}
-              </>
+            {data.status !== "refill request" ? (
+              <StyledButton
+                mode={constants.PRIMARY}
+                gradient={false}
+                onClick={() => onRequestCancelRefill(data, false)}
+                className={styles.requestButton}
+                data-testid={"request-refill-button"}
+              >
+                Request Refill
+              </StyledButton>
+            ) : (
+              <StyledButton
+                mode={constants.SECONDARY}
+                onClick={() => onRequestCancelRefill(data, true)}
+                className={styles.requestButton}
+              >
+                Cancel Refill Request
+              </StyledButton>
             )}
           </Stack>
         </Stack>

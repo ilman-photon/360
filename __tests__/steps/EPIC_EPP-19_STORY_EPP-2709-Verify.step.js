@@ -210,16 +210,18 @@ defineFeature(feature, (test) => {
             </Provider>
           );
         });
-        await waitFor(() => container.getByText(/Filter/i));
-        expect(
-          container.getAllByText(/Active Medications/i)[0]
-        ).toBeInTheDocument();
+        await waitFor(() => container.getByText("Medications"));
+        expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
       }
     );
 
     and(
       "User should be able to view options to filter the prescriptions with details as below:",
       async () => {
+        const medicationMenu = container.getByTestId("menu-medication");
+        fireEvent.click(medicationMenu)
+        await waitFor(()=> container.getByText(/Active Medications/i));
+          
         const filterButton = container.getByTestId("medication-filter-button");
         act(() => {
           fireEvent.click(filterButton);

@@ -43,7 +43,6 @@ export const ProfilePhotoUploader = ({
   };
 
   useEffect(() => {
-    console.log({ source });
     if (source) fetchImageURL();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [source]);

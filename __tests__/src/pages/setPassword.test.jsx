@@ -74,7 +74,7 @@ describe("Set Password", () => {
     await sleep(4000);
     await waitFor(() => container.getByText(/Back to Login/i));
     fireEvent.click(container.getByText(/Back to Login/i));
-  });
+  }, 10000);
 
   test("click reset password failed", async () => {
     mock

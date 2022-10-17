@@ -1,6 +1,7 @@
-import { fireEvent, render } from "@testing-library/react";
+import { fireEvent, render, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { DayAvailability } from "../../../../src/components/molecules/DayAvailability/DayAvailability";
+import { parseScheduleDataWeekOverlay } from "../../../../src/utils/appointment";
 
 const provider_data = [
   {
@@ -115,16 +116,19 @@ const provider_data = [
 describe("DayAvailability Components", () => {
   let container;
   beforeEach(() => {
+    const scheduleParse = parseScheduleDataWeekOverlay(provider_data[0]);
     container = render(<DayAvailability scheduleData={provider_data[0]}/>);
   });
 
-  it("DayAvailability render", () => {
-    expect(container).toMatchSnapshot();
+  it("DayAvailability render", async() => {
+    expect(
+      await waitFor(() =>
+        container.getByTestId("appointment_all_availability_next_week_button")
+      )
+    ).toBeInTheDocument();
   });
 
   it("FilterHeadingFilled render", () => {
     container = render(<DayAvailability isDesktop={true} scheduleData={provider_data[0]}/>);
-    expect(container).toMatchSnapshot();
   });
-
 });

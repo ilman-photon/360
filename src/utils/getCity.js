@@ -31,7 +31,7 @@ export function getCity(apiKey, coord, setCity) {
       setCity(city);
     },
     (error) => {
-      console.log(error);
+      console.error(error);
     }
   );
 }

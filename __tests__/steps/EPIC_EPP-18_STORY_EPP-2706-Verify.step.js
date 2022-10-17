@@ -192,13 +192,14 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByText(/Filter/i));
-      expect(
-        container.getAllByText(/Active Medications/i)[0]
-      ).toBeInTheDocument();
+      await waitFor(() => container.getByText("Medications"));
+      expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
     });
 
-    then("patient should see the option to Refill the Prescription.", () => {
+    then("patient should see the option to Refill the Prescription.", async () => {
+      const medicationMenu = container.getByTestId("menu-medication");
+      fireEvent.click(medicationMenu)
+      await waitFor(()=> container.getByText(/Active Medications/i));
       expect(container.getAllByText(/Request Refill/i)[0]).toBeInTheDocument();
     });
   });
@@ -237,13 +238,14 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByText(/Filter/i));
-      expect(
-        container.getAllByText(/Active Medications/i)[0]
-      ).toBeInTheDocument();
+      await waitFor(() => container.getByText("Medications"));
+      expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
     });
 
-    and("patient should see the option to Refill the Prescription.", () => {
+    and("patient should see the option to Refill the Prescription.", async () => {
+      const medicationMenu = container.getByTestId("menu-medication");
+      fireEvent.click(medicationMenu)
+      await waitFor(()=> container.getByText(/Active Medications/i));
       expect(container.getAllByText(/Request Refill/i)[0]).toBeInTheDocument();
     });
 
@@ -302,6 +304,13 @@ defineFeature(feature, (test) => {
             </Provider>
           );
         });
+        await waitFor(() => container.getByText("Medications"));
+        expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
+
+        const medicationMenu = container.getByTestId("menu-medication");
+        fireEvent.click(medicationMenu)
+        await waitFor(()=> container.getByText(/Active Medications/i));
+
         await waitFor(() => expiredContainer.getByText(/Past Medications/i));
         //expect(expiredContainer.getAllByText(/Request Refill/i)[0]).not.toBeInTheDocument();
       }
