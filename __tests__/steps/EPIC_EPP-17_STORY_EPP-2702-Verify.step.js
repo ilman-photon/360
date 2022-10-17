@@ -127,11 +127,12 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByTestId("glasses-container-0"));
+      await waitFor(() => container.getByText("Medications"));
+      expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
     });
 
     then("patient should view the list of Prescriptions.", () => {
-      const conta = container.getByTestId("glasses-container-0");
+      const conta = container.getByTestId("menu-glasses");
       expect(conta).toBeInTheDocument();
     });
   });
