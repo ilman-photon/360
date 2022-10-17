@@ -372,7 +372,7 @@ export default function MedicalRecordPage() {
           {!isHideDisclaimer && watchedCategory === "test-lab-result" ? (
             <div className={styles.disclaimerWrapper}>
               <div className={styles.disclaimerText}>
-                <span className={styles.infoLabel}>
+                <span className={styles.infoLabel} tabIndex="0">
                   <InfoOutlinedIcon
                     sx={{
                       width: "18px",
@@ -385,13 +385,19 @@ export default function MedicalRecordPage() {
                   Your lab results are available. Please reach out to your
                   provider.
                 </span>
-                <Button
+                {/* <IconButton>
+                  <CloseIcon sx={styles.closeIcon} />
+                </IconButton> */}
+                <IconButton
                   data-testid={"close-disclaimer-icon"}
                   onClick={() => setIsHideDisclaimer(true)}
-                  sx={{ color: "#003B4A", display: "contents" }}
+                  sx={{ color: "#003B4A" }}
+                  tabIndex={0}
+                  role={"button"}
+                  aria-label="close"
                 >
                   <CloseIcon sx={styles.closeIcon} />
-                </Button>
+                </IconButton>
               </div>
             </div>
           ) : null}
@@ -427,7 +433,11 @@ export default function MedicalRecordPage() {
 MedicalRecordPage.getLayout = function getLayout(page) {
   return (
     <Provider store={store}>
-      <PrescriptionLayout currentActivePage={"documents"}>
+      <PrescriptionLayout
+        currentActivePage={"medical-record"}
+        pageTitle={"EyeCare Patient Portal - Test & Lab Result"}
+        title={"Test & Lab Result"}
+      >
         {page}
       </PrescriptionLayout>
     </Provider>
