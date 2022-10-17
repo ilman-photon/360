@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 import { getServerSideProps } from "../../src/pages/patient/mfa";
 import store from "../../src/store/store";
 import mediaQuery from "css-mediaquery";
+import { TEMP_DATA_CONTACTS, TEMP_DATA_GLASSES, TEMP_DATA_MEDICATION } from "../../__mocks__/mockResponse";
 
 function createMatchMedia(width) {
   return (query) => ({
@@ -40,69 +41,6 @@ const defaultValidation = () => {
   expect(true).toBeTruthy();
 };
 
-const MOCK_PRESCRIPTION = {
-  prescriptions: {
-    glasses: [
-      {
-        prescribedBy: "Dr. Sonha Nguyen",
-        date: "2022-09-02T11:18:47.229Z",
-        expirationDate: "2022-10-02T11:18:47.229Z",
-        prescriptionDetails: [
-          {
-            Eye: "OD",
-            Sph: "+20.00",
-            Cyl: "-5.00",
-            Axis: "70",
-            Add: "x180",
-          },
-          {
-            Eye: "OS",
-            Sph: "+19.75",
-            Cyl: "-4.75",
-            Axis: "38",
-            Add: "x090",
-          },
-        ],
-      },
-    ],
-    contacts: [
-      {
-        prescribedBy: "Dr. Sonha Nguyen",
-        date: "2022-09-02T11:18:47.229Z",
-        expirationDate: "2022-10-02T11:18:47.229Z",
-        prescriptionDetails: [
-          {
-            Eye: "OD",
-            Sph: "+20.00",
-            Bc: "-5.00",
-            Cyl: "70",
-            Axis: "x180",
-          },
-          {
-            Eye: "OS",
-            Sph: "+19.75",
-            Bc: "-4.75",
-            Cyl: "38",
-            Axis: "x090",
-          },
-        ],
-      },
-    ],
-    medications: [
-      {
-        id: "0",
-        prescription: "Aspirint 0.1% Ointmanet",
-        date: "2022-09-01T11:18:47.229Z",
-      },
-      {
-        id: "0",
-        prescription: "Aspirint 0.1% Ointmanet",
-        date: "2022-09-01T11:18:47.229Z",
-      },
-    ],
-  },
-};
-
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint6/EPP-2705.feature"
 );
@@ -110,6 +48,11 @@ const feature = loadFeature(
 defineFeature(feature, (test) => {
   let container;
   const mock = new MockAdapter(axios);
+
+  beforeEach(() => {
+    jest.useFakeTimers("modern");
+    jest.setSystemTime(new Date(2022, 3, 1));
+  });
 
   test("EPIC_EPP-17_STORY_EPP-2705 - Verify whether the Refill status is filtering correctly.", ({
     given,
@@ -141,10 +84,19 @@ defineFeature(feature, (test) => {
       const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock
-        .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
-        )
-        .reply(200, MOCK_PRESCRIPTION);
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+      )
+      .reply(200, TEMP_DATA_MEDICATION);
+      mock
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+      )
+      .reply(200, TEMP_DATA_CONTACTS);
+      mock
+      .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+      )
+      .reply(200, TEMP_DATA_GLASSES);
       window.matchMedia = createMatchMedia("1440px");
       const response = await getServerSideProps({
         req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
@@ -219,10 +171,19 @@ defineFeature(feature, (test) => {
       const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock
-        .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
-        )
-        .reply(200, MOCK_PRESCRIPTION);
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+      )
+      .reply(200, TEMP_DATA_MEDICATION);
+      mock
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+      )
+      .reply(200, TEMP_DATA_CONTACTS);
+      mock
+      .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+      )
+      .reply(200, TEMP_DATA_GLASSES);
       window.matchMedia = createMatchMedia("1024px");
       const response = await getServerSideProps({
         req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
@@ -256,9 +217,7 @@ defineFeature(feature, (test) => {
       const filterBtn = container.getByText(/Filter/i);
       expect(filterBtn).toBeInTheDocument();
       fireEvent.click(filterBtn);
-
-      await waitFor(() => container.getByText(/Phillip Morries, M.D./i));
-      fireEvent.click(container.getByLabelText(/Phillip Morries, M.D./i));
+      await waitFor(() => container.getAllByText(/Provider ClarksonEyeCare/i)[0]);
       fireEvent.click(container.getByText(/Done/i));
     });
 
@@ -297,10 +256,19 @@ defineFeature(feature, (test) => {
       const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock
-        .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
-        )
-        .reply(200, MOCK_PRESCRIPTION);
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+      )
+      .reply(200, TEMP_DATA_MEDICATION);
+      mock
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+      )
+      .reply(200, TEMP_DATA_CONTACTS);
+      mock
+      .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+      )
+      .reply(200, TEMP_DATA_GLASSES);
       window.matchMedia = createMatchMedia("1920px");
       const response = await getServerSideProps({
         req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
@@ -340,7 +308,7 @@ defineFeature(feature, (test) => {
         await waitFor(() => container.getByText(/See more/i));
         fireEvent.click(container.getByText(/See more/i));
         fireEvent.click(container.getByText(/See Less/i));
-        fireEvent.click(container.getByLabelText(/Phillip Morries, M.D./i));
+        fireEvent.click(container.getAllByLabelText(/Provider ClarksonEyeCare/i)[0]);
         fireEvent.click(container.getByText(/Done/i));
       }
     );
@@ -380,10 +348,19 @@ defineFeature(feature, (test) => {
       const domain = window.location.origin;
       mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
       mock
-        .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
-        )
-        .reply(200, MOCK_PRESCRIPTION);
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+      )
+      .reply(200, TEMP_DATA_MEDICATION);
+      mock
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+      )
+      .reply(200, TEMP_DATA_CONTACTS);
+      mock
+      .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+      )
+      .reply(200, TEMP_DATA_GLASSES);
       window.matchMedia = createMatchMedia("1920px");
       const response = await getServerSideProps({
         req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },

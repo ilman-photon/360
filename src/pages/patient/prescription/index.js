@@ -5,6 +5,8 @@ import { Provider } from "react-redux";
 import Prescriptions from "../../../components/molecules/Dashboard/prescriptions";
 import PrescriptionLayout from "../../../components/templates/prescriptionLayout";
 import store from "../../../store/store";
+import { mmddyyDateFormat } from "../../../utils/dateFormatter";
+import { onCallGetPrescriptionData } from "../../../utils/prescription";
 import { Api } from "../../api/api";
 
 export default function PrescriptionPage() {
@@ -16,11 +18,10 @@ export default function PrescriptionPage() {
 
   //Call API for getAllPrescriptions
   function onCalledGetAllPrescriptionsAPI() {
-    const api = new Api();
-    api
-      .getAllPrescriptions()
+    // const api = new Api();
+    onCallGetPrescriptionData()
       .then(function (response) {
-        setPrescriptionData(response.prescriptions);
+        setPrescriptionData(response);
       })
       .catch(function () {
         //Handle error getAllPrescriptions
@@ -38,6 +39,7 @@ export default function PrescriptionPage() {
       (x) => x.id === postBody.medicationId
     );
     const api = new Api();
+    const userData = JSON.parse(localStorage.getItem("userData"));
     if (isCancelRequest) {
       api
         .doMedicationCancelRequestRefill(postBody)
@@ -45,6 +47,7 @@ export default function PrescriptionPage() {
           const data = JSON.parse(JSON.stringify(prescriptionData));
           data.medications[index].status = "";
           setPrescriptionData(data);
+          response.message = "Your refill request has been canceled";
           setRequestRefillResponse(response);
           resetRequestRefillResponse();
         })
@@ -53,12 +56,32 @@ export default function PrescriptionPage() {
           resetRequestRefillResponse();
         });
     } else {
+      const refillRequestBody = {
+        subject: "PhotonTesting checking",
+        bodyNote: "Please refill the medicine",
+        bodyReferences: [
+          {
+            code: "PATIENT",
+            _id: userData?.patientId,
+          },
+        ],
+        messageStatus: "SENT",
+        priority: "HIGH",
+        deliveryDate: mmddyyDateFormat(new Date()),
+        senderIsPatient: true,
+        providerNPI: prescriptionData.medications[index].providerNPI,
+      };
+
       api
-        .doMedicationRequestRefill(postBody)
+        .doMedicationRequestRefill(refillRequestBody)
         .then(function (response) {
           const data = JSON.parse(JSON.stringify(prescriptionData));
           data.medications[index].status = "refill request";
+          data.medications[index].fillRequestDate = mmddyyDateFormat(
+            response.deliveryDate
+          );
           setPrescriptionData(data);
+          response.message = "Your refill request has been sumbitted";
           setRequestRefillResponse(response);
           resetRequestRefillResponse();
         })
@@ -86,25 +109,25 @@ export default function PrescriptionPage() {
 
   return (
     <Stack sx={{ width: "100%", backgroundColor: "#F4F4F4" }}>
-      {isLoaded && (
-        <Stack
-          sx={{
-            padding: isMobile ? "16px" : "44px 24px 24px 24px",
-            marginBottom: "32px",
-            maxWidth: "1440px",
-            backgroundColor: isMobile ? "#F4F4F4" : "#fff",
-            alignSelf: "center",
-            width: "100%",
-          }}
-        >
-          <Prescriptions
-            prescriptionData={prescriptionData}
-            isViewAll={true}
-            onMedicationRequestRefill={onMedicationRequestRefill}
-            requestRefillResponseData={requestRefillResponse}
-          />
-        </Stack>
-      )}
+      {/* {isLoaded && ( */}
+      <Stack
+        sx={{
+          padding: isMobile ? "16px" : "44px 24px 24px 24px",
+          marginBottom: "32px",
+          maxWidth: "1440px",
+          backgroundColor: isMobile ? "#F4F4F4" : "#fff",
+          alignSelf: "center",
+          width: "100%",
+        }}
+      >
+        <Prescriptions
+          prescriptionData={prescriptionData}
+          isViewAll={true}
+          onMedicationRequestRefill={onMedicationRequestRefill}
+          requestRefillResponseData={requestRefillResponse}
+        />
+      </Stack>
+      {/* )} */}
     </Stack>
   );
 }

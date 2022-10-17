@@ -19,3 +19,4 @@ export function setup(jsx) {
     ...render(jsx),
   };
 }
+
