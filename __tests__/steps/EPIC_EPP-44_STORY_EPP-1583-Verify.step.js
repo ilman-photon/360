@@ -121,7 +121,7 @@ defineFeature(feature, (test) => {
 
 				PreferredComunication: "Both",
 			};
-			mock.onPost(`/ecp/patient/validate`).reply(200, expectedResult);
+			mock.onPost(`/ecp/patient/getPatientType`).reply(200, expectedResult);
 			const oneTimeLinkVal = {
 				ResponseCode: 1000,
 				ResponseType: "success",
@@ -189,7 +189,7 @@ defineFeature(feature, (test) => {
 
 				PreferredComunication: "Both",
 			};
-			mock.onPost(`/ecp/patient/validate`).reply(200, expectedResult);
+			mock.onPost(`/ecp/patient/getPatientType`).reply(200, expectedResult);
 			const oneTimeLinkVal = {
 				ResponseCode: 1000,
 				ResponseType: "success",
