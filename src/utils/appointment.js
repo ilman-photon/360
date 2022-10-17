@@ -708,7 +708,6 @@ function parsePrescriptionItemMedication(medications) {
     medicationData.prescription = medications[index].prescription;
     medicationData.date = ddmmyyDateFormat(date);
     medicationData.prescribedBy = "Dr. Philip Morris";
-    medicationData.isShowRequestRefill = moment().isSameOrBefore(expiratedDate);
     medicationData.expirationDate = ddmmyyDateFormat(expiratedDate);
     medicationData.fillRequestDate = ddmmyyDateFormat(
       "2022-09-02T11:18:47.229Z"
