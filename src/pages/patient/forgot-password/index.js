@@ -129,15 +129,26 @@ export default function ForgotPasswordPage() {
       patient: { userName: username },
     };
     const api = new Api();
-    api
-      // .validateGuestUser(postbody)
-      .validateUserType(postbody)
-      .then(() => {
-        onCalledOneTimeLinkSync(username);
-      })
-      .catch(() => {
-        setShowPostMessage(true);
-      });
+
+    {
+      isAppointment
+        ? api
+            .validateUserType(postbody)
+            .then(() => {
+              onCalledOneTimeLinkSync(username);
+            })
+            .catch(() => {
+              setShowPostMessage(true);
+            })
+        : api
+            .validateGuestUser(postbody)
+            .then(() => {
+              onCalledOneTimeLinkSync(username);
+            })
+            .catch(() => {
+              setShowPostMessage(true);
+            });
+    }
   };
 
   //Call API for check security question
