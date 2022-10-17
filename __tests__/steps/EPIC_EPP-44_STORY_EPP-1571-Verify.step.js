@@ -15,6 +15,7 @@ import axios from "axios";
 import Cookies from "universal-cookie";
 import { getServerSideProps } from "../../src/pages/patient/mfa";
 import HomePage from "../../src/pages/patient";
+import { mockProviderList, MOCK_SUGESTION, MOCK_APPOINTMENT, MOCK_PRESCRIPTION } from "../../__mocks__/mockResponse";
 
 const feature = loadFeature(
     "./__tests__/feature/Patient Portal/Sprint4/EPP-1571.feature"
@@ -23,320 +24,6 @@ const feature = loadFeature(
 defineFeature(feature, (test) => {
     let container;
     const { APPOINTMENT_TEST_ID, SEARCH_PROVIDER_TEST_ID } = constants.TEST_ID
-
-    const providerList = [
-        {
-            providerId: "1",
-            address: {
-                addressLine1: "51 West 51st Street",
-                addressLine2: "Floor 3, Suite 320 Midtown",
-                city: "Florida",
-                state: "FR",
-                zipcode: "54231",
-            },
-            rating: "5",
-            name: "Paul Wagner Md",
-            phoneNumber: "(123) 123-4567",
-            distance: "10 mi",
-            image: "/doctor.png",
-            from: "2022-09-19",
-            to: "2022-09-24",
-            availability: [
-                {
-                    date: "2022-09-19",
-                    list: [
-                        {
-                            time: "11:30am",
-                            key: 12222,
-                        },
-                    ],
-                },
-                {
-                    date: "2022-09-20",
-                    list: [
-                        {
-                            time: "08:00am",
-                            key: 12223,
-                        },
-                        {
-                            time: "10:30am",
-                            key: 12224,
-                        },
-                        {
-                            time: "11:00am",
-                            key: 12225,
-                        },
-                        {
-                            time: "12:00pm",
-                            key: 12226,
-                        },
-                        {
-                            time: "13:00pm",
-                            key: 12227,
-                        },
-                        {
-                            time: "14:00pm",
-                            key: 12228,
-                        },
-                    ],
-                },
-                {
-                    date: "2022-09-21",
-                    list: [
-                        {
-                            time: "08:30am",
-                            key: 12229,
-                        },
-                        {
-                            time: "10:30am",
-                            key: 12230,
-                        }
-                    ],
-                },
-                {
-                    date: "2022-09-22",
-                    list: [
-                        {
-                            time: "09:30am",
-                            key: 12237,
-                        },
-                        {
-                            time: "11:00am",
-                            key: 12238,
-                        },
-                    ],
-                },
-                {
-                    date: "2022-09-23",
-                    list: [
-                        {
-                            time: "09:30am",
-                            key: 12239,
-                        },
-                    ],
-                },
-                {
-                    date: "2022-09-24",
-                    list: [
-                        {
-                            time: "09:30am",
-                            key: 12240,
-                        },
-                    ],
-                },
-            ],
-            coordinate: {
-                latitude: 32.751204,
-                longitude: -117.1641166,
-            },
-        },
-        {
-            providerId: "2",
-            address: {
-                addressLine1: "51 West 51st Street",
-                addressLine2: "Floor 3, Suite 320 Midtown",
-                city: "Florida",
-                state: "FR",
-                zipcode: "54231",
-            },
-            rating: "5",
-            name: "Paul Wagner Md",
-            phoneNumber: "(123) 123-4567",
-            distance: "10 mi",
-            image: "/doctor.png",
-            from: "2022-09-19",
-            to: "2022-09-24",
-            availability: [
-                {
-                    date: "2022-09-19",
-                    list: [
-                        {
-                            time: "11:30am",
-                            key: 12222,
-                        },
-                    ],
-                },
-                {
-                    date: "2022-09-20",
-                    list: [
-                        {
-                            time: "08:00am",
-                            key: 12223,
-                        },
-                        {
-                            time: "10:30am",
-                            key: 12224,
-                        },
-                        {
-                            time: "11:00am",
-                            key: 12225,
-                        },
-                        {
-                            time: "12:00pm",
-                            key: 12226,
-                        },
-                        {
-                            time: "13:00pm",
-                            key: 12227,
-                        },
-                        {
-                            time: "14:00pm",
-                            key: 12228,
-                        },
-                    ],
-                },
-                {
-                    date: "2022-09-21",
-                    list: [
-                        {
-                            time: "08:30am",
-                            key: 12229,
-                        },
-                    ],
-                },
-                {
-                    date: "2022-09-22",
-                    list: [
-                        {
-                            time: "09:30am",
-                            key: 12237,
-                        },
-                        {
-                            time: "11:00am",
-                            key: 12238,
-                        },
-                    ],
-                },
-                {
-                    date: "2022-09-23",
-                    list: [
-                        {
-                            time: "09:30am",
-                            key: 12239,
-                        },
-                    ],
-                },
-                {
-                    date: "2022-09-24",
-                    list: [
-                        {
-                            time: "09:30am",
-                            key: 12240,
-                        },
-                    ],
-                },
-            ],
-            coordinate: {
-                latitude: 32.751204,
-                longitude: -117.1641166,
-            },
-        },
-        {
-            providerId: "3",
-            name: "Paul Wagner Md",
-            address: {
-                addressLine1: "51 West 51st Street",
-                addressLine2: "Floor 3, Suite 320 Midtown",
-                city: "Florida",
-                state: "FR",
-                zipcode: "54231",
-            },
-            rating: "5",
-            phoneNumber: "(123) 123-4567",
-            distance: "10 mi",
-            image: "/doctor.png",
-            from: "2022-09-19",
-            to: "2022-09-24",
-            availability: [
-                {
-                    date: "2022-09-19",
-                    list: [
-                        {
-                            time: "11:30am",
-                            key: 12222,
-                        },
-                    ],
-                },
-                {
-                    date: "2022-09-20",
-                    list: [
-                        {
-                            time: "08:00am",
-                            key: 12223,
-                        },
-                        {
-                            time: "10:30am",
-                            key: 12224,
-                        },
-                        {
-                            time: "11:00am",
-                            key: 12225,
-                        },
-                        {
-                            time: "12:00pm",
-                            key: 12226,
-                        },
-                        {
-                            time: "13:00pm",
-                            key: 12227,
-                        },
-                        {
-                            time: "14:00pm",
-                            key: 12228,
-                        },
-                    ],
-                },
-                {
-                    date: "2022-09-21",
-                    list: [
-                        {
-                            time: "08:30am",
-                            key: 12229,
-                        },
-                        {
-                            time: "10:30am",
-                            key: 12230,
-                        }
-                    ],
-                },
-                {
-                    date: "2022-09-22",
-                    list: [
-                        {
-                            time: "09:30am",
-                            key: 12237,
-                        },
-                        {
-                            time: "11:00am",
-                            key: 12238,
-                        },
-                    ],
-                },
-                {
-                    date: "2022-09-23",
-                    list: [
-                        {
-                            time: "09:30am",
-                            key: 12239,
-                        },
-                    ],
-                },
-                {
-                    date: "2022-09-24",
-                    list: [
-                        {
-                            time: "09:30am",
-                            key: 12240,
-                        },
-                    ],
-                },
-            ],
-            coordinate: {
-                latitude: 32.751204,
-                longitude: -117.1641166,
-            },
-        },
-    ]
 
     const defaultValidation = () => {
         expect(true).toBeTruthy();
@@ -410,7 +97,7 @@ defineFeature(feature, (test) => {
         const rangeDate = { startDate: "2022-10-10", endDate: "2022-10-15" }
         container.rerender(
             <FilterResult isDesktop={true}
-                providerList={providerList}
+                providerList={mockProviderList}
                 rangeDate={rangeDate}
                 purposeOfVisitData={[]}
                 insuranceCarrierData={[]}
@@ -434,17 +121,17 @@ defineFeature(feature, (test) => {
             ResponseCode: 2005,
             ResponseType: "success",
         };
-        // const domain = window.location.origin;
-        // mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
-        // mock
-        //     .onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`)
-        //     .reply(200, MOCK_SUGESTION);
-        // mock
-        //     .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllAppointment`)
-        //     .reply(200, MOCK_APPOINTMENT);
-        // mock
-        //     .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`)
-        //     .reply(200, MOCK_PRESCRIPTION);
+        const domain = window.location.origin;
+        mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
+        mock
+            .onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`)
+            .reply(200, MOCK_SUGESTION);
+        mock
+            .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllAppointment`)
+            .reply(200, MOCK_APPOINTMENT);
+        mock
+            .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`)
+            .reply(200, MOCK_PRESCRIPTION);
         const response = await getServerSideProps({
             req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
             res: jest.fn(),
