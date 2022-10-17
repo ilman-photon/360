@@ -23,6 +23,7 @@ import { AutoCompleteCreatable } from "../../molecules/AutoCompleteCreatable";
 import constants from "../../../utils/constants";
 import { Regex } from "../../../utils/regex";
 import { RELATIONSHIP_LIST } from "../../../utils/constantData";
+import { colors } from "../../../styles/theme";
 
 export default function InsuranceForm({
   formData = DEFAULT_INSURANCE_DATA,
@@ -471,8 +472,16 @@ export default function InsuranceForm({
             </Stack>
           </Collapse>
 
-          <Typography variant="bodyRegular" component="div">
-            Upload images of your insurance.
+          <Typography
+            variant="headlineH4"
+            component="div"
+            sx={{
+              fontFamily: "Libre Franklin",
+              fontWeight: 700,
+              color: colors.grayscaleBlack,
+            }}
+          >
+            Upload images of your insurance
           </Typography>
 
           <Grid

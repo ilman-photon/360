@@ -100,7 +100,9 @@ export const ImageUploader = ({
           ) : (
             <CameraAltOutlinedIcon sx={{ width: 16, height: 16 }} />
           )}
-          <Typography variant={labelVariant}>{label}</Typography>
+          <Typography variant={labelVariant} sx={{ fontWeight: 500 }}>
+            {label}
+          </Typography>
         </Stack>
       </Button>
     );
