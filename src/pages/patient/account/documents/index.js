@@ -107,10 +107,6 @@ export default function AccountDocumentsPage() {
     return state.document.documentList;
   });
 
-  const status = useSelector((state) => {
-    return state.document.status;
-  });
-
   const handleAssetDownload = (id) => {
     fetchSource(id);
   };
@@ -122,7 +118,7 @@ export default function AccountDocumentsPage() {
   }, [router.query]);
 
   useEffect(() => {
-    if (watchedCategory) {
+    if (categories.some((v) => v.value === watchedCategory)) {
       const userStorageData = JSON.parse(localStorage.getItem("userData"));
       if (userStorageData) {
         dispatch(
@@ -191,7 +187,7 @@ AccountDocumentsPage.getLayout = function getLayout(page) {
     <Provider store={store}>
       <PrescriptionLayout
         currentActivePage={"documents"}
-        pageTitle={"EyeCare Patient Portal - Intake Forms"}
+        pageTitle={"EyeCare Patient Portal - Documents"}
         title={"Intake Forms"}
       >
         {page}

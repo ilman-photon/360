@@ -4,17 +4,25 @@ import { Api } from "../pages/api/api";
 export const fetchDocuments = createAsyncThunk(
   "document/fetchDocuments",
   async ({ patientId, category }) => {
+    let url;
     let categoryId;
-    switch (category) {
-      case "insurance-documents":
-        break;
-      case "health-record":
-        break;
-      default:
-        categoryId = "Intake-Forms";
-        break;
+    if (category === "test-lab-result") {
+      url = `/ecp/testResult/${patientId}`;
+    } else {
+      switch (category) {
+        case "insurance-documents":
+          break;
+        case "health-record":
+          break;
+        case "care-plan-overview":
+          categoryId = "Medical-Record";
+          break;
+        default:
+          categoryId = "Intake-Forms";
+          break;
+      }
+      url = `/ecp/patient/getPatientDocumentByCategory/${patientId}/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=${categoryId}))`;
     }
-    const url = `/ecp/patient/getPatientDocumentByCategory/${patientId}/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=${categoryId}))`;
     const api = new Api();
     return api.getResponse(url, null, "get");
   }

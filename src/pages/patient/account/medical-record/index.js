@@ -27,6 +27,7 @@ import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import ReplyIcon from "@mui/icons-material/Reply";
 import PrintOutlinedIcon from "@mui/icons-material/PrintOutlined";
 import { TEST_ID } from "../../../../utils/constants";
+import { fetchDocuments } from "../../../../store/document";
 
 export default function MedicalRecordPage() {
   const isDesktop = useMediaQuery("(min-width: 769px)");
@@ -36,62 +37,12 @@ export default function MedicalRecordPage() {
 
   const categories = [
     { id: 0, label: "Care Plan", value: "care-plan-overview" },
-    { id: 1, label: "Prescriptions", value: "test-lab-result" },
-    { id: 2, label: "Test & Lab Results", value: "test-lab-result" },
+    // { id: 1, label: "Prescriptions", value: "test-lab-result" },
+    { id: 1, label: "Test & Lab Results", value: "test-lab-result" },
   ];
-
-  //menu MoreVertIcon
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const MyOptions = [
-    {
-      id: "download",
-      icon: <FileDownloadOutlinedIcon />,
-      label: "Download",
-      dataTestId: "download-menu",
-      ariaLabel: "download option",
-    },
-    {
-      id: "share",
-      icon: <ReplyIcon />,
-      label: "Share",
-      dataTestId: "share-menu",
-      ariaLabel: "share option",
-    },
-    {
-      id: "print",
-      icon: <PrintOutlinedIcon />,
-      label: "Print",
-      dataTestId: "print-menu",
-      ariaLabel: "print option",
-    },
-  ];
-
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const open = Boolean(anchorEl);
-
-  const handleMoreMenu = (id) => {
-    setAnchorEl(null);
-    if (typeof id === "string") {
-      switch (id) {
-        case "download":
-          fetchSource("digitalId");
-          break;
-        case "print":
-          setTimeout(() => {
-            window.print();
-          }, 300);
-          break;
-        default:
-          break;
-      }
-    }
-  };
 
   const { control, setValue, watch } = useForm({
-    defaultValues: { category: "test-lab-result" },
+    defaultValues: { category: "care-plan-overview" },
   });
 
   const watchedCategory = watch("category");
@@ -135,7 +86,7 @@ export default function MedicalRecordPage() {
         type: "text",
         primary: true,
         valueKey: "name",
-        cellProps: {
+        contentStyle: {
           padding: "12px 24px",
           fontWeight: "400",
           fontSize: "16px",
@@ -230,7 +181,7 @@ export default function MedicalRecordPage() {
       },
       {
         type: "text",
-        valueKey: "date",
+        valueKey: "_created",
         cellProps: { align: "left", component: "th", padding: "none" },
         contentStyle: {
           padding: isDesktop ? "12px 0" : "8px 0",
@@ -239,76 +190,37 @@ export default function MedicalRecordPage() {
         contentClass: isDesktop ? "" : "clipped clip-2",
       },
       {
-        type: "download-asset",
-        valueKey: "digitalId",
-        cellProps: { padding: "none" },
-        icon: (
-          <>
-            <IconButton
-              sx={{ width: 24, height: 24, p: 0 }}
-              aria-label="more option"
-              onClick={handleClick}
-              aria-haspopup="true"
-              aria-controls="menu-appbar"
-              data-testid="more-vert-button"
-            >
-              <MoreVertIcon />
-            </IconButton>
-            <Menu
-              sx={{ mt: "40px" }}
-              anchorEl={anchorEl}
-              keepMounted
-              onClose={handleMoreMenu}
-              data-testid={TEST_ID.MEDICAL_RECORD.moreMenu}
-              open={open}
-            >
-              {MyOptions.map((more, moreIdx) => (
-                <MenuItem
-                  key={moreIdx}
-                  onClick={() => handleMoreMenu(more.id)}
-                  aria-label={`${more.ariaLabel}`}
-                  inputProps={{
-                    "aria-label": `${more.ariaLabel}`,
-                    "aria-live": "polite",
-                  }}
-                >
-                  {more.icon}
-                  <Typography
-                    textAlign="center"
-                    tabIndex={0}
-                    sx={{
-                      margin: "0 8px",
-                      fontFamily: "Libre Franklin",
-                      fontWeight: "500",
-                      fontSize: "14px",
-                    }}
-                    data-testid={more.dataTestId}
-                  >
-                    {more.label}
-                  </Typography>
-                </MenuItem>
-              ))}
-            </Menu>
-          </>
-        ),
+        type: "menus",
+        valueKey: "digital_assets._id",
+        cellProps: {
+          padding: "none",
+          sx: {
+            textAlign: "center",
+          },
+        },
       },
     ],
   };
 
-  const rows = useSelector((state) => {
-    switch (watchedCategory) {
-      case "test-lab-result":
-        return state.medicalResult.testLabData;
-      case "care-plan-overview":
-        return state.medicalResult.carePlanData;
-      default:
-        return [];
-    }
-  });
-
-  const status = useSelector((state) => {
-    return state.medicalResult.status;
-  });
+  const rows = [
+    {
+      name: "MEDICAL_CERTIFICATE_OF_FITNESS1",
+      documentType: "application/pdf",
+      category: "Medical-Record",
+      patientId: "95090352-de7b-485b-8a7b-9c1255a15070",
+      status: "CREATED",
+      digital_assets: {
+        _id: "a03eced9-483b-435c-8cb0-f8a8a097f436",
+      },
+      _id: "bd70722a-fe3e-4793-867e-8a7ceed5297e",
+      _version: "2052f433-0d9e-4347-9ea8-959818e1849e",
+      _created: "Oct 7, 2022, 10:00:05 AM",
+      _updated: "Oct 7, 2022, 10:00:05 AM",
+    },
+  ];
+  // useSelector((state) => {
+  //   return state.document.documentList;
+  // });
 
   const noResultText = () => {
     switch (watchedCategory) {
@@ -321,6 +233,10 @@ export default function MedicalRecordPage() {
     }
   };
 
+  const handleAssetDownload = (id, print) => {
+    fetchSource(id, print);
+  };
+
   useEffect(() => {
     const category = router.query.type;
     if (category) setValue("category", category);
@@ -328,106 +244,115 @@ export default function MedicalRecordPage() {
   }, [router.query]);
 
   useEffect(() => {
-    if (watchedCategory) {
-      switch (watchedCategory) {
-        case "test-lab-result":
-          dispatch(fetchTestLabResult());
-          break;
-        case "care-plan-overview":
-          dispatch(fetchCarePlan());
-          break;
-      }
+    if (categories.some((v) => v.value === watchedCategory)) {
+      const userStorageData = JSON.parse(localStorage.getItem("userData"));
+      // if (userStorageData) {
+      dispatch(
+        fetchDocuments({
+          // 6eac6174-dd4d-42d0-ab5d-8edcf17c1d64
+          patientId: "95090352-de7b-485b-8a7b-9c1255a15070", // TODO change this hardcode patientId
+          category: watchedCategory,
+        })
+      );
+      // } else {
+      // router.back();
+      // }
     } else
       router.replace({
         pathname: router.pathname,
-        query: { type: "test-lab-result" },
+        query: { type: "care-plan-overview" },
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watchedCategory]);
 
   return (
     <>
-      {status === "success" && (
-        <div className={styles.documentPageWrapper}>
-          <Controller
-            name="category"
-            control={control}
-            render={({ field: { onChange, value }, fieldState: { error } }) => {
-              return (
-                <StyledSelect
-                  options={categories}
-                  onChange={(v) =>
-                    router.push(
-                      `/patient/account/medical-record?type=${v.target.value}`
-                    )
-                  }
-                  value={value}
-                  label="Choose a category"
-                  sx={{ m: 0, display: isDesktop ? "none" : "" }}
-                />
-              );
-            }}
-          />
-
-          {!isHideDisclaimer && watchedCategory === "test-lab-result" ? (
-            <div className={styles.disclaimerWrapper}>
-              <div className={styles.disclaimerText}>
-                <span className={styles.infoLabel}>
-                  <InfoOutlinedIcon
-                    sx={{
-                      width: "18px",
-                      height: "18px",
-                      color: "#080707",
-                      marginRight: "12px",
-                    }}
-                    role={"alert"}
-                  />{" "}
-                  Your lab results are available. Please reach out to your
-                  provider.
-                </span>
-                <Button
-                  data-testid={"close-disclaimer-icon"}
-                  onClick={() => setIsHideDisclaimer(true)}
-                  sx={{ color: "#003B4A", display: "contents" }}
-                >
-                  <CloseIcon sx={styles.closeIcon} />
-                </Button>
-              </div>
-            </div>
-          ) : null}
-
-          <Stack spacing={3} sx={{ mt: 1 }}>
-            {rows?.length > 0 ? (
-              <TableWithSort
-                config={
-                  watchedCategory === "care-plan-overview"
-                    ? tableCarePlan
-                    : isDesktop
-                    ? tableDesktopTestLab
-                    : tableMobileTestLab
+      {/* {status === "success" && ( */}
+      <div className={styles.documentPageWrapper}>
+        <Controller
+          name="category"
+          control={control}
+          render={({ field: { onChange, value }, fieldState: { error } }) => {
+            return (
+              <StyledSelect
+                options={categories}
+                onChange={(v) =>
+                  router.push(
+                    `/patient/account/medical-record?type=${v.target.value}`
+                  )
                 }
-                rows={rows}
-                mobileTestLab={
-                  watchedCategory === "test-lab-result" && !isDesktop
-                }
-                additionalProps={{
-                  tableProps: { "aria-label": `${watchedCategory}` },
-                }}
+                value={value}
+                label="Choose a category"
+                sx={{ m: 0, display: isDesktop ? "none" : "" }}
               />
-            ) : (
-              <TableEmpty text={noResultText()} />
-            )}
-          </Stack>
-        </div>
-      )}
+            );
+          }}
+        />
+
+        {!isHideDisclaimer && watchedCategory === "test-lab-result" && (
+          <div className={styles.disclaimerWrapper}>
+            <div className={styles.disclaimerText}>
+              <span className={styles.infoLabel}>
+                <InfoOutlinedIcon
+                  sx={{
+                    width: "18px",
+                    height: "18px",
+                    color: "#080707",
+                    marginRight: "12px",
+                  }}
+                  role={"alert"}
+                />{" "}
+                Your lab results are available. Please reach out to your
+                provider.
+              </span>
+              <Button
+                data-testid={"close-disclaimer-icon"}
+                onClick={() => setIsHideDisclaimer(true)}
+                sx={{ color: "#003B4A", display: "contents" }}
+              >
+                <CloseIcon sx={styles.closeIcon} />
+              </Button>
+            </div>
+          </div>
+        )}
+
+        <Stack spacing={3} sx={{ mt: 1 }}>
+          {rows?.length > 0 ? (
+            <TableWithSort
+              config={
+                watchedCategory === "care-plan-overview"
+                  ? tableCarePlan
+                  : isDesktop
+                  ? tableDesktopTestLab
+                  : tableMobileTestLab
+              }
+              rows={rows}
+              onAssetDownload={handleAssetDownload}
+              mobileTestLab={
+                watchedCategory === "test-lab-result" && !isDesktop
+              }
+              additionalProps={{
+                tableProps: { "aria-label": `${watchedCategory}` },
+              }}
+            />
+          ) : (
+            <TableEmpty text={noResultText()} />
+          )}
+        </Stack>
+      </div>
+      {/* )} */}
     </>
   );
 }
 
-MedicalRecordPage.getLayout = function getLayout(page) {
+MedicalRecordPage.getLayout = function getLayout(page, store, router) {
   return (
     <Provider store={store}>
-      <PrescriptionLayout currentActivePage={"documents"}>
+      <PrescriptionLayout
+        currentActivePage={"medical-record"}
+        pageTitle={"EyeCare Patient Portal - Medical Records"}
+        title={"Intake Forms"}
+      >
         {page}
       </PrescriptionLayout>
     </Provider>

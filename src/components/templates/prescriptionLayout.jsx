@@ -33,6 +33,8 @@ export default function PrescriptionLayout({
         return "Prescriptions";
       default:
         if (router.pathname.includes("documents")) return "Intake Forms";
+        if (router.pathname.includes("medical-record"))
+          return "Care Plan Overview";
         return "Prescriptions";
     }
   };
