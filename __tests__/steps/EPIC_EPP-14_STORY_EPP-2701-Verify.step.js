@@ -40,7 +40,7 @@ defineFeature(feature, (test) => {
       .onGet(`https://api.ipify.org?format=json`)
       .reply(200, { ip: "10.10.10.10" });
     act(() => {
-      container = render(<AuthPage />, {
+      container = render(<Provider store={store}><AuthPage /></Provider>, {
         container: document.body.appendChild(element),
         legacyRoot: true,
       });
@@ -69,7 +69,7 @@ defineFeature(feature, (test) => {
     act(() => {
       container.rerender(
         <Provider store={store}>
-          {MedicalRecordPage.getLayout(<MedicalRecordPage />)}
+          <MedicalRecordPage />
         </Provider>
       );
       router.push(`/patient/account/medical-record?type=care-plan-overview`);

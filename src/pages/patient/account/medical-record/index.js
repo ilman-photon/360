@@ -1,32 +1,18 @@
 import * as React from "react";
 import PrescriptionLayout from "../../../../components/templates/prescriptionLayout";
 import { Provider, useDispatch, useSelector } from "react-redux";
-import store from "../../../../store/store";
+
 import TableWithSort from "../../../../components/molecules/TableWithSort/tableWithSort";
-import { IconButton, Stack, useMediaQuery, Button } from "@mui/material";
+import { IconButton, Stack, useMediaQuery } from "@mui/material";
 import styles from "./styles.module.scss";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import CloseIcon from "@mui/icons-material/Close";
 import { useEffect } from "react";
-import {
-  fetchTestLabResult,
-  fetchCarePlan,
-} from "../../../../store/medicalReport";
 import { StyledSelect } from "../../../../components/atoms/Select/select";
 import { useRouter } from "next/router";
 import { Controller, useForm } from "react-hook-form";
 import TableEmpty from "../../../../components/atoms/TableEmpty/tableEmpty";
 import { fetchSource } from "../../../../utils/fetchDigitalAssetSource";
-
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Typography from "@mui/material/Typography";
-
-import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
-import ReplyIcon from "@mui/icons-material/Reply";
-import PrintOutlinedIcon from "@mui/icons-material/PrintOutlined";
-import { TEST_ID } from "../../../../utils/constants";
 import { fetchDocuments } from "../../../../store/document";
 
 export default function MedicalRecordPage() {
@@ -231,8 +217,7 @@ export default function MedicalRecordPage() {
       if (userStorageData) {
         dispatch(
           fetchDocuments({
-            // 6eac6174-dd4d-42d0-ab5d-8edcf17c1d64
-            patientId: "6eac6174-dd4d-42d0-ab5d-8edcf17c1d64", // TODO change this hardcode patientId
+            patientId: userStorageData.patientId,
             category: category,
           })
         );
@@ -244,82 +229,75 @@ export default function MedicalRecordPage() {
   }, [router.query]);
 
   return (
-    <>
-      {/* {status === "success" && ( */}
-      <div className={styles.documentPageWrapper}>
-        <Controller
-          name="category"
-          control={control}
-          render={({ field: { onChange, value }, fieldState: { error } }) => {
-            return (
-              <StyledSelect
-                options={categories}
-                onChange={(v) =>
-                  router.push(
-                    `/patient/account/medical-record?type=${v.target.value}`
-                  )
-                }
-                value={value}
-                label="Choose a category"
-                sx={{ m: 0, display: isDesktop ? "none" : "" }}
-              />
-            );
-          }}
-        />
-
-        {!isHideDisclaimer && watchedCategory === "test-lab-result" && (
-          <div className={styles.disclaimerWrapper}>
-            <div className={styles.disclaimerText}>
-              <span className={styles.infoLabel}>
-                <InfoOutlinedIcon
-                  sx={{
-                    width: "18px",
-                    height: "18px",
-                    color: "#080707",
-                    marginRight: "12px",
-                  }}
-                  role={"alert"}
-                />{" "}
-                Your lab results are available. Please reach out to your
-                provider.
-              </span>
-              <Button
-                data-testid={"close-disclaimer-icon"}
-                onClick={() => setIsHideDisclaimer(true)}
-                sx={{ color: "#003B4A", display: "contents" }}
-              >
-                <CloseIcon sx={styles.closeIcon} />
-              </Button>
-            </div>
-          </div>
-        )}
-
-        <Stack spacing={3} sx={{ mt: 1 }}>
-          {rows?.length > 0 ? (
-            <TableWithSort
-              config={
-                watchedCategory === "care-plan-overview"
-                  ? tableCarePlan
-                  : isDesktop
-                  ? tableDesktopTestLab
-                  : tableMobileTestLab
+    <div className={styles.documentPageWrapper}>
+      <Controller
+        name="category"
+        control={control}
+        render={({ field: { onChange, value }, fieldState: { error } }) => {
+          return (
+            <StyledSelect
+              options={categories}
+              onChange={(v) =>
+                router.push(
+                  `/patient/account/medical-record?type=${v.target.value}`
+                )
               }
-              rows={rows}
-              onAssetDownload={handleAssetDownload}
-              mobileTestLab={
-                watchedCategory === "test-lab-result" && !isDesktop
-              }
-              additionalProps={{
-                tableProps: { "aria-label": `${watchedCategory}` },
-              }}
+              value={value}
+              label="Choose a category"
+              sx={{ m: 0, display: isDesktop ? "none" : "" }}
             />
-          ) : (
-            <TableEmpty text={noResultText()} />
-          )}
-        </Stack>
-      </div>
-      {/* )} */}
-    </>
+          );
+        }}
+      />
+
+      {!isHideDisclaimer && watchedCategory === "test-lab-result" && (
+        <div className={styles.disclaimerWrapper}>
+          <div className={styles.disclaimerText}>
+            <span className={styles.infoLabel}>
+              <InfoOutlinedIcon
+                sx={{
+                  width: "18px",
+                  height: "18px",
+                  color: "#080707",
+                  marginRight: "12px",
+                }}
+                role={"alert"}
+              />{" "}
+              Your lab results are available. Please reach out to your provider.
+            </span>
+            <IconButton
+              data-testid={"close-disclaimer-icon"}
+              onClick={() => setIsHideDisclaimer(true)}
+              sx={{ color: "#003B4A" }}
+            >
+              <CloseIcon sx={styles.closeIcon} />
+            </IconButton>
+          </div>
+        </div>
+      )}
+
+      <Stack spacing={3} sx={{ mt: 1 }}>
+        {rows?.length > 0 ? (
+          <TableWithSort
+            config={
+              watchedCategory === "care-plan-overview"
+                ? tableCarePlan
+                : isDesktop
+                ? tableDesktopTestLab
+                : tableMobileTestLab
+            }
+            rows={rows}
+            onAssetDownload={handleAssetDownload}
+            mobileTestLab={watchedCategory === "test-lab-result" && !isDesktop}
+            additionalProps={{
+              tableProps: { "aria-label": `${watchedCategory}` },
+            }}
+          />
+        ) : (
+          <TableEmpty text={noResultText()} />
+        )}
+      </Stack>
+    </div>
   );
 }
 

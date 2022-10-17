@@ -5,6 +5,7 @@ import { Login as LoginComponent } from "../../../components/organisms/Login/log
 import { useEffect } from "react";
 import constants from "../../../utils/constants";
 import { removeAuthCookies } from "../../../utils/authetication";
+import Provider from "../../../store/provider";
 
 const api = new Api();
 const cookies = new Cookies();
@@ -117,12 +118,14 @@ export default function login() {
 login.getLayout = function getLayout(page) {
   const backgroundImage = "/login-bg.png";
   return (
-    <AuthLayout
-      showMobileImage={true}
-      imageSrc={backgroundImage}
-      title={"Patient Login"}
-    >
-      {page}
-    </AuthLayout>
+    <Provider store={store}>
+      <AuthLayout
+        showMobileImage={true}
+        imageSrc={backgroundImage}
+        title={"Patient Login"}
+      >
+        {page}
+      </AuthLayout>
+    </Provider>
   );
 };

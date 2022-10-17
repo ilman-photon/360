@@ -80,16 +80,6 @@ export default function AccountDocumentsPage() {
         },
         contentClass: isDesktop ? "" : "clipped clip-2",
       },
-      // {
-      //   type: "download-icon",
-      //   valueKey: "source",
-      //   cellProps: { padding: "none" },
-      //   icon: (
-      //     <IconButton sx={{ width: 24, height: 24, p: 0 }}>
-      //       <FileDownloadIcon />
-      //     </IconButton>
-      //   ),
-      // },
       {
         type: "download-asset",
         valueKey: "digital_assets._id",
@@ -111,12 +101,6 @@ export default function AccountDocumentsPage() {
     fetchSource(id);
   };
 
-  // useEffect(() => {
-  //   const category = router.query.type;
-  //   if (category) setValue("category", category);
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [router.query]);
-
   useEffect(() => {
     const category = router.query.type;
 
@@ -126,7 +110,7 @@ export default function AccountDocumentsPage() {
       if (userStorageData) {
         dispatch(
           fetchDocuments({
-            patientId: "8a94c00a-1bf6-47b7-8ff1-485fd469937f", // TODO change this hardcode patientId
+            patientId: userStorageData.patientId,
             category: category,
           })
         );

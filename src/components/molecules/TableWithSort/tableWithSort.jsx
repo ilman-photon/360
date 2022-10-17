@@ -216,7 +216,9 @@ export default function TableWithSort({
     const shareData = {
       title: row.name,
       text: row.name,
-      url: `${window.location.origin}/patient/download/${row.digital_assets._id}`,
+      url: row.digital_assets
+        ? `${window.location.origin}/patient/download/${row.digital_assets._id}`
+        : "/",
     };
     switch (action) {
       case "download":

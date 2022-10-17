@@ -150,8 +150,8 @@ defineFeature(feature, (test) => {
     then(
       "user should view the list of documents that can be downloaded",
       async () => {
-        const emptyTable = container.getByText("There are no document.");
-        expect(emptyTable).toBeInTheDocument();
+        const table = container.getByText("Intake Forms");
+        expect(table).toBeInTheDocument();
       }
     );
   });

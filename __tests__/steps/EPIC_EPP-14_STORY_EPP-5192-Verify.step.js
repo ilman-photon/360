@@ -48,7 +48,7 @@ defineFeature(feature, (test) => {
       .onGet(`https://api.ipify.org?format=json`)
       .reply(200, { ip: "10.10.10.10" });
     act(() => {
-      container = render(<AuthPage />, {
+      container = render(<Provider store={store}><AuthPage /></Provider>, {
         container: document.body.appendChild(element),
         legacyRoot: true,
       });
