@@ -163,21 +163,21 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByText(/Filter/i));
+      await waitFor(() => container.getByText("Medications"));
+      expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
       expect(response).toEqual({
         props: { isStepTwo: false },
       });
     });
 
     and("filter the Refill status", async () => {
-      const filterBtn = container.getByText(/Filter/i);
       const medicationMenu = container.getByTestId("menu-medication");
-      expect(filterBtn).toBeInTheDocument();
-      act(() => {
-        fireEvent.click(medicationMenu);
-      });
+      fireEvent.click(medicationMenu)
+      await waitFor(()=> container.getByText(/Active Medications/i));
 
-      await waitFor(() => container.getByText(/Active Medications/i));
+      const filterBtn = container.getByText(/Filter/i);
+      expect(filterBtn).toBeInTheDocument();
+
       fireEvent.click(filterBtn);
       await waitFor(() => container.getByText(/All/i));
       fireEvent.click(container.getByLabelText(/All/i));
@@ -241,22 +241,22 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByText(/Filters/i));
+      await waitFor(() => container.getByText("Medications"));
+      expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
       expect(response).toEqual({
         props: { isStepTwo: false },
       });
     });
 
     and("filter the Provider", async () => {
-      const filterBtn = container.getByText(/Filter/i);
       const medicationMenu = container.getByTestId("menu-medication");
-      expect(filterBtn).toBeInTheDocument();
-      act(() => {
-        fireEvent.click(medicationMenu);
-      });
+      fireEvent.click(medicationMenu)
+      await waitFor(()=> container.getByText(/Active Medications/i));
 
-      await waitFor(() => container.getByText(/Active Medications/i));
+      const filterBtn = container.getByText(/Filter/i);
+      expect(filterBtn).toBeInTheDocument();
       fireEvent.click(filterBtn);
+
       await waitFor(() => container.getByText(/Phillip Morries, M.D./i));
       fireEvent.click(container.getByLabelText(/Phillip Morries, M.D./i));
       fireEvent.click(container.getByText(/Done/i));
@@ -319,7 +319,8 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByText(/Filter/i));
+      await waitFor(() => container.getByText("Medications"));
+      expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
       expect(response).toEqual({
         props: { isStepTwo: false },
       });
@@ -328,15 +329,14 @@ defineFeature(feature, (test) => {
     and(
       "filter the Prescription type such as Glass/Lens/ Medications",
       async () => {
-        const filterBtn = container.getByText(/Filter/i);
         const medicationMenu = container.getByTestId("menu-medication");
-        expect(filterBtn).toBeInTheDocument();
-        act(() => {
-          fireEvent.click(medicationMenu);
-        });
+        fireEvent.click(medicationMenu)
+        await waitFor(()=> container.getByText(/Active Medications/i));
 
-        await waitFor(() => container.getByText(/Active Medications/i));
+        const filterBtn = container.getByText(/Filter/i);
+        expect(filterBtn).toBeInTheDocument();
         fireEvent.click(filterBtn);
+
         await waitFor(() => container.getByText(/See more/i));
         fireEvent.click(container.getByText(/See more/i));
         fireEvent.click(container.getByText(/See Less/i));
@@ -402,22 +402,23 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByText(/Filter/i));
+      await waitFor(() => container.getByText("Medications"));
+      expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
+
       expect(response).toEqual({
         props: { isStepTwo: false },
       });
     });
 
     and("filter the Refill status.", async () => {
-      const filterBtn = container.getByText(/Filter/i);
       const medicationMenu = container.getByTestId("menu-medication");
-      expect(filterBtn).toBeInTheDocument();
-      act(() => {
-        fireEvent.click(medicationMenu);
-      });
+      fireEvent.click(medicationMenu)
+      await waitFor(()=> container.getByText(/Active Medications/i));
 
-      await waitFor(() => container.getByText(/Active Medications/i));
+      const filterBtn = container.getByText(/Filter/i);
+      expect(filterBtn).toBeInTheDocument();
       fireEvent.click(filterBtn);
+      
       await waitFor(() => container.getByText(/See more/i));
       fireEvent.click(container.getByLabelText(/Refill Requested/i));
       fireEvent.click(container.getAllByText(/Active/i)[0]);
