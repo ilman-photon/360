@@ -197,9 +197,9 @@ defineFeature(feature, (test) => {
     when,
     then,
   }) => {
-    given("use launch the 'XXX' url", () => {});
+    given("use launch the 'XXX' url", () => { });
 
-    and("user navigates to the Patient Portal application", () => {});
+    and("user navigates to the Patient Portal application", () => { });
 
     when("user lands onto “Patient Login” screen", async () => {
       container = await renderLogin();
@@ -280,9 +280,9 @@ defineFeature(feature, (test) => {
     when,
     then,
   }) => {
-    given("use launch the 'XXX' url", () => {});
+    given("use launch the 'XXX' url", () => { });
 
-    and("user navigates to the Patient Portal application", () => {});
+    and("user navigates to the Patient Portal application", () => { });
 
     when("user lands onto “Patient Login” screen", async () => {
       container = await renderLogin();
@@ -471,10 +471,10 @@ defineFeature(feature, (test) => {
 
     and(
       /^user clicks on "(.*)" button when the Service is unavailable$/,
-      (arg0) => {}
+      (arg0) => { }
     );
 
-    then("user should see appropriate error message", () => {});
+    then("user should see appropriate error message", () => { });
   });
   test('EPIC_EPP-7 _STORY_EPP-25 - Verify user should see "<Email or Phone Number>" field is blank after user refresh the page', ({
     given,
@@ -564,7 +564,7 @@ defineFeature(feature, (test) => {
       container = await renderForgotPassword();
     });
 
-    and(/^user should see "(.*)" page$/, (arg0) => {});
+    and(/^user should see "(.*)" page$/, (arg0) => { });
   });
 
   test('EPIC_EPP-7 _STORY_EPP-215 - Verify user should see "Select an option" screen loaded within 3 seconds', ({
@@ -622,7 +622,7 @@ defineFeature(feature, (test) => {
 
     and(
       /^user should see "(.*)" screen loaded within (\d+) seconds$/,
-      (arg0, arg1) => {}
+      (arg0, arg1) => { }
     );
   });
 
@@ -679,8 +679,8 @@ defineFeature(feature, (test) => {
       expect(container.getByText("or")).toBeInTheDocument();
     });
 
-    and(/^user click F(\d+) on keyboard$/, (arg0) => {});
+    and(/^user click F(\d+) on keyboard$/, (arg0) => { });
 
-    and(/^user should not see any error after click on F(\d+)$/, (arg0) => {});
+    and(/^user should not see any error after click on F(\d+)$/, (arg0) => { });
   });
 });

@@ -26,6 +26,7 @@ import Typography from "@mui/material/Typography";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import ReplyIcon from "@mui/icons-material/Reply";
 import PrintOutlinedIcon from "@mui/icons-material/PrintOutlined";
+import { TEST_ID } from "../../../../utils/constants";
 
 export default function MedicalRecordPage() {
   const isDesktop = useMediaQuery("(min-width: 769px)");
@@ -258,6 +259,7 @@ export default function MedicalRecordPage() {
               anchorEl={anchorEl}
               keepMounted
               onClose={handleMoreMenu}
+              data-testid={TEST_ID.MEDICAL_RECORD.moreMenu}
               open={open}
             >
               {MyOptions.map((more, moreIdx) => (
@@ -307,6 +309,17 @@ export default function MedicalRecordPage() {
   const status = useSelector((state) => {
     return state.medicalResult.status;
   });
+
+  const noResultText = () => {
+    switch (watchedCategory) {
+      case "test-lab-result":
+        return "There are no tests or lab results for you now.";
+      case "care-plan-overview":
+        return "There is no care plan overview document";
+      default:
+        return "There are no tests or lab results for you now.";
+    }
+  };
 
   useEffect(() => {
     const category = router.query.type;
@@ -359,7 +372,7 @@ export default function MedicalRecordPage() {
           {!isHideDisclaimer && watchedCategory === "test-lab-result" ? (
             <div className={styles.disclaimerWrapper}>
               <div className={styles.disclaimerText}>
-                <span className={styles.infoLabel}>
+                <span className={styles.infoLabel} tabIndex="0">
                   <InfoOutlinedIcon
                     sx={{
                       width: "18px",
@@ -372,13 +385,19 @@ export default function MedicalRecordPage() {
                   Your lab results are available. Please reach out to your
                   provider.
                 </span>
-                <Button
+                {/* <IconButton>
+                  <CloseIcon sx={styles.closeIcon} />
+                </IconButton> */}
+                <IconButton
                   data-testid={"close-disclaimer-icon"}
                   onClick={() => setIsHideDisclaimer(true)}
-                  sx={{ color: "#003B4A", display: "contents" }}
+                  sx={{ color: "#003B4A" }}
+                  tabIndex={0}
+                  role={"button"}
+                  aria-label="close"
                 >
                   <CloseIcon sx={styles.closeIcon} />
-                </Button>
+                </IconButton>
               </div>
             </div>
           ) : null}
@@ -402,7 +421,7 @@ export default function MedicalRecordPage() {
                 }}
               />
             ) : (
-              <TableEmpty text={`There are no ${watchedCategory}.`} />
+              <TableEmpty text={noResultText()} />
             )}
           </Stack>
         </div>
@@ -414,7 +433,11 @@ export default function MedicalRecordPage() {
 MedicalRecordPage.getLayout = function getLayout(page) {
   return (
     <Provider store={store}>
-      <PrescriptionLayout currentActivePage={"documents"}>
+      <PrescriptionLayout
+        currentActivePage={"medical-record"}
+        pageTitle={"EyeCare Patient Portal - Test & Lab Result"}
+        title={"Test & Lab Result"}
+      >
         {page}
       </PrescriptionLayout>
     </Provider>

@@ -235,7 +235,7 @@ exports[`App renders App unchanged 1`] = `
                               <svg
                                 alt="Doctor Image"
                                 aria-hidden="true"
-                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium profilePhoto css-epjost-MuiSvgIcon-root"
+                                class="MuiSvgIcon-root MuiSvgIcon-fontSizeMedium profilePhoto css-1lcusdu-MuiSvgIcon-root"
                                 data-testid="appointment_provider_profile_image"
                                 focusable="false"
                                 tabindex="0"
@@ -285,6 +285,7 @@ exports[`App renders App unchanged 1`] = `
                                     class="phoneContainer MuiBox-root css-qbubgm"
                                   >
                                     <p
+                                      aria-label="Phone Number null"
                                       class="MuiTypography-root MuiTypography-body2 phone css-e784if-MuiTypography-root"
                                       role="text"
                                       tabindex="0"

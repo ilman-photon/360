@@ -215,19 +215,17 @@ defineFeature(feature, (test) => {
           </Provider>
           );
       })
-      await waitFor(()=> container.getByText(/Filter/i));
-      expect(container.getAllByText(/Active Medications/i)[0]).toBeInTheDocument();
+      await waitFor(() => container.getByText("Medications"));
+      expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
     });
 
     when('User clicks on the widget with prescriptions', async () => {
       const medicationMenu = container.getByTestId("menu-medication");
+      fireEvent.click(medicationMenu)
+      await waitFor(()=> container.getByText(/Active Medications/i));
+      
       const filterButton = container.getByTestId("medication-filter-button");
       expect(filterButton).toBeInTheDocument();
-      act(()=>{
-          fireEvent.click(medicationMenu)
-      })
-      
-      await waitFor(()=> container.getByText(/Active Medications/i))
     });
 
     then(/^User should navigated to "(.*)" screen$/, (arg0) => {

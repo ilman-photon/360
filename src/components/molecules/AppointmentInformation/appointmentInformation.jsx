@@ -1,7 +1,6 @@
-import { Box, Typography, Link, useMediaQuery } from "@mui/material";
+import { Box, Typography, Link } from "@mui/material";
 import styles from "./styles.module.scss";
 import Image from "next/image";
-import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
 import { useEffect, useState } from "react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -9,7 +8,6 @@ import { Api } from "../../../pages/api/api";
 import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 
 export default function AppointmentInformation({ data }) {
-  const isMobile = useMediaQuery("(max-width: 992px)");
   const getProviderLocation = () => {
     if (!data.providerInfo.location) return "#";
     return `https://www.google.com/maps/search/?api=1&query=${data.providerInfo.location.latitude},${data.providerInfo.location.longitude}`;

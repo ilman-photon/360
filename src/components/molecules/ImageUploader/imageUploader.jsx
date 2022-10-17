@@ -41,7 +41,6 @@ export const ImageUploader = ({
   const fetchImageURL = async () => {
     digitalAsset.setSource(source);
     const src = await digitalAsset.fetchSourceURL();
-    console.log("img src", { src });
     if (src) setImageSource(src.presignedUrl);
   };
 
@@ -101,7 +100,9 @@ export const ImageUploader = ({
           ) : (
             <CameraAltOutlinedIcon sx={{ width: 16, height: 16 }} />
           )}
-          <Typography variant={labelVariant}>{label}</Typography>
+          <Typography variant={labelVariant} sx={{ fontWeight: 500 }}>
+            {label}
+          </Typography>
         </Stack>
       </Button>
     );

@@ -427,7 +427,7 @@ defineFeature(feature, (test) => {
   }
 
   const clickHour = async () => {
-    expect(container.getByText("30 In-network providers")).toBeInTheDocument();
+    expect(container.getByText("3 In-network providers")).toBeInTheDocument();
     const hourButton = await waitFor(() => container.getByTestId(SEARCH_PROVIDER_TEST_ID.hourButton))
     fireEvent.click(hourButton)
   }
@@ -722,7 +722,7 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the timeslot', () => {
-      expect(container.getByText("30 In-network providers")).toBeInTheDocument();
+      expect(container.getByText("3 In-network providers")).toBeInTheDocument();
       clickHour();
     });
 });
@@ -765,7 +765,7 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the timeslot', () => {
-      expect(container.getByText("30 In-network providers")).toBeInTheDocument();
+      expect(container.getByText("3 In-network providers")).toBeInTheDocument();
       clickHour();
     });
 
@@ -812,7 +812,7 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the timeslot', () => {
-      expect(container.getByText("30 In-network providers")).toBeInTheDocument();
+      expect(container.getByText("3 In-network providers")).toBeInTheDocument();
       clickHour();
     });
 
@@ -864,7 +864,7 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the timeslot', () => {
-      expect(container.getByText("30 In-network providers")).toBeInTheDocument();
+      expect(container.getByText("3 In-network providers")).toBeInTheDocument();
       clickHour();
     });
 
@@ -921,7 +921,7 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the timeslot', () => {
-      expect(container.getByText("30 In-network providers")).toBeInTheDocument();
+      expect(container.getByText("3 In-network providers")).toBeInTheDocument();
       clickHour();
     });
 
@@ -983,7 +983,7 @@ defineFeature(feature, (test) => {
     });
 
     and('user select the timeslot', () => {
-        expect(container.getByText("30 In-network providers")).toBeInTheDocument();
+        expect(container.getByText("3 In-network providers")).toBeInTheDocument();
         clickHour();
     });
 

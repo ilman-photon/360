@@ -33,16 +33,16 @@ const documents = [
     href: "/patient/account/documents?type=intake-forms",
     label: "Intake Forms",
   },
-  {
-    icon: iconCardinsuranceCard,
-    href: "/patient/account/documents?type=insurance-documents",
-    label: "Insurance Documents",
-  },
-  {
-    icon: iconHealthRecord,
-    href: "/patient/account/documents?type=health-record",
-    label: "Health Record",
-  },
+  // {
+  //   icon: iconCardinsuranceCard,
+  //   href: "/patient/account/documents?type=insurance-documents",
+  //   label: "Insurance Documents",
+  // },
+  // {
+  //   icon: iconHealthRecord,
+  //   href: "/patient/account/documents?type=health-record",
+  //   label: "Health Record",
+  // },
 ];
 
 const medical = [
@@ -88,6 +88,7 @@ const Navbar = ({ isDashboard = false }) => {
   };
 
   const handleCloseUserMenu = (href) => {
+    setAnchorElNav(null);
     setAnchorElUser(null);
     if (typeof href === "string") router.push(href);
   };

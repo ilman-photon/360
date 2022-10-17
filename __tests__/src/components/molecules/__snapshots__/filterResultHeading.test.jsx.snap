@@ -36,7 +36,7 @@ Object {
             >
               <button
                 aria-label="New York, NY"
-                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-fz1m2a-MuiButtonBase-root-MuiButton-root"
+                class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root mobileFilterButton css-1e6y48t-MuiButtonBase-root-MuiButton-root"
                 tabindex="0"
                 type="button"
               >
@@ -125,7 +125,7 @@ Object {
           >
             <button
               aria-label="New York, NY"
-              class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root  css-fz1m2a-MuiButtonBase-root-MuiButton-root"
+              class="MuiButton-root MuiButton-text MuiButton-textPrimary MuiButton-sizeMedium MuiButton-textSizeMedium MuiButtonBase-root mobileFilterButton css-1e6y48t-MuiButtonBase-root-MuiButton-root"
               tabindex="0"
               type="button"
             >

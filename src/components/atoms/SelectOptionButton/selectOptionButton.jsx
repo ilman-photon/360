@@ -63,6 +63,7 @@ export default function SelectOptionButton({
       <InputLabel
         tabIndex={0}
         aria-label={ariaLabel}
+        role={props.role}
         id="demo-simple-select-label"
         sx={{
           fontSize: "16px",
@@ -74,6 +75,7 @@ export default function SelectOptionButton({
           },
           ...props.inputPropsSx,
         }}
+        {...props}
       >
         {label}
       </InputLabel>
@@ -111,6 +113,7 @@ export default function SelectOptionButton({
                   "aria-label": `${option}`,
                   "aria-live": "polite",
                 }}
+                tabIndex={0}
               >
                 {option}
               </MenuItem>

@@ -8,6 +8,7 @@ import LocationOnOutlinedIcon from "@mui/icons-material/LocationOnOutlined";
 import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import CancelOutlinedIcon from "@mui/icons-material/CancelOutlined";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import styles from "./styles.module.scss";
 import {
   Box,
@@ -48,11 +49,6 @@ export default function AppointmentCard({
     appointmentInfo: {},
   });
   const [appointmentCount, setAppointmentCount] = React.useState(0);
-  const handleKeyPress = (event) => {
-    if (event.key === "Enter") {
-      console.log("enter press here! ");
-    }
-  };
   useEffect(() => {
     setAppointment(parseAppointmentCardData(appointmentData));
     setAppointmentCount(appointmentData.length);
@@ -186,37 +182,62 @@ export default function AppointmentCard({
                   {appointment.providerInfo?.position}
                 </Typography>
                 {renderAddressUI()}
-                <Typography
-                  variant="bodyLinkRegular"
-                  tabIndex={0}
-                  onKeyPress={() =>
-                    window.open(`tel:${appointment.providerInfo?.phoneNumber}`)
-                  }
+                <Box
                   aria-label={`phone number ${appointment.providerInfo?.phoneNumber}`}
+                  tabIndex={0}
                 >
-                  <a
+                  <Typography
+                    variant="bodyLinkRegular"
+                    aria-hidden={true}
                     onKeyPress={() =>
                       window.open(
                         `tel:${appointment.providerInfo?.phoneNumber}`
                       )
                     }
                   >
-                    {formatPhoneNumber(appointment.providerInfo?.phoneNumber)}{" "}
-                  </a>
-                </Typography>
+                    <a
+                      onKeyPress={() =>
+                        window.open(
+                          `tel:${appointment.providerInfo?.phoneNumber}`
+                        )
+                      }
+                    >
+                      {formatPhoneNumber(appointment.providerInfo?.phoneNumber)}{" "}
+                    </a>
+                  </Typography>
+                </Box>
                 {renderGetDirection()}
               </Box>
             </Grid>
             <Grid item xs={5} sm={5} md={2}>
-              <Box className={styles.containerImage}>
-                <Image
-                  src={appointment.providerInfo.image}
-                  style={{ borderRadius: "50%" }}
-                  alt={`${appointment.providerInfo?.name} image`}
-                  width="90px"
-                  height="90px"
-                  tabIndex={0}
-                />
+              <Box
+                className={styles.containerImage}
+                sx={{
+                  border: appointment?.providerInfo?.image
+                    ? "1px solid #003b4a"
+                    : 0,
+                }}
+              >
+                {appointment?.providerInfo?.image ? (
+                  <Image
+                    src={appointment.providerInfo.image}
+                    style={{ borderRadius: "50%" }}
+                    alt={`${appointment.providerInfo?.name} image`}
+                    width="90px"
+                    height="90px"
+                    tabIndex={0}
+                  />
+                ) : (
+                  <AccountCircleIcon
+                    sx={{
+                      width: { xs: "100%" },
+                      height: { xs: "100%" },
+                      color: "#b5b5b5",
+                    }}
+                    alt="Doctor Image"
+                    tabIndex={0}
+                  />
+                )}
               </Box>
               <Box className={styles.flexDisplay} tabIndex={0}>
                 <Box pr={1}>

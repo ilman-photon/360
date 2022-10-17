@@ -351,6 +351,8 @@ export function onRenderInputInsurance(
         alignItems: "flex-end",
         paddingLeft: "15px",
       }}
+      aria-label="Insurance carrier field"
+      tabIndex={0}
     >
       <Box
         sx={{
@@ -363,8 +365,9 @@ export function onRenderInputInsurance(
       <StyledInput
         variant="filled"
         {...params}
+        aria-hidden={true}
         label="Insurance Carrier"
-        aria-label="Insurance carrier field"
+        tabIndex={-1}
         InputProps={{
           ...params.InputProps,
         }}
@@ -608,14 +611,17 @@ const FilterHeading = ({
                     alignItems: "flex-end",
                     paddingLeft: "15px",
                   }}
+                  aria-label="City, state, or zip code field"
+                  tabIndex={0}
                 >
                   {locationIconUI(isDesktop)}
                   <StyledInput
                     type="default"
                     variant="filled"
                     {...params}
+                    aria-hidden={true}
                     label="City, state, or zip code"
-                    aria-label="City, state, or zip code field"
+                    tabIndex={-1}
                     InputProps={{
                       ...params.InputProps,
                       endAdornment: (
@@ -688,7 +694,7 @@ const FilterHeading = ({
               />
               <StyledInput
                 open={open}
-                // minDate={minDate}
+                minDate={minDate}
                 maxDate={maxDate}
                 data-testid={APPOINTMENT_TEST_ID.dateInput}
                 onOpen={() => setOpen(true)}
@@ -777,8 +783,9 @@ const FilterHeading = ({
                     fontStyle: "normal",
                   },
                 }}
+                ariaLabel={"Purpose of Visit dropdown"}
+                role="menu"
                 label={"Purpose of Visit"}
-                ariaLabel={"Purpose of Visit dropdown menu"}
                 labelId={`purposes-of-visit`}
                 id={`purposes-of-visit`}
                 options={purposeOfVisitData}

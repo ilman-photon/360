@@ -209,7 +209,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user  launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user  navigates to the Patient Portal application", () => {
@@ -217,15 +222,28 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(/^user provides valid  (.*) and Invalid (.*)$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText("emailUserLabel");
+      fireEvent.change(usernameField, {
+        target: { value: "validUsername@mail.com" },
+      });
+      expect(usernameField.value).toEqual("validUsername@mail.com");
     });
 
     and(/^user clicks on "(.*)" Button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const login = container.getByRole("button", { name: /Login/i });
+      fireEvent.click(login);
     });
 
     then(/^user should see the error message "(.*)"$/, (arg0, table) => {
@@ -240,7 +258,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user/admin user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user/ admin user navigates to the Patient Portal application", () => {
@@ -248,15 +271,33 @@ defineFeature(feature, (test) => {
     });
 
     when("user/ admin user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock
+        .onGet(`https://api.ipify.org?format=json`)
+        .reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(/^user provides Invalid  (.*) and Invalid (.*)$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText("emailUserLabel");
+      const passwordField = container.getByLabelText("passwordLabel");
+      fireEvent.change(usernameField, {
+        target: { value: "wrongUserName@email.cc" },
+      });
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+      expect(usernameField.value).not.toEqual("validUsername@email.cc");
+      expect(passwordField.value).toEqual("validPassword");
     });
 
     and(/^user clicks on "(.*)" Button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const login = container.getByRole("button", { name: /Login/i });
+      fireEvent.click(login);
     });
 
     then(/^user should see the error message "(.*)"$/, (arg0, table) => {
@@ -280,19 +321,42 @@ defineFeature(feature, (test) => {
     });
 
     and("admin user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2001,
+        ResponseType: "failure",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     when("admin user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock
+        .onGet(`https://api.ipify.org?format=json`)
+        .reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(/^admin provides Invalid  (.*) and valid (.*)$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText("emailUserLabel");
+      const passwordField = container.getByLabelText("passwordLabel");
+      fireEvent.change(usernameField, {
+        target: { value: "wrongUserName@email.cc" },
+      });
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+      expect(usernameField.value).not.toEqual("validUsername@email.cc");
+      expect(passwordField.value).toEqual("validPassword");
     });
 
     and(/^admin user clicks on "(.*)" Button$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const login = container.getByRole("button", { name: /Login/i });
+      fireEvent.click(login);
     });
 
     then(/^admin user should see the error message "(.*)"$/, (arg0, table) => {
@@ -316,11 +380,26 @@ defineFeature(feature, (test) => {
     });
 
     and("admin user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2001,
+        ResponseType: "failure",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     when("admin user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock
+        .onGet(`https://api.ipify.org?format=json`)
+        .reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(
@@ -355,19 +434,40 @@ defineFeature(feature, (test) => {
     });
 
     and("admin user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2001,
+        ResponseType: "failure",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     when("admin user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock
+        .onGet(`https://api.ipify.org?format=json`)
+        .reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(
       /^admin provides Registered Invalid  (.*) and Invalid (.*)$/,
       (arg0, arg1) => {
-        expect(true).toBeTruthy();
-      }
-    );
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "wrongUserName@email.cc" },
+        });
+        fireEvent.change(passwordField, { target: { value: "validPassword" } });
+        expect(usernameField.value).not.toEqual("validUsername@email.cc");
+        expect(passwordField.value).toEqual("validPassword");
+      });
 
     and(/^admin user clicks on "(.*)" Button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -385,7 +485,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -393,11 +498,26 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(/^user provides invalid  (.*) and valid (.*)$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText("emailUserLabel");
+      const passwordField = container.getByLabelText("passwordLabel");
+      fireEvent.change(usernameField, {
+        target: { value: "wrongUserName@email.cc" },
+      });
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+      expect(usernameField.value).not.toEqual("validUsername@email.cc");
+      expect(passwordField.value).toEqual("validPassword");
     });
 
     and(/^user clicks on "(.*)" Button$/, (arg0) => {
@@ -416,7 +536,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user  launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user  navigates to the Patient Portal application", () => {
@@ -424,11 +549,26 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(/^user provides valid  (.*) and Invalid (.*)$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText("emailUserLabel");
+      const passwordField = container.getByLabelText("passwordLabel");
+      fireEvent.change(usernameField, {
+        target: { value: "wrongUserName@email.cc" },
+      });
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+      expect(usernameField.value).not.toEqual("validUsername@email.cc");
+      expect(passwordField.value).toEqual("validPassword");
     });
 
     and(/^user clicks on "(.*)" Button$/, (arg0) => {
@@ -447,7 +587,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -455,11 +600,26 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(/^user provides Invalid  (.*) and Invalid (.*)$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText("emailUserLabel");
+      const passwordField = container.getByLabelText("passwordLabel");
+      fireEvent.change(usernameField, {
+        target: { value: "wrongUserName@email.cc" },
+      });
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+      expect(usernameField.value).not.toEqual("validUsername@email.cc");
+      expect(passwordField.value).toEqual("validPassword");
     });
 
     and(/^user clicks on "(.*)" Button$/, (arg0) => {
@@ -487,15 +647,37 @@ defineFeature(feature, (test) => {
     });
 
     and("admin user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2001,
+        ResponseType: "failure",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     when("admin user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock
+        .onGet(`https://api.ipify.org?format=json`)
+        .reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(/^admin provides Invalid  (.*) and valid (.*)$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText("emailUserLabel");
+      const passwordField = container.getByLabelText("passwordLabel");
+      fireEvent.change(usernameField, {
+        target: { value: "wrongUserName@email.cc" },
+      });
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+      expect(usernameField.value).not.toEqual("validUsername@email.cc");
+      expect(passwordField.value).toEqual("validPassword");
     });
 
     and(/^admin user clicks on "(.*)" Button$/, (arg0) => {
@@ -523,19 +705,40 @@ defineFeature(feature, (test) => {
     });
 
     and("admin user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2001,
+        ResponseType: "failure",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     when("admin user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock
+        .onGet(`https://api.ipify.org?format=json`)
+        .reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(
       /^admin provides Registered valid  (.*) and Invalid (.*)$/,
       (arg0, arg1) => {
-        expect(true).toBeTruthy();
-      }
-    );
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "wrongUserName@email.cc" },
+        });
+        fireEvent.change(passwordField, { target: { value: "validPassword" } });
+        expect(usernameField.value).not.toEqual("validUsername@email.cc");
+        expect(passwordField.value).toEqual("validPassword");
+      });
 
     and(/^admin user clicks on "(.*)" Button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -562,19 +765,40 @@ defineFeature(feature, (test) => {
     });
 
     and("admin user navigates to the Patient Portal application", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2001,
+        ResponseType: "failure",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     when("admin user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock
+        .onGet(`https://api.ipify.org?format=json`)
+        .reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(
       /^admin user provides Invalid  (.*) and Invalid (.*)$/,
       (arg0, arg1) => {
-        expect(true).toBeTruthy();
-      }
-    );
+        const usernameField = container.getByLabelText("emailUserLabel");
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "wrongUserName@email.cc" },
+        });
+        fireEvent.change(passwordField, { target: { value: "validPassword" } });
+        expect(usernameField.value).not.toEqual("validUsername@email.cc");
+        expect(passwordField.value).toEqual("validPassword");
+      });
 
     and(/^admin user clicks on "(.*)" Button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -592,7 +816,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -600,11 +829,26 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(/^user provides (.*) with space "(.*)"$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText("emailUserLabel");
+      const passwordField = container.getByLabelText("passwordLabel");
+      fireEvent.change(usernameField, {
+        target: { value: " " },
+      });
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+      expect(usernameField.value).not.toEqual("");
+      expect(passwordField.value).toEqual("validPassword");
     });
 
     and(/^user provides valid (.*)$/, (arg0) => {
@@ -630,7 +874,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -638,11 +887,26 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(/^user provides (.*) without @ symbol "(.*)"$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText("emailUserLabel");
+      const passwordField = container.getByLabelText("passwordLabel");
+      fireEvent.change(usernameField, {
+        target: { value: "wrongUserName" },
+      });
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+      expect(usernameField.value).not.toEqual("validUsername@email.cc");
+      expect(passwordField.value).toEqual("validPassword");
     });
 
     and(/^user provides valid (.*)$/, (arg0) => {
@@ -668,7 +932,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -676,18 +945,32 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(
       /^user provides (.*) Email with two @ symbol like "(.*)"$/,
       (arg0, arg1) => {
-        expect(true).toBeTruthy();
+        const usernameField = container.getByLabelText("emailUserLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "wrongUserName@email.cc" },
+        });
+        expect(usernameField.value).not.toEqual("validUsername@email.cc");
       }
     );
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const passwordField = container.getByLabelText("passwordLabel");
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+      expect(passwordField.value).toEqual("validPassword");
     });
 
     and(/^click "(.*)" button$/, (arg0) => {
@@ -709,7 +992,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -717,18 +1005,32 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(
       /^user provides (.*) Email without text before @ symbol like "(.*)"$/,
       (arg0, arg1) => {
-        expect(true).toBeTruthy();
+        const usernameField = container.getByLabelText("emailUserLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "wrongUserName" },
+        });
+        expect(usernameField.value).not.toEqual("validUsername@email.cc");
       }
     );
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const passwordField = container.getByLabelText("passwordLabel");
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+      expect(passwordField.value).toEqual("validPassword");
     });
 
     and(/^click "(.*)" button$/, (arg0) => {
@@ -750,7 +1052,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -758,18 +1065,31 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(
       /^user provides (.*) Email without Domain name like "(.*)"$/,
       (arg0, arg1) => {
-        expect(true).toBeTruthy();
-      }
-    );
+        const usernameField = container.getByLabelText("emailUserLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "wrongUserName@email.cc" },
+        });
+        expect(usernameField.value).not.toEqual("validUsername@email.cc");
+      });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const passwordField = container.getByLabelText("passwordLabel");
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+      expect(passwordField.value).toEqual("validPassword");
     });
 
     and(/^click "(.*)" button$/, (arg0) => {
@@ -791,7 +1111,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -799,15 +1124,26 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(/^user provides (.*) Email without .com like "(.*)"$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText("emailUserLabel");
+      expect(usernameField.value).not.toEqual("validUsername@email.cc");
     });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const passwordField = container.getByLabelText("passwordLabel");
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+      expect(passwordField.value).toEqual("validPassword");
     });
 
     and(/^click "(.*)" button$/, (arg0) => {
@@ -829,7 +1165,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -837,18 +1178,31 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(
       /^user provides (.*) Email without dot after domain name like "(.*)"$/,
       (arg0, arg1) => {
-        expect(true).toBeTruthy();
-      }
-    );
+        const usernameField = container.getByLabelText("emailUserLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "wrongUserName@email.cc" },
+        });
+        expect(usernameField.value).not.toEqual("validUsername@email.cc");
+      });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const passwordField = container.getByLabelText("passwordLabel");
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+      expect(passwordField.value).toEqual("validPassword");
     });
 
     and(/^click "(.*)" button$/, (arg0) => {
@@ -870,7 +1224,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -878,18 +1237,31 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(
       /^user provides (.*) Email with consecutive dots at Email starting like "(.*)"$/,
       (arg0, arg1) => {
-        expect(true).toBeTruthy();
-      }
-    );
+        const usernameField = container.getByLabelText("emailUserLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "wrongUserName@email.cc" },
+        });
+        expect(usernameField.value).not.toEqual("validUsername@email.cc");
+      });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const passwordField = container.getByLabelText("passwordLabel");
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+      expect(passwordField.value).toEqual("validPassword");
     });
 
     and(/^click "(.*)" button$/, (arg0) => {
@@ -911,7 +1283,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -919,18 +1296,31 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(
       /^user provides (.*) Email with consecutive dots at middle for the Email ID like "(.*)"$/,
       (arg0, arg1) => {
-        expect(true).toBeTruthy();
-      }
-    );
+        const usernameField = container.getByLabelText("emailUserLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "wrongUserName@email.cc" },
+        });
+        expect(usernameField.value).not.toEqual("validUsername@email.cc");
+      });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const passwordField = container.getByLabelText("passwordLabel");
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+      expect(passwordField.value).toEqual("validPassword");
     });
 
     and(/^click "(.*)" button$/, (arg0) => {
@@ -952,7 +1342,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -960,18 +1355,31 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(
       /^user provides (.*) Email with consecutive dots in domain portion like "(.*)"$/,
       (arg0, arg1) => {
-        expect(true).toBeTruthy();
-      }
-    );
+        const usernameField = container.getByLabelText("emailUserLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "wrongUserName@email.cc" },
+        });
+        expect(usernameField.value).not.toEqual("validUsername@email.cc");
+      });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const passwordField = container.getByLabelText("passwordLabel");
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+      expect(passwordField.value).toEqual("validPassword");
     });
 
     and(/^click "(.*)" button$/, (arg0) => {
@@ -993,7 +1401,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -1001,18 +1414,36 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(
       /^user provides (.*) Email with Special Characters like "(.*)"$/,
       (arg0, arg1) => {
-        expect(true).toBeTruthy();
-      }
-    );
+        const usernameField = container.getByLabelText("emailUserLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "wrongUserName@email.cc" },
+        });
+        expect(usernameField.value).not.toEqual("validUsername@email.cc");
+      });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText("emailUserLabel");
+      const passwordField = container.getByLabelText("passwordLabel");
+      fireEvent.change(usernameField, {
+        target: { value: "wrongUserName@email.cc" },
+      });
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+      expect(usernameField.value).not.toEqual("validUsername@email.cc");
+      expect(passwordField.value).toEqual("validPassword");
     });
 
     and(/^click "(.*)" button$/, (arg0) => {
@@ -1034,7 +1465,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -1042,18 +1478,31 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(
       /^user provides (.*) Email starts with dot like "(.*)"$/,
       (arg0, arg1) => {
-        expect(true).toBeTruthy();
-      }
-    );
+        const usernameField = container.getByLabelText("emailUserLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "wrongUserName@email.cc" },
+        });
+        expect(usernameField.value).not.toEqual("validUsername@email.cc");
+      });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const passwordField = container.getByLabelText("passwordLabel");
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+      expect(passwordField.value).toEqual("validPassword");
     });
 
     and(/^click "(.*)" button$/, (arg0) => {
@@ -1075,7 +1524,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -1083,18 +1537,31 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(
       /^user provides (.*) Email ends with dot like "(.*)"$/,
       (arg0, arg1) => {
-        expect(true).toBeTruthy();
-      }
-    );
+        const usernameField = container.getByLabelText("emailUserLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "wrongUserName@email.cc" },
+        });
+        expect(usernameField.value).not.toEqual("validUsername@email.cc");
+      });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const passwordField = container.getByLabelText("passwordLabel");
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+      expect(passwordField.value).toEqual("validPassword");
     });
 
     and(/^click "(.*)" button$/, (arg0) => {
@@ -1116,7 +1583,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -1124,18 +1596,31 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(
       /^user provides (.*) Email with garbage values like "(.*)"$/,
       (arg0, arg1) => {
-        expect(true).toBeTruthy();
-      }
-    );
+        const usernameField = container.getByLabelText("emailUserLabel");
+        fireEvent.change(usernameField, {
+          target: { value: "wrongUserName@email.cc" },
+        });
+        expect(usernameField.value).not.toEqual("validUsername@email.cc");
+      });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const passwordField = container.getByLabelText("passwordLabel");
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+      expect(passwordField.value).toEqual("validPassword");
     });
 
     and(/^click "(.*)" button$/, (arg0) => {
@@ -1157,7 +1642,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -1165,15 +1655,31 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText("emailUserLabel");
+      fireEvent.change(usernameField, {
+        target: { value: "wrongUserName@email.cc" },
+      });
+      expect(usernameField.value).not.toEqual("validUsername@email.cc");
     });
 
     and(/^user provides (\d+) characters in (.*)$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText("emailUserLabel");
+      fireEvent.change(usernameField, {
+        target: { value: "wrongUserName@email.cc" },
+      });
+      expect(usernameField.value).not.toEqual("validUsername@email.cc");
     });
 
     and(/^click "(.*)" button$/, (arg0) => {
@@ -1195,7 +1701,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -1203,15 +1714,29 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText("emailUserLabel");
+      fireEvent.change(usernameField, {
+        target: { value: "wrongUserName@email.cc" },
+      });
+      expect(usernameField.value).not.toEqual("validUsername@email.cc");
     });
 
     and(/^user provides (\d+) characters in (.*)$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const passwordField = container.getByLabelText("passwordLabel");
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+      expect(passwordField.value).toEqual("validPassword");
     });
 
     and(/^click "(.*)" button$/, (arg0) => {
@@ -1233,7 +1758,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -1241,15 +1771,29 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText("emailUserLabel");
+      fireEvent.change(usernameField, {
+        target: { value: "wrongUserName@email.cc" },
+      });
+      expect(usernameField.value).not.toEqual("validUsername@email.cc");
     });
 
     and(/^user provides (\d+) characters in (.*)$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const passwordField = container.getByLabelText("passwordLabel");
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+      expect(passwordField.value).toEqual("validPassword");
     });
 
     and(/^click "(.*)" button$/, (arg0) => {
@@ -1268,7 +1812,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -1276,7 +1825,15 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(/^user provides valid (.*)$/, (arg0) => {
@@ -1303,7 +1860,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -1311,15 +1873,29 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText("emailUserLabel");
+      fireEvent.change(usernameField, {
+        target: { value: "wrongUserName@email.cc" },
+      });
+      expect(usernameField.value).not.toEqual("validUsername@email.cc");
     });
 
     and(/^user provides (\d+) characters in (.*)$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const passwordField = container.getByLabelText("passwordLabel");
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+      expect(passwordField.value).toEqual("validPassword");
     });
 
     and(/^click "(.*)" button$/, (arg0) => {
@@ -1338,7 +1914,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -1346,19 +1927,32 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText("emailUserLabel");
+      fireEvent.change(usernameField, {
+        target: { value: "wrongUserName@email.cc" },
+      });
+      expect(usernameField.value).not.toEqual("validUsername@email.cc");
     });
 
     and(
       /^enter the Password without (\d+) Upper case letter with other mandatory Password constraints.$/,
       (arg0) => {
-        expect(true).toBeTruthy();
-      }
-    );
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(passwordField, { target: { value: "validPassword" } });
+        expect(passwordField.value).toEqual("validPassword");
+      });
 
     and(/^click "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -1379,7 +1973,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -1387,17 +1986,31 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText("emailUserLabel");
+      fireEvent.change(usernameField, {
+        target: { value: "wrongUserName@email.cc" },
+      });
+      expect(usernameField.value).not.toEqual("validUsername@email.cc");
     });
 
     and(
       /^enter the Password without (\d+) Lower case letter with other mandatory Password constraints.$/,
       (arg0) => {
-        expect(true).toBeTruthy();
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(passwordField, { target: { value: "validPassword" } });
+        expect(passwordField.value).toEqual("validPassword");
       }
     );
 
@@ -1420,7 +2033,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -1428,17 +2046,31 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText("emailUserLabel");
+      fireEvent.change(usernameField, {
+        target: { value: "wrongUserName@email.cc" },
+      });
+      expect(usernameField.value).not.toEqual("validUsername@email.cc");
     });
 
     and(
       /^enter the Password without (\d+) Number with other mandatory Password constraints.$/,
       (arg0) => {
-        expect(true).toBeTruthy();
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(passwordField, { target: { value: "validPassword" } });
+        expect(passwordField.value).toEqual("validPassword");
       }
     );
 
@@ -1461,7 +2093,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -1469,19 +2106,32 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText("emailUserLabel");
+      fireEvent.change(usernameField, {
+        target: { value: "wrongUserName@email.cc" },
+      });
+      expect(usernameField.value).not.toEqual("validUsername@email.cc");
     });
 
     and(
       /^enter the Password without (\d+) Special character with other mandatory Password constraints.$/,
       (arg0) => {
-        expect(true).toBeTruthy();
-      }
-    );
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(passwordField, { target: { value: "validPassword" } });
+        expect(passwordField.value).toEqual("validPassword");
+      });
 
     and(/^click "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -1502,7 +2152,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -1510,19 +2165,32 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText("emailUserLabel");
+      fireEvent.change(usernameField, {
+        target: { value: "wrongUserName@email.cc" },
+      });
+      expect(usernameField.value).not.toEqual("validUsername@email.cc");
     });
 
     and(
       "user enter the Password with Upper case, Lower case, Numbers and Special characters",
       () => {
-        expect(true).toBeTruthy();
-      }
-    );
+        const passwordField = container.getByLabelText("passwordLabel");
+        fireEvent.change(passwordField, { target: { value: "validPassword" } });
+        expect(passwordField.value).toEqual("validPassword");
+      });
 
     and(/^click "(.*)" button$/, (arg0) => {
       expect(true).toBeTruthy();
@@ -1540,7 +2208,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     when("user navigates to the Patient Portal application", () => {
@@ -1563,7 +2236,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -1571,7 +2249,15 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     then(/^page should load in (\d+) seconds$/, (arg0) => {
@@ -1586,7 +2272,12 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user user launch the 'XXX' url", () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and("user navigates to the Patient Portal application", () => {
@@ -1594,7 +2285,15 @@ defineFeature(feature, (test) => {
     });
 
     when("user lands onto “Patient Login” screen", () => {
-      expect(true).toBeTruthy();
+      mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(/^press the F(\d+) button from the keyboard.$/, (arg0) => {
@@ -1608,7 +2307,12 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-4_STORY_EPP-208-Verify whether the "Email or Phone number" field is not allowing Email with consecutive dots before @ symbol.', ({ given, and, when, then }) => {
     given('user launch the \'XXX\' url', () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     and('user navigates to the Patient Portal application', () => {
@@ -1616,15 +2320,31 @@ defineFeature(feature, (test) => {
     });
 
     when('user lands onto “Patient Login” screen', () => {
-      expect(true).toBeTruthy();
+      mock
+        .onGet(`https://api.ipify.org?format=json`)
+        .reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     and(/^user provides (.*) Email with consecutive dots before @ symbol like "(.*)"$/, (arg0, arg1) => {
-      expect(true).toBeTruthy();
+      const usernameField = container.getByLabelText("emailUserLabel");
+      fireEvent.change(usernameField, {
+        target: { value: "wrongUserName@email.cc" },
+      });
+      expect(usernameField.value).not.toEqual("validUsername@email.cc");
     });
 
     and(/^user provides valid (.*)$/, (arg0) => {
-      expect(true).toBeTruthy();
+      const passwordField = container.getByLabelText("passwordLabel");
+      fireEvent.change(passwordField, { target: { value: "validPassword" } });
+      expect(passwordField.value).toEqual("validPassword");
     });
 
     and(/^click "(.*)" button$/, (arg0) => {
@@ -1638,7 +2358,12 @@ defineFeature(feature, (test) => {
 
   test('EPIC_EPP-4_STORY_EPP-208-Verify whether the error message is displaying when the service is unavailable.', ({ given, when, and, then }) => {
     given('user user launch the \'XXX\' url', () => {
-      expect(true).toBeTruthy();
+      const expectedResult = {
+        ResponseCode: 2000,
+        ResponseType: "success",
+        userType: "patient",
+      };
+      mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
     when('the service is unavailable', () => {
@@ -1650,7 +2375,17 @@ defineFeature(feature, (test) => {
     });
 
     and('user lands on “Patient Login” screen', () => {
-      expect(true).toBeTruthy();
+      mock
+        .onGet(`https://api.ipify.org?format=json`)
+        .reply(200, { ip: "10.10.10.10" });
+      act(() => {
+        container = render(<AuthPage />, {
+          container: document.body.appendChild(element),
+          legacyRoot: true,
+        });
+      });
+      const title = container.getByText("formTitle");
+      expect("formTitle").toEqual(title.textContent);
     });
 
     then(/^error message '(\d+) - Server is not ready to handle the request' should get display.$/, (arg0) => {
