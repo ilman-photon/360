@@ -109,6 +109,11 @@ export class Api {
     return this.forgotFeatureValidation(url, postbody, "post");
   }
 
+  validateUserType(postbody) {
+    const url = "/ecp/patient/getPatientType";
+    return this.forgotFeatureValidation(url, postbody, "post");
+  }
+
   validateUserName(postbody) {
     const url = "/ecp/patient/validate";
     return this.forgotFeatureValidation(url, postbody, "post");

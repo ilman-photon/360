@@ -130,7 +130,8 @@ export default function ForgotPasswordPage() {
     };
     const api = new Api();
     api
-      .validateGuestUser(postbody)
+      // .validateGuestUser(postbody)
+      .validateUserType(postbody)
       .then(() => {
         onCalledOneTimeLinkSync(username);
       })
