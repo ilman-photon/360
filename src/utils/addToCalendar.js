@@ -10,12 +10,12 @@ export const addToCalendar = (data) => {
   const startTime = momentDate.format("hh:mm");
   const endTime = momentDate.add(1, "hours").format("hh:mm");
   atcb_action({
-    name: data.name,
-    description: data.description,
     startDate,
     endDate,
     startTime,
     endTime,
+    name: data.name,
+    description: data.description,
     location: data.location,
     options: ["Apple", "Google", "Microsoft365", "Outlook.com", "Yahoo"],
     timeZone: "America/New_York",

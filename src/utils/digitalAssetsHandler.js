@@ -27,11 +27,15 @@ export default class DigitalAssetsHandler {
   };
 
   fetchURLFromDigitalAsset = () => {
-    if (!this.source._id && !this.source.uid) return;
+    if (!this.source._id && !this.source.uid) {
+      return;
+    }
     return api.getURLDigitalAsset(this.source._id || this.source.uid);
   };
   fetchSourceURL = () => {
-    if (!this.source) return;
+    if (!this.source) {
+      return;
+    }
     return this.fetchURLFromDigitalAsset();
   };
 

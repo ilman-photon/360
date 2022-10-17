@@ -1,217 +1,387 @@
-@BDDSTORY-EPP-1572
+Feature: Patient Portal : Schedule Appointment from marketing site - Appointment for 'self' - View Continue as a Guest screen
+User Story: As a user, I should be able to view "Continue as a Guest" screen.
+
+@BDDTEST-EPP-3238
 @Appointments
 @P5
 @Patient_Portal
-Feature: Patient Portal : Schedule Appointment from marketing site - Appointment for 'self' - View Continue as a Guest screen
-  User Story: As a user, I should be able to view "Continue as a Guest" screen.
+@Regression
+@Sprint4
+Scenario: EPIC_EPP-44_STORY_EPP-1572-Verify if user able to view and select continue as guest option
+  Given User launch the "Marketing Site" url
+   When User clicks on the "Schedule your Eye Exam" button
+   Then User should navigated to the search screen
+    And User should fill the location
+    And User should select the Date & Time with provider
+    And User should select the purpose of the visit
+    And User has reviewed the appointment details
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+    And User should see option as Continue as a Guest button
+    And User to click & select Continue as a Guest button
 
-  Acceptance Criteria:
+@BDDTEST-EPP-3239
+@Appointments
+@P5
+@Patient_Portal
+@Regression
+@Sprint4
+Scenario: EPIC_EPP-44_STORY_EPP-1572- Verify if user able to navigate to basic detail page after select Continue as a Guest
+   When User clicks on the "Schedule your Eye Exam" button
+   Then User should navigated to the search screen
+    And User should fill the location
+    And User should select the Date & Time with provider
+    And User should select the purpose of the visit
+    And User has reviewed the appointment details
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+    And User should see option as Continue as a Guest button
+   When User to click & select Continue as a Guest button
+   Then User should lands onto Page to enter basic details
 
-  GIVEN
+@BDDTEST-EPP-3240
+@Appointments
+@P5
+@Patient_Portal
+@Regression
+@Sprint4
+Scenario: EPIC_EPP-44_STORY_EPP-1572-Verify if user able to view basic details fields
+  Given User launch the "Marketing Site" url
+   When User clicks on the "Schedule your Eye Exam" button
+   Then User should navigated to the search screen
+    And User should fill the location
+    And User should select the Date & Time with provider
+    And User should select the purpose of the visit
+    And User has reviewed the appointment details
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+    And User should see option as Continue as a Guest button
+   When User to click & select Continue as a Guest button
+   Then User should lands onto Page to enter basic details
+    And User should see fields First Name, Last Name, Date Of Birth, Email, Mobile Number, Preferred mode(s) of communication
 
-  User clicks 'Schedule your Eye Exam' CTA from Marketing site
+@BDDTEST-EPP-3241
+@Appointments
+@P5
+@Patient_Portal
+@Regression
+@Sprint4
+Scenario: EPIC_EPP-44_STORY_EPP-1572- Verify if user able to view First Name, Last Name, Date of Birth, Preferred mode(s) of communication as mandatory field
+  Given User launch the "Marketing Site" url
+   When User clicks on the "Schedule your Eye Exam" button
+   Then User should navigated to the search screen
+    And User should fill the location
+    And User should select the Date & Time with provider
+    And User should select the purpose of the visit
+    And User has reviewed the appointment details
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+    And User should see option as Continue as a Guest button
+   When User to click & select Continue as a Guest button
+   Then User should lands onto Page to enter basic details
+    And User should see First Name, Last Name, Date of Birth, Preferred mode(s) of communication field as mandatory
 
-  And 
+@BDDTEST-EPP-3242
+@Appointments
+@P5
+@Patient_Portal
+@Regression
+@Sprint4
+Scenario: EPIC_EPP-44_STORY_EPP-1572-Verify if user to able to enter charater min2 & Max 50 in First Name field
+  Given User launch the "Marketing Site" url
+   When User clicks on the "Schedule your Eye Exam" button
+   Then User should navigated to the search screen
+    And User should fill the location
+    And User should select the Date & Time with provider
+    And User should select the purpose of the visit
+    And User has reviewed the appointment details
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+    And User should see option as Continue as a Guest button
+   When User to click & select Continue as a Guest button
+   Then User should lands onto Page to enter basic details
+    And User should see fields First Name, Last Name, Date Of Birth, Email, Mobile Number, Preferred mode(s) of communication
+   When user enter first name field with mimium 2 to maximum 50 characters 
+   Then user should see the enter character length accepted in First name field
 
-  User has selected the Purpose of Visit, Location and Date & Time with provider
+@BDDTEST-EPP-3243
+@Appointments
+@P5
+@Patient_Portal
+@Regression
+@Sprint4
+Scenario: EPIC_EPP-44_STORY_EPP-1572-Verify if user to able to enter charater min2 & Max 50 in Last Name field
+  Given User launch the "Marketing Site" url
+   When User clicks on the "Schedule your Eye Exam" button
+   Then User should navigated to the search screen
+    And User should fill the location
+    And User should select the Date & Time with provider
+    And User should select the purpose of the visit
+    And User has reviewed the appointment details
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+    And User should see option as Continue as a Guest button
+   When User to click & select Continue as a Guest button
+   Then User should lands onto Page to enter basic details
+    And User should see fields First Name, Last Name, Date Of Birth, Email, Mobile Number, Preferred mode(s) of communication
+   When user enter Last name field with mimium 2 to maximum 50 characters 
+   Then user should see the enter character length accepted in Last name field
 
-  And
+@BDDTEST-EPP-3244
+@Appointments
+@P5
+@Patient_Portal
+@Regression
+@Sprint4
+Scenario: EPIC_EPP-44_STORY_EPP-1572-Verify if user able to enter Date of Birth in MM/DD/YYYY format
+  Given User launch the "Marketing Site" url
+   When User clicks on the "Schedule your Eye Exam" button
+   Then User should navigated to the search screen
+    And User should fill the location
+    And User should select the Date & Time with provider
+    And User should select the purpose of the visit
+    And User has reviewed the appointment details
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+    And User should see option as Continue as a Guest button
+   When User to click & select Continue as a Guest button
+   Then User should lands onto Page to enter basic details
+    And User should see fields First Name, Last Name, Date Of Birth, Email, Mobile Number, Preferred mode(s) of communication
+   When user enter Date of Birth field in MM/DD/YYYY format
+   Then user should see Date entered in the field
 
-  User selects that the appointment is for Self
+@BDDTEST-EPP-3245
+@Appointments
+@P5
+@Patient_Portal
+@Regression
+@Sprint4
+Scenario: EPIC_EPP-44_STORY_EPP-1572-Verify if user able to enter email id with correct format in Email field
+  Given User launch the "Marketing Site" url
+   When User clicks on the "Schedule your Eye Exam" button
+   Then User should navigated to the search screen
+    And User should fill the location
+    And User should select the Date & Time with provider
+    And User should select the purpose of the visit
+    And User has reviewed the appointment details
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+    And User should see option as Continue as a Guest button
+   When User to click & select Continue as a Guest button
+   Then User should lands onto Page to enter basic details
+    And User should see fields First Name, Last Name, Date Of Birth, Email, Mobile Number, Preferred mode(s) of communication
+   When User enter email id with correct format in Email field
+   Then user should see email entered in the field
 
-  And
+@BDDTEST-EPP-3246
+@Appointments
+@P5
+@Patient_Portal
+@Regression
+@Sprint4
+Scenario: EPIC_EPP-44_STORY_EPP-1572-Verify if user able to Mobile number with correct format in Mobile number field
+  Given User launch the "Marketing Site" url
+   When User clicks on the "Schedule your Eye Exam" button
+   Then User should navigated to the search screen
+    And User should fill the location
+    And User should select the Date & Time with provider
+    And User should select the purpose of the visit
+    And User has reviewed the appointment details
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+    And User should see option as Continue as a Guest button
+   When User to click & select Continue as a Guest button
+   Then User should lands onto Page to enter basic details
+    And User should see fields First Name, Last Name, Date Of Birth, Email, Mobile Number, Preferred mode(s) of communication
+   When User enter number with correct format in Mobile number field
+   Then user should see Mobile number entered in the field
 
-  User lands on the screen with different option to sync the appointment as in  
+@BDDTEST-EPP-3247
+@Appointments
+@P5
+@Patient_Portal
+@Regression
+@Sprint4
+Scenario: EPIC_EPP-44_STORY_EPP-1572-Verify if user able to see either Email or Mobile number field mandatory if both field leaves blank
+  Given User launch the "Marketing Site" url
+   When User clicks on the "Schedule your Eye Exam" button
+   Then User should navigated to the search screen
+    And User should fill the location
+    And User should select the Date & Time with provider
+    And User should select the purpose of the visit
+    And User has reviewed the appointment details
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+    And User should see option as Continue as a Guest button
+   When User to click & select Continue as a Guest button
+   Then User should lands onto Page to enter basic details
+    And User should see fields First Name, Last Name, Date Of Birth, Email, Mobile Number, Preferred mode(s) of communication
+   When User leave both field(Email & Mobile number) blank and enter 
+   Then user should see error message "Email ID or Mobile Number is required”
 
-  WHEN
+@BDDTEST-EPP-3248
+@Appointments
+@P5
+@Patient_Portal
+@Regression
+@Sprint4
+Scenario: EPIC_EPP-44_STORY_EPP-1572- Verify if user able to see error message when mandatory field leaves blank
+  Given User launch the "Marketing Site" url
+   When User clicks on the "Schedule your Eye Exam" button
+   Then User should navigated to the search screen
+    And User should fill the location
+    And User should select the Date & Time with provider
+    And User should select the purpose of the visit
+    And User has reviewed the appointment details
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+    And User should see option as Continue as a Guest button
+   When User to click & select Continue as a Guest button
+   Then User should lands onto Page to enter basic details
+   When user leave mandatory field ( First Name, Last Name, Date of Birth, Preferred mode(s) of communication) blank 
+    And User should error message “This field is required”
 
-  User selects ‘Continue as a Guest’ option
+@BDDTEST-EPP-3249
+@Appointments
+@P5
+@Patient_Portal
+@Regression
+@Sprint4
+Scenario: EPIC_EPP-44_STORY_EPP-1572- Verify if user able to see submit option after enter all details in the field
+   When User clicks on the "Schedule your Eye Exam" button
+   Then User should navigated to the search screen
+    And User should fill the location
+    And User should select the Date & Time with provider
+    And User should select the purpose of the visit
+    And User has reviewed the appointment details
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+    And User should see option as Continue as a Guest button
+   When User to click & select Continue as a Guest button
+   Then User should lands onto Page to enter basic details
+   When User enter details in the field First Name, Last Name, Date Of Birth, Email, Mobile Number, Preferred mode(s) of communication
+    And user to click on submit button  
+   Then user should see details submitted
 
-  THEN
+@BDDTEST-EPP-3250
+@Appointments
+@P5
+@Patient_Portal
+@Regression
+@Sprint4
+Scenario: EPIC_EPP-44_STORY_EPP-1572- Verify if user able to view the field Preferred mode of communication preselected with option Both
+   When User clicks on the "Schedule your Eye Exam" button
+   Then User should navigated to the search screen
+    And User should fill the location
+    And User should select the Date & Time with provider
+    And User should select the purpose of the visit
+    And User has reviewed the appointment details
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+    And User should see option as Continue as a Guest button
+   When User to click & select Continue as a Guest button
+   Then User should lands onto Page to enter basic details
+   When user mouse over to field Preferred mode(s) of communication
+   Then user should see the field Preferred mode(s) of communication preselected the option Both
 
-  User lands on page to provide basic details
+@BDDTEST-EPP-3251
+@Appointments
+@P5
+@Patient_Portal
+@Regression
+@Sprint4
+Scenario: EPIC_EPP-44_STORY_EPP-1572- Verify if user able to change Preferred mode of communication to Mobile Number or Both when Email is provided
+   When User clicks on the "Schedule your Eye Exam" button
+   Then User should navigated to the search screen
+    And User should fill the location
+    And User should select the Date & Time with provider
+    And User should select the purpose of the visit
+    And User has reviewed the appointment details
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+    And User should see option as Continue as a Guest button
+   When User to click & select Continue as a Guest button
+   Then User should lands onto Page to enter basic details
+   When user provide the details to the field "<First Name>","<Last Name>","<Date of Birth>","<Email>"
+   Then user should see the field “Preferred mode(s) of communication” selected with option 'Email'
+    And user change the preferred mode to either Mobile number or Both
+   Then user should see field “Preferred mode(s) of communication” selected with either 'Mobile number' or 'Both'
 
-  And
+@BDDTEST-EPP-3252
+@Appointments
+@P5
+@Patient_Portal
+@Regression
+@Sprint4
+Scenario: EPIC_EPP-44_STORY_EPP-1572- Verify if user able to change "Preferred mode of communication" to Email or Both when Mobile number is provided
+   When User clicks on the "Schedule your Eye Exam" button
+   Then User should navigated to the search screen
+    And User should fill the location
+    And User should select the Date & Time with provider
+    And User should select the purpose of the visit
+    And User has reviewed the appointment details
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+    And User should see option as Continue as a Guest button
+   When User to click & select Continue as a Guest button
+   Then User should lands onto Page to enter basic details
+   When user provide the details to the field "<First Name>","<Last Name>","<Date of Birth>","<Mobile number>"
+   Then user should see the field “Preferred mode(s) of communication” selected with option 'Mobile number'
+    And user change the preferred mode to either Email or Both
+   Then user should see field “Preferred mode(s) of communication” selected with either 'Email' or 'Both'
 
-  User should be able to view the following fields
-
-  | Field Names                        | Mandatory                       | Character Limit                                                       |
-  |------------------------------------|---------------------------------|-----------------------------------------------------------------------|
-  | First Name                         | Yes                             | Max - 50; Min - 2                                                     |
-  |------------------------------------|---------------------------------|-----------------------------------------------------------------------|
-  | Last Name                          | Yes                             | Max - 50; Min - 2                                                     |
-  |------------------------------------|---------------------------------|-----------------------------------------------------------------------|
-  | Date Of Birth                      | Yes                             | MM/DD/YYYY                                                            |
-  |------------------------------------|---------------------------------|-----------------------------------------------------------------------|
-  | Email                              | No, if mobile number is entered | abc@mail.com - Format                                                 |
-  |------------------------------------|---------------------------------|-----------------------------------------------------------------------|
-  | Mobile Number                      | No, if email is entered         | (XXX)-XXX-XXXX - Format                                               |
-  |------------------------------------|---------------------------------|-----------------------------------------------------------------------|
-  | Preferred mode(s) of communication | Yes                             | The preferred mode of communication options will be radio buttons.    |
-  |                                    |                                 | Default Preferred mode of communication should be ‘Both’, preselected |
-  |                                    |                                 | At the end of filling above fields,                                   |
-  |                                    |                                 |                                                                       |
-
-  And
-
-  User should be able to see the option to submit the same
-
-  And
-
-  User should be prompted with the inline validation error message “This field is required” when all the required fields are not filled except for Email and Mobile Number field
-
-  And
-
-  User should be prompted with the inline validation error message “Email ID or Mobile Number is required” when either the Email and/or Mobile number fields is not filled 
-
-  And
-
-  User should be able to view error messages as in  
-
-  And 
-
-  User should be able to view the same message as in  if the user already has an account
-
-  @BDDTEST-EPP-3238
-  @Appointments
-  @P5
-  @Patient_Portal
-  @Regression
-  @Sprint4
-  Scenario: EPIC_EPP-44_STORY_EPP-1572-Verify if user able to view and select continue as guest option
-
-
-  @BDDTEST-EPP-3239
-  @Appointments
-  @P5
-  @Patient_Portal
-  @Regression
-  @Sprint4
-  Scenario: EPIC_EPP-44_STORY_EPP-1572- Verify if user able to navigate to basic detail page after select Continue as a Guest
-
-
-  @BDDTEST-EPP-3240
-  @Appointments
-  @P5
-  @Patient_Portal
-  @Regression
-  @Sprint4
-  Scenario: EPIC_EPP-44_STORY_EPP-1572-Verify if user able to view basic details fields
-
-
-  @BDDTEST-EPP-3241
-  @Appointments
-  @P5
-  @Patient_Portal
-  @Regression
-  @Sprint4
-  Scenario: EPIC_EPP-44_STORY_EPP-1572- Verify if user able to view First Name, Last Name, Date of Birth, Preferred mode(s) of communication as mandatory field
-
-
-  @BDDTEST-EPP-3242
-  @Appointments
-  @P5
-  @Patient_Portal
-  @Regression
-  @Sprint4
-  Scenario: EPIC_EPP-44_STORY_EPP-1572-Verify if user to able to enter charater min2 & Max 50 in First Name field
-
-
-  @BDDTEST-EPP-3243
-  @Appointments
-  @P5
-  @Patient_Portal
-  @Regression
-  @Sprint4
-  Scenario: EPIC_EPP-44_STORY_EPP-1572-Verify if user to able to enter charater min2 & Max 50 in Last Name field
-
-
-  @BDDTEST-EPP-3244
-  @Appointments
-  @P5
-  @Patient_Portal
-  @Regression
-  @Sprint4
-  Scenario: EPIC_EPP-44_STORY_EPP-1572-Verify if user able to enter Date of Birth in MM/DD/YYYY format
-
-
-  @BDDTEST-EPP-3245
-  @Appointments
-  @P5
-  @Patient_Portal
-  @Regression
-  @Sprint4
-  Scenario: EPIC_EPP-44_STORY_EPP-1572-Verify if user able to enter email id with correct format in Email field
-
-
-  @BDDTEST-EPP-3246
-  @Appointments
-  @P5
-  @Patient_Portal
-  @Regression
-  @Sprint4
-  Scenario: EPIC_EPP-44_STORY_EPP-1572-Verify if user able to Mobile number with correct format in Mobile number field
-
-
-  @BDDTEST-EPP-3247
-  @Appointments
-  @P5
-  @Patient_Portal
-  @Regression
-  @Sprint4
-  Scenario: EPIC_EPP-44_STORY_EPP-1572-Verify if user able to see either Email or Mobile number field mandatory if both field leaves blank
-
-
-  @BDDTEST-EPP-3248
-  @Appointments
-  @P5
-  @Patient_Portal
-  @Regression
-  @Sprint4
-  Scenario: EPIC_EPP-44_STORY_EPP-1572- Verify if user able to see error message when mandatory field leaves blank
-
-
-  @BDDTEST-EPP-3249
-  @Appointments
-  @P5
-  @Patient_Portal
-  @Regression
-  @Sprint4
-  Scenario: EPIC_EPP-44_STORY_EPP-1572- Verify if user able to see submit option after enter all details in the field
-
-
-  @BDDTEST-EPP-3250
-  @Appointments
-  @P5
-  @Patient_Portal
-  @Regression
-  @Sprint4
-  Scenario: EPIC_EPP-44_STORY_EPP-1572- Verify if user able to view the field Preferred mode of communication preselected with option Both
-
-
-  @BDDTEST-EPP-3251
-  @Appointments
-  @P5
-  @Patient_Portal
-  @Regression
-  @Sprint4
-  Scenario: EPIC_EPP-44_STORY_EPP-1572- Verify if user able to change Preferred mode of communication to Mobile Number or Both when Email is provided
+@BDDTEST-EPP-3253
+@Appointments
+@P5
+@Patient_Portal
+@Regression
+@Sprint4
+Scenario: EPIC_EPP-44_STORY_EPP-1572- Verify if user able to change "Preferred mode of communication" to 'Email' or 'Mobile number' when Both Mobile number & Email provided
+   When User clicks on the "Schedule your Eye Exam" button
+   Then User should navigated to the search screen
+    And User should fill the location
+    And User should select the Date & Time with provider
+    And User should select the purpose of the visit
+    And User has reviewed the appointment details
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+   When User selects that the appointment is for Self
+   Then User should navigated to the Patient Portal application
+    And User should see option as Continue as a Guest button
+   When User to click & select Continue as a Guest button
+   Then User should lands onto Page to enter basic details
+   When user provide the details to the field "<First Name>","<Last Name>","<Date of Birth>","<Email>","<Mobile number>"
+   Then user should see the field “Preferred mode(s) of communication” selected with option 'Both'
+    And user change the preferred mode to either Email or Mobile number
+   Then user should see field “Preferred mode(s) of communication” selected with either 'Email' or 'Mobile number'
 
 
-  @BDDTEST-EPP-3252
-  @Appointments
-  @P5
-  @Patient_Portal
-  @Regression
-  @Sprint4
-  Scenario: EPIC_EPP-44_STORY_EPP-1572- Verify if user able to change "Preferred mode of communication" to Email or Both when Mobile number is provided
-
-
-  @BDDTEST-EPP-3253
-  @Appointments
-  @P5
-  @Patient_Portal
-  @Regression
-  @Sprint4
-  Scenario: EPIC_EPP-44_STORY_EPP-1572- Verify if user able to change "Preferred mode of communication" to 'Email' or 'Mobile number' when Both Mobile number & Email provided
 

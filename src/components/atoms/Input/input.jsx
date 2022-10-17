@@ -199,7 +199,6 @@ export const StyledRedditField = styled(RedditTextField)(({ theme }) => ({
     backgroundColor: "#efefef",
   },
 }));
-// export const RedditTextField = RedditField
 
 export const CustomInput = styled(({ ...props }) => {
   const [values, setValues] = React.useState({

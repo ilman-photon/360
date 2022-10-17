@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, Typography } from "@mui/material";
+import { Link, Typography, useMediaQuery } from "@mui/material";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import { StyledInput } from "../../atoms/Input/input";
@@ -16,7 +16,6 @@ import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
 import Head from "next/head";
 import { colors } from "../../../styles/theme";
-import { useMediaQuery } from "@mui/material";
 const ForgotPassword = ({
   onBackToLoginClicked,
   showPostMessage,
