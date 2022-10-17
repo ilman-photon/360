@@ -23,6 +23,7 @@ import { AutoCompleteCreatable } from "../../molecules/AutoCompleteCreatable";
 import constants from "../../../utils/constants";
 import { Regex } from "../../../utils/regex";
 import { RELATIONSHIP_LIST } from "../../../utils/constantData";
+import { colors } from "../../../styles/theme";
 
 export default function InsuranceForm({
   formData = DEFAULT_INSURANCE_DATA,
@@ -289,6 +290,11 @@ export default function InsuranceForm({
                   label="Are you the Subscriber?"
                   options={isSubscriberOptions}
                   helperText={error ? error.message : null}
+                  sx={{
+                    ".MuiFormControlLabel-label": {
+                      fontSize: "16px",
+                    },
+                  }}
                   isInsuranceForm={true}
                   tooltipContent="The person who pays for health insurance premiums. For example, if you have health insurance through your spouse’s health insurance plan, he or she is the primary subscriber."
                   customTooltipWidth="210px"
@@ -449,6 +455,8 @@ export default function InsuranceForm({
                                 border: "1px solid #bbb",
                                 backgroundColor: "#fff",
                                 fontSize: "16px",
+                                fontWeight: 400,
+                                color: colors.darkGreen,
                               },
                             }}
                             label="Relationship"
@@ -471,8 +479,16 @@ export default function InsuranceForm({
             </Stack>
           </Collapse>
 
-          <Typography variant="bodyRegular" component="div">
-            Upload images of your insurance.
+          <Typography
+            variant="headlineH4"
+            component="div"
+            sx={{
+              fontFamily: "Libre Franklin",
+              fontWeight: 700,
+              color: colors.grayscaleBlack,
+            }}
+          >
+            Upload images of your insurance
           </Typography>
 
           <Grid
