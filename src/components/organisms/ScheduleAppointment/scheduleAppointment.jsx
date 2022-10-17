@@ -25,6 +25,7 @@ export default function ScheduleAppointment({
   OnClickSchedule = () => {
     // This is intentional
   },
+  formMessage = null,
 }) {
   const { t } = useTranslation("translation", {
     keyPrefix: "scheduleAppoinment",
@@ -105,6 +106,7 @@ export default function ScheduleAppointment({
             OnClickSchedule={OnClickSchedule}
             patientData={patientData}
             OnSubmit={OnSubmit}
+            formMessage={formMessage}
           />
         ) : null}
 

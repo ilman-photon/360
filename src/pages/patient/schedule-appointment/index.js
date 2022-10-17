@@ -95,6 +95,7 @@ export const PageContent = ({
   guestRegister = () => {
     // This is intentional
   },
+  formMessage = null,
 }) => {
   const [selectedSelf, setSelectedSelf] = React.useState(null);
   const { t } = useTranslation("translation", {
@@ -181,7 +182,7 @@ export const PageContent = ({
               }}
               OnSetSelectedSelf={(idx) => setSelectedSelf(idx)}
               setActiveStep={(idx) => OnsetActiveStep(idx)}
-              // OnClickSchedule={OnClickSchedule}
+              formMessage={formMessage}
             />
           </Grid>
           <Grid md={4} pl={2} sx={{ display: { xs: "none", md: "block" } }}>
@@ -219,6 +220,7 @@ export const PageContent = ({
               OnClickSignIn={() => {
                 cookies.set("dashboardState", true, { path: "/patient" });
               }}
+              formMessage={formMessage}
             />
           </Grid>
           <Grid md={4} pl={2} sx={{ display: { xs: "none", md: "block" } }}>
@@ -257,6 +259,8 @@ export default function ScheduleAppointmentPage({ query }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const api = new Api();
+
+  const formMessage = useSelector((state) => state.index.formMessage);
 
   React.useEffect(() => {
     if (activeStep === 2 || activeStep === 3) {

@@ -18,6 +18,7 @@ import Link from "@mui/material/Link";
 import { getLinkAria } from "../../../utils/viewUtil";
 import FormLabel from "@mui/material/FormLabel";
 import { useRouter } from "next/router";
+import FormMessage from "../../molecules/FormMessage/formMessage";
 
 const DisclaimerText = (data) => {
   return (
@@ -51,6 +52,7 @@ export default function AppointmentForm({
   OnClickSignIn = () => {
     // This is intended
   },
+  formMessage = null,
 }) {
   const { handleSubmit, control, watch } = useForm({
     defaultValues: patientData,
@@ -169,6 +171,16 @@ export default function AppointmentForm({
     }
   };
 
+  const formMessageComp = React.useRef(null);
+  React.useEffect(() => {
+    if (formMessageComp.current)
+      formMessageComp.current.scrollIntoView({
+        behavior: "smooth",
+        block: "end",
+        inline: "nearest",
+      });
+  }, [formMessage]);
+
   return (
     <Stack spacing={2}>
       {/* <Stack spacing={2}> */}
@@ -185,6 +197,19 @@ export default function AppointmentForm({
         >
           {isForMyself ? t("selfTitle") : t("someoneElseTitle")}
         </Typography>
+
+        {formMessage?.content ? (
+          <FormMessage
+            ref={formMessageComp}
+            success={formMessage.success}
+            title={formMessage.title}
+            isBackToLogin={formMessage.isBackToLogin}
+          >
+            {formMessage.content}
+          </FormMessage>
+        ) : (
+          ""
+        )}
         {isForMyself ? (
           <Box sx={{ mt: 2, display: "flex" }}>
             <Typography sx={styles.sigInInfoLabel} variant="h1">
