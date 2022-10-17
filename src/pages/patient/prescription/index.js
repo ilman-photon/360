@@ -47,6 +47,7 @@ export default function PrescriptionPage() {
           const data = JSON.parse(JSON.stringify(prescriptionData));
           data.medications[index].status = "";
           setPrescriptionData(data);
+          response.message = "Your refill request has been canceled";
           setRequestRefillResponse(response);
           resetRequestRefillResponse();
         })
@@ -61,7 +62,7 @@ export default function PrescriptionPage() {
         bodyReferences: [
           {
             code: "PATIENT",
-            _id: "fdb0aba5-63b8-4c79-b5be-5b90d30088fa",
+            _id: userData?.patientId,
           },
         ],
         messageStatus: "SENT",
@@ -80,6 +81,7 @@ export default function PrescriptionPage() {
             response.deliveryDate
           );
           setPrescriptionData(data);
+          response.message = "Your refill request has been sumbitted";
           setRequestRefillResponse(response);
           resetRequestRefillResponse();
         })
