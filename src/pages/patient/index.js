@@ -35,6 +35,7 @@ import { colors } from "../../styles/theme";
 import { appointmentParser } from "../../utils/appointmentsModel";
 import { onCallGetPrescriptionData } from "../../utils/prescription";
 import Navbar from "../../components/molecules/Navbar/Navbar";
+import { fetchUser } from "../../store/user";
 
 export async function getStaticProps() {
   return {
@@ -180,6 +181,10 @@ export default function HomePage({ googleApiKey }) {
     onCalledAllPrescription();
     onCalledGetAllAppointment();
     dispatch(fetchAllPayers());
+    const userStorageData = JSON.parse(localStorage.getItem("userData"));
+    if (userStorageData?.patientId) {
+      dispatch(fetchUser({ patientId: userStorageData.patientId }));
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

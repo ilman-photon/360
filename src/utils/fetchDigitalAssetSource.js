@@ -21,5 +21,7 @@ export const fetchSource = async (id) => {
   const digitalAsset = new DigitalAssetsHandler();
   digitalAsset.setSource(source);
   const response = await digitalAsset.fetchSourceURL();
-  if (response) download(response.presignedUrl);
+  if (response) {
+    download(response.presignedUrl);
+  }
 };
