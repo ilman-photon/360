@@ -94,7 +94,7 @@ export default function MedicalRecordPage() {
       },
       {
         type: "text",
-        valueKey: "orderBy",
+        valueKey: "data.testingOrder.orderDetails.orderingProvider.firstName",
         cellProps: { align: "left", padding: "none" },
         contentStyle: {
           padding: "12px 0",
@@ -103,13 +103,14 @@ export default function MedicalRecordPage() {
         },
       },
       {
-        type: "text",
-        valueKey: "date",
-        cellProps: { align: "left", padding: "none", borderRight: "none" },
+        type: "date",
+        valueKey: "data.testingOrder.orderDetails.dateTime.startDate",
+        cellProps: { align: "left", padding: "none" },
         contentStyle: {
           padding: "12px 0",
           fontWeight: "500",
           fontSize: "14px",
+          borderRight: "none",
         },
       },
       {
@@ -202,25 +203,9 @@ export default function MedicalRecordPage() {
     ],
   };
 
-  const rows = [
-    {
-      name: "MEDICAL_CERTIFICATE_OF_FITNESS1",
-      documentType: "application/pdf",
-      category: "Medical-Record",
-      patientId: "95090352-de7b-485b-8a7b-9c1255a15070",
-      status: "CREATED",
-      digital_assets: {
-        _id: "a03eced9-483b-435c-8cb0-f8a8a097f436",
-      },
-      _id: "bd70722a-fe3e-4793-867e-8a7ceed5297e",
-      _version: "2052f433-0d9e-4347-9ea8-959818e1849e",
-      _created: "Oct 7, 2022, 10:00:05 AM",
-      _updated: "Oct 7, 2022, 10:00:05 AM",
-    },
-  ];
-  // useSelector((state) => {
-  //   return state.document.documentList;
-  // });
+  const rows = useSelector((state) => {
+    return state.document.documentList;
+  });
 
   const noResultText = () => {
     switch (watchedCategory) {
@@ -239,31 +224,24 @@ export default function MedicalRecordPage() {
 
   useEffect(() => {
     const category = router.query.type;
-    if (category) setValue("category", category);
+
+    if (category && categories.some((v) => v.value === category)) {
+      const userStorageData = JSON.parse(localStorage.getItem("userData"));
+      setValue("category", category);
+      if (userStorageData) {
+        dispatch(
+          fetchDocuments({
+            // 6eac6174-dd4d-42d0-ab5d-8edcf17c1d64
+            patientId: "6eac6174-dd4d-42d0-ab5d-8edcf17c1d64", // TODO change this hardcode patientId
+            category: category,
+          })
+        );
+      } else {
+        router.back();
+      }
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query]);
-
-  useEffect(() => {
-    if (categories.some((v) => v.value === watchedCategory)) {
-      const userStorageData = JSON.parse(localStorage.getItem("userData"));
-      // if (userStorageData) {
-      dispatch(
-        fetchDocuments({
-          // 6eac6174-dd4d-42d0-ab5d-8edcf17c1d64
-          patientId: "95090352-de7b-485b-8a7b-9c1255a15070", // TODO change this hardcode patientId
-          category: watchedCategory,
-        })
-      );
-      // } else {
-      // router.back();
-      // }
-    } else
-      router.replace({
-        pathname: router.pathname,
-        query: { type: "care-plan-overview" },
-      });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [watchedCategory]);
 
   return (
     <>

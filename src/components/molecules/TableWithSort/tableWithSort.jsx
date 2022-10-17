@@ -24,6 +24,7 @@ import PrintOutlinedIcon from "@mui/icons-material/PrintOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { TEST_ID } from "../../../utils/constants";
 import { useRouter } from "next/router";
+import moment from "moment";
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -70,7 +71,6 @@ const EnhancedTableHead = (props) => {
     <TableHead sx={{ backgroundColor: "#F3F5F6" }}>
       <TableRow sx={{ whiteSpace: "nowrap" }}>
         {props.config.map((headCell, headIdx) => {
-          // console.log("head id", `head-${headIdx}`);
           switch (headCell.type) {
             case "empty":
               return (
@@ -168,7 +168,9 @@ export default function TableWithSort({
     setSelected(newSelected);
   };
 
-  const isSelected = (id) => selected.indexOf(id) !== -1;
+  const isSelected = (id) => {
+    return selected.indexOf(id) !== -1;
+  };
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
@@ -268,8 +270,7 @@ export default function TableWithSort({
             {stableSort(rows, getComparator(order, orderBy))
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map((row, rowIdx) => {
-                // console.log("row id", `row-${rowIdx}`);
-                const isItemSelected = isSelected(row.id);
+                const isItemSelected = isSelected(row.id || row._id);
                 return mobileTestLab ? (
                   <TableRow>
                     <TableCell colspan={3}>
@@ -298,7 +299,7 @@ export default function TableWithSort({
                 ) : (
                   <TableRow
                     hover
-                    onClick={(event) => handleClick(event, row.id)}
+                    onClick={(event) => handleClick(event, row.id || row._id)}
                     data-testid={"table-sort-header"}
                     role={"row"}
                     tabIndex={-1}
@@ -440,6 +441,30 @@ export default function TableWithSort({
                               </>
                             </TableCell>
                           );
+                        case "date":
+                          return (
+                            <TableCell
+                              key={`cell-${rowIdx}-${cellIdx}`}
+                              {...cell.cellProps}
+                            >
+                              <div
+                                style={cell.contentStyle}
+                                tabIndex={0}
+                                aria-label={`${cell.valueKey}. ${ref(
+                                  row,
+                                  cell.valueKey
+                                )}`}
+                                className={[
+                                  styles.tableCell,
+                                  cell.contentClass,
+                                ].join(" ")}
+                              >
+                                {new moment(ref(row, cell.valueKey)).format(
+                                  "MM/DD/YYYY"
+                                )}
+                              </div>
+                            </TableCell>
+                          );
                         case "text":
                         default:
                           return (
@@ -450,15 +475,16 @@ export default function TableWithSort({
                               <div
                                 style={cell.contentStyle}
                                 tabIndex={0}
-                                aria-label={`${cell.valueKey}. ${
-                                  row[cell.valueKey]
-                                }`}
+                                aria-label={`${cell.valueKey}. ${ref(
+                                  row,
+                                  cell.valueKey
+                                )}`}
                                 className={[
                                   styles.tableCell,
                                   cell.contentClass,
                                 ].join(" ")}
                               >
-                                {row[cell.valueKey]}
+                                {ref(row, cell.valueKey)}
                               </div>
                             </TableCell>
                           );
