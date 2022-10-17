@@ -22,7 +22,9 @@ Object {
                 data-testid="locationInput"
               >
                 <div
+                  aria-label="City, state, or zip code field"
                   class="MuiBox-root css-1shiw0f"
+                  tabindex="0"
                 >
                   <svg
                     aria-hidden="true"
@@ -41,10 +43,10 @@ Object {
                     />
                   </svg>
                   <div
-                    aria-label="City, state, or zip code field"
+                    aria-hidden="true"
                     class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-12gzqbr-MuiFormControl-root-MuiTextField-root"
                     maxlength="50"
-                    tabindex="0"
+                    tabindex="-1"
                     withicon="true"
                   >
                     <label
@@ -146,10 +148,12 @@ Object {
                   style="width: 100%;"
                 >
                   <label
-                    aria-label="Purpose of Visit dropdown menu"
-                    class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
+                    aria-label="Purpose of Visit dropdown"
+                    class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-4hh5xd-MuiFormLabel-root-MuiInputLabel-root"
                     data-shrink="false"
+                    data-testid="purposeInput"
                     id="demo-simple-select-label"
+                    role="menu"
                     tabindex="0"
                   >
                     Purpose of Visit
@@ -203,7 +207,9 @@ Object {
                 data-testid="insuranceInput"
               >
                 <div
+                  aria-label="Insurance carrier field"
                   class="MuiBox-root css-1shiw0f"
+                  tabindex="0"
                 >
                   <div
                     class="MuiBox-root css-wmaw4t"
@@ -232,9 +238,9 @@ Object {
                     </span>
                   </div>
                   <div
-                    aria-label="Insurance carrier field"
+                    aria-hidden="true"
                     class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-2jj51j-MuiFormControl-root-MuiTextField-root"
-                    tabindex="0"
+                    tabindex="-1"
                     withicon="true"
                   >
                     <label
@@ -333,7 +339,9 @@ Object {
               data-testid="locationInput"
             >
               <div
+                aria-label="City, state, or zip code field"
                 class="MuiBox-root css-1shiw0f"
+                tabindex="0"
               >
                 <svg
                   aria-hidden="true"
@@ -352,10 +360,10 @@ Object {
                   />
                 </svg>
                 <div
-                  aria-label="City, state, or zip code field"
+                  aria-hidden="true"
                   class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-12gzqbr-MuiFormControl-root-MuiTextField-root"
                   maxlength="50"
-                  tabindex="0"
+                  tabindex="-1"
                   withicon="true"
                 >
                   <label
@@ -457,10 +465,12 @@ Object {
                 style="width: 100%;"
               >
                 <label
-                  aria-label="Purpose of Visit dropdown menu"
-                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
+                  aria-label="Purpose of Visit dropdown"
+                  class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-4hh5xd-MuiFormLabel-root-MuiInputLabel-root"
                   data-shrink="false"
+                  data-testid="purposeInput"
                   id="demo-simple-select-label"
+                  role="menu"
                   tabindex="0"
                 >
                   Purpose of Visit
@@ -514,7 +524,9 @@ Object {
               data-testid="insuranceInput"
             >
               <div
+                aria-label="Insurance carrier field"
                 class="MuiBox-root css-1shiw0f"
+                tabindex="0"
               >
                 <div
                   class="MuiBox-root css-wmaw4t"
@@ -543,9 +555,9 @@ Object {
                   </span>
                 </div>
                 <div
-                  aria-label="Insurance carrier field"
+                  aria-hidden="true"
                   class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-2jj51j-MuiFormControl-root-MuiTextField-root"
-                  tabindex="0"
+                  tabindex="-1"
                   withicon="true"
                 >
                   <label
@@ -701,7 +713,9 @@ Object {
                 data-testid="locationInput"
               >
                 <div
+                  aria-label="City, state, or zip code field"
                   class="MuiBox-root css-1shiw0f"
+                  tabindex="0"
                 >
                   <svg
                     aria-hidden="true"
@@ -720,10 +734,10 @@ Object {
                     />
                   </svg>
                   <div
-                    aria-label="City, state, or zip code field"
+                    aria-hidden="true"
                     class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-12gzqbr-MuiFormControl-root-MuiTextField-root"
                     maxlength="50"
-                    tabindex="0"
+                    tabindex="-1"
                     withicon="true"
                   >
                     <label
@@ -825,10 +839,12 @@ Object {
                   style="width: 100%;"
                 >
                   <label
-                    aria-label="Purpose of Visit dropdown menu"
-                    class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-18ljltl-MuiFormLabel-root-MuiInputLabel-root"
+                    aria-label="Purpose of Visit dropdown"
+                    class="MuiInputLabel-root MuiInputLabel-formControl MuiInputLabel-animated MuiInputLabel-filled MuiFormLabel-root MuiFormLabel-colorPrimary css-4hh5xd-MuiFormLabel-root-MuiInputLabel-root"
                     data-shrink="false"
+                    data-testid="purposeInput"
                     id="demo-simple-select-label"
+                    role="menu"
                     tabindex="0"
                   >
                     Purpose of Visit
@@ -882,7 +898,9 @@ Object {
                 data-testid="insuranceInput"
               >
                 <div
+                  aria-label="Insurance carrier field"
                   class="MuiBox-root css-1shiw0f"
+                  tabindex="0"
                 >
                   <div
                     class="MuiBox-root css-wmaw4t"
@@ -911,9 +929,9 @@ Object {
                     </span>
                   </div>
                   <div
-                    aria-label="Insurance carrier field"
+                    aria-hidden="true"
                     class="MuiFormControl-root MuiFormControl-fullWidth MuiTextField-root custom-input css-2jj51j-MuiFormControl-root-MuiTextField-root"
-                    tabindex="0"
+                    tabindex="-1"
                     withicon="true"
                   >
                     <label

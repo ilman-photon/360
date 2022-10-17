@@ -95,11 +95,11 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByTestId("glasses-container-0"));
+      await waitFor(() => container.getByTestId("menu-glasses"));
     });
 
     then("the Patient should see the correct Type of prescription.", () => {
-      const conta = container.getByTestId("glasses-container-0");
+      const conta = container.getByTestId("menu-glasses");
       expect(conta).toBeInTheDocument();
     });
   });
@@ -245,12 +245,15 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByTestId("glasses-container-0"));
+      await waitFor(() => container.getByTestId("menu-glasses"));
     });
 
     then(
       "the Patient should see the correct expiry date of Glass prescription.",
-      () => {
+      async () => {
+        const conta = container.getByTestId("menu-glasses");
+        fireEvent.click(conta);
+        await waitFor(()=> container.getByText(/Glasses Prescription/i));
         const expired = container.getByText(/Expires on/i);
         const date = container.getByText("02/10/2022");
 
@@ -332,8 +335,8 @@ defineFeature(feature, (test) => {
     then(
       "the Patient should see the correct prescribed Doctor's name in the Prescribed by.",
       () => {
-        const expired = container.getByText(/Prescribed by/i);
-        const date = container.getByText("Dr. Sonha Nguyen");
+        const expired = container.getAllByText(/Prescribed by/i)[0];
+        const date = container.getAllByText("Dr. Sonha Nguyen")[0];
 
         expect(expired).toBeInTheDocument();
         expect(date).toBeInTheDocument();
@@ -407,12 +410,13 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByTestId("glasses-container-0"));
+      await waitFor(() => container.getByTestId("menu-glasses"));
     });
 
-    and("select any prescription for Glasses", () => {
+    and("select any prescription for Glasses", async () => {
       const conta = container.getByTestId("menu-glasses");
       fireEvent.click(conta);
+      await waitFor(()=> container.getByText(/Glasses Prescription/i));
     });
 
     then("below mentioned details should see by the user", () => {
@@ -496,12 +500,13 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getByTestId("glasses-container-0"));
+      await waitFor(() => container.getByTestId("menu-glasses"));
     });
 
-    and("select any prescription for Glasses", () => {
+    and("select any prescription for Glasses", async () => {
       const conta = container.getByTestId("menu-glasses");
       fireEvent.click(conta);
+      await waitFor(()=> container.getByText(/Glasses Prescription/i));
     });
 
     then("below mentioned details should see by the user", () => {

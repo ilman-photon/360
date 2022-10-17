@@ -470,6 +470,7 @@ export default function Appointment({ googleApiKey }) {
           <DialogContent>
             <Box sx={{ width: "290px" }}>
               <ProviderProfile
+                isCard
                 variant={"viewschedule"}
                 isDayAvailableView={true}
                 isShownPhoneAndRating={false}

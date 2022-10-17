@@ -30,6 +30,7 @@ export const colors = {
   primaryButton: "#007e8f",
   link: "#008294",
   iconGrey: "#757575",
+  grayscaleBlack: "#292929",
 };
 
 // declare module '@mui/material/styles' {
