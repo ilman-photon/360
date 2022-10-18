@@ -17,6 +17,7 @@ import axios from "axios";
 import { Provider } from "react-redux";
 import store from "../../../src/store/store";
 import { setGenericErrorMessage } from "../../../src/store";
+import { TEMP_DATA_CONTACTS, TEMP_DATA_GLASSES, TEMP_DATA_MEDICATION } from "../../../__mocks__/component-mock";
 
 const MOCK_SUGGESTION_DATA = {
   appointmentType: [
@@ -366,11 +367,20 @@ describe("App", () => {
         `/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
       )
       .reply(200, MOCK_APPOINTMENT);
-    mock
+      mock
       .onGet(
-        `/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
       )
-      .reply(200, MOCK_PRESCRIPTION);
+      .reply(200, TEMP_DATA_MEDICATION);
+      mock
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+      )
+      .reply(200, TEMP_DATA_CONTACTS);
+      mock
+      .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+      )
+      .reply(200, TEMP_DATA_GLASSES);
     global.navigator.geolocation = mockGeolocation;
   });
 
