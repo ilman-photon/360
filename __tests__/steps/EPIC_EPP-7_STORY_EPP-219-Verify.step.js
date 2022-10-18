@@ -6,6 +6,7 @@ import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import AuthPage from "../../src/pages/patient/login";
 import { Login } from "../../src/components/organisms/Login/login";
+import { renderWithProviders } from "../src/utils/test-util";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-219.feature"
@@ -27,7 +28,7 @@ const launchURL = () => {
 const navigateToPatientPortalApp = () => {
   mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
   act(() => {
-    container = render(<AuthPage />, {
+    container = renderWithProviders(<AuthPage />, {
       container: document.body.appendChild(element),
       legacyRoot: true,
     });
