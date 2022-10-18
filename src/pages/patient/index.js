@@ -57,12 +57,8 @@ export default function HomePage({ googleApiKey }) {
   const insuranceCarrierList = useSelector((state) => state.provider.list);
   const filterData = useSelector((state) => state.appointment.filterData);
 
-  // const appointmentStatus = useSelector((state) => {
-  //   return state.appointment.appointmentSchedule.patientInfo.status;
-  // });
-
   const appointmentStatus = useSelector((state) => {
-    return state.appointment.status;
+    return state.appointment.appointmentSchedule.appointmentInfo.status;
   });
 
   const isDesktop = useMediaQuery("(min-width: 900px)");

@@ -35,7 +35,7 @@ export default function Appointments() {
   const isMobile = useMediaQuery("(max-width: 992px)");
 
   const appointmentStatus = useSelector((state) => {
-    return state.appointment.status;
+    return state.appointment.appointmentSchedule.appointmentInfo.status;
   });
 
   const getAppointments = () => {
