@@ -196,7 +196,7 @@ export default function MedicalRecordPage() {
 
   useEffect(() => {
     if (rows && rows.length > 0) {
-      const count = 0;
+      let count = 0;
       for (const labResult of rows) {
         if (
           labResult?.data?.testingOrder?.orderDetails?.status == DOCUMENT_STATUS
