@@ -526,6 +526,7 @@ const FilterHeading = ({
 
   React.useEffect(() => {
     if (currentCity) setValue("location", currentCity);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentCity]);
 
   const minDate = new Date();
