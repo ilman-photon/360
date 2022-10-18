@@ -7,7 +7,7 @@ import styles from "./styles.module.scss";
 import FileDownloadIcon from "../../../../assets/icons/FileDownload";
 import PDFFileIcon from "../../../../assets/icons/PDFFileIcon";
 import { useEffect } from "react";
-import { fetchDocuments } from "../../../../store/document";
+import { fetchDocuments, resetDocuments } from "../../../../store/document";
 import { StyledSelect } from "../../../../components/atoms/Select/select";
 import { useRouter } from "next/router";
 import { Controller, useForm } from "react-hook-form";
@@ -100,6 +100,10 @@ export default function AccountDocumentsPage() {
   const handleAssetDownload = (id) => {
     fetchSource(id);
   };
+
+  useEffect(() => {
+    dispatch(resetDocuments());
+  }, []);
 
   useEffect(() => {
     const category = router.query.type;

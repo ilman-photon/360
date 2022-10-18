@@ -13,7 +13,7 @@ import { useRouter } from "next/router";
 import { Controller, useForm } from "react-hook-form";
 import TableEmpty from "../../../../components/atoms/TableEmpty/tableEmpty";
 import { fetchSource } from "../../../../utils/fetchDigitalAssetSource";
-import { fetchDocuments } from "../../../../store/document";
+import { fetchDocuments, resetDocuments } from "../../../../store/document";
 import { DOCUMENT_STATUS } from "../../../../utils/constants";
 
 export default function MedicalRecordPage() {
@@ -226,6 +226,10 @@ export default function MedicalRecordPage() {
   const handleAssetDownload = (id, print) => {
     fetchSource(id, print);
   };
+
+  useEffect(() => {
+    dispatch(resetDocuments());
+  }, []);
 
   useEffect(() => {
     const category = router.query.type;
