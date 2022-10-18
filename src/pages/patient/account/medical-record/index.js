@@ -14,6 +14,7 @@ import { Controller, useForm } from "react-hook-form";
 import TableEmpty from "../../../../components/atoms/TableEmpty/tableEmpty";
 import { fetchSource } from "../../../../utils/fetchDigitalAssetSource";
 import { fetchDocuments } from "../../../../store/document";
+import { DOCUMENT_STATUS } from "../../../../utils/constants";
 
 export default function MedicalRecordPage() {
   const isDesktop = useMediaQuery("(min-width: 769px)");
@@ -71,7 +72,7 @@ export default function MedicalRecordPage() {
       {
         type: "text",
         primary: true,
-        valueKey: "name",
+        valueKey: "data.testingOrder.orderDetails.testType._id",
         contentStyle: {
           padding: "12px 24px",
           fontWeight: "400",
@@ -101,7 +102,7 @@ export default function MedicalRecordPage() {
       },
       {
         type: "text",
-        valueKey: "status",
+        valueKey: "data.testingOrder.orderDetails.status",
         cellProps: { align: "left" },
         contentStyle: {
           padding: "12px 0",
@@ -192,6 +193,24 @@ export default function MedicalRecordPage() {
   const rows = useSelector((state) => {
     return state.document.documentList;
   });
+
+  useEffect(() => {
+    if (rows && rows.length > 0) {
+      const count = 0;
+      for (const labResult of rows) {
+        if (
+          labResult?.data?.testingOrder?.orderDetails?.status == DOCUMENT_STATUS
+        ) {
+          count++;
+        }
+      }
+      if (count == 0) {
+        setIsHideDisclaimer(true);
+      } else {
+        setIsHideDisclaimer(false);
+      }
+    }
+  }, [rows]);
 
   const noResultText = () => {
     switch (watchedCategory) {
