@@ -45,6 +45,7 @@ import InfoWindowContent from "../../src/components/organisms/Google/Maps/infoWi
 import { CircularProgress } from "@mui/material";
 import ShallowRenderer from "react-shallow-renderer";
 import Appointment from "../../src/pages/patient/appointment";
+import { renderWithProviders } from "../src/utils/test-util";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-2545.feature"
@@ -393,7 +394,7 @@ defineFeature(feature, (test) => {
 
   const providesUsernamePassword = () => {
     act(() => {
-      container = render(<AuthPage />, {
+      container = renderWithProviders(<AuthPage />, {
         container: document.body.appendChild(element),
         legacyRoot: true,
       });

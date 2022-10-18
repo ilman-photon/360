@@ -73,7 +73,13 @@ const EnhancedTableHead = (props) => {
                   sortDirection={orderBy === headCell.id ? order : false}
                   width={headCell.width}
                   role={"rowheader"}
-                  sx={{ py: "15px", ...headCell.sx }}
+                  sx={{
+                    py: "15px",
+                    ".MuiTableSortLabel-icon": {
+                      opacity: 0.5,
+                    },
+                    ...headCell.sx,
+                  }}
                 >
                   <TableSortLabel
                     active={orderBy === headCell.id}
@@ -306,6 +312,7 @@ export default function TableWithSort({
                               <TableCell
                                 key={`${rowIdx}-${cellIdx}`}
                                 {...cell.cellProps}
+                                tabIndex={0}
                               >
                                 <div
                                   style={cell.contentStyle}

@@ -31,6 +31,7 @@ export const colors = {
   link: "#008294",
   iconGrey: "#757575",
   dark1: "#d4d4d4",
+  grayscaleBlack: "#292929",
 };
 
 // declare module '@mui/material/styles' {

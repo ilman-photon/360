@@ -32,7 +32,8 @@ export default function CreateAccountPage() {
         null,
         () => {
           //this is intentional
-        }
+        },
+        dispatch
       );
     } catch (err) {
       console.error({ err });

@@ -15,10 +15,6 @@ const InfoWindowContent = ({
 }) => {
   const [counter, setCounter] = useState(1);
 
-  useEffect(() => {
-    console.log({ counter });
-  }, [counter]);
-
   const prev = () => {
     if (counter > 1) setCounter(counter - 1);
     else setCounter(data.length);
@@ -63,6 +59,7 @@ const InfoWindowContent = ({
               {counter} of {data.length} doctors at this location
             </Typography>
             <ProviderProfile
+              isCard
               variant={"map"}
               providerData={data[counter - 1]}
               imageSize={"medium"}
@@ -146,7 +143,6 @@ const InfoWindowContent = ({
                                 .MAPS.infoWindow.timeslot
                             }
                             onClick={() => {
-                              // console.log({ dats: data[counter - 1] });
                               if (!item) return;
                               OnTimeClicked(
                                 new Date(
