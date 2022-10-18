@@ -148,7 +148,7 @@ export default function AppointmentCard({
       return (
         <Box>
           <Grid container columns={5} spacing={2} p={3}>
-            <Grid item xs={5} sm={5} md={3}>
+            <Grid item xs={5} sm={5} md={2.5}>
               <Box className={styles.flexDisplay}>
                 <Box pr={1}>
                   <CalendarTodayRoundedIcon sx={{ color: colors.darkGreen }} />
@@ -209,7 +209,7 @@ export default function AppointmentCard({
                 {renderGetDirection()}
               </Box>
             </Grid>
-            <Grid item xs={5} sm={5} md={2}>
+            <Grid item xs={5} sm={5} md={2.5}>
               <Box
                 className={styles.containerImage}
                 sx={{

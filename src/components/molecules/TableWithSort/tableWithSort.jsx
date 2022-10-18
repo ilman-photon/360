@@ -103,6 +103,13 @@ const EnhancedTableHead = (props) => {
                     data-testid={"table-header-sort"}
                     onClick={createSortHandler(headCell.id)}
                     aria-live={"polite"}
+                    sx={{
+                      ".MuiTableSortLabel-icon": {
+                        opacity: 1,
+                        color: "#003B4A !important",
+                      },
+                      color: "#003B4A !important",
+                    }}
                   >
                     <b>{headCell.label}</b>
                     {orderBy === headCell.id ? (
