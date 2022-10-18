@@ -35,6 +35,7 @@ import { colors } from "../../styles/theme";
 import { appointmentParser } from "../../utils/appointmentsModel";
 import { onCallGetPrescriptionData } from "../../utils/prescription";
 import Navbar from "../../components/molecules/Navbar/Navbar";
+import { fetchUser } from "../../store/user";
 
 export async function getStaticProps() {
   return {

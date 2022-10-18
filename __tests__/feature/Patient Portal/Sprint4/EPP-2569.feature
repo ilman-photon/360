@@ -445,26 +445,6 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     And click Continue button. 
     Then Guest user should not see any error message for Date of birth.
 
-  @BDDTEST-EPP-3430
-  @Appointments
-  @P1
-  @Patient_Portal
-  @Regression
-  @Sprint4
-  Scenario: EPIC_EPP-44_STORY_EPP-1569-Verify whether the Email and Mobile number fields are asking for mandatory when both Email and Mobile number is left as blank.
-    Given user launch the Marketing Site url		
-    When user clicks on the Schedule your Eye Exam button
-    And user select the Purpose of Visit, Location and Date & Time with provider.
-    And user review the appointments.
-    And select the Appointment for Myself.
-    And click the Continue as a Guest button.
-    And Guest user should see the Guest Access screen.
-    And enter the First name, Last name.
-    And enter the valid Date of birth
-    And without entering the Email and Mobile number
-    And click Continue button. 
-    Then error message Email ID or Mobile number is required should display for both Email & Mobile number fields.
-
   @BDDTEST-EPP-3431
   @Appointments
   @P1
@@ -521,7 +501,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     And enter the First name, Last name.
     And enter the valid Date of birth
     And enter the Email ID
-    And enter the Mobile number (Max+1 digit)
+    And enter the Mobile number
     And click the Continue button.
     Then it should display the appropriate error message.
 
@@ -541,7 +521,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     And enter the First name, Last name.
     And enter the valid Date of birth
     And enter the Email ID
-    And enter the Mobile number (Max-1 digit)
+    And enter the Mobile number 
     And click the Continue button.
     Then it should not display the error message for mobile
 
@@ -562,7 +542,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     And enter the First name, Last name.
     And enter the valid Date of birth
     And enter the Email ID
-    And enter the Mobile number (Max digit)
+    And enter the Mobile number 
     And click the Continue button.
     Then it should not display the error message for mobile
 

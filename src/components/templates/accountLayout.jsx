@@ -52,7 +52,10 @@ function AccountLayout({
           <BaseHeader {...logoutProps} />
           <AccountTitleHeading
             title={getHeadingTitle(currentActivePage)}
-            sx={getHeadingStyle()}
+            sx={{ ...getHeadingStyle(), width: "316px" }}
+            sxContainer={{
+              display: "grid",
+            }}
           />
           <div className={styles.container}>
             <div className={styles.sidebarContainer}>
