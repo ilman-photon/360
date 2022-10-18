@@ -22,6 +22,7 @@ import Cookies from "universal-cookie";
 import { getServerSideProps } from "../src/pages/patient/mfa";
 import App from "../src/pages/_app";
 import CreateAccountPage from "../src/pages/patient/auth/create-account";
+import { renderWithProviders } from "../__tests__/src/utils/test-util";
 import { TEMP_DATA_CONTACTS, TEMP_DATA_GLASSES, TEMP_DATA_MEDICATION } from "./component-mock";
 
 const MOCK_APPOINTMENT = {
@@ -1255,8 +1256,8 @@ export function createMatchMedia(width) {
 export async function renderLogin() {
   let container;
   act(() => {
-    container = render(
-      <Provider store={store}>{Login.getLayout(<Login />)}</Provider>
+    container = renderWithProviders(
+      <Login />
     );
   });
   await waitFor(() => container.getAllByTestId(TEST_ID.LOGIN_TEST_ID.loginBtn));

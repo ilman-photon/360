@@ -522,7 +522,7 @@ const userSlice = createSlice({
       state.userData = DEFAULT_USER_DATA;
     },
     setUserData: (state, { payload }) => {
-      state.userData = payload;
+      state.userData = buildUserData(payload);
     },
     resetUserInsuranceData: (state, { payload }) => {
       state.userInsuranceData = [];

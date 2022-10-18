@@ -20,10 +20,11 @@ import constants from "../../../utils/constants";
 import AccountDrawer from "../../molecules/AccountDrawer/accountDrawer";
 import SubNavigation from "../../molecules/SubNavigation/subNavigation";
 import { logoutProps } from "../../../utils/authetication";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import MobileNavMenu from "../../molecules/Navbar/MobileNavMenu";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { colors } from "../../../styles/theme";
+import { setUserData } from "../../../store/user";
 
 export default function BaseHeader({
   OnLogoutClicked = (routerInstance) => {
@@ -36,15 +37,27 @@ export default function BaseHeader({
   const { HOME_TEST_ID } = constants.TEST_ID;
   const [isUserLoged, setUserLoged] = React.useState(false);
   const router = useRouter();
+  const dispatch = useDispatch();
   const logo = "/eyecarelogo.png";
   const userData = useSelector((state) => state.user.userData);
+
+  const [user, setUser] = React.useState({});
   React.useEffect(() => {
     const cookies = new Cookies();
     const isLogin =
       cookies.get("authorized", { path: "/patient" }) === "true" &&
       !!cookies.get("accessToken");
     setUserLoged(isLogin);
+
+    const userStorageData = JSON.parse(localStorage.getItem("userProfile"));
+    if (userStorageData) {
+      dispatch(setUserData(userStorageData));
+    }
   }, []);
+
+  React.useEffect(() => {
+    setUser(userData);
+  }, [userData]);
 
   const [anchorElNav, setAnchorElNav] = React.useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -196,7 +209,7 @@ export default function BaseHeader({
                     endIcon={<ExpandMoreIcon />}
                     onClick={handleOpenUserMenu}
                   >
-                    {userData.name}
+                    {user.name}
                   </Button>
                 </Tooltip>
                 <Menu

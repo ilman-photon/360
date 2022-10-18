@@ -7,6 +7,7 @@ import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import { renderLogin, landOnCreateAccountPage, navigateToPatientPortalHome, renderForgotPassword } from "../../__mocks__/commonSteps";
 import constants from "../../src/utils/constants";
+import { renderWithProviders } from "../src/utils/test-util";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-206.feature",
@@ -33,7 +34,7 @@ const navigateToPatientPortalApp = () => {
     .onGet(`https://api.ipify.org?format=json`)
     .reply(200, { ip: "10.10.10.10" });
   act(() => {
-    container = render(<AuthPage />, {
+    container = renderWithProviders(<AuthPage />, {
       container: document.body.appendChild(element),
       legacyRoot: true,
     });

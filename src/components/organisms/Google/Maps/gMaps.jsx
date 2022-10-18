@@ -24,7 +24,6 @@ function GMaps({
   providerListData.forEach((provider) => {
     if (provider?.coordinate?.latitude && provider?.coordinate?.longitude) {
       const foundIndex = markers.findIndex((v) => {
-        console.log(v.coordinate.latitude, provider.coordinate.latitude);
         return (
           v.coordinate.latitude === provider.coordinate.latitude &&
           v.coordinate.longitude === provider.coordinate.longitude
