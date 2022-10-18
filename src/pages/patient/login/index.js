@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import constants from "../../../utils/constants";
 import { removeAuthCookies } from "../../../utils/authetication";
 import Provider from "../../../store/provider";
+import store from "../../../store";
 
 const api = new Api();
 const cookies = new Cookies();
