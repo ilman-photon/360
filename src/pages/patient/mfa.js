@@ -311,7 +311,7 @@ export default function MfaPage({ isStepTwo }) {
       >
         {!successSubmit ? (
           <Box sx={{ background: "#FAFAFA" }}>
-            <AccountTitleHeading title={"Set-up Security Questions"} />:
+            <AccountTitleHeading title={"Set-up Security Questions"} />
             <Box
               sx={{
                 paddingTop: "65px",
@@ -323,7 +323,7 @@ export default function MfaPage({ isStepTwo }) {
                 borderColor: "#F3F3F3",
                 borderStyle: "solid",
                 ["@media (max-width: 992px)"]: {
-                  paddingTop: "45px",
+                  paddingTop: "0px",
                   maxWidth: "100%",
                   minWidth: "100%",
                 },

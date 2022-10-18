@@ -5,14 +5,14 @@
   background-color: #f4f4f4;
 
   .defaultContainer {
-    padding-top: calc(64px + 43px + 80px);
+    padding-top: 0px;
     flex: 1;
     max-width: 1477px;
     width: 100%;
     margin: 0 auto;
 
     @media (max-width: 768px) {
-      padding-top: calc(56px + 64px);
+      padding-top: 16px;
     }
   }
 }
