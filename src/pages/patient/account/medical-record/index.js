@@ -195,8 +195,8 @@ export default function MedicalRecordPage() {
   });
 
   useEffect(() => {
+    let count = 0;
     if (rows && rows.length > 0) {
-      let count = 0;
       for (const labResult of rows) {
         if (
           labResult?.data?.testingOrder?.orderDetails?.status == DOCUMENT_STATUS
@@ -204,11 +204,11 @@ export default function MedicalRecordPage() {
           count++;
         }
       }
-      if (count == 0) {
-        setIsHideDisclaimer(true);
-      } else {
-        setIsHideDisclaimer(false);
-      }
+    }
+    if (count == 0) {
+      setIsHideDisclaimer(true);
+    } else {
+      setIsHideDisclaimer(false);
     }
   }, [rows]);
 
