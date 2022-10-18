@@ -49,7 +49,7 @@ describe("MedicalRecordPage", () => {
     });
     container = render(
       <Provider store={store}>
-        {MedicalRecordPage.getLayout(<MedicalRecordPage />)}
+        <MedicalRecordPage />
       </Provider>
     );
 

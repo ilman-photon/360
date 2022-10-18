@@ -97,11 +97,8 @@ defineFeature(feature, (test) => {
   };
 
   const userSeeDocumentTable = async () => {
-    await waitFor(() =>
-      container.getByText("MEDICAL_CERTIFICATE_OF_FITNESS1 - Copy - Copy")
-    );
-    const emptyTable = container.getByText(
-      "MEDICAL_CERTIFICATE_OF_FITNESS1 - Copy - Copy"
+    const emptyTable = await waitFor(() =>
+      container.getByText("There are no intake forms.")
     );
     expect(emptyTable).toBeInTheDocument();
   };

@@ -1256,7 +1256,7 @@ export async function renderLogin() {
   let container;
   act(() => {
     container = render(
-      <Provider store={store}>{Login.getLayout(<Login />)}</Provider>
+      <Provider store={store}><Login /></Provider>
     );
   });
   await waitFor(() => container.getAllByTestId(TEST_ID.LOGIN_TEST_ID.loginBtn));
