@@ -28,7 +28,7 @@ export default function Appointments() {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [upcomingAppointment, setUpcomingAppointment] = useState([]);
   const [pastAppointment, setPastAppointment] = useState([]);
-  const [appointmentId, setAppointmentId] = useState("");
+  const [choosenAppointment, setChoosenAppointment] = useState({});
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -101,7 +101,7 @@ export default function Appointments() {
   };
 
   const onCancelClicked = (data) => {
-    setAppointmentId(data.appointmentId);
+    setChoosenAppointment(data);
     dispatch(fetchAppointmentById({ appointmentId: data.appointmentId }));
     setModalCancel(true);
   };
@@ -116,8 +116,8 @@ export default function Appointments() {
       data.cancelSchedule === "other" ? data.cancelOther : data.cancelSchedule;
     const postBody = {
       current: {
-        state: appointmentStatus,
-        subState: appointmentStatus,
+        state: choosenAppointment.appointmentInfo.state.state,
+        subState: choosenAppointment.appointmentInfo.state.subState.subState,
       },
       target: {
         state: "CANCELLED",
@@ -127,14 +127,14 @@ export default function Appointments() {
       code: 2,
     };
     api
-      .cancelAppointment(appointmentId, postBody)
+      .cancelAppointment(choosenAppointment.appointmentId, postBody)
       .then(() => {
+        getAppointments();
         setModalSuccessCancel(true);
         setModalCancel(false);
       })
       .catch(() => {
         setModalCancel(false);
-        //Handle error cancelAppointment
       });
   };
 

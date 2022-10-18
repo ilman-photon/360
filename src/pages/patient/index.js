@@ -52,15 +52,10 @@ export default function HomePage({ googleApiKey }) {
   const [isAuthenticated, setIsAuthenticated] = React.useState(true);
   const [currentCity, setCurrentCity] = React.useState("");
   const [modalSuccessCancel, setModalSuccessCancel] = React.useState(false);
-  const [appointmentId, setAppointmentId] = useState("");
   const [username, setUsername] = React.useState("");
 
   const insuranceCarrierList = useSelector((state) => state.provider.list);
   const filterData = useSelector((state) => state.appointment.filterData);
-
-  const appointmentStatus = useSelector((state) => {
-    return state.appointment.appointmentSchedule.appointmentInfo.status;
-  });
 
   const isDesktop = useMediaQuery("(min-width: 900px)");
   const { coords, isGeolocationEnabled } = useGeolocated({
@@ -211,10 +206,6 @@ export default function HomePage({ googleApiKey }) {
   }
 
   const handleClickCancel = () => {
-    setAppointmentId(appointmentData[0].appointmentId);
-    dispatch(
-      fetchAppointmentById({ appointmentId: appointmentData[0].appointmentId })
-    );
     setIsOpenCancel(true);
   };
 
@@ -228,8 +219,8 @@ export default function HomePage({ googleApiKey }) {
       data.cancelSchedule === "other" ? data.cancelOther : data.cancelSchedule;
     const postBody = {
       current: {
-        state: appointmentStatus,
-        subState: appointmentStatus,
+        state: appointmentData[0].appointmentInfo.state.state,
+        subState: appointmentData[0].appointmentInfo.state.subState.subState,
       },
       target: {
         state: "CANCELLED",
@@ -239,14 +230,14 @@ export default function HomePage({ googleApiKey }) {
       code: 2,
     };
     api
-      .cancelAppointment(appointmentId, postBody)
+      .cancelAppointment(appointmentData[0].appointmentId, postBody)
       .then(() => {
+        onCalledGetAllAppointment();
         setModalSuccessCancel(true);
         setIsOpenCancel(false);
       })
       .catch(() => {
         setIsOpenCancel(false);
-        //Handle error cancelAppointment
       });
   };
 

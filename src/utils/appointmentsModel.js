@@ -39,6 +39,7 @@ export function appointmentParser(data = {}) {
       appointmentType: data.appointmentType?.name,
       date: `${data.appointmentDate} ${data.appointmentTime}`,
       insuranceCarrier: [],
+      state: data.state,
     },
     year,
   };

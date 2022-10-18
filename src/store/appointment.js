@@ -69,7 +69,7 @@ const buildAppointmentData = (payload) => {
       id: payload._id,
       providerTemplate: payload.providerTemplate,
       office: payload.office,
-      status: payload.status,
+      state: payload.state,
     },
   };
 };
