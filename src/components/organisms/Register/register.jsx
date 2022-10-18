@@ -136,6 +136,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
     } else {
       setValue("preferredCommunication", "both");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watchedEmail, watchedMobile]);
 
   const formMessageComp = useRef(null);

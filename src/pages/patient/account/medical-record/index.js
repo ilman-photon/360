@@ -227,7 +227,7 @@ export default function MedicalRecordPage() {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query]);
-
+  const testLabConfig = isDesktop ? tableDesktopTestLab : tableMobileTestLab;
   return (
     <div className={styles.documentPageWrapper}>
       <Controller
@@ -282,9 +282,7 @@ export default function MedicalRecordPage() {
             config={
               watchedCategory === "care-plan-overview"
                 ? tableCarePlan
-                : isDesktop
-                ? tableDesktopTestLab
-                : tableMobileTestLab
+                : testLabConfig
             }
             rows={rows}
             onAssetDownload={handleAssetDownload}
