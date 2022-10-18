@@ -1,20 +1,9 @@
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from "@testing-library/react";
+import { render, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { Provider } from "react-redux";
 import store from "../../../src/store/store";
-import Validate, {
-  getServerSideProps,
-} from "../../../src/pages/patient/validate";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import Cookies from "universal-cookie";
-import { TEST_ID } from "../../../src/utils/constants";
 import DownloadPage from "../../../src/pages/patient/download/[assetId]";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 

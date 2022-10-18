@@ -15,7 +15,7 @@ export const fetchDocuments = createAsyncThunk(
         case "health-record":
           break;
         case "care-plan-overview":
-          categoryId = "Medical-Record";
+          categoryId = "care-plan";
           break;
         default:
           categoryId = "Intake-Forms";

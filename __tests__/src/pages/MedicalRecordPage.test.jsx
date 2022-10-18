@@ -9,12 +9,13 @@ import mediaQuery from "css-mediaquery";
 import React, { useState as useStateMock } from "react";
 import { carePlan, testLab } from "../../../__mocks__/mockResponse";
 import { TEST_ID } from "../../../src/utils/constants";
+import { renderWithProviders } from "../utils/test-util";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
 describe("MedicalRecordPage", () => {
   const mockRouter = {
     back: jest.fn(),
-    query: { type: "test-lab-result" },
+    query: { type: "" },
     push: jest.fn(),
     replace: jest.fn(),
     prefetch: jest.fn(),
@@ -33,64 +34,64 @@ describe("MedicalRecordPage", () => {
 
   afterEach(() => {
     mock.reset();
-    fetch.mockClear();
   });
 
   test("renders empty table", async () => {
     window.matchMedia = createMatchMedia("720px");
-    global.fetch = jest.fn(() =>
-      Promise.resolve({
-        json: () => Promise.resolve([]),
-      })
-    );
-    useRouter.mockReturnValue({
-      ...mockRouter,
-      query: { type: "care-plan-overview" },
-    });
+    const mock = new MockAdapter(axios);
+    mock
+      .onGet(
+        `/ecp/patient/getPatientDocumentByCategory/98f9404b-6ea8-4732-b14f-9c1a168d8066/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=Intake-Forms))`
+      )
+      .reply(200, {
+        count: 1,
+        entities: [],
+        _links: {
+          self: {
+            href: "/patient-management?pageNo=0&pageSize=10",
+          },
+        },
+      });
+
+    useRouter.mockReturnValue(mockRouter);
     container = render(
       <Provider store={store}>
         <MedicalRecordPage />
       </Provider>
     );
-
-    useRouter.mockReturnValue(mockRouter);
     await waitFor(() =>
-      container.getByText(
-        "There is no care plan overview document"
-      )
+      container.getByText("There is no care plan overview document")
     );
     expect(
-      container.getByText(
-        "There is no care plan overview document"
-      )
+      container.getByText("There is no care plan overview document")
     ).toBeInTheDocument();
-
   });
 
-  // commented, move to BDD
-  // test("renders table and sort care plan", async () => {
-  //   window.matchMedia = createMatchMedia("1920px");
-  //   global.fetch = jest.fn(() =>
-  //     Promise.resolve({
-  //       json: () => Promise.resolve(carePlan),
-  //     })
-  //   );
-  //   container = render(
-  //     <Provider store={store}>
-  //       {MedicalRecordPage.getLayout(<MedicalRecordPage />)}
-  //     </Provider>
-  //   );
-  //   useRouter.mockReturnValue(mockRouter);
-  //   await waitFor(() =>
-  //     container.getAllByTestId(TEST_ID.MEDICAL_RECORD.moreMenu)
-  //   );
-  //   expect(
-  //     container.getAllByTestId(TEST_ID.MEDICAL_RECORD.moreMenu)[0]
-  //   ).toBeInTheDocument();
-  //   fireEvent.click(
-  //     container.getAllByTestId(TEST_ID.MEDICAL_RECORD.moreMenu)[0]
-  //   );
-  // });
+  test("renders table and sort care plan", async () => {
+    window.matchMedia = createMatchMedia("1920px");
+    const mock = new MockAdapter(axios);
+    mock
+      .onGet(
+        `/ecp/patient/getPatientDocumentByCategory/98f9404b-6ea8-4732-b14f-9c1a168d8066/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=care-plan))`
+      )
+      .reply(200, carePlan);
+    useRouter.mockReturnValue({
+      ...mockRouter,
+      query: { type: "care-plan-overview" },
+    });
+    container = render(
+      MedicalRecordPage.getLayout(<MedicalRecordPage />, store, useRouter())
+    );
+    await waitFor(() =>
+      container.getAllByTestId(TEST_ID.MEDICAL_RECORD.moreMenu)
+    );
+    expect(
+      container.getAllByTestId(TEST_ID.MEDICAL_RECORD.moreMenu)[0]
+    ).toBeInTheDocument();
+    fireEvent.click(
+      container.getAllByTestId(TEST_ID.MEDICAL_RECORD.moreMenu)[0]
+    );
+  });
 
   // commented, move to BDD
   // test("renders table and sort Test & Lab Results", async () => {
