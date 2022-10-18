@@ -404,6 +404,7 @@ function parsePrescriptionItemMedication(medications) {
       "CVS Pharmacy, 123 Broadway Blvd, New Jersey, NY 12889";
     medicationData.type = element.type;
     medicationData.providerNPI = element.providerNPI;
+    medicationData.drug = element.drug;
 
     if (medicationData.type === "active") {
       active.push(medicationData);
