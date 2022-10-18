@@ -4,6 +4,7 @@ import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import MfaPage, { getServerSideProps }  from "../../src/pages/patient/mfa";
 import "@testing-library/jest-dom";
+import { renderWithProviders } from "../src/utils/test-util";
 
 
 const feature = loadFeature(
@@ -48,7 +49,7 @@ defineFeature(feature, (test) => {
 
         when(/^user lands onto "(.*)" screen$/, async (arg0) => {
           act(() => {
-            container = render(<AuthPage />, {
+            container = renderWithProviders(<AuthPage />, {
               container: document.body.appendChild(element),
               legacyRoot: true,
             });

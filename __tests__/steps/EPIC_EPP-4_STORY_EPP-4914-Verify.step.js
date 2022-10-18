@@ -7,6 +7,7 @@ import store from "../../src/store/store";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import '@testing-library/jest-dom'
+import { renderWithProviders } from "../src/utils/test-util";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint6/EPP-4914.feature"
@@ -40,7 +41,7 @@ defineFeature(feature, (test) => {
 
     and('user lands on the Patient Login screen', () => {
       act(() => {
-        container = render(<AuthPage />);
+        container = renderWithProviders(<AuthPage />);
       });
       const title = container.getByText("formTitle");
       expect("formTitle").toEqual(title.textContent);
@@ -88,7 +89,7 @@ defineFeature(feature, (test) => {
 
     and('user lands on the Patient Login screen', () => {
       act(() => {
-        container = render(<AuthPage />);
+        container = renderWithProviders(<AuthPage />);
       });
       const title = container.getByText("formTitle");
       expect("formTitle").toEqual(title.textContent);
@@ -136,7 +137,7 @@ defineFeature(feature, (test) => {
 
     and('user lands on the Patient Login screen', () => {
       act(() => {
-        container = render(<AuthPage />);
+        container = renderWithProviders(<AuthPage />);
       });
       const title = container.getByText("formTitle");
       expect("formTitle").toEqual(title.textContent);
@@ -183,7 +184,7 @@ defineFeature(feature, (test) => {
 
     and('user lands on the Patient Login screen', () => {
       act(() => {
-        container = render(<AuthPage />);
+        container = renderWithProviders(<AuthPage />);
       });
       const title = container.getByText("formTitle");
       expect("formTitle").toEqual(title.textContent);
@@ -238,7 +239,7 @@ defineFeature(feature, (test) => {
 
     and('user lands on the Patient Login screen', () => {
       act(() => {
-        container = render(<AuthPage />);
+        container = renderWithProviders(<AuthPage />);
       });
       const title = container.getByText("formTitle");
       expect("formTitle").toEqual(title.textContent);

@@ -4,11 +4,11 @@ import ConfirmationForm from "../../src/components/organisms/ConfirmationForm/co
 import RowRadioButtonsGroup from "../../src/components/atoms/RowRadioButtonsGroup/rowRadioButtonsGroup";
 import InsertLinkIcon from "@mui/icons-material/InsertLink";
 import { Controller } from "react-hook-form";
-import constants from "../../src/utils/constants";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import AuthPage from "../../src/pages/patient/login";
 import { Login } from "../../src/components/organisms/Login/login";
+import { renderWithProviders } from "../src/utils/test-util";
 import { TEST_ID } from "../../src/utils/constants";
 import { renderLogin, renderForgotPassword, clickContinueForgot } from "../../__mocks__/commonSteps";
 
@@ -35,7 +35,7 @@ const launchURL = () => {
 const navigateToPatientPortalApp = () => {
   mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
   act(() => {
-    container = render(<AuthPage />, {
+    container = renderWithProviders(<AuthPage />, {
       container: document.body.appendChild(element),
       legacyRoot: true,
     });

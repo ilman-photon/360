@@ -811,8 +811,8 @@ const FilterHeading = ({
         className={styles.titleHeadingWrapper}
         sx={{
           height: title && subtitle ? "200px" : "151px",
-          position: isFixed ? "fixed" : "relative",
-          marginTop: isDashboard ? "27px !important" : "-15px",
+          position: "relative",
+          marginTop: isDashboard ? "0px !important" : "-15px",
         }}
       >
         <Box
