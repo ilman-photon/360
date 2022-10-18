@@ -7,6 +7,7 @@ import axios from "axios";
 import Cookies from "universal-cookie";
 import { navigateToPatientPortalHome } from "../../__mocks__/commonSteps";
 import constants from "../../src/utils/constants";
+import { renderWithProviders } from "../src/utils/test-util";
 
 jest.mock("universal-cookie", () => {
   class MockCookies {
@@ -68,7 +69,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -126,7 +127,7 @@ defineFeature(feature, (test) => {
 
     when(`user lands onto “Patient Login” screen`, () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
-      container = render(<AuthPage />);
+      container = renderWithProviders(<AuthPage />);
       const title = container.getByText("formTitle");
       expect("formTitle").toEqual(title.textContent);
     });
@@ -173,7 +174,7 @@ defineFeature(feature, (test) => {
     });
     when(`user lands onto “Patient Login” screen`, () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
-      container = render(<AuthPage />);
+      container = renderWithProviders(<AuthPage />);
       const title = container.getByText("formTitle");
       expect("formTitle").toEqual(title.textContent);
     });
@@ -256,7 +257,7 @@ defineFeature(feature, (test) => {
 
     when(`user lands onto “Patient Login” screen`, () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
-      container = render(<AuthPage />);
+      container = renderWithProviders(<AuthPage />);
       const title = container.getByText("formTitle");
       expect("formTitle").toEqual(title.textContent);
     });
@@ -286,7 +287,7 @@ defineFeature(feature, (test) => {
 
     when(`user lands onto “Patient Login” screen`, () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
-      container = render(<AuthPage />);
+      container = renderWithProviders(<AuthPage />);
       const title = container.getByText("formTitle");
       expect("formTitle").toEqual(title.textContent);
     });
@@ -320,7 +321,7 @@ defineFeature(feature, (test) => {
     });
     and("user lands on “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
-      container = render(<AuthPage />);
+      container = renderWithProviders(<AuthPage />);
       const title = container.getByText("formTitle");
       expect("formTitle").toEqual(title.textContent);
     });

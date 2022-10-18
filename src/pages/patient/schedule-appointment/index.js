@@ -419,7 +419,7 @@ export default function ScheduleAppointmentPage() {
   };
 
   return (
-    <section style={{ paddingTop: "64px" }}>
+    <section>
       <BaseHeader />
       {isDesktop ? <AccountTitleHeading title={headerText[activeStep]} /> : ""}
       <StepperAppoinment

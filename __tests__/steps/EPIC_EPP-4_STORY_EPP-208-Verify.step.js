@@ -7,6 +7,7 @@ import AuthPage from "../../src/pages/patient/login";
 import Cookies from "universal-cookie";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
+import { renderWithProviders } from "../src/utils/test-util";
 
 jest.mock("universal-cookie", () => {
   class MockCookies {
@@ -70,7 +71,7 @@ defineFeature(feature, (test) => {
         .onGet(`https://api.ipify.org?format=json`)
         .reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -159,7 +160,7 @@ defineFeature(feature, (test) => {
         .onGet(`https://api.ipify.org?format=json`)
         .reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -224,7 +225,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -275,7 +276,7 @@ defineFeature(feature, (test) => {
         .onGet(`https://api.ipify.org?format=json`)
         .reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -334,7 +335,7 @@ defineFeature(feature, (test) => {
         .onGet(`https://api.ipify.org?format=json`)
         .reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -393,7 +394,7 @@ defineFeature(feature, (test) => {
         .onGet(`https://api.ipify.org?format=json`)
         .reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -447,7 +448,7 @@ defineFeature(feature, (test) => {
         .onGet(`https://api.ipify.org?format=json`)
         .reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -500,7 +501,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -551,7 +552,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -602,7 +603,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -660,7 +661,7 @@ defineFeature(feature, (test) => {
         .onGet(`https://api.ipify.org?format=json`)
         .reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -718,7 +719,7 @@ defineFeature(feature, (test) => {
         .onGet(`https://api.ipify.org?format=json`)
         .reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -778,7 +779,7 @@ defineFeature(feature, (test) => {
         .onGet(`https://api.ipify.org?format=json`)
         .reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -831,7 +832,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -889,7 +890,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -947,7 +948,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -1007,7 +1008,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -1067,7 +1068,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -1126,7 +1127,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -1180,7 +1181,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -1239,7 +1240,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -1298,7 +1299,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -1357,7 +1358,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -1416,7 +1417,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -1480,7 +1481,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -1539,7 +1540,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -1598,7 +1599,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -1657,7 +1658,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -1716,7 +1717,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -1773,7 +1774,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -1827,7 +1828,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -1875,7 +1876,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -1929,7 +1930,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -1988,7 +1989,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -2048,7 +2049,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -2108,7 +2109,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -2167,7 +2168,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -2251,7 +2252,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -2287,7 +2288,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -2324,7 +2325,7 @@ defineFeature(feature, (test) => {
         .onGet(`https://api.ipify.org?format=json`)
         .reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -2379,7 +2380,7 @@ defineFeature(feature, (test) => {
         .onGet(`https://api.ipify.org?format=json`)
         .reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });

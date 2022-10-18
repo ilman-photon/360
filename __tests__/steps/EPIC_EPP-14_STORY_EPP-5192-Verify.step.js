@@ -8,6 +8,7 @@ import axios from "axios";
 // import App from "../../src/pages/_app";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
+import { renderWithProviders } from "../src/utils/test-util";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint6/EPP-5192.feature"
@@ -48,7 +49,7 @@ defineFeature(feature, (test) => {
       .onGet(`https://api.ipify.org?format=json`)
       .reply(200, { ip: "10.10.10.10" });
     act(() => {
-      container = render(<Provider store={store}><AuthPage /></Provider>, {
+      container = renderWithProviders(<AuthPage />, {
         container: document.body.appendChild(element),
         legacyRoot: true,
       });
