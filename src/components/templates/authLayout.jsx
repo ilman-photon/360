@@ -71,8 +71,9 @@ export default function AuthLayout({
                 className={styles.authComponentContainer}
                 sx={{
                   paddingTop: {
-                    xs: showMobileImage ? "16px!important" : "75px!important",
-                    sm: "146px!important",
+                    xs: showMobileImage ? "0px!important" : "75px!important",
+                    sm: "90px!important",
+                    md: "92px!important",
                   },
                   padding: 0,
                 }}

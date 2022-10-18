@@ -88,7 +88,7 @@ const EnhancedTableHead = (props) => {
                     onClick={createSortHandler(headCell.id)}
                     aria-live={"polite"}
                   >
-                    <b>{headCell.label}</b>
+                    <b tabIndex={0}>{headCell.label}</b>
                     {orderBy === headCell.id ? (
                       <Box component="span" sx={visuallyHidden}>
                         {isDesc ? "sorted descending" : "sorted ascending"}

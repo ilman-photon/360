@@ -123,9 +123,9 @@ const Navbar = ({ isDashboard = false }) => {
         sx={{
           background: "#007787",
           height: "43px",
-          marginTop: isDashboard ? "-16px" : "64px",
+          marginTop: isDashboard ? "-16px" : "0px",
           zIndex: "3",
-          position: "fixed",
+          position: "relative",
           display: { xs: "none", sm: "block" },
         }}
       >

@@ -425,6 +425,7 @@ export default function ForgotPasswordPage() {
           {...backToLoginProps}
           onContinueButtonClicked={onContinueButtonClicked}
           hasSecurityQuestion={patientData && patientData.securityQuestionsSet}
+          title={"Select an Option Page"}
         />
       ) : (
         <></>

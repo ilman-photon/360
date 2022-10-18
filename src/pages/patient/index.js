@@ -53,6 +53,7 @@ export default function HomePage({ googleApiKey }) {
   const [currentCity, setCurrentCity] = React.useState("");
   const [modalSuccessCancel, setModalSuccessCancel] = React.useState(false);
   const [appointmentId, setAppointmentId] = useState("");
+  const [username, setUsername] = React.useState("");
 
   const insuranceCarrierList = useSelector((state) => state.provider.list);
   const filterData = useSelector((state) => state.appointment.filterData);
@@ -187,6 +188,14 @@ export default function HomePage({ googleApiKey }) {
     onCalledAllPrescription();
     onCalledGetAllAppointment();
     dispatch(fetchAllPayers());
+    const userStorageData = JSON.parse(localStorage.getItem("userProfile"));
+    if (userStorageData) {
+      let firstName = userStorageData?.firstName || "";
+      if (firstName) {
+        firstName = firstName[0].toUpperCase() + firstName.substring(1);
+        setUsername(firstName);
+      }
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -270,7 +279,7 @@ export default function HomePage({ googleApiKey }) {
                 filterData={filterData}
                 purposeOfVisitData={filterSuggestionData.purposeOfVisit}
                 insuranceCarrierData={filterSuggestionData.insuranceCarrier}
-                title={"John, Welcome to your dashboard"}
+                title={`${username}, Welcome to your dashboard`}
                 subtitle={"Search for a doctor"}
                 isFixed={false}
                 currentCity={currentCity}
@@ -299,7 +308,7 @@ export default function HomePage({ googleApiKey }) {
                   //this is intentional
                 }}
                 appliedFilter={[]}
-                title={"John, Welcome to your dashboard"}
+                title={`${username}, Welcome to your dashboard`}
                 subtitle={"Search for a doctor"}
               />
             </Box>
