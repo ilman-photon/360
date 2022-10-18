@@ -1,17 +1,12 @@
 import React from "react";
 import styles from "./accountTitleHeading.module.scss";
 
-const AccountTitleHeading = ({
-  title,
-  sx = {},
-  isFixed = true,
-  sxContainer = {},
-}) => {
+const AccountTitleHeading = ({ title, sx = {}, sxContainer = {} }) => {
   return (
     <div
       className={styles.titleHeadingWrapper}
       style={{
-        position: isFixed ? "fixed" : "relative",
+        position: "relative",
         ...sxContainer,
       }}
       aria-label={`${title} heading`}

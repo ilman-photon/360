@@ -11,11 +11,13 @@ import constants from "../../../utils/constants";
 import { HeadingTitle } from "../../atoms/Heading";
 import { getLinkAria } from "../../../utils/viewUtil";
 import { colors } from "../../../styles/theme";
+import Head from "next/head";
 
 const SelectOptionForm = ({
   onBackToLoginClicked,
   onContinueButtonClicked,
   hasSecurityQuestion = false,
+  title = "",
 }) => {
   const router = useRouter();
   const { t, ready } = useTranslation("translation", {
@@ -25,12 +27,16 @@ const SelectOptionForm = ({
 
   return (
     <>
+      <Head>
+        <title>{title}</title>
+      </Head>
       {ready && (
         <Card className={globalStyles.container} style={styles.cardStyle}>
           <CardContent style={styles.cardContentStyle}>
             <HeadingTitle
               variant={constants.H2}
               title={t("title")}
+              aria-label={t("title")}
               tabIndex="0"
             />
             <StyledButton

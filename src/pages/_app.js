@@ -13,10 +13,12 @@ import GenericErrorModal from "../components/molecules/GenericErrorModal/generic
 import { injectStore } from "./api/api";
 import Image from "next/image";
 import { Box } from "@mui/material";
+import { useRouter } from "next/router";
 
 function App({ Component, pageProps }) {
   // Use the layout defined at the page level, if available
   const cookies = new Cookies();
+  const router = useRouter();
   const getLayout = Component.getLayout || ((page) => page);
 
   const idleTime = cookies.get("IdleTimeOut") || 1000 * 60 * 20;
@@ -124,7 +126,8 @@ function App({ Component, pageProps }) {
       <GenericErrorModal storeContext={store} />
       <Component {...pageProps} />
     </Provider>,
-    store
+    store,
+    router
   );
 }
 export default appWithTranslation(App, nextI18nConfig);

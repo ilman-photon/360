@@ -7,6 +7,7 @@ import ForgotPasswordPage from "../../src/pages/patient/forgot-password";
 import AuthPage from "../../src/pages/patient/login";
 import Cookies from "universal-cookie";
 import '@testing-library/jest-dom'
+import { renderWithProviders } from "../src/utils/test-util";
 
 
 const feature = loadFeature(
@@ -35,7 +36,7 @@ defineFeature(feature, (test) => {
     });
 
     and('user lands on the Patient Login screen', () => {
-      login = render(<AuthPage />, {
+      login = renderWithProviders(<AuthPage />, {
         container: document.body.appendChild(element),
         legacyRoot: true,
       });
@@ -159,7 +160,7 @@ defineFeature(feature, (test) => {
     });
 
     and('user lands on the Patient Login screen', () => {
-      container = render(<AuthPage />, {
+      container = renderWithProviders(<AuthPage />, {
         container: document.body.appendChild(element),
         legacyRoot: true,
       });
@@ -282,7 +283,7 @@ defineFeature(feature, (test) => {
     });
 
     and('user lands on the Patient Login screen', () => {
-      container = render(<AuthPage />, {
+      container = renderWithProviders(<AuthPage />, {
         container: document.body.appendChild(element),
         legacyRoot: true,
       });
@@ -406,7 +407,7 @@ defineFeature(feature, (test) => {
       };
       mock.onPost(`/ecp/patient/login`).reply(400, expectedResult);
       act(() => {
-        login = render(<AuthPage />), {
+        login = renderWithProviders(<AuthPage />), {
           container: document.body.appendChild(element),
           legacyRoot: true,
         };
@@ -448,7 +449,7 @@ defineFeature(feature, (test) => {
     });
 
     and('user lands on the Patient Login screen', () => {
-      login = render(<AuthPage />, {
+      login = renderWithProviders(<AuthPage />, {
         container: document.body.appendChild(element),
         legacyRoot: true,
       });
@@ -572,7 +573,7 @@ defineFeature(feature, (test) => {
       };
       mock.onPost(`/ecp/patient/login`).reply(400, expectedResult);
       act(() => {
-        login = render(<AuthPage />), {
+        login = renderWithProviders(<AuthPage />), {
           container: document.body.appendChild(element),
           legacyRoot: true,
         };
@@ -614,7 +615,7 @@ defineFeature(feature, (test) => {
     });
 
     and('user lands on the Patient Login screen', () => {
-      container = render(<AuthPage />, {
+      container = renderWithProviders(<AuthPage />, {
         container: document.body.appendChild(element),
         legacyRoot: true,
       });

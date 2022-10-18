@@ -2,356 +2,13 @@ import moment from "moment";
 import constants from "./constants";
 import {
   convertTime24to12,
-  ddmmyyDateFormat,
   mmddyyDateFormat,
   yyyymmddDateFormat,
 } from "./dateFormatter";
 
-export const TEMP_DATA_CONTACTS = {
-  count: 1,
-  entities: [
-    {
-      expirationDate: "01/06/2025",
-      startDate: "01/10/2022",
-      clrx: {
-        clrx: {
-          od: {
-            t: false,
-            bc: "11.2",
-            add: "111",
-            bc2: "11.2",
-            axis: "111",
-            diam: "14",
-            lens: {
-              sku: 409374,
-              name: "EDGE III DW",
-            },
-            sph2: "15.5",
-            type: "SCL",
-            color: "black",
-            notes: "India ttterrsting",
-            segHt: "11.1",
-            skirt: "11.1",
-            addOns: "11.1",
-            sphere: "10.1",
-            cylinder: "",
-            material: "soft",
-            opticZone: "10.5",
-            thickness: "105.",
-            intermCurve: "test",
-            periphCurve: "test",
-          },
-          os: {
-            t: false,
-            bc: "8.3",
-            add: "11.2",
-            bc2: "22.3",
-            axis: "000",
-            diam: "14",
-            lens: {
-              sku: 409374,
-              name: "EDGE III DW",
-            },
-            sph2: "",
-            type: "SCL",
-            color: "black",
-            notes: "test",
-            segHt: "11.3",
-            skirt: "11.8",
-            addOns: "33.7",
-            sphere: "55.7",
-            cylinder: "11.0",
-            material: "soft",
-            opticZone: "44.8",
-            thickness: "11.6",
-            intermCurve: "54.0",
-            periphCurve: "20.6",
-          },
-          mono: true,
-          notes: "test notes",
-          eyeDom: "OD",
-          finalRx: "false",
-          trialRx: "false",
-        },
-      },
-      provider: {
-        firstName: "indraku",
-        lastName: "kumar",
-        designation: "Mr",
-        providerDetails: {
-          isProvider: true,
-        },
-        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
-        _links: {
-          self: {
-            href: "/v1/template-users/2818ef11-208b-4f43-b471-06ad495381f1",
-          },
-        },
-      },
-      patient: {
-        firstName: "naina",
-        lastName: "naina ",
-        mrn: "UNY323737",
-        dob: "10/7/92, 12:00 AM",
-        sex: "3",
-        status: "UPDATED",
-        _id: "d6ba6289-4190-4346-8dd7-34a1d81447e2",
-        _version: "ab6a730f-adc2-4f79-aa8d-648ad901b8cf",
-        _created: "Oct 7, 2022, 2:40:07 PM",
-        _updated: "Oct 7, 2022, 3:57:12 PM",
-        _createdBy: {
-          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
-          _links: {
-            self: {
-              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
-            },
-          },
-        },
-        _updatedBy: {
-          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
-          _links: {
-            self: {
-              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
-            },
-          },
-        },
-      },
-      _links: {
-        self: {
-          href: "/v1/exam-sheet-entry/bf3410cf-3e8f-4dd7-95b6-184dc93bc1f7",
-        },
-      },
-      _id: "bf3410cf-3e8f-4dd7-95b6-184dc93bc1f7",
-    },
-  ],
-  _links: {
-    self: {
-      href: "/emr?pageNo=0&pageSize=100",
-    },
-  },
-};
-
-export const TEMP_DATA_GLASSES = {
-  count: 2,
-  entities: [
-    {
-      glrx: {
-        od: {
-          add: "-1.75",
-          axis: "012",
-          sphere: "+2.25",
-          cylinder: "+1.50",
-        },
-        os: {
-          add: "-1.75",
-          axis: "111",
-          sphere: "+2.75",
-          cylinder: "+1.25",
-        },
-        type: "Distance",
-      },
-      provider: {
-        firstName: "indraku",
-        lastName: "kumar",
-        designation: "Mr",
-        providerDetails: {
-          isProvider: true,
-        },
-        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
-        _links: {
-          self: {
-            href: "/v1/template-users/2818ef11-208b-4f43-b471-06ad495381f1",
-          },
-        },
-      },
-      patient: {
-        firstName: "test",
-        lastName: "newpatient",
-        mrn: "NOX748652",
-        dob: "10/4/90, 12:00 AM",
-        sex: "1",
-        status: "UPDATED",
-        _id: "8a94c00a-1bf6-47b7-8ff1-485fd469937f",
-        _version: "32700e55-5c49-4fa0-bb7f-9339fdca420d",
-        _created: "Oct 4, 2022, 11:20:20 AM",
-        _updated: "Oct 6, 2022, 5:42:16 AM",
-        _createdBy: {
-          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
-          _links: {
-            self: {
-              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
-            },
-          },
-        },
-        _updatedBy: {
-          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
-          _links: {
-            self: {
-              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
-            },
-          },
-        },
-      },
-      _links: {
-        self: {
-          href: "/v1/exam-sheet-entry/4ac901d8-cb49-4f86-9838-a0a10f9f2f85",
-        },
-      },
-      _id: "4ac901d8-cb49-4f86-9838-a0a10f9f2f85",
-    },
-    {
-      glrx: {
-        od: {
-          add: "+1.25",
-          axis: "012",
-          sphere: "+1.25",
-          cylinder: "-2.50",
-        },
-        os: {
-          add: "+1.25",
-          sphere: "+1.50",
-          cylinder: "+2.50",
-        },
-        type: "Distance",
-      },
-      provider: {
-        firstName: "Steve",
-        lastName: "Adam",
-        _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
-        _links: {
-          self: {
-            href: "/v1/template-users/19f1c186-37a8-46ef-a731-0a1f022be782",
-          },
-        },
-      },
-      patient: {
-        firstName: "test",
-        lastName: "newpatient",
-        mrn: "NOX748652",
-        dob: "10/4/90, 12:00 AM",
-        sex: "1",
-        status: "UPDATED",
-        _id: "8a94c00a-1bf6-47b7-8ff1-485fd469937f",
-        _version: "32700e55-5c49-4fa0-bb7f-9339fdca420d",
-        _created: "Oct 4, 2022, 11:20:20 AM",
-        _updated: "Oct 6, 2022, 5:42:16 AM",
-        _createdBy: {
-          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
-          _links: {
-            self: {
-              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
-            },
-          },
-        },
-        _updatedBy: {
-          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
-          _links: {
-            self: {
-              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
-            },
-          },
-        },
-      },
-      _links: {
-        self: {
-          href: "/v1/exam-sheet-entry/1ca95312-7e54-4f91-8e2f-dec5a8e670df",
-        },
-      },
-      _id: "1ca95312-7e54-4f91-8e2f-dec5a8e670df",
-    },
-  ],
-  _links: {
-    self: {
-      href: "/emr?pageNo=0&pageSize=100",
-    },
-  },
-};
-
-export const TEMP_DATA_MEDICATION = [
-  {
-    Deleted: "n",
-    Voided: "n",
-    RcopiaID: "SB-26353646482",
-    Patient: {
-      RcopiaPracticeID: "222531942",
-      FirstName: "FirstNikita",
-      ExternalID: "",
-      RcopiaID: "26151571631",
-      LastName: "Dr",
-    },
-    NeedsReview: "n",
-    Provider: {
-      DEA: "AP3864421",
-      Username: "pclarksoneyecare",
-      NPI: "1741791705",
-      FirstName: "Provider",
-      ExternalID: "",
-      RcopiaID: "2642957631",
-      LastName: "ClarksonEyeCare",
-    },
-    Preparer: {
-      RcopiaID: "2642957631",
-      ExternalID: "",
-      FirstName: "Provider",
-      LastName: "ClarksonEyeCare",
-    },
-    Sig: {
-      Drug: {
-        NDCID: "00378070901",
-        BrandName: "D-Penamine",
-        GenericName: "penicillamine",
-        Form: "tablet",
-        Strength: "125 mg",
-        RcopiaID: "12100000098779",
-        FirstDataBankMedID: "585251",
-        DrugDescription: "D-Penamine 125 mg tablet",
-        Schedule: "nonscheduled",
-        BrandType: "brand",
-        Route: "oral",
-        LegendStatus: "rx",
-      },
-      DoseUnit: "tablet",
-      DoseTiming: "twice a day",
-      Duration: "",
-      Route: "by mouth",
-      Quantity: "1",
-      QuantityUnit: "tablet",
-      Refills: "0",
-      SubstitutionPermitted: "y",
-      OtherNotes: "",
-      PatientNotes: "as directed",
-      Dose: "3",
-      Action: "Take",
-      Comments: "",
-      MaximumDailyDoseUnit: "",
-      DoseOther: "as directed",
-      MaximumDailyDose: "",
-    },
-    CreatedDate: "10/05/2022 03:40:57 EDT",
-    CompletedDate: "",
-    SignedDate: "",
-    StopDate: "",
-    LastModifiedBy: "pclarksoneyecare",
-    LastModifiedDate: "10/05/2022 03:41:00 EDT",
-    Height: "",
-    Weight: "",
-    IntendedUse: "",
-    Denied: "n",
-    patientRcopiaID: "26151571631",
-    _id: "323498f1-dff7-47b6-b3af-2dcc432f65ce",
-    _version: "b3118e77-ad8c-4ac9-9840-1b38f6fb008e",
-    _created: "Oct 5, 2022, 7:41:50 AM",
-    _updated: "Oct 5, 2022, 7:41:50 AM",
-    _createdBy: {
-      _id: "2818ef11-208b-4f43-b471-06ad495381f1",
-      _links: {
-        self: {
-          href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
-        },
-      },
-    },
-  },
-];
+function isValidDate(d) {
+  return d instanceof Date && !isNaN(d);
+}
 
 export function parseInsuranceCarrier(insuranceCarrierData) {
   if (insuranceCarrierData && insuranceCarrierData.length > 0) {
@@ -659,17 +316,17 @@ function parsePrescriptionItemData(prescriptionData, key) {
       key
     );
 
-    if (!latestDate) {
-      latestDate = new Date(itemData.date);
-    } else {
-      latestDate =
-        latestDate < new Date(itemData.date)
-          ? latestDate
-          : new Date(itemData.date);
+    const itemDate = new Date(itemData.date);
+    if (isValidDate(itemDate)) {
+      if (!latestDate) {
+        latestDate = itemDate;
+      } else {
+        latestDate = latestDate > itemDate ? latestDate : itemDate;
+      }
     }
 
-    itemData.date = ddmmyyDateFormat(itemData.date);
-    itemData.expirationDate = ddmmyyDateFormat(itemData.expirationDate);
+    itemData.date = mmddyyDateFormat(itemData.date);
+    itemData.expirationDate = mmddyyDateFormat(itemData.expirationDate);
     data.push(itemData);
   }
 
@@ -677,48 +334,76 @@ function parsePrescriptionItemData(prescriptionData, key) {
 }
 
 function getLatestDate(glassesDate, contactDate, medicationDate) {
-  if (
-    (glassesDate &&
-      glassesDate <= contactDate &&
-      glassesDate <= medicationDate) ||
-    (glassesDate && !contactDate && !medicationDate)
-  ) {
-    return 0;
-  } else if (
-    (contactDate && contactDate <= medicationDate) ||
-    (!glassesDate && contactDate && !medicationDate)
-  ) {
-    return 1;
-  } else {
-    return 2;
-  }
+  const listDate = [
+    { name: "contact", date: contactDate, tab: 1 },
+    { name: "glasses", date: glassesDate, tab: 0 },
+    { name: "medication", date: medicationDate, tab: 2 },
+  ];
+  const result = listDate
+    .filter((item) => item.date !== null)
+    .map((v) => {
+      return v && v.date && v.date.getTime();
+    });
+  const getMinDate = Math.max(...result);
+  let activeTab = listDate.find(
+    (item) => item.date && item.date.getTime() === getMinDate
+  );
+
+  return activeTab?.tab !== undefined ? activeTab.tab : 1;
 }
 
 function parsePrescriptionItemMedication(medications) {
+  const filterData = [
+    {
+      name: "Filter By",
+      checklist: [
+        {
+          name: "All",
+          checked: false,
+          type: "general",
+        },
+        {
+          name: "Refill Requested",
+          checked: false,
+          type: "general",
+        },
+        {
+          name: "Active",
+          checked: false,
+          type: "general",
+        },
+      ],
+    },
+    {
+      name: "Providers",
+      checklist: [],
+    },
+  ];
+  const filterProvider = [];
   const past = [];
   const active = [];
   let latestDateMedic = "";
-  for (let index = 0; index < medications.length; index++) {
-    const date = medications[index].date;
-    const expiratedDate =
-      medications[index].expiredDate || "2022-12-02T11:18:47.229Z";
+  for (const element of medications) {
+    const date = element.date;
+    const expiratedDate = element.expiredDate || "-";
 
     const medicationData = {};
-    medicationData.id = medications[index].id;
-    medicationData.prescription = medications[index].prescription;
-    medicationData.date = ddmmyyDateFormat(date);
-    medicationData.prescribedBy = "Dr. Philip Morris";
-    medicationData.isShowRequestRefill = moment().isSameOrBefore(expiratedDate);
-    medicationData.expirationDate = ddmmyyDateFormat(expiratedDate);
-    medicationData.fillRequestDate = ddmmyyDateFormat(
-      "2022-09-02T11:18:47.229Z"
-    );
-    medicationData.timeRemaining = "Take 2 times a day";
-    medicationData.dose = "0.5 mL";
-    medicationData.status = medications[index].status || "";
+    medicationData.id = element.id;
+    medicationData.prescription = element.prescription;
+    medicationData.date = mmddyyDateFormat(date);
+    medicationData.prescribedBy = element.providerName;
+    medicationData.isShowRequestRefill = isValidDate(new Date(expiratedDate))
+      ? moment().isSameOrBefore(expiratedDate)
+      : "-";
+    medicationData.expirationDate = mmddyyDateFormat(expiratedDate);
+    medicationData.fillRequestDate = mmddyyDateFormat(element.fillRequestDate);
+    medicationData.timeRemaining = element.timeRemaining;
+    medicationData.dose = element.dose;
+    medicationData.status = element.status || "";
     medicationData.statusDetails =
       "CVS Pharmacy, 123 Broadway Blvd, New Jersey, NY 12889";
-    medicationData.type = index % 2 == 0 ? "active" : "past";
+    medicationData.type = element.type;
+    medicationData.providerNPI = element.providerNPI;
 
     if (medicationData.type === "active") {
       active.push(medicationData);
@@ -726,17 +411,27 @@ function parsePrescriptionItemMedication(medications) {
       past.push(medicationData);
     }
 
-    if (!latestDateMedic) {
-      latestDateMedic = new Date(date);
-    } else {
-      latestDateMedic =
-        latestDateMedic < new Date(date) ? latestDateMedic : new Date(date);
+    const itemDate = new Date(date);
+    if (isValidDate(itemDate)) {
+      if (!latestDateMedic) {
+        latestDateMedic = itemDate;
+      } else {
+        latestDateMedic =
+          latestDateMedic > itemDate ? latestDateMedic : itemDate;
+      }
     }
+    filterProvider.push({
+      name: element.providerName,
+      checked: false,
+      type: "provider",
+    });
   }
-  return { active, past, latestDateMedic };
+  filterData[1].checklist.push(...filterProvider);
+  return { active, past, latestDateMedic, filterProvider: filterData };
 }
 
 export function parsePrescriptionData(prescriptions) {
+  let filterData = [];
   const parsePrescriptions = { glasses: [], contacts: [], medications: [] };
   let glassesDate = null;
   let contactDate = null;
@@ -761,7 +456,7 @@ export function parsePrescriptionData(prescriptions) {
 
   if (prescriptions.medications && prescriptions.medications.length > 0) {
     const medications = prescriptions.medications;
-    const { active, past, latestDateMedic } =
+    const { active, past, latestDateMedic, filterProvider } =
       parsePrescriptionItemMedication(medications);
     medicationDate = latestDateMedic;
 
@@ -769,10 +464,13 @@ export function parsePrescriptionData(prescriptions) {
       active: active,
       past: past,
     };
+
+    filterData = filterProvider;
   }
   return {
     parsePrescriptions,
     activeTab: getLatestDate(glassesDate, contactDate, medicationDate),
+    filterProvider: filterData,
   };
 }
 

@@ -46,6 +46,7 @@ export default function ProviderProfile({
   imageSize = "large",
   bioContainerClass = "",
   addressClass = "",
+  isCard = false,
 }) {
   const isAppointment = variant === "appointment";
   const isBio = variant === "bio";
@@ -137,8 +138,12 @@ export default function ProviderProfile({
           ) : (
             <AccountCircleIcon
               sx={{
-                width: { xs: "70px", sm: "100px", md: "unset" },
-                height: { xs: "70px", sm: "100px", md: "unset" },
+                width: isCard
+                  ? "61px"
+                  : { xs: "70px", sm: "100px", md: "unset" },
+                height: isCard
+                  ? "61px"
+                  : { xs: "70px", sm: "100px", md: "unset" },
                 color: "#b5b5b5",
                 "@media (max-width: 767px)": {
                   width: { xs: "50px" },

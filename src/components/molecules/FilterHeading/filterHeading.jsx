@@ -351,6 +351,8 @@ export function onRenderInputInsurance(
         alignItems: "flex-end",
         paddingLeft: "15px",
       }}
+      aria-label="Insurance carrier field"
+      tabIndex={0}
     >
       <Box
         sx={{
@@ -363,8 +365,9 @@ export function onRenderInputInsurance(
       <StyledInput
         variant="filled"
         {...params}
+        aria-hidden={true}
         label="Insurance Carrier"
-        aria-label="Insurance carrier field"
+        tabIndex={-1}
         InputProps={{
           ...params.InputProps,
         }}
@@ -523,6 +526,7 @@ const FilterHeading = ({
 
   React.useEffect(() => {
     if (currentCity) setValue("location", currentCity);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentCity]);
 
   const minDate = new Date();
@@ -608,14 +612,17 @@ const FilterHeading = ({
                     alignItems: "flex-end",
                     paddingLeft: "15px",
                   }}
+                  aria-label="City, state, or zip code field"
+                  tabIndex={0}
                 >
                   {locationIconUI(isDesktop)}
                   <StyledInput
                     type="default"
                     variant="filled"
                     {...params}
+                    aria-hidden={true}
                     label="City, state, or zip code"
-                    aria-label="City, state, or zip code field"
+                    tabIndex={-1}
                     InputProps={{
                       ...params.InputProps,
                       endAdornment: (
@@ -777,8 +784,9 @@ const FilterHeading = ({
                     fontStyle: "normal",
                   },
                 }}
+                ariaLabel={"Purpose of Visit dropdown"}
+                role="menu"
                 label={"Purpose of Visit"}
-                ariaLabel={"Purpose of Visit dropdown menu"}
                 labelId={`purposes-of-visit`}
                 id={`purposes-of-visit`}
                 options={purposeOfVisitData}
@@ -803,8 +811,8 @@ const FilterHeading = ({
         className={styles.titleHeadingWrapper}
         sx={{
           height: title && subtitle ? "200px" : "151px",
-          position: isFixed ? "fixed" : "relative",
-          marginTop: isDashboard ? "27px !important" : "-15px",
+          position: "relative",
+          marginTop: isDashboard ? "0px !important" : "-15px",
         }}
       >
         <Box
