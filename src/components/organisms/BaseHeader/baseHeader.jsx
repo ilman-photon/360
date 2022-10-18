@@ -97,13 +97,11 @@ export default function BaseHeader({
   return (
     <>
       <AppBar
-        position="fixed"
+        position="relative"
         sx={{
           backgroundColor: "white",
-          "@media print": {
-            boxShadow:
-              "0px 1px 1px 0px rgb(0 0 0 / 20%), 0px 0px 1px 0px rgb(0 0 0 / 14%), 0px 1px 10px 0px rgb(0 0 0 / 12%)",
-          },
+          boxShadow: "none",
+          borderBottom: "1px solid #E0E0E0",
           height: 64,
         }}
       >
