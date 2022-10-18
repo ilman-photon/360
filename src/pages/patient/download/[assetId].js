@@ -19,6 +19,7 @@ export default function DownloadPage() {
     if (response) {
       window.location.replace(response.presignedUrl);
     } else {
+      setIsAvailable(false);
       setIsLoading(false);
     }
   };
@@ -28,6 +29,7 @@ export default function DownloadPage() {
       downloadFile(router.query.assetId);
     } else {
       setIsAvailable(false);
+      setIsLoading(false);
     }
   }, [router.query]);
 
