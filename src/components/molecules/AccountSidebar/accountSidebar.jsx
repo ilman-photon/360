@@ -26,7 +26,11 @@ export const AccountSidebar = ({ ...props }, ref) => {
       href: "#",
       icon: <AccountCircleOutlinedIcon />,
     },
-    { label: "Prescriptions", href: "#", icon: <AccountCircleOutlinedIcon /> },
+    {
+      label: "Prescriptions",
+      href: "/patient/prescription",
+      icon: <AccountCircleOutlinedIcon />,
+    },
     {
       label: "Test & Lab Results",
       href: "#",

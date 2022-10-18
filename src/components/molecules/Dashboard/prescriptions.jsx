@@ -113,6 +113,7 @@ export default function Prescriptions({
       past: [],
     },
   });
+  const [filterData, setFilterData] = React.useState([]);
 
   const downloadPDF = (type, index = -1) => {
     let containerSelector = null;
@@ -166,9 +167,10 @@ export default function Prescriptions({
   };
 
   useEffect(() => {
-    const { parsePrescriptions, activeTab } =
+    const { parsePrescriptions, activeTab, filterProvider } =
       parsePrescriptionData(prescriptionData);
     setPrescriptione(parsePrescriptions);
+    setFilterData(filterProvider);
     if (isViewAll && requestRefillResponseData === null) {
       setValue(activeTab);
     }
@@ -447,6 +449,7 @@ export default function Prescriptions({
   function renderMedicationDetailUI() {
     return (
       <PrescriptionMedication
+        filterProvider={filterData}
         medications={prescription.medications}
         onMedicationRequestRefill={onMedicationRequestRefill}
         requestRefillResponseData={requestRefillResponseData}

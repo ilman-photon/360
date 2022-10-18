@@ -8,6 +8,7 @@ import SetPasswordPage, {
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import { sleep } from "../../../__mocks__/util";
+import { renderWithProviders } from "../utils/test-util";
 
 describe("Set Password", () => {
   let container;
@@ -21,10 +22,11 @@ describe("Set Password", () => {
         : {},
     };
     const serverProps = await getServerSideProps(contex);
-    container = render(
-      <Provider store={store}>
-        {SetPasswordPage.getLayout(<SetPasswordPage {...serverProps.props} />)}
-      </Provider>
+    container = renderWithProviders(
+      <SetPasswordPage {...serverProps.props} />
+      // <Provider store={store}>
+      //   {SetPasswordPage.getLayout(<SetPasswordPage {...serverProps.props} />)}
+      // </Provider>
     );
     await waitFor(() => container.getByText(/Set Password/i));
   };

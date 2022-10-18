@@ -3,6 +3,7 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import AuthPage from "../../src/pages/patient/login";
+import { renderWithProviders } from "../src/utils/test-util";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-211.feature", {
@@ -37,7 +38,7 @@ defineFeature(feature, (test) => {
 
       when('user/ admin user lands onto “Patient Login” screen', () => {
         act(() => {
-          container = render(<AuthPage />, {
+          container = renderWithProviders(<AuthPage />, {
             container: document.body.appendChild(element),
             legacyRoot: true,
           });
@@ -189,7 +190,7 @@ defineFeature(feature, (test) => {
 
       when('user/ admin user lands onto “Patient Login” screen', () => {
         act(() => {
-          container = render(<AuthPage />, {
+          container = renderWithProviders(<AuthPage />, {
             container: document.body.appendChild(element),
             legacyRoot: true,
           });
@@ -343,7 +344,7 @@ defineFeature(feature, (test) => {
 
       when('user/ admin user lands onto “Patient Login” screen', () => {
         act(() => {
-          container = render(<AuthPage />, {
+          container = renderWithProviders(<AuthPage />, {
             container: document.body.appendChild(element),
             legacyRoot: true,
           });
@@ -492,7 +493,7 @@ defineFeature(feature, (test) => {
 
       when('user/ admin user lands onto “Patient Login” screen', () => {
         act(() => {
-          container = render(<AuthPage />, {
+          container = renderWithProviders(<AuthPage />, {
             container: document.body.appendChild(element),
             legacyRoot: true,
           });

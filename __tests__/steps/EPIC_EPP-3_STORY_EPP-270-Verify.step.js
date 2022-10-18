@@ -7,6 +7,7 @@ import AuthPage from "../../src/pages/patient/login";
 import MfaPage, { getServerSideProps } from "../../src/pages/patient/mfa";
 import Cookies from "universal-cookie";
 import constants from "../../src/utils/constants";
+import { renderWithProviders } from "../src/utils/test-util";
 
 jest.mock("universal-cookie", () => {
   class MockCookies {
@@ -88,7 +89,7 @@ defineFeature(feature, (test) => {
 
     then("user lands onto “Patient Login” screen", () => {
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -224,7 +225,7 @@ defineFeature(feature, (test) => {
 
     then("user lands onto “Patient Login” screen", () => {
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -368,7 +369,7 @@ defineFeature(feature, (test) => {
 
     then("user lands onto “Patient Login” screen", () => {
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -494,7 +495,7 @@ defineFeature(feature, (test) => {
 
     then("user lands onto “Patient Login” screen", () => {
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
