@@ -378,7 +378,7 @@ export default function ScheduleAppointmentPage() {
     if (isReschedule) {
       await router.push("/patient/appointments");
     } else {
-      await router.push("/patient/appointment");
+      await router.push("/patient");
     }
     dispatch(resetAppointmentSchedule());
   };
