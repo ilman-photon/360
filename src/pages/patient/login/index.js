@@ -5,8 +5,8 @@ import { Login as LoginComponent } from "../../../components/organisms/Login/log
 import { useEffect } from "react";
 import constants from "../../../utils/constants";
 import { removeAuthCookies } from "../../../utils/authetication";
-import Provider from "../../../store/provider";
-import store from "../../../store";
+import { Provider } from "react-redux";
+import store from "../../../store/store";
 
 const api = new Api();
 const cookies = new Cookies();
@@ -111,7 +111,7 @@ export default function login() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     removeAuthCookies();
-  });
+  }, []);
 
   return <LoginComponent {...loginProps} />;
 }
