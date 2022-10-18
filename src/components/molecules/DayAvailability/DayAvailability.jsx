@@ -197,7 +197,7 @@ export const DayAvailability = ({
           <Button
             role={"button"}
             onClick={() => {
-              if (!isPrevArrowDisable(dateList)) {
+              if (!isPrevArrowDisable(dateList, new Date())) {
                 const date = new Date(dateList.dateRange[0]);
                 date.setDate(date.getDate() - 7);
                 onPrevScheduleClicked("overlay", date);
@@ -213,7 +213,7 @@ export const DayAvailability = ({
           >
             <ArrowBackIosIcon
               className={
-                isPrevArrowDisable(dateList)
+                isPrevArrowDisable(dateList, new Date())
                   ? styles.iconDisableSchedule
                   : styles.iconSchedule
               }

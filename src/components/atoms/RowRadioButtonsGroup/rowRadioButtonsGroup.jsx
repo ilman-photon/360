@@ -54,6 +54,8 @@ export default function RowRadioButtonsGroup({
           <>
             <CustomWidthTooltip
               title={tooltipContent}
+              tabindex="0"
+              aria-hidden="true"
               placement="top"
               arrow
               sx={{ width: customTooltipWidth || "unset" }}

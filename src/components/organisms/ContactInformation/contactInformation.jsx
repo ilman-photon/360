@@ -164,6 +164,7 @@ export default function ContactInformation({
           setPlaceDetailsState(placeDetails);
         }
       );
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [placePredictions]);
 
   return (
