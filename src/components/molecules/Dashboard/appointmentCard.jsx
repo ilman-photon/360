@@ -148,7 +148,7 @@ export default function AppointmentCard({
       return (
         <Box>
           <Grid container columns={5} spacing={2} p={3}>
-            <Grid item xs={5} sm={5} md={3}>
+            <Grid item xs={5} sm={5} md={2.5}>
               <Box className={styles.flexDisplay}>
                 <Box pr={1}>
                   <CalendarTodayRoundedIcon sx={{ color: colors.darkGreen }} />
@@ -182,28 +182,34 @@ export default function AppointmentCard({
                   {appointment.providerInfo?.position}
                 </Typography>
                 {renderAddressUI()}
-                <Typography
-                  variant="bodyLinkRegular"
-                  tabIndex={0}
-                  onKeyPress={() =>
-                    window.open(`tel:${appointment.providerInfo?.phoneNumber}`)
-                  }
+                <Box
                   aria-label={`phone number ${appointment.providerInfo?.phoneNumber}`}
+                  tabIndex={0}
                 >
-                  <a
+                  <Typography
+                    variant="bodyLinkRegular"
+                    aria-hidden={true}
                     onKeyPress={() =>
                       window.open(
                         `tel:${appointment.providerInfo?.phoneNumber}`
                       )
                     }
                   >
-                    {formatPhoneNumber(appointment.providerInfo?.phoneNumber)}{" "}
-                  </a>
-                </Typography>
+                    <a
+                      onKeyPress={() =>
+                        window.open(
+                          `tel:${appointment.providerInfo?.phoneNumber}`
+                        )
+                      }
+                    >
+                      {formatPhoneNumber(appointment.providerInfo?.phoneNumber)}{" "}
+                    </a>
+                  </Typography>
+                </Box>
                 {renderGetDirection()}
               </Box>
             </Grid>
-            <Grid item xs={5} sm={5} md={2}>
+            <Grid item xs={5} sm={5} md={2.5}>
               <Box
                 className={styles.containerImage}
                 sx={{

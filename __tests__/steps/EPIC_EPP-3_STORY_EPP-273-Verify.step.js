@@ -7,6 +7,7 @@ import AuthPage from "../../src/pages/patient/login";
 import MfaPage, { getServerSideProps } from "../../src/pages/patient/mfa";
 import Cookies from "universal-cookie";
 import constants from "../../src/utils/constants";
+import { renderWithProviders } from "../src/utils/test-util";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint3/EPP-273.feature",
@@ -91,7 +92,7 @@ defineFeature(feature, (test) => {
         .onGet(`https://api.ipify.org?format=json`)
         .reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -295,7 +296,7 @@ defineFeature(feature, (test) => {
         .onGet(`https://api.ipify.org?format=json`)
         .reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -475,7 +476,7 @@ defineFeature(feature, (test) => {
         .onGet(`https://api.ipify.org?format=json`)
         .reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -654,7 +655,7 @@ defineFeature(feature, (test) => {
         .onGet(`https://api.ipify.org?format=json`)
         .reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -834,7 +835,7 @@ defineFeature(feature, (test) => {
         .onGet(`https://api.ipify.org?format=json`)
         .reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });

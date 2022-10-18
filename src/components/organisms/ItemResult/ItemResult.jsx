@@ -40,6 +40,7 @@ export default function ItemResult({
       >
         <Box sx={{ gridArea: "providerProvile" }}>
           <ProviderProfile
+            isCard
             imageSize={"medium"}
             variant={"viewschedule"}
             providerData={providerData}
@@ -79,6 +80,7 @@ export default function ItemResult({
         <Stack direction={"row"} sx={{ width: "100%" }}>
           <div style={{ flex: 1 }}>
             <ProviderProfile
+              isCard
               variant={"viewschedule"}
               isShownRating={false}
               providerData={providerData}

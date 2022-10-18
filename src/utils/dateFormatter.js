@@ -67,8 +67,12 @@ export function ddmmyyDateFormat(date) {
 }
 
 export function mmddyyDateFormat(date) {
-  const momentDate = new moment(date);
-  return momentDate.format("MM/DD/YYYY");
+  if (isValidDate(new Date(date))) {
+    const momentDate = new moment(date);
+    return momentDate.format("MM/DD/YYYY");
+  } else {
+    return "-";
+  }
 }
 
 export function yyyymmddDateFormat(date) {

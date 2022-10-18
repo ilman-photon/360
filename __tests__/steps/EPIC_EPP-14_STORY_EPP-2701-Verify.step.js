@@ -10,6 +10,7 @@ import AuthPage from "../../src/pages/patient/login";
 import axios from "axios";
 import React, { useState as useStateMock } from "react";
 import { useRouter } from "next/router";
+import { renderWithProviders } from "../src/utils/test-util";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint6/EPP-2701.feature"
@@ -40,7 +41,7 @@ defineFeature(feature, (test) => {
       .onGet(`https://api.ipify.org?format=json`)
       .reply(200, { ip: "10.10.10.10" });
     act(() => {
-      container = render(<AuthPage />, {
+      container = renderWithProviders(<AuthPage />, {
         container: document.body.appendChild(element),
         legacyRoot: true,
       });
@@ -69,7 +70,7 @@ defineFeature(feature, (test) => {
     act(() => {
       container.rerender(
         <Provider store={store}>
-          {MedicalRecordPage.getLayout(<MedicalRecordPage />)}
+          <MedicalRecordPage />
         </Provider>
       );
       router.push(`/patient/account/medical-record?type=care-plan-overview`);
