@@ -53,6 +53,7 @@ export default function BaseHeader({
     if (userStorageData) {
       dispatch(setUserData(userStorageData));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   React.useEffect(() => {

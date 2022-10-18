@@ -70,7 +70,7 @@ defineFeature(feature, (test) => {
     act(() => {
       container.rerender(
         <Provider store={store}>
-          {MedicalRecordPage.getLayout(<MedicalRecordPage />)}
+          <MedicalRecordPage />
         </Provider>
       );
       router.push(`/patient/account/medical-record?type=care-plan-overview`);
