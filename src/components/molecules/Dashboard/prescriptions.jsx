@@ -264,11 +264,8 @@ export default function Prescriptions({
             )}
           </Box>
 
-          <Box
-            className={[isMobile ? "" : styles.flexDisplay, styles.margin]}
-            tabIndex={0}
-          >
-            <Box className={[styles.flexDisplay, getBoxStyle()]}>
+          <Box className={[isMobile ? "" : styles.flexDisplay, styles.margin]}>
+            <Box className={[styles.flexDisplay, getBoxStyle()]} tabIndex={0}>
               <Typography variant="customBodyRegular">
                 Prescribed by: &nbsp;
               </Typography>
@@ -280,6 +277,7 @@ export default function Prescriptions({
                   styles.flexDisplay,
                   isMobile ? styles.marginVertical : "",
                 ]}
+                tabIndex={0}
               >
                 <Typography variant="customBodyRegular">
                   Expires on: &nbsp;
