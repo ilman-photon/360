@@ -24,6 +24,7 @@ export function Login({
   OnCreateAccountClicked,
   OnForgotPasswordClicked,
   onAppointmentClicked,
+  dispatch,
 }) {
   const [postMessage, setPostMessage] = React.useState("");
   const router = useRouter();
@@ -34,7 +35,7 @@ export function Login({
   const { LOGIN_TEST_ID } = constants.TEST_ID;
   const { handleSubmit, control } = useForm();
   const onSubmit = ({ username, password }) => {
-    OnLoginClicked({ username, password }, router, checkMessage);
+    OnLoginClicked({ username, password }, router, checkMessage, dispatch);
   };
 
   const checkMessage = (message) => {

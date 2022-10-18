@@ -8,6 +8,8 @@ import DocumentsPage from "../../src/pages/patient/account/documents/index";
 import axios from "axios";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
+import { renderWithProviders } from "../src/utils/test-util";
+// import React, { useState as useStateMock } from "react";
 import { mockDocument } from "../../__mocks__/mockResponse";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
@@ -58,7 +60,7 @@ defineFeature(feature, (test) => {
       .onGet(`https://api.ipify.org?format=json`)
       .reply(200, { ip: "10.10.10.10" });
     act(() => {
-      container = render(<AuthPage />, {
+      container = renderWithProviders(<AuthPage />, {
         container: document.body.appendChild(element),
         legacyRoot: true,
       });
@@ -97,11 +99,8 @@ defineFeature(feature, (test) => {
   };
 
   const userSeeDocumentTable = async () => {
-    await waitFor(() =>
-      container.getByText("MEDICAL_CERTIFICATE_OF_FITNESS1 - Copy - Copy")
-    );
-    const emptyTable = container.getByText(
-      "MEDICAL_CERTIFICATE_OF_FITNESS1 - Copy - Copy"
+    const emptyTable = await waitFor(() =>
+      container.getByText("There are no intake forms.")
     );
     expect(emptyTable).toBeInTheDocument();
   };
@@ -150,8 +149,8 @@ defineFeature(feature, (test) => {
     then(
       "user should view the list of documents that can be downloaded",
       async () => {
-        const emptyTable = container.getByText("There are no document.");
-        expect(emptyTable).toBeInTheDocument();
+        const table = container.getByText("Intake Forms");
+        expect(table).toBeInTheDocument();
       }
     );
   });

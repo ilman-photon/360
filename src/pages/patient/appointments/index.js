@@ -107,7 +107,6 @@ export default function Appointments() {
         <Box ariaLabel={"Appointments page"} className={styles.container}>
           <AccountTitleHeading
             title={"Appointments"}
-            isFixed={false}
             sx={
               isMobile && {
                 padding: "27px 10px",
