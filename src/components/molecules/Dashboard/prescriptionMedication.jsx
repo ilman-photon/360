@@ -115,9 +115,6 @@ export default function PrescriptionMedication({
         tempMedicationData.past
       );
       for (const filter of newFilterData) {
-        if (filter.name === "All" && filter.checked) {
-          filterResult = filterResult;
-        }
         if (filter.name === "Refill Requested" && filter.checked) {
           filterResult = filterResult.filter(
             (v) => v.type === "refill request"
