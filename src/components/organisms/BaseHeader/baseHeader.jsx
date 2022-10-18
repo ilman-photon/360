@@ -224,35 +224,33 @@ export default function BaseHeader({
                   data-testid="user-menu-close"
                   onClose={handleCloseUserMenu}
                 >
-                  {
-                    <Stack spacing={2}>
-                      <MenuItem>
-                        <Button
-                          variant="text"
-                          sx={styles.buttonProfileMenu}
-                          data-testid={HOME_TEST_ID.account}
-                          onClick={() => {
-                            router.push("/patient/account/profile-info");
-                          }}
-                        >
-                          Account
-                        </Button>
-                      </MenuItem>
-                      <MenuItem onClick={handleCloseNavMenu}>
-                        <Button
-                          variant="text"
-                          sx={styles.buttonProfileMenu}
-                          data-testid={HOME_TEST_ID.logout}
-                          startIcon={<ExitToAppIcon />}
-                          onClick={() => {
-                            OnLogoutClicked(router);
-                          }}
-                        >
-                          Logout
-                        </Button>
-                      </MenuItem>
-                    </Stack>
-                  }
+                  {/* <Stack spacing={2}> */}
+                  <MenuItem>
+                    <Button
+                      variant="text"
+                      sx={styles.buttonProfileMenu}
+                      data-testid={HOME_TEST_ID.account}
+                      onClick={() => {
+                        router.push("/patient/account/profile-info");
+                      }}
+                    >
+                      Account
+                    </Button>
+                  </MenuItem>
+                  <MenuItem onClick={handleCloseNavMenu}>
+                    <Button
+                      variant="text"
+                      sx={styles.buttonProfileMenu}
+                      data-testid={HOME_TEST_ID.logout}
+                      startIcon={<ExitToAppIcon />}
+                      onClick={() => {
+                        OnLogoutClicked(router);
+                      }}
+                    >
+                      Logout
+                    </Button>
+                  </MenuItem>
+                  {/* </Stack> */}
                 </Menu>
               </Box>
             </Toolbar>
