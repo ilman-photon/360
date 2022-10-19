@@ -75,6 +75,7 @@ export default function ModalConfirmContent({
   OnOkClicked = () => {
     // This is intended
   },
+  onAddToCalendarClicked,
   isPage = false,
 }) {
   const isMobile = useMediaQuery("(max-width: 768px)");
@@ -201,6 +202,25 @@ export default function ModalConfirmContent({
                 sx={{
                   backgroundColor: "#EEF5F7",
                   mb: 2,
+                }}
+                onClick={() => {
+                  onAddToCalendarClicked({
+                    name: "ECP Appointment",
+                    description: `Patient: ${getName()}, Purpose of Visit: ${
+                      appointmentData.appointmentType
+                    }`,
+                    date: appointmentData.date,
+                    location:
+                      providerData.address.addressLine1 +
+                      ` ` +
+                      providerData.address.addressLine2 +
+                      ` ` +
+                      providerData.address.city +
+                      ` ` +
+                      providerData.address.state +
+                      ` ` +
+                      providerData.address.zipcode,
+                  });
                 }}
               >
                 <Typography
