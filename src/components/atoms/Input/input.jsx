@@ -151,6 +151,9 @@ export const StyledRedditField = styled(RedditTextField)(({ theme }) => ({
     "&.Mui-error": {
       color: "#B93632",
     },
+    "&.Mui-disabled": {
+      color: "#00000061",
+    },
   },
   "& .MuiFilledInput-root": {
     border: "1px solid #BDBDBD",
