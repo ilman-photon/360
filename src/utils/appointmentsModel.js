@@ -19,13 +19,9 @@ export function appointmentParser(data = {}) {
       name,
       position: data.provider?.address?.name || "",
       address: data.provider?.address || "",
-      rating: data.provider?.rating || "",
-      phoneNumber: data.provider?.phone || "",
+      rating: data.provider?.rating / 2 || "",
+      phoneNumber: data.provider?.workPhone || "",
       image: data.provider?.profilePhoto?.digitalAsset.uid || "",
-      location: {
-        latitude: data.provider?.latitude || "",
-        longitude: data.provider?.longitude || "",
-      },
     },
     patientInfo: {
       name: `${data.patient?.firstName || ``}${
@@ -38,7 +34,7 @@ export function appointmentParser(data = {}) {
     appointmentInfo: {
       appointmentType: data.appointmentType?.name,
       date: `${data.appointmentDate} ${data.appointmentTime}`,
-      insuranceCarrier: [],
+      insuranceCarrier: data.insurancePayers || [],
     },
     year,
   };

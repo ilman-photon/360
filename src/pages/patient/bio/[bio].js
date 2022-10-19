@@ -34,8 +34,9 @@ export default function Bio({ embedApi, bio }) {
     const name = `${response.firstName || ""} ${response.lastName || ""}${
       response.designation ? `, ${response.designation}` : ""
     }`;
-    const genderCode = response.sex?.name;
-    const gender = genderCode === "M" ? "Male" : "Female";
+    const genderCode = response.sex?.key;
+    const femaleGender = genderCode === "3" ? "Female" : "-";
+    const gender = genderCode === "6" ? "Male" : femaleGender;
     const address = [];
     const primaryAddress = response.address || "";
     const secondaryAddress = (response.offices && response.offices[0]) || "";

@@ -9,8 +9,19 @@ import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
 
 export default function AppointmentInformation({ data }) {
   const getProviderLocation = () => {
-    if (!data.providerInfo.location) return "#";
-    return `https://www.google.com/maps/search/?api=1&query=${data.providerInfo.location.latitude},${data.providerInfo.location.longitude}`;
+    if (data.providerInfo.address === "") return "#";
+    const addressLine1 = address.addressLine1 || "";
+    const addressLine2 = address.addressLine2 || "";
+    const state = address.state || "";
+    const zipcode = address.zipcode || address.zip || "";
+    const city = address.city || "";
+
+    const addressQuery =
+      `${addressLine1}${addressLine2}${city}${state}${zipcode}`.replace(
+        / /g,
+        "+"
+      );
+    return `https://www.google.com/maps/search/?api=1&query=${addressQuery}`;
   };
 
   const [providerImage, setProviderImage] = useState("");
@@ -149,19 +160,30 @@ export default function AppointmentInformation({ data }) {
           >
             Insurance
           </Typography>
-          {data.appointmentInfo.insuranceCarrier.map((item, index) => {
-            return (
-              <Typography
-                tabIndex={0}
-                ariaLabel={item}
-                variant="body2"
-                key={index}
-                sx={{ color: "#191919" }}
-              >
-                {item}
-              </Typography>
-            );
-          })}
+          {data.appointmentInfo.insuranceCarrier.length > 0 ? (
+            data.appointmentInfo.insuranceCarrier.map((item, index) => {
+              return (
+                <Typography
+                  tabIndex={0}
+                  ariaLabel={item}
+                  variant="body2"
+                  key={index}
+                  sx={{ color: "#191919" }}
+                >
+                  {item}
+                </Typography>
+              );
+            })
+          ) : (
+            <Typography
+              ariaLabel="-"
+              variant="body2"
+              key={index}
+              sx={{ color: "#191919" }}
+            >
+              -
+            </Typography>
+          )}
         </Box>
       </Box>
     </Box>
