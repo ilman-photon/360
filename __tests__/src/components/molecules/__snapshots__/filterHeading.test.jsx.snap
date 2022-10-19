@@ -126,7 +126,7 @@ Object {
                   >
                     <input
                       aria-invalid="false"
-                      aria-label="Choose date"
+                      aria-label="Double tap to Choose date"
                       aria-readonly="true"
                       class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                       id=":r2:"
@@ -452,7 +452,7 @@ Object {
                 >
                   <input
                     aria-invalid="false"
-                    aria-label="Choose date"
+                    aria-label="Double tap to Choose date"
                     aria-readonly="true"
                     class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                     id=":r2:"
@@ -835,7 +835,7 @@ Object {
                   >
                     <input
                       aria-invalid="false"
-                      aria-label="Choose date"
+                      aria-label="Double tap to Choose date"
                       aria-readonly="true"
                       class="MuiFilledInput-input MuiInputBase-input css-10botns-MuiInputBase-input-MuiFilledInput-input"
                       id=":r8:"
