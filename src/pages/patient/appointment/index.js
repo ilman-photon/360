@@ -174,6 +174,7 @@ export default function Appointment({ googleApiKey }) {
   }, [router, filterSuggestionData, filterData]);
 
   function onSearchProvider(data) {
+    dispatch(setActiveFilterBy([]));
     dispatch(setFilterData(data));
     onCallSubmitFilterAPI(data, [], false, true);
     dispatch(setIsFilterApplied(true));
