@@ -84,8 +84,14 @@ export default function AuthLayout({
             <Container
               className={styles.authImageContainer}
               sx={{
-                display: { xs: showMobileImage ? "flex" : "none", md: "flex" },
+                display: { xs: showMobileImage ? "flex" : "none" },
                 padding: 0,
+                "@media (orientation: landscape)": {
+                  display: {
+                    xs: showMobileImage ? "flex" : "none",
+                    md: "flex",
+                  },
+                },
               }}
             >
               <div
