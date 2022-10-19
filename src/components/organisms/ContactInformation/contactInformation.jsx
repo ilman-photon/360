@@ -579,7 +579,7 @@ export default function ContactInformation({
               onClick={handleCancel}
               variant="contained"
               className={[styles.formButton, styles.outlined].join(" ")}
-              sx={buttonWidth}
+              sx={{ ...buttonWidth, fontSize: "14px", fontWeight: 600 }}
             >
               Cancel
             </Button>
@@ -587,7 +587,7 @@ export default function ContactInformation({
               type="submit"
               variant="contained"
               className={[styles.formButton, styles.primary].join(" ")}
-              sx={buttonWidth}
+              sx={{ ...buttonWidth, fontSize: "14px", fontWeight: 600 }}
             >
               Save
             </Button>
