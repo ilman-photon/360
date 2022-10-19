@@ -12,18 +12,17 @@ import store from "../../store/store";
 import { useRouter } from "next/router";
 import { Api } from "../api/api";
 import {
-  setAppointmentSchedule,
   setFilterBy,
   setFilterData,
   setIsFilterApplied,
   setProviderListData,
 } from "../../store/appointment";
 import {
-  parseInsuranceCarrier,
-  parsePurposeOfVisit,
   getMondayOfCurrentWeek,
   getSaturdayOfCurrentWeek,
+  parseInsuranceCarrier,
   parseProviderListData,
+  parsePurposeOfVisit,
 } from "../../utils/appointment";
 import FilterResultHeading from "../../components/molecules/FilterResultHeading/filterResultHeading";
 import { Box } from "@mui/system";
@@ -33,6 +32,10 @@ import { getCity } from "../../utils/getCity";
 import CustomModal from "../../components/molecules/CustomModal/customModal";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { colors } from "../../styles/theme";
+import { appointmentParser } from "../../utils/appointmentsModel";
+import { onCallGetPrescriptionData } from "../../utils/prescription";
+import Navbar from "../../components/molecules/Navbar/Navbar";
+import { fetchUser } from "../../store/user";
 
 export async function getStaticProps() {
   return {
@@ -49,10 +52,10 @@ export default function HomePage({ googleApiKey }) {
   const [isAuthenticated, setIsAuthenticated] = React.useState(true);
   const [currentCity, setCurrentCity] = React.useState("");
   const [modalSuccessCancel, setModalSuccessCancel] = React.useState(false);
+  const [username, setUsername] = React.useState("");
 
   const insuranceCarrierList = useSelector((state) => state.provider.list);
   const filterData = useSelector((state) => state.appointment.filterData);
-  const userData = useSelector((state) => state.user.userData);
   const isDesktop = useMediaQuery("(min-width: 900px)");
   const { coords, isGeolocationEnabled } = useGeolocated({
     positionOptions: {
@@ -72,7 +75,6 @@ export default function HomePage({ googleApiKey }) {
           purposeOfVisit: parsePurposeOfVisit(response?.entities || []),
           insuranceCarrier: parseInsuranceCarrier(insuranceCarrierList),
         };
-        console.log(filterSuggestion);
         setFilterSuggestionData(filterSuggestion);
       })
       .catch(function () {
@@ -89,7 +91,7 @@ export default function HomePage({ googleApiKey }) {
     const endDateRequest = getSaturdayOfCurrentWeek(requestData.date);
     const postBody = {
       appointmentType: {
-        code: selectedAppointmentType?.id || " ",
+        code: selectedAppointmentType?.id || "ALL",
       },
       currentDate: startDateRequest,
       numDays: 6,
@@ -120,13 +122,17 @@ export default function HomePage({ googleApiKey }) {
       });
   }
 
-  //Call API for getAllPrescriptions
-  function onCalledGetAllPrescriptionsAPI() {
-    const api = new Api();
-    api
-      .getAllPrescriptions()
+  function onCalledAllPrescription() {
+    onCallGetPrescriptionData()
       .then(function (response) {
-        setPrescriptionData(response.prescriptions);
+        const prescriptionDataTemp = { ...response };
+        if (response?.glasses?.length > 0) {
+          prescriptionDataTemp["glasses"] = [response.glasses[0]];
+        }
+        if (response?.contacts?.length > 0) {
+          prescriptionDataTemp["contacts"] = [response.contacts[0]];
+        }
+        setPrescriptionData(prescriptionDataTemp);
       })
       .catch(function () {
         //Handle error getAllPrescriptions
@@ -137,21 +143,14 @@ export default function HomePage({ googleApiKey }) {
   function onCalledGetAllAppointment() {
     const api = new Api();
     api
-      .getAllAppointment()
+      .getUpcomingAppointment()
       .then(function (response) {
-        const today = new Date();
-        const upcomingAppointments = [];
-        const appointmentList = response.appointmentList || [];
-        for (const appointment of appointmentList) {
-          const visitDate = new Date(appointment.appointmentInfo.date);
-
-          const daysAway = visitDate.getTime() - today.getTime();
-          const totalDays = Math.ceil(daysAway / (1000 * 3600 * 24));
-          if (totalDays >= 0) {
-            upcomingAppointments.push(appointment);
-          }
-        }
-        setAppointmentData(upcomingAppointments);
+        const upcomingAppointment = [];
+        response.entities.map((data) => {
+          const mappedData = appointmentParser(data);
+          upcomingAppointment.push(mappedData);
+        });
+        setAppointmentData(upcomingAppointment);
       })
       .catch(function () {
         //Handle error getAllAppointment
@@ -180,9 +179,17 @@ export default function HomePage({ googleApiKey }) {
   }, [setIsAuthenticated, router]);
 
   useEffect(() => {
-    onCalledGetAllPrescriptionsAPI();
+    onCalledAllPrescription();
     onCalledGetAllAppointment();
     dispatch(fetchAllPayers());
+    const userStorageData = JSON.parse(localStorage.getItem("userProfile"));
+    if (userStorageData) {
+      let firstName = userStorageData?.firstName || "";
+      if (firstName) {
+        firstName = firstName[0].toUpperCase() + firstName.substring(1);
+        setUsername(firstName);
+      }
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -198,7 +205,6 @@ export default function HomePage({ googleApiKey }) {
   }
 
   const handleClickCancel = () => {
-    console.log(isOpenCancel, "vs");
     setIsOpenCancel(true);
   };
 
@@ -218,25 +224,11 @@ export default function HomePage({ googleApiKey }) {
   const onClickReschedule = ({
     appointmentInfo,
     providerInfo = { address: {} },
+    appointmentId,
   }) => {
-    const dataFilter = {
-      purposeOfVisit: appointmentInfo.appointmentType,
-      date: new Date(appointmentInfo.date),
-      insuranceCarrier: Array.isArray(appointmentInfo.insuranceCarrier)
-        ? appointmentInfo.insuranceCarrier[0]
-        : appointmentInfo.insuranceCarrier,
-      location: providerInfo.address.city,
-    };
-
-    const appointmentSchedule = {
-      providerInfo: providerInfo,
-      patientInfo: userData,
-      appointmentInfo: appointmentInfo,
-    };
-    dispatch(setFilterData(dataFilter));
-    dispatch(setAppointmentSchedule(appointmentSchedule));
-
-    router.push("/patient/appointments/1/reschedule");
+    if (appointmentId) {
+      router.push(`/patient/appointments/${appointmentId}/reschedule`);
+    }
   };
 
   return (
@@ -244,20 +236,24 @@ export default function HomePage({ googleApiKey }) {
       {!isAuthenticated && (
         <Stack sx={{ width: "100%" }}>
           {isDesktop ? (
-            <FilterHeading
-              isDesktop={isDesktop}
-              isTablet={false}
-              onSearchProvider={onSearchProvider}
-              isGeolocationEnabled={isGeolocationEnabled}
-              filterData={filterData}
-              purposeOfVisitData={filterSuggestionData.purposeOfVisit}
-              insuranceCarrierData={filterSuggestionData.insuranceCarrier}
-              title={"John, Welcome to your dashboard"}
-              subtitle={"Search for a doctor"}
-              isFixed={false}
-              currentCity={currentCity}
-              onChangeLocation={fetchCurrentLocation}
-            />
+            <>
+              <Navbar isDashboard={true} />
+              <FilterHeading
+                isDesktop={isDesktop}
+                isTablet={false}
+                onSearchProvider={onSearchProvider}
+                isGeolocationEnabled={isGeolocationEnabled}
+                filterData={filterData}
+                purposeOfVisitData={filterSuggestionData.purposeOfVisit}
+                insuranceCarrierData={filterSuggestionData.insuranceCarrier}
+                title={`${username}, Welcome to your dashboard`}
+                subtitle={"Search for a doctor"}
+                isFixed={false}
+                currentCity={currentCity}
+                onChangeLocation={fetchCurrentLocation}
+                isDashboard={true}
+              />
+            </>
           ) : (
             <Box
               sx={{
@@ -279,7 +275,7 @@ export default function HomePage({ googleApiKey }) {
                   //this is intentional
                 }}
                 appliedFilter={[]}
-                title={"John, Welcome to your dashboard"}
+                title={`${username}, Welcome to your dashboard`}
                 subtitle={"Search for a doctor"}
               />
             </Box>

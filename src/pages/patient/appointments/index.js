@@ -1,5 +1,5 @@
 import AppointmentLayout from "../../../components/templates/appointmentLayout";
-import { Provider, useDispatch, useSelector } from "react-redux";
+import { Provider } from "react-redux";
 import store from "../../../store/store";
 import UpcomingAppointment from "../../../components/organisms/UpcomingAppointment/upcomingAppointment";
 import { Typography, Box } from "@mui/material";
@@ -9,11 +9,6 @@ import AccountTitleHeading from "../../../components/atoms/AccountTitleHeading/a
 import { Api } from "../../api/api";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import {
-  setAppointmentSchedule,
-  setFilterData,
-} from "../../../store/appointment";
-import { setUserAppointmentData } from "../../../store/user";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import CustomModal from "../../../components/molecules/CustomModal/customModal";
 import FormMessage from "../../../components/molecules/FormMessage/formMessage";
@@ -21,7 +16,6 @@ import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import { colors } from "../../../styles/theme";
 import ModalCancelScheduling from "../../../components/organisms/ScheduleAppointment/ModalCancelScheduling/modalCancelScheduling";
 import Cookies from "universal-cookie";
-import moment from "moment";
 import { addToCalendar } from "../../../utils/addToCalendar";
 import { appointmentParser } from "../../../utils/appointmentsModel";
 export default function Appointments() {
@@ -33,12 +27,7 @@ export default function Appointments() {
   const [isAuthenticated, setIsAuthenticated] = useState(true);
   const [upcomingAppointment, setUpcomingAppointment] = useState([]);
   const [pastAppointment, setPastAppointment] = useState([]);
-
-  //const appointments = useSelector((state) => state.user.userAppointmentData);
-  const userData = useSelector((state) => state.user.userData);
-
   const router = useRouter();
-  const dispatch = useDispatch();
   const isMobile = useMediaQuery("(max-width: 992px)");
 
   const getAppointments = () => {
@@ -97,39 +86,9 @@ export default function Appointments() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [upcomingAppointment, pastAppointment]);
 
-  const onRescheduleClicked = ({
-    appointmentInfo,
-    providerInfo = { address: {} },
-  }) => {
-    if (appointmentInfo) {
-      const filterData = {
-        purposeOfVisit: appointmentInfo.appointmentType,
-        date: new Date(appointmentInfo.date),
-        insuranceCarrier: Array.isArray(appointmentInfo.insuranceCarrier)
-          ? appointmentInfo.insuranceCarrier[0]
-          : appointmentInfo.insuranceCarrier,
-        location: providerInfo.address ? providerInfo.address.city : "-",
-      };
-
-      const parseDate = new moment(new Date(appointmentInfo.date)).format(
-        "YYYY-MM-DD[T]hh:mm:ss"
-      );
-      const appointmentSchedule = {
-        providerInfo: providerInfo,
-        patientInfo: userData,
-        appointmentInfo: {
-          ...appointmentInfo,
-          date: parseDate,
-        },
-      };
-      dispatch(setFilterData(filterData));
-      dispatch(setAppointmentSchedule(appointmentSchedule));
-
-      router.push(
-        `/patient/appointments/${providerInfo.providerId}/reschedule`
-      );
-    } else {
-      router.push("/patient");
+  const onRescheduleClicked = ({ appointmentId }) => {
+    if (appointmentId) {
+      router.push(`/patient/appointments/${appointmentId}/reschedule`);
     }
   };
 
@@ -148,7 +107,6 @@ export default function Appointments() {
         <Box ariaLabel={"Appointments page"} className={styles.container}>
           <AccountTitleHeading
             title={"Appointments"}
-            isFixed={false}
             sx={
               isMobile && {
                 padding: "27px 10px",

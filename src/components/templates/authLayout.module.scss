@@ -45,7 +45,7 @@
 
   @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
     width: 100vw;
-    padding-top: 146px !important;
+    padding-top: 90px !important;
   }
 
   @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
@@ -60,7 +60,7 @@
   padding: 0px !important;
 
   @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) and (-webkit-min-device-pixel-ratio: 2) {
-    display: none;
+    display: none !important;
   }
 
   @media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: landscape) and (-webkit-min-device-pixel-ratio: 2) {
@@ -107,7 +107,7 @@
     right: -2vw !important;
     bottom: unset !important;
     position: absolute !important;
-    top: 40px !important;
+    top: 0px !important;
     left: unset !important;
     border-radius: 0;
     border-bottom-left-radius: 80%;

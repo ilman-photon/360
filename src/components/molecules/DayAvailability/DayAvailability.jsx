@@ -92,7 +92,7 @@ export const DayAvailability = ({
   useEffect(() => {
     if (scheduleData && Object.keys(scheduleData).length > 0) {
       const scheduleParse = parseScheduleDataWeekOverlay(scheduleData);
-      if (scheduleParse) {
+      if (scheduleParse && Object.keys(scheduleParse).length !== 0) {
         setSchedule(scheduleParse);
         setDateWeekList(parseDateWeekList(scheduleData));
       }
@@ -109,7 +109,7 @@ export const DayAvailability = ({
       setTimeInWeek(timeInWeekLabel(rangeDate.startDate, rangeDate.endDate));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [scheduleData]);
+  }, [scheduleData, rangeDate]);
 
   function renderScheduleData() {
     let renderUI = [];
@@ -197,7 +197,7 @@ export const DayAvailability = ({
           <Button
             role={"button"}
             onClick={() => {
-              if (!isPrevArrowDisable(dateList)) {
+              if (!isPrevArrowDisable(dateList, new Date())) {
                 const date = new Date(dateList.dateRange[0]);
                 date.setDate(date.getDate() - 7);
                 onPrevScheduleClicked("overlay", date);
@@ -213,7 +213,7 @@ export const DayAvailability = ({
           >
             <ArrowBackIosIcon
               className={
-                isPrevArrowDisable(dateList)
+                isPrevArrowDisable(dateList, new Date())
                   ? styles.iconDisableSchedule
                   : styles.iconSchedule
               }

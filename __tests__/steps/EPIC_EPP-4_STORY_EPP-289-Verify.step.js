@@ -3,6 +3,7 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import AuthPage from "../../src/pages/patient/login";
+import { renderWithProviders } from "../src/utils/test-util";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint2/EPP-289.feature", {
@@ -11,15 +12,15 @@ const feature = loadFeature(
 );
 
 defineFeature(feature, (test) => {
+  let container, login;
+  const mock = new MockAdapter(axios);
+  const element = document.createElement("div");
   test("EPIC_EPP-4_STORY_EPP-289 - Verify user  should be able to logout from patient portal", ({
     given,
     when,
     then,
     and,
   }) => {
-    let container, login;
-    const mock = new MockAdapter(axios);
-    const element = document.createElement("div");
     given('user launch the \'XXX\' url', () => {
       expect(true).toBeTruthy()
     });
@@ -210,7 +211,7 @@ defineFeature(feature, (test) => {
     when("user lands onto “Patient Login” screen", () => {
       mock.onGet(`https://api.ipify.org?format=json`).reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });

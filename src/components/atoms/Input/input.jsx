@@ -114,27 +114,34 @@ export const CustomPasswordInput = styled((props) => (
   },
 }));
 
-export const RedditTextField = styled((props) => (
-  <TextField
-    onKeyDown={props.onKeyDown}
-    onInput={(e) => {
-      e.target.value = e.target.value
-        .toString()
-        .slice(0, props.maxLength || 1000);
-    }}
-    InputProps={{
-      endAdornment: props.adorment ? (
-        <InputAdornment position="end">
-          <IconButton aria-label="toggle password visibility" edge="end">
-            <PersonOutlinedIcon sx={{ fontSize: "20px" }} />
-          </IconButton>
-        </InputAdornment>
-      ) : null,
-      ...props.InputProps,
-    }}
-    {...props}
-  />
-))(({ theme }) => ({
+export const RedditTextField = React.forwardRef((props, ref) => {
+  return (
+    <TextField
+      inputRef={ref}
+      onKeyDown={props.onKeyDown}
+      onInput={(e) => {
+        e.target.value = e.target.value
+          .toString()
+          .slice(0, props.maxLength || 1000);
+      }}
+      InputProps={{
+        disableUnderline: true,
+        endAdornment: props.adorment ? (
+          <InputAdornment position="end">
+            <IconButton aria-label="toggle password visibility" edge="end">
+              <PersonOutlinedIcon sx={{ fontSize: "20px" }} />
+            </IconButton>
+          </InputAdornment>
+        ) : null,
+        ...props.InputProps,
+      }}
+      {...props}
+    />
+  );
+});
+RedditTextField.displayName = "RedditTextField";
+
+export const StyledRedditField = styled(RedditTextField)(({ theme }) => ({
   ".MuiInputLabel-root": {
     color: "#303030",
     "&.MuiInputLabel-shrink": {
@@ -262,7 +269,7 @@ export const CustomInput = styled(({ ...props }) => {
               //   },
               // }}
               renderInput={(params) => (
-                <RedditTextField
+                <StyledRedditField
                   variant="filled"
                   sx={{
                     borderRadius: "4px",
@@ -296,7 +303,7 @@ export const CustomInput = styled(({ ...props }) => {
         <>
           <CustomFormControl variant="filled">
             <InputMask mask="(999) 999-9999" maskPlaceholder="" {...props}>
-              <RedditTextField name="phone" type="text" />
+              <StyledRedditField name="phone" type="text" />
             </InputMask>
           </CustomFormControl>
         </>
@@ -305,7 +312,7 @@ export const CustomInput = styled(({ ...props }) => {
     default:
       return (
         <>
-          <RedditTextField
+          <StyledRedditField
             variant="filled"
             sx={{
               backgroundColor: "white",
@@ -352,5 +359,6 @@ export const StyledInput = ({
     </ThemeProvider>
   );
 };
+StyledInput.displayName = "StyledInput";
 
 export default StyledInput;

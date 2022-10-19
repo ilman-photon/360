@@ -6923,3 +6923,1847 @@ export const submitFilter = {
     },
   ],
 };
+
+export const testLab = {
+  count: 2,
+  entities: [
+    {
+      examSheet: {
+        _links: {
+          self: {
+            href: "/v1/exam-sheets/6eac6174-dd4d-42d0-ab5d-8edcf17c1d64",
+          },
+        },
+        _id: "6eac6174-dd4d-42d0-ab5d-8edcf17c1d64",
+      },
+      examSheetSectionGroup: {
+        _links: {
+          self: {
+            href: "/v1/exam-sheet-sections/4a610e7c-e134-44e7-848e-d2012067b76e",
+          },
+        },
+        _id: "4a610e7c-e134-44e7-848e-d2012067b76e",
+      },
+      sequence: 1,
+      status: "CREATED",
+      deleted: false,
+      data: {
+        testingOrder: {
+          orderDetails: {
+            status: "RESULTS_AVAILABLE",
+            patient: {
+              dob: "09/16/2022",
+              mrn: "VGF164640",
+              sex: "",
+              lastName: "nikita",
+              firstName: "nikita",
+              _id: "3b38ebd3-43f1-438e-b101-ba38f01350f0",
+            },
+            dateTime: {
+              endDate: "2022-09-30T12:51:30.000+00:00",
+              startDate: "2022-09-30T12:51:30.000+00:00",
+              startTime: "2022-09-30T12:51:30.000+00:00",
+            },
+            examLink:
+              "https://cloud.continuumpacs.com/ecp/PatientExamDirect/Exam?uID=emruser&uPass=reHg0U9U6fR!&ExamId=dfa86225-7aac-426c-989f-164ca8d5a0e9",
+            testType: {
+              _id: "012054df-15ad-4190-981b-4fb663a16c8b",
+            },
+            encounter: {
+              _id: "9d957ac0-efb4-41fb-938c-96464a874d4d",
+            },
+            technician: {
+              sex: "",
+              lastName: "emma",
+              firstName: "parker",
+              middleName: "M",
+              assigningAuthority: "ADT1",
+              _id: "3c49b82e-4ed0-4f4f-9948-7b092feadc6a",
+            },
+            appointment: {
+              _id: "d8bb91cf-cbcb-4467-bd0c-f5c37f5d12ba",
+            },
+            orderingProvider: {
+              lastName: "user",
+              firstName: "ECP",
+              middleName: "M",
+              assigningAuthority: "NPI",
+              _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+            },
+          },
+        },
+        commonTestFields: {
+          assessment: {
+            OU: ["Same"],
+            OD: null,
+            OS: null,
+          },
+          testReliability: ["Good"],
+          patientCooperation: {
+            cooperation: ["Good"],
+          },
+        },
+        biometry: null,
+        Keratometry: {
+          OD: {
+            parameters: [{}],
+          },
+          OS: {
+            parameters: [{}],
+          },
+        },
+      },
+      _links: {
+        self: {
+          href: "/v1/exam-sheet-entry/1973c4d0-74da-41c5-a5f7-b2358821f823",
+        },
+      },
+      _id: "1973c4d0-74da-41c5-a5f7-b2358821f823",
+      _version: "b404f709-5d33-4fe2-a57d-97231ab05a3f",
+      _created: "Sep 30, 2022, 12:51:53 PM",
+      _updated: "Sep 30, 2022, 12:51:53 PM",
+      _createdBy: {
+        _links: {
+          self: {
+            href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+          },
+        },
+        _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+      },
+    },
+    {
+      examSheet: {
+        _links: {
+          self: {
+            href: "/v1/exam-sheets/6eac6174-dd4d-42d0-ab5d-8edcf17c1d64",
+          },
+        },
+        _id: "6eac6174-dd4d-42d0-ab5d-8edcf17c1d64",
+      },
+      examSheetSectionGroup: {
+        _links: {
+          self: {
+            href: "/v1/exam-sheet-sections/4a610e7c-e134-44e7-848e-d2012067b76e",
+          },
+        },
+        _id: "4a610e7c-e134-44e7-848e-d2012067b76e",
+      },
+      sequence: 1,
+      status: "CREATED",
+      deleted: false,
+      data: {
+        testingOrder: {
+          orderDetails: {
+            status: "RESULTS_AVAILABLE",
+            patient: {
+              dob: "09/16/2022",
+              mrn: "VGF164640",
+              sex: "",
+              lastName: "nikita",
+              firstName: "nikita",
+              _id: "3b38ebd3-43f1-438e-b101-ba38f01350f0",
+            },
+            dateTime: {
+              endDate: "2022-09-30T12:53:26.000+00:00",
+              startDate: "2022-09-30T12:53:26.000+00:00",
+              startTime: "2022-09-30T12:53:26.000+00:00",
+            },
+            examLink:
+              "https://cloud.continuumpacs.com/ecp/PatientExamDirect/Exam?uID=emruser&uPass=reHg0U9U6fR!&ExamId=f249c1b1-9932-4423-880a-98dbbb363402",
+            testType: {
+              _id: "1d3deb86-f893-4b8f-bbd6-2fb061522ced",
+            },
+            encounter: {
+              _id: "9d957ac0-efb4-41fb-938c-96464a874d4d",
+            },
+            technician: {
+              sex: "",
+              lastName: "emma",
+              firstName: "parker",
+              middleName: "M",
+              assigningAuthority: "ADT1",
+              _id: "3c49b82e-4ed0-4f4f-9948-7b092feadc6a",
+            },
+            appointment: {
+              _id: "d8bb91cf-cbcb-4467-bd0c-f5c37f5d12ba",
+            },
+            orderingProvider: {
+              lastName: "user",
+              firstName: "ECP",
+              middleName: "M",
+              assigningAuthority: "NPI",
+              _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+            },
+          },
+        },
+        commonTestFields: {
+          assessment: {
+            OU: ["Same"],
+            OD: ["Better"],
+            OS: ["Same"],
+          },
+          testReliability: ["Fair"],
+          patientCooperation: {
+            cooperation: ["Good"],
+          },
+        },
+        biometry: {
+          texts: [
+            "Optical coherence biometry was performed with IOL calculations",
+            "Optical coherence biometry was performed without IOL calculations at no charge",
+            "Unable to obtain reliable axial length - an Immersion A-scan was required",
+            "Unable to obtain reliable keratometry, unable to perform IOL calculations",
+          ],
+        },
+        Keratometry: null,
+      },
+      _links: {
+        self: {
+          href: "/v1/exam-sheet-entry/58b25da7-dc5e-43c8-8f20-3aa983cdc987",
+        },
+      },
+      _id: "58b25da7-dc5e-43c8-8f20-3aa983cdc987",
+      _version: "fdb6d2ac-e91a-4306-ac4c-5bce80fa361d",
+      _created: "Sep 30, 2022, 12:53:38 PM",
+      _updated: "Sep 30, 2022, 12:53:38 PM",
+      _createdBy: {
+        _links: {
+          self: {
+            href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+          },
+        },
+        _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+      },
+    },
+  ],
+  _links: {
+    self: {
+      href: "/emr?pageNo=0&pageSize=100",
+    },
+  },
+};
+export const carePlan = {
+  count: 2,
+  entities: [
+    {
+      name: "MEDICAL_CERTIFICATE_OF_FITNESS2",
+      documentType: "application/pdf",
+      category: "care-plan",
+      uploadedBy: {
+        uid: "2818ef11-208b-4f43-b471-06ad495381f1",
+        firstName: "indraku",
+        lastName: "kumar",
+        designation: "Mr",
+        _createdBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      patientId: "95090352-de7b-485b-8a7b-9c1255a15070",
+      status: "CREATED",
+      digital_assets: {
+        _id: "23d9d6de-8689-48d0-9427-844087dde75e",
+      },
+      _id: "1d06a57a-418f-479a-b800-f9eae273b51a",
+      _version: "53c0b7af-9bb6-4f86-8ac5-2cde8bcc84dd",
+      _created: "Oct 7, 2022, 10:00:34 AM",
+      _updated: "Oct 7, 2022, 10:00:34 AM",
+      _createdBy: {
+        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+        _links: {
+          self: {
+            href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+          },
+        },
+      },
+      _links: {
+        self: {
+          href: "/v1/patients/1d06a57a-418f-479a-b800-f9eae273b51a",
+        },
+      },
+    },
+    {
+      name: "MEDICAL_CERTIFICATE_OF_FITNESS2",
+      documentType: "application/pdf",
+      category: "care-plan",
+      uploadedBy: {
+        uid: "2818ef11-208b-4f43-b471-06ad495381f1",
+        firstName: "indraku",
+        lastName: "kumar",
+        designation: "Mr",
+        _createdBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      patientId: "95090352-de7b-485b-8a7b-9c1255a15070",
+      status: "CREATED",
+      digital_assets: {
+        _id: "23d9d6de-8689-48d0-9427-844087dde75e",
+      },
+      _id: "1d06a57a-418f-479a-b800-f9eae273b51a",
+      _version: "53c0b7af-9bb6-4f86-8ac5-2cde8bcc84dd",
+      _created: "Oct 7, 2022, 10:00:34 AM",
+      _updated: "Oct 7, 2022, 10:00:34 AM",
+      _createdBy: {
+        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+        _links: {
+          self: {
+            href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+          },
+        },
+      },
+      _links: {
+        self: {
+          href: "/v1/patients/1d06a57a-418f-479a-b800-f9eae273b51a",
+        },
+      },
+    },
+  ],
+  _links: {
+    self: {
+      href: "/patient-management?pageNo=0&pageSize=10",
+    },
+  },
+};
+
+export const mockDocument = {
+  count: 1,
+  entities: [
+    {
+      name: "MEDICAL_CERTIFICATE_OF_FITNESS1 - Copy - Copy",
+      documentType: "application/pdf",
+      category: "Intake-Forms",
+      uploadedBy: {
+        uid: "2818ef11-208b-4f43-b471-06ad495381f1",
+        firstName: "indraku",
+        lastName: "kumar",
+        designation: "Mr",
+        _createdBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      patientId: "95090352-de7b-485b-8a7b-9c1255a15070",
+      status: "CREATED",
+      digital_assets: {
+        _id: "62591396-3890-4cc3-b38a-96788430769d",
+      },
+      _id: "38762e58-0cbf-47b6-9580-2f7c336f5bdc",
+      _version: "9ba1234d-9857-4a9c-9147-e1e257377a39",
+      _created: "Oct 7, 2022, 10:00:20 AM",
+      _updated: "Oct 7, 2022, 10:00:20 AM",
+      _createdBy: {
+        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+        _links: {
+          self: {
+            href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+          },
+        },
+      },
+      _links: {
+        self: {
+          href: "/v1/patients/38762e58-0cbf-47b6-9580-2f7c336f5bdc",
+        },
+      },
+    },
+  ],
+  _links: {
+    self: {
+      href: "/patient-management?pageNo=0&pageSize=10",
+    },
+  },
+};
+
+export const mockProviderList = [
+  {
+    providerId: "1",
+    address: {
+      addressLine1: "51 West 51st Street",
+      addressLine2: "Floor 3, Suite 320 Midtown",
+      city: "Florida",
+      state: "FR",
+      zipcode: "54231",
+    },
+    rating: "5",
+    name: "Paul Wagner Md",
+    phoneNumber: "(123) 123-4567",
+    distance: "10 mi",
+    image: "/doctor.png",
+    from: "2022-09-19",
+    to: "2022-09-24",
+    availability: [
+      {
+        date: "2022-09-19",
+        list: [
+          {
+            time: "11:30am",
+            key: 12222,
+          },
+        ],
+      },
+      {
+        date: "2022-09-20",
+        list: [
+          {
+            time: "08:00am",
+            key: 12223,
+          },
+          {
+            time: "10:30am",
+            key: 12224,
+          },
+          {
+            time: "11:00am",
+            key: 12225,
+          },
+          {
+            time: "12:00pm",
+            key: 12226,
+          },
+          {
+            time: "13:00pm",
+            key: 12227,
+          },
+          {
+            time: "14:00pm",
+            key: 12228,
+          },
+        ],
+      },
+      {
+        date: "2022-09-21",
+        list: [
+          {
+            time: "08:30am",
+            key: 12229,
+          },
+          {
+            time: "10:30am",
+            key: 12230,
+          },
+        ],
+      },
+      {
+        date: "2022-09-22",
+        list: [
+          {
+            time: "09:30am",
+            key: 12237,
+          },
+          {
+            time: "11:00am",
+            key: 12238,
+          },
+        ],
+      },
+      {
+        date: "2022-09-23",
+        list: [
+          {
+            time: "09:30am",
+            key: 12239,
+          },
+        ],
+      },
+      {
+        date: "2022-09-24",
+        list: [
+          {
+            time: "09:30am",
+            key: 12240,
+          },
+        ],
+      },
+    ],
+    coordinate: {
+      latitude: 32.751204,
+      longitude: -117.1641166,
+    },
+  },
+  {
+    providerId: "2",
+    address: {
+      addressLine1: "51 West 51st Street",
+      addressLine2: "Floor 3, Suite 320 Midtown",
+      city: "Florida",
+      state: "FR",
+      zipcode: "54231",
+    },
+    rating: "5",
+    name: "Paul Wagner Md",
+    phoneNumber: "(123) 123-4567",
+    distance: "10 mi",
+    image: "/doctor.png",
+    from: "2022-09-19",
+    to: "2022-09-24",
+    availability: [
+      {
+        date: "2022-09-19",
+        list: [
+          {
+            time: "11:30am",
+            key: 12222,
+          },
+        ],
+      },
+      {
+        date: "2022-09-20",
+        list: [
+          {
+            time: "08:00am",
+            key: 12223,
+          },
+          {
+            time: "10:30am",
+            key: 12224,
+          },
+          {
+            time: "11:00am",
+            key: 12225,
+          },
+          {
+            time: "12:00pm",
+            key: 12226,
+          },
+          {
+            time: "13:00pm",
+            key: 12227,
+          },
+          {
+            time: "14:00pm",
+            key: 12228,
+          },
+        ],
+      },
+      {
+        date: "2022-09-21",
+        list: [
+          {
+            time: "08:30am",
+            key: 12229,
+          },
+        ],
+      },
+      {
+        date: "2022-09-22",
+        list: [
+          {
+            time: "09:30am",
+            key: 12237,
+          },
+          {
+            time: "11:00am",
+            key: 12238,
+          },
+        ],
+      },
+      {
+        date: "2022-09-23",
+        list: [
+          {
+            time: "09:30am",
+            key: 12239,
+          },
+        ],
+      },
+      {
+        date: "2022-09-24",
+        list: [
+          {
+            time: "09:30am",
+            key: 12240,
+          },
+        ],
+      },
+    ],
+    coordinate: {
+      latitude: 32.751204,
+      longitude: -117.1641166,
+    },
+  },
+  {
+    providerId: "3",
+    name: "Paul Wagner Md",
+    address: {
+      addressLine1: "51 West 51st Street",
+      addressLine2: "Floor 3, Suite 320 Midtown",
+      city: "Florida",
+      state: "FR",
+      zipcode: "54231",
+    },
+    rating: "5",
+    phoneNumber: "(123) 123-4567",
+    distance: "10 mi",
+    image: "/doctor.png",
+    from: "2022-09-19",
+    to: "2022-09-24",
+    availability: [
+      {
+        date: "2022-09-19",
+        list: [
+          {
+            time: "11:30am",
+            key: 12222,
+          },
+        ],
+      },
+      {
+        date: "2022-09-20",
+        list: [
+          {
+            time: "08:00am",
+            key: 12223,
+          },
+          {
+            time: "10:30am",
+            key: 12224,
+          },
+          {
+            time: "11:00am",
+            key: 12225,
+          },
+          {
+            time: "12:00pm",
+            key: 12226,
+          },
+          {
+            time: "13:00pm",
+            key: 12227,
+          },
+          {
+            time: "14:00pm",
+            key: 12228,
+          },
+        ],
+      },
+      {
+        date: "2022-09-21",
+        list: [
+          {
+            time: "08:30am",
+            key: 12229,
+          },
+          {
+            time: "10:30am",
+            key: 12230,
+          },
+        ],
+      },
+      {
+        date: "2022-09-22",
+        list: [
+          {
+            time: "09:30am",
+            key: 12237,
+          },
+          {
+            time: "11:00am",
+            key: 12238,
+          },
+        ],
+      },
+      {
+        date: "2022-09-23",
+        list: [
+          {
+            time: "09:30am",
+            key: 12239,
+          },
+        ],
+      },
+      {
+        date: "2022-09-24",
+        list: [
+          {
+            time: "09:30am",
+            key: 12240,
+          },
+        ],
+      },
+    ],
+    coordinate: {
+      latitude: 32.751204,
+      longitude: -117.1641166,
+    },
+  },
+];
+
+export const MOCK_APPOINTMENT = {
+  appointmentList: [
+    {
+      appointmentId: "1",
+      providerInfo: {
+        providerId: "1",
+        name: "Paul Wagner Md",
+        position: "Scripps Eyecare",
+        address: {
+          addressLine1: "51 West 51st Street",
+          addressLine2: "Floor 3, Suite 320 Midtown",
+          city: "Florida",
+          state: "FR",
+          zipcode: "54231",
+        },
+        rating: "5",
+        phoneNumber: "8572999989",
+        distance: "10 mi",
+        image: "/doctor.png",
+        from: "2022-07-18",
+        to: "2022-07-23",
+        location: {
+          latitude: 32.751204,
+          longitude: -117.1641166,
+        },
+      },
+      patientInfo: {
+        name: "Rebecca Chan",
+        firstname: "Rebecca",
+        lastname: "Chan",
+        dob: "12/12/2022",
+        phoneNumber: "1234567890",
+      },
+      appointmentInfo: {
+        appointmentType: "Eye Exam",
+        date: "Thu, 12 Jan 2023 04:30:00 EST",
+        insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+      },
+    },
+    {
+      appointmentId: "1",
+      providerInfo: {
+        providerId: "1",
+        name: "Dr. Sonha Nguyen",
+        position: "Scripps Eyecare",
+        address: {
+          addressLine1: "51 West 51st Street",
+          addressLine2: "Floor 3, Suite 320 Midtown",
+          city: "Florida",
+          state: "FR",
+          zipcode: "54231",
+        },
+        rating: "5",
+        phoneNumber: "8572999989",
+        distance: "10 mi",
+        image: "/doctor.png",
+        from: "2022-07-18",
+        to: "2022-07-23",
+        location: {
+          latitude: 32.751204,
+          longitude: -117.1641166,
+        },
+      },
+      patientInfo: {
+        name: "Rebecca Chan",
+        firstname: "Rebecca",
+        lastname: "Chan",
+        dob: "12/12/2022",
+        phoneNumber: "1234567890",
+      },
+      appointmentInfo: {
+        appointmentType: "Eye Exam",
+        date: "Thu, 12 Jan 2023 04:30:00 EST",
+        insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+      },
+    },
+  ],
+};
+
+export const MOCK_PRESCRIPTION = {
+  prescriptions: {
+    glasses: [
+      {
+        prescribedBy: "Dr. Sonha Nguyen",
+        date: "2022-09-02T11:18:47.229Z",
+        expirationDate: "2022-10-02T11:18:47.229Z",
+        prescriptionDetails: [
+          {
+            Eye: "OD",
+            Sph: "+20.00",
+            Cyl: "-5.00",
+            Axis: "70",
+            Add: "x180",
+          },
+          {
+            Eye: "OS",
+            Sph: "+19.75",
+            Cyl: "-4.75",
+            Axis: "38",
+            Add: "x090",
+          },
+        ],
+      },
+    ],
+    contacts: [
+      {
+        prescribedBy: "Dr. Sonha Nguyen",
+        date: "2022-09-02T11:18:47.229Z",
+        expirationDate: "2022-10-02T11:18:47.229Z",
+        prescriptionDetails: [
+          {
+            Eye: "OD",
+            Sph: "+20.00",
+            Bc: "-5.00",
+            Cyl: "70",
+            Axis: "x180",
+          },
+          {
+            Eye: "OS",
+            Sph: "+19.75",
+            Bc: "-4.75",
+            Cyl: "38",
+            Axis: "x090",
+          },
+        ],
+      },
+    ],
+    medications: [
+      {
+        prescription: "Aspirint 0.1% Ointmanet",
+        date: "2022-09-02T11:18:47.229Z",
+      },
+      {
+        prescription: "Aspirint 0.1% Ointmanet",
+        date: "2022-09-02T11:18:47.229Z",
+      },
+    ],
+  },
+};
+
+export const MOCK_SUGESTION = {
+  appointmentType: [
+    {
+      id: "1",
+      name: "Eye Exam",
+      description: "Test the health of your eye",
+    },
+    {
+      id: "2",
+      name: "Follow up",
+      description: "See your doctor today",
+    },
+    {
+      id: "3",
+      name: "Comprehensive",
+      description: "Get detailed eye exam",
+    },
+    {
+      id: "4",
+      name: "Contacts Only",
+      description: "Get fitted for the right contacts",
+    },
+  ],
+  insuranceCarrier: {
+    general: [
+      {
+        id: "1",
+        name: "I'm paying out of my pocket",
+      },
+      {
+        id: "2",
+        name: "skip and choose insurance later",
+      },
+      {
+        id: "3",
+        name: "Other Insurance",
+      },
+    ],
+    popular: [
+      {
+        id: "4",
+        name: "Aetna",
+      },
+      {
+        id: "5",
+        name: "Aetna",
+      },
+      {
+        id: "6",
+        name: "Blue Cross Blue Shield",
+      },
+      {
+        id: "7",
+        name: "Cigna",
+      },
+    ],
+    all: [
+      {
+        id: "8",
+        name: "Kaiser",
+      },
+    ],
+  },
+  filterbyData: [
+    {
+      name: "Available Today",
+      checked: false,
+    },
+    {
+      name: "language",
+      checklist: [
+        {
+          name: "Arabic",
+          checked: false,
+        },
+        {
+          name: "Chinese",
+          checked: false,
+        },
+        {
+          name: "English",
+          checked: false,
+        },
+        {
+          name: "Farsi",
+          checked: false,
+        },
+        {
+          name: "French",
+          checked: false,
+        },
+        {
+          name: "Spanish",
+          checked: false,
+        },
+        {
+          name: "Portuguese",
+          checked: false,
+        },
+        {
+          name: "Korean",
+          checked: false,
+        },
+        {
+          name: "German",
+          checked: false,
+        },
+        {
+          name: "Italian",
+          checked: false,
+        },
+        {
+          name: "Indonesian",
+          checked: false,
+        },
+      ],
+    },
+    {
+      name: "Insurance",
+      checklist: [
+        {
+          name: "In Network",
+          checked: false,
+        },
+        {
+          name: "Out of Network",
+          checked: false,
+        },
+      ],
+    },
+    {
+      name: "Gender",
+      checklist: [
+        {
+          name: "Male",
+          checked: false,
+        },
+        {
+          name: "Female",
+          checked: false,
+        },
+        {
+          name: "Non-Binary",
+          checked: false,
+        },
+      ],
+    },
+  ],
+};
+export const TEMP_DATA_CONTACTS = {
+  count: 1,
+  entities: [
+    {
+      expirationDate: "01/06/2025",
+      startDate: "01/10/2022",
+      clrx: {
+        clrx: {
+          od: {
+            t: false,
+            bc: "11.2",
+            add: "111",
+            bc2: "11.2",
+            axis: "111",
+            diam: "14",
+            lens: {
+              sku: 409374,
+              name: "EDGE III DW",
+            },
+            sph2: "15.5",
+            type: "SCL",
+            color: "black",
+            notes: "India ttterrsting",
+            segHt: "11.1",
+            skirt: "11.1",
+            addOns: "11.1",
+            sphere: "10.1",
+            cylinder: "",
+            material: "soft",
+            opticZone: "10.5",
+            thickness: "105.",
+            intermCurve: "test",
+            periphCurve: "test",
+          },
+          os: {
+            t: false,
+            bc: "8.3",
+            add: "11.2",
+            bc2: "22.3",
+            axis: "000",
+            diam: "14",
+            lens: {
+              sku: 409374,
+              name: "EDGE III DW",
+            },
+            sph2: "",
+            type: "SCL",
+            color: "black",
+            notes: "test",
+            segHt: "11.3",
+            skirt: "11.8",
+            addOns: "33.7",
+            sphere: "55.7",
+            cylinder: "11.0",
+            material: "soft",
+            opticZone: "44.8",
+            thickness: "11.6",
+            intermCurve: "54.0",
+            periphCurve: "20.6",
+          },
+          mono: true,
+          notes: "test notes",
+          eyeDom: "OD",
+          finalRx: "false",
+          trialRx: "false",
+        },
+      },
+      provider: {
+        firstName: "indraku",
+        lastName: "kumar",
+        designation: "Mr",
+        providerDetails: {
+          isProvider: true,
+        },
+        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+        _links: {
+          self: {
+            href: "/v1/template-users/2818ef11-208b-4f43-b471-06ad495381f1",
+          },
+        },
+      },
+      patient: {
+        firstName: "naina",
+        lastName: "naina ",
+        mrn: "UNY323737",
+        dob: "10/7/92, 12:00 AM",
+        sex: "3",
+        status: "UPDATED",
+        _id: "d6ba6289-4190-4346-8dd7-34a1d81447e2",
+        _version: "ab6a730f-adc2-4f79-aa8d-648ad901b8cf",
+        _created: "Oct 7, 2022, 2:40:07 PM",
+        _updated: "Oct 7, 2022, 3:57:12 PM",
+        _createdBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      _links: {
+        self: {
+          href: "/v1/exam-sheet-entry/bf3410cf-3e8f-4dd7-95b6-184dc93bc1f7",
+        },
+      },
+      _id: "bf3410cf-3e8f-4dd7-95b6-184dc93bc1f7",
+    },
+  ],
+  _links: {
+    self: {
+      href: "/emr?pageNo=0&pageSize=100",
+    },
+  },
+};
+
+export const TEMP_DATA_GLASSES = {
+  count: 2,
+  entities: [
+    {
+      glrx: {
+        od: {
+          add: "+4.75",
+          axis: "033",
+          sphere: "+1.25",
+          cylinder: "-3.50",
+        },
+        os: {
+          add: "+4.75",
+          axis: "033",
+          sphere: "+1.25",
+          cylinder: "-5.75",
+        },
+        type: "Distance",
+      },
+      provider: {
+        firstName: "indraku",
+        lastName: "kumar",
+        designation: "Mr",
+        providerDetails: {
+          isProvider: true,
+        },
+        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+        _links: {
+          self: {
+            href: "/v1/template-users/2818ef11-208b-4f43-b471-06ad495381f1",
+          },
+        },
+      },
+      patient: {
+        firstName: "naina",
+        lastName: "naina ",
+        mrn: "UNY323737",
+        dob: "10/7/92, 12:00 AM",
+        sex: "3",
+        status: "UPDATED",
+        _id: "d6ba6289-4190-4346-8dd7-34a1d81447e2",
+        _version: "ab6a730f-adc2-4f79-aa8d-648ad901b8cf",
+        _created: "Oct 7, 2022, 2:40:07 PM",
+        _updated: "Oct 7, 2022, 3:57:12 PM",
+        _createdBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      _links: {
+        self: {
+          href: "/v1/exam-sheet-entry/5a40c3fc-df14-475e-bd64-9bc45891bd74",
+        },
+      },
+      _id: "5a40c3fc-df14-475e-bd64-9bc45891bd74",
+    },
+    {
+      glrx: {
+        od: {
+          add: "111",
+          axis: "111",
+          sphere: "10.1",
+          cylinder: "",
+          bal: true,
+        },
+        os: {
+          add: "11.2",
+          axis: "000",
+          sphere: "55.7",
+          cylinder: "11.0",
+          bal: true,
+        },
+        type: "",
+        notes: "test notes",
+        startDate: "01/10/2022",
+        expirationDate: "06/25/2023",
+      },
+      provider: {
+        firstName: "indraku",
+        lastName: "kumar",
+        designation: "Mr",
+        providerDetails: {
+          isProvider: true,
+        },
+        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+        _links: {
+          self: {
+            href: "/v1/template-users/2818ef11-208b-4f43-b471-06ad495381f1",
+          },
+        },
+      },
+      patient: {
+        firstName: "naina",
+        lastName: "naina ",
+        mrn: "UNY323737",
+        dob: "10/7/92, 12:00 AM",
+        sex: "3",
+        status: "UPDATED",
+        _id: "d6ba6289-4190-4346-8dd7-34a1d81447e2",
+        _version: "ab6a730f-adc2-4f79-aa8d-648ad901b8cf",
+        _created: "Oct 7, 2022, 2:40:07 PM",
+        _updated: "Oct 7, 2022, 3:57:12 PM",
+        _createdBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      _links: {
+        self: {
+          href: "/v1/exam-sheet-entry/89835c9b-d0df-4941-a169-508fd822b754",
+        },
+      },
+      _id: "89835c9b-d0df-4941-a169-508fd822b754",
+    },
+  ],
+  _links: {
+    self: {
+      href: "/emr?pageNo=0&pageSize=100",
+    },
+  },
+};
+
+export const TEMP_DATA_MEDICATION = [
+  {
+    Deleted: "n",
+    Voided: "n",
+    RcopiaID: "SB-26353646482",
+    Patient: {
+      RcopiaPracticeID: "222531942",
+      FirstName: "FirstNikita",
+      ExternalID: "",
+      RcopiaID: "26151571631",
+      LastName: "Dr",
+    },
+    NeedsReview: "n",
+    Provider: {
+      DEA: "AP3864421",
+      Username: "pclarksoneyecare",
+      NPI: "1741791705",
+      FirstName: "Provider",
+      ExternalID: "",
+      RcopiaID: "2642957631",
+      LastName: "ClarksonEyeCare",
+    },
+    Preparer: {
+      RcopiaID: "2642957631",
+      ExternalID: "",
+      FirstName: "Provider",
+      LastName: "ClarksonEyeCare",
+    },
+    Sig: {
+      Drug: {
+        NDCID: "00378070901",
+        BrandName: "D-Penamine",
+        GenericName: "penicillamine",
+        Form: "tablet",
+        Strength: "125 mg",
+        RcopiaID: "12100000098779",
+        FirstDataBankMedID: "585251",
+        DrugDescription: "D-Penamine 125 mg tablet",
+        Schedule: "nonscheduled",
+        BrandType: "brand",
+        Route: "oral",
+        LegendStatus: "rx",
+      },
+      DoseUnit: "tablet",
+      DoseTiming: "twice a day",
+      Duration: "",
+      Route: "by mouth",
+      Quantity: "1",
+      QuantityUnit: "tablet",
+      Refills: "0",
+      SubstitutionPermitted: "y",
+      OtherNotes: "",
+      PatientNotes: "as directed",
+      Dose: "3",
+      Action: "Take",
+      Comments: "",
+      MaximumDailyDoseUnit: "",
+      DoseOther: "as directed",
+      MaximumDailyDose: "",
+    },
+    CreatedDate: "12/05/2022 03:40:57 EDT",
+    CompletedDate: "",
+    SignedDate: "",
+    StopDate: "10/05/2022",
+    LastModifiedBy: "pclarksoneyecare",
+    LastModifiedDate: "10/05/2022 03:41:00 EDT",
+    Height: "",
+    Weight: "",
+    IntendedUse: "",
+    Denied: "n",
+    patientRcopiaID: "26151571631",
+    _id: "323498f1-dff7-47b6-b3af-2dcc432f65ce",
+    _version: "b3118e77-ad8c-4ac9-9840-1b38f6fb008e",
+    _created: "Oct 5, 2022, 7:41:50 AM",
+    _updated: "Oct 5, 2022, 7:41:50 AM",
+    _createdBy: {
+      _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+      _links: {
+        self: {
+          href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+        },
+      },
+    },
+  },
+  {
+    Deleted: "n",
+    Voided: "n",
+    RcopiaID: "SB-26353646482",
+    Patient: {
+      RcopiaPracticeID: "222531942",
+      FirstName: "FirstNikita",
+      ExternalID: "",
+      RcopiaID: "26151571631",
+      LastName: "Dr",
+    },
+    NeedsReview: "n",
+    Provider: {
+      DEA: "AP3864421",
+      Username: "pclarksoneyecare",
+      NPI: "1741791705",
+      FirstName: "Provider",
+      ExternalID: "",
+      RcopiaID: "2642957631",
+      LastName: "ClarksonEyeCare",
+    },
+    Preparer: {
+      RcopiaID: "2642957631",
+      ExternalID: "",
+      FirstName: "Philips",
+      LastName: "ClarksonEyeCare",
+    },
+    Sig: {
+      Drug: {
+        NDCID: "00378070901",
+        BrandName: "D-Penamine",
+        GenericName: "penicillamine",
+        Form: "tablet",
+        Strength: "125 mg",
+        RcopiaID: "12100000098779",
+        FirstDataBankMedID: "585251",
+        DrugDescription: "D-Penamine 125 mg tablet",
+        Schedule: "nonscheduled",
+        BrandType: "brand",
+        Route: "oral",
+        LegendStatus: "rx",
+      },
+      DoseUnit: "tablet",
+      DoseTiming: "twice a day",
+      Duration: "",
+      Route: "by mouth",
+      Quantity: "1",
+      QuantityUnit: "tablet",
+      Refills: "0",
+      SubstitutionPermitted: "y",
+      OtherNotes: "",
+      PatientNotes: "as directed",
+      Dose: "3",
+      Action: "Take",
+      Comments: "",
+      MaximumDailyDoseUnit: "",
+      DoseOther: "as directed",
+      MaximumDailyDose: "",
+    },
+    CreatedDate: "12/05/2022 03:40:57 EDT",
+    CompletedDate: "",
+    SignedDate: "",
+    StopDate: "10/05/2022",
+    LastModifiedBy: "pclarksoneyecare",
+    LastModifiedDate: "10/05/2022 03:41:00 EDT",
+    Height: "",
+    Weight: "",
+    IntendedUse: "",
+    Denied: "n",
+    patientRcopiaID: "26151571631",
+    _id: "323498f1-dff7-47b6-b3af-2dcc432f65ca",
+    _version: "b3118e77-ad8c-4ac9-9840-1b38f6fb008e",
+    _created: "Oct 5, 2022, 7:41:50 AM",
+    _updated: "Oct 5, 2022, 7:41:50 AM",
+    _createdBy: {
+      _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+      _links: {
+        self: {
+          href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+        },
+      },
+    },
+  },
+  {
+    Deleted: "n",
+    Voided: "n",
+    RcopiaID: "SB-26353646482",
+    Patient: {
+      RcopiaPracticeID: "222531942",
+      FirstName: "FirstNikita",
+      ExternalID: "",
+      RcopiaID: "26151571631",
+      LastName: "Dr",
+    },
+    NeedsReview: "n",
+    Provider: {
+      DEA: "AP3864421",
+      Username: "pclarksoneyecare",
+      NPI: "1741791705",
+      FirstName: "Provider",
+      ExternalID: "",
+      RcopiaID: "2642957631",
+      LastName: "ClarksonEyeCare",
+    },
+    Preparer: {
+      RcopiaID: "2642957631",
+      ExternalID: "",
+      FirstName: "Delip",
+      LastName: "ClarksonEyeCare",
+    },
+    Sig: {
+      Drug: {
+        NDCID: "00378070901",
+        BrandName: "D-Penamine",
+        GenericName: "penicillamine",
+        Form: "tablet",
+        Strength: "125 mg",
+        RcopiaID: "12100000098779",
+        FirstDataBankMedID: "585251",
+        DrugDescription: "D-Penamine 125 mg tablet",
+        Schedule: "nonscheduled",
+        BrandType: "brand",
+        Route: "oral",
+        LegendStatus: "rx",
+      },
+      DoseUnit: "tablet",
+      DoseTiming: "twice a day",
+      Duration: "",
+      Route: "by mouth",
+      Quantity: "1",
+      QuantityUnit: "tablet",
+      Refills: "0",
+      SubstitutionPermitted: "y",
+      OtherNotes: "",
+      PatientNotes: "as directed",
+      Dose: "3",
+      Action: "Take",
+      Comments: "",
+      MaximumDailyDoseUnit: "",
+      DoseOther: "as directed",
+      MaximumDailyDose: "",
+    },
+    CreatedDate: "12/05/2022 03:40:57 EDT",
+    CompletedDate: "",
+    SignedDate: "",
+    StopDate: "10/05/2022",
+    LastModifiedBy: "pclarksoneyecare",
+    LastModifiedDate: "10/05/2022 03:41:00 EDT",
+    Height: "",
+    Weight: "",
+    IntendedUse: "",
+    Denied: "n",
+    patientRcopiaID: "26151571631",
+    _id: "323498f1-dff7-47b6-b3af-2dcc432f65cb",
+    _version: "b3118e77-ad8c-4ac9-9840-1b38f6fb008e",
+    _created: "Oct 5, 2022, 7:41:50 AM",
+    _updated: "Oct 5, 2022, 7:41:50 AM",
+    _createdBy: {
+      _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+      _links: {
+        self: {
+          href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+        },
+      },
+    },
+  },
+  {
+    Deleted: "n",
+    Voided: "n",
+    RcopiaID: "SB-26353646482",
+    Patient: {
+      RcopiaPracticeID: "222531942",
+      FirstName: "FirstNikita",
+      ExternalID: "",
+      RcopiaID: "26151571631",
+      LastName: "Dr",
+    },
+    NeedsReview: "n",
+    Provider: {
+      DEA: "AP3864421",
+      Username: "pclarksoneyecare",
+      NPI: "1741791705",
+      FirstName: "Provider",
+      ExternalID: "",
+      RcopiaID: "2642957631",
+      LastName: "ClarksonEyeCare",
+    },
+    Preparer: {
+      RcopiaID: "2642957631",
+      ExternalID: "",
+      FirstName: "David",
+      LastName: "ClarksonEyeCare",
+    },
+    Sig: {
+      Drug: {
+        NDCID: "00378070901",
+        BrandName: "D-Penamine",
+        GenericName: "penicillamine",
+        Form: "tablet",
+        Strength: "125 mg",
+        RcopiaID: "12100000098779",
+        FirstDataBankMedID: "585251",
+        DrugDescription: "D-Penamine 125 mg tablet",
+        Schedule: "nonscheduled",
+        BrandType: "brand",
+        Route: "oral",
+        LegendStatus: "rx",
+      },
+      DoseUnit: "tablet",
+      DoseTiming: "twice a day",
+      Duration: "",
+      Route: "by mouth",
+      Quantity: "1",
+      QuantityUnit: "tablet",
+      Refills: "0",
+      SubstitutionPermitted: "y",
+      OtherNotes: "",
+      PatientNotes: "as directed",
+      Dose: "3",
+      Action: "Take",
+      Comments: "",
+      MaximumDailyDoseUnit: "",
+      DoseOther: "as directed",
+      MaximumDailyDose: "",
+    },
+    CreatedDate: "12/05/2022 03:40:57 EDT",
+    CompletedDate: "",
+    SignedDate: "",
+    StopDate: "10/05/2023",
+    LastModifiedBy: "pclarksoneyecare",
+    LastModifiedDate: "10/05/2022 03:41:00 EDT",
+    Height: "",
+    Weight: "",
+    IntendedUse: "",
+    Denied: "n",
+    patientRcopiaID: "26151571631",
+    _id: "323498f1-dff7-47b6-b3af-2dcc432f65cn",
+    _version: "b3118e77-ad8c-4ac9-9840-1b38f6fb008i",
+    _created: "Oct 5, 2022, 7:41:50 AM",
+    _updated: "Oct 5, 2022, 7:41:50 AM",
+    _createdBy: {
+      _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+      _links: {
+        self: {
+          href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+        },
+      },
+    },
+  },
+  {
+    Deleted: "n",
+    Voided: "n",
+    RcopiaID: "SB-26353646482",
+    Patient: {
+      RcopiaPracticeID: "222531942",
+      FirstName: "FirstNikita",
+      ExternalID: "",
+      RcopiaID: "26151571631",
+      LastName: "Dr",
+    },
+    NeedsReview: "n",
+    Provider: {
+      DEA: "AP3864421",
+      Username: "pclarksoneyecare",
+      NPI: "1741791705",
+      FirstName: "Provider",
+      ExternalID: "",
+      RcopiaID: "2642957631",
+      LastName: "ClarksonEyeCare",
+    },
+    Preparer: {
+      RcopiaID: "2642957631",
+      ExternalID: "",
+      FirstName: "Ivan",
+      LastName: "ClarksonEyeCare",
+    },
+    Sig: {
+      Drug: {
+        NDCID: "00378070901",
+        BrandName: "D-Penamine",
+        GenericName: "penicillamine",
+        Form: "tablet",
+        Strength: "125 mg",
+        RcopiaID: "12100000098779",
+        FirstDataBankMedID: "585251",
+        DrugDescription: "D-Penamine 125 mg tablet",
+        Schedule: "nonscheduled",
+        BrandType: "brand",
+        Route: "oral",
+        LegendStatus: "rx",
+      },
+      DoseUnit: "tablet",
+      DoseTiming: "twice a day",
+      Duration: "",
+      Route: "by mouth",
+      Quantity: "1",
+      QuantityUnit: "tablet",
+      Refills: "0",
+      SubstitutionPermitted: "y",
+      OtherNotes: "",
+      PatientNotes: "as directed",
+      Dose: "3",
+      Action: "Take",
+      Comments: "",
+      MaximumDailyDoseUnit: "",
+      DoseOther: "as directed",
+      MaximumDailyDose: "",
+    },
+    CreatedDate: "12/05/2022 03:40:57 EDT",
+    CompletedDate: "",
+    SignedDate: "",
+    StopDate: "10/05/2022",
+    LastModifiedBy: "pclarksoneyecare",
+    LastModifiedDate: "10/05/2022 03:41:00 EDT",
+    Height: "",
+    Weight: "",
+    IntendedUse: "",
+    Denied: "n",
+    patientRcopiaID: "26151571631",
+    _id: "323498f1-dff7-47b6-b3af-2dcc432f65cp",
+    _version: "b3118e77-ad8c-4ac9-9840-1b38f6fb008e",
+    _created: "Oct 5, 2022, 7:41:50 AM",
+    _updated: "Oct 5, 2022, 7:41:50 AM",
+    _createdBy: {
+      _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+      _links: {
+        self: {
+          href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+        },
+      },
+    },
+  },
+  {
+    Deleted: "n",
+    Voided: "n",
+    RcopiaID: "SB-26353646482",
+    Patient: {
+      RcopiaPracticeID: "222531942",
+      FirstName: "FirstNikita",
+      ExternalID: "",
+      RcopiaID: "26151571631",
+      LastName: "Dr",
+    },
+    NeedsReview: "n",
+    Provider: {
+      DEA: "AP3864421",
+      Username: "pclarksoneyecare",
+      NPI: "1741791705",
+      FirstName: "Provider",
+      ExternalID: "",
+      RcopiaID: "2642957631",
+      LastName: "ClarksonEyeCare",
+    },
+    Preparer: {
+      RcopiaID: "2642957631",
+      ExternalID: "",
+      FirstName: "Capi",
+      LastName: "ClarksonEyeCare",
+    },
+    Sig: {
+      Drug: {
+        NDCID: "00378070901",
+        BrandName: "D-Penamine",
+        GenericName: "penicillamine",
+        Form: "tablet",
+        Strength: "125 mg",
+        RcopiaID: "12100000098779",
+        FirstDataBankMedID: "585251",
+        DrugDescription: "D-Penamine 125 mg tablet",
+        Schedule: "nonscheduled",
+        BrandType: "brand",
+        Route: "oral",
+        LegendStatus: "rx",
+      },
+      DoseUnit: "tablet",
+      DoseTiming: "twice a day",
+      Duration: "",
+      Route: "by mouth",
+      Quantity: "1",
+      QuantityUnit: "tablet",
+      Refills: "0",
+      SubstitutionPermitted: "y",
+      OtherNotes: "",
+      PatientNotes: "as directed",
+      Dose: "3",
+      Action: "Take",
+      Comments: "",
+      MaximumDailyDoseUnit: "",
+      DoseOther: "as directed",
+      MaximumDailyDose: "",
+    },
+    CreatedDate: "12/05/2022 03:40:57 EDT",
+    CompletedDate: "",
+    SignedDate: "",
+    StopDate: "10/05/2022",
+    LastModifiedBy: "pclarksoneyecare",
+    LastModifiedDate: "10/05/2022 03:41:00 EDT",
+    Height: "",
+    Weight: "",
+    IntendedUse: "",
+    Denied: "n",
+    patientRcopiaID: "26151571631",
+    _id: "323498f1-dff7-47b6-b3af-2dcc432f65cx",
+    _version: "b3118e77-ad8c-4ac9-9840-1b38f6fb008e",
+    _created: "Oct 5, 2022, 7:41:50 AM",
+    _updated: "Oct 5, 2022, 7:41:50 AM",
+    _createdBy: {
+      _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+      _links: {
+        self: {
+          href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+        },
+      },
+    },
+  },
+  {
+    Deleted: "n",
+    Voided: "n",
+    RcopiaID: "SB-26353646482",
+    Patient: {
+      RcopiaPracticeID: "222531942",
+      FirstName: "FirstNikita",
+      ExternalID: "",
+      RcopiaID: "26151571631",
+      LastName: "Dr",
+    },
+    NeedsReview: "n",
+    Provider: {
+      DEA: "AP3864421",
+      Username: "pclarksoneyecare",
+      NPI: "1741791705",
+      FirstName: "Provider",
+      ExternalID: "",
+      RcopiaID: "2642957631",
+      LastName: "ClarksonEyeCare",
+    },
+    Preparer: {
+      RcopiaID: "2642957631",
+      ExternalID: "",
+      FirstName: "Opa",
+      LastName: "ClarksonEyeCare",
+    },
+    Sig: {
+      Drug: {
+        NDCID: "00378070901",
+        BrandName: "D-Penamine",
+        GenericName: "penicillamine",
+        Form: "tablet",
+        Strength: "125 mg",
+        RcopiaID: "12100000098779",
+        FirstDataBankMedID: "585251",
+        DrugDescription: "D-Penamine 125 mg tablet",
+        Schedule: "nonscheduled",
+        BrandType: "brand",
+        Route: "oral",
+        LegendStatus: "rx",
+      },
+      DoseUnit: "tablet",
+      DoseTiming: "twice a day",
+      Duration: "",
+      Route: "by mouth",
+      Quantity: "1",
+      QuantityUnit: "tablet",
+      Refills: "0",
+      SubstitutionPermitted: "y",
+      OtherNotes: "",
+      PatientNotes: "as directed",
+      Dose: "3",
+      Action: "Take",
+      Comments: "",
+      MaximumDailyDoseUnit: "",
+      DoseOther: "as directed",
+      MaximumDailyDose: "",
+    },
+    CreatedDate: "12/05/2022 03:40:57 EDT",
+    CompletedDate: "",
+    SignedDate: "",
+    StopDate: "10/05/2022",
+    LastModifiedBy: "pclarksoneyecare",
+    LastModifiedDate: "10/05/2022 03:41:00 EDT",
+    Height: "",
+    Weight: "",
+    IntendedUse: "",
+    Denied: "n",
+    patientRcopiaID: "26151571631",
+    _id: "323498f1-dff7-47b6-b3af-2dcc432f65cw",
+    _version: "b3118e77-ad8c-4ac9-9840-1b38f6fb008e",
+    _created: "Oct 5, 2022, 7:41:50 AM",
+    _updated: "Oct 5, 2022, 7:41:50 AM",
+    _createdBy: {
+      _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+      _links: {
+        self: {
+          href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+        },
+      },
+    },
+  },
+];

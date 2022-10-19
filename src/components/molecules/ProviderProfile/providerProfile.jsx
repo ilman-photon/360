@@ -1,9 +1,8 @@
 import Image from "next/image";
-import { Typography, Box, Link, useMediaQuery } from "@mui/material";
+import { Typography, Box, useMediaQuery } from "@mui/material";
 import styles from "./styles.module.scss";
 import StyledRating from "../../atoms/Rating/styledRating";
 import { useRouter } from "next/router";
-import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import { TEST_ID } from "../../../utils/constants";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
@@ -47,6 +46,7 @@ export default function ProviderProfile({
   imageSize = "large",
   bioContainerClass = "",
   addressClass = "",
+  isCard = false,
 }) {
   const isAppointment = variant === "appointment";
   const isBio = variant === "bio";
@@ -138,9 +138,17 @@ export default function ProviderProfile({
           ) : (
             <AccountCircleIcon
               sx={{
-                width: { xs: "70px", md: "100px" },
-                height: { xs: "70px", md: "100px" },
+                width: isCard
+                  ? "61px"
+                  : { xs: "70px", sm: "100px", md: "unset" },
+                height: isCard
+                  ? "61px"
+                  : { xs: "70px", sm: "100px", md: "unset" },
                 color: "#b5b5b5",
+                "@media (max-width: 767px)": {
+                  width: { xs: "50px" },
+                  height: { xs: "50px" },
+                },
               }}
               data-testid={TEST_ID.APPOINTMENT_TEST_ID.PROVIDER_PROFILE.image}
               className={styles.profilePhoto}

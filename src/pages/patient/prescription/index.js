@@ -5,6 +5,8 @@ import { Provider } from "react-redux";
 import Prescriptions from "../../../components/molecules/Dashboard/prescriptions";
 import PrescriptionLayout from "../../../components/templates/prescriptionLayout";
 import store from "../../../store/store";
+import { mmddyyDateFormat } from "../../../utils/dateFormatter";
+import { onCallGetPrescriptionData } from "../../../utils/prescription";
 import { Api } from "../../api/api";
 
 export default function PrescriptionPage() {
@@ -12,17 +14,22 @@ export default function PrescriptionPage() {
   const [prescriptionData, setPrescriptionData] = React.useState({});
   const [requestRefillResponse, setRequestRefillResponse] =
     React.useState(null);
+  const [isLoaded, setIsLoaded] = React.useState(false);
 
   //Call API for getAllPrescriptions
   function onCalledGetAllPrescriptionsAPI() {
-    const api = new Api();
-    api
-      .getAllPrescriptions()
+    // const api = new Api();
+    onCallGetPrescriptionData()
       .then(function (response) {
-        setPrescriptionData(response.prescriptions);
+        setPrescriptionData(response);
       })
       .catch(function () {
         //Handle error getAllPrescriptions
+      })
+      .finally(function () {
+        setTimeout(() => {
+          setIsLoaded(true);
+        }, 200);
       });
   }
 
@@ -32,6 +39,7 @@ export default function PrescriptionPage() {
       (x) => x.id === postBody.medicationId
     );
     const api = new Api();
+    const userData = JSON.parse(localStorage.getItem("userData"));
     if (isCancelRequest) {
       api
         .doMedicationCancelRequestRefill(postBody)
@@ -39,6 +47,7 @@ export default function PrescriptionPage() {
           const data = JSON.parse(JSON.stringify(prescriptionData));
           data.medications[index].status = "";
           setPrescriptionData(data);
+          response.message = "Your refill request has been canceled";
           setRequestRefillResponse(response);
           resetRequestRefillResponse();
         })
@@ -47,12 +56,32 @@ export default function PrescriptionPage() {
           resetRequestRefillResponse();
         });
     } else {
+      const refillRequestBody = {
+        subject: "PhotonTesting checking",
+        bodyNote: "Please refill the medicine",
+        bodyReferences: [
+          {
+            code: "PATIENT",
+            _id: userData?.patientId,
+          },
+        ],
+        messageStatus: "SENT",
+        priority: "HIGH",
+        deliveryDate: mmddyyDateFormat(new Date()),
+        senderIsPatient: true,
+        providerNPI: prescriptionData.medications[index].providerNPI,
+      };
+
       api
-        .doMedicationRequestRefill(postBody)
+        .doMedicationRequestRefill(refillRequestBody)
         .then(function (response) {
           const data = JSON.parse(JSON.stringify(prescriptionData));
           data.medications[index].status = "refill request";
+          data.medications[index].fillRequestDate = mmddyyDateFormat(
+            response.deliveryDate
+          );
           setPrescriptionData(data);
+          response.message = "Your refill request has been sumbitted";
           setRequestRefillResponse(response);
           resetRequestRefillResponse();
         })
@@ -80,6 +109,7 @@ export default function PrescriptionPage() {
 
   return (
     <Stack sx={{ width: "100%", backgroundColor: "#F4F4F4" }}>
+      {/* {isLoaded && ( */}
       <Stack
         sx={{
           padding: isMobile ? "16px" : "44px 24px 24px 24px",
@@ -97,6 +127,7 @@ export default function PrescriptionPage() {
           requestRefillResponseData={requestRefillResponse}
         />
       </Stack>
+      {/* )} */}
     </Stack>
   );
 }

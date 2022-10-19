@@ -154,10 +154,8 @@ Feature: As a user, I should see error messages when ‘new password’ and ‘
   @Authentication
   @Patient_Portal
   @Sprint2
-  @excluded
+  @included
   Scenario: EPIC_EPP-7_STORY_EPP-239 - Verify user  is not able to submit during set forgot password "<New password>" and "<Confirm new password>" do not match when service is unavailable
-    Scenario Outline: "EPIC_EPP-7_STORY_EPP-239 - Verify user  is not able to submit during set forgot password "<New password>" and "<Confirm new password>" do not match when service is unavailable"
-
     Given use launch the "XXX" url	
     And user navigates to the Patient Portal application
     When user lands onto "Patient Login" screen
@@ -182,11 +180,7 @@ Feature: As a user, I should see error messages when ‘new password’ and ‘
     When user access the messages of registered "Phone" 
     Then user should receive a link mail to reset password
     And user should see the mail with Email Subject as "Reset your Patient portal password"
-    And user should see mail/ message body as 
-    |Hi {username},
-    |We received a request to reset your password. Click here to reset - {link}. If you did not request to reset, contact Customer support.
-    |Thanks,
-    |Admin
+    And user should see mail/ message body
     When user click on a magic link
     Then user should see "Update Password" screen
     And User should see "<New Password>" and "<Confirm New Password>" fields
@@ -205,10 +199,8 @@ Feature: As a user, I should see error messages when ‘new password’ and ‘
   @Authentication
   @Patient_Portal
   @Sprint2
-  @excluded
+  @included
   Scenario: EPIC_EPP-7_STORY_EPP-239 - Verify user  is not able to submit during set forgot password "<New password>" and "<Confirm new password>" do not match when internet connection is unavailable
-    Scenario Outline: "EPIC_EPP-7_STORY_EPP-239 - Verify user  is not able to submit during set forgot password "<New password>" and "<Confirm new password>" do not match when internet connection is unavailable"
-
     Given use launch the "XXX" url	
     And user navigates to the Patient Portal application
     When user lands onto "Patient Login" screen
@@ -233,11 +225,7 @@ Feature: As a user, I should see error messages when ‘new password’ and ‘
     When user access the messages of registered "Phone" 
     Then user should receive a link mail to reset password
     And user should see the mail with Email Subject as "Reset your Patient portal password"
-    And user should see mail/ message body as 
-    |Hi {username},
-    |We received a request to reset your password. Click here to reset - {link}. If you did not request to reset, contact Customer support.
-    |Thanks,
-    |Admin
+    And user should see mail/ message body 
     When user click on a magic link
     Then user should see "Update Password" screen
     And User should see "<New Password>" and "<Confirm New Password>" fields
@@ -256,10 +244,8 @@ Feature: As a user, I should see error messages when ‘new password’ and ‘
   @Authentication
   @Patient_Portal
   @Sprint2
-  @excluded
+  @included
   Scenario: EPIC_EPP-7_STORY_EPP-239 - Verify user should not see any scripts error when after user press F12 on the console
-    Scenario Outline: "EPIC_EPP-7_STORY_EPP-239 - Verify user should not see any Java scripts error when after user press F12 on the console"
-
     Given use launch the "XXX" url	
     And user navigates to the Patient Portal application
     When user lands onto "Patient Login" screen
@@ -299,10 +285,8 @@ Feature: As a user, I should see error messages when ‘new password’ and ‘
   @Authentication
   @Patient_Portal
   @Sprint2
-  @excluded
+  @included
   Scenario: EPIC_EPP-7_STORY_EPP-239 - Verify User should not copy and paste on <New Password>" and "<Confirm New Password>" fields
-    Scenario Outline: "EPIC_EPP-7_STORY_EPP-239 - Verify user should not see any Java scripts error when after user press F12 on the console"
-
     Given use launch the "XXX" url	
     And user navigates to the Patient Portal application
     When user lands onto "Patient Login" screen

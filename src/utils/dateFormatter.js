@@ -53,14 +53,26 @@ export function formatAppointmentDate(date) {
   }
 }
 
+function isValidDate(date) {
+  return date instanceof Date && !isNaN(date);
+}
+
 export function ddmmyyDateFormat(date) {
-  const momentDate = new moment(date);
-  return momentDate.format("DD/MM/YYYY");
+  if (isValidDate(new Date(date))) {
+    const momentDate = new moment(date);
+    return momentDate.format("DD/MM/YYYY");
+  } else {
+    return "-";
+  }
 }
 
 export function mmddyyDateFormat(date) {
-  const momentDate = new moment(date);
-  return momentDate.format("MM/DD/YYYY");
+  if (isValidDate(new Date(date))) {
+    const momentDate = new moment(date);
+    return momentDate.format("MM/DD/YYYY");
+  } else {
+    return "-";
+  }
 }
 
 export function yyyymmddDateFormat(date) {

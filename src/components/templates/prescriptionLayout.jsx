@@ -33,6 +33,8 @@ export default function PrescriptionLayout({
         return "Prescriptions";
       default:
         if (router.pathname.includes("documents")) return "Intake Forms";
+        if (router.pathname.includes("medical-record"))
+          return "Care Plan Overview";
         return "Prescriptions";
     }
   };
@@ -47,7 +49,7 @@ export default function PrescriptionLayout({
         <Navbar />
         <AccountTitleHeading
           title={headingTitle()}
-          sxContainer={{ marginTop: isDesktop ? "107px" : "56px" }}
+          sxContainer={{ marginTop: "0px" }}
           sx={{ fontWeight: "400", maxWidth: "1477px", margin: "0 auto" }}
         />
         <ThemeProvider theme={patientTypography}>

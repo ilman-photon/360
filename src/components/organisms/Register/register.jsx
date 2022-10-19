@@ -136,6 +136,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
     } else {
       setValue("preferredCommunication", "both");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watchedEmail, watchedMobile]);
 
   const formMessageComp = useRef(null);
@@ -267,6 +268,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   disableFuture
                   type="dob"
                   id="dob"
+                  InputProps={{ "data-testid": REGISTER_TEST_ID.dateofbirth }}
                   data-testid={REGISTER_TEST_ID.dateofbirth}
                   label="Date of Birth"
                   variant="filled"

@@ -158,155 +158,111 @@ const MOCK_PRESCRIPTION = {
   },
 };
 
-const MOCK_SUGESTION = {
-  appointmentType: [
+const mockSuggestionReal = {
+  "count": 5,
+  "entities": [
     {
-      id: "1",
-      name: "Eye Exam",
-      description: "Test the health of your eye",
+      "code": "Clinical_Diagnosis",
+      "name": "Clinical_Diagnosis",
+      "key": 4,
+      "order": 4,
+      "category": {
+        "code": "Vision",
+        "description": "Vision"
+      },
+      "acronym": "CAD",
+      "color": "#6fc77b",
+      "slotLength": 5,
+      "notes": "",
+      "_links": {
+        "self": {
+          "href": "/v1/appointment-types/Clinical_Diagnosis"
+        }
+      }
     },
     {
-      id: "2",
-      name: "Follow up",
-      description: "See your doctor today",
+      "code": "NO_APPOINTMENT",
+      "name": "NO APPOINTMENT",
+      "key": 1,
+      "order": 1,
+      "category": {
+        "code": "Medical",
+        "description": "Medical"
+      },
+      "acronym": "NA",
+      "color": "#8F8F8F",
+      "slotLength": 5,
+      "notes": "NO_APPOINTMENT is a default appointment type",
+      "_links": {
+        "self": {
+          "href": "/v1/appointment-types/NO_APPOINTMENT"
+        }
+      }
     },
     {
-      id: "3",
-      name: "Comprehensive",
-      description: "Get detailed eye exam",
+      "code": "Comprehensive",
+      "name": "Comprehensive",
+      "key": 2,
+      "order": 2,
+      "category": {
+        "code": "Medical",
+        "description": "Medical"
+      },
+      "acronym": "CP",
+      "color": "#f2ee74",
+      "slotLength": 5,
+      "notes": "",
+      "_links": {
+        "self": {
+          "href": "/v1/appointment-types/Comprehensive"
+        }
+      }
     },
     {
-      id: "4",
-      name: "Contacts Only",
-      description: "Get fitted for the right contacts",
+      "code": "Glaucome_Appointment",
+      "name": "Glaucoma_Appointment",
+      "key": 3,
+      "order": 3,
+      "category": {
+        "code": "Vision",
+        "description": "Vision"
+      },
+      "acronym": "GPA",
+      "color": "#528aa8",
+      "slotLength": 5,
+      "notes": "",
+      "_links": {
+        "self": {
+          "href": "/v1/appointment-types/Glaucome_Appointment"
+        }
+      }
     },
+    {
+      "code": "Retina_checkup",
+      "name": "Retina checkup",
+      "key": 5,
+      "order": 5,
+      "category": {
+        "code": "Vision",
+        "description": "Vision"
+      },
+      "acronym": "RET",
+      "color": "#db8686",
+      "slotLength": 5,
+      "notes": "",
+      "_links": {
+        "self": {
+          "href": "/v1/appointment-types/Retina_checkup"
+        }
+      }
+    }
   ],
-  insuranceCarrier: {
-    general: [
-      {
-        id: "1",
-        name: "I'm paying out of my pocket",
-      },
-      {
-        id: "2",
-        name: "skip and choose insurance later",
-      },
-      {
-        id: "3",
-        name: "Other Insurance",
-      },
-    ],
-    popular: [
-      {
-        id: "4",
-        name: "Aetna",
-      },
-      {
-        id: "5",
-        name: "Aetna",
-      },
-      {
-        id: "6",
-        name: "Blue Cross Blue Shield",
-      },
-      {
-        id: "7",
-        name: "Cigna",
-      },
-    ],
-    all: [
-      {
-        id: "8",
-        name: "Kaiser",
-      },
-    ],
-  },
-  filterbyData: [
-    {
-      name: "Available Today",
-      checked: false,
-    },
-    {
-      name: "language",
-      checklist: [
-        {
-          name: "Arabic",
-          checked: false,
-        },
-        {
-          name: "Chinese",
-          checked: false,
-        },
-        {
-          name: "English",
-          checked: false,
-        },
-        {
-          name: "Farsi",
-          checked: false,
-        },
-        {
-          name: "French",
-          checked: false,
-        },
-        {
-          name: "Spanish",
-          checked: false,
-        },
-        {
-          name: "Portuguese",
-          checked: false,
-        },
-        {
-          name: "Korean",
-          checked: false,
-        },
-        {
-          name: "German",
-          checked: false,
-        },
-        {
-          name: "Italian",
-          checked: false,
-        },
-        {
-          name: "Indonesian",
-          checked: false,
-        },
-      ],
-    },
-    {
-      name: "Insurance",
-      checklist: [
-        {
-          name: "In Network",
-          checked: false,
-        },
-        {
-          name: "Out of Network",
-          checked: false,
-        },
-      ],
-    },
-    {
-      name: "Gender",
-      checklist: [
-        {
-          name: "Male",
-          checked: false,
-        },
-        {
-          name: "Female",
-          checked: false,
-        },
-        {
-          name: "Non-Binary",
-          checked: false,
-        },
-      ],
-    },
-  ],
-};
+  "_links": {
+    "self": {
+      "href": "/appointments?pageNo=0&pageSize=100"
+    }
+  }
+}
 
 jest.mock("universal-cookie", () => {
   class MockCookies {
@@ -342,9 +298,7 @@ const mockApi = () => {
   const mock = new MockAdapter(axios);
   const domain = window.location.origin;
   mock.onPost(`/ecp/patient/logout`).reply(200, expectedResult);
-  mock
-    .onGet(`${domain}/api/dummy/appointment/create-appointment/getSugestion`)
-    .reply(200, MOCK_SUGESTION);
+  mock.onGet(`/ecp/appointments/appointment-types`).reply(200, mockSuggestionReal);
   mock
     .onGet(
       `${domain}/api/dummy/appointment/my-appointment/getAllAppointment/98f9404b-6ea8-4732-b14f-9c1a168d8066`
@@ -492,14 +446,14 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Purpose of Visit"));
+      await waitFor(() => container.getByText(/Search for a doctor/i));
     });
 
     and("User should see the widget with upcoming appointments", () => {
-      const purposeOfVisit = container.getByText("Purpose of Visit");
-      const patientInfo = container.getByText("Patient Information");
-      expect(purposeOfVisit).toBeInTheDocument();
-      expect(patientInfo).toBeInTheDocument();
+      const title = container.getByText(/Search for a doctor/i);
+      // const patientInfo = container.getByText("Patient Information");
+      expect(title).toBeInTheDocument();
+      // expect(patientInfo).toBeInTheDocument();
     });
 
     when("User click on the widget with with upcoming appointments", () => {
@@ -569,7 +523,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText("Purpose of Visit"));
+      await waitFor(() => container.getByText(/Search for a doctor/i));
       expect(response).toEqual({
         props: {
           isStepTwo: false,
@@ -582,10 +536,10 @@ defineFeature(feature, (test) => {
     });
 
     when("User click on the widget with with upcoming appointments", () => {
-      const rescheduleBtn = container.getByText("Reschedule");
-      act(() => {
-        fireEvent.click(rescheduleBtn);
-      });
+      // const rescheduleBtn = container.getByText("Reschedule");
+      // act(() => {
+      //   fireEvent.click(rescheduleBtn);
+      // });
     });
 
     then(/^User should navigated "(.*)" screen$/, (arg0) => {
@@ -721,7 +675,7 @@ defineFeature(feature, (test) => {
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
-      await waitFor(() => container.getByText(/Purpose of Visit/i));
+      await waitFor(() => container.getByText(/Search for a doctor/i));
 
       expect(response).toEqual({
         props: { isStepTwo: false },
@@ -729,14 +683,14 @@ defineFeature(feature, (test) => {
     });
 
     and("User should see the widget with upcoming appointments", () => {
-      expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
+      expect(container.getByText("Search for a doctor")).toBeInTheDocument();
     });
 
     when("User click on the widget with with upcoming appointments", () => {
-      const cancelBtn = container.getByText("Cancel");
-      act(() => {
-        fireEvent.click(cancelBtn);
-      });
+      // const cancelBtn = container.getByText("Cancel");
+      // act(() => {
+      //   fireEvent.click(cancelBtn);
+      // });
     });
 
     then(/^User should navigated "(.*)" screen$/, async (arg0) => {

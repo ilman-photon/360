@@ -5,8 +5,6 @@ import AccountCard from "../../molecules/AccountCard/accountCard";
 import LabelWithInfo from "../../atoms/LabelWithInfo/labelWithInfo";
 
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
-import CalendarTodayIcon from "@mui/icons-material/CalendarToday";
-import VisibilityOutlinedIcon from "@mui/icons-material/VisibilityOutlined";
 
 import { styles } from "./style";
 import { formatAppointmentDate } from "../../../utils/dateFormatter";

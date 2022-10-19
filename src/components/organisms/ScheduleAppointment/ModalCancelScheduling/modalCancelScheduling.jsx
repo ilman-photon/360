@@ -149,10 +149,9 @@ export default function ModalCancelScheduling({
                         name="cancelOther"
                         control={control}
                         defaultValue=""
-                        render={({
-                          field: { onChange, value },
-                          fieldState: { error },
-                        }) => {
+                        render={({ field, fieldState: { error } }) => {
+                          const onOtherChange = field.onChange;
+                          const otherValue = field.value;
                           return (
                             <StyledInput
                               id="other"
@@ -161,17 +160,19 @@ export default function ModalCancelScheduling({
                               type="text"
                               size={constants.SMALL}
                               variant={constants.FILLED}
-                              value={value}
-                              onChange={onChange}
+                              value={otherValue}
+                              onChange={onOtherChange}
                               error={!!error}
                               helperText={error ? error.message : null}
-                              sx={{ pb: 2, width: "70%" }}
+                              sx={{ pb: 2, width: { xs: "100%", md: "70%" } }}
                             />
                           );
                         }}
                         rules={{ required: t("thisFieldRequired") }}
                       />
-                    ) : null}
+                    ) : (
+                      <Box sx={{ height: "68px" }} />
+                    )}
                   </>
                 );
               }}

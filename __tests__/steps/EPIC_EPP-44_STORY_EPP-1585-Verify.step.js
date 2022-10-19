@@ -17,6 +17,7 @@ import HomePage from "../../src/pages/patient";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
 import { renderScheduleAppointment } from "../../__mocks__/commonSteps";
+import { renderWithProviders } from "../src/utils/test-util";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-1585.feature"
@@ -381,7 +382,7 @@ defineFeature(feature, (test) => {
 
     when("user provides valid Email or Phone Number and password", () => {
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -449,7 +450,7 @@ defineFeature(feature, (test) => {
 
     when("user provides valid Email or Phone Number and password", () => {
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -514,7 +515,7 @@ defineFeature(feature, (test) => {
 
     when("user provides valid Email or Phone Number and password", () => {
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });

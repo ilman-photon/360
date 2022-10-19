@@ -113,6 +113,7 @@ export default function Prescriptions({
       past: [],
     },
   });
+  const [filterData, setFilterData] = React.useState([]);
 
   const downloadPDF = (type, index = -1) => {
     let containerSelector = null;
@@ -166,9 +167,10 @@ export default function Prescriptions({
   };
 
   useEffect(() => {
-    const { parsePrescriptions, activeTab } =
+    const { parsePrescriptions, activeTab, filterProvider } =
       parsePrescriptionData(prescriptionData);
     setPrescriptione(parsePrescriptions);
+    setFilterData(filterProvider);
     if (isViewAll && requestRefillResponseData === null) {
       setValue(activeTab);
     }
@@ -262,11 +264,8 @@ export default function Prescriptions({
             )}
           </Box>
 
-          <Box
-            className={[isMobile ? "" : styles.flexDisplay, styles.margin]}
-            tabIndex={0}
-          >
-            <Box className={[styles.flexDisplay, getBoxStyle()]}>
+          <Box className={[isMobile ? "" : styles.flexDisplay, styles.margin]}>
+            <Box className={[styles.flexDisplay, getBoxStyle()]} tabIndex={0}>
               <Typography variant="customBodyRegular">
                 Prescribed by: &nbsp;
               </Typography>
@@ -278,6 +277,7 @@ export default function Prescriptions({
                   styles.flexDisplay,
                   isMobile ? styles.marginVertical : "",
                 ]}
+                tabIndex={0}
               >
                 <Typography variant="customBodyRegular">
                   Expires on: &nbsp;
@@ -449,6 +449,7 @@ export default function Prescriptions({
   function renderMedicationDetailUI() {
     return (
       <PrescriptionMedication
+        filterProvider={filterData}
         medications={prescription.medications}
         onMedicationRequestRefill={onMedicationRequestRefill}
         requestRefillResponseData={requestRefillResponseData}

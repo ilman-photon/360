@@ -17,22 +17,26 @@ const SelectOptionForm = ({
   onBackToLoginClicked,
   onContinueButtonClicked,
   hasSecurityQuestion = false,
+  title = "",
 }) => {
   const router = useRouter();
   const { t, ready } = useTranslation("translation", {
     keyPrefix: "SetOption",
   });
   const { FORGOT_TEST_ID } = constants.TEST_ID;
-  const pageTitle = `EyeCare Patient Portal - ${t("title")}`;
 
   return (
     <>
+      <Head>
+        <title>{title}</title>
+      </Head>
       {ready && (
         <Card className={globalStyles.container} style={styles.cardStyle}>
           <CardContent style={styles.cardContentStyle}>
             <HeadingTitle
               variant={constants.H2}
               title={t("title")}
+              aria-label={t("title")}
               tabIndex="0"
             />
             <StyledButton

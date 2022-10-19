@@ -22,6 +22,12 @@ import Cookies from "universal-cookie";
 import { getServerSideProps } from "../src/pages/patient/mfa";
 import App from "../src/pages/_app";
 import CreateAccountPage from "../src/pages/patient/auth/create-account";
+import { renderWithProviders } from "../__tests__/src/utils/test-util";
+import {
+  TEMP_DATA_CONTACTS,
+  TEMP_DATA_GLASSES,
+  TEMP_DATA_MEDICATION,
+} from "./component-mock";
 
 const MOCK_APPOINTMENT = {
   appointmentList: [
@@ -1254,9 +1260,7 @@ export function createMatchMedia(width) {
 export async function renderLogin() {
   let container;
   act(() => {
-    container = render(
-      <Provider store={store}>{Login.getLayout(<Login />)}</Provider>
-    );
+    container = renderWithProviders(<Login />);
   });
   await waitFor(() => container.getAllByTestId(TEST_ID.LOGIN_TEST_ID.loginBtn));
   return container;
@@ -1304,9 +1308,13 @@ export async function renderScheduleAppointment() {
   };
   global.navigator.geolocation = mockGeolocation;
   window.matchMedia = createMatchMedia("1920px");
-  container = render(
-    <Provider store={store}>{Appointment.getLayout(<Appointment />)}</Provider>
-  );
+  act(() => {
+    container = render(
+      <Provider store={store}>
+        {Appointment.getLayout(<Appointment />)}
+      </Provider>
+    );
+  });
   await waitFor(() => container.getByText("Purpose of Visit"));
   expect(container.getByText("Purpose of Visit")).toBeInTheDocument();
   return container;
@@ -1374,8 +1382,18 @@ export async function navigateToPatientPortalHome() {
     .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllAppointment`)
     .reply(200, MOCK_APPOINTMENT);
   mock
-    .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`)
-    .reply(200, MOCK_PRESCRIPTION);
+    .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`)
+    .reply(200, TEMP_DATA_MEDICATION);
+  mock
+    .onGet(
+      `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+    )
+    .reply(200, TEMP_DATA_CONTACTS);
+  mock
+    .onGet(
+      `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+    )
+    .reply(200, TEMP_DATA_GLASSES);
   const response = await getServerSideProps({
     req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
     res: jest.fn(),
@@ -1416,3 +1434,53 @@ export async function landOnCreateAccountPage() {
   );
   return container;
 }
+
+export async function doLogin(mock, container) {
+  const expectedResult = {
+    ResponseCode: 2000,
+    ResponseType: "success",
+    userType: "patient",
+  };
+  mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
+  const usernameField = container.getByLabelText("emailUserLabel");
+  const passwordField = container.getByLabelText("passwordLabel");
+  fireEvent.change(usernameField, {
+    target: { value: "patient1@email.com" },
+  });
+  fireEvent.change(passwordField, { target: { value: "Admin@123" } });
+  expect(usernameField.value).toEqual("patient1@email.com");
+  expect(passwordField.value).toEqual("Admin@123");
+}
+export const provideFilters = (container) => {
+  inputLocation(container);
+  inputPurpose(container);
+};
+
+export const inputLocation = async (container) => {
+  await waitFor(() => container.getByLabelText("City, state, or zip code"));
+  const locationInput = container.getByLabelText("City, state, or zip code");
+  act(() => {
+    fireEvent.change(locationInput, { target: { value: "Texas" } });
+  });
+};
+
+export const inputPurpose = async (container) => {
+  await waitFor(() => container.getByTestId("select-purposes-of-visit"));
+  const purposeInput = container.getByTestId("select-purposes-of-visit");
+  act(() => {
+    fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
+  });
+};
+export const clickSearch = async (container) => {
+  await waitFor(() =>
+    container.getByTestId(TEST_ID.APPOINTMENT_TEST_ID.searchbtn)
+  );
+  const searchBtn = container.getByTestId(
+    TEST_ID.APPOINTMENT_TEST_ID.searchbtn
+  );
+  fireEvent.click(searchBtn);
+};
+
+export const defaultValidation = () => {
+  expect(true).toBeTruthy();
+};

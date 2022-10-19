@@ -2,10 +2,13 @@ import moment from "moment";
 import constants from "./constants";
 import {
   convertTime24to12,
-  ddmmyyDateFormat,
   mmddyyDateFormat,
   yyyymmddDateFormat,
 } from "./dateFormatter";
+
+function isValidDate(d) {
+  return d instanceof Date && !isNaN(d);
+}
 
 export function parseInsuranceCarrier(insuranceCarrierData) {
   if (insuranceCarrierData && insuranceCarrierData.length > 0) {
@@ -274,6 +277,36 @@ export function getProvideOverlay(
   return providerDataTmp;
 }
 
+export function updateProviderTimeSchedule(
+  providerList,
+  listOfProvider,
+  startDate,
+  endDate
+) {
+  const updateProviderList = [];
+  for (let index = 0; index < providerList.length; index++) {
+    const currentProvider = listOfProvider.find(
+      (item) => item.providerId === providerList[index].providerId
+    );
+    const providerDataTmp = { ...providerList[index] };
+    if (currentProvider) {
+      providerDataTmp.availability = currentProvider.availability;
+    } else {
+      const getRangeDate = getDates(
+        new Date(startDate),
+        new Date(endDate),
+        false
+      );
+      providerDataTmp.availability = createAvailableTimeSlot(
+        providerDataTmp,
+        getRangeDate
+      );
+    }
+    updateProviderList.push(providerDataTmp);
+  }
+  return updateProviderList;
+}
+
 function parsePrescriptionItemData(prescriptionData, key) {
   const data = [];
   let latestDate = "";
@@ -283,17 +316,17 @@ function parsePrescriptionItemData(prescriptionData, key) {
       key
     );
 
-    if (!latestDate) {
-      latestDate = new Date(itemData.date);
-    } else {
-      latestDate =
-        latestDate < new Date(itemData.date)
-          ? latestDate
-          : new Date(itemData.date);
+    const itemDate = new Date(itemData.date);
+    if (isValidDate(itemDate)) {
+      if (!latestDate) {
+        latestDate = itemDate;
+      } else {
+        latestDate = latestDate > itemDate ? latestDate : itemDate;
+      }
     }
 
-    itemData.date = ddmmyyDateFormat(itemData.date);
-    itemData.expirationDate = ddmmyyDateFormat(itemData.expirationDate);
+    itemData.date = mmddyyDateFormat(itemData.date);
+    itemData.expirationDate = mmddyyDateFormat(itemData.expirationDate);
     data.push(itemData);
   }
 
@@ -301,48 +334,76 @@ function parsePrescriptionItemData(prescriptionData, key) {
 }
 
 function getLatestDate(glassesDate, contactDate, medicationDate) {
-  if (
-    (glassesDate &&
-      glassesDate <= contactDate &&
-      glassesDate <= medicationDate) ||
-    (glassesDate && !contactDate && !medicationDate)
-  ) {
-    return 0;
-  } else if (
-    (contactDate && contactDate <= medicationDate) ||
-    (!glassesDate && contactDate && !medicationDate)
-  ) {
-    return 1;
-  } else {
-    return 2;
-  }
+  const listDate = [
+    { name: "contact", date: contactDate, tab: 1 },
+    { name: "glasses", date: glassesDate, tab: 0 },
+    { name: "medication", date: medicationDate, tab: 2 },
+  ];
+  const result = listDate
+    .filter((item) => item.date !== null)
+    .map((v) => {
+      return v && v.date && v.date.getTime();
+    });
+  const getMinDate = Math.max(...result);
+  let activeTab = listDate.find(
+    (item) => item.date && item.date.getTime() === getMinDate
+  );
+
+  return activeTab?.tab !== undefined ? activeTab.tab : 1;
 }
 
 function parsePrescriptionItemMedication(medications) {
+  const filterData = [
+    {
+      name: "Filter By",
+      checklist: [
+        {
+          name: "All",
+          checked: false,
+          type: "general",
+        },
+        {
+          name: "Refill Requested",
+          checked: false,
+          type: "general",
+        },
+        {
+          name: "Active",
+          checked: false,
+          type: "general",
+        },
+      ],
+    },
+    {
+      name: "Providers",
+      checklist: [],
+    },
+  ];
+  const filterProvider = [];
   const past = [];
   const active = [];
   let latestDateMedic = "";
-  for (let index = 0; index < medications.length; index++) {
-    const date = medications[index].date;
-    const expiratedDate =
-      medications[index].expiredDate || "2022-12-02T11:18:47.229Z";
+  for (const element of medications) {
+    const date = element.date;
+    const expiratedDate = element.expiredDate || "-";
 
     const medicationData = {};
-    medicationData.id = medications[index].id;
-    medicationData.prescription = medications[index].prescription;
-    medicationData.date = ddmmyyDateFormat(date);
-    medicationData.prescribedBy = "Dr. Philip Morris";
-    medicationData.isShowRequestRefill = moment().isSameOrBefore(expiratedDate);
-    medicationData.expirationDate = ddmmyyDateFormat(expiratedDate);
-    medicationData.fillRequestDate = ddmmyyDateFormat(
-      "2022-09-02T11:18:47.229Z"
-    );
-    medicationData.timeRemaining = "Take 2 times a day";
-    medicationData.dose = "0.5 mL";
-    medicationData.status = medications[index].status || "";
+    medicationData.id = element.id;
+    medicationData.prescription = element.prescription;
+    medicationData.date = mmddyyDateFormat(date);
+    medicationData.prescribedBy = element.providerName;
+    medicationData.isShowRequestRefill = isValidDate(new Date(expiratedDate))
+      ? moment().isSameOrBefore(expiratedDate)
+      : "-";
+    medicationData.expirationDate = mmddyyDateFormat(expiratedDate);
+    medicationData.fillRequestDate = mmddyyDateFormat(element.fillRequestDate);
+    medicationData.timeRemaining = element.timeRemaining;
+    medicationData.dose = element.dose;
+    medicationData.status = element.status || "";
     medicationData.statusDetails =
       "CVS Pharmacy, 123 Broadway Blvd, New Jersey, NY 12889";
-    medicationData.type = index % 2 == 0 ? "active" : "past";
+    medicationData.type = element.type;
+    medicationData.providerNPI = element.providerNPI;
 
     if (medicationData.type === "active") {
       active.push(medicationData);
@@ -350,17 +411,27 @@ function parsePrescriptionItemMedication(medications) {
       past.push(medicationData);
     }
 
-    if (!latestDateMedic) {
-      latestDateMedic = new Date(date);
-    } else {
-      latestDateMedic =
-        latestDateMedic < new Date(date) ? latestDateMedic : new Date(date);
+    const itemDate = new Date(date);
+    if (isValidDate(itemDate)) {
+      if (!latestDateMedic) {
+        latestDateMedic = itemDate;
+      } else {
+        latestDateMedic =
+          latestDateMedic > itemDate ? latestDateMedic : itemDate;
+      }
     }
+    filterProvider.push({
+      name: element.providerName,
+      checked: false,
+      type: "provider",
+    });
   }
-  return { active, past, latestDateMedic };
+  filterData[1].checklist.push(...filterProvider);
+  return { active, past, latestDateMedic, filterProvider: filterData };
 }
 
 export function parsePrescriptionData(prescriptions) {
+  let filterData = [];
   const parsePrescriptions = { glasses: [], contacts: [], medications: [] };
   let glassesDate = null;
   let contactDate = null;
@@ -385,7 +456,7 @@ export function parsePrescriptionData(prescriptions) {
 
   if (prescriptions.medications && prescriptions.medications.length > 0) {
     const medications = prescriptions.medications;
-    const { active, past, latestDateMedic } =
+    const { active, past, latestDateMedic, filterProvider } =
       parsePrescriptionItemMedication(medications);
     medicationDate = latestDateMedic;
 
@@ -393,10 +464,13 @@ export function parsePrescriptionData(prescriptions) {
       active: active,
       past: past,
     };
+
+    filterData = filterProvider;
   }
   return {
     parsePrescriptions,
     activeTab: getLatestDate(glassesDate, contactDate, medicationDate),
+    filterProvider: filterData,
   };
 }
 
@@ -406,21 +480,21 @@ function parsePrescriptionDetailsData(prescriptionDetails, type) {
     if (type === "glasses") {
       data.push(
         createGlassesDataTable({
-          eye: prescription.Eye || prescription.eye,
-          sph: prescription.Sph || prescription.sph,
-          cyl: prescription.Cyl || prescription.cyl,
-          axis: prescription.Axis || prescription.axis,
-          add: prescription.Add || prescription.add,
+          eye: prescription.eye || "-",
+          sph: prescription.sph || "-",
+          cyl: prescription.cyl || "-",
+          axis: prescription.axis || "-",
+          add: prescription.add || "-",
         })
       );
     } else {
       data.push(
         createContactDataTable({
-          eye: prescription.Eye || prescription.eye,
-          sph: prescription.Sph || prescription.eye,
-          bc: prescription.Bc || prescription.bc,
-          cyl: prescription.Cyl || prescription.cyl,
-          axis: prescription.Axis || prescription.axis,
+          eye: prescription.eye || "-",
+          sph: prescription.eye || "-",
+          bc: prescription.bc || "-",
+          cyl: prescription.cyl || "-",
+          axis: prescription.axis || "-",
         })
       );
     }
@@ -575,6 +649,11 @@ function createAvailableTimeSlot(providerData, getRangeDate) {
   return availabilityList;
 }
 
+function setAvailableToday(dateSchedule) {
+  const newDate = new moment().format("YYYY-MM-DD");
+  return dateSchedule === newDate;
+}
+
 export function parseProviderListData(response, startDate, endDate) {
   startDate = yyyymmddDateFormat(startDate);
   endDate = yyyymmddDateFormat(endDate);
@@ -628,12 +707,16 @@ export function parseProviderListData(response, startDate, endDate) {
             latitude: "",
             longitude: "",
           },
+          filters: {},
         };
 
         providerTemp.providerId = providerId;
         providerTemp.providerTemplateId = providerTempItem._id;
         providerTemp.name = `${provider.designation} ${provider.firstName} ${provider.lastName}`;
         providerTemp.availability.push(availabilityDate);
+        providerTemp.filters["isAvailableToday"] = setAvailableToday(
+          availabilityDate.date
+        );
         data.listOfProvider.push(providerTemp);
       } else if (data.listOfProvider.length > 0 && currentProvider) {
         const isSameDate = currentProvider.availability.find(
@@ -641,6 +724,11 @@ export function parseProviderListData(response, startDate, endDate) {
         );
         if (!isSameDate) {
           currentProvider.availability.push(availabilityDate);
+          for (const [key, value] of Object.entries(currentProvider.filters)) {
+            if (!currentProvider[key]) {
+              currentProvider[key] = setAvailableToday(availabilityDate.date);
+            }
+          }
         }
       }
     }

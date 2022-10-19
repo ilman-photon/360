@@ -209,9 +209,13 @@ module.exports = {
       expandCollapseSection: "provider_expandCollapseSection",
       download: "provider_btnDownload",
     },
+    MEDICAL_RECORD: {
+      moreMenu: "medical_more_menu",
+    },
   },
   ERROR_CODE: {
     NETWORK_ERR: "ERR_NETWORK",
     BAD_REQUEST: "ERR_BAD_REQUEST",
   },
+  DOCUMENT_STATUS: "RESULTS_AVAILABLE",
 };

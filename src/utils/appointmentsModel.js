@@ -12,9 +12,8 @@ export function appointmentParser(data = {}) {
     `${data.appointmentDate} ${data.appointmentTime}`
   );
   const year = momentDate.format("YYYY");
-
   return {
-    appointmentId: data.appointmentNo,
+    appointmentId: data._id,
     providerInfo: {
       providerId: data.provider?._id,
       name,
