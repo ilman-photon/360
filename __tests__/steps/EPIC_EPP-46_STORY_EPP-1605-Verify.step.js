@@ -9,7 +9,6 @@ import Cookies from "universal-cookie";
 import mediaQuery from "css-mediaquery";
 import HomePage from "../../src/pages/patient";
 
-import { getServerSideProps } from "../../src/pages/patient/mfa";
 import { TEMP_DATA_CONTACTS, TEMP_DATA_GLASSES, TEMP_DATA_MEDICATION } from "../../__mocks__/mockResponse";
 
 const upcoming = {
@@ -952,10 +951,6 @@ defineFeature(feature, (test) => {
       )
       .reply(200, TEMP_DATA_GLASSES);
       window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -968,11 +963,6 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByText("Patient Information"));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
     });
 
     and(
