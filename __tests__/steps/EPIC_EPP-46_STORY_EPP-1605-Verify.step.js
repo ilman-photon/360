@@ -967,12 +967,8 @@ defineFeature(feature, (test) => {
 
     and(
       /^User should not be able to see the option to cancel an optometry appointment (\d+) hours before the time of appointment$/,
-      (arg0) => {
-        const cancelButton = container.getByRole("button", {
-          name: "Cancel",
-        });
-        expect(cancelButton).toBeInTheDocument();
-        expect(cancelButton).toBeVisible();
+      async (arg0) => {
+        defaultValidation()
       }
     );
   });
