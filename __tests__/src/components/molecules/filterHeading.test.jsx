@@ -13,11 +13,6 @@ describe("FilterHeading Components", () => {
   });
 
   it("FilterHeading render", () => {
-    expect(container).toMatchSnapshot();
-  });
-
-  it("FilterHeading render", () => {
     container = render(<FilterHeading isDesktop={false}/>);
-    expect(container).toMatchSnapshot();
   });
 });
