@@ -61,7 +61,7 @@ const EnhancedTableHead = (props) => {
       <TableRow
         sx={{
           whiteSpace: "nowrap",
-          ".Mui-active .MuiTableSortLabel-icon": {
+          ".MuiTableSortLabel-root.Mui-active .MuiTableSortLabel-icon": {
             color: colors.darkGreen,
           },
         }}
