@@ -35,6 +35,7 @@ import { colors } from "../../styles/theme";
 import { appointmentParser } from "../../utils/appointmentsModel";
 import { onCallGetPrescriptionData } from "../../utils/prescription";
 import Navbar from "../../components/molecules/Navbar/Navbar";
+import { fetchUser } from "../../store/user";
 
 export async function getStaticProps() {
   return {
@@ -48,9 +49,10 @@ export default function HomePage({ googleApiKey }) {
   const [prescriptionData, setPrescriptionData] = React.useState({});
   const [appointmentData, setAppointmentData] = React.useState({});
   const [isOpenCancel, setIsOpenCancel] = React.useState(false);
-  const [isAuthenticated, setIsAuthenticated] = React.useState(true);
+  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
   const [currentCity, setCurrentCity] = React.useState("");
   const [modalSuccessCancel, setModalSuccessCancel] = React.useState(false);
+  const [username, setUsername] = React.useState("");
 
   const insuranceCarrierList = useSelector((state) => state.provider.list);
   const filterData = useSelector((state) => state.appointment.filterData);
@@ -89,7 +91,7 @@ export default function HomePage({ googleApiKey }) {
     const endDateRequest = getSaturdayOfCurrentWeek(requestData.date);
     const postBody = {
       appointmentType: {
-        code: selectedAppointmentType?.id || " ",
+        code: selectedAppointmentType?.id || "ALL",
       },
       currentDate: startDateRequest,
       numDays: 6,
@@ -170,18 +172,28 @@ export default function HomePage({ googleApiKey }) {
     const cookies = new Cookies();
     if (!cookies.get("authorized")) {
       router.push("/patient/login");
-      setIsAuthenticated(true);
-    } else {
       setIsAuthenticated(false);
+    } else {
+      setIsAuthenticated(true);
     }
   }, [setIsAuthenticated, router]);
 
   useEffect(() => {
-    onCalledAllPrescription();
-    onCalledGetAllAppointment();
-    dispatch(fetchAllPayers());
+    if (isAuthenticated) {
+      onCalledAllPrescription();
+      onCalledGetAllAppointment();
+      dispatch(fetchAllPayers());
+    }
+    const userStorageData = JSON.parse(localStorage.getItem("userProfile"));
+    if (userStorageData) {
+      let firstName = userStorageData?.firstName || "";
+      if (firstName) {
+        firstName = firstName[0].toUpperCase() + firstName.substring(1);
+        setUsername(firstName);
+      }
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isAuthenticated]);
 
   useEffect(() => {
     onCalledGetAppointmentTypesAPI();
@@ -223,7 +235,7 @@ export default function HomePage({ googleApiKey }) {
 
   return (
     <>
-      {!isAuthenticated && (
+      {isAuthenticated && (
         <Stack sx={{ width: "100%" }}>
           {isDesktop ? (
             <>
@@ -236,7 +248,7 @@ export default function HomePage({ googleApiKey }) {
                 filterData={filterData}
                 purposeOfVisitData={filterSuggestionData.purposeOfVisit}
                 insuranceCarrierData={filterSuggestionData.insuranceCarrier}
-                title={"John, Welcome to your dashboard"}
+                title={`${username}, Welcome to your dashboard`}
                 subtitle={"Search for a doctor"}
                 isFixed={false}
                 currentCity={currentCity}
@@ -265,7 +277,7 @@ export default function HomePage({ googleApiKey }) {
                   //this is intentional
                 }}
                 appliedFilter={[]}
-                title={"John, Welcome to your dashboard"}
+                title={`${username}, Welcome to your dashboard`}
                 subtitle={"Search for a doctor"}
               />
             </Box>

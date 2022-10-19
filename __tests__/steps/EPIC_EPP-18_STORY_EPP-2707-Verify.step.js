@@ -1,9 +1,4 @@
-import {
-  act,
-  render,
-  waitFor,
-  fireEvent,
-} from "@testing-library/react";
+import { act, render, waitFor, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom/extend-expect";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import Cookies from "universal-cookie";
@@ -12,7 +7,7 @@ import PrescriptionPage from "../../src/pages/patient/prescription";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import store from "../../src/store/store";
-import mediaQuery from 'css-mediaquery';
+import mediaQuery from "css-mediaquery";
 
 function createMatchMedia(width) {
   return (query) => ({
@@ -171,150 +166,150 @@ export const TEMP_DATA_CONTACTS = {
 };
 
 export const TEMP_DATA_GLASSES = {
-  "count": 2,
-  "entities": [
-      {
-          "glrx": {
-              "od": {
-                  "add": "+4.75",
-                  "axis": "033",
-                  "sphere": "+1.25",
-                  "cylinder": "-3.50"
-              },
-              "os": {
-                  "add": "+4.75",
-                  "axis": "033",
-                  "sphere": "+1.25",
-                  "cylinder": "-5.75"
-              },
-              "type": "Distance"
-          },
-          "provider": {
-              "firstName": "indraku",
-              "lastName": "kumar",
-              "designation": "Mr",
-              "providerDetails": {
-                  "isProvider": true
-              },
-              "_id": "2818ef11-208b-4f43-b471-06ad495381f1",
-              "_links": {
-                  "self": {
-                      "href": "/v1/template-users/2818ef11-208b-4f43-b471-06ad495381f1"
-                  }
-              }
-          },
-          "patient": {
-              "firstName": "naina",
-              "lastName": "naina ",
-              "mrn": "UNY323737",
-              "dob": "10/7/92, 12:00 AM",
-              "sex": "3",
-              "status": "UPDATED",
-              "_id": "d6ba6289-4190-4346-8dd7-34a1d81447e2",
-              "_version": "ab6a730f-adc2-4f79-aa8d-648ad901b8cf",
-              "_created": "Oct 7, 2022, 2:40:07 PM",
-              "_updated": "Oct 7, 2022, 3:57:12 PM",
-              "_createdBy": {
-                  "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
-                  "_links": {
-                      "self": {
-                          "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
-                      }
-                  }
-              },
-              "_updatedBy": {
-                  "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
-                  "_links": {
-                      "self": {
-                          "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
-                      }
-                  }
-              }
-          },
-          "_links": {
-              "self": {
-                  "href": "/v1/exam-sheet-entry/5a40c3fc-df14-475e-bd64-9bc45891bd74"
-              }
-          },
-          "_id": "5a40c3fc-df14-475e-bd64-9bc45891bd74"
+  count: 2,
+  entities: [
+    {
+      glrx: {
+        od: {
+          add: "+4.75",
+          axis: "033",
+          sphere: "+1.25",
+          cylinder: "-3.50",
+        },
+        os: {
+          add: "+4.75",
+          axis: "033",
+          sphere: "+1.25",
+          cylinder: "-5.75",
+        },
+        type: "Distance",
       },
-      {
-          "glrx": {
-              "od": {
-                  "add": "111",
-                  "axis": "111",
-                  "sphere": "10.1",
-                  "cylinder": "",
-                  "bal": true
-              },
-              "os": {
-                  "add": "11.2",
-                  "axis": "000",
-                  "sphere": "55.7",
-                  "cylinder": "11.0",
-                  "bal": true
-              },
-              "type": "",
-              "notes": "test notes",
-              "startDate": "01/10/2022",
-              "expirationDate": "06/25/2023"
+      provider: {
+        firstName: "indraku",
+        lastName: "kumar",
+        designation: "Mr",
+        providerDetails: {
+          isProvider: true,
+        },
+        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+        _links: {
+          self: {
+            href: "/v1/template-users/2818ef11-208b-4f43-b471-06ad495381f1",
           },
-          "provider": {
-              "firstName": "indraku",
-              "lastName": "kumar",
-              "designation": "Mr",
-              "providerDetails": {
-                  "isProvider": true
-              },
-              "_id": "2818ef11-208b-4f43-b471-06ad495381f1",
-              "_links": {
-                  "self": {
-                      "href": "/v1/template-users/2818ef11-208b-4f43-b471-06ad495381f1"
-                  }
-              }
+        },
+      },
+      patient: {
+        firstName: "naina",
+        lastName: "naina ",
+        mrn: "UNY323737",
+        dob: "10/7/92, 12:00 AM",
+        sex: "3",
+        status: "UPDATED",
+        _id: "d6ba6289-4190-4346-8dd7-34a1d81447e2",
+        _version: "ab6a730f-adc2-4f79-aa8d-648ad901b8cf",
+        _created: "Oct 7, 2022, 2:40:07 PM",
+        _updated: "Oct 7, 2022, 3:57:12 PM",
+        _createdBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
           },
-          "patient": {
-              "firstName": "naina",
-              "lastName": "naina ",
-              "mrn": "UNY323737",
-              "dob": "10/7/92, 12:00 AM",
-              "sex": "3",
-              "status": "UPDATED",
-              "_id": "d6ba6289-4190-4346-8dd7-34a1d81447e2",
-              "_version": "ab6a730f-adc2-4f79-aa8d-648ad901b8cf",
-              "_created": "Oct 7, 2022, 2:40:07 PM",
-              "_updated": "Oct 7, 2022, 3:57:12 PM",
-              "_createdBy": {
-                  "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
-                  "_links": {
-                      "self": {
-                          "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
-                      }
-                  }
-              },
-              "_updatedBy": {
-                  "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
-                  "_links": {
-                      "self": {
-                          "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
-                      }
-                  }
-              }
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
           },
-          "_links": {
-              "self": {
-                  "href": "/v1/exam-sheet-entry/89835c9b-d0df-4941-a169-508fd822b754"
-              }
+        },
+      },
+      _links: {
+        self: {
+          href: "/v1/exam-sheet-entry/5a40c3fc-df14-475e-bd64-9bc45891bd74",
+        },
+      },
+      _id: "5a40c3fc-df14-475e-bd64-9bc45891bd74",
+    },
+    {
+      glrx: {
+        od: {
+          add: "111",
+          axis: "111",
+          sphere: "10.1",
+          cylinder: "",
+          bal: true,
+        },
+        os: {
+          add: "11.2",
+          axis: "000",
+          sphere: "55.7",
+          cylinder: "11.0",
+          bal: true,
+        },
+        type: "",
+        notes: "test notes",
+        startDate: "01/10/2022",
+        expirationDate: "06/25/2023",
+      },
+      provider: {
+        firstName: "indraku",
+        lastName: "kumar",
+        designation: "Mr",
+        providerDetails: {
+          isProvider: true,
+        },
+        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+        _links: {
+          self: {
+            href: "/v1/template-users/2818ef11-208b-4f43-b471-06ad495381f1",
           },
-          "_id": "89835c9b-d0df-4941-a169-508fd822b754"
-      }
+        },
+      },
+      patient: {
+        firstName: "naina",
+        lastName: "naina ",
+        mrn: "UNY323737",
+        dob: "10/7/92, 12:00 AM",
+        sex: "3",
+        status: "UPDATED",
+        _id: "d6ba6289-4190-4346-8dd7-34a1d81447e2",
+        _version: "ab6a730f-adc2-4f79-aa8d-648ad901b8cf",
+        _created: "Oct 7, 2022, 2:40:07 PM",
+        _updated: "Oct 7, 2022, 3:57:12 PM",
+        _createdBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      _links: {
+        self: {
+          href: "/v1/exam-sheet-entry/89835c9b-d0df-4941-a169-508fd822b754",
+        },
+      },
+      _id: "89835c9b-d0df-4941-a169-508fd822b754",
+    },
   ],
-  "_links": {
-      "self": {
-          "href": "/emr?pageNo=0&pageSize=100"
-      }
-  }
-}
+  _links: {
+    self: {
+      href: "/emr?pageNo=0&pageSize=100",
+    },
+  },
+};
 
 export const TEMP_DATA_MEDICATION = [
   {
@@ -412,412 +407,523 @@ defineFeature(feature, (test) => {
     jest.setSystemTime(new Date(2022, 3, 1));
   });
 
-  test('EPIC_EPP-18_STORY_EPP-2707- Verify whether the system is sending the requested Refill to the Provider portal/E360+', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {});
+  test("EPIC_EPP-18_STORY_EPP-2707- Verify whether the system is sending the requested Refill to the Provider portal/E360+", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {}
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {});
 
-    and('clicks  on login button.', () => {
+    and("clicks  on login button.", () => {
       Cookies.result = { authorized: true };
     });
 
-    and('navigate to the View Prescription page.', async () => {
+    and("navigate to the View Prescription page.", async () => {
       Cookies.result = "true";
       mock
-      .onGet(
-        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
-      )
-      .reply(200, TEMP_DATA_MEDICATION);
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, TEMP_DATA_MEDICATION);
       mock
-      .onGet(
-        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
-      )
-      .reply(200, TEMP_DATA_CONTACTS);
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+        )
+        .reply(200, TEMP_DATA_CONTACTS);
       mock
-      .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
-      )
-      .reply(200, TEMP_DATA_GLASSES);
-      window.matchMedia = createMatchMedia('1920px');
-      
-      act(()=>{
-      container = render(
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+        )
+        .reply(200, TEMP_DATA_GLASSES);
+      window.matchMedia = createMatchMedia("1920px");
+
+      act(() => {
+        container = render(
           <Provider store={store}>
-              {PrescriptionPage.getLayout(<PrescriptionPage />)}
+            {PrescriptionPage.getLayout(<PrescriptionPage />)}
           </Provider>
-          );
-      })
+        );
+      });
       await waitFor(() => container.getByText("Medications"));
       expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
     });
 
-    and('patient should see the option to Refill the Prescription.', async () => {
-      const medicationMenu = container.getByTestId("menu-medication");
-      fireEvent.click(medicationMenu)
-      await waitFor(()=> container.getByText(/Active Medications/i));
-      expect(container.getAllByText(/Request Refill/i)[0]).toBeInTheDocument();
-    });
+    and(
+      "patient should see the option to Refill the Prescription.",
+      async () => {
+        const medicationMenu = container.getByTestId("menu-medication");
+        fireEvent.click(medicationMenu);
+        await waitFor(() => container.getByText(/Active Medications/i));
+        expect(
+          container.getAllByText(/Request Refill/i)[0]
+        ).toBeInTheDocument();
+      }
+    );
 
-    and('request for the refill.', async () => {
+    and("request for the refill.", async () => {
       const mockResponse = {
         message: "Your refill request has been sumbitted",
       };
-      
+
       mock.onPost(`/ecp/prescriptions/requestRefill`).reply(200, mockResponse);
-      
+
       const requestRefill = container.getAllByText(/Request Refill/i)[0];
       expect(requestRefill).toBeInTheDocument();
-      
-      act(()=>{
+
+      act(() => {
         fireEvent.click(requestRefill);
       });
-      
-      await waitFor(()=> container.getByText(/Cancel Refill Request/i));
-      expect(container.getAllByText(/Cancel Refill Request/i)[0]).toBeInTheDocument();
+
+      await waitFor(() => container.getByText(/Cancel Refill Request/i));
+      expect(
+        container.getAllByText(/Cancel Refill Request/i)[0]
+      ).toBeInTheDocument();
     });
 
-    and('Login as Provider.', () => {
+    and("Login as Provider.", () => {
       defaultValidation();
     });
 
-    then('Patient requested refill should received for the Provider/E360+', (arg0) => {
-      defaultValidation();
-    });
+    then(
+      "Patient requested refill should received for the Provider/E360+",
+      (arg0) => {
+        defaultValidation();
+      }
+    );
   });
 
-  test('EPIC_EPP-18_STORY_EPP-2707- Verify whether the Patient is able to see his/her requested refill against the Prescription', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {});
+  test("EPIC_EPP-18_STORY_EPP-2707- Verify whether the Patient is able to see his/her requested refill against the Prescription", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {}
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {});
 
-    and('clicks  on login button.', () => {
+    and("clicks  on login button.", () => {
       Cookies.result = { authorized: true };
     });
 
-    and('navigate to the View Prescription page.', async () => {
+    and("navigate to the View Prescription page.", async () => {
       Cookies.result = "true";
       mock
-      .onGet(
-        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
-      )
-      .reply(200, TEMP_DATA_MEDICATION);
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, TEMP_DATA_MEDICATION);
       mock
-      .onGet(
-        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
-      )
-      .reply(200, TEMP_DATA_CONTACTS);
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+        )
+        .reply(200, TEMP_DATA_CONTACTS);
       mock
-      .onGet(
-        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
-      )
-      .reply(200, TEMP_DATA_GLASSES);
-      window.matchMedia = createMatchMedia('1920px');
-      
-      act(()=>{
-      container = render(
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+        )
+        .reply(200, TEMP_DATA_GLASSES);
+      window.matchMedia = createMatchMedia("1920px");
+
+      act(() => {
+        container = render(
           <Provider store={store}>
-              {PrescriptionPage.getLayout(<PrescriptionPage />)}
+            {PrescriptionPage.getLayout(<PrescriptionPage />)}
           </Provider>
-          );
-      })
+        );
+      });
       await waitFor(() => container.getByText("Medications"));
       expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
     });
 
-    and('patient should see the option to Refill the Prescription.', async () => {
-      const medicationMenu = container.getByTestId("menu-medication");
-      fireEvent.click(medicationMenu)
-      await waitFor(()=> container.getByText(/Active Medications/i));
-      expect(container.getAllByText(/Request Refill/i)[0]).toBeInTheDocument();
-    });
+    and(
+      "patient should see the option to Refill the Prescription.",
+      async () => {
+        const medicationMenu = container.getByTestId("menu-medication");
+        fireEvent.click(medicationMenu);
+        await waitFor(() => container.getByText(/Active Medications/i));
+        expect(
+          container.getAllByText(/Request Refill/i)[0]
+        ).toBeInTheDocument();
+      }
+    );
 
-    and('request for the refill.', async () => {
+    and("request for the refill.", async () => {
       const mockResponse = {
         message: "Your refill request has been sumbitted",
       };
-      
-      mock.onPost(`${domain}/api/dummy/prescription/requestRefill`).reply(200, mockResponse);
-      
+
+      mock
+        .onPost(`${domain}/api/dummy/prescription/requestRefill`)
+        .reply(200, mockResponse);
+
       const requestRefill = container.getAllByText(/Request Refill/i)[0];
       expect(requestRefill).toBeInTheDocument();
-      
-      act(()=>{
+
+      act(() => {
         fireEvent.click(requestRefill);
       });
-      
-      await waitFor(()=> container.getByText(/Cancel Refill Request/i));
+
+      await waitFor(() => container.getByText(/Cancel Refill Request/i));
     });
 
-    then('Patient should see the requested refill.', () => {
-      expect(container.getAllByText(/Cancel Refill Request/i)[0]).toBeInTheDocument();
+    then("Patient should see the requested refill.", () => {
+      expect(
+        container.getAllByText(/Cancel Refill Request/i)[0]
+      ).toBeInTheDocument();
     });
   });
 
-  test('EPIC_EPP-18_STORY_EPP-2707- Verify whether the Patient is able to see the option to Cancel the requested refill', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {});
+  test("EPIC_EPP-18_STORY_EPP-2707- Verify whether the Patient is able to see the option to Cancel the requested refill", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {}
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {});
 
-    and('clicks  on login button.', () => {
+    and("clicks  on login button.", () => {
       Cookies.result = { authorized: true };
     });
 
-    and('navigate to the View Prescription page.', async () => {
+    and("navigate to the View Prescription page.", async () => {
       Cookies.result = "true";
       mock
-      .onGet(
-        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
-      )
-      .reply(200, TEMP_DATA_MEDICATION);
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, TEMP_DATA_MEDICATION);
       mock
-      .onGet(
-        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
-      )
-      .reply(200, TEMP_DATA_CONTACTS);
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+        )
+        .reply(200, TEMP_DATA_CONTACTS);
       mock
-      .onGet(
-        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
-      )
-      .reply(200, TEMP_DATA_GLASSES);
-      window.matchMedia = createMatchMedia('1920px');
-      
-      act(()=>{
-      container = render(
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+        )
+        .reply(200, TEMP_DATA_GLASSES);
+      window.matchMedia = createMatchMedia("1920px");
+
+      act(() => {
+        container = render(
           <Provider store={store}>
-              {PrescriptionPage.getLayout(<PrescriptionPage />)}
+            {PrescriptionPage.getLayout(<PrescriptionPage />)}
           </Provider>
-          );
-      })
+        );
+      });
       await waitFor(() => container.getByText("Medications"));
       expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
-      
     });
 
-    and('patient should see the option to Refill the Prescription.', async () => {
-      const medicationMenu = container.getByTestId("menu-medication");
-      fireEvent.click(medicationMenu)
-      await waitFor(()=> container.getByText(/Active Medications/i));
+    and(
+      "patient should see the option to Refill the Prescription.",
+      async () => {
+        const medicationMenu = container.getByTestId("menu-medication");
+        fireEvent.click(medicationMenu);
+        await waitFor(() => container.getByText(/Active Medications/i));
 
-      expect(container.getAllByText(/Active Medications/i)[0]).toBeInTheDocument();
-      expect(container.getAllByText(/Request Refill/i)[0]).toBeInTheDocument();
-    });
+        expect(
+          container.getAllByText(/Active Medications/i)[0]
+        ).toBeInTheDocument();
+        expect(
+          container.getAllByText(/Request Refill/i)[0]
+        ).toBeInTheDocument();
+      }
+    );
 
-    and('request for the refill.', async () => {
+    and("request for the refill.", async () => {
       const mockResponse = {
         message: "Your refill request has been sumbitted",
       };
-      
-      mock.onPost(`${domain}/api/dummy/prescription/requestRefill`).reply(200, mockResponse);
-      
+
+      mock
+        .onPost(`${domain}/api/dummy/prescription/requestRefill`)
+        .reply(200, mockResponse);
+
       const requestRefill = container.getAllByText(/Request Refill/i)[0];
       expect(requestRefill).toBeInTheDocument();
-      
-      act(()=>{
+
+      act(() => {
         fireEvent.click(requestRefill);
       });
-      
-      await waitFor(()=> container.getByText(/Cancel Refill Request/i));
+
+      await waitFor(() => container.getByText(/Cancel Refill Request/i));
     });
 
-    then('Patient should see the Cancel option to cancel the requested refill.', () => {
-      expect(container.getAllByText(/Cancel Refill Request/i)[0]).toBeInTheDocument();
-    });
+    then(
+      "Patient should see the Cancel option to cancel the requested refill.",
+      () => {
+        expect(
+          container.getAllByText(/Cancel Refill Request/i)[0]
+        ).toBeInTheDocument();
+      }
+    );
   });
 
-  test('EPIC_EPP-18_STORY_EPP-2707- Verify whether the Patient is receiving the mail regarding refill request based on Preferred mode of communication - Email', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {});
+  test("EPIC_EPP-18_STORY_EPP-2707- Verify whether the Patient is receiving the mail regarding refill request based on Preferred mode of communication - Email", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {}
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {});
 
-    and('clicks  on login button.', () => {});
+    and("clicks  on login button.", () => {});
 
-    and('navigate to the View Prescription page.', async () => {
+    and("navigate to the View Prescription page.", async () => {
       Cookies.result = "true";
       mock
-      .onGet(
-        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
-      )
-      .reply(200, TEMP_DATA_MEDICATION);
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, TEMP_DATA_MEDICATION);
       mock
-      .onGet(
-        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
-      )
-      .reply(200, TEMP_DATA_CONTACTS);
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+        )
+        .reply(200, TEMP_DATA_CONTACTS);
       mock
-      .onGet(
-        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
-      )
-      .reply(200, TEMP_DATA_GLASSES);
-      window.matchMedia = createMatchMedia('1920px');
-      
-      act(()=>{
-      container = render(
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+        )
+        .reply(200, TEMP_DATA_GLASSES);
+      window.matchMedia = createMatchMedia("1920px");
+
+      act(() => {
+        container = render(
           <Provider store={store}>
-              {PrescriptionPage.getLayout(<PrescriptionPage />)}
+            {PrescriptionPage.getLayout(<PrescriptionPage />)}
           </Provider>
-          );
-      })
+        );
+      });
       await waitFor(() => container.getByText("Medications"));
       expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
     });
 
-    and('patient should see the option to Refill the Prescription.', async () => {
-      const medicationMenu = container.getByTestId("menu-medication");
-      fireEvent.click(medicationMenu)
-      await waitFor(()=> container.getByText(/Active Medications/i));
+    and(
+      "patient should see the option to Refill the Prescription.",
+      async () => {
+        const medicationMenu = container.getByTestId("menu-medication");
+        fireEvent.click(medicationMenu);
+        await waitFor(() => container.getByText(/Active Medications/i));
 
-      expect(container.getAllByText(/Request Refill/i)[0]).toBeInTheDocument();
-    });
+        expect(
+          container.getAllByText(/Request Refill/i)[0]
+        ).toBeInTheDocument();
+      }
+    );
 
-    and('request for the refill.', async () => {
+    and("request for the refill.", async () => {
       const mockResponse = {
         message: "Your refill request has been sumbitted",
       };
-      
-      mock.onPost(`${domain}/api/dummy/prescription/requestRefill`).reply(200, mockResponse);
-      
+
+      mock
+        .onPost(`${domain}/api/dummy/prescription/requestRefill`)
+        .reply(200, mockResponse);
+
       const requestRefill = container.getAllByText(/Request Refill/i)[0];
       expect(requestRefill).toBeInTheDocument();
-      
-      act(()=>{
+
+      act(() => {
         fireEvent.click(requestRefill);
       });
-      
-      await waitFor(()=> container.getByText(/Cancel Refill Request/i));
+
+      await waitFor(() => container.getByText(/Cancel Refill Request/i));
     });
 
-    then('patient should receive the Email regarding refill request.', () => {
-      expect(container.getAllByText(/Cancel Refill Request/i)[0]).toBeInTheDocument();
+    then("patient should receive the Email regarding refill request.", () => {
+      expect(
+        container.getAllByText(/Cancel Refill Request/i)[0]
+      ).toBeInTheDocument();
     });
   });
 
-  test('EPIC_EPP-18_STORY_EPP-2707- Verify whether the Patient is receiving the Text message regarding refill request based on Preferred mode of communication - Phone number', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {});
+  test("EPIC_EPP-18_STORY_EPP-2707- Verify whether the Patient is receiving the Text message regarding refill request based on Preferred mode of communication - Phone number", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {}
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {});
 
-    and('clicks  on login button.', () => {});
+    and("clicks  on login button.", () => {});
 
-    and('navigate to the View Prescription page.', async () => {
+    and("navigate to the View Prescription page.", async () => {
       Cookies.result = "true";
       mock
-      .onGet(
-        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
-      )
-      .reply(200, TEMP_DATA_MEDICATION);
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, TEMP_DATA_MEDICATION);
       mock
-      .onGet(
-        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
-      )
-      .reply(200, TEMP_DATA_CONTACTS);
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+        )
+        .reply(200, TEMP_DATA_CONTACTS);
       mock
-      .onGet(
-        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
-      )
-      .reply(200, TEMP_DATA_GLASSES);
-      window.matchMedia = createMatchMedia('1920px');
-      
-      act(()=>{
-      container = render(
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+        )
+        .reply(200, TEMP_DATA_GLASSES);
+      window.matchMedia = createMatchMedia("1920px");
+
+      act(() => {
+        container = render(
           <Provider store={store}>
-              {PrescriptionPage.getLayout(<PrescriptionPage />)}
+            {PrescriptionPage.getLayout(<PrescriptionPage />)}
           </Provider>
-          );
-      })
+        );
+      });
       await waitFor(() => container.getByText("Medications"));
       expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
     });
 
-    and('patient should see the option to Refill the Prescription.', async () => {
-      const medicationMenu = container.getByTestId("menu-medication");
-      fireEvent.click(medicationMenu)
-      await waitFor(()=> container.getByText(/Active Medications/i));
+    and(
+      "patient should see the option to Refill the Prescription.",
+      async () => {
+        const medicationMenu = container.getByTestId("menu-medication");
+        fireEvent.click(medicationMenu);
+        await waitFor(() => container.getByText(/Active Medications/i));
 
-      expect(container.getAllByText(/Request Refill/i)[0]).toBeInTheDocument();
-    });
+        expect(
+          container.getAllByText(/Request Refill/i)[0]
+        ).toBeInTheDocument();
+      }
+    );
 
-    and('request for the refill.', async () => {
+    and("request for the refill.", async () => {
       const mockResponse = {
         message: "Your refill request has been sumbitted",
       };
-      
-      mock.onPost(`${domain}/api/dummy/prescription/requestRefill`).reply(200, mockResponse);
-      
+
+      mock
+        .onPost(`${domain}/api/dummy/prescription/requestRefill`)
+        .reply(200, mockResponse);
+
       const requestRefill = container.getAllByText(/Request Refill/i)[0];
       expect(requestRefill).toBeInTheDocument();
-      
-      act(()=>{
+
+      act(() => {
         fireEvent.click(requestRefill);
       });
-      
-      await waitFor(()=> container.getByText(/Cancel Refill Request/i));
+
+      await waitFor(() => container.getByText(/Cancel Refill Request/i));
     });
 
-    then('patient should receive the Text message regarding refill request.', () => {
-      expect(container.getAllByText(/Cancel Refill Request/i)[0]).toBeInTheDocument();
-    });
+    then(
+      "patient should receive the Text message regarding refill request.",
+      () => {
+        expect(
+          container.getAllByText(/Cancel Refill Request/i)[0]
+        ).toBeInTheDocument();
+      }
+    );
   });
 
-  test('EPIC_EPP-18_STORY_EPP-2707- Verify whether the Email regarding request refill is receiving to the E360+', ({ given, when, and, then }) => {
-    given('Patient Launch  the browser and enter the Patient portal URL', () => {});
+  test("EPIC_EPP-18_STORY_EPP-2707- Verify whether the Email regarding request refill is receiving to the E360+", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given(
+      "Patient Launch  the browser and enter the Patient portal URL",
+      () => {}
+    );
 
     when(/^Patient enter valid (.*) and (.*)$/, (arg0, arg1) => {});
 
-    and('clicks  on login button.', () => {});
+    and("clicks  on login button.", () => {});
 
-    and('navigate to the View Prescription page.', async () => {
+    and("navigate to the View Prescription page.", async () => {
       Cookies.result = "true";
       mock
-      .onGet(
-        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
-      )
-      .reply(200, TEMP_DATA_MEDICATION);
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+        )
+        .reply(200, TEMP_DATA_MEDICATION);
       mock
-      .onGet(
-        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
-      )
-      .reply(200, TEMP_DATA_CONTACTS);
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+        )
+        .reply(200, TEMP_DATA_CONTACTS);
       mock
-      .onGet(
-        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
-      )
-      .reply(200, TEMP_DATA_GLASSES);
-      window.matchMedia = createMatchMedia('1920px');
-      
-      act(()=>{
-      container = render(
+        .onGet(
+          `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+        )
+        .reply(200, TEMP_DATA_GLASSES);
+      window.matchMedia = createMatchMedia("1920px");
+
+      act(() => {
+        container = render(
           <Provider store={store}>
-              {PrescriptionPage.getLayout(<PrescriptionPage />)}
+            {PrescriptionPage.getLayout(<PrescriptionPage />)}
           </Provider>
-          );
-      })
+        );
+      });
       await waitFor(() => container.getByText("Medications"));
       expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
     });
 
-    and('patient should see the option to Refill the Prescription.', async () => {
-      const medicationMenu = container.getByTestId("menu-medication");
-      fireEvent.click(medicationMenu)
-      await waitFor(()=> container.getByText(/Active Medications/i));
+    and(
+      "patient should see the option to Refill the Prescription.",
+      async () => {
+        const medicationMenu = container.getByTestId("menu-medication");
+        fireEvent.click(medicationMenu);
+        await waitFor(() => container.getByText(/Active Medications/i));
 
-      expect(container.getAllByText(/Request Refill/i)[0]).toBeInTheDocument();
-    });
+        expect(
+          container.getAllByText(/Request Refill/i)[0]
+        ).toBeInTheDocument();
+      }
+    );
 
-    and('request for the refill.', async () => {
+    and("request for the refill.", async () => {
       const mockResponse = {
         message: "Your refill request has been sumbitted",
       };
-      
-      mock.onPost(`${domain}/api/dummy/prescription/requestRefill`).reply(200, mockResponse);
-      
+
+      mock
+        .onPost(`${domain}/api/dummy/prescription/requestRefill`)
+        .reply(200, mockResponse);
+
       const requestRefill = container.getAllByText(/Request Refill/i)[0];
       expect(requestRefill).toBeInTheDocument();
-      
-      act(()=>{
+
+      act(() => {
         fireEvent.click(requestRefill);
       });
-      
-      await waitFor(()=> container.getByText(/Cancel Refill Request/i));
-      expect(container.getAllByText(/Cancel Refill Request/i)[0]).toBeInTheDocument();
+
+      await waitFor(() => container.getByText(/Cancel Refill Request/i));
+      expect(
+        container.getAllByText(/Cancel Refill Request/i)[0]
+      ).toBeInTheDocument();
     });
 
     then("E360+ should receive the Email regarding refill request.", (arg0) => {

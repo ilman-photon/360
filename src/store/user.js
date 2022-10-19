@@ -370,9 +370,10 @@ const buildUserData = (payload) => {
     email: payload.contactInformation.emails[0]
       ? payload.contactInformation.emails[0].email
       : "-",
-    mobile: payload.contactInformation.phones[0]
-      ? payload.contactInformation.phones[0].number
-      : "-",
+    mobile:
+      payload.contactInformation.phones && payload.contactInformation.phones[0]
+        ? payload.contactInformation.phones[0].number
+        : "-",
     address: userAddress.addressLine1 || "",
     city: userAddress.city || "",
     state: userAddress.state || "",
@@ -522,7 +523,7 @@ const userSlice = createSlice({
       state.userData = DEFAULT_USER_DATA;
     },
     setUserData: (state, { payload }) => {
-      state.userData = payload;
+      state.userData = buildUserData(payload);
     },
     resetUserInsuranceData: (state, { payload }) => {
       state.userInsuranceData = [];

@@ -9,7 +9,7 @@ import Cookies from "universal-cookie";
 import mediaQuery from "css-mediaquery";
 import HomePage from "../../src/pages/patient";
 
-import { getServerSideProps } from "../../src/pages/patient/mfa";
+import { TEMP_DATA_CONTACTS, TEMP_DATA_GLASSES, TEMP_DATA_MEDICATION } from "../../__mocks__/mockResponse";
 
 const upcoming = {
   "count": 3,
@@ -170,7 +170,7 @@ const upcoming = {
           }
         }
       },
-      "appointmentDate": "10/19/2022",
+      "appointmentDate": "10/19/2023",
       "appointmentTime": "11:00",
       "appointmentEndTime": "11:01",
       "appointmentLength": 1,
@@ -937,15 +937,20 @@ defineFeature(feature, (test) => {
       )
       .reply(200, upcoming);
       mock
-        .onGet(
-          `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
-        )
-        .reply(200, MOCK_PRESCRIPTION);
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`
+      )
+      .reply(200, TEMP_DATA_MEDICATION);
+      mock
+      .onGet(
+        `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getContactsData`
+      )
+      .reply(200, TEMP_DATA_CONTACTS);
+      mock
+      .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
+      )
+      .reply(200, TEMP_DATA_GLASSES);
       window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -958,11 +963,6 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByText("Patient Information"));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
     });
 
     and(

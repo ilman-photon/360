@@ -526,6 +526,7 @@ const FilterHeading = ({
 
   React.useEffect(() => {
     if (currentCity) setValue("location", currentCity);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentCity]);
 
   const minDate = new Date();
@@ -810,8 +811,8 @@ const FilterHeading = ({
         className={styles.titleHeadingWrapper}
         sx={{
           height: title && subtitle ? "200px" : "151px",
-          position: isFixed ? "fixed" : "relative",
-          marginTop: isDashboard ? "27px !important" : "-15px",
+          position: "relative",
+          marginTop: isDashboard ? "0px !important" : "-15px",
         }}
       >
         <Box

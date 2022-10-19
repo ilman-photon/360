@@ -15,10 +15,10 @@ const useRouter = jest.spyOn(require("next/router"), "useRouter");
 import constants from "../../src/utils/constants";
 import AuthPage from "../../src/pages/patient/login";
 import Cookies from "universal-cookie";
-import { getServerSideProps } from "../../src/pages/patient/mfa";
 import HomePage from "../../src/pages/patient";
 import { renderScheduleAppointment } from "../../__mocks__/commonSteps";
 import Appointment from "../../src/pages/patient/appointment";
+import { renderWithProviders } from "../src/utils/test-util";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-2532.feature"
@@ -334,10 +334,7 @@ const navigateToPatientPortalHome = async () => {
   mock
     .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`)
     .reply(200, MOCK_PRESCRIPTION);
-  const response = await getServerSideProps({
-    req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-    res: jest.fn(),
-  });
+
   const mockGeolocation = {
     getCurrentPosition: jest.fn(),
     watchPosition: jest.fn(),
@@ -350,12 +347,6 @@ const navigateToPatientPortalHome = async () => {
     );
   });
   await waitFor(() => container.getByLabelText(/Appointments/i));
-  expect(response).toEqual({
-    redirect: {
-      destination: "/patient/login",
-      permanent: false,
-    },
-  });
 };
 
 const defaultValidation = () => {
@@ -384,7 +375,7 @@ defineFeature(feature, (test) => {
 
     when("a user provides a valid Email or Phone Number and password", () => {
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -443,7 +434,7 @@ defineFeature(feature, (test) => {
 
     when("a user provides a valid Email or Phone Number and password", () => {
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -508,7 +499,7 @@ defineFeature(feature, (test) => {
 
     when("a user provides a valid Email or Phone Number and password", () => {
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -562,7 +553,7 @@ defineFeature(feature, (test) => {
 
     when("a user provides a valid Email or Phone Number and password", () => {
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -619,7 +610,7 @@ defineFeature(feature, (test) => {
 
     when("a user provides a valid Email or Phone Number and password", () => {
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -676,7 +667,7 @@ defineFeature(feature, (test) => {
 
     when("a user provides a valid Email or Phone Number and password", () => {
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -736,7 +727,7 @@ defineFeature(feature, (test) => {
 
     when("a user provides a valid Email or Phone Number and password", () => {
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -794,7 +785,7 @@ defineFeature(feature, (test) => {
 
     when("a user provides a valid Email or Phone Number and password", () => {
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -849,7 +840,7 @@ defineFeature(feature, (test) => {
 
     when("a user provides a valid Email or Phone Number and password", () => {
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -904,7 +895,7 @@ defineFeature(feature, (test) => {
 
     when("a user provides a valid Email or Phone Number and password", () => {
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });

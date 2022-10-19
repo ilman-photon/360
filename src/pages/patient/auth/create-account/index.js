@@ -8,15 +8,22 @@ import { Box } from "@mui/material";
 import globalStyles from "../../../../styles/Global.module.scss";
 import { mmddyyDateFormat } from "../../../../utils/dateFormatter";
 import { loginProps } from "../../login";
+import { useRouter } from "next/router";
 export default function CreateAccountPage() {
   const dispatch = useDispatch();
   const api = new Api();
+  const router = useRouter();
 
   const formMessage = useSelector((state) => state.index.formMessage);
 
   const OnRegisterClicked = async function (postbody) {
     dispatch(resetFormMessage());
     try {
+      if (!postbody.email) {
+        delete postbody.email;
+      } else if (!postbody.mobileNumber) {
+        delete postbody.mobileNumber;
+      }
       await api.getResponse(
         "/ecp/patient/userregistration",
         { ...postbody, dob: mmddyyDateFormat(postbody.dob) },
@@ -24,15 +31,17 @@ export default function CreateAccountPage() {
       );
 
       // after register handler
+      let username = postbody.email || postbody.mobileNumber;
       loginProps.OnLoginClicked(
         {
-          username: postbody.email,
+          username,
           password: postbody.password,
         },
-        null,
+        router,
         () => {
           //this is intentional
-        }
+        },
+        dispatch
       );
     } catch (err) {
       console.error({ err });

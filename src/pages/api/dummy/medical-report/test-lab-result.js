@@ -12,28 +12,28 @@ export default function TestLabResult(req, res) {
   const dummyMedRep = [
     createData(
       1,
-      "Eye Surgery",
+      "Eye Surgery 1",
       "Hopkins, D.M.",
       "09/09/2022 12:00PM",
       "Completed"
     ),
     createData(
       2,
-      "Eye Surgery",
+      "Eye Surgery 2",
       "Hopkins, D.M.",
       "09/09/2022 12:00PM",
       "Completed"
     ),
     createData(
       3,
-      "Eye Surgery",
+      "Eye Surgery 3",
       "Hopkins, D.M.",
       "09/09/2022 12:00PM",
       "Completed"
     ),
     createData(
       4,
-      "Eye Surgery",
+      "Eye Surgery 4",
       "Hopkins, D.M.",
       "08/08/2022 12:00PM",
       "Completed"

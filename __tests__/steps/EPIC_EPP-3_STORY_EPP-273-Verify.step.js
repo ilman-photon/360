@@ -4,9 +4,10 @@ import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import AuthPage from "../../src/pages/patient/login";
-import MfaPage, { getServerSideProps } from "../../src/pages/patient/mfa";
+import MfaPage from "../../src/pages/patient/mfa";
 import Cookies from "universal-cookie";
 import constants from "../../src/utils/constants";
+import { renderWithProviders } from "../src/utils/test-util";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint3/EPP-273.feature",
@@ -40,13 +41,7 @@ defineFeature(feature, (test) => {
   const mock = new MockAdapter(axios);
   const element = document.createElement("div");
   beforeEach(async () => {
-    const contex = {
-      req: {
-        headers: {
-          cookie: "username=user1%40photon.com; mfa=true",
-        },
-      },
-    };
+    Cookies.result = { mfa: true };
 
     const userData = {
       communicationMethod: {
@@ -59,7 +54,6 @@ defineFeature(feature, (test) => {
 
     mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
 
-    getServerSideProps(contex);
     container = render(<MfaPage />);
     await waitFor(() => container.getByText("setMFATitle"));
   });
@@ -91,7 +85,7 @@ defineFeature(feature, (test) => {
         .onGet(`https://api.ipify.org?format=json`)
         .reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -295,7 +289,7 @@ defineFeature(feature, (test) => {
         .onGet(`https://api.ipify.org?format=json`)
         .reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -475,7 +469,7 @@ defineFeature(feature, (test) => {
         .onGet(`https://api.ipify.org?format=json`)
         .reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -654,7 +648,7 @@ defineFeature(feature, (test) => {
         .onGet(`https://api.ipify.org?format=json`)
         .reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });
@@ -834,7 +828,7 @@ defineFeature(feature, (test) => {
         .onGet(`https://api.ipify.org?format=json`)
         .reply(200, { ip: "10.10.10.10" });
       act(() => {
-        container = render(<AuthPage />, {
+        container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
           legacyRoot: true,
         });

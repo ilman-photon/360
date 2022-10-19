@@ -51,6 +51,7 @@ export default function RescheduleAppointments() {
     };
 
     dispatch(setFilterData(filterData));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [appointmentScheduleData.providerInfo.address]);
 
   React.useEffect(() => {
@@ -78,6 +79,7 @@ export default function RescheduleAppointments() {
         fetchAppointmentById({ appointmentId: router.query.appointmentId })
       );
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router.query]);
 
   const OnEditClicked = () => {

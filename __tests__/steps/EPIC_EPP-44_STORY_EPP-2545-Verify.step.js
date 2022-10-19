@@ -12,7 +12,6 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 import ForgotPasswordPage from "../../src/pages/patient/forgot-password";
 import AuthPage from "../../src/pages/patient/login";
 import Cookies from "universal-cookie";
-import { getServerSideProps } from "../../src/pages/patient/mfa";
 import HomePage from "../../src/pages/patient";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
@@ -45,6 +44,7 @@ import InfoWindowContent from "../../src/components/organisms/Google/Maps/infoWi
 import { CircularProgress } from "@mui/material";
 import ShallowRenderer from "react-shallow-renderer";
 import Appointment from "../../src/pages/patient/appointment";
+import { renderWithProviders } from "../src/utils/test-util";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-2545.feature"
@@ -393,7 +393,7 @@ defineFeature(feature, (test) => {
 
   const providesUsernamePassword = () => {
     act(() => {
-      container = render(<AuthPage />, {
+      container = renderWithProviders(<AuthPage />, {
         container: document.body.appendChild(element),
         legacyRoot: true,
       });

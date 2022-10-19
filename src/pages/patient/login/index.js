@@ -5,6 +5,9 @@ import { Login as LoginComponent } from "../../../components/organisms/Login/log
 import { useEffect } from "react";
 import constants from "../../../utils/constants";
 import { removeAuthCookies } from "../../../utils/authetication";
+import { Provider, useDispatch } from "react-redux";
+import { fetchUser } from "../../../store/user";
+import store from "../../../store/store";
 
 const api = new Api();
 const cookies = new Cookies();
@@ -42,15 +45,15 @@ function getPatientId(postBody, callback) {
   api
     .getPatientId(postBody)
     .then((response) => {
-      callback(response.ecpPatientId || "");
+      callback(response.ecpPatientId || "-");
     })
     .catch(() => {
-      callback(false);
+      callback("-");
     });
 }
 
 export const loginProps = {
-  OnLoginClicked: function (postbody, _router, callback) {
+  OnLoginClicked: function (postbody, _router, callback, dispatch) {
     api
       .login(postbody)
       .then(function (response) {
@@ -66,17 +69,32 @@ export const loginProps = {
           path: "/patient",
         });
 
-        getUserData(postbody, (isNotNeedMfa) => {
+        getUserData(postbody, async (isNotNeedMfa) => {
           if (isNotNeedMfa) {
             cookies.set("authorized", true, { path: "/patient" });
           } else {
             cookies.set("mfa", true, { path: "/patient" });
           }
-          const hostname = window.location.origin;
-          window.location.href = isNotNeedMfa
-            ? `${hostname}/patient/`
-            : `${hostname}/patient/mfa`;
-          callback({ status: "success" });
+
+          try {
+            const userStorageData = JSON.parse(
+              localStorage.getItem("userData")
+            );
+            if (userStorageData) {
+              const response = await dispatch(
+                fetchUser({ patientId: userStorageData.patientId })
+              );
+              localStorage.setItem(
+                "userProfile",
+                JSON.stringify(response.payload)
+              );
+            }
+
+            _router.push(isNotNeedMfa ? "/patient/" : "/patient/mfa/");
+            callback({ status: "success" });
+          } catch (error) {
+            console.error("something went wrong when logging in: ", error);
+          }
         });
       })
       .catch(function (err) {
@@ -105,24 +123,27 @@ export const loginProps = {
   onAppointmentClicked: "/patient/sync",
 };
 
-export default function login() {
+export default function LoginPage() {
   // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     removeAuthCookies();
   });
+  const dispatch = useDispatch();
 
-  return <LoginComponent {...loginProps} />;
+  return <LoginComponent {...loginProps} dispatch={dispatch} />;
 }
 
-login.getLayout = function getLayout(page) {
+LoginPage.getLayout = function getLayout(page) {
   const backgroundImage = "/login-bg.png";
   return (
-    <AuthLayout
-      showMobileImage={true}
-      imageSrc={backgroundImage}
-      title={"Patient Login"}
-    >
-      {page}
-    </AuthLayout>
+    <Provider store={store}>
+      <AuthLayout
+        showMobileImage={true}
+        imageSrc={backgroundImage}
+        title={"Patient Login"}
+      >
+        {page}
+      </AuthLayout>
+    </Provider>
   );
 };

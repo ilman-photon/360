@@ -5,7 +5,7 @@ import SetMultiFactorAuthentication from "../../components/organisms/MultiFactor
 import MultiFactorAuthentication from "../../components/organisms/MultiFactorAuthentication/multiFactorAuthentication";
 import constants from "../../utils/constants";
 import SecurityQuestion from "../../components/organisms/SecurityQuestion/securityQuestion";
-import { Box, Typography } from "@mui/material";
+import { Box, fabClasses, Typography } from "@mui/material";
 import Cookies from "universal-cookie";
 import AccountTitleHeading from "../../components/atoms/AccountTitleHeading/accountTitleHeading";
 import FormMessage from "../../components/molecules/FormMessage/formMessage";
@@ -14,28 +14,7 @@ import { useTranslation } from "next-i18next";
 import { Provider } from "react-redux";
 import store from "../../store/store";
 import { removeAuthCookies } from "../../utils/authetication";
-
-export async function getServerSideProps(context) {
-  const cookies = new Cookies(context.req.headers.cookie);
-  const isStepTwo = cookies.get("isStay") == "stay";
-
-  if (!cookies.get("mfa")) {
-    return {
-      redirect: {
-        destination: "/patient/login",
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {
-      isStepTwo,
-    },
-  };
-}
-
-export default function MfaPage({ isStepTwo }) {
+export default function MfaPage() {
   const api = new Api();
   const cookies = new Cookies();
   const router = useRouter();
@@ -47,6 +26,8 @@ export default function MfaPage({ isStepTwo }) {
   const [securityQuestionList, setSecurityQuestionList] = React.useState([]);
   const [communicationMethod, setCommunicationMethod] = React.useState({});
   const [isLoading, setIsLoading] = React.useState(true);
+  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
+
   const { t, ready } = useTranslation("translation", {
     keyPrefix: "mfaPage",
     useSuspense: false,
@@ -54,24 +35,26 @@ export default function MfaPage({ isStepTwo }) {
   const { MFA_TEST_ID } = constants.TEST_ID;
   const isStepThree =
     cookies.get("isSecurityQuestionStep", { path: "/patient" }) == "true";
-  const onBackButtonEvent = (e) => {
-    e.preventDefault();
-    onBackToLoginClicked();
-  };
+  const isStepTwo = cookies.get("isStay", { path: "/patient" }) == "stay";
+
+  React.useEffect(() => {
+    const cookies = new Cookies();
+    if (!cookies.get("mfa")) {
+      router.push("/patient/login");
+      setIsAuthenticated(false);
+    } else {
+      setIsAuthenticated(true);
+    }
+  }, [setIsAuthenticated, router]);
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   React.useEffect(() => {
-    if (Object.keys(communicationMethod).length == 0) {
+    if (Object.keys(communicationMethod).length == 0 && isAuthenticated) {
       const userData = JSON.parse(localStorage.getItem("userData"));
       const newCommunicationMethod = userData.communicationMethod;
       setCommunicationMethod(newCommunicationMethod);
       setIsLoading(false);
     }
-    window.history.pushState(null, null, window.location.pathname);
-    window.addEventListener("popstate", onBackButtonEvent);
-    return () => {
-      window.removeEventListener("popstate", onBackButtonEvent);
-    };
   });
 
   React.useEffect(() => {
@@ -122,14 +105,12 @@ export default function MfaPage({ isStepTwo }) {
   }
 
   function redirectToDashboard() {
-    const hostname = window.location.origin;
-    window.location.href = `${hostname}/patient`;
-
     cookies.set("authorized", true, { path: "/patient" });
     cookies.remove("mfa", { path: "/patient" });
     cookies.remove("isStay", { path: "/patient" });
     cookies.remove("isSecurityQuestionStep", { path: "/patient" });
     !rememberMe && cookies.remove("mfaAccessToken", { path: "/patient" });
+    router.push("/patient/");
   }
 
   function onSubmitClicked(inputMfaCode, callback) {
@@ -151,7 +132,6 @@ export default function MfaPage({ isStepTwo }) {
             maxAge,
           });
         }
-        cookies.set("isSecurityQuestionStep", true, { path: "/patient" });
         const securityQuestions = cookies.get("securityQuestions") === "true";
         if (!securityQuestions) {
           onShowSecurityQuestionForm();
@@ -225,6 +205,7 @@ export default function MfaPage({ isStepTwo }) {
         setSecurityQuestionList(
           mappingSecurityQuestionList(response.SetUpSecurityQuestions)
         );
+        cookies.set("isSecurityQuestionStep", true, { path: "/patient" });
         setComponentName(constants.SQ_COMPONENT_NAME);
       })
       .catch(function () {
@@ -271,7 +252,12 @@ export default function MfaPage({ isStepTwo }) {
     return questionList;
   }
 
-  if ((componentName === constants.MFA_COMPONENT_NAME || isStepTwo) && ready) {
+  const isReady = isAuthenticated && ready;
+
+  if (
+    (componentName === constants.MFA_COMPONENT_NAME || isStepTwo) &&
+    isReady
+  ) {
     return (
       <>
         <MultiFactorAuthentication
@@ -299,7 +285,7 @@ export default function MfaPage({ isStepTwo }) {
         ) : null}
       </>
     );
-  } else if (componentName === constants.SQ_COMPONENT_NAME && ready) {
+  } else if (componentName === constants.SQ_COMPONENT_NAME && isReady) {
     return (
       <Box
         sx={{
@@ -311,7 +297,7 @@ export default function MfaPage({ isStepTwo }) {
       >
         {!successSubmit ? (
           <Box sx={{ background: "#FAFAFA" }}>
-            <AccountTitleHeading title={"Set-up Security Questions"} />:
+            <AccountTitleHeading title={"Set-up Security Questions"} />
             <Box
               sx={{
                 paddingTop: "65px",
@@ -323,7 +309,7 @@ export default function MfaPage({ isStepTwo }) {
                 borderColor: "#F3F3F3",
                 borderStyle: "solid",
                 ["@media (max-width: 992px)"]: {
-                  paddingTop: "45px",
+                  paddingTop: "0px",
                   maxWidth: "100%",
                   minWidth: "100%",
                 },
@@ -354,7 +340,7 @@ export default function MfaPage({ isStepTwo }) {
   } else {
     return (
       <>
-        {!isLoading && ready && !isStepThree && (
+        {!isLoading && isReady && !isStepThree && (
           <SetMultiFactorAuthentication
             onConfirmClicked={onConfirmClicked}
             onBackToLoginClicked={onBackToLoginClicked}

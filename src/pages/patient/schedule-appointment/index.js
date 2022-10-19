@@ -44,6 +44,7 @@ import { TEST_ID } from "../../../utils/constants";
 import { StyledButton } from "../../../components/atoms/Button/button";
 import { colors } from "../../../styles/theme";
 import { useLeavePageConfirm } from "../../../../hooks/useCallbackPrompt";
+import { addToCalendar } from "../../../utils/addToCalendar";
 
 const MobileTopBar = (data) => {
   return (
@@ -378,7 +379,7 @@ export default function ScheduleAppointmentPage() {
     if (isReschedule) {
       await router.push("/patient/appointments");
     } else {
-      await router.push("/patient/appointment");
+      await router.push("/patient");
     }
     dispatch(resetAppointmentSchedule());
   };
@@ -414,12 +415,13 @@ export default function ScheduleAppointmentPage() {
         isOpen={isOpen}
         OnOkClicked={handleOkClicked}
         isDesktop={isDesktop}
+        onAddToCalendarClicked={addToCalendar}
       />
     );
   };
 
   return (
-    <section style={{ paddingTop: "64px" }}>
+    <section>
       <BaseHeader />
       {isDesktop ? <AccountTitleHeading title={headerText[activeStep]} /> : ""}
       <StepperAppoinment

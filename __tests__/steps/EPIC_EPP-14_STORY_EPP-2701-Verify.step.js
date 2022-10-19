@@ -8,17 +8,14 @@ import MedicalRecordPage from "../../src/pages/patient/account/medical-record";
 import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import AuthPage from "../../src/pages/patient/login";
 import axios from "axios";
-import React, { useState as useStateMock } from "react";
-import { useRouter } from "next/router";
+import { renderWithProviders } from "../src/utils/test-util";
+import { carePlan } from "../../__mocks__/mockResponse";
+import { createMatchMedia } from "../../__mocks__/commonSteps";
+const useRouter = jest.spyOn(require("next/router"), "useRouter");
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint6/EPP-2701.feature"
 );
-
-// jest.mock('react', () => ({
-//   ...jest.requireActual('react'),
-//   useState: jest.fn(),
-// }))
 
 defineFeature(feature, (test) => {
   let container;
@@ -26,10 +23,25 @@ defineFeature(feature, (test) => {
   router.push(`/patient/account/medical-record?type=test-lab-result`);
   const mock = new MockAdapter(axios);
   const element = document.createElement("div");
-  // const setState = jest.fn()
-  // beforeEach(async () => {
-  //   useStateMock.mockImplementation(init => [init, setState])
-  // });
+  const mockRouter = {
+    back: jest.fn(),
+    query: { type: "care-plan-overview" },
+    push: jest.fn(),
+    replace: jest.fn(),
+    prefetch: jest.fn(),
+    pathname: "/patient/account/medical-record",
+  };
+  beforeEach(() => {
+    const mock = new MockAdapter(axios);
+    mock
+      .onGet(
+        `/ecp/patient/getPatientDocumentByCategory/98f9404b-6ea8-4732-b14f-9c1a168d8066/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=care-plan))`
+      )
+      .reply(200, carePlan);
+
+    window.matchMedia = createMatchMedia("1920px");
+    useRouter.mockReturnValue(mockRouter);
+  });
 
   afterEach(() => {
     mock.reset();
@@ -40,7 +52,7 @@ defineFeature(feature, (test) => {
       .onGet(`https://api.ipify.org?format=json`)
       .reply(200, { ip: "10.10.10.10" });
     act(() => {
-      container = render(<AuthPage />, {
+      container = renderWithProviders(<AuthPage />, {
         container: document.body.appendChild(element),
         legacyRoot: true,
       });
@@ -65,15 +77,13 @@ defineFeature(feature, (test) => {
     fireEvent.click(login);
   };
 
-  const navigateToMedicalPage = () => {
+  const navigateToMedicalPage = async () => {
     act(() => {
       container.rerender(
-        <Provider store={store}>
-          {MedicalRecordPage.getLayout(<MedicalRecordPage />)}
-        </Provider>
+        MedicalRecordPage.getLayout(<MedicalRecordPage />, store, useRouter())
       );
-      router.push(`/patient/account/medical-record?type=care-plan-overview`);
     });
+    await waitFor(() => container.getByText("Choose a category"));
   };
 
   const landsOnMedicalPage = async () => {
@@ -82,11 +92,11 @@ defineFeature(feature, (test) => {
     });
   };
 
-  const userSeeEmptyTable = async () => {
+  const userSeeEmptyTable = async (text = "Care Plan") => {
     await waitFor(() => {
-      expect(container.getByText("Care Plan")).toBeInTheDocument();
+      expect(container.getByText(text)).toBeInTheDocument();
     });
-    const emptyTable = container.getByText("Care Plan");
+    const emptyTable = container.getByText(text);
     expect(emptyTable).toBeInTheDocument();
   };
 
@@ -95,7 +105,10 @@ defineFeature(feature, (test) => {
       container.getByTestId("more-vert-button")
     );
     expect(moreVertBtn).toBeInTheDocument();
-    fireEvent.click(moreVertBtn);
+    act(() => {
+      fireEvent.click(moreVertBtn);
+    });
+    await waitFor(() => container.getByText("Share"));
     expect(container.getByText("Share")).toBeInTheDocument();
   };
 
@@ -131,12 +144,15 @@ defineFeature(feature, (test) => {
       clickLogin();
     });
 
-    and("user navigates to the screen to view their Care Plan Overview", () => {
-      navigateToMedicalPage();
-    });
+    and(
+      "user navigates to the screen to view their Care Plan Overview",
+      async () => {
+        await navigateToMedicalPage();
+      }
+    );
 
-    then("user lands on the screen to view Care Plan Overview", () => {
-      landsOnMedicalPage();
+    then("user lands on the screen to view Care Plan Overview", async () => {
+      await landsOnMedicalPage();
     });
   });
 
@@ -146,6 +162,7 @@ defineFeature(feature, (test) => {
     and,
     then,
   }) => {
+    window.matchMedia = createMatchMedia("720px");
     given("user Launch  the browser and enter the user portal URL", () => {
       launchBrowser();
     });
@@ -158,12 +175,15 @@ defineFeature(feature, (test) => {
       clickLogin();
     });
 
-    and("user navigates to the screen to view their Care Plan Overview", () => {
-      navigateToMedicalPage();
-    });
+    and(
+      "user navigates to the screen to view their Care Plan Overview",
+      async () => {
+        await navigateToMedicalPage();
+      }
+    );
 
-    then("user lands on the screen to view Care Plan Overview", () => {
-      landsOnMedicalPage();
+    then("user lands on the screen to view Care Plan Overview", async () => {
+      await landsOnMedicalPage();
     });
 
     and("user view the fallowing details", (table) => {
@@ -189,12 +209,15 @@ defineFeature(feature, (test) => {
       clickLogin();
     });
 
-    and("user navigates to the screen to view their Care Plan Overview", () => {
-      navigateToMedicalPage();
-    });
+    and(
+      "user navigates to the screen to view their Care Plan Overview",
+      async () => {
+        await navigateToMedicalPage();
+      }
+    );
 
-    then("user lands on the screen to view Care Plan Overview", () => {
-      landsOnMedicalPage();
+    then("user lands on the screen to view Care Plan Overview", async () => {
+      await landsOnMedicalPage();
     });
 
     and("user view the fallowing details", () => {
@@ -227,18 +250,33 @@ defineFeature(feature, (test) => {
       clickLogin();
     });
 
-    and("user navigates to the screen to view their Care Plan Overview", () => {
-      navigateToMedicalPage();
-    });
+    and(
+      "user navigates to the screen to view their Care Plan Overview",
+      async () => {
+        const mock = new MockAdapter(axios);
+        mock
+          .onGet(
+            `/ecp/patient/getPatientDocumentByCategory/98f9404b-6ea8-4732-b14f-9c1a168d8066/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=care-plan))`
+          )
+          .reply(200, {
+            count: 0,
+            entities: [],
+            _links: {
+              self: { href: "/patient-management?pageNo=0&pageSize=10" },
+            },
+          });
+        await navigateToMedicalPage();
+      }
+    );
 
-    then("user lands on the screen to view Care Plan Overview", () => {
-      landsOnMedicalPage();
+    then("user lands on the screen to view Care Plan Overview", async () => {
+      await landsOnMedicalPage();
     });
 
     and(
       "user able to view the following verbiage “There is no care plan overview document.” when there is no care plan overview documents for the user",
       () => {
-        userSeeEmptyTable();
+        userSeeEmptyTable("There is no care plan overview document");
       }
     );
   });
