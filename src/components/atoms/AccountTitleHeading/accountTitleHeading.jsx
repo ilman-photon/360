@@ -1,11 +1,7 @@
 import React from "react";
 import styles from "./accountTitleHeading.module.scss";
 
-const AccountTitleHeading = ({
-  title,
-  sx = {},
-  sxContainer = {},
-}) => {
+const AccountTitleHeading = ({ title, sx = {}, sxContainer = {} }) => {
   return (
     <div
       className={styles.titleHeadingWrapper}
