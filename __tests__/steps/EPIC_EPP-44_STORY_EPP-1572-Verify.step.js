@@ -1,19 +1,17 @@
 import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { defineFeature, loadFeature } from "jest-cucumber";
+import "@testing-library/jest-dom";
+import { Provider } from "react-redux";
+import store from "../../src/store/store";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 import constants from "../../src/utils/constants";
-import MockAdapter from "axios-mock-adapter";
-import axios from "axios";
-import {
-  createMatchMedia,
-  defaultValidation,
-  renderAppointmentDetail,
-} from "../../__mocks__/commonSteps";
-import {
-  mockAppointmentTypes,
-  submitFilter,
-} from "../../__mocks__/mockResponse";
+import FilterHeading from "../../src/components/molecules/FilterHeading/filterHeading";
+import FilterResult from "../../src/components/molecules/FilterResult/filterResult";
+import ScheduleAppointmentPage from "../../src/pages/patient/schedule-appointment";
+import mediaQuery from 'css-mediaquery';
+import { renderLogin } from "../../__mocks__/commonSteps";
+import { mockProviderList } from "../../__mocks__/mockResponse";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-1572.feature"
@@ -21,23 +19,106 @@ const feature = loadFeature(
 
 defineFeature(feature, (test) => {
   let container;
-  const { APPOINTMENT_TEST_ID, SEARCH_PROVIDER_TEST_ID } = constants.TEST_ID;
-  const mock = new MockAdapter(axios);
-  beforeEach(() => {
-    const mockGeolocation = {
-      getCurrentPosition: jest.fn(),
-      watchPosition: jest.fn(),
-    };
+  const { APPOINTMENT_TEST_ID, SEARCH_PROVIDER_TEST_ID } = constants.TEST_ID
 
-    mock
-      .onGet(`/ecp/appointments/appointment-types`)
-      .reply(200, mockAppointmentTypes);
-    mock
-      .onPut(`/ecp/appointments/available-slot?searchText=Texas`)
-      .reply(200, submitFilter);
-    global.navigator.geolocation = mockGeolocation;
-    window.matchMedia = createMatchMedia("1920px");
-  });
+  const defaultValidation = () => {
+    expect(true).toBeTruthy();
+  };
+
+  function createMatchMedia(width) {
+    return query => ({
+      matches: mediaQuery.match(query, { width }),
+      addListener: () => { },
+      removeListener: () => { },
+    });
+  }
+
+  const searchScreen = () => {
+    window.matchMedia = createMatchMedia('1920px');
+    const mockFilterData = {
+      date: null,
+      location: "",
+      insuranceCarrier: "",
+      purposeOfVisit: "",
+    }
+    container = render(<FilterHeading
+      isDesktop={true}
+      isTablet={false}
+      onSearchProvider={() => {
+        jest.fn();
+      }}
+      onSwapButtonClicked={() => {
+        jest.fn();
+      }}
+      isGeolocationEnabled={false}
+      filterData={mockFilterData}
+      purposeOfVisitData={[]}
+      insuranceCarrierData={[]} />);
+  }
+
+  const inputLocation = async () => {
+    const locationInput = await waitFor(() => container.getByLabelText("City, state, or zip code"))
+    act(() => {
+      fireEvent.change(locationInput, { target: { value: "Texas" } });
+    });
+  }
+
+  const inputDate = async () => {
+    const dateInput = await waitFor(() => container.getByLabelText("Date"))
+    act(() => {
+      fireEvent.change(dateInput, { target: { value: "22-09-2022" } });
+    });
+  }
+
+  const inputPurpose = async () => {
+    const purposeInput = await waitFor(() => container.getByTestId("select-purposes-of-visit"))
+    act(() => {
+      fireEvent.change(purposeInput, { target: { value: "Eye Exam" } });
+    });
+  }
+
+  const inputInsurance = async () => {
+    const insuranceInput = await waitFor(() => container.getByLabelText("Insurance Carrier"))
+    act(() => {
+      fireEvent.change(insuranceInput, { target: { value: "Aetna" } });
+    });
+  }
+
+  const clickSearch = async () => {
+    const searchBtn = await waitFor(() => container.getByTestId(APPOINTMENT_TEST_ID.searchbtn))
+    fireEvent.click(searchBtn)
+  }
+
+  const resultsScreen = async () => {
+    const rangeDate = { startDate: "2022-10-10", endDate: "2022-10-15" }
+    container.rerender(
+      <FilterResult isDesktop={true}
+        providerList={mockProviderList}
+        rangeDate={rangeDate}
+        purposeOfVisitData={[]}
+        insuranceCarrierData={[]}
+        googleApiKey={"Test"}
+        filterData={{
+          location: "",
+          date: "",
+          purposeOfVisit: "",
+          insuranceCarrier: "",
+        }}
+      />
+    );
+    expect(await waitFor(() => container.getByTestId(APPOINTMENT_TEST_ID.FILTER_RESULT.container))).toBeInTheDocument()
+  }
+
+  const reviewAppPage = async () => {
+    container.rerender(<Provider store={store}>{ScheduleAppointmentPage.getLayout(<ScheduleAppointmentPage />)}</Provider>);
+    await waitFor(() => container.getByText("Review Appointment Details"))
+  }
+
+  const clickHour = async () => {
+    expect(container.getByText("3 In-network providers")).toBeInTheDocument();
+    const hourButton = await waitFor(() => container.getByTestId(SEARCH_PROVIDER_TEST_ID.hourButton))
+    fireEvent.click(hourButton)
+  }
 
   test("EPIC_EPP-44_STORY_EPP-1572-Verify if user able to view and select continue as guest option", ({
     given,
@@ -54,31 +135,31 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", () => {
-      defaultValidation();
+      searchScreen();
     });
 
     and("User should fill the location", () => {
-      defaultValidation();
+      inputLocation();
     });
 
     and("User should select the Date & Time with provider", () => {
-      defaultValidation();
+      inputDate();
     });
 
     and("User should select the purpose of the visit", () => {
-      defaultValidation();
+      inputPurpose();
     });
 
     and("User has reviewed the appointment details", () => {
-      defaultValidation();
+      resultsScreen();
     });
 
     when("User selects that the appointment is for Self", () => {
       defaultValidation();
     });
 
-    then("User should navigated to the Patient Portal application", () => {
-      defaultValidation();
+    then('User should navigated to the Patient Portal application', () => {
+      renderLogin()
     });
 
     and("User should see option as Continue as a Guest button", () => {
@@ -100,31 +181,31 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", () => {
-      defaultValidation();
+      searchScreen();
     });
 
     and("User should fill the location", () => {
-      defaultValidation();
+      inputLocation();
     });
 
     and("User should select the Date & Time with provider", () => {
-      defaultValidation();
+      inputDate();
     });
 
     and("User should select the purpose of the visit", () => {
-      defaultValidation();
+      inputPurpose();
     });
 
     and("User has reviewed the appointment details", () => {
-      defaultValidation();
+      resultsScreen();
     });
 
     when("User selects that the appointment is for Self", () => {
       defaultValidation();
     });
 
-    then("User should navigated to the Patient Portal application", () => {
-      defaultValidation();
+    then('User should navigated to the Patient Portal application', () => {
+      renderLogin()
     });
 
     when("User selects that the appointment is for Self", () => {
@@ -163,31 +244,31 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", () => {
-      defaultValidation();
+      searchScreen();
     });
 
     and("User should fill the location", () => {
-      defaultValidation();
+      inputLocation();
     });
 
     and("User should select the Date & Time with provider", () => {
-      defaultValidation();
+      inputDate();
     });
 
     and("User should select the purpose of the visit", () => {
-      defaultValidation();
+      inputPurpose();
     });
 
     and("User has reviewed the appointment details", () => {
-      defaultValidation();
+      resultsScreen();
     });
 
     when("User selects that the appointment is for Self", () => {
       defaultValidation();
     });
 
-    then("User should navigated to the Patient Portal application", () => {
-      defaultValidation();
+    then('User should navigated to the Patient Portal application', () => {
+      renderLogin()
     });
 
     when("User selects that the appointment is for Self", () => {
@@ -212,7 +293,7 @@ defineFeature(feature, (test) => {
 
     and(
       "User should see fields First Name, Last Name, Date Of Birth, Email, Mobile Number, Preferred mode(s) of communication",
-      () => {}
+      () => { }
     );
   });
 
@@ -231,31 +312,31 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", () => {
-      defaultValidation();
+      searchScreen();
     });
 
     and("User should fill the location", () => {
-      defaultValidation();
+      inputLocation();
     });
 
     and("User should select the Date & Time with provider", () => {
-      defaultValidation();
+      inputDate();
     });
 
     and("User should select the purpose of the visit", () => {
-      defaultValidation();
+      inputPurpose();
     });
 
     and("User has reviewed the appointment details", () => {
-      defaultValidation();
+      resultsScreen();
     });
 
     when("User selects that the appointment is for Self", () => {
       defaultValidation();
     });
 
-    then("User should navigated to the Patient Portal application", () => {
-      defaultValidation();
+    then('User should navigated to the Patient Portal application', () => {
+      renderLogin()
     });
 
     when("User selects that the appointment is for Self", () => {
@@ -280,7 +361,7 @@ defineFeature(feature, (test) => {
 
     and(
       "User should see First Name, Last Name, Date of Birth, Preferred mode(s) of communication field as mandatory",
-      () => {}
+      () => { }
     );
   });
 
@@ -299,31 +380,31 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", () => {
-      defaultValidation();
+      searchScreen();
     });
 
     and("User should fill the location", () => {
-      defaultValidation();
+      inputLocation();
     });
 
     and("User should select the Date & Time with provider", () => {
-      defaultValidation();
+      inputDate();
     });
 
     and("User should select the purpose of the visit", () => {
-      defaultValidation();
+      inputPurpose();
     });
 
     and("User has reviewed the appointment details", () => {
-      defaultValidation();
+      resultsScreen();
     });
 
     when("User selects that the appointment is for Self", () => {
       defaultValidation();
     });
 
-    then("User should navigated to the Patient Portal application", () => {
-      defaultValidation();
+    then('User should navigated to the Patient Portal application', () => {
+      renderLogin()
     });
 
     when("User selects that the appointment is for Self", () => {
@@ -348,17 +429,17 @@ defineFeature(feature, (test) => {
 
     and(
       "User should see fields First Name, Last Name, Date Of Birth, Email, Mobile Number, Preferred mode(s) of communication",
-      () => {}
+      () => { }
     );
 
     when(
       /^user enter first name field with mimium (\d+) to maximum (\d+) characters$/,
-      (arg0, arg1) => {}
+      (arg0, arg1) => { }
     );
 
     then(
       "user should see the enter character length accepted in First name field",
-      () => {}
+      () => { }
     );
   });
 
@@ -377,31 +458,31 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", () => {
-      defaultValidation();
+      searchScreen();
     });
 
     and("User should fill the location", () => {
-      defaultValidation();
+      inputLocation();
     });
 
     and("User should select the Date & Time with provider", () => {
-      defaultValidation();
+      inputDate();
     });
 
     and("User should select the purpose of the visit", () => {
-      defaultValidation();
+      inputPurpose();
     });
 
     and("User has reviewed the appointment details", () => {
-      defaultValidation();
+      resultsScreen();
     });
 
     when("User selects that the appointment is for Self", () => {
       defaultValidation();
     });
 
-    then("User should navigated to the Patient Portal application", () => {
-      defaultValidation();
+    then('User should navigated to the Patient Portal application', () => {
+      renderLogin()
     });
 
     when("User selects that the appointment is for Self", () => {
@@ -426,17 +507,17 @@ defineFeature(feature, (test) => {
 
     and(
       "User should see fields First Name, Last Name, Date Of Birth, Email, Mobile Number, Preferred mode(s) of communication",
-      () => {}
+      () => { }
     );
 
     when(
       /^user enter Last name field with mimium (\d+) to maximum (\d+) characters$/,
-      (arg0, arg1) => {}
+      (arg0, arg1) => { }
     );
 
     then(
       "user should see the enter character length accepted in Last name field",
-      () => {}
+      () => { }
     );
   });
 
@@ -455,31 +536,31 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", () => {
-      defaultValidation();
+      searchScreen();
     });
 
     and("User should fill the location", () => {
-      defaultValidation();
+      inputLocation();
     });
 
     and("User should select the Date & Time with provider", () => {
-      defaultValidation();
+      inputDate();
     });
 
     and("User should select the purpose of the visit", () => {
-      defaultValidation();
+      inputPurpose();
     });
 
     and("User has reviewed the appointment details", () => {
-      defaultValidation();
+      resultsScreen();
     });
 
     when("User selects that the appointment is for Self", () => {
       defaultValidation();
     });
 
-    then("User should navigated to the Patient Portal application", () => {
-      defaultValidation();
+    then('User should navigated to the Patient Portal application', () => {
+      renderLogin()
     });
 
     when("User selects that the appointment is for Self", () => {
@@ -504,7 +585,7 @@ defineFeature(feature, (test) => {
 
     and(
       "User should see fields First Name, Last Name, Date Of Birth, Email, Mobile Number, Preferred mode(s) of communication",
-      () => {}
+      () => { }
     );
 
     when("user enter Date of Birth field in MM/DD/YYYY format", () => {
@@ -531,31 +612,31 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", () => {
-      defaultValidation();
+      searchScreen();
     });
 
     and("User should fill the location", () => {
-      defaultValidation();
+      inputLocation();
     });
 
     and("User should select the Date & Time with provider", () => {
-      defaultValidation();
+      inputDate();
     });
 
     and("User should select the purpose of the visit", () => {
-      defaultValidation();
+      inputPurpose();
     });
 
     and("User has reviewed the appointment details", () => {
-      defaultValidation();
+      resultsScreen();
     });
 
     when("User selects that the appointment is for Self", () => {
       defaultValidation();
     });
 
-    then("User should navigated to the Patient Portal application", () => {
-      defaultValidation();
+    then('User should navigated to the Patient Portal application', () => {
+      renderLogin()
     });
 
     when("User selects that the appointment is for Self", () => {
@@ -580,7 +661,7 @@ defineFeature(feature, (test) => {
 
     and(
       "User should see fields First Name, Last Name, Date Of Birth, Email, Mobile Number, Preferred mode(s) of communication",
-      () => {}
+      () => { }
     );
 
     when("User enter email id with correct format in Email field", () => {
@@ -607,31 +688,31 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", () => {
-      defaultValidation();
+      searchScreen();
     });
 
     and("User should fill the location", () => {
-      defaultValidation();
+      inputLocation();
     });
 
     and("User should select the Date & Time with provider", () => {
-      defaultValidation();
+      inputDate();
     });
 
     and("User should select the purpose of the visit", () => {
-      defaultValidation();
+      inputPurpose();
     });
 
     and("User has reviewed the appointment details", () => {
-      defaultValidation();
+      resultsScreen();
     });
 
     when("User selects that the appointment is for Self", () => {
       defaultValidation();
     });
 
-    then("User should navigated to the Patient Portal application", () => {
-      defaultValidation();
+    then('User should navigated to the Patient Portal application', () => {
+      renderLogin()
     });
 
     when("User selects that the appointment is for Self", () => {
@@ -656,12 +737,12 @@ defineFeature(feature, (test) => {
 
     and(
       "User should see fields First Name, Last Name, Date Of Birth, Email, Mobile Number, Preferred mode(s) of communication",
-      () => {}
+      () => { }
     );
 
     when(
       "User enter number with correct format in Mobile number field",
-      () => {}
+      () => { }
     );
 
     then("user should see Mobile number entered in the field", () => {
@@ -684,31 +765,31 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", () => {
-      defaultValidation();
+      searchScreen();
     });
 
     and("User should fill the location", () => {
-      defaultValidation();
+      inputLocation();
     });
 
     and("User should select the Date & Time with provider", () => {
-      defaultValidation();
+      inputDate();
     });
 
     and("User should select the purpose of the visit", () => {
-      defaultValidation();
+      inputPurpose();
     });
 
     and("User has reviewed the appointment details", () => {
-      defaultValidation();
+      resultsScreen();
     });
 
     when("User selects that the appointment is for Self", () => {
       defaultValidation();
     });
 
-    then("User should navigated to the Patient Portal application", () => {
-      defaultValidation();
+    then('User should navigated to the Patient Portal application', () => {
+      renderLogin()
     });
 
     when("User selects that the appointment is for Self", () => {
@@ -733,17 +814,17 @@ defineFeature(feature, (test) => {
 
     and(
       "User should see fields First Name, Last Name, Date Of Birth, Email, Mobile Number, Preferred mode(s) of communication",
-      () => {}
+      () => { }
     );
 
     when(
       "User leave both field(Email & Mobile number) blank and enter",
-      () => {}
+      () => { }
     );
 
     then(
       'user should see error message "Email ID or Mobile Number is required”',
-      () => {}
+      () => { }
     );
   });
 
@@ -762,31 +843,31 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", () => {
-      defaultValidation();
+      searchScreen();
     });
 
     and("User should fill the location", () => {
-      defaultValidation();
+      inputLocation();
     });
 
     and("User should select the Date & Time with provider", () => {
-      defaultValidation();
+      inputDate();
     });
 
     and("User should select the purpose of the visit", () => {
-      defaultValidation();
+      inputPurpose();
     });
 
     and("User has reviewed the appointment details", () => {
-      defaultValidation();
+      resultsScreen();
     });
 
     when("User selects that the appointment is for Self", () => {
       defaultValidation();
     });
 
-    then("User should navigated to the Patient Portal application", () => {
-      defaultValidation();
+    then('User should navigated to the Patient Portal application', () => {
+      renderLogin()
     });
 
     when("User selects that the appointment is for Self", () => {
@@ -811,7 +892,7 @@ defineFeature(feature, (test) => {
 
     when(
       "user leave mandatory field ( First Name, Last Name, Date of Birth, Preferred mode(s) of communication) blank",
-      () => {}
+      () => { }
     );
 
     and("User should error message “This field is required”", () => {
@@ -829,31 +910,31 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", () => {
-      defaultValidation();
+      searchScreen();
     });
 
     and("User should fill the location", () => {
-      defaultValidation();
+      inputLocation();
     });
 
     and("User should select the Date & Time with provider", () => {
-      defaultValidation();
+      inputDate();
     });
 
     and("User should select the purpose of the visit", () => {
-      defaultValidation();
+      inputPurpose();
     });
 
     and("User has reviewed the appointment details", () => {
-      defaultValidation();
+      resultsScreen();
     });
 
     when("User selects that the appointment is for Self", () => {
       defaultValidation();
     });
 
-    then("User should navigated to the Patient Portal application", () => {
-      defaultValidation();
+    then('User should navigated to the Patient Portal application', () => {
+      renderLogin()
     });
 
     when("User selects that the appointment is for Self", () => {
@@ -878,7 +959,7 @@ defineFeature(feature, (test) => {
 
     when(
       "User enter details in the field First Name, Last Name, Date Of Birth, Email, Mobile Number, Preferred mode(s) of communication",
-      () => {}
+      () => { }
     );
 
     and("user to click on submit button", () => {
@@ -900,31 +981,31 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", () => {
-      defaultValidation();
+      searchScreen();
     });
 
     and("User should fill the location", () => {
-      defaultValidation();
+      inputLocation();
     });
 
     and("User should select the Date & Time with provider", () => {
-      defaultValidation();
+      inputDate();
     });
 
     and("User should select the purpose of the visit", () => {
-      defaultValidation();
+      inputPurpose();
     });
 
     and("User has reviewed the appointment details", () => {
-      defaultValidation();
+      resultsScreen();
     });
 
     when("User selects that the appointment is for Self", () => {
       defaultValidation();
     });
 
-    then("User should navigated to the Patient Portal application", () => {
-      defaultValidation();
+    then('User should navigated to the Patient Portal application', () => {
+      renderLogin()
     });
 
     when("User selects that the appointment is for Self", () => {
@@ -949,12 +1030,12 @@ defineFeature(feature, (test) => {
 
     when(
       "user mouse over to field Preferred mode(s) of communication",
-      () => {}
+      () => { }
     );
 
     then(
       "user should see the field Preferred mode(s) of communication preselected the option Both",
-      () => {}
+      () => { }
     );
   });
 
@@ -968,31 +1049,31 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", () => {
-      defaultValidation();
+      searchScreen();
     });
 
     and("User should fill the location", () => {
-      defaultValidation();
+      inputLocation();
     });
 
     and("User should select the Date & Time with provider", () => {
-      defaultValidation();
+      inputDate();
     });
 
     and("User should select the purpose of the visit", () => {
-      defaultValidation();
+      inputPurpose();
     });
 
     and("User has reviewed the appointment details", () => {
-      defaultValidation();
+      resultsScreen();
     });
 
     when("User selects that the appointment is for Self", () => {
       defaultValidation();
     });
 
-    then("User should navigated to the Patient Portal application", () => {
-      defaultValidation();
+    then('User should navigated to the Patient Portal application', () => {
+      renderLogin()
     });
 
     when("User selects that the appointment is for Self", () => {
@@ -1017,22 +1098,22 @@ defineFeature(feature, (test) => {
 
     when(
       /^user provide the details to the field (.*),(.*),(.*),(.*)$/,
-      (arg0, arg1, arg2, arg3) => {}
+      (arg0, arg1, arg2, arg3) => { }
     );
 
     then(
       "user should see the field “Preferred mode(s) of communication” selected with option 'Email'",
-      () => {}
+      () => { }
     );
 
     and(
       "user change the preferred mode to either Mobile number or Both",
-      () => {}
+      () => { }
     );
 
     then(
       "user should see field “Preferred mode(s) of communication” selected with either 'Mobile number' or 'Both'",
-      () => {}
+      () => { }
     );
   });
 
@@ -1046,31 +1127,31 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", () => {
-      defaultValidation();
+      searchScreen();
     });
 
     and("User should fill the location", () => {
-      defaultValidation();
+      inputLocation();
     });
 
     and("User should select the Date & Time with provider", () => {
-      defaultValidation();
+      inputDate();
     });
 
     and("User should select the purpose of the visit", () => {
-      defaultValidation();
+      inputPurpose();
     });
 
     and("User has reviewed the appointment details", () => {
-      defaultValidation();
+      resultsScreen();
     });
 
     when("User selects that the appointment is for Self", () => {
       defaultValidation();
     });
 
-    then("User should navigated to the Patient Portal application", () => {
-      defaultValidation();
+    then('User should navigated to the Patient Portal application', () => {
+      renderLogin()
     });
 
     when("User selects that the appointment is for Self", () => {
@@ -1095,12 +1176,12 @@ defineFeature(feature, (test) => {
 
     when(
       /^user provide the details to the field (.*),(.*),(.*),(.*)$/,
-      (arg0, arg1, arg2, arg3) => {}
+      (arg0, arg1, arg2, arg3) => { }
     );
 
     then(
       "user should see the field “Preferred mode(s) of communication” selected with option 'Mobile number'",
-      () => {}
+      () => { }
     );
 
     and("user change the preferred mode to either Email or Both", () => {
@@ -1109,7 +1190,7 @@ defineFeature(feature, (test) => {
 
     then(
       "user should see field “Preferred mode(s) of communication” selected with either 'Email' or 'Both'",
-      () => {}
+      () => { }
     );
   });
 
@@ -1123,31 +1204,31 @@ defineFeature(feature, (test) => {
     });
 
     then("User should navigated to the search screen", () => {
-      defaultValidation();
+      searchScreen();
     });
 
     and("User should fill the location", () => {
-      defaultValidation();
+      inputLocation();
     });
 
     and("User should select the Date & Time with provider", () => {
-      defaultValidation();
+      inputDate();
     });
 
     and("User should select the purpose of the visit", () => {
-      defaultValidation();
+      inputPurpose();
     });
 
     and("User has reviewed the appointment details", () => {
-      defaultValidation();
+      resultsScreen();
     });
 
     when("User selects that the appointment is for Self", () => {
       defaultValidation();
     });
 
-    then("User should navigated to the Patient Portal application", () => {
-      defaultValidation();
+    then('User should navigated to the Patient Portal application', () => {
+      renderLogin()
     });
 
     when("User selects that the appointment is for Self", () => {
@@ -1172,22 +1253,22 @@ defineFeature(feature, (test) => {
 
     when(
       /^user provide the details to the field (.*),(.*),(.*),(.*),(.*)$/,
-      (arg0, arg1, arg2, arg3, arg4) => {}
+      (arg0, arg1, arg2, arg3, arg4) => { }
     );
 
     then(
       "user should see the field “Preferred mode(s) of communication” selected with option 'Both'",
-      () => {}
+      () => { }
     );
 
     and(
       "user change the preferred mode to either Email or Mobile number",
-      () => {}
+      () => { }
     );
 
     then(
       "user should see field “Preferred mode(s) of communication” selected with either 'Email' or 'Mobile number'",
-      () => {}
+      () => { }
     );
   });
 });

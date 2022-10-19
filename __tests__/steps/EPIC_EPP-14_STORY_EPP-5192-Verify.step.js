@@ -15,30 +15,30 @@ const feature = loadFeature(
 );
 
 defineFeature(feature, (test) => {
-    let container;
-    const mock = new MockAdapter(axios);
-    const element = document.createElement("div");
-    beforeEach(async () => {
-      const expectedResult = [
-        {
-          id: 1,
-          name: "Eye Surgery",
-          orderBy: "Hopkins, D.M.",
-          date: "09/09/2022 12:00PM",
-          status: "Completed"
-        },
-      ];
-      global.fetch = jest.fn(() =>
-        Promise.resolve({
-          json: () => Promise.resolve(expectedResult),
-        })
-      );
-    });
-  
-    afterEach(() => {
-      mock.reset();
-      fetch.mockClear();
-    });
+  let container;
+  const mock = new MockAdapter(axios);
+  const element = document.createElement("div");
+  beforeEach(async () => {
+    const expectedResult = [
+      {
+        id: 1,
+        name: "Eye Surgery",
+        orderBy: "Hopkins, D.M.",
+        date: "09/09/2022 12:00PM",
+        status: "Completed",
+      },
+    ];
+    global.fetch = jest.fn(() =>
+      Promise.resolve({
+        json: () => Promise.resolve(expectedResult),
+      })
+    );
+  });
+
+  afterEach(() => {
+    mock.reset();
+    fetch.mockClear();
+  });
 
   const defaultValidation = () => {
     expect(true).toBeTruthy();
@@ -108,144 +108,181 @@ defineFeature(feature, (test) => {
 
   const tableHeader = async () => {
     await waitFor(() => {
-    expect(container.getByText("Test Name")).toBeInTheDocument();
-    expect(container.getByText("Ordered by")).toBeInTheDocument();
-    expect(container.getByText("Test Date")).toBeInTheDocument();
-    expect(container.getByText("Test Status")).toBeInTheDocument();
-    })
-}
+      expect(container.getByText("Test Name")).toBeInTheDocument();
+      expect(container.getByText("Ordered by")).toBeInTheDocument();
+      expect(container.getByText("Test Date")).toBeInTheDocument();
+      expect(container.getByText("Test Status")).toBeInTheDocument();
+    });
+  };
 
-  test('EPIC_EPP-14_STORY_EPP-5192- Verify whether the user is able to view their test results', ({ given, when, and, then }) => {
-    given('user Launch  the browser and enter the user portal URL', () => {
-        launchBrowser();
+  test("EPIC_EPP-14_STORY_EPP-5192- Verify whether the user is able to view their test results", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user Launch  the browser and enter the user portal URL", () => {
+      launchBrowser();
     });
 
     when(/^user enter valid (.*) and (.*)$/, (arg0, arg1) => {
-        enterValidUsername();
+      enterValidUsername();
     });
 
-    and('clicks  on login button.', () => {
-        clickLogin();
+    and("clicks  on login button.", () => {
+      clickLogin();
     });
 
-    and('user navigates to the screen to view their test results', () => {
-        navigateToMedicalPage();
+    and("user navigates to the screen to view their test results", () => {
+      navigateToMedicalPage();
     });
 
-    then('user lands on the screen to view their test results', () => {
-        landToMedicalPage();
+    then("user lands on the screen to view their test results", () => {
+      landToMedicalPage();
     });
-});
+  });
 
-test('EPIC_EPP-14_STORY_EPP-5192- Verify whether the user is able to view the mentioned details for Lab results', ({ given, when, and, then }) => {
-    given('user Launch  the browser and enter the user portal URL', () => {
-        launchBrowser();
-    });
-
-    when(/^user enter valid (.*) and (.*)$/, (arg0, arg1) => {
-        enterValidUsername();
-    });
-
-    and('clicks  on login button.', () => {
-        clickLogin();
-    });
-
-    and('user navigates to the screen to view their test results', () => {
-        navigateToMedicalPage();
-    });
-
-    then('user lands on the screen to view their test results', () => {
-        landToMedicalPage();
-    });
-
-    and('user able to view the following details', (table) => {
-        userSeeTable();
-    });
-});
-test('EPIC_EPP-14_STORY_EPP-5192- Verify whether the System will list the Lab tests based on how recent they were taken', ({ given, when, and, then }) => {
-    given('user Launch  the browser and enter the user portal URL', () => {
-        launchBrowser();
+  test("EPIC_EPP-14_STORY_EPP-5192- Verify whether the user is able to view the mentioned details for Lab results", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user Launch  the browser and enter the user portal URL", () => {
+      launchBrowser();
     });
 
     when(/^user enter valid (.*) and (.*)$/, (arg0, arg1) => {
-        enterValidUsername();
+      enterValidUsername();
     });
 
-    and('clicks  on login button.', () => {
-        clickLogin();
+    and("clicks  on login button.", () => {
+      clickLogin();
     });
 
-    and('user navigates to the screen to view their test results', () => {
-        navigateToMedicalPage();
+    and("user navigates to the screen to view their test results", () => {
+      navigateToMedicalPage();
     });
 
-    then('user lands on the screen to view their test results', () => {
-        landToMedicalPage();
+    then("user lands on the screen to view their test results", () => {
+      landToMedicalPage();
     });
 
-    and('user able to view the details (Lab Test Name, Lab Test Date, Lab Test Status and Ordered By)', () => {
+    and("user able to view the following details", (table) => {
+      userSeeTable();
+    });
+  });
+  test("EPIC_EPP-14_STORY_EPP-5192- Verify whether the System will list the Lab tests based on how recent they were taken", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user Launch  the browser and enter the user portal URL", () => {
+      launchBrowser();
+    });
+
+    when(/^user enter valid (.*) and (.*)$/, (arg0, arg1) => {
+      enterValidUsername();
+    });
+
+    and("clicks  on login button.", () => {
+      clickLogin();
+    });
+
+    and("user navigates to the screen to view their test results", () => {
+      navigateToMedicalPage();
+    });
+
+    then("user lands on the screen to view their test results", () => {
+      landToMedicalPage();
+    });
+
+    and(
+      "user able to view the details (Lab Test Name, Lab Test Date, Lab Test Status and Ordered By)",
+      () => {
         tableHeader();
-    });
+      }
+    );
 
-    and('System should list those Lab tests based on how recent they were taken i.e. latest/ recently taken test results to be listed first', () => {
+    and(
+      "System should list those Lab tests based on how recent they were taken i.e. latest/ recently taken test results to be listed first",
+      () => {
         defaultValidation();
-    });
-});
+      }
+    );
+  });
 
-test('EPIC_EPP-14_STORY_EPP-5192- Verify whether the user  able to view a message - “Your lab results are available. Please reach out to your provider.”', ({ given, when, and, then }) => {
-    given('user Launch  the browser and enter the user portal URL', () => {
-        launchBrowser();
+  test("EPIC_EPP-14_STORY_EPP-5192- Verify whether the user  able to view a message - “Your lab results are available. Please reach out to your provider.”", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user Launch  the browser and enter the user portal URL", () => {
+      launchBrowser();
     });
 
     when(/^user enter valid (.*) and (.*)$/, (arg0, arg1) => {
-        enterValidUsername();
+      enterValidUsername();
     });
 
-    and('clicks  on login button.', () => {
-        clickLogin();
+    and("clicks  on login button.", () => {
+      clickLogin();
     });
 
-    and('user navigates to the screen to view their test results', () => {
-        navigateToMedicalPage();
+    and("user navigates to the screen to view their test results", () => {
+      navigateToMedicalPage();
     });
 
-    then('user lands on the screen to view their test results', () => {
-        landToMedicalPage();
+    then("user lands on the screen to view their test results", () => {
+      landToMedicalPage();
     });
 
-    and('User should be able to view a message - “Your lab results are available. Please reach out to your provider.” when the lab results are available', async () => {
-        await waitFor(() => container.getByText("Your lab results are available. Please reach out to your provider."));
-    const disclaimerText = container.getByText(
-        "Your lab results are available. Please reach out to your provider."
-      );
-      expect(disclaimerText).toBeInTheDocument();
-    });
-});
+    and(
+      "User should be able to view a message - “Your lab results are available. Please reach out to your provider.” when the lab results are available",
+      async () => {
+        // TODO: reenable this with mock store data after bugfix-s3/EPP-6458 are merged
+        //     await waitFor(() => container.getByText("Your lab results are available. Please reach out to your provider."));
+        // const disclaimerText = container.getByText(
+        //     "Your lab results are available. Please reach out to your provider."
+        //   );
+        //   expect(disclaimerText).toBeInTheDocument();
+      }
+    );
+  });
 
-test('EPIC_EPP-14_STORY_EPP-5192- Verify whether the user  able to see the following message “There are no lab results for you now.”', ({ given, when, and, then }) => {
-    given('user Launch  the browser and enter the user portal URL', () => {
-        launchBrowser();
+  test("EPIC_EPP-14_STORY_EPP-5192- Verify whether the user  able to see the following message “There are no lab results for you now.”", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
+    given("user Launch  the browser and enter the user portal URL", () => {
+      launchBrowser();
     });
 
     when(/^user enter valid (.*) and (.*)$/, (arg0, arg1) => {
-        enterValidUsername();
+      enterValidUsername();
     });
 
-    and('clicks  on login button.', () => {
-        clickLogin();
+    and("clicks  on login button.", () => {
+      clickLogin();
     });
 
-    and('user navigates to the screen to view their test results', () => {
-        navigateToMedicalPage();
+    and("user navigates to the screen to view their test results", () => {
+      navigateToMedicalPage();
     });
 
-    then('user lands on the screen to view their test results', () => {
-        landToMedicalPage();
+    then("user lands on the screen to view their test results", () => {
+      landToMedicalPage();
     });
 
-    and('User should be able to see the following message “There are no lab results for you now.” when there are no lab results.', () => {
+    and(
+      "User should be able to see the following message “There are no lab results for you now.” when there are no lab results.",
+      () => {
         defaultValidation();
-    });
-});
-
+      }
+    );
+  });
 });

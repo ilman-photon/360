@@ -71,8 +71,11 @@ export default function ProfileInformationPage({
   const router = useRouter();
 
   const onBackButtonEvent = (e) => {
-    e.preventDefault();
-    router.push("/patient/login");
+    const userStorageData = JSON.parse(localStorage.getItem("userData"));
+    if (!userStorageData) {
+      e.preventDefault();
+      router.push("/patient/login");
+    }
   };
 
   useEffect(() => {

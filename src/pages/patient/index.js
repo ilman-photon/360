@@ -35,6 +35,7 @@ import { colors } from "../../styles/theme";
 import { appointmentParser } from "../../utils/appointmentsModel";
 import { onCallGetPrescriptionData } from "../../utils/prescription";
 import Navbar from "../../components/molecules/Navbar/Navbar";
+import { fetchUser } from "../../store/user";
 
 export async function getStaticProps() {
   return {
@@ -90,7 +91,7 @@ export default function HomePage({ googleApiKey }) {
     const endDateRequest = getSaturdayOfCurrentWeek(requestData.date);
     const postBody = {
       appointmentType: {
-        code: selectedAppointmentType?.id || " ",
+        code: selectedAppointmentType?.id || "ALL",
       },
       currentDate: startDateRequest,
       numDays: 6,

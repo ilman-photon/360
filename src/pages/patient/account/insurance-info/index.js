@@ -409,7 +409,7 @@ export default function InsuranceInfoPage() {
         open={confirmationDeleteDialog}
         sx={{
           ".MuiPaper-root": {
-            minWidth: "500px",
+            minWidth: "280px",
           },
           ".MuiDialogActions-root": {
             padding: 2,

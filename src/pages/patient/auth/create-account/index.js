@@ -17,6 +17,11 @@ export default function CreateAccountPage() {
   const OnRegisterClicked = async function (postbody) {
     dispatch(resetFormMessage());
     try {
+      if (!postbody.email) {
+        delete postbody.email;
+      } else if (!postbody.mobileNumber) {
+        delete postbody.mobileNumber;
+      }
       await api.getResponse(
         "/ecp/patient/userregistration",
         { ...postbody, dob: mmddyyDateFormat(postbody.dob) },
@@ -24,9 +29,10 @@ export default function CreateAccountPage() {
       );
 
       // after register handler
+      let username = postbody.email || postbody.mobileNumber;
       loginProps.OnLoginClicked(
         {
-          username: postbody.email,
+          username,
           password: postbody.password,
         },
         null,
