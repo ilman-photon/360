@@ -9197,3 +9197,377 @@ export const TEMP_DATA_MEDICATION = [
     },
   },
 ];
+
+export const mockUserData = {
+  title: 0,
+  firstName: "dewo",
+  lastName: "Simanjuntak",
+  dob: "12/12/1991",
+  age: "30",
+  sex: 0,
+  address: [],
+  smokingHistory: [],
+  contactPrefrence: true,
+  contactInformation: {
+    phones: [{ type: 3, number: "(977) 623-4567" }],
+    emails: [
+      {
+        type: 1,
+        email: "patient123@gmail.com",
+        _id: "69218e5a-dc72-4883-82c5-ea359b058c74",
+        _version: "8f2d0a2a-c528-441c-a598-61e5d76eef9c",
+        _created: "Oct 13, 2022, 4:31:42 PM",
+        _updated: "Oct 13, 2022, 4:31:42 PM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+      },
+    ],
+    noEmail: false,
+    contactPreferenceDetail: {
+      phone: false,
+      text: false,
+      email: false,
+      _id: "6132788a-1a30-4b7d-b099-0e2812a4a2b2",
+      _version: "7b45daa1-df05-4931-adbe-4018c9ba3bf3",
+      _created: "Oct 13, 2022, 4:31:42 PM",
+      _updated: "Oct 13, 2022, 4:31:42 PM",
+      _createdBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+        },
+      },
+    },
+    _id: "ff408b85-1e4f-4dc8-9af9-64930cd3e904",
+    _version: "9863ac12-b6fd-4b35-8b04-9614c8745c0d",
+    _created: "Oct 13, 2022, 4:31:42 PM",
+    _updated: "Oct 13, 2022, 4:31:42 PM",
+    _createdBy: {
+      _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+      _links: {
+        self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+      },
+    },
+  },
+  patientDetails: {
+    isFlagNew: true,
+    isFlagInCollection: false,
+    isFlagBadCheck: false,
+    isFlagDeceased: false,
+    isFlagChartless: true,
+    _id: "8c2a42bd-b917-4ef4-8a43-d78baae992ca",
+    _version: "c8978b70-2ab5-4e89-90e4-00d03a690213",
+    _created: "Oct 13, 2022, 4:31:42 PM",
+    _updated: "Oct 13, 2022, 4:31:42 PM",
+    _createdBy: {
+      _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+      _links: {
+        self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+      },
+    },
+  },
+  alerts: [],
+  familyMember: [],
+  status: "CREATED",
+  sources: [],
+  isEmergencyContactAvailable: false,
+  _links: {
+    self: { href: "/v1/patients/f352a9fe-53a4-4be8-866f-851ce45331ff" },
+  },
+  _id: "f352a9fe-53a4-4be8-866f-851ce45331ff",
+  _version: "4a2be31b-96f8-4804-95df-a673c0801713",
+  _created: "Oct 13, 2022, 4:31:42 PM",
+  _updated: "Oct 19, 2022, 4:09:50 PM",
+  _createdBy: {
+    _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+    _links: {
+      self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+    },
+  },
+  _updatedBy: {
+    _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+    _links: {
+      self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+    },
+  },
+};
+
+export const appointmentInfo = {
+  appointmentType: "",
+  date: new Date("2022-10-19T13:55:00.000Z"),
+  insuranceCarrier: "",
+  providerTemplate: { _id: "bf883ded-ed67-4679-9f9d-ea979fe8e5cc" },
+  office: { name: "Ballwin", id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078" },
+};
+
+export const providerInfoObj = {
+  providerId: "19f1c186-37a8-46ef-a731-0a1f022be782",
+  name: "Dr Steve Adam",
+  address: {
+    addressLine1: "",
+    addressLine2: "",
+    city: "",
+    state: "",
+    zipcode: "",
+  },
+  rating: "",
+  phoneNumber: "",
+  distance: "",
+  image: "",
+  from: "2022-10-17",
+  to: "2022-10-22",
+  location: { latitude: 0, longitude: 0 },
+  providerTemplateId: "bf883ded-ed67-4679-9f9d-ea979fe8e5cc",
+  office: { name: "Ballwin", id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078" },
+  availability: [
+    { date: "2022-10-17", list: [] },
+    { date: "2022-10-18", list: [] },
+    {
+      date: "2022-10-19",
+      list: [
+        { time: "08:50pm", key: "59e9a244-b7e6-47b4-99d6-acf2467e03e4" },
+        { time: "08:55pm", key: "4cb61844-0705-41f8-a49a-6e1834a8cf43" },
+        { time: "09:00pm", key: "a5db0f86-2cec-477b-bf25-829b3457bf8e" },
+        { time: "09:05pm", key: "c5c93827-c7ee-4304-b974-70928c217cf1" },
+        { time: "09:10pm", key: "2d5498ab-efe4-4b83-b201-c2023d1c01c5" },
+        { time: "09:15pm", key: "4907bafe-5281-4138-92b6-4a4df82a5c87" },
+        { time: "09:20pm", key: "e69c1683-58f7-4d20-93c5-852c9b6f0746" },
+        { time: "09:25pm", key: "115d36a7-d0ba-4f46-9c50-7ea22ca39786" },
+        { time: "09:30pm", key: "47a2b194-120c-43d5-9323-60ed186695de" },
+        { time: "09:35pm", key: "5144eaf5-15ca-4f01-8056-9a9606b2c247" },
+        { time: "09:40pm", key: "642ba5f1-c3a3-4915-9b3d-bacb09dbc174" },
+      ],
+    },
+    {
+      date: "2022-10-20",
+      list: [
+        { time: "09:45am", key: "d51b411f-f50d-4396-8f8f-38697306f4f6" },
+        { time: "09:50am", key: "a16dfe59-c00b-48c6-86b8-aadb1b15f8f7" },
+        { time: "09:55am", key: "8d3912cc-d11b-4d7b-8070-264bd7629030" },
+        { time: "10:00am", key: "d40809f9-6e67-45fb-a6a8-28784f60960d" },
+        { time: "04:00pm", key: "3ff35d73-a01f-41c8-a698-fe17888e6c5b" },
+        { time: "04:05pm", key: "0bb65a7c-7b7c-45a2-9ff1-38879803b5cf" },
+        { time: "04:10pm", key: "f8186ba0-ff7a-4e68-81a4-24f1b22a59ea" },
+        { time: "04:15pm", key: "42eee764-b78a-404e-9393-1fda66b06e73" },
+        { time: "04:20pm", key: "81be5e4d-d25d-422a-aa49-533236eccc46" },
+        { time: "04:25pm", key: "7a82bcbe-d58b-4448-933a-b2932032b489" },
+        { time: "04:30pm", key: "18ab9d4e-46ab-4d3b-95ee-87b9961fc53c" },
+        { time: "04:35pm", key: "f0c6a887-626f-46ed-b48b-be65ee21b150" },
+      ],
+    },
+    {
+      date: "2022-10-21",
+      list: [
+        { time: "09:40am", key: "0a25461e-5c62-47f3-bc18-4262f150809d" },
+        { time: "09:45am", key: "d51b411f-f50d-4396-8f8f-38697306f4f6" },
+        { time: "09:50am", key: "a16dfe59-c00b-48c6-86b8-aadb1b15f8f7" },
+        { time: "09:55am", key: "8d3912cc-d11b-4d7b-8070-264bd7629030" },
+        { time: "10:00am", key: "d40809f9-6e67-45fb-a6a8-28784f60960d" },
+        { time: "04:00pm", key: "3ff35d73-a01f-41c8-a698-fe17888e6c5b" },
+        { time: "04:05pm", key: "0bb65a7c-7b7c-45a2-9ff1-38879803b5cf" },
+        { time: "04:10pm", key: "f8186ba0-ff7a-4e68-81a4-24f1b22a59ea" },
+        { time: "04:15pm", key: "42eee764-b78a-404e-9393-1fda66b06e73" },
+        { time: "04:20pm", key: "81be5e4d-d25d-422a-aa49-533236eccc46" },
+        { time: "04:25pm", key: "7a82bcbe-d58b-4448-933a-b2932032b489" },
+        { time: "04:30pm", key: "18ab9d4e-46ab-4d3b-95ee-87b9961fc53c" },
+        { time: "04:35pm", key: "f0c6a887-626f-46ed-b48b-be65ee21b150" },
+      ],
+    },
+    { date: "2022-10-22", list: [] },
+  ],
+  coordinate: { latitude: "", longitude: "" },
+  filters: { isAvailableToday: false },
+  isAvailableToday: true,
+};
+
+export const mockAppointmentCreationData = [
+  {
+    appointmentType: {
+      code: "Clinical_Diagnosis",
+    },
+    patient: {
+      isEmergencyContactAvailable: false,
+      contactPrefrence: false,
+      _id: "7300529f-ce7e-4f8e-946b-92d498a4b03d",
+    },
+    provider: {
+      inHouse: false,
+      _id: "19f1c186-37a8-46ef-a731-0a1f022be782",
+    },
+    office: {
+      _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+    },
+    providerTemplate: {
+      _id: "ff788e3f-4ed2-4cf8-9d6f-ab50dcf70789",
+    },
+    appointmentDate: "10/21/2022",
+    appointmentTime: "09:00",
+    appointmentEndTime: "09:05",
+    appointmentLength: 5,
+    appointmentSlots: [
+      {
+        appointmentType: {
+          code: "NO_APPOINTMENT",
+          name: "NO APPOINTMENT",
+          key: 1,
+          order: 1,
+          category: {
+            code: "Medical",
+            description: "Medical",
+          },
+          acronym: "NA",
+          color: "#8F8F8F",
+          slotLength: 5,
+          notes: "NO_APPOINTMENT is a default appointment type",
+        },
+        startHHMM: "09:00",
+        endHHMM: "09:05",
+        _id: "6b4a49c6-4caa-4e56-8647-1252b6114516",
+        _version: "7c605332-d4c2-4c4d-9cc7-1cabf4e742d9",
+        _created: "Apr 8, 2022, 8:37:38 AM",
+        _updated: "Sep 22, 2022, 10:24:08 AM",
+        _createdBy: {
+          _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+          _links: {
+            self: {
+              href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+      },
+    ],
+    notes: [
+      {
+        text: "qqqqqqqqqqqqqq",
+        _id: "41d12c33-d190-4324-9af5-35229a5f6691",
+        _version: "88016071-7e0b-4be1-881d-385c8f4bb405",
+        _created: "Sep 30, 2022, 7:26:00 AM",
+        _updated: "Sep 30, 2022, 7:26:00 AM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+      },
+    ],
+    isConfirmed: true,
+    confirmationDetail: {
+      confirmationDate: "09/20/2022",
+      confirmationTime: "18:06",
+      confirmationBy: "a677f406-56b3-4f25-b7a5-37d9266675ba",
+    },
+    appointmentHistory: [
+      {
+        state: "CONFIRMED",
+        office: {
+          _id: "4cd970a0-8529-4b44-a4c5-99c9f4e8d078",
+        },
+        subState: {
+          subState: "CREATED",
+          _id: "eb3c1c4f-b635-4eb8-9311-d176a1a5a418",
+          _version: "5d1db8de-f7fd-40fa-bcad-c046ec981d84",
+          _created: "Sep 30, 2022, 7:26:00 AM",
+          _updated: "Sep 30, 2022, 7:26:00 AM",
+          _createdBy: {
+            _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            _links: {
+              self: {
+                href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+              },
+            },
+          },
+        },
+        _id: "3344a933-e97a-4005-8d25-e40fcdd8d77a",
+        _version: "bd896339-ba33-4696-9463-23c7c2eb4c1d",
+        _created: "Sep 30, 2022, 7:26:00 AM",
+        _updated: "Sep 30, 2022, 7:26:00 AM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+      },
+    ],
+    state: {
+      subState: {
+        subState: "CREATED",
+        _id: "9c884eaf-b2e1-4d78-a035-a19124c0eb5d",
+        _version: "5e81b567-0eb0-42e4-8f77-b5f84e99ce1d",
+        _created: "Sep 30, 2022, 7:26:00 AM",
+        _updated: "Sep 30, 2022, 7:26:00 AM",
+        _createdBy: {
+          _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          _links: {
+            self: {
+              href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+            },
+          },
+        },
+      },
+      state: "CONFIRMED",
+      _id: "fb6e2071-05d3-4d30-98b3-70909249d89c",
+      _version: "1b5dc551-e00b-4243-8bcc-77203dd78c87",
+      _created: "Sep 30, 2022, 7:26:00 AM",
+      _updated: "Sep 30, 2022, 7:26:00 AM",
+      _createdBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: {
+            href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+          },
+        },
+      },
+    },
+    newPatient: false,
+    insurancePayers: [],
+    override: false,
+    allowCreate: false,
+    appointmentNo: 1000001092,
+    quickAppointmentflag: false,
+    isPrimaryMember: true,
+    paymentMethod: {
+      noInsuranceInformation: {},
+      insuranceInfoUsedForBilling: {
+        financialClassBasedInformation: {},
+      },
+    },
+    status: "CREATED",
+    _links: {
+      self: {
+        href: "/v1/appointments/27b6dad9-3245-43da-9ee8-a1037b60b4e9",
+      },
+    },
+    _id: "27b6dad9-3245-43da-9ee8-a1037b60b4e9",
+    _version: "18db911e-630f-4ee2-a87f-2492971d6854",
+    _created: "Sep 30, 2022, 7:26:00 AM",
+    _updated: "Sep 30, 2022, 7:26:00 AM",
+    _createdBy: {
+      _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+      _links: {
+        self: {
+          href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        },
+      },
+    },
+  },
+];
