@@ -44,6 +44,7 @@ import { TEST_ID } from "../../../utils/constants";
 import { StyledButton } from "../../../components/atoms/Button/button";
 import { colors } from "../../../styles/theme";
 import { useLeavePageConfirm } from "../../../../hooks/useCallbackPrompt";
+import { addToCalendar } from "../../../utils/addToCalendar";
 
 const MobileTopBar = (data) => {
   return (
@@ -414,6 +415,7 @@ export default function ScheduleAppointmentPage() {
         isOpen={isOpen}
         OnOkClicked={handleOkClicked}
         isDesktop={isDesktop}
+        onAddToCalendarClicked={addToCalendar}
       />
     );
   };

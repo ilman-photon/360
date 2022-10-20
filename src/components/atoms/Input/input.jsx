@@ -151,6 +151,9 @@ export const StyledRedditField = styled(RedditTextField)(({ theme }) => ({
     "&.Mui-error": {
       color: "#B93632",
     },
+    "&.Mui-disabled": {
+      color: "#00000061",
+    },
   },
   "& .MuiFilledInput-root": {
     border: "1px solid #BDBDBD",
@@ -245,6 +248,7 @@ export const CustomInput = styled(({ ...props }) => {
               style={props.style}
               onPaste={handleMouseDownPassword}
               value={props.value}
+              required={props.required}
             />
           </CustomFormControl>
         </>
@@ -263,11 +267,14 @@ export const CustomInput = styled(({ ...props }) => {
               label={props.label}
               onChange={props.onChange}
               value={props.value}
-              // components={{
-              //   OpenPickerIcon: function () {
-              //     return null;
-              //   },
-              // }}
+              getOpenDialogAriaText={(date, utils) => {
+                if (date)
+                  return `Choose date, selected date is ${utils.format(
+                    utils.date(date),
+                    "fullDate"
+                  )}`;
+                else return "Double tap to Choose date";
+              }}
               renderInput={(params) => (
                 <StyledRedditField
                   variant="filled"
@@ -288,11 +295,10 @@ export const CustomInput = styled(({ ...props }) => {
                   onClick={props.onClick}
                   error={props.error || params.error}
                   helperText={props.helperText}
-                  InputProps={props.InputProps || {}}
                   onPaste={preventPasteHandler}
+                  required={props.required}
                 />
               )}
-              inputProps={props.inputProps}
               {...props}
             />
           </LocalizationProvider>

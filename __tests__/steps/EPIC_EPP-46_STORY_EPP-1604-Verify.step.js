@@ -9,7 +9,6 @@ import Cookies from "universal-cookie";
 import mediaQuery from "css-mediaquery";
 import HomePage from "../../src/pages/patient";
 
-import { getServerSideProps } from "../../src/pages/patient/mfa";
 
 const upcoming = {
   "count": 1,
@@ -414,10 +413,7 @@ defineFeature(feature, (test) => {
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+      
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -430,11 +426,6 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByText("View Appointments"));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
     });
 
     and("User should see an option to schedule new appointments", () => {
@@ -505,10 +496,7 @@ defineFeature(feature, (test) => {
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+      
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -521,11 +509,6 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByText("View Appointments"));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
     });
 
     and("User should see an option to schedule new appointments", () => {
@@ -605,10 +588,7 @@ defineFeature(feature, (test) => {
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+      
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -621,11 +601,6 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByText("View Appointments"));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
     });
 
     and("User should see an option to schedule new appointments", () => {
@@ -727,10 +702,7 @@ defineFeature(feature, (test) => {
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+      
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -743,11 +715,6 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByText("View Appointments"));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
     });
 
     and("User should see an option to schedule new appointments", () => {
@@ -845,10 +812,7 @@ defineFeature(feature, (test) => {
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+      
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -861,11 +825,6 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByText("View Appointments"));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
     });
 
     and("User should see an option to schedule new appointments", () => {
@@ -958,10 +917,7 @@ defineFeature(feature, (test) => {
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+      
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -974,11 +930,6 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByText("View Appointments"));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
     });
 
     and("User should see an option to schedule new appointments", () => {
@@ -1088,10 +1039,7 @@ defineFeature(feature, (test) => {
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+      
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -1104,11 +1052,6 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByText("View Appointments"));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
     });
 
     and("User should see an option to schedule new appointments", () => {
@@ -1218,10 +1161,7 @@ defineFeature(feature, (test) => {
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+      
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -1234,11 +1174,6 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByText("View Appointments"));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
     });
 
     and("User should see an option to schedule new appointments", () => {
@@ -1356,10 +1291,7 @@ defineFeature(feature, (test) => {
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+      
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -1372,11 +1304,6 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByText("View Appointments"));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
     });
 
     and("User should see an option to schedule new appointments", () => {

@@ -315,7 +315,6 @@ function parsePrescriptionItemData(prescriptionData, key) {
       [...itemData.prescriptionDetails],
       key
     );
-
     const itemDate = new Date(itemData.date);
     if (isValidDate(itemDate)) {
       if (!latestDate) {
@@ -408,18 +407,17 @@ function parsePrescriptionItemMedication(medications) {
 
     if (medicationData.type === "active") {
       active.push(medicationData);
+      const itemDate = new Date(date);
+      if (isValidDate(itemDate)) {
+        if (!latestDateMedic) {
+          latestDateMedic = itemDate;
+        } else {
+          latestDateMedic =
+            latestDateMedic > itemDate ? latestDateMedic : itemDate;
+        }
+      }
     } else {
       past.push(medicationData);
-    }
-
-    const itemDate = new Date(date);
-    if (isValidDate(itemDate)) {
-      if (!latestDateMedic) {
-        latestDateMedic = itemDate;
-      } else {
-        latestDateMedic =
-          latestDateMedic > itemDate ? latestDateMedic : itemDate;
-      }
     }
     filterProvider.push({
       name: element.providerName,
@@ -468,6 +466,7 @@ export function parsePrescriptionData(prescriptions) {
 
     filterData = filterProvider;
   }
+
   return {
     parsePrescriptions,
     activeTab: getLatestDate(glassesDate, contactDate, medicationDate),
