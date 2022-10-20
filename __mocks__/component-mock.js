@@ -8,6 +8,10 @@ beforeAll(() => {
   createMocks();
   global.MessageChannel = MessageChannel;
   injectStore(store);
+
+  window.HTMLElement.prototype.scrollIntoView = function (scrollParams) {
+    expect(typeof scrollParams).toEqual("object");
+  };
 });
 
 afterAll(cleanup);
@@ -337,150 +341,150 @@ export const TEMP_DATA_CONTACTS = {
 };
 
 export const TEMP_DATA_GLASSES = {
-  "count": 2,
-  "entities": [
-      {
-          "glrx": {
-              "od": {
-                  "add": "+4.75",
-                  "axis": "033",
-                  "sphere": "+1.25",
-                  "cylinder": "-3.50"
-              },
-              "os": {
-                  "add": "+4.75",
-                  "axis": "033",
-                  "sphere": "+1.25",
-                  "cylinder": "-5.75"
-              },
-              "type": "Distance"
-          },
-          "provider": {
-              "firstName": "indraku",
-              "lastName": "kumar",
-              "designation": "Mr",
-              "providerDetails": {
-                  "isProvider": true
-              },
-              "_id": "2818ef11-208b-4f43-b471-06ad495381f1",
-              "_links": {
-                  "self": {
-                      "href": "/v1/template-users/2818ef11-208b-4f43-b471-06ad495381f1"
-                  }
-              }
-          },
-          "patient": {
-              "firstName": "naina",
-              "lastName": "naina ",
-              "mrn": "UNY323737",
-              "dob": "10/7/92, 12:00 AM",
-              "sex": "3",
-              "status": "UPDATED",
-              "_id": "d6ba6289-4190-4346-8dd7-34a1d81447e2",
-              "_version": "ab6a730f-adc2-4f79-aa8d-648ad901b8cf",
-              "_created": "Oct 7, 2022, 2:40:07 PM",
-              "_updated": "Oct 7, 2022, 3:57:12 PM",
-              "_createdBy": {
-                  "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
-                  "_links": {
-                      "self": {
-                          "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
-                      }
-                  }
-              },
-              "_updatedBy": {
-                  "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
-                  "_links": {
-                      "self": {
-                          "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
-                      }
-                  }
-              }
-          },
-          "_links": {
-              "self": {
-                  "href": "/v1/exam-sheet-entry/5a40c3fc-df14-475e-bd64-9bc45891bd74"
-              }
-          },
-          "_id": "5a40c3fc-df14-475e-bd64-9bc45891bd74"
+  count: 2,
+  entities: [
+    {
+      glrx: {
+        od: {
+          add: "+4.75",
+          axis: "033",
+          sphere: "+1.25",
+          cylinder: "-3.50",
+        },
+        os: {
+          add: "+4.75",
+          axis: "033",
+          sphere: "+1.25",
+          cylinder: "-5.75",
+        },
+        type: "Distance",
       },
-      {
-          "glrx": {
-              "od": {
-                  "add": "111",
-                  "axis": "111",
-                  "sphere": "10.1",
-                  "cylinder": "",
-                  "bal": true
-              },
-              "os": {
-                  "add": "11.2",
-                  "axis": "000",
-                  "sphere": "55.7",
-                  "cylinder": "11.0",
-                  "bal": true
-              },
-              "type": "",
-              "notes": "test notes",
-              "startDate": "01/10/2022",
-              "expirationDate": "06/25/2023"
+      provider: {
+        firstName: "indraku",
+        lastName: "kumar",
+        designation: "Mr",
+        providerDetails: {
+          isProvider: true,
+        },
+        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+        _links: {
+          self: {
+            href: "/v1/template-users/2818ef11-208b-4f43-b471-06ad495381f1",
           },
-          "provider": {
-              "firstName": "indraku",
-              "lastName": "kumar",
-              "designation": "Mr",
-              "providerDetails": {
-                  "isProvider": true
-              },
-              "_id": "2818ef11-208b-4f43-b471-06ad495381f1",
-              "_links": {
-                  "self": {
-                      "href": "/v1/template-users/2818ef11-208b-4f43-b471-06ad495381f1"
-                  }
-              }
+        },
+      },
+      patient: {
+        firstName: "naina",
+        lastName: "naina ",
+        mrn: "UNY323737",
+        dob: "10/7/92, 12:00 AM",
+        sex: "3",
+        status: "UPDATED",
+        _id: "d6ba6289-4190-4346-8dd7-34a1d81447e2",
+        _version: "ab6a730f-adc2-4f79-aa8d-648ad901b8cf",
+        _created: "Oct 7, 2022, 2:40:07 PM",
+        _updated: "Oct 7, 2022, 3:57:12 PM",
+        _createdBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
           },
-          "patient": {
-              "firstName": "naina",
-              "lastName": "naina ",
-              "mrn": "UNY323737",
-              "dob": "10/7/92, 12:00 AM",
-              "sex": "3",
-              "status": "UPDATED",
-              "_id": "d6ba6289-4190-4346-8dd7-34a1d81447e2",
-              "_version": "ab6a730f-adc2-4f79-aa8d-648ad901b8cf",
-              "_created": "Oct 7, 2022, 2:40:07 PM",
-              "_updated": "Oct 7, 2022, 3:57:12 PM",
-              "_createdBy": {
-                  "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
-                  "_links": {
-                      "self": {
-                          "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
-                      }
-                  }
-              },
-              "_updatedBy": {
-                  "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
-                  "_links": {
-                      "self": {
-                          "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
-                      }
-                  }
-              }
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
           },
-          "_links": {
-              "self": {
-                  "href": "/v1/exam-sheet-entry/89835c9b-d0df-4941-a169-508fd822b754"
-              }
+        },
+      },
+      _links: {
+        self: {
+          href: "/v1/exam-sheet-entry/5a40c3fc-df14-475e-bd64-9bc45891bd74",
+        },
+      },
+      _id: "5a40c3fc-df14-475e-bd64-9bc45891bd74",
+    },
+    {
+      glrx: {
+        od: {
+          add: "111",
+          axis: "111",
+          sphere: "10.1",
+          cylinder: "",
+          bal: true,
+        },
+        os: {
+          add: "11.2",
+          axis: "000",
+          sphere: "55.7",
+          cylinder: "11.0",
+          bal: true,
+        },
+        type: "",
+        notes: "test notes",
+        startDate: "01/10/2022",
+        expirationDate: "06/25/2023",
+      },
+      provider: {
+        firstName: "indraku",
+        lastName: "kumar",
+        designation: "Mr",
+        providerDetails: {
+          isProvider: true,
+        },
+        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+        _links: {
+          self: {
+            href: "/v1/template-users/2818ef11-208b-4f43-b471-06ad495381f1",
           },
-          "_id": "89835c9b-d0df-4941-a169-508fd822b754"
-      }
+        },
+      },
+      patient: {
+        firstName: "naina",
+        lastName: "naina ",
+        mrn: "UNY323737",
+        dob: "10/7/92, 12:00 AM",
+        sex: "3",
+        status: "UPDATED",
+        _id: "d6ba6289-4190-4346-8dd7-34a1d81447e2",
+        _version: "ab6a730f-adc2-4f79-aa8d-648ad901b8cf",
+        _created: "Oct 7, 2022, 2:40:07 PM",
+        _updated: "Oct 7, 2022, 3:57:12 PM",
+        _createdBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      _links: {
+        self: {
+          href: "/v1/exam-sheet-entry/89835c9b-d0df-4941-a169-508fd822b754",
+        },
+      },
+      _id: "89835c9b-d0df-4941-a169-508fd822b754",
+    },
   ],
-  "_links": {
-      "self": {
-          "href": "/emr?pageNo=0&pageSize=100"
-      }
-  }
-}
+  _links: {
+    self: {
+      href: "/emr?pageNo=0&pageSize=100",
+    },
+  },
+};
 
 export const TEMP_DATA_MEDICATION = [
   {
@@ -1063,5 +1067,5 @@ export const TEMP_DATA_MEDICATION = [
         },
       },
     },
-  }
+  },
 ];
