@@ -85,7 +85,10 @@ export default function AccountDocumentsPage() {
         valueKey: "digital_assets._id",
         contentStyle: { padding: "16px" },
         icon: (
-          <IconButton sx={{ width: 24, height: 24, p: 0 }}>
+          <IconButton
+            sx={{ width: 24, height: 24, p: 0 }}
+            data-testid="downloadPDFButton"
+          >
             <FileDownloadIcon />
           </IconButton>
         ),
