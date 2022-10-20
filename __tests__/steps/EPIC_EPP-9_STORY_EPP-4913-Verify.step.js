@@ -32,11 +32,13 @@ defineFeature(feature, (test) => {
   beforeEach(async () => {
     const categoryId = "Intake-Forms";
     const patientId = "98f9404b-6ea8-4732-b14f-9c1a168d8066";
+    const mockData = { ...mockDocument };
+    mockData.entities.push(mockDocument.entities[0]);
     mock
       .onGet(
         `/ecp/patient/getPatientDocumentByCategory/${patientId}/documents?pageSize=10&pageNo=0&sortBy=updated&sortOrder=dsc&search.query=((category=eq=${categoryId}))`
       )
-      .reply(200, mockDocument);
+      .reply(200, mockData);
 
     useRouter.mockReturnValue(mockRouter);
   });
@@ -89,32 +91,36 @@ defineFeature(feature, (test) => {
     });
     await waitFor(() => container.getByText("Choose a category"));
     await waitFor(() =>
-      container.getByText((content, element) => {
+      container.getAllByText((content, element) => {
         return element.tagName.toLowerCase() === "clippath";
       })
     );
     const categorySelector = container.getByText("Choose a category");
     expect(categorySelector).toBeInTheDocument();
     expect(
-      container.getByText((content, element) => {
+      container.getAllByText((content, element) => {
         return element.tagName.toLowerCase() === "clippath";
-      })
+      })[0]
     ).toBeInTheDocument();
   };
 
   const userSeeEmptyDocumentTable = () => {
-    const emptyTable = container.getByText(
+    const emptyTable = container.getAllByText(
       "MEDICAL_CERTIFICATE_OF_FITNESS1 - Copy - Copy"
-    );
+    )[0];
     expect(emptyTable).toBeInTheDocument();
   };
 
   const userSeeTableAndDownloadBtn = async () => {
-    await waitFor(() => container.getByTestId("downloadPDFButton"));
-    await waitFor(() => container.getByTestId("table-sort-header"));
-    const tableDocument = container.getByTestId("table-sort-header");
-    expect(tableDocument).toBeInTheDocument();
-    const downloadBtn = container.getByTestId("downloadPDFButton");
+    await waitFor(() => container.getAllByTestId("downloadPDFButton"));
+    await waitFor(() => container.getAllByTestId("table-sort-header"));
+    const tableDocument = container.getAllByTestId("table-sort-header");
+    for (let i = 0; i < tableDocument.length; i++) {
+      const element = tableDocument[i];
+      expect(element).toBeInTheDocument();
+      fireEvent.click(element);
+    }
+    const downloadBtn = container.getAllByTestId("downloadPDFButton")[0];
     fireEvent.click(downloadBtn);
   };
 

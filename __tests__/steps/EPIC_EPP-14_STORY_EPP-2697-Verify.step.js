@@ -116,10 +116,12 @@ defineFeature(feature, (test) => {
     ).toBeInTheDocument();
     expect(container.getAllByText("Test & Lab Results")[0]).toBeInTheDocument();
 
-    expect(container.getByText("Test Name")).toBeInTheDocument();
-    expect(container.getByText("Ordered by")).toBeInTheDocument();
-    expect(container.getByText("Test Date")).toBeInTheDocument();
-    expect(container.getByText("Test Status")).toBeInTheDocument();
+    const tableDocument = container.getAllByTestId("table-sort-header");
+    for (let i = 0; i < tableDocument.length; i++) {
+      const element = tableDocument[i];
+      expect(element).toBeInTheDocument();
+      fireEvent.click(element);
+    }
   };
 
   test("EPIC_EPP-14_STORY_EPP-2697- Verify whether the user is able to view their test results", ({
@@ -228,6 +230,7 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user Launch  the browser and enter the user portal URL", () => {
+      window.matchMedia = createMatchMedia("700px");
       launchBrowser();
     });
 
