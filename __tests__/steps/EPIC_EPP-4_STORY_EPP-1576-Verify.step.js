@@ -4,7 +4,7 @@ import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import AuthPage from "../../src/pages/patient/login";
-import MfaPage, { getServerSideProps } from "../../src/pages/patient/mfa";
+import MfaPage from "../../src/pages/patient/mfa";
 import Cookies from "universal-cookie";
 import constants from "../../src/utils/constants";
 import { Login } from "../../src/components/organisms/Login/login";
@@ -40,13 +40,7 @@ defineFeature(feature, (test) => {
     //expect(container.getByText(arg0)).toBeInTheDocument();
   };
   const renderMFA = async () => {
-    const contex = {
-      req: {
-        headers: {
-          cookie: "username=user1%40photon.com; mfa=true",
-        },
-      },
-    };
+    Cookies.result = { mfa: true };
 
     const userData = {
       communicationMethod: {
@@ -65,7 +59,6 @@ defineFeature(feature, (test) => {
     };
     mock.onPost(`/ecp/patient/mfa/sendotp`).reply(200, data);
 
-    getServerSideProps(contex);
     // act(() => {
     //   container = render(<MfaPage />, {
     //     container: document.body.appendChild(element),

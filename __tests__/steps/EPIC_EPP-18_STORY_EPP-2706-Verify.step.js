@@ -39,7 +39,6 @@ const defaultValidation = () => {
   expect(true).toBeTruthy();
 };
 
-
 defineFeature(feature, (test) => {
   let container;
   const mock = new MockAdapter(axios);

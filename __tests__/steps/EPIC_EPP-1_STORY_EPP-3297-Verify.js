@@ -16,7 +16,6 @@ import Cookies from "universal-cookie";
 import constants from "../../src/utils/constants";
 import mediaQuery from "css-mediaquery";
 import HomePage from "../../src/pages/patient";
-import { getServerSideProps } from "../../src/pages/patient/mfa";
 
 const MOCK_APPOINTMENT = {
   appointmentList: [
@@ -512,10 +511,7 @@ defineFeature(feature, (test) => {
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
       mockApi();
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+
       geolocation();
       Cookies.result = { authorized: true };
       act(() => {
@@ -524,11 +520,6 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByText(/Search for a doctor/i));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
     });
 
     and("User should see the widget with upcoming appointments", () => {
@@ -575,10 +566,7 @@ defineFeature(feature, (test) => {
 
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
       mockApi();
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+
       geolocation();
       Cookies.result = { authorized: true };
       act(() => {
@@ -587,11 +575,7 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByLabelText(/Appointments/i));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
+
     });
 
     and(/^User should see on "(.*)" button$/, (arg0) => {
@@ -665,10 +649,7 @@ defineFeature(feature, (test) => {
     then(/^User should navigated to "(.*)" screen$/, async (arg0) => {
       mockApi();
       window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+
       geolocation();
       act(() => {
         container = render(
@@ -677,9 +658,6 @@ defineFeature(feature, (test) => {
       });
       await waitFor(() => container.getByText(/Search for a doctor/i));
 
-      expect(response).toEqual({
-        props: { isStepTwo: false },
-      });
     });
 
     and("User should see the widget with upcoming appointments", () => {

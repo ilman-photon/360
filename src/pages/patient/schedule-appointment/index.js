@@ -45,7 +45,7 @@ import { StyledButton } from "../../../components/atoms/Button/button";
 import { colors } from "../../../styles/theme";
 import { useLeavePageConfirm } from "../../../../hooks/useCallbackPrompt";
 import { mmddyyDateFormat, hourDateFormat } from "../../../utils/dateFormatter";
-import { TramRounded } from "@mui/icons-material";
+import { addToCalendar } from "../../../utils/addToCalendar";
 
 const MobileTopBar = (data) => {
   return (
@@ -508,6 +508,7 @@ export default function ScheduleAppointmentPage({ query }) {
         isOpen={isOpen}
         OnOkClicked={handleOkClicked}
         isDesktop={isDesktop}
+        onAddToCalendarClicked={addToCalendar}
       />
     );
   };

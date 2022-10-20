@@ -19,7 +19,6 @@ import FilterResult from "../src/components/molecules/FilterResult/filterResult"
 import ScheduleAppointment from "../src/pages/patient/schedule-appointment/index";
 import HomePage from "../src/pages/patient";
 import Cookies from "universal-cookie";
-import { getServerSideProps } from "../src/pages/patient/mfa";
 import App from "../src/pages/_app";
 import CreateAccountPage from "../src/pages/patient/auth/create-account";
 import { renderWithProviders } from "../__tests__/src/utils/test-util";
@@ -1382,7 +1381,9 @@ export async function navigateToPatientPortalHome() {
     .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllAppointment`)
     .reply(200, MOCK_APPOINTMENT);
   mock
-    .onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`)
+    .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`)
+    .reply(200, MOCK_PRESCRIPTION);
+  mock.onGet(`/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066`)
     .reply(200, TEMP_DATA_MEDICATION);
   mock
     .onGet(
@@ -1394,10 +1395,6 @@ export async function navigateToPatientPortalHome() {
       `/ecp/prescriptions/patient/98f9404b-6ea8-4732-b14f-9c1a168d8066/getGlassesData`
     )
     .reply(200, TEMP_DATA_GLASSES);
-  const response = await getServerSideProps({
-    req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-    res: jest.fn(),
-  });
   const mockGeolocation = {
     getCurrentPosition: jest.fn(),
     watchPosition: jest.fn(),
@@ -1412,12 +1409,6 @@ export async function navigateToPatientPortalHome() {
   await waitFor(() =>
     container.getByText(constants.TEST_ID.HOME_TEST_ID.logout)
   );
-  expect(response).toEqual({
-    redirect: {
-      destination: "/patient/login",
-      permanent: false,
-    },
-  });
 }
 
 export async function landOnCreateAccountPage() {
