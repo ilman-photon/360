@@ -53,7 +53,8 @@ export default function Bio({ embedApi, bio }) {
       image: "",
       name,
       rating: response.providerDetails?.rating || 0,
-      phoneNumber: response.workPhone || "",
+      phoneNumber:
+        response.workPhone || response.cellPhone || response.homePhone || "",
       specialties: getArrayValue(response.providerDetails?.specialization),
       about: response.about || "",
       gender,

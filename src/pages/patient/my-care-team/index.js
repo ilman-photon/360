@@ -1,0 +1,141 @@
+import { Box, Grid, Typography } from "@mui/material";
+import { useState } from "react";
+import { Provider } from "react-redux";
+import CareTeamCard from "../../../components/molecules/CareTeamCard/careTeamCard";
+import CustomModal from "../../../components/molecules/CustomModal/customModal";
+import FloatingMessage from "../../../components/molecules/FloatingMessage/floatingMessage";
+import MyCareTeamLayout from "../../../components/templates/myCareTeam";
+import store from "../../../store/store";
+
+export default function MyCareTeamPage() {
+  const [isRemoved, setIsRemoved] = useState(true);
+
+  const providerMock = {
+    name: "Dr. Robert Fox, M.D.",
+    address: {
+      name: "Hawaii Eye Institute",
+      addressLine1: "1901 Thornridge Cir",
+      city: "Shiloh",
+      state: "NC",
+      zip: "81063",
+    },
+    specialities: "Ophthalmology",
+    phone: "8792899901",
+    email: "robertF@ecp.com",
+    id: "56bafbaf-6bc6-47d2-b3ab-5cee17cf7e30",
+  };
+
+  return (
+    <>
+      <Box
+        sx={{
+          flexGrow: 1,
+          maxWidth: {
+            sm: "770px",
+            md: "1434px",
+          },
+          backgroundColor: {
+            xs: "transparent",
+            sm: "#FFFFFF",
+          },
+          margin: "0 auto 0 auto",
+        }}
+      >
+        <Grid
+          container
+          spacing={{ xs: 2, md: 2 }}
+          sx={{
+            "&.MuiGrid-container": {
+              padding: {
+                xs: "16px",
+                sm: "32px 24px 24px 24px",
+              },
+            },
+          }}
+        >
+          {Array.from(Array(5)).map((_, index) => (
+            <Grid item xs={12} sm={6} key={index}>
+              <CareTeamCard provider={providerMock} />
+            </Grid>
+          ))}
+        </Grid>
+        {
+          <Box
+            sx={{
+              background: "white",
+              padding: "32px 24px 24px 24px",
+              margin: "0 auto 0 auto",
+            }}
+          >
+            <Typography
+              className="styles.noDoctor"
+              variant="h3"
+              component="p"
+              sx={{
+                background: "#F2F7F7",
+                padding: "16px 10px",
+                fontWeight: {
+                  xs: 400,
+                  sm: 500,
+                },
+                fontSize: "18px",
+                lineHeight: "28px",
+                textAlign: {
+                  xs: "center",
+                  sm: "left",
+                },
+              }}
+            >
+              There are no doctor/optometrist details available for you
+            </Typography>
+          </Box>
+        }
+      </Box>
+
+      <FloatingMessage
+        text="Doctor successfully removed"
+        autoHideDuration={2000}
+        onOpen={isRemoved}
+        onClose={(removed) => {
+          setIsRemoved(!removed);
+        }}
+      />
+
+      <CustomModal
+        buttonText={"Remove"}
+        onClickButton={() => {
+          setModalErrorRequest(false);
+        }}
+        secondaryButtonText={"Cancel"}
+        onClickSecondaryButton={() => {}}
+        onClickCloseButton={() => {}}
+        open={false}
+        sx={{
+          "& .MuiPaper-root": {
+            top: { xs: "0", md: "100px" },
+            position: { xs: "relative", md: "absolute" },
+          },
+        }}
+      >
+        <Box marginBottom={"16px"}>
+          <Typography
+            sx={{
+              fontSize: "22px",
+              marginBottom: "19px",
+            }}
+          >
+            Are you sure you want to remove doctor?
+          </Typography>
+        </Box>
+      </CustomModal>
+    </>
+  );
+}
+
+MyCareTeamPage.getLayout = function getLayout(page) {
+  return (
+    <Provider store={store}>
+      <MyCareTeamLayout>{page}</MyCareTeamLayout>
+    </Provider>
+  );
+};

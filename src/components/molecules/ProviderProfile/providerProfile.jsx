@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { TEST_ID } from "../../../utils/constants";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
+import { StyledButton } from "../../atoms/Button/button";
 
 const renderSpecialistList = (providerData) => {
   return (
@@ -118,6 +119,18 @@ export default function ProviderProfile({
     return isNotBio ? "unset" : bioWidth;
   }
 
+  const navigateToScheduleAppointment = () => {
+    const address = providerData.address;
+    const addressData = Array.isArray(address) ? address[0] : address;
+    const state = addressData.state;
+    const filterData = {
+      location: state,
+    };
+
+    dispatch(setFilterData(filterData));
+    router.push("/patient/appointment/");
+  };
+
   return (
     <Box
       className={isBio ? styles.shortBio : styles.appointment}
@@ -203,6 +216,21 @@ export default function ProviderProfile({
                     <StyledRating value={parseInt(providerData.rating)} />
                   )}
                   <PhoneNumber phone={phoneNumber} />
+                </Box>
+              )}
+              {isBio && (
+                <Box marginTop={"10px"}>
+                  <StyledButton
+                    theme={"patient"}
+                    mode={"primary"}
+                    size={"small"}
+                    gradient={false}
+                    onClick={() => {
+                      navigateToScheduleAppointment();
+                    }}
+                  >
+                    Schedule Appointment
+                  </StyledButton>
                 </Box>
               )}
             </Box>
