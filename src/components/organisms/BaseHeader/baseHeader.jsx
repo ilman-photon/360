@@ -1,6 +1,6 @@
 import * as React from "react";
 import { styles } from "./style";
-import { Button, Stack, Typography } from "@mui/material";
+import { Badge, Button, Stack, Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Container from "@mui/material/Container";
 import Toolbar from "@mui/material/Toolbar";
@@ -23,8 +23,11 @@ import { logoutProps } from "../../../utils/authetication";
 import { useDispatch, useSelector } from "react-redux";
 import MobileNavMenu from "../../molecules/Navbar/MobileNavMenu";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 import { colors } from "../../../styles/theme";
 import { setUserData } from "../../../store/user";
+import NotificationDrawer from "../../molecules/NotificationDrawer/notificationDrawer";
+import { fetchNotifications } from "../../../store/notification";
 
 export default function BaseHeader({
   OnLogoutClicked = (routerInstance) => {
@@ -62,6 +65,12 @@ export default function BaseHeader({
 
   const [anchorElNav, setAnchorElNav] = React.useState(false);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  const [notificationDrawerOpened, setNotificationDrawerOpened] =
+    React.useState(false);
+  const [isNotificationLoading, setIsNotificationLoading] =
+    React.useState(false);
+
+  const notifications = useSelector((state) => state.notification.list);
 
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -75,6 +84,26 @@ export default function BaseHeader({
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
+
+  const fetchUserNotifications = async () => {
+    await dispatch(fetchNotifications());
+  };
+
+  React.useEffect(() => {
+    if (notificationDrawerOpened) {
+      setIsNotificationLoading(true);
+      try {
+        fetchUserNotifications();
+      } catch (error) {
+        console.error({ error });
+      } finally {
+        // simulate loading
+        setTimeout(() => {
+          setIsNotificationLoading(false);
+        }, 3000);
+      }
+    }
+  }, [notificationDrawerOpened]);
 
   const prescriptionMenus = [
     {
@@ -108,7 +137,7 @@ export default function BaseHeader({
       >
         <Container maxWidth="xl">
           {isUserLoged ? (
-            <Toolbar disableGutters>
+            <Toolbar disableGutters sx={{ justifyContent: "space-between" }}>
               <Image
                 src={logo}
                 width={124}
@@ -119,140 +148,176 @@ export default function BaseHeader({
                 tabIndex={0}
                 role={"img"}
               ></Image>
-              {/* Menu Desktop*/}
-              <Box sx={styles.boxStyled}>
-                <IconButton
+              <Stack flexDirection="row" alignItems="center">
+                {/* Menu Desktop*/}
+                <Stack
+                  flexDirection={"row"}
+                  flex={1}
+                  justifyContent={"flex-end"}
                   sx={{
-                    display: "flex",
-                    px: "20px",
-                    py: "8px",
-                    mr: 5,
-                    backgroundColor: colors.teal15,
-                    borderRadius: "30px",
+                    display: { xs: "none", sm: "flex" },
                   }}
                 >
-                  <Image
-                    src="/contact-shop-icon.png"
-                    alt={"marketplace"}
-                    width={16}
-                    height={16}
-                  />
-                  <Typography
+                  <IconButton
                     sx={{
-                      fontSize: 14,
-                      fontWeight: 600,
-                      lineHeight: "18px",
-                      ml: 1,
-                      mr: "12px",
+                      px: "20px",
+                      py: "8px",
+                      backgroundColor: colors.teal15,
+                      borderRadius: "30px",
                     }}
                   >
-                    Shop for Contacts
-                  </Typography>
-                  <ArrowRightAltIcon />
-                </IconButton>
-              </Box>
+                    <Image
+                      src="/contact-shop-icon.png"
+                      alt={"marketplace"}
+                      width={16}
+                      height={16}
+                    />
+                    <Typography
+                      sx={{
+                        fontSize: 14,
+                        fontWeight: 600,
+                        lineHeight: "18px",
+                      }}
+                    >
+                      Shop for Contacts
+                    </Typography>
+                    <ArrowRightAltIcon />
+                  </IconButton>
+                </Stack>
 
-              {/* Menu Mobile*/}
-              <Box sx={styles.boxStyledMobile}>
-                <Avatar
-                  sx={{
-                    background: "#003B4A",
-                    alignSelf: "center",
-                    width: "24px",
-                    height: "24px",
-                  }}
-                />
+                {/* notification badge */}
                 <IconButton
-                  size="large"
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  data-testid="user-menu-nav-open"
+                  sx={{
+                    mx: { xs: 2, sm: 3 },
+                    width: { xs: 24, md: 40 },
+                    height: { xs: 24, md: 40 },
+                  }}
                   onClick={() => {
-                    setAnchorElNav(true);
+                    setNotificationDrawerOpened(true);
                   }}
                 >
-                  <MenuIcon />
-                </IconButton>
-              </Box>
-              {isPrescription ? (
-                <MobileNavMenu
-                  navMenu={prescriptionMenus}
-                  isOpen={anchorElNav}
-                  onClose={() => {
-                    setAnchorElNav(false);
-                  }}
-                  onLogoutClicked={() => {
-                    OnLogoutClicked(router);
-                  }}
-                />
-              ) : (
-                <AccountDrawer
-                  onClose={() => {
-                    setAnchorElNav(false);
-                  }}
-                  opened={anchorElNav}
-                  onLogoutClicked={() => {
-                    OnLogoutClicked(router);
-                  }}
-                />
-              )}
-              {/* profile menu */}
-              <Box sx={styles.boxProfileMenuStyles}>
-                <Tooltip title="Username dropdown">
-                  <Button
-                    variant="text"
-                    sx={[styles.boxButtonStyles, styles.userText]}
-                    startIcon={<Avatar sx={{ background: "#003B4A" }} />}
-                    data-testid="user-menu-open"
-                    endIcon={<ExpandMoreIcon />}
-                    onClick={handleOpenUserMenu}
+                  <Badge
+                    color="error"
+                    badgeContent={notifications.length > 0 ? " " : null}
+                    overlap="circular"
+                    sx={{
+                      ".MuiBadge-badge": {
+                        minWidth: 13.33,
+                        height: 13.33,
+                      },
+                    }}
                   >
-                    {user.name}
-                  </Button>
-                </Tooltip>
-                <Menu
-                  sx={styles.menuProfileMenu}
-                  id="menu-appbar"
-                  anchorEl={anchorElUser}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "left",
-                  }}
-                  keepMounted
-                  open={Boolean(anchorElUser)}
-                  data-testid="user-menu-close"
-                  onClose={handleCloseUserMenu}
-                >
-                  {/* <Stack spacing={2}> */}
-                  <MenuItem>
+                    <NotificationsIcon sx={{ fill: colors.darkGreen }} />
+                  </Badge>
+                </IconButton>
+
+                {/* Menu Mobile*/}
+                <Box sx={styles.boxStyledMobile}>
+                  <Avatar
+                    sx={{
+                      background: "#003B4A",
+                      alignSelf: "center",
+                      width: "24px",
+                      height: "24px",
+                    }}
+                  />
+                  <IconButton
+                    size="large"
+                    aria-label="account of current user"
+                    aria-controls="menu-appbar"
+                    aria-haspopup="true"
+                    data-testid="user-menu-nav-open"
+                    onClick={() => {
+                      setAnchorElNav(true);
+                    }}
+                    sx={{ pl: 2, pr: 0 }}
+                  >
+                    <MenuIcon />
+                  </IconButton>
+                </Box>
+
+                {isPrescription ? (
+                  <MobileNavMenu
+                    navMenu={prescriptionMenus}
+                    isOpen={anchorElNav}
+                    onClose={() => {
+                      setAnchorElNav(false);
+                    }}
+                    onLogoutClicked={() => {
+                      OnLogoutClicked(router);
+                    }}
+                  />
+                ) : (
+                  <AccountDrawer
+                    onClose={() => {
+                      setAnchorElNav(false);
+                    }}
+                    opened={anchorElNav}
+                    onLogoutClicked={() => {
+                      OnLogoutClicked(router);
+                    }}
+                  />
+                )}
+
+                {/* profile menu */}
+                <Box sx={styles.boxProfileMenuStyles}>
+                  <Tooltip title="Username dropdown">
                     <Button
                       variant="text"
-                      sx={styles.buttonProfileMenu}
-                      data-testid={HOME_TEST_ID.account}
-                      onClick={() => {
-                        router.push("/patient/account/profile-info");
-                      }}
+                      sx={[styles.boxButtonStyles, styles.userText]}
+                      startIcon={<Avatar sx={{ background: "#003B4A" }} />}
+                      data-testid="user-menu-open"
+                      endIcon={<ExpandMoreIcon />}
+                      onClick={handleOpenUserMenu}
                     >
-                      Account
+                      {user.name}
                     </Button>
-                  </MenuItem>
-                  <MenuItem onClick={handleCloseNavMenu}>
-                    <Button
-                      variant="text"
-                      sx={styles.buttonProfileMenu}
-                      data-testid={HOME_TEST_ID.logout}
-                      startIcon={<ExitToAppIcon />}
-                      onClick={() => {
-                        OnLogoutClicked(router);
-                      }}
-                    >
-                      Logout
-                    </Button>
-                  </MenuItem>
-                  {/* </Stack> */}
-                </Menu>
-              </Box>
+                  </Tooltip>
+                  <Menu
+                    sx={styles.menuProfileMenu}
+                    id="menu-appbar"
+                    anchorEl={anchorElUser}
+                    anchorOrigin={{
+                      vertical: "top",
+                      horizontal: "left",
+                    }}
+                    keepMounted
+                    open={Boolean(anchorElUser)}
+                    data-testid="user-menu-close"
+                    onClose={handleCloseUserMenu}
+                  >
+                    {
+                      <Stack spacing={2}>
+                        <MenuItem>
+                          <Button
+                            variant="text"
+                            sx={styles.buttonProfileMenu}
+                            data-testid={HOME_TEST_ID.account}
+                            onClick={() => {
+                              router.push("/patient/account/profile-info");
+                            }}
+                          >
+                            Account
+                          </Button>
+                        </MenuItem>
+                        <MenuItem onClick={handleCloseNavMenu}>
+                          <Button
+                            variant="text"
+                            sx={styles.buttonProfileMenu}
+                            data-testid={HOME_TEST_ID.logout}
+                            startIcon={<ExitToAppIcon />}
+                            onClick={() => {
+                              OnLogoutClicked(router);
+                            }}
+                          >
+                            Logout
+                          </Button>
+                        </MenuItem>
+                      </Stack>
+                    }
+                  </Menu>
+                </Box>
+              </Stack>
             </Toolbar>
           ) : (
             <Toolbar disableGutters>
@@ -273,6 +338,14 @@ export default function BaseHeader({
       {backTitle && (
         <SubNavigation onClick={onBackClicked} backTitle={backTitle} />
       )}
+
+      {/* notification drawer */}
+      <NotificationDrawer
+        opened={notificationDrawerOpened}
+        loading={isNotificationLoading}
+        handleDrawerClose={() => setNotificationDrawerOpened(false)}
+        notifications={notifications}
+      />
     </>
   );
 }
