@@ -14,6 +14,7 @@ import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import { Regex } from "../../../utils/regex";
 import MESSAGES from "../../../utils/responseCodes";
 import { useRouter } from "next/router";
+import { loginProps } from "../login";
 
 export async function getServerSideProps({ query }) {
   return {
@@ -56,48 +57,49 @@ export default function SetPasswordPage({ username }) {
   };
 
   const OnSetPasswordClicked = async function (data, _router) {
-    try {
-      dispatch(resetFormMessage());
-      const cookies = new Cookies();
-      const api = new Api();
-      const postbody = {
-        username: username,
-        password: data.password,
-        confirmPassword: data.confirmPassword,
-        patientType: "G",
-      };
+    dispatch(resetFormMessage());
+    const cookies = new Cookies();
+    const api = new Api();
+    const postbody = {
+      username: username,
+      password: data.password,
+      confirmPassword: data.confirmPassword,
+      patientType: "G",
+    };
+    api
+      .getRegistrationSetPassword(postbody)
+      .then(function (response) {
+        setShowPostMessage(true);
+        setTimeout(() => {
+          // after register handler
+          loginProps.OnLoginClicked(
+            {
+              username,
+              password: postbody.password,
+            },
+            router,
+            () => {
+              //this is intentional
+            },
+            dispatch
+          );
+        }, 2000);
+      })
+      .catch(function (err) {
+        if (err.ResponseCode) {
+          const errorMessage = MESSAGES[err.ResponseCode || 3500];
+          console.log(errorMessage, "errorMessage", err);
 
-      await api.getResponse(
-        "/ecp/patient/registrationsetpassword",
-        postbody,
-        "post"
-      );
-      setShowPostMessage(true);
-
-      setTimeout(() => {
-        cookies.set("authorized", true, { path: "/patient" });
-        const hostname = window.location.origin;
-        window.location.href = `${hostname}/patient`;
-      }, 3000);
-    } catch (err) {
-      console.error({ err });
-      const errorMessage = MESSAGES[err.ResponseCode];
-
-      dispatch(
-        setFormMessage({
-          success: false,
-          title: errorMessage.title,
-          content: (
-            <>
-              <span>{errorMessage.content}. </span>
-              <Link href="/patient/">
-                <a style={{ textDecoration: "underline" }}>Back to home</a>
-              </Link>
-            </>
-          ),
-        })
-      );
-    }
+          dispatch(
+            setFormMessage({
+              success: false,
+              title: errorMessage.title,
+              content: errorMessage.content,
+              isBackToLogin: errorMessage.isBackToLogin,
+            })
+          );
+        }
+      });
   };
   return (
     <Box className={globalStyles.containerPage}>

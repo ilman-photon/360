@@ -81,7 +81,7 @@ describe("Set Password", () => {
   test("click reset password failed", async () => {
     mock
       .onPost("/ecp/patient/registrationsetpassword")
-      .reply(401, { ResponseCode: 3002 });
+      .reply(400, { ResponseCode: 3500 });
     await renderSetPassword("smith1@photon.com");
     await waitFor(() => container.getByText(/Set Password/i));
     const password = container.container.querySelector("#password");
@@ -97,8 +97,6 @@ describe("Set Password", () => {
     });
     fireEvent.click(submitbutton);
     await waitFor(() => container.getByTestId("submission-message"));
-    await waitFor(() => container.getByText(/Back to home/i));
-    expect(container.getByText(/Back to home/i)).toBeInTheDocument();
   });
 
   test("click reset password failed invalid length", async () => {
@@ -119,14 +117,12 @@ describe("Set Password", () => {
       name: /Create Account/i,
     });
     fireEvent.click(submitbutton);
-    await waitFor(() => container.getByText(/Back to home/i));
-    expect(container.getByText(/Back to home/i)).toBeInTheDocument();
   });
 
   test("click reset password failed contain whitespace", async () => {
     mock
       .onPost("/ecp/patient/registrationsetpassword")
-      .reply(401, { ResponseCode: 3002 });
+      .reply(400, { ResponseCode: 3500 });
     await renderSetPassword("smith1@photon.com");
     await waitFor(() => container.getByText(/Set Password/i));
     const password = container.container.querySelector("#password");
@@ -141,7 +137,5 @@ describe("Set Password", () => {
       name: /Create Account/i,
     });
     fireEvent.click(submitbutton);
-    await waitFor(() => container.getByText(/Back to home/i));
-    expect(container.getByText(/Back to home/i)).toBeInTheDocument();
   });
 });

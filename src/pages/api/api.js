@@ -416,6 +416,11 @@ export class Api {
     return this.getResponse(url, {}, "get");
   }
 
+  getRegistrationSetPassword(postBody) {
+    const url = "/ecp/patient/registrationsetpassword";
+    return this.getResponse(url, postBody, "post");
+  }
+
   async uploadFile(url, file) {
     try {
       const response = await axios({
