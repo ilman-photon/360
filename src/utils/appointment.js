@@ -671,7 +671,7 @@ function addLanguageFilter(provider, languageList) {
   for (const key of languageKeyList) {
     const language = provider[key];
     const isSameData = languageList.find((item) => item.name === language);
-    if (!isSameData) {
+    if (!isSameData && language) {
       languageList.push({
         name: language,
         type: "languange",
