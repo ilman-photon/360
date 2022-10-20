@@ -7,6 +7,7 @@ import { Box } from "@mui/material";
 import styles from "./styles.module.scss";
 import { Api } from "../../api/api";
 import { useEffect, useState } from "react";
+import getLanguage from "../../../utils/getLanguage";
 
 export async function getServerSideProps(context) {
   const { bio } = context.query;
@@ -42,10 +43,7 @@ export default function Bio({ embedApi, bio }) {
     const secondaryAddress = (response.offices && response.offices[0]) || "";
     primaryAddress !== "" && address.push(primaryAddress);
     secondaryAddress !== "" && address.push(secondaryAddress);
-    const language = [
-      response.providerDetails?.language1 || "",
-      response.providerDetails?.language2 || "",
-    ];
+    const language = getLanguage(response.providerDetails);
 
     const data = {
       providerId: response.id || "",
@@ -53,10 +51,10 @@ export default function Bio({ embedApi, bio }) {
       imageId: response.providerDetails?.profilePhoto?.digitalAsset.uid || "",
       image: "",
       name,
-      rating: response.providerDetails?.rating || 0,
+      rating: response.providerDetails?.rating / 2 || 0,
       phoneNumber: response.workPhone || "",
       specialties: getArrayValue(response.providerDetails?.specialization),
-      about: response.about || "",
+      about: response.note || "",
       gender,
       address,
       language,
@@ -66,6 +64,7 @@ export default function Bio({ embedApi, bio }) {
         response.providerDetails?.membershipAndAffiliation
       ),
     };
+    console.log(data);
     getProviderImage(data);
   };
 
