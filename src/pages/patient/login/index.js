@@ -45,10 +45,10 @@ function getPatientId(postBody, callback) {
   api
     .getPatientId(postBody)
     .then((response) => {
-      callback(response.ecpPatientId || "");
+      callback(response.ecpPatientId || "-");
     })
     .catch(() => {
-      callback(false);
+      callback("-");
     });
 }
 
@@ -90,10 +90,7 @@ export const loginProps = {
               );
             }
 
-            const hostname = window.location.origin;
-            window.location.href = isNotNeedMfa
-              ? `${hostname}/patient/`
-              : `${hostname}/patient/mfa`;
+            _router.push(isNotNeedMfa ? "/patient/" : "/patient/mfa/");
             callback({ status: "success" });
           } catch (error) {
             console.error("something went wrong when logging in: ", error);

@@ -3,7 +3,8 @@ import { Typography } from "@mui/material";
 export const HeadingTitle = ({ title, ...props }) => {
   return (
     <Typography
-      aria-label={`${title}`}
+      tabIndex={0}
+      aria-label={`${title} Heading`}
       aria-roledescription=""
       role="heading"
       {...props}

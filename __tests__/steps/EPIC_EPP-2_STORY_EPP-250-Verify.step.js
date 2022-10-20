@@ -207,7 +207,7 @@ defineFeature(feature, (test) => {
         const lastnameField = container.getByLabelText(/Last Name/i);
         const emailField = container.getByRole("textbox", { name: "Email" });
         const mobileField = container.getByLabelText(/Mobile Number/i);
-        const passwordField = container.getByLabelText("Password");
+        const passwordField = container.getByLabelText("Password *");
         const communicationRadio = container.getByRole("radio", { name: /Both/i });
         fireEvent.change(lastnameField, { target: { value: "username" } });
         fireEvent.change(emailField, { target: { value: "a@aa.aa" } });
@@ -341,7 +341,7 @@ defineFeature(feature, (test) => {
         const firstnameField = container.getByLabelText(/Last Name/i);
         const emailField = container.getByRole("textbox", { name: "Email" });
         const mobileField = container.getByLabelText(/Mobile Number/i);
-        const passwordField = container.getByLabelText("Password");
+        const passwordField = container.getByLabelText("Password *");
         const communicationRadio = container.getByRole("radio", { name: /Both/i });
         fireEvent.change(firstnameField, { target: { value: "username" } });
         fireEvent.change(emailField, { target: { value: "a@aa.aa" } });

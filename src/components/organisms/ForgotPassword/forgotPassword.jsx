@@ -86,6 +86,8 @@ const ForgotPassword = ({
               }}
             />
             <Typography
+              tabIndex={0}
+              aria-label={t("syncContent")}
               variant="bodyMedium"
               sx={{
                 pb: 2,
@@ -116,6 +118,7 @@ const ForgotPassword = ({
                 }) => {
                   return (
                     <StyledInput
+                      aria-label="Email or Phone number Field"
                       label={t("usernamePlaceHolder")}
                       id="username"
                       maxLength={254}
@@ -151,6 +154,7 @@ const ForgotPassword = ({
                 theme="patient"
                 mode="primary"
                 size="small"
+                aria-label={t("syncButton") + " Button"}
                 gradient={false}
                 style={styles.margin}
                 data-testid={FORGOT_TEST_ID.continueBtn}
@@ -164,6 +168,11 @@ const ForgotPassword = ({
             >
               <Link
                 color={colors.link}
+                aria-label={
+                  isAppointment
+                    ? t("backSignIn") + " Link"
+                    : t("backButtonLink") + " Link"
+                }
                 data-testid={FORGOT_TEST_ID.loginLink}
                 onClick={function () {
                   onBackToLoginClicked(router);

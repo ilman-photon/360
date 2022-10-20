@@ -6,7 +6,6 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 import Cookies from "universal-cookie";
 import PrescriptionPage from "../../src/pages/patient/prescription";
 import { Provider } from "react-redux";
-import { getServerSideProps } from "../../src/pages/patient/mfa";
 import store from "../../src/store/store";
 import mediaQuery from "css-mediaquery";
 import { TEMP_DATA_CONTACTS, TEMP_DATA_GLASSES, TEMP_DATA_MEDICATION } from "../../__mocks__/mockResponse";
@@ -98,10 +97,7 @@ defineFeature(feature, (test) => {
       )
       .reply(200, TEMP_DATA_GLASSES);
       window.matchMedia = createMatchMedia("1440px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -117,9 +113,6 @@ defineFeature(feature, (test) => {
       });
       await waitFor(() => container.getByText("Medications"));
       expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
-      expect(response).toEqual({
-        props: { isStepTwo: false },
-      });
     });
 
     and("filter the Refill status", async () => {
@@ -185,10 +178,7 @@ defineFeature(feature, (test) => {
       )
       .reply(200, TEMP_DATA_GLASSES);
       window.matchMedia = createMatchMedia("1024px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -204,9 +194,6 @@ defineFeature(feature, (test) => {
       });
       await waitFor(() => container.getByText("Medications"));
       expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
-      expect(response).toEqual({
-        props: { isStepTwo: false },
-      });
     });
 
     and("filter the Provider", async () => {
@@ -270,10 +257,7 @@ defineFeature(feature, (test) => {
       )
       .reply(200, TEMP_DATA_GLASSES);
       window.matchMedia = createMatchMedia("1920px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -289,9 +273,6 @@ defineFeature(feature, (test) => {
       });
       await waitFor(() => container.getByText("Medications"));
       expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
-      expect(response).toEqual({
-        props: { isStepTwo: false },
-      });
     });
 
     and(
@@ -362,10 +343,7 @@ defineFeature(feature, (test) => {
       )
       .reply(200, TEMP_DATA_GLASSES);
       window.matchMedia = createMatchMedia("1920px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -381,10 +359,6 @@ defineFeature(feature, (test) => {
       });
       await waitFor(() => container.getByText("Medications"));
       expect(container.getAllByText(/Contacts/i)[0]).toBeInTheDocument();
-
-      expect(response).toEqual({
-        props: { isStepTwo: false },
-      });
     });
 
     and("filter the Refill status.", async () => {
