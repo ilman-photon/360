@@ -40,7 +40,6 @@ const defaultValidation = () => {
   expect(true).toBeTruthy();
 };
 
-
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint6/EPP-2704.feature"
 );

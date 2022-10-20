@@ -96,6 +96,51 @@ describe("Set Password", () => {
       name: /Create Account/i,
     });
     fireEvent.click(submitbutton);
+    await waitFor(() => container.getByTestId("submission-message"));
+    await waitFor(() => container.getByText(/Back to home/i));
+    expect(container.getByText(/Back to home/i)).toBeInTheDocument();
+  });
+
+  test("click reset password failed invalid length", async () => {
+    mock
+      .onPost("/ecp/patient/registrationsetpassword")
+      .reply(401, { ResponseCode: 3002 });
+    await renderSetPassword("smith1@photon.com");
+    await waitFor(() => container.getByText(/Set Password/i));
+    const password = container.container.querySelector("#password");
+    fireEvent.change(password, { target: { value: "user123" } });
+    expect(password.value).toEqual("user123");
+    const confirmPassword =
+      container.container.querySelector("#confirmPassword");
+    fireEvent.change(confirmPassword, { target: { value: "user123" } });
+    expect(confirmPassword.value).toEqual("user123");
+
+    const submitbutton = container.getByRole("button", {
+      name: /Create Account/i,
+    });
+    fireEvent.click(submitbutton);
+    await waitFor(() => container.getByText(/Back to home/i));
+    expect(container.getByText(/Back to home/i)).toBeInTheDocument();
+  });
+
+  test("click reset password failed contain whitespace", async () => {
+    mock
+      .onPost("/ecp/patient/registrationsetpassword")
+      .reply(401, { ResponseCode: 3002 });
+    await renderSetPassword("smith1@photon.com");
+    await waitFor(() => container.getByText(/Set Password/i));
+    const password = container.container.querySelector("#password");
+    fireEvent.change(password, { target: { value: "user12345" } });
+    expect(password.value).toEqual("user12345");
+    const confirmPassword =
+      container.container.querySelector("#confirmPassword");
+    fireEvent.change(confirmPassword, { target: { value: "user12345 " } });
+    expect(confirmPassword.value).toEqual("user12345 ");
+
+    const submitbutton = container.getByRole("button", {
+      name: /Create Account/i,
+    });
+    fireEvent.click(submitbutton);
     await waitFor(() => container.getByText(/Back to home/i));
     expect(container.getByText(/Back to home/i)).toBeInTheDocument();
   });
