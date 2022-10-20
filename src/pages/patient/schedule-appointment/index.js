@@ -446,7 +446,6 @@ export default function ScheduleAppointmentPage({ query }) {
     api
       .createAppointment(postBody)
       .then(() => {
-        console.log("then");
         if (isGuest) {
           router.push("/patient/schedule-appointment-confirmation");
         } else {

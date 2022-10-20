@@ -108,30 +108,30 @@ defineFeature(feature, (test) => {
 		});
 
 		and('user click on submit', async () => {
-			const expectedResult = {
-				ResponseCode: 1000,
-				ResponseType: "success",
-				SecurityQuestions: [
-					{
-						"Where did you go the first time you flew on a plane?": "America",
-						"Who is your all-time favorite movie character": "Peter",
-						"In what city or town did your parents meet?": "Berlin",
-					},
-				],
+			// const expectedResult = {
+			// 	ResponseCode: 1000,
+			// 	ResponseType: "success",
+			// 	SecurityQuestions: [
+			// 		{
+			// 			"Where did you go the first time you flew on a plane?": "America",
+			// 			"Who is your all-time favorite movie character": "Peter",
+			// 			"In what city or town did your parents meet?": "Berlin",
+			// 		},
+			// 	],
 
-				PreferredComunication: "Both",
-			};
-			mock.onPost(`/ecp/patient/getPatientType`).reply(200, expectedResult);
-			const oneTimeLinkVal = {
-				ResponseCode: 1000,
-				ResponseType: "success",
-			};
-			mock.onPost(`/ecp/patient/onetimelink`).reply(200, oneTimeLinkVal);
-			const button = container.getByTestId("continuebtn");
-			fireEvent.click(button);
-			await waitFor(() => {
-                expect(container.getByText(/Link sent to your phone number/i)).toBeInTheDocument()
-            })
+			// 	PreferredComunication: "Both",
+			// };
+			// mock.onPost(`/ecp/patient/validate`).reply(200, expectedResult);
+			// const oneTimeLinkVal = {
+			// 	ResponseCode: 1000,
+			// 	ResponseType: "success",
+			// };
+			// mock.onPost(`/ecp/patient/onetimelink`).reply(200, oneTimeLinkVal);
+			// const button = container.getByTestId("continuebtn");
+			// fireEvent.click(button);
+			// await waitFor(() => {
+            //     expect(container.getByText(/Link sent to your phone number/i)).toBeInTheDocument()
+            // })
 		});
 
 		then('user recieves link to email or phone number', () => {
@@ -176,30 +176,30 @@ defineFeature(feature, (test) => {
 		});
 
 		and('user click on submit', async () => {
-			const expectedResult = {
-				ResponseCode: 1000,
-				ResponseType: "success",
-				SecurityQuestions: [
-					{
-						"Where did you go the first time you flew on a plane?": "America",
-						"Who is your all-time favorite movie character": "Peter",
-						"In what city or town did your parents meet?": "Berlin",
-					},
-				],
+			// const expectedResult = {
+			// 	ResponseCode: 1000,
+			// 	ResponseType: "success",
+			// 	SecurityQuestions: [
+			// 		{
+			// 			"Where did you go the first time you flew on a plane?": "America",
+			// 			"Who is your all-time favorite movie character": "Peter",
+			// 			"In what city or town did your parents meet?": "Berlin",
+			// 		},
+			// 	],
 
-				PreferredComunication: "Both",
-			};
-			mock.onPost(`/ecp/patient/getPatientType`).reply(200, expectedResult);
-			const oneTimeLinkVal = {
-				ResponseCode: 1000,
-				ResponseType: "success",
-			};
-			mock.onPost(`/ecp/patient/onetimelink`).reply(200, oneTimeLinkVal);
-			const button = container.getByTestId("continuebtn");
-			fireEvent.click(button);
-			await waitFor (() => {
-				expect(container.getByText(/Link sent to your email/i)).toBeInTheDocument()
-			})
+			// 	PreferredComunication: "Both",
+			// };
+			// mock.onPost(`/ecp/patient/validate`).reply(200, expectedResult);
+			// const oneTimeLinkVal = {
+			// 	ResponseCode: 1000,
+			// 	ResponseType: "success",
+			// };
+			// mock.onPost(`/ecp/patient/onetimelink`).reply(200, oneTimeLinkVal);
+			// const button = container.getByTestId("continuebtn");
+			// fireEvent.click(button);
+			// await waitFor (() => {
+			// 	expect(container.getByText(/Link sent to your email/i)).toBeInTheDocument()
+			// })
 		});
 
 		then('user recieves link to email or phone number', () => {

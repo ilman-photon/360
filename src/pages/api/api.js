@@ -104,14 +104,14 @@ export class Api {
     return this.getResponse(url, postbody, "post");
   }
 
-  validateGuestUser(postbody) {
-    const url = "/ecp/patient/validate";
-    return this.forgotFeatureValidation(url, postbody, "post");
-  }
-
   validateUserType(postbody) {
     const url = "/ecp/patient/getPatientType";
     return this.getResponse(url, postbody, "post", false);
+  }
+
+  sendLinkSync(postbody) {
+    const url = "/ecp/communication/sendLink";
+    return this.getResponse(url, postbody, "post");
   }
 
   validateUserName(postbody) {
@@ -175,13 +175,40 @@ export class Api {
     });
   }
 
-  tokenValidation(postbody, isResetPassword) {
-    let url = "/ecp/patient/oneTimeLinkToken";
-    if (isResetPassword) {
-      url = "/ecp/patient/resetPasswordToken";
+  tokenValidation(postbody, webSource) {
+    let url = "";
+    switch (webSource) {
+      case "oneTimeLink":
+        url = "/ecp/patient/oneTimeLinkToken";
+        break;
+      case "reset":
+        url = "/ecp/patient/resetPasswordToken";
+        break;
+      case "syncToken":
+        url = "/ecp/communication/validateLink";
+        break;
+      default:
+        url = "/ecp/patient/oneTimeLinkToken";
+        break;
     }
     return new Promise((resolve, reject) => {
       this.getResponse(url, postbody, "post")
+        .then(function (data) {
+          if (data) {
+            resolve(data);
+          } else {
+            reject(data);
+          }
+        })
+        .catch(function (err) {
+          reject(err);
+        });
+    });
+  }
+
+  syncTokenValidation(postbody) {
+    return new Promise((resolve, reject) => {
+      this.getResponse("/ecp/communication/validateLink", postbody, "post")
         .then(function (data) {
           if (data) {
             resolve(data);
@@ -414,6 +441,11 @@ export class Api {
     const patientId = `/${userData?.patientId}`;
     const url = `/ecp/prescriptions/patient${patientId}/getContactsData`;
     return this.getResponse(url, {}, "get");
+  }
+
+  getRegistrationSetPassword(postBody) {
+    const url = "/ecp/patient/registrationsetpassword";
+    return this.getResponse(url, postBody, "post");
   }
 
   async uploadFile(url, file) {
