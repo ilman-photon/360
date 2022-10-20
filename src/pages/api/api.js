@@ -206,22 +206,6 @@ export class Api {
     });
   }
 
-  syncTokenValidation(postbody) {
-    return new Promise((resolve, reject) => {
-      this.getResponse("/ecp/communication/validateLink", postbody, "post")
-        .then(function (data) {
-          if (data) {
-            resolve(data);
-          } else {
-            reject(data);
-          }
-        })
-        .catch(function (err) {
-          reject(err);
-        });
-    });
-  }
-
   getSecurityQuestion() {
     const url = "/ecp/patient/getsecurityQuestions";
     return new Promise((resolve, reject) => {
