@@ -49,7 +49,7 @@ export default function HomePage({ googleApiKey }) {
   const [prescriptionData, setPrescriptionData] = React.useState({});
   const [appointmentData, setAppointmentData] = React.useState({});
   const [isOpenCancel, setIsOpenCancel] = React.useState(false);
-  const [isAuthenticated, setIsAuthenticated] = React.useState(true);
+  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
   const [currentCity, setCurrentCity] = React.useState("");
   const [modalSuccessCancel, setModalSuccessCancel] = React.useState(false);
   const [username, setUsername] = React.useState("");
@@ -172,16 +172,18 @@ export default function HomePage({ googleApiKey }) {
     const cookies = new Cookies();
     if (!cookies.get("authorized")) {
       router.push("/patient/login");
-      setIsAuthenticated(true);
-    } else {
       setIsAuthenticated(false);
+    } else {
+      setIsAuthenticated(true);
     }
   }, [setIsAuthenticated, router]);
 
   useEffect(() => {
-    onCalledAllPrescription();
-    onCalledGetAllAppointment();
-    dispatch(fetchAllPayers());
+    if (isAuthenticated) {
+      onCalledAllPrescription();
+      onCalledGetAllAppointment();
+      dispatch(fetchAllPayers());
+    }
     const userStorageData = JSON.parse(localStorage.getItem("userProfile"));
     if (userStorageData) {
       let firstName = userStorageData?.firstName || "";
@@ -191,7 +193,7 @@ export default function HomePage({ googleApiKey }) {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [isAuthenticated]);
 
   useEffect(() => {
     onCalledGetAppointmentTypesAPI();
@@ -233,7 +235,7 @@ export default function HomePage({ googleApiKey }) {
 
   return (
     <>
-      {!isAuthenticated && (
+      {isAuthenticated && (
         <Stack sx={{ width: "100%" }}>
           {isDesktop ? (
             <>

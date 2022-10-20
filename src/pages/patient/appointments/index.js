@@ -24,7 +24,7 @@ export default function Appointments() {
   const [modalCancel, setModalCancel] = useState(false);
   const [isRequestedUpcoming, setIsRequestedUpcoming] = useState(false);
   const [isRequestedPast, setIsRequestedPast] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [upcomingAppointment, setUpcomingAppointment] = useState([]);
   const [pastAppointment, setPastAppointment] = useState([]);
   const router = useRouter();
@@ -73,9 +73,9 @@ export default function Appointments() {
     const cookies = new Cookies();
     if (!cookies.get("authorized")) {
       router.push("/patient/login");
-      setIsAuthenticated(true);
-    } else {
       setIsAuthenticated(false);
+    } else {
+      setIsAuthenticated(true);
     }
   }, [setIsAuthenticated, router]);
 
@@ -103,7 +103,7 @@ export default function Appointments() {
 
   return (
     <>
-      {!isAuthenticated && (
+      {isAuthenticated && (
         <Box ariaLabel={"Appointments page"} className={styles.container}>
           <AccountTitleHeading
             title={"Appointments"}

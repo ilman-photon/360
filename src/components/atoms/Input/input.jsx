@@ -248,6 +248,7 @@ export const CustomInput = styled(({ ...props }) => {
               style={props.style}
               onPaste={handleMouseDownPassword}
               value={props.value}
+              required={props.required}
             />
           </CustomFormControl>
         </>
@@ -295,6 +296,7 @@ export const CustomInput = styled(({ ...props }) => {
                   error={props.error || params.error}
                   helperText={props.helperText}
                   onPaste={preventPasteHandler}
+                  required={props.required}
                 />
               )}
               {...props}

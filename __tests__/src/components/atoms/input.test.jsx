@@ -8,7 +8,6 @@ describe("StyledInput", () => {
     const { container } = render(<StyledInput type="text" />);
     const input = container.getElementsByClassName("custom-input");
     expect(input).toBeTruthy();
-    expect(container).toMatchSnapshot();
   });
 
   it("renders input components with type password", () => {

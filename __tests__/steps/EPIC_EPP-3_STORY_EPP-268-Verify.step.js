@@ -2,7 +2,7 @@ import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
-import MfaPage, { getServerSideProps } from "../../src/pages/patient/mfa";
+import MfaPage from "../../src/pages/patient/mfa";
 import "@testing-library/jest-dom";
 import AuthPage from "../../src/pages/patient/login";
 import Cookies from "universal-cookie";
@@ -36,13 +36,7 @@ defineFeature(feature, (test) => {
   let container;
   const mock = new MockAdapter(axios);
   beforeEach(async () => {
-    const contex = {
-      req: {
-        headers: {
-          cookie: "username=user1%40photon.com; mfa=true",
-        },
-      },
-    };
+    Cookies.result = { mfa: true };
 
     const userData = {
       communicationMethod: {
@@ -55,7 +49,6 @@ defineFeature(feature, (test) => {
 
     mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
 
-    getServerSideProps(contex);
     container = render(<MfaPage />);
     await waitFor(() => container.getByText("backToLoginBtn"));
   });
