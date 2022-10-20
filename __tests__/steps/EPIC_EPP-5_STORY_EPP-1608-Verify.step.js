@@ -3,7 +3,6 @@ import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import { defineFeature, loadFeature } from "jest-cucumber";
-import { getServerSideProps } from "../../src/pages/patient/mfa";
 import { Provider } from "react-redux";
 import HomePage from "../../src/pages/patient";
 import store from "../../src/store/store";
@@ -619,19 +618,12 @@ defineFeature(feature, (test) => {
         watchPosition: jest.fn(),
       };
       global.navigator.geolocation = mockGeolocation;
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
       act(() => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
       });
       await waitFor(() => container.getAllByLabelText(/Prescriptions/i)[0]);
-      expect(response).toEqual({
-        props: { isStepTwo: false },
-      });
     });
 
     and("user navigates to Appointments screen", async () => {

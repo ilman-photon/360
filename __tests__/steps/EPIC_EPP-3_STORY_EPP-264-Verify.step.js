@@ -3,7 +3,7 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 import MockAdapter from "axios-mock-adapter";
 import "@testing-library/jest-dom";
 import axios from "axios";
-import MfaPage, { getServerSideProps } from "../../src/pages/patient/mfa";
+import MfaPage from "../../src/pages/patient/mfa";
 import { act } from "react-dom/test-utils";
 import Cookies from "universal-cookie";
 import constants from "../../src/utils/constants";
@@ -67,13 +67,13 @@ defineFeature(feature, (test) => {
     };
     mock.onPost(`/ecp/patient/mfa/sendotp`).reply(200, data);
 
-    getServerSideProps(contex);
     // act(() => {
     //   container = render(<MfaPage />, {
     //     container: document.body.appendChild(element),
     //     legacyRoot: true,
     //   });
     // });
+    Cookies.result = { mfa: true };
     container = render(<MfaPage />);
     ////await waitFor(() => container.getByText(/communicationMethodTitle/i));
     expect(container).toMatchSnapshot();
@@ -87,13 +87,7 @@ defineFeature(feature, (test) => {
     const mock = new MockAdapter(axios);
     let page;
     beforeEach(async () => {
-      const contex = {
-        req: {
-          headers: {
-            cookie: "username=user1%40photon.com; mfa=true",
-          },
-        },
-      };
+      Cookies.result = { mfa: true };
 
       const userData = {
         communicationMethod: {
@@ -106,7 +100,6 @@ defineFeature(feature, (test) => {
 
       mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
 
-      getServerSideProps(contex);
       page = render(<MfaPage />);
       ////await waitFor(() => container.getByText("communicationMethodTitle"));
     });
@@ -355,7 +348,6 @@ defineFeature(feature, (test) => {
 
         mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
 
-        getServerSideProps(contex);
         //const container = render(<MfaPage />)
         //await waitFor(() => container.getByText("communicationMethodTitle"));
         // const title = container.getByText("setMFATitle");
@@ -596,13 +588,7 @@ defineFeature(feature, (test) => {
     and(/^user should see "(.*)" & "(.*)" button$/, (arg0, arg1) => {
       // validateTextInDocument(arg0);
       // validateTextInDocument(arg1);
-      const contex = {
-        req: {
-          headers: {
-            cookie: "username=user1%40photon.com; mfa=true",
-          },
-        },
-      };
+      Cookies.result = { mfa: true };
 
       const userData = {
         communicationMethod: {
@@ -617,7 +603,6 @@ defineFeature(feature, (test) => {
 
       mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
 
-      getServerSideProps(contex);
       const container = render(<MfaPage />);
 
       // const confirmButton = page.getByRole("button", { name: /confrimBtn/i });
@@ -700,13 +685,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see set MFA screen", async () => {
-      const contex = {
-        req: {
-          headers: {
-            cookie: "username=user1%40photon.com; mfa=true",
-          },
-        },
-      };
+      Cookies.result = { mfa: true };
 
       const userData = {
         communicationMethod: {
@@ -719,7 +698,6 @@ defineFeature(feature, (test) => {
 
       mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
 
-      getServerSideProps(contex);
       act(() => {
         container = render(<MfaPage />, {
           container: document.body.appendChild(element),
@@ -846,13 +824,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see set MFA screen", async () => {
-      const contex = {
-        req: {
-          headers: {
-            cookie: "username=user1%40photon.com; mfa=true",
-          },
-        },
-      };
+      Cookies.result = { mfa: true };
 
       const userData = {
         communicationMethod: {
@@ -865,7 +837,6 @@ defineFeature(feature, (test) => {
 
       mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
 
-      getServerSideProps(contex);
       act(() => {
         container = render(<MfaPage />, {
           container: document.body.appendChild(element),
@@ -994,13 +965,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see set MFA screen", async () => {
-      const contex = {
-        req: {
-          headers: {
-            cookie: "username=user1%40photon.com; mfa=true",
-          },
-        },
-      };
+      Cookies.result = { mfa: true };
 
       const userData = {
         communicationMethod: {
@@ -1013,7 +978,6 @@ defineFeature(feature, (test) => {
 
       mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
 
-      getServerSideProps(contex);
       act(() => {
         container = render(<MfaPage />, {
           container: document.body.appendChild(element),
@@ -1142,13 +1106,7 @@ defineFeature(feature, (test) => {
     });
 
     then("user should see set MFA screen", async () => {
-      const contex = {
-        req: {
-          headers: {
-            cookie: "username=user1%40photon.com; mfa=true",
-          },
-        },
-      };
+      Cookies.result = { mfa: true };
 
       const userData = {
         communicationMethod: {
@@ -1160,7 +1118,7 @@ defineFeature(feature, (test) => {
       };
 
       mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
-      getServerSideProps(contex);
+
       act(() => {
         container = render(<MfaPage />, {
           container: document.body.appendChild(element),

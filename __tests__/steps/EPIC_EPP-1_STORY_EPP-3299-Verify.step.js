@@ -3,7 +3,6 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 import MockAdapter from "axios-mock-adapter";
 import "@testing-library/jest-dom";
 import axios from "axios";
-import MfaPage, { getServerSideProps } from "../../src/pages/patient/mfa";
 import { act } from "react-dom/test-utils";
 import Cookies from "universal-cookie";
 import constants from "../../src/utils/constants";
@@ -833,10 +832,6 @@ defineFeature(feature, (test) => {
         )
         .reply(400, {});
         window.matchMedia = createMatchMedia("1920px");
-        const response = await getServerSideProps({
-          req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-          res: jest.fn(),
-        });
         const mockGeolocation = {
           getCurrentPosition: jest.fn(),
           watchPosition: jest.fn(),
@@ -849,9 +844,6 @@ defineFeature(feature, (test) => {
           );
         });
         await waitFor(() => container.getAllByLabelText(/Prescriptions/i)[0]);
-        expect(response).toEqual({
-          props: { isStepTwo: false },
-        });
     });
 
     and("User should see the widget with prescriptions", () => {

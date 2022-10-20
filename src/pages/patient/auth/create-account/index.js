@@ -8,9 +8,11 @@ import { Box } from "@mui/material";
 import globalStyles from "../../../../styles/Global.module.scss";
 import { mmddyyDateFormat } from "../../../../utils/dateFormatter";
 import { loginProps } from "../../login";
+import { useRouter } from "next/router";
 export default function CreateAccountPage() {
   const dispatch = useDispatch();
   const api = new Api();
+  const router = useRouter();
 
   const formMessage = useSelector((state) => state.index.formMessage);
 
@@ -35,7 +37,7 @@ export default function CreateAccountPage() {
           username,
           password: postbody.password,
         },
-        null,
+        router,
         () => {
           //this is intentional
         },

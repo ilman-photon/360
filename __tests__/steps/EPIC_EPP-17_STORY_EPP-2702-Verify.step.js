@@ -11,8 +11,6 @@ import HomePage from "../../src/pages/patient";
 import PrescriptionPage from "../../src/pages/patient/prescription";
 import { TEMP_DATA_GLASSES, TEMP_DATA_MEDICATION } from "../../__mocks__/mockResponse";
 
-
-
 function createMatchMedia(width) {
   return (query) => ({
     matches: mediaQuery.match(query, { width }),
@@ -317,7 +315,7 @@ defineFeature(feature, (test) => {
           </Provider>
         );
       });
-      await waitFor(() => container.getAllByText(/Active Medications/i))[0];
+      await waitFor(() => container.getAllByText(/Contacts Prescription/i));
     });
 
     then("patient should see the verbiage There are no prescriptions.", async() => {
