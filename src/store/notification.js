@@ -12,10 +12,19 @@ const INITIAL_STATE = {
   status: "loading",
 };
 
-export const providerStore = createSlice({
+export const notificationStore = createSlice({
   name: "index",
   initialState: INITIAL_STATE,
-  reducers: {},
+  reducers: {
+    markAllAsRead: (state) => {
+      state.list = state.list.map((v) => {
+        return {
+          ...v,
+          isRead: true,
+        };
+      });
+    },
+  },
   extraReducers: {
     [fetchNotifications.pending]: (state) => {
       state.status = "loading";
@@ -30,4 +39,7 @@ export const providerStore = createSlice({
   },
 });
 
-export default providerStore.reducer;
+// Action creators are generated for each case reducer function
+export const { markAllAsRead } = notificationStore.actions;
+
+export default notificationStore.reducer;

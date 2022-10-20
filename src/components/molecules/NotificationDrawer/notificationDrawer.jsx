@@ -27,7 +27,10 @@ const NotificationDrawer = ({
   opened = false,
   loading = true,
   notifications = [],
-  handleDrawerClose = () => {
+  onDrawerClose = () => {
+    // This is intentional
+  },
+  onMarkAllAsRead = () => {
     // This is intentional
   },
 }) => {
@@ -54,7 +57,7 @@ const NotificationDrawer = ({
 
       {/* drawer header */}
       <Stack>
-        <IconButton onClick={handleDrawerClose} sx={{ ml: "auto", p: 0 }}>
+        <IconButton onClick={onDrawerClose} sx={{ ml: "auto", p: 0 }}>
           <CloseOutlinedIcon />
         </IconButton>
         <Typography variant="headlineH3" color={colors.darkGreen}>
@@ -115,6 +118,7 @@ const NotificationDrawer = ({
               <Typography
                 variant="bodyLinkRegular"
                 sx={{ fontSize: "18px", cursor: "pointer" }}
+                onClick={onMarkAllAsRead}
               >
                 Mark all as read
               </Typography>

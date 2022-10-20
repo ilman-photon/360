@@ -27,7 +27,7 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import { colors } from "../../../styles/theme";
 import { setUserData } from "../../../store/user";
 import NotificationDrawer from "../../molecules/NotificationDrawer/notificationDrawer";
-import { fetchNotifications } from "../../../store/notification";
+import { fetchNotifications, markAllAsRead } from "../../../store/notification";
 
 export default function BaseHeader({
   OnLogoutClicked = (routerInstance) => {
@@ -87,6 +87,10 @@ export default function BaseHeader({
 
   const fetchUserNotifications = async () => {
     await dispatch(fetchNotifications());
+  };
+
+  const handleMarkAllAsRead = () => {
+    dispatch(markAllAsRead());
   };
 
   React.useEffect(() => {
@@ -341,7 +345,8 @@ export default function BaseHeader({
       <NotificationDrawer
         opened={notificationDrawerOpened}
         loading={isNotificationLoading}
-        handleDrawerClose={() => setNotificationDrawerOpened(false)}
+        onDrawerClose={() => setNotificationDrawerOpened(false)}
+        onMarkAllAsRead={handleMarkAllAsRead}
         notifications={notifications}
       />
     </>
