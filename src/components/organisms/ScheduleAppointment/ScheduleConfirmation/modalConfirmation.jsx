@@ -16,6 +16,7 @@ export default function ModalConfirmation({
   OnOkClicked = () => {
     // This is intended
   },
+  onAddToCalendarClicked,
 }) {
   return isDesktop ? (
     <Box>
@@ -27,6 +28,7 @@ export default function ModalConfirmation({
           isLoggedIn={isLoggedIn}
           isReschedule={isReschedule}
           OnOkClicked={OnOkClicked}
+          onAddToCalendarClicked={onAddToCalendarClicked}
         />
       </Dialog>
     </Box>

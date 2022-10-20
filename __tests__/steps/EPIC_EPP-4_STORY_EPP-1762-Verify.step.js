@@ -8,7 +8,6 @@ import axios from "axios";
 import {
   createMatchMedia,
   defaultValidation,
-  renderAppointmentDetail,
 } from "../../__mocks__/commonSteps";
 import {
   mockAppointmentTypes,

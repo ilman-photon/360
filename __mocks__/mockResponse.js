@@ -67,6 +67,94 @@ export const mockAppointmentTypes = {
   _links: { self: { href: "/appointments?pageNo=0&pageSize=100" } },
 };
 
+export const mockExistingInsurance = {
+  count: 1,
+  entities: [
+    {
+      beneficiary: {
+        _links: {
+          self: { href: "/v1/patients/f352a9fe-53a4-4be8-866f-851ce45331ff" },
+        },
+        _id: "f352a9fe-53a4-4be8-866f-851ce45331ff",
+        _version: "3f616c97-b28b-4bb1-a86a-68260757e80a",
+        _created: "Oct 13, 2022, 4:31:42 PM",
+        _updated: "Oct 13, 2022, 4:31:42 PM",
+        status: "CREATED",
+        _createdBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      insuranceType: "VISION",
+      group: "",
+      priority: "PRIMARY",
+      subscriberRelation: 1,
+      archive: false,
+      active: false,
+      selected: false,
+      status: "CREATED",
+      planAddress: "17795 W 106th ST., STE 202",
+      planCity: "OLATHE",
+      planName: "Eye Care",
+      planPhone: "9367284736",
+      planState: "KS",
+      planZip: "66061",
+      payer: {
+        name: "EyeMed",
+        absentDigitalId: true,
+        _id: "2a7601c4-f9e7-4698-ae56-bbe44dee0c9a",
+        _links: {
+          self: { href: "/v1/payers/2a7601c4-f9e7-4698-ae56-bbe44dee0c9a" },
+        },
+      },
+      plan: {
+        name: "Eye Care",
+        _id: "b4a0e67e-a038-4726-a5c1-a019c6fdd6f8",
+        _links: {
+          self: {
+            href: "/v1/payers/2a7601c4-f9e7-4698-ae56-bbe44dee0c9a/plans/b4a0e67e-a038-4726-a5c1-a019c6fdd6f8",
+          },
+        },
+      },
+      isPatientSubscriber: true,
+      subscriber: {
+        firstName: "dewo",
+        lastName: "Simanjuntak",
+        dob: "12/12/1991",
+        contactInformation: {
+          preferredContactMethod: 0,
+          phone: [{ type: 3, number: "(977) 623-4567" }],
+          email: [{ type: 1, email: "patient123@gmail.com" }],
+        },
+        title: 0,
+        gender: 0,
+        _id: "f352a9fe-53a4-4be8-866f-851ce45331ff",
+      },
+      _links: {
+        self: {
+          href: "/insurance/v1/beneficiaries/f352a9fe-53a4-4be8-866f-851ce45331ff/coverages/ec2a2ded-dc9f-4f62-b1de-b7ac19124de4",
+        },
+      },
+      digitalAssets: {},
+      _id: "ec2a2ded-dc9f-4f62-b1de-b7ac19124de4",
+      _version: "0dea5255-349e-4125-9c8d-3a7b430c3858",
+      _created: "Oct 19, 2022, 1:56:54 PM",
+      _updated: "Oct 19, 2022, 1:56:54 PM",
+      _createdBy: {
+        _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+        _links: {
+          self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+        },
+      },
+    },
+  ],
+  _links: { self: { href: "/api?pageNo=0&pageSize=100" } },
+};
+
 export const mockInsurance = {
   count: 14,
   entities: [
@@ -352,6 +440,348 @@ export const mockInsurance = {
     },
   ],
   _links: { self: { href: "/api?pageNo=0&pageSize=100" } },
+};
+
+export const mockPlanInsurance = {
+  count: 8,
+  entities: [
+    {
+      name: "Eye Care",
+      phone1: "9367284736",
+      phone2: "9462846372",
+      address: "17795 W 106th ST., STE 202",
+      city: "OLATHE",
+      state: "KS",
+      zip: "66061",
+      available: false,
+      paysTax: false,
+      template: false,
+      links: {
+        self: { href: "/v1/plans/b4a0e67e-a038-4726-a5c1-a019c6fdd6f8" },
+      },
+      notes: [],
+      planOverride: false,
+      status: "CREATED",
+      referral_required: false,
+      use_group_number: false,
+      auth_required: false,
+      bill_refraction_seperately: false,
+      _id: "b4a0e67e-a038-4726-a5c1-a019c6fdd6f8",
+      payer_uid: "2a7601c4-f9e7-4698-ae56-bbe44dee0c9a",
+      _version: "10a7d421-a39a-460d-9d97-cc533bfc68ed",
+      _created: "Feb 7, 2022, 11:05:07 AM",
+      _updated: "Feb 7, 2022, 11:05:07 AM",
+      _createdBy: {
+        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+        _links: {
+          self: { href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1" },
+        },
+      },
+    },
+    {
+      name: "Vision health",
+      phone1: "9367284736",
+      phone2: "9462846372",
+      address: "17795 W 106th ST., STE 202",
+      city: "OLATHE",
+      state: "KS",
+      zip: "66061",
+      available: false,
+      paysTax: false,
+      template: false,
+      links: {
+        self: { href: "/v1/plans/727fcc37-c84d-492f-9692-c2d3ac76d8fe" },
+      },
+      notes: [],
+      planOverride: false,
+      status: "CREATED",
+      referral_required: false,
+      use_group_number: false,
+      auth_required: false,
+      bill_refraction_seperately: false,
+      _id: "727fcc37-c84d-492f-9692-c2d3ac76d8fe",
+      payer_uid: "2a7601c4-f9e7-4698-ae56-bbe44dee0c9a",
+      _version: "37e9ee68-195c-486b-98a4-981e9e56d82e",
+      _created: "Feb 7, 2022, 11:05:38 AM",
+      _updated: "Feb 7, 2022, 11:05:38 AM",
+      _createdBy: {
+        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+        _links: {
+          self: { href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1" },
+        },
+      },
+    },
+    {
+      name: "Medical plan",
+      phone1: "9367284736",
+      phone2: "9462846372",
+      address: "17795 W 106th ST., STE 202",
+      city: "OLATHE",
+      state: "KS",
+      zip: "66061",
+      available: false,
+      paysTax: false,
+      template: false,
+      links: {
+        self: { href: "/v1/plans/1c93c381-67ba-44f9-b1c7-a1a97b32aa64" },
+      },
+      notes: [],
+      planOverride: false,
+      status: "CREATED",
+      referral_required: false,
+      use_group_number: false,
+      auth_required: false,
+      bill_refraction_seperately: false,
+      _id: "1c93c381-67ba-44f9-b1c7-a1a97b32aa64",
+      payer_uid: "2a7601c4-f9e7-4698-ae56-bbe44dee0c9a",
+      _version: "9084907d-d14d-400c-899b-abe98000231a",
+      _created: "Feb 7, 2022, 11:05:50 AM",
+      _updated: "Feb 7, 2022, 11:05:50 AM",
+      _createdBy: {
+        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+        _links: {
+          self: { href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1" },
+        },
+      },
+    },
+    {
+      name: "Medicare Advantage",
+      phone1: "9367284736",
+      phone2: "9462846372",
+      address: "17795 W 106th ST., STE 202",
+      city: "OLATHE",
+      state: "KS",
+      zip: "66061",
+      available: false,
+      paysTax: false,
+      template: false,
+      links: {
+        self: { href: "/v1/plans/639ff5f9-5838-4a1a-927e-28c92f06e3e3" },
+      },
+      notes: [],
+      planOverride: false,
+      status: "CREATED",
+      referral_required: false,
+      use_group_number: false,
+      auth_required: false,
+      bill_refraction_seperately: false,
+      _id: "639ff5f9-5838-4a1a-927e-28c92f06e3e3",
+      payer_uid: "2a7601c4-f9e7-4698-ae56-bbe44dee0c9a",
+      _version: "da6ae03d-0c7d-4910-b11b-22c531c93061",
+      _created: "Feb 7, 2022, 11:06:07 AM",
+      _updated: "Feb 7, 2022, 11:06:07 AM",
+      _createdBy: {
+        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+        _links: {
+          self: { href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1" },
+        },
+      },
+    },
+    {
+      name: "Medicaid PPO",
+      phone1: "9367284736",
+      phone2: "9462846372",
+      address: "17795 W 106th ST., STE 202",
+      city: "OLATHE",
+      state: "KS",
+      zip: "66061",
+      available: false,
+      paysTax: false,
+      template: false,
+      links: {
+        self: { href: "/v1/plans/bc9067e6-ef10-4b98-b730-e4d82b3f7c51" },
+      },
+      notes: [],
+      planOverride: false,
+      status: "CREATED",
+      referral_required: false,
+      use_group_number: false,
+      auth_required: false,
+      bill_refraction_seperately: false,
+      _id: "bc9067e6-ef10-4b98-b730-e4d82b3f7c51",
+      payer_uid: "2a7601c4-f9e7-4698-ae56-bbe44dee0c9a",
+      _version: "882fac1c-0b5c-4616-a5e1-3210d0fd1e81",
+      _created: "Feb 7, 2022, 11:06:17 AM",
+      _updated: "Feb 7, 2022, 11:06:17 AM",
+      _createdBy: {
+        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+        _links: {
+          self: { href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1" },
+        },
+      },
+    },
+    {
+      name: "HMO",
+      phone1: "9367284736",
+      phone2: "9462846372",
+      address: "17795 W 106th ST., STE 202",
+      city: "OLATHE",
+      state: "KS",
+      zip: "66061",
+      available: false,
+      paysTax: false,
+      template: false,
+      links: {
+        self: { href: "/v1/plans/cfcf2407-b9e0-449f-99ab-31f6176f8697" },
+      },
+      notes: [],
+      planOverride: false,
+      status: "CREATED",
+      referral_required: false,
+      use_group_number: false,
+      auth_required: false,
+      bill_refraction_seperately: false,
+      _id: "cfcf2407-b9e0-449f-99ab-31f6176f8697",
+      payer_uid: "2a7601c4-f9e7-4698-ae56-bbe44dee0c9a",
+      _version: "8f398abe-2a4f-4ec0-900b-b37b29b42c33",
+      _created: "Feb 7, 2022, 11:06:26 AM",
+      _updated: "Feb 7, 2022, 11:06:26 AM",
+      _createdBy: {
+        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+        _links: {
+          self: { href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1" },
+        },
+      },
+    },
+    {
+      name: "Co-Managed Care",
+      phone1: "9367284736",
+      phone2: "9462846372",
+      address: "17795 W 106th ST., STE 202",
+      city: "OLATHE",
+      state: "KS",
+      zip: "66061",
+      available: false,
+      paysTax: false,
+      template: false,
+      links: {
+        self: { href: "/v1/plans/5e7e392d-2dc0-4592-af6b-a6dd9971cba5" },
+      },
+      notes: [],
+      planOverride: false,
+      status: "CREATED",
+      referral_required: false,
+      use_group_number: false,
+      auth_required: false,
+      bill_refraction_seperately: false,
+      _id: "5e7e392d-2dc0-4592-af6b-a6dd9971cba5",
+      payer_uid: "2a7601c4-f9e7-4698-ae56-bbe44dee0c9a",
+      _version: "505870c5-68d5-47ee-983b-fbb75bccbf26",
+      _created: "Feb 7, 2022, 11:06:33 AM",
+      _updated: "Feb 7, 2022, 11:06:33 AM",
+      _createdBy: {
+        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+        _links: {
+          self: { href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1" },
+        },
+      },
+    },
+    {
+      name: "Other",
+      phone1: "9367284736",
+      phone2: "9462846372",
+      address: "17795 W 106th ST., STE 202",
+      city: "OLATHE",
+      state: "KS",
+      zip: "66061",
+      available: false,
+      paysTax: false,
+      template: false,
+      links: {
+        self: { href: "/v1/plans/b6035fab-e88c-4e6f-805e-b239090f96c1" },
+      },
+      notes: [],
+      planOverride: false,
+      status: "CREATED",
+      referral_required: false,
+      use_group_number: false,
+      auth_required: false,
+      bill_refraction_seperately: false,
+      _id: "b6035fab-e88c-4e6f-805e-b239090f96c1",
+      payer_uid: "2a7601c4-f9e7-4698-ae56-bbe44dee0c9a",
+      _version: "659344e3-2690-4102-bfbd-eaace2838f40",
+      _created: "Feb 7, 2022, 11:06:41 AM",
+      _updated: "Feb 7, 2022, 11:06:41 AM",
+      _createdBy: {
+        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+        _links: {
+          self: { href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1" },
+        },
+      },
+    },
+  ],
+  _links: { self: { href: "/api?pageNo=0&pageSize=500" } },
+};
+
+export const mockSubmitInsurance = {
+  beneficiary: {
+    _links: {
+      self: { href: "/v1/patients/f352a9fe-53a4-4be8-866f-851ce45331ff" },
+    },
+    _id: "f352a9fe-53a4-4be8-866f-851ce45331ff",
+  },
+  insuranceType: "VISION",
+  group: "",
+  priority: "PRIMARY",
+  subscriberRelation: 1,
+  archive: false,
+  active: false,
+  selected: false,
+  status: "CREATED",
+  planAddress: "17795 W 106th ST., STE 202",
+  planCity: "OLATHE",
+  planName: "Eye Care",
+  planPhone: "9367284736",
+  planState: "KS",
+  planZip: "66061",
+  payer: {
+    name: "EyeMed",
+    absentDigitalId: true,
+    _id: "2a7601c4-f9e7-4698-ae56-bbe44dee0c9a",
+    _links: {
+      self: { href: "/v1/payers/2a7601c4-f9e7-4698-ae56-bbe44dee0c9a" },
+    },
+  },
+  plan: {
+    name: "Eye Care",
+    questionnaires: [],
+    _id: "b4a0e67e-a038-4726-a5c1-a019c6fdd6f8",
+    _links: {
+      self: {
+        href: "/v1/payers/2a7601c4-f9e7-4698-ae56-bbe44dee0c9a/plans/b4a0e67e-a038-4726-a5c1-a019c6fdd6f8",
+      },
+    },
+  },
+  isPatientSubscriber: true,
+  subscriber: {
+    firstName: "dewo",
+    lastName: "Simanjuntak",
+    dob: "12/12/1991",
+    contactInformation: {
+      preferredContactMethod: 0,
+      phone: [{ type: 3, number: "(977) 623-4567" }],
+      email: [{ type: 1, email: "patient123@gmail.com" }],
+    },
+    title: 0,
+    gender: 0,
+    _id: "f352a9fe-53a4-4be8-866f-851ce45331ff",
+  },
+  _links: {
+    self: {
+      href: "/insurance/v1/beneficiaries/f352a9fe-53a4-4be8-866f-851ce45331ff/coverages/ec2a2ded-dc9f-4f62-b1de-b7ac19124de4",
+    },
+  },
+  digitalAssets: {},
+  _id: "ec2a2ded-dc9f-4f62-b1de-b7ac19124de4",
+  _version: "0dea5255-349e-4125-9c8d-3a7b430c3858",
+  _created: "Oct 19, 2022, 1:56:54 PM",
+  _updated: "Oct 19, 2022, 1:56:54 PM",
+  _createdBy: {
+    _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
+    _links: {
+      self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
+    },
+  },
 };
 
 export const submitFilter = {
@@ -6924,42 +7354,332 @@ export const submitFilter = {
   ],
 };
 
-export const testLab = [
-  {
-    id: 1,
-    name: "Eye Surgery",
-    orderBy: "Hopkins, D.M.",
-    date: "09/09/2022 12:00PM",
-    status: "Completed",
+export const testLab = {
+  count: 2,
+  entities: [
+    {
+      examSheet: {
+        _links: {
+          self: {
+            href: "/v1/exam-sheets/6eac6174-dd4d-42d0-ab5d-8edcf17c1d64",
+          },
+        },
+        _id: "6eac6174-dd4d-42d0-ab5d-8edcf17c1d64",
+      },
+      examSheetSectionGroup: {
+        _links: {
+          self: {
+            href: "/v1/exam-sheet-sections/4a610e7c-e134-44e7-848e-d2012067b76e",
+          },
+        },
+        _id: "4a610e7c-e134-44e7-848e-d2012067b76e",
+      },
+      sequence: 1,
+      status: "CREATED",
+      deleted: false,
+      data: {
+        testingOrder: {
+          orderDetails: {
+            status: "RESULTS_AVAILABLE",
+            patient: {
+              dob: "09/16/2022",
+              mrn: "VGF164640",
+              sex: "",
+              lastName: "nikita",
+              firstName: "nikita",
+              _id: "3b38ebd3-43f1-438e-b101-ba38f01350f0",
+            },
+            dateTime: {
+              endDate: "2022-09-30T12:51:30.000+00:00",
+              startDate: "2022-09-30T12:51:30.000+00:00",
+              startTime: "2022-09-30T12:51:30.000+00:00",
+            },
+            examLink:
+              "https://cloud.continuumpacs.com/ecp/PatientExamDirect/Exam?uID=emruser&uPass=reHg0U9U6fR!&ExamId=dfa86225-7aac-426c-989f-164ca8d5a0e9",
+            testType: {
+              _id: "012054df-15ad-4190-981b-4fb663a16c8b",
+            },
+            encounter: {
+              _id: "9d957ac0-efb4-41fb-938c-96464a874d4d",
+            },
+            technician: {
+              sex: "",
+              lastName: "emma",
+              firstName: "parker",
+              middleName: "M",
+              assigningAuthority: "ADT1",
+              _id: "3c49b82e-4ed0-4f4f-9948-7b092feadc6a",
+            },
+            appointment: {
+              _id: "d8bb91cf-cbcb-4467-bd0c-f5c37f5d12ba",
+            },
+            orderingProvider: {
+              lastName: "user",
+              firstName: "ECP",
+              middleName: "M",
+              assigningAuthority: "NPI",
+              _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+            },
+          },
+        },
+        commonTestFields: {
+          assessment: {
+            OU: ["Same"],
+            OD: null,
+            OS: null,
+          },
+          testReliability: ["Good"],
+          patientCooperation: {
+            cooperation: ["Good"],
+          },
+        },
+        biometry: null,
+        Keratometry: {
+          OD: {
+            parameters: [{}],
+          },
+          OS: {
+            parameters: [{}],
+          },
+        },
+      },
+      _links: {
+        self: {
+          href: "/v1/exam-sheet-entry/1973c4d0-74da-41c5-a5f7-b2358821f823",
+        },
+      },
+      _id: "1973c4d0-74da-41c5-a5f7-b2358821f823",
+      _version: "b404f709-5d33-4fe2-a57d-97231ab05a3f",
+      _created: "Sep 30, 2022, 12:51:53 PM",
+      _updated: "Sep 30, 2022, 12:51:53 PM",
+      _createdBy: {
+        _links: {
+          self: {
+            href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+          },
+        },
+        _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+      },
+    },
+    {
+      examSheet: {
+        _links: {
+          self: {
+            href: "/v1/exam-sheets/6eac6174-dd4d-42d0-ab5d-8edcf17c1d64",
+          },
+        },
+        _id: "6eac6174-dd4d-42d0-ab5d-8edcf17c1d64",
+      },
+      examSheetSectionGroup: {
+        _links: {
+          self: {
+            href: "/v1/exam-sheet-sections/4a610e7c-e134-44e7-848e-d2012067b76e",
+          },
+        },
+        _id: "4a610e7c-e134-44e7-848e-d2012067b76e",
+      },
+      sequence: 1,
+      status: "CREATED",
+      deleted: false,
+      data: {
+        testingOrder: {
+          orderDetails: {
+            status: "RESULTS_AVAILABLE",
+            patient: {
+              dob: "09/16/2022",
+              mrn: "VGF164640",
+              sex: "",
+              lastName: "nikita",
+              firstName: "nikita",
+              _id: "3b38ebd3-43f1-438e-b101-ba38f01350f0",
+            },
+            dateTime: {
+              endDate: "2022-09-30T12:53:26.000+00:00",
+              startDate: "2022-09-30T12:53:26.000+00:00",
+              startTime: "2022-09-30T12:53:26.000+00:00",
+            },
+            examLink:
+              "https://cloud.continuumpacs.com/ecp/PatientExamDirect/Exam?uID=emruser&uPass=reHg0U9U6fR!&ExamId=f249c1b1-9932-4423-880a-98dbbb363402",
+            testType: {
+              _id: "1d3deb86-f893-4b8f-bbd6-2fb061522ced",
+            },
+            encounter: {
+              _id: "9d957ac0-efb4-41fb-938c-96464a874d4d",
+            },
+            technician: {
+              sex: "",
+              lastName: "emma",
+              firstName: "parker",
+              middleName: "M",
+              assigningAuthority: "ADT1",
+              _id: "3c49b82e-4ed0-4f4f-9948-7b092feadc6a",
+            },
+            appointment: {
+              _id: "d8bb91cf-cbcb-4467-bd0c-f5c37f5d12ba",
+            },
+            orderingProvider: {
+              lastName: "user",
+              firstName: "ECP",
+              middleName: "M",
+              assigningAuthority: "NPI",
+              _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+            },
+          },
+        },
+        commonTestFields: {
+          assessment: {
+            OU: ["Same"],
+            OD: ["Better"],
+            OS: ["Same"],
+          },
+          testReliability: ["Fair"],
+          patientCooperation: {
+            cooperation: ["Good"],
+          },
+        },
+        biometry: {
+          texts: [
+            "Optical coherence biometry was performed with IOL calculations",
+            "Optical coherence biometry was performed without IOL calculations at no charge",
+            "Unable to obtain reliable axial length - an Immersion A-scan was required",
+            "Unable to obtain reliable keratometry, unable to perform IOL calculations",
+          ],
+        },
+        Keratometry: null,
+      },
+      _links: {
+        self: {
+          href: "/v1/exam-sheet-entry/58b25da7-dc5e-43c8-8f20-3aa983cdc987",
+        },
+      },
+      _id: "58b25da7-dc5e-43c8-8f20-3aa983cdc987",
+      _version: "fdb6d2ac-e91a-4306-ac4c-5bce80fa361d",
+      _created: "Sep 30, 2022, 12:53:38 PM",
+      _updated: "Sep 30, 2022, 12:53:38 PM",
+      _createdBy: {
+        _links: {
+          self: {
+            href: "/v1/employees/d9724501-1226-4b42-b9d5-f26faae03d6c",
+          },
+        },
+        _id: "d9724501-1226-4b42-b9d5-f26faae03d6c",
+      },
+    },
+  ],
+  _links: {
+    self: {
+      href: "/emr?pageNo=0&pageSize=100",
+    },
   },
-  {
-    id: 2,
-    name: "Eye Surgery",
-    orderBy: "Hopkins, D.M.",
-    date: "09/09/2022 12:00PM",
-    status: "Completed",
+};
+export const carePlan = {
+  count: 2,
+  entities: [
+    {
+      name: "MEDICAL_CERTIFICATE_OF_FITNESS2",
+      documentType: "application/pdf",
+      category: "care-plan",
+      uploadedBy: {
+        uid: "2818ef11-208b-4f43-b471-06ad495381f1",
+        firstName: "indraku",
+        lastName: "kumar",
+        designation: "Mr",
+        _createdBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      patientId: "95090352-de7b-485b-8a7b-9c1255a15070",
+      status: "CREATED",
+      digital_assets: {
+        _id: "23d9d6de-8689-48d0-9427-844087dde75e",
+      },
+      _id: "1d06a57a-418f-479a-b800-f9eae273b51a",
+      _version: "53c0b7af-9bb6-4f86-8ac5-2cde8bcc84dd",
+      _created: "Oct 7, 2022, 10:00:34 AM",
+      _updated: "Oct 7, 2022, 10:00:34 AM",
+      _createdBy: {
+        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+        _links: {
+          self: {
+            href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+          },
+        },
+      },
+      _links: {
+        self: {
+          href: "/v1/patients/1d06a57a-418f-479a-b800-f9eae273b51a",
+        },
+      },
+    },
+    {
+      name: "MEDICAL_CERTIFICATE_OF_FITNESS2",
+      documentType: "application/pdf",
+      category: "care-plan",
+      uploadedBy: {
+        uid: "2818ef11-208b-4f43-b471-06ad495381f1",
+        firstName: "indraku",
+        lastName: "kumar",
+        designation: "Mr",
+        _createdBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      patientId: "95090352-de7b-485b-8a7b-9c1255a15070",
+      status: "CREATED",
+      digital_assets: {
+        _id: "23d9d6de-8689-48d0-9427-844087dde75e",
+      },
+      _id: "1d06a57a-418f-479a-b800-f9eae273b51a",
+      _version: "53c0b7af-9bb6-4f86-8ac5-2cde8bcc84dd",
+      _created: "Oct 7, 2022, 10:00:34 AM",
+      _updated: "Oct 7, 2022, 10:00:34 AM",
+      _createdBy: {
+        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+        _links: {
+          self: {
+            href: "/v1/employees/2818ef11-208b-4f43-b471-06ad495381f1",
+          },
+        },
+      },
+      _links: {
+        self: {
+          href: "/v1/patients/1d06a57a-418f-479a-b800-f9eae273b51a",
+        },
+      },
+    },
+  ],
+  _links: {
+    self: {
+      href: "/patient-management?pageNo=0&pageSize=10",
+    },
   },
-  {
-    id: 3,
-    name: "Eye Surgery",
-    orderBy: "Hopkins, D.M.",
-    date: "09/09/2022 12:00PM",
-    status: "Completed",
-  },
-  {
-    id: 4,
-    name: "Eye Surgery",
-    orderBy: "Hopkins, D.M.",
-    date: "08/08/2022 12:00PM",
-    status: "Completed",
-  },
-];
-export const carePlan = [
-  { id: 1, name: "Eye Surgery", date: "09/09/2022 12:00PM" },
-  { id: 2, name: "Eye Surgery", date: "09/09/2022 12:00PM" },
-  { id: 3, name: "Eye Surgery", date: "09/09/2022 12:00PM" },
-  { id: 4, name: "Eye Surgery", date: "08/08/2022 12:00PM" },
-];
+};
 
 export const mockDocument = {
   count: 1,
@@ -7021,6 +7741,609 @@ export const mockDocument = {
   },
 };
 
+export const mockProviderList = [
+  {
+    providerId: "1",
+    address: {
+      addressLine1: "51 West 51st Street",
+      addressLine2: "Floor 3, Suite 320 Midtown",
+      city: "Florida",
+      state: "FR",
+      zipcode: "54231",
+    },
+    rating: "5",
+    name: "Paul Wagner Md",
+    phoneNumber: "(123) 123-4567",
+    distance: "10 mi",
+    image: "/doctor.png",
+    from: "2022-09-19",
+    to: "2022-09-24",
+    availability: [
+      {
+        date: "2022-09-19",
+        list: [
+          {
+            time: "11:30am",
+            key: 12222,
+          },
+        ],
+      },
+      {
+        date: "2022-09-20",
+        list: [
+          {
+            time: "08:00am",
+            key: 12223,
+          },
+          {
+            time: "10:30am",
+            key: 12224,
+          },
+          {
+            time: "11:00am",
+            key: 12225,
+          },
+          {
+            time: "12:00pm",
+            key: 12226,
+          },
+          {
+            time: "13:00pm",
+            key: 12227,
+          },
+          {
+            time: "14:00pm",
+            key: 12228,
+          },
+        ],
+      },
+      {
+        date: "2022-09-21",
+        list: [
+          {
+            time: "08:30am",
+            key: 12229,
+          },
+          {
+            time: "10:30am",
+            key: 12230,
+          },
+        ],
+      },
+      {
+        date: "2022-09-22",
+        list: [
+          {
+            time: "09:30am",
+            key: 12237,
+          },
+          {
+            time: "11:00am",
+            key: 12238,
+          },
+        ],
+      },
+      {
+        date: "2022-09-23",
+        list: [
+          {
+            time: "09:30am",
+            key: 12239,
+          },
+        ],
+      },
+      {
+        date: "2022-09-24",
+        list: [
+          {
+            time: "09:30am",
+            key: 12240,
+          },
+        ],
+      },
+    ],
+    coordinate: {
+      latitude: 32.751204,
+      longitude: -117.1641166,
+    },
+  },
+  {
+    providerId: "2",
+    address: {
+      addressLine1: "51 West 51st Street",
+      addressLine2: "Floor 3, Suite 320 Midtown",
+      city: "Florida",
+      state: "FR",
+      zipcode: "54231",
+    },
+    rating: "5",
+    name: "Paul Wagner Md",
+    phoneNumber: "(123) 123-4567",
+    distance: "10 mi",
+    image: "/doctor.png",
+    from: "2022-09-19",
+    to: "2022-09-24",
+    availability: [
+      {
+        date: "2022-09-19",
+        list: [
+          {
+            time: "11:30am",
+            key: 12222,
+          },
+        ],
+      },
+      {
+        date: "2022-09-20",
+        list: [
+          {
+            time: "08:00am",
+            key: 12223,
+          },
+          {
+            time: "10:30am",
+            key: 12224,
+          },
+          {
+            time: "11:00am",
+            key: 12225,
+          },
+          {
+            time: "12:00pm",
+            key: 12226,
+          },
+          {
+            time: "13:00pm",
+            key: 12227,
+          },
+          {
+            time: "14:00pm",
+            key: 12228,
+          },
+        ],
+      },
+      {
+        date: "2022-09-21",
+        list: [
+          {
+            time: "08:30am",
+            key: 12229,
+          },
+        ],
+      },
+      {
+        date: "2022-09-22",
+        list: [
+          {
+            time: "09:30am",
+            key: 12237,
+          },
+          {
+            time: "11:00am",
+            key: 12238,
+          },
+        ],
+      },
+      {
+        date: "2022-09-23",
+        list: [
+          {
+            time: "09:30am",
+            key: 12239,
+          },
+        ],
+      },
+      {
+        date: "2022-09-24",
+        list: [
+          {
+            time: "09:30am",
+            key: 12240,
+          },
+        ],
+      },
+    ],
+    coordinate: {
+      latitude: 32.751204,
+      longitude: -117.1641166,
+    },
+  },
+  {
+    providerId: "3",
+    name: "Paul Wagner Md",
+    address: {
+      addressLine1: "51 West 51st Street",
+      addressLine2: "Floor 3, Suite 320 Midtown",
+      city: "Florida",
+      state: "FR",
+      zipcode: "54231",
+    },
+    rating: "5",
+    phoneNumber: "(123) 123-4567",
+    distance: "10 mi",
+    image: "/doctor.png",
+    from: "2022-09-19",
+    to: "2022-09-24",
+    availability: [
+      {
+        date: "2022-09-19",
+        list: [
+          {
+            time: "11:30am",
+            key: 12222,
+          },
+        ],
+      },
+      {
+        date: "2022-09-20",
+        list: [
+          {
+            time: "08:00am",
+            key: 12223,
+          },
+          {
+            time: "10:30am",
+            key: 12224,
+          },
+          {
+            time: "11:00am",
+            key: 12225,
+          },
+          {
+            time: "12:00pm",
+            key: 12226,
+          },
+          {
+            time: "13:00pm",
+            key: 12227,
+          },
+          {
+            time: "14:00pm",
+            key: 12228,
+          },
+        ],
+      },
+      {
+        date: "2022-09-21",
+        list: [
+          {
+            time: "08:30am",
+            key: 12229,
+          },
+          {
+            time: "10:30am",
+            key: 12230,
+          },
+        ],
+      },
+      {
+        date: "2022-09-22",
+        list: [
+          {
+            time: "09:30am",
+            key: 12237,
+          },
+          {
+            time: "11:00am",
+            key: 12238,
+          },
+        ],
+      },
+      {
+        date: "2022-09-23",
+        list: [
+          {
+            time: "09:30am",
+            key: 12239,
+          },
+        ],
+      },
+      {
+        date: "2022-09-24",
+        list: [
+          {
+            time: "09:30am",
+            key: 12240,
+          },
+        ],
+      },
+    ],
+    coordinate: {
+      latitude: 32.751204,
+      longitude: -117.1641166,
+    },
+  },
+];
+
+export const MOCK_APPOINTMENT = {
+  appointmentList: [
+    {
+      appointmentId: "1",
+      providerInfo: {
+        providerId: "1",
+        name: "Paul Wagner Md",
+        position: "Scripps Eyecare",
+        address: {
+          addressLine1: "51 West 51st Street",
+          addressLine2: "Floor 3, Suite 320 Midtown",
+          city: "Florida",
+          state: "FR",
+          zipcode: "54231",
+        },
+        rating: "5",
+        phoneNumber: "8572999989",
+        distance: "10 mi",
+        image: "/doctor.png",
+        from: "2022-07-18",
+        to: "2022-07-23",
+        location: {
+          latitude: 32.751204,
+          longitude: -117.1641166,
+        },
+      },
+      patientInfo: {
+        name: "Rebecca Chan",
+        firstname: "Rebecca",
+        lastname: "Chan",
+        dob: "12/12/2022",
+        phoneNumber: "1234567890",
+      },
+      appointmentInfo: {
+        appointmentType: "Eye Exam",
+        date: "Thu, 12 Jan 2023 04:30:00 EST",
+        insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+      },
+    },
+    {
+      appointmentId: "1",
+      providerInfo: {
+        providerId: "1",
+        name: "Dr. Sonha Nguyen",
+        position: "Scripps Eyecare",
+        address: {
+          addressLine1: "51 West 51st Street",
+          addressLine2: "Floor 3, Suite 320 Midtown",
+          city: "Florida",
+          state: "FR",
+          zipcode: "54231",
+        },
+        rating: "5",
+        phoneNumber: "8572999989",
+        distance: "10 mi",
+        image: "/doctor.png",
+        from: "2022-07-18",
+        to: "2022-07-23",
+        location: {
+          latitude: 32.751204,
+          longitude: -117.1641166,
+        },
+      },
+      patientInfo: {
+        name: "Rebecca Chan",
+        firstname: "Rebecca",
+        lastname: "Chan",
+        dob: "12/12/2022",
+        phoneNumber: "1234567890",
+      },
+      appointmentInfo: {
+        appointmentType: "Eye Exam",
+        date: "Thu, 12 Jan 2023 04:30:00 EST",
+        insuranceCarrier: ["ECP Vision", "BlueCare Vision"],
+      },
+    },
+  ],
+};
+
+export const MOCK_PRESCRIPTION = {
+  prescriptions: {
+    glasses: [
+      {
+        prescribedBy: "Dr. Sonha Nguyen",
+        date: "2022-09-02T11:18:47.229Z",
+        expirationDate: "2022-10-02T11:18:47.229Z",
+        prescriptionDetails: [
+          {
+            Eye: "OD",
+            Sph: "+20.00",
+            Cyl: "-5.00",
+            Axis: "70",
+            Add: "x180",
+          },
+          {
+            Eye: "OS",
+            Sph: "+19.75",
+            Cyl: "-4.75",
+            Axis: "38",
+            Add: "x090",
+          },
+        ],
+      },
+    ],
+    contacts: [
+      {
+        prescribedBy: "Dr. Sonha Nguyen",
+        date: "2022-09-02T11:18:47.229Z",
+        expirationDate: "2022-10-02T11:18:47.229Z",
+        prescriptionDetails: [
+          {
+            Eye: "OD",
+            Sph: "+20.00",
+            Bc: "-5.00",
+            Cyl: "70",
+            Axis: "x180",
+          },
+          {
+            Eye: "OS",
+            Sph: "+19.75",
+            Bc: "-4.75",
+            Cyl: "38",
+            Axis: "x090",
+          },
+        ],
+      },
+    ],
+    medications: [
+      {
+        prescription: "Aspirint 0.1% Ointmanet",
+        date: "2022-09-02T11:18:47.229Z",
+      },
+      {
+        prescription: "Aspirint 0.1% Ointmanet",
+        date: "2022-09-02T11:18:47.229Z",
+      },
+    ],
+  },
+};
+
+export const MOCK_SUGESTION = {
+  appointmentType: [
+    {
+      id: "1",
+      name: "Eye Exam",
+      description: "Test the health of your eye",
+    },
+    {
+      id: "2",
+      name: "Follow up",
+      description: "See your doctor today",
+    },
+    {
+      id: "3",
+      name: "Comprehensive",
+      description: "Get detailed eye exam",
+    },
+    {
+      id: "4",
+      name: "Contacts Only",
+      description: "Get fitted for the right contacts",
+    },
+  ],
+  insuranceCarrier: {
+    general: [
+      {
+        id: "1",
+        name: "I'm paying out of my pocket",
+      },
+      {
+        id: "2",
+        name: "skip and choose insurance later",
+      },
+      {
+        id: "3",
+        name: "Other Insurance",
+      },
+    ],
+    popular: [
+      {
+        id: "4",
+        name: "Aetna",
+      },
+      {
+        id: "5",
+        name: "Aetna",
+      },
+      {
+        id: "6",
+        name: "Blue Cross Blue Shield",
+      },
+      {
+        id: "7",
+        name: "Cigna",
+      },
+    ],
+    all: [
+      {
+        id: "8",
+        name: "Kaiser",
+      },
+    ],
+  },
+  filterbyData: [
+    {
+      name: "Available Today",
+      checked: false,
+    },
+    {
+      name: "language",
+      checklist: [
+        {
+          name: "Arabic",
+          checked: false,
+        },
+        {
+          name: "Chinese",
+          checked: false,
+        },
+        {
+          name: "English",
+          checked: false,
+        },
+        {
+          name: "Farsi",
+          checked: false,
+        },
+        {
+          name: "French",
+          checked: false,
+        },
+        {
+          name: "Spanish",
+          checked: false,
+        },
+        {
+          name: "Portuguese",
+          checked: false,
+        },
+        {
+          name: "Korean",
+          checked: false,
+        },
+        {
+          name: "German",
+          checked: false,
+        },
+        {
+          name: "Italian",
+          checked: false,
+        },
+        {
+          name: "Indonesian",
+          checked: false,
+        },
+      ],
+    },
+    {
+      name: "Insurance",
+      checklist: [
+        {
+          name: "In Network",
+          checked: false,
+        },
+        {
+          name: "Out of Network",
+          checked: false,
+        },
+      ],
+    },
+    {
+      name: "Gender",
+      checklist: [
+        {
+          name: "Male",
+          checked: false,
+        },
+        {
+          name: "Female",
+          checked: false,
+        },
+        {
+          name: "Non-Binary",
+          checked: false,
+        },
+      ],
+    },
+  ],
+};
 export const TEMP_DATA_CONTACTS = {
   count: 1,
   entities: [
@@ -7146,150 +8469,150 @@ export const TEMP_DATA_CONTACTS = {
 };
 
 export const TEMP_DATA_GLASSES = {
-  "count": 2,
-  "entities": [
-      {
-          "glrx": {
-              "od": {
-                  "add": "+4.75",
-                  "axis": "033",
-                  "sphere": "+1.25",
-                  "cylinder": "-3.50"
-              },
-              "os": {
-                  "add": "+4.75",
-                  "axis": "033",
-                  "sphere": "+1.25",
-                  "cylinder": "-5.75"
-              },
-              "type": "Distance"
-          },
-          "provider": {
-              "firstName": "indraku",
-              "lastName": "kumar",
-              "designation": "Mr",
-              "providerDetails": {
-                  "isProvider": true
-              },
-              "_id": "2818ef11-208b-4f43-b471-06ad495381f1",
-              "_links": {
-                  "self": {
-                      "href": "/v1/template-users/2818ef11-208b-4f43-b471-06ad495381f1"
-                  }
-              }
-          },
-          "patient": {
-              "firstName": "naina",
-              "lastName": "naina ",
-              "mrn": "UNY323737",
-              "dob": "10/7/92, 12:00 AM",
-              "sex": "3",
-              "status": "UPDATED",
-              "_id": "d6ba6289-4190-4346-8dd7-34a1d81447e2",
-              "_version": "ab6a730f-adc2-4f79-aa8d-648ad901b8cf",
-              "_created": "Oct 7, 2022, 2:40:07 PM",
-              "_updated": "Oct 7, 2022, 3:57:12 PM",
-              "_createdBy": {
-                  "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
-                  "_links": {
-                      "self": {
-                          "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
-                      }
-                  }
-              },
-              "_updatedBy": {
-                  "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
-                  "_links": {
-                      "self": {
-                          "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
-                      }
-                  }
-              }
-          },
-          "_links": {
-              "self": {
-                  "href": "/v1/exam-sheet-entry/5a40c3fc-df14-475e-bd64-9bc45891bd74"
-              }
-          },
-          "_id": "5a40c3fc-df14-475e-bd64-9bc45891bd74"
+  count: 2,
+  entities: [
+    {
+      glrx: {
+        od: {
+          add: "+4.75",
+          axis: "033",
+          sphere: "+1.25",
+          cylinder: "-3.50",
+        },
+        os: {
+          add: "+4.75",
+          axis: "033",
+          sphere: "+1.25",
+          cylinder: "-5.75",
+        },
+        type: "Distance",
       },
-      {
-          "glrx": {
-              "od": {
-                  "add": "111",
-                  "axis": "111",
-                  "sphere": "10.1",
-                  "cylinder": "",
-                  "bal": true
-              },
-              "os": {
-                  "add": "11.2",
-                  "axis": "000",
-                  "sphere": "55.7",
-                  "cylinder": "11.0",
-                  "bal": true
-              },
-              "type": "",
-              "notes": "test notes",
-              "startDate": "01/10/2022",
-              "expirationDate": "06/25/2023"
+      provider: {
+        firstName: "indraku",
+        lastName: "kumar",
+        designation: "Mr",
+        providerDetails: {
+          isProvider: true,
+        },
+        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+        _links: {
+          self: {
+            href: "/v1/template-users/2818ef11-208b-4f43-b471-06ad495381f1",
           },
-          "provider": {
-              "firstName": "indraku",
-              "lastName": "kumar",
-              "designation": "Mr",
-              "providerDetails": {
-                  "isProvider": true
-              },
-              "_id": "2818ef11-208b-4f43-b471-06ad495381f1",
-              "_links": {
-                  "self": {
-                      "href": "/v1/template-users/2818ef11-208b-4f43-b471-06ad495381f1"
-                  }
-              }
+        },
+      },
+      patient: {
+        firstName: "naina",
+        lastName: "naina ",
+        mrn: "UNY323737",
+        dob: "10/7/92, 12:00 AM",
+        sex: "3",
+        status: "UPDATED",
+        _id: "d6ba6289-4190-4346-8dd7-34a1d81447e2",
+        _version: "ab6a730f-adc2-4f79-aa8d-648ad901b8cf",
+        _created: "Oct 7, 2022, 2:40:07 PM",
+        _updated: "Oct 7, 2022, 3:57:12 PM",
+        _createdBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
           },
-          "patient": {
-              "firstName": "naina",
-              "lastName": "naina ",
-              "mrn": "UNY323737",
-              "dob": "10/7/92, 12:00 AM",
-              "sex": "3",
-              "status": "UPDATED",
-              "_id": "d6ba6289-4190-4346-8dd7-34a1d81447e2",
-              "_version": "ab6a730f-adc2-4f79-aa8d-648ad901b8cf",
-              "_created": "Oct 7, 2022, 2:40:07 PM",
-              "_updated": "Oct 7, 2022, 3:57:12 PM",
-              "_createdBy": {
-                  "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
-                  "_links": {
-                      "self": {
-                          "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
-                      }
-                  }
-              },
-              "_updatedBy": {
-                  "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
-                  "_links": {
-                      "self": {
-                          "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
-                      }
-                  }
-              }
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
           },
-          "_links": {
-              "self": {
-                  "href": "/v1/exam-sheet-entry/89835c9b-d0df-4941-a169-508fd822b754"
-              }
+        },
+      },
+      _links: {
+        self: {
+          href: "/v1/exam-sheet-entry/5a40c3fc-df14-475e-bd64-9bc45891bd74",
+        },
+      },
+      _id: "5a40c3fc-df14-475e-bd64-9bc45891bd74",
+    },
+    {
+      glrx: {
+        od: {
+          add: "111",
+          axis: "111",
+          sphere: "10.1",
+          cylinder: "",
+          bal: true,
+        },
+        os: {
+          add: "11.2",
+          axis: "000",
+          sphere: "55.7",
+          cylinder: "11.0",
+          bal: true,
+        },
+        type: "",
+        notes: "test notes",
+        startDate: "01/10/2022",
+        expirationDate: "06/25/2023",
+      },
+      provider: {
+        firstName: "indraku",
+        lastName: "kumar",
+        designation: "Mr",
+        providerDetails: {
+          isProvider: true,
+        },
+        _id: "2818ef11-208b-4f43-b471-06ad495381f1",
+        _links: {
+          self: {
+            href: "/v1/template-users/2818ef11-208b-4f43-b471-06ad495381f1",
           },
-          "_id": "89835c9b-d0df-4941-a169-508fd822b754"
-      }
+        },
+      },
+      patient: {
+        firstName: "naina",
+        lastName: "naina ",
+        mrn: "UNY323737",
+        dob: "10/7/92, 12:00 AM",
+        sex: "3",
+        status: "UPDATED",
+        _id: "d6ba6289-4190-4346-8dd7-34a1d81447e2",
+        _version: "ab6a730f-adc2-4f79-aa8d-648ad901b8cf",
+        _created: "Oct 7, 2022, 2:40:07 PM",
+        _updated: "Oct 7, 2022, 3:57:12 PM",
+        _createdBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+        _updatedBy: {
+          _id: "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          _links: {
+            self: {
+              href: "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0",
+            },
+          },
+        },
+      },
+      _links: {
+        self: {
+          href: "/v1/exam-sheet-entry/89835c9b-d0df-4941-a169-508fd822b754",
+        },
+      },
+      _id: "89835c9b-d0df-4941-a169-508fd822b754",
+    },
   ],
-  "_links": {
-      "self": {
-          "href": "/emr?pageNo=0&pageSize=100"
-      }
-  }
-}
+  _links: {
+    self: {
+      href: "/emr?pageNo=0&pageSize=100",
+    },
+  },
+};
 
 export const TEMP_DATA_MEDICATION = [
   {
@@ -7872,5 +9195,5 @@ export const TEMP_DATA_MEDICATION = [
         },
       },
     },
-  }
+  },
 ];

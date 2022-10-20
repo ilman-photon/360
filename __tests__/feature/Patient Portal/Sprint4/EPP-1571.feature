@@ -26,8 +26,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     Then User provides the patient details
     And User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”
     And User should see this appointment under upcoming appointments
-    And User should receive an email message regarding appointmnet confirmation as below:
-    |Email/text content is still waiting for confirmation from the client|
+    And User should receive an email message regarding appointmnet confirmation 
 
   @BDDTEST-EPP-3170
   @Appointments
@@ -56,8 +55,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     Then User provides the patient details
     And User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”
     And User should see this appointment under upcoming appointments
-    And And User should receive an email message regarding appointmnet confirmation as below:
-    |Email/text content is still waiting for confirmation from the client|
+    And And User should receive an email message regarding appointmnet confirmation as below
 
   @BDDTEST-EPP-3171
   @Appointments
@@ -100,8 +98,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     Then User provides the patient details
     And User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”
     And User should see this appointment under upcoming appointments
-    And And User should receive an email message regarding appointmnet confirmation as below:
-    |Email/text content is still waiting for confirmation from the client|
+    And And User should receive an email message regarding appointmnet confirmation
 
   @BDDTEST-EPP-3172
   @Appointments
@@ -122,13 +119,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     And User should see the "Continue as a Gues" option
     When User select on "Continue as a Gues" option
     Then User should navigated to provide basic details
-    And User should see the following fields as below:
-    |"<First Name>"|
-    |"<Last Name>"|
-    |"<Date Of Birth>"|
-    |"<Email>"|
-    |"<Mobile Number>"|
-    |"<Preferred mode(s) of communication>"|
+    And User should see the fields
     And User should see the option to submit the same
     When User selects on "Submit" option
     Then User should navigated to Patient Dashboard
@@ -162,8 +153,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     Then User provides the patient details
     And User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”
     And User should see this appointment under upcoming appointments
-    And And User should receive an email message regarding appointmnet confirmation as below:
-    |Email/text content is still waiting for confirmation from the client|
+    And And User should receive an email message regarding appointmnet confirmation 
 
   @BDDTEST-EPP-3174
   @Appointments
@@ -192,8 +182,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     Then User provides the patient details
     And User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”
     And User should see this appointment under upcoming appointments
-    And And User should receive an email message regarding appointmnet confirmation as below:
-    |Email/text content is still waiting for confirmation from the client|
+    And And User should receive an email message regarding appointmnet confirmation 
 
   @BDDTEST-EPP-3175
   @Appointments
@@ -236,8 +225,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     Then User provides the patient details
     And User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”
     And User should see this appointment under upcoming appointments
-    And And User should receive an email message regarding appointmnet confirmation as below:
-    |Email/text content is still waiting for confirmation from the client|
+    And And User should receive an email message regarding appointmnet confirmation
 
   @BDDTEST-EPP-3176
   @Appointments
@@ -257,13 +245,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     And User should see the "Continue as a Gues" option
     When User select on "Continue as a Gues" option
     Then User should navigated to provide basic details
-    And User should see the following fields as below:
-    |"<First Name>"|
-    |"<Last Name>"|
-    |"<Date Of Birth>"|
-    |"<Email>"|
-    |"<Mobile Number>"|
-    |"<Preferred mode(s) of communication>"|
+    And User should see the fields
     And User should see the option to submit the same
     When User selects on "Submit" option
     And User should see page load within "3 seconds"
@@ -272,8 +254,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     Then User provides the patient details
     And User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”
     And User should see this appointment under upcoming appointments
-    And And User should receive an email message regarding appointmnet confirmation as below:
-    |Email/text content is still waiting for confirmation from the client|
+    And And User should receive an email message regarding appointmnet confirmation
 
   @BDDTEST-EPP-3177
   @Appointments
@@ -299,8 +280,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     Then User provides the patient details
     And User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”
     And User should see this appointment under upcoming appointments
-    And And User should receive an email message regarding appointmnet confirmation as below:
-    |Email/text content is still waiting for confirmation from the client|
+    And And User should receive an email message regarding appointmnet confirmation
 
   @BDDTEST-EPP-3178
   @Appointments
@@ -330,8 +310,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     Then User provides the patient details
     And User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”
     And User should see this appointment under upcoming appointments
-    And And User should receive an email message regarding appointmnet confirmation as below:
-    |Email/text content is still waiting for confirmation from the client|
+    And And User should receive an email message regarding appointmnet confirmation 
 
   @BDDTEST-EPP-3179
   @Appointments
@@ -375,8 +354,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     Then User provides the patient details
     And User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”
     And User should see this appointment under upcoming appointments
-    And And User should receive an email message regarding appointmnet confirmation as below:
-    |Email/text content is still waiting for confirmation from the client|
+    And And User should receive an email message regarding appointmnet confirmation 
 
   @BDDTEST-EPP-3180
   @Appointments
@@ -396,13 +374,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     And User should see the "Continue as a Gues" option
     When User select on "Continue as a Gues" option
     Then User should navigated to provide basic details
-    And User should see the following fields as below:
-    |"<First Name>"|
-    |"<Last Name>"|
-    |"<Date Of Birth>"|
-    |"<Email>"|
-    |"<Mobile Number>"|
-    |"<Preferred mode(s) of communication>"|
+    And User should see the fields
     And User should see the option to submit the same
     When User selects on "Submit" option
     Then User should navigated to Patient Dashboard
@@ -412,8 +384,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     Then User provides the patient details
     And User should be able see the following details in the Appointment confirmation message “Thank you for scheduling the appointment with us. We will send a confirmation Email/ Text shortly.”
     And User should see this appointment under upcoming appointments
-    And And User should receive an email message regarding appointmnet confirmation as below:
-    |Email/text content is still waiting for confirmation from the client|
+    And And User should receive an email message regarding appointmnet confirmation
 
   @BDDTEST-EPP-3181
   @Appointments
@@ -514,13 +485,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     And User should see the "Continue as a Gues" option
     When User select on "Continue as a Gues" option
     Then User should navigated to provide basic details
-    And User should see the following fields as below:
-    |"<First Name>"|
-    |"<Last Name>"|
-    |"<Date Of Birth>"|
-    |"<Email>"|
-    |"<Mobile Number>"|
-    |"<Preferred mode(s) of communication>"|
+    And User should see the fields
     And User should see the option to submit the same
     When User selects on "Submit" option
     Then The Internet service is unavailable
@@ -624,13 +589,7 @@ Feature: Patient Portal : Schedule Appointment from marketing site - Appointment
     And User should see the "Continue as a Gues" option
     When User select on "Continue as a Gues" option
     Then User should navigated to provide basic details
-    And User should see the following fields as below:
-    |"<First Name>"|
-    |"<Last Name>"|
-    |"<Date Of Birth>"|
-    |"<Email>"|
-    |"<Mobile Number>"|
-    |"<Preferred mode(s) of communication>"|
+    And User should see the fields
     And User should see the option to submit the same
     When User selects on "Submit" optionThen The Internet service is unavailable
     And User should see the appropriate error message

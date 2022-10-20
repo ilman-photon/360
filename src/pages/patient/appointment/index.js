@@ -170,9 +170,11 @@ export default function Appointment({ googleApiKey }) {
       onCallSubmitFilterAPI(filterData, [], false, true);
       dispatch(setIsFilterApplied(true));
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router, filterSuggestionData, filterData]);
 
   function onSearchProvider(data) {
+    dispatch(setActiveFilterBy([]));
     dispatch(setFilterData(data));
     onCallSubmitFilterAPI(data, [], false, true);
     dispatch(setIsFilterApplied(true));
@@ -250,7 +252,7 @@ export default function Appointment({ googleApiKey }) {
     const endDateRequest = getSaturdayOfCurrentWeek(requestData.date);
     const postBody = {
       appointmentType: {
-        code: selectedAppointmentType?.id || " ",
+        code: selectedAppointmentType?.id || "ALL",
       },
       currentDate: startDateRequest,
       numDays: 6,

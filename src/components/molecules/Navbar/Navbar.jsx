@@ -83,8 +83,9 @@ const Navbar = ({ isDashboard = false }) => {
     setAnchorElUser(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (href) => {
     setAnchorElNav(null);
+    if (typeof href === "string") router.push(href);
   };
 
   const handleCloseUserMenu = (href) => {
@@ -93,14 +94,18 @@ const Navbar = ({ isDashboard = false }) => {
     if (typeof href === "string") router.push(href);
   };
 
-  const MenuItemLabel = (doc, docIdx) => {
+  const MenuItemLabel = (item, itemIdx) => {
     return (
       <MenuItem
-        key={docIdx}
-        onClick={() => handleCloseUserMenu(doc.href)}
-        aria-label={`${doc.label} menu`}
+        key={itemIdx}
+        onClick={() =>
+          item.href.includes("medical-record")
+            ? handleCloseNavMenu(item.href)
+            : handleCloseUserMenu(item.href)
+        }
+        aria-label={`${item.label} menu`}
       >
-        <Image alt="" src={doc.icon} width={"16px"} height={"16px"} />
+        <Image alt="" src={item.icon} width={"16px"} height={"16px"} />
         <Typography
           textAlign="center"
           sx={{
@@ -110,7 +115,7 @@ const Navbar = ({ isDashboard = false }) => {
             fontSize: "14px",
           }}
         >
-          {doc.label}
+          {item.label}
         </Typography>
       </MenuItem>
     );
@@ -195,7 +200,7 @@ const Navbar = ({ isDashboard = false }) => {
                   open={Boolean(anchorElNav)}
                   onClose={handleCloseNavMenu}
                 >
-                  {medical.map((doc, docIdx) => MenuItemLabel(doc, docIdx))}
+                  {medical.map((med, medIdx) => MenuItemLabel(med, medIdx))}
                 </Menu>
               </Box>
               <Box>

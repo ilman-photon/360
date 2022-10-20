@@ -625,6 +625,7 @@ export default function PersonalInformation({
               data-testid={testIds.btnCancel}
               variant="contained"
               className={[styles.formButton, styles.outlined].join(" ")}
+              sx={{ fontSize: "14px", fontWeight: 600 }}
             >
               Cancel
             </Button>
@@ -633,6 +634,7 @@ export default function PersonalInformation({
               data-testid={testIds.btnSave}
               variant="contained"
               className={[styles.formButton, styles.primary].join(" ")}
+              sx={{ fontSize: "14px", fontWeight: 600 }}
             >
               Save
             </Button>

@@ -136,6 +136,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
     } else {
       setValue("preferredCommunication", "both");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [watchedEmail, watchedMobile]);
 
   const formMessageComp = useRef(null);
@@ -183,6 +184,17 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
           sx={styles.titleStyles}
           title={"User Registration"}
         />
+        <Typography
+          sx={{
+            fontFamily: "Libre Franklin",
+            fontWeight: "400",
+            fontSize: "12px",
+            color: "#6C6C6C",
+            margin: "10px !important",
+          }}
+        >
+          *Required Fields
+        </Typography>
         {formMessage?.content ? (
           <FormMessage
             ref={formMessageComp}
@@ -195,7 +207,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
         ) : (
           ""
         )}
-        <form onSubmit={handleSubmit(onSubmit)} style={styles.form}>
+        <form onSubmit={handleSubmit(onSubmit)} style={styles.form} noValidate>
           <Controller
             name="firstName"
             control={control}
@@ -212,6 +224,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   size="small"
                   variant="filled"
                   helperText={error ? error.message : null}
+                  required
                   sx={{
                     margin: "8px",
                   }}
@@ -246,6 +259,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   sx={{
                     margin: "8px",
                   }}
+                  required
                 />
               );
             }}
@@ -275,6 +289,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   onChange={onChange}
                   error={!!error}
                   helperText={error ? error.message : null}
+                  required
                 />
               );
             }}
@@ -306,6 +321,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   sx={{
                     margin: "8px",
                   }}
+                  required
                 />
               );
             }}
@@ -341,6 +357,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   sx={{
                     m: 1,
                   }}
+                  required
                 />
               );
             }}
@@ -376,6 +393,7 @@ export default function Register({ OnRegisterClicked, formMessage = null }) {
                   size="small"
                   variant="filled"
                   helperText={error ? error.message : null}
+                  required
                 />
               );
             }}

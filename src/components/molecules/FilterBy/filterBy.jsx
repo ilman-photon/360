@@ -64,7 +64,7 @@ const FilterBy = ({
         }
         key={idx}
       >
-        <Typography className={styles.checkBoxTitle}>
+        <Typography className={styles.checkBoxTitle} tabIndex={0}>
           {isMultiple ? category.name : "Filter By"}
         </Typography>
         <FormGroup
@@ -134,7 +134,10 @@ const FilterBy = ({
       <>
         <IconButton
           aria-label="close"
+          aria-hidden
+          tabIndex="0"
           component="label"
+          role="button"
           className={styles.closeButton}
           onClick={onClose}
         >
