@@ -188,7 +188,7 @@ export default function BaseHeader({
                 {/* notification badge */}
                 <IconButton
                   sx={{
-                    mx: { xs: 2, sm: 3 },
+                    px: { xs: 2, sm: 3 },
                     width: { xs: 24, md: 40 },
                     height: { xs: 24, md: 40 },
                   }}
@@ -219,7 +219,9 @@ export default function BaseHeader({
                       alignSelf: "center",
                       width: "24px",
                       height: "24px",
+                      mx: 2,
                     }}
+                    onClick={handleOpenUserMenu}
                   />
                   <IconButton
                     size="large"
@@ -230,7 +232,7 @@ export default function BaseHeader({
                     onClick={() => {
                       setAnchorElNav(true);
                     }}
-                    sx={{ pl: 2, pr: 0 }}
+                    sx={{ p: 0 }}
                   >
                     <MenuIcon />
                   </IconButton>
@@ -286,35 +288,31 @@ export default function BaseHeader({
                     data-testid="user-menu-close"
                     onClose={handleCloseUserMenu}
                   >
-                    {
-                      <Stack spacing={2}>
-                        <MenuItem>
-                          <Button
-                            variant="text"
-                            sx={styles.buttonProfileMenu}
-                            data-testid={HOME_TEST_ID.account}
-                            onClick={() => {
-                              router.push("/patient/account/profile-info");
-                            }}
-                          >
-                            Account
-                          </Button>
-                        </MenuItem>
-                        <MenuItem onClick={handleCloseNavMenu}>
-                          <Button
-                            variant="text"
-                            sx={styles.buttonProfileMenu}
-                            data-testid={HOME_TEST_ID.logout}
-                            startIcon={<ExitToAppIcon />}
-                            onClick={() => {
-                              OnLogoutClicked(router);
-                            }}
-                          >
-                            Logout
-                          </Button>
-                        </MenuItem>
-                      </Stack>
-                    }
+                    <MenuItem sx={{ mb: 1 }}>
+                      <Button
+                        variant="text"
+                        sx={styles.buttonProfileMenu}
+                        data-testid={HOME_TEST_ID.account}
+                        onClick={() => {
+                          router.push("/patient/account/profile-info");
+                        }}
+                      >
+                        Account
+                      </Button>
+                    </MenuItem>
+                    <MenuItem onClick={handleCloseNavMenu}>
+                      <Button
+                        variant="text"
+                        sx={styles.buttonProfileMenu}
+                        data-testid={HOME_TEST_ID.logout}
+                        startIcon={<ExitToAppIcon />}
+                        onClick={() => {
+                          OnLogoutClicked(router);
+                        }}
+                      >
+                        Logout
+                      </Button>
+                    </MenuItem>
                   </Menu>
                 </Box>
               </Stack>
