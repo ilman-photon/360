@@ -100,26 +100,26 @@ const NotificationDrawer = ({
         ))
       ) : (
         <>
-          {activeTabs === 0 && (
-            <Stack
-              flexDirection={"row"}
-              justifyContent={"space-between"}
-              sx={{ mb: "10px" }}
+          <Stack
+            flexDirection={"row"}
+            justifyContent={"space-between"}
+            sx={{ mb: "10px" }}
+          >
+            <Typography
+              variant="headlineH4"
+              sx={{ color: colors.darkGreen, fontWeight: 700 }}
             >
-              <Typography
-                variant="headlineH4"
-                sx={{ color: colors.darkGreen, fontWeight: 700 }}
-              >
-                New
-              </Typography>
+              {activeTabs === 0 ? "New" : "Read"}
+            </Typography>
+            {activeTabs === 0 && (
               <Typography
                 variant="bodyLinkRegular"
                 sx={{ fontSize: "18px", cursor: "pointer" }}
               >
                 Mark all as read
               </Typography>
-            </Stack>
-          )}
+            )}
+          </Stack>
 
           {notifications.length > 0 ? (
             <div
