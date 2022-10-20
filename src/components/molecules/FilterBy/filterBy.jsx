@@ -34,12 +34,13 @@ const FilterBy = ({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen]);
 
-  const onFilterChecked = (target) => {
+  const onFilterChecked = (target, type) => {
     const value = target.value;
     if (target.checked) {
       const data = activeFilter;
       data.push({
         name: value,
+        type: type,
         checked: true,
       });
       setActiveFilter(data);
@@ -81,7 +82,9 @@ const FilterBy = ({
                 <CustomCheckbox
                   label={item.name}
                   key={index}
-                  onChange={onFilterChecked}
+                  onChange={(target) => {
+                    onFilterChecked(target, item.type);
+                  }}
                   checked={() => {
                     return (
                       activeFilter.findIndex((x) => x.name === item.name) > -1
@@ -93,7 +96,9 @@ const FilterBy = ({
           ) : (
             <CustomCheckbox
               label={category.name}
-              onChange={onFilterChecked}
+              onChange={(target) => {
+                onFilterChecked(target, item.type);
+              }}
               checked={() => {
                 return (
                   activeFilter.findIndex((x) => x.name === category.name) > -1

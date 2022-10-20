@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { TEST_ID } from "../../../utils/constants";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
+import ImageFallback from "../../atoms/Image/image";
 
 const renderSpecialistList = (providerData) => {
   return (
@@ -126,13 +127,13 @@ export default function ProviderProfile({
       <Box className={styles.displayFlex}>
         <Box className={getImageContainerStyle()}>
           {providerData.image ? (
-            <Image
-              src={providerData.image || "/transparent.png"}
+            <ImageFallback
               data-testid={TEST_ID.APPOINTMENT_TEST_ID.PROVIDER_PROFILE.image}
               width={100}
               height={100}
-              className={styles.profilePhoto}
-              alt="Doctor Image"
+              source={providerData.image}
+              alt="front"
+              aria-label="Image"
               tabIndex={0}
             />
           ) : (

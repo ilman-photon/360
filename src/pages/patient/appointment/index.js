@@ -224,6 +224,18 @@ export default function Appointment({ googleApiKey }) {
       if (filter.name === "Available Today" && filter.checked) {
         filterResult = filterResult.filter((v) => v.filters.isAvailableToday);
       }
+
+      if (filter.type === "languange") {
+        filterResult = filterResult.filter(
+          (v) => v.filters.language.indexOf(filter.name) > -1
+        );
+      }
+
+      if (filter.type === "gender") {
+        filterResult = filterResult.filter(
+          (v) => v.filters.gender === filter.name
+        );
+      }
     }
 
     if (filterApplied.length === 0) {

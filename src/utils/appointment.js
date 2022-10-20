@@ -1,3 +1,4 @@
+import { Language } from "@mui/icons-material";
 import moment from "moment";
 import constants from "./constants";
 import {
@@ -654,14 +655,73 @@ function setAvailableToday(dateSchedule) {
   return dateSchedule === newDate;
 }
 
+function getProviderAddres(providerAddress) {
+  return {
+    addressLine1: providerAddress?.addressLine1 || "",
+    addressLine2: "",
+    city: providerAddress?.city || "",
+    state: providerAddress?.state || "",
+    zipcode: providerAddress?.zip || "",
+  };
+}
+
+function addLanguageFilter(provider, languageList) {
+  const languageKeyList = ["language1", "language2", "language3"];
+  const filterLanguage = [];
+  for (const key of languageKeyList) {
+    const language = provider[key];
+    const isSameData = languageList.find((item) => item.name === language);
+    if (!isSameData) {
+      languageList.push({
+        name: language,
+        type: "languange",
+        checked: false,
+      });
+    }
+
+    if (language) {
+      filterLanguage.push(language);
+    }
+  }
+
+  return { languageList, filterLanguage };
+}
+
+function addGenderFilter(sex, genderList) {
+  let gender = "";
+  if (sex) {
+    if (sex === "M") {
+      gender = "Male";
+    } else if (sex === "F") {
+      gender = "Female";
+    } else {
+      gender = "Non-Binary";
+    }
+
+    const isSameData = genderList.find((item) => item.name === gender);
+
+    if (!isSameData) {
+      genderList.push({
+        name: gender,
+        type: "gender",
+        checked: false,
+      });
+    }
+  }
+  return { genderList, gender };
+}
+
 export function parseProviderListData(response, startDate, endDate) {
   startDate = yyyymmddDateFormat(startDate);
   endDate = yyyymmddDateFormat(endDate);
+  let languageFilter = [];
+  let genderFilter = [];
   const data = {
     listOfProvider: [],
     filterbyData: [
       {
         name: "Available Today",
+        type: "general",
         checked: false,
       },
     ],
@@ -680,6 +740,7 @@ export function parseProviderListData(response, startDate, endDate) {
       const currentProvider = data.listOfProvider
         ? data.listOfProvider.find((item) => item.providerId === providerId)
         : [];
+
       if (data.listOfProvider.length === 0 || !currentProvider) {
         const providerTemp = {
           providerId: "",
@@ -717,7 +778,25 @@ export function parseProviderListData(response, startDate, endDate) {
         providerTemp.filters["isAvailableToday"] = setAvailableToday(
           availabilityDate.date
         );
+        providerTemp.address = getProviderAddres(provider.address);
+        providerTemp.rating = provider.rating;
+        providerTemp.phoneNumber = provider.workPhone;
+        providerTemp.image = provider?.profilePhoto?.digitalAsset || null;
         data.listOfProvider.push(providerTemp);
+
+        const { languageList, filterLanguage } = addLanguageFilter(
+          provider,
+          languageFilter
+        );
+        const { genderList, gender } = addGenderFilter(
+          provider?.sex?.name,
+          genderFilter
+        );
+        languageFilter = languageList;
+        genderFilter = genderList;
+
+        providerTemp.filters["language"] = filterLanguage;
+        providerTemp.filters["gender"] = gender;
       } else if (data.listOfProvider.length > 0 && currentProvider) {
         const isSameDate = currentProvider.availability.find(
           (item) => item.date === availabilityDate.date
@@ -742,5 +821,18 @@ export function parseProviderListData(response, startDate, endDate) {
     );
   }
 
+  if (languageFilter.length > 0) {
+    data.filterbyData.push({
+      name: "Language",
+      checklist: languageFilter,
+    });
+  }
+
+  if (genderFilter.length > 0) {
+    data.filterbyData.push({
+      name: "Gender",
+      checklist: genderFilter,
+    });
+  }
   return data;
 }
