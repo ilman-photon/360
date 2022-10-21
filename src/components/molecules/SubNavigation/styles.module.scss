@@ -1,15 +1,13 @@
 .backHeader {
   background-color: #f4f4f4;
   height: 72px;
-  position: absolute;
+  position: relative;
   width: 100vw;
   align-items: center;
   display: flex;
   padding-left: 12vw;
-  top: 65px;
   z-index: 9;
   @media (max-width: 992px) {
-    top: 60px;
     padding-left: 21px;
     height: 58px;
   }

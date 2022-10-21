@@ -17,6 +17,7 @@ import {
 import React from "react";
 import { visuallyHidden } from "@mui/utils";
 import styles from "./styles.module.scss";
+import { colors } from "../../../styles/theme";
 
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import ReplyIcon from "@mui/icons-material/Reply";
@@ -68,8 +69,19 @@ const EnhancedTableHead = (props) => {
   };
   const isDesc = order === "desc";
   return (
-    <TableHead sx={{ backgroundColor: "#F3F5F6" }}>
-      <TableRow sx={{ whiteSpace: "nowrap" }}>
+    <TableHead
+      sx={{
+        backgroundColor: "#F3F5F6",
+      }}
+    >
+      <TableRow
+        sx={{
+          whiteSpace: "nowrap",
+          ".MuiTableSortLabel-root.Mui-active .MuiTableSortLabel-icon": {
+            color: colors.darkGreen,
+          },
+        }}
+      >
         {props.config.map((headCell, headIdx) => {
           switch (headCell.type) {
             case "empty":
@@ -350,7 +362,7 @@ export default function TableWithSort({
                                       },
                                     }}
                                   >
-                                    download
+                                    Download
                                   </Typography>
                                 }
                                 placement="top"

@@ -13,7 +13,6 @@ import { renderLogin } from "../../__mocks__/commonSteps";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import Cookies from "universal-cookie";
-import { getServerSideProps } from "../../src/pages/patient/mfa";
 import HomePage from "../../src/pages/patient";
 import { mockProviderList, MOCK_SUGESTION, MOCK_APPOINTMENT, MOCK_PRESCRIPTION } from "../../__mocks__/mockResponse";
 
@@ -132,10 +131,6 @@ defineFeature(feature, (test) => {
         mock
             .onGet(`${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions`)
             .reply(200, MOCK_PRESCRIPTION);
-        const response = await getServerSideProps({
-            req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-            res: jest.fn(),
-        });
         const mockGeolocation = {
             getCurrentPosition: jest.fn(),
             watchPosition: jest.fn(),
@@ -148,12 +143,6 @@ defineFeature(feature, (test) => {
             );
         });
         await waitFor(() => container.getByLabelText(/Appointments/i));
-        expect(response).toEqual({
-            redirect: {
-                destination: "/patient/login",
-                permanent: false,
-            },
-        });
     };
 
     test('EPIC_EPP-44_STORY_EPP-1571-Verify User lands on the "Forgot Password" screen with different option to sync the appointment - Without error script when user clicks on F12 on the console', ({ given, when, then, and }) => {

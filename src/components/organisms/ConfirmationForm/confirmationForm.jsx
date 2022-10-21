@@ -55,8 +55,9 @@ const ConfirmationForm = ({
           <CardContent style={styles.cardContentStyle}>
             <HeadingTitle
               variant={constants.H2}
-              title={"Sync Your Appointment"}
-              tabIndex="0"
+              tabIndex={0}
+              aria-label={title}
+              title={title}
               sx={{ fontSize: "32px" }}
             />
             {showPostMessage ? (
@@ -64,6 +65,8 @@ const ConfirmationForm = ({
                 success={isSuccessPostMessage}
                 sx={styles.postMessage}
                 title={postMessageTitle}
+                tabIndex={0}
+                aria-label={postMessage}
               >
                 {postMessage}
               </FormMessage>
@@ -75,6 +78,7 @@ const ConfirmationForm = ({
                 variant="bodyMedium"
                 style={styles.margin}
                 tabIndex="0"
+                aria-label={subtitle}
               >
                 {subtitle}
               </Typography>
@@ -88,7 +92,7 @@ const ConfirmationForm = ({
                 <Typography
                   variant="bodyRegular"
                   style={styles.descriptionStyle}
-                  tabIndex="0"
+                  aria-label={description}
                 >
                   {description}
                 </Typography>
@@ -119,6 +123,8 @@ const ConfirmationForm = ({
                 }}
                 data-testid={FORGOT_TEST_ID.loginLink}
                 color={colors.link}
+                tabIndex={0}
+                aria-label={"Back to Log in link"}
                 onClick={function () {
                   onBackToLoginClicked(router);
                 }}

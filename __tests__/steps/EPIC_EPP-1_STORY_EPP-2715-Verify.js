@@ -16,7 +16,6 @@ import Cookies from "universal-cookie";
 import constants from "../../src/utils/constants";
 import mediaQuery from "css-mediaquery";
 import HomePage from "../../src/pages/patient";
-import { getServerSideProps } from "../../src/pages/patient/mfa";
 
 const upcoming = {
   "count": 3,
@@ -1027,10 +1026,6 @@ defineFeature(feature, (test) => {
           `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -1043,11 +1038,6 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getAllByText(/Appointments/i));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
     });
 
     and(/^User should see the "(.*)" option$/, (arg0) => {
@@ -1115,10 +1105,7 @@ defineFeature(feature, (test) => {
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -1129,12 +1116,6 @@ defineFeature(feature, (test) => {
         container = render(
           <Provider store={store}>{HomePage.getLayout(<HomePage />)}</Provider>
         );
-      });
-      // await waitFor(() => container.getByText("Get Directions"));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
       });
     });
 
@@ -1210,10 +1191,7 @@ defineFeature(feature, (test) => {
           `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -1226,11 +1204,7 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByText("Patient Information"));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
+
     });
 
     and("User should see the widget with upcoming appointments", () => {
@@ -1299,10 +1273,7 @@ defineFeature(feature, (test) => {
           `${domain}/api/dummy/appointment/my-appointment/getAllPrescriptions?patientId=98f9404b-6ea8-4732-b14f-9c1a168d8066`
         )
         .reply(200, MOCK_PRESCRIPTION);
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -1315,11 +1286,7 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByText("Patient Information"));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
+
     });
 
     and("User should see the widget with upcoming test/ procedure", () => {
