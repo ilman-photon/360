@@ -102,6 +102,11 @@ module.exports = {
       username: "username",
       account: "account",
       logout: "logout",
+      header: {
+        index: "header",
+        logo: "header_logo",
+        userAvatar: "user_avatar",
+      },
     },
     MFA_TEST_ID: {
       radioEmail: "loc_RadioEmail",

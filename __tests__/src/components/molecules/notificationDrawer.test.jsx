@@ -32,6 +32,13 @@ const mockIsReadNotifications = [
 ]
 
 describe("NotificationDrawer", () => {
+  it("renders notification drawer with some list of read notifications", async () => {
+    container = render(
+      <NotificationDrawer
+      />
+    );
+  })
+
   it("renders notification drawer with loading state", async () => {
     container = render(
       <NotificationDrawer
@@ -122,5 +129,22 @@ describe("NotificationDrawer", () => {
 
     const notificationItems = await waitFor(() => container.getAllByTestId("notification-item"))
     expect(notificationItems).toHaveLength(2)
+  })
+
+  it("renders notification drawer and read one notification", async () => {
+    notifications = mockNewNotifications
+    container = render(
+      <NotificationDrawer
+        opened={true}
+        loading={false}
+        onDrawerClose={() => setNotificationDrawerOpened(false)}
+        onMarkAllAsRead={handleMarkAllAsRead}
+        onMarkAsRead={handleMarkAsReadById}
+        notifications={notifications}
+      />
+    );
+
+    const notificationItems = await waitFor(() => container.getAllByTestId("notification-item"))
+    fireEvent.click(notificationItems[0])
   })
 })

@@ -142,6 +142,7 @@ export default function BaseHeader({
   return (
     <>
       <AppBar
+        data-testid={HOME_TEST_ID.header.index}
         position="relative"
         sx={{
           backgroundColor: "white",
@@ -163,6 +164,7 @@ export default function BaseHeader({
                 title="Your Account"
                 tabIndex={0}
                 role={"img"}
+                data-testid={HOME_TEST_ID.header.logo}
               ></Image>
               <Stack flexDirection="row" alignItems="center">
                 {/* Menu Desktop*/}
@@ -230,6 +232,7 @@ export default function BaseHeader({
                 {/* Menu Mobile*/}
                 <Box sx={styles.boxStyledMobile}>
                   <Avatar
+                    data-testid={HOME_TEST_ID.header.userAvatar}
                     sx={{
                       background: "#003B4A",
                       alignSelf: "center",
@@ -344,6 +347,7 @@ export default function BaseHeader({
                 style={styles.logoStyled}
                 aria-label={"Clarkson Eyecare logo"}
                 tabIndex={0}
+                data-testid={HOME_TEST_ID.header.logo}
               ></Image>
             </Toolbar>
           )}
