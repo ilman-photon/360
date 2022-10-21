@@ -116,7 +116,12 @@ const NotificationDrawer = ({
             {activeTabs === 0 && (
               <Typography
                 variant="bodyLinkRegular"
-                sx={{ fontSize: "18px", cursor: "pointer" }}
+                sx={{
+                  fontSize: "18px",
+                  cursor: "pointer",
+                  color: colors.link,
+                  textDecoration: "underline",
+                }}
                 onClick={onMarkAllAsRead}
               >
                 Mark all as read
