@@ -45,7 +45,6 @@ import { StyledButton } from "../../../components/atoms/Button/button";
 import { colors } from "../../../styles/theme";
 import { useLeavePageConfirm } from "../../../../hooks/useCallbackPrompt";
 import { mmddyyDateFormat, hourDateFormat } from "../../../utils/dateFormatter";
-import { TramRounded } from "@mui/icons-material";
 import { addToCalendar } from "../../../utils/addToCalendar";
 
 const MobileTopBar = (data) => {
@@ -102,8 +101,6 @@ export const PageContent = ({
   const { t } = useTranslation("translation", {
     keyPrefix: "scheduleAppoinment",
   });
-
-  const api = new Api();
   const cookies = new Cookies();
 
   const getScheduleButtonText = () => {
@@ -215,7 +212,6 @@ export const PageContent = ({
               patientData={appointmentScheduleData.patientInfo}
               OnSubmit={(v) => {
                 handleFormSubmit(v);
-                // createAccount(v);
                 OnClickSchedule(v);
               }}
               OnClickSignIn={() => {
@@ -246,7 +242,7 @@ export async function getServerSideProps({ query }) {
     props: { query },
   };
 }
-export default function ScheduleAppointmentPage({ query }) {
+export default function ScheduleAppointmentPage() {
   const [activeStep, setActiveStep] = React.useState(1);
   const isDesktop = useMediaQuery("(min-width: 769px)");
   const [isOpen, setIsOpen] = React.useState(false);
@@ -260,8 +256,6 @@ export default function ScheduleAppointmentPage({ query }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const api = new Api();
-
-  const formMessage = useSelector((state) => state.index.formMessage);
 
   React.useEffect(() => {
     if (activeStep === 2 || activeStep === 3) {
@@ -299,6 +293,18 @@ export default function ScheduleAppointmentPage({ query }) {
     if (router.query.reschedule) {
       setIsReschedule(true);
     }
+    if (!appointmentScheduleData.appointmentInfo.appointmentType) {
+      router.push("/patient/appointment");
+    }
+    const post = {
+      username: appointmentScheduleData.patientInfo.email,
+    };
+    {
+      isLogin &&
+        api.getPatientId(post).then((response) => {
+          setPatientId(response.ecpPatientId || "");
+        });
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
@@ -311,18 +317,6 @@ export default function ScheduleAppointmentPage({ query }) {
     const cookies = new Cookies();
     const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
     setIsLoggedIn(isLogin);
-    console.log(appointmentScheduleData, "appointmentScheduleData");
-
-    const post = {
-      username: appointmentScheduleData.patientInfo.email,
-    };
-    {
-      isLogin &&
-        api.getPatientId(post).then((response) => {
-          setPatientId(response.ecpPatientId || "");
-        });
-    }
-    // console.log(patientId)
   }, []);
 
   React.useEffect(() => {
@@ -404,8 +398,11 @@ export default function ScheduleAppointmentPage({ query }) {
     }
   };
 
-  const handleCreateAppointment = (isGuest, patientDob, guestId) => {
-    const api = new Api();
+  const handleCreateAppointment = (
+    isGuest = false,
+    patientDob = "",
+    guestId = ""
+  ) => {
     const dateNow = new Date();
     const postBody = [
       {
@@ -462,6 +459,8 @@ export default function ScheduleAppointmentPage({ query }) {
     if (isLoggedIn) {
       if (isReschedule) {
         setModalConfirmReschedule(true);
+      } else {
+        handleCreateAppointment();
       }
     } else {
       setActiveStep(idx);
