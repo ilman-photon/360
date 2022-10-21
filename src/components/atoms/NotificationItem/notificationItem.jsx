@@ -10,7 +10,7 @@ import GlassesIcon from "../../../assets/icons/GlassesIcon";
 import LensIcon from "../../../assets/icons/LensIcon";
 import MedicationIcon from "../../../assets/icons/MedicationIcon";
 
-const NotificationItem = ({ data = {}, isRead = true }) => {
+const NotificationItem = ({ data = {}, isRead = true, onClick = () => {} }) => {
   const getIcon = () => {
     switch (data.type) {
       case "prescription-refill":
@@ -38,7 +38,7 @@ const NotificationItem = ({ data = {}, isRead = true }) => {
       case "aspirin":
         return <MedicationIcon width={24} height={24} />;
       default:
-        return "-";
+        return <>-</>;
     }
   };
 
@@ -118,7 +118,7 @@ const NotificationItem = ({ data = {}, isRead = true }) => {
           </>
         );
       default:
-        return "-";
+        return <>-</>;
     }
   };
 
@@ -132,9 +132,12 @@ const NotificationItem = ({ data = {}, isRead = true }) => {
       columns={12}
       alignItems={"center"}
       className={styles.container}
+      onClick={onClick}
+      data-testid="notification-item"
     >
       <Grid item xs={1}>
         <div
+          data-testid="notification-is-read"
           style={{
             backgroundColor: "black",
             borderRadius: "50%",
@@ -145,19 +148,29 @@ const NotificationItem = ({ data = {}, isRead = true }) => {
         />
       </Grid>
       <Grid item xs={2}>
-        <div className={styles.notificationTypeContainer}>{getIcon()}</div>
+        <div
+          className={styles.notificationTypeContainer}
+          data-testid="notification-icon"
+        >
+          {getIcon()}
+        </div>
       </Grid>
       <Grid item xs={8} sx={{ pr: 1 }}>
         <Typography
           variant="headlineH4"
           sx={{ fontWeight: 400 }}
           className={"clipped clip-3"}
+          data-testid="notification-description"
         >
           {getDescription()}
         </Typography>
       </Grid>
       <Grid item xs={1}>
-        <Typography variant="headlineH4" sx={{ fontWeight: 400 }}>
+        <Typography
+          variant="headlineH4"
+          sx={{ fontWeight: 400 }}
+          data-testid="notification-date"
+        >
           {getTime()}
         </Typography>
       </Grid>

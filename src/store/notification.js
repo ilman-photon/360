@@ -24,6 +24,14 @@ export const notificationStore = createSlice({
         };
       });
     },
+    markAsReadById: (state, { payload }) => {
+      state.list = state.list.map((v) => {
+        return {
+          ...v,
+          isRead: payload === v.id ? true : v.isRead,
+        };
+      });
+    },
   },
   extraReducers: {
     [fetchNotifications.pending]: (state) => {
@@ -40,6 +48,6 @@ export const notificationStore = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { markAllAsRead } = notificationStore.actions;
+export const { markAllAsRead, markAsReadById } = notificationStore.actions;
 
 export default notificationStore.reducer;

@@ -27,7 +27,11 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import { colors } from "../../../styles/theme";
 import { setUserData } from "../../../store/user";
 import NotificationDrawer from "../../molecules/NotificationDrawer/notificationDrawer";
-import { fetchNotifications, markAllAsRead } from "../../../store/notification";
+import {
+  fetchNotifications,
+  markAllAsRead,
+  markAsReadById,
+} from "../../../store/notification";
 
 export default function BaseHeader({
   OnLogoutClicked = (routerInstance) => {
@@ -85,27 +89,27 @@ export default function BaseHeader({
     setAnchorElUser(null);
   };
 
-  const fetchUserNotifications = async () => {
-    await dispatch(fetchNotifications());
+  const fetchUserNotifications = () => {
+    dispatch(fetchNotifications());
   };
 
   const handleMarkAllAsRead = () => {
     dispatch(markAllAsRead());
   };
 
+  const handleMarkAsReadById = (id) => {
+    dispatch(markAsReadById(id));
+  };
+
   React.useEffect(() => {
     if (notificationDrawerOpened) {
       setIsNotificationLoading(true);
-      try {
-        fetchUserNotifications();
-      } catch (error) {
-        console.error({ error });
-      } finally {
-        // simulate loading
-        setTimeout(() => {
-          setIsNotificationLoading(false);
-        }, 3000);
-      }
+      fetchUserNotifications();
+
+      // simulate loading
+      setTimeout(() => {
+        setIsNotificationLoading(false);
+      }, 3000);
     }
   }, [notificationDrawerOpened]);
 
@@ -347,6 +351,7 @@ export default function BaseHeader({
         loading={isNotificationLoading}
         onDrawerClose={() => setNotificationDrawerOpened(false)}
         onMarkAllAsRead={handleMarkAllAsRead}
+        onMarkAsRead={handleMarkAsReadById}
         notifications={notifications}
       />
     </>

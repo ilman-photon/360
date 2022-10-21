@@ -33,6 +33,9 @@ const NotificationDrawer = ({
   onMarkAllAsRead = () => {
     // This is intentional
   },
+  onMarkAsRead = () => {
+    // This is intentional
+  },
 }) => {
   const [activeTabs, setActiveTabs] = useState(0);
   return (
@@ -42,8 +45,6 @@ const NotificationDrawer = ({
         flexShrink: 0,
         "& .MuiDrawer-paper": {
           width: { xs: "100vw", sm: "608px" },
-          // height: "100vh",
-          // overflow: "hidden",
           p: 2,
           boxSizing: "border-box",
         },
@@ -52,9 +53,6 @@ const NotificationDrawer = ({
       anchor="right"
       open={opened}
     >
-      {/* <div style={{background: "red", height: "100vh"}}></div>
-      <div style={{background: "green", height: "100vh"}}></div> */}
-
       {/* drawer header */}
       <Stack>
         <IconButton onClick={onDrawerClose} sx={{ ml: "auto", p: 0 }}>
@@ -94,6 +92,7 @@ const NotificationDrawer = ({
       {loading ? (
         [...Array(4)].map((_, i) => (
           <Skeleton
+            data-testid="skeleton-loading"
             key={i}
             variant="rounded"
             width={"100%"}
@@ -142,6 +141,7 @@ const NotificationDrawer = ({
                         key={index}
                         isRead={item.isRead}
                         data={item}
+                        onClick={() => onMarkAsRead(item.id)}
                       />
                     );
                   })}
