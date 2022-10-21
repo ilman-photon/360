@@ -10,8 +10,6 @@ import mediaQuery from "css-mediaquery";
 import HomePage from "../../src/pages/patient";
 import PrescriptionPage from "../../src/pages/patient/prescription";
 
-import { getServerSideProps } from "../../src/pages/patient/mfa";
-
 const MOCK_APPOINTMENT = {
   appointmentList: [
     {
@@ -373,10 +371,6 @@ defineFeature(feature, (test) => {
         )
         .reply(200, MOCK_PRESCRIPTION);
       window.matchMedia = createMatchMedia("1400px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),

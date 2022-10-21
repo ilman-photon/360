@@ -2,8 +2,29 @@ import { act, fireEvent, render, waitFor } from "@testing-library/react";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
-import MfaPage, { getServerSideProps }  from "../../src/pages/patient/mfa";
+import MfaPage from "../../src/pages/patient/mfa";
 import "@testing-library/jest-dom";
+import Cookies from "universal-cookie";
+
+jest.mock("universal-cookie", () => {
+  class MockCookies {
+    static result = {};
+    get(param) {
+      if (param === "username") return "user1@photon.com";
+      else if (param === "securityQuestions") return [];
+      if (param === "ip") return "10.10.10.10";
+
+      return MockCookies.result;
+    }
+    remove() {
+      return jest.fn();
+    }
+    set() {
+      return jest.fn();
+    }
+  }
+  return MockCookies;
+});
 import { renderWithProviders } from "../src/utils/test-util";
 
 
@@ -16,15 +37,7 @@ const feature = loadFeature(
 defineFeature(feature, (test) => {
   let container
     beforeEach(async () => {
-        const contex = {
-            req: {
-                headers: {
-                    cookie: "username=user1%40photon.com; mfa=true"
-                }
-            }
-        }
-
-        getServerSideProps(contex)
+      Cookies.result = { mfa: true };
         container = render(<MfaPage />)
         await waitFor(() => container.getByText("Set Multi-Factor Authentication"));
 

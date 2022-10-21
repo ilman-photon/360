@@ -9,7 +9,7 @@ describe("SecurityQuestion Components", () => {
   });
 
   it("select option render", () => {
-    const password = container.getByLabelText("Password");
+    const password = container.getByLabelText("Password *");
     fireEvent.change(password, { target: { value: "user123@A" } });
     expect(password.value).toEqual("user123@A");
 

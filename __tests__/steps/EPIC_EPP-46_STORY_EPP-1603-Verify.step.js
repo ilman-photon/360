@@ -11,8 +11,6 @@ import HomePage from "../../src/pages/patient";
 import Appointment from "../../src/pages/patient/appointment";
 import Appointments from "../../src/pages/patient/appointments";
 import RescheduleAppointments from "../../src/pages/patient/appointments/[appointmentId]/reschedule";
-
-import { getServerSideProps } from "../../src/pages/patient/mfa";
 import { TEST_ID } from "../../src/utils/constants";
 
 const MOCK_APPOINTMENT = {
@@ -371,13 +369,37 @@ const upcoming = {
         }
       },
       "provider": {
-        "firstName": "Todd",
-        "lastName": "Bellamy",
-        "designation": "MBBS, MD",
+        "firstName": "Steve",
+        "lastName": "Adam",
+        "designation": "Dr",
         "inHouse": false,
-        "_id": "c68ced42-dfad-452a-acf0-0cee3a066157",
-        "_version": "585d1501-cfad-4123-b2c8-950a32403563",
-        "_updated": "Feb 15, 2022, 7:07:35 AM"
+        "workPhone": "3219898898",
+        "rating": 9,
+        "profilePhoto": {
+          "digitalAsset": {
+            "uid": "d72b0b16-99ab-4ae4-aba3-13b81930b68a",
+            "fileName": "test",
+            "assetUrl": "/v1/patient",
+            "_version": "d72b0b16-99ab-4ae4-aba3-13b81930b77a"
+          }
+        },
+        "address": {
+          "addressLine1": "800 14th St Apt B",
+          "city": "Virginia Beach",
+          "state": "VA",
+          "zip": "23451"
+        },
+        "_id": "19f1c186-37a8-46ef-a731-0a1f022be782",
+        "_version": "6b5fb285-bcca-4a3f-8a47-369fe2babf8b",
+        "_updated": "Oct 17, 2022, 5:53:20 PM",
+        "_updatedBy": {
+          "_id": "981ad89e-7fee-42d8-92ec-c34324d862a0",
+          "_links": {
+            "self": {
+              "href": "/v1/employees/981ad89e-7fee-42d8-92ec-c34324d862a0"
+            }
+          }
+        }
       },
       "office": {
         "name": "Ballwin",
@@ -594,10 +616,7 @@ defineFeature(feature, (test) => {
         )
         .reply(200, history);
       window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -610,11 +629,6 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByText("Search for a doctor"));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
     });
 
     and("user should see list of upcoming appointment", async () => {
@@ -780,10 +794,7 @@ defineFeature(feature, (test) => {
         )
         .reply(200, history);
       window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -796,11 +807,6 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByText("Search for a doctor"));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
     });
 
     and("user should see list of upcoming appointment", async () => {
@@ -969,10 +975,7 @@ defineFeature(feature, (test) => {
         )
         .reply(200, history);
       window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -985,11 +988,6 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByText("Search for a doctor"));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
     });
 
     and("user should see list of upcoming appointment", async () => {
@@ -1087,10 +1085,7 @@ defineFeature(feature, (test) => {
         )
         .reply(200, history);
       window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -1103,11 +1098,6 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByText("Search for a doctor"));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
     });
 
     and("user should see list of upcoming appointment", async () => {
@@ -1205,10 +1195,7 @@ defineFeature(feature, (test) => {
         )
         .reply(200, history);
       window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -1221,11 +1208,6 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByText("Search for a doctor"));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
     });
 
     and("user should see list of upcoming appointment", async () => {
@@ -1315,10 +1297,7 @@ defineFeature(feature, (test) => {
         )
         .reply(200, history);
       window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -1331,11 +1310,6 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByText("Search for a doctor"));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
     });
 
     and("user should see list of upcoming appointment", async () => {
@@ -1425,10 +1399,7 @@ defineFeature(feature, (test) => {
         )
         .reply(200, history);
       window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -1441,11 +1412,6 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByText("Search for a doctor"));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
     });
 
     and("user should see list of upcoming appointment", async () => {
@@ -1550,10 +1516,7 @@ defineFeature(feature, (test) => {
         )
         .reply(200, history);
       window.matchMedia = createMatchMedia("700px");
-      const response = await getServerSideProps({
-        req: { headers: { cookie: { get: jest.fn().mockReturnValue(true) } } },
-        res: jest.fn(),
-      });
+
       const mockGeolocation = {
         getCurrentPosition: jest.fn(),
         watchPosition: jest.fn(),
@@ -1566,11 +1529,6 @@ defineFeature(feature, (test) => {
         );
       });
       await waitFor(() => container.getByText("Search for a doctor"));
-      expect(response).toEqual({
-        props: {
-          isStepTwo: false,
-        },
-      });
     });
 
     and("user should see list of upcoming appointment", async () => {

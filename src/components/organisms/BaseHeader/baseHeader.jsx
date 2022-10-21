@@ -104,6 +104,7 @@ export default function BaseHeader({
           boxShadow: "none",
           borderBottom: "1px solid #E0E0E0",
           height: 64,
+          zIndex: 10,
         }}
       >
         <Container maxWidth="xl">

@@ -12,6 +12,7 @@ export const removeAuthCookies = () => {
   cookies.remove("refreshToken", { path: "/patient" });
   cookies.remove("isStay", { path: "/patient" });
   cookies.remove("IdleTimeOut", { path: "/patient" });
+  cookies.remove("isSecurityQuestionStep", { path: "/patient" });
   localStorage.removeItem("userData");
 };
 
