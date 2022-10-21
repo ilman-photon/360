@@ -10,7 +10,13 @@ import { StyledButton } from "../../atoms/Button/button";
 
 const renderSpecialistList = (providerData) => {
   return (
-    <Box>
+    <Box
+      sx={{
+        width: {
+          sm: "60%",
+        },
+      }}
+    >
       <Typography
         variant="subtitle1"
         className={styles.specialistTitle}
@@ -53,7 +59,7 @@ export default function ProviderProfile({
   const isBio = variant === "bio";
   const isViewSchedule = variant === "viewschedule";
   const isMap = variant === "map";
-  const isMobile = useMediaQuery("(max-width: 992px)");
+  const isMobile = useMediaQuery("(max-width: 600px)");
 
   const router = useRouter();
 
@@ -172,7 +178,18 @@ export default function ProviderProfile({
             </Typography>
           )}
           <Box className={styles.detailContainer}>
-            <Box>
+            <Box
+              sx={
+                isBio && {
+                  width: {
+                    sm: "40%",
+                  },
+                  maxWidth: {
+                    sm: "280px",
+                  },
+                }
+              }
+            >
               <Box aria-label="Doctor Address">
                 <Typography
                   variant="body2"

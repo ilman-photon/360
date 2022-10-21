@@ -25,6 +25,7 @@ import MobileNavMenu from "../../molecules/Navbar/MobileNavMenu";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { colors } from "../../../styles/theme";
 import { setUserData } from "../../../store/user";
+import Navbar from "../../molecules/Navbar/Navbar";
 
 export default function BaseHeader({
   OnLogoutClicked = (routerInstance) => {
@@ -33,6 +34,7 @@ export default function BaseHeader({
   backTitle,
   onBackClicked,
   isPrescription = false,
+  showNavbar = false,
 }) {
   const { HOME_TEST_ID } = constants.TEST_ID;
   const [isUserLoged, setUserLoged] = React.useState(false);
@@ -271,6 +273,7 @@ export default function BaseHeader({
           )}
         </Container>
       </AppBar>
+      {showNavbar && <Navbar />}
       {backTitle && (
         <SubNavigation onClick={onBackClicked} backTitle={backTitle} />
       )}

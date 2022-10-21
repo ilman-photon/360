@@ -112,8 +112,9 @@ Bio.getLayout = function getLayout(page) {
     <Provider store={store}>
       <AppointmentLayout
         currentActivePage={"bio"}
-        backTitle="Back to search"
+        backTitle="Back"
         pageTitle="Doctor Biography"
+        showNavbar={true}
       >
         {page}
       </AppointmentLayout>

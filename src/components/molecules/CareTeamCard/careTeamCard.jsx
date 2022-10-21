@@ -114,7 +114,7 @@ export default function CareTeamCard({ provider, onRemove }) {
         <Box className={styles.careTeamImage}>
           <Image
             alt="Doctor Image"
-            src={"/cardimage.png"}
+            src={"/defaultImageMyCare.png"}
             layout="fill"
             objectFit="cover"
           />

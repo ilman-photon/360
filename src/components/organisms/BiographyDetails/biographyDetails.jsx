@@ -92,9 +92,10 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
   };
 
   const renderAddress = (newAddressArray) => {
+    const mockAddress = [...newAddressArray, ...newAddressArray];
     return (
-      <Box>
-        {newAddressArray.map((newAddress, idx) => {
+      <Box flex={1}>
+        {mockAddress.map((newAddress, idx) => {
           const addressQuery = getAddressQuery(newAddress);
           return (
             <Box
@@ -111,9 +112,11 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
                   : {}
               }
             >
-              <Typography className={styles.addressTitle}>
-                {idx === 0 ? "Primary Address" : "Secondary Address"}
-              </Typography>
+              {idx === 0 && (
+                <Typography className={styles.addressTitle}>
+                  Primary Address
+                </Typography>
+              )}
               <Typography
                 variant="body2"
                 className={styles.mapAddress}

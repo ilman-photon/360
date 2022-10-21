@@ -8,7 +8,7 @@ import MyCareTeamLayout from "../../../components/templates/myCareTeam";
 import store from "../../../store/store";
 
 export default function MyCareTeamPage() {
-  const [isRemoved, setIsRemoved] = useState(true);
+  const [isRemoved, setIsRemoved] = useState(false);
 
   const providerMock = {
     name: "Dr. Robert Fox, M.D.",
@@ -22,7 +22,7 @@ export default function MyCareTeamPage() {
     specialities: "Ophthalmology",
     phone: "8792899901",
     email: "robertF@ecp.com",
-    id: "56bafbaf-6bc6-47d2-b3ab-5cee17cf7e30",
+    id: "b579b0d1-0c93-4db4-8ca8-294a60e718e4",
   };
 
   return (
