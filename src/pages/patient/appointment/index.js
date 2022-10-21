@@ -351,10 +351,11 @@ export default function Appointment({ googleApiKey }) {
     (state) => state.appointment.appointmentSchedule.providerInfo
   );
 
-  const handleDayClicked = (appointmentDate, providerData) => {
+  const handleDayClicked = (appointment, providerData) => {
     const appointmentInfoObj = {
       ...appointmentInfo,
-      date: appointmentDate,
+      appointmentType: appointment.appointmentCode,
+      date: appointment.dateTime,
       providerTemplate: {
         _id: providerData.providerTemplateId,
       },
