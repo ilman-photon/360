@@ -362,7 +362,7 @@ export default function TableWithSort({
                                       },
                                     }}
                                   >
-                                    download
+                                    Download
                                   </Typography>
                                 }
                                 placement="top"

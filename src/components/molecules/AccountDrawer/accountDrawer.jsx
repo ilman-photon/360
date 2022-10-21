@@ -75,7 +75,7 @@ export const AccountDrawer = ({
     documents: [
       {
         label: "Intake Forms",
-        href: "/patient/account/documents/intake-forms",
+        href: "/patient/account/documents?type=intake-forms",
         icon: <IntakeFormsIcon sx={{ fill: colors.darkGreen }} />,
       },
       // {
