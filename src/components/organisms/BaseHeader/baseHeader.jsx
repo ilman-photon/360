@@ -60,6 +60,19 @@ export default function BaseHeader({
     if (userStorageData) {
       dispatch(setUserData(userStorageData));
     }
+
+    // notifications
+    // fetch for every 3 minutes
+    const notificationId = setInterval(() => {
+      fetchUserNotifications();
+    }, 180000);
+
+    // fetch for first time
+    fetchUserNotifications();
+
+    // clear interval after unMount
+    return () => clearInterval(notificationId);
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -90,7 +103,13 @@ export default function BaseHeader({
   };
 
   const fetchUserNotifications = () => {
+    setIsNotificationLoading(true);
     dispatch(fetchNotifications());
+
+    // simulate loading
+    setTimeout(() => {
+      setIsNotificationLoading(false);
+    }, 3000);
   };
 
   const handleMarkAllAsRead = () => {
@@ -100,18 +119,6 @@ export default function BaseHeader({
   const handleMarkAsReadById = (id) => {
     dispatch(markAsReadById(id));
   };
-
-  React.useEffect(() => {
-    if (notificationDrawerOpened) {
-      setIsNotificationLoading(true);
-      fetchUserNotifications();
-
-      // simulate loading
-      setTimeout(() => {
-        setIsNotificationLoading(false);
-      }, 3000);
-    }
-  }, [notificationDrawerOpened]);
 
   const prescriptionMenus = [
     {
