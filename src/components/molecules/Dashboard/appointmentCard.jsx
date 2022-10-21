@@ -218,15 +218,27 @@ export default function AppointmentCard({
                     : 0,
                 }}
               >
-                <ImageFallback
-                  src={appointment.providerInfo.image}
-                  style={{ borderRadius: "50%" }}
-                  alt={`${appointment.providerInfo?.name} image`}
-                  fallbackSrc={"/cardImage.png"}
-                  width="90px"
-                  height="90px"
-                  tabIndex={0}
-                />
+                {appointment?.providerInfo?.image ? (
+                  <ImageFallback
+                    src={appointment.providerInfo.image}
+                    style={{ borderRadius: "50%" }}
+                    alt={`${appointment.providerInfo?.name} image`}
+                    width="90px"
+                    height="90px"
+                    tabIndex={0}
+                    fallbackSrc={"/cardImage.png"}
+                  />
+                ) : (
+                  <AccountCircleIcon
+                    sx={{
+                      width: { xs: "100%" },
+                      height: { xs: "100%" },
+                      color: "#b5b5b5",
+                    }}
+                    alt="Doctor Image"
+                    tabIndex={0}
+                  />
+                )}
               </Box>
               <Box className={styles.flexDisplay} tabIndex={0}>
                 <Box pr={1}>

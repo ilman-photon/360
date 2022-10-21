@@ -84,10 +84,11 @@ export const loginProps = {
               const response = await dispatch(
                 fetchUser({ patientId: userStorageData.patientId })
               );
-              localStorage.setItem(
-                "userProfile",
-                JSON.stringify(response.payload)
-              );
+              response?.payload &&
+                localStorage.setItem(
+                  "userProfile",
+                  JSON.stringify(response.payload)
+                );
             }
 
             _router.push(isNotNeedMfa ? "/patient/" : "/patient/mfa/");

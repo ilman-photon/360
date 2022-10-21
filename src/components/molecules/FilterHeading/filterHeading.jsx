@@ -329,7 +329,12 @@ export const CustomPopper = function (props) {
 
 export function onGetInsuranceCarrierStyle(isDesktop = true) {
   return {
-    width: isDesktop ? "100%" : "auto",
+    width: {
+      xs: "auto",
+      md: "65%",
+      lg: "100%",
+    },
+    maxWidth: "100%",
     background: "#FFF",
     marginTop: "0px",
     border: !isDesktop ? "1px solid #BDBDBD" : "none",

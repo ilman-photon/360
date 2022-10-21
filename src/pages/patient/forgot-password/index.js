@@ -355,8 +355,8 @@ export default function ForgotPasswordPage() {
       .oneTimeLink(postbody)
       .then(function () {
         confirmationFormProps = {
-          pageTitle: "Schedule Your Appointment",
-          title: "Schedule Your Appointment",
+          pageTitle: "Sync Your Appointment",
+          title: "Sync Your Appointment",
           subtitle,
           postMessage,
           postMessageTitle: "",

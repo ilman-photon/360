@@ -1,4 +1,4 @@
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import { fireEvent, cleanup, waitFor } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { defineFeature, loadFeature } from "jest-cucumber";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
@@ -6,14 +6,11 @@ import constants from "../../src/utils/constants";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
 import {
-  createMatchMedia,
   defaultValidation,
-  renderAppointmentDetail,
+  renderLogin,
+  renderForgotPassword,
 } from "../../__mocks__/commonSteps";
-import {
-  mockAppointmentTypes,
-  submitFilter,
-} from "../../__mocks__/mockResponse";
+import ForgotPassword from "../../src/components/organisms/ForgotPassword/forgotPassword";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-1578.feature"
@@ -24,19 +21,6 @@ defineFeature(feature, (test) => {
   const { APPOINTMENT_TEST_ID, SEARCH_PROVIDER_TEST_ID } = constants.TEST_ID;
   const mock = new MockAdapter(axios);
   beforeEach(() => {
-    const mockGeolocation = {
-      getCurrentPosition: jest.fn(),
-      watchPosition: jest.fn(),
-    };
-
-    mock
-      .onGet(`/ecp/appointments/appointment-types`)
-      .reply(200, mockAppointmentTypes);
-    mock
-      .onPut(`/ecp/appointments/available-slot?searchText=Texas`)
-      .reply(200, submitFilter);
-    global.navigator.geolocation = mockGeolocation;
-    window.matchMedia = createMatchMedia("1920px");
   });
 
   test("EPIC_EPP-44_STORY_EPP-1578 - Verify user able to view enter Email or Phone Number to Sync Appointment Information", ({
@@ -57,17 +41,29 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    when(
-      "user click on Already have an appointment? Sync your appointment information button",
-      () => {}
-    );
-
-    then("user should see the Email or Phone number", () => {
-      defaultValidation();
+    when("user click on Already have an appointment? Sync your appointment information button", async () => {
+      container = await renderLogin()
+      const syncButton = container.getByText("syncYourAppointmentInformation");
+      fireEvent.click(syncButton);
     });
 
-    and("user should see submit", () => {
-      defaultValidation();
+    then("user should see the Email or Phone number", async () => {
+      cleanup()
+      container = await renderForgotPassword()
+      expect(container.getByLabelText(/usernamePlaceHolder/i)).toBeInTheDocument()
+    });
+
+    and("user should see submit", async () => {
+      container.rerender(
+        <ForgotPassword isAppointment={true} />
+      );
+      expect(
+        await waitFor(() =>
+          container.getByText(/syncButton/i)
+        )
+      ).toBeInTheDocument();
+      const syncButton = container.getByText(/syncButton/i);
+      fireEvent.click(syncButton);
     });
 
     when('user provides "<Email or Phone Number"', () => {
@@ -80,7 +76,7 @@ defineFeature(feature, (test) => {
 
     then(
       "user should see the Email or Phone Number synced with appointment",
-      () => {}
+      () => { }
     );
   });
 
@@ -102,17 +98,29 @@ defineFeature(feature, (test) => {
       defaultValidation();
     });
 
-    when(
-      "user click on Already have an appointment? Sync your appointment information button",
-      () => {}
-    );
-
-    then("user should see the Email or Phone number", () => {
-      defaultValidation();
+    when("user click on Already have an appointment? Sync your appointment information button", async () => {
+      container = await renderLogin()
+      const syncButton = container.getByText("syncYourAppointmentInformation");
+      fireEvent.click(syncButton);
     });
 
-    and("user should see submit", () => {
-      defaultValidation();
+    then("user should see the Email or Phone number", async () => {
+      cleanup()
+      container = await renderForgotPassword()
+      expect(container.getByLabelText(/usernamePlaceHolder/i)).toBeInTheDocument()
+    });
+
+    and("user should see submit", async () => {
+      container.rerender(
+        <ForgotPassword isAppointment={true} />
+      );
+      expect(
+        await waitFor(() =>
+          container.getByText(/syncButton/i)
+        )
+      ).toBeInTheDocument();
+      const syncButton = container.getByText(/syncButton/i);
+      fireEvent.click(syncButton);
     });
 
     when('user provides "<Email or Phone Number"', () => {
@@ -125,7 +133,7 @@ defineFeature(feature, (test) => {
 
     then(
       "user should see the Email or Phone Number synced with appointment",
-      () => {}
+      () => { }
     );
   });
 });
