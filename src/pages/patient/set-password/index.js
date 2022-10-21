@@ -134,10 +134,10 @@ export default function SetPasswordPage({ username, token }) {
     } else setAppointment(false);
   }, [router]);
 
-  const OnSetPasswordClicked = async function (data, _router) {
+  const OnSetPasswordClicked = async function (data) {
     dispatch(resetFormMessage());
     const api = new Api();
-    let postbody = {
+    const postbody = {
       username: username,
       password: data.password,
       confirmPassword: data.confirmPassword,
@@ -191,7 +191,7 @@ export default function SetPasswordPage({ username, token }) {
           formMessage={formMessage}
           onSetPasswordClicked={OnSetPasswordClicked}
           showBackToLogin={false}
-          ctaButtonLabel={isAppointment ? "Create Account" : "Set Password"}
+          ctaButtonLabel={"Set Password"}
         />
       ) : (
         <ConfirmationForm {...confirmationFormProps} />
