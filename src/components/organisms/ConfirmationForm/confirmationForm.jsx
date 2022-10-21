@@ -56,8 +56,8 @@ const ConfirmationForm = ({
             <HeadingTitle
               variant={constants.H2}
               tabIndex={0}
-              aria-label={"Sync Your Appointment heading"}
-              title={"Sync Your Appointment"}
+              aria-label={title}
+              title={title}
               sx={{ fontSize: "32px" }}
             />
             {showPostMessage ? (
