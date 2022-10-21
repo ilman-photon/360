@@ -417,6 +417,18 @@ export default function ContactInformation({
                   />
                 );
               }}
+              rules={{
+                validate: {
+                  incorrectFormat: (value) => {
+                    if (value) {
+                      return (
+                        Regex.atLeastOneAlphabet.test(value) ||
+                        "Incorrect Format"
+                      );
+                    } else return true;
+                  },
+                },
+              }}
             />
 
             <Controller
@@ -448,6 +460,18 @@ export default function ContactInformation({
                     }}
                   />
                 );
+              }}
+              rules={{
+                validate: {
+                  incorrectFormat: (value) => {
+                    if (value) {
+                      return (
+                        Regex.atLeastOneAlphabet.test(value) ||
+                        "Incorrect Format"
+                      );
+                    } else return true;
+                  },
+                },
               }}
             />
 

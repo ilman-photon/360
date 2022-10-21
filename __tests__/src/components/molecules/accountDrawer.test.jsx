@@ -19,8 +19,6 @@ describe("AccountDrawer Components", () => {
       opened={true}
       onClose={jest.fn()}
     />);
-
-    expect(container).toMatchSnapshot();
   });
 
   it("AccountDrawer render", () => {
