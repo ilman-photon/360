@@ -26,9 +26,9 @@ import {
 } from "../../../utils/appointment";
 import { fullDateFormat } from "../../../utils/dateFormatter";
 import { useEffect } from "react";
-import Image from "next/image";
 import { formatPhoneNumber } from "../../../utils/phoneFormatter";
 import { getLinkAria } from "../../../utils/viewUtil";
+import ImageFallback from "../../atoms/Image/image";
 
 export default function AppointmentCard({
   appointmentData = [],
@@ -72,10 +72,10 @@ export default function AppointmentCard({
             </Typography>
           </Box>
         )}
-        {address.city && address.state && address.zipcode ? (
+        {address.city || address.state || address.zip ? (
           <Box>
             <Typography variant="bodyMedium" sx={{ color: colors.darkGreen }}>
-              {address.city}, {address.state}, {address.zipcode}
+              {address.city || ""}, {address.state || ""}, {address.zip || ""}
             </Typography>
           </Box>
         ) : (
@@ -218,26 +218,15 @@ export default function AppointmentCard({
                     : 0,
                 }}
               >
-                {appointment?.providerInfo?.image ? (
-                  <Image
-                    src={appointment.providerInfo.image}
-                    style={{ borderRadius: "50%" }}
-                    alt={`${appointment.providerInfo?.name} image`}
-                    width="90px"
-                    height="90px"
-                    tabIndex={0}
-                  />
-                ) : (
-                  <AccountCircleIcon
-                    sx={{
-                      width: { xs: "100%" },
-                      height: { xs: "100%" },
-                      color: "#b5b5b5",
-                    }}
-                    alt="Doctor Image"
-                    tabIndex={0}
-                  />
-                )}
+                <ImageFallback
+                  src={appointment.providerInfo.image}
+                  style={{ borderRadius: "50%" }}
+                  alt={`${appointment.providerInfo?.name} image`}
+                  fallbackSrc={"/cardImage.png"}
+                  width="90px"
+                  height="90px"
+                  tabIndex={0}
+                />
               </Box>
               <Box className={styles.flexDisplay} tabIndex={0}>
                 <Box pr={1}>
