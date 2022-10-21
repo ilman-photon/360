@@ -197,6 +197,7 @@ export const ImageUploader = ({
             textDecoration: "underline",
             width: "fit-content",
             alignSelf: "center",
+            color: "#008294",
           }}
           data-testid={testIds}
           onClick={() => {

@@ -228,7 +228,12 @@ export default function PersonalInformation({
           <div>
             <Typography
               variant="h3"
-              sx={{ pb: 2, color: colors.black, fontSize: "26px" }}
+              sx={{
+                pb: 2,
+                color: colors.black,
+                fontSize: "26px",
+                fontWeight: 500,
+              }}
             >
               State Issued ID
             </Typography>
