@@ -6,14 +6,10 @@
   border-radius: 5px;
   margin-bottom: 32px;
   margin-right: 90px;
-  @media (max-width: 992px) {
+  @media (max-width: 1024px) {
     max-width: 358px !important;
     width: 90vw !important;
-    margin: auto;
-  }
-
-  @media only screen and (min-width: 768px) and (max-width: 1024px) {
-    margin: unset;
+    margin: 0 auto 20px auto;
   }
 
   font-family: "Libre Franklin", sans-serif;

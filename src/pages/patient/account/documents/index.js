@@ -13,6 +13,7 @@ import { useRouter } from "next/router";
 import { Controller, useForm } from "react-hook-form";
 import TableEmpty from "../../../../components/atoms/TableEmpty/tableEmpty";
 import { fetchSource } from "../../../../utils/fetchDigitalAssetSource";
+import { colors } from "../../../../styles/theme";
 
 export default function AccountDocumentsPage() {
   const isDesktop = useMediaQuery("(min-width: 769px)");
@@ -42,9 +43,15 @@ export default function AccountDocumentsPage() {
         label: "Name",
         width: isDesktop ? null : 161,
         sx: {
+          color: colors.darkGreen,
           fontSize: {
             xs: 14,
             md: 16,
+          },
+          ".MuiTableSortLabel-root": {
+            "&.Mui-active": {
+              color: colors.darkGreen,
+            },
           },
         },
       },
@@ -55,6 +62,13 @@ export default function AccountDocumentsPage() {
         disablePadding: true,
         label: "Modified",
         width: isDesktop ? 136 : 71,
+        sx: {
+          color: colors.darkGreen,
+          fontSize: {
+            xs: 14,
+            md: 16,
+          },
+        },
       },
       { type: "empty", width: 22 },
     ],
@@ -89,7 +103,7 @@ export default function AccountDocumentsPage() {
             sx={{ width: 24, height: 24, p: 0 }}
             data-testid="downloadPDFButton"
           >
-            <FileDownloadIcon />
+            <FileDownloadIcon sx={{ fill: colors.darkGreen }} />
           </IconButton>
         ),
       },
@@ -106,6 +120,7 @@ export default function AccountDocumentsPage() {
 
   useEffect(() => {
     dispatch(resetDocuments());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -133,7 +148,7 @@ export default function AccountDocumentsPage() {
       <Controller
         name="category"
         control={control}
-        render={({ field: { onChange, value }, fieldState: { error } }) => {
+        render={({ field: { onChange, value } }) => {
           return (
             <StyledSelect
               options={categories}
