@@ -91,9 +91,9 @@ export function Login({
                         data-testid={LOGIN_TEST_ID.email}
                         type={constants.INPUT_TEXT}
                         value={value}
-                        onChange={(value) => {
+                        onChange={(val) => {
                           setPostMessage({ status: "" });
-                          onChange(value);
+                          onChange(val);
                         }}
                         error={!!error}
                         helperText={error ? error.message : null}
@@ -123,15 +123,15 @@ export function Login({
                         id="password"
                         tabIndex={0}
                         aria-label={"Password Field"}
-                        data-testid={LOGIN_TEST_ID.password}
+                        data-testid={LOGIN_TEST_ID.passwordField}
                         label={t("passwordLabel")}
                         type={constants.INPUT_PASSWORD}
                         size={constants.SMALL}
                         variant={constants.FILLED}
                         value={value}
-                        onChange={(value) => {
+                        onChange={(val) => {
                           setPostMessage({ status: "" });
-                          onChange(value);
+                          onChange(val);
                         }}
                         error={!!error}
                         aria

@@ -1,3 +1,4 @@
+import { Typography } from "@mui/material";
 import React from "react";
 import styles from "./accountTitleHeading.module.scss";
 
@@ -12,15 +13,9 @@ const AccountTitleHeading = ({ title, sx = {}, sxContainer = {} }) => {
       aria-label={`${title} heading`}
       tabIndex={"0"}
     >
-      <div
-        className={styles.title}
-        style={{
-          ...sx,
-        }}
-        aria-hidden={true}
-      >
+      <Typography className={styles.title} sx={sx} aria-hidden={true}>
         {title}
-      </div>
+      </Typography>
     </div>
   );
 };

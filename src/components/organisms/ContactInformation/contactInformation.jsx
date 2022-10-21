@@ -39,8 +39,7 @@ export default function ContactInformation({
   },
 }) {
   const { handleSubmit, control, watch, reset, setValue } = useForm({
-    // defaultValues: DEFAULT_CONTACT_INFO,
-    defaultValues: userData, // Object.assign({}, userData),
+    defaultValues: userData,
   });
 
   const isDesktop = useMediaQuery("(min-width: 769px)");
@@ -89,8 +88,6 @@ export default function ContactInformation({
     OnSaveClicked(data);
   };
 
-  const buttonWidth = isDesktop ? {} : { width: "100%" };
-
   // GAPI autocomplete
   const { placesService, placePredictions, getPlacePredictions } =
     usePlacesService({
@@ -106,7 +103,6 @@ export default function ContactInformation({
 
   const assignAddressFormValue = (oldValue) => {
     if (!placeDetailsState) return;
-    console.log({ placeDetailsState });
     const addressComponents = placeDetailsState.address_components;
     if (addressComponents) {
       resetAddressForm();
@@ -167,6 +163,43 @@ export default function ContactInformation({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [placePredictions]);
 
+  const showOrReturnEmpty = (data) => {
+    return data || "-";
+  };
+
+  const accountCardActionContent = () => {
+    return isDesktop ? (
+      <Button
+        onClick={OnEditClicked}
+        variant="text"
+        className={styles.editButton}
+        tabIndex={0}
+        aria-label="Edit option"
+      >
+        <EditOutlinedIcon sx={{ width: 20, height: 20, color: colors.link }} />
+        <div
+          className={styles.actionText}
+          style={{ marginLeft: 4, color: "#008294" }}
+          tabIndex={0}
+          aria-label="Edit option"
+        >
+          Edit
+        </div>
+      </Button>
+    ) : (
+      <StyledButton
+        mode="primary"
+        size="small"
+        onClick={OnEditClicked}
+        sx={{ my: 4 }}
+        tabIndex={0}
+        aria-label="Edit option"
+      >
+        Edit
+      </StyledButton>
+    );
+  };
+
   return (
     <AccountCard
       tabIndex={0}
@@ -176,41 +209,7 @@ export default function ContactInformation({
       textStyle={{
         fontWeight: "700",
       }}
-      // OnEditClicked={OnEditClicked}
-      actionContent={
-        isDesktop ? (
-          <Button
-            onClick={OnEditClicked}
-            variant="text"
-            className={styles.editButton}
-            tabIndex={0}
-            aria-label="Edit option"
-          >
-            <EditOutlinedIcon
-              sx={{ width: 20, height: 20, color: colors.link }}
-            />
-            <div
-              className={styles.actionText}
-              style={{ marginLeft: 4, color: "#008294" }}
-              tabIndex={0}
-              aria-label="Edit option"
-            >
-              Edit
-            </div>
-          </Button>
-        ) : (
-          <StyledButton
-            mode="primary"
-            size="small"
-            onClick={OnEditClicked}
-            sx={{ my: 4 }}
-            tabIndex={0}
-            aria-label="Edit option"
-          >
-            Edit
-          </StyledButton>
-        )
-      }
+      actionContent={accountCardActionContent}
       label={"Contact Information heading"}
       ariaLabel={"Contact Information heading"}
     >
@@ -225,36 +224,39 @@ export default function ContactInformation({
           </LabelWithInfo>
 
           <LabelWithInfo tabIndex={0} ariaLabel="Email ID" label="Email ID">
-            <div tabIndex={0} aria-label={userData.email || "-"}>
-              {userData.email || "-"}
+            <div tabIndex={0} aria-label={showOrReturnEmpty(userData.email)}>
+              {showOrReturnEmpty(userData.email)}
             </div>
           </LabelWithInfo>
 
           <LabelWithInfo tabIndex={0} ariaLabel="Address" label="Address">
-            <div tabIndex={0} aria-label={userData.address || "-"}>
-              {userData.address || "-"}
+            <div tabIndex={0} aria-label={showOrReturnEmpty(userData.address)}>
+              {showOrReturnEmpty(userData.address)}
             </div>
           </LabelWithInfo>
 
           <LabelWithInfo tabIndex={0} ariaLabel="City" label="City">
-            <div tabIndex={0} aria-label={userData.city || "-"}>
-              {userData.city || "-"}
+            <div tabIndex={0} aria-label={showOrReturnEmpty(userData.city)}>
+              {showOrReturnEmpty(userData.city)}
             </div>
           </LabelWithInfo>
 
           <Grid container>
             <Grid item xs={6} sm={4} lg={6} p={0}>
               <LabelWithInfo tabIndex={0} ariaLabel="State" label="State">
-                <div tabIndex={0} aria-label={userData.state || "-"}>
-                  {userData.state || "-"}
+                <div
+                  tabIndex={0}
+                  aria-label={showOrReturnEmpty(userData.state)}
+                >
+                  {showOrReturnEmpty(userData.state)}
                 </div>
               </LabelWithInfo>
             </Grid>
 
             <Grid item xs={6} sm={4} lg={6} p={0}>
               <LabelWithInfo label="Zip" tabIndex={0} ariaLabel="Zip">
-                <div tabIndex={0} aria-label={userData.zip || "-"}>
-                  {userData.zip || "-"}
+                <div tabIndex={0} aria-label={showOrReturnEmpty(userData.zip)}>
+                  {showOrReturnEmpty(userData.zip)}
                 </div>
               </LabelWithInfo>
             </Grid>
@@ -271,12 +273,12 @@ export default function ContactInformation({
                 aria-label={
                   userData.preferredCommunication === "both"
                     ? "Mobile, Email"
-                    : userData.preferredCommunication || "-"
+                    : showOrReturnEmpty(userData.preferredCommunication)
                 }
               >
                 {userData.preferredCommunication === "both"
                   ? "Mobile, Email"
-                  : userData.preferredCommunication || "-"}
+                  : showOrReturnEmpty(userData.preferredCommunication)}
               </div>
             </span>
           </LabelWithInfo>
@@ -450,7 +452,7 @@ export default function ContactInformation({
             />
 
             <Grid container columnSpacing={2}>
-              <Grid item xs={isDesktop ? 7 : 5.5} style={{ paddingLeft: 0 }}>
+              <Grid item xs={5.5} md={7} style={{ paddingLeft: 0 }}>
                 <Controller
                   name="state"
                   control={control}
@@ -490,7 +492,7 @@ export default function ContactInformation({
                 />
               </Grid>
 
-              <Grid item xs={isDesktop ? 4.5 : 6} p={0}>
+              <Grid item xs={6} md={4} p={0}>
                 <Controller
                   name="zip"
                   control={control}
@@ -571,7 +573,7 @@ export default function ContactInformation({
           </Stack>
           <Stack
             direction="row"
-            justifyContent={isDesktop ? "flex-end" : "space-between"}
+            justifyContent={{ xs: "space-between", md: "flex-end" }}
             spacing={2}
             sx={{ p: 2, mt: 2 }}
           >
@@ -579,7 +581,11 @@ export default function ContactInformation({
               onClick={handleCancel}
               variant="contained"
               className={[styles.formButton, styles.outlined].join(" ")}
-              sx={{ ...buttonWidth, fontSize: "14px", fontWeight: 600 }}
+              sx={{
+                width: { xs: "100%", md: "unset" },
+                fontSize: "14px",
+                fontWeight: 600,
+              }}
             >
               Cancel
             </Button>
@@ -587,7 +593,11 @@ export default function ContactInformation({
               type="submit"
               variant="contained"
               className={[styles.formButton, styles.primary].join(" ")}
-              sx={{ ...buttonWidth, fontSize: "14px", fontWeight: 600 }}
+              sx={{
+                width: { xs: "100%", md: "unset" },
+                fontSize: "14px",
+                fontWeight: 600,
+              }}
             >
               Save
             </Button>

@@ -23,7 +23,6 @@ import ReplyIcon from "@mui/icons-material/Reply";
 import PrintOutlinedIcon from "@mui/icons-material/PrintOutlined";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { TEST_ID } from "../../../utils/constants";
-import { useRouter } from "next/router";
 import moment from "moment";
 
 function descendingComparator(a, b, orderBy) {
@@ -43,8 +42,11 @@ const getComparator = (order, orderBy) => {
 };
 
 const ref = (row, key) => {
-  key.split(".").forEach((k) => (row ? (row = row[k]) : undefined));
-  return row;
+  let returnedRow;
+  key.split(".").forEach((k) => {
+    if (row) returnedRow = row[k];
+  });
+  return returnedRow;
 };
 
 // This method is created for cross-browser compatibility, if you don't
@@ -143,8 +145,6 @@ export default function TableWithSort({
   const [page] = React.useState(0);
   const [dense] = React.useState(false);
   const [rowsPerPage] = React.useState(5);
-
-  const router = useRouter();
 
   const handleRequestSort = (_event, property) => {
     const isAsc = orderBy === property && order === "asc";

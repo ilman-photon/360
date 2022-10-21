@@ -1,6 +1,6 @@
 import React from "react";
 
-function PDFFileIcon() {
+function GlassesIcon() {
   return (
     <svg
       width="24"
@@ -21,4 +21,4 @@ function PDFFileIcon() {
   );
 }
 
-export default PDFFileIcon;
+export default GlassesIcon;

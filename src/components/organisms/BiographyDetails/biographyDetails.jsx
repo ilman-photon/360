@@ -78,12 +78,12 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
     );
   };
 
-  const getAddressQuery = (address) => {
-    const addressLine1 = address.addressLine1 || "";
-    const addressLine2 = address.addressLine2 || "";
-    const city = address.city || "";
-    const state = address.state || "";
-    const zipcode = address.zipcode || address.zip || "";
+  const getAddressQuery = (addressPayload) => {
+    const addressLine1 = addressPayload.addressLine1 || "";
+    const addressLine2 = addressPayload.addressLine2 || "";
+    const city = addressPayload.city || "";
+    const state = addressPayload.state || "";
+    const zipcode = addressPayload.zipcode || addressPayload.zip || "";
 
     return `${addressLine1}${addressLine2}${city}${state}${zipcode}`.replace(
       / /g,

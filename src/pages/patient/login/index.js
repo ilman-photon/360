@@ -81,12 +81,12 @@ export const loginProps = {
               localStorage.getItem("userData")
             );
             if (userStorageData) {
-              const response = await dispatch(
+              const userResponse = await dispatch(
                 fetchUser({ patientId: userStorageData.patientId })
               );
               localStorage.setItem(
                 "userProfile",
-                JSON.stringify(response.payload)
+                JSON.stringify(userResponse.payload)
               );
             }
 

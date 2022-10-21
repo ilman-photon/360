@@ -45,7 +45,7 @@ module.exports = {
   TEST_ID: {
     LOGIN_TEST_ID: {
       email: "emailorphonenumber",
-      password: "password",
+      passwordField: "password",
       forgotLink: "forgotpswd",
       loginBtn: "loginbtn",
       guestBtn: "continueasguest",
@@ -67,7 +67,7 @@ module.exports = {
       calander: "calander",
       email: "email",
       mobilenumber: "mobilenumber",
-      password: "password",
+      passwordField: "password",
       emailradio: "emailradio",
       phoneradio: "phoneradio",
       bothradio: "bothradio",
@@ -81,7 +81,7 @@ module.exports = {
       calander: "calander",
       email: "email",
       mobilenumber: "mobilenumber",
-      password: "password",
+      passwordField: "password",
       emailradio: "emailradio",
       phoneradio: "phoneradio",
       bothradio: "bothradio",
