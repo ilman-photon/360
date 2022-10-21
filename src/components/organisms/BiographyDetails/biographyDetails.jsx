@@ -92,10 +92,9 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
   };
 
   const renderAddress = (newAddressArray) => {
-    const mockAddress = [...newAddressArray, ...newAddressArray];
     return (
       <Box flex={1}>
-        {mockAddress.map((newAddress, idx) => {
+        {newAddressArray.map((newAddress, idx) => {
           const addressQuery = getAddressQuery(newAddress);
           return (
             <Box
