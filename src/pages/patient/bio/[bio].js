@@ -8,6 +8,7 @@ import styles from "./styles.module.scss";
 import { Api } from "../../api/api";
 import { useEffect, useState } from "react";
 import getLanguage from "../../../utils/getLanguage";
+import { useLoadScript } from "@react-google-maps/api";
 
 export async function getServerSideProps(context) {
   const { bio } = context.query;
@@ -22,6 +23,10 @@ export async function getServerSideProps(context) {
 export default function Bio({ embedApi, bio }) {
   const [providerData, setProviderData] = useState();
 
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: embedApi,
+  });
+
   const getArrayValue = (data) => {
     if (data) {
       const isMultipleValue = Array.isArray(data);
@@ -29,6 +34,19 @@ export default function Bio({ embedApi, bio }) {
     } else {
       return "";
     }
+  };
+
+  const getAddressQuery = (address) => {
+    const addressLine1 = address.addressLine1 || "";
+    const addressLine2 = address.addressLine2 || "";
+    const city = address.city || "";
+    const state = address.state || "";
+    const zipcode = address.zipcode || address.zip || "";
+
+    return `${addressLine1}+${addressLine2}+${city}+${state}+${zipcode}`.replace(
+      / /g,
+      "+"
+    );
   };
 
   const mapper = (response) => {
@@ -92,7 +110,8 @@ export default function Bio({ embedApi, bio }) {
   }, [providerData]);
 
   return (
-    providerData && (
+    providerData &&
+    isLoaded && (
       <Box className={styles.bioPage}>
         <Box className={styles.shortBioContainer}>
           <ProviderProfile providerData={providerData} variant={"bio"} />

@@ -3,6 +3,7 @@ import styles from "./styles.module.scss";
 import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
 import { useRef, useState } from "react";
 import constants from "../../../utils/constants";
+import GMaps from "../Google/Maps/gMaps";
 
 export default function BiographyDetails({ providerData = {}, googleApiKey }) {
   const aboutRef = useRef(null);
@@ -85,15 +86,16 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
     const state = address.state || "";
     const zipcode = address.zipcode || address.zip || "";
 
-    return `${addressLine1}${addressLine2}${city}${state}${zipcode}`.replace(
+    return `${addressLine1}+${addressLine2}+${city}+${state}+${zipcode}`.replace(
       / /g,
       "+"
     );
   };
 
   const renderAddress = (newAddressArray) => {
+    console.log({ addressQuery, googleApiKey });
     return (
-      <Box flex={1}>
+      <Box className={styles.addressWrapper}>
         {newAddressArray.map((newAddress, idx) => {
           const addressQuery = getAddressQuery(newAddress);
           return (
@@ -299,7 +301,25 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
 
         <Box className={styles.mapContainer}>
           <Box className={styles.map}>
-            <iframe
+            <GMaps
+              apiKey={googleApiKey}
+              providerListData={[
+                {
+                  coordinate: {
+                    latitude: 41.881832,
+                    longitude: -87.623177,
+                  },
+                },
+                {
+                  coordinate: {
+                    latitude: 41.841832,
+                    longitude: -87.623177,
+                  },
+                },
+              ]}
+              disable={true}
+            />
+            {/* <iframe
               width="100%"
               height="100%"
               style={{ border: 0 }}
@@ -307,7 +327,7 @@ export default function BiographyDetails({ providerData = {}, googleApiKey }) {
               referrerPolicy="no-referrer-when-downgrade"
               src={`https://www.google.com/maps/embed/v1/place?key=${googleApiKey}&q=${addressQuery}`}
               aria-label="Map"
-            ></iframe>
+            ></iframe> */}
           </Box>
           {renderAddress(address)}
         </Box>

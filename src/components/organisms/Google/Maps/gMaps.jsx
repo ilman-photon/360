@@ -15,6 +15,7 @@ const center = {
 
 function GMaps({
   providerListData = [],
+  disable = false,
   OnTimeClicked = () => {
     // This is intended
   },
@@ -70,6 +71,7 @@ function GMaps({
       zoom={6}
       onLoad={onLoad}
       onClick={() => handleActiveMarker(null)}
+      clickableIcons={!disable}
     >
       {/* Child components, such as markers, info windows, etc. */}
       {markers.map((marker, idx) => (
@@ -81,8 +83,9 @@ function GMaps({
           icon={{
             url: "/provider-pin.svg",
           }}
+          clickable={!disable}
         >
-          {activeMarker === idx ? (
+          {activeMarker === idx && !disable ? (
             <InfoWindowF onCloseClick={() => setActiveMarker(null)}>
               <InfoWindowContent
                 data={marker.providerData}
