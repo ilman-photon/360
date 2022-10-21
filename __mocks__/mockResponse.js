@@ -9201,6 +9201,7 @@ export const mockUserData = {
   title: 0,
   firstName: "dewo",
   lastName: "Simanjuntak",
+  nickName: "",
   dob: "12/12/1991",
   age: "30",
   sex: 0,
@@ -9214,10 +9215,10 @@ export const mockUserData = {
         type: 1,
         email: "patient123@gmail.com",
         _id: "69218e5a-dc72-4883-82c5-ea359b058c74",
-        _version: "8f2d0a2a-c528-441c-a598-61e5d76eef9c",
+        _version: "229ccfc8-5fda-47f7-8cd2-1c2f57df7b48",
         _created: "Oct 13, 2022, 4:31:42 PM",
-        _updated: "Oct 13, 2022, 4:31:42 PM",
-        _createdBy: {
+        _updated: "Oct 21, 2022, 4:32:36 PM",
+        _updatedBy: {
           _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
           _links: {
             self: {
@@ -9232,10 +9233,10 @@ export const mockUserData = {
       phone: false,
       text: false,
       email: false,
-      _id: "6132788a-1a30-4b7d-b099-0e2812a4a2b2",
-      _version: "7b45daa1-df05-4931-adbe-4018c9ba3bf3",
-      _created: "Oct 13, 2022, 4:31:42 PM",
-      _updated: "Oct 13, 2022, 4:31:42 PM",
+      _id: "2d83bdb9-0f09-407e-b0b7-89b8ededc390",
+      _version: "36666e42-78b4-47e4-8e82-61f36f1bbf17",
+      _created: "Oct 21, 2022, 4:32:36 PM",
+      _updated: "Oct 21, 2022, 4:32:36 PM",
       _createdBy: {
         _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
         _links: {
@@ -9244,10 +9245,10 @@ export const mockUserData = {
       },
     },
     _id: "ff408b85-1e4f-4dc8-9af9-64930cd3e904",
-    _version: "9863ac12-b6fd-4b35-8b04-9614c8745c0d",
+    _version: "81433c90-f7a6-4137-80bf-a7c90303f731",
     _created: "Oct 13, 2022, 4:31:42 PM",
-    _updated: "Oct 13, 2022, 4:31:42 PM",
-    _createdBy: {
+    _updated: "Oct 21, 2022, 4:32:36 PM",
+    _updatedBy: {
       _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
       _links: {
         self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
@@ -9255,34 +9256,48 @@ export const mockUserData = {
     },
   },
   patientDetails: {
+    stateIssuedId: {
+      digitalAsset: {
+        uid: "6c747058-c1a8-4b10-bec3-db9471ed8a32",
+        fileName: "MyCareTeam-Copy of Biography tree.jpg",
+        assetUrl: "/v1/patient",
+        _version: "78481ed0-d0e2-4642-89f1-a5403223b6a2",
+      },
+    },
+    stateIssuedIdBack: {
+      digitalAsset: {
+        uid: "e3f24f8d-014a-4fe8-9bb5-e246d4b71983",
+        fileName: "MyCareTeam-Biography tree.jpg",
+        assetUrl: "/v1/patient",
+        _version: "6a7dd383-f942-4028-86c6-767c74a3ed57",
+      },
+    },
     isFlagNew: true,
     isFlagInCollection: false,
     isFlagBadCheck: false,
     isFlagDeceased: false,
     isFlagChartless: true,
     _id: "8c2a42bd-b917-4ef4-8a43-d78baae992ca",
-    _version: "c8978b70-2ab5-4e89-90e4-00d03a690213",
+    _version: "544ecf20-9837-4f07-ba78-eabb8e1bb5b9",
     _created: "Oct 13, 2022, 4:31:42 PM",
-    _updated: "Oct 13, 2022, 4:31:42 PM",
-    _createdBy: {
+    _updated: "Oct 21, 2022, 4:32:36 PM",
+    _updatedBy: {
       _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
       _links: {
         self: { href: "/v1/employees/1e5ac1f2-293b-4966-8bcc-76a6d4502c6f" },
       },
     },
   },
-  alerts: [],
   familyMember: [],
-  status: "CREATED",
-  sources: [],
+  status: "UPDATED",
   isEmergencyContactAvailable: false,
   _links: {
     self: { href: "/v1/patients/f352a9fe-53a4-4be8-866f-851ce45331ff" },
   },
   _id: "f352a9fe-53a4-4be8-866f-851ce45331ff",
-  _version: "4a2be31b-96f8-4804-95df-a673c0801713",
+  _version: "7b276056-d8ba-414c-94bb-5228a9a00a6a",
   _created: "Oct 13, 2022, 4:31:42 PM",
-  _updated: "Oct 19, 2022, 4:09:50 PM",
+  _updated: "Oct 21, 2022, 4:32:36 PM",
   _createdBy: {
     _id: "1e5ac1f2-293b-4966-8bcc-76a6d4502c6f",
     _links: {
