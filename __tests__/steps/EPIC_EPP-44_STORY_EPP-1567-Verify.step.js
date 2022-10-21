@@ -382,7 +382,6 @@ defineFeature(feature, (test) => {
     inputDate();
     inputPurpose();
     inputInsurance();
-    clickSearch();
   };
 
   const inputLocation = async () => {
@@ -597,7 +596,7 @@ defineFeature(feature, (test) => {
     );
 
     and("click on Search button", () => {
-      defaultValidation();
+      clickSearch();
     });
 
     and(
@@ -701,8 +700,9 @@ defineFeature(feature, (test) => {
       }
     );
 
-    then("user should see the text Is this the medical emergency?", () => {
-      defaultValidation();
+    then("user should see the text Is this the medical emergency?", async () => {
+      confirmationPage();
+      await waitFor(() => container.getByText(/isEmergency/i));
     });
   });
 
@@ -796,21 +796,21 @@ defineFeature(feature, (test) => {
     then,
   }) => {
     given("user launch the Marketing Site url", () => {
-      // defaultValidation();
+      defaultValidation();
     });
 
     when("user clicks on the Schedule your Eye Exam button", () => {
-      // defaultValidation();
+      defaultValidation();
     });
 
     and("schedule the appointment.", () => {
-      // scheduleAppontment();
+      scheduleAppontment();
     });
 
     then(
       "the user should receive the Confirmation Text message for successful Appointment schedule.",
       () => {
-        // defaultValidation();
+        defaultValidation();
       }
     );
   });

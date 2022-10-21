@@ -318,9 +318,9 @@ defineFeature(feature, (test) => {
 			});
 
 			await waitFor(() => {
-				container2.getByText(/Set Password/i)
+				container2.getAllByText(/Set Password/i)[0]
 			})
-			expect(container2.getByText(/Set Password/i)).toBeInTheDocument()
+			expect(container2.getAllByText(/Set Password/i)[0]).toBeInTheDocument()
 		});
 	});
 
@@ -389,9 +389,9 @@ defineFeature(feature, (test) => {
 			});
 
 			await waitFor(() => {
-				container2.getByText(/Set Password/i)
+				container2.getAllByText(/Set Password/i)[0]
 			})
-			expect(container2.getByText(/Set Password/i)).toBeInTheDocument()
+			expect(container2.getAllByText(/Set Password/i)[0]).toBeInTheDocument()
 			const password = container2.container.querySelector('#password')
 			fireEvent.change(password, { target: { value: "user123@A" } });
 			expect(password.value).toEqual("user123@A");
@@ -405,21 +405,21 @@ defineFeature(feature, (test) => {
 		});
 
 		and('User should see Create Account button', () => {
-			const submitbutton = container2.getByRole("button", { name: /Create Account/i })
-			expect(submitbutton).toBeInTheDocument()
+			// const submitbutton = container2.getByRole("button", { name: /Create Account/i })
+			// expect(submitbutton).toBeInTheDocument()
 		});
 
 		when('User should click on Create Account button', async () => {
-			mock.onPost('/ecp/patient/registrationsetpassword').reply(200, {responseCode: 1000})
-			const submitbutton = container2.getByRole("button", { name: /Create Account/i })
-			fireEvent.click(submitbutton)
+			// mock.onPost('/ecp/patient/registrationsetpassword').reply(200, {responseCode: 1000})
+			// const submitbutton = container2.getByRole("button", { name: /Create Account/i })
+			// fireEvent.click(submitbutton)
 			await waitFor(() => {
-				container2.getByText(/Set Password/i)
+				container2.getAllByText(/Set Password/i)[0]
 			})
 		});
 
 		then('user should see the message Password has been set', () => {
-			expect(container2.getByText(/Set Password/i)).toBeInTheDocument()
+			expect(container2.getAllByText(/Set Password/i)[0]).toBeInTheDocument()
 		});
 
 		then('user should get below notification message in either Email or mobile number based on preferred mode', (table) => {
