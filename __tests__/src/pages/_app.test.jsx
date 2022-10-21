@@ -21,7 +21,7 @@ import {
   TEMP_DATA_CONTACTS,
   TEMP_DATA_GLASSES,
   TEMP_DATA_MEDICATION,
-} from "../../../__mocks__/component-mock";
+} from "../../../__mocks__/mockResponse";
 
 const MOCK_SUGGESTION_DATA = {
   appointmentType: [
