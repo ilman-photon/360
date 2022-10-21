@@ -99,7 +99,7 @@ describe("App", () => {
   it("Create appointment no login desktop", async () => {
     window.matchMedia = createMatchMedia("1920px");
     const container = render(<App Component={ScheduleAppointmentPage} />);
-    expect(container.getByText("Dr Steve Adam")).toBeInTheDocument();
+    expect(container.getByText("Review Appointment Details")).toBeInTheDocument();
     await fillForm(container);
     await waitFor(() => container.getByText("scheduleAppoinment"));
     fireEvent.click(container.getByText("scheduleAppoinment"));
@@ -109,7 +109,7 @@ describe("App", () => {
     window.matchMedia = createMatchMedia("700px");
     const props = getServerSideProps({});
     const container = render(<App Component={ScheduleAppointmentPage} />);
-    expect(container.getByText("Dr Steve Adam")).toBeInTheDocument();
+    expect(container.getByText("Review")).toBeInTheDocument();
     await fillForm(container);
     await waitFor(() => container.getByText("scheduleAppoinment"));
     fireEvent.click(container.getByText("scheduleAppoinment"));
@@ -119,7 +119,7 @@ describe("App", () => {
     window.matchMedia = createMatchMedia("700px");
     const props = getServerSideProps({});
     const container = render(<App Component={ScheduleAppointmentPage} />);
-    expect(container.getByText("Dr Steve Adam")).toBeInTheDocument();
+    expect(container.getByText("Review")).toBeInTheDocument();
     await fillForm(container);
     await waitFor(() => container.getByText("signIn"));
     fireEvent.click(container.getByText("signIn"));

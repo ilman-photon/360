@@ -24,8 +24,6 @@ const pages = [
   { href: "/patient", label: "Dashboard" },
   { href: "/patient/appointments", label: "Appointments" },
 ];
-const expandablePages = ["Medical Record", "Documents"];
-const settings = ["Intake forms", "Insurance", "Health Record"];
 
 const documents = [
   {
