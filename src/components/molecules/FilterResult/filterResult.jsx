@@ -60,7 +60,6 @@ export const FilterResult = ({
   const [currentDateIndex, setCurrentDateIndex] = useState(0);
 
   useEffect(() => {
-    console.log("Comp rangeDate: ", rangeDate);
     const dates = getDates(
       new Date(rangeDate.startDate),
       new Date(rangeDate.endDate),
