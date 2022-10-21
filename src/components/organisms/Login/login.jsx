@@ -109,6 +109,8 @@ export function Login({
                   }}
                 />
                 <Controller
+                  tabIndex={0}
+                  aria-label={"Password Field"}
                   name="password"
                   control={control}
                   defaultValue=""
@@ -119,6 +121,8 @@ export function Login({
                     return (
                       <StyledInput
                         id="password"
+                        tabIndex={0}
+                        aria-label={"Password Field"}
                         data-testid={LOGIN_TEST_ID.password}
                         label={t("passwordLabel")}
                         type={constants.INPUT_PASSWORD}
@@ -176,9 +180,13 @@ export function Login({
                     textAlign: "center",
                   }}
                 >
-                  {t("alreadyHaveAnAppointment")}
+                  <div tabIndex={0} aria-label={t("alreadyHaveAnAppointment")}>
+                    {t("alreadyHaveAnAppointment")}
+                  </div>
+
                   <br />
                   <Link
+                    aria-label={t("syncYourAppointmentInformation") + " Link"}
                     className={styles.link}
                     data-testid={LOGIN_TEST_ID.syncAppointmentLink}
                     {...getLinkAria(t("syncYourAppointmentInformation"))}
@@ -195,6 +203,7 @@ export function Login({
             <Grid container justifyContent={constants.CENTER}>
               <Typography
                 variant="bodyMedium"
+                tabIndex={0}
                 sx={{ color: "#003B4A" }}
                 aria-label={t("dontHaveAccountLabel")}
               >

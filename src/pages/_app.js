@@ -51,9 +51,10 @@ function App({ Component, pageProps }) {
     // perform what ever idle action you want such as log out your user.
     // Events will be rebound as long as `stopOnMount` is not set.
     setRemaining(0);
+    pause();
   };
 
-  const { getRemainingTime, isPrompted, activate } = useIdleTimer({
+  const { getRemainingTime, isPrompted, reset, pause } = useIdleTimer({
     timeout,
     promptTimeout,
     onIdle,
@@ -62,11 +63,12 @@ function App({ Component, pageProps }) {
 
   const onClickStayLoggedIn = () => {
     setOpen(false);
-    activate();
+    reset();
   };
 
   const onClickedLoggedOff = () => {
     setOpen(false);
+    reset();
   };
   const isLogin = cookies.get("authorized") || cookies.get("mfa");
 

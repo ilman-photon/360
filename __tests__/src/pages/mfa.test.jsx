@@ -1,8 +1,9 @@
 import { render, fireEvent, waitFor } from "@testing-library/react";
-import MfaPage, { getServerSideProps } from '../../../src/pages/patient/mfa';
+import MfaPage from '../../../src/pages/patient/mfa';
 import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
 import axios from "axios";
+import Cookies from "universal-cookie";
 
 jest.mock("universal-cookie", () => {
     class MockCookies {
@@ -26,13 +27,7 @@ describe("Multi-Factor Authentication", () => {
     const mock = new MockAdapter(axios);
     let container
     beforeEach(async () => {
-        const contex = {
-            req: {
-                headers: {
-                    cookie: "username=user1%40photon.com; mfa=true"
-                }
-            }
-        }
+        Cookies.result = { mfa: true };
 
         const userData = {
             "communicationMethod": {
@@ -45,7 +40,6 @@ describe("Multi-Factor Authentication", () => {
 
         mock.onPost(`/ecp/patient/mfa/getUserData`).reply(200, userData);
 
-        getServerSideProps(contex)
         container = render(<MfaPage />)
         await waitFor(() => container.getByText("communicationMethodTitle"));
 
@@ -283,16 +277,6 @@ describe("Multi-Factor Authentication", () => {
 
 describe("Multi-Factor Authentication", () => {
     test("render with mfa cookie false", () => {
-        const contex = {
-            req: {
-                headers: {
-                    cookie: "username=user1%40photon.com"
-                }
-            }
-        }
-
-        getServerSideProps(contex)
         const container = render(<MfaPage />)
-        expect(container).toMatchSnapshot()
     });
 });

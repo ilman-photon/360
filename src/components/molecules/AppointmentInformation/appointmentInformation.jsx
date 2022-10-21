@@ -1,65 +1,38 @@
 import { Box, Typography, Link } from "@mui/material";
 import styles from "./styles.module.scss";
-import Image from "next/image";
 import DirectionsOutlinedIcon from "@mui/icons-material/DirectionsOutlined";
-import { useEffect, useState } from "react";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import { Api } from "../../../pages/api/api";
 import PhoneNumber from "../../atoms/PhoneNumber/phoneNumber";
+import ImageFallback from "../../atoms/Image/image";
 
 export default function AppointmentInformation({ data }) {
-  const getProviderLocation = () => {
-    if (!data.providerInfo.location) return "#";
-    return `https://www.google.com/maps/search/?api=1&query=${data.providerInfo.location.latitude},${data.providerInfo.location.longitude}`;
+  const getProviderLocation = (address) => {
+    if (address === "") return "#";
+    const addressLine1 = address.addressLine1 || "";
+    const addressLine2 = address.addressLine2 || "";
+    const state = address.state || "";
+    const zipcode = address.zipcode || address.zip || "";
+    const city = address.city || "";
+
+    const addressQuery =
+      `${addressLine1}${addressLine2}${city}${state}${zipcode}`.replace(
+        / /g,
+        "+"
+      );
+    return `https://www.google.com/maps/search/?api=1&query=${addressQuery}`;
   };
-
-  const [providerImage, setProviderImage] = useState("");
-  const [isRequested, setIsRequested] = useState(false);
-
-  const getProviderImage = (imageId) => {
-    const api = new Api();
-    api
-      .getURLDigitalAsset(imageId)
-      .then((response) => {
-        const imageURL = response.presignedUrl;
-        setProviderImage(imageURL);
-      })
-      .catch(() => {
-        setProviderImage("");
-      })
-      .finally(() => {
-        setIsRequested(true);
-      });
-  };
-
-  useEffect(() => {
-    !isRequested && getProviderImage(data.providerInfo.image);
-  });
 
   return (
     <Box className={styles.appointmentInformation}>
       <Box className={styles.imageContainer}>
-        {providerImage !== "" ? (
-          <Image
-            src={providerImage}
-            layout="fill"
-            tabIndex={0}
-            className={styles.profilePhoto}
-            alt="Doctor Image"
-            aria-label="Doctor Image"
-          ></Image>
-        ) : (
-          <AccountCircleIcon
-            sx={{
-              width: { xs: "66px", md: "100px" },
-              height: { xs: "66px", md: "100px" },
-              color: "#b5b5b5",
-            }}
-            className={styles.profilePhoto}
-            alt="Doctor Image"
-            tabIndex={0}
-          />
-        )}
+        <ImageFallback
+          src={data.providerInfo.image}
+          layout="fill"
+          tabIndex={0}
+          className={styles.profilePhoto}
+          alt="Doctor Image"
+          fallbackSrc={"/cardImage.png"}
+          aria-label="Doctor Image"
+        />
       </Box>
       <Box className={styles.nameContainer}>
         <Typography
@@ -133,7 +106,7 @@ export default function AppointmentInformation({ data }) {
             <DirectionsOutlinedIcon></DirectionsOutlinedIcon>
             <Link
               className={styles.getDirectionLinkText}
-              href={getProviderLocation()}
+              href={getProviderLocation(data.providerInfo.address)}
               target="_blank"
             >
               Get directions
@@ -149,19 +122,25 @@ export default function AppointmentInformation({ data }) {
           >
             Insurance
           </Typography>
-          {data.appointmentInfo.insuranceCarrier.map((item, index) => {
-            return (
-              <Typography
-                tabIndex={0}
-                ariaLabel={item}
-                variant="body2"
-                key={index}
-                sx={{ color: "#191919" }}
-              >
-                {item}
-              </Typography>
-            );
-          })}
+          {data.appointmentInfo.insuranceCarrier.length > 0 ? (
+            data.appointmentInfo.insuranceCarrier.map((item, index) => {
+              return (
+                <Typography
+                  tabIndex={0}
+                  ariaLabel={item}
+                  variant="body2"
+                  key={index}
+                  sx={{ color: "#191919" }}
+                >
+                  {item}
+                </Typography>
+              );
+            })
+          ) : (
+            <Typography ariaLabel="-" variant="body2" sx={{ color: "#191919" }}>
+              -
+            </Typography>
+          )}
         </Box>
       </Box>
     </Box>

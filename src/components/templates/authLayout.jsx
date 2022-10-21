@@ -72,7 +72,6 @@ export default function AuthLayout({
                 sx={{
                   paddingTop: {
                     xs: showMobileImage ? "0px!important" : "75px!important",
-                    sm: "90px!important",
                     md: "92px!important",
                   },
                   padding: 0,
@@ -84,8 +83,15 @@ export default function AuthLayout({
             <Container
               className={styles.authImageContainer}
               sx={{
-                display: { xs: showMobileImage ? "flex" : "none", md: "flex" },
+                display: {
+                  xs: showMobileImage ? "flex" : "none",
+                  sm: "none",
+                  lg: "flex",
+                },
                 padding: 0,
+                "@media (orientation: landscape)": {
+                  display: "flex",
+                },
               }}
             >
               <div

@@ -1,4 +1,4 @@
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, waitFor, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { defineFeature, loadFeature } from "jest-cucumber";
 import { Provider } from "react-redux";
@@ -10,6 +10,7 @@ import FilterResult from "../../src/components/molecules/FilterResult/filterResu
 import ScheduleAppointmentPage from "../../src/pages/patient/schedule-appointment";
 import mediaQuery from "css-mediaquery";
 import ModalConfirmation from "../../src/components/organisms/ScheduleAppointment/ScheduleConfirmation/modalConfirmation";
+import { renderLogin } from "../../__mocks__/commonSteps";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-1573.feature"
@@ -346,8 +347,8 @@ defineFeature(feature, (test) => {
   function createMatchMedia(width) {
     return (query) => ({
       matches: mediaQuery.match(query, { width }),
-      addListener: () => {},
-      removeListener: () => {},
+      addListener: () => { },
+      removeListener: () => { },
     });
   }
 
@@ -582,8 +583,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(myselfButton);
     });
 
-    and("user redirects to the login screen", () => {
-      defaultValidation();
+    and("user redirects to the login screen", async () => {
+      container = await renderLogin()
     });
 
     and("user clicks on the continue as guest", () => {
@@ -596,8 +597,11 @@ defineFeature(feature, (test) => {
 
     and(
       "user clicks on the Already have an appointment? Sync your appointment information button",
-      () => {
-        defaultValidation();
+      async () => {
+        cleanup()
+        container = await renderLogin()
+        const syncButton = container.getByText("syncYourAppointmentInformation");
+        fireEvent.click(syncButton);
       }
     );
 
@@ -705,8 +709,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(myselfButton);
     });
 
-    and("user redirects to the login screen", () => {
-      defaultValidation();
+    and("user redirects to the login screen", async () => {
+      container = await renderLogin()
     });
 
     and("user clicks on the continue as guest", () => {
@@ -719,8 +723,11 @@ defineFeature(feature, (test) => {
 
     and(
       "user clicks on the Already have an appointment? Sync your appointment information button",
-      () => {
-        defaultValidation();
+      async () => {
+        cleanup()
+        container = await renderLogin()
+        const syncButton = container.getByText("syncYourAppointmentInformation");
+        fireEvent.click(syncButton);
       }
     );
 
@@ -828,8 +835,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(myselfButton);
     });
 
-    and("user redirects to the login screen", () => {
-      defaultValidation();
+    and("user redirects to the login screen", async () => {
+      container = await renderLogin()
     });
 
     and("user clicks on the continue as guest", () => {
@@ -842,8 +849,11 @@ defineFeature(feature, (test) => {
 
     and(
       "user clicks on the Already have an appointment? Sync your appointment information button",
-      () => {
-        defaultValidation();
+      async () => {
+        cleanup()
+        container = await renderLogin()
+        const syncButton = container.getByText("syncYourAppointmentInformation");
+        fireEvent.click(syncButton);
       }
     );
 
@@ -951,8 +961,8 @@ defineFeature(feature, (test) => {
       fireEvent.click(myselfButton);
     });
 
-    and("user redirects to the login screen", () => {
-      defaultValidation();
+    and("user redirects to the login screen", async () => {
+      container = await renderLogin()
     });
 
     and("user clicks on the continue as guest", () => {
@@ -965,8 +975,11 @@ defineFeature(feature, (test) => {
 
     and(
       "user clicks on the Already have an appointment? Sync your appointment information button",
-      () => {
-        defaultValidation();
+      async () => {
+        cleanup()
+        container = await renderLogin()
+        const syncButton = container.getByText("syncYourAppointmentInformation");
+        fireEvent.click(syncButton);
       }
     );
 

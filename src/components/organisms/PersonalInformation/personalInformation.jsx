@@ -25,6 +25,7 @@ import { GENDER_LIST, TITLE_LIST } from "../../../utils/constantData";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import ImageFallback from "../../atoms/Image/image";
 import FormMessage from "../../molecules/FormMessage/formMessage";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 export default function PersonalInformation({
   userData = {},
@@ -394,6 +395,9 @@ export default function PersonalInformation({
                         color: "#A5A5AC",
                       },
                     }}
+                    SelectProps={{
+                      IconComponent: KeyboardArrowDownIcon,
+                    }}
                   />
                 );
               }}
@@ -475,6 +479,9 @@ export default function PersonalInformation({
                         fontWeight: "700",
                         fontFamily: "Roboto",
                       },
+                    }}
+                    SelectProps={{
+                      IconComponent: KeyboardArrowDownIcon,
                     }}
                   />
                 );
@@ -625,6 +632,7 @@ export default function PersonalInformation({
               data-testid={testIds.btnCancel}
               variant="contained"
               className={[styles.formButton, styles.outlined].join(" ")}
+              sx={{ fontSize: "14px", fontWeight: 600 }}
             >
               Cancel
             </Button>
@@ -633,6 +641,7 @@ export default function PersonalInformation({
               data-testid={testIds.btnSave}
               variant="contained"
               className={[styles.formButton, styles.primary].join(" ")}
+              sx={{ fontSize: "14px", fontWeight: 600 }}
             >
               Save
             </Button>
