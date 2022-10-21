@@ -26,9 +26,12 @@ describe("ProfileInformationPage", () => {
   beforeEach(async () => {
     const mock = new MockAdapter(axios);
     const userData = JSON.parse(localStorage.getItem("userData"));
+    const mockUserDataNoImage = { ...mockUserData };
+    delete mockUserDataNoImage.patientDetails.stateIssuedId;
+    delete mockUserDataNoImage.patientDetails.stateIssuedIdBack;
     mock
       .onGet(`/ecp/patient/getPatient/${userData?.patientId}`)
-      .reply(200, mockUserData);
+      .reply(200, mockUserDataNoImage);
     mock
       .onGet(
         `https://public.opendatasoft.com/api/records/1.0/search/?dataset=georef-united-states-of-america-state&q=&sort=ste_name&facet=ste_name&rows=99`
@@ -69,7 +72,7 @@ describe("ProfileInformationPage", () => {
     );
     global.URL.createObjectURL = jest.fn(() => "/details.png");
     const file = new File(["(⌐□_□)"], "chucknorris.png", { type: "image/png" });
-    const button = container.getAllByTestId("loc_edit")[0];
+    const button = container.getAllByLabelText("Edit option")[0];
     act(() => {
       fireEvent.click(button);
     });
