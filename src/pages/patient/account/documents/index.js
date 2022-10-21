@@ -144,7 +144,7 @@ export default function AccountDocumentsPage() {
       <Controller
         name="category"
         control={control}
-        render={({ field: { onChange, value }, fieldState: { error } }) => {
+        render={({ field: { onChange, value } }) => {
           return (
             <StyledSelect
               options={categories}
