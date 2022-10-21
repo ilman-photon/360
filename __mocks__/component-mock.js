@@ -12,6 +12,13 @@ beforeAll(() => {
   window.HTMLElement.prototype.scrollIntoView = function (scrollParams) {
     expect(typeof scrollParams).toEqual("object");
   };
+  const env = process.env;
+  process.env = {
+    ...env,
+    MAPBOX_API_TOKEN:
+      "pk.eyJ1Ijoia3VydWt1cnVydXUiLCJhIjoiY2w2dWdteXhlMDM4eTNkczh3ZnA4c2N6NSJ9.ilTZ5K51DsrAXlnJBuD_tw",
+    GOOGLE_API_KEY: "AIzaSyC-qQiijvHAdB0Ag8z4r3vZoWdPViV-wfQ",
+  };
 });
 
 afterAll(cleanup);
