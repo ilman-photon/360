@@ -26,7 +26,11 @@ const pages = [
 ];
 
 const pagesNext = [
-  { href: "/patient/my-care-team", label: "My Care Team" },
+  {
+    href: "/patient/my-care-team",
+    additional: "/patient/bio/",
+    label: "My Care Team",
+  },
   { href: "/patient/messaging", label: "Messaging" },
 ];
 
@@ -73,7 +77,10 @@ const Navbar = ({ isDashboard = false }) => {
   const router = useRouter();
 
   const isCurrentPath = (href) => {
-    return router.pathname === href;
+    return (
+      router.pathname === href ||
+      (router.pathname.includes(href) && href !== "/patient")
+    );
   };
   (function prefetchPages() {
     if (typeof window !== "undefined") router.prefetch(router.pathname);
@@ -225,9 +232,10 @@ const Navbar = ({ isDashboard = false }) => {
                     borderRadius: "2px 2px 0px 0px",
                     borderTop: "solid 4px transparent",
                     paddingBottom: "1px",
-                    borderBottom: isCurrentPath(page.href)
-                      ? "solid 4px #D9D9D9"
-                      : "solid 4px transparent",
+                    borderBottom:
+                      isCurrentPath(page.href) || isCurrentPath(page.additional)
+                        ? "solid 4px #D9D9D9"
+                        : "solid 4px transparent",
                   }}
                 >
                   {page.label}
