@@ -296,15 +296,6 @@ export default function ScheduleAppointmentPage() {
     if (!appointmentScheduleData.appointmentInfo.appointmentType) {
       router.push("/patient/appointment");
     }
-    const post = {
-      username: appointmentScheduleData.patientInfo.email,
-    };
-    {
-      isLogin &&
-        api.getPatientId(post).then((response) => {
-          setPatientId(response.ecpPatientId || "");
-        });
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [router]);
 
@@ -317,6 +308,15 @@ export default function ScheduleAppointmentPage() {
     const cookies = new Cookies();
     const isLogin = cookies.get("authorized", { path: "/patient" }) === "true";
     setIsLoggedIn(isLogin);
+    const post = {
+      username: appointmentScheduleData.patientInfo.email,
+    };
+    {
+      isLogin &&
+        api.getPatientId(post).then((response) => {
+          setPatientId(response.ecpPatientId || "");
+        });
+    }
   }, []);
 
   React.useEffect(() => {
