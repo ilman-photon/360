@@ -5,7 +5,7 @@ import ListItem from "@mui/material/ListItem";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import styles from "./accountDrawer.module.scss";
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
@@ -135,7 +135,7 @@ export const AccountDrawer = ({
           <Slide direction="left" in={!!activeMenu} mountOnEnter unmountOnExit>
             <ListItemButton sx={{ background: "#F4F4F4" }}>
               <ListItemIcon sx={{ placeContent: "start", minWidth: "unset" }}>
-                <KeyboardArrowLeftIcon sx={{ width: 24, height: 24 }} />
+                <ArrowBackIosIcon sx={{ width: 24, height: 24 }} />
               </ListItemIcon>
               <ListItemText
                 primary={getMenuTitle()}
