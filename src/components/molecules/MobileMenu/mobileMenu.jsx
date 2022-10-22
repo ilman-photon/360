@@ -90,6 +90,7 @@ export default function MobileMenu({
   ],
   open = false,
   onClose = () => {},
+  onOpen = () => {},
   onLogout = () => {},
 }) {
   const router = useRouter();
@@ -228,6 +229,7 @@ export default function MobileMenu({
       anchor="right"
       open={open}
       onClose={onClose}
+      onOpen={onOpen}
       sx={{ width: "70%" }}
     >
       {renderMenuList()}

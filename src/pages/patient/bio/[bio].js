@@ -7,7 +7,7 @@ import { Box } from "@mui/material";
 import styles from "./styles.module.scss";
 import { Api } from "../../api/api";
 import { useEffect, useState } from "react";
-import getLanguage from "../../../utils/getLanguage";
+import { getLanguage, getArrayValue } from "../../../utils/bioUtils";
 import { useLoadScript } from "@react-google-maps/api";
 
 export async function getServerSideProps(context) {
@@ -26,15 +26,6 @@ export default function Bio({ embedApi, bio }) {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: embedApi,
   });
-
-  const getArrayValue = (data) => {
-    if (data) {
-      const isMultipleValue = Array.isArray(data);
-      return !isMultipleValue ? [data] : data;
-    } else {
-      return "";
-    }
-  };
 
   const getAddressQuery = (address) => {
     const addressLine1 = address.addressLine1 || "";
@@ -78,7 +69,6 @@ export default function Bio({ embedApi, bio }) {
         response.providerDetails?.membershipAndAffiliation
       ),
     };
-    console.log(data);
     getProviderImage(data);
   };
 

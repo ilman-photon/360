@@ -17,6 +17,7 @@ import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { useDispatch } from "react-redux";
 import { setFilterData } from "../../../store/appointment";
 import { useRouter } from "next/router";
+import ImageFallback from "../../atoms/Image/image";
 
 export default function CareTeamCard({ provider, onRemove }) {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -112,11 +113,14 @@ export default function CareTeamCard({ provider, onRemove }) {
       </Box>
       <Box className={styles.bioContainer}>
         <Box className={styles.careTeamImage}>
-          <Image
-            alt="Doctor Image"
-            src={"/defaultImageMyCare.png"}
+          <ImageFallback
+            source={provider.image}
             layout="fill"
             objectFit="cover"
+            tabIndex={0}
+            alt="Doctor Image"
+            fallbackSrc={"/defaultImageMyCare.png"}
+            aria-label="Doctor Image"
           />
         </Box>
         <Box className={styles.addressContainer}>
@@ -148,7 +152,7 @@ export default function CareTeamCard({ provider, onRemove }) {
             Specialties
           </Typography>
           <Typography className={styles.text} variant="body2">
-            {provider.specialities}
+            {provider.specialties}
           </Typography>
         </Box>
         <Box>
