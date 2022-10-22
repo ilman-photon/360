@@ -1,6 +1,6 @@
 import * as React from "react";
 import { styles } from "./style";
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Container from "@mui/material/Container";
 import Toolbar from "@mui/material/Toolbar";
@@ -17,15 +17,14 @@ import Cookies from "universal-cookie";
 import { useRouter } from "next/router";
 import Image from "next/image";
 import constants from "../../../utils/constants";
-import AccountDrawer from "../../molecules/AccountDrawer/accountDrawer";
 import SubNavigation from "../../molecules/SubNavigation/subNavigation";
 import { logoutProps } from "../../../utils/authetication";
 import { useDispatch, useSelector } from "react-redux";
-import MobileNavMenu from "../../molecules/Navbar/MobileNavMenu";
 import ArrowRightAltIcon from "@mui/icons-material/ArrowRightAlt";
 import { colors } from "../../../styles/theme";
 import { setUserData } from "../../../store/user";
 import Navbar from "../../molecules/Navbar/Navbar";
+import MobileMenu from "../../molecules/MobileMenu/mobileMenu";
 
 export default function BaseHeader({
   OnLogoutClicked = (routerInstance) => {
@@ -33,7 +32,6 @@ export default function BaseHeader({
   },
   backTitle,
   onBackClicked,
-  isPrescription = false,
   showNavbar = false,
 }) {
   const { HOME_TEST_ID } = constants.TEST_ID;
@@ -77,25 +75,6 @@ export default function BaseHeader({
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
   };
-
-  const prescriptionMenus = [
-    {
-      name: "Dashboard",
-      imgSrc: "/icon-carePlan.png",
-    },
-    {
-      name: "Appointments",
-      imgSrc: "/icon-carePlan.png",
-    },
-    {
-      name: "Medical Report",
-      imgSrc: "/iconHealthRecord.png",
-    },
-    {
-      name: "Documents",
-      imgSrc: "/iconintakeFoms.png",
-    },
-  ];
 
   return (
     <>
@@ -178,28 +157,17 @@ export default function BaseHeader({
                   <MenuIcon />
                 </IconButton>
               </Box>
-              {isPrescription ? (
-                <MobileNavMenu
-                  navMenu={prescriptionMenus}
-                  isOpen={anchorElNav}
-                  onClose={() => {
-                    setAnchorElNav(false);
-                  }}
-                  onLogoutClicked={() => {
-                    OnLogoutClicked(router);
-                  }}
-                />
-              ) : (
-                <AccountDrawer
-                  onClose={() => {
-                    setAnchorElNav(false);
-                  }}
-                  opened={anchorElNav}
-                  onLogoutClicked={() => {
-                    OnLogoutClicked(router);
-                  }}
-                />
-              )}
+
+              <MobileMenu
+                onClose={() => {
+                  setAnchorElNav(false);
+                }}
+                open={anchorElNav}
+                onLogout={() => {
+                  OnLogoutClicked(router);
+                }}
+              ></MobileMenu>
+
               {/* profile menu */}
               <Box sx={styles.boxProfileMenuStyles}>
                 <Tooltip title="Username dropdown">
@@ -273,7 +241,7 @@ export default function BaseHeader({
           )}
         </Container>
       </AppBar>
-      {showNavbar && <Navbar />}
+      {showNavbar && isUserLoged && <Navbar />}
       {backTitle && (
         <SubNavigation onClick={onBackClicked} backTitle={backTitle} />
       )}
