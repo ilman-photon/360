@@ -68,6 +68,8 @@ export function Login({
           <HeadingTitle
             variant={constants.H1}
             className={styles.title}
+            tabIndex={0}
+            aria-label={"Patient login Heading"}
             title={t("formTitle")}
           />
           {renderFromMessage()}
@@ -84,6 +86,9 @@ export function Login({
                   }) => {
                     return (
                       <StyledInput
+                        tabIndex={0}
+                        InputLabelProps={{ "aria-hidden": true }}
+                        aria-label={"Email or Phone number required text field"}
                         id="username"
                         label={t("emailUserLabel")}
                         size={constants.SMALL}
@@ -110,7 +115,7 @@ export function Login({
                 />
                 <Controller
                   tabIndex={0}
-                  aria-label={"Password Field"}
+                  aria-label={"Password required text field"}
                   name="password"
                   control={control}
                   defaultValue=""
@@ -120,9 +125,10 @@ export function Login({
                   }) => {
                     return (
                       <StyledInput
-                        id="password"
                         tabIndex={0}
-                        aria-label={"Password Field"}
+                        InputLabelProps={{ "aria-hidden": true }}
+                        aria-label={"Password required text field"}
+                        id="password"
                         data-testid={LOGIN_TEST_ID.password}
                         label={t("passwordLabel")}
                         type={constants.INPUT_PASSWORD}
@@ -162,6 +168,8 @@ export function Login({
                   theme={constants.PATIENT}
                   mode={constants.PRIMARY}
                   type="submit"
+                  tabIndex={0}
+                  aria-label={"Login button"}
                   size={constants.SMALL}
                   data-testid={LOGIN_TEST_ID.loginBtn}
                   gradient={false}
@@ -188,6 +196,7 @@ export function Login({
                   <Link
                     aria-label={t("syncYourAppointmentInformation") + " Link"}
                     className={styles.link}
+                    tabIndex={0}
                     data-testid={LOGIN_TEST_ID.syncAppointmentLink}
                     {...getLinkAria(t("syncYourAppointmentInformation"))}
                     href={onAppointmentClicked}
@@ -214,6 +223,8 @@ export function Login({
             <StyledButton
               theme={constants.PATIENT}
               mode={constants.SECONDARY}
+              tabIndex={0}
+              aria-label={"Create Account button"}
               size={constants.SMALL}
               gradient={false}
               data-testid={LOGIN_TEST_ID.createAccountBtn}
