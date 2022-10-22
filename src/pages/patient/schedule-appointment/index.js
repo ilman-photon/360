@@ -124,16 +124,15 @@ export const PageContent = ({
       await api.getResponse("/ecp/patient/userregistration", postbody, "post");
       cookies.set("authorized", true, { path: "/patient" });
     } catch (err) {
-      console.error({ err });
       if (err.ResponseCode) {
         const errorMessage = MESSAGES[err.ResponseCode || 3500];
 
         dispatch(
           setFormMessage({
             success: false,
-            title: errorMessage.title,
-            content: errorMessage.content,
-            isBackToLogin: errorMessage.isBackToLogin,
+            title: errorMessage?.title,
+            content: errorMessage?.content,
+            isBackToLogin: errorMessage?.isBackToLogin,
           })
         );
       }
