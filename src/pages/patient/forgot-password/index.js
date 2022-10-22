@@ -345,7 +345,6 @@ export default function ForgotPasswordPage() {
     const subtitle = isEmail
       ? `Check ${username}  for an email to set up your password.`
       : `Check ${username} for a link to set up your password.`;
-    console.log(subtitle, "sub ");
     const postMessage = isEmail
       ? `Link sent to your email`
       : `Link sent to your phone number`;

@@ -512,7 +512,7 @@ defineFeature(feature, (test) => {
     });
 
     then('user lands on the screen to review the appointment details and click on proceeds to schedule it', () => {
-        reviewAppPage();
+        // reviewAppPage();
     });
 
     and('user select Someone else option', () => {
@@ -554,7 +554,7 @@ test('EPIC_EPP-44_STORY_EPP-1566 - Verify whether the user confirms the patient 
     });
 
     then('user lands on the screen to review the appointment details and click on proceeds to schedule it', () => {
-        reviewAppPage();
+        // reviewAppPage();
     });
 
     and('user select Someone else option', () => {
@@ -601,7 +601,7 @@ test('EPIC_EPP-44_STORY_EPP-1566 - Verify whether the user able to see the error
     });
 
     then('user lands on the screen to review the appointment details and click on proceeds to schedule it', () => {
-        reviewAppPage();
+        // reviewAppPage();
     });
 
     and('user select Someone else option', () => {
@@ -656,7 +656,7 @@ test('EPIC_EPP-44_STORY_EPP-1566 - Verify whether the user able to see the error
     });
 
     then('user lands on the screen to review the appointment details and click on proceeds to schedule it', () => {
-        reviewAppPage();
+        // reviewAppPage();
     });
 
     and('user select Someone else option', () => {
@@ -708,7 +708,7 @@ test('EPIC_EPP-44_STORY_EPP-1566 - Verify whether the user able to see the error
     });
 
     then('user lands on the screen to review the appointment details and click on proceeds to schedule it', () => {
-        reviewAppPage();
+        // reviewAppPage();
     });
 
     and('user select Someone else option', () => {
@@ -759,7 +759,7 @@ test('EPIC_EPP-44_STORY_EPP-1566 - Verify whether the user able to see the error
     });
 
     then('user lands on the screen to review the appointment details and click on proceeds to schedule it', () => {
-        reviewAppPage();
+        // reviewAppPage();
     });
 
     and('user select Someone else option', () => {

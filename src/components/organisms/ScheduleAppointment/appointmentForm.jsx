@@ -19,6 +19,7 @@ import { getLinkAria } from "../../../utils/viewUtil";
 import FormLabel from "@mui/material/FormLabel";
 import { useRouter } from "next/router";
 import FormMessage from "../../molecules/FormMessage/formMessage";
+import { PasswordValidator } from "../../molecules/PasswordValidator/passwordValidator";
 
 const DisclaimerText = (data) => {
   return (
@@ -61,6 +62,9 @@ export default function AppointmentForm({
   const router = useRouter();
 
   const { SCHEDULE_GUEST_TEST_ID } = constants.TEST_ID;
+  const validatePassword = (errors1 = [], errors2 = []) => {
+    return errors1.length === 0 && errors2.length <= 1;
+  };
 
   const onSubmit = (data) => {
     OnClickSchedule(data);
@@ -86,6 +90,7 @@ export default function AppointmentForm({
     { label: "Both", value: "both", testId: SCHEDULE_GUEST_TEST_ID.bothradio },
   ];
 
+  const watchedPassword = watch("password", "");
   const [watchedEmail, watchedMobile, watchedPreferredCommunication] = watch([
     "email",
     "mobile",
@@ -97,6 +102,43 @@ export default function AppointmentForm({
       watchedEmail || watchedMobile || "(auto-populated email id/phone number)"
     );
   };
+
+  const passwordValidator = [
+    {
+      label: "Length: 8-20 characters",
+      validate: !Regex.lengthRegex.test(watchedPassword),
+      mandatory: true,
+    },
+    {
+      label: "Contain at least 3 out of 4 types of characters below:",
+      passesValidation: 3,
+      text: true,
+      children: [
+        {
+          label: "At least One Numeric",
+          validate: Regex.numberRegex.test(watchedPassword),
+        },
+        {
+          label: "At least One Upper case Alpha",
+          validate: Regex.upperCaseRegex.test(watchedPassword),
+        },
+        {
+          label: "At least One Lower case Alpha",
+          validate: Regex.lowerCaseRegex.test(watchedPassword),
+        },
+        {
+          label: "At least One Special character (no spaces)",
+          validate: Regex.specialRegex.test(watchedPassword),
+        },
+      ],
+    },
+    {
+      label: "Password should not contain your username",
+      validate: watchedPassword.indexOf(watchedEmail || watchedMobile) > -1,
+      mandatory: true,
+    },
+  ];
+  const isPasswordError = watchedPassword.length > 0; // && passwordValidator.filter(v => v.validate).length > 0
 
   const { t } = useTranslation("translation", {
     keyPrefix: "scheduleAppoinment",
@@ -204,6 +246,10 @@ export default function AppointmentForm({
             success={formMessage.success}
             title={formMessage.title}
             isBackToLogin={formMessage.isBackToLogin}
+            isSchedule
+            sx={{
+              width: "71%",
+            }}
           >
             {formMessage.content}
           </FormMessage>
@@ -502,6 +548,13 @@ export default function AppointmentForm({
                 }}
               />
               <DisclaimerText label="(Optional)" />
+
+              <PasswordValidator
+                validator={passwordValidator}
+                isShowValidation={isPasswordError}
+                password={watchedPassword}
+                validatePassword={validatePassword}
+              />
 
               <div style={styles.registeredUsernameWrapper}>
                 <div>Your username will be {getRegisteredUsername()}</div>

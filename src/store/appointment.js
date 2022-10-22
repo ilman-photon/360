@@ -79,7 +79,6 @@ const buildAppointmentData = (payload) => {
  * @param {*} payload
  */
 const buildAppointmentPostBody = (payload) => {
-  console.log("app post body", { payload });
   const patientInfoData = payload.patientInfo;
   const providerInfoData = payload.providerInfo;
   const appointmentInfoData = payload.appointmentInfo;
@@ -132,7 +131,6 @@ export const rescheduleAppointment = createAsyncThunk(
     const api = new Api();
     try {
       const postBody = buildAppointmentPostBody(payload);
-      console.log("postbody to be sent to API", postBody);
       const response = await api.getResponse(
         `/ecp/appointments/reschedule/${appointmentId}`,
         postBody,

@@ -26,7 +26,6 @@ export class Api {
   }
 
   errorGenericValidation = (err) => {
-    console.log("err : ", err);
     return (
       err &&
       ((err.code === constants.ERROR_CODE.BAD_REQUEST &&

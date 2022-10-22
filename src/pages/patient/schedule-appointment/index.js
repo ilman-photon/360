@@ -39,7 +39,7 @@ import {
 import { fetchUser } from "../../../store/user";
 import { Api } from "../../api/api";
 import MESSAGES from "../../../utils/responseCodes";
-import { setFormMessage } from "../../../store";
+import { setFormMessage, resetFormMessage } from "../../../store";
 import { TEST_ID } from "../../../utils/constants";
 import { StyledButton } from "../../../components/atoms/Button/button";
 import { colors } from "../../../styles/theme";
@@ -208,7 +208,6 @@ export const PageContent = ({
           >
             <AppointmentForm
               isForMyself={true}
-              // OnClickSchedule={OnClickSchedule}
               patientData={appointmentScheduleData.patientInfo}
               OnSubmit={(v) => {
                 handleFormSubmit(v);
@@ -288,6 +287,7 @@ export default function ScheduleAppointmentPage() {
   const appointmentScheduleData = useSelector((state) => {
     return state.appointment.appointmentSchedule;
   });
+  const formMessage = useSelector((state) => state.index.formMessage);
 
   React.useEffect(() => {
     if (router.query.reschedule) {
@@ -318,7 +318,7 @@ export default function ScheduleAppointmentPage() {
           setPatientId(response.ecpPatientId || "");
         });
     }
-  }, [api, appointmentScheduleData]);
+  }, [appointmentScheduleData]);
 
   React.useEffect(() => {
     dispatch(fetchUser());
@@ -369,6 +369,7 @@ export default function ScheduleAppointmentPage() {
       preferredCommunication: data.preferredCommunication,
       userType: "G",
     };
+    dispatch(resetFormMessage());
 
     try {
       await api
@@ -382,10 +383,8 @@ export default function ScheduleAppointmentPage() {
           );
         });
     } catch (err) {
-      console.error(err, "hsc");
       if (err.ResponseCode) {
         const errorMessage = MESSAGES[err.ResponseCode || 3500];
-        console.log(errorMessage, "errorMessage", err);
 
         dispatch(
           setFormMessage({
@@ -465,6 +464,7 @@ export default function ScheduleAppointmentPage() {
       }
     } else {
       setActiveStep(idx);
+      dispatch(resetFormMessage());
     }
   };
 
@@ -582,6 +582,7 @@ export default function ScheduleAppointmentPage() {
             appointmentScheduleData={appointmentScheduleData}
             OnEditClicked={handleEditSchedule}
             guestRegister={handleGuestRegister}
+            formMessage={formMessage}
           />
         </div>
       </Grid>

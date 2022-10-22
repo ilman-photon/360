@@ -291,7 +291,6 @@ describe("Api test", () => {
     it("create client error", async () => {
       const expectedResult = new Error("Request failed with status code 404");
       const api = new Api();
-      console.log({ api });
       api
         .getResponse(
           `/ecp/patient/resetPasswordToken`,

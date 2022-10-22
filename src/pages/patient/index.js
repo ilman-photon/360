@@ -387,7 +387,10 @@ export default function HomePage({ googleApiKey }) {
 HomePage.getLayout = function getLayout(page) {
   return (
     <Provider store={store}>
-      <AppointmentLayout currentActivePage={"dashboard"}>
+      <AppointmentLayout
+        pageTitle="EyeCare Patient Portal - Dashboard"
+        currentActivePage={"dashboard"}
+      >
         {page}
       </AppointmentLayout>
     </Provider>
