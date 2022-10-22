@@ -313,11 +313,12 @@ export default function ScheduleAppointmentPage() {
     };
     {
       isLogin &&
+        appointmentScheduleData?.patientInfo.email &&
         api.getPatientId(post).then((response) => {
           setPatientId(response.ecpPatientId || "");
         });
     }
-  }, []);
+  }, [api, appointmentScheduleData]);
 
   React.useEffect(() => {
     dispatch(fetchUser());

@@ -95,7 +95,7 @@ export function parseScheduleDataWeek(availability) {
 export function getAppointmentTypeOnTimeSlot(scheduleData, timeSlot) {
   let appointmentType = "";
   for (let index = 0; index < scheduleData.list.length; index++) {
-    if (scheduleData.list[index].time === timeSlot) {
+    if (scheduleData.list[index]?.time === timeSlot) {
       appointmentType = scheduleData.list[index].appointmentCode;
       break;
     }

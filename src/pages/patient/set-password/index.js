@@ -118,7 +118,7 @@ export default function SetPasswordPage({ username, token }) {
   };
 
   useEffect(() => {
-    if (!isloaded) {
+    if (!isloaded && router.asPath.includes("/patient/sync")) {
       onValidateSync();
       setLoaded(true);
     }
