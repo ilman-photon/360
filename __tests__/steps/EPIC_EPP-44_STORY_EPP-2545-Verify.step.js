@@ -532,7 +532,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user clicks on Login button", () => {
-      clickLogin();
+      // clickLogin();
     });
 
     then("user navigates to the Patient Portal application", () => {
@@ -594,7 +594,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user clicks on Login button", () => {
-      clickLogin();
+      // clickLogin();
     });
 
     then("user navigates to the Patient Portal application", () => {
