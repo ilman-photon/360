@@ -367,7 +367,6 @@ defineFeature(feature, (test) => {
       "the user should see today’s date as the date of appointment by default",
       () => {
         const dateField = container.getByLabelText(/Date/i);
-        console.log(dateField.value);
         const date = new Date();
         const currentDate = new Date(dateField.value);
         expect(date.getDate()).toEqual(currentDate.getDate());

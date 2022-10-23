@@ -16,7 +16,6 @@ defineFeature(feature, (test) => {
     expect(true).toBeTruthy();
   };
   const validateText = (arg0) => {
-    console.log(">>>", arg0);
     expect(container.getByText(arg0)).toBeInTheDocument();
   };
 

@@ -12,9 +12,7 @@ import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import PersonOutlinedIcon from "@mui/icons-material/PersonOutlined";
 import InputMask from "react-input-mask";
 import Tooltip from "@mui/material/Tooltip";
-
 import { primaryTheme } from "../../../styles/theme";
-
 export const CustomFormControl = styled((props) => <FormControl {...props} />)(
   ({ theme }) => ({
     "&.MuiFormControl-root": {
@@ -41,6 +39,8 @@ export const CustomFormControl = styled((props) => <FormControl {...props} />)(
 
 export const CustomPasswordInput = styled((props) => (
   <TextField
+    tabIndex={0}
+    aria-label={"Password required text field"}
     InputProps={{
       disableUnderline: true,
       endAdornment: (
@@ -233,6 +233,7 @@ export const CustomInput = styled(({ ...props }) => {
           <CustomFormControl sx={{ m: 1 }} variant="filled">
             <CustomPasswordInput
               error={!Boolean(values.value) && props.error}
+              InputLabelProps={{ "aria-hidden": true }}
               variant="filled"
               id={props.id}
               type={showPassword}

@@ -106,7 +106,6 @@ export default function ContactInformation({
 
   const assignAddressFormValue = (oldValue) => {
     if (!placeDetailsState) return;
-    console.log({ placeDetailsState });
     const addressComponents = placeDetailsState.address_components;
     if (addressComponents) {
       resetAddressForm();

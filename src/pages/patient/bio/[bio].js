@@ -64,7 +64,6 @@ export default function Bio({ embedApi, bio }) {
         response.providerDetails?.membershipAndAffiliation
       ),
     };
-    console.log(data);
     getProviderImage(data);
   };
 
