@@ -1,11 +1,5 @@
 import "@testing-library/jest-dom";
 import { addToCalendar } from "../../../src/utils/addToCalendar";
-
-// const moment = require('moment-timezone');
-// jest.doMock('moment', () => {
-//   moment.tz.setDefault('America/New_York');
-//   return moment;
-// });
 jest.mock("moment", () => {
   const originalModule = jest.requireActual("moment");
   const moment = {
@@ -23,15 +17,12 @@ jest.mock("moment", () => {
   return moment;
 });
 
+jest.mock("add-to-calendar-button", () => ({
+  atcb_action: jest.fn(),
+}));
+
 describe("addToCalender Util", () => {
   test("addToCalender funtionality", () => {
-    const crypto = require("crypto");
-
-    Object.defineProperty(global.self, "crypto", {
-      value: {
-        getRandomValues: (arr) => crypto.randomBytes(arr.length),
-      },
-    });
     const data = {
       name: "Robert",
       description: "lorem ipsum",
