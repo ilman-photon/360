@@ -12,7 +12,7 @@ import { defineFeature, loadFeature } from "jest-cucumber";
 import { Provider } from "react-redux";
 import store from "../../src/store/store";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
-import constants from "../../src/utils/constants";
+import constants, { TEST_ID } from "../../src/utils/constants";
 import AuthPage from "../../src/pages/patient/login";
 import Cookies from "universal-cookie";
 import HomePage from "../../src/pages/patient";
@@ -317,7 +317,6 @@ const MOCK_SUGESTION = {
   ],
 };
 
-
 const MOCK_SUGGESTION_DATA = {
   appointmentType: [
     {
@@ -539,9 +538,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user clicks on the Login button", () => {
-      const loginButton = container.getByRole("button", {
-        name: /loginButtonLabel/i,
-      });
+      const loginButton = container.getByTestId(TEST_ID.LOGIN_TEST_ID.loginBtn);
       fireEvent.click(loginButton);
     });
 
@@ -652,9 +649,7 @@ defineFeature(feature, (test) => {
     });
 
     and("user clicks on the Login button", () => {
-      const loginButton = container.getByRole("button", {
-        name: /loginButtonLabel/i,
-      });
+      const loginButton = container.getByTestId(TEST_ID.LOGIN_TEST_ID.loginBtn);
       fireEvent.click(loginButton);
     });
 
@@ -730,9 +725,14 @@ defineFeature(feature, (test) => {
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1591 - Verify if user not be able to select past dates (< today)', ({ given, when, and, then }) => {
+  test("EPIC_EPP-44_STORY_EPP-1591 - Verify if user not be able to select past dates (< today)", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
     let container;
-    given('user launch the Patient Portal URL', async () => {
+    given("user launch the Patient Portal URL", async () => {
       const expectedResult = {
         ResponseCode: 2000,
         ResponseType: "success",
@@ -741,7 +741,7 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
-    when('a user provides a valid Email or Phone Number and password', () => {
+    when("a user provides a valid Email or Phone Number and password", () => {
       act(() => {
         container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
@@ -752,46 +752,55 @@ defineFeature(feature, (test) => {
       expect("formTitle").toEqual(title.textContent);
     });
 
-    and('user clicks on the Login button', () => {
-      const loginButton = container.getByRole("button", {
-        name: /loginButtonLabel/i,
-      });
+    and("user clicks on the Login button", () => {
+      const loginButton = container.getByTestId(TEST_ID.LOGIN_TEST_ID.loginBtn);
       fireEvent.click(loginButton);
     });
 
-    then('user navigates to the Patient Portal home page', () => {
+    then("user navigates to the Patient Portal home page", () => {
       navigateToPatientPortalHome();
     });
 
-    when('a user  clicks on the Schedule Appointment link', () => {
-      expect(true).toBeTruthy()
+    when("a user  clicks on the Schedule Appointment link", () => {
+      expect(true).toBeTruthy();
     });
 
-    then('User lands on the Schedule Appointment screen', async () => {
+    then("User lands on the Schedule Appointment screen", async () => {
       cleanup();
       container = await renderScheduleAppointment();
     });
 
-    when('the user navigate to date calender field', () => {
-      expect(true).toBeTruthy()
+    when("the user navigate to date calender field", () => {
+      expect(true).toBeTruthy();
     });
 
-    and(/^user should see today’s "(.*)" as date of appointment by default$/, (arg0) => {
-      expect(true).toBeTruthy()
-    });
+    and(
+      /^user should see today’s "(.*)" as date of appointment by default$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
-    when('user click on Date calender & select past dates from today\'s date', () => {
-      expect(true).toBeTruthy()
-    });
+    when(
+      "user click on Date calender & select past dates from today's date",
+      () => {
+        expect(true).toBeTruthy();
+      }
+    );
 
-    then('user should not able to select past dates from today\'s date', () => {
-      expect(true).toBeTruthy()
+    then("user should not able to select past dates from today's date", () => {
+      expect(true).toBeTruthy();
     });
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1591-Verify if user not allow to select a date that  3 months greater than today’s date', ({ given, when, and, then }) => {
+  test("EPIC_EPP-44_STORY_EPP-1591-Verify if user not allow to select a date that  3 months greater than today’s date", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
     let container;
-    given('user launch the Patient Portal URL', () => {
+    given("user launch the Patient Portal URL", () => {
       const expectedResult = {
         ResponseCode: 2000,
         ResponseType: "success",
@@ -800,7 +809,7 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
-    when('a user provides a valid Email or Phone Number and password', () => {
+    when("a user provides a valid Email or Phone Number and password", () => {
       act(() => {
         container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
@@ -811,46 +820,58 @@ defineFeature(feature, (test) => {
       expect("formTitle").toEqual(title.textContent);
     });
 
-    and('user clicks on the Login button', () => {
-      const loginButton = container.getByRole("button", {
-        name: /loginButtonLabel/i,
-      });
+    and("user clicks on the Login button", () => {
+      const loginButton = container.getByTestId(TEST_ID.LOGIN_TEST_ID.loginBtn);
       fireEvent.click(loginButton);
     });
 
-    then('user navigates to the Patient Portal home page', () => {
+    then("user navigates to the Patient Portal home page", () => {
       navigateToPatientPortalHome();
     });
 
-    when('a user  clicks on the Schedule Appointment link', () => {
-      expect(true).toBeTruthy()
+    when("a user  clicks on the Schedule Appointment link", () => {
+      expect(true).toBeTruthy();
     });
 
-    then('User lands on the Schedule Appointment screen', async () => {
+    then("User lands on the Schedule Appointment screen", async () => {
       cleanup();
       container = await renderScheduleAppointment();
     });
 
-    when('the user navigates to the date calendar field', () => {
-      expect(true).toBeTruthy()
+    when("the user navigates to the date calendar field", () => {
+      expect(true).toBeTruthy();
     });
 
-    and(/^the user should see today’s "(.*)" as the date of appointment by default$/, (arg0) => {
-      expect(true).toBeTruthy()
-    });
+    and(
+      /^the user should see today’s "(.*)" as the date of appointment by default$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
-    when(/^the user clicks on the Date calendar & select (\d+) months greater than today's date$/, (arg0) => {
-      expect(true).toBeTruthy()
-    });
+    when(
+      /^the user clicks on the Date calendar & select (\d+) months greater than today's date$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
-    then(/^user should not able to select the date (\d+) months greater than today's date$/, (arg0) => {
-      expect(true).toBeTruthy()
-    });
+    then(
+      /^user should not able to select the date (\d+) months greater than today's date$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
   });
 
-  test('EPIC_EPP-44_STORY_EPP-1591- -Verify if user able to select any date within 3 month', ({ given, when, and, then }) => {
+  test("EPIC_EPP-44_STORY_EPP-1591- -Verify if user able to select any date within 3 month", ({
+    given,
+    when,
+    and,
+    then,
+  }) => {
     let container;
-    given('user launch the Patient Portal URL', async () => {
+    given("user launch the Patient Portal URL", async () => {
       const expectedResult = {
         ResponseCode: 2000,
         ResponseType: "success",
@@ -859,7 +880,7 @@ defineFeature(feature, (test) => {
       mock.onPost(`/ecp/patient/login`).reply(200, expectedResult);
     });
 
-    when('a user provides a valid Email or Phone Number and password', () => {
+    when("a user provides a valid Email or Phone Number and password", () => {
       act(() => {
         container = renderWithProviders(<AuthPage />, {
           container: document.body.appendChild(element),
@@ -870,40 +891,47 @@ defineFeature(feature, (test) => {
       expect("formTitle").toEqual(title.textContent);
     });
 
-    and('user clicks on the Login button', () => {
-      const loginButton = container.getByRole("button", {
-        name: /loginButtonLabel/i,
-      });
+    and("user clicks on the Login button", () => {
+      const loginButton = container.getByTestId(TEST_ID.LOGIN_TEST_ID.loginBtn);
       fireEvent.click(loginButton);
     });
 
-    then('user navigates to the Patient Portal home page', () => {
+    then("user navigates to the Patient Portal home page", () => {
       navigateToPatientPortalHome();
     });
 
-    when('a user  clicks on the Schedule Appointment link', () => {
-      expect(true).toBeTruthy()
+    when("a user  clicks on the Schedule Appointment link", () => {
+      expect(true).toBeTruthy();
     });
 
-    then('User lands on the Schedule Appointment screen', async () => {
+    then("User lands on the Schedule Appointment screen", async () => {
       cleanup();
       container = await renderScheduleAppointment();
     });
 
-    when('user navigate to date calender field', () => {
-      expect(true).toBeTruthy()
+    when("user navigate to date calender field", () => {
+      expect(true).toBeTruthy();
     });
 
-    and(/^user should see today’s "(.*)" as date of appointment by default$/, (arg0) => {
-      expect(true).toBeTruthy()
-    });
+    and(
+      /^user should see today’s "(.*)" as date of appointment by default$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
-    when(/^user click on Date calender & select  the date within (\d+) months$/, (arg0) => {
-      expect(true).toBeTruthy()
-    });
+    when(
+      /^user click on Date calender & select  the date within (\d+) months$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
 
-    then(/^user should able to select the date  within (\d+) months$/, (arg0) => {
-      expect(true).toBeTruthy()
-    });
+    then(
+      /^user should able to select the date  within (\d+) months$/,
+      (arg0) => {
+        expect(true).toBeTruthy();
+      }
+    );
   });
 });
