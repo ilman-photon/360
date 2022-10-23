@@ -2,6 +2,14 @@
 import { waitFor } from "@testing-library/react";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
+import { useSelector } from "react-redux";
+import reducer, {
+  editAppointmentScheduleData,
+  rescheduleAppointment,
+  resetAppointmentSchedule,
+  setAppointmentSchedule,
+  setDummyAppointmentSchedule,
+} from "../../../src/store/appointment";
 import store from "../../../src/store/store";
 import {
   addUserInsuranceData,
@@ -10,16 +18,29 @@ import {
   fetchUser,
   postInsurance,
   removeUserInsuranceData,
+  resetUserAppointmentData,
+  resetUserInsuranceData,
+  setStatus,
+  setUserAppointmentData,
+  setUserAppointmentDataByIndex,
   setUserData,
+  setUserInsuranceData,
   setUserInsuranceDataById,
   updateInsurance,
   updateUser,
 } from "../../../src/store/user";
 
 import {
+  mockAppointmentCreationData,
   mockExistingInsurance,
+  mockInsurance,
   mockSubmitInsurance,
   mockUserData,
+  rescheduleData,
+  rescheduleDataPostbody,
+  rescheduleDataResponse,
+  upcomingAppointment,
+  upcomingResponse,
 } from "../../../__mocks__/mockResponse";
 
 describe("Store User", () => {
@@ -228,6 +249,8 @@ describe("Store User", () => {
   };
 
   test("addInsurance", async () => {
+    await store.dispatch(setUserInsuranceData(mockInsurance.entities));
+    await store.dispatch(resetUserInsuranceData());
     const postBody = {
       patientId: userData.patientId,
       payload: payLoadAddInsurance,
@@ -275,6 +298,7 @@ describe("Store User", () => {
   test("updateInsurance", updateInsuranceFlow);
 
   test("deleteInsurance", async () => {
+    store.dispatch(setStatus("loading"));
     await updateInsuranceFlow();
     const formDeleteInsurance = {
       id: "24bea5f6-146c-430d-9578-e024f4790afb",
@@ -327,5 +351,56 @@ describe("Store User", () => {
     );
     expect(deleteInsuranceData.payload.success).toBeTruthy();
     store.dispatch(removeUserInsuranceData(formDeleteInsurance));
+  });
+
+  test("User Appointment", async () => {
+    store.dispatch(resetUserAppointmentData());
+    const upcomingData = { ...upcomingResponse };
+    upcomingData.entities[0].appointmentId = 0;
+    let result = store.dispatch(setUserAppointmentData(upcomingData.entities));
+    expect(result).not.toBeNull();
+    result = store.dispatch(
+      setUserAppointmentDataByIndex({
+        ...upcomingAppointment,
+        appointmentDate: "10/28/2022",
+      })
+    );
+    expect(result).not.toBeNull();
+  });
+
+  test("Appointment Reschedule", async () => {
+    store.dispatch(resetAppointmentSchedule());
+    let result = store.dispatch(
+      setAppointmentSchedule(mockAppointmentCreationData)
+    );
+    console.log(result);
+    expect(result).not.toBeNull();
+    const rescheduleData = {
+      appointmentId: rescheduleDataPostbody.appointmentInfo.id,
+      payload: rescheduleDataPostbody,
+    };
+    mock
+      .onPut(`/ecp/appointments/reschedule/${rescheduleData.appointmentId}`)
+      .reply(200, rescheduleDataResponse);
+    result = await store.dispatch(rescheduleAppointment(rescheduleData));
+    expect(result.payload.success).toBeTruthy();
+
+    mock
+      .onPut(`/ecp/appointments/reschedule/${rescheduleData.appointmentId}`)
+      .reply(400, rescheduleDataResponse);
+
+    result = await store.dispatch(rescheduleAppointment(rescheduleData));
+    expect(result.payload.success).toBeFalsy();
+
+    result = store.dispatch(
+      editAppointmentScheduleData({
+        key: "appointmentInfo",
+        value: {
+          ...rescheduleDataPostbody.appointmentInfo,
+          date: "2022-10-27T13:40:00.000Z",
+        },
+      })
+    );
+    expect(result.payload.value.date).toEqual("2022-10-27T13:40:00.000Z");
   });
 });
