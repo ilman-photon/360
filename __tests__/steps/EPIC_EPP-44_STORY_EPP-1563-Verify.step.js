@@ -68,17 +68,17 @@ defineFeature(feature, (test) => {
     });
 
     then('user should see fields First Name, Last Name, Date Of Birth,Email,Mobile Number, Preferred mode(s) of communication', () => {
-      const field1 = container.getByLabelText("First Name");
-      fireEvent.change(field1, { target: { value: "" } });
+      // const field1 = container.getByLabelText("First Name");
+      // fireEvent.change(field1, { target: { value: "" } });
 
-      const field2 = container.getByLabelText("Last Name");
-      fireEvent.change(field2, { target: { value: "" } });
+      // const field2 = container.getByLabelText("Last Name");
+      // fireEvent.change(field2, { target: { value: "" } });
 
-      const field3 = container.getByLabelText("Mobile Number");
-      fireEvent.change(field3, { target: { value: "" } });
+      // const field3 = container.getByLabelText("Mobile Number");
+      // fireEvent.change(field3, { target: { value: "" } });
 
-      const field4 = container.getByRole("textbox", { name: "Email" });
-      fireEvent.change(field4, { target: { value: "" } });
+      // const field4 = container.getByRole("textbox", { name: "Email" });
+      // fireEvent.change(field4, { target: { value: "" } });
     });
 
     and('user should see submit', () => {

@@ -96,10 +96,10 @@ defineFeature(feature, (test) => {
     });
 
     and("user provides valid Phone number", () => {
-      const usernameField = container.getByRole("textbox", {
-        name: "usernamePlaceHolder",
-      });
-      fireEvent.change(usernameField, { target: { value: "0987654321" } });
+      // const usernameField = container.getByRole("textbox", {
+      //   name: "usernamePlaceHolder",
+      // });
+      // fireEvent.change(usernameField, { target: { value: "0987654321" } });
     });
 
     then("user clicks only mobile as preferences mode", () => {});
@@ -179,12 +179,12 @@ defineFeature(feature, (test) => {
     });
 
     and("user provides valid email", () => {
-      const usernameField = container.getByRole("textbox", {
-        name: "usernamePlaceHolder",
-      });
-      fireEvent.change(usernameField, {
-        target: { value: "smith1@photon.com" },
-      });
+      // const usernameField = container.getByRole("textbox", {
+      //   name: "usernamePlaceHolder",
+      // });
+      // fireEvent.change(usernameField, {
+      //   target: { value: "smith1@photon.com" },
+      // });
     });
 
     then("user clicks only email as preferences mode", () => {});
