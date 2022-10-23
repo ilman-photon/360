@@ -1,4 +1,4 @@
-import { act, fireEvent, render, waitFor } from "@testing-library/react";
+import { act, fireEvent, render, waitFor, cleanup } from "@testing-library/react";
 import axios from "axios";
 import "@testing-library/jest-dom";
 import MockAdapter from "axios-mock-adapter";
@@ -8,6 +8,7 @@ import ForgotPasswordPage from "../../src/pages/patient/forgot-password";
 import store from "../../src/store/store";
 const useRouter = jest.spyOn(require("next/router"), "useRouter");
 import constants from "../../src/utils/constants";
+import { renderLogin } from "../../__mocks__/commonSteps";
 
 const feature = loadFeature(
   "./__tests__/feature/Patient Portal/Sprint4/EPP-1581.feature"
@@ -23,14 +24,19 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    given("user launch the Marketing Site url", () => {});
+    given("user launch the Marketing Site url", () => { });
 
     when(
       "user click on Already have an appointment? Sync your appointment information button",
-      () => {}
+      async () => {
+        container = await renderLogin()
+        const syncButton = container.getByText("syncYourAppointmentInformation");
+        fireEvent.click(syncButton);
+      }
     );
 
     then("user should see the Email or Phone number", async () => {
+      cleanup()
       useRouter.mockReturnValue({
         back: jest.fn(),
         asPath: "/patient/sync",
@@ -70,14 +76,19 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    given("user launch the Marketing Site url", () => {});
+    given("user launch the Marketing Site url", () => { });
 
     when(
       "user click on Already have an appointment? Sync your appointment information button",
-      () => {}
+      async () => {
+        container = await renderLogin()
+        const syncButton = container.getByText("syncYourAppointmentInformation");
+        fireEvent.click(syncButton);
+      }
     );
 
     then("user should see the Email or Phone number", async () => {
+      cleanup()
       useRouter.mockReturnValue({
         back: jest.fn(),
         asPath: "/patient/sync",
@@ -102,7 +113,7 @@ defineFeature(feature, (test) => {
       // fireEvent.change(usernameField, { target: { value: "0987654321" } });
     });
 
-    then("user clicks only mobile as preferences mode", () => {});
+    then("user clicks only mobile as preferences mode", () => { });
 
     and("user click on submit", async () => {
       const expectedResult = {
@@ -146,21 +157,26 @@ defineFeature(feature, (test) => {
     when,
     then,
   }) => {
-    given("user launch the Marketing Site url", () => {});
+    given("user launch the Marketing Site url", () => { });
 
     and(
       "user clicks on the Already have an appointment? Sync your appointment information link",
-      () => {}
+      () => { }
     );
 
-    and("user click on Continue as a Guest option", () => {});
+    and("user click on Continue as a Guest option", () => { });
 
     when(
       "user click on Already have an appointment? Sync your appointment information button",
-      () => {}
+      async () => {
+        container = await renderLogin()
+        const syncButton = container.getByText("syncYourAppointmentInformation");
+        fireEvent.click(syncButton);
+      }
     );
 
     then("user should see the Email or Phone number", async () => {
+      cleanup()
       useRouter.mockReturnValue({
         back: jest.fn(),
         asPath: "/patient/sync",
@@ -187,7 +203,7 @@ defineFeature(feature, (test) => {
       // });
     });
 
-    then("user clicks only email as preferences mode", () => {});
+    then("user clicks only email as preferences mode", () => { });
 
     and("user click on submit", async () => {
       const expectedResult = {
@@ -232,21 +248,46 @@ defineFeature(feature, (test) => {
     then,
     and,
   }) => {
-    given("user launch the Marketing Site url", () => {});
+    given("user launch the Marketing Site url", () => { });
 
     when(
       "user click on Already have an appointment? Sync your appointment information button",
-      () => {}
+      async () => {
+        container = await renderLogin()
+        const syncButton = container.getByText("syncYourAppointmentInformation");
+        fireEvent.click(syncButton);
+      }
     );
 
-    then("user should see the Email or Phone number", () => {});
+    then("user should see the Email or Phone number", async () => {
+      cleanup()
+      useRouter.mockReturnValue({
+        back: jest.fn(),
+        asPath: "/patient/sync",
+        push: jest.fn(),
+      });
+      act(() => {
+        container = render(
+          <Provider store={store}>
+            {ForgotPasswordPage.getLayout(<ForgotPasswordPage />)}
+          </Provider>
+        );
+      });
+      await waitFor(() => {
+        container.getByText(/usernamePlaceHolder/i);
+      });
+    });
 
-    and("user provides valid email or phone number", () => {});
+    and("user provides valid email or phone number", async () => {
+      const userField = container.getByLabelText(/usernamePlaceHolder/i);
+      fireEvent.change(userField, { target: { value: "validUser" } });
+      expect(userField.value).toEqual("validUser");
+    });
 
-    then("user clicks only both as preferences mode", () => {});
+    then("user clicks only both as preferences mode", () => { });
 
-    and("user click on submit", () => {});
+    and("user click on submit", () => { });
 
-    then("user recieves link to email or phone number", () => {});
+    then("user recieves link to email or phone number", () => { });
   });
 });

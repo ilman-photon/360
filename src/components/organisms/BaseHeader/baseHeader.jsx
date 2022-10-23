@@ -1,6 +1,6 @@
 import * as React from "react";
 import { styles } from "./style";
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import Container from "@mui/material/Container";
 import Toolbar from "@mui/material/Toolbar";

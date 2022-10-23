@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import AuthLayout from "../../../components/templates/authLayout";
 import { useDispatch, useSelector } from "react-redux";
 import { resetFormMessage, setFormMessage } from "../../../store";
-import Link from "next/link";
 import { Api } from "../../api/api";
 import { Box } from "@mui/material";
 import SetPasswordComponent from "../../../components/organisms/SetPassword/setPassword";

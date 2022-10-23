@@ -5,7 +5,6 @@ import { ThemeProvider } from "@mui/material/styles";
 import { patientTypography } from "../../styles/theme";
 import Navbar from "../molecules/Navbar/Navbar";
 import AccountTitleHeading from "../atoms/AccountTitleHeading/accountTitleHeading";
-import { useMediaQuery } from "@mui/material";
 import { logoutProps } from "../../utils/authetication";
 import { useRouter } from "next/router";
 
