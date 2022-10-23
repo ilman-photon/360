@@ -9,6 +9,7 @@ import {
 import { useTranslation } from "next-i18next";
 import { styles } from "./style";
 import AppointmentForm from "./appointmentForm";
+import { colors } from "../../../styles/theme";
 
 export default function ScheduleAppointment({
   selectedSelf,
@@ -125,6 +126,9 @@ export default function ScheduleAppointment({
                   backgroundColor: `${
                     !selectedSelf ? "#B1B1B1 !important" : "#007E8F"
                   }`,
+                  "&:hover": {
+                    backgroundColor: colors.teal,
+                  },
                 }}
                 onClick={() => setActiveStep(3)}
                 tabIndex={0}

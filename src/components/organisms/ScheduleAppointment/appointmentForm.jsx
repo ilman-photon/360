@@ -20,6 +20,7 @@ import FormLabel from "@mui/material/FormLabel";
 import { useRouter } from "next/router";
 import FormMessage from "../../molecules/FormMessage/formMessage";
 import { PasswordValidator } from "../../molecules/PasswordValidator/passwordValidator";
+import { colors } from "../../../styles/theme";
 
 const DisclaimerText = (data) => {
   return (
@@ -571,8 +572,11 @@ export default function AppointmentForm({
             variant="contained"
             sx={{
               width: { xs: "100%", md: "222px" },
-              background: "#0095A9",
+              background: colors.primaryButton,
               mt: 2,
+              "&:hover": {
+                backgroundColor: colors.teal,
+              },
             }}
             style={styles.continueButton}
           >

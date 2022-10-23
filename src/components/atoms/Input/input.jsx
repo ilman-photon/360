@@ -269,7 +269,7 @@ export const CustomInput = styled(({ ...props }) => {
               onChange={props.onChange}
               value={props.value}
               getOpenDialogAriaText={(date, utils) => {
-                if (date)
+                if (date instanceof Date && !isNaN(date))
                   return `Choose date, selected date is ${utils.format(
                     utils.date(date),
                     "fullDate"

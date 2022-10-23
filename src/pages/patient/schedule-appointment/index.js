@@ -318,7 +318,7 @@ export default function ScheduleAppointmentPage() {
           setPatientId(response.ecpPatientId || "");
         });
     }
-  }, [appointmentScheduleData]);
+  }, [api, appointmentScheduleData]);
 
   React.useEffect(() => {
     dispatch(fetchUser());
